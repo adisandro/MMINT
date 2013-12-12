@@ -10,12 +10,16 @@ Export-Package: edu.toronto.cs.se.modelepedia.kleisli,
  edu.toronto.cs.se.modelepedia.kleisli.util
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Require-Bundle: edu.toronto.cs.se.mmtf,
- edu.toronto.cs.se.mmtf.diagram,
- org.eclipse.core.runtime,
+Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.equinox.registry,
  org.eclipse.emf.common,
  org.eclipse.ui.workbench,
- org.eclipse.emf.common.ui
+ org.eclipse.emf.common.ui,
+ org.eclipse.gef,
+ org.eclipse.gmf.runtime.notation.edit,
+ org.eclipse.gmf.runtime.diagram.ui,
+ edu.toronto.cs.se.mmtf,
+ edu.toronto.cs.se.mmtf.diagram,
+ edu.toronto.cs.se.mmtf.relationship.diagram
 Bundle-ActivationPolicy: lazy

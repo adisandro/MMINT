@@ -95,7 +95,7 @@ public class MultiModelInstanceFactory {
 	 *             If the uri of the new instance is already registered in the
 	 *             Instance MID.
 	 */
-	private static void addInstance(ExtendibleElement newInstance, ExtendibleElement type, String newInstanceUri, String newInstanceName, MultiModel multiModel) throws MMTFException {
+	public static void addInstance(ExtendibleElement newInstance, ExtendibleElement type, String newInstanceUri, String newInstanceName, MultiModel multiModel) throws MMTFException {
 
 		if (multiModel.getExtendibleTable().containsKey(newInstanceUri)) {
 			throw new MMTFException("Instance with uri " + newInstanceUri + " is already registered");
@@ -165,7 +165,7 @@ public class MultiModelInstanceFactory {
 	 *            True if the new reference is also the actual container of the
 	 *            new instance and not just a pointer to it, false otherwise.
 	 */
-	private static void addInstanceReference(ExtendibleElementReference newInstanceRef, ExtendibleElement newInstance, boolean isContainer) {
+	public static void addInstanceReference(ExtendibleElementReference newInstanceRef, ExtendibleElement newInstance, boolean isContainer) {
 
 		if (isContainer) {
 			newInstanceRef.setContainedObject(newInstance);
@@ -286,7 +286,7 @@ public class MultiModelInstanceFactory {
 	 *            reference to the model element.
 	 * @return The created reference to the model element.
 	 */
-	private static ModelElementReference createModelElementReference(ModelElement newModelElem, ModelEndpointReference modelEndpointRef) {
+	public static ModelElementReference createModelElementReference(ModelElement newModelElem, ModelEndpointReference modelEndpointRef) {
 
 		ModelElementReference newModelElemRef = RelationshipFactory.eINSTANCE.createModelElementReference();
 		addInstanceReference(newModelElemRef, newModelElem, false);
@@ -306,7 +306,7 @@ public class MultiModelInstanceFactory {
 	 * @param newModelElemName
 	 *            The name of the new model element.
 	 * @param classLiteral
-	 *            The class name of the new model element type.
+	 *            The class name of the new model element.
 	 * @param modelEndpointRef
 	 *            The reference to the model endpoint that will contain the new
 	 *            reference to the model element.

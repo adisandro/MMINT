@@ -26,6 +26,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliExtendibleElement;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 import edu.toronto.cs.se.modelepedia.kleisli.library.KleisliUtils;
@@ -217,6 +218,37 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		result.append(extendedUri);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public ModelEndpointReference createTypeReference(ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		KleisliModelEndpointReference newModelTypeEndpointRef = KleisliFactory.eINSTANCE.createKleisliModelEndpointReference();
+		addTypeReference(newModelTypeEndpointRef, modelTypeEndpointRef, isModifiable, isBinarySrc, containerModelRelType);
+
+		return newModelTypeEndpointRef;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public ModelEndpointReference createInstanceReference(boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		KleisliModelEndpointReference newModelEndpointRef = KleisliFactory.eINSTANCE.createKleisliModelEndpointReference();
+		addInstanceReference(newModelEndpointRef, isBinarySrc, containerModelRel);
+
+		return newModelEndpointRef;
 	}
 
 	/**

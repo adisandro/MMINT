@@ -20,6 +20,9 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 import edu.toronto.cs.se.modelepedia.kleisli.*;
@@ -104,6 +107,10 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 				return createKleisliExtendibleElementAdapter();
 			}
 			@Override
+			public Adapter caseKleisliModelEndpointReference(KleisliModelEndpointReference object) {
+				return createKleisliModelEndpointReferenceAdapter();
+			}
+			@Override
 			public Adapter caseMAVOElement(MAVOElement object) {
 				return createMAVOElementAdapter();
 			}
@@ -134,6 +141,18 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseBinaryModelRel(BinaryModelRel object) {
 				return createBinaryModelRelAdapter();
+			}
+			@Override
+			public Adapter caseExtendibleElementReference(ExtendibleElementReference object) {
+				return createExtendibleElementReferenceAdapter();
+			}
+			@Override
+			public Adapter caseExtendibleElementEndpointReference(ExtendibleElementEndpointReference object) {
+				return createExtendibleElementEndpointReferenceAdapter();
+			}
+			@Override
+			public Adapter caseModelEndpointReference(ModelEndpointReference object) {
+				return createModelEndpointReferenceAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -208,6 +227,20 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createKleisliExtendibleElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference <em>Model Endpoint Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference
+	 * @generated
+	 */
+	public Adapter createKleisliModelEndpointReferenceAdapter() {
 		return null;
 	}
 
@@ -320,6 +353,48 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBinaryModelRelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference <em>Extendible Element Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference
+	 * @generated
+	 */
+	public Adapter createExtendibleElementReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference <em>Extendible Element Endpoint Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference
+	 * @generated
+	 */
+	public Adapter createExtendibleElementEndpointReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference <em>Model Endpoint Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference
+	 * @generated
+	 */
+	public Adapter createModelEndpointReferenceAdapter() {
 		return null;
 	}
 

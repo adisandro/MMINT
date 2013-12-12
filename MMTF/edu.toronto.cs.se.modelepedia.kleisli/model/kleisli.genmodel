@@ -60,10 +60,29 @@
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/replaceInstanceAndReference/oldModelEndpoint"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/replaceInstanceAndReference/newModel"/>
       </genOperations>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/createTypeReference">
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createTypeReference/modelTypeEndpointRef"/>
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createTypeReference/isModifiable"/>
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createTypeReference/isBinarySrc"/>
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createTypeReference/containerModelRelType"/>
+      </genOperations>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/createInstanceReference">
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createInstanceReference/isBinarySrc"/>
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createInstanceReference/containerModelRel"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="kleisli.ecore#//KleisliBinaryModelRel"/>
     <genClasses image="false" ecoreClass="kleisli.ecore#//KleisliExtendibleElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute kleisli.ecore#//KleisliExtendibleElement/extendedUri"/>
+    </genClasses>
+    <genClasses ecoreClass="kleisli.ecore#//KleisliModelEndpointReference">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute kleisli.ecore#//KleisliModelEndpointReference/targetExtendedUri"/>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpointReference/acceptModelElementType">
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpointReference/acceptModelElementType/metamodelObj"/>
+      </genOperations>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpointReference/acceptModelElement">
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpointReference/acceptModelElement/modelObj"/>
+      </genOperations>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

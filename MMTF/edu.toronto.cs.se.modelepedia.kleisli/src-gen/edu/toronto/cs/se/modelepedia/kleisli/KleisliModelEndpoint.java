@@ -32,6 +32,25 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
  * @generated
  */
 public interface KleisliModelEndpoint extends ModelEndpoint, KleisliExtendibleElement {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isModifiableRequired="true" isBinarySrcRequired="true" containerModelRelTypeRequired="true"
+	 * @generated
+	 */
+	ModelEndpointReference createTypeReference(ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isBinarySrcRequired="true" containerModelRelRequired="true"
+	 * @generated
+	 */
+	ModelEndpointReference createInstanceReference(boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}

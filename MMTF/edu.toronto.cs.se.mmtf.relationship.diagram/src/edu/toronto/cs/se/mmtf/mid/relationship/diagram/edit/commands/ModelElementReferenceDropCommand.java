@@ -30,7 +30,6 @@ import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
@@ -109,13 +108,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 		EObject modelObj = dropObj.getModelObject();
 		String newModelElemName = MultiModelRegistry.getModelElementName(modelObj, true);
 		String classLiteral = MultiModelRegistry.getModelElementClassLiteral(modelObj, true); // class literal == type name
-		ModelElementReference newModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(
-			dropObj.getModelElementType(),
-			dropObj.getModelElementUri(),
-			newModelElemName,
-			classLiteral,
-			modelEndpointRef
-		);
+		ModelElementReference newModelElemRef = dropObj.getModelElementType().createInstanceAndReference(dropObj.getModelElementUri(), newModelElemName, classLiteral, modelEndpointRef);
 		MAVOUtils.initializeMAVOModelElementReference(modelObj, newModelElemRef);
 
 		return newModelElemRef;
@@ -157,13 +150,7 @@ supertypes:
 			modelElemType = MultiModelRegistry.getExtendibleElement(modelElemTypeUri, multiModel);
 		}
 
-		ModelElementReference newModelElemTypeRef = MultiModelLightTypeFactory.createLightModelElementTypeAndModelElementTypeReference(
-			modelElemType,
-			modelElemTypeRef,
-			dropObj.getModelElementUri(),
-			dropObj.getModelElementUri(), // class literal == name
-			modelTypeEndpointRef
-		);
+		ModelElementReference newModelElemTypeRef = modelElemType.createSubtypeAndReference(modelElemTypeRef, dropObj.getModelElementUri(), dropObj.getModelElementUri(), modelTypeEndpointRef);
 		MAVOUtils.initializeMAVOModelElementReference(modelObj, newModelElemTypeRef);
 		MMTF.createTypeHierarchy(multiModel);
 

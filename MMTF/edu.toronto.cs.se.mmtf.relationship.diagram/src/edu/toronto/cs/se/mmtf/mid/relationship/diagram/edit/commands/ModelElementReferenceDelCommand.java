@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -20,12 +20,12 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 
 /**
  * The command to delete a model element reference.
@@ -53,7 +53,7 @@ public class ModelElementReferenceDelCommand extends DestroyElementCommand {
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doUndo(monitor, info);
-		MultiModel multiModel = (MultiModel) getElementToEdit().eContainer().eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel((ModelEndpointReference) getElementToEdit());
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
 			MMTF.createTypeHierarchy(multiModel);
 		}
@@ -68,7 +68,7 @@ public class ModelElementReferenceDelCommand extends DestroyElementCommand {
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doRedo(monitor, info);
-		MultiModel multiModel = (MultiModel) getElementToEdit().eContainer().eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel((ModelEndpointReference) getElementToEdit());
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
 			MMTF.createTypeHierarchy(multiModel);
 		}
@@ -82,28 +82,34 @@ public class ModelElementReferenceDelCommand extends DestroyElementCommand {
 		return super.canExecute();
 	}
 
-	protected void doExecuteInstancesLevel(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected void doExecuteInstancesLevel(IProgressMonitor monitor, IAdaptable info) throws MMTFException {
 
-		MultiModelInstanceFactory.removeModelElementReference((ModelElementReference) getElementToDestroy());
+		((ModelElementReference) getElementToDestroy()).deleteInstanceReference();
 	}
 
-	protected void doExecuteTypesLevel(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected void doExecuteTypesLevel(IProgressMonitor monitor, IAdaptable info) throws MMTFException {
 
-		MultiModelTypeFactory.removeModelElementTypeReference((ModelElementReference) getElementToDestroy());
-		MMTF.createTypeHierarchy((MultiModel) getElementToEdit().eContainer().eContainer());
+		((ModelElementReference) getElementToDestroy()).deleteTypeReference();
+		MMTF.createTypeHierarchy(MultiModelRegistry.getMultiModel((ModelEndpointReference) getElementToEdit()));
 	}
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit().eContainer())) {
-			doExecuteInstancesLevel(monitor, info);
-		}
-		else {
-			doExecuteTypesLevel(monitor, info);
-		}
+		try {
+			if (MultiModelConstraintChecker.isInstancesLevel((ModelEndpointReference) getElementToEdit())) {
+				doExecuteInstancesLevel(monitor, info);
+			}
+			else {
+				doExecuteTypesLevel(monitor, info);
+			}
 
-		return super.doExecuteWithResult(monitor, info);
+			return super.doExecuteWithResult(monitor, info);
+		}
+		catch (MMTFException e) {
+			MMTFException.print(MMTFException.Type.WARNING, "No model element deleted", e);
+			return CommandResult.newErrorCommandResult("No model element deleted");
+		}
 	}
 
 }

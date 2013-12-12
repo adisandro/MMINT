@@ -72,6 +72,54 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Creates and adds a reference to this model type endpoint to the Type MID.
+	 * 
+	 * @param modelTypeEndpointRef
+	 *            The reference to the supertype of the new model type endpoint,
+	 *            null if such reference doesn't exist in the model relationship
+	 *            type container.
+	 * @param isModifiable
+	 *            True if the new reference will allow modifications of the
+	 *            referenced model type endpoint, false otherwise.
+	 * @param isBinarySrc
+	 *            True if the referenced model type endpoint is the source in
+	 *            the binary model relationship container, false otherwise.
+	 * @param containerModelRelType
+	 *            The model relationship type that will contain the new
+	 *            reference to the model type endpoint.
+	 * @return The created reference to the new model type endpoint.
+	 * @throws MMTFException
+	 *             If this model endpoint is at the INSTANCES level.
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        isModifiableRequired="true" isBinarySrcRequired="true"
+	 *        containerModelRelTypeRequired="true"
+	 * @generated
+	 */
+	ModelEndpointReference createTypeReference(ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Creates and adds a reference to this model endpoint to an Instance MID.
+	 * 
+	 * @param isBinarySrc
+	 *            True if the model endpoint is the source in the binary model
+	 *            relationship container, false otherwise.
+	 * @param containerModelRel
+	 *            The model relationship that will contain the new reference to
+	 *            the model endpoint.
+	 * @return The created reference to the model endpoint.
+	 * @throws MMTFException
+	 *             If this model endpoint is at the TYPES level.
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isBinarySrcRequired="true" containerModelRelRequired="true"
+	 * @generated
+	 */
+	ModelEndpointReference createInstanceReference(boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * Creates and adds a subtype of this model type endpoint and a reference to
 	 * it to the Type MID.
 	 * 
@@ -117,7 +165,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @param newModelType
 	 *            The new model type that is the target of the new model type
 	 *            endpoint.
-	 * @param modelRelType
+	 * @param containerModelRelType
 	 *            The model relationship type that will contain the new model
 	 *            type endpoint.
 	 * @throws MMTFException
@@ -156,7 +204,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @param isBinarySrc
 	 *            True if the model endpoint is the source in the binary model
 	 *            relationship container, false otherwise.
-	 * @param modelRel
+	 * @param containerModelRel
 	 *            The model relationship that will contain the new model
 	 *            endpoint.
 	 * @return The created reference to the model endpoint.

@@ -1074,13 +1074,31 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Accept Model Element Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_TYPE__EOBJECT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Accept Model Element</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT__EOBJECT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 3;
+
+	/**
 	 * The number of operations of the '<em>Model Endpoint Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 2;
+	int MODEL_ENDPOINT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
@@ -1183,13 +1201,31 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ELEMENT_REFERENCE___GET_SUPERTYPE_REF = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Delete Type Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_REFERENCE___DELETE_TYPE_REFERENCE = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Delete Instance Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_REFERENCE___DELETE_INSTANCE_REFERENCE = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 3;
+
+	/**
 	 * The number of operations of the '<em>Model Element Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 2;
+	int MODEL_ELEMENT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.LinkImpl <em>Link</em>}' class.
@@ -2316,6 +2352,26 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelEndpointReference__GetSupertypeRef();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference#acceptModelElementType(org.eclipse.emf.ecore.EObject) <em>Accept Model Element Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Accept Model Element Type</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference#acceptModelElementType(org.eclipse.emf.ecore.EObject)
+	 * @generated
+	 */
+	EOperation getModelEndpointReference__AcceptModelElementType__EObject();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference#acceptModelElement(org.eclipse.emf.ecore.EObject) <em>Accept Model Element</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Accept Model Element</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference#acceptModelElement(org.eclipse.emf.ecore.EObject)
+	 * @generated
+	 */
+	EOperation getModelEndpointReference__AcceptModelElement__EObject();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference <em>Model Element Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2355,6 +2411,26 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getModelElementReference__GetSupertypeRef();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference#deleteTypeReference() <em>Delete Type Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Type Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference#deleteTypeReference()
+	 * @generated
+	 */
+	EOperation getModelElementReference__DeleteTypeReference();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference#deleteInstanceReference() <em>Delete Instance Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Instance Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference#deleteInstanceReference()
+	 * @generated
+	 */
+	EOperation getModelElementReference__DeleteInstanceReference();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.relationship.Link <em>Link</em>}'.
@@ -2905,6 +2981,22 @@ public interface RelationshipPackage extends EPackage {
 		EOperation MODEL_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = eINSTANCE.getModelEndpointReference__GetSupertypeRef();
 
 		/**
+		 * The meta object literal for the '<em><b>Accept Model Element Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_TYPE__EOBJECT = eINSTANCE.getModelEndpointReference__AcceptModelElementType__EObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Accept Model Element</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT__EOBJECT = eINSTANCE.getModelEndpointReference__AcceptModelElement__EObject();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2937,6 +3029,22 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_ELEMENT_REFERENCE___GET_SUPERTYPE_REF = eINSTANCE.getModelElementReference__GetSupertypeRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Type Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ELEMENT_REFERENCE___DELETE_TYPE_REFERENCE = eINSTANCE.getModelElementReference__DeleteTypeReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Instance Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ELEMENT_REFERENCE___DELETE_INSTANCE_REFERENCE = eINSTANCE.getModelElementReference__DeleteInstanceReference();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.LinkImpl <em>Link</em>}' class.

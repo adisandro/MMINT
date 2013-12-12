@@ -11,26 +11,30 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
-
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -211,8 +215,79 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 				return getObject();
 			case RelationshipPackage.MODEL_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF:
 				return getSupertypeRef();
+			case RelationshipPackage.MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_TYPE__EOBJECT:
+				try {
+					return acceptModelElementType((EObject)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case RelationshipPackage.MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT__EOBJECT:
+				try {
+					return acceptModelElement((EObject)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public boolean acceptModelElementType(EObject metamodelObj) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		String modelTypeUri = MultiModelRegistry.getModelAndModelElementUris(metamodelObj, false)[0];
+		if (
+			!modelTypeUri.equals(getTargetUri()) && // different model type
+			!MultiModelTypeHierarchy.isSubtypeOf(getTargetUri(), modelTypeUri, multiModel) // different light model type with no metamodel extension
+		) {
+			return false;
+		}
+		// filter duplicates
+		for (ModelElementReference modelElemTypeRef : getModelElemRefs()) {
+			//TODO MMTF[MODELELEMENT] replace with something simpler once model element changes are in place, like:
+//				if (elementRef.getUri().equals(modelUri + MMTF.URI_SEPARATOR + modelElemUri)) {
+//					continue modelEndpointRef;
+//				}
+			if (EcoreUtil.equals(MultiModelTypeIntrospection.getPointer(modelElemTypeRef.getObject()), metamodelObj)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public ModelElement acceptModelElement(EObject modelObj) throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		String modelUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[0];
+		if (!modelUri.equals(getTargetUri())) { // different model
+			return null;
+		}
+		// filter unallowed model element types
+		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(this, modelObj);
+		if (modelElemType == null) {
+			return null;
+		}
+		// filter duplicates
+		if (MultiModelRegistry.getModelElementReference(this, modelElemType, modelObj) != null) {
+			return null;
+		}
+
+		return modelElemType;
 	}
 
 } //ModelEndpointReferenceImpl

@@ -105,4 +105,18 @@
       </relationshipType>
    </extension>
 
+   <extension point="org.eclipse.ui.menus">
+      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <dynamic
+               class="edu.toronto.cs.se.modelepedia.kleisli.contextmenu.KleisliRelationshipDiagramActions"
+               id="edu.toronto.cs.se.modelepedia.kleisli.contextmenu.KleisliRelationshipDiagramActions">
+            <visibleWhen>
+               <with variable="activePartId">
+                  <equals value="edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.RelationshipDiagramEditorID"/>
+               </with>
+            </visibleWhen>
+         </dynamic>
+      </menuContribution>
+   </extension>
+
 </plugin>

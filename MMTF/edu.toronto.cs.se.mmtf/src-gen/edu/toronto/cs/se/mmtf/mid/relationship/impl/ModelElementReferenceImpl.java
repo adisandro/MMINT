@@ -11,23 +11,33 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -206,8 +216,146 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 				return getObject();
 			case RelationshipPackage.MODEL_ELEMENT_REFERENCE___GET_SUPERTYPE_REF:
 				return getSupertypeRef();
+			case RelationshipPackage.MODEL_ELEMENT_REFERENCE___DELETE_TYPE_REFERENCE:
+				try {
+					deleteTypeReference();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case RelationshipPackage.MODEL_ELEMENT_REFERENCE___DELETE_INSTANCE_REFERENCE:
+				try {
+					deleteInstanceReference();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * Removes a reference to a model element type from the multimodel that
+	 * contains it.
+	 * 
+	 * @param modelElemTypeRef
+	 *            The reference to be removed to a model element type.
+	 * @param modelTypeEndpointRef
+	 *            The model type endpoint that contains the reference to a model
+	 *            element type.
+	 */
+	private static void deleteModelElementTypeReference(ModelElementReference modelElemTypeRef, ModelEndpointReference modelTypeEndpointRef) {
+
+		modelTypeEndpointRef.getModelElemRefs().remove(modelElemTypeRef);
+	}
+
+	/**
+	 * Deletes a reference to a model element type and all its subreferences
+	 * from the multimodel that contains them.
+	 * 
+	 * @param modelElemTypeRef
+	 *            The reference to be removed to a model element type.
+	 * @param modelRelType
+	 *            The model relationship that contains the reference to a model
+	 *            element type.
+	 */
+	private static void deleteModelElementTypeReference(ModelElementReference modelElemTypeRef, ModelRel modelRelType) {
+
+		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) modelElemTypeRef.eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
+		List<BinaryLinkReference> delLinkTypeRefs = new ArrayList<BinaryLinkReference>();
+		List<ModelElementEndpointReference> delModelElemTypeEndpointRefs = new ArrayList<ModelElementEndpointReference>();
+		for (ModelElementEndpointReference modelElemTypeEndpointRef : modelElemTypeRef.getModelElemEndpointRefs()) {
+			LinkReference linkTypeRef = (LinkReference) modelElemTypeEndpointRef.eContainer();
+			// avoid iterating over the list
+			if (linkTypeRef instanceof BinaryLinkReference) {
+				if (!delLinkTypeRefs.contains(linkTypeRef)) {
+					delLinkTypeRefs.add((BinaryLinkReference) linkTypeRef);
+				}
+			}
+			else {
+				if (!delModelElemTypeEndpointRefs.contains(modelElemTypeEndpointRef)) {
+					delModelElemTypeEndpointRefs.add(modelElemTypeEndpointRef);
+				}
+			}
+		}
+		for (BinaryLinkReference linkTypeRef : delLinkTypeRefs) {
+			MultiModelTypeFactory.removeLinkTypeAndLinkTypeReference(linkTypeRef);
+		}
+		for (ModelElementEndpointReference modelElemTypeEndpointRef : delModelElemTypeEndpointRefs) {
+			MultiModelTypeFactory.removeModelElementTypeEndpointAndModelElementTypeEndpointReference(modelElemTypeEndpointRef, true);
+		}
+		deleteModelElementTypeReference(modelElemTypeRef, modelTypeEndpointRef);
+		// delete references of the "thing" in subtypes of the container
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
+			ModelEndpointReference modelSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+			ModelElementReference modelElemSubtypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRef, modelSubtypeEndpointRef.getModelElemRefs());
+			if (modelElemSubtypeRef.getModelElemEndpointRefs().size() == 0) {
+				deleteModelElementTypeReference(modelElemSubtypeRef, modelSubtypeEndpointRef);
+			}
+			else {
+				boolean newModifiable = true;
+				for (ModelElementEndpointReference modelElemTypeEndpointRef : modelElemSubtypeRef.getModelElemEndpointRefs()) {
+					LinkReference linkSubtypeRef = (LinkReference) modelElemTypeEndpointRef.eContainer();
+					if (!linkSubtypeRef.isModifiable()) {
+						newModifiable = false;
+						break;
+					}
+				}
+				modelElemSubtypeRef.setModifiable(newModifiable);
+			}
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteTypeReference() throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		ModelRel modelRelType = (ModelRel) eContainer().eContainer();
+		// delete the corresponding reference
+		deleteModelElementTypeReference(this, modelRelType);
+		// don't delete the subtypes of the "thing", the model element is not deleted from its metamodel
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteInstanceReference() throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		List<LinkReference> delLinkRefs = new ArrayList<LinkReference>();
+		List<ModelElementEndpointReference> delModelElemEndpointRefs = new ArrayList<ModelElementEndpointReference>();
+		for (ModelElementEndpointReference modelElemEndpointRef : getModelElemEndpointRefs()) {
+			LinkReference linkRef = (LinkReference) modelElemEndpointRef.eContainer();
+			if (linkRef instanceof BinaryLinkReference) {
+				if (!delLinkRefs.contains(linkRef)) {
+					delLinkRefs.add(linkRef);
+				}
+			}
+			else {
+				if (!delModelElemEndpointRefs.contains(modelElemEndpointRef)) {
+					delModelElemEndpointRefs.add(modelElemEndpointRef);
+				}
+			}
+		}
+		for (LinkReference linkRef : delLinkRefs) {
+			MultiModelInstanceFactory.removeLinkAndLinkReference(linkRef);
+		}
+		for (ModelElementEndpointReference modelElemEndpointRef : delModelElemEndpointRefs) {
+			MultiModelInstanceFactory.removeModelElementEndpointAndModelElementEndpointReference(modelElemEndpointRef, true);
+		}
+
+		((ModelEndpointReference) eContainer()).getModelElemRefs().remove(this);
 	}
 
 } //ModelElementReferenceImpl

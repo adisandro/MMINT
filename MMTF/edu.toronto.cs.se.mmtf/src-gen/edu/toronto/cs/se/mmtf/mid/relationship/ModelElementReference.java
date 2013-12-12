@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import org.eclipse.emf.common.util.EList;
 
@@ -78,5 +79,32 @@ public interface ModelElementReference extends ExtendibleElementReference {
 	 * @generated
 	 */
 	ModelElementReference getSupertypeRef();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Deletes this reference to a model element type and all its subreferences
+	 * from the multimodel that contains them.
+	 * 
+	 * @throws MMTFException
+	 *             If this reference to a model element is at the INSTANCES
+	 *             level.
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	void deleteTypeReference() throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Removes this reference to a model element from the Instance MID that
+	 * contains it.
+	 * 
+	 * @throws MMTFException
+	 *             If this reference to a model element is at the TYPES level.
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	void deleteInstanceReference() throws MMTFException;
 
 } // ModelElementReference

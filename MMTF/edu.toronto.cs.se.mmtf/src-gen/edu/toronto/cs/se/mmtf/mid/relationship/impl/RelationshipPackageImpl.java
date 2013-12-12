@@ -429,6 +429,24 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModelEndpointReference__AcceptModelElementType__EObject() {
+		return modelEndpointReferenceEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelEndpointReference__AcceptModelElement__EObject() {
+		return modelEndpointReferenceEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getModelElementReference() {
 		return modelElementReferenceEClass;
 	}
@@ -458,6 +476,24 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 */
 	public EOperation getModelElementReference__GetSupertypeRef() {
 		return modelElementReferenceEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelElementReference__DeleteTypeReference() {
+		return modelElementReferenceEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelElementReference__DeleteInstanceReference() {
+		return modelElementReferenceEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -822,11 +858,15 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEReference(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE__MODEL_ELEM_REFS);
 		createEOperation(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE___GET_OBJECT);
 		createEOperation(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF);
+		createEOperation(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_TYPE__EOBJECT);
+		createEOperation(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT__EOBJECT);
 
 		modelElementReferenceEClass = createEClass(MODEL_ELEMENT_REFERENCE);
 		createEReference(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS);
 		createEOperation(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE___GET_OBJECT);
 		createEOperation(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE___GET_SUPERTYPE_REF);
+		createEOperation(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE___DELETE_TYPE_REFERENCE);
+		createEOperation(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE___DELETE_INSTANCE_REFERENCE);
 
 		linkEClass = createEClass(LINK);
 		createEReference(linkEClass, LINK__MODEL_ELEM_ENDPOINTS);
@@ -969,12 +1009,26 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 
 		initEOperation(getModelEndpointReference__GetSupertypeRef(), this.getModelEndpointReference(), "getSupertypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getModelEndpointReference__AcceptModelElementType__EObject(), ecorePackage.getEBoolean(), "acceptModelElementType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEObject(), "metamodelObj", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getModelEndpointReference__AcceptModelElement__EObject(), theMidPackage.getModelElement(), "acceptModelElement", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEObject(), "modelObj", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
 		initEClass(modelElementReferenceEClass, ModelElementReference.class, "ModelElementReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelElementReference_ModelElemEndpointRefs(), this.getModelElementEndpointReference(), this.getModelElementEndpointReference_ModelElemRef(), "modelElemEndpointRefs", null, 0, -1, ModelElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getModelElementReference__GetObject(), theMidPackage.getModelElement(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getModelElementReference__GetSupertypeRef(), this.getModelElementReference(), "getSupertypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getModelElementReference__DeleteTypeReference(), null, "deleteTypeReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getModelElementReference__DeleteInstanceReference(), null, "deleteInstanceReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
 
 		initEClass(linkEClass, Link.class, "Link", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLink_ModelElemEndpoints(), this.getModelElementEndpoint(), null, "modelElemEndpoints", null, 0, -1, Link.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

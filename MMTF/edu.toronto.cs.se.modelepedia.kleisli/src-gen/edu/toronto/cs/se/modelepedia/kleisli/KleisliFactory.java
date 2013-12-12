@@ -58,6 +58,15 @@ public interface KleisliFactory extends EFactory {
 	KleisliBinaryModelRel createKleisliBinaryModelRel();
 
 	/**
+	 * Returns a new object of class '<em>Model Endpoint Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Endpoint Reference</em>'.
+	 * @generated
+	 */
+	KleisliModelEndpointReference createKleisliModelEndpointReference();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

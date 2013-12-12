@@ -679,13 +679,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 					newModelTypeEndpointRefSuper = MultiModelTypeHierarchy.getReference((ModelEndpointReference) oldModelElemTypeRef.getSupertypeRef().eContainer(), newModelRelType.getModelEndpointRefs());
 					modelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemType.getUri(), newModelTypeEndpointRefSuper.getModelElemRefs());
 				}
-				createLightModelElementTypeAndModelElementTypeReference(
-					modelElemType,
-					modelElemTypeRef,
-					oldModelElemTypeRef.getObject().getName(),
-					oldModelElemTypeRef.getObject().getClassLiteral(),
-					newModelTypeEndpointRef
-				);
+				modelElemType.createSubtypeAndReference(modelElemTypeRef, oldModelElemTypeRef.getObject().getName(), oldModelElemTypeRef.getObject().getClassLiteral(), newModelTypeEndpointRef);
 			}
 		}
 		// link types

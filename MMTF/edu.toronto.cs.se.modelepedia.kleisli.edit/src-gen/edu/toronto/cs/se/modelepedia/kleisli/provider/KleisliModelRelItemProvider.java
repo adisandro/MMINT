@@ -159,6 +159,11 @@ public class KleisliModelRelItemProvider
 			(createChildParameter
 				(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINTS,
 				 KleisliFactory.eINSTANCE.createKleisliModelEndpoint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINT_REFS,
+				 KleisliFactory.eINSTANCE.createKleisliModelEndpointReference()));
 	}
 
 	/**

@@ -1,0 +1,121 @@
+/**
+ * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
+ */
+package edu.toronto.cs.se.modelepedia.kleisli.impl;
+
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mid.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelEndpointReferenceImpl;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Model Endpoint Reference</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointReferenceImpl#getTargetExtendedUri <em>Target Extended Uri</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @generated
+ */
+public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImpl implements KleisliModelEndpointReference {
+	/**
+	 * The cached setting delegate for the '{@link #getTargetExtendedUri() <em>Target Extended Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetExtendedUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TARGET_EXTENDED_URI__ESETTING_DELEGATE = ((EStructuralFeature.Internal)KleisliPackage.Literals.KLEISLI_MODEL_ENDPOINT_REFERENCE__TARGET_EXTENDED_URI).getSettingDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected KleisliModelEndpointReferenceImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return KleisliPackage.Literals.KLEISLI_MODEL_ENDPOINT_REFERENCE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getTargetExtendedUri() {
+		return (String)TARGET_EXTENDED_URI__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE__TARGET_EXTENDED_URI:
+				return getTargetExtendedUri();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE__TARGET_EXTENDED_URI:
+				return TARGET_EXTENDED_URI__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public boolean acceptModelElementType(EObject metamodelObj) throws MMTFException {
+
+		return super.acceptModelElementType(metamodelObj);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public ModelElement acceptModelElement(EObject modelObj) throws MMTFException {
+
+		//TODO MMTF[KLEISLI] finish
+		return super.acceptModelElement(modelObj);
+	}
+
+} //KleisliModelEndpointReferenceImpl

@@ -20,6 +20,9 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 import edu.toronto.cs.se.modelepedia.kleisli.*;
@@ -129,6 +132,15 @@ public class KleisliSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE: {
+				KleisliModelEndpointReference kleisliModelEndpointReference = (KleisliModelEndpointReference)theEObject;
+				T result = caseKleisliModelEndpointReference(kleisliModelEndpointReference);
+				if (result == null) result = caseModelEndpointReference(kleisliModelEndpointReference);
+				if (result == null) result = caseExtendibleElementEndpointReference(kleisliModelEndpointReference);
+				if (result == null) result = caseExtendibleElementReference(kleisliModelEndpointReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -190,6 +202,21 @@ public class KleisliSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseKleisliExtendibleElement(KleisliExtendibleElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Endpoint Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Endpoint Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseKleisliModelEndpointReference(KleisliModelEndpointReference object) {
 		return null;
 	}
 
@@ -310,6 +337,51 @@ public class KleisliSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBinaryModelRel(BinaryModelRel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Extendible Element Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Extendible Element Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExtendibleElementReference(ExtendibleElementReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Extendible Element Endpoint Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Extendible Element Endpoint Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExtendibleElementEndpointReference(ExtendibleElementEndpointReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Endpoint Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Endpoint Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelEndpointReference(ModelEndpointReference object) {
 		return null;
 	}
 

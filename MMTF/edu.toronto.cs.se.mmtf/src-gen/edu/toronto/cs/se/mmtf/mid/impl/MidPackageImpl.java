@@ -642,6 +642,24 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModelElement__CreateSubtypeAndReference__ModelElementReference_String_String_ModelEndpointReference() {
+		return modelElementEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelElement__CreateInstanceAndReference__String_String_String_ModelEndpointReference() {
+		return modelElementEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getModelElementWildcard() {
 		return modelElementWildcardEClass;
 	}
@@ -734,6 +752,24 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 */
 	public EOperation getModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model() {
 		return modelEndpointEClass.getEOperations().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelEndpoint__CreateTypeReference__ModelEndpointReference_boolean_boolean_ModelRel() {
+		return modelEndpointEClass.getEOperations().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelEndpoint__CreateInstanceReference__boolean_ModelRel() {
+		return modelEndpointEClass.getEOperations().get(10);
 	}
 
 	/**
@@ -851,6 +887,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__CLASS_LITERAL);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_METATYPE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_SUPERTYPE);
+		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_MODELENDPOINTREFERENCE);
+		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_STRING_MODELENDPOINTREFERENCE);
 
 		modelElementWildcardEClass = createEClass(MODEL_ELEMENT_WILDCARD);
 
@@ -864,6 +902,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_BOOLEAN_MODELREL);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__MODELENDPOINTREFERENCE_BOOLEAN_BOOLEAN_MODELREL);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__BOOLEAN_MODELREL);
 
 		// Create enums
 		midLevelEEnum = createEEnum(MID_LEVEL);
@@ -995,6 +1035,20 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 
 		initEOperation(getModelElement__GetSupertype(), this.getModelElement(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getModelElement__CreateSubtypeAndReference__ModelElementReference_String_String_ModelEndpointReference(), theRelationshipPackage.getModelElementReference(), "createSubtypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRelationshipPackage.getModelElementReference(), "modelElemTypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelElemTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "classLiteral", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRelationshipPackage.getModelEndpointReference(), "containerModelTypeEndpointRef", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
+		op = initEOperation(getModelElement__CreateInstanceAndReference__String_String_String_ModelEndpointReference(), theRelationshipPackage.getModelElementReference(), "createInstanceAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelElemUri", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelElemName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "classLiteral", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRelationshipPackage.getModelEndpointReference(), "containerModelEndpointRef", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
 		initEClass(modelElementWildcardEClass, ModelElementWildcard.class, "ModelElementWildcard", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(modelEndpointEClass, ModelEndpoint.class, "ModelEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1038,6 +1092,18 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		op = initEOperation(getModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model(), null, "replaceInstanceAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelEndpoint(), "oldModelEndpoint", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModel(), "newModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
+		op = initEOperation(getModelEndpoint__CreateTypeReference__ModelEndpointReference_boolean_boolean_ModelRel(), theRelationshipPackage.getModelEndpointReference(), "createTypeReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRelationshipPackage.getModelEndpointReference(), "modelTypeEndpointRef", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isModifiable", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isBinarySrc", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRelationshipPackage.getModelRel(), "containerModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
+		op = initEOperation(getModelEndpoint__CreateInstanceReference__boolean_ModelRel(), theRelationshipPackage.getModelEndpointReference(), "createInstanceReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isBinarySrc", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRelationshipPackage.getModelRel(), "containerModelRel", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 
 		// Initialize enums and add enum literals

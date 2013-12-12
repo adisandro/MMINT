@@ -11,12 +11,26 @@
  */
 package edu.toronto.cs.se.mmtf.mid.impl;
 
+import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import java.lang.reflect.InvocationTargetException;
-import org.eclipse.emf.common.notify.Notification;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -185,6 +199,20 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				return getMetatype();
 			case MidPackage.MODEL_ELEMENT___GET_SUPERTYPE:
 				return getSupertype();
+			case MidPackage.MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_MODELENDPOINTREFERENCE:
+				try {
+					return createSubtypeAndReference((ModelElementReference)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (ModelEndpointReference)arguments.get(3));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MidPackage.MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_STRING_MODELENDPOINTREFERENCE:
+				try {
+					return createInstanceAndReference((String)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (ModelEndpointReference)arguments.get(3));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -203,6 +231,64 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		result.append(classLiteral);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public ModelElementReference createSubtypeAndReference(ModelElementReference modelElemTypeRef, String newModelElemTypeName, String classLiteral, ModelEndpointReference containerModelTypeEndpointRef) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		ModelRel modelRelType = (ModelRel) containerModelTypeEndpointRef.eContainer();
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
+		String newTypeUri = MultiModelLightTypeFactory.createNewLightTypeUri(containerModelTypeEndpointRef.getObject(), containerModelTypeEndpointRef.getObject().getName(), newModelElemTypeName);
+		ModelElement newModelElemType = MultiModelRegistry.getExtendibleElement(newTypeUri, multiModel);
+		if (newModelElemType == null) {
+			// create the "thing"
+			newModelElemType = MidFactory.eINSTANCE.createModelElement();
+			MultiModelLightTypeFactory.addLightType(newModelElemType, this, containerModelTypeEndpointRef.getObject(), containerModelTypeEndpointRef.getObject().getName(), newModelElemTypeName, multiModel);
+			MultiModelTypeFactory.addModelElementType(newModelElemType, classLiteral, containerModelTypeEndpointRef.getObject().getTarget());
+		}
+		// create the reference of the "thing"
+		ModelElementReference newModelElemTypeRef = MultiModelTypeFactory.createModelElementTypeReference(newModelElemType, modelElemTypeRef, true, containerModelTypeEndpointRef);
+		// create references of the "thing" in subtypes of the container
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
+			ModelEndpointReference modelSubtypeRef = MultiModelTypeHierarchy.getReference(containerModelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+			ModelElementReference modelElemSubtypeRef = null;
+			if (modelElemTypeRef != null) {
+				ModelEndpointReference modelSubtypeRefSuper = MultiModelTypeHierarchy.getReference((ModelEndpointReference) modelElemTypeRef.eContainer(), modelRelSubtype.getModelEndpointRefs());
+				modelElemSubtypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRef, modelSubtypeRefSuper.getModelElemRefs());
+			}
+			MultiModelTypeFactory.createModelElementTypeReference(newModelElemType, modelElemSubtypeRef, false, modelSubtypeRef);
+		}
+
+		return newModelElemTypeRef;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public ModelElementReference createInstanceAndReference(String newModelElemUri, String newModelElemName, String classLiteral, ModelEndpointReference containerModelEndpointRef) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(containerModelEndpointRef);
+		newModelElemUri += MMTF.ROLE_SEPARATOR + getUri();
+		ModelElement newModelElem = MultiModelRegistry.getExtendibleElement(newModelElemUri, multiModel);
+		if (newModelElem == null) {
+			newModelElem = MidFactory.eINSTANCE.createModelElement();
+			MultiModelInstanceFactory.addInstance(newModelElem, this, newModelElemUri, newModelElemName, multiModel);
+			newModelElem.setClassLiteral(classLiteral);
+			containerModelEndpointRef.getObject().getTarget().getModelElems().add(newModelElem);
+		}
+		ModelElementReference newModelElemRef = MultiModelInstanceFactory.createModelElementReference(newModelElem, containerModelEndpointRef);
+
+		return newModelElemRef;
 	}
 
 } //ModelElementImpl

@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EPackage;
  * <!-- end-user-doc -->
  * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface KleisliPackage extends EPackage {
@@ -303,6 +304,24 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_REL_FEATURE_COUNT = RelationshipPackage.MODEL_REL_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Create Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = RelationshipPackage.MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+
+	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = RelationshipPackage.MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -657,13 +676,31 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 5;
 
 	/**
+	 * The operation id for the '<em>Create Type Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__MODELENDPOINTREFERENCE_BOOLEAN_BOOLEAN_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 6;
+
+	/**
+	 * The operation id for the '<em>Create Instance Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__BOOLEAN_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 7;
+
+	/**
 	 * The number of operations of the '<em>Model Endpoint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT_OPERATION_COUNT = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 6;
+	int KLEISLI_MODEL_ENDPOINT_OPERATION_COUNT = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 8;
 
 
 	/**
@@ -920,6 +957,24 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_BINARY_MODEL_REL_FEATURE_COUNT = RelationshipPackage.BINARY_MODEL_REL_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Create Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = RelationshipPackage.BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+
+	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1055,6 +1110,152 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_EXTENDIBLE_ELEMENT_OPERATION_COUNT = 0;
+
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointReferenceImpl <em>Model Endpoint Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointReferenceImpl
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliPackageImpl#getKleisliModelEndpointReference()
+	 * @generated
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE__REFERENCED_OBJECT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__REFERENCED_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Contained Object</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE__CONTAINED_OBJECT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__CONTAINED_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE__OBJECT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE__SUPERTYPE_REF = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__SUPERTYPE_REF;
+
+	/**
+	 * The feature id for the '<em><b>Modifiable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE__MODIFIABLE = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__MODIFIABLE;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE__URI = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__URI;
+
+	/**
+	 * The feature id for the '<em><b>Target Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE__TARGET_URI = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__TARGET_URI;
+
+	/**
+	 * The feature id for the '<em><b>Model Elem Refs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE__MODEL_ELEM_REFS = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__MODEL_ELEM_REFS;
+
+	/**
+	 * The feature id for the '<em><b>Target Extended Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE__TARGET_EXTENDED_URI = RelationshipPackage.MODEL_ENDPOINT_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Model Endpoint Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE_FEATURE_COUNT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Object</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE___GET_OBJECT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE___GET_OBJECT;
+
+	/**
+	 * The operation id for the '<em>Get Supertype Ref</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = RelationshipPackage.MODEL_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF;
+
+	/**
+	 * The operation id for the '<em>Accept Model Element Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_TYPE__EOBJECT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Accept Model Element</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT__EOBJECT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Model Endpoint Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE_OPERATION_COUNT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE_OPERATION_COUNT + 2;
 
 
 	/**
@@ -1218,6 +1419,26 @@ public interface KleisliPackage extends EPackage {
 	EOperation getKleisliModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createTypeReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference, boolean, boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel) <em>Create Type Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Type Reference</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createTypeReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference, boolean, boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel)
+	 * @generated
+	 */
+	EOperation getKleisliModelEndpoint__CreateTypeReference__ModelEndpointReference_boolean_boolean_ModelRel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createInstanceReference(boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel) <em>Create Instance Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance Reference</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createInstanceReference(boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel)
+	 * @generated
+	 */
+	EOperation getKleisliModelEndpoint__CreateInstanceReference__boolean_ModelRel();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel <em>Binary Model Rel</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1247,6 +1468,47 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getKleisliExtendibleElement_ExtendedUri();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference <em>Model Endpoint Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Model Endpoint Reference</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference
+	 * @generated
+	 */
+	EClass getKleisliModelEndpointReference();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference#getTargetExtendedUri <em>Target Extended Uri</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Target Extended Uri</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference#getTargetExtendedUri()
+	 * @see #getKleisliModelEndpointReference()
+	 * @generated
+	 */
+	EAttribute getKleisliModelEndpointReference_TargetExtendedUri();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference#acceptModelElementType(org.eclipse.emf.ecore.EObject) <em>Accept Model Element Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Accept Model Element Type</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference#acceptModelElementType(org.eclipse.emf.ecore.EObject)
+	 * @generated
+	 */
+	EOperation getKleisliModelEndpointReference__AcceptModelElementType__EObject();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference#acceptModelElement(org.eclipse.emf.ecore.EObject) <em>Accept Model Element</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Accept Model Element</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference#acceptModelElement(org.eclipse.emf.ecore.EObject)
+	 * @generated
+	 */
+	EOperation getKleisliModelEndpointReference__AcceptModelElement__EObject();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1404,6 +1666,22 @@ public interface KleisliPackage extends EPackage {
 		EOperation KLEISLI_MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL = eINSTANCE.getKleisliModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model();
 
 		/**
+		 * The meta object literal for the '<em><b>Create Type Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation KLEISLI_MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__MODELENDPOINTREFERENCE_BOOLEAN_BOOLEAN_MODELREL = eINSTANCE.getKleisliModelEndpoint__CreateTypeReference__ModelEndpointReference_boolean_boolean_ModelRel();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Instance Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__BOOLEAN_MODELREL = eINSTANCE.getKleisliModelEndpoint__CreateInstanceReference__boolean_ModelRel();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl <em>Binary Model Rel</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1430,6 +1708,40 @@ public interface KleisliPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI = eINSTANCE.getKleisliExtendibleElement_ExtendedUri();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointReferenceImpl <em>Model Endpoint Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointReferenceImpl
+		 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliPackageImpl#getKleisliModelEndpointReference()
+		 * @generated
+		 */
+		EClass KLEISLI_MODEL_ENDPOINT_REFERENCE = eINSTANCE.getKleisliModelEndpointReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Extended Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute KLEISLI_MODEL_ENDPOINT_REFERENCE__TARGET_EXTENDED_URI = eINSTANCE.getKleisliModelEndpointReference_TargetExtendedUri();
+
+		/**
+		 * The meta object literal for the '<em><b>Accept Model Element Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation KLEISLI_MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_TYPE__EOBJECT = eINSTANCE.getKleisliModelEndpointReference__AcceptModelElementType__EObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Accept Model Element</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation KLEISLI_MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT__EOBJECT = eINSTANCE.getKleisliModelEndpointReference__AcceptModelElement__EObject();
 
 	}
 

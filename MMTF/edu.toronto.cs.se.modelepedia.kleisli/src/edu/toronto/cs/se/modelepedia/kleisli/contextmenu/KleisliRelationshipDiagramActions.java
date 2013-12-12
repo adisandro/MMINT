@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmtf.mid.relationship.diagram.contextmenu;
+package edu.toronto.cs.se.modelepedia.kleisli.contextmenu;
 
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
@@ -24,10 +24,12 @@ import org.eclipse.ui.PlatformUI;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.library.AddModifyConstraintListener;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelElementReference2EditPart;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 
-public class RelationshipDiagramActions extends ContributionItem {
+public class KleisliRelationshipDiagramActions extends ContributionItem {
 
 	private static final int INVALID_MENU_ITEM_LIMIT = 20;
 
@@ -65,7 +67,10 @@ public class RelationshipDiagramActions extends ContributionItem {
 			) {
 				GraphicalEditPart editPart = (GraphicalEditPart) object;
 				modelElemRef = (ModelElementReference) ((View) editPart.getModel()).getElement();
-				if (MultiModelConstraintChecker.isInstancesLevel(modelElemRef)) { // actions that don't work on instances
+				if (
+					!(((ModelEndpointReference) modelElemRef.eContainer()).getObject() instanceof KleisliModelEndpoint) ||
+					MultiModelConstraintChecker.isInstancesLevel(modelElemRef)) // no instances
+				{ 
 					doDerivation = false;
 				}
 			}
@@ -85,7 +90,7 @@ public class RelationshipDiagramActions extends ContributionItem {
 		// derivation
 		if (doDerivation) {
 			MenuItem derivationItem = new MenuItem(mmtfMenu, SWT.NONE);
-			derivationItem.setText("Add/Modify Derivation");
+			derivationItem.setText("Add/Modify Kleisli Query");
 			derivationItem.addSelectionListener(
 				new AddModifyConstraintListener(modelElemRef)
 			);

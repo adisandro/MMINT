@@ -173,6 +173,29 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected KleisliModelEndpointReferenceItemProvider kleisliModelEndpointReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createKleisliModelEndpointReferenceAdapter() {
+		if (kleisliModelEndpointReferenceItemProvider == null) {
+			kleisliModelEndpointReferenceItemProvider = new KleisliModelEndpointReferenceItemProvider(this);
+		}
+
+		return kleisliModelEndpointReferenceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -274,6 +297,7 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 		if (kleisliModelRelItemProvider != null) kleisliModelRelItemProvider.dispose();
 		if (kleisliModelEndpointItemProvider != null) kleisliModelEndpointItemProvider.dispose();
 		if (kleisliBinaryModelRelItemProvider != null) kleisliBinaryModelRelItemProvider.dispose();
+		if (kleisliModelEndpointReferenceItemProvider != null) kleisliModelEndpointReferenceItemProvider.dispose();
 	}
 
 	/**
@@ -444,6 +468,11 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 					(createChildParameter
 						(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINTS,
 						 KleisliFactory.eINSTANCE.createKleisliModelEndpoint()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINT_REFS,
+						 KleisliFactory.eINSTANCE.createKleisliModelEndpointReference()));
 
 				return null;
 			}

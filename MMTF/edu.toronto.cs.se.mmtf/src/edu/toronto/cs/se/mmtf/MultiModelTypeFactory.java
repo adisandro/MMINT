@@ -132,7 +132,7 @@ public class MultiModelTypeFactory {
 	 *            True if the new reference is also the actual container of the
 	 *            new type and not just a pointer to it, false otherwise.
 	 */
-	protected static void addTypeReference(ExtendibleElementReference newTypeRef, ExtendibleElement newType, ExtendibleElementReference typeRef, boolean isModifiable, boolean isContainer) {
+	public static void addTypeReference(ExtendibleElementReference newTypeRef, ExtendibleElement newType, ExtendibleElementReference typeRef, boolean isModifiable, boolean isContainer) {
 
 		if (isContainer) {
 			newTypeRef.setContainedObject(newType);
@@ -184,7 +184,7 @@ public class MultiModelTypeFactory {
 	 * @param modelType
 	 *            The model type that will contain the new model element type.
 	 */
-	protected static void addModelElementType(ModelElement newModelElemType, String classLiteral, Model modelType) {
+	public static void addModelElementType(ModelElement newModelElemType, String classLiteral, Model modelType) {
 
 		newModelElemType.setClassLiteral(classLiteral);
 
