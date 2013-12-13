@@ -383,6 +383,32 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	}
 
 	/**
+	 * Do not use it, use the specific one for model relationship types instead.
+	 * 
+	 * @throws MMTFException
+	 *             Always.
+	 * @generated NOT
+	 */
+	@Override
+	public Model createSubtype(String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMTFException {
+
+		throw new MMTFException("Wrong function, use the specific one for model relationship types");
+	}
+
+	/**
+	 * Do not use it, use the specific one for model relationships instead.
+	 * 
+	 * @throws MMTFException
+	 *             Always.
+	 * @generated NOT
+	 */
+	@Override
+	public Model createInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
+
+		throw new MMTFException("Wrong function, use the specific one for model relationships");
+	}
+
+	/**
 	 * Adds a subtype of this model relationship type to the Type MID.
 	 * 
 	 * @param newModelRelType
@@ -455,6 +481,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	public void deleteType() throws MMTFException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
@@ -490,6 +517,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	public void deleteInstance() throws MMTFException {
 
 		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
