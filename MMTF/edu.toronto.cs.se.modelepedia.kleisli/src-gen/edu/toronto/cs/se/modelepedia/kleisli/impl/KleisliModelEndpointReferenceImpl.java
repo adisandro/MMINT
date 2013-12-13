@@ -13,6 +13,8 @@ package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelEndpointReferenceImpl;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
@@ -114,8 +116,25 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 	 */
 	public ModelElement acceptModelElement(EObject modelObj) throws MMTFException {
 
-		//TODO MMTF[KLEISLI] finish
-		return super.acceptModelElement(modelObj);
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		String modelUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[0];
+		if (!modelUri.equals(getTargetExtendedUri())) { // different extended model
+			return null;
+		}
+		// filter unallowed model element types
+		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(this, modelObj);
+		if (modelElemType == null) {
+			return null;
+		}
+		// filter duplicates
+		if (MultiModelRegistry.getModelElementReference(this, modelElemType, modelObj) != null) {
+			return null;
+		}
+
+		return modelElemType;
 	}
 
 } //KleisliModelEndpointReferenceImpl
