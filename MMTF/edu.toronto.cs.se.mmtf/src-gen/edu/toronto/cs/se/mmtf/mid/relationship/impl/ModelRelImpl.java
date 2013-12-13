@@ -396,7 +396,8 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	}
 
 	/**
-	 * Do not use it, use the specific one for model relationships instead.
+	 * Do not use it, use the specific one for model relationship instances
+	 * instead.
 	 * 
 	 * @throws MMTFException
 	 *             Always.
@@ -405,7 +406,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	@Override
 	public Model createInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
 
-		throw new MMTFException("Wrong function, use the specific one for model relationships");
+		throw new MMTFException("Wrong function, use the specific one for model relationship instances");
 	}
 
 	/**

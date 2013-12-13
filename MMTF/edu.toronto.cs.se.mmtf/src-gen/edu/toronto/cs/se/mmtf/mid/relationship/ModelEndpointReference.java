@@ -82,17 +82,15 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
 	ModelEndpointReference getSupertypeRef();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Accepts a metamodel object as model element type in this reference to
-	 * model type endpoint.
+	 * <!-- begin-user-doc --> Accepts a metamodel object as model element type
+	 * in this reference to model type endpoint.
 	 * 
 	 * @param metamodelObj
 	 *            The metamodel object.
 	 * @return True if the metamodel object is accepted, false otherwise.
 	 * @throws MMTFException
-	 *             If this reference to model endpoint is at the INSTANCES
-	 *             level.
-	 * <!-- end-user-doc -->
+	 *             If this is a reference to a model instance endpoint.
+	 *             <!-- end-user-doc -->
 	 * @model required="true"
 	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 *        metamodelObjRequired="true"
@@ -101,17 +99,16 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
 	boolean acceptModelElementType(EObject metamodelObj) throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Accepts a model object as model element in this reference to model
-	 * endpoint.
+	 * <!-- begin-user-doc --> Accepts a model object as model element instance
+	 * in this reference to model instance endpoint.
 	 * 
 	 * @param modelObj
 	 *            The model object.
 	 * @return The model element type of the model object if it is accepted,
 	 *         null otherwise.
 	 * @throws MMTFException
-	 *             If this reference to model endpoint is at the TYPES level.
-	 * <!-- end-user-doc -->
+	 *             If this is a reference to a model type endpoint.
+	 *             <!-- end-user-doc -->
 	 * @model required="true"
 	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 *        modelObjRequired="true"

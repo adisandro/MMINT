@@ -452,7 +452,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			}
 		}
 
-		//TODO MMTF[KLEISLI] drop doesn't work, it should use extendedUri
 		//TODO MMTF[KLEISLI] persistence still misses model elements (KleisliModelElement?)
 		//TODO MMTF[KLEISLI] KleisliModelElement and KleisliModel could be used to extend getRoot and getPointer, in order to use them here
 	}

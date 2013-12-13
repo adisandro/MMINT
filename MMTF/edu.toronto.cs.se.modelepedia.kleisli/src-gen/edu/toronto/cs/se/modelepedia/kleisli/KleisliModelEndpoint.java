@@ -58,7 +58,7 @@ public interface KleisliModelEndpoint extends ModelEndpoint, KleisliExtendibleEl
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelTypeEndpointNameRequired="true" newModelTypeRequired="true" isBinarySrcRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException;
+	ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public interface KleisliModelEndpoint extends ModelEndpoint, KleisliExtendibleEl
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" oldModelTypeEndpointRequired="true" newModelTypeEndpointNameRequired="true" newModelTypeRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
-	void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, ModelRel containerModelRelType) throws MMTFException;
+	void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -85,7 +85,7 @@ public interface KleisliModelEndpoint extends ModelEndpoint, KleisliExtendibleEl
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelRequired="true" isBinarySrcRequired="true" containerModelRelRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createInstanceAndReference(Model newModel, boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException;
+	ModelEndpointReference createInstanceAndReference(Model targetModel, boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -107,6 +107,6 @@ public interface KleisliModelEndpoint extends ModelEndpoint, KleisliExtendibleEl
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" oldModelEndpointRequired="true" newModelRequired="true"
 	 * @generated
 	 */
-	void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model newModel) throws MMTFException;
+	void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMTFException;
 
 } // KleisliModelEndpoint

@@ -108,6 +108,7 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 	 */
 	public boolean acceptModelElementType(EObject metamodelObj) throws MMTFException {
 
+		//TODO MMTF[KLEISLI] do we need to do something here?
 		return super.acceptModelElementType(metamodelObj);
 	}
 

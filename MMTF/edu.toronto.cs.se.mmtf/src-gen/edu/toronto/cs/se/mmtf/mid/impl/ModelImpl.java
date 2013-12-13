@@ -599,8 +599,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 *            The model type to be removed.
 	 * @param multiModel
 	 *            The multimodel that contains the model type.
-	 * @throws MMTFException
-	 *             If this model is at the INSTANCES level.
 	 * @generated NOT
 	 */
 	protected void deleteModelType(Model modelType, MultiModel multiModel) {

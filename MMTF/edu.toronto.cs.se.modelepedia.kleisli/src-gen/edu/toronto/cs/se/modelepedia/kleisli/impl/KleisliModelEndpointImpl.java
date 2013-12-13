@@ -255,21 +255,21 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException {
+	public ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		String newModelTypeEndpointExtendedUri = KleisliUtils.getModelTypeEndpointExtendedUri(newModelType, (KleisliModelRel) containerModelRelType);
+		String newModelTypeEndpointExtendedUri = KleisliUtils.getModelTypeEndpointExtendedUri(targetModelType, (KleisliModelRel) containerModelRelType);
 		boolean isKleisli = (MultiModelUtils.isFileOrDirectoryInState(newModelTypeEndpointExtendedUri) != null);
 		boolean extendMetamodel = false;
 		if (!isKleisli) {
-			extendMetamodel = MidDiagramUtils.getBooleanInput("Create new Kleisli model type endpoint", "Extend " + newModelType.getName() + " metamodel?");
+			extendMetamodel = MidDiagramUtils.getBooleanInput("Create new Kleisli model type endpoint", "Extend " + targetModelType.getName() + " metamodel?");
 			isKleisli = extendMetamodel;
 		}
 		if (extendMetamodel) {
-			EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(newModelType);
+			EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(targetModelType);
 			try {
 				MultiModelUtils.createModelFileInState(rootModelTypeObj, newModelTypeEndpointExtendedUri);
 			}
@@ -281,7 +281,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		ModelEndpointReference newModelTypeEndpointRef;
 		if (isKleisli) {
 			KleisliModelEndpoint newModelTypeEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
-			newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, newModelType, isBinarySrc, containerModelRelType);
+			newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
 			newModelTypeEndpoint.setExtendedUri(newModelTypeEndpointExtendedUri);
 			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			URI uri = URI.createFileURI(MultiModelUtils.isFileOrDirectoryInState(newModelTypeEndpointExtendedUri));
@@ -293,7 +293,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			}
 		}
 		else {
-			newModelTypeEndpointRef = super.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, newModelType, isBinarySrc, containerModelRelType);
+			newModelTypeEndpointRef = super.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
 		}
 
 		return newModelTypeEndpointRef;
@@ -303,16 +303,16 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, ModelRel containerModelRelType) throws MMTFException {
+	public void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMTFException {
 
-		super.replaceSubtypeAndReference(oldModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, newModelType, containerModelRelType);
+		super.replaceSubtypeAndReference(oldModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, targetModelType, containerModelRelType);
 
 		// keep choice of kleisli model type endpoint, there is no mixing problem like for instances
 		if (oldModelTypeEndpoint instanceof KleisliModelEndpoint) {
-			String newModelTypeEndpointExtendedUri = KleisliUtils.getModelTypeEndpointExtendedUri(newModelType, (KleisliModelRel) containerModelRelType);
+			String newModelTypeEndpointExtendedUri = KleisliUtils.getModelTypeEndpointExtendedUri(targetModelType, (KleisliModelRel) containerModelRelType);
 			((KleisliModelEndpoint) oldModelTypeEndpoint).setExtendedUri(newModelTypeEndpointExtendedUri);
 			if (MultiModelUtils.isFileOrDirectoryInState(newModelTypeEndpointExtendedUri) == null) {
-				EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(newModelType);
+				EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(targetModelType);
 				try {
 					MultiModelUtils.createModelFileInState(rootModelTypeObj, newModelTypeEndpointExtendedUri);
 				}
@@ -338,14 +338,14 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public ModelEndpointReference createInstanceAndReference(Model newModel, boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException {
+	public ModelEndpointReference createInstanceAndReference(Model targetModel, boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		KleisliModelEndpoint newModelEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
-		ModelEndpointReference newModelEndpointRef = addInstanceAndReference(newModelEndpoint, newModel, isBinarySrc, containerModelRel);
+		ModelEndpointReference newModelEndpointRef = addInstanceAndReference(newModelEndpoint, targetModel, isBinarySrc, containerModelRel);
 		newModelEndpoint.setExtendedUri(KleisliUtils.getModelEndpointExtendedUri(newModelEndpoint));
 
 		return newModelEndpointRef;
@@ -355,13 +355,13 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model newModel) throws MMTFException {
+	public void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMTFException {
 
 		// can't transform non-kleisli into kleisli
 		if (!(oldModelEndpoint instanceof KleisliModelEndpoint)) {
 			throw new MMTFException("Can't replace a native model endpoint with a Kleisli one");
 		}
-		super.replaceInstanceAndReference(oldModelEndpoint, newModel);
+		super.replaceInstanceAndReference(oldModelEndpoint, targetModel);
 		((KleisliModelEndpoint) oldModelEndpoint).setExtendedUri(KleisliUtils.getModelEndpointExtendedUri((KleisliModelEndpoint) oldModelEndpoint));
 	}
 

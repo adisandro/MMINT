@@ -42,7 +42,7 @@
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
       <eParameters name="modelTypeEndpointRef" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelEndpointReference"/>
       <eParameters name="newModelTypeEndpointName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="newModelType" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//Model"/>
+      <eParameters name="targetModelType" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//Model"/>
       <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="containerModelRelType" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"/>
     </eOperations>
@@ -50,7 +50,7 @@
       <eParameters name="oldModelTypeEndpoint" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//ModelEndpoint"/>
       <eParameters name="modelTypeEndpointRef" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelEndpointReference"/>
       <eParameters name="newModelTypeEndpointName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="newModelType" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//Model"/>
+      <eParameters name="targetModelType" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//Model"/>
       <eParameters name="containerModelRelType" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"/>
     </eOperations>
     <eOperations name="deleteTypeAndReference" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
@@ -58,7 +58,7 @@
     </eOperations>
     <eOperations name="createInstanceAndReference" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelEndpointReference"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
-      <eParameters name="newModel" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//Model"/>
+      <eParameters name="targetModel" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//Model"/>
       <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="containerModelRel" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"/>
     </eOperations>
@@ -67,7 +67,7 @@
     </eOperations>
     <eOperations name="replaceInstanceAndReference" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
       <eParameters name="oldModelEndpoint" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//ModelEndpoint"/>
-      <eParameters name="newModel" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//Model"/>
+      <eParameters name="targetModel" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//Model"/>
     </eOperations>
     <eOperations name="createTypeReference" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelEndpointReference"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">

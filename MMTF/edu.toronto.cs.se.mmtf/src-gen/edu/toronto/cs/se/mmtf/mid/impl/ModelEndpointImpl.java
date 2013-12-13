@@ -236,7 +236,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	}
 
 	/**
-	 * Adds a reference to this model endpoint to an Instance MID.
+	 * Adds a reference to this model instance endpoint to an Instance MID.
 	 * 
 	 * @param newModelEndpointRef
 	 *            The new reference to this model endpoint to be added.
@@ -287,7 +287,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 *            type container.
 	 * @param newModelTypeEndpointName
 	 *            The name of the new model type endpoint.
-	 * @param newModelType
+	 * @param targetModelType
 	 *            The model type that is the target of the new model type
 	 *            endpoint.
 	 * @param isBinarySrc
@@ -296,19 +296,19 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 * @param containerModelRelType
 	 *            The model relationship type that will contain the new model
 	 *            type endpoint.
-	 * @return The created reference to the model type endpoint.
+	 * @return The created reference to the new model type endpoint.
 	 * @throws MMTFException
-	 *             If the new model type endpoint is at the INSTANCES level, or
-	 *             if the uri of the new model type endpoint is already
-	 *             registered in the Type MID.
+	 *             If the new model endpoint to be added is a model instance
+	 *             endpoint, or if the uri of the new model type endpoint is
+	 *             already registered in the Type MID.
 	 * @generated NOT
 	 */
-	protected ModelEndpointReference addSubtypeAndReference(ModelEndpoint newModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException {
+	protected ModelEndpointReference addSubtypeAndReference(ModelEndpoint newModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(containerModelRelType);
 		// create the "thing" and the corresponding reference
-		MultiModelLightTypeFactory.addLightType(newModelTypeEndpoint, this, containerModelRelType, containerModelRelType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelType.getName(), newModelTypeEndpointName, multiModel);
-		MultiModelTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, newModelType, isBinarySrc, containerModelRelType);
+		MultiModelLightTypeFactory.addLightType(newModelTypeEndpoint, this, containerModelRelType, containerModelRelType.getName() + MMTF.ENDPOINT_SEPARATOR + targetModelType.getName(), newModelTypeEndpointName, multiModel);
+		MultiModelTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, targetModelType, isBinarySrc, containerModelRelType);
 		ModelEndpointReference newModelTypeEndpointRef = newModelTypeEndpoint.createTypeReference(modelTypeEndpointRef, true, isBinarySrc, containerModelRelType);
 		// create references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(containerModelRelType, multiModel)) {
@@ -324,14 +324,14 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException {
+	public ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		ModelEndpoint newModelTypeEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
-		ModelEndpointReference newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, newModelType, isBinarySrc, containerModelRelType);
+		ModelEndpointReference newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
 
 		return newModelTypeEndpointRef;
 	}
@@ -339,7 +339,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model newModelType, ModelRel containerModelRelType) throws MMTFException {
+	public void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMTFException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
@@ -348,8 +348,8 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		oldModelTypeEndpoint.deleteTypeAndReference(false);
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(containerModelRelType);
 		// modify the "thing" and the corresponding reference
-		MultiModelLightTypeFactory.addLightType(oldModelTypeEndpoint, this, containerModelRelType, containerModelRelType.getName() + MMTF.ENDPOINT_SEPARATOR + newModelType.getName(), newModelTypeEndpointName, multiModel);
-		oldModelTypeEndpoint.setTarget(newModelType);
+		MultiModelLightTypeFactory.addLightType(oldModelTypeEndpoint, this, containerModelRelType, containerModelRelType.getName() + MMTF.ENDPOINT_SEPARATOR + targetModelType.getName(), newModelTypeEndpointName, multiModel);
+		oldModelTypeEndpoint.setTarget(targetModelType);
 		if (modelTypeEndpointRef != null) {
 			ModelEndpointReference oldModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(oldModelTypeEndpoint.getUri(), containerModelRelType.getModelEndpointRefs());
 			oldModelTypeEndpointRef.setSupertypeRef(modelTypeEndpointRef);
@@ -387,27 +387,27 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	}
 
 	/**
-	 * Adds a model endpoint and a reference to it to an Instance MID.
+	 * Adds a model instance endpoint and a reference to it to an Instance MID.
 	 * 
 	 * @param newModelEndpoint
 	 *            The new model endpoint to be added.
-	 * @param newModel
-	 *            The new model that is the target of the new model endpoint.
+	 * @param targetModel
+	 *            The model that is the target of the new model endpoint.
 	 * @param isBinarySrc
 	 *            True if the model endpoint is the source in the binary model
 	 *            relationship container, false otherwise.
 	 * @param modelRel
 	 *            The model relationship that will contain the new model
 	 *            endpoint.
-	 * @return The created reference to the model endpoint.
+	 * @return The created reference to the new model endpoint.
 	 * @throws MMTFException
-	 *             If the new model endpoint is at the TYPES level.
+	 *             If the new model endpoint is a model type endpoint.
 	 * @generated NOT
 	 */
-	protected ModelEndpointReference addInstanceAndReference(ModelEndpoint newModelEndpoint, Model newModel, boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException {
+	protected ModelEndpointReference addInstanceAndReference(ModelEndpoint newModelEndpoint, Model targetModel, boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException {
 
-		MultiModelInstanceFactory.addBasicInstance(newModelEndpoint, this, null, newModel.getName());
-		MultiModelInstanceFactory.addInstanceEndpoint(newModelEndpoint, newModel);
+		MultiModelInstanceFactory.addBasicInstance(newModelEndpoint, this, null, targetModel.getName());
+		MultiModelInstanceFactory.addInstanceEndpoint(newModelEndpoint, targetModel);
 		if (isBinarySrc) {
 			containerModelRel.getModelEndpoints().add(0, newModelEndpoint);
 		}
@@ -422,14 +422,14 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public ModelEndpointReference createInstanceAndReference(Model newModel, boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException {
+	public ModelEndpointReference createInstanceAndReference(Model targetModel, boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		ModelEndpoint newModelEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
-		ModelEndpointReference newModelEndpointRef = addInstanceAndReference(newModelEndpoint, newModel, isBinarySrc, containerModelRel);
+		ModelEndpointReference newModelEndpointRef = addInstanceAndReference(newModelEndpoint, targetModel, isBinarySrc, containerModelRel);
 
 		return newModelEndpointRef;
 	}
@@ -437,7 +437,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model newModel) throws MMTFException {
+	public void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMTFException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
@@ -448,7 +448,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 
 		oldModelEndpoint.deleteInstanceAndReference(false);
 		MultiModelInstanceFactory.addBasicInstance(oldModelEndpoint, this, null, null);
-		oldModelEndpoint.setTarget(newModel);
+		oldModelEndpoint.setTarget(targetModel);
 	}
 
 	/**

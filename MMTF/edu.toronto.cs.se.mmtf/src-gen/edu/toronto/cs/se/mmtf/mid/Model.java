@@ -193,8 +193,8 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	Model getSupertype();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Creates and adds a subtype of this model type to the Type MID.
+	 * <!-- begin-user-doc --> Creates and adds a subtype of this model type to
+	 * the Type MID.
 	 * 
 	 * @param newModelTypeName
 	 *            The name of the new model type.
@@ -209,31 +209,30 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 *            metamodel, false otherwise.
 	 * @return The created model type.
 	 * @throws MMTFException
-	 *             If this model relationship is at the INSTANCES level, or if
-	 *             the uri of the new model type is already registered in the
-	 *             Type MID.
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelTypeNameRequired="true" isMetamodelExtensionRequired="true"
+	 *             If this is a model instance, or if the uri of the new model
+	 *             type is already registered in the Type MID. <!-- end-user-doc
+	 *             -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        newModelTypeNameRequired="true"
+	 *        isMetamodelExtensionRequired="true"
 	 * @generated
 	 */
 	Model createSubtype(String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Deletes this model type from the Type MID.
+	 * <!-- begin-user-doc --> Deletes this model type from the Type MID.
 	 * 
 	 * @throws MMTFException
-	 *             If this model is at the INSTANCES level.
-	 * <!-- end-user-doc -->
+	 *             If this is a model instance. <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
 	void deleteType() throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Creates and possibly adds a model instance of this type to an Instance
-	 * MID.
+	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of
+	 * this model type to an Instance MID.
 	 * 
 	 * @param newModelUri
 	 *            The uri of the new model.
@@ -244,21 +243,22 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 *            it.
 	 * @return The created model.
 	 * @throws MMTFException
-	 *             If this model is at the INSTANCES level, or if the uri of the
-	 *             new model is already registered in the Instance MID.
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelUriRequired="true" originRequired="true"
+	 *             If this is a model instance, or if the uri of the new model
+	 *             instance is already registered in the Instance MID. <!--
+	 *             end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        newModelUriRequired="true" originRequired="true"
 	 * @generated
 	 */
 	Model createInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Deletes this model from the Instance MID that contains it.
+	 * <!-- begin-user-doc --> Deletes this model instance from the Instance MID
+	 * that contains it.
 	 * 
 	 * @throws MMTFException
-	 *             If this model is at the TYPES level.
-	 * <!-- end-user-doc -->
+	 *             If this is a model type. <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */

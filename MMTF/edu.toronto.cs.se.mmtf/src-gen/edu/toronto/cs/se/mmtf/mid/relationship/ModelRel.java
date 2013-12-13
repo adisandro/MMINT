@@ -131,9 +131,8 @@ public interface ModelRel extends Model {
 	Model getSupertype();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Creates and adds a subtype of this model relationship type to the Type
-	 * MID.
+	 * <!-- begin-user-doc --> Creates and adds a subtype of this model
+	 * relationship type to the Type MID.
 	 * 
 	 * @param newModelRelTypeName
 	 *            The name of the new model relationship type.
@@ -150,21 +149,22 @@ public interface ModelRel extends Model {
 	 *            associated.
 	 * @return The created model relationship type.
 	 * @throws MMTFException
-	 *             If this model relationship is at the INSTANCES level, or if
-	 *             the uri of the new model relationship type is already
-	 *             registered in the Type MID.
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelRelTypeNameRequired="true" isBinaryRequired="true"
+	 *             If this is a model relationship instance, or if the uri of
+	 *             the new model relationship type is already registered in the
+	 *             Type MID. <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        newModelRelTypeNameRequired="true" isBinaryRequired="true"
 	 * @generated
 	 */
 	ModelRel createSubtype(String newModelRelTypeName, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Deletes this model relationship type from the Type MID.
+	 * <!-- begin-user-doc --> Deletes this model relationship type from the
+	 * Type MID.
 	 * 
 	 * @throws MMTFException
-	 *             If this model relationship is at the INSTANCES level.
+	 *             If this is a model relationship instance.
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
@@ -172,9 +172,8 @@ public interface ModelRel extends Model {
 	void deleteType() throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Creates and possibly adds a model relationship instance of this type to
-	 * an Instance MID.
+	 * <!-- begin-user-doc --> Creates and possibly adds a model relationship
+	 * instance of this model relationship type to an Instance MID.
 	 * 
 	 * @param newModelRelUri
 	 *            The uri of the new model relationship, null if the new model
@@ -190,73 +189,68 @@ public interface ModelRel extends Model {
 	 *            be added to it.
 	 * @return The created model relationship.
 	 * @throws MMTFException
-	 *             If this model relationship is at the INSTANCES level, or if
-	 *             the uri of the new model relationship is already registered
-	 *             in the Instance MID.
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isBinaryRequired="true" originRequired="true"
+	 *             If this is a model relationship instance, or if the uri of
+	 *             the new model relationship is already registered in the
+	 *             Instance MID. <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        isBinaryRequired="true" originRequired="true"
 	 * @generated
 	 */
 	ModelRel createInstance(String newModelRelUri, boolean isBinary, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Deletes this model relationship from the Instance MID that contains it.
+	 * <!-- begin-user-doc --> Deletes this model relationship instance from the
+	 * Instance MID that contains it.
 	 * 
 	 * @throws MMTFException
-	 *             If this model relationship is at the TYPES level.
-	 * <!-- end-user-doc -->
+	 *             If this is a model relationship type. <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
 	void deleteInstance() throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Opens this editor type.
+	 * <!-- begin-user-doc --> Opens this editor type.
 	 * 
 	 * @throws MMTFException
-	 *             If this editor is at the INSTANCES level.
-	 * <!-- end-user-doc -->
+	 *             If this is an editor instance. <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
 	void openType() throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Opens this editor instance.
+	 * <!-- begin-user-doc --> Opens this editor instance.
 	 * 
 	 * @throws MMTFException
-	 *             If this editor is at the TYPES level.
-	 * <!-- end-user-doc -->
+	 *             If this is an editor type. <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
 	void openInstance() throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Gets the model type resources to be used in the Relationship diagram
-	 * outline for this model relationship type.
+	 * <!-- begin-user-doc --> Gets the model type resources to be used in the
+	 * Relationship diagram outline for this model relationship type.
 	 * 
 	 * @throws MMTFException
-	 *             If this model relationship is at the INSTANCES level.
+	 *             If this is a model relationship instance.
 	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @model kind="operation" required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
 	ResourceSet getOutlineResourceTypes() throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Gets the model resources to be used in the Relationship diagram outline
-	 * for this model relationship.
+	 * <!-- begin-user-doc --> Gets the model instance resources to be used in
+	 * the Relationship diagram outline for this model relationship instance.
 	 * 
 	 * @throws MMTFException
-	 *             If this model relationship is at the TYPES level.
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *             If this is a model relationship type. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
 	ResourceSet getOutlineResourceInstances() throws MMTFException;
