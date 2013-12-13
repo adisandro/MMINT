@@ -107,10 +107,7 @@ public interface ModelElement extends ExtendibleElement {
 	 *             If this is a model element instance, or if the uri of the new
 	 *             model element type is already registered in the Type MID.
 	 *             <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        newModelElemTypeNameRequired="true" classLiteralRequired="true"
-	 *        containerModelTypeEndpointRefRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelElemTypeNameRequired="true" classLiteralRequired="true" containerModelTypeEndpointRefRequired="true"
 	 * @generated
 	 */
 	ModelElementReference createSubtypeAndReference(ModelElementReference modelElemTypeRef, String newModelElemTypeName, String classLiteral, ModelEndpointReference containerModelTypeEndpointRef) throws MMTFException;
@@ -133,11 +130,7 @@ public interface ModelElement extends ExtendibleElement {
 	 *             If this is a model element instance, or if the uri of the new
 	 *             model element is already registered in the Instance MID.
 	 *             <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        newModelElemUriRequired="true" newModelElemNameRequired="true"
-	 *        classLiteralRequired="true"
-	 *        containerModelEndpointRefRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelElemUriRequired="true" newModelElemNameRequired="true" classLiteralRequired="true" containerModelEndpointRefRequired="true"
 	 * @generated
 	 */
 	ModelElementReference createInstanceAndReference(String newModelElemUri, String newModelElemName, String classLiteral, ModelEndpointReference containerModelEndpointRef) throws MMTFException;

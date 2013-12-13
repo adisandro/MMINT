@@ -91,9 +91,7 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
 	 * @throws MMTFException
 	 *             If this is a reference to a model instance endpoint.
 	 *             <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        metamodelObjRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" metamodelObjRequired="true"
 	 * @generated
 	 */
 	boolean acceptModelElementType(EObject metamodelObj) throws MMTFException;
@@ -109,9 +107,7 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
 	 * @throws MMTFException
 	 *             If this is a reference to a model type endpoint.
 	 *             <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        modelObjRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" modelObjRequired="true"
 	 * @generated
 	 */
 	ModelElement acceptModelElement(EObject modelObj) throws MMTFException;

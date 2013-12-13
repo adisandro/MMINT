@@ -152,9 +152,7 @@ public interface ModelRel extends Model {
 	 *             If this is a model relationship instance, or if the uri of
 	 *             the new model relationship type is already registered in the
 	 *             Type MID. <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        newModelRelTypeNameRequired="true" isBinaryRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelRelTypeNameRequired="true" isBinaryRequired="true"
 	 * @generated
 	 */
 	ModelRel createSubtype(String newModelRelTypeName, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMTFException;
@@ -192,9 +190,7 @@ public interface ModelRel extends Model {
 	 *             If this is a model relationship instance, or if the uri of
 	 *             the new model relationship is already registered in the
 	 *             Instance MID. <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        isBinaryRequired="true" originRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isBinaryRequired="true" originRequired="true"
 	 * @generated
 	 */
 	ModelRel createInstance(String newModelRelUri, boolean isBinary, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException;
@@ -237,8 +233,7 @@ public interface ModelRel extends Model {
 	 * @throws MMTFException
 	 *             If this is a model relationship instance.
 	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
 	ResourceSet getOutlineResourceTypes() throws MMTFException;
@@ -249,8 +244,7 @@ public interface ModelRel extends Model {
 	 * 
 	 * @throws MMTFException
 	 *             If this is a model relationship type. <!-- end-user-doc -->
-	 * @model kind="operation" required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
 	ResourceSet getOutlineResourceInstances() throws MMTFException;

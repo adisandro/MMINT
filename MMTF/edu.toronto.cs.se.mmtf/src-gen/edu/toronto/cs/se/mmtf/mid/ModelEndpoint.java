@@ -90,10 +90,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @return The created reference to the model type endpoint.
 	 * @throws MMTFException
 	 *             If this is a model instance endpoint. <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        isModifiableRequired="true" isBinarySrcRequired="true"
-	 *        containerModelRelTypeRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isModifiableRequired="true" isBinarySrcRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
 	ModelEndpointReference createTypeReference(ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException;
@@ -111,9 +108,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @return The created reference to the model endpoint.
 	 * @throws MMTFException
 	 *             If this is a model type endpoint. <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        isBinarySrcRequired="true" containerModelRelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isBinarySrcRequired="true" containerModelRelRequired="true"
 	 * @generated
 	 */
 	ModelEndpointReference createInstanceReference(boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException;
@@ -142,11 +137,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 *             If this is a model instance endpoint, or if the uri of the
 	 *             new model type endpoint is already registered in the Type
 	 *             MID. <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        newModelTypeEndpointNameRequired="true"
-	 *        newModelTypeRequired="true" isBinarySrcRequired="true"
-	 *        containerModelRelTypeRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true" isBinarySrcRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
 	ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException;
@@ -173,10 +164,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 *             If this is a model instance endpoint, or if the uri of the
 	 *             new model type endpoint is already registered in the Type
 	 *             MID. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        oldModelTypeEndpointRequired="true"
-	 *        newModelTypeEndpointNameRequired="true"
-	 *        newModelTypeRequired="true" containerModelRelTypeRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" oldModelTypeEndpointRequired="true" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
 	void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMTFException;
@@ -190,8 +178,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 *            false if it is going to be replaced later.
 	 * @throws MMTFException
 	 *             If this is a model endpoint instance. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        isFullDeleteRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
 	 * @generated
 	 */
 	void deleteTypeAndReference(boolean isFullDelete) throws MMTFException;
@@ -211,10 +198,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @return The created reference to the new model endpoint.
 	 * @throws MMTFException
 	 *             If this is a model instance endpoint. <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        newModelRequired="true" isBinarySrcRequired="true"
-	 *        containerModelRelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" targetModelRequired="true" isBinarySrcRequired="true" containerModelRelRequired="true"
 	 * @generated
 	 */
 	ModelEndpointReference createInstanceAndReference(Model targetModel, boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException;
@@ -228,8 +212,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 *            false if it is going to be replaced later.
 	 * @throws MMTFException
 	 *             If this is a model type endpoint. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        isFullDeleteRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
 	 * @generated
 	 */
 	void deleteInstanceAndReference(boolean isFullDelete) throws MMTFException;
@@ -246,8 +229,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 *             If this is a model instance endpoint, or if a user-defined
 	 *             model endpoint is being replaced with a native one.
 	 *             <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        oldModelEndpointRequired="true" newModelRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" oldModelEndpointRequired="true" targetModelRequired="true"
 	 * @generated
 	 */
 	void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMTFException;

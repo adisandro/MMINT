@@ -1062,7 +1062,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		op = initEOperation(getModelEndpoint__CreateSubtypeAndReference__ModelEndpointReference_String_Model_boolean_ModelRel(), theRelationshipPackage.getModelEndpointReference(), "createSubtypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRelationshipPackage.getModelEndpointReference(), "modelTypeEndpointRef", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelTypeEndpointName", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModel(), "newModelType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModel(), "targetModelType", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinarySrc", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRelationshipPackage.getModelRel(), "containerModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
@@ -1071,7 +1071,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		addEParameter(op, this.getModelEndpoint(), "oldModelTypeEndpoint", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRelationshipPackage.getModelEndpointReference(), "modelTypeEndpointRef", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelTypeEndpointName", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModel(), "newModelType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModel(), "targetModelType", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRelationshipPackage.getModelRel(), "containerModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 
@@ -1080,7 +1080,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		addEException(op, this.getMMTFException());
 
 		op = initEOperation(getModelEndpoint__CreateInstanceAndReference__Model_boolean_ModelRel(), theRelationshipPackage.getModelEndpointReference(), "createInstanceAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModel(), "newModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModel(), "targetModel", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinarySrc", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRelationshipPackage.getModelRel(), "containerModelRel", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
@@ -1091,7 +1091,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 
 		op = initEOperation(getModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model(), null, "replaceInstanceAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelEndpoint(), "oldModelEndpoint", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModel(), "newModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModel(), "targetModel", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 
 		op = initEOperation(getModelEndpoint__CreateTypeReference__ModelEndpointReference_boolean_boolean_ModelRel(), theRelationshipPackage.getModelEndpointReference(), "createTypeReference", 1, 1, IS_UNIQUE, IS_ORDERED);
