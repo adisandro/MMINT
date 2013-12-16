@@ -250,8 +250,25 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/Editor/wizardDialogClass"/>
         <genOperations ecoreOperation="mid.ecore#//editor/Editor/getMetatype"/>
         <genOperations ecoreOperation="mid.ecore#//editor/Editor/getSupertype"/>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/createSubtype">
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/newEditorTypeFragmentUri"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/newEditorTypeName"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/modelTypeUri"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/editorId"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/wizardId"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/wizardDialogClassName"/>
+        </genOperations>
       </genClasses>
-      <genClasses ecoreClass="mid.ecore#//editor/Diagram"/>
+      <genClasses ecoreClass="mid.ecore#//editor/Diagram">
+        <genOperations ecoreOperation="mid.ecore#//editor/Diagram/createSubtype">
+          <genParameters ecoreParameter="mid.ecore#//editor/Diagram/createSubtype/newEditorTypeFragmentUri"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Diagram/createSubtype/newEditorTypeName"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Diagram/createSubtype/modelTypeUri"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Diagram/createSubtype/editorId"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Diagram/createSubtype/wizardId"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Diagram/createSubtype/wizardDialogClassName"/>
+        </genOperations>
+      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Operator" basePackage="edu.toronto.cs.se.mmtf.mid"
         disposableProviderFactory="true" ecorePackage="mid.ecore#//operator">

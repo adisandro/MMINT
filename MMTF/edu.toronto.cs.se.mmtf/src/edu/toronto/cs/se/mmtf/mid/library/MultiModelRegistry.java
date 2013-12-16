@@ -154,6 +154,7 @@ public class MultiModelRegistry {
 	 */
 	public static MultiModel getMultiModel(ExtendibleElement element) {
 
+		//TODO MMTF[OO] move into each element?
 		MultiModel multiModel = null;
 		if (element instanceof Model || element instanceof ModelRel || element instanceof Editor || element instanceof Operator) {
 			multiModel = (MultiModel) element.eContainer();
@@ -177,6 +178,7 @@ public class MultiModelRegistry {
 	 */
 	public static MultiModel getMultiModel(ExtendibleElementReference elementRef) {
 
+		//TODO MMTF[OO] move into each element?
 		return getMultiModel(elementRef.getObject());
 	}
 

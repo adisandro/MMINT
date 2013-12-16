@@ -55,6 +55,12 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
  */
 public class MultiModelTypeFactory {
 
+	public final static String ECORE_PIVOT_URI = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";
+	public final static String ECORE_INVOCATION_DELEGATE = "invocationDelegates";
+	public final static String ECORE_SETTING_DELEGATE = "settingDelegates";
+	public final static String ECORE_VALIDATION_DELEGATE = "validationDelegates";
+	public final static String ECORE_REFLECTIVE_FILE_EXTENSION = "xmi";
+
 	/**
 	 * Adds a type to a multimodel.
 	 * 
@@ -72,7 +78,7 @@ public class MultiModelTypeFactory {
 	 *             If the uri of the new type is already registered in the
 	 *             multimodel.
 	 */
-	protected static void addType(ExtendibleElement newType, ExtendibleElement type, String newTypeUri, String newTypeName, MultiModel multiModel) throws MMTFException {
+	public static void addType(ExtendibleElement newType, ExtendibleElement type, String newTypeUri, String newTypeName, MultiModel multiModel) throws MMTFException {
 
 		if (multiModel.getExtendibleTable().containsKey(newTypeUri)) {
 			throw new MMTFException("Type with uri " + newTypeUri + " is already registered");
@@ -160,7 +166,7 @@ public class MultiModelTypeFactory {
 	 * @param multiModel
 	 *            The multimodel that will contain the new model type.
 	 */
-	protected static void addModelType(Model newModelType, boolean newModelTypeAbstract, String constraintLanguage, String constraintImplementation, MultiModel multiModel) {
+	public static void addModelType(Model newModelType, boolean newModelTypeAbstract, String constraintLanguage, String constraintImplementation, MultiModel multiModel) {
 
 		newModelType.setAbstract(newModelTypeAbstract);
 		ExtendibleElementConstraint modelConstraint = null;
@@ -375,7 +381,7 @@ public class MultiModelTypeFactory {
 	 * @param multiModel
 	 *            The multimodel that will contain the new editor type.
 	 */
-	protected static void addEditorType(Editor newEditorType, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, MultiModel multiModel) {
+	public static void addEditorType(Editor newEditorType, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, MultiModel multiModel) {
 
 		newEditorType.setModelUri(modelTypeUri);
 		newEditorType.setId(editorId);
@@ -393,7 +399,7 @@ public class MultiModelTypeFactory {
 	 * @param modelType
 	 *            The model type handled by the editor type.
 	 */
-	protected static void addModelTypeEditor(Editor editorType, Model modelType) {
+	public static void addModelTypeEditor(Editor editorType, Model modelType) {
 
 		modelType.getEditors().add(editorType);
 	}

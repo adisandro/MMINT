@@ -11,11 +11,12 @@
  */
 package edu.toronto.cs.se.mmtf.mid.impl;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
 import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
@@ -27,9 +28,11 @@ import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.editor.Diagram;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
@@ -45,7 +48,12 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -578,6 +586,110 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	}
 
 	/**
+	 * Adds a subtype of this model type to the Type MID, together with an
+	 * editor type for it.
+	 * 
+	 * @param newModelType
+	 *            The new model type to be added.
+	 * @param newModelTypeName
+	 *            The name of the new model type.
+	 * @param constraintLanguage
+	 *            The constraint language of the constraint associated with the
+	 *            new model type, null if no constraint is associated.
+	 * @param constraintImplementation
+	 *            The constraint implementation of the constraint associated
+	 *            with the new model type, null if no constraint is associated.
+	 * @param isMetamodelExtension
+	 *            True if the new model type is extending the supertype's
+	 *            metamodel, false otherwise.
+	 * @throws MMTFException
+	 *             If the uri of the new model type is already registered in the
+	 *             Type MID.
+	 * @generated NOT
+	 */
+	protected void addSubtype(Model newModelType, String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMTFException {
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		super.addSubtype(newModelType, this, null, newModelTypeName);
+		MultiModelTypeFactory.addModelType(newModelType, false, constraintLanguage, constraintImplementation, multiModel);
+		newModelType.setOrigin(ModelOrigin.CREATED);
+		newModelType.setFileExtension(getFileExtension());
+
+		if (isMetamodelExtension) {
+			try {
+				String newMetamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(newModelType);
+				if (newMetamodelUri == null) { // create new metamodel file
+					EPackage newEPackage = EcoreFactory.eINSTANCE.createEPackage();
+					newEPackage.setName(newModelTypeName.toLowerCase());
+					newEPackage.setNsPrefix(newModelTypeName.toLowerCase());
+					newEPackage.setNsURI(newModelType.getUri());
+					EAnnotation newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+					newEAnnotation.setSource(EcorePackage.eNS_URI);
+					EMap<String, String> newEAnnotationDetails = newEAnnotation.getDetails();
+					newEAnnotationDetails.put(MultiModelTypeFactory.ECORE_INVOCATION_DELEGATE, MultiModelTypeFactory.ECORE_PIVOT_URI);
+					newEAnnotationDetails.put(MultiModelTypeFactory.ECORE_SETTING_DELEGATE, MultiModelTypeFactory.ECORE_PIVOT_URI);
+					newEAnnotationDetails.put(MultiModelTypeFactory.ECORE_VALIDATION_DELEGATE, MultiModelTypeFactory.ECORE_PIVOT_URI);
+					newEPackage.getEAnnotations().add(newEAnnotation);
+					EClass newRootEClass = EcoreFactory.eINSTANCE.createEClass();
+					newRootEClass.setName(newModelTypeName);
+					if (!MultiModelTypeHierarchy.isRootType(this)) {
+						EClass rootEClass = (EClass) ((EPackage) MultiModelTypeIntrospection.getRoot(this)).getEClassifiers().get(0);
+						newRootEClass.getESuperTypes().add(rootEClass);
+					}
+					newEPackage.getEClassifiers().add(newRootEClass);
+					newMetamodelUri = newModelTypeName + "." + EcorePackage.eNAME;
+					MultiModelUtils.createModelFileInState(newEPackage, newMetamodelUri);
+				}
+				newModelType.setFileExtension(MultiModelTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION);
+			}
+			catch (Exception e) {
+				MMTFException.print(Type.WARNING, "Error creating extended metamodel file, fallback to no extension", e);
+				newModelType.setFileExtension(getFileExtension());
+				isMetamodelExtension = false;
+			}
+		}
+		else {
+			newModelType.setFileExtension(getFileExtension());
+		}
+
+		// create editors
+		String newEditorTypeFragmentUri = newModelType.getName(), newEditorTypeName, modelTypeUri = newModelType.getUri(), editorId, wizardId, wizardDialogClassName;
+		for (Editor editorType : getEditors()) {
+			if (isMetamodelExtension) {
+				if (editorType instanceof Diagram) {
+					continue;
+				}
+				newEditorTypeName = MMTF.ROOT_EDITOR_NAME;
+				editorId = MMTF.ROOT_EDITOR_ID;
+				wizardId = null;
+				wizardDialogClassName = null;
+			}
+			else {
+				newEditorTypeName = editorType.getName();
+				editorId = editorType.getId();
+				wizardId = editorType.getWizardId();
+				wizardDialogClassName = editorType.getWizardDialogClass();
+			}
+			try {
+				//TODO MMTF: a new editor is created instead of attaching existing ones
+				//TODO MMTF: because I couldn't find a way then from an editor to understand which model was being created
+				Editor newEditorType = editorType.createSubtype(newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
+				//TODO MMTFException here
+				MultiModelTypeFactory.addModelTypeEditor(newEditorType, newModelType);
+				if (isMetamodelExtension) { // reflective editor only
+					newEditorType.getFileExtensions().clear();
+					newEditorType.getFileExtensions().add(MultiModelTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION);
+					break;
+				}
+			}
+			catch (MMTFException e) {
+				// models created through this editor will have the supermodel as static type
+				MultiModelTypeFactory.addModelTypeEditor(editorType, newModelType);
+			}
+		}
+	}
+
+	/**
 	 * @generated NOT
 	 */
 	public Model createSubtype(String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMTFException {
@@ -587,7 +699,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		}
 
 		Model newModelType = MidFactory.eINSTANCE.createModel();
-		MultiModelLightTypeFactory.addLightModelType(newModelType, this, newModelTypeName, constraintLanguage, constraintImplementation, isMetamodelExtension);
+		addSubtype(newModelType, newModelTypeName, constraintLanguage, constraintImplementation, isMetamodelExtension);
 
 		return newModelType;
 	}

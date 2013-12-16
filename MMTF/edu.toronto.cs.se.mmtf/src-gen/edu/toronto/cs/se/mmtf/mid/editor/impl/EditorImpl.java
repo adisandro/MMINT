@@ -11,23 +11,24 @@
  */
 package edu.toronto.cs.se.mmtf.mid.editor.impl;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
-
 import edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
@@ -385,6 +386,13 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 				return getMetatype();
 			case EditorPackage.EDITOR___GET_SUPERTYPE:
 				return getSupertype();
+			case EditorPackage.EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING:
+				try {
+					return createSubtype((String)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (String)arguments.get(3), (String)arguments.get(4), (String)arguments.get(5));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -411,6 +419,57 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 		result.append(wizardDialogClass);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * Adds a subtype of this editor type to the Type MID.
+	 * 
+	 * @param newEditorType
+	 *            The new editor type to be added.
+	 * @param newEditorTypeFragmentUri
+	 *            The uri fragment to be appended as part of the uri of the new
+	 *            editor type.
+	 * @param newEditorTypeName
+	 *            The name of the new editor type.
+	 * @param modelTypeUri
+	 *            The uri of the model type handled by the new editor type.
+	 * @param editorId
+	 *            The id of the corresponding Eclipse editor.
+	 * @param wizardId
+	 *            The wizard id of the corresponding Eclipse editor.
+	 * @param wizardDialogClassName
+	 *            The fully qualified name of a Java class that handles the
+	 *            creation of the model type through the new editor type.
+	 * @return The created editor type.
+	 * @throws MMTFException
+	 *             If the uri of the new editor type is already registered in
+	 *             the Type MID.
+	 * @generated NOT
+	 */
+	protected void addSubtype(Editor newEditorType, String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMTFException {
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		super.addSubtype(newEditorType, this, newEditorTypeFragmentUri, newEditorTypeName);
+		MultiModelTypeFactory.addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, multiModel);
+
+		for (String fileExtension : getFileExtensions()) {
+			newEditorType.getFileExtensions().add(fileExtension);
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Editor createSubtype(String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		Editor newEditorType = EditorFactory.eINSTANCE.createEditor();
+		addSubtype(newEditorType, newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
+
+		return newEditorType;
 	}
 
 } //EditorImpl

@@ -54,12 +54,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
  */
 public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 
-	private final static String ECORE_PIVOT_URI = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";
-	private final static String ECORE_INVOCATION_DELEGATE = "invocationDelegates";
-	private final static String ECORE_SETTING_DELEGATE = "settingDelegates";
-	private final static String ECORE_VALIDATION_DELEGATE = "validationDelegates";
-	private final static String ECORE_REFLECTIVE_FILE_EXTENSION = "xmi";
-
 	/**
 	 * Gets the base uri of a "light" type by cutting its last fragment.
 	 * 

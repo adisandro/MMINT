@@ -212,7 +212,7 @@ public class MultiModelUtils {
 	public static void deleteDirectory(String directoryUri, boolean isWorkspaceRelative) {
 
 		if (isWorkspaceRelative) {
-			prependWorkspaceToUri(directoryUri);
+			directoryUri = prependWorkspaceToUri(directoryUri);
 		}
 		Path directoryPath = Paths.get(directoryUri);
 		try {

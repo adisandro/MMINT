@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.editor;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 
 import org.eclipse.emf.common.util.EList;
@@ -180,5 +181,38 @@ public interface Editor extends ExtendibleElement {
 	 * @generated
 	 */
 	Editor getSupertype();
+
+	/**
+	 * <!-- begin-user-doc --> Creates and adds a subtype of this editor type to
+	 * the Type MID.
+	 * 
+	 * @param newEditorTypeFragmentUri
+	 *            The uri fragment to be appended as part of the uri of the new
+	 *            editor type.
+	 * @param newEditorTypeName
+	 *            The name of the new editor type.
+	 * @param modelTypeUri
+	 *            The uri of the model type handled by the new editor type.
+	 * @param editorId
+	 *            The id of the corresponding Eclipse editor.
+	 * @param wizardId
+	 *            The wizard id of the corresponding Eclipse editor.
+	 * @param wizardDialogClassName
+	 *            The fully qualified name of a Java class that handles the
+	 *            creation of the model type through the new editor type.
+	 * @return The created editor type.
+	 * @throws MMTFException
+	 *             If this is an editor instance, or if the uri of the new
+	 *             editor type is already registered in the Type MID.
+	 *             <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        newEditorTypeFragmentUriRequired="true"
+	 *        newEditorTypeNameRequired="true" modelTypeUriRequired="true"
+	 *        editorIdRequired="true" wizardIdRequired="true"
+	 *        wizardDialogClassNameRequired="true"
+	 * @generated
+	 */
+	Editor createSubtype(String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMTFException;
 
 } // Editor

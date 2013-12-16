@@ -11,7 +11,11 @@
  */
 package edu.toronto.cs.se.mmtf.mid.editor.impl;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.editor.Diagram;
+import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
 
 import org.eclipse.emf.ecore.EClass;
@@ -43,6 +47,21 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 	@Override
 	protected EClass eStaticClass() {
 		return EditorPackage.Literals.DIAGRAM;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Editor createSubtype(String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		Diagram newDiagramType = EditorFactory.eINSTANCE.createDiagram();
+		addSubtype(newDiagramType, newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
+
+		return newDiagramType;
 	}
 
 } //DiagramImpl
