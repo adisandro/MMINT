@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.operator.impl;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 
@@ -43,6 +44,16 @@ public class ConversionOperatorImpl extends OperatorImpl implements ConversionOp
 	@Override
 	protected EClass eStaticClass() {
 		return OperatorPackage.Literals.CONVERSION_OPERATOR;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public void deleteType() throws MMTFException {
+
+		super.deleteType();
+		getInputs().get(0).getModel().getConversionOperators().remove(this);
 	}
 
 } //ConversionOperatorImpl

@@ -660,6 +660,15 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModelElement__DeleteType() {
+		return modelElementEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getModelElementWildcard() {
 		return modelElementWildcardEClass;
 	}
@@ -889,6 +898,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_SUPERTYPE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_MODELENDPOINTREFERENCE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_STRING_MODELENDPOINTREFERENCE);
+		createEOperation(modelElementEClass, MODEL_ELEMENT___DELETE_TYPE);
 
 		modelElementWildcardEClass = createEClass(MODEL_ELEMENT_WILDCARD);
 
@@ -1047,6 +1057,9 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		addEParameter(op, ecorePackage.getEString(), "newModelElemName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "classLiteral", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRelationshipPackage.getModelEndpointReference(), "containerModelEndpointRef", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
+		op = initEOperation(getModelElement__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 
 		initEClass(modelElementWildcardEClass, ModelElementWildcard.class, "ModelElementWildcard", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

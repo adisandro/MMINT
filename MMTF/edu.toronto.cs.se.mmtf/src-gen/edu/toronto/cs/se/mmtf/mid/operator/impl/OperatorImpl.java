@@ -11,9 +11,13 @@
  */
 package edu.toronto.cs.se.mmtf.mid.operator.impl;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl;
-
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
@@ -21,16 +25,14 @@ import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
@@ -335,8 +337,35 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 				return getMetatype();
 			case OperatorPackage.OPERATOR___GET_SUPERTYPE:
 				return getSupertype();
+			case OperatorPackage.OPERATOR___DELETE_TYPE:
+				try {
+					deleteType();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteType() throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		// delete the "thing"
+		super.deleteType(multiModel);
+		multiModel.getOperators().remove(this);
+		// delete the subtypes of the "thing"
+		for (Operator operatorSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this)) {
+			operatorSubtype.deleteType();
+		}
 	}
 
 } //OperatorImpl

@@ -53,12 +53,7 @@ public interface Diagram extends Editor {
 	 *             If this is a diagram instance, or if the uri of the new
 	 *             diagram type is already registered in the Type MID.
 	 *             <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        newEditorTypeFragmentUriRequired="true"
-	 *        newEditorTypeNameRequired="true" modelTypeUriRequired="true"
-	 *        editorIdRequired="true" wizardIdRequired="true"
-	 *        wizardDialogClassNameRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newEditorTypeFragmentUriRequired="true" newEditorTypeNameRequired="true" modelTypeUriRequired="true" editorIdRequired="true" wizardIdRequired="true" wizardDialogClassNameRequired="true"
 	 * @generated
 	 */
 	Editor createSubtype(String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMTFException;

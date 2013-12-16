@@ -213,6 +213,14 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MidPackage.MODEL_ELEMENT___DELETE_TYPE:
+				try {
+					deleteType();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -266,6 +274,20 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		}
 
 		return newModelElemTypeRef;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteType() throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		super.deleteType(multiModel);
+		//TODO MMTF[OO] might need to implement full removal
 	}
 
 	/**

@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.operator;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 
 import org.eclipse.emf.common.util.EList;
@@ -136,5 +137,15 @@ public interface Operator extends ExtendibleElement {
 	 * @generated
 	 */
 	Operator getSupertype();
+
+	/**
+	 * <!-- begin-user-doc --> Deletes this operator type from the Type MID.
+	 * 
+	 * @throws MMTFException
+	 *             If this is an operator instance. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	void deleteType() throws MMTFException;
 
 } // Operator

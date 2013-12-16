@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -20,12 +20,11 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 
 /**
  * The command to delete a model.
@@ -91,16 +90,15 @@ public class ModelDelCommand extends DestroyElementCommand {
 			);
 	}
 
-	protected void doExecuteInstancesLevel() {
+	protected void doExecuteInstancesLevel() throws MMTFException {
 
-		MultiModelInstanceFactory.removeModel((Model) getElementToDestroy());
+		((Model) getElementToDestroy()).deleteInstance();
 	}
 
-	protected void doExecuteTypesLevel() {
+	protected void doExecuteTypesLevel() throws MMTFException {
 		
-		Model modelType = (Model) getElementToDestroy();
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		MultiModelTypeFactory.removeModelType(modelType);
+		((Model) getElementToDestroy()).deleteType();
 		MMTF.createTypeHierarchy(multiModel);
 	}
 
@@ -118,14 +116,20 @@ public class ModelDelCommand extends DestroyElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToEdit())) {
-			doExecuteInstancesLevel();
+		try {
+			if (MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToEdit())) {
+				doExecuteInstancesLevel();
+			}
+			else {
+				doExecuteTypesLevel();
+			}
+	
+			return super.doExecuteWithResult(monitor, info);
 		}
-		else {
-			doExecuteTypesLevel();
+		catch (MMTFException e) {
+			MMTFException.print(MMTFException.Type.WARNING, "No model deleted", e);
+			return CommandResult.newErrorCommandResult("No model deleted");
 		}
-
-		return super.doExecuteWithResult(monitor, info);
 	}
 
 }

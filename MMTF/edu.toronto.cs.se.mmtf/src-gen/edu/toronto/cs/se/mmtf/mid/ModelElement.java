@@ -135,4 +135,15 @@ public interface ModelElement extends ExtendibleElement {
 	 */
 	ModelElementReference createInstanceAndReference(String newModelElemUri, String newModelElemName, String classLiteral, ModelEndpointReference containerModelEndpointRef) throws MMTFException;
 
+	/**
+	 * <!-- begin-user-doc --> Deletes this model element type from the Type
+	 * MID.
+	 * 
+	 * @throws MMTFException
+	 *             If this is a model element instance. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	void deleteType() throws MMTFException;
+
 } // ModelElement

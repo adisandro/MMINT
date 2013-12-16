@@ -996,13 +996,22 @@ public interface MidPackage extends EPackage {
 	int MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_STRING_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___DELETE_TYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+
+	/**
 	 * The number of operations of the '<em>Model Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+	int MODEL_ELEMENT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementWildcardImpl <em>Model Element Wildcard</em>}' class.
@@ -1844,6 +1853,16 @@ public interface MidPackage extends EPackage {
 	EOperation getModelElement__CreateInstanceAndReference__String_String_String_ModelEndpointReference();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#deleteType() <em>Delete Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Type</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#deleteType()
+	 * @generated
+	 */
+	EOperation getModelElement__DeleteType();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelElementWildcard <em>Model Element Wildcard</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2426,6 +2445,14 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_STRING_MODELENDPOINTREFERENCE = eINSTANCE.getModelElement__CreateInstanceAndReference__String_String_String_ModelEndpointReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ELEMENT___DELETE_TYPE = eINSTANCE.getModelElement__DeleteType();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementWildcardImpl <em>Model Element Wildcard</em>}' class.

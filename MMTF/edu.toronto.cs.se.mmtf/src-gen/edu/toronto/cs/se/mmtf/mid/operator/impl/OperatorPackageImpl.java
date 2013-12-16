@@ -296,6 +296,15 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getOperator__DeleteType() {
+		return operatorEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getParameter() {
 		return parameterEClass;
 	}
@@ -334,6 +343,15 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 */
 	public EClass getConversionOperator() {
 		return conversionOperatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getConversionOperator__DeleteType() {
+		return conversionOperatorEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -465,8 +483,10 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEReference(operatorEClass, OPERATOR__EXECUTABLE);
 		createEOperation(operatorEClass, OPERATOR___GET_METATYPE);
 		createEOperation(operatorEClass, OPERATOR___GET_SUPERTYPE);
+		createEOperation(operatorEClass, OPERATOR___DELETE_TYPE);
 
 		conversionOperatorEClass = createEClass(CONVERSION_OPERATOR);
+		createEOperation(conversionOperatorEClass, CONVERSION_OPERATOR___DELETE_TYPE);
 
 		parameterEClass = createEClass(PARAMETER);
 		createEAttribute(parameterEClass, PARAMETER__NAME);
@@ -540,7 +560,13 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		initEOperation(getOperator__GetSupertype(), this.getOperator(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		EOperation op = initEOperation(getOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
 		initEClass(conversionOperatorEClass, ConversionOperator.class, "ConversionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = initEOperation(getConversionOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
 
 		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getParameter_Name(), ecorePackage.getEString(), "name", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -551,7 +577,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		initEAttribute(getOperatorExecutable_InputSubdir(), ecorePackage.getEString(), "inputSubdir", null, 0, 1, OperatorExecutable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperatorExecutable_PreviousExecutable(), this.getOperatorExecutable(), null, "previousExecutable", null, 0, 1, OperatorExecutable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getOperatorExecutable__Execute__EList(), theMidPackage.getModel(), "execute", 1, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getOperatorExecutable__Execute__EList(), theMidPackage.getModel(), "execute", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMidPackage.getModel(), "actualParameters", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getException());
 

@@ -324,6 +324,7 @@
       <eParameters name="classLiteral" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="containerModelEndpointRef" lowerBound="1" eType="#//relationship/ModelEndpointReference"/>
     </eOperations>
+    <eOperations name="deleteType" eExceptions="#//MMTFException"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="classLiteral" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -921,6 +922,7 @@
           <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Operator) supertype;"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="deleteType" eExceptions="#//MMTFException"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
           eType="#//operator/Parameter" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -957,6 +959,7 @@
         <details key="conversion" value="inputs->size() = 1 and outputs->size() = 1"/>
         <details key="executable" value="executable.oclIsKindOf(ConversionOperatorExecutable)"/>
       </eAnnotations>
+      <eOperations name="deleteType" eExceptions="#//MMTFException"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Parameter">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

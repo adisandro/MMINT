@@ -94,6 +94,7 @@
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/classLiteral"/>
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/containerModelEndpointRef"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/deleteType"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ModelElementWildcard"/>
     <genClasses ecoreClass="mid.ecore#//ModelEndpoint">
@@ -285,8 +286,11 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/executable"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMetatype"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getSupertype"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteType"/>
       </genClasses>
-      <genClasses ecoreClass="mid.ecore#//operator/ConversionOperator"/>
+      <genClasses ecoreClass="mid.ecore#//operator/ConversionOperator">
+        <genOperations ecoreOperation="mid.ecore#//operator/ConversionOperator/deleteType"/>
+      </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/Parameter">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Parameter/name"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Parameter/vararg"/>

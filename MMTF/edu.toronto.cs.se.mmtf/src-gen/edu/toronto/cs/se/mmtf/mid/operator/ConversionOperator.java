@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmtf.mid.operator;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -28,4 +30,17 @@ package edu.toronto.cs.se.mmtf.mid.operator;
  * @generated
  */
 public interface ConversionOperator extends Operator {
+
+	/**
+	 * <!-- begin-user-doc --> Deletes this conversion operator type from the
+	 * Type MID.
+	 * 
+	 * @throws MMTFException
+	 *             If this is a conversion operator instance.
+	 *             <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	void deleteType() throws MMTFException;
+
 } // ConversionOperator

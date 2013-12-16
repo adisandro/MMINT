@@ -640,4 +640,19 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 		newType.setDynamic(true);
 	}
 
+	/**
+	 * Deletes this type from a multimodel.
+	 * 
+	 * @param multiModel
+	 *            The multimodel that contains the type.
+	 * @return The removed type, null if its uri was not registered in the
+	 *         multimodel.
+	 * @generated NOT
+	 */
+	protected ExtendibleElement deleteType(MultiModel multiModel) {
+
+		//TODO MMTF[OO] obtain multimodel and remove it from arguments
+		return multiModel.getExtendibleTable().removeKey(getUri());
+	}
+
 } //ExtendibleElementImpl

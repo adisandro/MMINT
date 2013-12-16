@@ -298,13 +298,22 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___GET_SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___DELETE_TYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+	int OPERATOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -498,13 +507,22 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR___GET_SUPERTYPE = OPERATOR___GET_SUPERTYPE;
 
 	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___DELETE_TYPE = OPERATOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Conversion Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
+	int CONVERSION_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -865,6 +883,16 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__GetSupertype();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#deleteType() <em>Delete Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Type</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.Operator#deleteType()
+	 * @generated
+	 */
+	EOperation getOperator__DeleteType();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.Parameter <em>Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -916,6 +944,16 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getConversionOperator();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator#deleteType() <em>Delete Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Type</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator#deleteType()
+	 * @generated
+	 */
+	EOperation getConversionOperator__DeleteType();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable <em>Executable</em>}'.
@@ -1130,6 +1168,14 @@ public interface OperatorPackage extends EPackage {
 		EOperation OPERATOR___GET_SUPERTYPE = eINSTANCE.getOperator__GetSupertype();
 
 		/**
+		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___DELETE_TYPE = eINSTANCE.getOperator__DeleteType();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1172,6 +1218,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONVERSION_OPERATOR = eINSTANCE.getConversionOperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CONVERSION_OPERATOR___DELETE_TYPE = eINSTANCE.getConversionOperator__DeleteType();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl <em>Executable</em>}' class.

@@ -674,7 +674,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				//TODO MMTF: a new editor is created instead of attaching existing ones
 				//TODO MMTF: because I couldn't find a way then from an editor to understand which model was being created
 				Editor newEditorType = editorType.createSubtype(newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
-				//TODO MMTFException here
 				MultiModelTypeFactory.addModelTypeEditor(newEditorType, newModelType);
 				if (isMetamodelExtension) { // reflective editor only
 					newEditorType.getFileExtensions().clear();
@@ -705,51 +704,49 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	}
 
 	/**
-	 * Deletes a model type from a multimodel.
-	 * 
-	 * @param modelType
-	 *            The model type to be removed.
-	 * @param multiModel
-	 *            The multimodel that contains the model type.
 	 * @generated NOT
 	 */
-	protected void deleteModelType(Model modelType, MultiModel multiModel) {
+	public void deleteType() throws MMTFException {
 
-		MultiModelTypeFactory.removeType(modelType.getUri(), multiModel);
-		multiModel.getModels().remove(modelType);
-		String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(modelType);
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		// delete the "thing"
+		for (ModelElement modelElemType : getModelElems()) {
+			modelElemType.deleteType();
+		}
+		super.deleteType(multiModel);
+		multiModel.getModels().remove(this);
+		String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(this);
 		if (metamodelUri != null) {
 			MultiModelUtils.deleteFile(metamodelUri, false);
 		}
-
-		// remove model element types
-		for (ModelElement modelElementType : modelType.getModelElems()) {
-			MultiModelTypeFactory.removeType(modelElementType.getUri(), multiModel);
-		}
+		// delete operator types that use this model type
 		List<String> delOperatorTypeUris = new ArrayList<String>();
-		// remove operator types that use this model type
 		for (Operator operatorType : multiModel.getOperators()) {
 			for (Parameter par : operatorType.getInputs()) {
-				if (par.getModel().getUri().equals(modelType.getUri()) && !delOperatorTypeUris.contains(operatorType.getUri())) {
+				if (par.getModel().getUri().equals(getUri()) && !delOperatorTypeUris.contains(operatorType.getUri())) {
 					delOperatorTypeUris.add(operatorType.getUri());
 				}
 			}
 			for (Parameter par : operatorType.getOutputs()) {
-				if (par.getModel().getUri().equals(modelType.getUri()) && !delOperatorTypeUris.contains(operatorType.getUri())) {
+				if (par.getModel().getUri().equals(getUri()) && !delOperatorTypeUris.contains(operatorType.getUri())) {
 					delOperatorTypeUris.add(operatorType.getUri());
 				}
 			}
 		}
 		for (String operatorTypeUri : delOperatorTypeUris) {
 			Operator operatorType = MultiModelRegistry.getExtendibleElement(operatorTypeUri, multiModel);
-			MultiModelTypeFactory.removeOperatorType(operatorType);
+			operatorType.deleteType();
 		}
-		// remove model relationship types and endpoints that use this model type
+		// delete model relationship types and endpoints that use this model type
 		List<ModelRel> delModelRelTypes = new ArrayList<ModelRel>();
 		List<ModelEndpoint> delModelTypeEndpoints = new ArrayList<ModelEndpoint>();
 		for (ModelRel modelRelType : MultiModelRegistry.getModelRels(multiModel)) {
 			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
-				if (modelTypeEndpoint.getTargetUri().equals(modelType.getUri())) {
+				if (modelTypeEndpoint.getTargetUri().equals(getUri())) {
 					if (modelRelType instanceof BinaryModelRel) {
 						if (!delModelRelTypes.contains(modelRelType)) {
 							delModelRelTypes.add(modelRelType);
@@ -762,38 +759,14 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			}
 		}
 		for (ModelEndpoint modelTypeEndpoint : delModelTypeEndpoints) {
-			try {
-				modelTypeEndpoint.deleteTypeAndReference(true);
-			}
-			catch (MMTFException e) {
-				continue;
-			}
+			modelTypeEndpoint.deleteTypeAndReference(true);
 		}
 		for (ModelRel modelRelType : delModelRelTypes) {
-			try {
-				modelRelType.deleteType();
-			}
-			catch (MMTFException e) {
-				continue;
-			}
+			modelRelType.deleteType();
 		}
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public void deleteType() throws MMTFException {
-
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
-		}
-
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
-		// delete the "thing"
-		deleteModelType(this, multiModel);
 		// delete the subtypes of the "thing"
-		for (Model modelSubtype : MultiModelTypeHierarchy.getSubtypes(this, multiModel)) {
-			deleteModelType(modelSubtype, multiModel);
+		for (Model modelSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this)) {
+			modelSubtype.deleteType();
 		}
 	}
 
