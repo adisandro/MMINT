@@ -97,6 +97,22 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
 	boolean acceptModelElementType(EObject metamodelObj) throws MMTFException;
 
 	/**
+	 * <!-- begin-user-doc --> Deletes this reference to a model type endpoint
+	 * from the Type MID.
+	 * 
+	 * @param isFullDelete
+	 *            True if this reference to model type endpoint is going to be
+	 *            fully deleted, false if it is going to be replaced later.
+	 * @throws MMTFException
+	 *             If this is a reference to a model instance endpoint.
+	 *             <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        isFullDeleteRequired="true"
+	 * @generated
+	 */
+	void deleteTypeReference(boolean isFullDelete) throws MMTFException;
+
+	/**
 	 * <!-- begin-user-doc --> Accepts a model object as model element instance
 	 * in this reference to model instance endpoint.
 	 * 

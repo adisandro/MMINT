@@ -622,13 +622,22 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT___GET_METATYPE = MidPackage.MODEL_ENDPOINT___GET_METATYPE;
 
 	/**
+	 * The operation id for the '<em>Create Type Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__MODELENDPOINTREFERENCE_BOOLEAN_BOOLEAN_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>Create Subtype And Reference</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__MODELENDPOINTREFERENCE_STRING_MODEL_BOOLEAN_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 0;
+	int KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__MODELENDPOINTREFERENCE_STRING_MODEL_BOOLEAN_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Replace Subtype And Reference</em>' operation.
@@ -637,7 +646,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_MODELENDPOINTREFERENCE_STRING_MODEL_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 1;
+	int KLEISLI_MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_MODELENDPOINTREFERENCE_STRING_MODEL_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Delete Type And Reference</em>' operation.
@@ -646,43 +655,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_BOOLEAN_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Delete Instance And Reference</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Replace Instance And Reference</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Create Type Reference</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__MODELENDPOINTREFERENCE_BOOLEAN_BOOLEAN_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 6;
+	int KLEISLI_MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Create Instance Reference</em>' operation.
@@ -691,7 +664,34 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__BOOLEAN_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 7;
+	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__BOOLEAN_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_BOOLEAN_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Replace Instance And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 6;
+
+	/**
+	 * The operation id for the '<em>Delete Instance And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Model Endpoint</em>' class.
@@ -1231,6 +1231,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = RelationshipPackage.MODEL_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF;
 
 	/**
+	 * The operation id for the '<em>Delete Type Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN = RelationshipPackage.MODEL_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN;
+
+	/**
 	 * The operation id for the '<em>Accept Model Element Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1240,13 +1249,13 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_TYPE__EOBJECT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Accept Model Element</em>' operation.
+	 * The operation id for the '<em>Accept Model Element Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT__EOBJECT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE_OPERATION_COUNT + 1;
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_INSTANCE__EOBJECT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Model Endpoint Reference</em>' class.
@@ -1501,14 +1510,14 @@ public interface KleisliPackage extends EPackage {
 	EOperation getKleisliModelEndpointReference__AcceptModelElementType__EObject();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference#acceptModelElement(org.eclipse.emf.ecore.EObject) <em>Accept Model Element</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference#acceptModelElementInstance(org.eclipse.emf.ecore.EObject) <em>Accept Model Element Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Accept Model Element</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference#acceptModelElement(org.eclipse.emf.ecore.EObject)
+	 * @return the meta object for the '<em>Accept Model Element Instance</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference#acceptModelElementInstance(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	EOperation getKleisliModelEndpointReference__AcceptModelElement__EObject();
+	EOperation getKleisliModelEndpointReference__AcceptModelElementInstance__EObject();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1736,12 +1745,12 @@ public interface KleisliPackage extends EPackage {
 		EOperation KLEISLI_MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_TYPE__EOBJECT = eINSTANCE.getKleisliModelEndpointReference__AcceptModelElementType__EObject();
 
 		/**
-		 * The meta object literal for the '<em><b>Accept Model Element</b></em>' operation.
+		 * The meta object literal for the '<em><b>Accept Model Element Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation KLEISLI_MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT__EOBJECT = eINSTANCE.getKleisliModelEndpointReference__AcceptModelElement__EObject();
+		EOperation KLEISLI_MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_INSTANCE__EOBJECT = eINSTANCE.getKleisliModelEndpointReference__AcceptModelElementInstance__EObject();
 
 	}
 

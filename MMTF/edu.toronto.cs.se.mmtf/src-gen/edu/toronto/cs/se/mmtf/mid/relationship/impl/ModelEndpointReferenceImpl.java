@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
@@ -23,6 +24,7 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 import java.lang.reflect.InvocationTargetException;
@@ -222,7 +224,15 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case RelationshipPackage.MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT__EOBJECT:
+			case RelationshipPackage.MODEL_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN:
+				try {
+					deleteTypeReference((Boolean)arguments.get(0));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case RelationshipPackage.MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_INSTANCE__EOBJECT:
 				try {
 					return acceptModelElementInstance((EObject)arguments.get(0));
 				}
@@ -262,6 +272,26 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 		}
 
 		return true;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteTypeReference(boolean isFullDelete) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		// avoid iterating over the list
+		while (getModelElemRefs().size() > 0) {
+			//TODO[OO] do this when all other pieces fall into place
+			MultiModelTypeFactory.removeModelElementTypeReference(getModelElemRefs().get(0));
+		}
+		if (isFullDelete) {
+			ModelRel modelRelType = (ModelRel) eContainer();
+			modelRelType.getModelEndpointRefs().remove(this);
+		}
 	}
 
 	/**

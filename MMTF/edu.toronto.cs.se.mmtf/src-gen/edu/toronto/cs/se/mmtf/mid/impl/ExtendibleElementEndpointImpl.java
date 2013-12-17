@@ -347,4 +347,20 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 		return result.toString();
 	}
 
+	/**
+	 * Adds the target to an instance endpoint of this type.
+	 * 
+	 * @param newInstanceEndpoint
+	 *            The new instance endpoint.
+	 * @param targetInstance
+	 *            The instance that is the target of the new instance endpoint.
+	 * @generated NOT
+	 */
+	protected void addInstanceEndpoint(ExtendibleElementEndpoint newInstanceEndpoint, ExtendibleElement targetInstance) {
+
+		newInstanceEndpoint.setTarget(targetInstance);
+		newInstanceEndpoint.setLowerBound(1);
+		newInstanceEndpoint.setUpperBound(1);
+	}
+
 } //ExtendibleElementEndpointImpl

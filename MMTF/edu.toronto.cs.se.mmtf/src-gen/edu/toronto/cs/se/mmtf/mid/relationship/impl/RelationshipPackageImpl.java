@@ -438,8 +438,17 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpointReference__AcceptModelElement__EObject() {
+	public EOperation getModelEndpointReference__DeleteTypeReference__boolean() {
 		return modelEndpointReferenceEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelEndpointReference__AcceptModelElementInstance__EObject() {
+		return modelEndpointReferenceEClass.getEOperations().get(4);
 	}
 
 	/**
@@ -859,7 +868,8 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEOperation(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE___GET_OBJECT);
 		createEOperation(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF);
 		createEOperation(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_TYPE__EOBJECT);
-		createEOperation(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT__EOBJECT);
+		createEOperation(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN);
+		createEOperation(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_INSTANCE__EOBJECT);
 
 		modelElementReferenceEClass = createEClass(MODEL_ELEMENT_REFERENCE);
 		createEReference(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS);
@@ -1013,7 +1023,11 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEParameter(op, ecorePackage.getEObject(), "metamodelObj", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
-		op = initEOperation(getModelEndpointReference__AcceptModelElement__EObject(), theMidPackage.getModelElement(), "acceptModelElement", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelEndpointReference__DeleteTypeReference__boolean(), null, "deleteTypeReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getModelEndpointReference__AcceptModelElementInstance__EObject(), theMidPackage.getModelElement(), "acceptModelElementInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEObject(), "modelObj", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 

@@ -96,24 +96,6 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	ModelEndpointReference createTypeReference(ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, boolean isBinarySrc, ModelRel containerModelRelType) throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and adds a reference to this model
-	 * instance endpoint to an Instance MID.
-	 * 
-	 * @param isBinarySrc
-	 *            True if the model endpoint is the source in the binary model
-	 *            relationship container, false otherwise.
-	 * @param containerModelRel
-	 *            The model relationship that will contain the new reference to
-	 *            the model endpoint.
-	 * @return The created reference to the model endpoint.
-	 * @throws MMTFException
-	 *             If this is a model type endpoint. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isBinarySrcRequired="true" containerModelRelRequired="true"
-	 * @generated
-	 */
-	ModelEndpointReference createInstanceReference(boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException;
-
-	/**
 	 * <!-- begin-user-doc --> Creates and adds a subtype of this model type
 	 * endpoint and a reference to it to the Type MID.
 	 * 
@@ -182,6 +164,24 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @generated
 	 */
 	void deleteTypeAndReference(boolean isFullDelete) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc --> Creates and adds a reference to this model
+	 * instance endpoint to an Instance MID.
+	 * 
+	 * @param isBinarySrc
+	 *            True if the model endpoint is the source in the binary model
+	 *            relationship container, false otherwise.
+	 * @param containerModelRel
+	 *            The model relationship that will contain the new reference to
+	 *            the model endpoint.
+	 * @return The created reference to the model endpoint.
+	 * @throws MMTFException
+	 *             If this is a model type endpoint. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isBinarySrcRequired="true" containerModelRelRequired="true"
+	 * @generated
+	 */
+	ModelEndpointReference createInstanceReference(boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a model instance endpoint of

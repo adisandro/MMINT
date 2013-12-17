@@ -13,7 +13,6 @@ package edu.toronto.cs.se.mmtf.mid.impl;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
@@ -125,6 +124,13 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				return getTarget();
 			case MidPackage.MODEL_ENDPOINT___GET_METATYPE:
 				return getMetatype();
+			case MidPackage.MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__MODELENDPOINTREFERENCE_BOOLEAN_BOOLEAN_MODELREL:
+				try {
+					return createTypeReference((ModelEndpointReference)arguments.get(0), (Boolean)arguments.get(1), (Boolean)arguments.get(2), (ModelRel)arguments.get(3));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MidPackage.MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__MODELENDPOINTREFERENCE_STRING_MODEL_BOOLEAN_MODELREL:
 				try {
 					return createSubtypeAndReference((ModelEndpointReference)arguments.get(0), (String)arguments.get(1), (Model)arguments.get(2), (Boolean)arguments.get(3), (ModelRel)arguments.get(4));
@@ -144,6 +150,13 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				try {
 					deleteTypeAndReference((Boolean)arguments.get(0));
 					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MidPackage.MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__BOOLEAN_MODELREL:
+				try {
+					return createInstanceReference((Boolean)arguments.get(0), (ModelRel)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -171,20 +184,6 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__MODELENDPOINTREFERENCE_BOOLEAN_BOOLEAN_MODELREL:
-				try {
-					return createTypeReference((ModelEndpointReference)arguments.get(0), (Boolean)arguments.get(1), (Boolean)arguments.get(2), (ModelRel)arguments.get(3));
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-			case MidPackage.MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__BOOLEAN_MODELREL:
-				try {
-					return createInstanceReference((Boolean)arguments.get(0), (ModelRel)arguments.get(1));
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -193,7 +192,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 * Deletes this model type endpoint from the Type MID.
 	 * 
 	 * @param isFullDelete
-	 *            True if the model type endpoint is going to be fully deleted,
+	 *            True if this model type endpoint is going to be fully deleted,
 	 *            false if it is going to be replaced later.
 	 * @generated NOT
 	 */
@@ -356,11 +355,11 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		ModelRel modelRelType = (ModelRel) eContainer();
 		deleteType(isFullDelete);
 		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), modelRelType.getModelEndpointRefs());
-		MultiModelTypeFactory.removeModelTypeEndpointReference(modelTypeEndpointRef, isFullDelete);
+		modelTypeEndpointRef.deleteTypeReference(isFullDelete);
 		// delete references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
 			ModelEndpointReference modelSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), modelRelSubtype.getModelEndpointRefs());
-			MultiModelTypeFactory.removeModelTypeEndpointReference(modelSubtypeEndpointRef, isFullDelete);
+			modelSubtypeEndpointRef.deleteTypeReference(isFullDelete);
 		}
 	}
 
@@ -424,8 +423,8 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 */
 	protected ModelEndpointReference addInstanceAndReference(ModelEndpoint newModelEndpoint, Model targetModel, boolean isBinarySrc, ModelRel containerModelRel) throws MMTFException {
 
-		MultiModelInstanceFactory.addBasicInstance(newModelEndpoint, this, null, targetModel.getName());
-		MultiModelInstanceFactory.addInstanceEndpoint(newModelEndpoint, targetModel);
+		super.addBasicInstance(newModelEndpoint, null, targetModel.getName());
+		super.addInstanceEndpoint(newModelEndpoint, targetModel);
 		if (isBinarySrc) {
 			containerModelRel.getModelEndpoints().add(0, newModelEndpoint);
 		}
@@ -465,7 +464,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		}
 
 		oldModelEndpoint.deleteInstanceAndReference(false);
-		MultiModelInstanceFactory.addBasicInstance(oldModelEndpoint, this, null, null);
+		super.addBasicInstance(oldModelEndpoint, null, null);
 		oldModelEndpoint.setTarget(targetModel);
 	}
 
@@ -487,6 +486,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			}
 		}
 		while (modelEndpointRef.getModelElemRefs().size() > 0) {
+			//TODO MMTF[OO] do this when all pieces fall into place
 			MultiModelInstanceFactory.removeModelElementReference(modelEndpointRef.getModelElemRefs().get(0));
 		}
 		if (isFullDelete) {
