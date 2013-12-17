@@ -715,7 +715,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
 		// delete the "thing"
 		for (ModelElement modelElemType : getModelElems()) {
-			modelElemType.deleteType();
+			super.delete(modelElemType.getUri(), multiModel);
 		}
 		super.deleteType(multiModel);
 		multiModel.getModels().remove(this);
@@ -842,7 +842,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
 		for (ModelElement modelElem : getModelElems()) {
-			modelElem.deleteInstance();
+			super.delete(modelElem.getUri(), multiModel);
 		}
 		super.deleteInstance(multiModel);
 		multiModel.getModels().remove(this);

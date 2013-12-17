@@ -12,9 +12,7 @@
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
-import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -23,7 +21,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelImpl;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -431,7 +428,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 */
 	protected void addSubtype(ModelRel newModelRelType, String newModelRelTypeName, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
-		MultiModelLightTypeFactory.addLightModelType(newModelRelType, this, newModelRelTypeName, constraintLanguage, constraintImplementation, false);
+		super.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation, false);
 		MultiModelTypeFactory.addModelRelType(newModelRelType, this);
 	}
 
@@ -453,33 +450,6 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	}
 
 	/**
-	 * Removes a model relationship type from a multimodel.
-	 * 
-	 * @param modelRelType
-	 *            The model relationship type to be removed.
-	 * @param multiModel
-	 *            The multimodel that contains the model relationship type.
-	 * @generated NOT
-	 */
-	protected void deleteModelRelType(ModelRel modelRelType, MultiModel multiModel) {
-
-		MultiModelTypeFactory.removeModelType(modelRelType, multiModel);
-
-		// remove model type endpoints
-		for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
-			MultiModelTypeFactory.removeType(modelTypeEndpoint.getUri(), multiModel);
-		}
-		// remove link types
-		for (Link linkType : modelRelType.getLinks()) {
-			MultiModelTypeFactory.removeType(linkType.getUri(), multiModel);
-			// remove model element type endpoints
-			for (ModelElementEndpoint modelElemTypeEndpoint : linkType.getModelElemEndpoints()) {
-				MultiModelTypeFactory.removeType(modelElemTypeEndpoint.getUri(), multiModel);
-			}
-		}
-	}
-
-	/**
 	 * @generated NOT
 	 */
 	@Override
@@ -491,11 +461,16 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
 		// delete the "thing"
-		deleteModelRelType(this, multiModel);
-		// delete the subtypes of the "thing"
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(this, multiModel)) {
-			deleteModelRelType(modelRelSubtype, multiModel);
+		for (ModelEndpoint modelTypeEndpoint : getModelEndpoints()) {
+			super.delete(modelTypeEndpoint.getUri(), multiModel);
 		}
+		for (Link linkType : getLinks()) {
+			super.delete(linkType.getUri(), multiModel);
+			for (ModelElementEndpoint modelElemTypeEndpoint : linkType.getModelElemEndpoints()) {
+				super.delete(modelElemTypeEndpoint.getUri(), multiModel);
+			}
+		}
+		super.deleteType(); // this also deletes the subtypes of the "thing"
 	}
 
 	/**
@@ -510,7 +485,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		ModelRel newModelRel = (isBinary) ?
 			RelationshipFactory.eINSTANCE.createBinaryModelRel() :
 			RelationshipFactory.eINSTANCE.createModelRel();
-		MultiModelInstanceFactory.addModel(newModelRel, this, newModelRelUri, origin, containerMultiModel);
+		super.addInstance(newModelRel, newModelRelUri, origin, containerMultiModel);
 
 		return newModelRel;
 	}
@@ -525,7 +500,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
-		MultiModelInstanceFactory.removeModel(this);
+		super.deleteInstance();
 	}
 
 	/**
