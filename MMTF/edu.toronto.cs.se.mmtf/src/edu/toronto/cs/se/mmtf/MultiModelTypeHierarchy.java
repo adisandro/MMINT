@@ -578,9 +578,8 @@ public class MultiModelTypeHierarchy {
 	 *            The repository, or the Type MID.
 	 * @return The list of direct subtypes of the type.
 	 */
-	public static <T extends ExtendibleElement> List<T> getDirectSubtypes(T type) {
+	public static <T extends ExtendibleElement> List<T> getDirectSubtypes(T type, MultiModel multiModel) {
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(type);
 		List<T> subtypes = new ArrayList<T>();
 		Map<String, Set<String>> subtypeTable = getSubtypeTable(multiModel);
 		if (subtypeTable == null) {

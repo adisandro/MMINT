@@ -317,6 +317,7 @@
       <eParameters name="classLiteral" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="containerModelTypeEndpointRef" lowerBound="1" eType="#//relationship/ModelEndpointReference"/>
     </eOperations>
+    <eOperations name="deleteType" eExceptions="#//MMTFException"/>
     <eOperations name="createInstanceAndReference" lowerBound="1" eType="#//relationship/ModelElementReference"
         eExceptions="#//MMTFException">
       <eParameters name="newModelElemUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -324,7 +325,7 @@
       <eParameters name="classLiteral" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="containerModelEndpointRef" lowerBound="1" eType="#//relationship/ModelEndpointReference"/>
     </eOperations>
-    <eOperations name="deleteType" eExceptions="#//MMTFException"/>
+    <eOperations name="deleteInstance" eExceptions="#//MMTFException"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="classLiteral" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -840,6 +841,7 @@
         <eParameters name="wizardId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="wizardDialogClassName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eOperations>
+      <eOperations name="deleteInstance" eExceptions="#//MMTFException"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelUri" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

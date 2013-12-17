@@ -210,4 +210,15 @@ public interface Editor extends ExtendibleElement {
 	 */
 	Editor createSubtype(String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMTFException;
 
+	/**
+	 * <!-- begin-user-doc --> Deletes an editor instance from the Instance MID
+	 * that contains it.
+	 * 
+	 * @throws MMTFException
+	 *             If this is an editor type. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	void deleteInstance() throws MMTFException;
+
 } // Editor

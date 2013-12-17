@@ -20,6 +20,7 @@ import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 
@@ -279,18 +280,6 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 		return metatype != null && metatype.eIsProxy() ? (ExtendibleElement)eResolveProxy((InternalEObject)metatype) : metatype;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExtendibleElement basicGetMetatypeGen() {
-		// TODO: implement this method to return the 'Metatype' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-	
 	/**
 	 * Uses metatype uri to get static metatype.
 	 * 
@@ -650,6 +639,75 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 * @generated NOT
 	 */
 	protected ExtendibleElement deleteType(MultiModel multiModel) {
+
+		//TODO MMTF[OO] obtain multimodel and remove it from arguments
+		return multiModel.getExtendibleTable().removeKey(getUri());
+	}
+
+	/**
+	 * Adds an instance of this type to an Instance MID without registering its
+	 * uri.
+	 * 
+	 * @param newInstance
+	 *            The new instance to be added.
+	 * @param newInstanceUri
+	 *            The uri of the new instance.
+	 * @param newInstanceName
+	 *            The name of the new instance.
+	 * @generated NOT
+	 */
+	protected void addBasicInstance(ExtendibleElement newInstance, String newInstanceUri, String newInstanceName) {
+
+		if (newInstanceUri == null) {
+			newInstanceUri = MultiModelInstanceFactory.EMPTY_URI;
+		}
+		newInstance.setUri(newInstanceUri);
+		if (newInstanceName == null) {
+			newInstanceName = MultiModelInstanceFactory.EMPTY_NAME;
+		}
+		newInstance.setName(newInstanceName);
+		newInstance.setLevel(MidLevel.INSTANCES);
+		newInstance.setDynamic(true);
+		newInstance.setSupertype(null);
+		newInstance.setMetatypeUri(getUri());
+	}
+
+	/**
+	 * Adds an instance of this type to an Instance MID.
+	 * 
+	 * @param newInstance
+	 *            The new instance to be added.
+	 * @param newInstanceUri
+	 *            The uri of the new instance.
+	 * @param newInstanceName
+	 *            The name of the new instance.
+	 * @param multiModel
+	 *            An Instance MID.
+	 * @throws MMTFException
+	 *             If the uri of the new instance is already registered in the
+	 *             Instance MID.
+	 * @generated NOT
+	 */
+	protected void addInstance(ExtendibleElement newInstance, String newInstanceUri, String newInstanceName, MultiModel multiModel) throws MMTFException {
+
+		if (multiModel.getExtendibleTable().containsKey(newInstanceUri)) {
+			throw new MMTFException("Instance with uri " + newInstanceUri + " is already registered");
+		}
+		multiModel.getExtendibleTable().put(newInstanceUri, newInstance);
+
+		addBasicInstance(newInstance, newInstanceUri, newInstanceName);
+	}
+
+	/**
+	 * Deletes this instance from the Instance MID that contains it.
+	 * 
+	 * @param multiModel
+	 *            The Instance MID that contains the instance.
+	 * @return The removed instance, null if the uri was not registered in the
+	 *         Instance MID.
+	 * @generated NOT
+	 */
+	protected ExtendibleElement deleteInstance(MultiModel multiModel) {
 
 		//TODO MMTF[OO] obtain multimodel and remove it from arguments
 		return multiModel.getExtendibleTable().removeKey(getUri());

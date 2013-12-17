@@ -113,6 +113,17 @@ public interface ModelElement extends ExtendibleElement {
 	ModelElementReference createSubtypeAndReference(ModelElementReference modelElemTypeRef, String newModelElemTypeName, String classLiteral, ModelEndpointReference containerModelTypeEndpointRef) throws MMTFException;
 
 	/**
+	 * <!-- begin-user-doc --> Deletes this model element type from the Type
+	 * MID.
+	 * 
+	 * @throws MMTFException
+	 *             If this is a model element instance. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	void deleteType() throws MMTFException;
+
+	/**
 	 * <!-- begin-user-doc --> Creates and adds a model element instance of this
 	 * model element type and a reference to it to an Instance MID.
 	 * 
@@ -136,14 +147,14 @@ public interface ModelElement extends ExtendibleElement {
 	ModelElementReference createInstanceAndReference(String newModelElemUri, String newModelElemName, String classLiteral, ModelEndpointReference containerModelEndpointRef) throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc --> Deletes this model element type from the Type
-	 * MID.
+	 * <!-- begin-user-doc --> Deletes this model element instance from the
+	 * Instance MID that contains it.
 	 * 
 	 * @throws MMTFException
-	 *             If this is a model element instance. <!-- end-user-doc -->
+	 *             If this is a model element type. <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
-	void deleteType() throws MMTFException;
+	void deleteInstance() throws MMTFException;
 
 } // ModelElement

@@ -206,6 +206,14 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MidPackage.MODEL_ELEMENT___DELETE_TYPE:
+				try {
+					deleteType();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MidPackage.MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_STRING_MODELENDPOINTREFERENCE:
 				try {
 					return createInstanceAndReference((String)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (ModelEndpointReference)arguments.get(3));
@@ -213,9 +221,9 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ELEMENT___DELETE_TYPE:
+			case MidPackage.MODEL_ELEMENT___DELETE_INSTANCE:
 				try {
-					deleteType();
+					deleteInstance();
 					return null;
 				}
 				catch (Throwable throwable) {
@@ -311,6 +319,20 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		ModelElementReference newModelElemRef = MultiModelInstanceFactory.createModelElementReference(newModelElem, containerModelEndpointRef);
 
 		return newModelElemRef;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteInstance() throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		super.deleteInstance(multiModel);
+		//TODO MMTF[OO] might need to implement full removal
 	}
 
 } //ModelElementImpl

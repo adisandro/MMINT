@@ -393,6 +393,14 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case EditorPackage.EDITOR___DELETE_INSTANCE:
+				try {
+					deleteInstance();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -470,6 +478,20 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 		addSubtype(newEditorType, newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
 
 		return newEditorType;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteInstance() throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		multiModel.getEditors().remove(this);
+		// no need to removeExtendibleElement
 	}
 
 } //EditorImpl

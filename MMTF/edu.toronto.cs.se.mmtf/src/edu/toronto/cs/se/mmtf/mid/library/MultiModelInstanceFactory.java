@@ -72,11 +72,11 @@ import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 public class MultiModelInstanceFactory {
 
 	/** The empty uri. */
-	private final static String EMPTY_URI = "";
+	public final static String EMPTY_URI = "";
 	/** The empty name. */
-	private final static String EMPTY_NAME = "";
+	public final static String EMPTY_NAME = "";
 	/** The empty file extension for a model. */
-	private final static String EMPTY_MODEL_FILE_EXTENSION = "";
+	public final static String EMPTY_MODEL_FILE_EXTENSION = "";
 
 	/**
 	 * Adds an instance to an Instance MID.
@@ -130,6 +130,7 @@ public class MultiModelInstanceFactory {
 		newInstance.setLevel(MidLevel.INSTANCES);
 		newInstance.setDynamic(true);
 		newInstance.setSupertype(null);
+		//TODO MMTF[OO] this might be a corner case, is it still used?
 		if (type == null) { // use type introspection
 			List<ExtendibleElement> elementTypes = MultiModelTypeIntrospection.getRuntimeTypes(newInstance);
 			type = elementTypes.get(elementTypes.size()-1);

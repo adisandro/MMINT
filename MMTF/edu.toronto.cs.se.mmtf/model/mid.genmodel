@@ -88,13 +88,14 @@
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/classLiteral"/>
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/containerModelTypeEndpointRef"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/deleteType"/>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/createInstanceAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/newModelElemUri"/>
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/newModelElemName"/>
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/classLiteral"/>
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/containerModelEndpointRef"/>
       </genOperations>
-      <genOperations ecoreOperation="mid.ecore#//ModelElement/deleteType"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/deleteInstance"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ModelElementWildcard"/>
     <genClasses ecoreClass="mid.ecore#//ModelEndpoint">
@@ -259,6 +260,7 @@
           <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/wizardId"/>
           <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/wizardDialogClassName"/>
         </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/deleteInstance"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//editor/Diagram">
         <genOperations ecoreOperation="mid.ecore#//editor/Diagram/createSubtype">

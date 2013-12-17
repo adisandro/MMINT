@@ -363,7 +363,7 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 		super.deleteType(multiModel);
 		multiModel.getOperators().remove(this);
 		// delete the subtypes of the "thing"
-		for (Operator operatorSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this)) {
+		for (Operator operatorSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, multiModel)) {
 			operatorSubtype.deleteType();
 		}
 	}

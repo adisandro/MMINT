@@ -765,9 +765,55 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			modelRelType.deleteType();
 		}
 		// delete the subtypes of the "thing"
-		for (Model modelSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this)) {
+		for (Model modelSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, multiModel)) {
 			modelSubtype.deleteType();
 		}
+	}
+
+	/**
+	 * Adds a model instance of this model type to an Instance MID, or simply
+	 * adds additional info to the model instance.
+	 * 
+	 * @param newModel
+	 *            The new model.
+	 * @param newModelUri
+	 *            The uri of the new model, null if the new model is not in a
+	 *            separate file; e.g. a model and a standalone model
+	 *            relationship are in their own files, a plain model
+	 *            relationship is not.
+	 * @param origin
+	 *            The origin of the new model.
+	 * @param multiModel
+	 *            An Instance MID, null if the model isn't going to be added to
+	 *            it.
+	 * @throws MMTFException
+	 *             If the uri of the new model is already registered in the
+	 *             Instance MID.
+	 * @generated NOT
+	 */
+	protected void addInstance(Model newModel, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
+
+		boolean externalElement = newModelUri != null;
+		boolean updateMid = multiModel != null;
+		boolean basicElement = !updateMid || !externalElement;
+
+		String newModelName = null;
+		String fileExtension = MultiModelInstanceFactory.EMPTY_MODEL_FILE_EXTENSION;
+		if (externalElement) {
+			newModelName = MultiModelUtils.getFileNameFromUri(newModelUri);
+			fileExtension = MultiModelUtils.getFileExtensionFromUri(newModelUri);
+		}
+		if (basicElement) {
+			super.addBasicInstance(newModel, newModelUri, newModelName);
+		}
+		else {
+			super.addInstance(newModel, newModelUri, newModelName, multiModel);
+		}
+		if (updateMid) {
+			multiModel.getModels().add(newModel);
+		}
+		newModel.setOrigin(origin);
+		newModel.setFileExtension(fileExtension);
 	}
 
 	/**
@@ -795,18 +841,16 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		}
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
-		MultiModelInstanceFactory.removeInstance(getUri(), multiModel);
-		multiModel.getModels().remove(this);
-
-		//remove model elements
 		for (ModelElement modelElem : getModelElems()) {
-			MultiModelInstanceFactory.removeInstance(modelElem.getUri(), multiModel);
+			modelElem.deleteInstance();
 		}
-		// remove editors
+		super.deleteInstance(multiModel);
+		multiModel.getModels().remove(this);
+		// delete editors for this model
 		for (Editor editor : getEditors()) {
-			MultiModelInstanceFactory.removeEditor(editor);
+			editor.deleteInstance();
 		}
-		// remove model relationships and endpoints that use this model
+		// delete model relationships and endpoints that use this model
 		List<ModelRel> delModelRels = new ArrayList<ModelRel>();
 		List<ModelEndpoint> delModelEndpoints = new ArrayList<ModelEndpoint>();
 		for (ModelRel modelRel : MultiModelRegistry.getModelRels(multiModel)) {
@@ -824,20 +868,10 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			}
 		}
 		for (ModelEndpoint modelEndpoint : delModelEndpoints) {
-			try {
-				modelEndpoint.deleteInstanceAndReference(true);
-			}
-			catch (MMTFException e) {
-				continue;
-			}
+			modelEndpoint.deleteInstanceAndReference(true);
 		}
 		for (ModelRel modelRel : delModelRels) {
-			try {
-				modelRel.deleteInstance();
-			}
-			catch (MMTFException e) {
-				continue;
-			}
+			modelRel.deleteInstance();
 		}
 	}
 

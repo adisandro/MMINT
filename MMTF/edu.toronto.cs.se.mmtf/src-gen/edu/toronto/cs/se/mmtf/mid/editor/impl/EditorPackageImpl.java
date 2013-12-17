@@ -218,6 +218,15 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getEditor__DeleteInstance() {
+		return editorEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDiagram() {
 		return diagramEClass;
 	}
@@ -268,6 +277,7 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		createEOperation(editorEClass, EDITOR___GET_METATYPE);
 		createEOperation(editorEClass, EDITOR___GET_SUPERTYPE);
 		createEOperation(editorEClass, EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING);
+		createEOperation(editorEClass, EDITOR___DELETE_INSTANCE);
 
 		diagramEClass = createEClass(DIAGRAM);
 		createEOperation(diagramEClass, DIAGRAM___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING);
@@ -326,6 +336,9 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		addEParameter(op, ecorePackage.getEString(), "editorId", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "wizardId", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "wizardDialogClassName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getEditor__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
 		initEClass(diagramEClass, Diagram.class, "Diagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
