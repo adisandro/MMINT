@@ -106,6 +106,7 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	public boolean acceptModelElementType(EObject metamodelObj) throws MMTFException {
 
 		//TODO MMTF[KLEISLI] do we need to do something here?
@@ -115,7 +116,8 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 	/**
 	 * @generated NOT
 	 */
-	public ModelElement acceptModelElement(EObject modelObj) throws MMTFException {
+	@Override
+	public ModelElement acceptModelElementInstance(EObject modelObj) throws MMTFException {
 
 		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");

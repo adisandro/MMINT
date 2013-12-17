@@ -23,6 +23,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -638,6 +639,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 *            The multimodel that contains the extendible element.
 	 * @return The deleted extendible element, null if its uri was not
 	 *         registered in the multimodel.
+	 * @generated NOT
 	 */
 	protected ExtendibleElement delete(String uri, MultiModel multiModel) {
 
@@ -711,6 +713,28 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 		multiModel.getExtendibleTable().put(newInstanceUri, newInstance);
 
 		addBasicInstance(newInstance, newInstanceUri, newInstanceName);
+	}
+
+	/**
+	 * Adds a reference to this instance to an Instance MID.
+	 * 
+	 * @param newInstanceRef
+	 *            The new reference being added.
+	 * @param isContainer
+	 *            True if the new reference is also the actual container of the
+	 *            new instance and not just a pointer to it, false otherwise.
+	 * @generated NOT
+	 */
+	protected void addInstanceReference(ExtendibleElementReference newInstanceRef, boolean isContainer) {
+
+		if (isContainer) {
+			newInstanceRef.setContainedObject(this);
+		}
+		else {
+			newInstanceRef.setReferencedObject(this);
+		}
+		newInstanceRef.setModifiable(true);
+		newInstanceRef.setSupertypeRef(null);
 	}
 
 	/**

@@ -102,6 +102,12 @@
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getSupertype"/>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getTarget"/>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getMetatype"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createTypeReference">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/modelTypeEndpointRef"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/isModifiable"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/isBinarySrc"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/containerModelRelType"/>
+      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createSubtypeAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/modelTypeEndpointRef"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/newModelTypeEndpointName"/>
@@ -119,6 +125,10 @@
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteTypeAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteTypeAndReference/isFullDelete"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createInstanceReference">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceReference/isBinarySrc"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceReference/containerModelRel"/>
+      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createInstanceAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/targetModel"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/isBinarySrc"/>
@@ -130,16 +140,6 @@
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceInstanceAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceInstanceAndReference/oldModelEndpoint"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceInstanceAndReference/targetModel"/>
-      </genOperations>
-      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createTypeReference">
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/modelTypeEndpointRef"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/isModifiable"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/isBinarySrc"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/containerModelRelType"/>
-      </genOperations>
-      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createInstanceReference">
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceReference/isBinarySrc"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceReference/containerModelRel"/>
       </genOperations>
     </genClasses>
     <nestedGenPackages prefix="Relationship" basePackage="edu.toronto.cs.se.mmtf.mid"
@@ -198,8 +198,11 @@
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/acceptModelElementType">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelEndpointReference/acceptModelElementType/metamodelObj"/>
         </genOperations>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/acceptModelElement">
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelEndpointReference/acceptModelElement/modelObj"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/deleteTypeReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelEndpointReference/deleteTypeReference/isFullDelete"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/acceptModelElementInstance">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelEndpointReference/acceptModelElementInstance/modelObj"/>
         </genOperations>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/ModelElementReference">

@@ -224,7 +224,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 				}
 			case RelationshipPackage.MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT__EOBJECT:
 				try {
-					return acceptModelElement((EObject)arguments.get(0));
+					return acceptModelElementInstance((EObject)arguments.get(0));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -267,7 +267,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 	/**
 	 * @generated NOT
 	 */
-	public ModelElement acceptModelElement(EObject modelObj) throws MMTFException {
+	public ModelElement acceptModelElementInstance(EObject modelObj) throws MMTFException {
 
 		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");

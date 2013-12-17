@@ -99,7 +99,7 @@ public class RelationshipDiagramOutlineDragListener extends DragSourceAdapter {
 			for (ModelEndpointReference modelEndpointRef : modelRel.getModelEndpointRefs()) {
 				try {
 					if (isInstancesLevel) {
-						modelElemType = modelEndpointRef.acceptModelElement(modelObj);
+						modelElemType = modelEndpointRef.acceptModelElementInstance(modelObj);
 						if (modelElemType == null) {
 							continue;
 						}

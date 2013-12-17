@@ -72,6 +72,6 @@ public interface KleisliModelEndpointReference extends ModelEndpointReference {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" modelObjRequired="true"
 	 * @generated
 	 */
-	ModelElement acceptModelElement(EObject modelObj) throws MMTFException;
+	ModelElement acceptModelElementInstance(EObject modelObj) throws MMTFException;
 
 } // KleisliModelEndpointReference

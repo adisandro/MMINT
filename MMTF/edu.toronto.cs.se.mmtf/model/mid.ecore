@@ -360,6 +360,13 @@
         <details key="body" value="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelEndpoint) metatype;"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="createTypeReference" lowerBound="1" eType="#//relationship/ModelEndpointReference"
+        eExceptions="#//MMTFException">
+      <eParameters name="modelTypeEndpointRef" eType="#//relationship/ModelEndpointReference"/>
+      <eParameters name="isModifiable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="containerModelRelType" lowerBound="1" eType="#//relationship/ModelRel"/>
+    </eOperations>
     <eOperations name="createSubtypeAndReference" lowerBound="1" eType="#//relationship/ModelEndpointReference"
         eExceptions="#//MMTFException">
       <eParameters name="modelTypeEndpointRef" eType="#//relationship/ModelEndpointReference"/>
@@ -378,6 +385,11 @@
     <eOperations name="deleteTypeAndReference" eExceptions="#//MMTFException">
       <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
+    <eOperations name="createInstanceReference" lowerBound="1" eType="#//relationship/ModelEndpointReference"
+        eExceptions="#//MMTFException">
+      <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
+    </eOperations>
     <eOperations name="createInstanceAndReference" lowerBound="1" eType="#//relationship/ModelEndpointReference"
         eExceptions="#//MMTFException">
       <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
@@ -390,18 +402,6 @@
     <eOperations name="replaceInstanceAndReference" eExceptions="#//MMTFException">
       <eParameters name="oldModelEndpoint" lowerBound="1" eType="#//ModelEndpoint"/>
       <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
-    </eOperations>
-    <eOperations name="createTypeReference" lowerBound="1" eType="#//relationship/ModelEndpointReference"
-        eExceptions="#//MMTFException">
-      <eParameters name="modelTypeEndpointRef" eType="#//relationship/ModelEndpointReference"/>
-      <eParameters name="isModifiable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eParameters name="containerModelRelType" lowerBound="1" eType="#//relationship/ModelRel"/>
-    </eOperations>
-    <eOperations name="createInstanceReference" lowerBound="1" eType="#//relationship/ModelEndpointReference"
-        eExceptions="#//MMTFException">
-      <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="MMTFException" instanceClassName="edu.toronto.cs.se.mmtf.MMTFException">
@@ -614,7 +614,10 @@
           eExceptions="#//MMTFException">
         <eParameters name="metamodelObj" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
       </eOperations>
-      <eOperations name="acceptModelElement" lowerBound="1" eType="#//ModelElement"
+      <eOperations name="deleteTypeReference" eExceptions="#//MMTFException">
+        <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      </eOperations>
+      <eOperations name="acceptModelElementInstance" lowerBound="1" eType="#//ModelElement"
           eExceptions="#//MMTFException">
         <eParameters name="modelObj" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
       </eOperations>
