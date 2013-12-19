@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -267,13 +268,31 @@ public interface EditorPackage extends EPackage {
 	int EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___CREATE_INSTANCE__STRING_MULTIMODEL = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Invoke Instance Wizard</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+
+	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___DELETE_INSTANCE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+	int EDITOR___DELETE_INSTANCE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Editor</em>' class.
@@ -282,7 +301,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+	int EDITOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.editor.impl.DiagramImpl <em>Diagram</em>}' class.
@@ -493,13 +512,52 @@ public interface EditorPackage extends EPackage {
 	int DIAGRAM___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = EDITOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___CREATE_INSTANCE__STRING_MULTIMODEL = EDITOR_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Invoke Instance Wizard</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = EDITOR_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIAGRAM_OPERATION_COUNT = EDITOR_OPERATION_COUNT + 1;
+	int DIAGRAM_OPERATION_COUNT = EDITOR_OPERATION_COUNT + 3;
+
+
+	/**
+	 * The meta object id for the '<em>IStructured Selection</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.jface.viewers.IStructuredSelection
+	 * @see edu.toronto.cs.se.mmtf.mid.editor.impl.EditorPackageImpl#getIStructuredSelection()
+	 * @generated
+	 */
+	int ISTRUCTURED_SELECTION = 2;
+
+	/**
+	 * The meta object id for the '<em>Creation Wizard Dialog</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog
+	 * @see edu.toronto.cs.se.mmtf.mid.editor.impl.EditorPackageImpl#getEditorCreationWizardDialog()
+	 * @generated
+	 */
+	int EDITOR_CREATION_WIZARD_DIALOG = 3;
 
 
 	/**
@@ -598,6 +656,26 @@ public interface EditorPackage extends EPackage {
 	EOperation getEditor__CreateSubtype__String_String_String_String_String_String();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.editor.Editor#createInstance(java.lang.String, edu.toronto.cs.se.mmtf.mid.MultiModel) <em>Create Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.editor.Editor#createInstance(java.lang.String, edu.toronto.cs.se.mmtf.mid.MultiModel)
+	 * @generated
+	 */
+	EOperation getEditor__CreateInstance__String_MultiModel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.editor.Editor#invokeInstanceWizard(org.eclipse.jface.viewers.IStructuredSelection) <em>Invoke Instance Wizard</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Invoke Instance Wizard</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.editor.Editor#invokeInstanceWizard(org.eclipse.jface.viewers.IStructuredSelection)
+	 * @generated
+	 */
+	EOperation getEditor__InvokeInstanceWizard__IStructuredSelection();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.editor.Editor#deleteInstance() <em>Delete Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -626,6 +704,48 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getDiagram__CreateSubtype__String_String_String_String_String_String();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.editor.Diagram#createInstance(java.lang.String, edu.toronto.cs.se.mmtf.mid.MultiModel) <em>Create Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.editor.Diagram#createInstance(java.lang.String, edu.toronto.cs.se.mmtf.mid.MultiModel)
+	 * @generated
+	 */
+	EOperation getDiagram__CreateInstance__String_MultiModel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.editor.Diagram#invokeInstanceWizard(org.eclipse.jface.viewers.IStructuredSelection) <em>Invoke Instance Wizard</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Invoke Instance Wizard</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.editor.Diagram#invokeInstanceWizard(org.eclipse.jface.viewers.IStructuredSelection)
+	 * @generated
+	 */
+	EOperation getDiagram__InvokeInstanceWizard__IStructuredSelection();
+
+	/**
+	 * Returns the meta object for data type '{@link org.eclipse.jface.viewers.IStructuredSelection <em>IStructured Selection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>IStructured Selection</em>'.
+	 * @see org.eclipse.jface.viewers.IStructuredSelection
+	 * @model instanceClass="org.eclipse.jface.viewers.IStructuredSelection"
+	 * @generated
+	 */
+	EDataType getIStructuredSelection();
+
+	/**
+	 * Returns the meta object for data type '{@link edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog <em>Creation Wizard Dialog</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Creation Wizard Dialog</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog
+	 * @model instanceClass="edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog"
+	 * @generated
+	 */
+	EDataType getEditorCreationWizardDialog();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -725,6 +845,22 @@ public interface EditorPackage extends EPackage {
 		EOperation EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = eINSTANCE.getEditor__CreateSubtype__String_String_String_String_String_String();
 
 		/**
+		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EDITOR___CREATE_INSTANCE__STRING_MULTIMODEL = eINSTANCE.getEditor__CreateInstance__String_MultiModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Invoke Instance Wizard</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = eINSTANCE.getEditor__InvokeInstanceWizard__IStructuredSelection();
+
+		/**
 		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -749,6 +885,42 @@ public interface EditorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation DIAGRAM___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = eINSTANCE.getDiagram__CreateSubtype__String_String_String_String_String_String();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DIAGRAM___CREATE_INSTANCE__STRING_MULTIMODEL = eINSTANCE.getDiagram__CreateInstance__String_MultiModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Invoke Instance Wizard</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DIAGRAM___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = eINSTANCE.getDiagram__InvokeInstanceWizard__IStructuredSelection();
+
+		/**
+		 * The meta object literal for the '<em>IStructured Selection</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.jface.viewers.IStructuredSelection
+		 * @see edu.toronto.cs.se.mmtf.mid.editor.impl.EditorPackageImpl#getIStructuredSelection()
+		 * @generated
+		 */
+		EDataType ISTRUCTURED_SELECTION = eINSTANCE.getIStructuredSelection();
+
+		/**
+		 * The meta object literal for the '<em>Creation Wizard Dialog</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog
+		 * @see edu.toronto.cs.se.mmtf.mid.editor.impl.EditorPackageImpl#getEditorCreationWizardDialog()
+		 * @generated
+		 */
+		EDataType EDITOR_CREATION_WIZARD_DIALOG = eINSTANCE.getEditorCreationWizardDialog();
 
 	}
 

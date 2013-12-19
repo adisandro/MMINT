@@ -543,8 +543,17 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__DeleteInstance() {
+	public EOperation getModel__CreateInstanceAndEditor__String_ModelOrigin_MultiModel() {
 		return modelEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__DeleteInstance() {
+		return modelEClass.getEOperations().get(6);
 	}
 
 	/**
@@ -895,6 +904,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEOperation(modelEClass, MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN);
 		createEOperation(modelEClass, MODEL___DELETE_TYPE);
 		createEOperation(modelEClass, MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL);
+		createEOperation(modelEClass, MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL);
 		createEOperation(modelEClass, MODEL___DELETE_INSTANCE);
 
 		extendibleElementConstraintEClass = createEClass(EXTENDIBLE_ELEMENT_CONSTRAINT);
@@ -1036,6 +1046,12 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		addEException(op, this.getMMTFException());
 
 		op = initEOperation(getModel__CreateInstance__String_ModelOrigin_MultiModel(), this.getModel(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getMultiModel(), "containerMultiModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
+		op = initEOperation(getModel__CreateInstanceAndEditor__String_ModelOrigin_MultiModel(), this.getModel(), "createInstanceAndEditor", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getMultiModel(), "containerMultiModel", 0, 1, IS_UNIQUE, IS_ORDERED);

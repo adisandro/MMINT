@@ -551,6 +551,13 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MidPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL:
+				try {
+					return createInstanceAndEditor((String)arguments.get(0), (ModelOrigin)arguments.get(1), (MultiModel)arguments.get(2));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MidPackage.MODEL___DELETE_INSTANCE:
 				try {
 					deleteInstance();
@@ -775,7 +782,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * adds additional info to the model instance.
 	 * 
 	 * @param newModel
-	 *            The new model.
+	 *            The new model to be added.
 	 * @param newModelUri
 	 *            The uri of the new model, null if the new model is not in a
 	 *            separate file; e.g. a model and a standalone model
@@ -783,7 +790,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 *            relationship is not.
 	 * @param origin
 	 *            The origin of the new model.
-	 * @param multiModel
+	 * @param containerMultiModel
 	 *            An Instance MID, null if the model isn't going to be added to
 	 *            it.
 	 * @throws MMTFException
@@ -791,10 +798,10 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 *             Instance MID.
 	 * @generated NOT
 	 */
-	protected void addInstance(Model newModel, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
+	protected void addInstance(Model newModel, String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
 
 		boolean externalElement = newModelUri != null;
-		boolean updateMid = multiModel != null;
+		boolean updateMid = containerMultiModel != null;
 		boolean basicElement = !updateMid || !externalElement;
 
 		String newModelName = null;
@@ -807,10 +814,10 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			super.addBasicInstance(newModel, newModelUri, newModelName);
 		}
 		else {
-			super.addInstance(newModel, newModelUri, newModelName, multiModel);
+			super.addInstance(newModel, newModelUri, newModelName, containerMultiModel);
 		}
 		if (updateMid) {
-			multiModel.getModels().add(newModel);
+			containerMultiModel.getModels().add(newModel);
 		}
 		newModel.setOrigin(origin);
 		newModel.setFileExtension(fileExtension);
@@ -827,6 +834,40 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 
 		Model newModel = MidFactory.eINSTANCE.createModel();
 		MultiModelInstanceFactory.addModel(newModel, this, newModelUri, origin, containerMultiModel);
+
+		return newModel;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Model createInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
+
+		Model newModel = createInstance(newModelUri, origin, containerMultiModel);
+		Editor newEditor = null;
+		//TODO MMTF[EDITOR] prioritize editors list instead of running twice?
+		// all diagrams are tried..
+		for (Editor diagramType : MultiModelTypeRegistry.getModelTypeEditors(getUri())) {
+			if (!(diagramType instanceof Diagram)) {
+				continue;
+			}
+			try {
+				newEditor = diagramType.createInstance(newModel.getUri(), containerMultiModel);
+			}
+			catch (MMTFException e) {
+				continue;
+			}
+		}
+		// ..or first editor is used
+		for (Editor editorType : MultiModelTypeRegistry.getModelTypeEditors(getUri())) {
+			if (editorType instanceof Diagram) {
+				continue;
+			}
+			newEditor = editorType.createInstance(newModel.getUri(), containerMultiModel);
+		}
+		if (newEditor != null) {
+			newModel.getEditors().add(newEditor);
+		}
 
 		return newModel;
 	}

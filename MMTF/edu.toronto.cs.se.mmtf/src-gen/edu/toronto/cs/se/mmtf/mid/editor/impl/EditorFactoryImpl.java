@@ -13,13 +13,16 @@ package edu.toronto.cs.se.mmtf.mid.editor.impl;
 
 import edu.toronto.cs.se.mmtf.mid.editor.*;
 
+import edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.jface.viewers.IStructuredSelection;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,6 +80,40 @@ public class EditorFactoryImpl extends EFactoryImpl implements EditorFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case EditorPackage.ISTRUCTURED_SELECTION:
+				return createIStructuredSelectionFromString(eDataType, initialValue);
+			case EditorPackage.EDITOR_CREATION_WIZARD_DIALOG:
+				return createEditorCreationWizardDialogFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case EditorPackage.ISTRUCTURED_SELECTION:
+				return convertIStructuredSelectionToString(eDataType, instanceValue);
+			case EditorPackage.EDITOR_CREATION_WIZARD_DIALOG:
+				return convertEditorCreationWizardDialogToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Editor createEditor() {
 		EditorImpl editor = new EditorImpl();
 		return editor;
@@ -90,6 +127,42 @@ public class EditorFactoryImpl extends EFactoryImpl implements EditorFactory {
 	public Diagram createDiagram() {
 		DiagramImpl diagram = new DiagramImpl();
 		return diagram;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IStructuredSelection createIStructuredSelectionFromString(EDataType eDataType, String initialValue) {
+		return (IStructuredSelection)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertIStructuredSelectionToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EditorCreationWizardDialog createEditorCreationWizardDialogFromString(EDataType eDataType, String initialValue) {
+		return (EditorCreationWizardDialog)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEditorCreationWizardDialogToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

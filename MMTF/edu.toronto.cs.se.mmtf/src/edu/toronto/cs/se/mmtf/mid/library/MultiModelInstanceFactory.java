@@ -226,58 +226,6 @@ public class MultiModelInstanceFactory {
 	}
 
 	/**
-	 * Creates and possibly adds a model to an Instance MID.
-	 * 
-	 * @param modelType
-	 *            The type of the new model.
-	 * @param newModelUri
-	 *            The uri of the new model.
-	 * @param origin
-	 *            The origin of the new model.
-	 * @param multiModel
-	 *            An Instance MID, null if the model isn't going to be added to
-	 *            it.
-	 * @return The created model.
-	 * @throws MMTFException
-	 *             If the uri of the new model is already registered in the
-	 *             Instance MID.
-	 */
-	public static Model createModel(Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
-
-		Model newModel = MidFactory.eINSTANCE.createModel();
-		addModel(newModel, modelType, newModelUri, origin, multiModel);
-
-		return newModel;
-	}
-
-	/**
-	 * Creates and adds a model and an editor for it to an Instance MID.
-	 * 
-	 * @param modelType
-	 *            The type of the new model.
-	 * @param newModelUri
-	 *            The uri of the new model.
-	 * @param origin
-	 *            The origin of the new model.
-	 * @param multiModel
-	 *            An Instance MID.
-	 * @return The created model.
-	 * @throws MMTFException
-	 *             If the uri of the new model is already registered in the
-	 *             Instance MID.
-	 */
-	public static Model createModelAndEditor(Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
-
-		Model newModel = createModel(modelType, newModelUri, origin, multiModel);
-		Editor newEditor = createEditor(newModel);
-		if (newEditor != null) {
-			addModelEditor(newEditor, multiModel);
-		}
-
-		return newModel;
-	}
-
-	/**
 	 * Creates and adds a reference to a model element to an Instance MID.
 	 * 
 	 * @param newModelElem

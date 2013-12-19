@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -26,7 +26,6 @@ import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
@@ -218,8 +217,8 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 			null;
 		Model modelType = MultiModelTypeRegistry.getType(RandomModelPackage.eINSTANCE.getNsURI());
 		Model newRandommodelModel = (updateMid) ?
-			MultiModelInstanceFactory.createModelAndEditor(modelType, newRandommodelModelUri, ModelOrigin.CREATED, multiModel) :
-			MultiModelInstanceFactory.createModel(modelType, newRandommodelModelUri, ModelOrigin.CREATED, null);
+			modelType.createInstanceAndEditor(newRandommodelModelUri, ModelOrigin.CREATED, multiModel) :
+			modelType.createInstance(newRandommodelModelUri, ModelOrigin.CREATED, null);
 		result.add(newRandommodelModel);
 
 		// create random instance

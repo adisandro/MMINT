@@ -106,8 +106,7 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
 	 * @throws MMTFException
 	 *             If this is a reference to a model instance endpoint.
 	 *             <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        isFullDeleteRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
 	 * @generated
 	 */
 	void deleteTypeReference(boolean isFullDelete) throws MMTFException;

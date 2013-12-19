@@ -40,7 +40,6 @@ import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
@@ -242,8 +241,8 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		String transformedModelInputName = MultiModelUtils.getLastSegmentFromUri(transformedModelInputUri);
 		resourceSet.saveEObject(rootInput, transformedModelInputName);
 		Model transformedModelInput = (updateMid) ?
-			MultiModelInstanceFactory.createModelAndEditor(modelInputType, transformedModelInputUri, ModelOrigin.CREATED, multiModel) :
-			MultiModelInstanceFactory.createModel(modelInputType, transformedModelInputUri, ModelOrigin.CREATED, null);
+			modelInputType.createInstanceAndEditor(transformedModelInputUri, ModelOrigin.CREATED, multiModel) :
+			modelInputType.createInstance(transformedModelInputUri, ModelOrigin.CREATED, null);
 		result.add(transformedModelInput);
 		if (rootOutput != null) {
 			Model modelOutputType = MultiModelTypeRegistry.getType(rootOutput.eClass().getEPackage().getNsURI());
@@ -254,8 +253,8 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			String transformedModelOutputName = MultiModelUtils.getLastSegmentFromUri(transformedModelOutputUri);
 			resourceSet.saveEObject(rootOutput, transformedModelOutputName);
 			Model transformedModelOutput = (updateMid) ?
-				MultiModelInstanceFactory.createModelAndEditor(modelOutputType, transformedModelOutputUri, ModelOrigin.CREATED, multiModel) :
-				MultiModelInstanceFactory.createModel(modelOutputType, transformedModelOutputUri, ModelOrigin.CREATED, null);
+				modelOutputType.createInstanceAndEditor(transformedModelOutputUri, ModelOrigin.CREATED, multiModel) :
+				modelOutputType.createInstance(transformedModelOutputUri, ModelOrigin.CREATED, null);
 			result.add(transformedModelOutput);
 		}
 

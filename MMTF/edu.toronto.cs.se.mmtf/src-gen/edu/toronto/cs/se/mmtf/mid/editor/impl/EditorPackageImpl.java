@@ -29,12 +29,15 @@ import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.impl.RelationshipPackageImpl;
 
+import edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.jface.viewers.IStructuredSelection;
 
 /**
  * <!-- begin-user-doc -->
@@ -56,6 +59,20 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 * @generated
 	 */
 	private EClass diagramEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType iStructuredSelectionEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType editorCreationWizardDialogEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -218,8 +235,26 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getEditor__DeleteInstance() {
+	public EOperation getEditor__CreateInstance__String_MultiModel() {
 		return editorEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getEditor__InvokeInstanceWizard__IStructuredSelection() {
+		return editorEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getEditor__DeleteInstance() {
+		return editorEClass.getEOperations().get(5);
 	}
 
 	/**
@@ -238,6 +273,42 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 */
 	public EOperation getDiagram__CreateSubtype__String_String_String_String_String_String() {
 		return diagramEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getDiagram__CreateInstance__String_MultiModel() {
+		return diagramEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getDiagram__InvokeInstanceWizard__IStructuredSelection() {
+		return diagramEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getIStructuredSelection() {
+		return iStructuredSelectionEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getEditorCreationWizardDialog() {
+		return editorCreationWizardDialogEDataType;
 	}
 
 	/**
@@ -277,10 +348,18 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		createEOperation(editorEClass, EDITOR___GET_METATYPE);
 		createEOperation(editorEClass, EDITOR___GET_SUPERTYPE);
 		createEOperation(editorEClass, EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING);
+		createEOperation(editorEClass, EDITOR___CREATE_INSTANCE__STRING_MULTIMODEL);
+		createEOperation(editorEClass, EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION);
 		createEOperation(editorEClass, EDITOR___DELETE_INSTANCE);
 
 		diagramEClass = createEClass(DIAGRAM);
 		createEOperation(diagramEClass, DIAGRAM___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING);
+		createEOperation(diagramEClass, DIAGRAM___CREATE_INSTANCE__STRING_MULTIMODEL);
+		createEOperation(diagramEClass, DIAGRAM___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION);
+
+		// Create data types
+		iStructuredSelectionEDataType = createEDataType(ISTRUCTURED_SELECTION);
+		editorCreationWizardDialogEDataType = createEDataType(EDITOR_CREATION_WIZARD_DIALOG);
 	}
 
 	/**
@@ -338,6 +417,15 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		addEParameter(op, ecorePackage.getEString(), "wizardDialogClassName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
+		op = initEOperation(getEditor__CreateInstance__String_MultiModel(), this.getEditor(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "modelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMidPackage.getMultiModel(), "containerMultiModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getEditor__InvokeInstanceWizard__IStructuredSelection(), this.getEditorCreationWizardDialog(), "invokeInstanceWizard", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getIStructuredSelection(), "initialSelection", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
 		op = initEOperation(getEditor__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
@@ -351,6 +439,19 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		addEParameter(op, ecorePackage.getEString(), "wizardId", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "wizardDialogClassName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getDiagram__CreateInstance__String_MultiModel(), this.getEditor(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "modelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMidPackage.getMultiModel(), "containerMultiModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getDiagram__InvokeInstanceWizard__IStructuredSelection(), this.getEditorCreationWizardDialog(), "invokeInstanceWizard", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getIStructuredSelection(), "initialSelection", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		// Initialize data types
+		initEDataType(iStructuredSelectionEDataType, IStructuredSelection.class, "IStructuredSelection", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(editorCreationWizardDialogEDataType, EditorCreationWizardDialog.class, "EditorCreationWizardDialog", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } //EditorPackageImpl

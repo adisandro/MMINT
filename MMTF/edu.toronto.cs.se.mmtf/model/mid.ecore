@@ -204,6 +204,11 @@
       <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
       <eParameters name="containerMultiModel" eType="#//MultiModel"/>
     </eOperations>
+    <eOperations name="createInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//MMTFException">
+      <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
+      <eParameters name="containerMultiModel" eType="#//MultiModel"/>
+    </eOperations>
     <eOperations name="deleteInstance" eExceptions="#//MMTFException"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="origin" lowerBound="1"
         eType="#//ModelOrigin">
@@ -844,6 +849,14 @@
         <eParameters name="wizardId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="wizardDialogClassName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eOperations>
+      <eOperations name="createInstance" lowerBound="1" eType="#//editor/Editor" eExceptions="#//MMTFException">
+        <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="containerMultiModel" eType="#//MultiModel"/>
+      </eOperations>
+      <eOperations name="invokeInstanceWizard" lowerBound="1" eType="#//editor/EditorCreationWizardDialog"
+          eExceptions="#//MMTFException">
+        <eParameters name="initialSelection" lowerBound="1" eType="#//editor/IStructuredSelection"/>
+      </eOperations>
       <eOperations name="deleteInstance" eExceptions="#//MMTFException"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelUri" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -886,7 +899,17 @@
         <eParameters name="wizardId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="wizardDialogClassName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eOperations>
+      <eOperations name="createInstance" lowerBound="1" eType="#//editor/Editor" eExceptions="#//MMTFException">
+        <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="containerMultiModel" eType="#//MultiModel"/>
+      </eOperations>
+      <eOperations name="invokeInstanceWizard" lowerBound="1" eType="#//editor/EditorCreationWizardDialog"
+          eExceptions="#//MMTFException">
+        <eParameters name="initialSelection" lowerBound="1" eType="#//editor/IStructuredSelection"/>
+      </eOperations>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="IStructuredSelection" instanceClassName="org.eclipse.jface.viewers.IStructuredSelection"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="EditorCreationWizardDialog" instanceClassName="edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog"/>
   </eSubpackages>
   <eSubpackages name="operator" nsURI="http://se.cs.toronto.edu/mmtf/MID/Operator"
       nsPrefix="operator">

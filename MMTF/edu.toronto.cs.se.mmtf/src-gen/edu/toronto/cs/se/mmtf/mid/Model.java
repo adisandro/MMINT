@@ -252,6 +252,27 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	Model createInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException;
 
 	/**
+	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of
+	 * this model type to an Instance MID, together with an editor for it.
+	 * 
+	 * @param newModelUri
+	 *            The uri of the new model.
+	 * @param origin
+	 *            The origin of the new model.
+	 * @param containerMultiModel
+	 *            An Instance MID, null if the model isn't going to be added to
+	 *            it.
+	 * @return The created model.
+	 * @throws MMTFException
+	 *             If this is a model instance, or if the uri of the new model
+	 *             instance is already registered in the Instance MID.
+	 *             <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelUriRequired="true" originRequired="true"
+	 * @generated
+	 */
+	Model createInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException;
+
+	/**
 	 * <!-- begin-user-doc --> Deletes this model instance from the Instance MID
 	 * that contains it.
 	 * 

@@ -760,13 +760,22 @@ public interface MidPackage extends EPackage {
 	int MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Create Instance And Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+
+	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+	int MODEL___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -775,7 +784,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
+	int MODEL_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.
@@ -1725,6 +1734,16 @@ public interface MidPackage extends EPackage {
 	EOperation getModel__CreateInstance__String_ModelOrigin_MultiModel();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#createInstanceAndEditor(java.lang.String, edu.toronto.cs.se.mmtf.mid.ModelOrigin, edu.toronto.cs.se.mmtf.mid.MultiModel) <em>Create Instance And Editor</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance And Editor</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#createInstanceAndEditor(java.lang.String, edu.toronto.cs.se.mmtf.mid.ModelOrigin, edu.toronto.cs.se.mmtf.mid.MultiModel)
+	 * @generated
+	 */
+	EOperation getModel__CreateInstanceAndEditor__String_ModelOrigin_MultiModel();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#deleteInstance() <em>Delete Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2354,6 +2373,14 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = eINSTANCE.getModel__CreateInstance__String_ModelOrigin_MultiModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Instance And Editor</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = eINSTANCE.getModel__CreateInstanceAndEditor__String_ModelOrigin_MultiModel();
 
 		/**
 		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.

@@ -407,6 +407,20 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	}
 
 	/**
+	 * Do not use it, use the specific one for model relationship instances
+	 * instead.
+	 * 
+	 * @throws MMTFException
+	 *             Always.
+	 * @generated NOT
+	 */
+	@Override
+	public Model createInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
+
+		throw new MMTFException("Wrong function, use the specific one for model relationship instances");
+	}
+
+	/**
 	 * Adds a subtype of this model relationship type to the Type MID.
 	 * 
 	 * @param newModelRelType

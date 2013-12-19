@@ -33,17 +33,17 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 
-	public static Model createModel(Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
+	public static Model createModel(Model modelType, String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
 
-		Model newModel = MultiModelInstanceFactory.createModel(modelType, newModelUri, origin, multiModel);
+		Model newModel = modelType.createInstance(newModelUri, origin, containerMultiModel);
 		MAVOUtils.initializeMAVOModel(MultiModelTypeIntrospection.getRoot(newModel), newModel);
 
 		return newModel;
 	}
 
-	public static Model createModelAndEditor(Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
+	public static Model createModelAndEditor(Model modelType, String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
 
-		Model newModel = MultiModelInstanceFactory.createModelAndEditor(modelType, newModelUri, origin, multiModel);
+		Model newModel = modelType.createInstanceAndEditor(newModelUri, origin, containerMultiModel);
 		MAVOUtils.initializeMAVOModel(MultiModelTypeIntrospection.getRoot(newModel), newModel);
 
 		return newModel;

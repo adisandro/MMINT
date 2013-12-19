@@ -12,6 +12,9 @@
 package edu.toronto.cs.se.mmtf.mid.editor;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog;
+import org.eclipse.jface.viewers.IStructuredSelection;
 
 
 /**
@@ -57,5 +60,48 @@ public interface Diagram extends Editor {
 	 * @generated
 	 */
 	Editor createSubtype(String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc --> Creates and adds a diagram instance of this
+	 * diagram type to an Instance MID.
+	 * 
+	 * @param modelUri
+	 *            The uri of the model handled by the new diagram.
+	 * @param containerMultiModel
+	 *            An Instance MID, null if the editor isn't going to be added to
+	 *            it.
+	 * @return The created diagram.
+	 * @throws MMTFException
+	 *             If this is a diagram instance, or if the diagram couldn't be
+	 *             created. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" modelUriRequired="true"
+	 * @generated
+	 */
+	Editor createInstance(String modelUri, MultiModel containerMultiModel) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc --> Invokes a diagram instance creation wizard for
+	 * this diagram type. The wizard can be initialized with an existing model,
+	 * or create the underlying model as a side effect.
+	 * 
+	 * @param initialSelection
+	 *            The selection used to initialize the wizard. It can be an
+	 *            existing model file, or its container when the underlying
+	 *            model file has to be created.
+	 * @return The diagram creation wizard dialog, null if the user canceled the
+	 *         operation.
+	 * @throws MMTFException
+	 *             If this is a diagram instance, or if the diagram creation
+	 *             wizard could not be invoked. <!-- end-user-doc -->
+	 * @model 
+	 *        dataType="edu.toronto.cs.se.mmtf.mid.editor.EditorCreationWizardDialog"
+	 *        required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        initialSelectionDataType
+	 *        ="edu.toronto.cs.se.mmtf.mid.editor.IStructuredSelection"
+	 *        initialSelectionRequired="true"
+	 * @generated
+	 */
+	EditorCreationWizardDialog invokeInstanceWizard(IStructuredSelection initialSelection) throws MMTFException;
 
 } // Diagram

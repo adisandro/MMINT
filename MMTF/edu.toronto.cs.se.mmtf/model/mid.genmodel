@@ -72,6 +72,11 @@
         <genParameters ecoreParameter="mid.ecore#//Model/createInstance/origin"/>
         <genParameters ecoreParameter="mid.ecore#//Model/createInstance/containerMultiModel"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/createInstanceAndEditor">
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/newModelUri"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/origin"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/containerMultiModel"/>
+      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/deleteInstance"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ExtendibleElementConstraint">
@@ -247,6 +252,8 @@
     </nestedGenPackages>
     <nestedGenPackages prefix="Editor" basePackage="edu.toronto.cs.se.mmtf.mid" disposableProviderFactory="true"
         ecorePackage="mid.ecore#//editor">
+      <genDataTypes ecoreDataType="mid.ecore#//editor/IStructuredSelection"/>
+      <genDataTypes ecoreDataType="mid.ecore#//editor/EditorCreationWizardDialog"/>
       <genClasses ecoreClass="mid.ecore#//editor/Editor">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/Editor/modelUri"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/Editor/id"/>
@@ -263,6 +270,13 @@
           <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/wizardId"/>
           <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/wizardDialogClassName"/>
         </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/createInstance">
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createInstance/modelUri"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/createInstance/containerMultiModel"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/invokeInstanceWizard">
+          <genParameters ecoreParameter="mid.ecore#//editor/Editor/invokeInstanceWizard/initialSelection"/>
+        </genOperations>
         <genOperations ecoreOperation="mid.ecore#//editor/Editor/deleteInstance"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//editor/Diagram">
@@ -273,6 +287,13 @@
           <genParameters ecoreParameter="mid.ecore#//editor/Diagram/createSubtype/editorId"/>
           <genParameters ecoreParameter="mid.ecore#//editor/Diagram/createSubtype/wizardId"/>
           <genParameters ecoreParameter="mid.ecore#//editor/Diagram/createSubtype/wizardDialogClassName"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//editor/Diagram/createInstance">
+          <genParameters ecoreParameter="mid.ecore#//editor/Diagram/createInstance/modelUri"/>
+          <genParameters ecoreParameter="mid.ecore#//editor/Diagram/createInstance/containerMultiModel"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//editor/Diagram/invokeInstanceWizard">
+          <genParameters ecoreParameter="mid.ecore#//editor/Diagram/invokeInstanceWizard/initialSelection"/>
         </genOperations>
       </genClasses>
     </nestedGenPackages>

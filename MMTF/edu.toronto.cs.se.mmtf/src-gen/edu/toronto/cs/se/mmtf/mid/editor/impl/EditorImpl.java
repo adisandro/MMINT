@@ -13,7 +13,9 @@ package edu.toronto.cs.se.mmtf.mid.editor.impl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
@@ -21,15 +23,27 @@ import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.presentation.DynamicModelWizard;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.window.Window;
+import org.eclipse.jface.wizard.IWizard;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IWorkbenchWizard;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.wizards.IWizardDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -393,6 +407,20 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case EditorPackage.EDITOR___CREATE_INSTANCE__STRING_MULTIMODEL:
+				try {
+					return createInstance((String)arguments.get(0), (MultiModel)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case EditorPackage.EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION:
+				try {
+					return invokeInstanceWizard((IStructuredSelection)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case EditorPackage.EDITOR___DELETE_INSTANCE:
 				try {
 					deleteInstance();
@@ -478,6 +506,140 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 		addSubtype(newEditorType, newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
 
 		return newEditorType;
+	}
+
+	/**
+	 * Adds an editor instance of this editor type to an Instance MID, or simply
+	 * adds additional info to the editor instance.
+	 * 
+	 * @param newEditor
+	 *            The new editor to be added.
+	 * @param modelUri
+	 *            The uri of the model handled by the new editor.
+	 * @param containerMultiModel
+	 *            An Instance MID, null if the editor isn't going to be added to
+	 *            it.
+	 * @return The created editor.
+	 * @generated NOT
+	 */
+	protected void addInstance(Editor newEditor, String modelUri, MultiModel containerMultiModel) {
+
+		String newEditorName = getName() + " for model " + modelUri;
+		String newEditorUri = MultiModelUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
+		super.addBasicInstance(newEditor, newEditorUri, newEditorName);
+		newEditor.setModelUri(modelUri);
+		newEditor.setId(getId());
+		newEditor.setWizardId(getWizardId());
+		newEditor.getFileExtensions().add(getFileExtensions().get(0));
+		if (containerMultiModel != null) {
+			containerMultiModel.getEditors().add(newEditor);
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Editor createInstance(String modelUri, MultiModel containerMultiModel) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		Editor newEditor = EditorFactory.eINSTANCE.createEditor();
+		addInstance(newEditor, modelUri, containerMultiModel);
+
+		return newEditor;
+	}
+
+	/**
+	 * Gets an editor instance creation wizard for this editor type.
+	 * 
+	 * @param initialSelection
+	 *            The selection used to initialize the wizard.
+	 * @return The editor creation wizard.
+	 * @throws MMTFException
+	 *             if the editor creation wizard couln't be found or
+	 *             initialized.
+	 * @generated NOT
+	 */
+	protected IWorkbenchWizard getInstanceWizard(IStructuredSelection initialSelection) throws MMTFException {
+
+		Model modelType = MultiModelTypeRegistry.<Model>getType(getModelUri());
+		IWorkbenchWizard wizard;
+		if (getWizardId() == null) {
+			EClass rootEClass = (EClass) ((EPackage) MultiModelTypeIntrospection.getRoot(modelType)).getEClassifiers().get(0);
+			wizard = new DynamicModelWizard(rootEClass);
+		}
+		else {
+			IWizardDescriptor descriptor = PlatformUI.getWorkbench().getNewWizardRegistry().findWizard(getWizardId());
+			if (descriptor == null) {
+				throw new MMTFException("Wizard " + getId() + " not found");
+			}
+			try {
+				wizard = descriptor.createWizard();
+			}
+			catch (CoreException e) {
+				throw new MMTFException("Error creating the wizard", e);
+			}
+		}
+		wizard.init(PlatformUI.getWorkbench(), initialSelection);
+
+		return wizard;
+	}
+
+	/**
+	 * Creates a custom editor instance creation wizard dialog for this editor
+	 * type.
+	 * 
+	 * @param wizard
+	 *            The editor creation wizard.
+	 * @return The editor creation wizard dialog.
+	 * @generated NOT
+	 */
+	protected EditorCreationWizardDialog createCustomInstanceWizard(IWorkbenchWizard wizard) {
+
+		EditorCreationWizardDialog wizDialog;
+		String wizardDialogClassName = getWizardDialogClass();
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		try {
+			wizDialog = (EditorCreationWizardDialog)
+				MultiModelTypeRegistry.getTypeBundle(getUri()).
+				loadClass(wizardDialogClassName).
+				getConstructor(Shell.class, IWizard.class).
+				newInstance(shell, wizard);
+		}
+		catch (Exception e) {
+			MMTFException.print(MMTFException.Type.WARNING, "Custom editor creation wizard not found: " + wizardDialogClassName + " , using default as fallback", e);
+			wizDialog = new EditorCreationWizardDialog(shell, wizard);
+		}
+
+		return wizDialog;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public EditorCreationWizardDialog invokeInstanceWizard(IStructuredSelection initialSelection) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		IWorkbenchWizard wizard = getInstanceWizard(initialSelection);
+		EditorCreationWizardDialog wizDialog;
+		if (getWizardDialogClass() == null) {
+			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+			wizDialog = new EditorCreationWizardDialog(shell, wizard);
+		}
+		else {
+			wizDialog = createCustomInstanceWizard(wizard);
+		}
+		wizDialog.setTitle(wizard.getWindowTitle());
+		if (wizDialog.open() == Window.CANCEL) {
+			return null;
+		}
+
+		return wizDialog;
 	}
 
 	/**
