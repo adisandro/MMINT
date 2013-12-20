@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
@@ -64,16 +65,8 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 
 		// create model relationship among models
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(actualParameters.get(0));
-		EClass modelRelClass = (actualParameters.size() == 2) ?
-			RelationshipPackage.eINSTANCE.getBinaryModelRel() :
-			RelationshipPackage.eINSTANCE.getModelRel();
-		ModelRel matchRel = MultiModelInstanceFactory.createModelRel(
-			null,
-			null,
-			modelRelClass,
-			ModelOrigin.CREATED,
-			multiModel
-		);
+		ModelRel rootModelRelType = MultiModelTypeHierarchy.getRootModelRelType();
+		ModelRel matchRel = rootModelRelType.createInstance(null, (actualParameters.size() == 2), ModelOrigin.CREATED, multiModel);
 		matchRel.setName(MODELREL_NAME);
 
 		// loop through selected models

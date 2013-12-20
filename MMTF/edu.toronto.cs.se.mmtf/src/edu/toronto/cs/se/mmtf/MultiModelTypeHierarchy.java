@@ -770,6 +770,11 @@ nextOperatorType:
 		return rootUri;
 	}
 
+	public static ModelRel getRootModelRelType() {
+
+		return MultiModelTypeRegistry.getType(MMTF.ROOT_MODELREL_URI);
+	}
+
 	/**
 	 * Checks if the given type is the root type for its class.
 	 * 

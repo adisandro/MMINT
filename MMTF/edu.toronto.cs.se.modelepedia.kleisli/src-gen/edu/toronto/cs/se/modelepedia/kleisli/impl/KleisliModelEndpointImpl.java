@@ -231,7 +231,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		}
 
 		KleisliModelEndpointReference newModelTypeEndpointRef = KleisliFactory.eINSTANCE.createKleisliModelEndpointReference();
-		addTypeReference(newModelTypeEndpointRef, modelTypeEndpointRef, isModifiable, isBinarySrc, containerModelRelType);
+		super.addTypeReference(newModelTypeEndpointRef, modelTypeEndpointRef, isModifiable, isBinarySrc, containerModelRelType);
 
 		return newModelTypeEndpointRef;
 	}
@@ -246,7 +246,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		}
 
 		KleisliModelEndpointReference newModelEndpointRef = KleisliFactory.eINSTANCE.createKleisliModelEndpointReference();
-		addInstanceReference(newModelEndpointRef, isBinarySrc, containerModelRel);
+		super.addInstanceReference(newModelEndpointRef, isBinarySrc, containerModelRel);
 
 		return newModelEndpointRef;
 	}
@@ -281,7 +281,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		ModelEndpointReference newModelTypeEndpointRef;
 		if (isKleisli) {
 			KleisliModelEndpoint newModelTypeEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
-			newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
+			newModelTypeEndpointRef = super.addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
 			newModelTypeEndpoint.setExtendedUri(newModelTypeEndpointExtendedUri);
 			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			URI uri = URI.createFileURI(MultiModelUtils.isFileOrDirectoryInState(newModelTypeEndpointExtendedUri));
@@ -345,7 +345,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		}
 
 		KleisliModelEndpoint newModelEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
-		ModelEndpointReference newModelEndpointRef = addInstanceAndReference(newModelEndpoint, targetModel, isBinarySrc, containerModelRel);
+		ModelEndpointReference newModelEndpointRef = super.addInstanceAndReference(newModelEndpoint, targetModel, isBinarySrc, containerModelRel);
 		newModelEndpoint.setExtendedUri(KleisliUtils.getModelEndpointExtendedUri(newModelEndpoint));
 
 		return newModelEndpointRef;

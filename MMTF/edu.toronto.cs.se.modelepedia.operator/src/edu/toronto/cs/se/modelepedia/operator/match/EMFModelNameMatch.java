@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
@@ -74,13 +75,8 @@ public class EMFModelNameMatch extends OperatorExecutableImpl {
 
 		// create match model relationship
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(srcModel);
-		ModelRel matchRel = MultiModelInstanceFactory.createModelRel(
-			null,
-			null,
-			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
-			ModelOrigin.CREATED,
-			multiModel
-		);
+		ModelRel rootModelRelType = MultiModelTypeHierarchy.getRootModelRelType();
+		ModelRel matchRel = rootModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
 		matchRel.setName(MODELREL_NAME);
 		// create model endpoints
 		ModelEndpointReference srcModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(

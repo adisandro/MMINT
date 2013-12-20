@@ -285,7 +285,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 
 		// avoid iterating over the list
 		while (getModelElemRefs().size() > 0) {
-			//TODO[OO] do this when all other pieces fall into place
+			//TODO MMTF[OO] do this when all other pieces fall into place
 			MultiModelTypeFactory.removeModelElementTypeReference(getModelElemRefs().get(0));
 		}
 		if (isFullDelete) {

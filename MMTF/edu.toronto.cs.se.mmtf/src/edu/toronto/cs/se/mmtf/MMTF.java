@@ -582,13 +582,13 @@ public class MMTF implements MMTFConstants {
 		}
 		else {
 			try {
-				newModelType = MultiModelLightTypeFactory.createLightModelType(
-					modelType,
+				newModelType = modelType.createSubtype(
 					dynamicModelType.getName(),
 					dynamicModelType.getConstraint().getLanguage().getLiteral(),
 					dynamicModelType.getConstraint().getImplementation(),
-					true
+					false
 				);
+				//TODO MMTF[OO] isMetamodelExtension va gestito, così non funziona
 			}
 			catch (MMTFException e) {
 				MMTFException.print(MMTFException.Type.WARNING, "Dynamic model type " + dynamicModelType.getName() + " can't be recreated", e);

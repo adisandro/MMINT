@@ -19,7 +19,6 @@ import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
@@ -51,7 +50,7 @@ public class UMLToClassDiagramMAVO extends ConversionOperatorExecutableImpl {
 	public void cleanup() throws Exception {
 
 		if (newCdModel != null) {
-			MultiModelOperatorUtils.cleanupTemporaryModel(newCdModel);
+			MultiModelUtils.deleteModelFile(newCdModel);
 			newCdModel = null;
 		}
 	}

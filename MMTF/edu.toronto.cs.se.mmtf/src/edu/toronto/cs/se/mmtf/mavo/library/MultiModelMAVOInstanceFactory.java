@@ -25,6 +25,7 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -85,13 +86,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 	public static ModelRel copyModelRel(ModelRel oldModelRel, String newModelRelName, MultiModel multiModel) throws Exception {
 
 		// create initial empty copy
-		ModelRel newModelRel = createModelRel(
-			oldModelRel.getMetatype(),
-			null,
-			oldModelRel.eClass(),
-			ModelOrigin.CREATED,
-			multiModel
-		);
+		ModelRel newModelRel = oldModelRel.getMetatype().createInstance(null, (oldModelRel.eClass() instanceof BinaryModelRel), ModelOrigin.CREATED, multiModel);
 		newModelRel.setName(newModelRelName);
 
 		// models

@@ -15,8 +15,8 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 
 import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelHeavyTypeFactory;
-import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 
@@ -61,7 +61,12 @@ public class ModelsExtensionListener extends MMTFExtensionListener {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLETYPE_ATTR_URI);
 				Model modelType = MultiModelTypeRegistry.getType(uri);
 				if (modelType != null) {
-					MultiModelTypeFactory.removeModelType(modelType);
+					try {
+						modelType.deleteType();
+					}
+					catch (MMTFException e) {
+						// never happens by construction
+					}
 				}
 			}
 		}

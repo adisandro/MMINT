@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFActivator;
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mid.Model;
 
 public class MultiModelUtils {
 
@@ -172,6 +173,12 @@ public class MultiModelUtils {
 		String fileUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeFileUri;
 
 		return getModelFile(fileUri, false);
+	}
+
+	public static void deleteModelFile(Model model) throws MMTFException {
+	
+		model.deleteInstance();
+		deleteFile(model.getUri(), true);
 	}
 
 	public static void deleteFile(String fileUri, boolean isWorkspaceRelative) {

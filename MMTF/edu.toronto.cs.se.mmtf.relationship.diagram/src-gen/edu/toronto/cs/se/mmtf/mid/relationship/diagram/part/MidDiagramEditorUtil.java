@@ -60,11 +60,11 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
-import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelRelEditPart;
 
 /**
@@ -244,11 +244,10 @@ public class MidDiagramEditorUtil {
 	private static ModelRel createInitialModel() {
 
 		try {
-			return MultiModelInstanceFactory.createModelRel(null, null,
-					RelationshipPackage.eINSTANCE.getModelRel(),
-					ModelOrigin.CREATED, null);
-			//TODO MMTF: let the user choose the root type
-		} catch (Exception e) {
+			ModelRel rootModelRelType = MultiModelTypeHierarchy.getRootModelRelType();
+			//TODO MMTF[OO] let the user choose the root type
+			return rootModelRelType.createInstance(null, false, ModelOrigin.CREATED, null);
+		} catch (MMTFException e) {
 			return createInitialModelGen();
 		}
 	}

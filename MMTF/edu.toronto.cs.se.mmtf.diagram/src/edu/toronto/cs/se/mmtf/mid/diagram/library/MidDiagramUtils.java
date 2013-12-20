@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -37,7 +37,6 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.part.MidElementChooserDialog;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -138,12 +137,12 @@ public class MidDiagramUtils {
 				ResourcesPlugin.getWorkspace().getRoot().getProject(multiModelContainerUri)
 			);
 		}
-		EditorCreationWizardDialog wizDialog = MultiModelInstanceFactory.invokeEditorWizard(editorType, multiModelContainer);
+		EditorCreationWizardDialog wizDialog = editorType.invokeInstanceWizard(multiModelContainer);
 		if (wizDialog == null) {
 			throw new MMTFException("Model creation cancelled");
 		}
 
-		return MultiModelInstanceFactory.createEditor(editorType, wizDialog.getCreatedModelUri());
+		return editorType.createInstance(wizDialog.getCreatedModelUri(), multiModel);
 	}
 
 	public static ModelEndpointReference selectModelTypeEndpointToCreate(ModelRel modelRel, List<String> modelTypeEndpointUris, String modelEndpointId) throws MMTFException {

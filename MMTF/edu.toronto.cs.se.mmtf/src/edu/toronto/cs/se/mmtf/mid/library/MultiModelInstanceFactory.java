@@ -11,30 +11,13 @@
  */
 package edu.toronto.cs.se.mmtf.mid.library;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.presentation.DynamicModelWizard;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.window.Window;
-import org.eclipse.jface.wizard.IWizard;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IWorkbenchWizard;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.wizards.IWizardDescriptor;
-
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
@@ -45,9 +28,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.editor.Diagram;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
-import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
@@ -59,9 +40,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog;
-import edu.toronto.cs.se.mmtf.mid.ui.GMFDiagramUtils;
-import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
 /**
  * The factory to create/modify/remove instances.
@@ -179,53 +157,6 @@ public class MultiModelInstanceFactory {
 	}
 
 	/**
-	 * Adds a model to an Instance MID or just adds additional info to the
-	 * model.
-	 * 
-	 * @param newModel
-	 *            The new model.
-	 * @param modelType
-	 *            The type of the new model.
-	 * @param newModelUri
-	 *            The uri of the new model, null if the new model is not in a
-	 *            separate file; e.g. a model and a standalone model
-	 *            relationship are in their own files, a plain model
-	 *            relationship is not.
-	 * @param origin
-	 *            The origin of the new model.
-	 * @param multiModel
-	 *            An Instance MID, null if the model isn't going to be added to
-	 *            it.
-	 * @throws MMTFException
-	 *             If the uri of the new model is already registered in the
-	 *             Instance MID.
-	 */
-	public static void addModel(Model newModel, Model modelType, String newModelUri, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
-
-		boolean externalElement = newModelUri != null;
-		boolean updateMid = multiModel != null;
-		boolean basicElement = !updateMid || !externalElement;
-
-		String newModelName = null;
-		String fileExtension = EMPTY_MODEL_FILE_EXTENSION;
-		if (externalElement) {
-			newModelName = MultiModelUtils.getFileNameFromUri(newModelUri);
-			fileExtension = MultiModelUtils.getFileExtensionFromUri(newModelUri);
-		}
-		if (basicElement) {
-			addBasicInstance(newModel, modelType, newModelUri, newModelName);
-		}
-		else {
-			addInstance(newModel, modelType, newModelUri, newModelName, multiModel);
-		}
-		if (updateMid) {
-			multiModel.getModels().add(newModel);
-		}
-		newModel.setOrigin(origin);
-		newModel.setFileExtension(fileExtension);
-	}
-
-	/**
 	 * Creates and adds a reference to a model element to an Instance MID.
 	 * 
 	 * @param newModelElem
@@ -315,36 +246,6 @@ public class MultiModelInstanceFactory {
 		);
 
 		return newModelElemRef;
-	}
-
-	/**
-	 * Creates and possibly adds a model relationship to an Instance MID.
-	 * 
-	 * @param modelRelType
-	 *            The type of the new model relationship.
-	 * @param newModelRelUri
-	 *            The uri of the new model relationship, null if the new model
-	 *            relationship is not in a separate file; e.g. a standalone
-	 *            model relationship is in its own files, a plain model
-	 *            relationship is not.
-	 * @param newModelRelClass
-	 *            The class of the new model relationship.
-	 * @param origin
-	 *            The origin of the new model relationship.
-	 * @param multiModel
-	 *            An Instance MID, null if the model relationship isn't going to
-	 *            be added to it.
-	 * @return The created model relationship.
-	 * @throws MMTFException
-	 *             If the uri of the new model relationship is already
-	 *             registered in the Instance MID.
-	 */
-	public static ModelRel createModelRel(ModelRel modelRelType, String newModelRelUri, EClass newModelRelClass, ModelOrigin origin, MultiModel multiModel) throws MMTFException {
-
-		ModelRel newModelRel = (ModelRel) RelationshipFactory.eINSTANCE.create(newModelRelClass);
-		addModel(newModelRel, modelRelType, newModelRelUri, origin, multiModel);
-
-		return newModelRel;
 	}
 
 	/**
@@ -439,13 +340,7 @@ public class MultiModelInstanceFactory {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(newModels[0]);
 		// create model rel
-		ModelRel newModelRel = createModelRel(
-			modelRelType,
-			newModelRelUri,
-			newModelRelClass,
-			origin,
-			multiModel
-		);
+		ModelRel newModelRel = modelRelType.createInstance(newModelRelUri, (BinaryModelRel.class.isAssignableFrom(newModelRelClass.getClass())), origin, multiModel);
 		// create model rel endpoints
 		for (Model model : newModels) {
 			createModelEndpointAndModelEndpointReference(
@@ -655,107 +550,6 @@ public class MultiModelInstanceFactory {
 	}
 
 	/**
-	 * Creates and adds an editor to an Instance MID.
-	 * 
-	 * @param model
-	 *            The model handled by the new editor.
-	 * @return The created editor, null if the editor couldn't be created.
-	 */
-	public static Editor createEditor(Model model) {
-
-		EList<Editor> editorTypes = MultiModelTypeRegistry.getModelTypeEditors(model.getMetatypeUri());
-		if (editorTypes.size() == 0) {
-			return null;
-		}
-
-		//TODO MMTF: prioritize editors list instead of running twice?
-		// all diagrams are tried..
-		for (Editor editorType : editorTypes) {
-			if (!(editorType instanceof Diagram)) {
-				continue;
-			}
-			Diagram newDiagram = createDiagram((Diagram) editorType, model.getUri());
-			if (newDiagram != null) {
-				return newDiagram;
-			}
-		}
-		// ..or first editor is used
-		for (Editor editorType : editorTypes) {
-			if (editorType instanceof Diagram) {
-				continue;
-			}
-			return createEditor(editorType, model.getUri());
-		}
-
-		return null;
-	}
-
-	/**
-	 * Creates and adds an editor to an Instance MID.
-	 * 
-	 * @param editorType
-	 *            The type of the new editor.
-	 * @param modelUri
-	 *            The uri of the model handled by the new editor.
-	 * @return The created editor.
-	 */
-	public static Editor createEditor(Editor editorType, String modelUri) {
-
-		Editor newEditor = (Editor) EditorFactory.eINSTANCE.create(editorType.eClass());
-		String newEditorName = editorType.getName() + " for model " + modelUri;
-		String newEditorUri = MultiModelUtils.replaceFileExtensionInUri(modelUri, editorType.getFileExtensions().get(0));
-		addBasicInstance(newEditor, editorType, newEditorUri, newEditorName);
-		newEditor.setModelUri(modelUri);
-		newEditor.setId(editorType.getId());
-		newEditor.setWizardId(editorType.getWizardId());
-		newEditor.getFileExtensions().add(editorType.getFileExtensions().get(0));
-
-		return newEditor;
-	}
-
-	/**
-	 * Creates and adds a diagram to an Instance MID.
-	 * 
-	 * @param diagramType
-	 *            The type of the new diagram.
-	 * @param modelUri
-	 *            The uri of the model handled by the new diagram.
-	 * @return The created diagram, null if the diagram couldn't be created.
-	 */
-	public static Diagram createDiagram(Diagram diagramType, String modelUri) {
-
-		// check if editor file already exists in model directory
-		File editorFile = new File(
-			MultiModelUtils.prependWorkspaceToUri(
-				MultiModelUtils.replaceFileExtensionInUri(modelUri, diagramType.getFileExtensions().get(0))
-			)
-		);
-		if (!editorFile.exists()) {
-			if (!(boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_DIAGRAMS_CREATION_ENABLED)) {
-				return null;
-			}
-			// try to build a new diagram through its wizard, inited with the existing model file
-			IStructuredSelection modelFile = new StructuredSelection(
-				ResourcesPlugin.getWorkspace().getRoot().getFile(
-					new Path(modelUri)
-				)
-			);
-			EditorCreationWizardDialog wizDialog;
-			try {
-				wizDialog = invokeEditorWizard(diagramType, modelFile);
-			}
-			catch (Exception e) {
-				return null;
-			}
-			if (wizDialog == null) {
-				return null;
-			}
-		}
-
-		return (Diagram) createEditor(diagramType, modelUri);
-	}
-
-	/**
 	 * Adds an editor to its model and to an Instance MID.
 	 * 
 	 * @param editor
@@ -773,78 +567,6 @@ public class MultiModelInstanceFactory {
 	}
 
 	/**
-	 * Invokes an editor creation wizard. The wizard can be initialized with an
-	 * existing model, or create the underlying model as a side effect.
-	 * 
-	 * @param editorType
-	 *            The editor type.
-	 * @param initialSelection
-	 *            The selection used to initialize the wizard. It can be an
-	 *            existing model file, or its container when the underlying
-	 *            model file has to be created.
-	 * @return The editor creation wizard dialog, null if the user canceled the
-	 *         operation.
-	 * @throws Exception
-	 *             If the editor creation wizard could not be invoked.
-	 */
-	public static EditorCreationWizardDialog invokeEditorWizard(Editor editorType, IStructuredSelection initialSelection) throws Exception {
-
-		Model modelType = MultiModelTypeRegistry.<Model>getType(editorType.getModelUri());
-		IWorkbenchWizard wizard;
-		if (editorType.getWizardId() == null) {
-			EClass rootEClass = (EClass) ((EPackage) MultiModelTypeIntrospection.getRoot(modelType)).getEClassifiers().get(0);
-			wizard = new DynamicModelWizard(rootEClass);
-		}
-		else {
-			IWizardDescriptor descriptor = PlatformUI.getWorkbench().getNewWizardRegistry().findWizard(editorType.getWizardId());
-			if (descriptor == null) {
-				throw new MMTFException("Wizard " + editorType.getId() + " not found");
-			}
-			wizard = descriptor.createWizard();
-		}
-		wizard.init(PlatformUI.getWorkbench(), initialSelection);
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		String wizardDialogClassName = editorType.getWizardDialogClass();
-		EditorCreationWizardDialog wizDialog = null;
-		if (wizardDialogClassName == null) {
-			if (editorType instanceof Diagram && initialSelection.getFirstElement() instanceof IFile) {
-				String modelUri = MultiModelUtils.prependWorkspaceToUri(
-					((IFile) initialSelection.getFirstElement()).getFullPath().toOSString()
-				);
-				String diagramUri = MultiModelUtils.replaceFileExtensionInUri(modelUri, editorType.getFileExtensions().get(0));
-				String diagramKind = MultiModelTypeRegistry.getType(editorType.getModelUri()).getName();
-				String diagramPluginId = MultiModelTypeRegistry.getTypeBundle(editorType.getUri()).getSymbolicName();
-				// create the diagram directly and do not open the wizard
-				GMFDiagramUtils.createGMFDiagram(modelUri, diagramUri, diagramKind, diagramPluginId);
-				GMFDiagramUtils.openGMFDiagram(diagramUri, editorType.getId());
-				return new EditorCreationWizardDialog(shell, wizard);
-			}
-			else {
-				wizDialog = new EditorCreationWizardDialog(shell, wizard);
-			}
-		}
-		else {
-			try {
-				wizDialog = (EditorCreationWizardDialog)
-					MultiModelTypeRegistry.getTypeBundle(editorType.getUri()).
-					loadClass(wizardDialogClassName).
-					getConstructor(Shell.class, IWizard.class).
-					newInstance(shell, wizard);
-			}
-			catch (Exception e) {
-				MMTFException.print(MMTFException.Type.WARNING, "Custom editor creation wizard not found: " + wizardDialogClassName + " , using default as fallback", e);
-				wizDialog = new EditorCreationWizardDialog(shell, wizard);
-			}
-		}
-		wizDialog.setTitle(wizard.getWindowTitle());
-		if (wizDialog.open() == Window.CANCEL) {
-			return null;
-		}
-
-		return wizDialog;
-	}
-
-	/**
 	 * Removes an instance from an Instance MID.
 	 * 
 	 * @param instanceUri
@@ -857,91 +579,6 @@ public class MultiModelInstanceFactory {
 	public static ExtendibleElement removeInstance(String instanceUri, MultiModel multiModel) {
 
 		return multiModel.getExtendibleTable().removeKey(instanceUri);
-	}
-
-	/**
-	 * Removes a model from the Instance MID that contains it.
-	 * 
-	 * @param model
-	 *            The model to be removed.
-	 */
-	public static void removeModel(Model model) {
-
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(model);
-		removeInstance(model.getUri(), multiModel);
-		multiModel.getModels().remove(model);
-
-		//remove model elements
-		for (ModelElement modelElem : model.getModelElems()) {
-			removeInstance(modelElem.getUri(), multiModel);
-		}
-		// remove editors
-		for (Editor editor : model.getEditors()) {
-			removeEditor(editor);
-		}
-		// remove model relationships and endpoints that use this model
-		List<ModelRel> delModelRels = new ArrayList<ModelRel>();
-		List<ModelEndpoint> delModelEndpoints = new ArrayList<ModelEndpoint>();
-		for (ModelRel modelRel : MultiModelRegistry.getModelRels(multiModel)) {
-			for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
-				if (modelEndpoint.getTargetUri().equals(model.getUri())) {
-					if (modelRel instanceof BinaryModelRel) {
-						if (!delModelRels.contains(modelRel)) {
-							delModelRels.add(modelRel);
-						}
-					}
-					else {
-						delModelEndpoints.add(modelEndpoint);
-					}
-				}
-			}
-		}
-		for (ModelEndpoint modelEndpoint : delModelEndpoints) {
-			removeModelEndpointAndModelEndpointReference(modelEndpoint, true);
-		}
-		for (ModelRel modelRel : delModelRels) {
-			removeModelRel(modelRel);
-		}
-	}
-
-	/**
-	 * Removes a model relationship from the Instance MID that contains it.
-	 * 
-	 * @param modelRel
-	 *            The model relationship to be removed.
-	 */
-	public static void removeModelRel(ModelRel modelRel) {
-
-		removeModel(modelRel);
-	}
-
-	/**
-	 * Removes a model endpoint and the reference to it from the Instance MID
-	 * that contains them.
-	 * 
-	 * @param modelEndpoint
-	 *            The model endpoint to be removed.
-	 * @param isFullRemove
-	 *            True if the model endpoint is going to be fully removed, false
-	 *            if it is going to be replaced later.
-	 */
-	public static void removeModelEndpointAndModelEndpointReference(ModelEndpoint modelEndpoint, boolean isFullRemove) {
-
-		ModelRel modelRel = (ModelRel) modelEndpoint.eContainer();
-		ModelEndpointReference modelEndpointRef = null;
-		for (ModelEndpointReference modelEndpointRef2 : modelRel.getModelEndpointRefs()) {
-			if (modelEndpointRef2.getObject() == modelEndpoint) {
-				modelEndpointRef = modelEndpointRef2;
-				break;
-			}
-		}
-		while (modelEndpointRef.getModelElemRefs().size() > 0) {
-			removeModelElementReference(modelEndpointRef.getModelElemRefs().get(0));
-		}
-		if (isFullRemove) {
-			modelRel.getModelEndpoints().remove(modelEndpoint);
-			modelRel.getModelEndpointRefs().remove(modelEndpointRef);
-		}
 	}
 
 	/**
@@ -1034,19 +671,6 @@ public class MultiModelInstanceFactory {
 		ModelElement modelElem = modelElemRef.getObject();
 		((Model) modelElem.eContainer()).getModelElems().remove(modelElem);
 		//TODO MMTF: should remove from all model rels too?
-	}
-
-	/**
-	 * Removes an editor from the Instance MID that contains it.
-	 * 
-	 * @param editor
-	 *            The editor to be removed.
-	 */
-	public static void removeEditor(Editor editor) {
-
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(editor);
-		multiModel.getEditors().remove(editor);
-		// no need to removeExtendibleElement
 	}
 
 }

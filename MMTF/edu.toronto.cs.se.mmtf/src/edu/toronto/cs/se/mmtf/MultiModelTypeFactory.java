@@ -30,13 +30,11 @@ import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
@@ -609,132 +607,6 @@ public class MultiModelTypeFactory {
 	}
 
 	/**
-	 * Removes a model type from a multimodel.
-	 * 
-	 * @param modelType
-	 *            The model type to be removed.
-	 * @param multiModel
-	 *            The multimodel that contains the model type.
-	 */
-	public static void removeModelType(Model modelType, MultiModel multiModel) {
-
-		removeType(modelType.getUri(), multiModel);
-		multiModel.getModels().remove(modelType);
-		String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(modelType);
-		if (metamodelUri != null) {
-			MultiModelUtils.deleteFile(metamodelUri, false);
-		}
-
-		// remove model element types
-		for (ModelElement modelElementType : modelType.getModelElems()) {
-			removeType(modelElementType.getUri(), multiModel);
-		}
-		List<String> delOperatorTypeUris = new ArrayList<String>();
-		// remove operator types that use this model type
-		for (Operator operatorType : multiModel.getOperators()) {
-			for (Parameter par : operatorType.getInputs()) {
-				if (par.getModel().getUri().equals(modelType.getUri()) && !delOperatorTypeUris.contains(operatorType.getUri())) {
-					delOperatorTypeUris.add(operatorType.getUri());
-				}
-			}
-			for (Parameter par : operatorType.getOutputs()) {
-				if (par.getModel().getUri().equals(modelType.getUri()) && !delOperatorTypeUris.contains(operatorType.getUri())) {
-					delOperatorTypeUris.add(operatorType.getUri());
-				}
-			}
-		}
-		for (String operatorTypeUri : delOperatorTypeUris) {
-			Operator operatorType = MultiModelRegistry.getExtendibleElement(operatorTypeUri, multiModel);
-			removeOperatorType(operatorType);
-		}
-		// remove model relationship types and endpoints that use this model type
-		List<ModelRel> delModelRelTypes = new ArrayList<ModelRel>();
-		List<ModelEndpoint> delModelTypeEndpoints = new ArrayList<ModelEndpoint>();
-		for (ModelRel modelRelType : MultiModelRegistry.getModelRels(multiModel)) {
-			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
-				if (modelTypeEndpoint.getTargetUri().equals(modelType.getUri())) {
-					if (modelRelType instanceof BinaryModelRel) {
-						if (!delModelRelTypes.contains(modelRelType)) {
-							delModelRelTypes.add(modelRelType);
-						}
-					}
-					else {
-						delModelTypeEndpoints.add(modelTypeEndpoint);
-					}
-				}
-			}
-		}
-		for (ModelEndpoint modelTypeEndpoint : delModelTypeEndpoints) {
-			removeModelTypeEndpointAndModelTypeEndpointReference(modelTypeEndpoint, true);
-		}
-		for (ModelRel modelRelType : delModelRelTypes) {
-			removeModelRelType(modelRelType);
-		}
-	}
-
-	/**
-	 * Removes a model type and its subtypes from the multimodel that contains
-	 * them.
-	 * 
-	 * @param modelType
-	 *            The model type to be removed.
-	 */
-	public static void removeModelType(Model modelType) {
-
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelType);
-		// delete the "thing"
-		removeModelType(modelType, multiModel);
-		// delete the subtypes of the "thing"
-		for (Model modelSubtype : MultiModelTypeHierarchy.getSubtypes(modelType, multiModel)) {
-			removeModelType(modelSubtype, multiModel);
-		}
-	}
-
-	/**
-	 * Removes a model relationship type from a multimodel.
-	 * 
-	 * @param modelRelType
-	 *            The model relationship type to be removed.
-	 * @param multiModel
-	 *            The multimodel that contains the model relationship type.
-	 */
-	private static void removeModelRelType(ModelRel modelRelType, MultiModel multiModel) {
-
-		removeModelType(modelRelType, multiModel);
-
-		// remove model type endpoints
-		for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
-			removeType(modelTypeEndpoint.getUri(), multiModel);
-		}
-		// remove link types
-		for (Link linkType : modelRelType.getLinks()) {
-			removeType(linkType.getUri(), multiModel);
-			// remove model element type endpoints
-			for (ModelElementEndpoint modelElemTypeEndpoint : linkType.getModelElemEndpoints()) {
-				removeType(modelElemTypeEndpoint.getUri(), multiModel);
-			}
-		}
-	}
-
-	/**
-	 * Removes a model relationship type and its subtypes from the multimodel
-	 * that contains them.
-	 * 
-	 * @param modelRelType
-	 *            The model relationship type to be removed.
-	 */
-	public static void removeModelRelType(ModelRel modelRelType) {
-
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
-		// delete the "thing"
-		removeModelRelType(modelRelType, multiModel);
-		// delete the subtypes of the "thing"
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
-			removeModelRelType(modelRelSubtype, multiModel);
-		}
-	}
-
-	/**
 	 * Removes an editor type from a multimodel.
 	 * 
 	 * @param editorType
@@ -803,72 +675,6 @@ public class MultiModelTypeFactory {
 		removeOperatorType(operatorType, multiModel);
 		for (Operator operatorSubtype : MultiModelTypeHierarchy.getSubtypes(operatorType, multiModel)) {
 			removeOperatorType(operatorSubtype, multiModel);
-		}
-	}
-
-	/**
-	 * Removes a model type endpoint from the multimodel that contains it.
-	 * 
-	 * @param modelTypeEndpoint
-	 *            The model type endpoint to be removed.
-	 * @param isFullRemove
-	 *            True if the model type endpoint is going to be fully removed,
-	 *            false if it is going to be replaced later.
-	 */
-	public static void removeModelTypeEndpoint(ModelEndpoint modelTypeEndpoint, boolean isFullRemove) {
-
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelTypeEndpoint);
-		removeType(modelTypeEndpoint.getUri(), multiModel);
-		if (isFullRemove) {
-			ModelRel modelRelType = (ModelRel) modelTypeEndpoint.eContainer();
-			modelRelType.getModelEndpoints().remove(modelTypeEndpoint);
-		}
-	}
-
-	/**
-	 * Removes a reference to a model type endpoint from the multimodel that
-	 * contains it.
-	 * 
-	 * @param modelTypeEndpointRef
-	 *            The reference to be removed to the model type endpoint.
-	 * @param isFullRemove
-	 *            True if the reference to the model type endpoint is going to
-	 *            be fully removed, false if it is going to be replaced later.
-	 */
-	public static void removeModelTypeEndpointReference(ModelEndpointReference modelTypeEndpointRef, boolean isFullRemove) {
-
-		// avoid iterating over the list
-		while (modelTypeEndpointRef.getModelElemRefs().size() > 0) {
-			removeModelElementTypeReference(modelTypeEndpointRef.getModelElemRefs().get(0));
-		}
-		if (isFullRemove) {
-			ModelRel modelRelType = (ModelRel) modelTypeEndpointRef.eContainer();
-			modelRelType.getModelEndpointRefs().remove(modelTypeEndpointRef);
-		}
-	}
-
-	/**
-	 * Removes a model type endpoint and all references to it from the
-	 * multimodel that contains them.
-	 * 
-	 * @param modelTypeEndpoint
-	 *            The model type endpoint to be removed.
-	 * @param isFullRemove
-	 *            True if the model type endpoint is going to be fully removed,
-	 *            false if it is going to be replaced later.
-	 */
-	public static void removeModelTypeEndpointAndModelTypeEndpointReference(ModelEndpoint modelTypeEndpoint, boolean isFullRemove) {
-
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelTypeEndpoint);
-		// delete the "thing" and the corresponding reference
-		removeModelTypeEndpoint(modelTypeEndpoint, isFullRemove);
-		ModelRel modelRelType = (ModelRel) modelTypeEndpoint.eContainer();
-		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), modelRelType.getModelEndpointRefs());
-		removeModelTypeEndpointReference(modelTypeEndpointRef, isFullRemove);
-		// delete references of the "thing" in subtypes of the container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
-			ModelEndpointReference modelSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), modelRelSubtype.getModelEndpointRefs());
-			removeModelTypeEndpointReference(modelSubtypeEndpointRef, isFullRemove);
 		}
 	}
 

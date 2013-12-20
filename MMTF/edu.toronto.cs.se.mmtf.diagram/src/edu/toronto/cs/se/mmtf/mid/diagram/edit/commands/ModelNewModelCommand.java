@@ -94,6 +94,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		Editor newEditor = MidDiagramUtils.selectModelTypeToCreate(multiModel);
 		Model modelType = MultiModelTypeRegistry.getType(newEditor.getMetatype().getModelUri());
 		Model newModel = modelType.createInstance(newEditor.getModelUri(), ModelOrigin.CREATED, multiModel);
+		//TODO MMTF[OO] remember to fix the addModelEditor
 		MultiModelInstanceFactory.addModelEditor(newEditor, multiModel);
 
 		return newModel;

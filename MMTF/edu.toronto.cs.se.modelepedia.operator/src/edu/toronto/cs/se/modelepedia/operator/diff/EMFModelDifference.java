@@ -19,6 +19,7 @@ import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -74,13 +75,8 @@ public class EMFModelDifference extends OperatorExecutableImpl {
 
 		// create diff model relationship
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(matchRel);
-		ModelRel diffModelRel = MultiModelInstanceFactory.createModelRel(
-			null,
-			null,
-			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
-			ModelOrigin.CREATED,
-			multiModel
-		);
+		ModelRel rootModelRelType = MultiModelTypeHierarchy.getRootModelRelType();
+		ModelRel diffModelRel = rootModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
 		diffModelRel.setName(MODELREL_NAME);
 
 		// create model endpoints

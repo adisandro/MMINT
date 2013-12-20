@@ -833,7 +833,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		}
 
 		Model newModel = MidFactory.eINSTANCE.createModel();
-		MultiModelInstanceFactory.addModel(newModel, this, newModelUri, origin, containerMultiModel);
+		addInstance(newModel, newModelUri, origin, containerMultiModel);
 
 		return newModel;
 	}

@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
@@ -114,13 +115,8 @@ public class ModelDifference extends OperatorExecutableImpl {
 
 		// create diff model relationship
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(matchRel);
-		ModelRel diffModelRel = MultiModelInstanceFactory.createModelRel(
-			null,
-			null,
-			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
-			ModelOrigin.CREATED,
-			multiModel
-		);
+		ModelRel rootModelRelType = MultiModelTypeHierarchy.getRootModelRelType();
+		ModelRel diffModelRel = rootModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
 		diffModelRel.setName(MODELREL_NAME);
 
 		// create src model endpoint with deleted elements

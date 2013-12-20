@@ -206,10 +206,4 @@ public class MultiModelOperatorUtils {
 		}
 	}
 
-	public static void cleanupTemporaryModel(Model model) throws Exception {
-
-		MultiModelInstanceFactory.removeModel(model);
-		MultiModelUtils.deleteFile(model.getUri(), true);
-	}
-
 }

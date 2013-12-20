@@ -27,7 +27,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelOpenEditorCommand;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -253,7 +252,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 		KleisliModelRel newModelRelType = (isBinary) ?
 			KleisliFactory.eINSTANCE.createKleisliBinaryModelRel() :
 			KleisliFactory.eINSTANCE.createKleisliModelRel();
-		addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
+		super.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
 		String newModelRelTypeExtendedUri = KleisliUtils.getModelRelTypeExtendedUri(newModelRelType);
 		newModelRelType.setExtendedUri(newModelRelTypeExtendedUri);
 		if (MultiModelUtils.isFileOrDirectoryInState(newModelRelTypeExtendedUri) == null) {
@@ -292,7 +291,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 		KleisliModelRel newModelRel = (isBinary) ?
 			KleisliFactory.eINSTANCE.createKleisliBinaryModelRel() :
 			KleisliFactory.eINSTANCE.createKleisliModelRel();
-		MultiModelInstanceFactory.addModel(newModelRel, this, newModelRelUri, origin, containerMultiModel);
+		super.addInstance(newModelRel, newModelRelUri, origin, containerMultiModel);
 		String modelRelExtendedUri = KleisliUtils.getModelRelExtendedUri(newModelRel);
 		newModelRel.setExtendedUri(modelRelExtendedUri);
 		try {
