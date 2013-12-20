@@ -16,8 +16,10 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
@@ -29,6 +31,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
@@ -249,67 +252,6 @@ public class MultiModelInstanceFactory {
 	}
 
 	/**
-	 * Creates and adds a reference to a model endpoint to an Instance MID.
-	 * 
-	 * @param newModelEndpoint
-	 *            The model endpoint for which the reference is being created.
-	 * @param isBinarySrc
-	 *            True if the model endpoint is the source in the binary model
-	 *            relationship container, false otherwise.
-	 * @param modelRel
-	 *            The model relationship that will contain the new reference to
-	 *            the model endpoint.
-	 * @return The created reference to the model endpoint.
-	 */
-	public static ModelEndpointReference createModelEndpointReference(ModelEndpoint newModelEndpoint, boolean isBinarySrc, ModelRel modelRel) {
-
-		ModelEndpointReference newModelEndpointRef = RelationshipFactory.eINSTANCE.createModelEndpointReference();
-		boolean isContainer = (modelRel.eContainer() == null);
-		addInstanceReference(newModelEndpointRef, newModelEndpoint, isContainer);
-
-		if (isBinarySrc) {
-			modelRel.getModelEndpointRefs().add(0, newModelEndpointRef);
-		} 
-		else {
-			modelRel.getModelEndpointRefs().add(newModelEndpointRef);
-		}
-
-		return newModelEndpointRef;
-	}
-
-	/**
-	 * Creates and adds a model endpoint and a reference to it to an Instance
-	 * MID.
-	 * 
-	 * @param modelTypeEndpoint
-	 *            The type of the new model endpoint.
-	 * @param newModel
-	 *            The new model that is the target of the new model endpoint.
-	 * @param isBinarySrc
-	 *            True if the model endpoint is the source in the binary model
-	 *            relationship container, false otherwise.
-	 * @param modelRel
-	 *            The model relationship that will contain the new model
-	 *            endpoint.
-	 * @return The created reference to the model endpoint.
-	 */
-	public static ModelEndpointReference createModelEndpointAndModelEndpointReference(ModelEndpoint modelTypeEndpoint, Model newModel, boolean isBinarySrc, ModelRel modelRel) {
-
-		ModelEndpoint newModelEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
-		addBasicInstance(newModelEndpoint, modelTypeEndpoint, null, newModel.getName());
-		addInstanceEndpoint(newModelEndpoint, newModel);
-		if (isBinarySrc) {
-			modelRel.getModelEndpoints().add(0, newModelEndpoint);
-		}
-		else {
-			modelRel.getModelEndpoints().add(newModelEndpoint);
-		}
-		ModelEndpointReference modelEndpointRef = createModelEndpointReference(newModelEndpoint, isBinarySrc, modelRel);
-
-		return modelEndpointRef;
-	}
-
-	/**
 	 * Creates and adds a model relationship and its model endpoints to an
 	 * Instance MID.
 	 * 
@@ -343,76 +285,12 @@ public class MultiModelInstanceFactory {
 		ModelRel newModelRel = modelRelType.createInstance(newModelRelUri, (BinaryModelRel.class.isAssignableFrom(newModelRelClass.getClass())), origin, multiModel);
 		// create model rel endpoints
 		for (Model model : newModels) {
-			createModelEndpointAndModelEndpointReference(
-				null,
-				model,
-				false,
-				newModelRel
-			);
+			String modelEndpointTypeUri = MultiModelConstraintChecker.getAllowedModelEndpoints(modelRelType, model).get(0);
+			ModelEndpoint modelEndpointType = MultiModelTypeRegistry.getType(modelEndpointTypeUri);
+			modelEndpointType.createInstanceAndReference(model, false, newModelRel);
 		}
 
 		return newModelRel;
-	}
-
-	/**
-	 * Replaces an old model endpoint and a reference to it with new ones in an
-	 * Instance MID.
-	 * 
-	 * @param oldModelEndpoint
-	 *            The old model endpoint to be replaced.
-	 * @param modelTypeEndpoint
-	 *            The type of the new model endpoint.
-	 * @param newModel
-	 *            The new model that is the target of the new model endpoint.
-	 */
-	public static void replaceModelEndpointAndModelEndpointReference(ModelEndpoint oldModelEndpoint, ModelEndpoint modelTypeEndpoint, Model newModel) {
-
-		addBasicInstance(oldModelEndpoint, modelTypeEndpoint, null, null);
-		oldModelEndpoint.setTarget(newModel);
-	}
-
-	/**
-	 * Creates and adds a new link and a reference to it to an Instance MID.
-	 * 
-	 * @param linkType
-	 *            The type of the new link.
-	 * @param newLinkClass
-	 *            The class of the new link.
-	 * @param newLinkRefClass
-	 *            The class of the new reference to the new link.
-	 * @param modelRel
-	 *            The model relationship that will contain the new link.
-	 * @return The created reference to the new link.
-	 */
-	public static LinkReference createLinkAndLinkReference(Link linkType, EClass newLinkClass, EClass newLinkRefClass, ModelRel modelRel) {
-
-		Link newLink = (Link) RelationshipFactory.eINSTANCE.create(newLinkClass);
-		modelRel.getLinks().add(newLink);
-		addBasicInstance(newLink, linkType, null, null);
-		LinkReference newLinkRef = createLinkReference(newLink, newLinkRefClass, modelRel);
-
-		return newLinkRef;
-	}
-
-	/**
-	 * Creates and adds a reference to a link to an Instance MID.
-	 * 
-	 * @param newLink
-	 *            The link for which the reference is being created.
-	 * @param newLinkRefClass
-	 *            The class of the new reference to the link.
-	 * @param modelRel
-	 *            The model relationship that will contain the new reference to
-	 *            the link.
-	 * @return The created reference to the link.
-	 */
-	public static LinkReference createLinkReference(Link newLink, EClass newLinkRefClass, ModelRel modelRel) {
-
-		LinkReference linkRef = (LinkReference) RelationshipFactory.eINSTANCE.create(newLinkRefClass);
-		addInstanceReference(linkRef, newLink, false);
-		modelRel.getLinkRefs().add(linkRef);
-
-		return linkRef;
 	}
 
 	/**
@@ -429,8 +307,9 @@ public class MultiModelInstanceFactory {
 	 *            The new references to the model elements that are the targets
 	 *            of the new model element endpoints.
 	 * @return The created reference to the new link.
+	 * @throws MMTFException 
 	 */
-	public static LinkReference createLinkAndLinkReferenceAndModelElementEndpointsAndModelElementEndpointReferences(Link linkType, EClass newLinkClass, EClass newLinkRefClass, ModelElementReference... newModelElemRefs) {
+	public static LinkReference createLinkAndLinkReferenceAndModelElementEndpointsAndModelElementEndpointReferences(Link linkType, EClass newLinkClass, EClass newLinkRefClass, ModelElementReference... newModelElemRefs) throws MMTFException {
 
 		if (newModelElemRefs.length == 0) {
 			return null;
@@ -438,12 +317,7 @@ public class MultiModelInstanceFactory {
 
 		ModelRel modelRel = (ModelRel) newModelElemRefs[0].eContainer().eContainer();
 		// create link
-		LinkReference newLinkRef = createLinkAndLinkReference(
-			linkType,
-			newLinkClass,
-			newLinkRefClass,
-			modelRel
-		);
+		LinkReference newLinkRef = linkType.createInstanceAndReference((BinaryLink.class.isAssignableFrom(newLinkClass.getClass())), modelRel);
 		// create model element endpoints
 		for (ModelElementReference modelElemRef : newModelElemRefs) {
 			ModelElementEndpointReference newModelElemEndpointRef = createModelElementEndpointAndModelElementEndpointReference(
@@ -582,23 +456,6 @@ public class MultiModelInstanceFactory {
 	}
 
 	/**
-	 * Removes a link and the reference to it from the Instance MID that
-	 * contains them.
-	 * 
-	 * @param linkRef
-	 *            The reference to be removed to the link to be removed.
-	 */
-	public static void removeLinkAndLinkReference(LinkReference linkRef) {
-
-		ModelRel modelRel = (ModelRel) linkRef.eContainer();
-		modelRel.getLinkRefs().remove(linkRef);
-		for (ModelElementEndpointReference modelElemEndpointRef : linkRef.getModelElemEndpointRefs()) {
-			modelElemEndpointRef.setModelElemRef(null);
-		}
-		modelRel.getLinks().remove(linkRef.getObject());
-	}
-
-	/**
 	 * Removes a model element endpoint and the reference to it from the
 	 * Instance MID that contains them.
 	 * 
@@ -646,7 +503,12 @@ public class MultiModelInstanceFactory {
 			}
 		}
 		for (LinkReference linkRef : delLinkRefs) {
-			removeLinkAndLinkReference(linkRef);
+			try {
+				linkRef.deleteInstanceAndReference();
+			}
+			catch (MMTFException e) {
+				//TODO MMTF[OO] remove this
+			}
 		}
 		for (ModelElementEndpointReference modelElemEndpointRef : delModelElemEndpointRefs) {
 			removeModelElementEndpointAndModelElementEndpointReference(modelElemEndpointRef, true);

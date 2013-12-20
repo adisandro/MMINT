@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -20,16 +20,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.library.RelationshipDiagramUtils;
 
 /**
@@ -100,12 +97,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 
 		ModelRel modelRel = (ModelRel) getElementToEdit();
 		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToCreate(modelRel, null, null);
-		LinkReference newLinkRef = MultiModelInstanceFactory.createLinkAndLinkReference(
-			linkTypeRef.getObject(),
-			RelationshipPackage.eINSTANCE.getLink(),
-			RelationshipPackage.eINSTANCE.getLinkReference(),
-			modelRel
-		);
+		LinkReference newLinkRef = linkTypeRef.getObject().createInstanceAndReference(false, modelRel);
 
 		return newLinkRef;
 	}
@@ -119,14 +111,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 			linkTypeRef = null; // the link reference to the root is never shown
 		}
 		String newLinkTypeName = RelationshipDiagramUtils.getStringInput("Create new light link type", "Insert new link type name", null);
-		LinkReference newLinkTypeRef = MultiModelLightTypeFactory.createLightLinkTypeAndLinkTypeReference(
-			linkType,
-			linkTypeRef,
-			newLinkTypeName,
-			RelationshipPackage.eINSTANCE.getLink(),
-			RelationshipPackage.eINSTANCE.getLinkReference(),
-			modelRelType
-		);
+		LinkReference newLinkTypeRef = linkType.createSubtypeAndReference(linkTypeRef, newLinkTypeName, false, modelRelType);
 		MMTF.createTypeHierarchy(MultiModelRegistry.getMultiModel(modelRelType));
 
 		return newLinkTypeRef;
@@ -158,7 +143,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (Exception e) {
+		catch (MMTFException e) {
 			MMTFException.print(MMTFException.Type.WARNING, "No link created", e);
 			return CommandResult.newErrorCommandResult("No link created");
 		}

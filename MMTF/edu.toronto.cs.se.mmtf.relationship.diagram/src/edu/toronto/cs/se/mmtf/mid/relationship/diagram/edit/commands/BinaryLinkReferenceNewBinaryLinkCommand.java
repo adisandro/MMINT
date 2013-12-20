@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -35,7 +35,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.library.RelationshipDiagramUtils;
 
 /**
@@ -107,16 +106,11 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 			);
 	}
 
-	protected BinaryLinkReference doExecuteInstancesLevel() throws Exception {
+	protected BinaryLinkReference doExecuteInstancesLevel() throws MMTFException {
 
 		ModelRel modelRel = getContainer();
 		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToCreate(modelRel, getSource(), getTarget());
-		BinaryLinkReference newLinkRef = (BinaryLinkReference) MultiModelInstanceFactory.createLinkAndLinkReference(
-			linkTypeRef.getObject(),
-			RelationshipPackage.eINSTANCE.getBinaryLink(),
-			RelationshipPackage.eINSTANCE.getBinaryLinkReference(),
-			modelRel
-		);
+		BinaryLinkReference newLinkRef = (BinaryLinkReference) linkTypeRef.getObject().createInstanceAndReference(true, modelRel);
 
 		List<String> modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, getSource());
 		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramUtils.selectModelElementTypeEndpointToCreate(newLinkRef, modelElemTypeEndpointUris);
@@ -143,14 +137,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 		ModelRel modelRelType = getContainer();
 		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToExtend(modelRelType, getSource(), getTarget());
 		String newLinkTypeName = RelationshipDiagramUtils.getStringInput("Create new light link type", "Insert new link type name", null);
-		BinaryLinkReference newLinkTypeRef = (BinaryLinkReference) MultiModelLightTypeFactory.createLightLinkTypeAndLinkTypeReference(
-			linkTypeRef.getObject(),
-			linkTypeRef,
-			newLinkTypeName,
-			RelationshipPackage.eINSTANCE.getBinaryLink(),
-			RelationshipPackage.eINSTANCE.getBinaryLinkReference(),
-			modelRelType
-		);
+		BinaryLinkReference newLinkTypeRef = (BinaryLinkReference) linkTypeRef.getObject().createSubtypeAndReference(linkTypeRef, newLinkTypeName, true, modelRelType);
 		MMTF.createTypeHierarchy(MultiModelRegistry.getMultiModel(modelRelType));
 
 		String newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new source model element type endpoint", "Insert new source model element type endpoint role", null);
@@ -211,7 +198,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (Exception e) {
+		catch (MMTFException e) {
 			MMTFException.print(MMTFException.Type.WARNING, "No binary link created", e);
 			return CommandResult.newErrorCommandResult("No binary link created");
 		}

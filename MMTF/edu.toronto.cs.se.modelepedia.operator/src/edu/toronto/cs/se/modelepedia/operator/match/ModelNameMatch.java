@@ -18,24 +18,24 @@ import java.util.Map.Entry;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 public class ModelNameMatch extends OperatorExecutableImpl {
 
@@ -70,38 +70,24 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 		matchRel.setName(MODELREL_NAME);
 
 		// loop through selected models
+		ModelEndpoint rootModelEndpointType = MultiModelTypeHierarchy.getRootModelEndpointType();
 		HashMap<String, ArrayList<EObject>> modelObjNames = new HashMap<String, ArrayList<EObject>>();
 		HashMap<EObject, ModelEndpointReference> modelObjTable = new HashMap<EObject, ModelEndpointReference>();
 		for (Model model : actualParameters) {
 			// create model endpoint
-			ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
-				null,
-				model,
-				false,
-				matchRel
-			);
+			ModelEndpointReference newModelEndpointRef = rootModelEndpointType.createInstanceAndReference(model, false, matchRel);
 			// look for identical names in the models
 			checkModelObjNames(MultiModelTypeIntrospection.getRoot(model), newModelEndpointRef, modelObjNames, modelObjTable);
 		}
 
 		// create model relationship structure
+		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
 		for (Entry<String, ArrayList<EObject>> entry : modelObjNames.entrySet()) {
 			String modelObjName = entry.getKey();
 			ArrayList<EObject> modelObjs = entry.getValue();
 			if (modelObjs.size() > 1) {
-				EClass linkClass = (modelObjs.size() == 2) ?
-					RelationshipPackage.eINSTANCE.getBinaryLink() :
-					RelationshipPackage.eINSTANCE.getLink();
-				EClass linkRefClass = (modelObjs.size() == 2) ?
-					RelationshipPackage.eINSTANCE.getBinaryLinkReference() :
-					RelationshipPackage.eINSTANCE.getLinkReference();
 				// create link
-				LinkReference matchLinkRef = MultiModelInstanceFactory.createLinkAndLinkReference(
-					null,
-					linkClass,
-					linkRefClass,
-					matchRel
-				);
+				LinkReference matchLinkRef = rootLinkType.createInstanceAndReference((modelObjs.size() == 2), matchRel);
 				matchLinkRef.getObject().setName(modelObjName);
 				for (EObject modelObj : modelObjs) {
 					ModelEndpointReference modelEndpointRef = modelObjTable.get(modelObj);

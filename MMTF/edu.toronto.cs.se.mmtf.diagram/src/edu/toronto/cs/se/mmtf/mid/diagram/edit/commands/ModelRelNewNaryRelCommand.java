@@ -58,7 +58,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 
 		return status;
     }
-	
+
     /**
      * Overrides superclass to re-initialize diagram type hierarchy.
      */

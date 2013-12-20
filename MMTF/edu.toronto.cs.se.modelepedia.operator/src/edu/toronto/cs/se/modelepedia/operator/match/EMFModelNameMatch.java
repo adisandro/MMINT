@@ -28,16 +28,17 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 public class EMFModelNameMatch extends OperatorExecutableImpl {
 
@@ -79,20 +80,12 @@ public class EMFModelNameMatch extends OperatorExecutableImpl {
 		ModelRel matchRel = rootModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
 		matchRel.setName(MODELREL_NAME);
 		// create model endpoints
-		ModelEndpointReference srcModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
-			null,
-			srcModel,
-			false,
-			matchRel
-		);
-		ModelEndpointReference tgtModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
-			null,
-			tgtModel,
-			false,
-			matchRel
-		);
+		ModelEndpoint rootModelEndpointType = MultiModelTypeHierarchy.getRootModelEndpointType();
+		ModelEndpointReference srcModelEndpointRef = rootModelEndpointType.createInstanceAndReference(srcModel, false, matchRel);
+		ModelEndpointReference tgtModelEndpointRef = rootModelEndpointType.createInstanceAndReference(tgtModel, false, matchRel);
 
 		// create model relationship structure
+		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
 		match(srcModel, tgtModel);
 		for (Match rootMatch : comparison.getMatches()) {
 nextMatch:
@@ -112,12 +105,7 @@ nextMatch:
 					continue;
 				}
 				// create link
-				LinkReference matchLinkRef = MultiModelInstanceFactory.createLinkAndLinkReference(
-					null,
-					RelationshipPackage.eINSTANCE.getBinaryLink(),
-					RelationshipPackage.eINSTANCE.getBinaryLinkReference(),
-					matchRel
-				);
+				LinkReference matchLinkRef = rootLinkType.createInstanceAndReference(true, matchRel);
 				matchLinkRef.getObject().setName((String) match.getLeft().eGet(feature));
 				// create model elements
 				ModelElementReference srcModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(

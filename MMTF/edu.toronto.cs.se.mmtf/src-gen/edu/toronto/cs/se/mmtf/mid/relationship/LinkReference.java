@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -75,5 +76,51 @@ public interface LinkReference extends ExtendibleElementReference {
 	 * @generated
 	 */
 	LinkReference getSupertypeRef();
+
+	/**
+	 * <!-- begin-user-doc --> Deletes this reference to a link type from the
+	 * Type MID.
+	 * 
+	 * @throws MMTFException
+	 *             If this is a reference to a link instance.
+	 *             <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	void deleteTypeReference() throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc --> Deletes the referenced link type, this and all
+	 * reference to it from the Type MID.
+	 * 
+	 * @throws MMTFException
+	 *             If this is a reference to a link instance. <!-- end-user-doc
+	 *             -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	void deleteTypeAndReference() throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc --> Deletes this reference to a link instance from
+	 * the Instance MID that contains it.
+	 * 
+	 * @throws MMTFException
+	 *             If this is a reference to a link type. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	void deleteInstanceReference() throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc --> Deletes the referenced link instance and this
+	 * reference to it from the Instance MID that contains them.
+	 * 
+	 * @throws MMTFException
+	 *             If this is a reference to a link type. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	void deleteInstanceAndReference() throws MMTFException;
 
 } // LinkReference

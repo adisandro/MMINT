@@ -31,7 +31,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
-import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 /**
  * The factory to create/modify/remove "light" types, i.e. dynamic types at
@@ -111,49 +110,6 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 		String newTypeUri = createNewLightTypeUri(baseType, newTypeFragmentUri, newTypeName);
 		addType(newType, type, newTypeUri, newTypeName, multiModel);
 		newType.setDynamic(true);
-	}
-
-	/**
-	 * Creates and adds a "light" link type and a reference to it to the Type
-	 * MID.
-	 * 
-	 * @param linkType
-	 *            The supertype of the new link type.
-	 * @param linkTypeRef
-	 *            The reference to the supertype of the new link type, null if
-	 *            such reference doesn't exist in the model relationship type
-	 *            container.
-	 * @param newLinkTypeName
-	 *            The name of the new link type.
-	 * @param newLinkTypeClass
-	 *            The class of the new link type.
-	 * @param newLinkTypeRefClass
-	 *            The class of the new reference to the new link type.
-	 * @param modelRelType
-	 *            The model relationship type that will contain the new link
-	 *            type.
-	 * @return The created reference to the link type.
-	 * @throws MMTFException
-	 *             If the uri of the new link type is already registered in the
-	 *             Type MID.
-	 */
-	public static LinkReference createLightLinkTypeAndLinkTypeReference(Link linkType, LinkReference linkTypeRef, String newLinkTypeName, EClass newLinkTypeClass, EClass newLinkTypeRefClass, ModelRel modelRelType) throws MMTFException {
-
-		// create the "thing" and the corresponding reference
-		Link newLinkType = (Link) RelationshipFactory.eINSTANCE.create(newLinkTypeClass);
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
-		addLightType(newLinkType, linkType, modelRelType, modelRelType.getName(), newLinkTypeName, multiModel);
-		addLinkType(newLinkType, linkType, modelRelType);
-		LinkReference newLinkTypeRef = createLinkTypeReference(newLinkType, linkTypeRef, newLinkTypeRefClass, true, modelRelType);
-		// create references of the "thing" in subtypes of the container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
-			LinkReference linkSubtypeRef = (linkTypeRef == null) ?
-				null :
-				MultiModelTypeHierarchy.getReference(linkTypeRef, modelRelSubtype.getLinkRefs());
-			createLinkTypeReference(newLinkType, linkSubtypeRef, newLinkTypeRefClass, false, modelRelSubtype);
-		}
-
-		return newLinkTypeRef;
 	}
 
 	/**
@@ -365,17 +321,7 @@ public class MultiModelLightTypeFactory extends MultiModelTypeFactory {
 			Link oldLinkType = oldLinkTypeIter.next();
 			Link linkType = MultiModelRegistry.getExtendibleElement(oldLinkType.getSupertype().getUri(), multiModel);
 			LinkReference linkTypeRef = MultiModelTypeHierarchy.getReference(oldLinkType.getSupertype().getUri(), newModelRelType.getLinkRefs());
-			EClass newLinkTypeRefClass = (oldLinkType instanceof BinaryLink) ?
-				RelationshipPackage.eINSTANCE.getBinaryLinkReference() :
-				RelationshipPackage.eINSTANCE.getLinkReference();
-			LinkReference newLinkTypeRef = createLightLinkTypeAndLinkTypeReference(
-				linkType,
-				linkTypeRef,
-				oldLinkType.getName(),
-				oldLinkType.eClass(),
-				newLinkTypeRefClass,
-				newModelRelType
-			);
+			LinkReference newLinkTypeRef = linkType.createSubtypeAndReference(linkTypeRef, oldLinkType.getName(), (oldLinkType instanceof BinaryLink), newModelRelType);
 			// connect it to model element type references (takes care of binary too)
 			LinkReference oldLinkTypeRef = MultiModelTypeHierarchy.getReference(newLinkTypeRef, oldModelRelType.getLinkRefs());
 			Iterator<ModelElementEndpointReference> oldModelElemTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(oldLinkTypeRef.getModelElemEndpointRefs());

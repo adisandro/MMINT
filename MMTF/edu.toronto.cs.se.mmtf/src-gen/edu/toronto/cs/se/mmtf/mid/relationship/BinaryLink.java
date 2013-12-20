@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -28,4 +30,41 @@ package edu.toronto.cs.se.mmtf.mid.relationship;
  * @generated
  */
 public interface BinaryLink extends Link {
+
+	/**
+	 * <!-- begin-user-doc --> Creates and adds a reference to this binary link
+	 * type to the Type MID.
+	 * 
+	 * @param linkTypeRef
+	 *            The reference to the supertype of the link type, null if such
+	 *            reference doesn't exist in the model relationship type
+	 *            container.
+	 * @param isModifiable
+	 *            True if the new reference will allow modifications of the
+	 *            referenced link type, false otherwise.
+	 * @param containerModelRelType
+	 *            The model relationship type that will contain the new
+	 *            reference to the link type.
+	 * @return The created reference to the binary link type.
+	 * @throws MMTFException
+	 *             If this is a link instance. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isModifiableRequired="true" containerModelRelTypeRequired="true"
+	 * @generated
+	 */
+	LinkReference createTypeReference(LinkReference linkTypeRef, boolean isModifiable, ModelRel containerModelRelType) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc --> Creates and adds a reference to this binary link
+	 * instance to an Instance MID.
+	 * 
+	 * @param containerModelRel
+	 *            The model relationship that will contain the new reference to
+	 *            the link.
+	 * @return The created reference to the binary link.
+	 * @throws MMTFException
+	 *             If this is a link type. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" containerModelRelRequired="true"
+	 * @generated
+	 */
+	LinkReference createInstanceReference(ModelRel containerModelRel) throws MMTFException;
 } // BinaryLink

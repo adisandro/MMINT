@@ -11,24 +11,26 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -192,8 +194,112 @@ public class LinkReferenceImpl extends ExtendibleElementReferenceImpl implements
 				return getObject();
 			case RelationshipPackage.LINK_REFERENCE___GET_SUPERTYPE_REF:
 				return getSupertypeRef();
+			case RelationshipPackage.LINK_REFERENCE___DELETE_TYPE_REFERENCE:
+				try {
+					deleteTypeReference();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case RelationshipPackage.LINK_REFERENCE___DELETE_TYPE_AND_REFERENCE:
+				try {
+					deleteTypeAndReference();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case RelationshipPackage.LINK_REFERENCE___DELETE_INSTANCE_REFERENCE:
+				try {
+					deleteInstanceReference();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case RelationshipPackage.LINK_REFERENCE___DELETE_INSTANCE_AND_REFERENCE:
+				try {
+					deleteInstanceAndReference();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteTypeReference() throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		for (ModelElementEndpointReference modelElemTypeEndpointRef : getModelElemEndpointRefs()) {
+			modelElemTypeEndpointRef.setModelElemRef(null);
+		}
+		ModelRel modelRelType = (ModelRel) eContainer();
+		modelRelType.getLinkRefs().remove(this);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteTypeAndReference() throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		ModelRel modelRelType = (ModelRel) eContainer();
+		// delete the "thing" and the corresponding reference
+		getObject().deleteType();
+		deleteTypeReference();
+		// delete references of the "thing" in subtypes of the container
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
+			LinkReference linkSubtypeRef = MultiModelTypeHierarchy.getReference(this, modelRelSubtype.getLinkRefs());
+			linkSubtypeRef.deleteTypeReference();
+		}
+		// delete the subtypes of the "thing"
+		for (Link linkSubtype : MultiModelTypeHierarchy.getDirectSubtypes(getObject(), multiModel)) {
+			ModelRel modelRelTypeOrSubtype = (ModelRel) linkSubtype.eContainer();
+			LinkReference linkSubtypeRef = MultiModelTypeHierarchy.getReference(linkSubtype.getUri(), modelRelTypeOrSubtype.getLinkRefs());
+			linkSubtypeRef.deleteTypeAndReference();
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteInstanceReference() throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		for (ModelElementEndpointReference modelElemEndpointRef : getModelElemEndpointRefs()) {
+			modelElemEndpointRef.setModelElemRef(null);
+		}
+		ModelRel modelRel = (ModelRel) eContainer();
+		modelRel.getLinkRefs().remove(this);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteInstanceAndReference() throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		getObject().deleteInstance();
+		deleteInstanceReference();
 	}
 
 } //LinkReferenceImpl

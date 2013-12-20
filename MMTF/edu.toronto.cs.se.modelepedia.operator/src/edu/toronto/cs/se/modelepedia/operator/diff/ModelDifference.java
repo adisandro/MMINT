@@ -26,17 +26,18 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 public class ModelDifference extends OperatorExecutableImpl {
 
@@ -70,25 +71,15 @@ public class ModelDifference extends OperatorExecutableImpl {
 		return diffModelEObjects;
 	}
 
-	private ModelEndpointReference createModelEndpointReference(ModelRel diffModelRel, ModelEndpointReference modelEndpointRef, String linksName) throws MMTFException {
+	private ModelEndpointReference createModelEndpointReference(ModelEndpoint rootModelEndpointType, Link rootLinkType, ModelRel diffModelRel, ModelEndpointReference modelEndpointRef, String linksName) throws MMTFException {
 
 		Model model = modelEndpointRef.getObject().getTarget();
 		HashMap<String, ModelElementReference> modelElemRefTable = createModelElementReferenceTable(modelEndpointRef);
 		List<EObject> diffModelObjs = getDiffModelObjects(model, modelElemRefTable);
-		ModelEndpointReference newModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
-			null,
-			model,
-			false,
-			diffModelRel
-		);
+		ModelEndpointReference newModelEndpointRef = rootModelEndpointType.createInstanceAndReference(model, false, diffModelRel);
 		for (EObject modelObj : diffModelObjs) {
 			// create unary link
-			LinkReference diffLinkRef = MultiModelInstanceFactory.createLinkAndLinkReference(
-				null,
-				RelationshipPackage.eINSTANCE.getLink(),
-				RelationshipPackage.eINSTANCE.getLinkReference(),
-				diffModelRel
-			);
+			LinkReference diffLinkRef = rootLinkType.createInstanceAndReference(false, diffModelRel);
 			diffLinkRef.getObject().setName(linksName);
 			// create model element
 			ModelElementReference diffModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
@@ -119,10 +110,12 @@ public class ModelDifference extends OperatorExecutableImpl {
 		ModelRel diffModelRel = rootModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
 		diffModelRel.setName(MODELREL_NAME);
 
+		ModelEndpoint rootModelEndpointType = MultiModelTypeHierarchy.getRootModelEndpointType();
+		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
 		// create src model endpoint with deleted elements
-		createModelEndpointReference(diffModelRel, matchRel.getModelEndpointRefs().get(0), DELETED_ELEMENT_LINK_NAME);
+		createModelEndpointReference(rootModelEndpointType, rootLinkType, diffModelRel, matchRel.getModelEndpointRefs().get(0), DELETED_ELEMENT_LINK_NAME);
 		// create tgt model endpoint with added elements
-		createModelEndpointReference(diffModelRel, matchRel.getModelEndpointRefs().get(1), ADDED_ELEMENT_LINK_NAME);
+		createModelEndpointReference(rootModelEndpointType, rootLinkType, diffModelRel, matchRel.getModelEndpointRefs().get(1), ADDED_ELEMENT_LINK_NAME);
 
 		EList<Model> result = new BasicEList<Model>();
 		result.add(diffModelRel);

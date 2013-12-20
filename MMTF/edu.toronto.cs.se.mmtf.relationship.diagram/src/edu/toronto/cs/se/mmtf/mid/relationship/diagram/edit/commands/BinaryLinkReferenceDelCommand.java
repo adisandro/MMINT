@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -20,11 +20,11 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
@@ -75,28 +75,34 @@ public class BinaryLinkReferenceDelCommand extends DestroyElementCommand {
 			);
 	}
 
-	protected void doExecuteInstancesLevel() throws ExecutionException {
+	protected void doExecuteInstancesLevel() throws MMTFException {
 
-		MultiModelInstanceFactory.removeLinkAndLinkReference((BinaryLinkReference) getElementToDestroy());
+		((BinaryLinkReference) getElementToDestroy()).deleteInstanceAndReference();
 	}
 
-	protected void doExecuteTypesLevel() throws ExecutionException {
+	protected void doExecuteTypesLevel() throws MMTFException {
 
-		MultiModelTypeFactory.removeLinkTypeAndLinkTypeReference((BinaryLinkReference) getElementToDestroy());
-		MMTF.createTypeHierarchy((MultiModel) getElementToEdit().eContainer());
+		((BinaryLinkReference) getElementToDestroy()).deleteTypeAndReference();
+		MMTF.createTypeHierarchy(MultiModelRegistry.getMultiModel((ModelRel) getElementToEdit()));
 	}
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit())) {
-			doExecuteInstancesLevel();
+		try {
+			if (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit())) {
+				doExecuteInstancesLevel();
+			}
+			else {
+				doExecuteTypesLevel();
+			}
+	
+			return super.doExecuteWithResult(monitor, info);
 		}
-		else {
-			doExecuteTypesLevel();
+		catch (MMTFException e) {
+			MMTFException.print(MMTFException.Type.WARNING, "No binary link deleted", e);
+			return CommandResult.newErrorCommandResult("No binary link deleted");
 		}
-
-		return super.doExecuteWithResult(monitor, info);
 	}
 
 }

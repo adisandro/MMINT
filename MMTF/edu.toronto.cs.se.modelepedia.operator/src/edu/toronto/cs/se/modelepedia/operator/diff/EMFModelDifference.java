@@ -23,17 +23,18 @@ import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.modelepedia.operator.match.EMFModelNameMatch;
 
 public class EMFModelDifference extends OperatorExecutableImpl {
@@ -43,15 +44,10 @@ public class EMFModelDifference extends OperatorExecutableImpl {
 	private final static String DELETED_ELEMENT_LINK_NAME = "del";
 	private final static String ADDED_ELEMENT_LINK_NAME = "add";
 
-	private void createLinkReference(ModelRel diffModelRel, ModelEndpointReference diffModelEndpointRef, EObject modelObj, String linksName) throws MMTFException {
+	private void createLinkReference(Link rootLinkType, ModelRel diffModelRel, ModelEndpointReference diffModelEndpointRef, EObject modelObj, String linksName) throws MMTFException {
 
 		// create unary link
-		LinkReference diffLinkRef = MultiModelInstanceFactory.createLinkAndLinkReference(
-			null,
-			RelationshipPackage.eINSTANCE.getLink(),
-			RelationshipPackage.eINSTANCE.getLinkReference(),
-			diffModelRel
-		);
+		LinkReference diffLinkRef = rootLinkType.createInstanceAndReference(false, diffModelRel);
 		diffLinkRef.getObject().setName(linksName);
 		// create model element
 		ModelElementReference diffModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
@@ -80,24 +76,16 @@ public class EMFModelDifference extends OperatorExecutableImpl {
 		diffModelRel.setName(MODELREL_NAME);
 
 		// create model endpoints
-		ModelEndpointReference srcModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
-			null,
-			matchRel.getModelEndpoints().get(0).getTarget(),
-			false,
-			diffModelRel
-		);
-		ModelEndpointReference tgtModelEndpointRef = MultiModelInstanceFactory.createModelEndpointAndModelEndpointReference(
-			null,
-			matchRel.getModelEndpoints().get(1).getTarget(),
-			false,
-			diffModelRel
-		);
+		ModelEndpoint rootModelEndpointType = MultiModelTypeHierarchy.getRootModelEndpointType();
+		ModelEndpointReference srcModelEndpointRef = rootModelEndpointType.createInstanceAndReference(matchRel.getModelEndpoints().get(0).getTarget(), false, diffModelRel);
+		ModelEndpointReference tgtModelEndpointRef = rootModelEndpointType.createInstanceAndReference(matchRel.getModelEndpoints().get(1).getTarget(), false, diffModelRel);
 
 		// get output from previous operator
 		EMFModelNameMatch previousOperator = (previousExecutable == null) ?
 			(EMFModelNameMatch) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI).getExecutable() :
 			(EMFModelNameMatch) previousExecutable;
 		Comparison comparison = previousOperator.getComparison();
+		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
 nextDiff:
 		for (Diff diff : comparison.getDifferences()) {
 			if (!(diff instanceof ReferenceChange)) {
@@ -126,7 +114,7 @@ nextDiff:
 			if (modelElemRef != null && !modelElemRef.getModelElemEndpointRefs().isEmpty()) { // is already in diff
 				continue;
 			}
-			createLinkReference(diffModelRel, modelEndpointRef, modelObj, linkName);
+			createLinkReference(rootLinkType, diffModelRel, modelEndpointRef, modelObj, linkName);
 		}
 
 		EList<Model> result = new BasicEList<Model>();

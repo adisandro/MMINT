@@ -168,17 +168,17 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN:
+			case MidPackage.MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL:
 				try {
-					deleteInstanceAndReference((Boolean)arguments.get(0));
+					replaceInstanceAndReference((ModelEndpoint)arguments.get(0), (Model)arguments.get(1));
 					return null;
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL:
+			case MidPackage.MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN:
 				try {
-					replaceInstanceAndReference((ModelEndpoint)arguments.get(0), (Model)arguments.get(1));
+					deleteInstanceAndReference((Boolean)arguments.get(0));
 					return null;
 				}
 				catch (Throwable throwable) {

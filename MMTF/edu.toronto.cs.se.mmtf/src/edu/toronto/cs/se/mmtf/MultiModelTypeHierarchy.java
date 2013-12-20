@@ -775,6 +775,16 @@ nextOperatorType:
 		return MultiModelTypeRegistry.getType(MMTF.ROOT_MODELREL_URI);
 	}
 
+	public static ModelEndpoint getRootModelEndpointType() {
+
+		return MultiModelTypeRegistry.getType(MMTF.ROOT_MODELENDPOINT_URI);
+	}
+
+	public static Link getRootLinkType() {
+
+		return MultiModelTypeRegistry.getType(MMTF.ROOT_LINK_URI);
+	}
+
 	/**
 	 * Checks if the given type is the root type for its class.
 	 * 

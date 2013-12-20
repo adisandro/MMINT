@@ -631,6 +631,34 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	}
 
 	/**
+	 * Adds a reference to this type to the Type MID.
+	 * 
+	 * @param newTypeRef
+	 *            The new reference being added.
+	 * @param typeRef
+	 *            The reference to the supertype of this type, null if such
+	 *            reference doesn't exist.
+	 * @param isModifiable
+	 *            True if the new reference will allow modifications of the
+	 *            referenced type, false otherwise.
+	 * @param isContainer
+	 *            True if the new reference is also the actual container of the
+	 *            new type and not just a pointer to it, false otherwise.
+	 * @generated NOT
+	 */
+	protected void addTypeReference(ExtendibleElementReference newTypeRef, ExtendibleElementReference typeRef, boolean isModifiable, boolean isContainer) {
+
+		if (isContainer) {
+			newTypeRef.setContainedObject(this);
+		}
+		else {
+			newTypeRef.setReferencedObject(this);
+		}
+		newTypeRef.setModifiable(isModifiable);
+		newTypeRef.setSupertypeRef(typeRef);
+	}
+
+	/**
 	 * Deletes an extendible element from a multimodel.
 	 * 
 	 * @param uri

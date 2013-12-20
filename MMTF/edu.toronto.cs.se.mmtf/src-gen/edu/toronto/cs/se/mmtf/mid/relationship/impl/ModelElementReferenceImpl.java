@@ -260,8 +260,9 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 	 * @param modelRelType
 	 *            The model relationship that contains the reference to a model
 	 *            element type.
+	 * @throws MMTFException TODO
 	 */
-	private static void deleteModelElementTypeReference(ModelElementReference modelElemTypeRef, ModelRel modelRelType) {
+	private static void deleteModelElementTypeReference(ModelElementReference modelElemTypeRef, ModelRel modelRelType) throws MMTFException {
 
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) modelElemTypeRef.eContainer();
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
@@ -282,7 +283,7 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 			}
 		}
 		for (BinaryLinkReference linkTypeRef : delLinkTypeRefs) {
-			MultiModelTypeFactory.removeLinkTypeAndLinkTypeReference(linkTypeRef);
+			linkTypeRef.deleteTypeAndReference();
 		}
 		for (ModelElementEndpointReference modelElemTypeEndpointRef : delModelElemTypeEndpointRefs) {
 			MultiModelTypeFactory.removeModelElementTypeEndpointAndModelElementTypeEndpointReference(modelElemTypeEndpointRef, true);
@@ -349,7 +350,7 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 			}
 		}
 		for (LinkReference linkRef : delLinkRefs) {
-			MultiModelInstanceFactory.removeLinkAndLinkReference(linkRef);
+			linkRef.deleteInstanceAndReference();
 		}
 		for (ModelElementEndpointReference modelElemEndpointRef : delModelElemEndpointRefs) {
 			MultiModelInstanceFactory.removeModelElementEndpointAndModelElementEndpointReference(modelElemEndpointRef, true);

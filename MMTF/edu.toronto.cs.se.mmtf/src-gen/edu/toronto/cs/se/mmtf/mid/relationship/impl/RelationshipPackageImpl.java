@@ -555,8 +555,80 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getLink__CreateTypeReference__LinkReference_boolean_ModelRel() {
+		return linkEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLink__CreateSubtypeAndReference__LinkReference_String_boolean_ModelRel() {
+		return linkEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLink__DeleteType() {
+		return linkEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLink__CreateInstanceReference__ModelRel() {
+		return linkEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLink__CreateInstanceAndReference__boolean_ModelRel() {
+		return linkEClass.getEOperations().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLink__DeleteInstance() {
+		return linkEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBinaryLink() {
 		return binaryLinkEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getBinaryLink__CreateTypeReference__LinkReference_boolean_ModelRel() {
+		return binaryLinkEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getBinaryLink__CreateInstanceReference__ModelRel() {
+		return binaryLinkEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -735,6 +807,42 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getLinkReference__DeleteTypeReference() {
+		return linkReferenceEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLinkReference__DeleteTypeAndReference() {
+		return linkReferenceEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLinkReference__DeleteInstanceReference() {
+		return linkReferenceEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLinkReference__DeleteInstanceAndReference() {
+		return linkReferenceEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBinaryLinkReference() {
 		return binaryLinkReferenceEClass;
 	}
@@ -883,8 +991,16 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEReference(linkEClass, LINK__MODEL_ELEM_ENDPOINT_REFS);
 		createEOperation(linkEClass, LINK___GET_METATYPE);
 		createEOperation(linkEClass, LINK___GET_SUPERTYPE);
+		createEOperation(linkEClass, LINK___CREATE_TYPE_REFERENCE__LINKREFERENCE_BOOLEAN_MODELREL);
+		createEOperation(linkEClass, LINK___CREATE_SUBTYPE_AND_REFERENCE__LINKREFERENCE_STRING_BOOLEAN_MODELREL);
+		createEOperation(linkEClass, LINK___DELETE_TYPE);
+		createEOperation(linkEClass, LINK___CREATE_INSTANCE_REFERENCE__MODELREL);
+		createEOperation(linkEClass, LINK___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL);
+		createEOperation(linkEClass, LINK___DELETE_INSTANCE);
 
 		binaryLinkEClass = createEClass(BINARY_LINK);
+		createEOperation(binaryLinkEClass, BINARY_LINK___CREATE_TYPE_REFERENCE__LINKREFERENCE_BOOLEAN_MODELREL);
+		createEOperation(binaryLinkEClass, BINARY_LINK___CREATE_INSTANCE_REFERENCE__MODELREL);
 
 		modelElementEndpointEClass = createEClass(MODEL_ELEMENT_ENDPOINT);
 		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___GET_SUPERTYPE);
@@ -895,6 +1011,10 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEReference(linkReferenceEClass, LINK_REFERENCE__MODEL_ELEM_ENDPOINT_REFS);
 		createEOperation(linkReferenceEClass, LINK_REFERENCE___GET_OBJECT);
 		createEOperation(linkReferenceEClass, LINK_REFERENCE___GET_SUPERTYPE_REF);
+		createEOperation(linkReferenceEClass, LINK_REFERENCE___DELETE_TYPE_REFERENCE);
+		createEOperation(linkReferenceEClass, LINK_REFERENCE___DELETE_TYPE_AND_REFERENCE);
+		createEOperation(linkReferenceEClass, LINK_REFERENCE___DELETE_INSTANCE_REFERENCE);
+		createEOperation(linkReferenceEClass, LINK_REFERENCE___DELETE_INSTANCE_AND_REFERENCE);
 
 		binaryLinkReferenceEClass = createEClass(BINARY_LINK_REFERENCE);
 		createEReference(binaryLinkReferenceEClass, BINARY_LINK_REFERENCE__SOURCE_MODEL_ELEM_REF);
@@ -1052,7 +1172,45 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 
 		initEOperation(getLink__GetSupertype(), this.getLink(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getLink__CreateTypeReference__LinkReference_boolean_ModelRel(), this.getLinkReference(), "createTypeReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getLinkReference(), "linkTypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isModifiable", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelRel(), "containerModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getLink__CreateSubtypeAndReference__LinkReference_String_boolean_ModelRel(), this.getLinkReference(), "createSubtypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getLinkReference(), "linkTypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newLinkTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelRel(), "containerModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getLink__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getLink__CreateInstanceReference__ModelRel(), this.getLinkReference(), "createInstanceReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelRel(), "containerModelRel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getLink__CreateInstanceAndReference__boolean_ModelRel(), this.getLinkReference(), "createInstanceAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelRel(), "containerModelRel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getLink__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
 		initEClass(binaryLinkEClass, BinaryLink.class, "BinaryLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = initEOperation(getBinaryLink__CreateTypeReference__LinkReference_boolean_ModelRel(), this.getLinkReference(), "createTypeReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getLinkReference(), "linkTypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isModifiable", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelRel(), "containerModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getBinaryLink__CreateInstanceReference__ModelRel(), this.getLinkReference(), "createInstanceReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelRel(), "containerModelRel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
 
 		initEClass(modelElementEndpointEClass, ModelElementEndpoint.class, "ModelElementEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1068,6 +1226,18 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		initEOperation(getLinkReference__GetObject(), this.getLink(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getLinkReference__GetSupertypeRef(), this.getLinkReference(), "getSupertypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getLinkReference__DeleteTypeReference(), null, "deleteTypeReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getLinkReference__DeleteTypeAndReference(), null, "deleteTypeAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getLinkReference__DeleteInstanceReference(), null, "deleteInstanceReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getLinkReference__DeleteInstanceAndReference(), null, "deleteInstanceAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
 
 		initEClass(binaryLinkReferenceEClass, BinaryLinkReference.class, "BinaryLinkReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBinaryLinkReference_SourceModelElemRef(), this.getModelElementReference(), null, "sourceModelElemRef", null, 1, 1, BinaryLinkReference.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);

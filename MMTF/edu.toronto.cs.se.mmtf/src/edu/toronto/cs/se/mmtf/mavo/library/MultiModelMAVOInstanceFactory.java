@@ -25,6 +25,7 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
@@ -93,7 +94,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
 		for (ModelEndpointReference oldModelEndpointRef : oldModelRel.getModelEndpointRefs()) {
 			Model newModel = MultiModelRegistry.getExtendibleElement(oldModelEndpointRef.getTargetUri(), multiModel);
-			ModelEndpointReference newModelEndpointRef = createModelEndpointAndModelEndpointReference(oldModelEndpointRef.getObject().getMetatype(), newModel, false, newModelRel);
+			ModelEndpointReference newModelEndpointRef = oldModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, false, newModelRel);
 			// model elements
 			for (ModelElementReference oldModelElemRef : oldModelEndpointRef.getModelElemRefs()) {
 				EObject newModelObj = MultiModelTypeIntrospection.getPointer(oldModelElemRef.getObject());
@@ -103,7 +104,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 		}
 		// links
 		for (LinkReference oldLinkRef : oldModelRel.getLinkRefs()) {
-			LinkReference newLinkRef = createLinkAndLinkReference(oldLinkRef.getObject().getMetatype(), oldLinkRef.getObject().eClass(), oldLinkRef.eClass(), newModelRel);
+			LinkReference newLinkRef = oldLinkRef.getObject().getMetatype().createInstanceAndReference((oldLinkRef.getObject() instanceof BinaryLink), newModelRel);
 			MAVOUtils.copyMAVOElement(oldLinkRef.getObject(), newLinkRef.getObject());
 			newLinkRef.getObject().setName(oldLinkRef.getObject().getName());
 			for (ModelElementEndpointReference oldModelElemEndpointRef : oldLinkRef.getModelElemEndpointRefs()) {

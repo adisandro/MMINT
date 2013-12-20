@@ -1418,13 +1418,67 @@ public interface RelationshipPackage extends EPackage {
 	int LINK___GET_SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Create Type Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK___CREATE_TYPE_REFERENCE__LINKREFERENCE_BOOLEAN_MODELREL = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Create Subtype And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK___CREATE_SUBTYPE_AND_REFERENCE__LINKREFERENCE_STRING_BOOLEAN_MODELREL = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK___DELETE_TYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Create Instance Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK___CREATE_INSTANCE_REFERENCE__MODELREL = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
+
+	/**
+	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK___DELETE_INSTANCE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+
+	/**
 	 * The number of operations of the '<em>Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+	int LINK_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.BinaryLinkImpl <em>Binary Link</em>}' class.
@@ -1590,13 +1644,67 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_LINK___GET_SUPERTYPE = LINK___GET_SUPERTYPE;
 
 	/**
+	 * The operation id for the '<em>Create Subtype And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK___CREATE_SUBTYPE_AND_REFERENCE__LINKREFERENCE_STRING_BOOLEAN_MODELREL = LINK___CREATE_SUBTYPE_AND_REFERENCE__LINKREFERENCE_STRING_BOOLEAN_MODELREL;
+
+	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK___DELETE_TYPE = LINK___DELETE_TYPE;
+
+	/**
+	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL = LINK___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL;
+
+	/**
+	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK___DELETE_INSTANCE = LINK___DELETE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Create Type Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK___CREATE_TYPE_REFERENCE__LINKREFERENCE_BOOLEAN_MODELREL = LINK_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Create Instance Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK___CREATE_INSTANCE_REFERENCE__MODELREL = LINK_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Binary Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_LINK_OPERATION_COUNT = LINK_OPERATION_COUNT + 0;
+	int BINARY_LINK_OPERATION_COUNT = LINK_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelElementEndpointImpl <em>Model Element Endpoint</em>}' class.
@@ -1898,13 +2006,49 @@ public interface RelationshipPackage extends EPackage {
 	int LINK_REFERENCE___GET_SUPERTYPE_REF = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Delete Type Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_REFERENCE___DELETE_TYPE_REFERENCE = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Delete Type And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_REFERENCE___DELETE_TYPE_AND_REFERENCE = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Delete Instance Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_REFERENCE___DELETE_INSTANCE_REFERENCE = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Delete Instance And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_REFERENCE___DELETE_INSTANCE_AND_REFERENCE = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 5;
+
+	/**
 	 * The number of operations of the '<em>Link Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 2;
+	int LINK_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.BinaryLinkReferenceImpl <em>Binary Link Reference</em>}' class.
@@ -2014,6 +2158,42 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_LINK_REFERENCE___GET_SUPERTYPE_REF = LINK_REFERENCE___GET_SUPERTYPE_REF;
+
+	/**
+	 * The operation id for the '<em>Delete Type Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK_REFERENCE___DELETE_TYPE_REFERENCE = LINK_REFERENCE___DELETE_TYPE_REFERENCE;
+
+	/**
+	 * The operation id for the '<em>Delete Type And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK_REFERENCE___DELETE_TYPE_AND_REFERENCE = LINK_REFERENCE___DELETE_TYPE_AND_REFERENCE;
+
+	/**
+	 * The operation id for the '<em>Delete Instance Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK_REFERENCE___DELETE_INSTANCE_REFERENCE = LINK_REFERENCE___DELETE_INSTANCE_REFERENCE;
+
+	/**
+	 * The operation id for the '<em>Delete Instance And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK_REFERENCE___DELETE_INSTANCE_AND_REFERENCE = LINK_REFERENCE___DELETE_INSTANCE_AND_REFERENCE;
 
 	/**
 	 * The operation id for the '<em>Get Object</em>' operation.
@@ -2522,6 +2702,66 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getLink__GetSupertype();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.Link#createTypeReference(edu.toronto.cs.se.mmtf.mid.relationship.LinkReference, boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel) <em>Create Type Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Type Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.Link#createTypeReference(edu.toronto.cs.se.mmtf.mid.relationship.LinkReference, boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel)
+	 * @generated
+	 */
+	EOperation getLink__CreateTypeReference__LinkReference_boolean_ModelRel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.Link#createSubtypeAndReference(edu.toronto.cs.se.mmtf.mid.relationship.LinkReference, java.lang.String, boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel) <em>Create Subtype And Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Subtype And Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.Link#createSubtypeAndReference(edu.toronto.cs.se.mmtf.mid.relationship.LinkReference, java.lang.String, boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel)
+	 * @generated
+	 */
+	EOperation getLink__CreateSubtypeAndReference__LinkReference_String_boolean_ModelRel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.Link#deleteType() <em>Delete Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Type</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.Link#deleteType()
+	 * @generated
+	 */
+	EOperation getLink__DeleteType();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.Link#createInstanceReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelRel) <em>Create Instance Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.Link#createInstanceReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelRel)
+	 * @generated
+	 */
+	EOperation getLink__CreateInstanceReference__ModelRel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.Link#createInstanceAndReference(boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel) <em>Create Instance And Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance And Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.Link#createInstanceAndReference(boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel)
+	 * @generated
+	 */
+	EOperation getLink__CreateInstanceAndReference__boolean_ModelRel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.Link#deleteInstance() <em>Delete Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.Link#deleteInstance()
+	 * @generated
+	 */
+	EOperation getLink__DeleteInstance();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink <em>Binary Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2530,6 +2770,26 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getBinaryLink();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink#createTypeReference(edu.toronto.cs.se.mmtf.mid.relationship.LinkReference, boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel) <em>Create Type Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Type Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink#createTypeReference(edu.toronto.cs.se.mmtf.mid.relationship.LinkReference, boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelRel)
+	 * @generated
+	 */
+	EOperation getBinaryLink__CreateTypeReference__LinkReference_boolean_ModelRel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink#createInstanceReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelRel) <em>Create Instance Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink#createInstanceReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelRel)
+	 * @generated
+	 */
+	EOperation getBinaryLink__CreateInstanceReference__ModelRel();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint <em>Model Element Endpoint</em>}'.
@@ -2728,6 +2988,46 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getLinkReference__GetSupertypeRef();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.LinkReference#deleteTypeReference() <em>Delete Type Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Type Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.LinkReference#deleteTypeReference()
+	 * @generated
+	 */
+	EOperation getLinkReference__DeleteTypeReference();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.LinkReference#deleteTypeAndReference() <em>Delete Type And Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Type And Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.LinkReference#deleteTypeAndReference()
+	 * @generated
+	 */
+	EOperation getLinkReference__DeleteTypeAndReference();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.LinkReference#deleteInstanceReference() <em>Delete Instance Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Instance Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.LinkReference#deleteInstanceReference()
+	 * @generated
+	 */
+	EOperation getLinkReference__DeleteInstanceReference();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.LinkReference#deleteInstanceAndReference() <em>Delete Instance And Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Instance And Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.LinkReference#deleteInstanceAndReference()
+	 * @generated
+	 */
+	EOperation getLinkReference__DeleteInstanceAndReference();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference <em>Binary Link Reference</em>}'.
@@ -3134,6 +3434,54 @@ public interface RelationshipPackage extends EPackage {
 		EOperation LINK___GET_SUPERTYPE = eINSTANCE.getLink__GetSupertype();
 
 		/**
+		 * The meta object literal for the '<em><b>Create Type Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LINK___CREATE_TYPE_REFERENCE__LINKREFERENCE_BOOLEAN_MODELREL = eINSTANCE.getLink__CreateTypeReference__LinkReference_boolean_ModelRel();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Subtype And Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LINK___CREATE_SUBTYPE_AND_REFERENCE__LINKREFERENCE_STRING_BOOLEAN_MODELREL = eINSTANCE.getLink__CreateSubtypeAndReference__LinkReference_String_boolean_ModelRel();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LINK___DELETE_TYPE = eINSTANCE.getLink__DeleteType();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Instance Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LINK___CREATE_INSTANCE_REFERENCE__MODELREL = eINSTANCE.getLink__CreateInstanceReference__ModelRel();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Instance And Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LINK___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL = eINSTANCE.getLink__CreateInstanceAndReference__boolean_ModelRel();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LINK___DELETE_INSTANCE = eINSTANCE.getLink__DeleteInstance();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.BinaryLinkImpl <em>Binary Link</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3142,6 +3490,22 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EClass BINARY_LINK = eINSTANCE.getBinaryLink();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Type Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation BINARY_LINK___CREATE_TYPE_REFERENCE__LINKREFERENCE_BOOLEAN_MODELREL = eINSTANCE.getBinaryLink__CreateTypeReference__LinkReference_boolean_ModelRel();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Instance Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation BINARY_LINK___CREATE_INSTANCE_REFERENCE__MODELREL = eINSTANCE.getBinaryLink__CreateInstanceReference__ModelRel();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelElementEndpointImpl <em>Model Element Endpoint</em>}' class.
@@ -3302,6 +3666,38 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation LINK_REFERENCE___GET_SUPERTYPE_REF = eINSTANCE.getLinkReference__GetSupertypeRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Type Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LINK_REFERENCE___DELETE_TYPE_REFERENCE = eINSTANCE.getLinkReference__DeleteTypeReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Type And Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LINK_REFERENCE___DELETE_TYPE_AND_REFERENCE = eINSTANCE.getLinkReference__DeleteTypeAndReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Instance Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LINK_REFERENCE___DELETE_INSTANCE_REFERENCE = eINSTANCE.getLinkReference__DeleteInstanceReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Instance And Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LINK_REFERENCE___DELETE_INSTANCE_AND_REFERENCE = eINSTANCE.getLinkReference__DeleteInstanceAndReference();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.BinaryLinkReferenceImpl <em>Binary Link Reference</em>}' class.

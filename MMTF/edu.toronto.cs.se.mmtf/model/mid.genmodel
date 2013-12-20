@@ -139,12 +139,12 @@
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/isBinarySrc"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/containerModelRel"/>
       </genOperations>
-      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteInstanceAndReference">
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteInstanceAndReference/isFullDelete"/>
-      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceInstanceAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceInstanceAndReference/oldModelEndpoint"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceInstanceAndReference/targetModel"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteInstanceAndReference">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteInstanceAndReference/isFullDelete"/>
       </genOperations>
     </genClasses>
     <nestedGenPackages prefix="Relationship" basePackage="edu.toronto.cs.se.mmtf.mid"
@@ -224,8 +224,37 @@
             ecoreFeature="ecore:EReference mid.ecore#//relationship/Link/modelElemEndpointRefs"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/Link/getMetatype"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/Link/getSupertype"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Link/createTypeReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/Link/createTypeReference/linkTypeRef"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/Link/createTypeReference/isModifiable"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/Link/createTypeReference/containerModelRelType"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Link/createSubtypeAndReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/Link/createSubtypeAndReference/linkTypeRef"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/Link/createSubtypeAndReference/newLinkTypeName"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/Link/createSubtypeAndReference/isBinary"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/Link/createSubtypeAndReference/containerModelRelType"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Link/deleteType"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Link/createInstanceReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/Link/createInstanceReference/containerModelRel"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Link/createInstanceAndReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/Link/createInstanceAndReference/isBinary"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/Link/createInstanceAndReference/containerModelRel"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Link/deleteInstance"/>
       </genClasses>
-      <genClasses ecoreClass="mid.ecore#//relationship/BinaryLink"/>
+      <genClasses ecoreClass="mid.ecore#//relationship/BinaryLink">
+        <genOperations ecoreOperation="mid.ecore#//relationship/BinaryLink/createTypeReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryLink/createTypeReference/linkTypeRef"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryLink/createTypeReference/isModifiable"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryLink/createTypeReference/containerModelRelType"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/BinaryLink/createInstanceReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryLink/createInstanceReference/containerModelRel"/>
+        </genOperations>
+      </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/ModelElementEndpoint">
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/getSupertype"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/getTarget"/>
@@ -235,6 +264,10 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/LinkReference/modelElemEndpointRefs"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/LinkReference/getObject"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/LinkReference/getSupertypeRef"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/LinkReference/deleteTypeReference"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/LinkReference/deleteTypeAndReference"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/LinkReference/deleteInstanceReference"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/LinkReference/deleteInstanceAndReference"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/BinaryLinkReference">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

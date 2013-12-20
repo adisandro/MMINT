@@ -401,12 +401,12 @@
       <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
     </eOperations>
-    <eOperations name="deleteInstanceAndReference" eExceptions="#//MMTFException">
-      <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    </eOperations>
     <eOperations name="replaceInstanceAndReference" eExceptions="#//MMTFException">
       <eParameters name="oldModelEndpoint" lowerBound="1" eType="#//ModelEndpoint"/>
       <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
+    </eOperations>
+    <eOperations name="deleteInstanceAndReference" eExceptions="#//MMTFException">
+      <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="MMTFException" instanceClassName="edu.toronto.cs.se.mmtf.MMTFException">
@@ -680,6 +680,30 @@
           <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Link) supertype;"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="createTypeReference" lowerBound="1" eType="#//relationship/LinkReference"
+          eExceptions="#//MMTFException">
+        <eParameters name="linkTypeRef" eType="#//relationship/LinkReference"/>
+        <eParameters name="isModifiable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eParameters name="containerModelRelType" lowerBound="1" eType="#//relationship/ModelRel"/>
+      </eOperations>
+      <eOperations name="createSubtypeAndReference" lowerBound="1" eType="#//relationship/LinkReference"
+          eExceptions="#//MMTFException">
+        <eParameters name="linkTypeRef" eType="#//relationship/LinkReference"/>
+        <eParameters name="newLinkTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eParameters name="containerModelRelType" lowerBound="1" eType="#//relationship/ModelRel"/>
+      </eOperations>
+      <eOperations name="deleteType" eExceptions="#//MMTFException"/>
+      <eOperations name="createInstanceReference" lowerBound="1" eType="#//relationship/LinkReference"
+          eExceptions="#//MMTFException">
+        <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
+      </eOperations>
+      <eOperations name="createInstanceAndReference" lowerBound="1" eType="#//relationship/LinkReference"
+          eExceptions="#//MMTFException">
+        <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
+      </eOperations>
+      <eOperations name="deleteInstance" eExceptions="#//MMTFException"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElemEndpoints" upperBound="-1"
           eType="#//relationship/ModelElementEndpoint" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -703,6 +727,16 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="isBinaryLink" value="modelElemEndpoints->size() = 2"/>
       </eAnnotations>
+      <eOperations name="createTypeReference" lowerBound="1" eType="#//relationship/LinkReference"
+          eExceptions="#//MMTFException">
+        <eParameters name="linkTypeRef" eType="#//relationship/LinkReference"/>
+        <eParameters name="isModifiable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eParameters name="containerModelRelType" lowerBound="1" eType="#//relationship/ModelRel"/>
+      </eOperations>
+      <eOperations name="createInstanceReference" lowerBound="1" eType="#//relationship/LinkReference"
+          eExceptions="#//MMTFException">
+        <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelElementEndpoint" eSuperTypes="#//ExtendibleElementEndpoint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -749,6 +783,10 @@
           <details key="body" value="ExtendibleElementReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (LinkReference) supertypeRef;"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="deleteTypeReference" eExceptions="#//MMTFException"/>
+      <eOperations name="deleteTypeAndReference" eExceptions="#//MMTFException"/>
+      <eOperations name="deleteInstanceReference" eExceptions="#//MMTFException"/>
+      <eOperations name="deleteInstanceAndReference" eExceptions="#//MMTFException"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElemEndpointRefs"
           upperBound="-1" eType="#//relationship/ModelElementEndpointReference" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

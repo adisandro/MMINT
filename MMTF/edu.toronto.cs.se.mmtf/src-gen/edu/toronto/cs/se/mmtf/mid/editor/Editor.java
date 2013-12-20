@@ -244,13 +244,7 @@ public interface Editor extends ExtendibleElement {
 	 * @throws MMTFException
 	 *             If this is an editor instance, or if the editor creation
 	 *             wizard could not be invoked. <!-- end-user-doc -->
-	 * @model 
-	 *        dataType="edu.toronto.cs.se.mmtf.mid.editor.EditorCreationWizardDialog"
-	 *        required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        initialSelectionDataType
-	 *        ="edu.toronto.cs.se.mmtf.mid.editor.IStructuredSelection"
-	 *        initialSelectionRequired="true"
+	 * @model dataType="edu.toronto.cs.se.mmtf.mid.editor.EditorCreationWizardDialog" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" initialSelectionDataType="edu.toronto.cs.se.mmtf.mid.editor.IStructuredSelection" initialSelectionRequired="true"
 	 * @generated
 	 */
 	EditorCreationWizardDialog invokeInstanceWizard(IStructuredSelection initialSelection) throws MMTFException;

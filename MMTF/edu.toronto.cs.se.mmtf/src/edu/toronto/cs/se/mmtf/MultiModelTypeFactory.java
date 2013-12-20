@@ -310,7 +310,7 @@ public class MultiModelTypeFactory {
 	 *            The model relationship type that will contain the new link
 	 *            type.
 	 */
-	protected static void addLinkType(Link newLinkType, Link linkType, ModelRel modelRelType) {
+	public static void addLinkType(Link newLinkType, Link linkType, ModelRel modelRelType) {
 
 		// keep track of inherited model elements, but not root ones
 		if (linkType != null && !linkType.getUri().equals(MMTF.ROOT_LINK_URI)) {
@@ -679,83 +679,6 @@ public class MultiModelTypeFactory {
 	}
 
 	/**
-	 * Removes a link type from the multimodel that contains it.
-	 * 
-	 * @param linkType
-	 *            The link type to be removed.
-	 */
-	private static void removeLinkType(Link linkType) {
-
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(linkType);
-		removeType(linkType.getUri(), multiModel);
-		for (ModelElementEndpoint modelElemTypeEndpoint : linkType.getModelElemEndpoints()) {
-			removeModelElementTypeEndpoint(modelElemTypeEndpoint, false);
-		}
-		ModelRel modelRelType = (ModelRel) linkType.eContainer();
-		modelRelType.getLinks().remove(linkType);
-	}
-
-	/**
-	 * Removes a reference to a link type from the multimodel that contains it.
-	 * 
-	 * @param linkTypeRef
-	 *            The reference to be removed to the link type.
-	 */
-	private static void removeLinkTypeReference(LinkReference linkTypeRef) {
-
-		ModelRel modelRelType = (ModelRel) linkTypeRef.eContainer();
-		modelRelType.getLinkRefs().remove(linkTypeRef);
-		for (ModelElementEndpointReference modelElemTypeEndpointRef : linkTypeRef.getModelElemEndpointRefs()) {
-			modelElemTypeEndpointRef.setModelElemRef(null);
-		}
-	}
-
-	/**
-	 * Removes a link type and all references to it from the multimodel that
-	 * contains them.
-	 * 
-	 * @param linkTypeRef
-	 *            The "first" reference to the link type to be removed
-	 *            (contained in the same model relationship as the link type).
-	 * @param modelRelType
-	 *            The model relationship that contains the link type.
-	 */
-	//TODO dire che modelRelType serve solo a differenziare la funzione
-	private static void removeLinkTypeAndLinkTypeReference(LinkReference linkTypeRef, ModelRel modelRelType) {
-
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(linkTypeRef);
-		removeLinkType(linkTypeRef.getObject());
-		removeLinkTypeReference(linkTypeRef);
-		// delete references of the "thing" in subtypes of the container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
-			LinkReference linkSubtypeRef = MultiModelTypeHierarchy.getReference(linkTypeRef, modelRelSubtype.getLinkRefs());
-			removeLinkTypeReference(linkSubtypeRef);
-		}
-	}
-
-	/**
-	 * Removes a link type, its subtypes and all references to them from the
-	 * multimodel that contains them.
-	 * 
-	 * @param linkTypeRef
-	 *            The "first" reference to the link type to be removed
-	 *            (contained in the same model relationship as the link type).
-	 */
-	public static void removeLinkTypeAndLinkTypeReference(LinkReference linkTypeRef) {
-
-		ModelRel modelRelType = (ModelRel) linkTypeRef.eContainer();
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
-		// delete the "thing" and the corresponding reference
-		removeLinkTypeAndLinkTypeReference(linkTypeRef, modelRelType);
-		// delete the subtypes of the "thing"
-		for (Link linkSubtype : MultiModelTypeHierarchy.getSubtypes(linkTypeRef.getObject(), multiModel)) {
-			ModelRel modelRelTypeOrSubtype = (ModelRel) linkSubtype.eContainer();
-			LinkReference linkSubtypeRef = MultiModelTypeHierarchy.getReference(linkSubtype.getUri(), modelRelTypeOrSubtype.getLinkRefs());
-			removeLinkTypeAndLinkTypeReference(linkSubtypeRef, modelRelTypeOrSubtype);
-		}
-	}
-
-	/**
 	 * Removes a reference to a model element type from the multimodel that
 	 * contains them.
 	 * 
@@ -801,7 +724,12 @@ public class MultiModelTypeFactory {
 			}
 		}
 		for (BinaryLinkReference linkTypeRef : delLinkTypeRefs) {
-			removeLinkTypeAndLinkTypeReference(linkTypeRef);
+			try {
+				linkTypeRef.deleteTypeAndReference();
+			}
+			catch (MMTFException e) {
+				//TODO MMTF[OO] remove
+			}
 		}
 		for (ModelElementEndpointReference modelElemTypeEndpointRef : delModelElemTypeEndpointRefs) {
 			removeModelElementTypeEndpointAndModelElementTypeEndpointReference(modelElemTypeEndpointRef, true);
@@ -853,7 +781,7 @@ public class MultiModelTypeFactory {
 	 *            True if the model element type endpoint is going to be fully
 	 *            removed, false if it is going to be replaced later.
 	 */
-	private static void removeModelElementTypeEndpoint(ModelElementEndpoint modelElemTypeEndpoint, boolean isFullRemove) {
+	public static void removeModelElementTypeEndpoint(ModelElementEndpoint modelElemTypeEndpoint, boolean isFullRemove) {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelElemTypeEndpoint);
 		removeType(modelElemTypeEndpoint.getUri(), multiModel);
