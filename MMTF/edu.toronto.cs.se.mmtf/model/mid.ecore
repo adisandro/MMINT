@@ -801,6 +801,9 @@
         <eParameters name="targetModelElemTypeRef" lowerBound="1" eType="#//relationship/ModelElementReference"/>
         <eParameters name="containerLinkTypeRef" lowerBound="1" eType="#//relationship/LinkReference"/>
       </eOperations>
+      <eOperations name="deleteType" eExceptions="#//MMTFException">
+        <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      </eOperations>
       <eOperations name="createInstanceReference" lowerBound="1" eType="#//relationship/ModelElementEndpointReference"
           eExceptions="#//MMTFException">
         <eParameters name="targetModelElemRef" lowerBound="1" eType="#//relationship/ModelElementReference"/>
@@ -910,6 +913,9 @@
           <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model element supertype endpoint reference of this model element type endpoint reference."/>
           <details key="body" value="ExtendibleElementEndpointReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (ModelElementEndpointReference) supertypeRef;"/>
         </eAnnotations>
+      </eOperations>
+      <eOperations name="deleteTypeReference" eExceptions="#//MMTFException">
+        <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       </eOperations>
       <eOperations name="deleteTypeAndReference" eExceptions="#//MMTFException">
         <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>

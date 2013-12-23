@@ -150,6 +150,14 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___DELETE_TYPE__BOOLEAN:
+				try {
+					deleteType((Boolean)arguments.get(0));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE:
 				try {
 					return createInstanceReference((ModelElementReference)arguments.get(0), (Boolean)arguments.get(1), (LinkReference)arguments.get(2));
@@ -276,6 +284,22 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 			ModelElementEndpointReference oldModelElemSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(oldModelElemTypeEndpointRef, linkSubtypeRef.getModelElemEndpointRefs());
 			oldModelElemTypeEndpointRef.setModelElemRef(newModelElemSubtypeRef);
 			oldModelElemSubtypeEndpointRef.setSupertypeRef(modelElemSubtypeEndpointRef);
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteType(boolean isFullDelete) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		super.deleteType(multiModel);
+		if (isFullDelete) {
+			((Link) eContainer()).getModelElemEndpoints().remove(this);
 		}
 	}
 

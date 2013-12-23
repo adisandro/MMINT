@@ -359,7 +359,7 @@ public class LinkImpl extends ExtendibleElementImpl implements Link {
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
 		super.deleteType(multiModel);
 		for (ModelElementEndpoint modelElemTypeEndpoint : getModelElemEndpoints()) {
-			MultiModelTypeFactory.removeModelElementTypeEndpoint(modelElemTypeEndpoint, false);
+			modelElemTypeEndpoint.deleteType(false);
 		}
 		ModelRel modelRelType = (ModelRel) eContainer();
 		modelRelType.getLinks().remove(this);

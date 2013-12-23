@@ -11,16 +11,11 @@
  */
 package edu.toronto.cs.se.mmtf.mid.library;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
@@ -30,7 +25,6 @@ import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
@@ -53,106 +47,6 @@ public class MultiModelInstanceFactory {
 	public final static String EMPTY_NAME = "";
 	/** The empty file extension for a model. */
 	public final static String EMPTY_MODEL_FILE_EXTENSION = "";
-
-	/**
-	 * Adds an instance to an Instance MID.
-	 * 
-	 * @param newInstance
-	 *            The new instance to be added.
-	 * @param type
-	 *            The type of the new instance.
-	 * @param newInstanceUri
-	 *            The uri of the new instance.
-	 * @param newInstanceName
-	 *            The name of the new instance.
-	 * @param multiModel
-	 *            An Instance MID.
-	 * @throws MMTFException
-	 *             If the uri of the new instance is already registered in the
-	 *             Instance MID.
-	 */
-	public static void addInstance(ExtendibleElement newInstance, ExtendibleElement type, String newInstanceUri, String newInstanceName, MultiModel multiModel) throws MMTFException {
-
-		if (multiModel.getExtendibleTable().containsKey(newInstanceUri)) {
-			throw new MMTFException("Instance with uri " + newInstanceUri + " is already registered");
-		}
-		multiModel.getExtendibleTable().put(newInstanceUri, newInstance);
-
-		addBasicInstance(newInstance, type, newInstanceUri, newInstanceName);
-	}
-
-	/**
-	 * Adds an instance to an Instance MID without registering its uri.
-	 * 
-	 * @param newInstance
-	 *            The new instance to be added.
-	 * @param type
-	 *            The type of the new instance.
-	 * @param newInstanceUri
-	 *            The uri of the new instance.
-	 * @param newInstanceName
-	 *            The name of the new instance.
-	 */
-	public static void addBasicInstance(ExtendibleElement newInstance, ExtendibleElement type, String newInstanceUri, String newInstanceName) {
-
-		if (newInstanceUri == null) {
-			newInstanceUri = EMPTY_URI;
-		}
-		newInstance.setUri(newInstanceUri);
-		if (newInstanceName == null) {
-			newInstanceName = EMPTY_NAME;
-		}
-		newInstance.setName(newInstanceName);
-		newInstance.setLevel(MidLevel.INSTANCES);
-		newInstance.setDynamic(true);
-		newInstance.setSupertype(null);
-		//TODO MMTF[OO] this might be a corner case, is it still used?
-		if (type == null) { // use type introspection
-			List<ExtendibleElement> elementTypes = MultiModelTypeIntrospection.getRuntimeTypes(newInstance);
-			type = elementTypes.get(elementTypes.size()-1);
-			//TODO MMTF: ask the user?
-		}
-		newInstance.setMetatypeUri(type.getUri());
-	}
-
-	/**
-	 * Adds the target to a new instance endpoint.
-	 * 
-	 * @param newInstanceEndpoint
-	 *            The new instance endpoint.
-	 * @param newInstance
-	 *            The new instance that is the target of the new instance
-	 *            endpoint.
-	 */
-	public static void addInstanceEndpoint(ExtendibleElementEndpoint newInstanceEndpoint, ExtendibleElement newInstance) {
-
-		newInstanceEndpoint.setTarget(newInstance);
-		newInstanceEndpoint.setLowerBound(1);
-		newInstanceEndpoint.setUpperBound(1);
-	}
-
-	/**
-	 * Adds additional info for a reference to an instance.
-	 * 
-	 * @param newInstanceRef
-	 *            The new reference being added.
-	 * @param newInstance
-	 *            The new instance for which the reference was created.
-	 * @param isContainer
-	 *            True if the new reference is also the actual container of the
-	 *            new instance and not just a pointer to it, false otherwise.
-	 */
-	public static void addInstanceReference(ExtendibleElementReference newInstanceRef, ExtendibleElement newInstance, boolean isContainer) {
-
-		if (isContainer) {
-			newInstanceRef.setContainedObject(newInstance);
-		}
-		else {
-			newInstanceRef.setReferencedObject(newInstance);
-		}
-		newInstanceRef.setModifiable(true);
-		newInstanceRef.setSupertypeRef(null);
-	}
 
 	/**
 	 * Creates and adds a model element and a reference to it to an Instance
@@ -277,62 +171,6 @@ public class MultiModelInstanceFactory {
 			model.getEditors().add(editor);
 			multiModel.getEditors().add(editor);
 		}
-	}
-
-	/**
-	 * Removes an instance from an Instance MID.
-	 * 
-	 * @param instanceUri
-	 *            The uri of the instance to be removed.
-	 * @param multiModel
-	 *            The Instance MID that contains the instance.
-	 * @return The removed instance, null if the uri was not registered in the
-	 *         Instance MID.
-	 */
-	public static ExtendibleElement removeInstance(String instanceUri, MultiModel multiModel) {
-
-		return multiModel.getExtendibleTable().removeKey(instanceUri);
-	}
-
-	/**
-	 * Removes a model element endpoint and the reference to it from the
-	 * Instance MID that contains them.
-	 * 
-	 * @param modelElemEndpointRef
-	 *            The reference to be removed to the model element endpoint to
-	 *            be removed.
-	 * @param isFullRemove
-	 *            True if the model element endpoint is going to be fully
-	 *            removed, false if it is going to be replaced later.
-	 */
-	public static void removeModelElementEndpointAndModelElementEndpointReference(ModelElementEndpointReference modelElemEndpointRef, boolean isFullRemove) {
-
-		LinkReference linkRef = (LinkReference) modelElemEndpointRef.eContainer();
-		Link link = linkRef.getObject();
-		if (isFullRemove) {
-			link.getModelElemEndpoints().remove(modelElemEndpointRef.getObject());
-			linkRef.getModelElemEndpointRefs().remove(modelElemEndpointRef);
-			link.getModelElemEndpointRefs().remove(modelElemEndpointRef);
-			modelElemEndpointRef.setModelElemRef(null);
-		}
-	}
-
-	/**
-	 * Removes a model element and the reference to it from the Instance MID
-	 * that contains them.
-	 * 
-	 * @param modelElemRef
-	 *            The reference to be removed to the model element to be
-	 *            removed.
-	 */
-	public static void removeModelElementAndModelElementReference(ModelElementReference modelElemRef) throws MMTFException {
-
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelElemRef);
-		removeInstance(modelElemRef.getUri(), multiModel);
-		modelElemRef.deleteInstanceReference();
-		ModelElement modelElem = modelElemRef.getObject();
-		((Model) modelElem.eContainer()).getModelElems().remove(modelElem);
-		//TODO MMTF: should remove from all model rels too?
 	}
 
 }

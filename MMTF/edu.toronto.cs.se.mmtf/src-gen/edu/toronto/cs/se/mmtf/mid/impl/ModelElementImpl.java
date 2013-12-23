@@ -21,7 +21,6 @@ import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
@@ -358,7 +357,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		ModelElement newModelElem = MultiModelRegistry.getExtendibleElement(newModelElemUri, multiModel);
 		if (newModelElem == null) {
 			newModelElem = MidFactory.eINSTANCE.createModelElement();
-			MultiModelInstanceFactory.addInstance(newModelElem, this, newModelElemUri, newModelElemName, multiModel);
+			super.addInstance(newModelElem, newModelElemUri, newModelElemName, multiModel);
 			newModelElem.setClassLiteral(classLiteral);
 			containerModelEndpointRef.getObject().getTarget().getModelElems().add(newModelElem);
 		}

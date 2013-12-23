@@ -295,6 +295,9 @@
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/replaceSubtypeAndReference/targetModelElemTypeRef"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/replaceSubtypeAndReference/containerLinkTypeRef"/>
         </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/deleteType">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/deleteType/isFullDelete"/>
+        </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/createInstanceReference">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createInstanceReference/targetModelElemRef"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createInstanceReference/isBinarySrc"/>
@@ -331,6 +334,9 @@
             ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelElementEndpointReference/modelElemRef"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpointReference/getObject"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpointReference/getSupertypeRef"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpointReference/deleteTypeReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpointReference/deleteTypeReference/isFullDelete"/>
+        </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpointReference/deleteTypeAndReference">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpointReference/deleteTypeAndReference/isFullDelete"/>
         </genOperations>

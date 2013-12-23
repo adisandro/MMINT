@@ -90,17 +90,51 @@ public interface ModelElementEndpointReference extends ExtendibleElementEndpoint
 	ModelElementEndpointReference getSupertypeRef();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
+	 * <!-- begin-user-doc --> Deletes this reference to a model element type
+	 * endpoint from the Type MID.
+	 * 
+	 * @param isFullDelete
+	 *            True if the reference to the model element type endpoint is
+	 *            going to be fully removed, false if it is going to be replaced
+	 *            later.
+	 * @throws MMTFException
+	 *             If this is a reference to a model element instance endpoint.
+	 *             <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        isFullDeleteRequired="true"
+	 * @generated
+	 */
+	void deleteTypeReference(boolean isFullDelete) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc --> Deletes this referenced model element type
+	 * endpoint and all references to it from the Type MID.
+	 * 
+	 * @param isFullDelete
+	 *            True if the model element type endpoint is going to be fully
+	 *            removed, false if it is going to be replaced later.
+	 * @throws MMTFException
+	 *             If this is a reference to a model element instance endpoint.
+	 *             <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        isFullDeleteRequired="true"
 	 * @generated
 	 */
 	void deleteTypeAndReference(boolean isFullDelete) throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
+	 * <!-- begin-user-doc --> Deletes this referenced model element instance
+	 * endpoint and the reference to it from the Instance MID that contains
+	 * them.
+	 * 
+	 * @param isFullDelete
+	 *            True if the model element endpoint is going to be fully
+	 *            removed, false if it is going to be replaced later.
+	 * @throws MMTFException
+	 *             If this is a reference to a model element type endpoint.
+	 *             <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        isFullDeleteRequired="true"
 	 * @generated
 	 */
 	void deleteInstanceAndReference(boolean isFullDelete) throws MMTFException;

@@ -39,7 +39,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
@@ -60,6 +59,25 @@ public class ChangePropagation extends OperatorExecutableImpl {
 	private final static String PROPTRACE_MODELREL_NAME = "propTrace";
 	private final static String PROPTRACE_RULE4_LINK_NAME = "rule4Trace";
 	private final static String NAME_FEATURE = "name";
+
+	/**
+	 * Removes a model element and the reference to it from the Instance MID
+	 * that contains them.
+	 * 
+	 * @param modelElemRef
+	 *            The reference to be removed to the model element to be
+	 *            removed.
+	 */
+	private void removeModelElementAndModelElementReference(ModelElementReference modelElemRef) throws MMTFException {
+
+		//TODO MMTF[OO] does this have a meaning somewhere?
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelElemRef);
+		multiModel.getExtendibleTable().removeKey(modelElemRef.getUri());
+		modelElemRef.deleteInstanceReference();
+		ModelElement modelElem = modelElemRef.getObject();
+		((Model) modelElem.eContainer()).getModelElems().remove(modelElem);
+		//TODO MMTF should remove from all model rels too?
+	}
 
 	private String getModelEObjectUri(String modelElemUri) {
 
@@ -391,7 +409,7 @@ traceLinks:
 		 EcoreUtil.delete(varModelObj);
 		//TODO MMTF: should we try to preserve references to it, maybe using EcoreUtil.CrossReferencer?
 		// remove unified links and model elements
-		MultiModelInstanceFactory.removeModelElementAndModelElementReference(varModelElemRef);
+		removeModelElementAndModelElementReference(varModelElemRef);
 		// update uris due to model element unification
 		unifyModelElementUris(varModelElemRef, modelElemRef);
 	}

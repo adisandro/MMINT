@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -18,10 +18,9 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
-import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 
@@ -48,28 +47,34 @@ public class LinkReferenceRemoveModelElementEndpointReferenceCommand extends Des
 			);
 	}
 
-	protected void doExecuteInstancesLevel() {
+	protected void doExecuteInstancesLevel() throws MMTFException {
 
-		MultiModelInstanceFactory.removeModelElementEndpointAndModelElementEndpointReference((ModelElementEndpointReference) getElementToDestroy(), true);
+		((ModelElementEndpointReference) getElementToDestroy()).deleteInstanceAndReference(true);
 	}
 
-	protected void doExecuteTypesLevel() {
+	protected void doExecuteTypesLevel() throws MMTFException {
 
-		MultiModelTypeFactory.removeModelElementTypeEndpointAndModelElementTypeEndpointReference((ModelElementEndpointReference) getElementToDestroy(), true);
+		((ModelElementEndpointReference) getElementToDestroy()).deleteTypeAndReference(true);
 		// no need to init type hierarchy, no need for undo/redo
 	}
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel((LinkReference) getElementToEdit())) {
-			doExecuteInstancesLevel();
-		}
-		else {
-			doExecuteTypesLevel();
-		}
+		try {
+			if (MultiModelConstraintChecker.isInstancesLevel((LinkReference) getElementToEdit())) {
+				doExecuteInstancesLevel();
+			}
+			else {
+				doExecuteTypesLevel();
+			}
 
-		return super.doExecuteWithResult(monitor, info);
+			return super.doExecuteWithResult(monitor, info);
+		}
+		catch (MMTFException e) {
+			MMTFException.print(MMTFException.Type.WARNING, "No model element endpoint deleted", e);
+			return CommandResult.newErrorCommandResult("No model element endpoint deleted");
+		}
 	}
 
 }

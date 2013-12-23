@@ -12,13 +12,11 @@
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
@@ -284,7 +282,7 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 			linkTypeRef.deleteTypeAndReference();
 		}
 		for (ModelElementEndpointReference modelElemTypeEndpointRef : delModelElemTypeEndpointRefs) {
-			MultiModelTypeFactory.removeModelElementTypeEndpointAndModelElementTypeEndpointReference(modelElemTypeEndpointRef, true);
+			modelElemTypeEndpointRef.deleteTypeAndReference(true);
 		}
 		deleteTypeReference(this, modelTypeEndpointRef);
 		// delete references of the "thing" in subtypes of the container
@@ -337,7 +335,7 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 			linkRef.deleteInstanceAndReference();
 		}
 		for (ModelElementEndpointReference modelElemEndpointRef : delModelElemEndpointRefs) {
-			MultiModelInstanceFactory.removeModelElementEndpointAndModelElementEndpointReference(modelElemEndpointRef, true);
+			modelElemEndpointRef.deleteInstanceAndReference(true);
 		}
 
 		((ModelEndpointReference) eContainer()).getModelElemRefs().remove(this);

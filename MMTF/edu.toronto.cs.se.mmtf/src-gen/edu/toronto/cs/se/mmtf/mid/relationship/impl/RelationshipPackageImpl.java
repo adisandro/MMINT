@@ -708,7 +708,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElementEndpoint__CreateInstanceReference__ModelElementReference_boolean_LinkReference() {
+	public EOperation getModelElementEndpoint__DeleteType__boolean() {
 		return modelElementEndpointEClass.getEOperations().get(6);
 	}
 
@@ -717,7 +717,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElementEndpoint__CreateInstanceAndReference__ModelElementReference_boolean_LinkReference() {
+	public EOperation getModelElementEndpoint__CreateInstanceReference__ModelElementReference_boolean_LinkReference() {
 		return modelElementEndpointEClass.getEOperations().get(7);
 	}
 
@@ -726,8 +726,17 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElementEndpoint__ReplaceInstanceAndReference__ModelElementEndpointReference_ModelElementReference() {
+	public EOperation getModelElementEndpoint__CreateInstanceAndReference__ModelElementReference_boolean_LinkReference() {
 		return modelElementEndpointEClass.getEOperations().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelElementEndpoint__ReplaceInstanceAndReference__ModelElementEndpointReference_ModelElementReference() {
+		return modelElementEndpointEClass.getEOperations().get(9);
 	}
 
 	/**
@@ -978,7 +987,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElementEndpointReference__DeleteTypeAndReference__boolean() {
+	public EOperation getModelElementEndpointReference__DeleteTypeReference__boolean() {
 		return modelElementEndpointReferenceEClass.getEOperations().get(2);
 	}
 
@@ -987,8 +996,17 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElementEndpointReference__DeleteInstanceAndReference__boolean() {
+	public EOperation getModelElementEndpointReference__DeleteTypeAndReference__boolean() {
 		return modelElementEndpointReferenceEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelElementEndpointReference__DeleteInstanceAndReference__boolean() {
+		return modelElementEndpointReferenceEClass.getEOperations().get(4);
 	}
 
 	/**
@@ -1091,6 +1109,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___CREATE_TYPE_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE_BOOLEAN_BOOLEAN_LINKREFERENCE);
 		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE);
 		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE_LINKREFERENCE);
+		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___DELETE_TYPE__BOOLEAN);
 		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE);
 		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE);
 		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE);
@@ -1113,6 +1132,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEReference(modelElementEndpointReferenceEClass, MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF);
 		createEOperation(modelElementEndpointReferenceEClass, MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT);
 		createEOperation(modelElementEndpointReferenceEClass, MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF);
+		createEOperation(modelElementEndpointReferenceEClass, MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN);
 		createEOperation(modelElementEndpointReferenceEClass, MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_TYPE_AND_REFERENCE__BOOLEAN);
 		createEOperation(modelElementEndpointReferenceEClass, MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN);
 	}
@@ -1338,6 +1358,10 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEParameter(op, this.getLinkReference(), "containerLinkTypeRef", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
+		op = initEOperation(getModelElementEndpoint__DeleteType__boolean(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
 		op = initEOperation(getModelElementEndpoint__CreateInstanceReference__ModelElementReference_boolean_LinkReference(), this.getModelElementEndpointReference(), "createInstanceReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelElementReference(), "targetModelElemRef", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinarySrc", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -1386,6 +1410,10 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		initEOperation(getModelElementEndpointReference__GetObject(), this.getModelElementEndpoint(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getModelElementEndpointReference__GetSupertypeRef(), this.getModelElementEndpointReference(), "getSupertypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getModelElementEndpointReference__DeleteTypeReference__boolean(), null, "deleteTypeReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
 
 		op = initEOperation(getModelElementEndpointReference__DeleteTypeAndReference__boolean(), null, "deleteTypeAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);

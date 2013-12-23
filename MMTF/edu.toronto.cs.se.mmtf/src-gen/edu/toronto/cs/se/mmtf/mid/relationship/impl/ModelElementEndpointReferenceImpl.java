@@ -12,23 +12,27 @@
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -159,28 +163,6 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void deleteTypeAndReference(boolean isFullDelete) throws MMTFException {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void deleteInstanceAndReference(boolean isFullDelete) throws MMTFException {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -294,6 +276,14 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
 				return getObject();
 			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF:
 				return getSupertypeRef();
+			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN:
+				try {
+					deleteTypeReference((Boolean)arguments.get(0));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_TYPE_AND_REFERENCE__BOOLEAN:
 				try {
 					deleteTypeAndReference((Boolean)arguments.get(0));
@@ -312,6 +302,72 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
 				}
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteTypeReference(boolean isFullDelete) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		if (isFullDelete) {
+			setModelElemRef(null);
+			((LinkReference) eContainer()).getModelElemEndpointRefs().remove(this);
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteTypeAndReference(boolean isFullDelete) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		LinkReference linkTypeRef = (LinkReference) eContainer();
+		ModelRel modelRelType = (ModelRel) linkTypeRef.eContainer();
+		// delete the "thing" and the corresponding reference
+		getObject().deleteType(isFullDelete);
+		if (isFullDelete) {
+			linkTypeRef.getObject().getModelElemEndpointRefs().remove(this);
+		}
+		deleteTypeReference(isFullDelete);
+		// delete references of the "thing" in subtypes of the container's container
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
+			LinkReference linkSubtypeRef = MultiModelTypeHierarchy.getReference(linkTypeRef, modelRelSubtype.getLinkRefs());
+			ModelElementEndpointReference modelElemSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(this, linkSubtypeRef.getModelElemEndpointRefs());
+			modelElemSubtypeEndpointRef.deleteTypeReference(isFullDelete);
+		}
+		// delete references of the "thing" in subtypes of the container
+		for (Link linkSubtype : MultiModelTypeHierarchy.getSubtypes(linkTypeRef.getObject(), multiModel)) {
+			if (isFullDelete) {
+				linkSubtype.getModelElemEndpointRefs().remove(this);
+			}
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteInstanceAndReference(boolean isFullDelete) throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		LinkReference linkRef = (LinkReference) eContainer();
+		Link link = linkRef.getObject();
+		if (isFullDelete) {
+			link.getModelElemEndpoints().remove(getObject());
+			linkRef.getModelElemEndpointRefs().remove(this);
+			link.getModelElemEndpointRefs().remove(this);
+			setModelElemRef(null);
+		}
 	}
 
 } //ModelElementEndpointReferenceImpl

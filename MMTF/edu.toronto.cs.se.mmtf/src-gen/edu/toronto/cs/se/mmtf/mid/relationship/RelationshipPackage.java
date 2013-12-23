@@ -1987,13 +1987,22 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
 
 	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT___DELETE_TYPE__BOOLEAN = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 6;
+
+	/**
 	 * The operation id for the '<em>Create Instance Reference</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 6;
+	int MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
@@ -2002,7 +2011,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 7;
+	int MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Replace Instance And Reference</em>' operation.
@@ -2011,7 +2020,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 8;
+	int MODEL_ELEMENT_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>Model Element Endpoint</em>' class.
@@ -2020,7 +2029,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 9;
+	int MODEL_ELEMENT_ENDPOINT_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 10;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.LinkReferenceImpl <em>Link Reference</em>}' class.
@@ -2440,13 +2449,22 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Delete Type Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 2;
+
+	/**
 	 * The operation id for the '<em>Delete Type And Reference</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_TYPE_AND_REFERENCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 2;
+	int MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_TYPE_AND_REFERENCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Delete Instance And Reference</em>' operation.
@@ -2455,7 +2473,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 3;
+	int MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Model Element Endpoint Reference</em>' class.
@@ -2464,7 +2482,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 4;
+	int MODEL_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 5;
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel <em>Model Rel</em>}'.
@@ -3007,6 +3025,16 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelElementEndpoint__ReplaceSubtypeAndReference__ModelElementEndpointReference_ModelElementEndpointReference_String_ModelElementReference_LinkReference();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint#deleteType(boolean) <em>Delete Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Type</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint#deleteType(boolean)
+	 * @generated
+	 */
+	EOperation getModelElementEndpoint__DeleteType__boolean();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint#createInstanceReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference, boolean, edu.toronto.cs.se.mmtf.mid.relationship.LinkReference) <em>Create Instance Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3316,6 +3344,16 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getModelElementEndpointReference__GetSupertypeRef();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference#deleteTypeReference(boolean) <em>Delete Type Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Type Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference#deleteTypeReference(boolean)
+	 * @generated
+	 */
+	EOperation getModelElementEndpointReference__DeleteTypeReference__boolean();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference#deleteTypeAndReference(boolean) <em>Delete Type And Reference</em>}' operation.
@@ -3799,6 +3837,14 @@ public interface RelationshipPackage extends EPackage {
 		EOperation MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE_LINKREFERENCE = eINSTANCE.getModelElementEndpoint__ReplaceSubtypeAndReference__ModelElementEndpointReference_ModelElementEndpointReference_String_ModelElementReference_LinkReference();
 
 		/**
+		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ELEMENT_ENDPOINT___DELETE_TYPE__BOOLEAN = eINSTANCE.getModelElementEndpoint__DeleteType__boolean();
+
+		/**
 		 * The meta object literal for the '<em><b>Create Instance Reference</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4047,6 +4093,14 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = eINSTANCE.getModelElementEndpointReference__GetSupertypeRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Type Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN = eINSTANCE.getModelElementEndpointReference__DeleteTypeReference__boolean();
 
 		/**
 		 * The meta object literal for the '<em><b>Delete Type And Reference</b></em>' operation.

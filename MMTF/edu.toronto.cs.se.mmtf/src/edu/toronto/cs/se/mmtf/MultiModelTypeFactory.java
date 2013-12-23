@@ -27,7 +27,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
@@ -434,115 +433,6 @@ public class MultiModelTypeFactory {
 	public static void createOperatorTypeConversion(ConversionOperator operatorType) {
 
 		operatorType.getInputs().get(0).getModel().getConversionOperators().add(operatorType);
-	}
-
-	/**
-	 * Removes a type from a multimodel.
-	 * 
-	 * @param typeUri
-	 *            The uri of the type to be removed.
-	 * @param multiModel
-	 *            The multimodel that contains the type.
-	 * @return The removed type, null if the uri was not registered in the
-	 *         multimodel.
-	 */
-	public static ExtendibleElement removeType(String typeUri, MultiModel multiModel) {
-
-		return multiModel.getExtendibleTable().removeKey(typeUri);
-	}
-
-	/**
-	 * Removes a model element type endpoint from the multimodel that contains
-	 * it.
-	 * 
-	 * @param modelElemTypeEndpoint
-	 *            The model element type endpoint to be removed.
-	 * @param isFullRemove
-	 *            True if the model element type endpoint is going to be fully
-	 *            removed, false if it is going to be replaced later.
-	 */
-	public static void removeModelElementTypeEndpoint(ModelElementEndpoint modelElemTypeEndpoint, boolean isFullRemove) {
-
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelElemTypeEndpoint);
-		removeType(modelElemTypeEndpoint.getUri(), multiModel);
-		if (isFullRemove) {
-			Link linkType = (Link) modelElemTypeEndpoint.eContainer();
-			linkType.getModelElemEndpoints().remove(modelElemTypeEndpoint);
-		}
-	}
-
-	/**
-	 * Removes additional info for a reference to a model element type endpoint.
-	 * 
-	 * @param modelElemTypeEndpointRef
-	 *            The reference to be removed to the model element type
-	 *            endpoint.
-	 * @param isFullRemove
-	 *            True if the reference to the model element type endpoint is
-	 *            going to be fully removed, false if it is going to be replaced
-	 *            later.
-	 * @param linkType
-	 *            The link type that contains the model element type endpoint.
-	 */
-	private static void removeModelElementTypeEndpointReference(ModelElementEndpointReference modelElemTypeEndpointRef, boolean isFullRemove, Link linkType) {
-
-		if (isFullRemove) {
-			linkType.getModelElemEndpointRefs().remove(modelElemTypeEndpointRef);
-		}
-	}
-
-	/**
-	 * Removes a reference to a model element type endpoint from the multimodel
-	 * that contains it.
-	 * 
-	 * @param modelElemTypeEndpointRef
-	 *            The reference to be removed to the model element type
-	 *            endpoint.
-	 * @param isFullRemove
-	 *            True if the reference to the model element type endpoint is
-	 *            going to be fully removed, false if it is going to be replaced
-	 *            later.
-	 */
-	private static void removeModelElementTypeEndpointReference(ModelElementEndpointReference modelElemTypeEndpointRef, boolean isFullRemove) {
-
-		if (isFullRemove) {
-			modelElemTypeEndpointRef.setModelElemRef(null);
-			LinkReference linkTypeRef = (LinkReference) modelElemTypeEndpointRef.eContainer();
-			linkTypeRef.getModelElemEndpointRefs().remove(modelElemTypeEndpointRef);
-		}
-	}
-
-	/**
-	 * Removes a model element type endpoint, its subtypes and all references to
-	 * them from the multimodel that contains them.
-	 * 
-	 * @param modelElemTypeEndpointRef
-	 *            The "first" reference to the model element type endpoint to be
-	 *            removed (contained in the same model relationship as the model
-	 *            element type endpoint).
-	 * @param isFullRemove
-	 *            True if the model element type endpoint is going to be fully
-	 *            removed, false if it is going to be replaced later.
-	 */
-	public static void removeModelElementTypeEndpointAndModelElementTypeEndpointReference(ModelElementEndpointReference modelElemTypeEndpointRef, boolean isFullRemove) {
-
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelElemTypeEndpointRef);
-		LinkReference linkTypeRef = (LinkReference) modelElemTypeEndpointRef.eContainer();
-		ModelRel modelRelType = (ModelRel) linkTypeRef.eContainer();
-		// delete the "thing" and the corresponding reference
-		removeModelElementTypeEndpoint(modelElemTypeEndpointRef.getObject(), isFullRemove);
-		removeModelElementTypeEndpointReference(modelElemTypeEndpointRef, isFullRemove, linkTypeRef.getObject());
-		removeModelElementTypeEndpointReference(modelElemTypeEndpointRef, isFullRemove);
-		// delete references of the "thing" in subtypes of the container's container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
-			LinkReference linkSubtypeRef = MultiModelTypeHierarchy.getReference(linkTypeRef, modelRelSubtype.getLinkRefs());
-			ModelElementEndpointReference modelElemSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpointRef, linkSubtypeRef.getModelElemEndpointRefs());
-			removeModelElementTypeEndpointReference(modelElemSubtypeEndpointRef, isFullRemove);
-		}
-		// delete references of the "thing" in subtypes of the container
-		for (Link linkSubtype : MultiModelTypeHierarchy.getSubtypes(linkTypeRef.getObject(), multiModel)) {
-			removeModelElementTypeEndpointReference(modelElemTypeEndpointRef, isFullRemove, linkSubtype);
-		}
 	}
 
 }

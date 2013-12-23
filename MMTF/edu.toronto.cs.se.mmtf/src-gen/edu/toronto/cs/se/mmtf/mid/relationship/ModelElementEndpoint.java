@@ -94,10 +94,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 * @throws MMTFException
 	 *             If this is a model element instance endpoint.
 	 *             <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        targetModelElemTypeRefRequired="true" isModifiableRequired="true"
-	 *        isBinarySrcRequired="true" containerLinkTypeRefRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" targetModelElemTypeRefRequired="true" isModifiableRequired="true" isBinarySrcRequired="true" containerLinkTypeRefRequired="true"
 	 * @generated
 	 */
 	ModelElementEndpointReference createTypeReference(ModelElementEndpointReference modelElemTypeEndpointRef, ModelElementReference targetModelElemTypeRef, boolean isModifiable, boolean isBinarySrc, LinkReference containerLinkTypeRef) throws MMTFException;
@@ -126,11 +123,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 *             If this is a model element instance endpoint, or if the uri
 	 *             of the new model element type endpoint is already registered
 	 *             in the Type MID. <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        newModelElemTypeEndpointNameRequired="true"
-	 *        targetModelElemTypeRefRequired="true" isBinarySrcRequired="true"
-	 *        containerLinkTypeRefRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelElemTypeEndpointNameRequired="true" targetModelElemTypeRefRequired="true" isBinarySrcRequired="true" containerLinkTypeRefRequired="true"
 	 * @generated
 	 */
 	ModelElementEndpointReference createSubtypeAndReference(ModelElementEndpointReference modelElemTypeEndpointRef, String newModelElemTypeEndpointName, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc, LinkReference containerLinkTypeRef) throws MMTFException;
@@ -158,14 +151,26 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 *             If this is a model element instance endpoint, or if the uri
 	 *             of the new model element type endpoint is already registered
 	 *             in the Type MID. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        oldModelElemTypeEndpointRefRequired="true"
-	 *        newModelElemTypeEndpointNameRequired="true"
-	 *        targetModelElemTypeRefRequired="true"
-	 *        containerLinkTypeRefRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" oldModelElemTypeEndpointRefRequired="true" newModelElemTypeEndpointNameRequired="true" targetModelElemTypeRefRequired="true" containerLinkTypeRefRequired="true"
 	 * @generated
 	 */
 	void replaceSubtypeAndReference(ModelElementEndpointReference oldModelElemTypeEndpointRef, ModelElementEndpointReference modelElemTypeEndpointRef, String newModelElemTypeEndpointName, ModelElementReference targetModelElemTypeRef, LinkReference containerLinkTypeRef) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Removes a model element type endpoint from the multimodel that contains
+	 * it.
+	 * 
+	 * @param modelElemTypeEndpoint
+	 *            The model element type endpoint to be removed.
+	 * @param isFullRemove
+	 *            True if the model element type endpoint is going to be fully
+	 *            removed, false if it is going to be replaced later.
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
+	 * @generated
+	 */
+	void deleteType(boolean isFullDelete) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a reference to this model
@@ -185,10 +190,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 * @throws MMTFException
 	 *             If this is a model element type endpoint.
 	 *             <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        targetModelElemRefRequired="true" isBinarySrcRequired="true"
-	 *        containerLinkRefRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" targetModelElemRefRequired="true" isBinarySrcRequired="true" containerLinkRefRequired="true"
 	 * @generated
 	 */
 	ModelElementEndpointReference createInstanceReference(ModelElementReference targetModelElemRef, boolean isBinarySrc, LinkReference containerLinkRef) throws MMTFException;
@@ -211,10 +213,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 * @throws MMTFException
 	 *             If this is a model element instance endpoint.
 	 *             <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        targetModelElemRefRequired="true" isBinarySrcRequired="true"
-	 *        containerLinkRefRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" targetModelElemRefRequired="true" isBinarySrcRequired="true" containerLinkRefRequired="true"
 	 * @generated
 	 */
 	ModelElementEndpointReference createInstanceAndReference(ModelElementReference targetModelElemRef, boolean isBinarySrc, LinkReference containerLinkRef) throws MMTFException;
@@ -232,9 +231,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 * @throws MMTFException
 	 *             If this is a model element instance endpoint. <!--
 	 *             end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        oldModelElemEndpointRefRequired="true"
-	 *        targetModelElemRefRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" oldModelElemEndpointRefRequired="true" targetModelElemRefRequired="true"
 	 * @generated
 	 */
 	void replaceInstanceAndReference(ModelElementEndpointReference oldModelElemEndpointRef, ModelElementReference targetModelElemRef) throws MMTFException;
