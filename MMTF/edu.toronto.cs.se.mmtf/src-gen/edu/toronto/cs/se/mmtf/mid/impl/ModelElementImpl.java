@@ -27,6 +27,7 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -199,6 +200,13 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				return getMetatype();
 			case MidPackage.MODEL_ELEMENT___GET_SUPERTYPE:
 				return getSupertype();
+			case MidPackage.MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE:
+				try {
+					return createTypeReference((ModelElementReference)arguments.get(0), (Boolean)arguments.get(1), (ModelEndpointReference)arguments.get(2));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MidPackage.MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_MODELENDPOINTREFERENCE:
 				try {
 					return createSubtypeAndReference((ModelElementReference)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (ModelEndpointReference)arguments.get(3));
@@ -210,6 +218,13 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				try {
 					deleteType();
 					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MidPackage.MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE:
+				try {
+					return createInstanceReference((ModelEndpointReference)arguments.get(0));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -252,6 +267,22 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	/**
 	 * @generated NOT
 	 */
+	public ModelElementReference createTypeReference(ModelElementReference modelElemTypeRef, boolean isModifiable, ModelEndpointReference containerModelTypeEndpointRef) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		ModelElementReference newModelElemTypeRef = RelationshipFactory.eINSTANCE.createModelElementReference();
+		super.addTypeReference(newModelElemTypeRef, modelElemTypeRef, isModifiable, false);
+		containerModelTypeEndpointRef.getModelElemRefs().add(newModelElemTypeRef);
+
+		return newModelElemTypeRef;
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	public ModelElementReference createSubtypeAndReference(ModelElementReference modelElemTypeRef, String newModelElemTypeName, String classLiteral, ModelEndpointReference containerModelTypeEndpointRef) throws MMTFException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
@@ -269,16 +300,16 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 			MultiModelTypeFactory.addModelElementType(newModelElemType, classLiteral, containerModelTypeEndpointRef.getObject().getTarget());
 		}
 		// create the reference of the "thing"
-		ModelElementReference newModelElemTypeRef = MultiModelTypeFactory.createModelElementTypeReference(newModelElemType, modelElemTypeRef, true, containerModelTypeEndpointRef);
+		ModelElementReference newModelElemTypeRef = newModelElemType.createTypeReference(modelElemTypeRef, true, containerModelTypeEndpointRef);
 		// create references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
-			ModelEndpointReference modelSubtypeRef = MultiModelTypeHierarchy.getReference(containerModelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+			ModelEndpointReference containerModelSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(containerModelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
 			ModelElementReference modelElemSubtypeRef = null;
 			if (modelElemTypeRef != null) {
 				ModelEndpointReference modelSubtypeRefSuper = MultiModelTypeHierarchy.getReference((ModelEndpointReference) modelElemTypeRef.eContainer(), modelRelSubtype.getModelEndpointRefs());
 				modelElemSubtypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRef, modelSubtypeRefSuper.getModelElemRefs());
 			}
-			MultiModelTypeFactory.createModelElementTypeReference(newModelElemType, modelElemSubtypeRef, false, modelSubtypeRef);
+			newModelElemType.createTypeReference(modelElemSubtypeRef, false, containerModelSubtypeEndpointRef);
 		}
 
 		return newModelElemTypeRef;
@@ -301,6 +332,22 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	/**
 	 * @generated NOT
 	 */
+	public ModelElementReference createInstanceReference(ModelEndpointReference containerModelEndpointRef) throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		ModelElementReference newModelElemRef = RelationshipFactory.eINSTANCE.createModelElementReference();
+		super.addInstanceReference(newModelElemRef, false);
+		containerModelEndpointRef.getModelElemRefs().add(newModelElemRef);
+
+		return newModelElemRef;
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	public ModelElementReference createInstanceAndReference(String newModelElemUri, String newModelElemName, String classLiteral, ModelEndpointReference containerModelEndpointRef) throws MMTFException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
@@ -316,7 +363,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 			newModelElem.setClassLiteral(classLiteral);
 			containerModelEndpointRef.getObject().getTarget().getModelElems().add(newModelElem);
 		}
-		ModelElementReference newModelElemRef = MultiModelInstanceFactory.createModelElementReference(newModelElem, containerModelEndpointRef);
+		ModelElementReference newModelElemRef = newModelElem.createInstanceReference(containerModelEndpointRef);
 
 		return newModelElemRef;
 	}

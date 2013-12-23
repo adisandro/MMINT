@@ -49,7 +49,6 @@ import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
-import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -240,12 +239,7 @@ public class MMTF implements MMTFConstants {
 					ModelElementReference modelElemTypeRef = (newType.getSupertypeUri() == null) ?
 						null :
 						MultiModelTypeHierarchy.getReference(newType.getSupertypeUri(), newModelTypeEndpointRef.getModelElemRefs());
-					MultiModelTypeFactory.createModelElementTypeReference(
-						newModelElemType,
-						modelElemTypeRef,
-						true,
-						newModelTypeEndpointRef
-					);
+					newModelElemType.createTypeReference(modelElemTypeRef, true, newModelTypeEndpointRef);
 				}
 			}
 			// link types
@@ -568,13 +562,7 @@ public class MMTF implements MMTFConstants {
 		Model newModelType = null;
 		if (dynamicModelType instanceof ModelRel) {
 			try {
-				newModelType = ((ModelRel) modelType).createSubtype(
-					dynamicModelType.getName(),
-					(dynamicModelType.eClass() instanceof BinaryModelRel),
-					dynamicModelType.getConstraint().getLanguage().getLiteral(),
-					dynamicModelType.getConstraint().getImplementation()
-				);
-				MultiModelLightTypeFactory.copyLightModelRelType((ModelRel) dynamicModelType, (ModelRel) newModelType);
+				newModelType = ((ModelRel) modelType).copySubtype((ModelRel) dynamicModelType);
 			}
 			catch (MMTFException e) {
 				MMTFException.print(MMTFException.Type.WARNING, "Dynamic model relationship type " + dynamicModelType.getName() + " can't be recreated", e);

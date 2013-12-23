@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
@@ -85,11 +85,10 @@ public class OperatorDelCommand extends DestroyElementCommand {
 		return super.canExecute();
 	}
 
-	protected void doExecuteTypesLevel() {
+	protected void doExecuteTypesLevel() throws MMTFException {
 
-		Operator operatorType = (Operator) getElementToDestroy();
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		MultiModelTypeFactory.removeOperatorType(operatorType);
+		((Operator) getElementToDestroy()).deleteType();
 		MMTF.createTypeHierarchy(multiModel);
 	}
 
@@ -107,9 +106,15 @@ public class OperatorDelCommand extends DestroyElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		doExecuteTypesLevel();
-
-		return super.doExecuteWithResult(monitor, info);
+		try {
+			doExecuteTypesLevel();
+	
+			return super.doExecuteWithResult(monitor, info);
+		}
+		catch (MMTFException e) {
+			MMTFException.print(MMTFException.Type.WARNING, "No operator deleted", e);
+			return CommandResult.newErrorCommandResult("No operator deleted");
+		}
 	}
 
 }

@@ -224,7 +224,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		addModelTypeEndpoint(newModelTypeEndpoint, newModelType, false, modelRelType);
 		//TODO MMTF: review when functions to detect overriding endpoints are ready
 		ModelEndpointReference modelTypeEndpointRef = null;
-		ModelEndpointReference newModelTypeEndpointRef = createModelTypeEndpointReference(newModelTypeEndpoint, modelTypeEndpointRef, true, false, modelRelType);
+		ModelEndpointReference newModelTypeEndpointRef = newModelTypeEndpoint.createTypeReference(modelTypeEndpointRef, true, false, modelRelType);
 
 		return newModelTypeEndpointRef;
 	}
@@ -393,7 +393,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		addHeavyType(newLinkType, linkType, newLinkTypeUri, newLinkTypeName);
 		addLinkType(newLinkType, linkType, modelRelType);
 		LinkReference linkTypeRef = MultiModelTypeHierarchy.getReference(linkTypeUri, modelRelType.getLinkRefs());
-		LinkReference newLinkTypeRef = createLinkTypeReference(newLinkType, linkTypeRef, newLinkTypeRefClass, true, modelRelType);
+		LinkReference newLinkTypeRef = newLinkType.createTypeReference(linkTypeRef, true, modelRelType);
 
 		return newLinkTypeRef;
 	}

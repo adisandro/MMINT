@@ -651,7 +651,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElement__CreateSubtypeAndReference__ModelElementReference_String_String_ModelEndpointReference() {
+	public EOperation getModelElement__CreateTypeReference__ModelElementReference_boolean_ModelEndpointReference() {
 		return modelElementEClass.getEOperations().get(2);
 	}
 
@@ -660,8 +660,17 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModelElement__CreateSubtypeAndReference__ModelElementReference_String_String_ModelEndpointReference() {
+		return modelElementEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getModelElement__CreateInstanceAndReference__String_String_String_ModelEndpointReference() {
-		return modelElementEClass.getEOperations().get(4);
+		return modelElementEClass.getEOperations().get(6);
 	}
 
 	/**
@@ -670,7 +679,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	public EOperation getModelElement__DeleteInstance() {
-		return modelElementEClass.getEOperations().get(5);
+		return modelElementEClass.getEOperations().get(7);
 	}
 
 	/**
@@ -679,7 +688,16 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	public EOperation getModelElement__DeleteType() {
-		return modelElementEClass.getEOperations().get(3);
+		return modelElementEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelElement__CreateInstanceReference__ModelEndpointReference() {
+		return modelElementEClass.getEOperations().get(5);
 	}
 
 	/**
@@ -915,8 +933,10 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__CLASS_LITERAL);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_METATYPE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_SUPERTYPE);
+		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_MODELENDPOINTREFERENCE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___DELETE_TYPE);
+		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_STRING_MODELENDPOINTREFERENCE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___DELETE_INSTANCE);
 
@@ -1071,6 +1091,12 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 
 		initEOperation(getModelElement__GetSupertype(), this.getModelElement(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getModelElement__CreateTypeReference__ModelElementReference_boolean_ModelEndpointReference(), theRelationshipPackage.getModelElementReference(), "createTypeReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRelationshipPackage.getModelElementReference(), "modelElemTypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isModifiable", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRelationshipPackage.getModelEndpointReference(), "containerModelTypeEndpointRef", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
 		op = initEOperation(getModelElement__CreateSubtypeAndReference__ModelElementReference_String_String_ModelEndpointReference(), theRelationshipPackage.getModelElementReference(), "createSubtypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRelationshipPackage.getModelElementReference(), "modelElemTypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelElemTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -1079,6 +1105,10 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		addEException(op, this.getMMTFException());
 
 		op = initEOperation(getModelElement__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
+		op = initEOperation(getModelElement__CreateInstanceReference__ModelEndpointReference(), theRelationshipPackage.getModelElementReference(), "createInstanceReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRelationshipPackage.getModelEndpointReference(), "containerModelEndpointRef", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 
 		op = initEOperation(getModelElement__CreateInstanceAndReference__String_String_String_ModelEndpointReference(), theRelationshipPackage.getModelElementReference(), "createInstanceAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);

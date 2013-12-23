@@ -303,7 +303,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__DeleteType() {
+	public EOperation getModelRel__CopySubtype__ModelRel() {
 		return modelRelEClass.getEOperations().get(3);
 	}
 
@@ -312,16 +312,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel() {
-		return modelRelEClass.getEOperations().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getModelRel__DeleteInstance() {
+	public EOperation getModelRel__DeleteType() {
 		return modelRelEClass.getEOperations().get(5);
 	}
 
@@ -330,7 +321,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__OpenType() {
+	public EOperation getModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel() {
 		return modelRelEClass.getEOperations().get(6);
 	}
 
@@ -339,16 +330,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__OpenInstance() {
-		return modelRelEClass.getEOperations().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getModelRel__GetOutlineResourceTypes() {
+	public EOperation getModelRel__DeleteInstance() {
 		return modelRelEClass.getEOperations().get(8);
 	}
 
@@ -357,8 +339,35 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__GetOutlineResourceInstances() {
+	public EOperation getModelRel__OpenType() {
 		return modelRelEClass.getEOperations().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelRel__OpenInstance() {
+		return modelRelEClass.getEOperations().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelRel__GetOutlineResourceTypes() {
+		return modelRelEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelRel__GetOutlineResourceInstances() {
+		return modelRelEClass.getEOperations().get(7);
 	}
 
 	/**
@@ -959,13 +968,14 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEOperation(modelRelEClass, MODEL_REL___GET_METATYPE);
 		createEOperation(modelRelEClass, MODEL_REL___GET_SUPERTYPE);
 		createEOperation(modelRelEClass, MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING);
+		createEOperation(modelRelEClass, MODEL_REL___COPY_SUBTYPE__MODELREL);
+		createEOperation(modelRelEClass, MODEL_REL___GET_OUTLINE_RESOURCE_TYPES);
 		createEOperation(modelRelEClass, MODEL_REL___DELETE_TYPE);
 		createEOperation(modelRelEClass, MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL);
+		createEOperation(modelRelEClass, MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES);
 		createEOperation(modelRelEClass, MODEL_REL___DELETE_INSTANCE);
 		createEOperation(modelRelEClass, MODEL_REL___OPEN_TYPE);
 		createEOperation(modelRelEClass, MODEL_REL___OPEN_INSTANCE);
-		createEOperation(modelRelEClass, MODEL_REL___GET_OUTLINE_RESOURCE_TYPES);
-		createEOperation(modelRelEClass, MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES);
 
 		binaryModelRelEClass = createEClass(BINARY_MODEL_REL);
 		createEReference(binaryModelRelEClass, BINARY_MODEL_REL__SOURCE_MODEL);
@@ -1103,6 +1113,13 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEParameter(op, ecorePackage.getEString(), "constraintImplementation", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
+		op = initEOperation(getModelRel__CopySubtype__ModelRel(), this.getModelRel(), "copySubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelRel(), "origModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getModelRel__GetOutlineResourceTypes(), ecorePackage.getEResourceSet(), "getOutlineResourceTypes", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
 		op = initEOperation(getModelRel__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
@@ -1113,6 +1130,9 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEParameter(op, theMidPackage.getMultiModel(), "containerMultiModel", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
+		op = initEOperation(getModelRel__GetOutlineResourceInstances(), ecorePackage.getEResourceSet(), "getOutlineResourceInstances", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
 		op = initEOperation(getModelRel__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
@@ -1120,12 +1140,6 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEException(op, theMidPackage.getMMTFException());
 
 		op = initEOperation(getModelRel__OpenInstance(), null, "openInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMTFException());
-
-		op = initEOperation(getModelRel__GetOutlineResourceTypes(), ecorePackage.getEResourceSet(), "getOutlineResourceTypes", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMTFException());
-
-		op = initEOperation(getModelRel__GetOutlineResourceInstances(), ecorePackage.getEResourceSet(), "getOutlineResourceInstances", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
 		initEClass(binaryModelRelEClass, BinaryModelRel.class, "BinaryModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

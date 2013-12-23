@@ -561,49 +561,13 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING = MidPackage.MODEL_OPERATION_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * The operation id for the '<em>Copy Subtype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___DELETE_TYPE = MidPackage.MODEL_OPERATION_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Create Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = MidPackage.MODEL_OPERATION_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Delete Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL___DELETE_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Open Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL___OPEN_TYPE = MidPackage.MODEL_OPERATION_COUNT + 6;
-
-	/**
-	 * The operation id for the '<em>Open Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL___OPEN_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 7;
+	int MODEL_REL___COPY_SUBTYPE__MODELREL = MidPackage.MODEL_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Types</em>' operation.
@@ -612,7 +576,25 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = MidPackage.MODEL_OPERATION_COUNT + 8;
+	int MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = MidPackage.MODEL_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___DELETE_TYPE = MidPackage.MODEL_OPERATION_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = MidPackage.MODEL_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -621,7 +603,34 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MidPackage.MODEL_OPERATION_COUNT + 9;
+	int MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MidPackage.MODEL_OPERATION_COUNT + 7;
+
+	/**
+	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___DELETE_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 8;
+
+	/**
+	 * The operation id for the '<em>Open Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___OPEN_TYPE = MidPackage.MODEL_OPERATION_COUNT + 9;
+
+	/**
+	 * The operation id for the '<em>Open Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___OPEN_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>Model Rel</em>' class.
@@ -630,7 +639,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 10;
+	int MODEL_REL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -921,6 +930,24 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING = MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Copy Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___COPY_SUBTYPE__MODELREL = MODEL_REL___COPY_SUBTYPE__MODELREL;
+
+	/**
+	 * The operation id for the '<em>Get Outline Resource Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = MODEL_REL___GET_OUTLINE_RESOURCE_TYPES;
+
+	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -937,6 +964,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -964,24 +1000,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___OPEN_INSTANCE = MODEL_REL___OPEN_INSTANCE;
-
-	/**
-	 * The operation id for the '<em>Get Outline Resource Types</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = MODEL_REL___GET_OUTLINE_RESOURCE_TYPES;
-
-	/**
-	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES;
 
 	/**
 	 * The number of operations of the '<em>Binary Model Rel</em>' class.
@@ -2416,6 +2434,16 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelRel__CreateSubtype__String_boolean_String_String();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#copySubtype(edu.toronto.cs.se.mmtf.mid.relationship.ModelRel) <em>Copy Subtype</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Copy Subtype</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#copySubtype(edu.toronto.cs.se.mmtf.mid.relationship.ModelRel)
+	 * @generated
+	 */
+	EOperation getModelRel__CopySubtype__ModelRel();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#deleteType() <em>Delete Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3200,6 +3228,14 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING = eINSTANCE.getModelRel__CreateSubtype__String_boolean_String_String();
+
+		/**
+		 * The meta object literal for the '<em><b>Copy Subtype</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REL___COPY_SUBTYPE__MODELREL = eINSTANCE.getModelRel__CopySubtype__ModelRel();
 
 		/**
 		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.

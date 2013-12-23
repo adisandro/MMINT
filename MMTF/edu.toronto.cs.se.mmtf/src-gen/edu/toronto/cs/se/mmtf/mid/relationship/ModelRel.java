@@ -158,6 +158,24 @@ public interface ModelRel extends Model {
 	ModelRel createSubtype(String newModelRelTypeName, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMTFException;
 
 	/**
+	 * <!-- begin-user-doc --> Creates and adds a subtype of this model
+	 * relationship type to the Type MID, copying its structure from another
+	 * model relationship type.
+	 * 
+	 * @param origModelRelType
+	 *            The original model relationship type to be copied into the new
+	 *            one.
+	 * @return The created model relationship type.
+	 * @throws MMTFException
+	 *             If this is a model relationship instance, or if any of the
+	 *             uris of the components of the new model relationship type are
+	 *             already registered in the Type MID. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" origModelRelTypeRequired="true"
+	 * @generated
+	 */
+	ModelRel copySubtype(ModelRel origModelRelType) throws MMTFException;
+
+	/**
 	 * <!-- begin-user-doc --> Deletes this model relationship type from the
 	 * Type MID.
 	 * 

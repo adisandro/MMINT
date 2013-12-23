@@ -268,13 +268,22 @@ public interface EditorPackage extends EPackage {
 	int EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___DELETE_TYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___CREATE_INSTANCE__STRING_MULTIMODEL = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+	int EDITOR___CREATE_INSTANCE__STRING_MULTIMODEL = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Invoke Instance Wizard</em>' operation.
@@ -283,7 +292,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+	int EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -292,7 +301,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___DELETE_INSTANCE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+	int EDITOR___DELETE_INSTANCE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Editor</em>' class.
@@ -301,7 +310,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
+	int EDITOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.editor.impl.DiagramImpl <em>Diagram</em>}' class.
@@ -494,6 +503,15 @@ public interface EditorPackage extends EPackage {
 	int DIAGRAM___GET_SUPERTYPE = EDITOR___GET_SUPERTYPE;
 
 	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___DELETE_TYPE = EDITOR___DELETE_TYPE;
+
+	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -654,6 +672,16 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getEditor__CreateSubtype__String_String_String_String_String_String();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.editor.Editor#deleteType() <em>Delete Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Type</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.editor.Editor#deleteType()
+	 * @generated
+	 */
+	EOperation getEditor__DeleteType();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.editor.Editor#createInstance(java.lang.String, edu.toronto.cs.se.mmtf.mid.MultiModel) <em>Create Instance</em>}' operation.
@@ -843,6 +871,14 @@ public interface EditorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = eINSTANCE.getEditor__CreateSubtype__String_String_String_String_String_String();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EDITOR___DELETE_TYPE = eINSTANCE.getEditor__DeleteType();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.

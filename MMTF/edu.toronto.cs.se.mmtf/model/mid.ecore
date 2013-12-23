@@ -315,6 +315,12 @@
         <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ModelElement) supertype;"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="createTypeReference" lowerBound="1" eType="#//relationship/ModelElementReference"
+        eExceptions="#//MMTFException">
+      <eParameters name="modelElemTypeRef" eType="#//relationship/ModelElementReference"/>
+      <eParameters name="isModifiable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="containerModelTypeEndpointRef" lowerBound="1" eType="#//relationship/ModelEndpointReference"/>
+    </eOperations>
     <eOperations name="createSubtypeAndReference" lowerBound="1" eType="#//relationship/ModelElementReference"
         eExceptions="#//MMTFException">
       <eParameters name="modelElemTypeRef" eType="#//relationship/ModelElementReference"/>
@@ -323,6 +329,10 @@
       <eParameters name="containerModelTypeEndpointRef" lowerBound="1" eType="#//relationship/ModelEndpointReference"/>
     </eOperations>
     <eOperations name="deleteType" eExceptions="#//MMTFException"/>
+    <eOperations name="createInstanceReference" lowerBound="1" eType="#//relationship/ModelElementReference"
+        eExceptions="#//MMTFException">
+      <eParameters name="containerModelEndpointRef" lowerBound="1" eType="#//relationship/ModelEndpointReference"/>
+    </eOperations>
     <eOperations name="createInstanceAndReference" lowerBound="1" eType="#//relationship/ModelElementReference"
         eExceptions="#//MMTFException">
       <eParameters name="newModelElemUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -524,6 +534,12 @@
         <eParameters name="constraintLanguage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="constraintImplementation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eOperations>
+      <eOperations name="copySubtype" lowerBound="1" eType="#//relationship/ModelRel"
+          eExceptions="#//MMTFException">
+        <eParameters name="origModelRelType" lowerBound="1" eType="#//relationship/ModelRel"/>
+      </eOperations>
+      <eOperations name="getOutlineResourceTypes" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
+          eExceptions="#//MMTFException"/>
       <eOperations name="deleteType" eExceptions="#//MMTFException"/>
       <eOperations name="createInstance" lowerBound="1" eType="#//relationship/ModelRel"
           eExceptions="#//MMTFException">
@@ -532,13 +548,11 @@
         <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
         <eParameters name="containerMultiModel" eType="#//MultiModel"/>
       </eOperations>
+      <eOperations name="getOutlineResourceInstances" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
+          eExceptions="#//MMTFException"/>
       <eOperations name="deleteInstance" eExceptions="#//MMTFException"/>
       <eOperations name="openType" eExceptions="#//MMTFException"/>
       <eOperations name="openInstance" eExceptions="#//MMTFException"/>
-      <eOperations name="getOutlineResourceTypes" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
-          eExceptions="#//MMTFException"/>
-      <eOperations name="getOutlineResourceInstances" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
-          eExceptions="#//MMTFException"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelEndpoints" upperBound="-1"
           eType="#//ModelEndpoint" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -887,6 +901,7 @@
         <eParameters name="wizardId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="wizardDialogClassName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eOperations>
+      <eOperations name="deleteType" eExceptions="#//MMTFException"/>
       <eOperations name="createInstance" lowerBound="1" eType="#//editor/Editor" eExceptions="#//MMTFException">
         <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="containerMultiModel" eType="#//MultiModel"/>

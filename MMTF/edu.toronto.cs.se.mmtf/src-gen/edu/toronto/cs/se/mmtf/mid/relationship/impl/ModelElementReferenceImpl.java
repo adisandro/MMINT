@@ -246,29 +246,27 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 	 *            The model type endpoint that contains the reference to a model
 	 *            element type.
 	 */
-	private static void deleteModelElementTypeReference(ModelElementReference modelElemTypeRef, ModelEndpointReference modelTypeEndpointRef) {
+	protected static void deleteTypeReference(ModelElementReference modelElemTypeRef, ModelEndpointReference modelTypeEndpointRef) {
 
 		modelTypeEndpointRef.getModelElemRefs().remove(modelElemTypeRef);
 	}
 
 	/**
-	 * Deletes a reference to a model element type and all its subreferences
-	 * from the multimodel that contains them.
-	 * 
-	 * @param modelElemTypeRef
-	 *            The reference to be removed to a model element type.
-	 * @param modelRelType
-	 *            The model relationship that contains the reference to a model
-	 *            element type.
-	 * @throws MMTFException TODO
+	 * @generated NOT
 	 */
-	private static void deleteModelElementTypeReference(ModelElementReference modelElemTypeRef, ModelRel modelRelType) throws MMTFException {
+	public void deleteTypeReference() throws MMTFException {
 
-		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) modelElemTypeRef.eContainer();
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		ModelRel modelRelType = (ModelRel) eContainer().eContainer();
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
+		// delete the corresponding reference
+		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) eContainer();
 		List<BinaryLinkReference> delLinkTypeRefs = new ArrayList<BinaryLinkReference>();
 		List<ModelElementEndpointReference> delModelElemTypeEndpointRefs = new ArrayList<ModelElementEndpointReference>();
-		for (ModelElementEndpointReference modelElemTypeEndpointRef : modelElemTypeRef.getModelElemEndpointRefs()) {
+		for (ModelElementEndpointReference modelElemTypeEndpointRef : getModelElemEndpointRefs()) {
 			LinkReference linkTypeRef = (LinkReference) modelElemTypeEndpointRef.eContainer();
 			// avoid iterating over the list
 			if (linkTypeRef instanceof BinaryLinkReference) {
@@ -288,13 +286,13 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 		for (ModelElementEndpointReference modelElemTypeEndpointRef : delModelElemTypeEndpointRefs) {
 			MultiModelTypeFactory.removeModelElementTypeEndpointAndModelElementTypeEndpointReference(modelElemTypeEndpointRef, true);
 		}
-		deleteModelElementTypeReference(modelElemTypeRef, modelTypeEndpointRef);
+		deleteTypeReference(this, modelTypeEndpointRef);
 		// delete references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
 			ModelEndpointReference modelSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
-			ModelElementReference modelElemSubtypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRef, modelSubtypeEndpointRef.getModelElemRefs());
+			ModelElementReference modelElemSubtypeRef = MultiModelTypeHierarchy.getReference(this, modelSubtypeEndpointRef.getModelElemRefs());
 			if (modelElemSubtypeRef.getModelElemEndpointRefs().size() == 0) {
-				deleteModelElementTypeReference(modelElemSubtypeRef, modelSubtypeEndpointRef);
+				deleteTypeReference(modelElemSubtypeRef, modelSubtypeEndpointRef);
 			}
 			else {
 				boolean newModifiable = true;
@@ -308,20 +306,6 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 				modelElemSubtypeRef.setModifiable(newModifiable);
 			}
 		}
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public void deleteTypeReference() throws MMTFException {
-
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
-		}
-
-		ModelRel modelRelType = (ModelRel) eContainer().eContainer();
-		// delete the corresponding reference
-		deleteModelElementTypeReference(this, modelRelType);
 		// don't delete the subtypes of the "thing", the model element is not deleted from its metamodel
 	}
 

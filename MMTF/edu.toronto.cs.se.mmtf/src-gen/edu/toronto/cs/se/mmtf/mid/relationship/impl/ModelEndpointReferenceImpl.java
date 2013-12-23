@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
@@ -285,8 +284,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 
 		// avoid iterating over the list
 		while (getModelElemRefs().size() > 0) {
-			//TODO MMTF[OO] do this when all other pieces fall into place
-			MultiModelTypeFactory.removeModelElementTypeReference(getModelElemRefs().get(0));
+			getModelElemRefs().get(0).deleteTypeReference();
 		}
 		if (isFullDelete) {
 			ModelRel modelRelType = (ModelRel) eContainer();

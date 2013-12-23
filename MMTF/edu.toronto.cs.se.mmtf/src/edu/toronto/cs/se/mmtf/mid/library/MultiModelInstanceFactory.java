@@ -17,12 +17,10 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
@@ -160,62 +158,6 @@ public class MultiModelInstanceFactory {
 	}
 
 	/**
-	 * Creates and adds a reference to a model element to an Instance MID.
-	 * 
-	 * @param newModelElem
-	 *            The model element for which the reference is being created.
-	 * @param modelEndpointRef
-	 *            The reference to the model endpoint that will contain the new
-	 *            reference to the model element.
-	 * @return The created reference to the model element.
-	 */
-	public static ModelElementReference createModelElementReference(ModelElement newModelElem, ModelEndpointReference modelEndpointRef) {
-
-		ModelElementReference newModelElemRef = RelationshipFactory.eINSTANCE.createModelElementReference();
-		addInstanceReference(newModelElemRef, newModelElem, false);
-		modelEndpointRef.getModelElemRefs().add(newModelElemRef);
-
-		return newModelElemRef;
-	}
-
-	/**
-	 * Creates and adds a model element and a reference to it to an Instance
-	 * MID.
-	 * 
-	 * @param modelElemType
-	 *            The type of the new model element.
-	 * @param newModelElemUri
-	 *            The uri of the new model element.
-	 * @param newModelElemName
-	 *            The name of the new model element.
-	 * @param classLiteral
-	 *            The class name of the new model element.
-	 * @param modelEndpointRef
-	 *            The reference to the model endpoint that will contain the new
-	 *            reference to the model element.
-	 * @return The created reference to the new model element.
-	 * @throws MMTFException
-	 *             If the uri of the new model element is already registered in
-	 *             the Instance MID.
-	 */
-	public static ModelElementReference createModelElementAndModelElementReference(ModelElement modelElemType, String newModelElemUri, String newModelElemName, String classLiteral, ModelEndpointReference modelEndpointRef) throws MMTFException {
-
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelEndpointRef);
-
-		newModelElemUri += MMTF.ROLE_SEPARATOR + modelElemType.getUri();
-		ModelElement newModelElem = MultiModelRegistry.getExtendibleElement(newModelElemUri, multiModel);
-		if (newModelElem == null) {
-			newModelElem = MidFactory.eINSTANCE.createModelElement();
-			addInstance(newModelElem, modelElemType, newModelElemUri, newModelElemName, multiModel);
-			newModelElem.setClassLiteral(classLiteral);
-			modelEndpointRef.getObject().getTarget().getModelElems().add(newModelElem);
-		}
-		ModelElementReference newModelElemRef = createModelElementReference(newModelElem, modelEndpointRef);
-
-		return newModelElemRef;
-	}
-
-	/**
 	 * Creates and adds a model element and a reference to it to an Instance
 	 * MID.
 	 * 
@@ -240,13 +182,7 @@ public class MultiModelInstanceFactory {
 		if (newModelElemName == null) {
 			newModelElemName = MultiModelRegistry.getModelElementName(modelObj, true);
 		}
-		ModelElementReference newModelElemRef = createModelElementAndModelElementReference(
-			modelElemType,
-			newModelElemUri,
-			newModelElemName,
-			classLiteral,
-			modelEndpointRef
-		);
+		ModelElementReference newModelElemRef = modelElemType.createInstanceAndReference(newModelElemUri, newModelElemName, classLiteral, modelEndpointRef);
 
 		return newModelElemRef;
 	}

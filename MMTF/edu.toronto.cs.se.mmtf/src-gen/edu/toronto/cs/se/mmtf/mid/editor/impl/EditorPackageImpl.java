@@ -235,7 +235,7 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getEditor__CreateInstance__String_MultiModel() {
+	public EOperation getEditor__DeleteType() {
 		return editorEClass.getEOperations().get(3);
 	}
 
@@ -244,7 +244,7 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getEditor__InvokeInstanceWizard__IStructuredSelection() {
+	public EOperation getEditor__CreateInstance__String_MultiModel() {
 		return editorEClass.getEOperations().get(4);
 	}
 
@@ -253,8 +253,17 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getEditor__DeleteInstance() {
+	public EOperation getEditor__InvokeInstanceWizard__IStructuredSelection() {
 		return editorEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getEditor__DeleteInstance() {
+		return editorEClass.getEOperations().get(6);
 	}
 
 	/**
@@ -348,6 +357,7 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		createEOperation(editorEClass, EDITOR___GET_METATYPE);
 		createEOperation(editorEClass, EDITOR___GET_SUPERTYPE);
 		createEOperation(editorEClass, EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING);
+		createEOperation(editorEClass, EDITOR___DELETE_TYPE);
 		createEOperation(editorEClass, EDITOR___CREATE_INSTANCE__STRING_MULTIMODEL);
 		createEOperation(editorEClass, EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION);
 		createEOperation(editorEClass, EDITOR___DELETE_INSTANCE);
@@ -415,6 +425,9 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		addEParameter(op, ecorePackage.getEString(), "editorId", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "wizardId", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "wizardDialogClassName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getEditor__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
 		op = initEOperation(getEditor__CreateInstance__String_MultiModel(), this.getEditor(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);

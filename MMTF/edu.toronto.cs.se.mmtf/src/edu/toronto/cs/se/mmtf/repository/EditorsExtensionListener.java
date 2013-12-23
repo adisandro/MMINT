@@ -17,8 +17,8 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
 
 import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelHeavyTypeFactory;
-import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 
@@ -68,7 +68,12 @@ public class EditorsExtensionListener extends MMTFExtensionListener {
 				String uri = elem.getAttribute(MMTF.EXTENDIBLETYPE_ATTR_URI);
 				Editor editorType = MultiModelTypeRegistry.getType(uri);
 				if (editorType != null) {
-					MultiModelTypeFactory.removeEditorType(editorType);
+					try {
+						editorType.deleteType();
+					}
+					catch (MMTFException e) {
+						// never happens by construction
+					}
 				}
 			}
 		}

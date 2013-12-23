@@ -987,13 +987,22 @@ public interface MidPackage extends EPackage {
 	int MODEL_ELEMENT___GET_SUPERTYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Create Type Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
 	 * The operation id for the '<em>Create Subtype And Reference</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+	int MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -1002,7 +1011,16 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT___DELETE_TYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+	int MODEL_ELEMENT___DELETE_TYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Create Instance Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
@@ -1011,7 +1029,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_STRING_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+	int MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_STRING_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1020,7 +1038,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+	int MODEL_ELEMENT___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Model Element</em>' class.
@@ -1029,7 +1047,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
+	int MODEL_ELEMENT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementWildcardImpl <em>Model Element Wildcard</em>}' class.
@@ -1861,6 +1879,16 @@ public interface MidPackage extends EPackage {
 	EOperation getModelElement__GetSupertype();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#createTypeReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference, boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference) <em>Create Type Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Type Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#createTypeReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference, boolean, edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference)
+	 * @generated
+	 */
+	EOperation getModelElement__CreateTypeReference__ModelElementReference_boolean_ModelEndpointReference();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#createSubtypeAndReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference, java.lang.String, java.lang.String, edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference) <em>Create Subtype And Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1899,6 +1927,16 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getModelElement__DeleteType();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#createInstanceReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference) <em>Create Instance Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#createInstanceReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference)
+	 * @generated
+	 */
+	EOperation getModelElement__CreateInstanceReference__ModelEndpointReference();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelElementWildcard <em>Model Element Wildcard</em>}'.
@@ -2477,6 +2515,14 @@ public interface MidPackage extends EPackage {
 		EOperation MODEL_ELEMENT___GET_SUPERTYPE = eINSTANCE.getModelElement__GetSupertype();
 
 		/**
+		 * The meta object literal for the '<em><b>Create Type Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE = eINSTANCE.getModelElement__CreateTypeReference__ModelElementReference_boolean_ModelEndpointReference();
+
+		/**
 		 * The meta object literal for the '<em><b>Create Subtype And Reference</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2507,6 +2553,14 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_ELEMENT___DELETE_TYPE = eINSTANCE.getModelElement__DeleteType();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Instance Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE = eINSTANCE.getModelElement__CreateInstanceReference__ModelEndpointReference();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementWildcardImpl <em>Model Element Wildcard</em>}' class.

@@ -87,6 +87,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelElement/classLiteral"/>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/getMetatype"/>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/getSupertype"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/createTypeReference">
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createTypeReference/modelElemTypeRef"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createTypeReference/isModifiable"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createTypeReference/containerModelTypeEndpointRef"/>
+      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/createSubtypeAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/modelElemTypeRef"/>
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/newModelElemTypeName"/>
@@ -94,6 +99,9 @@
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/containerModelTypeEndpointRef"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/deleteType"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/createInstanceReference">
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceReference/containerModelEndpointRef"/>
+      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/createInstanceAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/newModelElemUri"/>
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/newModelElemName"/>
@@ -177,6 +185,10 @@
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createSubtype/constraintLanguage"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createSubtype/constraintImplementation"/>
         </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/copySubtype">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/copySubtype/origModelRelType"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceTypes"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/deleteType"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createInstance">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstance/newModelRelUri"/>
@@ -184,11 +196,10 @@
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstance/origin"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstance/containerMultiModel"/>
         </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceInstances"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/deleteInstance"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/openType"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/openInstance"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceTypes"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceInstances"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/BinaryModelRel">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -303,6 +314,7 @@
           <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/wizardId"/>
           <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/wizardDialogClassName"/>
         </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/deleteType"/>
         <genOperations ecoreOperation="mid.ecore#//editor/Editor/createInstance">
           <genParameters ecoreParameter="mid.ecore#//editor/Editor/createInstance/modelUri"/>
           <genParameters ecoreParameter="mid.ecore#//editor/Editor/createInstance/containerMultiModel"/>

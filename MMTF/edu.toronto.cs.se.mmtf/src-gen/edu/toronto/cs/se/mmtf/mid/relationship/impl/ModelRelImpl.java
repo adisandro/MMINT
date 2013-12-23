@@ -12,10 +12,13 @@
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -23,9 +26,13 @@ import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
@@ -33,6 +40,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -338,9 +346,30 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case RelationshipPackage.MODEL_REL___COPY_SUBTYPE__MODELREL:
+				try {
+					return copySubtype((ModelRel)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case RelationshipPackage.MODEL_REL___GET_OUTLINE_RESOURCE_TYPES:
+				try {
+					return getOutlineResourceTypes();
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL:
 				try {
 					return createInstance((String)arguments.get(0), (Boolean)arguments.get(1), (ModelOrigin)arguments.get(2), (MultiModel)arguments.get(3));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case RelationshipPackage.MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES:
+				try {
+					return getOutlineResourceInstances();
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -357,20 +386,6 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				try {
 					openInstance();
 					return null;
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-			case RelationshipPackage.MODEL_REL___GET_OUTLINE_RESOURCE_TYPES:
-				try {
-					return getOutlineResourceTypes();
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-			case RelationshipPackage.MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES:
-				try {
-					return getOutlineResourceInstances();
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -459,6 +474,86 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			RelationshipFactory.eINSTANCE.createBinaryModelRel() :
 			RelationshipFactory.eINSTANCE.createModelRel();
 		addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
+
+		return newModelRelType;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public ModelRel copySubtype(ModelRel origModelRelType) throws MMTFException {
+
+		ModelRel newModelRelType = createSubtype(
+			origModelRelType.getName(),
+			(origModelRelType.eClass() instanceof BinaryModelRel),
+			origModelRelType.getConstraint().getLanguage().getLiteral(),
+			origModelRelType.getConstraint().getImplementation()
+		);
+
+		// model types
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(newModelRelType);
+		Iterator<ModelEndpoint> origModelTypeEndpointIter = MultiModelTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getModelEndpoints());
+		while (origModelTypeEndpointIter.hasNext()) {
+			ModelEndpoint origModelTypeEndpoint = origModelTypeEndpointIter.next();
+			Model newModelType = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getTargetUri(), multiModel);
+			ModelEndpoint modelTypeEndpoint = null;
+			ModelEndpointReference modelTypeEndpointRef = null;
+			if (origModelTypeEndpoint.getSupertype() != null) { //TODO MMTF: remove all such checks from endpoints when they have root supertype
+				modelTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getSupertype().getUri(), multiModel);
+				modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(origModelTypeEndpoint.getSupertype().getUri(), newModelRelType.getModelEndpointRefs());
+			}
+			modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, origModelTypeEndpoint.getName(), newModelType, false, newModelRelType);
+		}
+		// model element types
+		Iterator<ModelEndpointReference> origModelTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(origModelRelType.getModelEndpointRefs());
+		while (origModelTypeEndpointRefIter.hasNext()) {
+			ModelEndpointReference origModelTypeEndpointRef = origModelTypeEndpointRefIter.next();
+			ModelEndpointReference newModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(origModelTypeEndpointRef, newModelRelType.getModelEndpointRefs());
+			Iterator<ModelElementReference> origModelElemTypeRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(origModelTypeEndpointRef.getModelElemRefs());
+			while (origModelElemTypeRefIter.hasNext()) {
+				ModelElementReference origModelElemTypeRef = origModelElemTypeRefIter.next();
+				ModelElement modelElemType = MultiModelRegistry.getExtendibleElement(origModelElemTypeRef.getObject().getSupertype().getUri(), multiModel);
+				ModelEndpointReference newModelTypeEndpointRefSuper = null;
+				ModelElementReference modelElemTypeRef = null;
+				if (origModelElemTypeRef.getSupertypeRef() != null) {
+					newModelTypeEndpointRefSuper = MultiModelTypeHierarchy.getReference((ModelEndpointReference) origModelElemTypeRef.getSupertypeRef().eContainer(), newModelRelType.getModelEndpointRefs());
+					modelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemType.getUri(), newModelTypeEndpointRefSuper.getModelElemRefs());
+				}
+				modelElemType.createSubtypeAndReference(modelElemTypeRef, origModelElemTypeRef.getObject().getName(), origModelElemTypeRef.getObject().getClassLiteral(), newModelTypeEndpointRef);
+			}
+		}
+		// link types
+		Iterator<Link> origLinkTypeIter = MultiModelTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getLinks());
+		while (origLinkTypeIter.hasNext()) {
+			Link origLinkType = origLinkTypeIter.next();
+			Link linkType = MultiModelRegistry.getExtendibleElement(origLinkType.getSupertype().getUri(), multiModel);
+			LinkReference linkTypeRef = MultiModelTypeHierarchy.getReference(origLinkType.getSupertype().getUri(), newModelRelType.getLinkRefs());
+			LinkReference newLinkTypeRef = linkType.createSubtypeAndReference(linkTypeRef, origLinkType.getName(), (origLinkType instanceof BinaryLink), newModelRelType);
+			// connect it to model element type references (takes care of binary too)
+			LinkReference origLinkTypeRef = MultiModelTypeHierarchy.getReference(newLinkTypeRef, origModelRelType.getLinkRefs());
+			Iterator<ModelElementEndpointReference> origModelElemTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(origLinkTypeRef.getModelElemEndpointRefs());
+			while (origModelElemTypeEndpointRefIter.hasNext()) {
+				ModelElementEndpointReference origModelElemTypeEndpointRef = origModelElemTypeEndpointRefIter.next();
+				ModelElementReference origModelElemTypeRef = origModelElemTypeEndpointRef.getModelElemRef();
+				ModelEndpointReference newModelTypeEndpointRef = MultiModelTypeHierarchy.getReference((ModelEndpointReference) origModelElemTypeRef.eContainer(), newModelRelType.getModelEndpointRefs());
+				ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(origModelElemTypeRef, newModelTypeEndpointRef.getModelElemRefs());
+				ModelElementEndpoint modelElemTypeEndpoint = null;
+				ModelElementEndpointReference modelElemTypeEndpointRef = null;
+				if (origModelElemTypeEndpointRef.getObject().getSupertype() != null) {
+					modelElemTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelElemTypeEndpointRef.getObject().getSupertype().getUri(), multiModel);
+					LinkReference newLinkTypeRefSuper = MultiModelTypeHierarchy.getReference((LinkReference) origModelElemTypeEndpointRef.getObject().getSupertype().eContainer(), newModelRelType.getLinkRefs());
+					modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(origModelElemTypeEndpointRef.getSupertypeRef(), newLinkTypeRefSuper.getModelElemEndpointRefs());
+				}
+				MultiModelLightTypeFactory.createLightModelElementTypeEndpointAndModelElementTypeEndpointReference(
+					modelElemTypeEndpoint,
+					modelElemTypeEndpointRef,
+					origModelElemTypeEndpointRef.getObject().getName(),
+					newModelElemTypeRef,
+					false,
+					newLinkTypeRef
+				);
+			}
+		}
 
 		return newModelRelType;
 	}

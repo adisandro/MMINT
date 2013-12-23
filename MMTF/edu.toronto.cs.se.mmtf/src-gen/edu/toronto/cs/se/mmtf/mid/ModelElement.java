@@ -88,6 +88,28 @@ public interface ModelElement extends ExtendibleElement {
 	ModelElement getSupertype();
 
 	/**
+	 * <!-- begin-user-doc --> Creates and adds a reference to this model
+	 * element type to the Type MID.
+	 * 
+	 * @param modelElemTypeRef
+	 *            The reference to the supertype of the model element type, null
+	 *            if such reference doesn't exist in the model type endpoint
+	 *            reference container.
+	 * @param isModifiable
+	 *            True if the new reference will allow modifications of the
+	 *            referenced model element type, false otherwise.
+	 * @param containerModelTypeEndpointRef
+	 *            The reference to the model type endpoint that will contain the
+	 *            new reference to the model element type.
+	 * @return The created reference to the model element type.
+	 * @throws MMTFException
+	 *             If this is a model element instance. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isModifiableRequired="true" containerModelTypeEndpointRefRequired="true"
+	 * @generated
+	 */
+	ModelElementReference createTypeReference(ModelElementReference modelElemTypeRef, boolean isModifiable, ModelEndpointReference containerModelTypeEndpointRef) throws MMTFException;
+
+	/**
 	 * <!-- begin-user-doc --> Creates and adds a subtype of this model element
 	 * type and a reference to it to the Type MID.
 	 * 
@@ -122,6 +144,21 @@ public interface ModelElement extends ExtendibleElement {
 	 * @generated
 	 */
 	void deleteType() throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc --> Creates and adds a reference to this model
+	 * element to an Instance MID.
+	 * 
+	 * @param containerModelEndpointRef
+	 *            The reference to the model endpoint that will contain the new
+	 *            reference to the model element.
+	 * @return The created reference to the model element.
+	 * @throws MMTFException
+	 *             If this is a model element type. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" containerModelEndpointRefRequired="true"
+	 * @generated
+	 */
+	ModelElementReference createInstanceReference(ModelEndpointReference containerModelEndpointRef) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a model element instance of this

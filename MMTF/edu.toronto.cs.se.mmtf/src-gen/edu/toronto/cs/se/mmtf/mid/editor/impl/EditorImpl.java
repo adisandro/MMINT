@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmtf.mid.editor.impl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -26,6 +27,7 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
@@ -407,6 +409,14 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case EditorPackage.EDITOR___DELETE_TYPE:
+				try {
+					deleteType();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case EditorPackage.EDITOR___CREATE_INSTANCE__STRING_MULTIMODEL:
 				try {
 					return createInstance((String)arguments.get(0), (MultiModel)arguments.get(1));
@@ -506,6 +516,27 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 		addSubtype(newEditorType, newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
 
 		return newEditorType;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteType() throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		super.deleteType(multiModel);
+		Model modelType = MultiModelRegistry.getExtendibleElement(getModelUri(), multiModel);
+		if (modelType != null) {
+			modelType.getEditors().remove(this);
+		}
+		multiModel.getEditors().remove(this);
+		for (Editor editorSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, multiModel)) {
+			editorSubtype.deleteType();
+		}
 	}
 
 	/**

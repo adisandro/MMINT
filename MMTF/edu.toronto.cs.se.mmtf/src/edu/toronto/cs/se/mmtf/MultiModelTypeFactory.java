@@ -16,8 +16,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage;
@@ -34,7 +32,6 @@ import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
-import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
@@ -202,8 +199,9 @@ public class MultiModelTypeFactory {
 	 *            The new model relationship type being added.
 	 * @param modelRelType
 	 *            The supertype of the new model relationship type.
+	 * @throws MMTFException 
 	 */
-	public static void addModelRelType(ModelRel newModelRelType, ModelRel modelRelType) {
+	public static void addModelRelType(ModelRel newModelRelType, ModelRel modelRelType) throws MMTFException {
 
 		List<LinkReference> skipLinkRefs = new ArrayList<LinkReference>();
 		// copy model type references
@@ -219,24 +217,13 @@ public class MultiModelTypeFactory {
 				continue;
 			}
 			ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpointRefSuper.getSupertypeRef(), newModelRelType.getModelEndpointRefs());
-			ModelEndpointReference newModelTypeEndpointRef = createModelTypeEndpointReference(
-				modelTypeEndpointRefSuper.getObject(),
-				modelTypeEndpointRef,
-				false,
-				false,
-				newModelRelType
-			);
+			ModelEndpointReference newModelTypeEndpointRef = modelTypeEndpointRefSuper.getObject().createTypeReference(modelTypeEndpointRef, false, false, newModelRelType);
 			// copy model element type references
 			Iterator<ModelElementReference> modelElemTypeRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(modelTypeEndpointRefSuper.getModelElemRefs());
 			while (modelElemTypeRefIter.hasNext()) {
 				ModelElementReference modelElemTypeRefSuper = modelElemTypeRefIter.next();
 				ModelElementReference modelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRefSuper.getSupertypeRef(), newModelTypeEndpointRef.getModelElemRefs());
-				createModelElementTypeReference(
-					modelElemTypeRefSuper.getObject(),
-					modelElemTypeRef,
-					false,
-					newModelTypeEndpointRef
-				);
+				modelElemTypeRefSuper.getObject().createTypeReference(modelElemTypeRef, false, newModelTypeEndpointRef);
 			}
 		}
 		// copy link type references
@@ -247,13 +234,7 @@ public class MultiModelTypeFactory {
 				continue;
 			}
 			LinkReference linkTypeRef = MultiModelTypeHierarchy.getReference(linkTypeRefSuper.getSupertypeRef(), newModelRelType.getLinkRefs());
-			LinkReference newLinkTypeRef = createLinkTypeReference(
-				linkTypeRefSuper.getObject(),
-				linkTypeRef,
-				linkTypeRefSuper.eClass(),
-				false,
-				newModelRelType
-			);
+			LinkReference newLinkTypeRef = linkTypeRefSuper.getObject().createTypeReference(linkTypeRef, false, newModelRelType);
 			// connect it to model element type references (takes care of binary too)
 			Iterator<ModelElementEndpointReference> modelElemTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(linkTypeRefSuper.getModelElemEndpointRefs());
 			while (modelElemTypeEndpointRefIter.hasNext()) {
@@ -446,71 +427,6 @@ public class MultiModelTypeFactory {
 	}
 
 	/**
-	 * Creates and adds a model type endpoint reference to a model relationship
-	 * type.
-	 * 
-	 * @param newModelTypeEndpoint
-	 *            The new model type endpoint for which the reference has to be
-	 *            created.
-	 * @param modelTypeEndpointRef
-	 *            The reference to the supertype of the new model type endpoint,
-	 *            null if such reference doesn't exist in the model relationship
-	 *            type container.
-	 * @param isModifiable
-	 *            True if the new reference will allow modifications of the
-	 *            referenced model type endpoint, false otherwise.
-	 * @param isBinarySrc
-	 *            True if the referenced model type endpoint is the source in
-	 *            the binary model relationship container, false otherwise.
-	 * @param modelRelType
-	 *            The model relationship type that will contain the new
-	 *            reference to the model type endpoint.
-	 * @return The created reference to the new model type endpoint.
-	 */
-	public static ModelEndpointReference createModelTypeEndpointReference(ModelEndpoint newModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, boolean isBinarySrc, ModelRel modelRelType) {
-
-		ModelEndpointReference newModelTypeEndpointRef = RelationshipFactory.eINSTANCE.createModelEndpointReference();
-		addTypeReference(newModelTypeEndpointRef, newModelTypeEndpoint, modelTypeEndpointRef, isModifiable, false);
-
-		if (isBinarySrc) {
-			modelRelType.getModelEndpointRefs().add(0, newModelTypeEndpointRef);
-		}
-		else {
-			modelRelType.getModelEndpointRefs().add(newModelTypeEndpointRef);
-		}
-
-		return newModelTypeEndpointRef;
-	}
-
-	/**
-	 * Creates and adds a link type reference to a model relationship type.
-	 * 
-	 * @param newLinkType
-	 *            The new link type for which the reference has to be created.
-	 * @param linkTypeRef
-	 *            The reference to the supertype of the new link type, null if
-	 *            such reference doesn't exist in the model relationship type
-	 *            container.
-	 * @param newLinkTypeRefClass
-	 *            The class of the new reference to the link type.
-	 * @param isModifiable
-	 *            True if the new reference will allow modifications of the
-	 *            referenced link type, false otherwise.
-	 * @param modelRelType
-	 *            The model relationship type that will contain the new
-	 *            reference to the link type.
-	 * @return The created reference to the new link type.
-	 */
-	public static LinkReference createLinkTypeReference(Link newLinkType, LinkReference linkTypeRef, EClass newLinkTypeRefClass, boolean isModifiable, ModelRel modelRelType) {
-
-		LinkReference newLinkTypeRef = (LinkReference) RelationshipFactory.eINSTANCE.create(newLinkTypeRefClass);
-		addTypeReference(newLinkTypeRef, newLinkType, linkTypeRef, isModifiable, false);
-		modelRelType.getLinkRefs().add(newLinkTypeRef);
-
-		return newLinkTypeRef;
-	}
-
-	/**
 	 * Creates and adds a model element type endpoint reference to a link type
 	 * reference.
 	 * 
@@ -553,34 +469,6 @@ public class MultiModelTypeFactory {
 	}
 
 	/**
-	 * Creates and adds a model element type reference to a model type endpoint
-	 * reference.
-	 * 
-	 * @param newModelElemType
-	 *            The new model element type for which the reference has to be
-	 *            created.
-	 * @param modelElemTypeRef
-	 *            The reference to the supertype of the new model element type,
-	 *            null if such reference doesn't exist in the model type
-	 *            endpoint reference container.
-	 * @param isModifiable
-	 *            True if the new reference will allow modifications of the
-	 *            referenced model element type, false otherwise.
-	 * @param modelTypeEndpointRef
-	 *            The reference to the model type endpoint that will contain the
-	 *            new reference to the model element type.
-	 * @return The created reference to the new model element type.
-	 */
-	public static ModelElementReference createModelElementTypeReference(ModelElement newModelElemType, ModelElementReference modelElemTypeRef, boolean isModifiable, ModelEndpointReference modelTypeEndpointRef) {
-
-		ModelElementReference newModelElemTypeRef = RelationshipFactory.eINSTANCE.createModelElementReference();
-		addTypeReference(newModelElemTypeRef, newModelElemType, modelElemTypeRef, isModifiable, false);
-		modelTypeEndpointRef.getModelElemRefs().add(newModelElemTypeRef);
-
-		return newModelElemTypeRef;
-	}
-
-	/**
 	 * Adds additional info for a conversion operator type.
 	 * 
 	 * @param operatorType
@@ -604,171 +492,6 @@ public class MultiModelTypeFactory {
 	public static ExtendibleElement removeType(String typeUri, MultiModel multiModel) {
 
 		return multiModel.getExtendibleTable().removeKey(typeUri);
-	}
-
-	/**
-	 * Removes an editor type from a multimodel.
-	 * 
-	 * @param editorType
-	 *            The editor type to be removed.
-	 * @param multiModel
-	 *            The multimodel that contains the editor type.
-	 */
-	private static Editor removeEditorType(Editor editorType, MultiModel multiModel) {
-
-		removeType(editorType.getUri(), multiModel);
-		multiModel.getEditors().remove(editorType);
-		Model modelType = MultiModelRegistry.getExtendibleElement(editorType.getModelUri(), multiModel);
-		if (modelType != null) {
-			modelType.getEditors().remove(editorType);
-		}
-
-		return editorType;
-	}
-
-	/**
-	 * Removes an editor type and its subtypes from the multimodel that contains
-	 * them.
-	 * 
-	 * @param editorType
-	 *            The editor type to be removed.
-	 */
-	public static void removeEditorType(Editor editorType) {
-
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(editorType);
-		removeEditorType(editorType, multiModel);
-		for (Editor editorSubtype : MultiModelTypeHierarchy.getSubtypes(editorType, multiModel)) {
-			removeEditorType(editorSubtype, multiModel);
-		}
-	}
-
-	/**
-	 * Removes an operator type from a multimodel.
-	 * 
-	 * @param operatorType
-	 *            The operator type to be removed.
-	 * @param multiModel
-	 *            The multimodel that contains the operator type.
-	 */
-	private static Operator removeOperatorType(Operator operatorType, MultiModel multiModel) {
-
-		removeType(operatorType.getUri(), multiModel);
-		multiModel.getOperators().remove(operatorType);
-		// conversion operator
-		if (operatorType instanceof ConversionOperator) {
-			operatorType.getInputs().get(0).getModel().getConversionOperators().remove(operatorType);
-		}
-
-		return operatorType;
-	}
-
-	/**
-	 * Removes an operator type and its subtypes from the multimodel that
-	 * contains them.
-	 * 
-	 * @param operatorType
-	 *            The operator type to be removed.
-	 */
-	public static void removeOperatorType(Operator operatorType) {
-
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(operatorType);
-		removeOperatorType(operatorType, multiModel);
-		for (Operator operatorSubtype : MultiModelTypeHierarchy.getSubtypes(operatorType, multiModel)) {
-			removeOperatorType(operatorSubtype, multiModel);
-		}
-	}
-
-	/**
-	 * Removes a reference to a model element type from the multimodel that
-	 * contains them.
-	 * 
-	 * @param modelElemTypeRef
-	 *            The reference to be removed to the model element type.
-	 * @param modelTypeEndpointRef
-	 *            The model type endpoint that contains the reference to the
-	 *            model element type.
-	 */
-	private static void removeModelElementTypeReference(ModelElementReference modelElemTypeRef, ModelEndpointReference modelTypeEndpointRef) {
-
-		modelTypeEndpointRef.getModelElemRefs().remove(modelElemTypeRef);
-	}
-
-	/**
-	 * Removes a reference to a model element type and all its subreferences
-	 * from the multimodel that contains it.
-	 * 
-	 * @param modelElemTypeRef
-	 *            The reference to be removed to the model element type.
-	 * @param modelRelType
-	 *            The model relationship that contains the reference to the
-	 *            model element type.
-	 */
-	private static void removeModelElementTypeReference(ModelElementReference modelElemTypeRef, ModelRel modelRelType) {
-
-		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) modelElemTypeRef.eContainer();
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
-		List<BinaryLinkReference> delLinkTypeRefs = new ArrayList<BinaryLinkReference>();
-		List<ModelElementEndpointReference> delModelElemTypeEndpointRefs = new ArrayList<ModelElementEndpointReference>();
-		for (ModelElementEndpointReference modelElemTypeEndpointRef : modelElemTypeRef.getModelElemEndpointRefs()) {
-			LinkReference linkTypeRef = (LinkReference) modelElemTypeEndpointRef.eContainer();
-			// avoid iterating over the list
-			if (linkTypeRef instanceof BinaryLinkReference) {
-				if (!delLinkTypeRefs.contains(linkTypeRef)) {
-					delLinkTypeRefs.add((BinaryLinkReference) linkTypeRef);
-				}
-			}
-			else {
-				if (!delModelElemTypeEndpointRefs.contains(modelElemTypeEndpointRef)) {
-					delModelElemTypeEndpointRefs.add(modelElemTypeEndpointRef);
-				}
-			}
-		}
-		for (BinaryLinkReference linkTypeRef : delLinkTypeRefs) {
-			try {
-				linkTypeRef.deleteTypeAndReference();
-			}
-			catch (MMTFException e) {
-				//TODO MMTF[OO] remove
-			}
-		}
-		for (ModelElementEndpointReference modelElemTypeEndpointRef : delModelElemTypeEndpointRefs) {
-			removeModelElementTypeEndpointAndModelElementTypeEndpointReference(modelElemTypeEndpointRef, true);
-		}
-		removeModelElementTypeReference(modelElemTypeRef, modelTypeEndpointRef);
-		// delete references of the "thing" in subtypes of the container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
-			ModelEndpointReference modelSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
-			ModelElementReference modelElemSubtypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRef, modelSubtypeEndpointRef.getModelElemRefs());
-			if (modelElemSubtypeRef.getModelElemEndpointRefs().size() == 0) {
-				removeModelElementTypeReference(modelElemSubtypeRef, modelSubtypeEndpointRef);
-			}
-			else {
-				boolean newModifiable = true;
-				for (ModelElementEndpointReference modelElemTypeEndpointRef : modelElemSubtypeRef.getModelElemEndpointRefs()) {
-					LinkReference linkSubtypeRef = (LinkReference) modelElemTypeEndpointRef.eContainer();
-					if (!linkSubtypeRef.isModifiable()) {
-						newModifiable = false;
-						break;
-					}
-				}
-				modelElemSubtypeRef.setModifiable(newModifiable);
-			}
-		}
-	}
-
-	/**
-	 * Removes a reference to a model element type and all its subreferences
-	 * from the multimodel that contains them.
-	 * 
-	 * @param modelElemTypeRef
-	 *            The reference to be removed to the model element type.
-	 */
-	public static void removeModelElementTypeReference(ModelElementReference modelElemTypeRef) {
-
-		ModelRel modelRelType = (ModelRel) modelElemTypeRef.eContainer().eContainer();
-		// delete the corresponding reference
-		removeModelElementTypeReference(modelElemTypeRef, modelRelType);
-		// don't delete the subtypes of the "thing", the model element is not deleted from its metamodel
 	}
 
 	/**
