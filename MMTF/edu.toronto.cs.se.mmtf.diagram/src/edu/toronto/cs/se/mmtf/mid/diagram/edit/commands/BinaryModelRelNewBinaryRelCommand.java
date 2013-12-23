@@ -156,9 +156,8 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command");
 		}
-
 		try {
-			BinaryModelRel newElement = (MultiModelConstraintChecker.isInstancesLevel((MultiModel) getContainer())) ?
+			BinaryModelRel newElement = (MultiModelConstraintChecker.isInstancesLevel(getContainer())) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

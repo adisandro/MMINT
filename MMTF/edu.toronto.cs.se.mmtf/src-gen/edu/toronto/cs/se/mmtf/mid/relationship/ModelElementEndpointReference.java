@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -86,5 +88,21 @@ public interface ModelElementEndpointReference extends ExtendibleElementEndpoint
 	 * @generated
 	 */
 	ModelElementEndpointReference getSupertypeRef();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
+	 * @generated
+	 */
+	void deleteTypeAndReference(boolean isFullDelete) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
+	 * @generated
+	 */
+	void deleteInstanceAndReference(boolean isFullDelete) throws MMTFException;
 
 } // ModelElementEndpointReference

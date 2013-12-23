@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.mmtf.mid.library;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -30,7 +29,6 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
-import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -415,45 +413,6 @@ public class MultiModelInstanceFactory {
 	}
 
 	/**
-	 * Removes a reference to a model element from the Instance MID that
-	 * contains it.
-	 * 
-	 * @param modelElemRef
-	 *            The reference to be removed to the modle element.
-	 */
-	public static void removeModelElementReference(ModelElementReference modelElemRef) {
-
-		List<LinkReference> delLinkRefs = new ArrayList<LinkReference>();
-		List<ModelElementEndpointReference> delModelElemEndpointRefs = new ArrayList<ModelElementEndpointReference>();
-		for (ModelElementEndpointReference modelElemEndpointRef : modelElemRef.getModelElemEndpointRefs()) {
-			LinkReference linkRef = (LinkReference) modelElemEndpointRef.eContainer();
-			if (linkRef instanceof BinaryLinkReference) {
-				if (!delLinkRefs.contains(linkRef)) {
-					delLinkRefs.add(linkRef);
-				}
-			}
-			else {
-				if (!delModelElemEndpointRefs.contains(modelElemEndpointRef)) {
-					delModelElemEndpointRefs.add(modelElemEndpointRef);
-				}
-			}
-		}
-		for (LinkReference linkRef : delLinkRefs) {
-			try {
-				linkRef.deleteInstanceAndReference();
-			}
-			catch (MMTFException e) {
-				//TODO MMTF[OO] remove this
-			}
-		}
-		for (ModelElementEndpointReference modelElemEndpointRef : delModelElemEndpointRefs) {
-			removeModelElementEndpointAndModelElementEndpointReference(modelElemEndpointRef, true);
-		}
-
-		((ModelEndpointReference) modelElemRef.eContainer()).getModelElemRefs().remove(modelElemRef);
-	}
-
-	/**
 	 * Removes a model element and the reference to it from the Instance MID
 	 * that contains them.
 	 * 
@@ -461,11 +420,11 @@ public class MultiModelInstanceFactory {
 	 *            The reference to be removed to the model element to be
 	 *            removed.
 	 */
-	public static void removeModelElementAndModelElementReference(ModelElementReference modelElemRef) {
+	public static void removeModelElementAndModelElementReference(ModelElementReference modelElemRef) throws MMTFException {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelElemRef);
 		removeInstance(modelElemRef.getUri(), multiModel);
-		removeModelElementReference(modelElemRef);
+		modelElemRef.deleteInstanceReference();
 		ModelElement modelElem = modelElemRef.getObject();
 		((Model) modelElem.eContainer()).getModelElems().remove(modelElem);
 		//TODO MMTF: should remove from all model rels too?

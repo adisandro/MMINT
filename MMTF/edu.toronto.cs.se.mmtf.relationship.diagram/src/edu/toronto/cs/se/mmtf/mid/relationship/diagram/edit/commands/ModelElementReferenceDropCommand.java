@@ -25,7 +25,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -135,7 +134,7 @@ supertypes:
 					continue;
 				}
 				for (ModelEndpointReference modelTypeEndpointRefOrModelTypeEndpointRefSuper : modelTypeEndpointRefsOrModelTypeEndpointRefsSuper) {
-					modelElemTypeUri = MultiModelLightTypeFactory.createNewLightTypeUri(modelTypeEndpointRefOrModelTypeEndpointRefSuper.getObject(), null, modelElemTypeUri);
+					modelElemTypeUri = modelTypeEndpointRefOrModelTypeEndpointRefSuper.getObject().createSubtypeUri(null, modelElemTypeUri);
 					modelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeUri, modelTypeEndpointRefOrModelTypeEndpointRefSuper.getModelElemRefs());
 					if (modelElemTypeRef != null) {
 						modelElemType = modelElemTypeRef.getObject();

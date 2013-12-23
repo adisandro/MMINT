@@ -24,7 +24,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
@@ -141,29 +140,13 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 		MMTF.createTypeHierarchy(MultiModelRegistry.getMultiModel(modelRelType));
 
 		String newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new source model element type endpoint", "Insert new source model element type endpoint role", null);
-		//TODO MMTF: search for override (only if we're not inheriting from a root type)
-		ModelElementEndpointReference modelElemTypeEndpointRef = null;
-		ModelElementEndpoint modelElemTypeEndpoint = (modelElemTypeEndpointRef == null) ? null : modelElemTypeEndpointRef.getObject();
-		MultiModelLightTypeFactory.createLightModelElementTypeEndpointAndModelElementTypeEndpointReference(
-			modelElemTypeEndpoint,
-			modelElemTypeEndpointRef,
-			newModelElemTypeEndpointName,
-			getSource(),
-			false,
-			newLinkTypeRef
-		);
+		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(newLinkTypeRef, getSource());
+		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), newLinkTypeRef.getModelElemEndpointRefs());
+		modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, newModelElemTypeEndpointName, getSource(), false, newLinkTypeRef);
 		newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new target model element type endpoint", "Insert new target model element type endpoint role", null);
-		//TODO MMTF: search for override (only if we're not inheriting from a root type)
-		modelElemTypeEndpointRef = null;
-		modelElemTypeEndpoint = (modelElemTypeEndpointRef == null) ? null : modelElemTypeEndpointRef.getObject();
-		MultiModelLightTypeFactory.createLightModelElementTypeEndpointAndModelElementTypeEndpointReference(
-			modelElemTypeEndpoint,
-			modelElemTypeEndpointRef,
-			newModelElemTypeEndpointName,
-			getTarget(),
-			false,
-			newLinkTypeRef
-		);
+		modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(newLinkTypeRef, getTarget());
+		modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), newLinkTypeRef.getModelElemEndpointRefs());
+		modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, newModelElemTypeEndpointName, getTarget(), false, newLinkTypeRef);
 
 		return newLinkTypeRef;
 	}
@@ -185,7 +168,6 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command");
 		}
-
 		try {
 			BinaryLinkReference newElement = MultiModelConstraintChecker.isInstancesLevel(getContainer()) ?
 				doExecuteInstancesLevel() :

@@ -317,7 +317,7 @@ public class MultiModelTypeFactory {
 	 *            The link type that will contain the new model element type
 	 *            endpoint.
 	 */
-	protected static void addModelElementTypeEndpoint(ModelElementEndpoint newModelElemTypeEndpoint, ModelElement newModelElemType, boolean isBinarySrc, Link linkType) {
+	public static void addModelElementTypeEndpoint(ModelElementEndpoint newModelElemTypeEndpoint, ModelElement newModelElemType, boolean isBinarySrc, Link linkType) {
 
 		addTypeEndpoint(newModelElemTypeEndpoint, newModelElemType);
 		if (isBinarySrc) {
@@ -338,7 +338,7 @@ public class MultiModelTypeFactory {
 	 *            The link type that contains the referenced model element type
 	 *            endpoint.
 	 */
-	protected static void addModelElementTypeEndpointReference(ModelElementEndpointReference newModelElemTypeEndpointRef, Link linkType) {
+	public static void addModelElementTypeEndpointReference(ModelElementEndpointReference newModelElemTypeEndpointRef, Link linkType) {
 
 		linkType.getModelElemEndpointRefs().add(newModelElemTypeEndpointRef);
 	}

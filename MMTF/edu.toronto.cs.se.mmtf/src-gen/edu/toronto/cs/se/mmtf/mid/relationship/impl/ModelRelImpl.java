@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
@@ -544,14 +543,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 					LinkReference newLinkTypeRefSuper = MultiModelTypeHierarchy.getReference((LinkReference) origModelElemTypeEndpointRef.getObject().getSupertype().eContainer(), newModelRelType.getLinkRefs());
 					modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(origModelElemTypeEndpointRef.getSupertypeRef(), newLinkTypeRefSuper.getModelElemEndpointRefs());
 				}
-				MultiModelLightTypeFactory.createLightModelElementTypeEndpointAndModelElementTypeEndpointReference(
-					modelElemTypeEndpoint,
-					modelElemTypeEndpointRef,
-					origModelElemTypeEndpointRef.getObject().getName(),
-					newModelElemTypeRef,
-					false,
-					newLinkTypeRef
-				);
+				modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, origModelElemTypeEndpointRef.getObject().getName(), newModelElemTypeRef, false, newLinkTypeRef);
 			}
 		}
 

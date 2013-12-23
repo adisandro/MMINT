@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -22,7 +22,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
@@ -93,17 +92,9 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 	protected ModelElementEndpointReference doExecuteTypesLevel() throws MMTFException {
 
 		String newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new light model element type endpoint", "Insert new model element type endpoint role", null);
-		//TODO MMTF: search for override (only if we're not inheriting from a root type)
-		ModelElementEndpointReference modelElemTypeEndpointRef = null;
-		ModelElementEndpoint modelElemTypeEndpoint = (modelElemTypeEndpointRef == null) ? null : modelElemTypeEndpointRef.getObject();
-		ModelElementEndpointReference newModelElemTypeEndpointRef = MultiModelLightTypeFactory.createLightModelElementTypeEndpointAndModelElementTypeEndpointReference(
-			modelElemTypeEndpoint,
-			modelElemTypeEndpointRef,
-			newModelElemTypeEndpointName,
-			getTarget(),
-			false,
-			getSource()
-		);
+		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(getSource(), getTarget());
+		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), getSource().getModelElemEndpointRefs());
+		ModelElementEndpointReference newModelElemTypeEndpointRef = modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, newModelElemTypeEndpointName, getTarget(), false, getSource());
 		// no need to init type hierarchy, no need for undo/redo
 
 		return newModelElemTypeEndpointRef;
@@ -116,7 +107,6 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 			if (!canExecute()) {
 				throw new ExecutionException("Invalid arguments in create link command");
 			}
-
 			ModelElementEndpointReference newElement = (MultiModelConstraintChecker.isInstancesLevel(getSource())) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
@@ -128,7 +118,7 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (Exception e) {
+		catch (MMTFException e) {
 			MMTFException.print(MMTFException.Type.WARNING, "No model element endpoint created", e);
 			return CommandResult.newErrorCommandResult("No model element endpoint created");
 		}

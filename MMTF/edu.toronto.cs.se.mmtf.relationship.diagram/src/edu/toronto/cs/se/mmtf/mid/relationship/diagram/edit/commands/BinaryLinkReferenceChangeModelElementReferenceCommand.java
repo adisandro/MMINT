@@ -18,8 +18,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
-import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
@@ -109,7 +107,7 @@ public class BinaryLinkReferenceChangeModelElementReferenceCommand extends Binar
 			));
 	}
 
-	protected void doExecuteInstancesLevel(BinaryLinkReference linkRef, ModelElementReference modelElemRef, boolean isBinarySrc) throws Exception {
+	protected void doExecuteInstancesLevel(BinaryLinkReference linkRef, ModelElementReference modelElemRef, boolean isBinarySrc) throws MMTFException {
 
 		ModelElementEndpointReference oldModelElemEndpointRef = (isBinarySrc) ?
 			linkRef.getModelElemEndpointRefs().get(0) :
@@ -128,19 +126,9 @@ public class BinaryLinkReferenceChangeModelElementReferenceCommand extends Binar
 		ModelElementEndpointReference oldModelElemTypeEndpointRef = (isBinarySrc) ?
 			linkTypeRef.getModelElemEndpointRefs().get(0) :
 			linkTypeRef.getModelElemEndpointRefs().get(1);
-		MultiModelTypeFactory.removeModelElementTypeEndpointAndModelElementTypeEndpointReference(oldModelElemTypeEndpointRef, false);
-		String newModelElemTypeEndpointName = oldModelElemTypeEndpointRef.getObject().getName();
-		//TODO MMTF: search for override (only if we're not inheriting from a root type)
-		ModelElementEndpointReference modelElemTypeEndpointRef = null;
-		ModelElementEndpoint modelElemTypeEndpoint = (modelElemTypeEndpointRef == null) ? null : modelElemTypeEndpointRef.getObject();
-		MultiModelLightTypeFactory.replaceLightModelElementTypeEndpointAndModelElementTypeEndpointReference(
-			oldModelElemTypeEndpointRef,
-			modelElemTypeEndpoint,
-			modelElemTypeEndpointRef,
-			newModelElemTypeEndpointName,
-			modelElemTypeRef,
-			linkTypeRef
-		);
+		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(linkTypeRef, modelElemTypeRef);
+		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), linkTypeRef.getModelElemEndpointRefs());
+		modelElemTypeEndpoint.replaceSubtypeAndReference(oldModelElemTypeEndpointRef, modelElemTypeEndpointRef, oldModelElemTypeEndpointRef.getObject().getName(), modelElemTypeRef, linkTypeRef);
 		// no need to init type hierarchy, no need for undo/redo
 	}
 
@@ -164,10 +152,7 @@ public class BinaryLinkReferenceChangeModelElementReferenceCommand extends Binar
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (ExecutionException ee) {
-			throw ee;
-		}
-		catch (Exception e) {
+		catch (MMTFException e) {
 			MMTFException.print(MMTFException.Type.WARNING, "No model element endpoint changed", e);
 			return CommandResult.newErrorCommandResult("No model element endpoint changed");
 		}
@@ -193,10 +178,7 @@ public class BinaryLinkReferenceChangeModelElementReferenceCommand extends Binar
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (ExecutionException ee) {
-			throw ee;
-		}
-		catch (Exception e) {
+		catch (MMTFException e) {
 			MMTFException.print(MMTFException.Type.WARNING, "No model element endpoint changed", e);
 			return CommandResult.newErrorCommandResult("No model element endpoint changed");
 		}

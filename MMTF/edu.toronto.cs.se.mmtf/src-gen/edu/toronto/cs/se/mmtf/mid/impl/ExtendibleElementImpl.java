@@ -25,8 +25,10 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 
+import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -541,6 +543,20 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 * @generated
 	 */
 	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MidPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING:
+				return createSubtypeUri((String)arguments.get(0), (String)arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
@@ -560,43 +576,29 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	}
 
 	/**
-	 * Gets the base uri of a type by cutting its last fragment.
+	 * Gets the base uri of this type by cutting its last fragment.
 	 * 
-	 * @param type
-	 *            The type.
-	 * @return The base uri of the type.
+	 * @return The base uri of this type.
 	 * @generated NOT
 	 */
-	private String getTypeBaseUri(ExtendibleElement type) {
+	private String getTypeBaseUri() {
 
-		String baseUri = type.getUri();
+		String baseUri = getUri();
 		int cut = baseUri.lastIndexOf(MMTF.URI_SEPARATOR);
 		if (cut == -1) {
-			cut = type.getUri().length();
+			cut = getUri().length();
 		}
-		baseUri = type.getUri().substring(0, cut);
+		baseUri = getUri().substring(0, cut);
 
 		return baseUri;
 	}
 
 	/**
-	 * Creates a uri for a new subtype (the base uri + the possible uri fragment
-	 * + the name of the new type).
-	 * 
-	 * @param baseType
-	 *            The base type from which the uri of the new type will be
-	 *            constructed.
-	 * @param newTypeFragmentUri
-	 *            The uri fragment to be appended as part of the uri of the new
-	 *            type, can be null.
-	 * @param newTypeName
-	 *            The name of the new type.
-	 * @return The uri of the new type.
 	 * @generated NOT
 	 */
-	private String createNewSubtypeUri(ExtendibleElement baseType, String newTypeFragmentUri, String newTypeName) {
+	public String createSubtypeUri(String newTypeFragmentUri, String newTypeName) {
 
-		String baseUri = getTypeBaseUri(baseType);
+		String baseUri = getTypeBaseUri();
 		String newTypeUri = (newTypeFragmentUri == null) ?
 			baseUri + MMTF.URI_SEPARATOR + newTypeName :
 			baseUri + MMTF.URI_SEPARATOR + newTypeFragmentUri + MMTF.URI_SEPARATOR + newTypeName;
@@ -625,7 +627,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	protected void addSubtype(ExtendibleElement newType, ExtendibleElement baseType, String newTypeFragmentUri, String newTypeName) throws MMTFException {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
-		String newTypeUri = createNewSubtypeUri(baseType, newTypeFragmentUri, newTypeName);
+		String newTypeUri = baseType.createSubtypeUri(newTypeFragmentUri, newTypeName);
 		MultiModelTypeFactory.addType(newType, this, newTypeUri, newTypeName, multiModel);
 		newType.setDynamic(true);
 	}

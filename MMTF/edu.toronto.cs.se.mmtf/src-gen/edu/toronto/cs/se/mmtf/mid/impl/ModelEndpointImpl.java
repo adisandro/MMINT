@@ -23,7 +23,6 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -486,8 +485,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			}
 		}
 		while (modelEndpointRef.getModelElemRefs().size() > 0) {
-			//TODO MMTF[OO] do this when all pieces fall into place
-			MultiModelInstanceFactory.removeModelElementReference(modelEndpointRef.getModelElemRefs().get(0));
+			modelEndpointRef.getModelElemRefs().get(0).deleteInstanceReference();
 		}
 		if (isFullDelete) {
 			modelRel.getModelEndpoints().remove(this);

@@ -38,7 +38,10 @@ import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.repository.ExtensionType;
@@ -797,17 +800,34 @@ nextOperatorType:
 		return type.getUri().equals(getRootTypeUri(type));
 	}
 
-	public static ModelEndpoint getOverriddenModelTypeEndpoint(ModelRel modelRelType, Model newModelType) {
+	public static ModelEndpoint getOverriddenModelTypeEndpoint(ModelRel modelRelType, Model targetModelType) {
 
 		//TODO MMTF[MODELENDPOINT] very dumb first approach to the override problem
 		while (!isRootType(modelRelType)) {
 			for (ModelEndpointReference modelTypeEndpointRef : modelRelType.getModelEndpointRefs()) {
-				if (MultiModelTypeHierarchy.isSubtypeOf(newModelType.getUri(), modelTypeEndpointRef.getTargetUri())) {
+				if (MultiModelTypeHierarchy.isSubtypeOf(targetModelType.getUri(), modelTypeEndpointRef.getTargetUri())) {
 					//TODO MMTF[MODELENDPOINT] ask to override or not
 					return modelTypeEndpointRef.getObject();
 				}
 			}
 			modelRelType = (ModelRel) modelRelType.getSupertype();
+		}
+
+		return null;
+	}
+
+	public static ModelElementEndpoint getOverriddenModelElementTypeEndpoint(LinkReference linkTypeRef, ModelElementReference targetModelElemTypeRef) {
+
+		//TODO MMTF[MODELENDPOINT] very dumb first approach to the override problem
+		Link linkType = linkTypeRef.getObject();
+		while (!isRootType(linkType)) {
+			for (ModelElementEndpointReference modelElemTypeEndpointRef : linkType.getModelElemEndpointRefs()) {
+				if (MultiModelTypeHierarchy.isSubtypeOf(targetModelElemTypeRef.getUri(), modelElemTypeEndpointRef.getTargetUri())) {
+					//TODO MMTF[MODELENDPOINT] ask to override or not
+					return modelElemTypeEndpointRef.getObject();
+				}
+			}
+			linkType = linkType.getSupertype();
 		}
 
 		return null;

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -18,8 +18,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
-import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
@@ -78,7 +76,7 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 		return
 			super.canReorientSource() && (
 				!MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
-				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(getNewSource(), getOldTarget())) != null
+				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(getNewSource(), getLink().getModelElemRef())) != null
 			);
 	}
 
@@ -94,11 +92,11 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 		return
 			super.canReorientTarget() && (
 				!MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
-				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(getOldSource(), getNewTarget())) != null
+				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences((LinkReference) getLink().eContainer(), getNewTarget())) != null
 			);
 	}
 
-	protected void doExecuteInstancesLevel(LinkReference linkRef, ModelElementReference modelElemRef) throws Exception {
+	protected void doExecuteInstancesLevel(LinkReference linkRef, ModelElementReference modelElemRef, boolean isFullDelete) throws MMTFException {
 
 		MultiModelInstanceFactory.removeModelElementEndpointAndModelElementEndpointReference(getLink(), false);
 		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramUtils.selectModelElementTypeEndpointToCreate(linkRef, modelElemTypeEndpointUris);
@@ -109,21 +107,17 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 		);
 	}
 
-	protected void doExecuteTypesLevel(LinkReference linkTypeRef, ModelElementReference modelElemTypeRef) throws MMTFException {
+	protected void doExecuteTypesLevel(LinkReference linkTypeRef, ModelElementReference modelElemTypeRef, boolean isFullDelete) throws MMTFException {
 
-		MultiModelTypeFactory.removeModelElementTypeEndpointAndModelElementTypeEndpointReference(getLink(), false);
-		String newModelElemTypeEndpointName = getLink().getObject().getName();
-		//TODO MMTF: search for override (only if we're not inheriting from a root type)
-		ModelElementEndpointReference modelElemTypeEndpointRef = null;
-		ModelElementEndpoint modelElemTypeEndpoint = (modelElemTypeEndpointRef == null) ? null : modelElemTypeEndpointRef.getObject();
-		MultiModelLightTypeFactory.replaceLightModelElementTypeEndpointAndModelElementTypeEndpointReference(
-			getLink(),
-			modelElemTypeEndpoint,
-			modelElemTypeEndpointRef,
-			newModelElemTypeEndpointName,
-			modelElemTypeRef,
-			linkTypeRef
-		);
+		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(linkTypeRef, modelElemTypeRef);
+		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), linkTypeRef.getModelElemEndpointRefs());
+		if (isFullDelete) {
+			getLink().deleteTypeAndReference(isFullDelete);
+			modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, getLink().getObject().getName(), modelElemTypeRef, false, linkTypeRef);
+		}
+		else {
+			modelElemTypeEndpoint.replaceSubtypeAndReference(getLink(), modelElemTypeEndpointRef, getLink().getObject().getName(), modelElemTypeRef, linkTypeRef);
+		}
 		// no need to init type hierarchy, no need for undo/redo
 	}
 
@@ -132,18 +126,15 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 
 		try {
 			if (MultiModelConstraintChecker.isInstancesLevel(getLink())) {
-				doExecuteInstancesLevel(getNewSource(), getLink().getModelElemRef());
+				doExecuteInstancesLevel(getNewSource(), getLink().getModelElemRef(), true);
 			}
 			else {
-				doExecuteTypesLevel(getNewSource(), getLink().getModelElemRef());
+				doExecuteTypesLevel(getNewSource(), getLink().getModelElemRef(), true);
 			}
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (ExecutionException ee) {
-			throw ee;
-		}
-		catch (Exception e) {
+		catch (MMTFException e) {
 			MMTFException.print(MMTFException.Type.WARNING, "No model element endpoint changed", e);
 			return CommandResult.newErrorCommandResult("No model element endpoint changed");
 		}
@@ -154,18 +145,15 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 
 		try {
 			if (MultiModelConstraintChecker.isInstancesLevel(getLink())) {
-				doExecuteInstancesLevel((LinkReference) getLink().eContainer(), getNewTarget());
+				doExecuteInstancesLevel((LinkReference) getLink().eContainer(), getNewTarget(), false);
 			}
 			else {
-				doExecuteTypesLevel((LinkReference) getLink().eContainer(), getNewTarget());
+				doExecuteTypesLevel((LinkReference) getLink().eContainer(), getNewTarget(), false);
 			}
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (ExecutionException ee) {
-			throw ee;
-		}
-		catch (Exception e) {
+		catch (MMTFException e) {
 			MMTFException.print(MMTFException.Type.WARNING, "No model element endpoint changed", e);
 			return CommandResult.newErrorCommandResult("No model element endpoint changed");
 		}

@@ -113,7 +113,6 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 			if (!canExecute()) {
 				throw new ExecutionException("Invalid arguments in create link command");
 			}
-
 			ModelEndpoint newElement = (MultiModelConstraintChecker.isInstancesLevel(getSource())) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();

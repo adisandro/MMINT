@@ -235,4 +235,20 @@ public interface ExtendibleElement extends MAVOElement {
 	 */
 	void setConstraint(ExtendibleElementConstraint value);
 
+	/**
+	 * <!-- begin-user-doc --> Creates a uri for a new subtype, using this type
+	 * as the base (the base uri + the possible uri fragment + the name of the
+	 * new type).
+	 * 
+	 * @param newTypeFragmentUri
+	 *            The uri fragment to be appended as part of the uri of the new
+	 *            type, can be null.
+	 * @param newTypeName
+	 *            The name of the new type.
+	 * @return The uri of the new type. <!-- end-user-doc -->
+	 * @model required="true" newTypeNameRequired="true"
+	 * @generated
+	 */
+	String createSubtypeUri(String newTypeFragmentUri, String newTypeName);
+
 } // ExtendibleElement

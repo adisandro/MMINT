@@ -13,7 +13,6 @@ package edu.toronto.cs.se.mmtf.mid.impl;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelLightTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
@@ -291,12 +290,12 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		ModelRel modelRelType = (ModelRel) containerModelTypeEndpointRef.eContainer();
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
-		String newTypeUri = MultiModelLightTypeFactory.createNewLightTypeUri(containerModelTypeEndpointRef.getObject(), containerModelTypeEndpointRef.getObject().getName(), newModelElemTypeName);
+		String newTypeUri = containerModelTypeEndpointRef.getObject().createSubtypeUri(containerModelTypeEndpointRef.getObject().getName(), newModelElemTypeName);
 		ModelElement newModelElemType = MultiModelRegistry.getExtendibleElement(newTypeUri, multiModel);
 		if (newModelElemType == null) {
 			// create the "thing"
 			newModelElemType = MidFactory.eINSTANCE.createModelElement();
-			MultiModelLightTypeFactory.addLightType(newModelElemType, this, containerModelTypeEndpointRef.getObject(), containerModelTypeEndpointRef.getObject().getName(), newModelElemTypeName, multiModel);
+			super.addSubtype(newModelElemType, containerModelTypeEndpointRef.getObject(), containerModelTypeEndpointRef.getObject().getName(), newModelElemTypeName);
 			MultiModelTypeFactory.addModelElementType(newModelElemType, classLiteral, containerModelTypeEndpointRef.getObject().getTarget());
 		}
 		// create the reference of the "thing"
