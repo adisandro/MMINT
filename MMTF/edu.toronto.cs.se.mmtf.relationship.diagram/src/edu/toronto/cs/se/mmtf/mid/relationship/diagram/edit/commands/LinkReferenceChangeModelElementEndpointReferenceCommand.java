@@ -20,7 +20,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
@@ -98,13 +97,14 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 
 	protected void doExecuteInstancesLevel(LinkReference linkRef, ModelElementReference modelElemRef, boolean isFullDelete) throws MMTFException {
 
-		MultiModelInstanceFactory.removeModelElementEndpointAndModelElementEndpointReference(getLink(), false);
 		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramUtils.selectModelElementTypeEndpointToCreate(linkRef, modelElemTypeEndpointUris);
-		MultiModelInstanceFactory.replaceModelElementEndpointAndModelElementEndpointReference(
-			getLink(),
-			modelElemTypeEndpointRef.getObject(),
-			modelElemRef
-		);
+		if (isFullDelete) {
+			getLink().deleteInstanceAndReference(isFullDelete);
+			modelElemTypeEndpointRef.getObject().createInstanceAndReference(modelElemRef, false, linkRef);
+		}
+		else {
+			modelElemTypeEndpointRef.getObject().replaceInstanceAndReference(getLink(), modelElemRef);
+		}
 	}
 
 	protected void doExecuteTypesLevel(LinkReference linkTypeRef, ModelElementReference modelElemTypeRef, boolean isFullDelete) throws MMTFException {

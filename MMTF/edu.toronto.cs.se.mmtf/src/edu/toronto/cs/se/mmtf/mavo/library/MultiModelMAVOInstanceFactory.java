@@ -109,7 +109,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 			newLinkRef.getObject().setName(oldLinkRef.getObject().getName());
 			for (ModelElementEndpointReference oldModelElemEndpointRef : oldLinkRef.getModelElemEndpointRefs()) {
 				ModelElementReference newModelElemRef = newModelElemRefs.get(oldModelElemEndpointRef.getTargetUri());
-				createModelElementEndpointAndModelElementEndpointReference(oldModelElemEndpointRef.getObject().getMetatype(), newModelElemRef, false, newLinkRef);
+				oldModelElemEndpointRef.getObject().getMetatype().createInstanceAndReference(newModelElemRef, false, newLinkRef);
 			}
 		}
 

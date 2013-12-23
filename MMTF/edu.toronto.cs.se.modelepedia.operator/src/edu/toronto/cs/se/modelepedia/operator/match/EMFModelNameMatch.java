@@ -31,11 +31,11 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -80,12 +80,13 @@ public class EMFModelNameMatch extends OperatorExecutableImpl {
 		ModelRel matchRel = rootModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
 		matchRel.setName(MODELREL_NAME);
 		// create model endpoints
-		ModelEndpoint rootModelEndpointType = MultiModelTypeHierarchy.getRootModelEndpointType();
-		ModelEndpointReference srcModelEndpointRef = rootModelEndpointType.createInstanceAndReference(srcModel, false, matchRel);
-		ModelEndpointReference tgtModelEndpointRef = rootModelEndpointType.createInstanceAndReference(tgtModel, false, matchRel);
+		ModelEndpoint rootModelTypeEndpoint = MultiModelTypeHierarchy.getRootModelTypeEndpoint();
+		ModelEndpointReference srcModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(srcModel, false, matchRel);
+		ModelEndpointReference tgtModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(tgtModel, false, matchRel);
 
 		// create model relationship structure
 		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
+		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
 		match(srcModel, tgtModel);
 		for (Match rootMatch : comparison.getMatches()) {
 nextMatch:
@@ -119,18 +120,8 @@ nextMatch:
 					match.getRight()
 				);
 				// create model element endpoints
-				MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-					null,
-					srcModelElemRef,
-					false,
-					matchLinkRef
-				);
-				MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-					null,
-					tgtModelElemRef,
-					false,
-					matchLinkRef
-				);
+				rootModelElemTypeEndpoint.createInstanceAndReference(srcModelElemRef, false, matchLinkRef);
+				rootModelElemTypeEndpoint.createInstanceAndReference(tgtModelElemRef, false, matchLinkRef);
 			}
 		}
 

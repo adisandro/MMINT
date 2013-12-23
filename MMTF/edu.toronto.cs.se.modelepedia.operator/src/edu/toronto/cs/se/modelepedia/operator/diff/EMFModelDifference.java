@@ -26,12 +26,12 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -44,7 +44,7 @@ public class EMFModelDifference extends OperatorExecutableImpl {
 	private final static String DELETED_ELEMENT_LINK_NAME = "del";
 	private final static String ADDED_ELEMENT_LINK_NAME = "add";
 
-	private void createLinkReference(Link rootLinkType, ModelRel diffModelRel, ModelEndpointReference diffModelEndpointRef, EObject modelObj, String linksName) throws MMTFException {
+	private void createLinkReference(Link rootLinkType, ModelElementEndpoint rootModelElemTypeEndpoint, ModelRel diffModelRel, ModelEndpointReference diffModelEndpointRef, EObject modelObj, String linksName) throws MMTFException {
 
 		// create unary link
 		LinkReference diffLinkRef = rootLinkType.createInstanceAndReference(false, diffModelRel);
@@ -56,12 +56,7 @@ public class EMFModelDifference extends OperatorExecutableImpl {
 			modelObj
 		);
 		// create model element endpoint
-		MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-			null,
-			diffModelElemRef,
-			false,
-			diffLinkRef
-		);
+		rootModelElemTypeEndpoint.createInstanceAndReference(diffModelElemRef, false, diffLinkRef);
 	}
 
 	@Override
@@ -76,9 +71,9 @@ public class EMFModelDifference extends OperatorExecutableImpl {
 		diffModelRel.setName(MODELREL_NAME);
 
 		// create model endpoints
-		ModelEndpoint rootModelEndpointType = MultiModelTypeHierarchy.getRootModelEndpointType();
-		ModelEndpointReference srcModelEndpointRef = rootModelEndpointType.createInstanceAndReference(matchRel.getModelEndpoints().get(0).getTarget(), false, diffModelRel);
-		ModelEndpointReference tgtModelEndpointRef = rootModelEndpointType.createInstanceAndReference(matchRel.getModelEndpoints().get(1).getTarget(), false, diffModelRel);
+		ModelEndpoint rootModelTypeEndpoint = MultiModelTypeHierarchy.getRootModelTypeEndpoint();
+		ModelEndpointReference srcModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(matchRel.getModelEndpoints().get(0).getTarget(), false, diffModelRel);
+		ModelEndpointReference tgtModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(matchRel.getModelEndpoints().get(1).getTarget(), false, diffModelRel);
 
 		// get output from previous operator
 		EMFModelNameMatch previousOperator = (previousExecutable == null) ?
@@ -86,6 +81,7 @@ public class EMFModelDifference extends OperatorExecutableImpl {
 			(EMFModelNameMatch) previousExecutable;
 		Comparison comparison = previousOperator.getComparison();
 		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
+		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
 nextDiff:
 		for (Diff diff : comparison.getDifferences()) {
 			if (!(diff instanceof ReferenceChange)) {
@@ -114,7 +110,7 @@ nextDiff:
 			if (modelElemRef != null && !modelElemRef.getModelElemEndpointRefs().isEmpty()) { // is already in diff
 				continue;
 			}
-			createLinkReference(rootLinkType, diffModelRel, modelEndpointRef, modelObj, linkName);
+			createLinkReference(rootLinkType, rootModelElemTypeEndpoint, diffModelRel, modelEndpointRef, modelObj, linkName);
 		}
 
 		EList<Model> result = new BasicEList<Model>();

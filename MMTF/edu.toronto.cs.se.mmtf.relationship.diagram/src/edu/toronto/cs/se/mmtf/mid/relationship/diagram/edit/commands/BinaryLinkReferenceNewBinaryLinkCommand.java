@@ -27,7 +27,6 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
@@ -113,20 +112,10 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 
 		List<String> modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, getSource());
 		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramUtils.selectModelElementTypeEndpointToCreate(newLinkRef, modelElemTypeEndpointUris);
-		MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-			modelElemTypeEndpointRef.getObject(),
-			getSource(),
-			false,
-			newLinkRef
-		);
+		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getSource(), false, newLinkRef);
 		modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, getTarget());
 		modelElemTypeEndpointRef = RelationshipDiagramUtils.selectModelElementTypeEndpointToCreate(newLinkRef, modelElemTypeEndpointUris);
-		MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-			modelElemTypeEndpointRef.getObject(),
-			getTarget(),
-			false,
-			newLinkRef
-		);
+		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), false, newLinkRef);
 
 		return newLinkRef;
 	}

@@ -36,7 +36,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
@@ -219,9 +218,9 @@ public class MultiModelInstanceFactory {
 		ModelRel newModelRel = modelRelType.createInstance(newModelRelUri, (BinaryModelRel.class.isAssignableFrom(newModelRelClass.getClass())), origin, multiModel);
 		// create model rel endpoints
 		for (Model model : newModels) {
-			String modelEndpointTypeUri = MultiModelConstraintChecker.getAllowedModelEndpoints(modelRelType, model).get(0);
-			ModelEndpoint modelEndpointType = MultiModelTypeRegistry.getType(modelEndpointTypeUri);
-			modelEndpointType.createInstanceAndReference(model, false, newModelRel);
+			String modelTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, model).get(0);
+			ModelEndpoint modelTypeEndpoint = MultiModelTypeRegistry.getType(modelTypeEndpointUri);
+			modelTypeEndpoint.createInstanceAndReference(model, false, newModelRel);
 		}
 
 		return newModelRel;
@@ -254,107 +253,13 @@ public class MultiModelInstanceFactory {
 		LinkReference newLinkRef = linkType.createInstanceAndReference((BinaryLink.class.isAssignableFrom(newLinkClass.getClass())), modelRel);
 		// create model element endpoints
 		for (ModelElementReference modelElemRef : newModelElemRefs) {
-			ModelElementEndpointReference newModelElemEndpointRef = createModelElementEndpointAndModelElementEndpointReference(
-				null,
-				modelElemRef,
-				false,
-				newLinkRef
-			);
+			String modelElemTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, modelElemRef).get(0);
+			ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeRegistry.getType(modelElemTypeEndpointUri);
+			ModelElementEndpointReference newModelElemEndpointRef = modelElemTypeEndpoint.createInstanceAndReference(modelElemRef, false, newLinkRef);
 			newModelElemEndpointRef.getObject().setName(modelElemRef.getObject().getName());
 		}
 
 		return newLinkRef;
-	}
-
-	/**
-	 * Creates and adds a model element endpoint and a reference to it to an
-	 * Instance MID.
-	 * 
-	 * @param modelElemTypeEndpoint
-	 *            The type of the new model element endpoint.
-	 * @param newModelElemRef
-	 *            The reference to the new model element that is the target of
-	 *            the new model element endpoint.
-	 * @param isBinarySrc
-	 *            True if the model element endpoint is the source in the binary
-	 *            link container, false otherwise.
-	 * @param linkRef
-	 *            The reference to the link that will contain the new model
-	 *            element endpoint.
-	 * @return The created reference to the new model element endpoint.
-	 */
-	public static ModelElementEndpointReference createModelElementEndpointAndModelElementEndpointReference(ModelElementEndpoint modelElemTypeEndpoint, ModelElementReference newModelElemRef, boolean isBinarySrc, LinkReference linkRef) {
-
-		ModelElementEndpoint newModelElemEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
-		addBasicInstance(newModelElemEndpoint, modelElemTypeEndpoint, null, newModelElemRef.getObject().getName());
-		addInstanceEndpoint(newModelElemEndpoint, newModelElemRef.getObject());
-		if (isBinarySrc) {
-			linkRef.getObject().getModelElemEndpoints().add(0, newModelElemEndpoint);
-		}
-		else {
-			linkRef.getObject().getModelElemEndpoints().add(newModelElemEndpoint);
-		}
-		ModelElementEndpointReference modelElemEndpointRef = createModelElementEndpointReference(newModelElemEndpoint, newModelElemRef, isBinarySrc, linkRef);
-		linkRef.getObject().getModelElemEndpointRefs().add(modelElemEndpointRef);
-
-		return modelElemEndpointRef;
-	}
-
-	/**
-	 * Creates and adds a reference to a model element endpoint to an Instance
-	 * MID.
-	 * 
-	 * @param newModelElemEndpoint
-	 *            The model element endpoint for which the reference is being
-	 *            created.
-	 * @param newModelElemRef
-	 *            The reference to the new model element that is the target of
-	 *            the new model element endpoint.
-	 * @param isBinarySrc
-	 *            True if the reference to the model element endpoint is the
-	 *            source in the binary link reference container, false
-	 *            otherwise.
-	 * @param linkRef
-	 *            The reference to the link that will contain the new model
-	 *            element endpoint.
-	 * @return The created reference to the model element endpoint.
-	 */
-	public static ModelElementEndpointReference createModelElementEndpointReference(ModelElementEndpoint newModelElemEndpoint, ModelElementReference newModelElemRef, boolean isBinarySrc, LinkReference linkRef) {
-
-		ModelElementEndpointReference newModelElemEndpointRef = RelationshipFactory.eINSTANCE.createModelElementEndpointReference();
-		boolean isContainer = linkRef.eContainer().eContainer() == null;
-		addInstanceReference(newModelElemEndpointRef, newModelElemEndpoint, isContainer);
-		newModelElemEndpointRef.setModelElemRef(newModelElemRef);
-
-		if (isBinarySrc) {
-			linkRef.getModelElemEndpointRefs().add(0, newModelElemEndpointRef);
-		} 
-		else {
-			linkRef.getModelElemEndpointRefs().add(newModelElemEndpointRef);
-		}
-
-		return newModelElemEndpointRef;
-	}
-
-	/**
-	 * Replaces an old model element endpoint and a reference to it with new
-	 * ones in an Instance MID.
-	 * 
-	 * @param oldModelElemEndpointRef
-	 *            The reference to the old model element endpoint to be
-	 *            replaced.
-	 * @param modelElemTypeEndpoint
-	 *            The type of the new model element endpoint.
-	 * @param newModelElemRef
-	 *            The reference to the new model element that is the target of
-	 *            the new model element endpoint.
-	 */
-	public static void replaceModelElementEndpointAndModelElementEndpointReference(ModelElementEndpointReference oldModelElemEndpointRef, ModelElementEndpoint modelElemTypeEndpoint, ModelElementReference newModelElemRef) {
-
-		ModelElementEndpoint oldModelElemEndpoint = oldModelElemEndpointRef.getObject();
-		addBasicInstance(oldModelElemEndpoint, modelElemTypeEndpoint, null, null);
-		oldModelElemEndpoint.setTarget(newModelElemRef.getObject());
-		oldModelElemEndpointRef.setModelElemRef(newModelElemRef);
 	}
 
 	/**

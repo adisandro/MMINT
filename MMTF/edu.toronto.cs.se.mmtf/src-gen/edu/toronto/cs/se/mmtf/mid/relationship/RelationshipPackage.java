@@ -1993,7 +1993,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__BOOLEAN_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 6;
+	int MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
@@ -3007,14 +3007,14 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelElementEndpoint__ReplaceSubtypeAndReference__ModelElementEndpointReference_ModelElementEndpointReference_String_ModelElementReference_LinkReference();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint#createInstanceReference(boolean, edu.toronto.cs.se.mmtf.mid.relationship.LinkReference) <em>Create Instance Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint#createInstanceReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference, boolean, edu.toronto.cs.se.mmtf.mid.relationship.LinkReference) <em>Create Instance Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Instance Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint#createInstanceReference(boolean, edu.toronto.cs.se.mmtf.mid.relationship.LinkReference)
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint#createInstanceReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference, boolean, edu.toronto.cs.se.mmtf.mid.relationship.LinkReference)
 	 * @generated
 	 */
-	EOperation getModelElementEndpoint__CreateInstanceReference__boolean_LinkReference();
+	EOperation getModelElementEndpoint__CreateInstanceReference__ModelElementReference_boolean_LinkReference();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint#createInstanceAndReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference, boolean, edu.toronto.cs.se.mmtf.mid.relationship.LinkReference) <em>Create Instance And Reference</em>}' operation.
@@ -3804,7 +3804,7 @@ public interface RelationshipPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__BOOLEAN_LINKREFERENCE = eINSTANCE.getModelElementEndpoint__CreateInstanceReference__boolean_LinkReference();
+		EOperation MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE = eINSTANCE.getModelElementEndpoint__CreateInstanceReference__ModelElementReference_boolean_LinkReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Instance And Reference</b></em>' operation.

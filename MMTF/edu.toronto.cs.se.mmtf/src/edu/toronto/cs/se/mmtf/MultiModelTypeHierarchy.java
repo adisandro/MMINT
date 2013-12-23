@@ -778,7 +778,7 @@ nextOperatorType:
 		return MultiModelTypeRegistry.getType(MMTF.ROOT_MODELREL_URI);
 	}
 
-	public static ModelEndpoint getRootModelEndpointType() {
+	public static ModelEndpoint getRootModelTypeEndpoint() {
 
 		return MultiModelTypeRegistry.getType(MMTF.ROOT_MODELENDPOINT_URI);
 	}
@@ -786,6 +786,11 @@ nextOperatorType:
 	public static Link getRootLinkType() {
 
 		return MultiModelTypeRegistry.getType(MMTF.ROOT_LINK_URI);
+	}
+
+	public static ModelElementEndpoint getRootModelElementTypeEndpoint() {
+
+		return MultiModelTypeRegistry.getType(MMTF.ROOT_MODELELEMENDPOINT_URI);
 	}
 
 	/**

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -20,7 +20,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
@@ -112,13 +111,8 @@ public class BinaryLinkReferenceChangeModelElementReferenceCommand extends Binar
 		ModelElementEndpointReference oldModelElemEndpointRef = (isBinarySrc) ?
 			linkRef.getModelElemEndpointRefs().get(0) :
 			linkRef.getModelElemEndpointRefs().get(1);
-		MultiModelInstanceFactory.removeModelElementEndpointAndModelElementEndpointReference(oldModelElemEndpointRef, false);
 		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramUtils.selectModelElementTypeEndpointToCreate(linkRef, modelElemTypeEndpointUris);
-		MultiModelInstanceFactory.replaceModelElementEndpointAndModelElementEndpointReference(
-			oldModelElemEndpointRef,
-			modelElemTypeEndpointRef.getObject(),
-			modelElemRef
-		);
+		modelElemTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelElemEndpointRef, modelElemRef);
 	}
 
 	protected void doExecuteTypesLevel(BinaryLinkReference linkTypeRef, ModelElementReference modelElemTypeRef, boolean isBinarySrc) throws MMTFException {

@@ -40,7 +40,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 
 /**
  * The factory to create/modify/remove all types.
@@ -249,7 +248,7 @@ public class MultiModelTypeFactory {
 				ModelElementReference modelElemTypeRefSuper = modelElemTypeEndpointRefSuper.getModelElemRef();
 				ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference((ModelEndpointReference) modelElemTypeRefSuper.eContainer(), newModelRelType.getModelEndpointRefs());
 				ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRefSuper, modelTypeEndpointRef.getModelElemRefs());
-				createModelElementTypeEndpointReference(modelElemTypeEndpointRefSuper.getObject(), modelElemTypeEndpointRef, newModelElemTypeRef, false, false, newLinkTypeRef);
+				modelElemTypeEndpointRefSuper.getObject().createTypeReference(modelElemTypeEndpointRef, newModelElemTypeRef, false, false, newLinkTypeRef);
 			}
 		}
 	}
@@ -424,48 +423,6 @@ public class MultiModelTypeFactory {
 		newParamType.setVararg(isVararg);
 		paramTypes.add(newParamType);
 		operatorType.getSignatureTable().put(newParamTypeName, newParamType);
-	}
-
-	/**
-	 * Creates and adds a model element type endpoint reference to a link type
-	 * reference.
-	 * 
-	 * @param newModelElemTypeEndpoint
-	 *            The new model element type endpoint for which the reference
-	 *            has to be created.
-	 * @param modelElemTypeEndpointRef
-	 *            The reference to the supertype of the new model element type
-	 *            endpoint, null if such reference doesn't exist in the link
-	 *            type reference container.
-	 * @param newModelElemTypeRef
-	 *            The new reference to the model element type that is the target
-	 *            of the new model element type endpoint.
-	 * @param isModifiable
-	 *            True if the new reference will allow modifications of the
-	 *            referenced model element type endpoint, false otherwise.
-	 * @param isBinarySrc
-	 *            True if the referenced model element type endpoint is the
-	 *            source in the binary link type reference container, false
-	 *            otherwise.
-	 * @param linkTypeRef
-	 *            The reference to the link type that will contain the new
-	 *            reference to the model element type endpoint.
-	 * @return The created reference to the new model element type endpoint.
-	 */
-	public static ModelElementEndpointReference createModelElementTypeEndpointReference(ModelElementEndpoint newModelElemTypeEndpoint, ModelElementEndpointReference modelElemTypeEndpointRef, ModelElementReference newModelElemTypeRef, boolean isModifiable, boolean isBinarySrc, LinkReference linkTypeRef) {
-
-		ModelElementEndpointReference newModelElemTypeEndpointRef = RelationshipFactory.eINSTANCE.createModelElementEndpointReference();
-		addTypeReference(newModelElemTypeEndpointRef, newModelElemTypeEndpoint, modelElemTypeEndpointRef, isModifiable, false);
-		newModelElemTypeEndpointRef.setModelElemRef(newModelElemTypeRef);
-
-		if (isBinarySrc) {
-			linkTypeRef.getModelElemEndpointRefs().add(0, newModelElemTypeEndpointRef);
-		}
-		else {
-			linkTypeRef.getModelElemEndpointRefs().add(newModelElemTypeEndpointRef);
-		}
-
-		return newModelElemTypeEndpointRef;
 	}
 
 	/**

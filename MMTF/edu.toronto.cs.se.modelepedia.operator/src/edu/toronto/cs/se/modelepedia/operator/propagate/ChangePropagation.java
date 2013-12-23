@@ -158,18 +158,8 @@ public class ChangePropagation extends OperatorExecutableImpl {
 				// create new propagated trace links
 				for (ModelElementReference newRefinedModelElemRef_propTraceRel : newRefinedModelElemRefs_propTraceRel) {
 					BinaryLinkReference newPropTraceLinkRef = (BinaryLinkReference) traceLink.getMetatype().createInstanceAndReference(true, newPropTraceRel);
-					MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-						traceLink.getModelElemEndpoints().get(0).getMetatype(),
-						newRefinedModelElemRef_propTraceRel,
-						false,
-						newPropTraceLinkRef
-					);
-					MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-						traceLink.getModelElemEndpoints().get(1).getMetatype(),
-						newPropModelElemRef_propTraceRel,
-						false,
-						newPropTraceLinkRef
-					);
+					traceLink.getModelElemEndpoints().get(0).getMetatype().createInstanceAndReference(newRefinedModelElemRef_propTraceRel, false, newPropTraceLinkRef);
+					traceLink.getModelElemEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModelElemRef_propTraceRel, false, newPropTraceLinkRef);
 					Link newPropTraceLink = newPropTraceLinkRef.getObject();
 					newPropTraceLink.setName(traceLink.getName());
 					newPropTraceLink.setMay(traceLink.isMay());
@@ -219,12 +209,8 @@ public class ChangePropagation extends OperatorExecutableImpl {
 			newTraceLinkRef = (BinaryLinkReference) traceLinkTypeRef.getObject().createInstanceAndReference(true, traceRel);
 			newTraceLinkRef.getObject().setVar(true);
 			newTraceLinkRef.getObject().setName(PROPTRACE_RULE4_LINK_NAME);
-			MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-				traceLinkTypeRef.getModelElemEndpointRefs().get(indexA).getObject(),//TODO MMTF: use some sort of introspection here
-				newTraceModelElemRefA,
-				false,
-				newTraceLinkRef
-			);
+			//TODO MMTF: use some sort of introspection here
+			traceLinkTypeRef.getModelElemEndpointRefs().get(indexA).getObject().createInstanceAndReference(newTraceModelElemRefA, false, newTraceLinkRef);
 			// if more than one link type with same model element type A exist, they all get created (the user will merge unnecessary ones)
 			//TODO MMTF: should I also mark them as M, because I want them to be mutually exclusive?
 			//TODO MMTF: (prop rule that forces the removal of M if the endpoints are E sounds wrong in this case, mostly because mutual exclusion has not been formalized)
@@ -490,12 +476,7 @@ traceLinks:
 			null,
 			result[1]
 		);
-		MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-			modelElemTypeEndpointRef.getObject(),
-			newModelElemRef,
-			false,
-			traceLinkRef
-		);
+		modelElemTypeEndpointRef.getObject().createInstanceAndReference(newModelElemRef, false, traceLinkRef);
 	}
 
 	private void propagateRefinementLinks(BinaryLinkReference propTraceLinkRef, BinaryModelRel refinementRel, Model relatedModel, BinaryModelRel traceRel, BinaryModelRel newPropRefinementRel) throws MMTFException {
@@ -525,12 +506,8 @@ traceLinks:
 		// create new propagated refinement link
 		LinkReference newPropRefinementLinkRef = refinementLinkType.createInstanceAndReference(false, newPropRefinementRel);
 		newPropRefinementLinkRef.getObject().setName(refinementLinkRef.getObject().getName());
-		MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-			refinementLinkType.getModelElemEndpoints().get(0),//TODO MMTF: use some sort of introspection here
-			newPropModelElemRef,
-			false,
-			newPropRefinementLinkRef
-		);
+		//TODO MMTF: use some sort of introspection here
+		refinementLinkType.getModelElemEndpoints().get(0).createInstanceAndReference(newPropModelElemRef, false, newPropRefinementLinkRef);
 
 		boolean duplicateRefinement2 = true;
 		for (ModelElementEndpointReference refinementModelElemEndpointRef2 : refinementLinkRef.getModelElemEndpointRefs()) {
@@ -557,12 +534,8 @@ traceLinks:
 						MultiModelTypeIntrospection.getPointer(relatedModelElemRef_traceRel.getObject())
 					);
 				}
-				MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-					refinementLinkType.getModelElemEndpoints().get(0),//TODO MMTF: use some sort of introspection here
-					newRelatedModelElemRef,
-					false,
-					newPropRefinementLinkRef
-				);
+				//TODO MMTF: use some sort of introspection here
+				refinementLinkType.getModelElemEndpoints().get(0).createInstanceAndReference(newRelatedModelElemRef, false, newPropRefinementLinkRef);
 			}
 		}
 

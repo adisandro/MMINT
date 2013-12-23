@@ -296,6 +296,7 @@
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/replaceSubtypeAndReference/containerLinkTypeRef"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/createInstanceReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createInstanceReference/targetModelElemRef"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createInstanceReference/isBinarySrc"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createInstanceReference/containerLinkRef"/>
         </genOperations>

@@ -803,6 +803,7 @@
       </eOperations>
       <eOperations name="createInstanceReference" lowerBound="1" eType="#//relationship/ModelElementEndpointReference"
           eExceptions="#//MMTFException">
+        <eParameters name="targetModelElemRef" lowerBound="1" eType="#//relationship/ModelElementReference"/>
         <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eParameters name="containerLinkRef" lowerBound="1" eType="#//relationship/LinkReference"/>
       </eOperations>

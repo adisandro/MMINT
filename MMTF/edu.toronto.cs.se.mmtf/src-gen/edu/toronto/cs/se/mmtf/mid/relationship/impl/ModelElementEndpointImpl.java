@@ -150,9 +150,9 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__BOOLEAN_LINKREFERENCE:
+			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE:
 				try {
-					return createInstanceReference((Boolean)arguments.get(0), (LinkReference)arguments.get(1));
+					return createInstanceReference((ModelElementReference)arguments.get(0), (Boolean)arguments.get(1), (LinkReference)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -282,28 +282,64 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 	/**
 	 * @generated NOT
 	 */
-	public ModelElementEndpointReference createInstanceReference(boolean isBinarySrc, LinkReference containerLinkRef) throws MMTFException {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public ModelElementEndpointReference createInstanceReference(ModelElementReference targetModelElemRef, boolean isBinarySrc, LinkReference containerLinkRef) throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		ModelElementEndpointReference newModelElemEndpointRef = RelationshipFactory.eINSTANCE.createModelElementEndpointReference();
+		boolean isContainer = containerLinkRef.eContainer().eContainer() == null;
+		super.addInstanceReference(newModelElemEndpointRef, isContainer);
+		newModelElemEndpointRef.setModelElemRef(targetModelElemRef);
+		if (isBinarySrc) {
+			containerLinkRef.getModelElemEndpointRefs().add(0, newModelElemEndpointRef);
+		} 
+		else {
+			containerLinkRef.getModelElemEndpointRefs().add(newModelElemEndpointRef);
+		}
+
+		return newModelElemEndpointRef;
 	}
 
 	/**
 	 * @generated NOT
 	 */
 	public ModelElementEndpointReference createInstanceAndReference(ModelElementReference targetModelElemRef, boolean isBinarySrc, LinkReference containerLinkRef) throws MMTFException {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		ModelElementEndpoint newModelElemEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
+		super.addBasicInstance(newModelElemEndpoint, null, targetModelElemRef.getObject().getName());
+		super.addInstanceEndpoint(newModelElemEndpoint, targetModelElemRef.getObject());
+		if (isBinarySrc) {
+			containerLinkRef.getObject().getModelElemEndpoints().add(0, newModelElemEndpoint);
+		}
+		else {
+			containerLinkRef.getObject().getModelElemEndpoints().add(newModelElemEndpoint);
+		}
+		ModelElementEndpointReference modelElemEndpointRef = newModelElemEndpoint.createInstanceReference(targetModelElemRef, isBinarySrc, containerLinkRef);
+		containerLinkRef.getObject().getModelElemEndpointRefs().add(modelElemEndpointRef);
+
+		return modelElemEndpointRef;
 	}
 
 	/**
 	 * @generated NOT
 	 */
 	public void replaceInstanceAndReference(ModelElementEndpointReference oldModelElemEndpointRef, ModelElementReference targetModelElemRef) throws MMTFException {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		oldModelElemEndpointRef.deleteInstanceAndReference(false);
+		ModelElementEndpoint oldModelElemEndpoint = oldModelElemEndpointRef.getObject();
+		super.addBasicInstance(oldModelElemEndpoint, null, null);
+		oldModelElemEndpoint.setTarget(targetModelElemRef.getObject());
+		oldModelElemEndpointRef.setModelElemRef(targetModelElemRef);
 	}
 
 } //ModelElementEndpointImpl

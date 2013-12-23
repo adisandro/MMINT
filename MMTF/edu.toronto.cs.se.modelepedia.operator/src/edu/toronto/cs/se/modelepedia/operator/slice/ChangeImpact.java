@@ -35,6 +35,7 @@ import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
@@ -138,6 +139,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 		}
 
 		String origModelUri = ((ModelEndpointReference) origModelElemRef.eContainer()).getTargetUri();
+		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
 		for (ModelElementEndpointReference origModelElemEndpointRef : origModelElemRef.getModelElemEndpointRefs()) {
 			LinkReference traceLinkRef = (LinkReference) origModelElemEndpointRef.eContainer();
 			for (ModelElementEndpointReference traceModelElemEndpointRef : traceLinkRef.getModelElemEndpointRefs()) {
@@ -160,12 +162,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 						);
 					}
 					// add impacted model element endpoint to impact link
-					ModelElementEndpointReference newImpactModelElemEndpointRef = MultiModelInstanceFactory.createModelElementEndpointAndModelElementEndpointReference(
-						null,
-						newImpactedModelElemRef,
-						false,
-						impactLinkRef
-					);
+					ModelElementEndpointReference newImpactModelElemEndpointRef = rootModelElemTypeEndpoint.createInstanceAndReference(newImpactedModelElemRef, false, impactLinkRef);
 					newImpactModelElemEndpointRef.getObject().setName(TGT_MODELELEMENDPOINT_NAME);
 				}
 			}

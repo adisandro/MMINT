@@ -431,7 +431,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		addModelElementTypeEndpoint(newModelElemTypeEndpoint, newModelElemTypeRef.getObject(), false, linkType);
 		//TODO MMTF: review when functions to detect overriding endpoints are ready
 		ModelElementEndpointReference modelTypeEndpointRef = null;
-		ModelElementEndpointReference newModelElemTypeEndpointRef = createModelElementTypeEndpointReference(newModelElemTypeEndpoint, modelTypeEndpointRef, newModelElemTypeRef, true, false, linkTypeRef);
+		ModelElementEndpointReference newModelElemTypeEndpointRef = newModelElemTypeEndpoint.createTypeReference(modelTypeEndpointRef, newModelElemTypeRef, true, false, linkTypeRef);
 		addModelElementTypeEndpointReference(newModelElemTypeEndpointRef, linkType);
 		// copy from supertype
 		Link linkTypeSuper = linkType.getSupertype();
