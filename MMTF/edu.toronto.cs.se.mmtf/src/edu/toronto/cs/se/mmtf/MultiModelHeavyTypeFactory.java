@@ -52,13 +52,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
  */
 public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 
-	/*
-	 * TODO MMTF[OO] 
-	 * only heavy types in the factory
-	 * light types creation are in the element itself, e.g. createSubtype(), deleteSubtype()
-	 * instances are in the element itself, e.g. createInstance(), deleteIsntance()
-	 * the creation is type driven, not container driven
-	 */
 	/**
 	 * Gets the supertype of a new type from the repository.
 	 * 

@@ -673,22 +673,20 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 */
 	protected ExtendibleElement delete(String uri, MultiModel multiModel) {
 
-		return multiModel.getExtendibleTable().removeKey(getUri());
+		return multiModel.getExtendibleTable().removeKey(uri);
 	}
 
 	/**
-	 * Deletes this type from a multimodel.
+	 * Deletes this type from the Type MID.
 	 * 
-	 * @param multiModel
-	 *            The multimodel that contains the type.
-	 * @return The deleted type, null if its uri was not registered in the
-	 *         multimodel.
+	 * @throws MMTFException
+	 *             Never thrown.
 	 * @generated NOT
 	 */
-	protected ExtendibleElement deleteType(MultiModel multiModel) {
+	protected void deleteType() throws MMTFException {
 
-		//TODO MMTF[OO] obtain multimodel and remove it from arguments
-		return delete(getUri(), multiModel);
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		delete(getUri(), multiModel);
 	}
 
 	/**
@@ -770,16 +768,14 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	/**
 	 * Deletes this instance from the Instance MID that contains it.
 	 * 
-	 * @param multiModel
-	 *            The Instance MID that contains the instance.
-	 * @return The deleted instance, null if the uri was not registered in the
-	 *         Instance MID.
+	 * @throws MMTFException
+	 *             Never thrown.
 	 * @generated NOT
 	 */
-	protected ExtendibleElement deleteInstance(MultiModel multiModel) {
+	protected void deleteInstance() throws MMTFException {
 
-		//TODO MMTF[OO] obtain multimodel and remove it from arguments
-		return delete(getUri(), multiModel);
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		delete(getUri(), multiModel);
 	}
 
 } //ExtendibleElementImpl

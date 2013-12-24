@@ -724,7 +724,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		for (ModelElement modelElemType : getModelElems()) {
 			super.delete(modelElemType.getUri(), multiModel);
 		}
-		super.deleteType(multiModel);
+		super.deleteType();
 		multiModel.getModels().remove(this);
 		String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(this);
 		if (metamodelUri != null) {
@@ -885,7 +885,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		for (ModelElement modelElem : getModelElems()) {
 			super.delete(modelElem.getUri(), multiModel);
 		}
-		super.deleteInstance(multiModel);
+		super.deleteInstance();
 		multiModel.getModels().remove(this);
 		// delete editors for this model
 		for (Editor editor : getEditors()) {

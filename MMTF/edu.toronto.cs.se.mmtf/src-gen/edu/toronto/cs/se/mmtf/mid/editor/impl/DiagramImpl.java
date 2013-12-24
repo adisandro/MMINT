@@ -89,8 +89,8 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		// check if editor file already exists in model directory
-		if (MultiModelUtils.isFileOrDirectory(MultiModelUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0)), true) != null) {
+		// check if diagram file already exists in model directory
+		if (MultiModelUtils.isFileOrDirectory(MultiModelUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0)), true) == null) {
 			if (!(boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_DIAGRAMS_CREATION_ENABLED)) {
 				throw new MMTFException("Diagram creation not enabled by setting");
 			}

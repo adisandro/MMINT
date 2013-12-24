@@ -322,8 +322,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
-		super.deleteType(multiModel);
+		super.deleteType();
 		//TODO MMTF[OO] might need to implement full removal
 	}
 
@@ -375,8 +374,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
-		super.deleteInstance(multiModel);
+		super.deleteInstance();
 		//TODO MMTF[OO] might need to implement full removal
 	}
 

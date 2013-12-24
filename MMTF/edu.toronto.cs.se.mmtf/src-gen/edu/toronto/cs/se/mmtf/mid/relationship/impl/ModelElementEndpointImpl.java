@@ -296,8 +296,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
-		super.deleteType(multiModel);
+		super.deleteType();
 		if (isFullDelete) {
 			((Link) eContainer()).getModelElemEndpoints().remove(this);
 		}

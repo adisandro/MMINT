@@ -22,7 +22,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -154,23 +153,6 @@ public class MultiModelInstanceFactory {
 		}
 
 		return newLinkRef;
-	}
-
-	/**
-	 * Adds an editor to its model and to an Instance MID.
-	 * 
-	 * @param editor
-	 *            The editor.
-	 * @param multiModel
-	 *            The Instance MID.
-	 */
-	public static void addModelEditor(Editor editor, MultiModel multiModel) {
-
-		Model model = MultiModelRegistry.getExtendibleElement(editor.getModelUri(), multiModel);
-		if (model != null) {
-			model.getEditors().add(editor);
-			multiModel.getEditors().add(editor);
-		}
 	}
 
 }

@@ -70,7 +70,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 	 */
 	private void removeModelElementAndModelElementReference(ModelElementReference modelElemRef) throws MMTFException {
 
-		//TODO MMTF[OO] does this have a meaning somewhere?
+		//TODO MMTF[OO] does this have a meaning somewhere else?
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelElemRef);
 		multiModel.getExtendibleTable().removeKey(modelElemRef.getUri());
 		modelElemRef.deleteInstanceReference();

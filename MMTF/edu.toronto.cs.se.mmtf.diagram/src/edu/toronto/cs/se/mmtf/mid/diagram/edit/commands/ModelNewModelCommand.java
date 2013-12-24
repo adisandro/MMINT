@@ -28,7 +28,6 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 
 /**
  * The command to create a model.
@@ -94,8 +93,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		Editor newEditor = MidDiagramUtils.selectModelTypeToCreate(multiModel);
 		Model modelType = MultiModelTypeRegistry.getType(newEditor.getMetatype().getModelUri());
 		Model newModel = modelType.createInstance(newEditor.getModelUri(), ModelOrigin.CREATED, multiModel);
-		//TODO MMTF[OO] remember to fix the addModelEditor
-		MultiModelInstanceFactory.addModelEditor(newEditor, multiModel);
+		newModel.getEditors().add(newEditor);
 
 		return newModel;
 	}

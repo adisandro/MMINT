@@ -193,12 +193,12 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 * @param isFullDelete
 	 *            True if this model type endpoint is going to be fully deleted,
 	 *            false if it is going to be replaced later.
+	 * @throws MMTFException Never thrown.
 	 * @generated NOT
 	 */
-	protected void deleteType(boolean isFullDelete) {
+	protected void deleteType(boolean isFullDelete) throws MMTFException {
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
-		super.deleteType(multiModel);
+		super.deleteType();
 		if (isFullDelete) {
 			ModelRel modelRelType = (ModelRel) eContainer();
 			modelRelType.getModelEndpoints().remove(this);

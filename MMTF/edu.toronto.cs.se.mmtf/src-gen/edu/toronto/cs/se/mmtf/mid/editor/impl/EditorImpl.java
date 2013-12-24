@@ -528,7 +528,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 		}
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
-		super.deleteType(multiModel);
+		super.deleteType();
 		Model modelType = MultiModelRegistry.getExtendibleElement(getModelUri(), multiModel);
 		if (modelType != null) {
 			modelType.getEditors().remove(this);
