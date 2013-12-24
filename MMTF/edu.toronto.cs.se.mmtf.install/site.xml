@@ -12,9 +12,6 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.randommodel_1.1.1.jar" id="edu.toronto.cs.se.modelepedia.randommodel" version="1.1.1">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.statemachine_1.1.1.jar" id="edu.toronto.cs.se.modelepedia.statemachine" version="1.1.1">
-      <category name="Modelepedia"/>
-   </feature>
    <feature url="features/edu.toronto.cs.se.modelepedia.classdiagram_1.1.1.jar" id="edu.toronto.cs.se.modelepedia.classdiagram" version="1.1.1">
       <category name="Modelepedia"/>
    </feature>
