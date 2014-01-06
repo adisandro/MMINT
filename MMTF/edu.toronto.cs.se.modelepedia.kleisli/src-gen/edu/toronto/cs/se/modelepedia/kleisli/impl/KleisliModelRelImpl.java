@@ -16,17 +16,21 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelOpenEditorCommand;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -272,6 +276,32 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
+	public ModelRel copySubtype(ModelRel origModelRelType) throws MMTFException {
+
+		ModelRel newModelRelType = super.copySubtype(origModelRelType);
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(newModelRelType);
+		ExtendibleElementConstraint newConstraint, origConstraint;
+		ModelElement newModelElemType;
+		for (ModelEndpoint origModelTypeEndpoint : origModelRelType.getModelEndpoints()) {
+			for (ModelElement origModelElemType : origModelTypeEndpoint.getTarget().getModelElems()) {
+				origConstraint = origModelElemType.getConstraint();
+				if (origConstraint != null) {
+					newConstraint = MidFactory.eINSTANCE.createExtendibleElementConstraint();
+					newConstraint.setLanguage(origConstraint.getLanguage());
+					newConstraint.setImplementation(origConstraint.getImplementation());
+					newModelElemType = MultiModelRegistry.getExtendibleElement(origModelElemType.getUri(), multiModel);
+					newModelElemType.setConstraint(newConstraint);
+				}
+			}
+		}
+
+		return newModelRelType;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
 	public void deleteType() throws MMTFException {
 
 		super.deleteType();
@@ -450,8 +480,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				MMTFException.print(Type.WARNING, "Error creating extended model file, fallback to no extension", e);
 			}
 		}
-
-		//TODO MMTF[KLEISLI] persistence still misses model elements (KleisliModelElement?)
 		//TODO MMTF[KLEISLI] KleisliModelElement and KleisliModel could be used to extend getRoot and getPointer, in order to use them here
 	}
 

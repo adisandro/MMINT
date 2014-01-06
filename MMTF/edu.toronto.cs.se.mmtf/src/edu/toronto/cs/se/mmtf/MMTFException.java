@@ -52,7 +52,7 @@ public class MMTFException extends Exception {
 		}
 		System.err.println(message);
 		if (e != null) {
-			System.err.println(" -> " + e.getMessage());
+			System.err.println(" -> " + e.toString());
 		}
 
 		if (type == Type.ERROR) {

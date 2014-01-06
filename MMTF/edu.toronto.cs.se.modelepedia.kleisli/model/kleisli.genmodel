@@ -17,6 +17,9 @@
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createSubtype/constraintLanguage"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createSubtype/constraintImplementation"/>
       </genOperations>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/copySubtype">
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/copySubtype/origModelRelType"/>
+      </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/deleteType"/>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/createInstance">
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createInstance/newModelRelUri"/>

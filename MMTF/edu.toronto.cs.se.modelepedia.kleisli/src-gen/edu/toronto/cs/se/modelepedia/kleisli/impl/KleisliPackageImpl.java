@@ -173,7 +173,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getKleisliModelRel__DeleteType() {
+	public EOperation getKleisliModelRel__CopySubtype__ModelRel() {
 		return kleisliModelRelEClass.getEOperations().get(1);
 	}
 
@@ -182,7 +182,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getKleisliModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel() {
+	public EOperation getKleisliModelRel__DeleteType() {
 		return kleisliModelRelEClass.getEOperations().get(2);
 	}
 
@@ -191,7 +191,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getKleisliModelRel__DeleteInstance() {
+	public EOperation getKleisliModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel() {
 		return kleisliModelRelEClass.getEOperations().get(3);
 	}
 
@@ -200,7 +200,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getKleisliModelRel__OpenType() {
+	public EOperation getKleisliModelRel__DeleteInstance() {
 		return kleisliModelRelEClass.getEOperations().get(4);
 	}
 
@@ -209,7 +209,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getKleisliModelRel__OpenInstance() {
+	public EOperation getKleisliModelRel__OpenType() {
 		return kleisliModelRelEClass.getEOperations().get(5);
 	}
 
@@ -218,7 +218,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getKleisliModelRel__GetOutlineResourceTypes() {
+	public EOperation getKleisliModelRel__OpenInstance() {
 		return kleisliModelRelEClass.getEOperations().get(6);
 	}
 
@@ -227,8 +227,17 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getKleisliModelRel__GetOutlineResourceInstances() {
+	public EOperation getKleisliModelRel__GetOutlineResourceTypes() {
 		return kleisliModelRelEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getKleisliModelRel__GetOutlineResourceInstances() {
+		return kleisliModelRelEClass.getEOperations().get(8);
 	}
 
 	/**
@@ -405,6 +414,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		// Create classes and their features
 		kleisliModelRelEClass = createEClass(KLEISLI_MODEL_REL);
 		createEOperation(kleisliModelRelEClass, KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING);
+		createEOperation(kleisliModelRelEClass, KLEISLI_MODEL_REL___COPY_SUBTYPE__MODELREL);
 		createEOperation(kleisliModelRelEClass, KLEISLI_MODEL_REL___DELETE_TYPE);
 		createEOperation(kleisliModelRelEClass, KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL);
 		createEOperation(kleisliModelRelEClass, KLEISLI_MODEL_REL___DELETE_INSTANCE);
@@ -482,6 +492,10 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "constraintLanguage", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "constraintImplementation", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getKleisliModelRel__CopySubtype__ModelRel(), theRelationshipPackage.getModelRel(), "copySubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRelationshipPackage.getModelRel(), "origModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
 		op = initEOperation(getKleisliModelRel__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);

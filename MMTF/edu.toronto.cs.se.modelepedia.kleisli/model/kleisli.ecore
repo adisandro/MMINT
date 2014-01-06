@@ -18,6 +18,10 @@
       <eParameters name="constraintLanguage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="constraintImplementation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
+    <eOperations name="copySubtype" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
+      <eParameters name="origModelRelType" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"/>
+    </eOperations>
     <eOperations name="deleteType" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
     <eOperations name="createInstance" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">

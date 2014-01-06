@@ -560,16 +560,11 @@ public class MMTF implements MMTFConstants {
 		}
 
 		Model newModelType = null;
-		if (dynamicModelType instanceof ModelRel) {
-			try {
+		try {
+			if (dynamicModelType instanceof ModelRel) {
 				newModelType = ((ModelRel) modelType).copySubtype((ModelRel) dynamicModelType);
 			}
-			catch (MMTFException e) {
-				MMTFException.print(MMTFException.Type.WARNING, "Dynamic model relationship type " + dynamicModelType.getName() + " can't be recreated", e);
-			}
-		}
-		else {
-			try {
+			else {
 				newModelType = modelType.createSubtype(
 					dynamicModelType.getName(),
 					dynamicModelType.getConstraint().getLanguage().getLiteral(),
@@ -577,9 +572,9 @@ public class MMTF implements MMTFConstants {
 					(MultiModelTypeRegistry.getExtendedMetamodelUri(dynamicModelType) != null)
 				);
 			}
-			catch (MMTFException e) {
-				MMTFException.print(MMTFException.Type.WARNING, "Dynamic model type " + dynamicModelType.getName() + " can't be recreated", e);
-			}
+		}
+		catch (MMTFException e) {
+			MMTFException.print(MMTFException.Type.WARNING, "Dynamic type " + dynamicModelType.getName() + " can't be recreated", e);
 		}
 
 		return newModelType;

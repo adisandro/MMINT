@@ -44,6 +44,15 @@ public interface KleisliModelRel extends ModelRel, KleisliExtendibleElement {
 	 * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" origModelRelTypeRequired="true"
+	 * @generated
+	 */
+	ModelRel copySubtype(ModelRel origModelRelType) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
+	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */

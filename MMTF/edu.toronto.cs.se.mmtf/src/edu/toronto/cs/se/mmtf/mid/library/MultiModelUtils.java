@@ -22,6 +22,8 @@ import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
@@ -33,6 +35,11 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 
 public class MultiModelUtils {
+
+	private static String getFirstSegmentFromUri(String uri) {
+
+		return uri.substring(0, uri.indexOf(MMTF.URI_SEPARATOR));
+	}
 
 	public static String getLastSegmentFromUri(String uri) {
 
@@ -82,6 +89,11 @@ public class MultiModelUtils {
 	}
 
 	public static String prependWorkspaceToUri(String uri) {
+
+		String projectName = getFirstSegmentFromUri(uri);
+		IWorkspaceRoot workspace = ResourcesPlugin.getWorkspace().getRoot();
+		IProject project = workspace.getProject(projectName);
+		//TODO MMTF[GIT] detect project location
 
 		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + uri;
 	}

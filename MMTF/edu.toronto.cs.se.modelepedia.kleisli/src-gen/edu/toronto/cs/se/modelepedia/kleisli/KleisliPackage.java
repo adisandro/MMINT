@@ -306,6 +306,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_REL_FEATURE_COUNT = RelationshipPackage.MODEL_REL_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = RelationshipPackage.MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -322,6 +331,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = RelationshipPackage.MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Create Instance And Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -351,13 +369,22 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Copy Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___COPY_SUBTYPE__MODELREL = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 1;
+
+	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___DELETE_TYPE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 1;
+	int KLEISLI_MODEL_REL___DELETE_TYPE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -366,7 +393,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 2;
+	int KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -375,7 +402,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___DELETE_INSTANCE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 3;
+	int KLEISLI_MODEL_REL___DELETE_INSTANCE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Open Type</em>' operation.
@@ -384,7 +411,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___OPEN_TYPE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 4;
+	int KLEISLI_MODEL_REL___OPEN_TYPE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -393,7 +420,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___OPEN_INSTANCE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 5;
+	int KLEISLI_MODEL_REL___OPEN_INSTANCE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Types</em>' operation.
@@ -402,7 +429,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 6;
+	int KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -411,7 +438,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 7;
+	int KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Model Rel</em>' class.
@@ -420,7 +447,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL_OPERATION_COUNT = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 8;
+	int KLEISLI_MODEL_REL_OPERATION_COUNT = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointImpl <em>Model Endpoint</em>}' class.
@@ -593,6 +620,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_ENDPOINT_FEATURE_COUNT = MidPackage.MODEL_ENDPOINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MidPackage.MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -957,6 +993,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_BINARY_MODEL_REL_FEATURE_COUNT = RelationshipPackage.BINARY_MODEL_REL_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = RelationshipPackage.BINARY_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -973,6 +1018,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Create Instance And Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1002,13 +1056,22 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Copy Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___COPY_SUBTYPE__MODELREL = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 1;
+
+	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___DELETE_TYPE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 1;
+	int KLEISLI_BINARY_MODEL_REL___DELETE_TYPE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -1017,7 +1080,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 2;
+	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1026,7 +1089,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___DELETE_INSTANCE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 3;
+	int KLEISLI_BINARY_MODEL_REL___DELETE_INSTANCE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Open Type</em>' operation.
@@ -1035,7 +1098,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___OPEN_TYPE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 4;
+	int KLEISLI_BINARY_MODEL_REL___OPEN_TYPE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -1044,7 +1107,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___OPEN_INSTANCE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 5;
+	int KLEISLI_BINARY_MODEL_REL___OPEN_INSTANCE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Types</em>' operation.
@@ -1053,7 +1116,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 6;
+	int KLEISLI_BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -1062,7 +1125,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 7;
+	int KLEISLI_BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Binary Model Rel</em>' class.
@@ -1071,7 +1134,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL_OPERATION_COUNT = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 8;
+	int KLEISLI_BINARY_MODEL_REL_OPERATION_COUNT = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 9;
 
 
 	/**
@@ -1286,6 +1349,16 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getKleisliModelRel__CreateSubtype__String_boolean_String_String();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#copySubtype(edu.toronto.cs.se.mmtf.mid.relationship.ModelRel) <em>Copy Subtype</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Copy Subtype</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#copySubtype(edu.toronto.cs.se.mmtf.mid.relationship.ModelRel)
+	 * @generated
+	 */
+	EOperation getKleisliModelRel__CopySubtype__ModelRel();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#deleteType() <em>Delete Type</em>}' operation.
@@ -1559,6 +1632,14 @@ public interface KleisliPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING = eINSTANCE.getKleisliModelRel__CreateSubtype__String_boolean_String_String();
+
+		/**
+		 * The meta object literal for the '<em><b>Copy Subtype</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation KLEISLI_MODEL_REL___COPY_SUBTYPE__MODELREL = eINSTANCE.getKleisliModelRel__CopySubtype__ModelRel();
 
 		/**
 		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
