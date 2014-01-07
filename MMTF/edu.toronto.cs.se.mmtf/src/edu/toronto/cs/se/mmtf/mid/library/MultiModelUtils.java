@@ -38,7 +38,7 @@ public class MultiModelUtils {
 
 	private static String getFirstSegmentFromUri(String uri) {
 
-		return uri.substring(0, uri.indexOf(MMTF.URI_SEPARATOR));
+		return uri.substring(1, uri.indexOf(MMTF.URI_SEPARATOR, 1));
 	}
 
 	public static String getLastSegmentFromUri(String uri) {
@@ -90,12 +90,15 @@ public class MultiModelUtils {
 
 	public static String prependWorkspaceToUri(String uri) {
 
+		String absoluteUri;
 		String projectName = getFirstSegmentFromUri(uri);
-		IWorkspaceRoot workspace = ResourcesPlugin.getWorkspace().getRoot();
-		IProject project = workspace.getProject(projectName);
-		//TODO MMTF[GIT] detect project location
+		IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
+		IProject project = workspaceRoot.getProject(projectName);
+		absoluteUri = (project == null) ?
+			ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + uri :
+			project.getLocation().toString() + uri.replace(MMTF.URI_SEPARATOR + projectName, "");
 
-		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + uri;
+		return absoluteUri;
 	}
 
 	public static void createTextFile(String fileUri, String text) throws Exception {
