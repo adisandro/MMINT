@@ -118,7 +118,6 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		//TODO MMTF: add multiple editor choice support
 		try {
 			Model model = (Model) ((Node) editorFacet.eContainer()).getElement();
 			if (MultiModelConstraintChecker.isInstancesLevel(model)) {

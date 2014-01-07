@@ -718,7 +718,7 @@ nextOperatorType:
 					}
 					i++;
 					if (!parameter.isVararg()) {
-						//TODO MMTF: introduce vararg with low multiplicity
+						//TODO MMTF[OPERATOR] introduce vararg with low multiplicity
 						break;
 					}
 				}

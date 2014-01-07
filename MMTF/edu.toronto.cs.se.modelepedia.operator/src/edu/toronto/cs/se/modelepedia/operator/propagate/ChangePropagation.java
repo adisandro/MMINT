@@ -227,7 +227,6 @@ public class ChangePropagation extends OperatorExecutableImpl {
 			newTraceLinkRef = (BinaryLinkReference) traceLinkTypeRef.getObject().createInstanceAndReference(true, traceRel);
 			newTraceLinkRef.getObject().setVar(true);
 			newTraceLinkRef.getObject().setName(PROPTRACE_RULE4_LINK_NAME);
-			//TODO MMTF: use some sort of introspection here
 			traceLinkTypeRef.getModelElemEndpointRefs().get(indexA).getObject().createInstanceAndReference(newTraceModelElemRefA, false, newTraceLinkRef);
 			// if more than one link type with same model element type A exist, they all get created (the user will merge unnecessary ones)
 			//TODO MMTF: should I also mark them as M, because I want them to be mutually exclusive?
@@ -524,7 +523,6 @@ traceLinks:
 		// create new propagated refinement link
 		LinkReference newPropRefinementLinkRef = refinementLinkType.createInstanceAndReference(false, newPropRefinementRel);
 		newPropRefinementLinkRef.getObject().setName(refinementLinkRef.getObject().getName());
-		//TODO MMTF: use some sort of introspection here
 		refinementLinkType.getModelElemEndpoints().get(0).createInstanceAndReference(newPropModelElemRef, false, newPropRefinementLinkRef);
 
 		boolean duplicateRefinement2 = true;
@@ -552,7 +550,6 @@ traceLinks:
 						MultiModelTypeIntrospection.getPointer(relatedModelElemRef_traceRel.getObject())
 					);
 				}
-				//TODO MMTF: use some sort of introspection here
 				refinementLinkType.getModelElemEndpoints().get(0).createInstanceAndReference(newRelatedModelElemRef, false, newPropRefinementLinkRef);
 			}
 		}

@@ -50,7 +50,6 @@ public class MultiModelTypeIntrospection {
 
 	public static <T extends ExtendibleElement> MAVOTruthValue validateType(T element, T elementType, boolean validateInstance) {
 
-		//TODO MMTF: figure out how to have multiple functions that validate
 		boolean validates;
 		MAVOTruthValue mavoValidates;
 
@@ -197,7 +196,7 @@ public class MultiModelTypeIntrospection {
 
 		ExtendibleElement type = MultiModelTypeRegistry.getType(element.getMetatypeUri());
 		if (type == null) { // this can happen when a type is uninstalled
-			//TODO MMTF: find a way to try with runtime type in this read transaction?
+			//TODO MMTF[INTROSPECTION] find a way to try with runtime type in this read transaction?
 			//element.setMetatypeUri(null);
 			//type = getRuntimeTypes(element);
 		}

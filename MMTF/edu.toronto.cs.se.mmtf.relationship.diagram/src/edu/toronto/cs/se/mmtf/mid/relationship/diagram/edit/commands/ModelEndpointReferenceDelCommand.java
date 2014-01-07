@@ -74,7 +74,6 @@ public class ModelEndpointReferenceDelCommand extends DestroyElementCommand {
 		// refresh outline
 		MidDiagramEditor editor = (MidDiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		editor.getOutlinePage().loadOutlineModels();
-		//TODO MMTF: rework after all modelrel branch modifications
 
 		return CommandResult.newOKCommandResult();
 	}

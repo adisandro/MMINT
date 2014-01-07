@@ -166,8 +166,8 @@ public class MidDiagramActions extends ContributionItem {
 					operatorSubitem.addSelectionListener(
 						new RunOperatorListener(operator, models, conversionMap)
 					);
-					//TODO MMTF: nice to show label of operator invocation with actual parameters
-					//TODO MMTF: traceability, could be nice to create an instance of operator, with name = actual parameters
+					//TODO MMTF[OPERATOR] nice to show label of operator invocation with actual parameters
+					//TODO MMTF[OPERATOR] traceability, could be nice to create an instance of operator, with name = actual parameters
 				}
 			}
 		}

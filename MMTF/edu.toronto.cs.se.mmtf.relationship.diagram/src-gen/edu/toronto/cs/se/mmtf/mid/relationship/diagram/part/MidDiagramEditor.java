@@ -289,7 +289,6 @@ public class MidDiagramEditor extends DiagramDocumentEditor implements
 		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
 			MMTF.syncRepository(multiModel);
 			// diagram sync required
-			//TODO MMTF: what about other pages?
 			final String midDiagramId = "edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorID";
 			for (IEditorReference editorRef : PlatformUI.getWorkbench()
 					.getActiveWorkbenchWindow().getActivePage()
