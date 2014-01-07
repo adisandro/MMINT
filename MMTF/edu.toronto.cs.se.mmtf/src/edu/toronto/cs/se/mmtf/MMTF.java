@@ -112,6 +112,8 @@ public class MMTF implements MMTFConstants {
 	static Map<String, Set<String>> multipleInheritanceTable;
 	/** The type MID filename. */
 	public static final String TYPE_MID_FILENAME = "types.mid";
+	/** The MID diagram suffix. */
+	public static final String MID_DIAGRAM_SUFFIX = "diag";
 
 	/**
 	 * Creates and adds a model type to the repository from a registered

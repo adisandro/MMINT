@@ -28,14 +28,12 @@ import edu.toronto.cs.se.mmtf.mid.ui.GMFDiagramUtils;
 
 public class OpenTypeMidHandler extends AbstractHandler {
 
-	private static final String TYPE_MID_DIAGRAM_SUFFIX = "diag";
-
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		String pluginPath = MMTFActivator.getDefault().getStateLocation().toOSString();
 		String midModelUri = pluginPath + IPath.SEPARATOR + MMTF.TYPE_MID_FILENAME;
-		String midDiagramUri = midModelUri + TYPE_MID_DIAGRAM_SUFFIX;
+		String midDiagramUri = midModelUri + MMTF.MID_DIAGRAM_SUFFIX;
 		File middiag = new File(midDiagramUri);
 		if (!middiag.exists()) {
 			createTypeMIDDiagram();
@@ -54,7 +52,7 @@ public class OpenTypeMidHandler extends AbstractHandler {
 
 		String pluginPath = MMTFActivator.getDefault().getStateLocation().toOSString();
 		String midModelUri = pluginPath + IPath.SEPARATOR + MMTF.TYPE_MID_FILENAME;
-		String midDiagramUri = midModelUri + TYPE_MID_DIAGRAM_SUFFIX;
+		String midDiagramUri = midModelUri + MMTF.MID_DIAGRAM_SUFFIX;
 		try {
 			GMFDiagramUtils.createGMFDiagram(midModelUri, midDiagramUri, MultiModelEditPart.MODEL_ID, MidDiagramEditorPlugin.ID);
 		}
