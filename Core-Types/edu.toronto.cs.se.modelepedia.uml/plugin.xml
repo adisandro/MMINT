@@ -16,6 +16,17 @@
 <plugin>
 
    <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="MAVO support in UML models"
+            iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Profile.gif"
+            name="MAVOProfile"
+            path="platform:/plugin/edu.toronto.cs.se.modelepedia.uml/model/mavo.profile.uml"
+            provider="Software Engineering Group, University of Toronto">
+      </profile>
+   </extension>
+
+   <extension
          point="edu.toronto.cs.se.mmtf.models">
       <modelType>
          <extendibleType
