@@ -50,18 +50,6 @@ Contributors:
       </context>
    </extension>
 
-   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
-      <?gmfgen generated="true"?>
-  	  <wizard
-  	     name="%newWizardName"
-  	     icon="icons/obj16/MidDiagramFile.gif"
-  	     category="org.eclipse.ui.Examples"
-  	     class="edu.toronto.cs.se.mmtf.mid.diagram.part.MidCreationWizard"
-  	     id="edu.toronto.cs.se.mmtf.mid.diagram.part.MidCreationWizardID">
-  	  	 <description>%newWizardDesc</description>  
-      </wizard>
-   </extension>
-
    <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
       <?gmfgen generated="true"?>
       <objectContribution
@@ -682,6 +670,20 @@ Contributors:
    </extension>
 
    <!-- optionally, specify keybindings -->
+
+   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
+      <category
+            id="edu.toronto.cs.se.mmtf"
+            name="%MMTF.newWizardCat"/>
+  	  <wizard
+  	     name="%MMTF.newWizardName"
+  	     icon="icons/obj16/MidDiagramFile.gif"
+  	     category="edu.toronto.cs.se.mmtf"
+  	     class="edu.toronto.cs.se.mmtf.mid.diagram.part.MidCreationWizard"
+  	     id="edu.toronto.cs.se.mmtf.mid.diagram.part.MidCreationWizardID">
+  	  	 <description>%MMTF.newWizardDesc</description>  
+      </wizard>
+   </extension>
 
    <extension point="org.eclipse.ui.menus">
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
