@@ -17,14 +17,14 @@ Contributors:
 Compliance Level -> 6.0 when generating diagrams
 X Directory -> modify to src-gen
 Operation Reflection -> true
-Model Name -> use a nice version of the package name here (uppercase initials), ideally this would also be the model type name
+Model Name -> use a nice version here (uppercase initials), ideally this would be the model type name or the name of a collection of model types
 Edit Child Creation Extenders/Extensible Provider Factory -> true for extended/base
 
 	Ecore Package
 	-------------
 	
 	Base Package -> edu.toronto.cs.se.mmtf/edu.toronto.cs.se.modelepedia
-	Prefix -> same as Model Name
+	Prefix -> use the model type name
 
 ------
 GMFGen

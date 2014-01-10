@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.tutorial.edit;singleton:=true
+Bundle-Version: 1.2.0
+Bundle-ClassPath: .
+Bundle-Activator: edu.toronto.cs.se.modelepedia.tutorial.state.provider.TutorialEditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: edu.toronto.cs.se.modelepedia.tutorial.state.provider
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.edit,
+ edu.toronto.cs.se.modelepedia.tutorial
+Bundle-ActivationPolicy: lazy
