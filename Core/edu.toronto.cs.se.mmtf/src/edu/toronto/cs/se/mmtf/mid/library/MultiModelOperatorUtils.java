@@ -19,7 +19,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -39,10 +38,9 @@ public class MultiModelOperatorUtils {
 
 	private static String getPropertiesUri(OperatorExecutable operator, Model anyOperatorParameter, String subdirName, boolean readonly) {
 
-		String workspaceUri = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 		String projectUri = anyOperatorParameter.getUri().substring(0, anyOperatorParameter.getUri().lastIndexOf(IPath.SEPARATOR)+1);
 		String operatorName = ((Operator) operator.eContainer()).getName();
-		String propertiesUri = workspaceUri + projectUri;
+		String propertiesUri = MultiModelUtils.prependWorkspaceToUri(projectUri);
 		if (subdirName != null) {
 			File dir = new File(propertiesUri + subdirName);
 			if (!readonly && !dir.exists()) {
