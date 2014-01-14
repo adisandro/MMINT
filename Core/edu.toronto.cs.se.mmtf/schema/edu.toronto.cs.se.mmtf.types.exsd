@@ -3,7 +3,7 @@
 <schema targetNamespace="edu.toronto.cs.se.mmtf" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.extendibles" name="MMTF extendible types"/>
+         <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.types" name="MMTF types"/>
       </appinfo>
       <documentation>
          Allows types to be registered with MMTF.

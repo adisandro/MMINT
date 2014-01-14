@@ -11,7 +11,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
       </documentation>
    </annotation>
 
-   <include schemaLocation="edu.toronto.cs.se.mmtf.extendibles.exsd"/>
+   <include schemaLocation="edu.toronto.cs.se.mmtf.types.exsd"/>
 
    <include schemaLocation="edu.toronto.cs.se.mmtf.endpoints.exsd"/>
 

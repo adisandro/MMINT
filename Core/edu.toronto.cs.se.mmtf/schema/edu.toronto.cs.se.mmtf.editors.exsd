@@ -12,7 +12,7 @@ The Eclipse editor has to be registered through the org.eclipse.ui.editors and t
       </documentation>
    </annotation>
 
-   <include schemaLocation="edu.toronto.cs.se.mmtf.extendibles.exsd"/>
+   <include schemaLocation="edu.toronto.cs.se.mmtf.types.exsd"/>
 
    <element name="extension">
       <annotation>

@@ -11,7 +11,7 @@ The model package has to be registered through the org.eclipse.emf.ecore.generat
       </documentation>
    </annotation>
 
-   <include schemaLocation="edu.toronto.cs.se.mmtf.extendibles.exsd"/>
+   <include schemaLocation="edu.toronto.cs.se.mmtf.types.exsd"/>
 
    <element name="extension">
       <annotation>
