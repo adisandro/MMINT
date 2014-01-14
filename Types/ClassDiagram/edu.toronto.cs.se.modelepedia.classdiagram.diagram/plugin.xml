@@ -620,10 +620,10 @@
             id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagramEditorID"
             isDiagram="true"
             wizardId="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramCreationWizardID">
-         <extendibleType
+         <type
                name="ClassDiagram diagram"
                uri="http://se.cs.toronto.edu/modelepedia/Diagram_ClassDiagram">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

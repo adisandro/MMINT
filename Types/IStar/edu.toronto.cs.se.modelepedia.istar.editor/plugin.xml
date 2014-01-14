@@ -48,10 +48,10 @@
             id="edu.toronto.cs.se.modelepedia.istar.presentation.IStarEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.modelepedia.istar.presentation.IStarModelWizardID">
-         <extendibleType
+         <type
                name="IStar tree"
                uri="http://se.cs.toronto.edu/modelepedia/Tree_IStar">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

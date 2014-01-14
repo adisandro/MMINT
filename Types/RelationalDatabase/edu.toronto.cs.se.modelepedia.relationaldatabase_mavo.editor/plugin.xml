@@ -48,10 +48,10 @@
             id="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.presentation.RelationalDatabase_MAVOEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.presentation.RelationalDatabase_MAVOModelWizardID">
-         <extendibleType
+         <type
                name="RelationalDatabase_MAVO tree"
                uri="http://se.cs.toronto.edu/modelepedia/Tree_RelationalDatabase_MAVO">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

@@ -27,10 +27,10 @@
          point="edu.toronto.cs.se.mmtf.models">
       <modelType
             isAbstract="false">
-         <extendibleType
+         <type
                name="State"
                uri="http://se.cs.toronto.edu/modelepedia/State">
-         </extendibleType>
+         </type>
       </modelType>
    </extension>
 

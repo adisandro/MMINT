@@ -7,7 +7,7 @@
       </appinfo>
       <documentation>
          Allows model types to be registered with MMTF.
-The model package has to be registered too through the org.eclipse.emf.ecore.generated_package extension point.
+The model package has to be registered through the org.eclipse.emf.ecore.generated_package extension point too.
       </documentation>
    </annotation>
 
@@ -53,25 +53,25 @@ The model package has to be registered too through the org.eclipse.emf.ecore.gen
    <element name="modelType">
       <annotation>
          <documentation>
-            A model type.
+            A model type. Its uri must be registered through the org.eclipse.emf.ecore.generated_package extension point too.
          </documentation>
       </annotation>
       <complexType>
          <sequence>
-            <element ref="extendibleType"/>
+            <element ref="type"/>
             <element ref="constraint" minOccurs="0" maxOccurs="1"/>
          </sequence>
          <attribute name="isAbstract" type="boolean" use="default" value="false">
             <annotation>
                <documentation>
-                  True if the model type does not have an associated implementation, false otherwise.
+                  True if the model type is not to be instanciated, false otherwise.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="factoryClass" type="string">
             <annotation>
                <documentation>
-                  The fully qualified name of a Java class that handles the creation of types and instances.
+                  The fully qualified name of a Java class that handles the creation of types and instances in a custom way.
                </documentation>
                <appinfo>
                   <meta.attribute kind="java" basedOn="edu.toronto.cs.se.mmtf.MultiModelHeavyTypeFactory:"/>
@@ -91,7 +91,7 @@ The model package has to be registered too through the org.eclipse.emf.ecore.gen
          <attribute name="language" use="required">
             <annotation>
                <documentation>
-                  The constraint language (OCL | JAVA).
+                  The constraint language (OCL | JAVA | SMTLIB).
                </documentation>
             </annotation>
             <simpleType>
@@ -100,7 +100,7 @@ The model package has to be registered too through the org.eclipse.emf.ecore.gen
                   </enumeration>
                   <enumeration value="JAVA">
                   </enumeration>
-                  <enumeration value="SMT">
+                  <enumeration value="SMTLIB">
                   </enumeration>
                </restriction>
             </simpleType>
@@ -108,48 +108,24 @@ The model package has to be registered too through the org.eclipse.emf.ecore.gen
          <attribute name="implementation" type="string" use="required">
             <annotation>
                <documentation>
-                  The constraint implementation (an OCL constraint or the fully qualified name of a JAVA class).
+                  The constraint implementation (an OCL constraint, the fully qualified name of a JAVA class, or an SMTLIB assertion).
                </documentation>
             </annotation>
          </attribute>
       </complexType>
    </element>
 
-   <annotation>
-      <appinfo>
-         <meta.section type="since"/>
-      </appinfo>
-      <documentation>
-         [Enter the first release in which this extension point appears.]
-      </documentation>
-   </annotation>
 
    <annotation>
       <appinfo>
          <meta.section type="examples"/>
       </appinfo>
       <documentation>
-         [Enter extension point usage example here.]
+         https://github.com/adisandro/MMTF/wiki
       </documentation>
    </annotation>
 
-   <annotation>
-      <appinfo>
-         <meta.section type="apiinfo"/>
-      </appinfo>
-      <documentation>
-         [Enter API information here.]
-      </documentation>
-   </annotation>
 
-   <annotation>
-      <appinfo>
-         <meta.section type="implementation"/>
-      </appinfo>
-      <documentation>
-         [Enter information about supplied implementation of this extension point.]
-      </documentation>
-   </annotation>
 
 
 </schema>

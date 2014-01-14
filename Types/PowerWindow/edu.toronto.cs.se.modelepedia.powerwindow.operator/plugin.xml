@@ -20,10 +20,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.powerwindow.operator.PowerWindowToPetriNet"
             isConversion="true">
-         <extendibleType
+         <type
                name="PowerWindowToPetriNet"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_PowerWindowToPetriNet">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"

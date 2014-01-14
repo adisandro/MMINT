@@ -20,10 +20,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator.UMLToClassDiagramMAVO"
             isConversion="true">
-         <extendibleType
+         <type
                name="UMLToClassDiagramMAVO"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_UMLToClassDiagramMAVO">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"
@@ -46,10 +46,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator.ICSE14"
             isConversion="false">
-         <extendibleType
+         <type
                name="ICSE14"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ICSE14">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"

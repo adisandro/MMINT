@@ -834,10 +834,10 @@ Contributors:
             id="edu.toronto.cs.se.mmtf.mid.diagram.part.MidDiagramEditorID"
             isDiagram="true"
             wizardId="edu.toronto.cs.se.mmtf.mid.diagram.part.MidCreationWizardID">
-         <extendibleType
+         <type
                name="MID diagram"
                uri="http://se.cs.toronto.edu/mmtf/MID_diagram">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

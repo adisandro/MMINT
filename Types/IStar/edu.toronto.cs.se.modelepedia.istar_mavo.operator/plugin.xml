@@ -20,10 +20,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.istar_mavo.operator.IStarMAVOToSMTLIB"
             isConversion="false">
-         <extendibleType
+         <type
                name="IStarMAVOToSMTLIB"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_IStarMAVOToSMTLIB">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"
@@ -41,10 +41,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.istar_mavo.operator.RE13"
             isConversion="false">
-         <extendibleType
+         <type
                name="RE13"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_RE13">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"
@@ -62,10 +62,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.istar_mavo.operator.FASE14"
             isConversion="false">
-         <extendibleType
+         <type
                name="FASE14"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_FASE14">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"

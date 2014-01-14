@@ -608,10 +608,10 @@ Contributors:
             id="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorID"
             isDiagram="true"
             wizardId="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOCreationWizardID">
-         <extendibleType
+         <type
                name="RelationalDatabase_MAVO diagram"
                uri="http://se.cs.toronto.edu/modelepedia/Diagram_RelationalDatabase_MAVO">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

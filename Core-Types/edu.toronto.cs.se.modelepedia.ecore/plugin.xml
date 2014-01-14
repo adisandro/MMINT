@@ -21,20 +21,20 @@
             modelTypeUri="http://se.cs.toronto.edu/mmtf/Model"
             id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID"
             isDiagram="false">
-         <extendibleType
+         <type
                name="Ecore Reflective tree"
                uri="http://se.cs.toronto.edu/mmtf/Model_tree">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
    <extension
          point="edu.toronto.cs.se.mmtf.models">
       <modelType>
-         <extendibleType
+         <type
                name="Ecore"
                uri="http://www.eclipse.org/emf/2002/Ecore">
-         </extendibleType>
+         </type>
       </modelType>
    </extension>
 
@@ -45,10 +45,10 @@
             id="org.eclipse.emf.ecore.presentation.EcoreEditorID"
             isDiagram="false"
             wizardId="org.eclipse.emf.ecore.presentation.EcoreModelWizardID">
-         <extendibleType
+         <type
                name="Ecore tree"
                uri="http://www.eclipse.org/emf/2002/Ecore_tree">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -60,10 +60,10 @@
             modelTypeUri="http://www.eclipse.org/emf/2002/Ecore"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.ecore.ui.EcoreDiagramCreationWizardDialog"
             wizardId="org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardID">
-         <extendibleType
+         <type
                name="Ecore diagram"
                uri="http://www.eclipse.org/emf/2002/Ecore_diagram">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

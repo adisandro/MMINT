@@ -20,10 +20,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentDriver"
             isConversion="false">
-         <extendibleType
+         <type
                name="ExperimentDriver"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ExperimentDriver">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"
@@ -41,10 +41,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.operator.match.ModelNameMatch"
             isConversion="false">
-         <extendibleType
+         <type
                name="ModelNameMatch"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelNameMatch">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="true"
@@ -67,10 +67,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.operator.match.EMFModelNameMatch"
             isConversion="false">
-         <extendibleType
+         <type
                name="EMFModelNameMatch"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_EMFModelNameMatch">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"
@@ -98,10 +98,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.operator.diff.ModelDifference"
             isConversion="false">
-         <extendibleType
+         <type
                name="ModelDifference"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelDifference">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"
@@ -134,10 +134,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.operator.diff.EMFModelDifference"
             isConversion="false">
-         <extendibleType
+         <type
                name="EMFModelDifference"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_EMFModelDifference">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"
@@ -170,10 +170,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.operator.merge.EMFModelMerge"
             isConversion="false">
-         <extendibleType
+         <type
                name="EMFModelMerge"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMerge">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"
@@ -216,10 +216,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.operator.slice.ChangeImpact"
             isConversion="false">
-         <extendibleType
+         <type
                name="ChangeImpact"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ChangeImpact">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"
@@ -262,10 +262,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.operator.propagate.ChangePropagation"
             isConversion="false">
-         <extendibleType
+         <type
                name="ChangePropagation"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ChangePropagation">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"
@@ -318,10 +318,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.operator.patch.BinaryModelRelInversion"
             isConversion="false">
-         <extendibleType
+         <type
                name="BinaryModelRelInversion"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_BinaryModelRelInversion">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"
@@ -344,10 +344,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.operator.patch.MAVOHenshinTransformation"
             isConversion="false">
-         <extendibleType
+         <type
                name="MAVOHenshinTransformation"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_MAVOHenshinTransformation">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"
@@ -375,10 +375,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.operator.patch.ProductLineHenshinTransformation"
             isConversion="false">
-         <extendibleType
+         <type
                name="ProductLineHenshinTransformation"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ProductLineHenshinTransformation">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"

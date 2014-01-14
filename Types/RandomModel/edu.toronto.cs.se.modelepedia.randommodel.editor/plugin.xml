@@ -48,10 +48,10 @@
             id="edu.toronto.cs.se.modelepedia.randommodel.presentation.RandomModelEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.modelepedia.randommodel.presentation.RandomModelModelWizardID">
-         <extendibleType
+         <type
                name="RandomModel tree"
                uri="http://se.cs.toronto.edu/modelepedia/Tree_RandomModel">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

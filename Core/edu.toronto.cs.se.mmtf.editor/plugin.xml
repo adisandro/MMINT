@@ -48,10 +48,10 @@
             id="edu.toronto.cs.se.mmtf.mid.presentation.MidEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.mmtf.mid.presentation.MidModelWizardID">
-         <extendibleType
+         <type
                name="MID tree"
                uri="http://se.cs.toronto.edu/mmtf/MID_tree">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -88,10 +88,10 @@
             id="edu.toronto.cs.se.mmtf.mid.relationship.presentation.RelationshipEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.mmtf.mid.relationship.presentation.RelationshipModelWizardID">
-         <extendibleType
+         <type
                name="Relationship tree"
                uri="http://se.cs.toronto.edu/mmtf/MID/Relationship_tree">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

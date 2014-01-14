@@ -25,10 +25,10 @@
    <extension
          point="edu.toronto.cs.se.mmtf.models">
       <modelType>
-         <extendibleType
+         <type
                name="PowerWindow"
                uri="http://se.cs.toronto.edu/modelepedia/PowerWindow">
-         </extendibleType>
+         </type>
       </modelType>
    </extension>
 

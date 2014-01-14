@@ -29,10 +29,10 @@
    <extension
          point="edu.toronto.cs.se.mmtf.models">
       <modelType>
-         <extendibleType
+         <type
                name="UML"
                uri="http://www.eclipse.org/uml2/4.0.0/UML">
-         </extendibleType>
+         </type>
       </modelType>
    </extension>
 
@@ -43,10 +43,10 @@
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
-         <extendibleType
+         <type
                name="UML tree"
                uri="http://www.eclipse.org/uml2/4.0.0/UML_tree">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -58,10 +58,10 @@
             modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
-         <extendibleType
+         <type
                name="UML diagram"
                uri="http://www.eclipse.org/uml2/4.0.0/UML_diagram">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -75,13 +75,13 @@
          point="edu.toronto.cs.se.mmtf.models">
       <modelType
             isAbstract="true">
-         <extendibleType
+         <type
                name="UMLClassDiagram"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram">
             <superType
                   uri="http://www.eclipse.org/uml2/4.0.0/UML">
             </superType>
-         </extendibleType>
+         </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLClassDiagramModelConstraint"
                language="JAVA">
@@ -96,10 +96,10 @@
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
-         <extendibleType
+         <type
                name="UMLClassDiagram tree"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_tree">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -111,10 +111,10 @@
             modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
-         <extendibleType
+         <type
                name="UML diagram"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_diagram">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -128,13 +128,13 @@
          point="edu.toronto.cs.se.mmtf.models">
       <modelType
             isAbstract="true">
-         <extendibleType
+         <type
                name="UMLComponentDiagram"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram">
             <superType
                   uri="http://www.eclipse.org/uml2/4.0.0/UML">
             </superType>
-         </extendibleType>
+         </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLComponentDiagramModelConstraint"
                language="JAVA">
@@ -149,10 +149,10 @@
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
-         <extendibleType
+         <type
                name="UMLComponentDiagram tree"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_tree">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -164,10 +164,10 @@
             modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
-         <extendibleType
+         <type
                name="UML diagram"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_diagram">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -181,13 +181,13 @@
          point="edu.toronto.cs.se.mmtf.models">
       <modelType
             isAbstract="true">
-         <extendibleType
+         <type
                name="UMLDeploymentDiagram"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram">
             <superType
                   uri="http://www.eclipse.org/uml2/4.0.0/UML">
             </superType>
-         </extendibleType>
+         </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLDeploymentDiagramModelConstraint"
                language="JAVA">
@@ -202,10 +202,10 @@
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
-         <extendibleType
+         <type
                name="UMLDeploymentDiagram tree"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_tree">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -217,10 +217,10 @@
             modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
-         <extendibleType
+         <type
                name="UML diagram"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_diagram">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -234,16 +234,16 @@
          point="edu.toronto.cs.se.mmtf.relationships">
       <relationshipType>
          <modelType>
-            <extendibleType
+            <type
                   name="UMLComponentDeploymentRel"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel">
-            </extendibleType>
+            </type>
          </modelType>
          <modelTypeEndpoint>
-            <extendibleType
+            <type
                   name="UMLComponentEndpoint"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel-UMLComponentDiagram/UMLComponentEndpoint">
-            </extendibleType>
+            </type>
             <typeEndpoint
                   lowerBound="1"
                   upperBound="1"
@@ -251,24 +251,24 @@
             </typeEndpoint>
             <modelElemType
                   classLiteral="Usage">
-                <extendibleType
+                <type
                      name="Usage"
                      uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram/Usage">
-                </extendibleType>
+                </type>
             </modelElemType>
             <modelElemType
                   classLiteral="Component">
-                <extendibleType
+                <type
                      name="Component"
                      uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram/Component">
-                </extendibleType>
+                </type>
             </modelElemType>
          </modelTypeEndpoint>
          <modelTypeEndpoint>
-            <extendibleType
+            <type
                   name="UMLDeploymentEndpoint"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel-UMLDeploymentDiagram/UMLDeploymentEndpoint">
-            </extendibleType>
+            </type>
             <typeEndpoint
                   lowerBound="1"
                   upperBound="1"
@@ -276,32 +276,32 @@
             </typeEndpoint>
             <modelElemType
                   classLiteral="Node">
-                <extendibleType
+                <type
                      name="Node"
                      uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram/Node">
-                </extendibleType>
+                </type>
             </modelElemType>
             <modelElemType
                   classLiteral="Device">
-                <extendibleType
+                <type
                      name="Device"
                      uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram/Device">
                    <superType
                          uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram/Node">
                    </superType>
-                </extendibleType>
+                </type>
             </modelElemType>
          </modelTypeEndpoint>
          <linkType>
-            <extendibleType
+            <type
                   name="ComponentDeviceLink"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink">
-            </extendibleType>
+            </type>
             <modelElemTypeEndpoint>
-               <extendibleType
+               <type
                      name="ComponentEndpoint"
                      uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Component/ComponentEndpoint">
-               </extendibleType>
+               </type>
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
@@ -309,10 +309,10 @@
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
-               <extendibleType
+               <type
                      name="DeviceEndpoint"
                      uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Device/DeviceEndpoint">
-               </extendibleType>
+               </type>
                <typeEndpoint
                      lowerBound="1"
                      upperBound="1"
@@ -321,15 +321,15 @@
             </modelElemTypeEndpoint>
          </linkType>
          <linkType>
-            <extendibleType
+            <type
                   name="UsageNodeLink"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink">
-            </extendibleType>
+            </type>
             <modelElemTypeEndpoint>
-               <extendibleType
+               <type
                      name="UsageEndpoint"
                      uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Usage/UsageEndpoint">
-               </extendibleType>
+               </type>
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
@@ -337,10 +337,10 @@
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
-               <extendibleType
+               <type
                      name="NodeEndpoint"
                      uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink-Node/NodeEndpoint">
-               </extendibleType>
+               </type>
                <typeEndpoint
                      lowerBound="0"
                      upperBound="1"
@@ -363,7 +363,7 @@
          point="edu.toronto.cs.se.mmtf.models">
       <modelType
             isAbstract="true">
-         <extendibleType
+         <type
                name="UML_MAVO"
                uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
             <superType
@@ -372,7 +372,7 @@
             <superType
                   uri="http://www.eclipse.org/uml2/4.0.0/UML">
             </superType>
-         </extendibleType>
+         </type>
       </modelType>
    </extension>
 
@@ -383,10 +383,10 @@
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
-         <extendibleType
+         <type
                name="UML_MAVO tree"
                uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO_tree">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -398,10 +398,10 @@
             modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
-         <extendibleType
+         <type
                name="UML_MAVO diagram"
                uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO_diagram">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -415,13 +415,13 @@
          point="edu.toronto.cs.se.mmtf.models">
       <modelType
             isAbstract="true">
-         <extendibleType
+         <type
                name="UMLClassDiagram_MAVO"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO">
             <superType
                   uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
             </superType>
-         </extendibleType>
+         </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLClassDiagramModelConstraint"
                language="JAVA">
@@ -436,10 +436,10 @@
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
-         <extendibleType
+         <type
                name="UMLClassDiagram_MAVO tree"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO_tree">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -451,10 +451,10 @@
             modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
-         <extendibleType
+         <type
                name="UMLClassDiagram_MAVO diagram"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO_diagram">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -468,13 +468,13 @@
          point="edu.toronto.cs.se.mmtf.models">
       <modelType
             isAbstract="true">
-         <extendibleType
+         <type
                name="UMLComponentDiagram_MAVO"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO">
             <superType
                   uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
             </superType>
-         </extendibleType>
+         </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLComponentDiagramModelConstraint"
                language="JAVA">
@@ -489,10 +489,10 @@
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
-         <extendibleType
+         <type
                name="UMLComponentDiagram_MAVO tree"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO_tree">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -504,10 +504,10 @@
             modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
-         <extendibleType
+         <type
                name="UMLComponentDiagram_MAVO diagram"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO_diagram">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -521,13 +521,13 @@
          point="edu.toronto.cs.se.mmtf.models">
       <modelType
             isAbstract="true">
-         <extendibleType
+         <type
                name="UMLDeploymentDiagram_MAVO"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO">
             <superType
                   uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
             </superType>
-         </extendibleType>
+         </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.uml.constraint.UMLDeploymentDiagramModelConstraint"
                language="JAVA">
@@ -542,10 +542,10 @@
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
-         <extendibleType
+         <type
                name="UMLDeploymentDiagram_MAVO tree"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO_tree">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -557,10 +557,10 @@
             modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
-         <extendibleType
+         <type
                name="UMLDeploymentDiagram_MAVO diagram"
                uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO_diagram">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
@@ -574,16 +574,16 @@
          point="edu.toronto.cs.se.mmtf.relationships">
       <relationshipType>
          <modelType>
-            <extendibleType
+            <type
                   name="UMLComponentDeploymentRel_MAVO"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO">
-            </extendibleType>
+            </type>
          </modelType>
          <modelTypeEndpoint>
-            <extendibleType
+            <type
                   name="UMLComponentEndpoint"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO-UMLComponentDiagram_MAVO/UMLComponentEndpoint">
-            </extendibleType>
+            </type>
             <typeEndpoint
                   lowerBound="1"
                   upperBound="1"
@@ -591,24 +591,24 @@
             </typeEndpoint>
             <modelElemType
                   classLiteral="Usage">
-                <extendibleType
+                <type
                      name="Usage"
                      uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage">
-                </extendibleType>
+                </type>
             </modelElemType>
             <modelElemType
                   classLiteral="Component">
-                <extendibleType
+                <type
                      name="Component"
                      uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component">
-                </extendibleType>
+                </type>
             </modelElemType>
          </modelTypeEndpoint>
          <modelTypeEndpoint>
-            <extendibleType
+            <type
                   name="UMLDeploymentEndpoint"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO-UMLDeploymentDiagram_MAVO/UMLDeploymentEndpoint">
-            </extendibleType>
+            </type>
             <typeEndpoint
                   lowerBound="1"
                   upperBound="1"
@@ -616,32 +616,32 @@
             </typeEndpoint>
             <modelElemType
                   classLiteral="Node">
-                <extendibleType
+                <type
                      name="Node"
                      uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node">
-                </extendibleType>
+                </type>
             </modelElemType>
             <modelElemType
                   classLiteral="Device">
-                <extendibleType
+                <type
                      name="Device"
                      uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Device">
                    <superType
                          uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node">
                    </superType>
-                </extendibleType>
+                </type>
             </modelElemType>
          </modelTypeEndpoint>
          <linkType>
-            <extendibleType
+            <type
                   name="ComponentDeviceLink"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/ComponentDeviceLink">
-            </extendibleType>
+            </type>
             <modelElemTypeEndpoint>
-               <extendibleType
+               <type
                      name="ComponentEndpoint"
                      uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/ComponentDeviceLink-Component/ComponentEndpoint">
-               </extendibleType>
+               </type>
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
@@ -649,10 +649,10 @@
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
-               <extendibleType
+               <type
                      name="DeviceEndpoint"
                      uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/ComponentDeviceLink-Device/DeviceEndpoint">
-               </extendibleType>
+               </type>
                <typeEndpoint
                      lowerBound="1"
                      upperBound="1"
@@ -661,15 +661,15 @@
             </modelElemTypeEndpoint>
          </linkType>
          <linkType>
-            <extendibleType
+            <type
                   name="UsageNodeLink"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/UsageNodeLink">
-            </extendibleType>
+            </type>
             <modelElemTypeEndpoint>
-               <extendibleType
+               <type
                      name="UsageEndpoint"
                      uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/UsageNodeLink-Usage/UsageEndpoint">
-               </extendibleType>
+               </type>
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
@@ -677,10 +677,10 @@
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
-               <extendibleType
+               <type
                      name="NodeEndpoint"
                      uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/UsageNodeLink-Node/NodeEndpoint">
-               </extendibleType>
+               </type>
                <typeEndpoint
                      lowerBound="0"
                      upperBound="1"

@@ -24,10 +24,10 @@
    <extension
          point="edu.toronto.cs.se.mmtf.models">
       <modelType>
-         <extendibleType
+         <type
                name="Java"
                uri="http://se.cs.toronto.edu/modelepedia/Java">
-         </extendibleType>
+         </type>
       </modelType>
    </extension>
 
@@ -41,16 +41,16 @@
          point="edu.toronto.cs.se.mmtf.relationships">
       <relationshipType>
          <modelType>
-            <extendibleType
+            <type
                   name="WellFormedJava"
                   uri="http://se.cs.toronto.edu/modelepedia/WellFormedJava">
-            </extendibleType>
+            </type>
          </modelType>
          <modelTypeEndpoint>
-            <extendibleType
+            <type
                   name="JavaEndpoint"
                   uri="http://se.cs.toronto.edu/modelepedia/WellFormedJava-Java/JavaEndpoint">
-            </extendibleType>
+            </type>
             <typeEndpoint
                   lowerBound="1"
                   upperBound="1"
@@ -70,16 +70,16 @@
          point="edu.toronto.cs.se.mmtf.relationships">
       <relationshipType>
          <modelType>
-            <extendibleType
+            <type
                   name="PreserveComponentInterfaces"
                   uri="http://se.cs.toronto.edu/modelepedia/PreserveComponentInterfaces">
-            </extendibleType>
+            </type>
          </modelType>
          <modelTypeEndpoint>
-            <extendibleType
+            <type
                   name="UMLEndpoint"
                   uri="http://se.cs.toronto.edu/modelepedia/PreserveComponentInterfaces-UML/UMLEndpoint">
-            </extendibleType>
+            </type>
             <typeEndpoint
                   lowerBound="1"
                   upperBound="1"
@@ -87,10 +87,10 @@
             </typeEndpoint>
          </modelTypeEndpoint>
          <modelTypeEndpoint>
-            <extendibleType
+            <type
                   name="JavaEndpoint"
                   uri="http://se.cs.toronto.edu/modelepedia/PreserveComponentInterfaces-Java/JavaEndpoint">
-            </extendibleType>
+            </type>
             <typeEndpoint
                   lowerBound="1"
                   upperBound="1"
@@ -105,10 +105,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.necsis13.operator.Dummy"
             isConversion="true">
-         <extendibleType
+         <type
                name="UML2Java"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_UML2Java">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"
@@ -131,10 +131,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.necsis13.operator.Dummy"
             isConversion="false">
-         <extendibleType
+         <type
                name="JavaOpt"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_JavaOpt">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"

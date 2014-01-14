@@ -48,10 +48,10 @@
             id="edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOModelWizardID">
-         <extendibleType
+         <type
                name="IStar_MAVO tree"
                uri="http://se.cs.toronto.edu/modelepedia/Tree_IStar_MAVO">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

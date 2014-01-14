@@ -29,16 +29,16 @@
          <modelType
                factoryClass="edu.toronto.cs.se.modelepedia.kleisli.library.KleisliMultiModelHeavyTypeFactory"
                isAbstract="true">
-            <extendibleType
+            <type
                   name="KleisliModelRel"
                   uri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel">
-            </extendibleType>
+            </type>
          </modelType>
          <modelTypeEndpoint>
-            <extendibleType
+            <type
                   name="KleisliModelEndpoint"
                   uri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel-Model/KleisliModelEndpoint">
-            </extendibleType>
+            </type>
             <typeEndpoint
                   lowerBound="0"
                   upperBound="-1"
@@ -46,18 +46,18 @@
             </typeEndpoint>
             <modelElemType
                   classLiteral="ModelElementWildcard">
-                <extendibleType
+                <type
                      name="KleisliModelElem"
                      uri="http://se.cs.toronto.edu/mmtf/Model/KleisliModelElem">
-                </extendibleType>
+                </type>
             </modelElemType>
          </modelTypeEndpoint>
 <!--
          <modelTypeEndpoint>
-            <extendibleType
+            <type
                   name="ModelEndpoint"
                   uri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel-Model/ModelEndpoint">
-            </extendibleType>
+            </type>
             <typeEndpoint
                   lowerBound="0"
                   upperBound="-1"
@@ -65,23 +65,23 @@
             </typeEndpoint>
             <modelElemType
                   classLiteral="ModelElementWildcard">
-                <extendibleType
+                <type
                      name="ModelElem"
                      uri="http://se.cs.toronto.edu/mmtf/Model/ModelElem">
-                </extendibleType>
+                </type>
             </modelElemType>
          </modelTypeEndpoint>
 -->
          <linkType>
-            <extendibleType
+            <type
                   name="KleisliLink"
                   uri="http://se.cs.toronto.edu/mmtf/KleisliModelRel/KleisliLink">
-            </extendibleType>
+            </type>
             <modelElemTypeEndpoint>
-               <extendibleType
+               <type
                      name="KleisliModelElemEndpoint"
                      uri="http://se.cs.toronto.edu/mmtf/KleisliModelRel/KleisliLink-KleisliModelElem/KleisliModelElemEndpoint">
-               </extendibleType>
+               </type>
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
@@ -90,10 +90,10 @@
             </modelElemTypeEndpoint>
 <!--
             <modelElemTypeEndpoint>
-               <extendibleType
+               <type
                      name="ModelElemEndpoint"
                      uri="http://se.cs.toronto.edu/mmtf/KleisliModelRel/KleisliLink-ModelElem/ModelElemEndpoint">
-               </extendibleType>
+               </type>
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"

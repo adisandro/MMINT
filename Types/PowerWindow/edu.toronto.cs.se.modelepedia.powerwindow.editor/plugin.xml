@@ -48,10 +48,10 @@
             id="edu.toronto.cs.se.modelepedia.powerwindow.presentation.PowerWindowEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.modelepedia.powerwindow.presentation.PowerWindowModelWizardID">
-         <extendibleType
+         <type
                name="PowerWindow tree"
                uri="http://se.cs.toronto.edu/modelepedia/Tree_PowerWindow">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

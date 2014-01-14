@@ -57,7 +57,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="extendibleType"/>
+            <element ref="type"/>
             <element ref="input"/>
             <element ref="output"/>
          </sequence>

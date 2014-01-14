@@ -6,7 +6,7 @@
          <meta.schema plugin="edu.toronto.cs.se.mmtf" id="edu.toronto.cs.se.mmtf.extendibles" name="MMTF extendible types"/>
       </appinfo>
       <documentation>
-         Allows extendible element types to be registered with MMTF.
+         Allows types to be registered with MMTF.
       </documentation>
    </annotation>
 
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="extendibleType"/>
+            <element ref="type"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,10 +47,10 @@
       </complexType>
    </element>
 
-   <element name="extendibleType">
+   <element name="type">
       <annotation>
          <documentation>
-            An extendible element type.
+            A type.
          </documentation>
       </annotation>
       <complexType>
@@ -60,14 +60,14 @@
          <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
-                  The extendible element type name.
+                  The name of the type.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="uri" type="string" use="required">
             <annotation>
                <documentation>
-                  The extendible element type URI to be registered with MMTF.
+                  The uri of the type to be registered with MMTF, i.e. its unique identifier.
                </documentation>
             </annotation>
          </attribute>
@@ -77,55 +77,31 @@
    <element name="superType">
       <annotation>
          <documentation>
-            An extendible element supertype (although allowed here, multiple inheritance is not supported yet for user defined types).
+            A type&apos;s supertype (although allowed here, multiple inheritance is not supported yet for user-defined types).
          </documentation>
       </annotation>
       <complexType>
          <attribute name="uri" type="string" use="required">
             <annotation>
                <documentation>
-                  The extendible element supertype URI.
+                  The uri of the supertype.
                </documentation>
             </annotation>
          </attribute>
       </complexType>
    </element>
 
-   <annotation>
-      <appinfo>
-         <meta.section type="since"/>
-      </appinfo>
-      <documentation>
-         [Enter the first release in which this extension point appears.]
-      </documentation>
-   </annotation>
 
    <annotation>
       <appinfo>
          <meta.section type="examples"/>
       </appinfo>
       <documentation>
-         [Enter extension point usage example here.]
+         https://github.com/adisandro/MMTF/wiki
       </documentation>
    </annotation>
 
-   <annotation>
-      <appinfo>
-         <meta.section type="apiinfo"/>
-      </appinfo>
-      <documentation>
-         [Enter API information here.]
-      </documentation>
-   </annotation>
 
-   <annotation>
-      <appinfo>
-         <meta.section type="implementation"/>
-      </appinfo>
-      <documentation>
-         [Enter information about supplied implementation of this extension point.]
-      </documentation>
-   </annotation>
 
 
 </schema>

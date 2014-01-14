@@ -25,10 +25,10 @@
    <extension
          point="edu.toronto.cs.se.mmtf.models">
       <modelType>
-         <extendibleType
+         <type
                name="LabeledGraph"
                uri="http://se.cs.toronto.edu/modelepedia/LabeledGraph">
-         </extendibleType>
+         </type>
       </modelType>
    </extension>
 

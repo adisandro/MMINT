@@ -709,10 +709,10 @@ Contributors:
             id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorID"
             isDiagram="true"
             wizardId="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOCreationWizardID">
-         <extendibleType
+         <type
                name="IStar_MAVO diagram"
                uri="http://se.cs.toronto.edu/modelepedia/Diagram_IStar_MAVO">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

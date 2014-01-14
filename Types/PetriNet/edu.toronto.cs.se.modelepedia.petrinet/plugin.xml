@@ -25,10 +25,10 @@
    <extension
          point="edu.toronto.cs.se.mmtf.models">
       <modelType>
-         <extendibleType
+         <type
                name="PetriNet"
                uri="http://se.cs.toronto.edu/modelepedia/PetriNet">
-         </extendibleType>
+         </type>
       </modelType>
    </extension>
 

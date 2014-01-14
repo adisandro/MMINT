@@ -709,10 +709,10 @@ Contributors:
             id="edu.toronto.cs.se.modelepedia.istar.diagram.part.IStarDiagramEditorID"
             isDiagram="true"
             wizardId="edu.toronto.cs.se.modelepedia.istar.diagram.part.IStarCreationWizardID">
-         <extendibleType
+         <type
                name="IStar diagram"
                uri="http://se.cs.toronto.edu/modelepedia/Diagram_IStar">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

@@ -77,7 +77,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
       </annotation>
       <complexType>
          <sequence>
-            <element ref="extendibleType"/>
+            <element ref="type"/>
             <element ref="typeEndpoint"/>
             <element ref="modelElemType" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
@@ -92,7 +92,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
       </annotation>
       <complexType>
          <sequence>
-            <element ref="extendibleType"/>
+            <element ref="type"/>
          </sequence>
          <attribute name="classLiteral" type="string" use="required">
             <annotation>
@@ -112,7 +112,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
       </annotation>
       <complexType>
          <sequence>
-            <element ref="extendibleType"/>
+            <element ref="type"/>
             <element ref="modelElemTypeEndpoint" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
       </complexType>
@@ -126,7 +126,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
       </annotation>
       <complexType>
          <sequence>
-            <element ref="extendibleType"/>
+            <element ref="type"/>
             <element ref="typeEndpoint"/>
          </sequence>
       </complexType>

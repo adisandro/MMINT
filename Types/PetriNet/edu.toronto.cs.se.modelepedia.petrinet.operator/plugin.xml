@@ -20,10 +20,10 @@
       <operatorType
             class="edu.toronto.cs.se.modelepedia.petrinet.operator.PetriNetSimulate"
             isConversion="false">
-         <extendibleType
+         <type
                name="PetriNetSimulate"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_PetriNetSimulate">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"

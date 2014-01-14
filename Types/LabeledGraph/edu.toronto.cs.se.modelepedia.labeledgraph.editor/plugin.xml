@@ -48,10 +48,10 @@
             id="edu.toronto.cs.se.modelepedia.labeledgraph.presentation.LabeledGraphEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.modelepedia.labeledgraph.presentation.LabeledGraphModelWizardID">
-         <extendibleType
+         <type
                name="LabeledGraph tree"
                uri="http://se.cs.toronto.edu/modelepedia/Tree_LabeledGraph">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

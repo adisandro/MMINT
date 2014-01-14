@@ -48,10 +48,10 @@
             id="edu.toronto.cs.se.modelepedia.petrinet.presentation.PetriNetEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.modelepedia.petrinet.presentation.PetriNetModelWizardID">
-         <extendibleType
+         <type
                name="PetriNet tree"
                uri="http://se.cs.toronto.edu/modelepedia/Tree_PetriNet">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

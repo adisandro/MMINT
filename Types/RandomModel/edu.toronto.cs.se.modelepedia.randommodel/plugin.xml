@@ -25,10 +25,10 @@
    <extension
          point="edu.toronto.cs.se.mmtf.models">
       <modelType>
-         <extendibleType
+         <type
                name="RandomModel"
                uri="http://se.cs.toronto.edu/modelepedia/RandomModel">
-         </extendibleType>
+         </type>
       </modelType>
    </extension>
 

@@ -562,10 +562,10 @@ Contributors:
             id="edu.toronto.cs.se.modelepedia.powerwindow.diagram.part.PowerWindowDiagramEditorID"
             isDiagram="true"
             wizardId="edu.toronto.cs.se.modelepedia.powerwindow.diagram.part.PowerWindowCreationWizardID">
-         <extendibleType
+         <type
                name="PowerWindow diagram"
                uri="http://se.cs.toronto.edu/modelepedia/Diagram_PowerWindow">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

@@ -30,10 +30,10 @@
          point="edu.toronto.cs.se.mmtf.models">
       <modelType
             isAbstract="true">
-         <extendibleType
+         <type
                name="Model"
                uri="http://se.cs.toronto.edu/mmtf/Model">
-         </extendibleType>
+         </type>
       </modelType>
    </extension>
 
@@ -47,19 +47,19 @@
          point="edu.toronto.cs.se.mmtf.relationships">
       <relationshipType>
          <modelType>
-            <extendibleType
+            <type
                   name="ModelRel"
                   uri="http://se.cs.toronto.edu/mmtf/ModelRel">
             <superType
                   uri="http://se.cs.toronto.edu/mmtf/Model">
             </superType>
-            </extendibleType>
+            </type>
          </modelType>
          <modelTypeEndpoint>
-            <extendibleType
+            <type
                   name="ModelEndpoint"
                   uri="http://se.cs.toronto.edu/mmtf/ModelRel-Model/ModelEndpoint">
-            </extendibleType>
+            </type>
             <typeEndpoint
                   lowerBound="0"
                   upperBound="-1"
@@ -67,22 +67,22 @@
             </typeEndpoint>
             <modelElemType
                   classLiteral="ModelElementWildcard">
-                <extendibleType
+                <type
                      name="ModelElem"
                      uri="http://se.cs.toronto.edu/mmtf/Model/ModelElem">
-                </extendibleType>
+                </type>
             </modelElemType>
          </modelTypeEndpoint>
          <linkType>
-            <extendibleType
+            <type
                   name="Link"
                   uri="http://se.cs.toronto.edu/mmtf/ModelRel/Link">
-            </extendibleType>
+            </type>
             <modelElemTypeEndpoint>
-               <extendibleType
+               <type
                      name="ModelElemEndpoint"
                      uri="http://se.cs.toronto.edu/mmtf/ModelRel/Link-ModelElem/ModelElemEndpoint">
-               </extendibleType>
+               </type>
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
@@ -104,13 +104,13 @@
    <extension
          point="edu.toronto.cs.se.mmtf.models">
       <modelType>
-         <extendibleType
+         <type
                name="MID"
                uri="http://se.cs.toronto.edu/mmtf/MID">
             <superType
                   uri="http://se.cs.toronto.edu/mmtf/MAVO">
             </superType>
-         </extendibleType>
+         </type>
       </modelType>
    </extension>
 
@@ -125,13 +125,13 @@
          point="edu.toronto.cs.se.mmtf.models">
       <modelType
             isAbstract="true">
-         <extendibleType
+         <type
                name="Model_MAVO"
                uri="http://se.cs.toronto.edu/mmtf/MAVO">
             <superType
                   uri="http://se.cs.toronto.edu/mmtf/Model">
             </superType>
-         </extendibleType>
+         </type>
          <constraint
                implementation="edu.toronto.cs.se.mmtf.mavo.constraint.MAVOModelConstraint"
                language="JAVA">
@@ -149,23 +149,23 @@
          point="edu.toronto.cs.se.mmtf.relationships">
       <relationshipType>
          <modelType>
-            <extendibleType
+            <type
                   name="MAVORefinementRel"
                   uri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel">
             <superType
                   uri="http://se.cs.toronto.edu/mmtf/ModelRel">
             </superType>
-            </extendibleType>
+            </type>
             <constraint
                   implementation="modelEndpoints-&gt;at(1).target.metatypeUri = modelEndpoints-&gt;at(2).target.metatypeUri and links-&gt;forAll(let origModelElemEndpoints : Sequence(mid::relationship::ModelElementEndpoint) = modelElemEndpoints-&gt;select(target.oclContainer().oclAsType(mid::Model).uri = oclContainer().oclContainer().oclAsType(mid::relationship::ModelRel).modelEndpoints-&gt;at(1).target.uri), refinedModelElemEndpoints : Sequence(mid::relationship::ModelElementEndpoint) = modelElemEndpoints-&gt;select(target.oclContainer().oclAsType(mid::Model).uri = oclContainer().oclContainer().oclAsType(mid::relationship::ModelRel).modelEndpoints-&gt;at(2).target.uri) in ((origModelElemEndpoints-&gt;size() = 1 and ((not origModelElemEndpoints-&gt;at(1).target.may implies refinedModelElemEndpoints-&gt;exists(not target.may)) and (not origModelElemEndpoints-&gt;at(1).target.set implies (refinedModelElemEndpoints-&gt;size() = 1 and refinedModelElemEndpoints-&gt;exists(not target.set))) and (not origModelElemEndpoints-&gt;at(1).target.var implies refinedModelElemEndpoints-&gt;forAll(not target.var)))) or (origModelElemEndpoints-&gt;size() = 1 and (origModelElemEndpoints-&gt;at(1).target.may and refinedModelElemEndpoints-&gt;isEmpty())) or (refinedModelElemEndpoints-&gt;size() = 1 and ((origModelElemEndpoints-&gt;exists(not target.may) implies not refinedModelElemEndpoints-&gt;at(1).target.may) and (origModelElemEndpoints-&gt;exists(not target.set) implies not refinedModelElemEndpoints-&gt;at(1).target.set) and (origModelElemEndpoints-&gt;exists(not target.var) implies (origModelElemEndpoints-&gt;one(not target.var) and not refinedModelElemEndpoints-&gt;at(1).target.var)))) or (refinedModelElemEndpoints-&gt;size() = 1 and (origModelElemEndpoints-&gt;isEmpty() and oclContainer().oclAsType(mid::relationship::ModelRel).modelEndpoints-&gt;at(1).target.oclAsType(mid::Model).inc))))"
                   language="OCL">
             </constraint>
          </modelType>
          <modelTypeEndpoint>
-            <extendibleType
+            <type
                   name="MAVOModelEndpoint"
                   uri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel-MAVO/MAVOModelEndpoint">
-            </extendibleType>
+            </type>
             <typeEndpoint
                   lowerBound="2"
                   upperBound="2"
@@ -173,22 +173,22 @@
             </typeEndpoint>
             <modelElemType
                   classLiteral="MAVOElement">
-                <extendibleType
+                <type
                      name="MAVOElement"
                      uri="http://se.cs.toronto.edu/mmtf/MAVO/MAVOElement">
-                </extendibleType>
+                </type>
             </modelElemType>
          </modelTypeEndpoint>
          <linkType>
-            <extendibleType
+            <type
                   name="RefinementLink"
                   uri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink">
-            </extendibleType>
+            </type>
             <modelElemTypeEndpoint>
-               <extendibleType
+               <type
                      name="MAVOElementEndpoint"
                      uri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint">
-               </extendibleType>
+               </type>
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
@@ -204,10 +204,10 @@
       <operatorType
             class="edu.toronto.cs.se.mmtf.reasoning.EcoreMAVOToSMTLIB"
             isConversion="false">
-         <extendibleType
+         <type
                name="EcoreMAVOToSMTLIB"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB">
-         </extendibleType>
+         </type>
          <input>
             <parameter
                   isVararg="false"

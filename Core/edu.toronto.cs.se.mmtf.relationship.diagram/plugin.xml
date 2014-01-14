@@ -672,10 +672,10 @@ Contributors:
             id="edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.RelationshipDiagramEditorID"
             isDiagram="true"
             wizardId="edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.MidCreationWizardID">
-         <extendibleType
+         <type
                name="Relationship diagram"
                uri="http://se.cs.toronto.edu/mmtf/MID/Relationship_diagram">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

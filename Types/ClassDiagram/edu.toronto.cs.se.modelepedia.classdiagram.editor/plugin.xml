@@ -48,10 +48,10 @@
             id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
-         <extendibleType
+         <type
                name="ClassDiagram tree"
                uri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

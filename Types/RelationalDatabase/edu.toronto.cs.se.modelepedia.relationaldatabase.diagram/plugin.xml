@@ -606,10 +606,10 @@ Contributors:
             id="edu.toronto.cs.se.modelepedia.relationaldatabase.diagram.part.RelationalDatabaseDiagramEditorID"
             isDiagram="true"
             wizardId="edu.toronto.cs.se.modelepedia.relationaldatabase.diagram.part.RelationalDatabaseCreationWizardID">
-         <extendibleType
+         <type
                name="RelationalDatabase diagram"
                uri="http://se.cs.toronto.edu/modelepedia/Diagram_RelationalDatabase">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 

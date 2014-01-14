@@ -44,15 +44,15 @@ public interface MMTFConstants {
 	/** The id of the root editor type. */
 	public final static String ROOT_EDITOR_ID = "org.eclipse.emf.ecore.presentation.ReflectiveEditorID";
 
-	/** An extension point's extendibleType child. */
-	public final static String CHILD_EXTENDIBLETYPE = "extendibleType";
-	/** An extension point's extendibleType child's name attribute. */
+	/** An extension point's type child. */
+	public final static String CHILD_EXTENDIBLETYPE = "type";
+	/** An extension point's type child's name attribute. */
 	public final static String EXTENDIBLETYPE_ATTR_NAME = "name";
-	/** An extension point's extendibleType child's uri attribute. */
+	/** An extension point's type child's uri attribute. */
 	public final static String EXTENDIBLETYPE_ATTR_URI = "uri";
-	/** An extension point's extendibleType superType child. */
+	/** An extension point's type superType child. */
 	public final static String EXTENDIBLETYPE_CHILD_SUPERTYPE = "superType";
-	/** An extension point's extendibleType superType child's uri attribute. */
+	/** An extension point's type superType child's uri attribute. */
 	public final static String EXTENDIBLETYPE_SUPERTYPE_ATTR_URI = "uri";
 
 	/** An extension point's typeEndpoint child. */

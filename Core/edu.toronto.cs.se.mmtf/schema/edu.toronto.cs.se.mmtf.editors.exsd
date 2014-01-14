@@ -7,7 +7,8 @@
       </appinfo>
       <documentation>
          Allows editor types to be registered with MMTF.
-The model type has to be registered too through the edu.toronto.cs.se.mmtf.models extension point.
+The model type has to be registered through the edu.toronto.cs.se.mmtf.models extension point too.
+The Eclipse editor has to be registered through the org.eclipse.ui.editors and the org.eclipse.ui.newWizards extension points too.
       </documentation>
    </annotation>
 
@@ -53,51 +54,51 @@ The model type has to be registered too through the edu.toronto.cs.se.mmtf.model
    <element name="editorType">
       <annotation>
          <documentation>
-            An editor type.
+            An editor for a model type, i.e. an editor type.
          </documentation>
       </annotation>
       <complexType>
          <sequence>
-            <element ref="extendibleType"/>
+            <element ref="type"/>
          </sequence>
          <attribute name="modelTypeUri" type="string" use="required">
             <annotation>
                <documentation>
-                  The model type URI for which an editor is being provided.
+                  The uri of the model type for which an editor is being provided.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  The editor type id.
+                  The id of the editor type. It must be registered through the org.eclipse.ui.editors extension point too.
                </documentation>
                <appinfo>
                   <meta.attribute kind="identifier" basedOn="org.eclipse.ui.editors/editor/@id"/>
                </appinfo>
             </annotation>
          </attribute>
-         <attribute name="isDiagram" type="boolean" use="required">
-            <annotation>
-               <documentation>
-                  Whether this is a diagram editor type.
-               </documentation>
-            </annotation>
-         </attribute>
          <attribute name="wizardId" type="string">
             <annotation>
                <documentation>
-                  The editor type wizard id.
+                  The wizard id of the editor type. It must be registered through the org.eclipse.ui.newWizards extension point too.
                </documentation>
                <appinfo>
                   <meta.attribute kind="identifier" basedOn="org.eclipse.ui.newWizards/wizard/@id"/>
                </appinfo>
             </annotation>
          </attribute>
+         <attribute name="isDiagram" type="boolean" use="required">
+            <annotation>
+               <documentation>
+                  True if the editor is a GMF diagram.
+               </documentation>
+            </annotation>
+         </attribute>
          <attribute name="wizardDialogClass" type="string">
             <annotation>
                <documentation>
-                  The fully qualified name of a Java class that handles the creation of a model through this editor.
+                  The fully qualified name of a Java class that handles the creation of a model instance through this editor in a custom way.
                </documentation>
                <appinfo>
                   <meta.attribute kind="java" basedOn="edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog:"/>
@@ -107,41 +108,17 @@ The model type has to be registered too through the edu.toronto.cs.se.mmtf.model
       </complexType>
    </element>
 
-   <annotation>
-      <appinfo>
-         <meta.section type="since"/>
-      </appinfo>
-      <documentation>
-         [Enter the first release in which this extension point appears.]
-      </documentation>
-   </annotation>
 
    <annotation>
       <appinfo>
          <meta.section type="examples"/>
       </appinfo>
       <documentation>
-         [Enter extension point usage example here.]
+         https://github.com/adisandro/MMTF/wiki
       </documentation>
    </annotation>
 
-   <annotation>
-      <appinfo>
-         <meta.section type="apiinfo"/>
-      </appinfo>
-      <documentation>
-         [Enter API information here.]
-      </documentation>
-   </annotation>
 
-   <annotation>
-      <appinfo>
-         <meta.section type="implementation"/>
-      </appinfo>
-      <documentation>
-         [Enter information about supplied implementation of this extension point.]
-      </documentation>
-   </annotation>
 
 
 </schema>

@@ -50,10 +50,10 @@
             id="edu.toronto.cs.se.modelepedia.tutorial.state.presentation.StateEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.modelepedia.tutorial.state.presentation.StateModelWizardID">
-         <extendibleType
+         <type
                name="State editor"
                uri="http://se.cs.toronto.edu/modelepedia/State_editor">
-         </extendibleType>
+         </type>
       </editorType>
    </extension>
 
