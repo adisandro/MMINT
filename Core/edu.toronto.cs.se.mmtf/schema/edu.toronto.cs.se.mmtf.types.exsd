@@ -67,7 +67,7 @@
          <attribute name="uri" type="string" use="required">
             <annotation>
                <documentation>
-                  The uri of the type to be registered with MMTF, i.e. its unique identifier.
+                  The uri of the type to be registered with MMTF, i.e. its unique identifier. Can be an arbitrary string, provided it follows a uri syntax.
                </documentation>
             </annotation>
          </attribute>
