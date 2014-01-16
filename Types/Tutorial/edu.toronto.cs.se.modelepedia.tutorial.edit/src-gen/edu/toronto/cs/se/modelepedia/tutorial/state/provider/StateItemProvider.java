@@ -39,7 +39,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class StateItemProvider
-	extends RegionItemProvider
+	extends AdministrativeDivisionItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -83,7 +83,7 @@ public class StateItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(StatePackage.Literals.STATE__PROVINCES);
+			childrenFeatures.add(StatePackage.Literals.STATE__REGIONS);
 		}
 		return childrenFeatures;
 	}
@@ -138,7 +138,7 @@ public class StateItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(State.class)) {
-			case StatePackage.STATE__PROVINCES:
+			case StatePackage.STATE__REGIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -158,8 +158,8 @@ public class StateItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(StatePackage.Literals.STATE__PROVINCES,
-				 StateFactory.eINSTANCE.createProvince()));
+				(StatePackage.Literals.STATE__REGIONS,
+				 StateFactory.eINSTANCE.createRegion()));
 	}
 
 }

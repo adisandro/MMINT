@@ -40,13 +40,13 @@ public interface StateFactory extends EFactory {
 	State createState();
 
 	/**
-	 * Returns a new object of class '<em>Province</em>'.
+	 * Returns a new object of class '<em>Region</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Province</em>'.
+	 * @return a new object of class '<em>Region</em>'.
 	 * @generated
 	 */
-	Province createProvince();
+	Region createRegion();
 
 	/**
 	 * Returns a new object of class '<em>City</em>'.

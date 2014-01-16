@@ -66,7 +66,7 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case StatePackage.STATE: return createState();
-			case StatePackage.PROVINCE: return createProvince();
+			case StatePackage.REGION: return createRegion();
 			case StatePackage.CITY: return createCity();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -88,9 +88,9 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Province createProvince() {
-		ProvinceImpl province = new ProvinceImpl();
-		return province;
+	public Region createRegion() {
+		RegionImpl region = new RegionImpl();
+		return region;
 	}
 
 	/**

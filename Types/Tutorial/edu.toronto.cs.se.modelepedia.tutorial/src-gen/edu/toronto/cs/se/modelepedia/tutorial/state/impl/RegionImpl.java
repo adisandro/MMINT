@@ -14,13 +14,13 @@ package edu.toronto.cs.se.modelepedia.tutorial.state.impl;
 import edu.toronto.cs.se.modelepedia.tutorial.state.City;
 import edu.toronto.cs.se.modelepedia.tutorial.state.Region;
 import edu.toronto.cs.se.modelepedia.tutorial.state.StatePackage;
-
-import org.eclipse.emf.common.notify.Notification;
-
+import java.util.Collection;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,23 +29,22 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.RegionImpl#getCapital <em>Capital</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.RegionImpl#getCities <em>Cities</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class RegionImpl extends NamedElementImpl implements Region {
+public class RegionImpl extends AdministrativeDivisionImpl implements Region {
 	/**
-	 * The cached value of the '{@link #getCapital() <em>Capital</em>}' reference.
+	 * The cached value of the '{@link #getCities() <em>Cities</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCapital()
+	 * @see #getCities()
 	 * @generated
 	 * @ordered
 	 */
-	protected City capital;
-
+	protected EList<City> cities;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,16 +69,11 @@ public abstract class RegionImpl extends NamedElementImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public City getCapital() {
-		if (capital != null && capital.eIsProxy()) {
-			InternalEObject oldCapital = (InternalEObject)capital;
-			capital = (City)eResolveProxy(oldCapital);
-			if (capital != oldCapital) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StatePackage.REGION__CAPITAL, oldCapital, capital));
-			}
+	public EList<City> getCities() {
+		if (cities == null) {
+			cities = new EObjectContainmentEList<City>(City.class, this, StatePackage.REGION__CITIES);
 		}
-		return capital;
+		return cities;
 	}
 
 	/**
@@ -87,20 +81,13 @@ public abstract class RegionImpl extends NamedElementImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public City basicGetCapital() {
-		return capital;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCapital(City newCapital) {
-		City oldCapital = capital;
-		capital = newCapital;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StatePackage.REGION__CAPITAL, oldCapital, capital));
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case StatePackage.REGION__CITIES:
+				return ((InternalEList<?>)getCities()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -111,9 +98,8 @@ public abstract class RegionImpl extends NamedElementImpl implements Region {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StatePackage.REGION__CAPITAL:
-				if (resolve) return getCapital();
-				return basicGetCapital();
+			case StatePackage.REGION__CITIES:
+				return getCities();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -123,11 +109,13 @@ public abstract class RegionImpl extends NamedElementImpl implements Region {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StatePackage.REGION__CAPITAL:
-				setCapital((City)newValue);
+			case StatePackage.REGION__CITIES:
+				getCities().clear();
+				getCities().addAll((Collection<? extends City>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -141,8 +129,8 @@ public abstract class RegionImpl extends NamedElementImpl implements Region {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StatePackage.REGION__CAPITAL:
-				setCapital((City)null);
+			case StatePackage.REGION__CITIES:
+				getCities().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -156,8 +144,8 @@ public abstract class RegionImpl extends NamedElementImpl implements Region {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StatePackage.REGION__CAPITAL:
-				return capital != null;
+			case StatePackage.REGION__CITIES:
+				return cities != null && !cities.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

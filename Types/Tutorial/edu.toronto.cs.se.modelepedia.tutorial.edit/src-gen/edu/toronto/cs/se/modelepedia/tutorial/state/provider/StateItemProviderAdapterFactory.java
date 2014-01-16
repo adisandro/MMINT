@@ -104,26 +104,26 @@ public class StateItemProviderAdapterFactory extends StateAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.tutorial.state.Province} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.tutorial.state.Region} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProvinceItemProvider provinceItemProvider;
+	protected RegionItemProvider regionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.tutorial.state.Province}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.tutorial.state.Region}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createProvinceAdapter() {
-		if (provinceItemProvider == null) {
-			provinceItemProvider = new ProvinceItemProvider(this);
+	public Adapter createRegionAdapter() {
+		if (regionItemProvider == null) {
+			regionItemProvider = new RegionItemProvider(this);
 		}
 
-		return provinceItemProvider;
+		return regionItemProvider;
 	}
 
 	/**
@@ -249,7 +249,7 @@ public class StateItemProviderAdapterFactory extends StateAdapterFactory impleme
 	 */
 	public void dispose() {
 		if (stateItemProvider != null) stateItemProvider.dispose();
-		if (provinceItemProvider != null) provinceItemProvider.dispose();
+		if (regionItemProvider != null) regionItemProvider.dispose();
 		if (cityItemProvider != null) cityItemProvider.dispose();
 	}
 

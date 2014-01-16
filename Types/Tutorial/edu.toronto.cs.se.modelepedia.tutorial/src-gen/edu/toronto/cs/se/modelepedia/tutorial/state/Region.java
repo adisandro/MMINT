@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.tutorial.state;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -20,39 +22,29 @@ package edu.toronto.cs.se.modelepedia.tutorial.state;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.tutorial.state.Region#getCapital <em>Capital</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.tutorial.state.Region#getCities <em>Cities</em>}</li>
  * </ul>
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.tutorial.state.StatePackage#getRegion()
- * @model abstract="true"
+ * @model
  * @generated
  */
-public interface Region extends NamedElement {
+public interface Region extends AdministrativeDivision {
 	/**
-	 * Returns the value of the '<em><b>Capital</b></em>' reference.
+	 * Returns the value of the '<em><b>Cities</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.tutorial.state.City}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Capital</em>' reference isn't clear,
+	 * If the meaning of the '<em>Cities</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Capital</em>' reference.
-	 * @see #setCapital(City)
-	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.StatePackage#getRegion_Capital()
-	 * @model required="true"
+	 * @return the value of the '<em>Cities</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.StatePackage#getRegion_Cities()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	City getCapital();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.tutorial.state.Region#getCapital <em>Capital</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Capital</em>' reference.
-	 * @see #getCapital()
-	 * @generated
-	 */
-	void setCapital(City value);
+	EList<City> getCities();
 
 } // Region

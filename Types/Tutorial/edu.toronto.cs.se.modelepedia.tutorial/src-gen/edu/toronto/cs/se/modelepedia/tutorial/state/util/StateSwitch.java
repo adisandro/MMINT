@@ -78,7 +78,7 @@ public class StateSwitch<T> extends Switch<T> {
 			case StatePackage.STATE: {
 				State state = (State)theEObject;
 				T result = caseState(state);
-				if (result == null) result = caseRegion(state);
+				if (result == null) result = caseAdministrativeDivision(state);
 				if (result == null) result = caseNamedElement(state);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -89,18 +89,18 @@ public class StateSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StatePackage.REGION: {
-				Region region = (Region)theEObject;
-				T result = caseRegion(region);
-				if (result == null) result = caseNamedElement(region);
+			case StatePackage.ADMINISTRATIVE_DIVISION: {
+				AdministrativeDivision administrativeDivision = (AdministrativeDivision)theEObject;
+				T result = caseAdministrativeDivision(administrativeDivision);
+				if (result == null) result = caseNamedElement(administrativeDivision);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StatePackage.PROVINCE: {
-				Province province = (Province)theEObject;
-				T result = caseProvince(province);
-				if (result == null) result = caseRegion(province);
-				if (result == null) result = caseNamedElement(province);
+			case StatePackage.REGION: {
+				Region region = (Region)theEObject;
+				T result = caseRegion(region);
+				if (result == null) result = caseAdministrativeDivision(region);
+				if (result == null) result = caseNamedElement(region);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -146,6 +146,21 @@ public class StateSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Administrative Division</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Administrative Division</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAdministrativeDivision(AdministrativeDivision object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Region</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -157,21 +172,6 @@ public class StateSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRegion(Region object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Province</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Province</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseProvince(Province object) {
 		return null;
 	}
 

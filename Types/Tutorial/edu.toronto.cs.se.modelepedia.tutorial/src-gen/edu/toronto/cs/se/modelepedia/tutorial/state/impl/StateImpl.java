@@ -11,19 +11,14 @@
  */
 package edu.toronto.cs.se.modelepedia.tutorial.state.impl;
 
-import edu.toronto.cs.se.modelepedia.tutorial.state.Province;
+import edu.toronto.cs.se.modelepedia.tutorial.state.Region;
 import edu.toronto.cs.se.modelepedia.tutorial.state.State;
 import edu.toronto.cs.se.modelepedia.tutorial.state.StatePackage;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -34,23 +29,22 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.StateImpl#getProvinces <em>Provinces</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.StateImpl#getRegions <em>Regions</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class StateImpl extends RegionImpl implements State {
+public class StateImpl extends AdministrativeDivisionImpl implements State {
 	/**
-	 * The cached value of the '{@link #getProvinces() <em>Provinces</em>}' containment reference list.
+	 * The cached value of the '{@link #getRegions() <em>Regions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProvinces()
+	 * @see #getRegions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Province> provinces;
-
+	protected EList<Region> regions;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,11 +69,11 @@ public class StateImpl extends RegionImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Province> getProvinces() {
-		if (provinces == null) {
-			provinces = new EObjectContainmentEList<Province>(Province.class, this, StatePackage.STATE__PROVINCES);
+	public EList<Region> getRegions() {
+		if (regions == null) {
+			regions = new EObjectContainmentEList<Region>(Region.class, this, StatePackage.STATE__REGIONS);
 		}
-		return provinces;
+		return regions;
 	}
 
 	/**
@@ -90,8 +84,8 @@ public class StateImpl extends RegionImpl implements State {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StatePackage.STATE__PROVINCES:
-				return ((InternalEList<?>)getProvinces()).basicRemove(otherEnd, msgs);
+			case StatePackage.STATE__REGIONS:
+				return ((InternalEList<?>)getRegions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -104,8 +98,8 @@ public class StateImpl extends RegionImpl implements State {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StatePackage.STATE__PROVINCES:
-				return getProvinces();
+			case StatePackage.STATE__REGIONS:
+				return getRegions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,9 +113,9 @@ public class StateImpl extends RegionImpl implements State {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StatePackage.STATE__PROVINCES:
-				getProvinces().clear();
-				getProvinces().addAll((Collection<? extends Province>)newValue);
+			case StatePackage.STATE__REGIONS:
+				getRegions().clear();
+				getRegions().addAll((Collection<? extends Region>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -135,8 +129,8 @@ public class StateImpl extends RegionImpl implements State {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StatePackage.STATE__PROVINCES:
-				getProvinces().clear();
+			case StatePackage.STATE__REGIONS:
+				getRegions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -150,8 +144,8 @@ public class StateImpl extends RegionImpl implements State {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StatePackage.STATE__PROVINCES:
-				return provinces != null && !provinces.isEmpty();
+			case StatePackage.STATE__REGIONS:
+				return regions != null && !regions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

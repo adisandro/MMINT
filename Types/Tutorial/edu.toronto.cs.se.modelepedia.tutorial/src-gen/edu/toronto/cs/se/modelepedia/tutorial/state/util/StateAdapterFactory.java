@@ -85,12 +85,12 @@ public class StateAdapterFactory extends AdapterFactoryImpl {
 				return createNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseRegion(Region object) {
-				return createRegionAdapter();
+			public Adapter caseAdministrativeDivision(AdministrativeDivision object) {
+				return createAdministrativeDivisionAdapter();
 			}
 			@Override
-			public Adapter caseProvince(Province object) {
-				return createProvinceAdapter();
+			public Adapter caseRegion(Region object) {
+				return createRegionAdapter();
 			}
 			@Override
 			public Adapter caseCity(City object) {
@@ -145,6 +145,20 @@ public class StateAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.tutorial.state.AdministrativeDivision <em>Administrative Division</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.AdministrativeDivision
+	 * @generated
+	 */
+	public Adapter createAdministrativeDivisionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.tutorial.state.Region <em>Region</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -155,20 +169,6 @@ public class StateAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRegionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.tutorial.state.Province <em>Province</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.Province
-	 * @generated
-	 */
-	public Adapter createProvinceAdapter() {
 		return null;
 	}
 

@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.tutorial.state.State#getProvinces <em>Provinces</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.tutorial.state.State#getRegions <em>Regions</em>}</li>
  * </ul>
  * </p>
  *
@@ -29,21 +29,21 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface State extends Region {
+public interface State extends AdministrativeDivision {
 	/**
-	 * Returns the value of the '<em><b>Provinces</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.tutorial.state.Province}.
+	 * Returns the value of the '<em><b>Regions</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.tutorial.state.Region}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Provinces</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Regions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Provinces</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.StatePackage#getState_Provinces()
+	 * @return the value of the '<em>Regions</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.StatePackage#getState_Regions()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<Province> getProvinces();
+	EList<Region> getRegions();
 
 } // State

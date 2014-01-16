@@ -103,14 +103,14 @@ public interface StatePackage extends EPackage {
 	int NAMED_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.RegionImpl <em>Region</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.AdministrativeDivisionImpl <em>Administrative Division</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.impl.RegionImpl
-	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.impl.StatePackageImpl#getRegion()
+	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.impl.AdministrativeDivisionImpl
+	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.impl.StatePackageImpl#getAdministrativeDivision()
 	 * @generated
 	 */
-	int REGION = 2;
+	int ADMINISTRATIVE_DIVISION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -119,7 +119,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REGION__NAME = NAMED_ELEMENT__NAME;
+	int ADMINISTRATIVE_DIVISION__NAME = NAMED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Capital</b></em>' reference.
@@ -128,25 +128,35 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REGION__CAPITAL = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int ADMINISTRATIVE_DIVISION__CAPITAL = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Region</em>' class.
+	 * The number of structural features of the '<em>Administrative Division</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REGION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int ADMINISTRATIVE_DIVISION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Region</em>' class.
+	 * The number of operations of the '<em>Administrative Division</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REGION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int ADMINISTRATIVE_DIVISION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.RegionImpl <em>Region</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.impl.RegionImpl
+	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.impl.StatePackageImpl#getRegion()
+	 * @generated
+	 */
+	int REGION = 3;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.StateImpl <em>State</em>}' class.
@@ -165,7 +175,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__NAME = REGION__NAME;
+	int STATE__NAME = ADMINISTRATIVE_DIVISION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Capital</b></em>' reference.
@@ -174,16 +184,16 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__CAPITAL = REGION__CAPITAL;
+	int STATE__CAPITAL = ADMINISTRATIVE_DIVISION__CAPITAL;
 
 	/**
-	 * The feature id for the '<em><b>Provinces</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Regions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__PROVINCES = REGION_FEATURE_COUNT + 0;
+	int STATE__REGIONS = ADMINISTRATIVE_DIVISION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>State</em>' class.
@@ -192,7 +202,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_FEATURE_COUNT = REGION_FEATURE_COUNT + 1;
+	int STATE_FEATURE_COUNT = ADMINISTRATIVE_DIVISION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>State</em>' class.
@@ -201,17 +211,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_OPERATION_COUNT = REGION_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.ProvinceImpl <em>Province</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.impl.ProvinceImpl
-	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.impl.StatePackageImpl#getProvince()
-	 * @generated
-	 */
-	int PROVINCE = 3;
+	int STATE_OPERATION_COUNT = ADMINISTRATIVE_DIVISION_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -220,7 +220,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROVINCE__NAME = REGION__NAME;
+	int REGION__NAME = ADMINISTRATIVE_DIVISION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Capital</b></em>' reference.
@@ -229,7 +229,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROVINCE__CAPITAL = REGION__CAPITAL;
+	int REGION__CAPITAL = ADMINISTRATIVE_DIVISION__CAPITAL;
 
 	/**
 	 * The feature id for the '<em><b>Cities</b></em>' containment reference list.
@@ -238,25 +238,25 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROVINCE__CITIES = REGION_FEATURE_COUNT + 0;
+	int REGION__CITIES = ADMINISTRATIVE_DIVISION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Province</em>' class.
+	 * The number of structural features of the '<em>Region</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROVINCE_FEATURE_COUNT = REGION_FEATURE_COUNT + 1;
+	int REGION_FEATURE_COUNT = ADMINISTRATIVE_DIVISION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Province</em>' class.
+	 * The number of operations of the '<em>Region</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROVINCE_OPERATION_COUNT = REGION_OPERATION_COUNT + 0;
+	int REGION_OPERATION_COUNT = ADMINISTRATIVE_DIVISION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.CityImpl <em>City</em>}' class.
@@ -316,15 +316,15 @@ public interface StatePackage extends EPackage {
 	EClass getState();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.tutorial.state.State#getProvinces <em>Provinces</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.tutorial.state.State#getRegions <em>Regions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Provinces</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.State#getProvinces()
+	 * @return the meta object for the containment reference list '<em>Regions</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.State#getRegions()
 	 * @see #getState()
 	 * @generated
 	 */
-	EReference getState_Provinces();
+	EReference getState_Regions();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.tutorial.state.NamedElement <em>Named Element</em>}'.
@@ -348,6 +348,27 @@ public interface StatePackage extends EPackage {
 	EAttribute getNamedElement_Name();
 
 	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.tutorial.state.AdministrativeDivision <em>Administrative Division</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Administrative Division</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.AdministrativeDivision
+	 * @generated
+	 */
+	EClass getAdministrativeDivision();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.tutorial.state.AdministrativeDivision#getCapital <em>Capital</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Capital</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.AdministrativeDivision#getCapital()
+	 * @see #getAdministrativeDivision()
+	 * @generated
+	 */
+	EReference getAdministrativeDivision_Capital();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.tutorial.state.Region <em>Region</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -358,36 +379,15 @@ public interface StatePackage extends EPackage {
 	EClass getRegion();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.tutorial.state.Region#getCapital <em>Capital</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Capital</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.Region#getCapital()
-	 * @see #getRegion()
-	 * @generated
-	 */
-	EReference getRegion_Capital();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.tutorial.state.Province <em>Province</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Province</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.Province
-	 * @generated
-	 */
-	EClass getProvince();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.tutorial.state.Province#getCities <em>Cities</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.tutorial.state.Region#getCities <em>Cities</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Cities</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.Province#getCities()
-	 * @see #getProvince()
+	 * @see edu.toronto.cs.se.modelepedia.tutorial.state.Region#getCities()
+	 * @see #getRegion()
 	 * @generated
 	 */
-	EReference getProvince_Cities();
+	EReference getRegion_Cities();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.tutorial.state.City <em>City</em>}'.
@@ -444,12 +444,12 @@ public interface StatePackage extends EPackage {
 		EClass STATE = eINSTANCE.getState();
 
 		/**
-		 * The meta object literal for the '<em><b>Provinces</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Regions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STATE__PROVINCES = eINSTANCE.getState_Provinces();
+		EReference STATE__REGIONS = eINSTANCE.getState_Regions();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -470,6 +470,24 @@ public interface StatePackage extends EPackage {
 		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
 
 		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.AdministrativeDivisionImpl <em>Administrative Division</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.tutorial.state.impl.AdministrativeDivisionImpl
+		 * @see edu.toronto.cs.se.modelepedia.tutorial.state.impl.StatePackageImpl#getAdministrativeDivision()
+		 * @generated
+		 */
+		EClass ADMINISTRATIVE_DIVISION = eINSTANCE.getAdministrativeDivision();
+
+		/**
+		 * The meta object literal for the '<em><b>Capital</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ADMINISTRATIVE_DIVISION__CAPITAL = eINSTANCE.getAdministrativeDivision_Capital();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.RegionImpl <em>Region</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -480,30 +498,12 @@ public interface StatePackage extends EPackage {
 		EClass REGION = eINSTANCE.getRegion();
 
 		/**
-		 * The meta object literal for the '<em><b>Capital</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REGION__CAPITAL = eINSTANCE.getRegion_Capital();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.ProvinceImpl <em>Province</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.tutorial.state.impl.ProvinceImpl
-		 * @see edu.toronto.cs.se.modelepedia.tutorial.state.impl.StatePackageImpl#getProvince()
-		 * @generated
-		 */
-		EClass PROVINCE = eINSTANCE.getProvince();
-
-		/**
 		 * The meta object literal for the '<em><b>Cities</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROVINCE__CITIES = eINSTANCE.getProvince_Cities();
+		EReference REGION__CITIES = eINSTANCE.getRegion_Cities();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.CityImpl <em>City</em>}' class.

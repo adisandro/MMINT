@@ -10,16 +10,16 @@
   <genPackages prefix="State" basePackage="edu.toronto.cs.se.modelepedia.tutorial"
       disposableProviderFactory="true" ecorePackage="state.ecore#/">
     <genClasses ecoreClass="state.ecore#//State">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference state.ecore#//State/provinces"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference state.ecore#//State/regions"/>
     </genClasses>
     <genClasses image="false" ecoreClass="state.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute state.ecore#//NamedElement/name"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="state.ecore#//Region">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference state.ecore#//Region/capital"/>
+    <genClasses image="false" ecoreClass="state.ecore#//AdministrativeDivision">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference state.ecore#//AdministrativeDivision/capital"/>
     </genClasses>
-    <genClasses ecoreClass="state.ecore#//Province">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference state.ecore#//Province/cities"/>
+    <genClasses ecoreClass="state.ecore#//Region">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference state.ecore#//Region/cities"/>
     </genClasses>
     <genClasses ecoreClass="state.ecore#//City">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute state.ecore#//City/population"/>

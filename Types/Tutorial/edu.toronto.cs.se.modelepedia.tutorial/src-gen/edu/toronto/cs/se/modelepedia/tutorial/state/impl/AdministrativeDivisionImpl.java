@@ -11,52 +11,47 @@
  */
 package edu.toronto.cs.se.modelepedia.tutorial.state.impl;
 
+import edu.toronto.cs.se.modelepedia.tutorial.state.AdministrativeDivision;
 import edu.toronto.cs.se.modelepedia.tutorial.state.City;
-import edu.toronto.cs.se.modelepedia.tutorial.state.Province;
 import edu.toronto.cs.se.modelepedia.tutorial.state.StatePackage;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Province</b></em>'.
+ * An implementation of the model object '<em><b>Administrative Division</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.ProvinceImpl#getCities <em>Cities</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.tutorial.state.impl.AdministrativeDivisionImpl#getCapital <em>Capital</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ProvinceImpl extends RegionImpl implements Province {
+public abstract class AdministrativeDivisionImpl extends NamedElementImpl implements AdministrativeDivision {
 	/**
-	 * The cached value of the '{@link #getCities() <em>Cities</em>}' containment reference list.
+	 * The cached value of the '{@link #getCapital() <em>Capital</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCities()
+	 * @see #getCapital()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<City> cities;
+	protected City capital;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProvinceImpl() {
+	protected AdministrativeDivisionImpl() {
 		super();
 	}
 
@@ -67,7 +62,7 @@ public class ProvinceImpl extends RegionImpl implements Province {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StatePackage.Literals.PROVINCE;
+		return StatePackage.Literals.ADMINISTRATIVE_DIVISION;
 	}
 
 	/**
@@ -75,11 +70,16 @@ public class ProvinceImpl extends RegionImpl implements Province {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<City> getCities() {
-		if (cities == null) {
-			cities = new EObjectContainmentEList<City>(City.class, this, StatePackage.PROVINCE__CITIES);
+	public City getCapital() {
+		if (capital != null && capital.eIsProxy()) {
+			InternalEObject oldCapital = (InternalEObject)capital;
+			capital = (City)eResolveProxy(oldCapital);
+			if (capital != oldCapital) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StatePackage.ADMINISTRATIVE_DIVISION__CAPITAL, oldCapital, capital));
+			}
 		}
-		return cities;
+		return capital;
 	}
 
 	/**
@@ -87,13 +87,20 @@ public class ProvinceImpl extends RegionImpl implements Province {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case StatePackage.PROVINCE__CITIES:
-				return ((InternalEList<?>)getCities()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+	public City basicGetCapital() {
+		return capital;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCapital(City newCapital) {
+		City oldCapital = capital;
+		capital = newCapital;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StatePackage.ADMINISTRATIVE_DIVISION__CAPITAL, oldCapital, capital));
 	}
 
 	/**
@@ -104,8 +111,9 @@ public class ProvinceImpl extends RegionImpl implements Province {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StatePackage.PROVINCE__CITIES:
-				return getCities();
+			case StatePackage.ADMINISTRATIVE_DIVISION__CAPITAL:
+				if (resolve) return getCapital();
+				return basicGetCapital();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -115,13 +123,11 @@ public class ProvinceImpl extends RegionImpl implements Province {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StatePackage.PROVINCE__CITIES:
-				getCities().clear();
-				getCities().addAll((Collection<? extends City>)newValue);
+			case StatePackage.ADMINISTRATIVE_DIVISION__CAPITAL:
+				setCapital((City)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -135,8 +141,8 @@ public class ProvinceImpl extends RegionImpl implements Province {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StatePackage.PROVINCE__CITIES:
-				getCities().clear();
+			case StatePackage.ADMINISTRATIVE_DIVISION__CAPITAL:
+				setCapital((City)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -150,10 +156,10 @@ public class ProvinceImpl extends RegionImpl implements Province {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StatePackage.PROVINCE__CITIES:
-				return cities != null && !cities.isEmpty();
+			case StatePackage.ADMINISTRATIVE_DIVISION__CAPITAL:
+				return capital != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //ProvinceImpl
+} //AdministrativeDivisionImpl

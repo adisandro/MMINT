@@ -11,19 +11,17 @@
  */
 package edu.toronto.cs.se.modelepedia.tutorial.state.impl;
 
+import edu.toronto.cs.se.modelepedia.tutorial.state.AdministrativeDivision;
 import edu.toronto.cs.se.modelepedia.tutorial.state.City;
 import edu.toronto.cs.se.modelepedia.tutorial.state.NamedElement;
-import edu.toronto.cs.se.modelepedia.tutorial.state.Province;
 import edu.toronto.cs.se.modelepedia.tutorial.state.Region;
 import edu.toronto.cs.se.modelepedia.tutorial.state.State;
 import edu.toronto.cs.se.modelepedia.tutorial.state.StateFactory;
 import edu.toronto.cs.se.modelepedia.tutorial.state.StatePackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -52,14 +50,14 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass regionEClass = null;
+	private EClass administrativeDivisionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass provinceEClass = null;
+	private EClass regionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,7 +141,7 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getState_Provinces() {
+	public EReference getState_Regions() {
 		return (EReference)stateEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -170,6 +168,24 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAdministrativeDivision() {
+		return administrativeDivisionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAdministrativeDivision_Capital() {
+		return (EReference)administrativeDivisionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRegion() {
 		return regionEClass;
 	}
@@ -179,26 +195,8 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRegion_Capital() {
+	public EReference getRegion_Cities() {
 		return (EReference)regionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getProvince() {
-		return provinceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getProvince_Cities() {
-		return (EReference)provinceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -248,16 +246,16 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 		// Create classes and their features
 		stateEClass = createEClass(STATE);
-		createEReference(stateEClass, STATE__PROVINCES);
+		createEReference(stateEClass, STATE__REGIONS);
 
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
 
-		regionEClass = createEClass(REGION);
-		createEReference(regionEClass, REGION__CAPITAL);
+		administrativeDivisionEClass = createEClass(ADMINISTRATIVE_DIVISION);
+		createEReference(administrativeDivisionEClass, ADMINISTRATIVE_DIVISION__CAPITAL);
 
-		provinceEClass = createEClass(PROVINCE);
-		createEReference(provinceEClass, PROVINCE__CITIES);
+		regionEClass = createEClass(REGION);
+		createEReference(regionEClass, REGION__CITIES);
 
 		cityEClass = createEClass(CITY);
 		createEAttribute(cityEClass, CITY__POPULATION);
@@ -291,23 +289,23 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		stateEClass.getESuperTypes().add(this.getRegion());
-		regionEClass.getESuperTypes().add(this.getNamedElement());
-		provinceEClass.getESuperTypes().add(this.getRegion());
+		stateEClass.getESuperTypes().add(this.getAdministrativeDivision());
+		administrativeDivisionEClass.getESuperTypes().add(this.getNamedElement());
+		regionEClass.getESuperTypes().add(this.getAdministrativeDivision());
 		cityEClass.getESuperTypes().add(this.getNamedElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getState_Provinces(), this.getProvince(), null, "provinces", null, 1, -1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getState_Regions(), this.getRegion(), null, "regions", null, 1, -1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(regionEClass, Region.class, "Region", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRegion_Capital(), this.getCity(), null, "capital", null, 1, 1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(administrativeDivisionEClass, AdministrativeDivision.class, "AdministrativeDivision", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAdministrativeDivision_Capital(), this.getCity(), null, "capital", null, 1, 1, AdministrativeDivision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(provinceEClass, Province.class, "Province", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProvince_Cities(), this.getCity(), null, "cities", null, 1, -1, Province.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(regionEClass, Region.class, "Region", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRegion_Cities(), this.getCity(), null, "cities", null, 1, -1, Region.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(cityEClass, City.class, "City", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCity_Population(), ecorePackage.getEInt(), "population", null, 1, 1, City.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
