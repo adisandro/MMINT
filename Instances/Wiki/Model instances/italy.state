@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<state:State xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:state="http://se.cs.toronto.edu/modelepedia/State" name="Italy" capital="//@regions.8/@cities.0">
+<state:State xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:state="http://se.cs.toronto.edu/modelepedia/State" name="Italia" capital="//@regions.8/@cities.0">
   <regions name="Abruzzo" capital="//@regions.0/@cities.0">
     <cities name="L'Aquila" population="68235"/>
   </regions>
