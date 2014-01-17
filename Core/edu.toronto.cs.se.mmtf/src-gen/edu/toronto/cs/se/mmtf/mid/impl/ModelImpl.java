@@ -660,7 +660,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		}
 
 		// create editors
-		String newEditorTypeFragmentUri = newModelType.getName(), newEditorTypeName, modelTypeUri = newModelType.getUri(), editorId, wizardId, wizardDialogClassName;
+		String newEditorTypeFragmentUri = newModelType.getName(), newEditorTypeName, newModelTypeUri = newModelType.getUri(), editorId, wizardId, wizardDialogClassName;
 		for (Editor editorType : getEditors()) {
 			if (isMetamodelExtension) {
 				if (editorType instanceof Diagram) {
@@ -680,7 +680,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			try {
 				//TODO MMTF: a new editor is created instead of attaching existing ones
 				//TODO MMTF: because I couldn't find a way then from an editor to understand which model was being created
-				Editor newEditorType = editorType.createSubtype(newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
+				Editor newEditorType = editorType.createSubtype(newEditorTypeFragmentUri, newEditorTypeName, newModelTypeUri, editorId, wizardId, wizardDialogClassName);
 				MultiModelTypeFactory.addModelTypeEditor(newEditorType, newModelType);
 				if (isMetamodelExtension) { // reflective editor only
 					newEditorType.getFileExtensions().clear();
@@ -723,6 +723,10 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		// delete the "thing"
 		for (ModelElement modelElemType : getModelElems()) {
 			super.delete(modelElemType.getUri(), multiModel);
+		}
+		List<Editor> delEditorTypes = new ArrayList<Editor>(getEditors());
+		for (Editor delEditorType : delEditorTypes) {
+			delEditorType.deleteType();
 		}
 		super.deleteType();
 		multiModel.getModels().remove(this);
