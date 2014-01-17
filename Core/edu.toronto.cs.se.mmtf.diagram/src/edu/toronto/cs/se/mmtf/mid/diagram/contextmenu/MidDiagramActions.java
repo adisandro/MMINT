@@ -178,10 +178,10 @@ public class MidDiagramActions extends ContributionItem {
 				castItem.setText("Cast Type");
 				Menu castMenu = new Menu(menu);
 				castItem.setMenu(castMenu);
-				boolean isDowncast = true;
+				boolean isDowncast = false;
 				for (Model runtimeModelType : runtimeModelTypes.get(0)) {
 					if (runtimeModelType.getUri().equals(models.get(0).getMetatypeUri())) {
-						isDowncast = false;
+						isDowncast = true;
 						continue;
 					}
 					MenuItem castSubitem = new MenuItem(castMenu, SWT.NONE);
