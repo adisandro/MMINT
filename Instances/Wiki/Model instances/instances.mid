@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID">
-  <models uri="/Wiki/Model instances/italy.state" name="italy" metatypeUri="http://se.cs.toronto.edu/modelepedia/State" dynamic="true" origin="CREATED" fileExtension="state" editors="//@editors.0"/>
-  <models uri="/Wiki/Model instances/spain.state" name="spain" metatypeUri="http://se.cs.toronto.edu/modelepedia/State" dynamic="true" origin="CREATED" fileExtension="state" editors="//@editors.1"/>
-  <models uri="/Wiki/Model instances/france.state" name="france" metatypeUri="http://se.cs.toronto.edu/modelepedia/State" dynamic="true" origin="CREATED" fileExtension="state" editors="//@editors.2"/>
+  <models uri="/Wiki/Model instances/italy.state" name="italy" metatypeUri="http://se.cs.toronto.edu/modelepedia/PopulousState" dynamic="true" origin="CREATED" fileExtension="state" editors="//@editors.0"/>
+  <models uri="/Wiki/Model instances/spain.state" name="spain" metatypeUri="http://se.cs.toronto.edu/modelepedia/PopulousState" dynamic="true" origin="CREATED" fileExtension="state" editors="//@editors.1"/>
+  <models uri="/Wiki/Model instances/france.state" name="france" metatypeUri="http://se.cs.toronto.edu/modelepedia/PopulousState" dynamic="true" origin="CREATED" fileExtension="state" editors="//@editors.2"/>
   <models uri="/Wiki/Model instances/switzerland.state" name="switzerland" metatypeUri="http://se.cs.toronto.edu/modelepedia/State" dynamic="true" origin="CREATED" fileExtension="state" editors="//@editors.3"/>
   <editors uri="/Wiki/Model instances/italy.state" name="State editor for model /Wiki/Model instances/italy.state" metatypeUri="http://se.cs.toronto.edu/modelepedia/State_editor" dynamic="true" modelUri="/Wiki/Model instances/italy.state" id="edu.toronto.cs.se.modelepedia.tutorial.state.presentation.StateEditorID" wizardId="edu.toronto.cs.se.modelepedia.tutorial.state.presentation.StateModelWizardID">
     <fileExtensions>state</fileExtensions>
