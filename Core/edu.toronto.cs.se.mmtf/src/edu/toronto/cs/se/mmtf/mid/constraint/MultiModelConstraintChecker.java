@@ -383,18 +383,15 @@ linkTypes:
 		return null;
 	}
 
-	private static void initOCL(OCL ocl, OCLHelper helper, EObject modelObj) {
+	private static void initOCL(OCLHelper helper, EObject modelObj) {
 
 		//TODO MMTF: workaround for bug #375485
 //		helper.setInstanceContext(modelObj);
 		MetaModelManager metaModelManager = helper.getOCL().getMetaModelManager();
 		EClass modelObjClass = modelObj.eClass();
-		Type pivotType = metaModelManager.getPivotType(modelObjClass.getName());
-		if (pivotType == null) {
-			Resource resource = modelObjClass.eResource();
-			Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, metaModelManager);
-			pivotType = ecore2Pivot.getCreated(Type.class, modelObjClass);
-		}
+		Resource resource = modelObjClass.eResource();
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, metaModelManager);
+		Type pivotType = ecore2Pivot.getCreated(Type.class, modelObjClass);
 		helper.setContext(pivotType);
 	}
 
@@ -402,7 +399,7 @@ linkTypes:
 
 		OCL ocl = OCL.newInstance();
 		OCLHelper helper = ocl.createOCLHelper();
-		initOCL(ocl, helper, modelObj);
+		initOCL(helper, modelObj);
 
 		try {
 			ExpressionInOCL expression = helper.createQuery(oclConstraint);
@@ -418,7 +415,7 @@ linkTypes:
 
 		OCL ocl = OCL.newInstance();
 		OCLHelper helper = ocl.createOCLHelper();
-		initOCL(ocl, helper, modelObj);
+		initOCL(helper, modelObj);
 
 		try {
 			ExpressionInOCL expression = helper.createInvariant(oclConstraint);
