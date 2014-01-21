@@ -170,7 +170,7 @@ public interface ModelElement extends ExtendibleElement {
 	 *            The name of the new model element.
 	 * @param classLiteral
 	 *            The class literal of the new model element.
-	 * @param modelEndpointRef
+	 * @param containerModelEndpointRef
 	 *            The reference to the model endpoint that will contain the new
 	 *            reference to the new model element.
 	 * @return The created reference to the new model element.

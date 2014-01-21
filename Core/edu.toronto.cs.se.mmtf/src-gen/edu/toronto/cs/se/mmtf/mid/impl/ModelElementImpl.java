@@ -32,6 +32,7 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -361,6 +362,37 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 			containerModelEndpointRef.getObject().getTarget().getModelElems().add(newModelElem);
 		}
 		ModelElementReference newModelElemRef = newModelElem.createInstanceReference(containerModelEndpointRef);
+
+		return newModelElemRef;
+	}
+
+	/**
+	 * Creates and adds a model element instance of a type to be automatically
+	 * detected and a reference to it to an Instance MID.
+	 * 
+	 * @param modelObj
+	 *            The EMF model object to be wrapped by the MMTF new model
+	 *            element.
+	 * @param newModelElemName
+	 *            The name of the new model element.
+	 * @param containerModelEndpointRef
+	 *            The reference to the model endpoint that will contain the new
+	 *            reference to the new model element.
+	 * @return The created reference to the new model element.
+	 * @throws MMTFException
+	 *             If the uri of the new model element is already registered in
+	 *             the Instance MID.
+	 * @generated NOT
+	 */
+	public static ModelElementReference createInstanceAndReference(EObject modelObj, String newModelElemName, ModelEndpointReference containerModelEndpointRef) throws MMTFException {
+
+		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(containerModelEndpointRef, modelObj);
+		String newModelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1];
+		String classLiteral = MultiModelRegistry.getModelElementClassLiteral(modelObj, true);
+		if (newModelElemName == null) {
+			newModelElemName = MultiModelRegistry.getModelElementName(modelObj, true);
+		}
+		ModelElementReference newModelElemRef = modelElemType.createInstanceAndReference(newModelElemUri, newModelElemName, classLiteral, containerModelEndpointRef);
 
 		return newModelElemRef;
 	}

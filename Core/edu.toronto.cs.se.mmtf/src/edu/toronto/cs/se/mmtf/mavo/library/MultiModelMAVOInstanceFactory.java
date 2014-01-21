@@ -21,6 +21,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
+import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
@@ -51,10 +52,10 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 		return newModel;
 	}
 
-	public static ModelElementReference createModelElementAndModelElementReference(ModelEndpointReference modelEndpointRef, String newModelElemName, EObject modelEObject) throws MMTFException {
+	public static ModelElementReference createModelElementAndModelElementReference(ModelEndpointReference modelEndpointRef, String newModelElemName, EObject modelObj) throws MMTFException {
 
-		ModelElementReference newModelElemRef = MultiModelInstanceFactory.createModelElementAndModelElementReference(newModelElemName, modelEObject, modelEndpointRef);
-		MAVOUtils.initializeMAVOModelElementReference(modelEObject, newModelElemRef);
+		ModelElementReference newModelElemRef = ModelElementImpl.createInstanceAndReference(modelObj, newModelElemName, modelEndpointRef);
+		MAVOUtils.initializeMAVOModelElementReference(modelObj, newModelElemRef);
 
 		return newModelElemRef;
 	}

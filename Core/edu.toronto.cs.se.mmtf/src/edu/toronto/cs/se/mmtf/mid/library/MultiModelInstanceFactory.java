@@ -12,12 +12,9 @@
 package edu.toronto.cs.se.mmtf.mid.library;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -28,7 +25,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
@@ -48,36 +44,6 @@ public class MultiModelInstanceFactory {
 	public final static String EMPTY_MODEL_FILE_EXTENSION = "";
 
 	/**
-	 * Creates and adds a model element and a reference to it to an Instance
-	 * MID.
-	 * 
-	 * @param newModelElemName
-	 *            The name of the new model element.
-	 * @param modelObj
-	 *            The EMF model element, that will be wrapped by the MMTF model
-	 *            element.
-	 * @param modelEndpointRef
-	 *            The reference to the model endpoint that will contain the new
-	 *            reference to the model element.
-	 * @return The reference to the new model element.
-	 * @throws MMTFException
-	 *             If the uri of the new model element is already registered in
-	 *             the Instance MID.
-	 */
-	public static ModelElementReference createModelElementAndModelElementReference(String newModelElemName, EObject modelObj, ModelEndpointReference modelEndpointRef) throws MMTFException {
-
-		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelObj);
-		String newModelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1];
-		String classLiteral = MultiModelRegistry.getModelElementClassLiteral(modelObj, true);
-		if (newModelElemName == null) {
-			newModelElemName = MultiModelRegistry.getModelElementName(modelObj, true);
-		}
-		ModelElementReference newModelElemRef = modelElemType.createInstanceAndReference(newModelElemUri, newModelElemName, classLiteral, modelEndpointRef);
-
-		return newModelElemRef;
-	}
-
-	/**
 	 * Creates and adds a model relationship and its model endpoints to an
 	 * Instance MID.
 	 * 
@@ -92,7 +58,7 @@ public class MultiModelInstanceFactory {
 	 *            The class of the new model relationship.
 	 * @param origin
 	 *            The origin of the new model relationship.
-	 * @param newModels
+	 * @param targetModels
 	 *            The new models that are the targets of the new model
 	 *            endpoints.
 	 * @return The created model relationship.
@@ -100,17 +66,17 @@ public class MultiModelInstanceFactory {
 	 *             If the uri of the new model relationship is already
 	 *             registered in the Instance MID.
 	 */
-	public static ModelRel createModelRelAndModelEndpointsAndModelEndpointReferences(ModelRel modelRelType, String newModelRelUri, EClass newModelRelClass, ModelOrigin origin, Model... newModels) throws MMTFException {
+	public static ModelRel createModelRelAndModelEndpointsAndModelEndpointReferences(ModelRel modelRelType, String newModelRelUri, EClass newModelRelClass, ModelOrigin origin, Model... targetModels) throws MMTFException {
 
-		if (newModels.length == 0) {
+		if (targetModels.length == 0) {
 			return null;
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(newModels[0]);
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(targetModels[0]);
 		// create model rel
 		ModelRel newModelRel = modelRelType.createInstance(newModelRelUri, (BinaryModelRel.class.isAssignableFrom(newModelRelClass.getClass())), origin, multiModel);
 		// create model rel endpoints
-		for (Model model : newModels) {
+		for (Model model : targetModels) {
 			String modelTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, model).get(0);
 			ModelEndpoint modelTypeEndpoint = MultiModelTypeRegistry.getType(modelTypeEndpointUri);
 			modelTypeEndpoint.createInstanceAndReference(model, false, newModelRel);
