@@ -100,8 +100,7 @@ public interface ModelElementEndpointReference extends ExtendibleElementEndpoint
 	 * @throws MMTFException
 	 *             If this is a reference to a model element instance endpoint.
 	 *             <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        isFullDeleteRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
 	 * @generated
 	 */
 	void deleteTypeReference(boolean isFullDelete) throws MMTFException;
@@ -116,8 +115,7 @@ public interface ModelElementEndpointReference extends ExtendibleElementEndpoint
 	 * @throws MMTFException
 	 *             If this is a reference to a model element instance endpoint.
 	 *             <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        isFullDeleteRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
 	 * @generated
 	 */
 	void deleteTypeAndReference(boolean isFullDelete) throws MMTFException;
@@ -133,8 +131,7 @@ public interface ModelElementEndpointReference extends ExtendibleElementEndpoint
 	 * @throws MMTFException
 	 *             If this is a reference to a model element type endpoint.
 	 *             <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        isFullDeleteRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isFullDeleteRequired="true"
 	 * @generated
 	 */
 	void deleteInstanceAndReference(boolean isFullDelete) throws MMTFException;

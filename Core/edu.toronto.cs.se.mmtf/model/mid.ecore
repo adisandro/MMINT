@@ -203,6 +203,8 @@
       <eParameters name="isMetamodelExtension" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
     <eOperations name="deleteType" eExceptions="#//MMTFException"/>
+    <eOperations name="getEMFTypeRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"
+        eExceptions="#//MMTFException"/>
     <eOperations name="createInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMTFException">
       <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
@@ -214,6 +216,8 @@
       <eParameters name="containerMultiModel" eType="#//MultiModel"/>
     </eOperations>
     <eOperations name="deleteInstance" eExceptions="#//MMTFException"/>
+    <eOperations name="getEMFRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        eExceptions="#//MMTFException"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="origin" lowerBound="1"
         eType="#//ModelOrigin">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -333,6 +337,8 @@
       <eParameters name="containerModelTypeEndpointRef" lowerBound="1" eType="#//relationship/ModelEndpointReference"/>
     </eOperations>
     <eOperations name="deleteType" eExceptions="#//MMTFException"/>
+    <eOperations name="getEMFTypeObject" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//ENamedElement"
+        eExceptions="#//MMTFException"/>
     <eOperations name="createInstanceReference" lowerBound="1" eType="#//relationship/ModelElementReference"
         eExceptions="#//MMTFException">
       <eParameters name="containerModelEndpointRef" lowerBound="1" eType="#//relationship/ModelEndpointReference"/>
@@ -345,6 +351,8 @@
       <eParameters name="containerModelEndpointRef" lowerBound="1" eType="#//relationship/ModelEndpointReference"/>
     </eOperations>
     <eOperations name="deleteInstance" eExceptions="#//MMTFException"/>
+    <eOperations name="getEMFObject" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        eExceptions="#//MMTFException"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="classLiteral" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

@@ -19,7 +19,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
@@ -265,7 +264,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 //				if (elementRef.getUri().equals(modelUri + MMTF.URI_SEPARATOR + modelElemUri)) {
 //					continue modelEndpointRef;
 //				}
-			if (EcoreUtil.equals(MultiModelTypeIntrospection.getPointer(modelElemTypeRef.getObject()), metamodelObj)) {
+			if (EcoreUtil.equals(modelElemTypeRef.getObject().getEMFTypeObject(), metamodelObj)) {
 				return false;
 			}
 		}

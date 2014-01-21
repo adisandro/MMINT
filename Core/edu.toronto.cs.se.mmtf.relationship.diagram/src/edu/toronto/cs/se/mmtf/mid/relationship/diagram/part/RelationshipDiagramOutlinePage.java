@@ -25,9 +25,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.ui.ModelElementLabelProvider;
 
@@ -115,7 +115,12 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 	public void addInput(Model model) {
 
 		ResourceSet resourceSet = (ResourceSet) contentOutlineViewer.getInput();
-		resourceSet.getResources().add(MultiModelTypeIntrospection.getRoot(model).eResource());
+		try {
+			resourceSet.getResources().add(model.getEMFRoot().eResource());
+		}
+		catch (MMTFException e) {
+			MMTFException.print(Type.WARNING, "Can't get model root, skipping addition to outline", e);;
+		}
 	}
 
 }

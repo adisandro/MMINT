@@ -525,6 +525,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MidPackage.MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
 
 	/**
+	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___GET_EMF_TYPE_ROOT = MidPackage.MODEL___GET_EMF_TYPE_ROOT;
+
+	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -541,6 +550,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MidPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Get EMF Root</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___GET_EMF_ROOT = MidPackage.MODEL___GET_EMF_ROOT;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -903,6 +921,15 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
 
 	/**
+	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___GET_EMF_TYPE_ROOT = MODEL_REL___GET_EMF_TYPE_ROOT;
+
+	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -919,6 +946,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Get EMF Root</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___GET_EMF_ROOT = MODEL_REL___GET_EMF_ROOT;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.

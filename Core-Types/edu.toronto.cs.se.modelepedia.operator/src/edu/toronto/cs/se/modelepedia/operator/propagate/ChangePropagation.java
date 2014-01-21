@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -153,7 +152,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 			ModelElementReference newRefinedModelElemRef_propTraceRel = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
 				refinedModelEndpointRef_propTraceRel,
 				refinedModelElemRef_refinementRel.getObject().getName(),
-				MultiModelTypeIntrospection.getPointer(refinedModelElemRef_refinementRel.getObject())
+				refinedModelElemRef_refinementRel.getObject().getEMFObject()
 			);
 			newRefinedModelElemRefs_propTraceRel.add(newRefinedModelElemRef_propTraceRel);
 		}
@@ -199,7 +198,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		}
 		ModelElement traceModelElemTypeA = MultiModelConstraintChecker.getAllowedModelElementType(
 			traceRel.getModelEndpointRefs().get(indexA),
-			MultiModelTypeIntrospection.getPointer(traceModelElemRefA.getObject())
+			traceModelElemRefA.getObject().getEMFObject()
 		);
 		if (traceModelElemTypeA == null) {
 			return null;
@@ -222,7 +221,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 			ModelElementReference newTraceModelElemRefA = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
 				traceRel.getModelEndpointRefs().get(indexA),
 				traceModelElemRefA.getObject().getName(),
-				MultiModelTypeIntrospection.getPointer(traceModelElemRefA.getObject())
+				traceModelElemRefA.getObject().getEMFObject()
 			);
 			newTraceLinkRef = (BinaryLinkReference) traceLinkTypeRef.getObject().createInstanceAndReference(true, traceRel);
 			newTraceLinkRef.getObject().setVar(true);
@@ -459,10 +458,10 @@ traceLinks:
 
 		ModelEndpointReference modelEndpointRef = ((BinaryModelRel) traceLinkRef.eContainer()).getModelEndpointRefs().get(indexB);
 		Model model = modelEndpointRef.getObject().getTarget();
-		EFactory modelTypeFactory = ((EPackage) MultiModelTypeIntrospection.getRoot(model.getMetatype())).getEFactoryInstance();
+		EFactory modelTypeFactory = model.getMetatype().getEMFTypeRoot().getEFactoryInstance();
 		ModelElementEndpointReference modelElemTypeEndpointRef = traceLinkRef.getObject().getMetatype().getModelElemEndpointRefs().get(indexB);
 		ModelElement modelElemType = modelElemTypeEndpointRef.getModelElemRef().getObject();
-		String modelElemTypeUri = MultiModelRegistry.getModelAndModelElementUris(MultiModelTypeIntrospection.getPointer(modelElemType), false)[1];
+		String modelElemTypeUri = MultiModelRegistry.getModelAndModelElementUris(modelElemType.getEMFTypeObject(), false)[1];
 
 		EObject[] result = null;
 		for (EReference containment : modelRootB.eClass().getEAllContainments()) {
@@ -508,7 +507,7 @@ traceLinks:
 			newPropModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
 				propModelEndpointRef_propRefinementRel,
 				propModelElemRef_propTraceRel.getObject().getName(),
-				MultiModelTypeIntrospection.getPointer(propModelElemRef_propTraceRel.getObject())
+				propModelElemRef_propTraceRel.getObject().getEMFObject()
 			);
 		}
 
@@ -547,7 +546,7 @@ traceLinks:
 					newRelatedModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
 						relatedModelEndpointRef_propRefinementRel,
 						relatedModelElemRef_traceRel.getObject().getName(),
-						MultiModelTypeIntrospection.getPointer(relatedModelElemRef_traceRel.getObject())
+						relatedModelElemRef_traceRel.getObject().getEMFObject()
 					);
 				}
 				refinementLinkType.getModelElemEndpoints().get(0).createInstanceAndReference(newRelatedModelElemRef, false, newPropRefinementLinkRef);
@@ -587,7 +586,7 @@ traceLinks:
 			List<BinaryLinkReference> propTraceLinkRefs = propagateTraceLinksFromRefinements(refinementLinkRef, traceRel, newPropModel, newPropTraceRel);
 			propTraceLinkRefsList.add(propTraceLinkRefs);
 		}
-		EObject newPropModelRoot = MultiModelTypeIntrospection.getRoot(newPropModel);
+		EObject newPropModelRoot = newPropModel.getEMFRoot();
 		for (List<BinaryLinkReference> propTraceLinkRefs : propTraceLinkRefsList) {
 			reduceTraceLinkUncertainty(newPropModelRoot, propTraceLinkRefs, 0, 1);
 		}

@@ -24,7 +24,6 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -652,7 +651,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		for (ModelEndpointReference modelTypeEndpointRef : getModelEndpointRefs()) {
 			Model modelType = modelTypeEndpointRef.getObject().getTarget();
 			do {
-				resources.add(MultiModelTypeIntrospection.getRoot(modelType).eResource());
+				resources.add(modelType.getEMFTypeRoot().eResource());
 				modelType = modelType.getSupertype(); // types only
 			}
 			while (modelType != null && !modelType.isAbstract());
@@ -674,7 +673,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		List<Resource> resources = resourceSet.getResources();
 		for (ModelEndpointReference modelEndpointRef : getModelEndpointRefs()) {
 			Model model = modelEndpointRef.getObject().getTarget();
-			resources.add(MultiModelTypeIntrospection.getRoot(model).eResource());
+			resources.add(model.getEMFRoot().eResource());
 		}
 
 		return resourceSet;

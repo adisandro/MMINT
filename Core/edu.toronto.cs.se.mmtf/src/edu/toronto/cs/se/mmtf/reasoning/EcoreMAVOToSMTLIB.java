@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
 import edu.toronto.cs.se.mmtf.mavo.library.EcoreMAVOToSMTLIBListener;
 import edu.toronto.cs.se.mmtf.mavo.library.EcoreMAVOToSMTLIB_M2T;
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 
@@ -66,7 +65,7 @@ public class EcoreMAVOToSMTLIB extends OperatorExecutableImpl {
 		File folder = (new File(MultiModelUtils.prependWorkspaceToUri(mavoModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);
-		EcoreMAVOToSMTLIB_M2T m2t = new EcoreMAVOToSMTLIBWithListeners_M2T(MultiModelTypeIntrospection.getRoot(mavoModel), folder, m2tArgs);
+		EcoreMAVOToSMTLIB_M2T m2t = new EcoreMAVOToSMTLIBWithListeners_M2T(mavoModel.getEMFRoot(), folder, m2tArgs);
 		m2t.doGenerate(new BasicMonitor());
 
 		return actualParameters;

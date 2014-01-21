@@ -31,7 +31,6 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelOpenEditorCommand;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
@@ -242,8 +241,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	}
 
 	/**
-	 * Kleisli version. {@inheritDoc}
-	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -508,7 +505,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			}
 			else {
 				do {
-					resources.add(MultiModelTypeIntrospection.getRoot(modelType).eResource());
+					resources.add(modelType.getEMFTypeRoot().eResource());
 					modelType = modelType.getSupertype();
 				}
 				while (modelType != null && !modelType.isAbstract());
@@ -542,7 +539,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				}
 			}
 			else {
-				resources.add(MultiModelTypeIntrospection.getRoot(model).eResource());
+				resources.add(model.getEMFRoot().eResource());
 			}
 		}
 

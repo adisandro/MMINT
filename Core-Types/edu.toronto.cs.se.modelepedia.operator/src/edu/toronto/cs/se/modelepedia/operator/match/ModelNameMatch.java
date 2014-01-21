@@ -28,7 +28,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
@@ -77,7 +76,7 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 			// create model endpoint
 			ModelEndpointReference newModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(model, false, matchRel);
 			// look for identical names in the models
-			checkModelObjNames(MultiModelTypeIntrospection.getRoot(model), newModelEndpointRef, modelObjNames, modelObjTable);
+			checkModelObjNames(model.getEMFRoot(), newModelEndpointRef, modelObjNames, modelObjTable);
 		}
 
 		// create model relationship structure

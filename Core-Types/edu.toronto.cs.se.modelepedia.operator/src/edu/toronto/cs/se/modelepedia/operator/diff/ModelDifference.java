@@ -30,7 +30,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
@@ -56,10 +55,10 @@ public class ModelDifference extends OperatorExecutableImpl {
 		return modelElemRefTable;
 	}
 
-	private List<EObject> getDiffModelObjects(Model model, HashMap<String, ModelElementReference> modelElemRefTable) {
+	private List<EObject> getDiffModelObjects(Model model, HashMap<String, ModelElementReference> modelElemRefTable) throws MMTFException {
 
 		List<EObject> diffModelEObjects = new ArrayList<EObject>();
-		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(MultiModelTypeIntrospection.getRoot(model), true);
+		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(model.getEMFRoot(), true);
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();
 			String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1];

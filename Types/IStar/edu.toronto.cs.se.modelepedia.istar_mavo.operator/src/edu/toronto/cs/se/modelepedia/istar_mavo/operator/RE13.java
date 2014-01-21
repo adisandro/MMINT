@@ -20,10 +20,10 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver;
@@ -320,9 +320,9 @@ nextNodeFunction:
 		timeTargets = System.nanoTime() - startTime;
 	}
 
-	protected void collectAnalysisModelObjs(Model istarModel) {
+	protected void collectAnalysisModelObjs(Model istarModel) throws MMTFException {
 
-		istar = (IStar) MultiModelTypeIntrospection.getRoot(istarModel);
+		istar = (IStar) istarModel.getEMFRoot();
 		for (Actor actor : istar.getActors()) {
 			for (Intention intention : actor.getIntentions()) {
 				intentions.put(intention.getName().replace(" ", ""), intention);

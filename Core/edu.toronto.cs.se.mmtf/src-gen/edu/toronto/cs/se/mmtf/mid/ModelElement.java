@@ -14,6 +14,8 @@ package edu.toronto.cs.se.mmtf.mid;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -146,6 +148,19 @@ public interface ModelElement extends ExtendibleElement {
 	void deleteType() throws MMTFException;
 
 	/**
+	 * <!-- begin-user-doc --> Gets the EMF metamodel object of this model
+	 * element type.
+	 * 
+	 * @throws MMTFException
+	 *             If this is a model element instance, or if the metamodel file
+	 *             can't be accessed. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	ENamedElement getEMFTypeObject() throws MMTFException;
+
+	/**
 	 * <!-- begin-user-doc --> Creates and adds a reference to this model
 	 * element to an Instance MID.
 	 * 
@@ -193,5 +208,17 @@ public interface ModelElement extends ExtendibleElement {
 	 * @generated
 	 */
 	void deleteInstance() throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc --> Gets the EMF model object of this model element.
+	 * 
+	 * @throws MMTFException
+	 *             If this is a model element type, or if the model file can't
+	 *             be accessed. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	EObject getEMFObject() throws MMTFException;
 
 } // ModelElement

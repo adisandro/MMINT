@@ -21,7 +21,6 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
@@ -41,7 +40,7 @@ public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 
 		// convert
 		Model windowModel = actualParameters.get(0);
-		Window window = (Window) MultiModelTypeIntrospection.getRoot(windowModel);
+		Window window = (Window) windowModel.getEMFRoot();
 		PetriNet newPetrinet = PetriNetFactory.eINSTANCE.createPetriNet();
 		if (window.getSensor() != null && window.getSensor().getDelay() < DELAY_BOUND) {
 			Place newPlace = PetriNetFactory.eINSTANCE.createPlace();

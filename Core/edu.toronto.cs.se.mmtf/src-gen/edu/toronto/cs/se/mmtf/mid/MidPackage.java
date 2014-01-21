@@ -778,13 +778,22 @@ public interface MidPackage extends EPackage {
 	int MODEL___DELETE_TYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___GET_EMF_TYPE_ROOT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+
+	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+	int MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Editor</em>' operation.
@@ -793,7 +802,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+	int MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -802,7 +811,16 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
+	int MODEL___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+
+	/**
+	 * The operation id for the '<em>Get EMF Root</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___GET_EMF_ROOT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -811,7 +829,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+	int MODEL_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.
@@ -1050,13 +1068,22 @@ public interface MidPackage extends EPackage {
 	int MODEL_ELEMENT___DELETE_TYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Get EMF Type Object</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___GET_EMF_TYPE_OBJECT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+
+	/**
 	 * The operation id for the '<em>Create Instance Reference</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+	int MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
@@ -1065,7 +1092,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_STRING_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
+	int MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_STRING_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1074,7 +1101,16 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+	int MODEL_ELEMENT___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
+
+	/**
+	 * The operation id for the '<em>Get EMF Object</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___GET_EMF_OBJECT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>Model Element</em>' class.
@@ -1083,7 +1119,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
+	int MODEL_ELEMENT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 10;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementWildcardImpl <em>Model Element Wildcard</em>}' class.
@@ -1797,6 +1833,16 @@ public interface MidPackage extends EPackage {
 	EOperation getModel__DeleteType();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#getEMFTypeRoot() <em>Get EMF Type Root</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get EMF Type Root</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#getEMFTypeRoot()
+	 * @generated
+	 */
+	EOperation getModel__GetEMFTypeRoot();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#createInstance(java.lang.String, edu.toronto.cs.se.mmtf.mid.ModelOrigin, edu.toronto.cs.se.mmtf.mid.MultiModel) <em>Create Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1825,6 +1871,16 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getModel__DeleteInstance();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#getEMFRoot() <em>Get EMF Root</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get EMF Root</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#getEMFRoot()
+	 * @generated
+	 */
+	EOperation getModel__GetEMFRoot();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint <em>Extendible Element Constraint</em>}'.
@@ -1974,6 +2030,16 @@ public interface MidPackage extends EPackage {
 	EOperation getModelElement__DeleteInstance();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getEMFObject() <em>Get EMF Object</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get EMF Object</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#getEMFObject()
+	 * @generated
+	 */
+	EOperation getModelElement__GetEMFObject();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#deleteType() <em>Delete Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1982,6 +2048,16 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getModelElement__DeleteType();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getEMFTypeObject() <em>Get EMF Type Object</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get EMF Type Object</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#getEMFTypeObject()
+	 * @generated
+	 */
+	EOperation getModelElement__GetEMFTypeObject();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#createInstanceReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference) <em>Create Instance Reference</em>}' operation.
@@ -2468,6 +2544,14 @@ public interface MidPackage extends EPackage {
 		EOperation MODEL___DELETE_TYPE = eINSTANCE.getModel__DeleteType();
 
 		/**
+		 * The meta object literal for the '<em><b>Get EMF Type Root</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL___GET_EMF_TYPE_ROOT = eINSTANCE.getModel__GetEMFTypeRoot();
+
+		/**
 		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2490,6 +2574,14 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL___DELETE_INSTANCE = eINSTANCE.getModel__DeleteInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Get EMF Root</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL___GET_EMF_ROOT = eINSTANCE.getModel__GetEMFRoot();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.
@@ -2610,12 +2702,28 @@ public interface MidPackage extends EPackage {
 		EOperation MODEL_ELEMENT___DELETE_INSTANCE = eINSTANCE.getModelElement__DeleteInstance();
 
 		/**
+		 * The meta object literal for the '<em><b>Get EMF Object</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ELEMENT___GET_EMF_OBJECT = eINSTANCE.getModelElement__GetEMFObject();
+
+		/**
 		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EOperation MODEL_ELEMENT___DELETE_TYPE = eINSTANCE.getModelElement__DeleteType();
+
+		/**
+		 * The meta object literal for the '<em><b>Get EMF Type Object</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ELEMENT___GET_EMF_TYPE_OBJECT = eINSTANCE.getModelElement__GetEMFTypeObject();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Instance Reference</b></em>' operation.

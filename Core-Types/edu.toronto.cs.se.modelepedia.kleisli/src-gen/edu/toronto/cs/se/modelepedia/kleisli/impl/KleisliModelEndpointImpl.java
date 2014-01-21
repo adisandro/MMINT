@@ -19,7 +19,6 @@ import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelOpenEditorCommand;
 import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelEndpointImpl;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -269,7 +268,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			isKleisli = extendMetamodel;
 		}
 		if (extendMetamodel) {
-			EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(targetModelType);
+			EPackage rootModelTypeObj = targetModelType.getEMFTypeRoot();
 			try {
 				MultiModelUtils.createModelFileInState(rootModelTypeObj, newModelTypeEndpointExtendedUri);
 			}
@@ -312,7 +311,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			String newModelTypeEndpointExtendedUri = KleisliUtils.getModelTypeEndpointExtendedUri(targetModelType, (KleisliModelRel) containerModelRelType);
 			((KleisliModelEndpoint) oldModelTypeEndpoint).setExtendedUri(newModelTypeEndpointExtendedUri);
 			if (MultiModelUtils.isFileOrDirectoryInState(newModelTypeEndpointExtendedUri) == null) {
-				EPackage rootModelTypeObj = (EPackage) MultiModelTypeIntrospection.getRoot(targetModelType);
+				EPackage rootModelTypeObj = targetModelType.getEMFTypeRoot();
 				try {
 					MultiModelUtils.createModelFileInState(rootModelTypeObj, newModelTypeEndpointExtendedUri);
 				}

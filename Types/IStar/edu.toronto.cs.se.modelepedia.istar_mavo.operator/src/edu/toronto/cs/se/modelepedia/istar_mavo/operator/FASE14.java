@@ -29,7 +29,6 @@ import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
 import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
@@ -171,9 +170,9 @@ public class FASE14 extends RE13 {
 	}
 
 	@Override
-	protected void collectAnalysisModelObjs(Model istarModel) {
+	protected void collectAnalysisModelObjs(Model istarModel) throws MMTFException {
 
-		istar = (IStar) MultiModelTypeIntrospection.getRoot(istarModel);
+		istar = (IStar) istarModel.getEMFRoot();
 		MAVOUtils.createIdsFromNames(istar);
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(istar, true);
 		while (iterator.hasNext()) {

@@ -14,10 +14,11 @@ package edu.toronto.cs.se.modelepedia.uml.constraint;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.PackageableElement;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.constraint.JavaModelConstraint;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
@@ -33,7 +34,14 @@ public class ComponentsDeployedConstraint extends JavaModelConstraint {
 	public MAVOTruthValue validate() {
 
 		BinaryModelRel deplRel = (BinaryModelRel) model;
-		org.eclipse.uml2.uml.Model srcUmlModel = (org.eclipse.uml2.uml.Model) MultiModelTypeIntrospection.getRoot(deplRel.getSourceModel());
+		org.eclipse.uml2.uml.Model srcUmlModel;
+		try {
+			srcUmlModel = (org.eclipse.uml2.uml.Model) deplRel.getSourceModel().getEMFRoot();
+		}
+		catch (MMTFException e) {
+			MMTFException.print(Type.WARNING, "Can't get model root, skipping validation",  e);
+			return MAVOTruthValue.FALSE;
+		}
 		for (PackageableElement umlModelObj : srcUmlModel.getPackagedElements()) {
 			if (!(umlModelObj instanceof Component)) {
 				continue;

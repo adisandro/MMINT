@@ -29,38 +29,9 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 public class KleisliMultiModelHeavyTypeFactory extends MultiModelHeavyTypeFactory {
 
 	/**
-	 * Creates and adds a Kleisli "heavy" model relationship type to the
-	 * repository.
-	 * 
-	 * @param newModelRelTypeUri
-	 *            The uri of the new model relationship type.
-	 * @param modelRelTypeUri
-	 *            The uri of the supertype of the new model relationship type,
-	 *            null if the root model relationship type should be used as
-	 *            supertype.
-	 * @param newModelRelTypeName
-	 *            The name of the new model relationship type.
-	 * @param isAbstract
-	 *            True if the new model relationship type is abstract, false
-	 *            otherwise.
-	 * @param isBinary
-	 *            True if the new model relationship type is binary, false
-	 *            otherwise.
-	 * @param constraintLanguage
-	 *            The constraint language of the constraint associated with the
-	 *            new model relationship type, null if no constraint is
-	 *            associated.
-	 * @param constraintImplementation
-	 *            The constraint implementation of the constraint associated
-	 *            with the new model relationship type, null if no constraint is
-	 *            associated.
-	 * @return The created model relationship type.
-	 * @throws MMTFException
-	 *             If the package of the new model relationship type is not
-	 *             registered through a org.eclipse.emf.ecore.generated_package
-	 *             extension, or if the uri of the new model relationship type
-	 *             is already registered in the repository.
+	 * Kleisli version. {@inheritDoc}
 	 */
+	@Override
 	public ModelRel createHeavyModelRelType(String newModelRelTypeUri, String modelRelTypeUri, String newModelRelTypeName, boolean isAbstract, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
 		ModelRel newModelRelType = (isBinary) ?
@@ -72,27 +43,9 @@ public class KleisliMultiModelHeavyTypeFactory extends MultiModelHeavyTypeFactor
 	}
 
 	/**
-	 * Creates and adds a Kleisli "heavy" model type endpoint and a reference to
-	 * it to the repository.
-	 * 
-	 * @param newModelTypeEndpointUri
-	 *            The uri of the new model type endpoint.
-	 * @param modelTypeEndpointUri
-	 *            The uri of the supertype of the new model type endpoint, null
-	 *            if the root model type endpoint should be used as supertype.
-	 * @param newModelTypeEndpointName
-	 *            The name of the new model type endpoint.
-	 * @param newModelType
-	 *            The new model type that is the target of the new model type
-	 *            endpoint.
-	 * @param modelRelType
-	 *            The model relationship type that will contain the new model
-	 *            type endpoint.
-	 * @return The created reference to the new model type endpoint.
-	 * @throws MMTFException
-	 *             If the uri of the new model type endpoint is already
-	 *             registered in the repository.
+	 * Kleisli version. {@inheritDoc}
 	 */
+	@Override
 	public ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(String newModelTypeEndpointUri, String modelTypeEndpointUri, String newModelTypeEndpointName, Model newModelType, ModelRel modelRelType) throws MMTFException {
 
 		ModelEndpoint newModelTypeEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();

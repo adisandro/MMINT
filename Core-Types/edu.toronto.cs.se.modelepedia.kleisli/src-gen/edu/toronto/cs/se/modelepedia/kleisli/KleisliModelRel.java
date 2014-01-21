@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 public interface KleisliModelRel extends ModelRel, KleisliExtendibleElement {
 	/**
 	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelRelTypeNameRequired="true" isBinaryRequired="true"
 	 * @generated

@@ -35,7 +35,6 @@ import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
@@ -94,7 +93,14 @@ public class CastTypeListener extends SelectionAdapter {
 				for (ModelEndpointReference modelEndpointRef : ((ModelRel) model).getModelEndpointRefs()) {
 					for (ModelElementReference modelElemRef : modelEndpointRef.getModelElemRefs()) {
 						ModelElement modelElem = modelElemRef.getObject();
-						ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, MultiModelTypeIntrospection.getPointer(modelElem));
+						ModelElement modelElemType;
+						try {
+							modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelElem.getEMFObject());
+						}
+						catch (MMTFException e) {
+							MMTFException.print(MMTFException.Type.WARNING, "Can't get model object, skipping model element cast", e);
+							continue;
+						}
 						if (modelElemType != null) {
 							modelElem.setMetatypeUri(modelElemType.getUri());
 						}

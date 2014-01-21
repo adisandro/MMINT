@@ -18,10 +18,13 @@ import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
+import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmtf.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -32,7 +35,9 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -221,6 +226,13 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MidPackage.MODEL_ELEMENT___GET_EMF_TYPE_OBJECT:
+				try {
+					return getEMFTypeObject();
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MidPackage.MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE:
 				try {
 					return createInstanceReference((ModelEndpointReference)arguments.get(0));
@@ -239,6 +251,13 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				try {
 					deleteInstance();
 					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MidPackage.MODEL_ELEMENT___GET_EMF_OBJECT:
+				try {
+					return getEMFObject();
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -330,6 +349,25 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	/**
 	 * @generated NOT
 	 */
+	public ENamedElement getEMFTypeObject() throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		Model model = (Model) eContainer();
+		String[] literals = getClassLiteral().split(MMTF.URI_SEPARATOR);
+		ENamedElement modelTypeObj = model.getEMFTypeRoot().getEClassifier(literals[0]);
+		if (literals.length > 1) {
+			modelTypeObj = ((EClass) modelTypeObj).getEStructuralFeature(literals[1]);
+		}
+
+		return modelTypeObj;
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	public ModelElementReference createInstanceReference(ModelEndpointReference containerModelEndpointRef) throws MMTFException {
 
 		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
@@ -408,6 +446,38 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		super.deleteInstance();
 		//TODO MMTF[OO] might need to implement full removal
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public EObject getEMFObject() throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		String modelElemUri = getUri().substring(0, getUri().indexOf(MMTF.ROLE_SEPARATOR));
+		int lastSegmentIndex = modelElemUri.lastIndexOf(MMTF.URI_SEPARATOR);
+		String lastSegment = modelElemUri.substring(lastSegmentIndex, modelElemUri.length()-1);
+		boolean isPrimitive = !lastSegment.startsWith(MultiModelRegistry.ECORE_EREFERENCE_URI_PREFIX);
+		if (isPrimitive) {
+			modelElemUri = modelElemUri.substring(0, lastSegmentIndex);
+		}
+		EObject modelObj;
+		try {
+			modelObj = MultiModelTypeIntrospection.getPointer(modelElemUri);
+		}
+		catch (Exception e) {
+			throw new MMTFException("Error accessing the model file for model element" + getUri(), e);
+		}
+		if (isPrimitive) {
+			EObject modelObjOwner = modelObj;
+			EStructuralFeature feature = modelObjOwner.eClass().getEStructuralFeature(lastSegment);
+			modelObj = new PrimitiveEObjectWrapper(modelObjOwner, feature, modelObjOwner.eGet(feature));
+		}
+
+		return modelObj;
 	}
 
 } //ModelElementImpl

@@ -118,7 +118,8 @@
       <!-- @generated mid -->
       <package
             uri="http://se.cs.toronto.edu/mmtf/MAVO"
-            class="edu.toronto.cs.se.mmtf.mavo.MavoPackage"/>
+            class="edu.toronto.cs.se.mmtf.mavo.MavoPackage"
+            genModel="model/mid.genmodel"/>
    </extension>
 
    <extension

@@ -30,7 +30,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -85,7 +84,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 		//TODO smart check to reduce average complexity, if in same container in src model
 	}
 
-	private void createImpactedVarTables(ModelEndpointReference modelEndpointRef, HashMap<String, List<EObject>> unifyTable, HashMap<String, List<EObject>> typeTable) {
+	private void createImpactedVarTables(ModelEndpointReference modelEndpointRef, HashMap<String, List<EObject>> unifyTable, HashMap<String, List<EObject>> typeTable) throws MMTFException {
 
 		// type table
 		Model model = modelEndpointRef.getObject().getTarget();
@@ -93,7 +92,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 			List<EObject> unifiablesFromSameType = new ArrayList<EObject>();
 			typeTable.put(modelElemType.getUri(), unifiablesFromSameType);
 		}
-		TreeIterator<EObject> iterator = MultiModelTypeIntrospection.getRoot(model).eAllContents();
+		TreeIterator<EObject> iterator = model.getEMFRoot().eAllContents();
 		while (iterator.hasNext()) {
 			EObject modelEObject = iterator.next();
 			if (!(modelEObject instanceof MAVOElement)) {
@@ -223,7 +222,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 			List<ModelElementReference> origUnifiables = origUnifyTable.get(diffModelElem.getUri());
 			if (origUnifiables == null) { // not in the trace rel
 				// get the type it would have if it was in the trace rel
-				ModelElement diffModelElemType = MultiModelConstraintChecker.getAllowedModelElementType(traceRel.getModelEndpointRefs().get(0), MultiModelTypeIntrospection.getPointer(diffModelElem));
+				ModelElement diffModelElemType = MultiModelConstraintChecker.getAllowedModelElementType(traceRel.getModelEndpointRefs().get(0), diffModelElem.getEMFObject());
 				if (diffModelElemType != null) {
 					List<ModelElementReference> origUnifiablesFromSameType = origTypeTable.get(diffModelElemType.getUri());
 					for (ModelElementReference origUnifiable : origUnifiablesFromSameType) {

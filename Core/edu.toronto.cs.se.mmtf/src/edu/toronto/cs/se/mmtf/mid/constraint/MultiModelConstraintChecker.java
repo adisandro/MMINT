@@ -44,7 +44,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
@@ -303,9 +302,16 @@ public class MultiModelConstraintChecker {
 
 	private static boolean isAllowedModelElement(ModelElement modelElemType, EObject modelObj) {
 
-		EObject pointer = MultiModelTypeIntrospection.getPointer(modelElemType);
+		EObject modelElemTypeObj;
+		try {
+			modelElemTypeObj = modelElemType.getEMFTypeObject();
+		}
+		catch (MMTFException e) {
+			MMTFException.print(MMTFException.Type.WARNING, "Can't get model object, skipping allowance evaluation", e);
+			return false;
+		}
 		// check wildcard
-		if (pointer instanceof EClassifier && ((EClassifier) pointer).getName().equals(WILDCARD_CLASSIFIER_NAME)) {
+		if (modelElemTypeObj instanceof EClassifier && ((EClassifier) modelElemTypeObj).getName().equals(WILDCARD_CLASSIFIER_NAME)) {
 			return true;
 		}
 		//TODO MMTF[MODELELEMENT] is class literal really needed or obtainable from the uri?
@@ -434,21 +440,27 @@ linkTypes:
 		}
 
 		EObject root = null;
-		if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
-			String modelEndpointConstraintName = oclConstraint.substring(OCL_MODELENDPOINT_VARIABLE.length(), oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR));
-			for (ModelEndpointReference modelEndpointRef : ((ModelRel) model).getModelEndpointRefs()) {
-				String modelEndpointName = (isInstanceConstraint) ?
-					modelEndpointRef.getObject().getName() :
-					modelEndpointRef.getObject().getMetatype().getName();
-				if (modelEndpointConstraintName.equals(modelEndpointName)) {
-					root = MultiModelTypeIntrospection.getRoot(modelEndpointRef.getObject().getTarget());
-					break;
+		try {
+			if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
+				String modelEndpointConstraintName = oclConstraint.substring(OCL_MODELENDPOINT_VARIABLE.length(), oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR));
+				for (ModelEndpointReference modelEndpointRef : ((ModelRel) model).getModelEndpointRefs()) {
+					String modelEndpointName = (isInstanceConstraint) ?
+						modelEndpointRef.getObject().getName() :
+						modelEndpointRef.getObject().getMetatype().getName();
+					if (modelEndpointConstraintName.equals(modelEndpointName)) {
+						root = modelEndpointRef.getObject().getTarget().getEMFRoot();
+						break;
+					}
 				}
+				oclConstraint = oclConstraint.substring(oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR) + 1, oclConstraint.length());
 			}
-			oclConstraint = oclConstraint.substring(oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR) + 1, oclConstraint.length());
+			else {
+				root = model.getEMFRoot();
+			}
 		}
-		else {
-			root = MultiModelTypeIntrospection.getRoot(model);
+		catch (MMTFException e) {
+			MMTFException.print(MMTFException.Type.WARNING, "Can't get model root, skipping constraint evaluation", e);
+			return MAVOTruthValue.FALSE;
 		}
 
 		return checkOCLConstraint(root, oclConstraint);

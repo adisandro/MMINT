@@ -32,7 +32,6 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
@@ -57,7 +56,7 @@ public class ModelRelTypeTransformation extends OperatorExecutableImpl {
 		ModelEndpointReference srcModelEndpointRef = traceModelRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference tgtModelEndpointRef = traceModelRel.getModelEndpointRefs().get(1);
 		Map<EObject, ModelElementReference> srcModelObjs = new HashMap<EObject, ModelElementReference>();
-		TreeIterator<EObject> srcModelObjsIter = EcoreUtil.getAllContents(MultiModelTypeIntrospection.getRoot(srcModel), true);
+		TreeIterator<EObject> srcModelObjsIter = EcoreUtil.getAllContents(srcModel.getEMFRoot(), true);
 		// first pass: get model objects to be transformed
 		while (srcModelObjsIter.hasNext()) {
 			EObject srcModelObj = srcModelObjsIter.next();
@@ -70,12 +69,12 @@ public class ModelRelTypeTransformation extends OperatorExecutableImpl {
 			srcModelObjs.put(srcModelObj, tgtModelElemTypeRef);
 		}
 		// second pass : transform
-		EPackage tgtModelTypePackage = (EPackage) MultiModelTypeIntrospection.getRoot(tgtModelTypeEndpointRef.getObject().getTarget());
+		EPackage tgtModelTypePackage = tgtModelTypeEndpointRef.getObject().getTarget().getEMFTypeRoot();
 		EFactory tgtModelTypeFactory = tgtModelTypePackage.getEFactoryInstance();
 		for (Map.Entry<EObject, ModelElementReference> srcModelObjsEntry : srcModelObjs.entrySet()) {
 			EObject srcModelObj = srcModelObjsEntry.getKey();
 			ModelElementReference tgtModelElemTypeRef = srcModelObjsEntry.getValue();
-			EObject tgtModelObj = tgtModelTypeFactory.create((EClass) MultiModelTypeIntrospection.getPointer(tgtModelElemTypeRef.getObject()));
+			EObject tgtModelObj = tgtModelTypeFactory.create((EClass) tgtModelElemTypeRef.getObject().getEMFTypeObject());
 			ModelElementImpl.createInstanceAndReference(srcModelObj, null, srcModelEndpointRef);
 			ModelElementImpl.createInstanceAndReference(tgtModelObj, null, tgtModelEndpointRef);
 			//TODO MMTF[TRANSFORMATION] finish from here

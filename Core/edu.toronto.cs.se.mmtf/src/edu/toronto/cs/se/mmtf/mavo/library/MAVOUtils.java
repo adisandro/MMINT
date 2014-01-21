@@ -23,11 +23,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 
 public class MAVOUtils {
@@ -129,12 +130,24 @@ public class MAVOUtils {
 
 	public static boolean isMAVOModel(Model model) {
 
-		return isMAVOModel(MultiModelTypeIntrospection.getRoot(model));
+		try {
+			return isMAVOModel(model.getEMFRoot());
+		}
+		catch (MMTFException e) {
+			MMTFException.print(Type.WARNING, "Can't get model root, skipping MAVO evaluation", e);
+			return false;
+		}
 	}
 
 	public static boolean isMAVOElement(ModelElement modelElem) {
 
-		return isMAVOElement(MultiModelTypeIntrospection.getPointer(modelElem));
+		try {
+			return isMAVOElement(modelElem.getEMFObject());
+		}
+		catch (MMTFException e) {
+			MMTFException.print(Type.WARNING, "Can't get model object, skipping MAVO evaluation", e);
+			return false;
+		}
 	}
 
 	private static void initializeMAVOModel(MAVOModel rootModelObj, Model model) {

@@ -35,7 +35,6 @@ import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
@@ -538,7 +537,7 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 		File folder = (new File(MultiModelUtils.prependWorkspaceToUri(randommodelModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);
-		RandomModelToSMTLIB_M2T m2t = new RandomModelToSMTLIB_M2TWithListeners(MultiModelTypeIntrospection.getRoot(randommodelModel), folder, m2tArgs);
+		RandomModelToSMTLIB_M2T m2t = new RandomModelToSMTLIB_M2TWithListeners(randommodelModel.getEMFRoot(), folder, m2tArgs);
 		m2t.doGenerate(new BasicMonitor());
 
 		return actualParameters;

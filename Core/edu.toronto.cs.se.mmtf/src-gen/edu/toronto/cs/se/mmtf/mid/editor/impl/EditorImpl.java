@@ -24,7 +24,6 @@ import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.ui.EditorCreationWizardDialog;
 
@@ -35,7 +34,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.presentation.DynamicModelWizard;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
@@ -598,7 +596,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 		Model modelType = MultiModelTypeRegistry.<Model>getType(getModelUri());
 		IWorkbenchWizard wizard;
 		if (getWizardId() == null) {
-			EClass rootEClass = (EClass) ((EPackage) MultiModelTypeIntrospection.getRoot(modelType)).getEClassifiers().get(0);
+			EClass rootEClass = (EClass) modelType.getEMFTypeRoot().getEClassifiers().get(0);
 			wizard = new DynamicModelWizard(rootEClass);
 		}
 		else {

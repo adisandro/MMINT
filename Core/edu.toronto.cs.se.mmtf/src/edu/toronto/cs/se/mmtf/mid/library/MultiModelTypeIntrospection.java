@@ -17,22 +17,18 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 
-import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -113,7 +109,15 @@ public class MultiModelTypeIntrospection {
 
 		if (elementType instanceof Model && !(elementType instanceof ModelRel)) { // explore metamodel-compatible supertrees and subtrees
 			List<T> metamodelSubtypes = new ArrayList<T>();
-			String metamodelUri = getRoot((Model) element).eClass().getEPackage().getNsURI();
+			EObject rootModelObj;
+			try {
+				rootModelObj = ((Model) element).getEMFRoot();
+			}
+			catch (MMTFException e) {
+				MMTFException.print(Type.WARNING, "Can't get model root, subtypes filtering skipped", e);
+				return metamodelSubtypes;
+			}
+			String metamodelUri = rootModelObj.eClass().getEPackage().getNsURI();
 			for (T filteredElementSubtype : filteredElementSubtypes) {
 				if (
 					metamodelUri.equals(filteredElementSubtype.getUri()) ||
@@ -223,47 +227,6 @@ public class MultiModelTypeIntrospection {
 		return root;
 	}
 
-	public static EObject getRoot(Model model) {
-
-		String uri = model.getUri();
-		EObject root;
-
-		try {
-			if (MultiModelConstraintChecker.isInstancesLevel(model)) {
-				if (model instanceof ModelRel) {
-					return model;
-				}
-				root = MultiModelUtils.getModelFile(uri, true);
-			}
-			else {
-				while (true) {
-					if (!model.isDynamic()) { // get package from registry
-						root = EPackage.Registry.INSTANCE.getEPackage(uri);
-						break;
-					}
-					String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(model);
-					if (metamodelUri != null) { // get package from metamodel file
-						root = getRoot(URI.createFileURI(metamodelUri));
-						break;
-					}
-					// climb up light types
-					model = model.getSupertype();
-					uri = model.getUri();
-				}
-				if (root == null) {
-					throw new MMTFException("EPackage for URI " + uri + " is not registered");
-				}
-			}
-
-			return root;
-		}
-		catch (Exception e) {
-
-			MMTFException.print(MMTFException.Type.WARNING, "Error getting root for model " + uri, e);
-			return null;
-		}
-	}
-
 	/**
 	 * Writes the root of an ECore model into an ECore model file.
 	 * 
@@ -312,43 +275,6 @@ public class MultiModelTypeIntrospection {
 		URI emfUri = URI.createURI(uri, false, URI.FRAGMENT_LAST_SEPARATOR);
 
 		return getPointer(emfUri);
-	}
-
-	public static EObject getPointer(ModelElement modelElem) {
-
-		Model model = (Model) modelElem.eContainer();
-		EObject pointer = null;
-
-		try {
-			if (MultiModelConstraintChecker.isInstancesLevel(modelElem)) {
-				String modelElemUri = modelElem.getUri().substring(0, modelElem.getUri().indexOf(MMTF.ROLE_SEPARATOR));
-				int lastSegmentIndex = modelElemUri.lastIndexOf(MMTF.URI_SEPARATOR);
-				String lastSegment = modelElemUri.substring(lastSegmentIndex, modelElemUri.length()-1);
-				boolean isPrimitive = !lastSegment.startsWith(MultiModelRegistry.ECORE_EREFERENCE_URI_PREFIX);
-				if (isPrimitive) {
-					modelElemUri = modelElemUri.substring(0, lastSegmentIndex);
-				}
-				pointer = getPointer(modelElemUri);
-				if (isPrimitive) {
-					EObject owner = ((EObject) pointer);
-					EStructuralFeature feature = owner.eClass().getEStructuralFeature(lastSegment);
-					pointer = new PrimitiveEObjectWrapper(owner, feature, owner.eGet(feature));
-				}
-			}
-			else {
-				String[] literals = modelElem.getClassLiteral().split(MMTF.URI_SEPARATOR);
-				pointer = ((EPackage) getRoot(model)).getEClassifier(literals[0]);
-				if (literals.length > 1) {
-					pointer = ((EClass) pointer).getEStructuralFeature(literals[1]);
-				}
-			}
-
-			return pointer;
-		}
-		catch (Exception e) {
-			MMTFException.print(MMTFException.Type.WARNING, "Error getting pointer for model element " + modelElem.getUri(), e);
-			return null;
-		}
 	}
 
 }

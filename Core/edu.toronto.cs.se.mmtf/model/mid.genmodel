@@ -71,6 +71,7 @@
         <genParameters ecoreParameter="mid.ecore#//Model/createSubtype/isMetamodelExtension"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/deleteType"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/getEMFTypeRoot"/>
       <genOperations ecoreOperation="mid.ecore#//Model/createInstance">
         <genParameters ecoreParameter="mid.ecore#//Model/createInstance/newModelUri"/>
         <genParameters ecoreParameter="mid.ecore#//Model/createInstance/origin"/>
@@ -82,6 +83,7 @@
         <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/containerMultiModel"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/deleteInstance"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/getEMFRoot"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ExtendibleElementConstraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementConstraint/implementation"/>
@@ -103,6 +105,7 @@
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/containerModelTypeEndpointRef"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/deleteType"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/getEMFTypeObject"/>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/createInstanceReference">
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceReference/containerModelEndpointRef"/>
       </genOperations>
@@ -113,6 +116,7 @@
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/containerModelEndpointRef"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/deleteInstance"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/getEMFObject"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ModelElementWildcard"/>
     <genClasses ecoreClass="mid.ecore#//ModelEndpoint">

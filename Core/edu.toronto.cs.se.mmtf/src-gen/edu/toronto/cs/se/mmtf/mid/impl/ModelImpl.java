@@ -32,7 +32,6 @@ import edu.toronto.cs.se.mmtf.mid.editor.Diagram;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
@@ -51,6 +50,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -544,6 +544,13 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MidPackage.MODEL___GET_EMF_TYPE_ROOT:
+				try {
+					return getEMFTypeRoot();
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MidPackage.MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL:
 				try {
 					return createInstance((String)arguments.get(0), (ModelOrigin)arguments.get(1), (MultiModel)arguments.get(2));
@@ -562,6 +569,13 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				try {
 					deleteInstance();
 					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MidPackage.MODEL___GET_EMF_ROOT:
+				try {
+					return getEMFRoot();
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -640,7 +654,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 					EClass newRootEClass = EcoreFactory.eINSTANCE.createEClass();
 					newRootEClass.setName(newModelTypeName);
 					if (!MultiModelTypeHierarchy.isRootType(this)) {
-						EClass rootEClass = (EClass) ((EPackage) MultiModelTypeIntrospection.getRoot(this)).getEClassifiers().get(0);
+						EClass rootEClass = (EClass) getEMFTypeRoot().getEClassifiers().get(0);
 						newRootEClass.getESuperTypes().add(rootEClass);
 					}
 					newEPackage.getEClassifiers().add(newRootEClass);
@@ -782,6 +796,37 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	}
 
 	/**
+	 * @generated NOT
+	 */
+	public EPackage getEMFTypeRoot() throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		EPackage rootModelTypeObj;
+		if (!isDynamic()) { // get package from registry
+			rootModelTypeObj = EPackage.Registry.INSTANCE.getEPackage(getUri());
+		}
+		else {
+			String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(this);
+			if (metamodelUri != null) { // get package from metamodel file
+				try {
+					rootModelTypeObj = (EPackage) MultiModelUtils.getModelFile(metamodelUri, false);
+				}
+				catch (Exception e) {
+					throw new MMTFException("Error accessing the metamodel file for model type" + getUri(), e);
+				}
+			}
+			else { // climb up light types
+				rootModelTypeObj = getSupertype().getEMFTypeRoot();
+			}
+		}
+
+		return rootModelTypeObj;
+	}
+
+	/**
 	 * Adds a model instance of this model type to an Instance MID, or simply
 	 * adds additional info to the model instance.
 	 * 
@@ -918,6 +963,26 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		for (ModelRel modelRel : delModelRels) {
 			modelRel.deleteInstance();
 		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public EObject getEMFRoot() throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		EObject rootModelObj;
+		try {
+			rootModelObj = MultiModelUtils.getModelFile(getUri(), true);
+		}
+		catch (Exception e) {
+			throw new MMTFException("Error accessing the model file for model" + getUri(), e);
+		}
+
+		return rootModelObj;
 	}
 
 } //ModelImpl

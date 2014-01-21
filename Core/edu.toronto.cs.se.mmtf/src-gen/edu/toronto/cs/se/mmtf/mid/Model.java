@@ -16,6 +16,8 @@ import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -231,6 +233,18 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	void deleteType() throws MMTFException;
 
 	/**
+	 * <!-- begin-user-doc --> Gets the EMF package root of this model type.
+	 * 
+	 * @throws MMTFException
+	 *             If this is a model instance, or if the metamodel file can't
+	 *             be accessed. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	EPackage getEMFTypeRoot() throws MMTFException;
+
+	/**
 	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of
 	 * this model type to an Instance MID.
 	 * 
@@ -282,5 +296,17 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 * @generated
 	 */
 	void deleteInstance() throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc --> Gets the EMF object root of this model.
+	 * 
+	 * @throws MMTFException
+	 *             If this is a model type, or if the model file can't be
+	 *             accessed. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	EObject getEMFRoot() throws MMTFException;
 
 } // Model

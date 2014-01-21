@@ -24,7 +24,6 @@ import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
@@ -39,7 +38,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 	public static Model createModel(Model modelType, String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
 
 		Model newModel = modelType.createInstance(newModelUri, origin, containerMultiModel);
-		MAVOUtils.initializeMAVOModel(MultiModelTypeIntrospection.getRoot(newModel), newModel);
+		MAVOUtils.initializeMAVOModel(newModel.getEMFRoot(), newModel);
 
 		return newModel;
 	}
@@ -47,7 +46,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 	public static Model createModelAndEditor(Model modelType, String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
 
 		Model newModel = modelType.createInstanceAndEditor(newModelUri, origin, containerMultiModel);
-		MAVOUtils.initializeMAVOModel(MultiModelTypeIntrospection.getRoot(newModel), newModel);
+		MAVOUtils.initializeMAVOModel(newModel.getEMFRoot(), newModel);
 
 		return newModel;
 	}
@@ -98,7 +97,7 @@ public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
 			ModelEndpointReference newModelEndpointRef = oldModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, false, newModelRel);
 			// model elements
 			for (ModelElementReference oldModelElemRef : oldModelEndpointRef.getModelElemRefs()) {
-				EObject newModelObj = MultiModelTypeIntrospection.getPointer(oldModelElemRef.getObject());
+				EObject newModelObj = oldModelElemRef.getObject().getEMFObject();
 				ModelElementReference newModelElemRef = createModelElementAndModelElementReference(newModelEndpointRef, oldModelElemRef.getObject().getName(), newModelObj);
 				newModelElemRefs.put(newModelElemRef.getUri(), newModelElemRef);
 			}
