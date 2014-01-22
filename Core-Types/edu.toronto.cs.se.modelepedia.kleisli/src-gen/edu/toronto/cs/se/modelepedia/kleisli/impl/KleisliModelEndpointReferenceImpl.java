@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointReferenceImpl#getTargetExtendedUri <em>Target Extended Uri</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointReferenceImpl#getExtendedTargetUri <em>Extended Target Uri</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,15 +38,14 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  */
 public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImpl implements KleisliModelEndpointReference {
 	/**
-	 * The cached setting delegate for the '{@link #getTargetExtendedUri() <em>Target Extended Uri</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getExtendedTargetUri() <em>Extended Target Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTargetExtendedUri()
+	 * @see #getExtendedTargetUri()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate TARGET_EXTENDED_URI__ESETTING_DELEGATE = ((EStructuralFeature.Internal)KleisliPackage.Literals.KLEISLI_MODEL_ENDPOINT_REFERENCE__TARGET_EXTENDED_URI).getSettingDelegate();
-
+	protected EStructuralFeature.Internal.SettingDelegate EXTENDED_TARGET_URI__ESETTING_DELEGATE = ((EStructuralFeature.Internal)KleisliPackage.Literals.KLEISLI_MODEL_ENDPOINT_REFERENCE__EXTENDED_TARGET_URI).getSettingDelegate();
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,8 +70,8 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getTargetExtendedUri() {
-		return (String)TARGET_EXTENDED_URI__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public String getExtendedTargetUri() {
+		return (String)EXTENDED_TARGET_URI__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -83,8 +82,8 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE__TARGET_EXTENDED_URI:
-				return getTargetExtendedUri();
+			case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE__EXTENDED_TARGET_URI:
+				return getExtendedTargetUri();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -97,8 +96,8 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE__TARGET_EXTENDED_URI:
-				return TARGET_EXTENDED_URI__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE__EXTENDED_TARGET_URI:
+				return EXTENDED_TARGET_URI__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

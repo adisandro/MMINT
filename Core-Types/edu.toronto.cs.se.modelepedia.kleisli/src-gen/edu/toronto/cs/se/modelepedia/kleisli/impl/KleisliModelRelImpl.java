@@ -14,9 +14,7 @@ package edu.toronto.cs.se.modelepedia.kleisli.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
@@ -37,13 +35,11 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelRelImpl;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliExtendibleElement;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 import edu.toronto.cs.se.modelepedia.kleisli.library.KleisliUtils;
-
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -190,38 +186,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				return EXTENDED_URI_EDEFAULT == null ? extendedUri != null : !EXTENDED_URI_EDEFAULT.equals(extendedUri);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == KleisliExtendibleElement.class) {
-			switch (derivedFeatureID) {
-				case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI: return KleisliPackage.KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == KleisliExtendibleElement.class) {
-			switch (baseFeatureID) {
-				case KleisliPackage.KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI: return KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

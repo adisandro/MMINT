@@ -65,13 +65,24 @@ public class KleisliFactoryImpl extends EFactoryImpl implements KleisliFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case KleisliPackage.KLEISLI_MODEL_REL: return createKleisliModelRel();
+			case KleisliPackage.KLEISLI_MODEL: return createKleisliModel();
 			case KleisliPackage.KLEISLI_MODEL_ENDPOINT: return createKleisliModelEndpoint();
+			case KleisliPackage.KLEISLI_MODEL_REL: return createKleisliModelRel();
 			case KleisliPackage.KLEISLI_BINARY_MODEL_REL: return createKleisliBinaryModelRel();
 			case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE: return createKleisliModelEndpointReference();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public KleisliModel createKleisliModel() {
+		KleisliModelImpl kleisliModel = new KleisliModelImpl();
+		return kleisliModel;
 	}
 
 	/**

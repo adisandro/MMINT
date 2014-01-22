@@ -89,15 +89,13 @@ public class KleisliSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case KleisliPackage.KLEISLI_MODEL_REL: {
-				KleisliModelRel kleisliModelRel = (KleisliModelRel)theEObject;
-				T result = caseKleisliModelRel(kleisliModelRel);
-				if (result == null) result = caseModelRel(kleisliModelRel);
-				if (result == null) result = caseKleisliExtendibleElement(kleisliModelRel);
-				if (result == null) result = caseModel(kleisliModelRel);
-				if (result == null) result = caseExtendibleElement(kleisliModelRel);
-				if (result == null) result = caseMAVOModel(kleisliModelRel);
-				if (result == null) result = caseMAVOElement(kleisliModelRel);
+			case KleisliPackage.KLEISLI_MODEL: {
+				KleisliModel kleisliModel = (KleisliModel)theEObject;
+				T result = caseKleisliModel(kleisliModel);
+				if (result == null) result = caseModel(kleisliModel);
+				if (result == null) result = caseExtendibleElement(kleisliModel);
+				if (result == null) result = caseMAVOModel(kleisliModel);
+				if (result == null) result = caseMAVOElement(kleisliModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -105,10 +103,20 @@ public class KleisliSwitch<T> extends Switch<T> {
 				KleisliModelEndpoint kleisliModelEndpoint = (KleisliModelEndpoint)theEObject;
 				T result = caseKleisliModelEndpoint(kleisliModelEndpoint);
 				if (result == null) result = caseModelEndpoint(kleisliModelEndpoint);
-				if (result == null) result = caseKleisliExtendibleElement(kleisliModelEndpoint);
 				if (result == null) result = caseExtendibleElementEndpoint(kleisliModelEndpoint);
 				if (result == null) result = caseExtendibleElement(kleisliModelEndpoint);
 				if (result == null) result = caseMAVOElement(kleisliModelEndpoint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case KleisliPackage.KLEISLI_MODEL_REL: {
+				KleisliModelRel kleisliModelRel = (KleisliModelRel)theEObject;
+				T result = caseKleisliModelRel(kleisliModelRel);
+				if (result == null) result = caseModelRel(kleisliModelRel);
+				if (result == null) result = caseModel(kleisliModelRel);
+				if (result == null) result = caseExtendibleElement(kleisliModelRel);
+				if (result == null) result = caseMAVOModel(kleisliModelRel);
+				if (result == null) result = caseMAVOElement(kleisliModelRel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -118,17 +126,10 @@ public class KleisliSwitch<T> extends Switch<T> {
 				if (result == null) result = caseBinaryModelRel(kleisliBinaryModelRel);
 				if (result == null) result = caseKleisliModelRel(kleisliBinaryModelRel);
 				if (result == null) result = caseModelRel(kleisliBinaryModelRel);
-				if (result == null) result = caseKleisliExtendibleElement(kleisliBinaryModelRel);
 				if (result == null) result = caseModel(kleisliBinaryModelRel);
 				if (result == null) result = caseExtendibleElement(kleisliBinaryModelRel);
 				if (result == null) result = caseMAVOModel(kleisliBinaryModelRel);
 				if (result == null) result = caseMAVOElement(kleisliBinaryModelRel);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case KleisliPackage.KLEISLI_EXTENDIBLE_ELEMENT: {
-				KleisliExtendibleElement kleisliExtendibleElement = (KleisliExtendibleElement)theEObject;
-				T result = caseKleisliExtendibleElement(kleisliExtendibleElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -143,6 +144,21 @@ public class KleisliSwitch<T> extends Switch<T> {
 			}
 			default: return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseKleisliModel(KleisliModel object) {
+		return null;
 	}
 
 	/**
@@ -187,21 +203,6 @@ public class KleisliSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseKleisliBinaryModelRel(KleisliBinaryModelRel object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Extendible Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Extendible Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseKleisliExtendibleElement(KleisliExtendibleElement object) {
 		return null;
 	}
 

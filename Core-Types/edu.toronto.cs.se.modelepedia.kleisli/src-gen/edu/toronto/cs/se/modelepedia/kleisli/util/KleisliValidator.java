@@ -117,19 +117,38 @@ public class KleisliValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
-			case KleisliPackage.KLEISLI_MODEL_REL:
-				return validateKleisliModelRel((KleisliModelRel)value, diagnostics, context);
+			case KleisliPackage.KLEISLI_MODEL:
+				return validateKleisliModel((KleisliModel)value, diagnostics, context);
 			case KleisliPackage.KLEISLI_MODEL_ENDPOINT:
 				return validateKleisliModelEndpoint((KleisliModelEndpoint)value, diagnostics, context);
+			case KleisliPackage.KLEISLI_MODEL_REL:
+				return validateKleisliModelRel((KleisliModelRel)value, diagnostics, context);
 			case KleisliPackage.KLEISLI_BINARY_MODEL_REL:
 				return validateKleisliBinaryModelRel((KleisliBinaryModelRel)value, diagnostics, context);
-			case KleisliPackage.KLEISLI_EXTENDIBLE_ELEMENT:
-				return validateKleisliExtendibleElement((KleisliExtendibleElement)value, diagnostics, context);
 			case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE:
 				return validateKleisliModelEndpointReference((KleisliModelEndpointReference)value, diagnostics, context);
 			default:
 				return true;
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateKleisliModel(KleisliModel kleisliModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(kleisliModel, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(kleisliModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(kleisliModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(kleisliModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(kleisliModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(kleisliModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(kleisliModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(kleisliModel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(kleisliModel, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(kleisliModel, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -189,15 +208,6 @@ public class KleisliValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(kleisliBinaryModelRel, diagnostics, context);
 		if (result || diagnostics != null) result &= relationshipValidator.validateBinaryModelRel_isBinaryModelRel(kleisliBinaryModelRel, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateKleisliExtendibleElement(KleisliExtendibleElement kleisliExtendibleElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(kleisliExtendibleElement, diagnostics, context);
 	}
 
 	/**

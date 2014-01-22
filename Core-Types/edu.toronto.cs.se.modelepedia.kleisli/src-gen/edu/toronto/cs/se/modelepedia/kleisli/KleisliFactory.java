@@ -31,6 +31,15 @@ public interface KleisliFactory extends EFactory {
 	KleisliFactory eINSTANCE = edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model</em>'.
+	 * @generated
+	 */
+	KleisliModel createKleisliModel();
+
+	/**
 	 * Returns a new object of class '<em>Model Rel</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

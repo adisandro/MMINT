@@ -89,9 +89,9 @@ public class KleisliModelRelItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_KleisliExtendibleElement_extendedUri_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_KleisliExtendibleElement_extendedUri_feature", "_UI_KleisliExtendibleElement_type"),
-				 KleisliPackage.Literals.KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI,
+				 getString("_UI_KleisliModelRel_extendedUri_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_KleisliModelRel_extendedUri_feature", "_UI_KleisliModelRel_type"),
+				 KleisliPackage.Literals.KLEISLI_MODEL_REL__EXTENDED_URI,
 				 true,
 				 false,
 				 false,

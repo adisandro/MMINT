@@ -91,20 +91,20 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 	protected KleisliSwitch<Adapter> modelSwitch =
 		new KleisliSwitch<Adapter>() {
 			@Override
-			public Adapter caseKleisliModelRel(KleisliModelRel object) {
-				return createKleisliModelRelAdapter();
+			public Adapter caseKleisliModel(KleisliModel object) {
+				return createKleisliModelAdapter();
 			}
 			@Override
 			public Adapter caseKleisliModelEndpoint(KleisliModelEndpoint object) {
 				return createKleisliModelEndpointAdapter();
 			}
 			@Override
-			public Adapter caseKleisliBinaryModelRel(KleisliBinaryModelRel object) {
-				return createKleisliBinaryModelRelAdapter();
+			public Adapter caseKleisliModelRel(KleisliModelRel object) {
+				return createKleisliModelRelAdapter();
 			}
 			@Override
-			public Adapter caseKleisliExtendibleElement(KleisliExtendibleElement object) {
-				return createKleisliExtendibleElementAdapter();
+			public Adapter caseKleisliBinaryModelRel(KleisliBinaryModelRel object) {
+				return createKleisliBinaryModelRelAdapter();
 			}
 			@Override
 			public Adapter caseKleisliModelEndpointReference(KleisliModelEndpointReference object) {
@@ -127,16 +127,16 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 				return createModelAdapter();
 			}
 			@Override
-			public Adapter caseModelRel(ModelRel object) {
-				return createModelRelAdapter();
-			}
-			@Override
 			public Adapter caseExtendibleElementEndpoint(ExtendibleElementEndpoint object) {
 				return createExtendibleElementEndpointAdapter();
 			}
 			@Override
 			public Adapter caseModelEndpoint(ModelEndpoint object) {
 				return createModelEndpointAdapter();
+			}
+			@Override
+			public Adapter caseModelRel(ModelRel object) {
+				return createModelRelAdapter();
 			}
 			@Override
 			public Adapter caseBinaryModelRel(BinaryModelRel object) {
@@ -173,6 +173,20 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModel <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModel
+	 * @generated
+	 */
+	public Adapter createKleisliModelAdapter() {
+		return null;
+	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel <em>Model Rel</em>}'.
@@ -213,20 +227,6 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createKleisliBinaryModelRelAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliExtendibleElement <em>Extendible Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliExtendibleElement
-	 * @generated
-	 */
-	public Adapter createKleisliExtendibleElementAdapter() {
 		return null;
 	}
 

@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.kleisli.provider;
 
 import edu.toronto.cs.se.mmtf.mid.provider.ModelEndpointItemProvider;
 
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
@@ -25,6 +26,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -70,31 +72,61 @@ public class KleisliModelEndpointItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addExtendedUriPropertyDescriptor(object);
+			addExtendedTargetUriPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Extended Uri feature.
+	 * This adds a property descriptor for the Extended Target Uri feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addExtendedUriPropertyDescriptor(Object object) {
+	protected void addExtendedTargetUriPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_KleisliExtendibleElement_extendedUri_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_KleisliExtendibleElement_extendedUri_feature", "_UI_KleisliExtendibleElement_type"),
-				 KleisliPackage.Literals.KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI,
-				 true,
+				 getString("_UI_KleisliModelEndpoint_extendedTargetUri_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_KleisliModelEndpoint_extendedTargetUri_feature", "_UI_KleisliModelEndpoint_type"),
+				 KleisliPackage.Literals.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET_URI,
+				 false,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
+	}
+
+	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(KleisliPackage.Literals.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -134,8 +166,11 @@ public class KleisliModelEndpointItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(KleisliModelEndpoint.class)) {
-			case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_URI:
+			case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET_URI:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -151,6 +186,11 @@ public class KleisliModelEndpointItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(KleisliPackage.Literals.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET,
+				 KleisliFactory.eINSTANCE.createKleisliModel()));
 	}
 
 	/**

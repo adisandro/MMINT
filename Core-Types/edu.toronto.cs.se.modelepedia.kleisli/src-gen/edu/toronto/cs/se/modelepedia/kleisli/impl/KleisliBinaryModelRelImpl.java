@@ -12,12 +12,9 @@
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.impl.BinaryModelRelImpl;
-
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliExtendibleElement;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -160,14 +157,9 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == KleisliExtendibleElement.class) {
-			switch (derivedFeatureID) {
-				case KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI: return KleisliPackage.KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI;
-				default: return -1;
-			}
-		}
 		if (baseClass == KleisliModelRel.class) {
 			switch (derivedFeatureID) {
+				case KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI: return KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI;
 				default: return -1;
 			}
 		}
@@ -181,14 +173,9 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == KleisliExtendibleElement.class) {
-			switch (baseFeatureID) {
-				case KleisliPackage.KLEISLI_EXTENDIBLE_ELEMENT__EXTENDED_URI: return KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI;
-				default: return -1;
-			}
-		}
 		if (baseClass == KleisliModelRel.class) {
 			switch (baseFeatureID) {
+				case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI: return KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI;
 				default: return -1;
 			}
 		}

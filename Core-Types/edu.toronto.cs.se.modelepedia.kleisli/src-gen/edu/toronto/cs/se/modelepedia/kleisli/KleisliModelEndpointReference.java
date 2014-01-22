@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference#getTargetExtendedUri <em>Target Extended Uri</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference#getExtendedTargetUri <em>Extended Target Uri</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,19 +42,19 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface KleisliModelEndpointReference extends ModelEndpointReference {
 	/**
-	 * Returns the value of the '<em><b>Target Extended Uri</b></em>' attribute.
+	 * Returns the value of the '<em><b>Extended Target Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The uri of Kleisli extensions of the referenced endpoint's target.
+	 * The uri of the referenced Kleisli extended model target (types: state-relative; instances: workspace-relative).
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Target Extended Uri</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getKleisliModelEndpointReference_TargetExtendedUri()
+	 * @return the value of the '<em>Extended Target Uri</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getKleisliModelEndpointReference_ExtendedTargetUri()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='object.oclAsType(kleisli::KleisliModelEndpoint).extendedUri'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='object.oclAsType(kleisli::KleisliModelEndpoint).extendedTargetUri'"
 	 * @generated
 	 */
-	String getTargetExtendedUri();
+	String getExtendedTargetUri();
 
 	/**
 	 * <!-- begin-user-doc -->

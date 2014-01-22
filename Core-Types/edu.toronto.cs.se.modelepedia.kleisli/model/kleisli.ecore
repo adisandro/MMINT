@@ -7,40 +7,18 @@
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EClass" name="KleisliModelRel" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel #//KleisliExtendibleElement">
+  <eClassifiers xsi:type="ecore:EClass" name="KleisliModel" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mid.ecore#//Model">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Kleisli version. {@inheritDoc}"/>
+      <details key="documentation" value="Kleisli version, represents a hidden extended model. {@inheritDoc}"/>
     </eAnnotations>
-    <eOperations name="createSubtype" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"
-        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
-      <eParameters name="newModelRelTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eParameters name="constraintLanguage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="constraintImplementation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eOperations>
-    <eOperations name="copySubtype" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"
-        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
-      <eParameters name="origModelRelType" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"/>
-    </eOperations>
-    <eOperations name="deleteType" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
-    <eOperations name="createInstance" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"
-        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
-      <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eParameters name="origin" lowerBound="1" eType="ecore:EEnum ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//ModelOrigin"/>
-      <eParameters name="containerMultiModel" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MultiModel"/>
-    </eOperations>
-    <eOperations name="deleteInstance" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
-    <eOperations name="openType" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
-    <eOperations name="openInstance" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
-    <eOperations name="getOutlineResourceTypes" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
+    <eOperations name="getEMFTypeRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
-    <eOperations name="getOutlineResourceInstances" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
+    <eOperations name="getEMFRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="KleisliModelEndpoint" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mid.ecore#//ModelEndpoint #//KleisliExtendibleElement">
+  <eClassifiers xsi:type="ecore:EClass" name="KleisliModelEndpoint" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mid.ecore#//ModelEndpoint">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Kleisli version. {@inheritDoc}"/>
+      <details key="documentation" value="Kleisli version, points to a Kleisli extended model. {@inheritDoc}"/>
     </eAnnotations>
     <eOperations name="createTypeReference" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelEndpointReference"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
@@ -85,22 +63,64 @@
     <eOperations name="deleteInstanceAndReference" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
       <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extendedTarget" lowerBound="1"
+        eType="#//KleisliModel" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The Kleisli extended model target (types: extended model type; instances: extended model instance)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extendedTargetUri" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="extendedTarget.extendedUri"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The uri of the Kleisli extended model target (types: state-relative; instances: workspace-relative)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="KleisliModelRel" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Kleisli version, represents a model relationship where some of the models are extended. {@inheritDoc}"/>
+    </eAnnotations>
+    <eOperations name="createSubtype" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
+      <eParameters name="newModelRelTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="constraintLanguage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="constraintImplementation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="copySubtype" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
+      <eParameters name="origModelRelType" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"/>
+    </eOperations>
+    <eOperations name="deleteType" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
+    <eOperations name="createInstance" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelRel"
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
+      <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="origin" lowerBound="1" eType="ecore:EEnum ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//ModelOrigin"/>
+      <eParameters name="containerMultiModel" eType="ecore:EClass ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MultiModel"/>
+    </eOperations>
+    <eOperations name="deleteInstance" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
+    <eOperations name="openType" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
+    <eOperations name="openInstance" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
+    <eOperations name="getOutlineResourceTypes" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
+    <eOperations name="getOutlineResourceInstances" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extendedUri" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The uri of the directory that contains Kleisli extensions (types: state-relative; instances: workspace-relative)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="KleisliBinaryModelRel" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/BinaryModelRel #//KleisliModelRel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Kleisli version. {@inheritDoc}"/>
     </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="KleisliExtendibleElement" abstract="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="The Kleisli abstract basic element."/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extendedUri" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The uri of Kleisli extensions, i.e. directories and files (types: state-relative; instances: workspace-relative)."/>
-      </eAnnotations>
-    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="KleisliModelEndpointReference" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/ModelEndpointReference">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -120,14 +140,14 @@
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
       <eParameters name="modelObj" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetExtendedUri" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extendedTargetUri" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
         volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="object.oclAsType(kleisli::KleisliModelEndpoint).extendedUri"/>
+        <details key="derivation" value="object.oclAsType(kleisli::KleisliModelEndpoint).extendedTargetUri"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The uri of Kleisli extensions of the referenced endpoint's target."/>
+        <details key="documentation" value="The uri of the referenced Kleisli extended model target (types: state-relative; instances: workspace-relative)."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

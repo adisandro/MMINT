@@ -23,15 +23,46 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Kleisli version. {@inheritDoc}
+ * Kleisli version, represents a model relationship where some of the models are extended. {@inheritDoc}
  * <!-- end-model-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#getExtendedUri <em>Extended Uri</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getKleisliModelRel()
  * @model
  * @generated
  */
-public interface KleisliModelRel extends ModelRel, KleisliExtendibleElement {
+public interface KleisliModelRel extends ModelRel {
+	/**
+	 * Returns the value of the '<em><b>Extended Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The uri of the directory that contains Kleisli extensions (types: state-relative; instances: workspace-relative).
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Extended Uri</em>' attribute.
+	 * @see #setExtendedUri(String)
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getKleisliModelRel_ExtendedUri()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getExtendedUri();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#getExtendedUri <em>Extended Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Extended Uri</em>' attribute.
+	 * @see #getExtendedUri()
+	 * @generated
+	 */
+	void setExtendedUri(String value);
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}

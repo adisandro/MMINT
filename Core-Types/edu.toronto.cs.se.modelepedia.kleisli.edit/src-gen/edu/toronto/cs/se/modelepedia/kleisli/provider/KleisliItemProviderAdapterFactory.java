@@ -104,6 +104,29 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected KleisliModelItemProvider kleisliModelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createKleisliModelAdapter() {
+		if (kleisliModelItemProvider == null) {
+			kleisliModelItemProvider = new KleisliModelItemProvider(this);
+		}
+
+		return kleisliModelItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -294,8 +317,9 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 	 * @generated
 	 */
 	public void dispose() {
-		if (kleisliModelRelItemProvider != null) kleisliModelRelItemProvider.dispose();
+		if (kleisliModelItemProvider != null) kleisliModelItemProvider.dispose();
 		if (kleisliModelEndpointItemProvider != null) kleisliModelEndpointItemProvider.dispose();
+		if (kleisliModelRelItemProvider != null) kleisliModelRelItemProvider.dispose();
 		if (kleisliBinaryModelRelItemProvider != null) kleisliBinaryModelRelItemProvider.dispose();
 		if (kleisliModelEndpointReferenceItemProvider != null) kleisliModelEndpointReferenceItemProvider.dispose();
 	}
@@ -347,6 +371,11 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 			 */
 			@Override
 			public Object caseMultiModel(MultiModel object) {
+				newChildDescriptors.add
+					(createChildParameter
+						(MidPackage.Literals.MULTI_MODEL__MODELS,
+						 KleisliFactory.eINSTANCE.createKleisliModel()));
+
 				newChildDescriptors.add
 					(createChildParameter
 						(MidPackage.Literals.MULTI_MODEL__MODELS,
@@ -442,12 +471,17 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 				newChildDescriptors.add
 					(createChildParameter
 						(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-						 KleisliFactory.eINSTANCE.createKleisliModelRel()));
+						 KleisliFactory.eINSTANCE.createKleisliModel()));
 
 				newChildDescriptors.add
 					(createChildParameter
 						(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 						 KleisliFactory.eINSTANCE.createKleisliModelEndpoint()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+						 KleisliFactory.eINSTANCE.createKleisliModelRel()));
 
 				newChildDescriptors.add
 					(createChildParameter

@@ -73,25 +73,25 @@ public class KleisliModelEndpointReferenceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTargetExtendedUriPropertyDescriptor(object);
+			addExtendedTargetUriPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Target Extended Uri feature.
+	 * This adds a property descriptor for the Extended Target Uri feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTargetExtendedUriPropertyDescriptor(Object object) {
+	protected void addExtendedTargetUriPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_KleisliModelEndpointReference_targetExtendedUri_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_KleisliModelEndpointReference_targetExtendedUri_feature", "_UI_KleisliModelEndpointReference_type"),
-				 KleisliPackage.Literals.KLEISLI_MODEL_ENDPOINT_REFERENCE__TARGET_EXTENDED_URI,
+				 getString("_UI_KleisliModelEndpointReference_extendedTargetUri_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_KleisliModelEndpointReference_extendedTargetUri_feature", "_UI_KleisliModelEndpointReference_type"),
+				 KleisliPackage.Literals.KLEISLI_MODEL_ENDPOINT_REFERENCE__EXTENDED_TARGET_URI,
 				 false,
 				 false,
 				 false,
@@ -135,7 +135,7 @@ public class KleisliModelEndpointReferenceItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(KleisliModelEndpointReference.class)) {
-			case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE__TARGET_EXTENDED_URI:
+			case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE__EXTENDED_TARGET_URI:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -156,12 +156,17 @@ public class KleisliModelEndpointReferenceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-				 KleisliFactory.eINSTANCE.createKleisliModelRel()));
+				 KleisliFactory.eINSTANCE.createKleisliModel()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 KleisliFactory.eINSTANCE.createKleisliModelEndpoint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				 KleisliFactory.eINSTANCE.createKleisliModelRel()));
 
 		newChildDescriptors.add
 			(createChildParameter
