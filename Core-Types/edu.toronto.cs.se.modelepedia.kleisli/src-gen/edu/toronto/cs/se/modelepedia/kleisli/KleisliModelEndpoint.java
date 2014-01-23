@@ -75,7 +75,7 @@ public interface KleisliModelEndpoint extends ModelEndpoint {
 	 * @return the value of the '<em>Extended Target Uri</em>' attribute.
 	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getKleisliModelEndpoint_ExtendedTargetUri()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='extendedTarget.extendedUri'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='extendedTarget.uri'"
 	 * @generated
 	 */
 	String getExtendedTargetUri();

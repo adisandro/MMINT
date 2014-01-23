@@ -160,7 +160,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getKleisliModel__GetEMFTypeRoot() {
+	public EOperation getKleisliModel__KleisliCreateType__KleisliModelEndpoint() {
 		return kleisliModelEClass.getEOperations().get(0);
 	}
 
@@ -169,8 +169,44 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getKleisliModel__GetEMFRoot() {
+	public EOperation getKleisliModel__DeleteType() {
 		return kleisliModelEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getKleisliModel__GetEMFTypeRoot() {
+		return kleisliModelEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getKleisliModel__KleisliCreateInstance__KleisliModelEndpoint() {
+		return kleisliModelEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getKleisliModel__DeleteInstance() {
+		return kleisliModelEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getKleisliModel__GetEMFRoot() {
+		return kleisliModelEClass.getEOperations().get(5);
 	}
 
 	/**
@@ -445,7 +481,11 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 
 		// Create classes and their features
 		kleisliModelEClass = createEClass(KLEISLI_MODEL);
+		createEOperation(kleisliModelEClass, KLEISLI_MODEL___KLEISLI_CREATE_TYPE__KLEISLIMODELENDPOINT);
+		createEOperation(kleisliModelEClass, KLEISLI_MODEL___DELETE_TYPE);
 		createEOperation(kleisliModelEClass, KLEISLI_MODEL___GET_EMF_TYPE_ROOT);
+		createEOperation(kleisliModelEClass, KLEISLI_MODEL___KLEISLI_CREATE_INSTANCE__KLEISLIMODELENDPOINT);
+		createEOperation(kleisliModelEClass, KLEISLI_MODEL___DELETE_INSTANCE);
 		createEOperation(kleisliModelEClass, KLEISLI_MODEL___GET_EMF_ROOT);
 
 		kleisliModelEndpointEClass = createEClass(KLEISLI_MODEL_ENDPOINT);
@@ -522,7 +562,21 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		// Initialize classes, features, and operations; add parameters
 		initEClass(kleisliModelEClass, KleisliModel.class, "KleisliModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = initEOperation(getKleisliModel__GetEMFTypeRoot(), ecorePackage.getEPackage(), "getEMFTypeRoot", 1, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getKleisliModel__KleisliCreateType__KleisliModelEndpoint(), this.getKleisliModel(), "kleisliCreateType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getKleisliModelEndpoint(), "containerModelTypeEndpoint", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getKleisliModel__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getKleisliModel__GetEMFTypeRoot(), ecorePackage.getEPackage(), "getEMFTypeRoot", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getKleisliModel__KleisliCreateInstance__KleisliModelEndpoint(), this.getKleisliModel(), "kleisliCreateInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getKleisliModelEndpoint(), "containerModelEndpoint", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getKleisliModel__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
 		op = initEOperation(getKleisliModel__GetEMFRoot(), ecorePackage.getEObject(), "getEMFRoot", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -677,7 +731,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		  (getKleisliModelEndpoint_ExtendedTargetUri(), 
 		   source, 
 		   new String[] {
-			 "derivation", "extendedTarget.extendedUri"
+			 "derivation", "extendedTarget.uri"
 		   });							
 		addAnnotation
 		  (kleisliModelEndpointReferenceEClass, 

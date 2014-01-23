@@ -634,7 +634,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		super.addSubtype(newModelType, this, null, newModelTypeName);
 		MultiModelTypeFactory.addModelType(newModelType, false, constraintLanguage, constraintImplementation, multiModel);
 		newModelType.setOrigin(ModelOrigin.CREATED);
-		newModelType.setFileExtension(getFileExtension());
 
 		if (isMetamodelExtension) {
 			try {

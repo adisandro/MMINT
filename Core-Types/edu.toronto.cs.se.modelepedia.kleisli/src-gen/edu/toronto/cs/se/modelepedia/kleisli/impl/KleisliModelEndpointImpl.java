@@ -28,13 +28,12 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
-import edu.toronto.cs.se.modelepedia.kleisli.library.KleisliUtils;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -263,35 +262,36 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		String newModelTypeEndpointExtendedUri = KleisliUtils.getModelTypeEndpointExtendedUri(targetModelType, (KleisliModelRel) containerModelRelType);
-		boolean isKleisli = (MultiModelUtils.isFileOrDirectoryInState(newModelTypeEndpointExtendedUri) != null);
+		boolean isK =
+			MultiModelUtils.isFileOrDirectoryInState(
+				KleisliModelImpl.getModelTypeExtendedUri((KleisliModelRel) containerModelRelType, targetModelType, newModelTypeEndpointName)
+			) != null;
 		boolean extendMetamodel = false;
-		if (!isKleisli) {
+		if (!isK) {
 			extendMetamodel = MidDiagramUtils.getBooleanInput("Create new Kleisli model type endpoint", "Extend " + targetModelType.getName() + " metamodel?");
-			isKleisli = extendMetamodel;
+			isK = extendMetamodel;
 		}
-		if (extendMetamodel) {
-			EPackage rootModelTypeObj = targetModelType.getEMFTypeRoot();
-			try {
-				MultiModelUtils.createModelFileInState(rootModelTypeObj, newModelTypeEndpointExtendedUri);
-			}
-			catch (Exception e) {
-				throw new MMTFException("Error creating extended metamodel file");
-			}
-		}
-
 		ModelEndpointReference newModelTypeEndpointRef;
-		if (isKleisli) {
+		if (isK) {
 			KleisliModelEndpoint newModelTypeEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
 			newModelTypeEndpointRef = super.addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
-			newModelTypeEndpoint.setExtendedUri(newModelTypeEndpointExtendedUri);
-			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			URI uri = URI.createFileURI(MultiModelUtils.isFileOrDirectoryInState(newModelTypeEndpointExtendedUri));
+			KleisliModel kModelType;
 			try {
-				activePage.openEditor(new URIEditorInput(uri), ModelOpenEditorCommand.ECORE_EDITORID);
+				kModelType = getExtendedTarget().kleisliCreateType(newModelTypeEndpoint);
 			}
-			catch (PartInitException e) {
-				MMTFException.print(Type.WARNING, "Error opening extended metamodel file", e);
+			catch (MMTFException e) {
+				newModelTypeEndpoint.deleteTypeAndReference(true);
+				throw new MMTFException("Error creating extended model type");
+			}
+			if (extendMetamodel) {
+				URI kUri = URI.createFileURI(MultiModelUtils.prependStateToUri(kModelType.getUri()));
+				IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				try {
+					activePage.openEditor(new URIEditorInput(kUri), ModelOpenEditorCommand.ECORE_EDITORID);
+				}
+				catch (PartInitException e) {
+					MMTFException.print(Type.WARNING, "Error opening extended metamodel file", e);
+				}
 			}
 		}
 		else {
@@ -311,17 +311,12 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 
 		// keep choice of kleisli model type endpoint, there is no mixing problem like for instances
 		if (oldModelTypeEndpoint instanceof KleisliModelEndpoint) {
-			String newModelTypeEndpointExtendedUri = KleisliUtils.getModelTypeEndpointExtendedUri(targetModelType, (KleisliModelRel) containerModelRelType);
-			((KleisliModelEndpoint) oldModelTypeEndpoint).setExtendedUri(newModelTypeEndpointExtendedUri);
-			if (MultiModelUtils.isFileOrDirectoryInState(newModelTypeEndpointExtendedUri) == null) {
-				EPackage rootModelTypeObj = targetModelType.getEMFTypeRoot();
-				try {
-					MultiModelUtils.createModelFileInState(rootModelTypeObj, newModelTypeEndpointExtendedUri);
-				}
-				catch (Exception e) {
-					oldModelTypeEndpoint.deleteTypeAndReference(true);
-					throw new MMTFException("Error creating extended metamodel file");
-				}
+			try {
+				getExtendedTarget().kleisliCreateType((KleisliModelEndpoint) oldModelTypeEndpoint);
+			}
+			catch (MMTFException e) {
+				oldModelTypeEndpoint.deleteTypeAndReference(true);
+				throw new MMTFException("Error creating extended model type");
 			}
 		}
 	}
@@ -333,7 +328,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	public void deleteTypeAndReference(boolean isFullDelete) throws MMTFException {
 
 		super.deleteTypeAndReference(isFullDelete);
-		MultiModelUtils.deleteFileInState(getExtendedUri());
+		getExtendedTarget().deleteType();
 	}
 
 	/**
@@ -348,7 +343,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 
 		KleisliModelEndpoint newModelEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
 		ModelEndpointReference newModelEndpointRef = super.addInstanceAndReference(newModelEndpoint, targetModel, isBinarySrc, containerModelRel);
-		newModelEndpoint.setExtendedUri(KleisliUtils.getModelEndpointExtendedUri(newModelEndpoint));
+		getExtendedTarget().kleisliCreateInstance(newModelEndpoint);
 
 		return newModelEndpointRef;
 	}
@@ -364,7 +359,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			throw new MMTFException("Can't replace a native model endpoint with a Kleisli one");
 		}
 		super.replaceInstanceAndReference(oldModelEndpoint, targetModel);
-		((KleisliModelEndpoint) oldModelEndpoint).setExtendedUri(KleisliUtils.getModelEndpointExtendedUri((KleisliModelEndpoint) oldModelEndpoint));
+		getExtendedTarget().kleisliCreateInstance((KleisliModelEndpoint) oldModelEndpoint);
 	}
 
 	/**
@@ -374,7 +369,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	public void deleteInstanceAndReference(boolean isFullDelete) throws MMTFException {
 
 		super.deleteInstanceAndReference(isFullDelete);
-		MultiModelUtils.deleteFile(getExtendedUri(), true);
+		getExtendedTarget().deleteInstance();
 	}
 
 } //KleisliModelEndpointImpl

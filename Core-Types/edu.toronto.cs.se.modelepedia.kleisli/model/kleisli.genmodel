@@ -11,7 +11,15 @@
   <genPackages prefix="Kleisli" basePackage="edu.toronto.cs.se.modelepedia" disposableProviderFactory="true"
       childCreationExtenders="true" ecorePackage="kleisli.ecore#/">
     <genClasses ecoreClass="kleisli.ecore#//KleisliModel">
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModel/kleisliCreateType">
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModel/kleisliCreateType/containerModelTypeEndpoint"/>
+      </genOperations>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModel/deleteType"/>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModel/getEMFTypeRoot"/>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModel/kleisliCreateInstance">
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModel/kleisliCreateInstance/containerModelEndpoint"/>
+      </genOperations>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModel/deleteInstance"/>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModel/getEMFRoot"/>
     </genClasses>
     <genClasses ecoreClass="kleisli.ecore#//KleisliModelEndpoint">

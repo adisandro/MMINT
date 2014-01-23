@@ -123,7 +123,7 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 		}
 
 		String modelUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[0];
-		if (!modelUri.equals(getTargetExtendedUri())) { // different extended model
+		if (!modelUri.equals(getExtendedTargetUri())) { // different extended model
 			return null;
 		}
 		// filter unallowed model element types

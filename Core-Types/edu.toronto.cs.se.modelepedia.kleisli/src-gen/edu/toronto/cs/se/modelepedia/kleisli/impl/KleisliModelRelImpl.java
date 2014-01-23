@@ -14,7 +14,9 @@ package edu.toronto.cs.se.modelepedia.kleisli.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
@@ -39,7 +41,6 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
-import edu.toronto.cs.se.modelepedia.kleisli.library.KleisliUtils;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -207,6 +208,14 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	/**
 	 * @generated NOT
 	 */
+	private String getModelRelTypeExtendedUri(KleisliModelRel modelRelType) {
+
+		return modelRelType.getName();
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public ModelRel createSubtype(String newModelRelTypeName, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
@@ -218,7 +227,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			KleisliFactory.eINSTANCE.createKleisliBinaryModelRel() :
 			KleisliFactory.eINSTANCE.createKleisliModelRel();
 		super.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
-		String newModelRelTypeExtendedUri = KleisliUtils.getModelRelTypeExtendedUri(newModelRelType);
+		String newModelRelTypeExtendedUri = getModelRelTypeExtendedUri(newModelRelType);
 		newModelRelType.setExtendedUri(newModelRelTypeExtendedUri);
 		if (MultiModelUtils.isFileOrDirectoryInState(newModelRelTypeExtendedUri) == null) {
 			try {
@@ -244,6 +253,9 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 		ExtendibleElementConstraint newConstraint, origConstraint;
 		ModelElement newModelElemType;
 		for (ModelEndpoint origModelTypeEndpoint : origModelRelType.getModelEndpoints()) {
+			if (!(origModelTypeEndpoint instanceof KleisliModelEndpoint)) {
+				continue;
+			}
 			for (ModelElement origModelElemType : origModelTypeEndpoint.getTarget().getModelElems()) {
 				origConstraint = origModelElemType.getConstraint();
 				if (origConstraint != null) {
@@ -272,6 +284,21 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	/**
 	 * @generated NOT
 	 */
+	private String getModelRelExtendedUri(KleisliModelRel modelRel) {
+
+		String baseModelRelExtendedUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(modelRel, true)[0], modelRel.getMetatype().getName());
+		int iModelRelExtendedUri = -1;
+		do {
+			iModelRelExtendedUri++;
+		}
+		while (MultiModelUtils.isFileOrDirectory(baseModelRelExtendedUri + iModelRelExtendedUri, true) != null);
+
+		return baseModelRelExtendedUri + iModelRelExtendedUri;
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public ModelRel createInstance(String newModelRelUri, boolean isBinary, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
 
@@ -283,7 +310,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			KleisliFactory.eINSTANCE.createKleisliBinaryModelRel() :
 			KleisliFactory.eINSTANCE.createKleisliModelRel();
 		super.addInstance(newModelRel, newModelRelUri, origin, containerMultiModel);
-		String modelRelExtendedUri = KleisliUtils.getModelRelExtendedUri(newModelRel);
+		String modelRelExtendedUri = getModelRelExtendedUri(newModelRel);
 		newModelRel.setExtendedUri(modelRelExtendedUri);
 		try {
 			MultiModelUtils.createDirectory(modelRelExtendedUri, true);
@@ -316,7 +343,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		for (ModelEndpoint modelTypeEndpoint : getModelEndpoints()) {
-			URI uri = URI.createFileURI(MultiModelUtils.isFileOrDirectoryInState(((KleisliModelEndpoint) modelTypeEndpoint).getExtendedUri()));
+			URI uri = URI.createFileURI(MultiModelUtils.isFileOrDirectoryInState(((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTargetUri()));
 			try {
 				activePage.openEditor(new URIEditorInput(uri), ModelOpenEditorCommand.ECORE_EDITORID);
 			}
@@ -340,26 +367,28 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			if (!(modelTypeEndpoint instanceof KleisliModelEndpoint)) {
 				continue;
 			}
+			KleisliModelEndpoint kModelTypeEndpoint = (KleisliModelEndpoint) modelTypeEndpoint;
+			KleisliModelEndpoint kModelEndpoint = (KleisliModelEndpoint) modelEndpoint;
 			try {
-				String modelTypeEndpointExtendedUri = ((KleisliModelEndpoint) modelTypeEndpoint).getExtendedUri();
-				EPackage modelTypeExtendedPackage = (EPackage) MultiModelUtils.getModelFileInState(modelTypeEndpointExtendedUri);
-				EFactory modelTypeExtendedFactory = modelTypeExtendedPackage.getEFactoryInstance();
-				ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), ((ModelRel) modelTypeEndpoint.eContainer()).getModelEndpointRefs());
-				String modelEndpointExtendedUri = ((KleisliModelEndpoint) modelEndpoint).getExtendedUri();
+				EPackage kModelTypePackage = kModelTypeEndpoint.getExtendedTarget().getEMFTypeRoot();
+				EFactory kModelTypeFactory = kModelTypePackage.getEFactoryInstance();
+				ModelEndpointReference kModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(kModelTypeEndpoint.getUri(), ((ModelRel) kModelTypeEndpoint.eContainer()).getModelEndpointRefs());
+				String kModelTypeUri = kModelTypeEndpoint.getExtendedTargetUri();
+				String kModelUri = kModelEndpoint.getExtendedTargetUri();
 				MultiModelUtils.copyTextFileAndReplaceText(
-					MultiModelUtils.prependWorkspaceToUri(modelEndpoint.getTargetUri()),
-					MultiModelUtils.prependWorkspaceToUri(modelEndpointExtendedUri),
-					MultiModelUtils.getLastSegmentFromUri(modelTypeEndpointExtendedUri),
-					modelTypeEndpointExtendedUri
+					MultiModelUtils.prependWorkspaceToUri(kModelEndpoint.getTargetUri()),
+					MultiModelUtils.prependWorkspaceToUri(kModelUri),
+					MultiModelUtils.getLastSegmentFromUri(kModelTypeUri),
+					kModelTypeUri
 				);
-				EObject rootModelObj = MultiModelUtils.getModelFile(modelEndpointExtendedUri, true);
+				EObject kRootModelObj = kModelEndpoint.getExtendedTarget().getEMFRoot();
 				String classLiteral;
 				ExtendibleElementConstraint constraint;
 				// first pass: EClasses
-				Map<EObject, EObject> modelObjReplacements = new HashMap<EObject, EObject>();
-				for (ModelElementReference modelElemTypeRef : modelTypeEndpointRef.getModelElemRefs()) {
-					classLiteral = modelElemTypeRef.getObject().getClassLiteral();
-					constraint = modelElemTypeRef.getObject().getConstraint();
+				Map<EObject, EObject> kModelObjs1 = new HashMap<EObject, EObject>();
+				for (ModelElementReference kModelElemTypeRef : kModelTypeEndpointRef.getModelElemRefs()) {
+					classLiteral = kModelElemTypeRef.getObject().getClassLiteral();
+					constraint = kModelElemTypeRef.getObject().getConstraint();
 					if (
 						classLiteral.contains(MMTF.URI_SEPARATOR) ||
 						constraint == null ||
@@ -367,36 +396,36 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					) {
 						continue;
 					}
-					EClass modelElemTypeClass = (EClass) modelTypeExtendedPackage.getEClassifier(classLiteral);
-					TreeIterator<EObject> modelObjIter = rootModelObj.eAllContents();
+					EClass kModelElemTypeClass = (EClass) kModelTypePackage.getEClassifier(classLiteral);
+					TreeIterator<EObject> modelObjIter = kRootModelObj.eAllContents();
 					while (modelObjIter.hasNext()) {
 						EObject modelObj = modelObjIter.next();
-						for (EClass modelElemTypeClassSuper : modelElemTypeClass.getESuperTypes()) {
-							if (!modelElemTypeClassSuper.getName().equals(modelObj.eClass().getName())) {
+						for (EClass kModelElemTypeClassSuper : kModelElemTypeClass.getESuperTypes()) {
+							if (!kModelElemTypeClassSuper.getName().equals(modelObj.eClass().getName())) {
 								continue;
 							}
 							if (MultiModelConstraintChecker.checkOCLConstraint(modelObj, constraint.getImplementation()) != MAVOTruthValue.TRUE) {
 								continue;
 							}
-							EObject modelObjReplacement = modelTypeExtendedFactory.create(modelElemTypeClass);
-							modelObjReplacements.put(modelObjReplacement, modelObj);
+							EObject kModelObj = kModelTypeFactory.create(kModelElemTypeClass);
+							kModelObjs1.put(kModelObj, modelObj);
 						}
 					}
 				}
-				for (Map.Entry<EObject, EObject> modelObjReplacementEntry : modelObjReplacements.entrySet()) {
-					EObject modelObjReplaced = modelObjReplacementEntry.getValue(), modelObjReplacement = modelObjReplacementEntry.getKey();
-					for (EStructuralFeature replacedFeature : modelObjReplaced.eClass().getEAllStructuralFeatures()) {
-						EStructuralFeature replacementFeature = modelObjReplacement.eClass().getEStructuralFeature(replacedFeature.getName());
-						modelObjReplacement.eSet(replacementFeature, modelObjReplaced.eGet(replacedFeature));
+				for (Map.Entry<EObject, EObject> kModelObjEntry : kModelObjs1.entrySet()) {
+					EObject modelObj = kModelObjEntry.getValue(), kModelObj = kModelObjEntry.getKey();
+					for (EStructuralFeature feature : modelObj.eClass().getEAllStructuralFeatures()) {
+						EStructuralFeature kFeature = kModelObj.eClass().getEStructuralFeature(feature.getName());
+						kModelObj.eSet(kFeature, modelObj.eGet(feature));
 					}
-					EcoreUtil.replace(modelObjReplaced, modelObjReplacement);
+					EcoreUtil.replace(modelObj, kModelObj);
 				}
 				// second pass: EAttributes
 				String[] classLiterals;
-				for (ModelElementReference modelElemTypeRef : modelTypeEndpointRef.getModelElemRefs()) {
-					Map<EObject, EObject> modelObjCopies = new HashMap<EObject, EObject>();
-					classLiteral = modelElemTypeRef.getObject().getClassLiteral();
-					constraint = modelElemTypeRef.getObject().getConstraint();
+				for (ModelElementReference kModelElemTypeRef : kModelTypeEndpointRef.getModelElemRefs()) {
+					Map<EObject, EObject> kModelObjs2 = new HashMap<EObject, EObject>();
+					classLiteral = kModelElemTypeRef.getObject().getClassLiteral();
+					constraint = kModelElemTypeRef.getObject().getConstraint();
 					if (
 						!classLiteral.contains(MMTF.URI_SEPARATOR) ||
 						constraint == null ||
@@ -405,43 +434,43 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 						continue;
 					}
 					classLiterals = classLiteral.split(MMTF.URI_SEPARATOR);
-					TreeIterator<EObject> modelObjIter = rootModelObj.eAllContents();
+					TreeIterator<EObject> modelObjIter = kRootModelObj.eAllContents();
 					while (modelObjIter.hasNext()) {
 						EObject modelObj = modelObjIter.next();
-						if (!modelObj.eClass().getName().equals(classLiterals[0]) && modelObjReplacements.get(modelObj) == null) {
+						if (!modelObj.eClass().getName().equals(classLiterals[0]) && kModelObjs1.get(modelObj) == null) {
 							continue;
 						}
-						if (modelObjReplacements.get(modelObj) == null) {
+						if (kModelObjs1.get(modelObj) == null) {
 							// need to make a copy from extended factory for the ocl derivation to work
-							EObject modelObjCopy = modelTypeExtendedFactory.create((EClass) modelTypeExtendedPackage.getEClassifier(classLiterals[0]));
-							modelObjCopies.put(modelObjCopy, modelObj);
+							EObject kModelObj = kModelTypeFactory.create((EClass) kModelTypePackage.getEClassifier(classLiterals[0]));
+							kModelObjs2.put(kModelObj, modelObj);
 						}
 						else {
-							modelObjCopies.put(modelObj, null);
+							// modelObj was already a kModelObj
+							kModelObjs2.put(modelObj, null);
 						}
 					}
-					for (Map.Entry<EObject, EObject> modelObjCopyEntry : modelObjCopies.entrySet()) {
-						EObject modelObjCopied = modelObjCopyEntry.getValue(), modelObjCopy = modelObjCopyEntry.getKey();
-						if (modelObjCopied != null) {
-							for (EStructuralFeature copiedFeature : modelObjCopied.eClass().getEAllStructuralFeatures()) {
-								EStructuralFeature copyFeature = modelObjCopy.eClass().getEStructuralFeature(copiedFeature.getName());
-								modelObjCopy.eSet(copyFeature, modelObjCopied.eGet(copiedFeature));
+					for (Map.Entry<EObject, EObject> kModelObjEntry : kModelObjs2.entrySet()) {
+						EObject modelObj = kModelObjEntry.getValue(), kModelObj = kModelObjEntry.getKey();
+						if (modelObj != null) {
+							for (EStructuralFeature feature : modelObj.eClass().getEAllStructuralFeatures()) {
+								EStructuralFeature kFeature = kModelObj.eClass().getEStructuralFeature(feature.getName());
+								kModelObj.eSet(kFeature, modelObj.eGet(feature));
 							}
-							EcoreUtil.replace(modelObjCopied, modelObjCopy);
+							EcoreUtil.replace(modelObj, kModelObj);
 						}
-						Object derivedModelObjAttr = MultiModelConstraintChecker.deriveOCLConstraint(modelObjCopy, constraint.getImplementation());
-						EStructuralFeature derivedFeature = modelObjCopy.eClass().getEStructuralFeature(classLiterals[1]);
-						modelObjCopy.eSet(derivedFeature, derivedModelObjAttr);
+						Object kModelObjAttr = MultiModelConstraintChecker.deriveOCLConstraint(kModelObj, constraint.getImplementation());
+						EStructuralFeature kFeature = kModelObj.eClass().getEStructuralFeature(classLiterals[1]);
+						kModelObj.eSet(kFeature, kModelObjAttr);
 					}
 				}
 				// save the derived model
-				MultiModelUtils.createModelFile(rootModelObj, modelEndpointExtendedUri, true);
+				MultiModelUtils.createModelFile(kRootModelObj, kModelUri, true);
 			}
 			catch (Exception e) {
 				MMTFException.print(Type.WARNING, "Error creating extended model file, fallback to no extension", e);
 			}
 		}
-		//TODO MMTF[KLEISLI] KleisliModelElement and KleisliModel could be used to extend getRoot and getPointer, in order to use them here
 	}
 
 	/**
@@ -457,23 +486,15 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 		ResourceSet resourceSet = new ResourceSetImpl();
 		List<Resource> resources = resourceSet.getResources();
 		for (ModelEndpointReference modelTypeEndpointRef : getModelEndpointRefs()) {
-			Model modelType = modelTypeEndpointRef.getObject().getTarget();
-			if (modelTypeEndpointRef.getObject() instanceof KleisliModelEndpoint) {
-				try {
-					resources.add(MultiModelUtils.getModelFileInState(((KleisliModelEndpoint) modelTypeEndpointRef.getObject()).getExtendedUri()).eResource());
-				}
-				catch (Exception e) {
-					MMTFException.print(Type.WARNING, "Error getting extended metamodel file", e);
-					continue;
-				}
+			ModelEndpoint modelTypeEndpoint = modelTypeEndpointRef.getObject();
+			Model modelType = (modelTypeEndpoint instanceof KleisliModelEndpoint) ?
+				((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTarget() :
+				modelTypeEndpoint.getTarget();
+			do {
+				resources.add(modelType.getEMFTypeRoot().eResource());
+				modelType = modelType.getSupertype();
 			}
-			else {
-				do {
-					resources.add(modelType.getEMFTypeRoot().eResource());
-					modelType = modelType.getSupertype();
-				}
-				while (modelType != null && !modelType.isAbstract());
-			}
+			while (modelType != null && !modelType.isAbstract());
 		}
 
 		return resourceSet;
@@ -492,19 +513,11 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 		ResourceSet resourceSet = new ResourceSetImpl();
 		List<Resource> resources = resourceSet.getResources();
 		for (ModelEndpointReference modelEndpointRef : getModelEndpointRefs()) {
-			Model model = modelEndpointRef.getObject().getTarget();
-			if (modelEndpointRef.getObject() instanceof KleisliModelEndpoint) {
-				try {
-					resources.add(MultiModelUtils.getModelFile(((KleisliModelEndpoint) modelEndpointRef.getObject()).getExtendedUri(), true).eResource());
-				}
-				catch (Exception e) {
-					MMTFException.print(Type.WARNING, "Error getting extended model file", e);
-					continue;
-				}
-			}
-			else {
-				resources.add(model.getEMFRoot().eResource());
-			}
+			ModelEndpoint modelEndpoint = modelEndpointRef.getObject();
+			Model model = (modelEndpoint instanceof KleisliModelEndpoint) ?
+				((KleisliModelEndpoint) modelEndpoint).getExtendedTarget() :
+				modelEndpoint.getTarget();
+			resources.add(model.getEMFRoot().eResource());
 		}
 
 		return resourceSet;

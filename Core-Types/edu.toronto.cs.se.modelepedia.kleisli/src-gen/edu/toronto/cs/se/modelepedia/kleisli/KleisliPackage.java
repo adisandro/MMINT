@@ -298,15 +298,6 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MidPackage.MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
 
 	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL___DELETE_TYPE = MidPackage.MODEL___DELETE_TYPE;
-
-	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -325,13 +316,22 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MidPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
-	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * The operation id for the '<em>Kleisli Create Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___DELETE_INSTANCE = MidPackage.MODEL___DELETE_INSTANCE;
+	int KLEISLI_MODEL___KLEISLI_CREATE_TYPE__KLEISLIMODELENDPOINT = MidPackage.MODEL_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL___DELETE_TYPE = MidPackage.MODEL_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
@@ -340,7 +340,25 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___GET_EMF_TYPE_ROOT = MidPackage.MODEL_OPERATION_COUNT + 0;
+	int KLEISLI_MODEL___GET_EMF_TYPE_ROOT = MidPackage.MODEL_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Kleisli Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL___KLEISLI_CREATE_INSTANCE__KLEISLIMODELENDPOINT = MidPackage.MODEL_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL___DELETE_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Get EMF Root</em>' operation.
@@ -349,7 +367,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___GET_EMF_ROOT = MidPackage.MODEL_OPERATION_COUNT + 1;
+	int KLEISLI_MODEL___GET_EMF_ROOT = MidPackage.MODEL_OPERATION_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -358,7 +376,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 2;
+	int KLEISLI_MODEL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelRelImpl <em>Model Rel</em>}' class.
@@ -1638,6 +1656,26 @@ public interface KleisliPackage extends EPackage {
 	EClass getKleisliModel();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#kleisliCreateType(edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint) <em>Kleisli Create Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Kleisli Create Type</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#kleisliCreateType(edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint)
+	 * @generated
+	 */
+	EOperation getKleisliModel__KleisliCreateType__KleisliModelEndpoint();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#deleteType() <em>Delete Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Type</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#deleteType()
+	 * @generated
+	 */
+	EOperation getKleisliModel__DeleteType();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#getEMFTypeRoot() <em>Get EMF Type Root</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1646,6 +1684,26 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getKleisliModel__GetEMFTypeRoot();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#kleisliCreateInstance(edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint) <em>Kleisli Create Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Kleisli Create Instance</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#kleisliCreateInstance(edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint)
+	 * @generated
+	 */
+	EOperation getKleisliModel__KleisliCreateInstance__KleisliModelEndpoint();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#deleteInstance() <em>Delete Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Instance</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#deleteInstance()
+	 * @generated
+	 */
+	EOperation getKleisliModel__DeleteInstance();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#getEMFRoot() <em>Get EMF Root</em>}' operation.
@@ -1965,12 +2023,44 @@ public interface KleisliPackage extends EPackage {
 		EClass KLEISLI_MODEL = eINSTANCE.getKleisliModel();
 
 		/**
+		 * The meta object literal for the '<em><b>Kleisli Create Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation KLEISLI_MODEL___KLEISLI_CREATE_TYPE__KLEISLIMODELENDPOINT = eINSTANCE.getKleisliModel__KleisliCreateType__KleisliModelEndpoint();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation KLEISLI_MODEL___DELETE_TYPE = eINSTANCE.getKleisliModel__DeleteType();
+
+		/**
 		 * The meta object literal for the '<em><b>Get EMF Type Root</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EOperation KLEISLI_MODEL___GET_EMF_TYPE_ROOT = eINSTANCE.getKleisliModel__GetEMFTypeRoot();
+
+		/**
+		 * The meta object literal for the '<em><b>Kleisli Create Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation KLEISLI_MODEL___KLEISLI_CREATE_INSTANCE__KLEISLIMODELENDPOINT = eINSTANCE.getKleisliModel__KleisliCreateInstance__KleisliModelEndpoint();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation KLEISLI_MODEL___DELETE_INSTANCE = eINSTANCE.getKleisliModel__DeleteInstance();
 
 		/**
 		 * The meta object literal for the '<em><b>Get EMF Root</b></em>' operation.

@@ -337,8 +337,8 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *            if the root model type endpoint should be used as supertype.
 	 * @param newModelTypeEndpointName
 	 *            The name of the new model type endpoint.
-	 * @param newModelType
-	 *            The new model type that is the target of the new model type
+	 * @param targetModelType
+	 *            The model type that is the target of the new model type
 	 *            endpoint.
 	 * @param modelRelType
 	 *            The model relationship type that will contain the new model
@@ -348,10 +348,10 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new model type endpoint is already
 	 *             registered in the repository.
 	 */
-	public ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(String newModelTypeEndpointUri, String modelTypeEndpointUri, String newModelTypeEndpointName, Model newModelType, ModelRel modelRelType) throws MMTFException {
+	public ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(String newModelTypeEndpointUri, String modelTypeEndpointUri, String newModelTypeEndpointName, Model targetModelType, ModelRel modelRelType) throws MMTFException {
 
 		ModelEndpoint newModelTypeEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
-		ModelEndpointReference newModelTypeEndpointRef = addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri, newModelTypeEndpointName, newModelType, modelRelType);
+		ModelEndpointReference newModelTypeEndpointRef = addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri, newModelTypeEndpointName, targetModelType, modelRelType);
 
 		return newModelTypeEndpointRef;
 	}

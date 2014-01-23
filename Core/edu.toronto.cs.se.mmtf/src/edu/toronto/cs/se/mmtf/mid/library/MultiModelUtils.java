@@ -101,6 +101,11 @@ public class MultiModelUtils {
 		return absoluteUri;
 	}
 
+	public static String prependStateToUri(String uri) {
+
+		return MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + uri;
+	}
+
 	public static void createTextFile(String fileUri, String text) throws Exception {
 
 		Path filePath = Paths.get(fileUri);
@@ -111,8 +116,7 @@ public class MultiModelUtils {
 
 	public static void createTextFileInState(String text, String relativeFileUri) throws Exception {
 
-		String fileUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeFileUri;
-		createTextFile(fileUri, text);
+		createTextFile(prependStateToUri(relativeFileUri), text);
 	}
 
 	public static void copyTextFileAndReplaceText(String oldFileUri, String newFileUri, String oldText, String newText) throws Exception {
@@ -142,9 +146,7 @@ public class MultiModelUtils {
 
 	public static String isFileOrDirectoryInState(String relativeUri) {
 
-		String fileUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeUri;
-
-		return isFileOrDirectory(fileUri, false);
+		return isFileOrDirectory(prependStateToUri(relativeUri), false);
 	}
 
 	/**
@@ -170,8 +172,7 @@ public class MultiModelUtils {
 
 	public static void createModelFileInState(EObject root, String relativeFileUri) throws Exception {
 
-		String fileUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeFileUri;
-		createModelFile(root, fileUri, false);
+		createModelFile(root, prependStateToUri(relativeFileUri), false);
 	}
 
 	public static EObject getModelFile(String fileUri, boolean isWorkspaceRelative) throws Exception {
@@ -185,9 +186,7 @@ public class MultiModelUtils {
 
 	public static EObject getModelFileInState(String relativeFileUri) throws Exception {
 
-		String fileUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeFileUri;
-
-		return getModelFile(fileUri, false);
+		return getModelFile(prependStateToUri(relativeFileUri), false);
 	}
 
 	public static void deleteModelFile(Model model) throws MMTFException {
@@ -212,8 +211,7 @@ public class MultiModelUtils {
 
 	public static void deleteFileInState(String relativeFileUri) {
 
-		String fileUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeFileUri;
-		deleteFile(fileUri, false);
+		deleteFile(prependStateToUri(relativeFileUri), false);
 	}
 
 	public static void createDirectory(String directoryUri, boolean isWorkspaceRelative) throws Exception {
@@ -227,8 +225,7 @@ public class MultiModelUtils {
 
 	public static void createDirectoryInState(String relativeDirectoryUri) throws Exception {
 
-		String directoryUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeDirectoryUri;
-		createDirectory(directoryUri, false);
+		createDirectory(prependStateToUri(relativeDirectoryUri), false);
 	}
 
 	public static void deleteDirectory(String directoryUri, boolean isWorkspaceRelative) {
@@ -263,8 +260,7 @@ public class MultiModelUtils {
 
 	public static void deleteDirectoryInState(String relativeDirectoryUri) {
 
-		String directoryUri = MMTFActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + relativeDirectoryUri;
-		deleteDirectory(directoryUri, false);
+		deleteDirectory(prependStateToUri(relativeDirectoryUri), false);
 	}
 
 }

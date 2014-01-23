@@ -35,12 +35,44 @@ import org.eclipse.emf.ecore.EPackage;
 public interface KleisliModel extends Model {
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" containerModelTypeEndpointRequired="true"
+	 * @generated
+	 */
+	KleisliModel kleisliCreateType(KleisliModelEndpoint containerModelTypeEndpoint) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	void deleteType() throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
 	EPackage getEMFTypeRoot() throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" containerModelEndpointRequired="true"
+	 * @generated
+	 */
+	KleisliModel kleisliCreateInstance(KleisliModelEndpoint containerModelEndpoint) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	void deleteInstance() throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc -->

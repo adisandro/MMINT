@@ -11,8 +11,17 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Kleisli version, represents a hidden extended model. {@inheritDoc}"/>
     </eAnnotations>
+    <eOperations name="kleisliCreateType" lowerBound="1" eType="#//KleisliModel" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
+      <eParameters name="containerModelTypeEndpoint" lowerBound="1" eType="#//KleisliModelEndpoint"/>
+    </eOperations>
+    <eOperations name="deleteType" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
     <eOperations name="getEMFTypeRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
+    <eOperations name="kleisliCreateInstance" lowerBound="1" eType="#//KleisliModel"
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException">
+      <eParameters name="containerModelEndpoint" lowerBound="1" eType="#//KleisliModelEndpoint"/>
+    </eOperations>
+    <eOperations name="deleteInstance" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
     <eOperations name="getEMFRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
   </eClassifiers>
@@ -73,7 +82,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
         volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="extendedTarget.extendedUri"/>
+        <details key="derivation" value="extendedTarget.uri"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The uri of the Kleisli extended model target (types: state-relative; instances: workspace-relative)."/>
