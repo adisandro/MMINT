@@ -206,6 +206,11 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	}
 
 	/**
+	 * Gets the uri of a Kleisli model relationship type extension.
+	 * 
+	 * @param modelRelType
+	 *            The Kleisli model relationship type.
+	 * @return The uri of the Kleisli model relationship type extension.
 	 * @generated NOT
 	 */
 	private String getModelRelTypeExtendedUri(KleisliModelRel modelRelType) {
@@ -282,6 +287,11 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	}
 
 	/**
+	 * Gets the uri of a Kleisli model relationship instance extension.
+	 * 
+	 * @param modelRel
+	 *            The Kleisli model relationship.
+	 * @return The uri of the Kleisli model relationship extension.
 	 * @generated NOT
 	 */
 	private String getModelRelExtendedUri(KleisliModelRel modelRel) {

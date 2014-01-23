@@ -90,9 +90,17 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 		return super.eInvoke(operationID, arguments);
 	}
 
-	//TODO[KLEISLI] documentazione di tutte le funzioni nuove
-	//TODO[KLEISLI] togliere KleisliUtils
 	/**
+	 * Gets the uri of a Kleisli model type extension.
+	 * 
+	 * @param modelRelType
+	 *            The Kleisli model relationship.
+	 * @param modelType
+	 *            The model type to be extended.
+	 * @param modelTypeEndpointName
+	 *            The name of the Kleisli model type endpoint whose target is to
+	 *            be extended.
+	 * @return The uri of the Kleisli model type extension.
 	 * @generated NOT
 	 */
 	public static String getModelTypeExtendedUri(KleisliModelRel modelRelType, Model modelType, String modelTypeEndpointName) {
@@ -106,6 +114,12 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 	}
 
 	/**
+	 * Gets the uri of a Kleisli model type extension.
+	 * 
+	 * @param modelTypeEndpoint
+	 *            The Kleisli model type endpoint whose target is to be
+	 *            extended.
+	 * @return The uri of the Kleisli model type extension.
 	 * @generated NOT
 	 */
 	private String getModelTypeExtendedUri(KleisliModelEndpoint modelTypeEndpoint) {
@@ -187,6 +201,11 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 	}
 
 	/**
+	 * Gets the uri of a Kleisli model instance extension.
+	 * 
+	 * @param modelEndpoint
+	 *            The Kleisli model endpoint whose target is to be extended.
+	 * @return The uri of the Kleisli model extension.
 	 * @generated NOT
 	 */
 	private String getModelExtendedUri(KleisliModelEndpoint modelEndpoint) {

@@ -34,15 +34,25 @@ import org.eclipse.emf.ecore.EPackage;
  */
 public interface KleisliModel extends Model {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" containerModelTypeEndpointRequired="true"
+	 * <!-- begin-user-doc --> Creates a Kleisli model type.
+	 * 
+	 * @param containerModelTypeEndpoint
+	 *            The Kleisli model type endpoint that will contain the new
+	 *            Kleisli model type.
+	 * @return The created Kleisli model type.
+	 * @throws MMTFException
+	 *             If this is a model instance, or if the extended metamodel
+	 *             can't be created. <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        containerModelTypeEndpointRequired="true"
 	 * @generated
 	 */
 	KleisliModel kleisliCreateType(KleisliModelEndpoint containerModelTypeEndpoint) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
@@ -59,15 +69,24 @@ public interface KleisliModel extends Model {
 	EPackage getEMFTypeRoot() throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" containerModelEndpointRequired="true"
+	 * <!-- begin-user-doc --> Creates a Kleisli model instance.
+	 * 
+	 * @param containerModelEndpoint
+	 *            The Kleisli model endpoint that will contain the new Kleisli
+	 *            model.
+	 * @return The created Kleisli model.
+	 * @throws MMTFException
+	 *             If this is a model instance. <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        containerModelEndpointRequired="true"
 	 * @generated
 	 */
 	KleisliModel kleisliCreateInstance(KleisliModelEndpoint containerModelEndpoint) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
