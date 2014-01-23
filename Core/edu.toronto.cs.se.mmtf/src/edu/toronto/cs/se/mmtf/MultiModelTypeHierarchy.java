@@ -806,10 +806,11 @@ nextOperatorType:
 	public static ModelEndpoint getOverriddenModelTypeEndpoint(ModelRel modelRelType, Model targetModelType) {
 
 		//TODO MMTF[MODELENDPOINT] very dumb first approach to the override problem
+		MultiModel typeMultiModel = MultiModelRegistry.getMultiModel(modelRelType);
 		do {
 			modelRelType = (ModelRel) modelRelType.getSupertype();
 			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
-				if (MultiModelTypeHierarchy.isSubtypeOf(targetModelType.getUri(), modelTypeEndpoint.getTargetUri())) {
+				if (MultiModelTypeHierarchy.isSubtypeOf(targetModelType.getUri(), modelTypeEndpoint.getTargetUri(), typeMultiModel)) {
 					//TODO MMTF[MODELENDPOINT] ask to override or not
 					return modelTypeEndpoint;
 				}
@@ -817,17 +818,18 @@ nextOperatorType:
 		}
 		while (!isRootType(modelRelType));
 
-		return getRootModelTypeEndpoint();
+		return MultiModelRegistry.getExtendibleElement(MMTF.ROOT_MODELENDPOINT_URI, typeMultiModel);
 	}
 
 	public static ModelElementEndpoint getOverriddenModelElementTypeEndpoint(LinkReference linkTypeRef, ModelElementReference targetModelElemTypeRef) {
 
 		//TODO MMTF[MODELENDPOINT] very dumb first approach to the override problem
+		MultiModel typeMultiModel = MultiModelRegistry.getMultiModel(linkTypeRef);
 		Link linkType = linkTypeRef.getObject();
 		do {
 			linkType = linkType.getSupertype();
 			for (ModelElementEndpoint modelElemTypeEndpoint : linkType.getModelElemEndpoints()) {
-				if (MultiModelTypeHierarchy.isSubtypeOf(targetModelElemTypeRef.getUri(), modelElemTypeEndpoint.getTargetUri())) {
+				if (MultiModelTypeHierarchy.isSubtypeOf(targetModelElemTypeRef.getUri(), modelElemTypeEndpoint.getTargetUri(), typeMultiModel)) {
 					//TODO MMTF[MODELENDPOINT] ask to override or not
 					return modelElemTypeEndpoint;
 				}
@@ -835,7 +837,7 @@ nextOperatorType:
 		}
 		while (!isRootType(linkType));
 
-		return getRootModelElementTypeEndpoint();
+		return MultiModelRegistry.getExtendibleElement(MMTF.ROOT_MODELELEMENDPOINT_URI, typeMultiModel);
 	}
 
 }
