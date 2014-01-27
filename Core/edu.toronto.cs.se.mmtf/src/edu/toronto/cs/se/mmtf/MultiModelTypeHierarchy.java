@@ -144,11 +144,13 @@ public class MultiModelTypeHierarchy {
 		@Override
 		public int compare(ExtendibleElement type1, ExtendibleElement type2) {
 
+			String uri1 = type1.getUri();
 			int supertypes1 = 0;
 			while (type1.getSupertype() != null) {
 				supertypes1++;
 				type1 = type1.getSupertype();
 			}
+			String uri2 = type2.getUri();
 			int supertypes2 = 0;
 			while (type2.getSupertype() != null) {
 				supertypes2++;
@@ -157,7 +159,7 @@ public class MultiModelTypeHierarchy {
 
 			int relativeOrder = supertypes1 - supertypes2;
 			if (relativeOrder == 0) {
-				relativeOrder = type1.getUri().compareTo(type2.getUri());
+				relativeOrder = uri1.compareTo(uri2);
 			}
 
 			return relativeOrder;
@@ -180,11 +182,13 @@ public class MultiModelTypeHierarchy {
 		@Override
 		public int compare(ExtendibleElementReference typeRef1, ExtendibleElementReference typeRef2) {
 
+			String uri1 = typeRef1.getUri();
 			int supertypes1 = 0;
 			while (typeRef1.getSupertypeRef() != null) {
 				supertypes1++;
 				typeRef1 = typeRef1.getSupertypeRef();
 			}
+			String uri2 = typeRef2.getUri();
 			int supertypes2 = 0;
 			while (typeRef2.getSupertypeRef() != null) {
 				supertypes2++;
@@ -194,7 +198,7 @@ public class MultiModelTypeHierarchy {
 
 			int relativeOrder = supertypes1 - supertypes2;
 			if (relativeOrder == 0) {
-				relativeOrder = typeRef1.getUri().compareTo(typeRef2.getUri());
+				relativeOrder = uri1.compareTo(uri2);
 			}
 
 			return relativeOrder;

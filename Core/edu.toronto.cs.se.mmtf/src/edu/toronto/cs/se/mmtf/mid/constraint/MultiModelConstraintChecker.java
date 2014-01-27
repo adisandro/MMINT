@@ -275,7 +275,6 @@ public class MultiModelConstraintChecker {
 				modelElemTypeEndpointUris.add(modelElemTypeEndpoint.getUri());
 			}
 		}
-		//TODO MMTF: need to store bundle names to properly use their class loaders
 
 		return modelElemTypeEndpointUris;
 	}

@@ -202,7 +202,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 * @param newModelType
 	 *            The new model type that is the target of the new model type
 	 *            endpoint.
-	 * @param modelRelType
+	 * @param containerModelRelType
 	 *            The model relationship type that will contain the new model
 	 *            type endpoint.
 	 * @return The created reference to the new model type endpoint.
@@ -210,14 +210,15 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new model type endpoint is already
 	 *             registered in the repository.
 	 */
-	protected ModelEndpointReference addHeavyModelTypeEndpointAndModelTypeEndpointReference(ModelEndpoint newModelTypeEndpoint, String newModelTypeEndpointUri, String modelTypeEndpointUri, String newModelTypeEndpointName, Model newModelType, ModelRel modelRelType) throws MMTFException {
+	protected ModelEndpointReference addHeavyModelTypeEndpointAndModelTypeEndpointReference(ModelEndpoint newModelTypeEndpoint, String newModelTypeEndpointUri, String modelTypeEndpointUri, String newModelTypeEndpointName, Model newModelType, ModelRel containerModelRelType) throws MMTFException {
 
 		ModelEndpoint modelTypeEndpoint = getSupertype(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri);
 		addHeavyType(newModelTypeEndpoint, modelTypeEndpoint, newModelTypeEndpointUri, newModelTypeEndpointName);
-		addModelTypeEndpoint(newModelTypeEndpoint, newModelType, false, modelRelType);
-		//TODO MMTF: review when functions to detect overriding endpoints are ready
-		ModelEndpointReference modelTypeEndpointRef = null;
-		ModelEndpointReference newModelTypeEndpointRef = newModelTypeEndpoint.createTypeReference(modelTypeEndpointRef, true, false, modelRelType);
+		addModelTypeEndpoint(newModelTypeEndpoint, newModelType, false, containerModelRelType);
+		ModelEndpointReference modelTypeEndpointRef = (modelTypeEndpoint == null) ? // may be root
+			null :
+			MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), containerModelRelType.getModelEndpointRefs());
+		ModelEndpointReference newModelTypeEndpointRef = newModelTypeEndpoint.createTypeReference(modelTypeEndpointRef, true, false, containerModelRelType);
 
 		return newModelTypeEndpointRef;
 	}
@@ -406,7 +407,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 * @param newModelElemTypeRef
 	 *            The new reference to the new model element type that is the
 	 *            target of the new model element type endpoint.
-	 * @param linkTypeRef
+	 * @param containerLinkTypeRef
 	 *            The reference to the link type that will contain the new model
 	 *            element type endpoint.
 	 * @return The created reference to the new model element type endpoint.
@@ -414,23 +415,28 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new model element type endpoint is already
 	 *             registered in the repository.
 	 */
-	public static ModelElementEndpointReference createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(String newModelElemTypeEndpointUri, String modelElemTypeEndpointUri, String newModelElemTypeEndpointName, ModelElementReference newModelElemTypeRef, LinkReference linkTypeRef) throws MMTFException {
+	public static ModelElementEndpointReference createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(String newModelElemTypeEndpointUri, String modelElemTypeEndpointUri, String newModelElemTypeEndpointName, ModelElementReference newModelElemTypeRef, LinkReference containerLinkTypeRef) throws MMTFException {
 
-		Link linkType = linkTypeRef.getObject();
+		Link containerLinkType = containerLinkTypeRef.getObject();
 		ModelElementEndpoint newModelElemTypeEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
 		newModelElemTypeEndpoint.setTarget(newModelElemTypeRef.getObject()); // needed to get the right root uri
 		ModelElementEndpoint modelElemTypeEndpoint = getSupertype(newModelElemTypeEndpoint, newModelElemTypeEndpointUri, modelElemTypeEndpointUri);
 		addHeavyType(newModelElemTypeEndpoint, modelElemTypeEndpoint, newModelElemTypeEndpointUri, newModelElemTypeEndpointName);
-		addModelElementTypeEndpoint(newModelElemTypeEndpoint, newModelElemTypeRef.getObject(), false, linkType);
-		//TODO MMTF: review when functions to detect overriding endpoints are ready
-		ModelElementEndpointReference modelTypeEndpointRef = null;
-		ModelElementEndpointReference newModelElemTypeEndpointRef = newModelElemTypeEndpoint.createTypeReference(modelTypeEndpointRef, newModelElemTypeRef, true, false, linkTypeRef);
-		addModelElementTypeEndpointReference(newModelElemTypeEndpointRef, linkType);
+		addModelElementTypeEndpoint(newModelElemTypeEndpoint, newModelElemTypeRef.getObject(), false, containerLinkType);
+		ModelElementEndpointReference modelElemTypeEndpointRef = null;
+		if (modelElemTypeEndpoint != null) { // may be root
+			LinkReference newLinkTypeRefSuper = MultiModelTypeHierarchy.getReference(((Link) modelElemTypeEndpoint.eContainer()).getUri(), ((ModelRel) containerLinkTypeRef.eContainer()).getLinkRefs());
+			if (newLinkTypeRefSuper != null) {
+				modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), newLinkTypeRefSuper.getModelElemEndpointRefs());
+			}
+		}
+		ModelElementEndpointReference newModelElemTypeEndpointRef = newModelElemTypeEndpoint.createTypeReference(modelElemTypeEndpointRef, newModelElemTypeRef, true, false, containerLinkTypeRef);
+		addModelElementTypeEndpointReference(newModelElemTypeEndpointRef, containerLinkType);
 		// copy from supertype
-		Link linkTypeSuper = linkType.getSupertype();
+		Link linkTypeSuper = containerLinkType.getSupertype();
 		if (linkTypeSuper != null && !MultiModelTypeHierarchy.isRootType(linkTypeSuper)) {
 			for (ModelElementEndpointReference modelElemTypeEndpointRefSuper : linkTypeSuper.getModelElemEndpointRefs()) {
-				addModelElementTypeEndpointReference(modelElemTypeEndpointRefSuper, linkType);
+				addModelElementTypeEndpointReference(modelElemTypeEndpointRefSuper, containerLinkType);
 			}
 		}
 

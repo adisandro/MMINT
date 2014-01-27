@@ -483,7 +483,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
 		ModelRel newModelRelType = createSubtype(
 			origModelRelType.getName(),
-			(origModelRelType.eClass() instanceof BinaryModelRel),
+			(origModelRelType instanceof BinaryModelRel),
 			origModelRelType.getConstraint().getLanguage().getLiteral(),
 			origModelRelType.getConstraint().getImplementation()
 		);
@@ -494,12 +494,8 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		while (origModelTypeEndpointIter.hasNext()) {
 			ModelEndpoint origModelTypeEndpoint = origModelTypeEndpointIter.next();
 			Model newModelType = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getTargetUri(), multiModel);
-			ModelEndpoint modelTypeEndpoint = null;
-			ModelEndpointReference modelTypeEndpointRef = null;
-			if (origModelTypeEndpoint.getSupertype() != null) { //TODO MMTF: remove all such checks from endpoints when they have root supertype
-				modelTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getSupertype().getUri(), multiModel);
-				modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(origModelTypeEndpoint.getSupertype().getUri(), newModelRelType.getModelEndpointRefs());
-			}
+			ModelEndpoint modelTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getSupertype().getUri(), multiModel);
+			ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), newModelRelType.getModelEndpointRefs());
 			modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, origModelTypeEndpoint.getName(), newModelType, false, newModelRelType);
 		}
 		// model element types
@@ -535,13 +531,11 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				ModelElementReference origModelElemTypeRef = origModelElemTypeEndpointRef.getModelElemRef();
 				ModelEndpointReference newModelTypeEndpointRef = MultiModelTypeHierarchy.getReference((ModelEndpointReference) origModelElemTypeRef.eContainer(), newModelRelType.getModelEndpointRefs());
 				ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(origModelElemTypeRef, newModelTypeEndpointRef.getModelElemRefs());
-				ModelElementEndpoint modelElemTypeEndpoint = null;
-				ModelElementEndpointReference modelElemTypeEndpointRef = null;
-				if (origModelElemTypeEndpointRef.getObject().getSupertype() != null) {
-					modelElemTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelElemTypeEndpointRef.getObject().getSupertype().getUri(), multiModel);
-					LinkReference newLinkTypeRefSuper = MultiModelTypeHierarchy.getReference((LinkReference) origModelElemTypeEndpointRef.getObject().getSupertype().eContainer(), newModelRelType.getLinkRefs());
-					modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(origModelElemTypeEndpointRef.getSupertypeRef(), newLinkTypeRefSuper.getModelElemEndpointRefs());
-				}
+				ModelElementEndpoint modelElemTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelElemTypeEndpointRef.getObject().getSupertype().getUri(), multiModel);
+				LinkReference newLinkTypeRefSuper = MultiModelTypeHierarchy.getReference(((Link) modelElemTypeEndpoint.eContainer()).getUri(), newModelRelType.getLinkRefs());
+				ModelElementEndpointReference modelElemTypeEndpointRef = (newLinkTypeRefSuper == null) ?
+					null :
+					MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), newLinkTypeRefSuper.getModelElemEndpointRefs());
 				modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, origModelElemTypeEndpointRef.getObject().getName(), newModelElemTypeRef, false, newLinkTypeRef);
 			}
 		}
