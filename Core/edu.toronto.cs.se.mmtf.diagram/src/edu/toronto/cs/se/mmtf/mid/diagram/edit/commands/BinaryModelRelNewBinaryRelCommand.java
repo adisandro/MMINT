@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -121,20 +122,21 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 	protected BinaryModelRel doExecuteTypesLevel() throws MMTFException {
 
 		MultiModel multiModel = getContainer();
-		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToExtend(multiModel, getSource(), getTarget());
-		String newModelRelTypeName = MidDiagramUtils.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name", null);
+		Model srcModelType = getSource(), tgtModelType = getTarget();
+		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToExtend(multiModel, srcModelType, tgtModelType);
+		String newModelRelTypeName = MidDiagramUtils.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name", srcModelType.getName() + "2" + tgtModelType.getName());
 		String[] constraint = MidDiagramUtils.getConstraintInput("Create new light binary model relationship type", null);
 		BinaryModelRel newModelRelType = (BinaryModelRel) modelRelType.createSubtype(newModelRelTypeName, true, constraint[0], constraint[1]);
 		MMTF.createTypeHierarchy(multiModel);
 
-		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role", null);
-		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(newModelRelType, getSource());
+		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role", srcModelType.getName());
+		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(newModelRelType, srcModelType);
 		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), newModelRelType.getModelEndpointRefs());
-		modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, getSource(), false, newModelRelType);
-		newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role", null);
-		modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(newModelRelType, getTarget());
+		modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, srcModelType, false, newModelRelType);
+		newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role", tgtModelType.getName());
+		modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(newModelRelType, tgtModelType);
 		modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), newModelRelType.getModelEndpointRefs());
-		modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, getTarget(), false, newModelRelType);
+		modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, tgtModelType, false, newModelRelType);
 
 		return newModelRelType;
 	}

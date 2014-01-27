@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.library.RelationshipDiagramUtils;
 
@@ -123,19 +124,20 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 	protected BinaryLinkReference doExecuteTypesLevel() throws MMTFException {
 
 		ModelRel modelRelType = getContainer();
-		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToExtend(modelRelType, getSource(), getTarget());
-		String newLinkTypeName = RelationshipDiagramUtils.getStringInput("Create new light link type", "Insert new link type name", null);
+		ModelElementReference srcModelElemTypeRef = getSource(), tgtModelElemTypeRef = getTarget();
+		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToExtend(modelRelType, srcModelElemTypeRef, tgtModelElemTypeRef);
+		String newLinkTypeName = RelationshipDiagramUtils.getStringInput("Create new light link type", "Insert new link type name", srcModelElemTypeRef.getObject().getName() + "2" + tgtModelElemTypeRef.getObject().getName());
 		BinaryLinkReference newLinkTypeRef = (BinaryLinkReference) linkTypeRef.getObject().createSubtypeAndReference(linkTypeRef, newLinkTypeName, true, modelRelType);
 		MMTF.createTypeHierarchy(MultiModelRegistry.getMultiModel(modelRelType));
 
-		String newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new source model element type endpoint", "Insert new source model element type endpoint role", null);
-		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(newLinkTypeRef, getSource());
+		String newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new source model element type endpoint", "Insert new source model element type endpoint role", srcModelElemTypeRef.getObject().getName());
+		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(newLinkTypeRef, srcModelElemTypeRef);
 		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), newLinkTypeRef.getModelElemEndpointRefs());
-		modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, newModelElemTypeEndpointName, getSource(), false, newLinkTypeRef);
-		newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new target model element type endpoint", "Insert new target model element type endpoint role", null);
-		modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(newLinkTypeRef, getTarget());
+		modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, newModelElemTypeEndpointName, srcModelElemTypeRef, false, newLinkTypeRef);
+		newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new target model element type endpoint", "Insert new target model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
+		modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(newLinkTypeRef, tgtModelElemTypeRef);
 		modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), newLinkTypeRef.getModelElemEndpointRefs());
-		modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, newModelElemTypeEndpointName, getTarget(), false, newLinkTypeRef);
+		modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, newModelElemTypeEndpointName, tgtModelElemTypeRef, false, newLinkTypeRef);
 
 		return newLinkTypeRef;
 	}

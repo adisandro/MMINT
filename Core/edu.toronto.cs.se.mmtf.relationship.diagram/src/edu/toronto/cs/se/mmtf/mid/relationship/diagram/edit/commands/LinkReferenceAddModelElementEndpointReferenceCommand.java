@@ -26,6 +26,7 @@ import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.library.RelationshipDiagramUtils;
 
 /**
@@ -85,10 +86,11 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 
 	protected ModelElementEndpointReference doExecuteTypesLevel() throws MMTFException {
 
-		String newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new light model element type endpoint", "Insert new model element type endpoint role", null);
-		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(getSource(), getTarget());
+		ModelElementReference tgtModelElemTypeRef = getTarget();
+		String newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new light model element type endpoint", "Insert new model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
+		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(getSource(), tgtModelElemTypeRef);
 		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), getSource().getModelElemEndpointRefs());
-		ModelElementEndpointReference newModelElemTypeEndpointRef = modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, newModelElemTypeEndpointName, getTarget(), false, getSource());
+		ModelElementEndpointReference newModelElemTypeEndpointRef = modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, newModelElemTypeEndpointName, tgtModelElemTypeRef, false, getSource());
 		// no need to init type hierarchy, no need for undo/redo
 
 		return newModelElemTypeEndpointRef;
