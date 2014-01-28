@@ -126,7 +126,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 		ModelRel modelRelType = getContainer();
 		ModelElementReference srcModelElemTypeRef = getSource(), tgtModelElemTypeRef = getTarget();
 		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToExtend(modelRelType, srcModelElemTypeRef, tgtModelElemTypeRef);
-		String newLinkTypeName = RelationshipDiagramUtils.getStringInput("Create new light link type", "Insert new link type name", srcModelElemTypeRef.getObject().getName() + "2" + tgtModelElemTypeRef.getObject().getName());
+		String newLinkTypeName = RelationshipDiagramUtils.getStringInput("Create new light link type", "Insert new link type name", srcModelElemTypeRef.getObject().getName() + MMTF.BINARY_MODELREL_LINK_SEPARATOR + tgtModelElemTypeRef.getObject().getName());
 		BinaryLinkReference newLinkTypeRef = (BinaryLinkReference) linkTypeRef.getObject().createSubtypeAndReference(linkTypeRef, newLinkTypeName, true, modelRelType);
 		MMTF.createTypeHierarchy(MultiModelRegistry.getMultiModel(modelRelType));
 

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -39,7 +39,6 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 public class ChangeImpact extends OperatorExecutableImpl {
 
@@ -189,7 +188,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 		ModelRel newImpactModelRel = MultiModelInstanceFactory.createModelRelAndModelEndpointsAndModelEndpointReferences(
 			null,
 			null,
-			RelationshipPackage.eINSTANCE.getBinaryModelRel(),
+			true,
 			ModelOrigin.CREATED,
 			diffRel,
 			impactedModel
@@ -210,8 +209,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 			// create impact link, add diff model element endpoint to it
 			LinkReference newImpactLinkRef = MultiModelInstanceFactory.createLinkAndLinkReferenceAndModelElementEndpointsAndModelElementEndpointReferences(
 				null,
-				RelationshipPackage.eINSTANCE.getLink(),
-				RelationshipPackage.eINSTANCE.getLinkReference(),
+				false,
 				newDiffModelElemRef
 			);
 			newImpactLinkRef.getObject().setName(LINKREF_NAME);

@@ -20,8 +20,10 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -30,8 +32,10 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmtf.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
@@ -53,7 +57,7 @@ public class ModelRelTypeTransformation extends OperatorExecutableImpl {
 	}
 
 	@SuppressWarnings("unchecked")
-	private EObject transform(EObject srcModelObj, Map<EObject, ModelElementReference> srcModelObjs, Map<EObject, EObject> tgtModelObjs, ModelRel traceModelRel) throws MMTFException {
+	private EObject transformModelObj(EObject srcModelObj, Map<EObject, ModelElementReference> srcModelObjs, Map<EObject, EObject> tgtModelObjs, ModelRel traceModelRel) throws MMTFException {
 
 		ModelElementReference tgtModelElemTypeRef = srcModelObjs.get(srcModelObj);
 		EClass tgtModelTypeObj = (EClass) tgtModelElemTypeRef.getObject().getEMFTypeObject();
@@ -70,7 +74,7 @@ public class ModelRelTypeTransformation extends OperatorExecutableImpl {
 			EObject tgtContainerModelObj = tgtModelObjs.get(srcContainerModelObj);
 			if (tgtContainerModelObj == null) {
 				// recursion
-				tgtContainerModelObj = transform(srcContainerModelObj, srcModelObjs, tgtModelObjs, traceModelRel);
+				tgtContainerModelObj = transformModelObj(srcContainerModelObj, srcModelObjs, tgtModelObjs, traceModelRel);
 			}
 			EReference containmentReference = null;
 			for (EReference reference : tgtContainerModelObj.eClass().getEAllContainments()) {
@@ -82,7 +86,6 @@ public class ModelRelTypeTransformation extends OperatorExecutableImpl {
 			Object containment = tgtContainerModelObj.eGet(containmentReference);
 			if (containment instanceof EList) {
 				((EList<EObject>) containment).add(tgtModelObj);
-				tgtContainerModelObj.eSet(containmentReference, containment);
 			}
 			else {
 				tgtContainerModelObj.eSet(containmentReference, tgtModelObj);
@@ -91,6 +94,17 @@ public class ModelRelTypeTransformation extends OperatorExecutableImpl {
 		tgtModelObjs.put(srcModelObj, tgtModelObj);
 
 		return tgtModelObj;
+	}
+
+	private EObject transformModelObjFeature(EObject srcModelObj, String srcFeatureClassLiteral, EObject tgtModelObj, String tgtFeatureClassLiteral, Map<PrimitiveEObjectWrapper, PrimitiveEObjectWrapper> tempTgtModelObjs) {
+
+		EStructuralFeature srcFeature = srcModelObj.eClass().getEStructuralFeature(srcFeatureClassLiteral), tgtFeature = tgtModelObj.eClass().getEStructuralFeature(tgtFeatureClassLiteral);
+		Object value = srcModelObj.eGet(srcFeature);
+		tgtModelObj.eSet(tgtFeature, value);
+		PrimitiveEObjectWrapper tgtModelObjValue = new PrimitiveEObjectWrapper(tgtModelObj, tgtFeature, value);
+		tempTgtModelObjs.put(new PrimitiveEObjectWrapper(srcModelObj, srcFeature, value), tgtModelObjValue);
+
+		return tgtModelObjValue;
 	}
 
 	private void transform(ModelRel traceModelRelType, ModelRel traceModelRel, Model srcModel, int srcIndex, int tgtIndex) throws Exception {
@@ -110,24 +124,46 @@ public class ModelRelTypeTransformation extends OperatorExecutableImpl {
 			srcModelObjs.put(srcModelObj, tgtModelElemTypeRef);
 		}
 		// second pass: transform
+		//TODO MMTF[TRANSFORMATION] order of elements in lists should be preserved
 		Map<EObject, EObject> tgtModelObjs = new HashMap<EObject, EObject>();
 		for (EObject srcModelObj : srcModelObjs.keySet()) {
 			if (tgtModelObjs.get(srcModelObj) != null) { // already transformed
 				continue;
 			}
-			transform(srcModelObj, srcModelObjs, tgtModelObjs, traceModelRel);
+			transformModelObj(srcModelObj, srcModelObjs, tgtModelObjs, traceModelRel);
 		}
-		//TODO[TRANSFORMATION] review from here
+		// third pass: attributes
+		Map<PrimitiveEObjectWrapper, PrimitiveEObjectWrapper> tempTgtModelObjs = new HashMap<PrimitiveEObjectWrapper, PrimitiveEObjectWrapper>();
+		for (ModelElementReference srcModelElemTypeRef : srcModelTypeEndpointRef.getModelElemRefs()) {
+			String srcClassLiteral = srcModelElemTypeRef.getObject().getClassLiteral();
+			if (!srcClassLiteral.contains(MMTF.URI_SEPARATOR)) {
+				continue;
+			}
+			String[] srcClassLiterals = srcClassLiteral.split(MMTF.URI_SEPARATOR);
+			ModelElementReference tgtModelElemTypeRef = ((LinkReference) srcModelElemTypeRef.getModelElemEndpointRefs().get(0).eContainer()).getModelElemEndpointRefs().get(tgtIndex).getModelElemRef();
+			String[] tgtClassLiterals = tgtModelElemTypeRef.getObject().getClassLiteral().split(MMTF.URI_SEPARATOR);
+			for (Map.Entry<EObject, EObject> tgtModelObjsEntry : tgtModelObjs.entrySet()) {
+				EObject srcModelObj = tgtModelObjsEntry.getKey();
+				if (!srcModelObj.eClass().getName().equals(srcClassLiterals[0])) {
+					continue;
+				}
+				transformModelObjFeature(srcModelObj, srcClassLiterals[1], tgtModelObjsEntry.getValue(), tgtClassLiterals[1], tempTgtModelObjs);
+			}
+			//TODO MMTF[TRANSFORMATION] do non-containment references
+		}
+		for (Map.Entry<PrimitiveEObjectWrapper, PrimitiveEObjectWrapper> tempTgtModelObjsEntry : tempTgtModelObjs.entrySet()) {
+			tgtModelObjs.put(tempTgtModelObjsEntry.getKey(), tempTgtModelObjsEntry.getValue());
+		}
+		// fourth pass: create model elements and links
 		MultiModelUtils.createModelFile(tgtRootModelObj, tgtModelUri, true);
-		// third pass: create model elements and links
-		for (Map.Entry<EObject, EObject> x : tgtModelObjs.entrySet()) {
-			ModelElementReference srcModelElemRef = ModelElementImpl.createInstanceAndReference(x.getKey(), null, traceModelRel.getModelEndpointRefs().get(0));
-			ModelElementReference tgtModelElemRef = ModelElementImpl.createInstanceAndReference(x.getValue(), null, traceModelRel.getModelEndpointRefs().get(1));
+		for (Map.Entry<EObject, EObject> tgtModelObjEntry : tgtModelObjs.entrySet()) {
+			ModelElementReference srcModelElemRef = ModelElementImpl.createInstanceAndReference(tgtModelObjEntry.getKey(), null, traceModelRel.getModelEndpointRefs().get(0));
+			ModelElementReference tgtModelElemRef = ModelElementImpl.createInstanceAndReference(tgtModelObjEntry.getValue(), null, traceModelRel.getModelEndpointRefs().get(1));
 			//TODO MMTF[INTROSPECTION] Isn't this worth isolating in a getAllowedLinkTypeReference()?
 			LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToCreate(traceModelRel, srcModelElemRef, tgtModelElemRef);
-			linkTypeRef.getObject().createInstanceAndReference(true, traceModelRel);
+			LinkReference newLinkRef = MultiModelInstanceFactory.createLinkAndLinkReferenceAndModelElementEndpointsAndModelElementEndpointReferences(linkTypeRef.getObject(), true, srcModelElemRef, tgtModelElemRef);
+			newLinkRef.getObject().setName(srcModelElemRef.getObject().getName() + MMTF.BINARY_MODELREL_LINK_SEPARATOR + tgtModelElemRef.getObject().getName());
 		}
-		//TODO MMTF[TRANSFORMATION] fourth pass: non-containment references and attributes
 	}
 
 	@Override
