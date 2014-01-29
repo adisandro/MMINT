@@ -23,11 +23,11 @@ import org.eclipse.emf.ecore.EObject;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
-import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
@@ -152,11 +152,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 					// create or get impacted model element ref
 					ModelElementReference newImpactedModelElemRef = MultiModelTypeHierarchy.getReference(impactedModelElemUri, impactedModelEndpointRef.getModelElemRefs());
 					if (newImpactedModelElemRef == null) {
-						newImpactedModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
-							impactedModelEndpointRef,
-							null,
-							impactedUnifiable
-						);
+						newImpactedModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(impactedUnifiable, null, impactedModelEndpointRef);
 					}
 					// add impacted model element endpoint to impact link
 					ModelElementEndpointReference newImpactModelElemEndpointRef = rootModelElemTypeEndpoint.createInstanceAndReference(newImpactedModelElemRef, false, impactLinkRef);
@@ -198,11 +194,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 		for (Link diffLink : diffRel.getLinks()) {
 			ModelElement diffModelElem = diffLink.getModelElemEndpoints().get(0).getTarget();
 			// create diff model element ref
-			ModelElementReference newDiffModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
-				newDiffModelEndpointRef,
-				diffModelElem.getName(),
-				diffModelElem
-			);
+			ModelElementReference newDiffModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(diffModelElem, diffModelElem.getName(), newDiffModelEndpointRef);
 			// create impact link, add diff model element endpoint to it
 			EList<ModelElementReference> targetModelElemRefs = new BasicEList<ModelElementReference>();
 			targetModelElemRefs.add(newDiffModelElemRef);

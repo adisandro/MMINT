@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
-import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -39,7 +39,8 @@ public class UMLToClassDiagramMAVO extends ConversionOperatorExecutableImpl {
 		atl.saveModels(newCdModelUri);
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(umlModel);
-		newCdModel = MultiModelMAVOInstanceFactory.createModelAndEditor(null, newCdModelUri, ModelOrigin.CREATED, multiModel);
+		Model cdModelType = MultiModelTypeRegistry.getType(ClassDiagram_MAVOPackage.eNS_URI);
+		newCdModel = cdModelType.createMAVOInstanceAndEditor(newCdModelUri, ModelOrigin.CREATED, multiModel);
 		EList<Model> result = new BasicEList<Model>();
 		result.add(newCdModel);
 

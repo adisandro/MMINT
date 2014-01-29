@@ -195,10 +195,7 @@ public interface Link extends ExtendibleElement {
 	 * @throws MMTFException
 	 *             If this is a link instance, or if no target references to
 	 *             model elements are specified. <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        isBinaryRequired="true" targetModelElemRefsRequired="true"
-	 *        targetModelElemRefsMany="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isBinaryRequired="true" targetModelElemRefsRequired="true" targetModelElemRefsMany="true"
 	 * @generated
 	 */
 	LinkReference createInstanceAndReferenceAndEndpointsAndReferences(boolean isBinary, EList<ModelElementReference> targetModelElemRefs) throws MMTFException;

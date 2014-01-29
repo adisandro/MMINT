@@ -26,11 +26,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -109,16 +109,8 @@ nextMatch:
 				LinkReference matchLinkRef = rootLinkType.createInstanceAndReference(true, matchRel);
 				matchLinkRef.getObject().setName((String) match.getLeft().eGet(feature));
 				// create model elements
-				ModelElementReference srcModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
-					srcModelEndpointRef,
-					null,
-					match.getLeft()
-				);
-				ModelElementReference tgtModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
-					tgtModelEndpointRef,
-					null,
-					match.getRight()
-				);
+				ModelElementReference srcModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(match.getLeft(), null, srcModelEndpointRef);
+				ModelElementReference tgtModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(match.getRight(), null, tgtModelEndpointRef);
 				// create model element endpoints
 				rootModelElemTypeEndpoint.createInstanceAndReference(srcModelElemRef, false, matchLinkRef);
 				rootModelElemTypeEndpoint.createInstanceAndReference(tgtModelElemRef, false, matchLinkRef);

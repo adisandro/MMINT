@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -92,11 +92,7 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 				for (EObject modelObj : modelObjs) {
 					ModelEndpointReference modelEndpointRef = modelObjTable.get(modelObj);
 					// create model element
-					ModelElementReference matchModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
-						modelEndpointRef,
-						null,
-						modelObj
-					);
+					ModelElementReference matchModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(modelObj, null, modelEndpointRef);
 					// create model element endpoints
 					rootModelElemTypeEndpoint.createInstanceAndReference(matchModelElemRef, false, matchLinkRef);
 				}

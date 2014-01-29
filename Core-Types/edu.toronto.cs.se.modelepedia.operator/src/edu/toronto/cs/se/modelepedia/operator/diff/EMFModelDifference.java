@@ -21,11 +21,11 @@ import org.eclipse.emf.ecore.EObject;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
+import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
@@ -50,11 +50,7 @@ public class EMFModelDifference extends OperatorExecutableImpl {
 		LinkReference diffLinkRef = rootLinkType.createInstanceAndReference(false, diffModelRel);
 		diffLinkRef.getObject().setName(linksName);
 		// create model element
-		ModelElementReference diffModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
-			diffModelEndpointRef,
-			null,
-			modelObj
-		);
+		ModelElementReference diffModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(modelObj, null, diffModelEndpointRef);
 		// create model element endpoint
 		rootModelElemTypeEndpoint.createInstanceAndReference(diffModelElemRef, false, diffLinkRef);
 	}

@@ -31,13 +31,13 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
-import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
@@ -149,11 +149,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		ModelEndpointReference refinedModelEndpointRef_propTraceRel = newPropTraceRel.getModelEndpointRefs().get(0);
 		for (ModelElementReference refinedModelElemRef_refinementRel : refinedModelElemRefs_refinementRel) {
 			// create refined model elem ref in propagated trace rel
-			ModelElementReference newRefinedModelElemRef_propTraceRel = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
-				refinedModelEndpointRef_propTraceRel,
-				refinedModelElemRef_refinementRel.getObject().getName(),
-				refinedModelElemRef_refinementRel.getObject().getEMFObject()
-			);
+			ModelElementReference newRefinedModelElemRef_propTraceRel = ModelElementImpl.createMAVOInstanceAndReference(refinedModelElemRef_refinementRel.getObject().getEMFObject(), refinedModelElemRef_refinementRel.getObject().getName(), refinedModelEndpointRef_propTraceRel);
 			newRefinedModelElemRefs_propTraceRel.add(newRefinedModelElemRef_propTraceRel);
 		}
 		ModelEndpointReference propModelEndpointRef_propTraceRel = newPropTraceRel.getModelEndpointRefs().get(1);
@@ -167,11 +163,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 					getModelEObjectUri(relatedModelElemRef_traceRel.getUri()).substring(relatedModelElemRef_traceRel.getUri().lastIndexOf(MultiModelRegistry.MODEL_URI_SEPARATOR));
 				EObject propModelObj = MultiModelTypeIntrospection.getPointer(propModelObjUri);
 				// create propagated model elem ref in propagated trace rel
-				ModelElementReference newPropModelElemRef_propTraceRel = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
-					propModelEndpointRef_propTraceRel,
-					relatedModelElemRef_traceRel.getObject().getName(),
-					propModelObj
-				);
+				ModelElementReference newPropModelElemRef_propTraceRel = ModelElementImpl.createMAVOInstanceAndReference(propModelObj, relatedModelElemRef_traceRel.getObject().getName(), propModelEndpointRef_propTraceRel);
 				// create new propagated trace links
 				for (ModelElementReference newRefinedModelElemRef_propTraceRel : newRefinedModelElemRefs_propTraceRel) {
 					BinaryLinkReference newPropTraceLinkRef = (BinaryLinkReference) traceLink.getMetatype().createInstanceAndReference(true, newPropTraceRel);
@@ -218,11 +210,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 				continue;
 			}
 			// create new dangling trace link
-			ModelElementReference newTraceModelElemRefA = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
-				traceRel.getModelEndpointRefs().get(indexA),
-				traceModelElemRefA.getObject().getName(),
-				traceModelElemRefA.getObject().getEMFObject()
-			);
+			ModelElementReference newTraceModelElemRefA = ModelElementImpl.createMAVOInstanceAndReference(traceModelElemRefA.getObject().getEMFObject(), traceModelElemRefA.getObject().getName(), traceRel.getModelEndpointRefs().get(indexA));
 			newTraceLinkRef = (BinaryLinkReference) traceLinkTypeRef.getObject().createInstanceAndReference(true, traceRel);
 			newTraceLinkRef.getObject().setVar(true);
 			newTraceLinkRef.getObject().setName(PROPTRACE_RULE4_LINK_NAME);
@@ -487,11 +475,7 @@ traceLinks:
 			}
 		}
 
-		ModelElementReference newModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
-			modelEndpointRef,
-			null,
-			result[1]
-		);
+		ModelElementReference newModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(result[1], null, modelEndpointRef);
 		modelElemTypeEndpointRef.getObject().createInstanceAndReference(newModelElemRef, false, traceLinkRef);
 	}
 
@@ -504,11 +488,7 @@ traceLinks:
 		ModelElementReference newPropModelElemRef = getModelElementReference(propModelElemRef_propTraceRel, propModelEndpointRef_propRefinementRel.getModelElemRefs());
 		if (newPropModelElemRef == null) {
 			duplicateRefinement1 = false;
-			newPropModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
-				propModelEndpointRef_propRefinementRel,
-				propModelElemRef_propTraceRel.getObject().getName(),
-				propModelElemRef_propTraceRel.getObject().getEMFObject()
-			);
+			newPropModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(propModelElemRef_propTraceRel.getObject().getEMFObject(), propModelElemRef_propTraceRel.getObject().getName(), propModelEndpointRef_propRefinementRel);
 		}
 
 		ModelElementReference refinedModelElemRef_propTraceRel = propTraceLinkRef.getSourceModelElemRef();
@@ -543,11 +523,7 @@ traceLinks:
 				ModelElementReference newRelatedModelElemRef = getModelElementReference(relatedModelElemRef_traceRel, relatedModelEndpointRef_propRefinementRel.getModelElemRefs());
 				if (newRelatedModelElemRef == null) {
 					duplicateRefinement2 = false;
-					newRelatedModelElemRef = MultiModelMAVOInstanceFactory.createModelElementAndModelElementReference(
-						relatedModelEndpointRef_propRefinementRel,
-						relatedModelElemRef_traceRel.getObject().getName(),
-						relatedModelElemRef_traceRel.getObject().getEMFObject()
-					);
+					newRelatedModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(relatedModelElemRef_traceRel.getObject().getEMFObject(), relatedModelElemRef_traceRel.getObject().getName(), relatedModelEndpointRef_propRefinementRel);
 				}
 				refinementLinkType.getModelElemEndpoints().get(0).createInstanceAndReference(newRelatedModelElemRef, false, newPropRefinementLinkRef);
 			}
@@ -570,7 +546,7 @@ traceLinks:
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(origModel);
 
 		// create output model and model relationships
-		Model newPropModel = MultiModelMAVOInstanceFactory.copyModelAndEditor(relatedModel, relatedModel.getName() + PROP_MODEL_SUFFIX, multiModel, false);
+		Model newPropModel = relatedModel.getMetatype().copyMAVOInstanceAndEditor(relatedModel, relatedModel.getName() + PROP_MODEL_SUFFIX, false, multiModel);
 		BinaryModelRel newPropRefinementRel = (BinaryModelRel) refinementRel.getMetatype().createInstance(null, true, ModelOrigin.CREATED, multiModel);
 		newPropRefinementRel.setName(PROPREFINEMENT_MODELREL_NAME);
 		refinementRel.getModelEndpoints().get(0).getMetatype().createInstanceAndReference(relatedModel, false, newPropRefinementRel);

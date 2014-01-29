@@ -265,8 +265,31 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	Model createInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException;
 
 	/**
+	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
+	 * type to an Instance MID, together with an editor for it.
+	 * 
+	 * @param newModelUri
+	 *            The uri of the new model.
+	 * @param origin
+	 *            The origin of the new model.
+	 * @param containerMultiModel
+	 *            An Instance MID.
+	 * @return The created model.
+	 * @throws MMTFException
+	 *             If this is a model instance, or if the uri of the new model
+	 *             instance is already registered in the Instance MID.
+	 *             <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        newModelUriRequired="true" originRequired="true"
+	 *        containerMultiModelRequired="true"
+	 * @generated
+	 */
+	Model createInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException;
+
+	/**
 	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of
-	 * this model type to an Instance MID, together with an editor for it.
+	 * this model type to an Instance MID, initializing its MAVO inc flag.
 	 * 
 	 * @param newModelUri
 	 *            The uri of the new model.
@@ -280,10 +303,64 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 *             If this is a model instance, or if the uri of the new model
 	 *             instance is already registered in the Instance MID.
 	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelUriRequired="true" originRequired="true"
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        newModelUriRequired="true" originRequired="true"
 	 * @generated
 	 */
-	Model createInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException;
+	Model createMAVOInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
+	 * type to an Instance MID, together with an editor for it, initializing its
+	 * MAVO inc flag.
+	 * 
+	 * @param newModelUri
+	 *            The uri of the new model.
+	 * @param origin
+	 *            The origin of the new model.
+	 * @param containerMultiModel
+	 *            An Instance MID.
+	 * @return The created model.
+	 * @throws MMTFException
+	 *             If this is a model instance, or if the uri of the new model
+	 *             instance is already registered in the Instance MID.
+	 *             <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        newModelUriRequired="true" originRequired="true"
+	 *        containerMultiModelRequired="true"
+	 * @generated
+	 */
+	Model createMAVOInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
+	 * type to an Instance MID, together with an editor for it, copying its
+	 * structure from another model instance (including its MAVO inc flag) and
+	 * possibly all diagrams for it.
+	 * 
+	 * @param origModel
+	 *            The original model instance to be copied into the new one.
+	 * @param newModelName
+	 *            The name of the new model.
+	 * @param copyDiagram
+	 *            True if the diagrams for the original model should be copied,
+	 *            false otherwise.
+	 * @param containerMultiModel
+	 *            An Instance MID.
+	 * @return The created model.
+	 * @throws MMTFException
+	 *             If this is a model instance, if the model file can't be
+	 *             copied, or if the uri of the new model instance is already
+	 *             registered in the Instance MID. <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        origModelRequired="true" newModelNameRequired="true"
+	 *        copyDiagramRequired="true" containerMultiModelRequired="true"
+	 * @generated
+	 */
+	Model copyMAVOInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MultiModel containerMultiModel) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model instance from the Instance MID

@@ -552,6 +552,33 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MidPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
+	 * The operation id for the '<em>Create MAVO Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MidPackage.MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Create MAVO Instance And Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MidPackage.MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Copy MAVO Instance And Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = MidPackage.MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL;
+
+	/**
 	 * The operation id for the '<em>Get EMF Root</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -633,13 +660,22 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST = MidPackage.MODEL_OPERATION_COUNT + 7;
 
 	/**
+	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL = MidPackage.MODEL_OPERATION_COUNT + 8;
+
+	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MidPackage.MODEL_OPERATION_COUNT + 8;
+	int MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MidPackage.MODEL_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -648,7 +684,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___DELETE_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 9;
+	int MODEL_REL___DELETE_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Open Type</em>' operation.
@@ -657,7 +693,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___OPEN_TYPE = MidPackage.MODEL_OPERATION_COUNT + 10;
+	int MODEL_REL___OPEN_TYPE = MidPackage.MODEL_OPERATION_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -666,7 +702,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___OPEN_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 11;
+	int MODEL_REL___OPEN_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 12;
 
 	/**
 	 * The number of operations of the '<em>Model Rel</em>' class.
@@ -675,7 +711,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 12;
+	int MODEL_REL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -957,6 +993,33 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
+	 * The operation id for the '<em>Create MAVO Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MODEL_REL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Create MAVO Instance And Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MODEL_REL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Copy MAVO Instance And Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = MODEL_REL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL;
+
+	/**
 	 * The operation id for the '<em>Get EMF Root</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1036,6 +1099,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST = MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST;
+
+	/**
+	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL = MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -2681,6 +2753,16 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelRel__CreateInstanceAndEndpointsAndReferences__String_boolean_ModelOrigin_EList();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#copyMAVOInstance(edu.toronto.cs.se.mmtf.mid.relationship.ModelRel, edu.toronto.cs.se.mmtf.mid.MultiModel) <em>Copy MAVO Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Copy MAVO Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#copyMAVOInstance(edu.toronto.cs.se.mmtf.mid.relationship.ModelRel, edu.toronto.cs.se.mmtf.mid.MultiModel)
+	 * @generated
+	 */
+	EOperation getModelRel__CopyMAVOInstance__ModelRel_MultiModel();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#deleteInstance() <em>Delete Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3587,6 +3669,14 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST = eINSTANCE.getModelRel__CreateInstanceAndEndpointsAndReferences__String_boolean_ModelOrigin_EList();
+
+		/**
+		 * The meta object literal for the '<em><b>Copy MAVO Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL = eINSTANCE.getModelRel__CopyMAVOInstance__ModelRel_MultiModel();
 
 		/**
 		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.

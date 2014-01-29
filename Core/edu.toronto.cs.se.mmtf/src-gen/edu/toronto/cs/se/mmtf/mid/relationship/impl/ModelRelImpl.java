@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -23,6 +24,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
@@ -39,12 +41,16 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -374,6 +380,13 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case RelationshipPackage.MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL:
+				try {
+					return copyMAVOInstance((ModelRel)arguments.get(0), (MultiModel)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case RelationshipPackage.MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES:
 				try {
 					return getOutlineResourceInstances();
@@ -438,6 +451,48 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 */
 	@Override
 	public Model createInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
+
+		throw new MMTFException("Wrong function, use the specific one for model relationship instances");
+	}
+
+	/**
+	 * Do not use it, use the specific one for model relationship instances
+	 * instead.
+	 * 
+	 * @throws MMTFException
+	 *             Always.
+	 * @generated NOT
+	 */
+	@Override
+	public Model createMAVOInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
+
+		throw new MMTFException("Wrong function, use the specific one for model relationship instances");
+	}
+
+	/**
+	 * Do not use it, use the specific one for model relationship instances
+	 * instead.
+	 * 
+	 * @throws MMTFException
+	 *             Always.
+	 * @generated NOT
+	 */
+	@Override
+	public Model createMAVOInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
+
+		throw new MMTFException("Wrong function, use the specific one for model relationship instances");
+	}
+
+	/**
+	 * Do not use it, use the specific one for model relationship instances
+	 * instead.
+	 * 
+	 * @throws MMTFException
+	 *             Always.
+	 * @generated NOT
+	 */
+	@Override
+	public Model copyMAVOInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MultiModel containerMultiModel) throws MMTFException {
 
 		throw new MMTFException("Wrong function, use the specific one for model relationship instances");
 	}
@@ -579,6 +634,19 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
+	@Override
+	public EPackage getEMFTypeRoot() throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		return eClass().getEPackage();
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	public ModelRel createInstance(String newModelRelUri, boolean isBinary, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
@@ -621,6 +689,40 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
+	public ModelRel copyMAVOInstance(ModelRel origModelRel, MultiModel containerMultiModel) throws MMTFException {
+
+		// create initial empty copy
+		ModelRel newModelRel = createInstance(null, (origModelRel instanceof BinaryModelRel), ModelOrigin.CREATED, containerMultiModel);
+
+		// models
+		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
+		for (ModelEndpointReference oldModelEndpointRef : origModelRel.getModelEndpointRefs()) {
+			Model newModel = MultiModelRegistry.getExtendibleElement(oldModelEndpointRef.getTargetUri(), containerMultiModel);
+			ModelEndpointReference newModelEndpointRef = oldModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, false, newModelRel);
+			// model elements
+			for (ModelElementReference oldModelElemRef : oldModelEndpointRef.getModelElemRefs()) {
+				EObject newModelObj = oldModelElemRef.getObject().getEMFObject();
+				ModelElementReference newModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(newModelObj, oldModelElemRef.getObject().getName(), newModelEndpointRef);
+				newModelElemRefs.put(newModelElemRef.getUri(), newModelElemRef);
+			}
+		}
+		// links
+		for (LinkReference oldLinkRef : origModelRel.getLinkRefs()) {
+			LinkReference newLinkRef = oldLinkRef.getObject().getMetatype().createInstanceAndReference((oldLinkRef.getObject() instanceof BinaryLink), newModelRel);
+			MAVOUtils.copyMAVOElement(oldLinkRef.getObject(), newLinkRef.getObject());
+			newLinkRef.getObject().setName(oldLinkRef.getObject().getName());
+			for (ModelElementEndpointReference oldModelElemEndpointRef : oldLinkRef.getModelElemEndpointRefs()) {
+				ModelElementReference newModelElemRef = newModelElemRefs.get(oldModelElemEndpointRef.getTargetUri());
+				oldModelElemEndpointRef.getObject().getMetatype().createInstanceAndReference(newModelElemRef, false, newLinkRef);
+			}
+		}
+
+		return newModelRel;
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public void deleteInstance() throws MMTFException {
 
@@ -629,6 +731,18 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		}
 
 		super.deleteInstance();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public EObject getEMFRoot() throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		return this;
 	}
 
 	/**

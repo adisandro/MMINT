@@ -213,7 +213,25 @@
     <eOperations name="createInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//MMTFException">
       <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
+      <eParameters name="containerMultiModel" lowerBound="1" eType="#//MultiModel"/>
+    </eOperations>
+    <eOperations name="createMAVOInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMTFException">
+      <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
       <eParameters name="containerMultiModel" eType="#//MultiModel"/>
+    </eOperations>
+    <eOperations name="createMAVOInstanceAndEditor" lowerBound="1" eType="#//Model"
+        eExceptions="#//MMTFException">
+      <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
+      <eParameters name="containerMultiModel" lowerBound="1" eType="#//MultiModel"/>
+    </eOperations>
+    <eOperations name="copyMAVOInstanceAndEditor" lowerBound="1" eType="#//Model"
+        eExceptions="#//MMTFException">
+      <eParameters name="origModel" lowerBound="1" eType="#//Model"/>
+      <eParameters name="newModelName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="copyDiagram" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters name="containerMultiModel" lowerBound="1" eType="#//MultiModel"/>
     </eOperations>
     <eOperations name="deleteInstance" eExceptions="#//MMTFException"/>
     <eOperations name="getEMFRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
@@ -566,6 +584,11 @@
         <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
         <eParameters name="targetModels" lowerBound="1" upperBound="-1" eType="#//Model"/>
+      </eOperations>
+      <eOperations name="copyMAVOInstance" lowerBound="1" eType="#//relationship/ModelRel"
+          eExceptions="#//MMTFException">
+        <eParameters name="origModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
+        <eParameters name="containerMultiModel" lowerBound="1" eType="#//MultiModel"/>
       </eOperations>
       <eOperations name="getOutlineResourceInstances" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
           eExceptions="#//MMTFException"/>
@@ -979,7 +1002,7 @@
       <eOperations name="deleteType" eExceptions="#//MMTFException"/>
       <eOperations name="createInstance" lowerBound="1" eType="#//editor/Editor" eExceptions="#//MMTFException">
         <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eParameters name="containerMultiModel" eType="#//MultiModel"/>
+        <eParameters name="containerMultiModel" lowerBound="1" eType="#//MultiModel"/>
       </eOperations>
       <eOperations name="invokeInstanceWizard" lowerBound="1" eType="#//editor/EditorCreationWizardDialog"
           eExceptions="#//MMTFException">
@@ -1029,7 +1052,7 @@
       </eOperations>
       <eOperations name="createInstance" lowerBound="1" eType="#//editor/Editor" eExceptions="#//MMTFException">
         <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eParameters name="containerMultiModel" eType="#//MultiModel"/>
+        <eParameters name="containerMultiModel" lowerBound="1" eType="#//MultiModel"/>
       </eOperations>
       <eOperations name="invokeInstanceWizard" lowerBound="1" eType="#//editor/EditorCreationWizardDialog"
           eExceptions="#//MMTFException">

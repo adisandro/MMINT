@@ -16,7 +16,7 @@ import java.util.Date;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
-import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -54,7 +54,8 @@ public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 
 		// create model
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(windowModel);
-		newPetrinetModel = MultiModelMAVOInstanceFactory.createModelAndEditor(null, newPetrinetModelUri, ModelOrigin.CREATED, multiModel);
+		Model petrinetModelType = MultiModelTypeRegistry.getType(PetriNetPackage.eNS_URI);
+		newPetrinetModel = petrinetModelType.createMAVOInstanceAndEditor(newPetrinetModelUri, ModelOrigin.CREATED, multiModel);
 
 		EList<Model> result = new BasicEList<Model>();
 		result.add(newPetrinetModel);

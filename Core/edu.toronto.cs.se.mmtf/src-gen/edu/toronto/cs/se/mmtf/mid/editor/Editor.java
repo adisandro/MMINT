@@ -230,12 +230,11 @@ public interface Editor extends ExtendibleElement {
 	 * @param modelUri
 	 *            The uri of the model handled by the new editor.
 	 * @param containerMultiModel
-	 *            An Instance MID, null if the editor isn't going to be added to
-	 *            it.
+	 *            An Instance MID.
 	 * @return The created editor.
 	 * @throws MMTFException
 	 *             If this is an editor instance. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" modelUriRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" modelUriRequired="true" containerMultiModelRequired="true"
 	 * @generated
 	 */
 	Editor createInstance(String modelUri, MultiModel containerMultiModel) throws MMTFException;

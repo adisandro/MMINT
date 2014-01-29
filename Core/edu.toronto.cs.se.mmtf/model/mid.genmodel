@@ -82,6 +82,22 @@
         <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/origin"/>
         <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/containerMultiModel"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/createMAVOInstance">
+        <genParameters ecoreParameter="mid.ecore#//Model/createMAVOInstance/newModelUri"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createMAVOInstance/origin"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createMAVOInstance/containerMultiModel"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/createMAVOInstanceAndEditor">
+        <genParameters ecoreParameter="mid.ecore#//Model/createMAVOInstanceAndEditor/newModelUri"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createMAVOInstanceAndEditor/origin"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createMAVOInstanceAndEditor/containerMultiModel"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/copyMAVOInstanceAndEditor">
+        <genParameters ecoreParameter="mid.ecore#//Model/copyMAVOInstanceAndEditor/origModel"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/copyMAVOInstanceAndEditor/newModelName"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/copyMAVOInstanceAndEditor/copyDiagram"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/copyMAVOInstanceAndEditor/containerMultiModel"/>
+      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/deleteInstance"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getEMFRoot"/>
     </genClasses>
@@ -209,6 +225,10 @@
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/isBinary"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/origin"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/targetModels"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/copyMAVOInstance">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/copyMAVOInstance/origModelRel"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/copyMAVOInstance/containerMultiModel"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceInstances"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/deleteInstance"/>

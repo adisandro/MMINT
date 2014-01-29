@@ -31,7 +31,6 @@ import org.eclipse.ui.PlatformUI;
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
-import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.diagram.library.MidDiagramUtils;
@@ -82,7 +81,7 @@ public class CopyModelListener extends SelectionAdapter {
 			try {
 				String newModelName = MidDiagramUtils.getStringInput("Copy Model", "Insert new model name", oldModel.getName());
 				MultiModel multiModel = MultiModelRegistry.getMultiModel(oldModel);
-				Model newModel = MultiModelMAVOInstanceFactory.copyModelAndEditor(oldModel, newModelName, multiModel, true);
+				Model newModel = oldModel.getMetatype().copyMAVOInstanceAndEditor(oldModel, newModelName, true, multiModel);
 	
 				return CommandResult.newOKCommandResult(newModel);
 			}

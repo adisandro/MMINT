@@ -23,7 +23,6 @@ import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -63,12 +62,7 @@ public class EMFModelMerge extends OperatorExecutableImpl {
 		}
 		String mergedModelUri = MultiModelUtils.replaceFileNameInUri(srcModel.getUri(), srcModel.getName() + MERGED_MODEL_NAME_SEPARATOR + tgtModel.getName());
 		MultiModelUtils.createModelFile(((ResourceSet) scope.getRight()).getResources().get(0).getContents().get(0), mergedModelUri, true);
-		Model mergedModel = MultiModelMAVOInstanceFactory.createModelAndEditor(
-			srcModel.getMetatype(),
-			mergedModelUri,
-			ModelOrigin.CREATED,
-			multiModel
-		);
+		Model mergedModel = srcModel.getMetatype().createMAVOInstanceAndEditor(mergedModelUri, ModelOrigin.CREATED, multiModel);
 
 		// run name match to create src and tgt match relationships
 		EList<Model> result = new BasicEList<Model>();

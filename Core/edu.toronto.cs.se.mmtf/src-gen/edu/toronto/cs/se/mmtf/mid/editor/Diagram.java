@@ -68,13 +68,12 @@ public interface Diagram extends Editor {
 	 * @param modelUri
 	 *            The uri of the model handled by the new diagram.
 	 * @param containerMultiModel
-	 *            An Instance MID, null if the editor isn't going to be added to
-	 *            it.
+	 *            An Instance MID.
 	 * @return The created diagram.
 	 * @throws MMTFException
 	 *             If this is a diagram instance, or if the diagram couldn't be
 	 *             created. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" modelUriRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" modelUriRequired="true" containerMultiModelRequired="true"
 	 * @generated
 	 */
 	Editor createInstance(String modelUri, MultiModel containerMultiModel) throws MMTFException;

@@ -19,6 +19,7 @@ import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
 import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
+import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
@@ -564,6 +565,27 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MidPackage.MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL:
+				try {
+					return createMAVOInstance((String)arguments.get(0), (ModelOrigin)arguments.get(1), (MultiModel)arguments.get(2));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MidPackage.MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL:
+				try {
+					return createMAVOInstanceAndEditor((String)arguments.get(0), (ModelOrigin)arguments.get(1), (MultiModel)arguments.get(2));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MidPackage.MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL:
+				try {
+					return copyMAVOInstanceAndEditor((Model)arguments.get(0), (String)arguments.get(1), (Boolean)arguments.get(2), (MultiModel)arguments.get(3));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MidPackage.MODEL___DELETE_INSTANCE:
 				try {
 					deleteInstance();
@@ -915,6 +937,69 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		if (newEditor != null) {
 			newModel.getEditors().add(newEditor);
 		}
+
+		return newModel;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Model createMAVOInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
+
+		Model newMAVOModel = createInstance(newModelUri, origin, containerMultiModel);
+		MAVOUtils.initializeMAVOModel(newMAVOModel.getEMFRoot(), newMAVOModel);
+
+		return newMAVOModel;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Model createMAVOInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
+
+		Model newMAVOModel = createInstanceAndEditor(newModelUri, origin, containerMultiModel);
+		MAVOUtils.initializeMAVOModel(newMAVOModel.getEMFRoot(), newMAVOModel);
+
+		return newMAVOModel;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Model copyMAVOInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MultiModel containerMultiModel) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		// copy model
+		String oldUri = MultiModelUtils.prependWorkspaceToUri(origModel.getUri());
+		String newModelUri = MultiModelUtils.replaceFileNameInUri(origModel.getUri(), newModelName);
+		String newUri = MultiModelUtils.prependWorkspaceToUri(newModelUri);
+		try {
+			MultiModelUtils.copyTextFileAndReplaceText(oldUri, newUri, origModel.getName(), newModelName);
+		} catch (Exception e) {
+			throw new MMTFException("Error copying model file");
+		}
+
+		// copy diagrams
+		if (copyDiagram) {
+			for (Editor oldEditor : origModel.getEditors()) {
+				if (oldEditor.getUri().equals(origModel.getUri())) {
+					continue;
+				}
+				oldUri = MultiModelUtils.prependWorkspaceToUri(oldEditor.getUri());
+				newUri = MultiModelUtils.prependWorkspaceToUri(MultiModelUtils.replaceFileNameInUri(oldEditor.getUri(), newModelName));
+				try {
+					MultiModelUtils.copyTextFileAndReplaceText(oldUri, newUri, origModel.getName(), newModelName);
+				} catch (Exception e) {
+					MMTFException.print(Type.WARNING, "Error copying diagram file, skipping it", e);
+					continue;
+				}
+				//TODO MMTF[UML] add support for notation extra file (e.g. in UML)
+			}
+		}
+		Model newModel = createMAVOInstanceAndEditor(newModelUri, ModelOrigin.CREATED, containerMultiModel);
 
 		return newModel;
 	}

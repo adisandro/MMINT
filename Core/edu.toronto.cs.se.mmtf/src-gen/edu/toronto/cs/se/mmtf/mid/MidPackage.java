@@ -805,13 +805,40 @@ public interface MidPackage extends EPackage {
 	int MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
+	 * The operation id for the '<em>Create MAVO Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+
+	/**
+	 * The operation id for the '<em>Create MAVO Instance And Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
+
+	/**
+	 * The operation id for the '<em>Copy MAVO Instance And Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 9;
+
+	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+	int MODEL___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Get EMF Root</em>' operation.
@@ -820,7 +847,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___GET_EMF_ROOT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
+	int MODEL___GET_EMF_ROOT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 11;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -829,7 +856,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 9;
+	int MODEL_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.
@@ -1863,6 +1890,36 @@ public interface MidPackage extends EPackage {
 	EOperation getModel__CreateInstanceAndEditor__String_ModelOrigin_MultiModel();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#createMAVOInstance(java.lang.String, edu.toronto.cs.se.mmtf.mid.ModelOrigin, edu.toronto.cs.se.mmtf.mid.MultiModel) <em>Create MAVO Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create MAVO Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#createMAVOInstance(java.lang.String, edu.toronto.cs.se.mmtf.mid.ModelOrigin, edu.toronto.cs.se.mmtf.mid.MultiModel)
+	 * @generated
+	 */
+	EOperation getModel__CreateMAVOInstance__String_ModelOrigin_MultiModel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#createMAVOInstanceAndEditor(java.lang.String, edu.toronto.cs.se.mmtf.mid.ModelOrigin, edu.toronto.cs.se.mmtf.mid.MultiModel) <em>Create MAVO Instance And Editor</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create MAVO Instance And Editor</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#createMAVOInstanceAndEditor(java.lang.String, edu.toronto.cs.se.mmtf.mid.ModelOrigin, edu.toronto.cs.se.mmtf.mid.MultiModel)
+	 * @generated
+	 */
+	EOperation getModel__CreateMAVOInstanceAndEditor__String_ModelOrigin_MultiModel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#copyMAVOInstanceAndEditor(edu.toronto.cs.se.mmtf.mid.Model, java.lang.String, boolean, edu.toronto.cs.se.mmtf.mid.MultiModel) <em>Copy MAVO Instance And Editor</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Copy MAVO Instance And Editor</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#copyMAVOInstanceAndEditor(edu.toronto.cs.se.mmtf.mid.Model, java.lang.String, boolean, edu.toronto.cs.se.mmtf.mid.MultiModel)
+	 * @generated
+	 */
+	EOperation getModel__CopyMAVOInstanceAndEditor__Model_String_boolean_MultiModel();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#deleteInstance() <em>Delete Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2566,6 +2623,30 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = eINSTANCE.getModel__CreateInstanceAndEditor__String_ModelOrigin_MultiModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Create MAVO Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = eINSTANCE.getModel__CreateMAVOInstance__String_ModelOrigin_MultiModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Create MAVO Instance And Editor</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = eINSTANCE.getModel__CreateMAVOInstanceAndEditor__String_ModelOrigin_MultiModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Copy MAVO Instance And Editor</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = eINSTANCE.getModel__CopyMAVOInstanceAndEditor__Model_String_boolean_MultiModel();
 
 		/**
 		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.

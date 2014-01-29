@@ -14,7 +14,6 @@ package edu.toronto.cs.se.modelepedia.operator.patch;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
-import edu.toronto.cs.se.mmtf.mavo.library.MultiModelMAVOInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
@@ -34,7 +33,8 @@ public class BinaryModelRelInversion extends OperatorExecutableImpl {
 
 		// create inverted model relationship
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRel);
-		BinaryModelRel invertedModelRel = (BinaryModelRel) MultiModelMAVOInstanceFactory.copyModelRel(modelRel, modelRel.getName() + INVERTED_MODELREL_SUFFIX, multiModel);
+		BinaryModelRel invertedModelRel = (BinaryModelRel) modelRel.getMetatype().copyMAVOInstance(modelRel, multiModel);
+		invertedModelRel.setName(modelRel.getName() + INVERTED_MODELREL_SUFFIX);
 
 		// invert all indexes
 		invertedModelRel.getModelEndpoints().move(1, 0);

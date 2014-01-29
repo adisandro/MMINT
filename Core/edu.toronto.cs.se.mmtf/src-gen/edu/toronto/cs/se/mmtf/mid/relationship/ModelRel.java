@@ -234,13 +234,33 @@ public interface ModelRel extends Model {
 	 *             If this is a model relationship instance, if no target models
 	 *             are specified, or if the uri of the new model relationship is
 	 *             already registered in the Instance MID. <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        isBinaryRequired="true" originRequired="true"
-	 *        targetModelsRequired="true" targetModelsMany="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" isBinaryRequired="true" originRequired="true" targetModelsRequired="true" targetModelsMany="true"
 	 * @generated
 	 */
 	ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, boolean isBinary, ModelOrigin origin, EList<Model> targetModels) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->Creates and adds a model relationship instance of
+	 * this model relationship type to an Instance MID, copying its structure
+	 * from another model relationship instance (including any MAVO flags).
+	 * 
+	 * @param origModelRel
+	 *            The original model relationship instance to be copied into the
+	 *            new one.
+	 * @param containerMultiModel
+	 *            An Instance MID, null if the model relationship isn't going to
+	 *            be added to it.
+	 * @return The created model relationship.
+	 * @throws MMTFException
+	 *             If this is a model relationship instance, or if the uri of
+	 *             the new model relationship is already registered in the
+	 *             Instance MID. <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        origModelRelRequired="true" containerMultiModelRequired="true"
+	 * @generated
+	 */
+	ModelRel copyMAVOInstance(ModelRel origModelRel, MultiModel containerMultiModel) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model relationship instance from the
