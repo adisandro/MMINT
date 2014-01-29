@@ -624,13 +624,22 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = MidPackage.MODEL_OPERATION_COUNT + 6;
 
 	/**
+	 * The operation id for the '<em>Create Instance And Endpoints And References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST = MidPackage.MODEL_OPERATION_COUNT + 7;
+
+	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MidPackage.MODEL_OPERATION_COUNT + 7;
+	int MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MidPackage.MODEL_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -639,7 +648,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___DELETE_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 8;
+	int MODEL_REL___DELETE_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Open Type</em>' operation.
@@ -648,7 +657,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___OPEN_TYPE = MidPackage.MODEL_OPERATION_COUNT + 9;
+	int MODEL_REL___OPEN_TYPE = MidPackage.MODEL_OPERATION_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -657,7 +666,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___OPEN_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 10;
+	int MODEL_REL___OPEN_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 11;
 
 	/**
 	 * The number of operations of the '<em>Model Rel</em>' class.
@@ -666,7 +675,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 11;
+	int MODEL_REL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -1018,6 +1027,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Create Instance And Endpoints And References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST = MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -1544,13 +1562,22 @@ public interface RelationshipPackage extends EPackage {
 	int LINK___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
+	 * The operation id for the '<em>Create Instance And Reference And Endpoints And References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+
+	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINK___DELETE_INSTANCE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+	int LINK___DELETE_INSTANCE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Link</em>' class.
@@ -1559,7 +1586,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
+	int LINK_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.BinaryLinkImpl <em>Binary Link</em>}' class.
@@ -1759,6 +1786,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_LINK___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL = LINK___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL;
+
+	/**
+	 * The operation id for the '<em>Create Instance And Reference And Endpoints And References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST = LINK___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -2635,6 +2671,16 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#createInstanceAndEndpointsAndReferences(java.lang.String, boolean, edu.toronto.cs.se.mmtf.mid.ModelOrigin, org.eclipse.emf.common.util.EList) <em>Create Instance And Endpoints And References</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance And Endpoints And References</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#createInstanceAndEndpointsAndReferences(java.lang.String, boolean, edu.toronto.cs.se.mmtf.mid.ModelOrigin, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getModelRel__CreateInstanceAndEndpointsAndReferences__String_boolean_ModelOrigin_EList();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#deleteInstance() <em>Delete Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2949,6 +2995,16 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getLink__CreateInstanceAndReference__boolean_ModelRel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.Link#createInstanceAndReferenceAndEndpointsAndReferences(boolean, org.eclipse.emf.common.util.EList) <em>Create Instance And Reference And Endpoints And References</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance And Reference And Endpoints And References</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.Link#createInstanceAndReferenceAndEndpointsAndReferences(boolean, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getLink__CreateInstanceAndReferenceAndEndpointsAndReferences__boolean_EList();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.Link#deleteInstance() <em>Delete Instance</em>}' operation.
@@ -3525,6 +3581,14 @@ public interface RelationshipPackage extends EPackage {
 		EOperation MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = eINSTANCE.getModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel();
 
 		/**
+		 * The meta object literal for the '<em><b>Create Instance And Endpoints And References</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST = eINSTANCE.getModelRel__CreateInstanceAndEndpointsAndReferences__String_boolean_ModelOrigin_EList();
+
+		/**
 		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3779,6 +3843,14 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation LINK___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL = eINSTANCE.getLink__CreateInstanceAndReference__boolean_ModelRel();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Instance And Reference And Endpoints And References</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LINK___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST = eINSTANCE.getLink__CreateInstanceAndReferenceAndEndpointsAndReferences__boolean_EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.

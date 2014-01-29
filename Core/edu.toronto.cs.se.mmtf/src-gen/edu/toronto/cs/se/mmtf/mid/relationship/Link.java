@@ -166,7 +166,7 @@ public interface Link extends ExtendibleElement {
 	LinkReference createInstanceReference(ModelRel containerModelRel) throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and adds a new link instance of this link
+	 * <!-- begin-user-doc --> Creates and adds a link instance of this link
 	 * type and a reference to it to an Instance MID.
 	 * 
 	 * @param isBinary
@@ -180,6 +180,28 @@ public interface Link extends ExtendibleElement {
 	 * @generated
 	 */
 	LinkReference createInstanceAndReference(boolean isBinary, ModelRel containerModelRel) throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc --> Creates and adds a link instance of this link
+	 * type and a reference to it to an Instance MID, together with its model
+	 * element instance endpoints and references to them.
+	 * 
+	 * @param isBinary
+	 *            True if the new link is binary, false otherwise.
+	 * @param targetModelElemRefs
+	 *            The references to the model elements that are the target of
+	 *            the new model element endpoints.
+	 * @return The created reference to the new link.
+	 * @throws MMTFException
+	 *             If this is a link instance, or if no target references to
+	 *             model elements are specified. <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        isBinaryRequired="true" targetModelElemRefsRequired="true"
+	 *        targetModelElemRefsMany="true"
+	 * @generated
+	 */
+	LinkReference createInstanceAndReferenceAndEndpointsAndReferences(boolean isBinary, EList<ModelElementReference> targetModelElemRefs) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this link instance from the Instance MID

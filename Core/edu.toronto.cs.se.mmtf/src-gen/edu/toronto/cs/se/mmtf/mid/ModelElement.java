@@ -154,8 +154,7 @@ public interface ModelElement extends ExtendibleElement {
 	 * @throws MMTFException
 	 *             If this is a model element instance, or if the metamodel file
 	 *             can't be accessed. <!-- end-user-doc -->
-	 * @model kind="operation" required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
 	ENamedElement getEMFTypeObject() throws MMTFException;
@@ -215,8 +214,7 @@ public interface ModelElement extends ExtendibleElement {
 	 * @throws MMTFException
 	 *             If this is a model element type, or if the model file can't
 	 *             be accessed. <!-- end-user-doc -->
-	 * @model kind="operation" required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
 	EObject getEMFObject() throws MMTFException;

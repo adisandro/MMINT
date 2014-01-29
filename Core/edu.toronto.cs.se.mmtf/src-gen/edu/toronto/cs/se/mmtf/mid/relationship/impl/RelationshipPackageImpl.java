@@ -330,8 +330,8 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__DeleteInstance() {
-		return modelRelEClass.getEOperations().get(8);
+	public EOperation getModelRel__CreateInstanceAndEndpointsAndReferences__String_boolean_ModelOrigin_EList() {
+		return modelRelEClass.getEOperations().get(7);
 	}
 
 	/**
@@ -339,7 +339,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__OpenType() {
+	public EOperation getModelRel__DeleteInstance() {
 		return modelRelEClass.getEOperations().get(9);
 	}
 
@@ -348,8 +348,17 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__OpenInstance() {
+	public EOperation getModelRel__OpenType() {
 		return modelRelEClass.getEOperations().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelRel__OpenInstance() {
+		return modelRelEClass.getEOperations().get(11);
 	}
 
 	/**
@@ -367,7 +376,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * @generated
 	 */
 	public EOperation getModelRel__GetOutlineResourceInstances() {
-		return modelRelEClass.getEOperations().get(7);
+		return modelRelEClass.getEOperations().get(8);
 	}
 
 	/**
@@ -609,8 +618,17 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getLink__DeleteInstance() {
+	public EOperation getLink__CreateInstanceAndReferenceAndEndpointsAndReferences__boolean_EList() {
 		return linkEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLink__DeleteInstance() {
+		return linkEClass.getEOperations().get(8);
 	}
 
 	/**
@@ -1062,6 +1080,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEOperation(modelRelEClass, MODEL_REL___GET_OUTLINE_RESOURCE_TYPES);
 		createEOperation(modelRelEClass, MODEL_REL___DELETE_TYPE);
 		createEOperation(modelRelEClass, MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL);
+		createEOperation(modelRelEClass, MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST);
 		createEOperation(modelRelEClass, MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES);
 		createEOperation(modelRelEClass, MODEL_REL___DELETE_INSTANCE);
 		createEOperation(modelRelEClass, MODEL_REL___OPEN_TYPE);
@@ -1096,6 +1115,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEOperation(linkEClass, LINK___DELETE_TYPE);
 		createEOperation(linkEClass, LINK___CREATE_INSTANCE_REFERENCE__MODELREL);
 		createEOperation(linkEClass, LINK___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL);
+		createEOperation(linkEClass, LINK___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST);
 		createEOperation(linkEClass, LINK___DELETE_INSTANCE);
 
 		binaryLinkEClass = createEClass(BINARY_LINK);
@@ -1230,6 +1250,13 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEParameter(op, theMidPackage.getMultiModel(), "containerMultiModel", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
+		op = initEOperation(getModelRel__CreateInstanceAndEndpointsAndReferences__String_boolean_ModelOrigin_EList(), this.getModelRel(), "createInstanceAndEndpointsAndReferences", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelRelUri", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMidPackage.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMidPackage.getModel(), "targetModels", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
 		op = initEOperation(getModelRel__GetOutlineResourceInstances(), ecorePackage.getEResourceSet(), "getOutlineResourceInstances", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
@@ -1309,6 +1336,11 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		op = initEOperation(getLink__CreateInstanceAndReference__boolean_ModelRel(), this.getLinkReference(), "createInstanceAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelRel(), "containerModelRel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
+		op = initEOperation(getLink__CreateInstanceAndReferenceAndEndpointsAndReferences__boolean_EList(), this.getLinkReference(), "createInstanceAndReferenceAndEndpointsAndReferences", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelElementReference(), "targetModelElemRefs", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
 		op = initEOperation(getLink__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);

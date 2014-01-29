@@ -23,8 +23,15 @@ public interface MMTFConstants {
 	public final static String ENDPOINT_SEPARATOR = "-";
 	public final static String EDITOR_SEPARATOR = "_";
 	public final static String BINARY_MODELREL_LINK_SEPARATOR = "-->";
-	//TODO MMTF: MODELELEM->refine everywhere used when introducing additional model element level
+	//TODO MMTF[MODELELEM] refine everywhere used when introducing additional model element level
 	public final static String ROLE_SEPARATOR = "_AS_";
+	/** The empty uri. */
+	public final static String EMPTY_URI = "";
+	/** The empty name. */
+	public final static String EMPTY_NAME = "";
+	/** The empty file extension for a model. */
+	public final static String EMPTY_MODEL_FILE_EXTENSION = "";
+	/** The base root uri. */
 	public final static String ROOT_URI = "http://se.cs.toronto.edu/mmtf";
 	/** The uri of the root model type. */
 	public final static String ROOT_MODEL_URI = ROOT_URI + URI_SEPARATOR + "Model";

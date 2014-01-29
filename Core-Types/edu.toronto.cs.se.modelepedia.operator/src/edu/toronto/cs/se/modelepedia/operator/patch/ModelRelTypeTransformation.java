@@ -32,7 +32,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.library.PrimitiveEObjectWrapper;
@@ -157,11 +156,14 @@ public class ModelRelTypeTransformation extends OperatorExecutableImpl {
 		// fourth pass: create model elements and links
 		MultiModelUtils.createModelFile(tgtRootModelObj, tgtModelUri, true);
 		for (Map.Entry<EObject, EObject> tgtModelObjEntry : tgtModelObjs.entrySet()) {
+			EList<ModelElementReference> targetModelElemRefs = new BasicEList<ModelElementReference>();
 			ModelElementReference srcModelElemRef = ModelElementImpl.createInstanceAndReference(tgtModelObjEntry.getKey(), null, traceModelRel.getModelEndpointRefs().get(0));
+			targetModelElemRefs.add(srcModelElemRef);
 			ModelElementReference tgtModelElemRef = ModelElementImpl.createInstanceAndReference(tgtModelObjEntry.getValue(), null, traceModelRel.getModelEndpointRefs().get(1));
+			targetModelElemRefs.add(tgtModelElemRef);
 			//TODO MMTF[INTROSPECTION] Isn't this worth isolating in a getAllowedLinkTypeReference()?
 			LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToCreate(traceModelRel, srcModelElemRef, tgtModelElemRef);
-			LinkReference newLinkRef = MultiModelInstanceFactory.createLinkAndLinkReferenceAndModelElementEndpointsAndModelElementEndpointReferences(linkTypeRef.getObject(), true, srcModelElemRef, tgtModelElemRef);
+			LinkReference newLinkRef = linkTypeRef.getObject().createInstanceAndReferenceAndEndpointsAndReferences(true, targetModelElemRefs);
 			newLinkRef.getObject().setName(srcModelElemRef.getObject().getName() + MMTF.BINARY_MODELREL_LINK_SEPARATOR + tgtModelElemRef.getObject().getName());
 		}
 	}

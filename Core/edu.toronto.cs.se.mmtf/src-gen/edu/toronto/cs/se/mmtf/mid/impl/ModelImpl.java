@@ -30,7 +30,6 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.editor.Diagram;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
@@ -853,7 +852,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		boolean basicElement = !updateMid || !externalElement;
 
 		String newModelName = null;
-		String fileExtension = MultiModelInstanceFactory.EMPTY_MODEL_FILE_EXTENSION;
+		String fileExtension = MMTF.EMPTY_MODEL_FILE_EXTENSION;
 		if (externalElement) {
 			newModelName = MultiModelUtils.getFileNameFromUri(newModelUri);
 			fileExtension = MultiModelUtils.getFileExtensionFromUri(newModelUri);

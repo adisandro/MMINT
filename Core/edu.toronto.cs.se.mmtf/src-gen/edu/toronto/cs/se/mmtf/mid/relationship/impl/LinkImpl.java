@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
@@ -23,6 +24,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
+import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
@@ -227,6 +229,7 @@ public class LinkImpl extends ExtendibleElementImpl implements Link {
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case RelationshipPackage.LINK___GET_METATYPE:
@@ -265,6 +268,13 @@ public class LinkImpl extends ExtendibleElementImpl implements Link {
 			case RelationshipPackage.LINK___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL:
 				try {
 					return createInstanceAndReference((Boolean)arguments.get(0), (ModelRel)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case RelationshipPackage.LINK___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST:
+				try {
+					return createInstanceAndReferenceAndEndpointsAndReferences((Boolean)arguments.get(0), (EList<ModelElementReference>)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -410,6 +420,31 @@ public class LinkImpl extends ExtendibleElementImpl implements Link {
 		super.addBasicInstance(newLink, null, null);
 		containerModelRel.getLinks().add(newLink);
 		LinkReference newLinkRef = newLink.createInstanceReference(containerModelRel);
+
+		return newLinkRef;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public LinkReference createInstanceAndReferenceAndEndpointsAndReferences(boolean isBinary, EList<ModelElementReference> targetModelElemRefs) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+		if (targetModelElemRefs.size() == 0) {
+			throw new MMTFException("No target model element references specified");
+		}
+
+		ModelRel containerModelRel = (ModelRel) targetModelElemRefs.get(0).eContainer().eContainer();
+		// create link
+		LinkReference newLinkRef = createInstanceAndReference(isBinary, containerModelRel);
+		// create model element endpoints
+		for (ModelElementReference targetModelElemRef : targetModelElemRefs) {
+			String modelElemTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, targetModelElemRef).get(0);
+			ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeRegistry.getType(modelElemTypeEndpointUri);
+			modelElemTypeEndpoint.createInstanceAndReference(targetModelElemRef, false, newLinkRef);
+		}
 
 		return newLinkRef;
 	}

@@ -20,7 +20,6 @@ import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
@@ -704,11 +703,11 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	protected void addBasicInstance(ExtendibleElement newInstance, String newInstanceUri, String newInstanceName) {
 
 		if (newInstanceUri == null) {
-			newInstanceUri = MultiModelInstanceFactory.EMPTY_URI;
+			newInstanceUri = MMTF.EMPTY_URI;
 		}
 		newInstance.setUri(newInstanceUri);
 		if (newInstanceName == null) {
-			newInstanceName = MultiModelInstanceFactory.EMPTY_NAME;
+			newInstanceName = MMTF.EMPTY_NAME;
 		}
 		newInstance.setName(newInstanceName);
 		newInstance.setLevel(MidLevel.INSTANCES);

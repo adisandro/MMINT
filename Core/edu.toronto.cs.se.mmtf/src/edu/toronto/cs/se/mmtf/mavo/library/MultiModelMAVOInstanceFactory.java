@@ -22,7 +22,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
@@ -33,7 +32,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
-public class MultiModelMAVOInstanceFactory extends MultiModelInstanceFactory {
+public class MultiModelMAVOInstanceFactory {
 
 	public static Model createModel(Model modelType, String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
 

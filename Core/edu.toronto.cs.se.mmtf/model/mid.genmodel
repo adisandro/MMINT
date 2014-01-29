@@ -204,6 +204,12 @@
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstance/origin"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstance/containerMultiModel"/>
         </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/newModelRelUri"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/isBinary"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/origin"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/targetModels"/>
+        </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceInstances"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/deleteInstance"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/openType"/>
@@ -261,6 +267,10 @@
         <genOperations ecoreOperation="mid.ecore#//relationship/Link/createInstanceAndReference">
           <genParameters ecoreParameter="mid.ecore#//relationship/Link/createInstanceAndReference/isBinary"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/Link/createInstanceAndReference/containerModelRel"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Link/createInstanceAndReferenceAndEndpointsAndReferences">
+          <genParameters ecoreParameter="mid.ecore#//relationship/Link/createInstanceAndReferenceAndEndpointsAndReferences/isBinary"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/Link/createInstanceAndReferenceAndEndpointsAndReferences/targetModelElemRefs"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/Link/deleteInstance"/>
       </genClasses>

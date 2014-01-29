@@ -28,7 +28,6 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelInstanceFactory;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
@@ -185,19 +184,17 @@ public class ChangeImpact extends OperatorExecutableImpl {
 		createImpactedVarTables(traceRel.getModelEndpointRefs().get(1), impactedUnifyTable, impactedTypeTable); // O(n log n)
 
 		// create output model relationship
-		ModelRel newImpactModelRel = MultiModelInstanceFactory.createModelRelAndModelEndpointsAndModelEndpointReferences(
-			null,
-			null,
-			true,
-			ModelOrigin.CREATED,
-			diffRel,
-			impactedModel
-		);
+		ModelRel rootModelRelType = MultiModelTypeHierarchy.getRootModelRelType();
+		EList<Model> targetModels = new BasicEList<Model>();
+		targetModels.add(diffRel);
+		targetModels.add(impactedModel);
+		ModelRel newImpactModelRel = rootModelRelType.createInstanceAndEndpointsAndReferences(null, true, ModelOrigin.CREATED, targetModels);
 		newImpactModelRel.setName(MODELREL_NAME);
 		ModelEndpointReference newDiffModelEndpointRef = newImpactModelRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference newImpactedModelEndpointRef = newImpactModelRel.getModelEndpointRefs().get(1);
 
 		// loop through diff
+		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
 		for (Link diffLink : diffRel.getLinks()) {
 			ModelElement diffModelElem = diffLink.getModelElemEndpoints().get(0).getTarget();
 			// create diff model element ref
@@ -207,11 +204,9 @@ public class ChangeImpact extends OperatorExecutableImpl {
 				diffModelElem
 			);
 			// create impact link, add diff model element endpoint to it
-			LinkReference newImpactLinkRef = MultiModelInstanceFactory.createLinkAndLinkReferenceAndModelElementEndpointsAndModelElementEndpointReferences(
-				null,
-				false,
-				newDiffModelElemRef
-			);
+			EList<ModelElementReference> targetModelElemRefs = new BasicEList<ModelElementReference>();
+			targetModelElemRefs.add(newDiffModelElemRef);
+			LinkReference newImpactLinkRef = rootLinkType.createInstanceAndReferenceAndEndpointsAndReferences(false, targetModelElemRefs);
 			newImpactLinkRef.getObject().setName(LINKREF_NAME);
 			ModelElementEndpointReference newDiffModelElemEndpointRef = newImpactLinkRef.getModelElemEndpointRefs().get(0);
 			newDiffModelElemEndpointRef.getObject().setName(SRC_MODELELEMENDPOINT_NAME);

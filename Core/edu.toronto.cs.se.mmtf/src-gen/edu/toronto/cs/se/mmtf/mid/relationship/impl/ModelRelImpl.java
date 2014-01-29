@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -331,6 +332,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case RelationshipPackage.MODEL_REL___GET_METATYPE:
@@ -361,6 +363,13 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL:
 				try {
 					return createInstance((String)arguments.get(0), (Boolean)arguments.get(1), (ModelOrigin)arguments.get(2), (MultiModel)arguments.get(3));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST:
+				try {
+					return createInstanceAndEndpointsAndReferences((String)arguments.get(0), (Boolean)arguments.get(1), (ModelOrigin)arguments.get(2), (EList<Model>)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -580,6 +589,31 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			RelationshipFactory.eINSTANCE.createBinaryModelRel() :
 			RelationshipFactory.eINSTANCE.createModelRel();
 		super.addInstance(newModelRel, newModelRelUri, origin, containerMultiModel);
+
+		return newModelRel;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, boolean isBinary, ModelOrigin origin, EList<Model> targetModels) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+		if (targetModels.size() == 0) {
+			throw new MMTFException("No target models specified");
+		}
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(targetModels.get(0));
+		// create model rel
+		ModelRel newModelRel = createInstance(newModelRelUri, isBinary, origin, multiModel);
+		// create model rel endpoints
+		for (Model targetModel : targetModels) {
+			String modelTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, targetModel).get(0);
+			ModelEndpoint modelTypeEndpoint = MultiModelTypeRegistry.getType(modelTypeEndpointUri);
+			modelTypeEndpoint.createInstanceAndReference(targetModel, false, newModelRel);
+		}
 
 		return newModelRel;
 	}

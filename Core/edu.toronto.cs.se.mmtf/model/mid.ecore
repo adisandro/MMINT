@@ -560,6 +560,13 @@
         <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
         <eParameters name="containerMultiModel" eType="#//MultiModel"/>
       </eOperations>
+      <eOperations name="createInstanceAndEndpointsAndReferences" lowerBound="1" eType="#//relationship/ModelRel"
+          eExceptions="#//MMTFException">
+        <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
+        <eParameters name="targetModels" lowerBound="1" upperBound="-1" eType="#//Model"/>
+      </eOperations>
       <eOperations name="getOutlineResourceInstances" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
           eExceptions="#//MMTFException"/>
       <eOperations name="deleteInstance" eExceptions="#//MMTFException"/>
@@ -728,6 +735,11 @@
           eExceptions="#//MMTFException">
         <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
+      </eOperations>
+      <eOperations name="createInstanceAndReferenceAndEndpointsAndReferences" lowerBound="1"
+          eType="#//relationship/LinkReference" eExceptions="#//MMTFException">
+        <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eParameters name="targetModelElemRefs" lowerBound="1" upperBound="-1" eType="#//relationship/ModelElementReference"/>
       </eOperations>
       <eOperations name="deleteInstance" eExceptions="#//MMTFException"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElemEndpoints" upperBound="-1"

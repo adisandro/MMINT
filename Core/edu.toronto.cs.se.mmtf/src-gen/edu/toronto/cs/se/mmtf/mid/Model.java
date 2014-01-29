@@ -238,8 +238,7 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 * @throws MMTFException
 	 *             If this is a model instance, or if the metamodel file can't
 	 *             be accessed. <!-- end-user-doc -->
-	 * @model kind="operation" required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
 	EPackage getEMFTypeRoot() throws MMTFException;
@@ -303,8 +302,7 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 * @throws MMTFException
 	 *             If this is a model type, or if the model file can't be
 	 *             accessed. <!-- end-user-doc -->
-	 * @model kind="operation" required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
 	EObject getEMFRoot() throws MMTFException;
