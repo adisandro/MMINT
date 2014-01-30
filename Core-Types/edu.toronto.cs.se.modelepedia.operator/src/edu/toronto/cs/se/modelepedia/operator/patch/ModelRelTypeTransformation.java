@@ -172,13 +172,13 @@ public class ModelRelTypeTransformation extends OperatorExecutableImpl {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		//TODO MMTF[TRANSFORMATION] a simple operator is good for initial testing, later it has to be more integrated and constrained (and a conversion operator)
+		//plan: create a java "transformation" constraint, at right click go through all the model rel types and evaluate against such constraint
+		// foreach one that passes, create a temporary conversion operator that points to this executable and add it to the other operators
+		// make such thing extendable, and let kleisli extend it
+
 		Model srcModel = actualParameters.get(0);
 		ModelRel traceModelRelType = (ModelRel) actualParameters.get(1).getMetatype();
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(srcModel);
-		//TODO MMTF[TRANSFORMATION] move this check out of the operator
-		if (traceModelRelType.getModelEndpointRefs().size() != 2) {
-			throw new MMTFException("The model relationship type must have 2 model endpoints");
-		}
 		init();
 
 		int srcIndex = (

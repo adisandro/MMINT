@@ -30,7 +30,8 @@ Export-Package: com.sun.jna,
  edu.toronto.cs.se.mmtf.mid.ui,
  edu.toronto.cs.se.mmtf.mid.util,
  edu.toronto.cs.se.mmtf.reasoning,
- edu.toronto.cs.se.mmtf.repository
+ edu.toronto.cs.se.mmtf.repository,
+ edu.toronto.cs.se.mmtf.transformation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
