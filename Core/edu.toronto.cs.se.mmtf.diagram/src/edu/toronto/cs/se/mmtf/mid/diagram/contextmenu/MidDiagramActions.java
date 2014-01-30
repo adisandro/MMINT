@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmtf.mid.diagram.contextmenu;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.parts.BinaryModelRelEditPart;
@@ -41,6 +43,9 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
+import edu.toronto.cs.se.mmtf.transformation.ModelRelTypeTransformation;
+import edu.toronto.cs.se.mmtf.transformation.ModelRelTypeTransformationConstraint;
 
 /**
  * The handler for the dynamic construction of a context menu for all
@@ -74,13 +79,14 @@ public class MidDiagramActions extends ContributionItem {
 			return;
 		}
 		Object[] objects = ((StructuredSelection) selection).toArray();
-		boolean doOperator = true, doCast = true, doValidate = true, doCopy = true, doProperty = true, doModelepedia = true;
+		boolean doOperator = true, doCast = true, doValidate = true, doCopy = true, doProperty = true, doModelepedia = true, doTransformation = true;
 		if (objects.length > 1) { // actions that don't work on multiple objects
 			doCast = false;
 			doValidate = false;
 			doCopy = false;
 			doProperty = false;
 			doModelepedia = false;
+			doTransformation = false;
 		}
 
 		// get selection
@@ -102,11 +108,12 @@ public class MidDiagramActions extends ContributionItem {
 					doCast = false;
 					doValidate = false;
 					doCopy = false;
+					doTransformation = false;
 				}
 				if (model instanceof ModelRel) { // actions that don't work on model relationships
 					doCopy = false;
 				}
-				if (doOperator || doCast || doValidate || doCopy || doProperty || doModelepedia) {
+				if (doOperator || doCast || doValidate || doCopy || doProperty || doModelepedia || doTransformation) {
 					models.add(model);
 				}
 				if (doCast) {
@@ -121,7 +128,7 @@ public class MidDiagramActions extends ContributionItem {
 					editParts.add(editPart);
 				}
 			}
-			if (!doOperator && !doCast && !doValidate && !doCopy && !doProperty && !doModelepedia) { // no action available
+			if (!doOperator && !doCast && !doValidate && !doCopy && !doProperty && !doModelepedia && !doTransformation) { // no action available
 				return;
 			}
 		}
@@ -145,7 +152,25 @@ public class MidDiagramActions extends ContributionItem {
 		// operator
 		if (doOperator) {
 			List<Map<Integer, List<ConversionOperator>>> conversions = new ArrayList<Map<Integer, List<ConversionOperator>>>();
+			//TODO MMTF[TRANSFORMATION] the other operators should be aware of the possible transformation operators
 			List<Operator> operators = MultiModelTypeHierarchy.getExecutableOperators(models, runtimeModelTypes, conversions);
+			//transformation
+			Map<ConversionOperator, ModelRel> modelRelTypes = new HashMap<ConversionOperator, ModelRel>();
+			if (doTransformation) {
+				for (ModelRel modelRelType : MultiModelTypeRegistry.getModelRelTypes()) {
+					ModelRelTypeTransformationConstraint transformationConstraint = new ModelRelTypeTransformationConstraint(modelRelType);
+					if (transformationConstraint.validate() != MAVOTruthValue.TRUE) {
+						continue;
+					}
+					ConversionOperator transformationOperator = transformationConstraint.getConversionOperator(models.get(0));
+					if (transformationOperator == null) {
+						continue;
+					}
+					modelRelTypes.put(transformationOperator, modelRelType);
+					operators.add(transformationOperator);
+					conversions.add(new HashMap<Integer, List<ConversionOperator>>());
+				}
+			}
 			if (!operators.isEmpty()) {
 				MenuItem operatorItem = new MenuItem(mmtfMenu, SWT.CASCADE);
 				operatorItem.setText("Run Operator");
@@ -163,8 +188,16 @@ public class MidDiagramActions extends ContributionItem {
 						text += " [inferred]";
 					}
 					operatorSubitem.setText(text);
+					EList<Model> actualParameters;
+					if (operator.getExecutable() instanceof ModelRelTypeTransformation) {
+						actualParameters = new BasicEList<Model>(models);
+						actualParameters.add(0, modelRelTypes.get(operator));
+					}
+					else {
+						actualParameters = models;
+					}
 					operatorSubitem.addSelectionListener(
-						new RunOperatorListener(operator, models, conversionMap)
+						new RunOperatorListener(operator, actualParameters, conversionMap)
 					);
 					//TODO MMTF[OPERATOR] nice to show label of operator invocation with actual parameters
 					//TODO MMTF[OPERATOR] traceability, could be nice to create an instance of operator, with name = actual parameters

@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmtf.mid.library;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -68,7 +69,7 @@ public class MultiModelRegistry {
 		cardinalityTable.put(uri, newValue);
 	}
 
-	public static boolean checkNewEndpointUpperCardinality(ExtendibleElementEndpoint typeEndpoint, HashMap<String, Integer> cardinalityTable) {
+	public static boolean checkNewEndpointUpperCardinality(ExtendibleElementEndpoint typeEndpoint, Map<String, Integer> cardinalityTable) {
 
 		int upperBound = typeEndpoint.getUpperBound();
 		if (upperBound == -1) {

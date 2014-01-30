@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.mmtf;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.core.runtime.Platform;
@@ -38,9 +37,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.ui.MultiModelTreeSelectionDialog;
 import edu.toronto.cs.se.mmtf.mid.ui.NewLinkReferenceDialogContentProvider;
@@ -223,57 +220,23 @@ public class MultiModelTypeRegistry {
 	 * Gets a tree dialog that shows all model relationship types in the
 	 * repository, in order to create a new model relationship.
 	 * 
-	 * @param newSrcModel
+	 * @param targetSrcModel
 	 *            The model that is going to be the target of the source model
 	 *            endpoint, null if the model relationship to be created is not
 	 *            binary.
-	 * @param newTgtModel
+	 * @param targetTgtModel
 	 *            The model that is going to be the target of the target model
 	 *            endpoint, null if the model relationship to be created is not
 	 *            binary.
 	 * @return The tree dialog to create a new model relationship.
 	 */
-	public static MultiModelTreeSelectionDialog getModelRelCreationDialog(Model newSrcModel, Model newTgtModel) {
-
-		List<String> modelRelTypeUris = null;
-
-		if (newSrcModel != null && newTgtModel != null) {
-			modelRelTypeUris = new ArrayList<String>();
-			for (ModelRel modelRelType : getModelRelTypes()) {
-				boolean okSrc = false, okTgt = false;
-				HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
-				//TODO MMTF: consider direction for binary?
-				for (ModelEndpointReference modelTypeEndpointRef : modelRelType.getModelEndpointRefs()) {
-					if (!okSrc) {
-						okSrc = MultiModelConstraintChecker.isAllowedModelEndpoint(modelTypeEndpointRef, newSrcModel, cardinalityTable);
-						if (okSrc) {
-							MultiModelRegistry.initEndpointCardinalities(modelTypeEndpointRef.getUri(), cardinalityTable);
-						}
-					}
-					if (!okTgt) {
-						okTgt = MultiModelConstraintChecker.isAllowedModelEndpoint(modelTypeEndpointRef, newTgtModel, cardinalityTable);
-						if (okTgt) {
-							MultiModelRegistry.initEndpointCardinalities(modelTypeEndpointRef.getUri(), cardinalityTable);
-						}
-					}
-					if (okSrc && okTgt) {
-						modelRelTypeUris.add(modelRelType.getUri());
-						break;
-					}
-				}
-			}
-
-			// check for overrides
-			for (String modelRelTypeUri : modelRelTypeUris) {
-				//TODO MMTF: if one model rel type points to another one in this list through its override pointer, then delete it
-			}
-		}
+	public static MultiModelTreeSelectionDialog getModelRelCreationDialog(Model targetSrcModel, Model targetTgtModel) {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
 			new MultiModelDialogLabelProvider(),
-			new NewModelRelDialogContentProvider(modelRelTypeUris),
+			new NewModelRelDialogContentProvider(MultiModelConstraintChecker.getAllowedModelRelTypes(targetSrcModel, targetTgtModel)),
 			MMTF.repository
 		);
 
@@ -390,11 +353,11 @@ public class MultiModelTypeRegistry {
 	 * Gets a tree dialog that shows all link types in a model relationship
 	 * type, in order to create a new link and a reference to it.
 	 * 
-	 * @param newSrcModelElemRef
+	 * @param targetSrcModelElemRef
 	 *            The reference to the model element that is going to be the
 	 *            target of the source model element endpoint, null if the link
 	 *            to be created is not binary.
-	 * @param newTgtModelElemRef
+	 * @param targetTgtModelElemRef
 	 *            The reference to the model element that is going to be the
 	 *            target of the target model element endpoint, null if the link
 	 *            to be created is not binary.
@@ -403,49 +366,14 @@ public class MultiModelTypeRegistry {
 	 *            created.
 	 * @return The tree dialog to create a new link.
 	 */
-	public static MultiModelTreeSelectionDialog getLinkReferenceCreationDialog(ModelElementReference newSrcModelElemRef, ModelElementReference newTgtModelElemRef, ModelRel modelRel) {
+	public static MultiModelTreeSelectionDialog getLinkReferenceCreationDialog(ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef, ModelRel modelRel) {
 
-		List<String> linkTypeUris = null;
 		ModelRel modelRelType = modelRel.getMetatype();
-
-		if (newSrcModelElemRef != null && newTgtModelElemRef != null) {
-			linkTypeUris = new ArrayList<String>();
-			for (LinkReference linkTypeRef : modelRelType.getLinkRefs()) {
-				boolean okSrc = false, okTgt = false;
-				Link linkType = linkTypeRef.getObject();
-				HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
-				//TODO MMTF: consider direction for binary?
-				for (ModelElementEndpointReference modelElemTypeEndpointRef : linkType.getModelElemEndpointRefs()) {
-					if (!okSrc) {
-						okSrc = MultiModelConstraintChecker.isAllowedModelElementEndpointReference(modelElemTypeEndpointRef.getObject(), newSrcModelElemRef, cardinalityTable);
-						if (okSrc) {
-							MultiModelRegistry.initEndpointCardinalities(modelElemTypeEndpointRef.getUri(), cardinalityTable);
-						}
-					}
-					if (!okTgt) {
-						okTgt = MultiModelConstraintChecker.isAllowedModelElementEndpointReference(modelElemTypeEndpointRef.getObject(), newTgtModelElemRef, cardinalityTable);
-						if (okTgt) {
-							MultiModelRegistry.initEndpointCardinalities(modelElemTypeEndpointRef.getUri(), cardinalityTable);
-						}
-					}
-					if (okSrc && okTgt) {
-						linkTypeUris.add(linkType.getUri());
-						break;
-					}
-				}
-			}
-
-			// check for overrides
-			for (String linkTypeUri : linkTypeUris) {
-				//TODO MMTF: if one link type points to another one in this list through its override pointer, then delete it
-			}
-		}
-
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
 			new MultiModelDialogLabelProvider(),
-			new NewLinkReferenceDialogContentProvider(linkTypeUris),
+			new NewLinkReferenceDialogContentProvider(MultiModelConstraintChecker.getAllowedLinkTypeReferences(modelRelType, targetSrcModelElemRef, targetTgtModelElemRef)),
 			modelRelType
 		);
 

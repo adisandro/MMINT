@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.operator.patch;
+package edu.toronto.cs.se.mmtf.transformation;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
@@ -35,15 +36,15 @@ import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.library.PrimitiveEObjectWrapper;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.library.RelationshipDiagramUtils;
 
-public class ModelRelTypeTransformation extends OperatorExecutableImpl {
+public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl {
 
 	private static final String TRANSFORMATION_SUFFIX = "_transformed";
 
@@ -106,8 +107,9 @@ public class ModelRelTypeTransformation extends OperatorExecutableImpl {
 		return tgtModelObjValue;
 	}
 
-	private void transform(ModelRel traceModelRelType, ModelRel traceModelRel, Model srcModel, int srcIndex, int tgtIndex) throws Exception {
+	private void transform(ModelRel traceModelRel, Model srcModel, int srcIndex, int tgtIndex) throws Exception {
 
+		ModelRel traceModelRelType = traceModelRel.getMetatype();
 		ModelEndpointReference srcModelTypeEndpointRef = traceModelRelType.getModelEndpointRefs().get(srcIndex);
 		Map<EObject, ModelElementReference> srcModelObjs = new HashMap<EObject, ModelElementReference>();
 		TreeIterator<EObject> srcModelObjsIter = EcoreUtil.getAllContents(srcModel.getEMFRoot().eResource(), true);
@@ -161,9 +163,8 @@ public class ModelRelTypeTransformation extends OperatorExecutableImpl {
 			targetModelElemRefs.add(srcModelElemRef);
 			ModelElementReference tgtModelElemRef = ModelElementImpl.createInstanceAndReference(tgtModelObjEntry.getValue(), null, traceModelRel.getModelEndpointRefs().get(1));
 			targetModelElemRefs.add(tgtModelElemRef);
-			//TODO MMTF[INTROSPECTION] Isn't this worth isolating in a getAllowedLinkTypeReference()?
-			LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToCreate(traceModelRel, srcModelElemRef, tgtModelElemRef);
-			LinkReference newLinkRef = linkTypeRef.getObject().createInstanceAndReferenceAndEndpointsAndReferences(true, targetModelElemRefs);
+			Link linkType = MultiModelTypeRegistry.getType(MultiModelConstraintChecker.getAllowedLinkTypeReferences(traceModelRelType, srcModelElemRef, tgtModelElemRef).get(0));
+			LinkReference newLinkRef = linkType.createInstanceAndReferenceAndEndpointsAndReferences(true, targetModelElemRefs);
 			newLinkRef.getObject().setName(srcModelElemRef.getObject().getName() + MMTF.BINARY_MODELREL_LINK_SEPARATOR + tgtModelElemRef.getObject().getName());
 		}
 	}
@@ -171,19 +172,14 @@ public class ModelRelTypeTransformation extends OperatorExecutableImpl {
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		//TODO MMTF[TRANSFORMATION] a simple operator is good for initial testing, later it has to be more integrated and constrained (and a conversion operator)
-		//plan: create a java "transformation" constraint, at right click go through all the model rel types and evaluate against such constraint
-		// foreach one that passes, create a temporary conversion operator that points to this executable and add it to the other operators
-		// make such thing extendable, and let kleisli extend it
-
-		Model srcModel = actualParameters.get(0);
-		ModelRel traceModelRelType = (ModelRel) actualParameters.get(1).getMetatype();
+		ModelRel traceModelRelType = (ModelRel) actualParameters.get(0);
+		Model srcModel = actualParameters.get(1);
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(srcModel);
 		init();
 
 		int srcIndex = (
 			traceModelRelType instanceof BinaryModelRel ||
-			srcModel.getMetatypeUri().equals(traceModelRelType.getModelEndpointRefs().get(0).getTargetUri())
+			MultiModelConstraintChecker.isAllowedModelEndpoint(traceModelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>())
 		) ?
 			0 : 1;
 		int tgtIndex = 1 - srcIndex;
@@ -193,13 +189,12 @@ public class ModelRelTypeTransformation extends OperatorExecutableImpl {
 			tgtModelType.getFileExtension()
 		);
 		Model tgtModel = tgtModelType.createInstanceAndEditor(tgtModelUri, ModelOrigin.CREATED, multiModel);
-		ModelRel traceModelRel = (ModelRel) actualParameters.get(1);
-		//TODO MMTF[TRANSFORMATION] modify this as part of the integration work?
-		//ModelRel traceModelRel = traceModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
-		//traceModelRelType.getModelEndpointRefs().get(srcIndex).getObject().createInstanceAndReference(srcModel, false, traceModelRel);
+		ModelRel traceModelRel = traceModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
+		traceModelRel.setName(srcModel.getName() + MMTF.BINARY_MODELREL_LINK_SEPARATOR + tgtModel.getName());
+		traceModelRelType.getModelEndpointRefs().get(srcIndex).getObject().createInstanceAndReference(srcModel, false, traceModelRel);
 		traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().createInstanceAndReference(tgtModel, false, traceModelRel);
 		//TODO MMTF[KLEISLI] make it work, i.e. make all operations invoked here transparent to the user
-		transform(traceModelRelType, traceModelRel, srcModel, srcIndex, tgtIndex);
+		transform(traceModelRel, srcModel, srcIndex, tgtIndex);
 
 		EList<Model> result = new BasicEList<Model>();
 		result.add(tgtModel);

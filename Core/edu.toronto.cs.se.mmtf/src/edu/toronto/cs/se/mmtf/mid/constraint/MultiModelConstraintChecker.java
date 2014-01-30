@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -179,12 +180,90 @@ public class MultiModelConstraintChecker {
 		return true;
 	}
 
-	public static boolean isAllowedModelEndpoint(ModelEndpointReference modelTypeEndpointRef, Model newModel, HashMap<String, Integer> cardinalityTable) {
+	public static List<String> getAllowedModelRelTypes(Model targetSrcModel, Model targetTgtModel) {
 
-		//TODO MMTF: consider static (like now) or runtime types?
-		String newModelTypeUri = newModel.getMetatypeUri();
+		List<String> modelRelTypeUris = new ArrayList<String>();
+		for (ModelRel modelRelType : MultiModelTypeRegistry.getModelRelTypes()) {
+			boolean isAllowed = true, isAllowedSrc = false, isAllowedTgt = false;
+			HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
+			//TODO MMTF: consider direction for binary?
+			if (targetSrcModel != null) {
+				for (ModelEndpointReference modelTypeEndpointRef : modelRelType.getModelEndpointRefs()) {
+					if (MultiModelConstraintChecker.isAllowedModelEndpoint(modelTypeEndpointRef, targetSrcModel, cardinalityTable)) {
+						MultiModelRegistry.initEndpointCardinalities(modelTypeEndpointRef.getUri(), cardinalityTable);
+						isAllowedSrc = true;
+						break;
+					}
+				}
+				isAllowed = isAllowed && isAllowedSrc;
+			}
+			if (targetTgtModel != null) {
+				for (ModelEndpointReference modelTypeEndpointRef : modelRelType.getModelEndpointRefs()) {
+					if (MultiModelConstraintChecker.isAllowedModelEndpoint(modelTypeEndpointRef, targetTgtModel, cardinalityTable)) {
+						MultiModelRegistry.initEndpointCardinalities(modelTypeEndpointRef.getUri(), cardinalityTable);
+						isAllowedTgt = true;
+						break;
+					}
+				}
+				isAllowed = isAllowed && isAllowedTgt;
+			}
+			if (isAllowed) {
+				modelRelTypeUris.add(modelRelType.getUri());
+			}
+		}
+		// check for overrides
+		for (String modelRelTypeUri : modelRelTypeUris) {
+			//TODO MMTF[OVERRIDE] if one model rel type points to another one in this list through its override pointer, then delete it
+		}
+
+		return modelRelTypeUris;
+	}
+
+	public static List<String> getAllowedLinkTypeReferences(ModelRel modelRelType, ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef) {
+
+		List<String> linkTypeUris = new ArrayList<String>();
+		for (LinkReference linkTypeRef : modelRelType.getLinkRefs()) {
+			boolean isAllowed = true, isAllowedSrc = false, isAllowedTgt = false;
+			HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
+			//TODO MMTF: consider direction for binary?
+			if (targetSrcModelElemRef != null) {
+				for (ModelElementEndpointReference modelElemTypeEndpointRef : linkTypeRef.getObject().getModelElemEndpointRefs()) {
+					if (MultiModelConstraintChecker.isAllowedModelElementEndpointReference(modelElemTypeEndpointRef.getObject(), targetSrcModelElemRef, cardinalityTable)) {
+						MultiModelRegistry.initEndpointCardinalities(modelElemTypeEndpointRef.getUri(), cardinalityTable);
+						isAllowedSrc = true;
+						break;
+					}
+				}
+				isAllowed = isAllowed && isAllowedSrc;
+			}
+			if (targetTgtModelElemRef != null) {
+				for (ModelElementEndpointReference modelElemTypeEndpointRef : linkTypeRef.getObject().getModelElemEndpointRefs()) {
+					if (MultiModelConstraintChecker.isAllowedModelElementEndpointReference(modelElemTypeEndpointRef.getObject(), targetTgtModelElemRef, cardinalityTable)) {
+						MultiModelRegistry.initEndpointCardinalities(modelElemTypeEndpointRef.getUri(), cardinalityTable);
+						isAllowedTgt = true;
+						break;
+					}
+				}
+				isAllowed = isAllowed && isAllowedTgt;
+			}
+			if (isAllowed) {
+				linkTypeUris.add(linkTypeRef.getUri());
+			}
+		}
+		// check for overrides
+		for (String linkTypeUri : linkTypeUris) {
+			//TODO MMTF[OVERRIDE] if one link type points to another one in this list through its override pointer, then delete it
+		}
+
+		return linkTypeUris;
+	}
+
+	public static boolean isAllowedModelEndpoint(ModelEndpointReference modelTypeEndpointRef, Model targetModel, Map<String, Integer> cardinalityTable) {
+
+		//TODO MMTF[INTROSPECTION] consider static (like now) or runtime types?
+		String targetModelTypeUri = targetModel.getMetatypeUri();
 		// check if the type is allowed
-		if (modelTypeEndpointRef.getTargetUri().equals(newModelTypeUri) || MultiModelTypeHierarchy.isSubtypeOf(newModelTypeUri, modelTypeEndpointRef.getTargetUri())) {
+		if (modelTypeEndpointRef.getTargetUri().equals(targetModelTypeUri) || MultiModelTypeHierarchy.isSubtypeOf(targetModelTypeUri, modelTypeEndpointRef.getTargetUri())) {
 			// check if the cardinality is allowed
 			if (MultiModelRegistry.checkNewEndpointUpperCardinality(modelTypeEndpointRef.getObject(), cardinalityTable)) {
 				return true;
@@ -194,9 +273,9 @@ public class MultiModelConstraintChecker {
 		return false;
 	}
 
-	public static List<String> getAllowedModelEndpoints(ModelRel modelRel, Model newModel) {
+	public static List<String> getAllowedModelEndpoints(ModelRel modelRel, Model targetModel) {
 
-		if (newModel == null) { // model not added yet
+		if (targetModel == null) { // model not added yet
 			return new ArrayList<String>();
 		}
 
@@ -208,7 +287,7 @@ public class MultiModelConstraintChecker {
 		}
 		// check allowance
 		for (ModelEndpointReference modelTypeEndpointRef : modelRel.getMetatype().getModelEndpointRefs()) {
-			if (isAllowedModelEndpoint(modelTypeEndpointRef, newModel, cardinalityTable)) {
+			if (isAllowedModelEndpoint(modelTypeEndpointRef, targetModel, cardinalityTable)) {
 				if (modelTypeEndpointUris == null) {
 					modelTypeEndpointUris = new ArrayList<String>();
 				}
@@ -350,7 +429,6 @@ public class MultiModelConstraintChecker {
 		return false;
 	}
 
-	//TODO MMTF[INTROSPECTION] this should be moved, is type introspection for model elements
 	public static ModelElement getAllowedModelElementType(ModelEndpointReference modelEndpointRef, EObject modelObj) {
 
 		ModelRel modelRelType = ((ModelRel) modelEndpointRef.eContainer()).getMetatype();
@@ -367,7 +445,6 @@ public class MultiModelConstraintChecker {
 		return null;
 	}
 
-	//TODO MMTF[INTROSPECTION] this should be moved, is type introspection for links
 	public static Link getAllowedLinkType(Link link) {
 
 		ModelRel modelRelType = ((ModelRel) link.eContainer()).getMetatype();

@@ -36,6 +36,7 @@ import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
@@ -63,8 +64,15 @@ public class RunOperatorListener extends SelectionAdapter {
 			files.add(diagramFile);
 			files.add(modelFile);
 		}
+		Model editingDomainParameter;
+		int i = 0;
+		do {
+			editingDomainParameter = actualParameters.get(i);
+			i++;
+		}
+		while (!MultiModelConstraintChecker.isInstancesLevel(editingDomainParameter));
 		AbstractTransactionalCommand operatorCommand = new RunOperatorCommand(
-			TransactionUtil.getEditingDomain(actualParameters.get(0)),
+			TransactionUtil.getEditingDomain(editingDomainParameter),
 			"Run operator",
 			files
 		);
