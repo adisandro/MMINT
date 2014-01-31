@@ -11,20 +11,12 @@
  */
 package edu.toronto.cs.se.mmtf.transformation;
 
-import java.util.HashMap;
-
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.constraint.JavaModelConstraint;
-import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
-import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
 
 public class ModelRelTypeTransformationConstraint extends JavaModelConstraint {
-
-	private final static String OPERATOR_NAME = "ModelRelTypeTransformation";
 
 	public ModelRelTypeTransformationConstraint(Model model) {
 
@@ -40,23 +32,6 @@ public class ModelRelTypeTransformationConstraint extends JavaModelConstraint {
 		}
 
 		return MAVOTruthValue.TRUE;
-	}
-
-	public ConversionOperator getConversionOperator(Model modelType) {
-
-		ModelRel modelRelType = (ModelRel) model;
-		ConversionOperator operator = null;
-		boolean ok = MultiModelConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(0), modelType, new HashMap<String, Integer>());
-		if (!(modelRelType instanceof BinaryModelRel)) {
-			ok = ok || MultiModelConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(1), modelType, new HashMap<String, Integer>());
-		}
-		if (ok) {
-			operator = OperatorFactory.eINSTANCE.createConversionOperator();
-			operator.setName(OPERATOR_NAME + "(" + modelRelType.getName() + ")");
-			operator.setExecutable(new ModelRelTypeTransformation());
-		}
-
-		return operator;
 	}
 
 }

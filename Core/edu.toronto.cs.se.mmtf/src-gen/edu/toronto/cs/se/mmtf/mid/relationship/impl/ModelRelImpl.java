@@ -27,6 +27,8 @@ import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -38,6 +40,9 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
+import edu.toronto.cs.se.mmtf.transformation.ModelRelTypeTransformation;
+import edu.toronto.cs.se.mmtf.transformation.ModelRelTypeTransformationConstraint;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -366,6 +371,13 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case RelationshipPackage.MODEL_REL___GET_TYPE_TRANSFORMATION_OPERATOR__MODEL:
+				try {
+					return getTypeTransformationOperator((Model)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL:
 				try {
 					return createInstance((String)arguments.get(0), (Boolean)arguments.get(1), (ModelOrigin)arguments.get(2), (MultiModel)arguments.get(3));
@@ -629,6 +641,30 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			}
 		}
 		super.deleteType(); // this also deletes the subtypes of the "thing"
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public ConversionOperator getTypeTransformationOperator(Model srcModel) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+		if (new ModelRelTypeTransformationConstraint(this).validate() != MAVOTruthValue.TRUE) {
+			throw new MMTFException("Transformation constraint not satisfied");
+		}
+		if (
+			!MultiModelConstraintChecker.isAllowedModelEndpoint(getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>()) &&
+			!MultiModelConstraintChecker.isAllowedModelEndpoint(getModelEndpointRefs().get(1), srcModel, new HashMap<String, Integer>())
+		) {
+			throw new MMTFException("Source model not allowed");
+		}
+
+		ConversionOperator transformationOperator = OperatorFactory.eINSTANCE.createConversionOperator();
+		transformationOperator.setExecutable(new ModelRelTypeTransformation());
+
+		return transformationOperator;
 	}
 
 	/**

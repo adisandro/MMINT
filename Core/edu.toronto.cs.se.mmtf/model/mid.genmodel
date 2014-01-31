@@ -214,6 +214,9 @@
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceTypes"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/deleteType"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getTypeTransformationOperator">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/getTypeTransformationOperator/srcModel"/>
+        </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createInstance">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstance/newModelRelUri"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstance/isBinary"/>
@@ -240,6 +243,9 @@
             ecoreFeature="ecore:EReference mid.ecore#//relationship/BinaryModelRel/sourceModel"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//relationship/BinaryModelRel/targetModel"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/BinaryModelRel/getTypeTransformationOperator">
+          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryModelRel/getTypeTransformationOperator/srcModel"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/ModelEndpointReference">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelEndpointReference/modelElemRefs"/>

@@ -321,7 +321,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel() {
+	public EOperation getModelRel__GetTypeTransformationOperator__Model() {
 		return modelRelEClass.getEOperations().get(6);
 	}
 
@@ -330,7 +330,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__CreateInstanceAndEndpointsAndReferences__String_boolean_ModelOrigin_EList() {
+	public EOperation getModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel() {
 		return modelRelEClass.getEOperations().get(7);
 	}
 
@@ -339,7 +339,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__CopyMAVOInstance__ModelRel_MultiModel() {
+	public EOperation getModelRel__CreateInstanceAndEndpointsAndReferences__String_boolean_ModelOrigin_EList() {
 		return modelRelEClass.getEOperations().get(8);
 	}
 
@@ -348,8 +348,8 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__DeleteInstance() {
-		return modelRelEClass.getEOperations().get(10);
+	public EOperation getModelRel__CopyMAVOInstance__ModelRel_MultiModel() {
+		return modelRelEClass.getEOperations().get(9);
 	}
 
 	/**
@@ -357,7 +357,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__OpenType() {
+	public EOperation getModelRel__DeleteInstance() {
 		return modelRelEClass.getEOperations().get(11);
 	}
 
@@ -366,8 +366,17 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__OpenInstance() {
+	public EOperation getModelRel__OpenType() {
 		return modelRelEClass.getEOperations().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelRel__OpenInstance() {
+		return modelRelEClass.getEOperations().get(13);
 	}
 
 	/**
@@ -385,7 +394,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * @generated
 	 */
 	public EOperation getModelRel__GetOutlineResourceInstances() {
-		return modelRelEClass.getEOperations().get(9);
+		return modelRelEClass.getEOperations().get(10);
 	}
 
 	/**
@@ -413,6 +422,15 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 */
 	public EReference getBinaryModelRel_TargetModel() {
 		return (EReference)binaryModelRelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getBinaryModelRel__GetTypeTransformationOperator__Model() {
+		return binaryModelRelEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -1088,6 +1106,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEOperation(modelRelEClass, MODEL_REL___COPY_SUBTYPE__MODELREL);
 		createEOperation(modelRelEClass, MODEL_REL___GET_OUTLINE_RESOURCE_TYPES);
 		createEOperation(modelRelEClass, MODEL_REL___DELETE_TYPE);
+		createEOperation(modelRelEClass, MODEL_REL___GET_TYPE_TRANSFORMATION_OPERATOR__MODEL);
 		createEOperation(modelRelEClass, MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL);
 		createEOperation(modelRelEClass, MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST);
 		createEOperation(modelRelEClass, MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL);
@@ -1099,6 +1118,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		binaryModelRelEClass = createEClass(BINARY_MODEL_REL);
 		createEReference(binaryModelRelEClass, BINARY_MODEL_REL__SOURCE_MODEL);
 		createEReference(binaryModelRelEClass, BINARY_MODEL_REL__TARGET_MODEL);
+		createEOperation(binaryModelRelEClass, BINARY_MODEL_REL___GET_TYPE_TRANSFORMATION_OPERATOR__MODEL);
 
 		modelEndpointReferenceEClass = createEClass(MODEL_ENDPOINT_REFERENCE);
 		createEReference(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE__MODEL_ELEM_REFS);
@@ -1192,6 +1212,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 
 		// Obtain other dependent packages
 		MidPackage theMidPackage = (MidPackage)EPackage.Registry.INSTANCE.getEPackage(MidPackage.eNS_URI);
+		OperatorPackage theOperatorPackage = (OperatorPackage)EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1253,6 +1274,10 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		op = initEOperation(getModelRel__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
+		op = initEOperation(getModelRel__GetTypeTransformationOperator__Model(), theOperatorPackage.getConversionOperator(), "getTypeTransformationOperator", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMidPackage.getModel(), "srcModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
+
 		op = initEOperation(getModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel(), this.getModelRel(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelRelUri", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -1287,6 +1312,10 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		initEClass(binaryModelRelEClass, BinaryModelRel.class, "BinaryModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBinaryModelRel_SourceModel(), theMidPackage.getModel(), null, "sourceModel", null, 1, 1, BinaryModelRel.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getBinaryModelRel_TargetModel(), theMidPackage.getModel(), null, "targetModel", null, 1, 1, BinaryModelRel.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getBinaryModelRel__GetTypeTransformationOperator__Model(), theOperatorPackage.getConversionOperator(), "getTypeTransformationOperator", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMidPackage.getModel(), "srcModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
 
 		initEClass(modelEndpointReferenceEClass, ModelEndpointReference.class, "ModelEndpointReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelEndpointReference_ModelElemRefs(), this.getModelElementReference(), null, "modelElemRefs", null, 0, -1, ModelEndpointReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

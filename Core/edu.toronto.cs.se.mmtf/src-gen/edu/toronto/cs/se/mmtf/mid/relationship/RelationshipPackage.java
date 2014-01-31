@@ -642,13 +642,22 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___DELETE_TYPE = MidPackage.MODEL_OPERATION_COUNT + 5;
 
 	/**
+	 * The operation id for the '<em>Get Type Transformation Operator</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___GET_TYPE_TRANSFORMATION_OPERATOR__MODEL = MidPackage.MODEL_OPERATION_COUNT + 6;
+
+	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = MidPackage.MODEL_OPERATION_COUNT + 6;
+	int MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = MidPackage.MODEL_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Endpoints And References</em>' operation.
@@ -657,7 +666,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST = MidPackage.MODEL_OPERATION_COUNT + 7;
+	int MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST = MidPackage.MODEL_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.
@@ -666,7 +675,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL = MidPackage.MODEL_OPERATION_COUNT + 8;
+	int MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL = MidPackage.MODEL_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -675,7 +684,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MidPackage.MODEL_OPERATION_COUNT + 9;
+	int MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MidPackage.MODEL_OPERATION_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -684,7 +693,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___DELETE_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 10;
+	int MODEL_REL___DELETE_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>Open Type</em>' operation.
@@ -693,7 +702,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___OPEN_TYPE = MidPackage.MODEL_OPERATION_COUNT + 11;
+	int MODEL_REL___OPEN_TYPE = MidPackage.MODEL_OPERATION_COUNT + 12;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -702,7 +711,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___OPEN_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 12;
+	int MODEL_REL___OPEN_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 13;
 
 	/**
 	 * The number of operations of the '<em>Model Rel</em>' class.
@@ -711,7 +720,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 13;
+	int MODEL_REL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -1146,13 +1155,22 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL___OPEN_INSTANCE = MODEL_REL___OPEN_INSTANCE;
 
 	/**
+	 * The operation id for the '<em>Get Type Transformation Operator</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___GET_TYPE_TRANSFORMATION_OPERATOR__MODEL = MODEL_REL_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Binary Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL_OPERATION_COUNT = MODEL_REL_OPERATION_COUNT + 0;
+	int BINARY_MODEL_REL_OPERATION_COUNT = MODEL_REL_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Object</b></em>' reference.
@@ -2733,6 +2751,16 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelRel__DeleteType();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#getTypeTransformationOperator(edu.toronto.cs.se.mmtf.mid.Model) <em>Get Type Transformation Operator</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Type Transformation Operator</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#getTypeTransformationOperator(edu.toronto.cs.se.mmtf.mid.Model)
+	 * @generated
+	 */
+	EOperation getModelRel__GetTypeTransformationOperator__Model();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelRel#createInstance(java.lang.String, boolean, edu.toronto.cs.se.mmtf.mid.ModelOrigin, edu.toronto.cs.se.mmtf.mid.MultiModel) <em>Create Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2843,6 +2871,16 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getBinaryModelRel_TargetModel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel#getTypeTransformationOperator(edu.toronto.cs.se.mmtf.mid.Model) <em>Get Type Transformation Operator</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Type Transformation Operator</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel#getTypeTransformationOperator(edu.toronto.cs.se.mmtf.mid.Model)
+	 * @generated
+	 */
+	EOperation getBinaryModelRel__GetTypeTransformationOperator__Model();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference <em>Model Endpoint Reference</em>}'.
@@ -3655,6 +3693,14 @@ public interface RelationshipPackage extends EPackage {
 		EOperation MODEL_REL___DELETE_TYPE = eINSTANCE.getModelRel__DeleteType();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Type Transformation Operator</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REL___GET_TYPE_TRANSFORMATION_OPERATOR__MODEL = eINSTANCE.getModelRel__GetTypeTransformationOperator__Model();
+
+		/**
 		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3743,6 +3789,14 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EReference BINARY_MODEL_REL__TARGET_MODEL = eINSTANCE.getBinaryModelRel_TargetModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Type Transformation Operator</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation BINARY_MODEL_REL___GET_TYPE_TRANSFORMATION_OPERATOR__MODEL = eINSTANCE.getBinaryModelRel__GetTypeTransformationOperator__Model();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelEndpointReferenceImpl <em>Model Endpoint Reference</em>}' class.

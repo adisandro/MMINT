@@ -77,6 +77,10 @@
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/copySubtype/origModelRelType"/>
       </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/deleteType"/>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/getOutlineResourceTypes"/>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/getTypeTransformationOperator">
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/getTypeTransformationOperator/srcModel"/>
+      </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/createInstance">
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createInstance/newModelRelUri"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createInstance/isBinary"/>
@@ -84,12 +88,15 @@
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createInstance/containerMultiModel"/>
       </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/deleteInstance"/>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/getOutlineResourceInstances"/>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/openType"/>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/openInstance"/>
-      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/getOutlineResourceTypes"/>
-      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/getOutlineResourceInstances"/>
     </genClasses>
-    <genClasses ecoreClass="kleisli.ecore#//KleisliBinaryModelRel"/>
+    <genClasses ecoreClass="kleisli.ecore#//KleisliBinaryModelRel">
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliBinaryModelRel/getTypeTransformationOperator">
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliBinaryModelRel/getTypeTransformationOperator/srcModel"/>
+      </genOperations>
+    </genClasses>
     <genClasses ecoreClass="kleisli.ecore#//KleisliModelEndpointReference">
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute kleisli.ecore#//KleisliModelEndpointReference/extendedTargetUri"/>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpointReference/acceptModelElementType">

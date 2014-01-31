@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelOpenEditorCommand;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
@@ -41,6 +42,8 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
+import edu.toronto.cs.se.modelepedia.kleisli.transformation.KleisliModelRelTypeTransformation;
+
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -287,6 +290,45 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	}
 
 	/**
+	 * @generated NOT
+	 */
+	@Override
+	public ResourceSet getOutlineResourceTypes() throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		ResourceSet resourceSet = new ResourceSetImpl();
+		List<Resource> resources = resourceSet.getResources();
+		for (ModelEndpointReference modelTypeEndpointRef : getModelEndpointRefs()) {
+			ModelEndpoint modelTypeEndpoint = modelTypeEndpointRef.getObject();
+			Model modelType = (modelTypeEndpoint instanceof KleisliModelEndpoint) ?
+				((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTarget() :
+				modelTypeEndpoint.getTarget();
+			do {
+				resources.add(modelType.getEMFTypeRoot().eResource());
+				modelType = modelType.getSupertype();
+			}
+			while (modelType != null && !modelType.isAbstract());
+		}
+
+		return resourceSet;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public ConversionOperator getTypeTransformationOperator(Model srcModel) throws MMTFException {
+
+		ConversionOperator transformationOperator = super.getTypeTransformationOperator(srcModel);
+		transformationOperator.setExecutable(new KleisliModelRelTypeTransformation());
+
+		return transformationOperator;
+	}
+
+	/**
 	 * Gets the uri of a Kleisli model relationship instance extension.
 	 * 
 	 * @param modelRel
@@ -347,12 +389,38 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
+	public ResourceSet getOutlineResourceInstances() throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		ResourceSet resourceSet = new ResourceSetImpl();
+		List<Resource> resources = resourceSet.getResources();
+		for (ModelEndpointReference modelEndpointRef : getModelEndpointRefs()) {
+			ModelEndpoint modelEndpoint = modelEndpointRef.getObject();
+			Model model = (modelEndpoint instanceof KleisliModelEndpoint) ?
+				((KleisliModelEndpoint) modelEndpoint).getExtendedTarget() :
+				modelEndpoint.getTarget();
+			resources.add(model.getEMFRoot().eResource());
+		}
+
+		return resourceSet;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
 	public void openType() throws MMTFException {
 
 		super.openType();
 
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		for (ModelEndpoint modelTypeEndpoint : getModelEndpoints()) {
+			if (!(modelTypeEndpoint instanceof KleisliModelEndpoint)) {
+				continue;
+			}
 			URI uri = URI.createFileURI(MultiModelUtils.isFileOrDirectoryInState(((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTargetUri()));
 			try {
 				activePage.openEditor(new URIEditorInput(uri), ModelOpenEditorCommand.ECORE_EDITORID);
@@ -481,56 +549,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				MMTFException.print(Type.WARNING, "Error creating extended model file, fallback to no extension", e);
 			}
 		}
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public ResourceSet getOutlineResourceTypes() throws MMTFException {
-
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
-		}
-
-		ResourceSet resourceSet = new ResourceSetImpl();
-		List<Resource> resources = resourceSet.getResources();
-		for (ModelEndpointReference modelTypeEndpointRef : getModelEndpointRefs()) {
-			ModelEndpoint modelTypeEndpoint = modelTypeEndpointRef.getObject();
-			Model modelType = (modelTypeEndpoint instanceof KleisliModelEndpoint) ?
-				((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTarget() :
-				modelTypeEndpoint.getTarget();
-			do {
-				resources.add(modelType.getEMFTypeRoot().eResource());
-				modelType = modelType.getSupertype();
-			}
-			while (modelType != null && !modelType.isAbstract());
-		}
-
-		return resourceSet;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public ResourceSet getOutlineResourceInstances() throws MMTFException {
-
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
-		}
-
-		ResourceSet resourceSet = new ResourceSetImpl();
-		List<Resource> resources = resourceSet.getResources();
-		for (ModelEndpointReference modelEndpointRef : getModelEndpointRefs()) {
-			ModelEndpoint modelEndpoint = modelEndpointRef.getObject();
-			Model model = (modelEndpoint instanceof KleisliModelEndpoint) ?
-				((KleisliModelEndpoint) modelEndpoint).getExtendedTarget() :
-				modelEndpoint.getTarget();
-			resources.add(model.getEMFRoot().eResource());
-		}
-
-		return resourceSet;
 	}
 
 } //KleisliModelRelImpl

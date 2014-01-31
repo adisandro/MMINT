@@ -43,9 +43,7 @@ public interface KleisliModel extends Model {
 	 * @throws MMTFException
 	 *             If this is a model instance, or if the extended metamodel
 	 *             can't be created. <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        containerModelTypeEndpointRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" containerModelTypeEndpointRequired="true"
 	 * @generated
 	 */
 	KleisliModel kleisliCreateType(KleisliModelEndpoint containerModelTypeEndpoint) throws MMTFException;
@@ -77,9 +75,7 @@ public interface KleisliModel extends Model {
 	 * @return The created Kleisli model.
 	 * @throws MMTFException
 	 *             If this is a model instance. <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        containerModelEndpointRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" containerModelEndpointRequired="true"
 	 * @generated
 	 */
 	KleisliModel kleisliCreateInstance(KleisliModelEndpoint containerModelEndpoint) throws MMTFException;

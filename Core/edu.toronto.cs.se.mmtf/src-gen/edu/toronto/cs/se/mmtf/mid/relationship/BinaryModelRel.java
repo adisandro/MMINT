@@ -11,7 +11,9 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 
 
 /**
@@ -89,4 +91,25 @@ public interface BinaryModelRel extends ModelRel {
 	 * @generated
 	 */
 	void setTargetModel(Model value);
+
+	/**
+	 * <!-- begin-user-doc --> Gets the transformation operator based on this
+	 * binary model relationship type.
+	 * 
+	 * @param srcModel
+	 *            The source model to be transformed through the binary model
+	 *            relationship type.
+	 * @return The transformation operator.
+	 * @throws MMTFException
+	 *             If this is a binary model relationship instance, if this
+	 *             binary model relationship type doesn't satisfy the
+	 *             transformation constraint, or if the source model is not
+	 *             allowed by this binary model relationship type.
+	 *             <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        srcModelRequired="true"
+	 * @generated
+	 */
+	ConversionOperator getTypeTransformationOperator(Model srcModel) throws MMTFException;
 } // BinaryModelRel

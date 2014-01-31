@@ -29,6 +29,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -43,9 +44,7 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
 import edu.toronto.cs.se.mmtf.transformation.ModelRelTypeTransformation;
-import edu.toronto.cs.se.mmtf.transformation.ModelRelTypeTransformationConstraint;
 
 /**
  * The handler for the dynamic construction of a context menu for all
@@ -158,12 +157,12 @@ public class MidDiagramActions extends ContributionItem {
 			Map<ConversionOperator, ModelRel> modelRelTypes = new HashMap<ConversionOperator, ModelRel>();
 			if (doTransformation) {
 				for (ModelRel modelRelType : MultiModelTypeRegistry.getModelRelTypes()) {
-					ModelRelTypeTransformationConstraint transformationConstraint = new ModelRelTypeTransformationConstraint(modelRelType);
-					if (transformationConstraint.validate() != MAVOTruthValue.TRUE) {
-						continue;
+					ConversionOperator transformationOperator;
+					try {
+						transformationOperator = modelRelType.getTypeTransformationOperator(models.get(0));
+						transformationOperator.setName(transformationOperator.getExecutable().getClass().getSimpleName() + "(" + modelRelType.getName() + ")");
 					}
-					ConversionOperator transformationOperator = transformationConstraint.getConversionOperator(models.get(0));
-					if (transformationOperator == null) {
+					catch (MMTFException e) {
 						continue;
 					}
 					modelRelTypes.put(transformationOperator, modelRelType);
@@ -180,7 +179,18 @@ public class MidDiagramActions extends ContributionItem {
 					Operator operator = operators.get(i);
 					Map<Integer, List<ConversionOperator>> conversionMap = conversions.get(i);
 					MenuItem operatorSubitem = new MenuItem(operatorMenu, SWT.NONE);
-					String text = operator.getName();
+					String text;
+					EList<Model> actualParameters;
+					if (operator.getExecutable() instanceof ModelRelTypeTransformation) {
+						ModelRel modelRelType = modelRelTypes.get(operator);
+						text = operator.getExecutable().getClass().getSimpleName() + "(" + modelRelType.getName() + ")";
+						actualParameters = new BasicEList<Model>(models);
+						actualParameters.add(0, modelRelType);
+					}
+					else {
+						text = operator.getName();
+						actualParameters = models;
+					}
 					if (operator instanceof ConversionOperator) {
 						text += " [converter]";
 					}
@@ -188,14 +198,6 @@ public class MidDiagramActions extends ContributionItem {
 						text += " [inferred]";
 					}
 					operatorSubitem.setText(text);
-					EList<Model> actualParameters;
-					if (operator.getExecutable() instanceof ModelRelTypeTransformation) {
-						actualParameters = new BasicEList<Model>(models);
-						actualParameters.add(0, modelRelTypes.get(operator));
-					}
-					else {
-						actualParameters = models;
-					}
 					operatorSubitem.addSelectionListener(
 						new RunOperatorListener(operator, actualParameters, conversionMap)
 					);

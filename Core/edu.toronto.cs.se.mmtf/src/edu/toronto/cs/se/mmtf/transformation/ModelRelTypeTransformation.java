@@ -57,7 +57,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 	}
 
 	@SuppressWarnings("unchecked")
-	private EObject transformModelObj(EObject srcModelObj, Map<EObject, ModelElementReference> srcModelObjs, Map<EObject, EObject> tgtModelObjs, ModelRel traceModelRel) throws MMTFException {
+	protected EObject transformModelObj(EObject srcModelObj, Map<EObject, ModelElementReference> srcModelObjs, Map<EObject, EObject> tgtModelObjs, ModelRel traceModelRel) throws MMTFException {
 
 		ModelElementReference tgtModelElemTypeRef = srcModelObjs.get(srcModelObj);
 		EClass tgtModelTypeObj = (EClass) tgtModelElemTypeRef.getObject().getEMFTypeObject();
@@ -96,7 +96,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 		return tgtModelObj;
 	}
 
-	private EObject transformModelObjFeature(EObject srcModelObj, String srcFeatureClassLiteral, EObject tgtModelObj, String tgtFeatureClassLiteral, Map<PrimitiveEObjectWrapper, PrimitiveEObjectWrapper> tempTgtModelObjs) {
+	protected EObject transformModelObjFeature(EObject srcModelObj, String srcFeatureClassLiteral, EObject tgtModelObj, String tgtFeatureClassLiteral, Map<PrimitiveEObjectWrapper, PrimitiveEObjectWrapper> tempTgtModelObjs) {
 
 		EStructuralFeature srcFeature = srcModelObj.eClass().getEStructuralFeature(srcFeatureClassLiteral), tgtFeature = tgtModelObj.eClass().getEStructuralFeature(tgtFeatureClassLiteral);
 		Object value = srcModelObj.eGet(srcFeature);
@@ -107,7 +107,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 		return tgtModelObjValue;
 	}
 
-	private void transform(ModelRel traceModelRel, Model srcModel, int srcIndex, int tgtIndex) throws Exception {
+	protected void transform(ModelRel traceModelRel, Model srcModel, int srcIndex, int tgtIndex) throws Exception {
 
 		ModelRel traceModelRelType = traceModelRel.getMetatype();
 		ModelEndpointReference srcModelTypeEndpointRef = traceModelRelType.getModelEndpointRefs().get(srcIndex);
@@ -193,7 +193,6 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 		traceModelRel.setName(srcModel.getName() + MMTF.BINARY_MODELREL_LINK_SEPARATOR + tgtModel.getName());
 		traceModelRelType.getModelEndpointRefs().get(srcIndex).getObject().createInstanceAndReference(srcModel, false, traceModelRel);
 		traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().createInstanceAndReference(tgtModel, false, traceModelRel);
-		//TODO MMTF[KLEISLI] make it work, i.e. make all operations invoked here transparent to the user
 		transform(traceModelRel, srcModel, srcIndex, tgtIndex);
 
 		EList<Model> result = new BasicEList<Model>();
