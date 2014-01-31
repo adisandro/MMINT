@@ -137,20 +137,27 @@ public class MultiModelTypeHierarchy {
 	 */
 	private static class TypeHierarchyComparator implements Comparator<ExtendibleElement> {
 
+		private List<? extends ExtendibleElement> types;
+
+		public TypeHierarchyComparator(EList<? extends ExtendibleElement> types) {
+
+			this.types = types;
+		}
+
 		/**
 		 * Compares two types based on their position in the type hierarchy,
-		 * i.e. by counting the number of their supertypes. {@inheritDoc}
+		 * i.e. by counting the number of their supertypes.
 		 */
 		@Override
 		public int compare(ExtendibleElement type1, ExtendibleElement type2) {
 
-			String uri1 = type1.getUri();
+			ExtendibleElement initialType1 = type1;
 			int supertypes1 = 0;
 			while (type1.getSupertype() != null) {
 				supertypes1++;
 				type1 = type1.getSupertype();
 			}
-			String uri2 = type2.getUri();
+			ExtendibleElement initialType2 = type2;
 			int supertypes2 = 0;
 			while (type2.getSupertype() != null) {
 				supertypes2++;
@@ -159,7 +166,7 @@ public class MultiModelTypeHierarchy {
 
 			int relativeOrder = supertypes1 - supertypes2;
 			if (relativeOrder == 0) {
-				relativeOrder = uri1.compareTo(uri2);
+				relativeOrder = types.indexOf(initialType1) - types.indexOf(initialType2);
 			}
 
 			return relativeOrder;
@@ -174,6 +181,13 @@ public class MultiModelTypeHierarchy {
 	 */
 	private static class TypeRefHierarchyComparator implements Comparator<ExtendibleElementReference> {
 
+		private List<? extends ExtendibleElementReference> typeRefs;
+
+		public TypeRefHierarchyComparator(EList<? extends ExtendibleElementReference> typeRefs) {
+
+			this.typeRefs = typeRefs;
+		}
+
 		/**
 		 * Compares two references to types based on their position in the type
 		 * hierarchy, i.e. by counting the number of references to their
@@ -182,13 +196,13 @@ public class MultiModelTypeHierarchy {
 		@Override
 		public int compare(ExtendibleElementReference typeRef1, ExtendibleElementReference typeRef2) {
 
-			String uri1 = typeRef1.getUri();
+			ExtendibleElementReference initialTypeRef1 = typeRef1;
 			int supertypes1 = 0;
 			while (typeRef1.getSupertypeRef() != null) {
 				supertypes1++;
 				typeRef1 = typeRef1.getSupertypeRef();
 			}
-			String uri2 = typeRef2.getUri();
+			ExtendibleElementReference initialTypeRef2 = typeRef2;
 			int supertypes2 = 0;
 			while (typeRef2.getSupertypeRef() != null) {
 				supertypes2++;
@@ -198,7 +212,7 @@ public class MultiModelTypeHierarchy {
 
 			int relativeOrder = supertypes1 - supertypes2;
 			if (relativeOrder == 0) {
-				relativeOrder = uri1.compareTo(uri2);
+				relativeOrder = typeRefs.indexOf(initialTypeRef1) - typeRefs.indexOf(initialTypeRef2);
 			}
 
 			return relativeOrder;
@@ -248,7 +262,7 @@ public class MultiModelTypeHierarchy {
 	private static <T extends ExtendibleElement> TreeSet<T> getTypeHierarchy(EList<T> types) {
 
 		TreeSet<T> hierarchy = new TreeSet<T>(
-			new TypeHierarchyComparator()
+			new TypeHierarchyComparator(types)
 		);
 		for (T type : types) {
 			hierarchy.add(type);
@@ -298,7 +312,7 @@ public class MultiModelTypeHierarchy {
 	private static <T extends ExtendibleElementReference> TreeSet<T> getTypeRefHierarchy(EList<T> typeRefs) {
 
 		TreeSet<T> hierarchy = new TreeSet<T>(
-			new TypeRefHierarchyComparator()
+			new TypeRefHierarchyComparator(typeRefs)
 		);
 		for (T typeRef : typeRefs) {
 			hierarchy.add(typeRef);

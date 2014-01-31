@@ -590,10 +590,10 @@ public class MMTF implements MMTFConstants {
 
 		MultiModel multiModel;
 		try {
-			multiModel = MultiModelTypeRegistry.getTypeMidRepository();
+			multiModel = (MultiModel) MultiModelUtils.getModelFileInState(TYPE_MID_FILENAME);
 		}
 		catch (Exception e) {
-			MMTFException.print(Type.WARNING, "Skipping dynamic types, no previous Type MID found", e);
+			MMTFException.print(Type.WARNING, "No previous Type MID found, skipping dynamic types", e);
 			return;
 		}
 
@@ -813,6 +813,11 @@ public class MMTF implements MMTFConstants {
 		settings.put(settingName, setting);
 
 		return true;
+	}
+
+	public static boolean isInitialized() {
+
+		return INSTANCE != null;
 	}
 
 	/**

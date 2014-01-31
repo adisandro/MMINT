@@ -60,18 +60,6 @@ import edu.toronto.cs.se.mmtf.mid.ui.MultiModelDialogLabelProvider;
 public class MultiModelTypeRegistry {
 
 	/**
-	 * Gets the multimodel from the Type MID file.
-	 * 
-	 * @return The multimodel from the Type MID file.
-	 * @throws Exception
-	 *             If the Type MID file doesn't exist.
-	 */
-	public static MultiModel getTypeMidRepository() throws Exception {
-
-		return (MultiModel) MultiModelUtils.getModelFileInState(MMTF.TYPE_MID_FILENAME);
-	}
-
-	/**
 	 * Gets a type from the repository.
 	 * 
 	 * @param typeUri

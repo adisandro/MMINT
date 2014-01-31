@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -267,7 +268,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 				KleisliModelImpl.getModelTypeExtendedUri((KleisliModelRel) containerModelRelType, targetModelType, newModelTypeEndpointName)
 			) != null;
 		boolean extendMetamodel = false;
-		if (!isK) {
+		if (!isK && MMTF.isInitialized()) {
 			extendMetamodel = MidDiagramUtils.getBooleanInput("Create new Kleisli model type endpoint", "Extend " + targetModelType.getName() + " metamodel?");
 			isK = extendMetamodel;
 		}
