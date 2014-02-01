@@ -577,8 +577,8 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		kleisliModelEClass.getESuperTypes().add(theMidPackage.getModel());
 		kleisliModelEndpointEClass.getESuperTypes().add(theMidPackage.getModelEndpoint());
 		kleisliModelRelEClass.getESuperTypes().add(theRelationshipPackage.getModelRel());
-		kleisliBinaryModelRelEClass.getESuperTypes().add(theRelationshipPackage.getBinaryModelRel());
 		kleisliBinaryModelRelEClass.getESuperTypes().add(this.getKleisliModelRel());
+		kleisliBinaryModelRelEClass.getESuperTypes().add(theRelationshipPackage.getBinaryModelRel());
 		kleisliModelEndpointReferenceEClass.getESuperTypes().add(theRelationshipPackage.getModelEndpointReference());
 
 		// Initialize classes, features, and operations; add parameters

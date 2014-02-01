@@ -52,6 +52,7 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -451,13 +452,12 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				EPackage kModelTypePackage = kModelTypeEndpoint.getExtendedTarget().getEMFTypeRoot();
 				EFactory kModelTypeFactory = kModelTypePackage.getEFactoryInstance();
 				ModelEndpointReference kModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(kModelTypeEndpoint.getUri(), ((ModelRel) kModelTypeEndpoint.eContainer()).getModelEndpointRefs());
-				String kModelTypeUri = kModelTypeEndpoint.getExtendedTargetUri();
 				String kModelUri = kModelEndpoint.getExtendedTargetUri();
 				MultiModelUtils.copyTextFileAndReplaceText(
 					MultiModelUtils.prependWorkspaceToUri(kModelEndpoint.getTargetUri()),
 					MultiModelUtils.prependWorkspaceToUri(kModelUri),
-					MultiModelUtils.getLastSegmentFromUri(kModelTypeUri),
-					kModelTypeUri
+					MultiModelUtils.getLastSegmentFromUri(kModelTypeEndpoint.getTargetUri() + "." + EcorePackage.eNAME),
+					kModelTypeEndpoint.getExtendedTargetUri()
 				);
 				EObject kRootModelObj = kModelEndpoint.getExtendedTarget().getEMFRoot();
 				String classLiteral;

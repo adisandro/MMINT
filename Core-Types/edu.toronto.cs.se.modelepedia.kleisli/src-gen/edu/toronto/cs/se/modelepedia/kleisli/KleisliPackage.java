@@ -1172,7 +1172,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__MAY = RelationshipPackage.BINARY_MODEL_REL__MAY;
+	int KLEISLI_BINARY_MODEL_REL__MAY = KLEISLI_MODEL_REL__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -1181,7 +1181,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__SET = RelationshipPackage.BINARY_MODEL_REL__SET;
+	int KLEISLI_BINARY_MODEL_REL__SET = KLEISLI_MODEL_REL__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -1190,7 +1190,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__VAR = RelationshipPackage.BINARY_MODEL_REL__VAR;
+	int KLEISLI_BINARY_MODEL_REL__VAR = KLEISLI_MODEL_REL__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
@@ -1199,7 +1199,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__FORMULA_ID = RelationshipPackage.BINARY_MODEL_REL__FORMULA_ID;
+	int KLEISLI_BINARY_MODEL_REL__FORMULA_ID = KLEISLI_MODEL_REL__FORMULA_ID;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1208,7 +1208,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__SUPERTYPE = RelationshipPackage.BINARY_MODEL_REL__SUPERTYPE;
+	int KLEISLI_BINARY_MODEL_REL__SUPERTYPE = KLEISLI_MODEL_REL__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Metatype</b></em>' reference.
@@ -1217,7 +1217,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__METATYPE = RelationshipPackage.BINARY_MODEL_REL__METATYPE;
+	int KLEISLI_BINARY_MODEL_REL__METATYPE = KLEISLI_MODEL_REL__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -1226,7 +1226,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__URI = RelationshipPackage.BINARY_MODEL_REL__URI;
+	int KLEISLI_BINARY_MODEL_REL__URI = KLEISLI_MODEL_REL__URI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1235,7 +1235,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__NAME = RelationshipPackage.BINARY_MODEL_REL__NAME;
+	int KLEISLI_BINARY_MODEL_REL__NAME = KLEISLI_MODEL_REL__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -1244,7 +1244,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__LEVEL = RelationshipPackage.BINARY_MODEL_REL__LEVEL;
+	int KLEISLI_BINARY_MODEL_REL__LEVEL = KLEISLI_MODEL_REL__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -1253,7 +1253,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__METATYPE_URI = RelationshipPackage.BINARY_MODEL_REL__METATYPE_URI;
+	int KLEISLI_BINARY_MODEL_REL__METATYPE_URI = KLEISLI_MODEL_REL__METATYPE_URI;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -1262,7 +1262,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__DYNAMIC = RelationshipPackage.BINARY_MODEL_REL__DYNAMIC;
+	int KLEISLI_BINARY_MODEL_REL__DYNAMIC = KLEISLI_MODEL_REL__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -1271,7 +1271,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__CONSTRAINT = RelationshipPackage.BINARY_MODEL_REL__CONSTRAINT;
+	int KLEISLI_BINARY_MODEL_REL__CONSTRAINT = KLEISLI_MODEL_REL__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Inc</b></em>' attribute.
@@ -1280,7 +1280,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__INC = RelationshipPackage.BINARY_MODEL_REL__INC;
+	int KLEISLI_BINARY_MODEL_REL__INC = KLEISLI_MODEL_REL__INC;
 
 	/**
 	 * The feature id for the '<em><b>Origin</b></em>' attribute.
@@ -1289,7 +1289,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__ORIGIN = RelationshipPackage.BINARY_MODEL_REL__ORIGIN;
+	int KLEISLI_BINARY_MODEL_REL__ORIGIN = KLEISLI_MODEL_REL__ORIGIN;
 
 	/**
 	 * The feature id for the '<em><b>File Extension</b></em>' attribute.
@@ -1298,7 +1298,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__FILE_EXTENSION = RelationshipPackage.BINARY_MODEL_REL__FILE_EXTENSION;
+	int KLEISLI_BINARY_MODEL_REL__FILE_EXTENSION = KLEISLI_MODEL_REL__FILE_EXTENSION;
 
 	/**
 	 * The feature id for the '<em><b>Editors</b></em>' reference list.
@@ -1307,7 +1307,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__EDITORS = RelationshipPackage.BINARY_MODEL_REL__EDITORS;
+	int KLEISLI_BINARY_MODEL_REL__EDITORS = KLEISLI_MODEL_REL__EDITORS;
 
 	/**
 	 * The feature id for the '<em><b>Model Elems</b></em>' containment reference list.
@@ -1316,7 +1316,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__MODEL_ELEMS = RelationshipPackage.BINARY_MODEL_REL__MODEL_ELEMS;
+	int KLEISLI_BINARY_MODEL_REL__MODEL_ELEMS = KLEISLI_MODEL_REL__MODEL_ELEMS;
 
 	/**
 	 * The feature id for the '<em><b>Conversion Operators</b></em>' reference list.
@@ -1325,7 +1325,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__CONVERSION_OPERATORS = RelationshipPackage.BINARY_MODEL_REL__CONVERSION_OPERATORS;
+	int KLEISLI_BINARY_MODEL_REL__CONVERSION_OPERATORS = KLEISLI_MODEL_REL__CONVERSION_OPERATORS;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -1334,7 +1334,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__ABSTRACT = RelationshipPackage.BINARY_MODEL_REL__ABSTRACT;
+	int KLEISLI_BINARY_MODEL_REL__ABSTRACT = KLEISLI_MODEL_REL__ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Model Endpoints</b></em>' containment reference list.
@@ -1343,7 +1343,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__MODEL_ENDPOINTS = RelationshipPackage.BINARY_MODEL_REL__MODEL_ENDPOINTS;
+	int KLEISLI_BINARY_MODEL_REL__MODEL_ENDPOINTS = KLEISLI_MODEL_REL__MODEL_ENDPOINTS;
 
 	/**
 	 * The feature id for the '<em><b>Links</b></em>' containment reference list.
@@ -1352,7 +1352,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__LINKS = RelationshipPackage.BINARY_MODEL_REL__LINKS;
+	int KLEISLI_BINARY_MODEL_REL__LINKS = KLEISLI_MODEL_REL__LINKS;
 
 	/**
 	 * The feature id for the '<em><b>Model Endpoint Refs</b></em>' containment reference list.
@@ -1361,7 +1361,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__MODEL_ENDPOINT_REFS = RelationshipPackage.BINARY_MODEL_REL__MODEL_ENDPOINT_REFS;
+	int KLEISLI_BINARY_MODEL_REL__MODEL_ENDPOINT_REFS = KLEISLI_MODEL_REL__MODEL_ENDPOINT_REFS;
 
 	/**
 	 * The feature id for the '<em><b>Link Refs</b></em>' containment reference list.
@@ -1370,25 +1370,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__LINK_REFS = RelationshipPackage.BINARY_MODEL_REL__LINK_REFS;
-
-	/**
-	 * The feature id for the '<em><b>Source Model</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL = RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL;
-
-	/**
-	 * The feature id for the '<em><b>Target Model</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_BINARY_MODEL_REL__TARGET_MODEL = RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL;
+	int KLEISLI_BINARY_MODEL_REL__LINK_REFS = KLEISLI_MODEL_REL__LINK_REFS;
 
 	/**
 	 * The feature id for the '<em><b>Extended Uri</b></em>' attribute.
@@ -1397,7 +1379,25 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__EXTENDED_URI = RelationshipPackage.BINARY_MODEL_REL_FEATURE_COUNT + 0;
+	int KLEISLI_BINARY_MODEL_REL__EXTENDED_URI = KLEISLI_MODEL_REL__EXTENDED_URI;
+
+	/**
+	 * The feature id for the '<em><b>Source Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL = KLEISLI_MODEL_REL_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__TARGET_MODEL = KLEISLI_MODEL_REL_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Binary Model Rel</em>' class.
@@ -1406,7 +1406,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL_FEATURE_COUNT = RelationshipPackage.BINARY_MODEL_REL_FEATURE_COUNT + 1;
+	int KLEISLI_BINARY_MODEL_REL_FEATURE_COUNT = KLEISLI_MODEL_REL_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -1415,7 +1415,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = RelationshipPackage.BINARY_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
+	int KLEISLI_BINARY_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = KLEISLI_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
@@ -1424,7 +1424,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = RelationshipPackage.BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int KLEISLI_BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
@@ -1433,7 +1433,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_EMF_TYPE_ROOT = RelationshipPackage.BINARY_MODEL_REL___GET_EMF_TYPE_ROOT;
+	int KLEISLI_BINARY_MODEL_REL___GET_EMF_TYPE_ROOT = KLEISLI_MODEL_REL___GET_EMF_TYPE_ROOT;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -1442,7 +1442,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Editor</em>' operation.
@@ -1451,7 +1451,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
+	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Create MAVO Instance</em>' operation.
@@ -1460,7 +1460,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = RelationshipPackage.BINARY_MODEL_REL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+	int KLEISLI_BINARY_MODEL_REL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = KLEISLI_MODEL_REL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Create MAVO Instance And Editor</em>' operation.
@@ -1469,7 +1469,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = RelationshipPackage.BINARY_MODEL_REL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
+	int KLEISLI_BINARY_MODEL_REL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = KLEISLI_MODEL_REL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Copy MAVO Instance And Editor</em>' operation.
@@ -1478,7 +1478,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = RelationshipPackage.BINARY_MODEL_REL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL;
+	int KLEISLI_BINARY_MODEL_REL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = KLEISLI_MODEL_REL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Get EMF Root</em>' operation.
@@ -1487,7 +1487,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_EMF_ROOT = RelationshipPackage.BINARY_MODEL_REL___GET_EMF_ROOT;
+	int KLEISLI_BINARY_MODEL_REL___GET_EMF_ROOT = KLEISLI_MODEL_REL___GET_EMF_ROOT;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1496,7 +1496,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_METATYPE = RelationshipPackage.BINARY_MODEL_REL___GET_METATYPE;
+	int KLEISLI_BINARY_MODEL_REL___GET_METATYPE = KLEISLI_MODEL_REL___GET_METATYPE;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -1505,7 +1505,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_SUPERTYPE = RelationshipPackage.BINARY_MODEL_REL___GET_SUPERTYPE;
+	int KLEISLI_BINARY_MODEL_REL___GET_SUPERTYPE = KLEISLI_MODEL_REL___GET_SUPERTYPE;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Endpoints And References</em>' operation.
@@ -1514,7 +1514,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST;
+	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST = KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST;
 
 	/**
 	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.
@@ -1523,7 +1523,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL = RelationshipPackage.BINARY_MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL;
+	int KLEISLI_BINARY_MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL = KLEISLI_MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
@@ -1532,7 +1532,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 0;
+	int KLEISLI_BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING = KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Copy Subtype</em>' operation.
@@ -1541,7 +1541,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___COPY_SUBTYPE__MODELREL = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 1;
+	int KLEISLI_BINARY_MODEL_REL___COPY_SUBTYPE__MODELREL = KLEISLI_MODEL_REL___COPY_SUBTYPE__MODELREL;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -1550,7 +1550,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___DELETE_TYPE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 2;
+	int KLEISLI_BINARY_MODEL_REL___DELETE_TYPE = KLEISLI_MODEL_REL___DELETE_TYPE;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Types</em>' operation.
@@ -1559,7 +1559,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 3;
+	int KLEISLI_BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -1568,7 +1568,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 5;
+	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1577,7 +1577,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___DELETE_INSTANCE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 6;
+	int KLEISLI_BINARY_MODEL_REL___DELETE_INSTANCE = KLEISLI_MODEL_REL___DELETE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -1586,7 +1586,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 7;
+	int KLEISLI_BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES;
 
 	/**
 	 * The operation id for the '<em>Open Type</em>' operation.
@@ -1595,7 +1595,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___OPEN_TYPE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 8;
+	int KLEISLI_BINARY_MODEL_REL___OPEN_TYPE = KLEISLI_MODEL_REL___OPEN_TYPE;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -1604,7 +1604,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___OPEN_INSTANCE = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 9;
+	int KLEISLI_BINARY_MODEL_REL___OPEN_INSTANCE = KLEISLI_MODEL_REL___OPEN_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Type Transformation Operator</em>' operation.
@@ -1613,7 +1613,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_TYPE_TRANSFORMATION_OPERATOR__MODEL = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 10;
+	int KLEISLI_BINARY_MODEL_REL___GET_TYPE_TRANSFORMATION_OPERATOR__MODEL = KLEISLI_MODEL_REL_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Binary Model Rel</em>' class.
@@ -1622,7 +1622,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL_OPERATION_COUNT = RelationshipPackage.BINARY_MODEL_REL_OPERATION_COUNT + 11;
+	int KLEISLI_BINARY_MODEL_REL_OPERATION_COUNT = KLEISLI_MODEL_REL_OPERATION_COUNT + 2;
 
 
 	/**

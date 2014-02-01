@@ -123,8 +123,8 @@ public class KleisliSwitch<T> extends Switch<T> {
 			case KleisliPackage.KLEISLI_BINARY_MODEL_REL: {
 				KleisliBinaryModelRel kleisliBinaryModelRel = (KleisliBinaryModelRel)theEObject;
 				T result = caseKleisliBinaryModelRel(kleisliBinaryModelRel);
-				if (result == null) result = caseBinaryModelRel(kleisliBinaryModelRel);
 				if (result == null) result = caseKleisliModelRel(kleisliBinaryModelRel);
+				if (result == null) result = caseBinaryModelRel(kleisliBinaryModelRel);
 				if (result == null) result = caseModelRel(kleisliBinaryModelRel);
 				if (result == null) result = caseModel(kleisliBinaryModelRel);
 				if (result == null) result = caseExtendibleElement(kleisliBinaryModelRel);

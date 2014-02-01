@@ -11,28 +11,23 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.transformation;
 
-import org.eclipse.emf.common.util.EList;
-
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.transformation.ModelRelTypeTransformation;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 
 public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformation {
 
-	protected void transform(ModelRel traceModelRel, Model srcModel, int srcIndex, int tgtIndex) throws Exception {
-
-		traceModelRel.openInstance();
-		super.transform(traceModelRel, srcModel, srcIndex, tgtIndex);
-	}
-
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	protected void transform(BinaryModelRel traceModelRel, Model srcModel, int srcIndex, int tgtIndex) throws Exception {
 
-		//TODO MMTF[KLEISLI] make it work
-		//invoke model derivation without opening the model rel
-		//getAllowedModelElementType()?
-		//KleisliModelElement to run getEMFTypeObject() and createInstanceAndReference()?
-		return super.execute(actualParameters);
+		ModelEndpoint srcModelEndpoint = traceModelRel.getModelEndpoints().get(0);
+		if (srcModelEndpoint instanceof KleisliModelEndpoint) {
+			traceModelRel.openInstance();
+			srcModel = ((KleisliModelEndpoint) srcModelEndpoint).getExtendedTarget();
+		}
+		super.transform(traceModelRel, srcModel, srcIndex, tgtIndex);
 	}
 
 }

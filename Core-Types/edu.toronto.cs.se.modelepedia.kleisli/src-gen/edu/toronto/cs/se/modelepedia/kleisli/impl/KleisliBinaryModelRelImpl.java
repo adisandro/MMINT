@@ -11,13 +11,23 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
-import edu.toronto.cs.se.mmtf.mid.relationship.impl.BinaryModelRelImpl;
+import java.util.HashMap;
+
+import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
+import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
+import edu.toronto.cs.se.mmtf.transformation.ModelRelTypeTransformationConstraint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
-import org.eclipse.emf.common.notify.Notification;
+import edu.toronto.cs.se.modelepedia.kleisli.transformation.KleisliModelRelTypeTransformation;
+
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,32 +36,32 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl#getExtendedUri <em>Extended Uri</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl#getSourceModel <em>Source Model</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl#getTargetModel <em>Target Model</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements KleisliBinaryModelRel {
+public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements KleisliBinaryModelRel {
 	/**
-	 * The default value of the '{@link #getExtendedUri() <em>Extended Uri</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getSourceModel() <em>Source Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExtendedUri()
+	 * @see #getSourceModel()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String EXTENDED_URI_EDEFAULT = null;
+	protected EStructuralFeature.Internal.SettingDelegate SOURCE_MODEL__ESETTING_DELEGATE = ((EStructuralFeature.Internal)RelationshipPackage.Literals.BINARY_MODEL_REL__SOURCE_MODEL).getSettingDelegate();
 	/**
-	 * The cached value of the '{@link #getExtendedUri() <em>Extended Uri</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getTargetModel() <em>Target Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExtendedUri()
+	 * @see #getTargetModel()
 	 * @generated
 	 * @ordered
 	 */
-	protected String extendedUri = EXTENDED_URI_EDEFAULT;
-
+	protected EStructuralFeature.Internal.SettingDelegate TARGET_MODEL__ESETTING_DELEGATE = ((EStructuralFeature.Internal)RelationshipPackage.Literals.BINARY_MODEL_REL__TARGET_MODEL).getSettingDelegate();
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,8 +86,8 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getExtendedUri() {
-		return extendedUri;
+	public Model getSourceModel() {
+		return (Model)SOURCE_MODEL__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -85,11 +95,44 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExtendedUri(String newExtendedUri) {
-		String oldExtendedUri = extendedUri;
-		extendedUri = newExtendedUri;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI, oldExtendedUri, extendedUri));
+	public Model basicGetSourceModel() {
+		return (Model)SOURCE_MODEL__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSourceModel(Model newSourceModel) {
+		SOURCE_MODEL__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSourceModel);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Model getTargetModel() {
+		return (Model)TARGET_MODEL__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Model basicGetTargetModel() {
+		return (Model)TARGET_MODEL__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTargetModel(Model newTargetModel) {
+		TARGET_MODEL__ESETTING_DELEGATE.dynamicSet(this, null, 0, newTargetModel);
 	}
 
 	/**
@@ -100,8 +143,12 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI:
-				return getExtendedUri();
+			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL:
+				if (resolve) return getSourceModel();
+				return basicGetSourceModel();
+			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL:
+				if (resolve) return getTargetModel();
+				return basicGetTargetModel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -114,8 +161,11 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI:
-				setExtendedUri((String)newValue);
+			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL:
+				setSourceModel((Model)newValue);
+				return;
+			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL:
+				setTargetModel((Model)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -129,8 +179,11 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI:
-				setExtendedUri(EXTENDED_URI_EDEFAULT);
+			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL:
+				setSourceModel((Model)null);
+				return;
+			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL:
+				setTargetModel((Model)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -144,8 +197,10 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI:
-				return EXTENDED_URI_EDEFAULT == null ? extendedUri != null : !EXTENDED_URI_EDEFAULT.equals(extendedUri);
+			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL:
+				return SOURCE_MODEL__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL:
+				return TARGET_MODEL__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -157,9 +212,10 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == KleisliModelRel.class) {
+		if (baseClass == BinaryModelRel.class) {
 			switch (derivedFeatureID) {
-				case KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI: return KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI;
+				case KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL: return RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL;
+				case KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL: return RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL;
 				default: return -1;
 			}
 		}
@@ -173,9 +229,10 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == KleisliModelRel.class) {
+		if (baseClass == BinaryModelRel.class) {
 			switch (baseFeatureID) {
-				case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI: return KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI;
+				case RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL: return KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL;
+				case RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL: return KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL;
 				default: return -1;
 			}
 		}
@@ -183,19 +240,25 @@ public class KleisliBinaryModelRelImpl extends BinaryModelRelImpl implements Kle
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
+	public ConversionOperator getTypeTransformationOperator(Model srcModel) throws MMTFException {
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (extendedUri: ");
-		result.append(extendedUri);
-		result.append(')');
-		return result.toString();
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+		if (new ModelRelTypeTransformationConstraint(this).validate() != MAVOTruthValue.TRUE) {
+			throw new MMTFException("Transformation constraint not satisfied");
+		}
+		if (!MultiModelConstraintChecker.isAllowedModelEndpoint(getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>())) {
+			throw new MMTFException("Source model not allowed");
+		}
+
+		ConversionOperator transformationOperator = OperatorFactory.eINSTANCE.createConversionOperator();
+		transformationOperator.setExecutable(new KleisliModelRelTypeTransformation());
+
+		return transformationOperator;
 	}
 
 } //KleisliBinaryModelRelImpl

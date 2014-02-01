@@ -46,18 +46,32 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
 public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl {
 
-	private static final String TRANSFORMATION_SUFFIX = "_transformed";
+	protected static final String TRANSFORMATION_SUFFIX = "_transformed";
 
-	private EObject tgtRootModelObj;
-	private String tgtModelUri;
+	protected EObject tgtRootModelObj;
+	protected String tgtModelUri;
 
 	protected void init() {
 
 		tgtRootModelObj = null;
 	}
 
+	protected boolean conformsToEMFType(EObject modelObj, String emfTypeName) {
+
+		if (emfTypeName.equals(modelObj.eClass().getName())) {
+			return true;
+		}
+		for (EClass modelTypeObjSuper : modelObj.eClass().getEAllSuperTypes()) {
+			if (emfTypeName.equals(modelTypeObjSuper.getName())) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	@SuppressWarnings("unchecked")
-	protected EObject transformModelObj(EObject srcModelObj, Map<EObject, ModelElementReference> srcModelObjs, Map<EObject, EObject> tgtModelObjs, ModelRel traceModelRel) throws MMTFException {
+	protected EObject transformModelObj(EObject srcModelObj, Map<EObject, ModelElementReference> srcModelObjs, Map<EObject, EObject> tgtModelObjs) throws MMTFException {
 
 		ModelElementReference tgtModelElemTypeRef = srcModelObjs.get(srcModelObj);
 		EClass tgtModelTypeObj = (EClass) tgtModelElemTypeRef.getObject().getEMFTypeObject();
@@ -74,12 +88,12 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 			EObject tgtContainerModelObj = tgtModelObjs.get(srcContainerModelObj);
 			if (tgtContainerModelObj == null) {
 				// recursion
-				tgtContainerModelObj = transformModelObj(srcContainerModelObj, srcModelObjs, tgtModelObjs, traceModelRel);
+				tgtContainerModelObj = transformModelObj(srcContainerModelObj, srcModelObjs, tgtModelObjs);
 			}
 			EReference containmentReference = null;
-			for (EReference reference : tgtContainerModelObj.eClass().getEAllContainments()) {
-				if (reference.getEType().getName().equals(tgtModelObj.eClass().getName())) {
-					containmentReference = reference;
+			for (EReference containment : tgtContainerModelObj.eClass().getEAllContainments()) {
+				if (conformsToEMFType(tgtModelObj, containment.getEType().getName())) {
+					containmentReference = containment;
 					break;
 				}
 			}
@@ -107,7 +121,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 		return tgtModelObjValue;
 	}
 
-	protected void transform(ModelRel traceModelRel, Model srcModel, int srcIndex, int tgtIndex) throws Exception {
+	protected void transform(BinaryModelRel traceModelRel, Model srcModel, int srcIndex, int tgtIndex) throws Exception {
 
 		ModelRel traceModelRelType = traceModelRel.getMetatype();
 		ModelEndpointReference srcModelTypeEndpointRef = traceModelRelType.getModelEndpointRefs().get(srcIndex);
@@ -131,7 +145,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 			if (tgtModelObjs.get(srcModelObj) != null) { // already transformed
 				continue;
 			}
-			transformModelObj(srcModelObj, srcModelObjs, tgtModelObjs, traceModelRel);
+			transformModelObj(srcModelObj, srcModelObjs, tgtModelObjs);
 		}
 		// third pass: attributes
 		Map<PrimitiveEObjectWrapper, PrimitiveEObjectWrapper> tempTgtModelObjs = new HashMap<PrimitiveEObjectWrapper, PrimitiveEObjectWrapper>();
@@ -145,7 +159,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 			String[] tgtClassLiterals = tgtModelElemTypeRef.getObject().getClassLiteral().split(MMTF.URI_SEPARATOR);
 			for (Map.Entry<EObject, EObject> tgtModelObjsEntry : tgtModelObjs.entrySet()) {
 				EObject srcModelObj = tgtModelObjsEntry.getKey();
-				if (!srcModelObj.eClass().getName().equals(srcClassLiterals[0])) {
+				if (!conformsToEMFType(srcModelObj, srcClassLiterals[0])) {
 					continue;
 				}
 				transformModelObjFeature(srcModelObj, srcClassLiterals[1], tgtModelObjsEntry.getValue(), tgtClassLiterals[1], tempTgtModelObjs);
@@ -189,7 +203,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 			tgtModelType.getFileExtension()
 		);
 		Model tgtModel = tgtModelType.createInstanceAndEditor(tgtModelUri, ModelOrigin.CREATED, multiModel);
-		ModelRel traceModelRel = traceModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
+		BinaryModelRel traceModelRel = (BinaryModelRel) traceModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
 		traceModelRel.setName(srcModel.getName() + MMTF.BINARY_MODELREL_LINK_SEPARATOR + tgtModel.getName());
 		traceModelRelType.getModelEndpointRefs().get(srcIndex).getObject().createInstanceAndReference(srcModel, false, traceModelRel);
 		traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().createInstanceAndReference(tgtModel, false, traceModelRel);

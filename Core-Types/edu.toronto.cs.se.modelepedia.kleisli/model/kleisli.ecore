@@ -130,7 +130,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="KleisliBinaryModelRel" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/BinaryModelRel #//KleisliModelRel">
+  <eClassifiers xsi:type="ecore:EClass" name="KleisliBinaryModelRel" eSuperTypes="#//KleisliModelRel ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//relationship/BinaryModelRel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Kleisli version. {@inheritDoc}"/>
     </eAnnotations>

@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
  * @model
  * @generated
  */
-public interface KleisliBinaryModelRel extends BinaryModelRel, KleisliModelRel {
+public interface KleisliBinaryModelRel extends KleisliModelRel, BinaryModelRel {
 
 	/**
 	 * <!-- begin-user-doc -->
