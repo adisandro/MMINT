@@ -40,6 +40,7 @@ import edu.toronto.cs.se.mmtf.mid.editor.provider.EditorItemProviderAdapterFacto
 import edu.toronto.cs.se.mmtf.mid.operator.provider.OperatorItemProviderAdapterFactory;
 import edu.toronto.cs.se.mmtf.mid.provider.MidItemProviderAdapterFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.provider.RelationshipItemProviderAdapterFactory;
+import edu.toronto.cs.se.mmtf.mid.ui.GMFDiagramUtils;
 
 /**
  * @generated
@@ -134,9 +135,17 @@ public class MidDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected ComposedAdapterFactory createAdapterFactory() {
+
+		return GMFDiagramUtils.getAdapterFactory();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected ComposedAdapterFactory createAdapterFactoryGen() {
 		ArrayList<AdapterFactory> factories = new ArrayList<AdapterFactory>();
 		fillItemProviderFactories(factories);
 		return new ComposedAdapterFactory(factories);

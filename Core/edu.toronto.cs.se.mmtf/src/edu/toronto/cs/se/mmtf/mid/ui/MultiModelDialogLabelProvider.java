@@ -12,8 +12,6 @@
 package edu.toronto.cs.se.mmtf.mid.ui;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -35,9 +33,7 @@ public class MultiModelDialogLabelProvider implements ILabelProvider {
 
 	public MultiModelDialogLabelProvider() {
 
-		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+		ComposedAdapterFactory adapterFactory = GMFDiagramUtils.getAdapterFactory();
 		labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
 	}
 

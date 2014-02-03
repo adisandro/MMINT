@@ -39,6 +39,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.policies.MidBaseItem
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.expressions.MidOCLFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.diagram.providers.ElementInitializers;
 import edu.toronto.cs.se.mmtf.mid.relationship.provider.RelationshipItemProviderAdapterFactory;
+import edu.toronto.cs.se.mmtf.mid.ui.GMFDiagramUtils;
 
 /**
  * @generated
@@ -124,9 +125,17 @@ public class MidDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected ComposedAdapterFactory createAdapterFactory() {
+
+		return GMFDiagramUtils.getAdapterFactory();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected ComposedAdapterFactory createAdapterFactoryGen() {
 		ArrayList<AdapterFactory> factories = new ArrayList<AdapterFactory>();
 		fillItemProviderFactories(factories);
 		return new ComposedAdapterFactory(factories);

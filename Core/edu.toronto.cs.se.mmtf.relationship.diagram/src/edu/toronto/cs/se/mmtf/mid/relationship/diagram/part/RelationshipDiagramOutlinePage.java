@@ -14,8 +14,6 @@ package edu.toronto.cs.se.mmtf.mid.relationship.diagram.part;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -29,6 +27,7 @@ import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.mmtf.mid.ui.ModelElementLabelProvider;
 
 /**
@@ -57,9 +56,7 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 
 		super();
 		modelRel = (ModelRel) diagram.getElement();
-		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+		adapterFactory = GMFDiagramUtils.getAdapterFactory();
 	}
 
 	/**
