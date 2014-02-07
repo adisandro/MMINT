@@ -13,6 +13,8 @@ package edu.toronto.cs.se.modelepedia.tests;
 
 import static org.junit.Assert.*;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 
 import edu.toronto.cs.se.mmtf.MMTF;
@@ -47,8 +49,12 @@ public class KleisliTest {
 		//TODO MMTF[TESTS] create model element types, ocl queries and link types
 		MultiModel instanceMID = MidFactory.eINSTANCE.createMultiModel();
 		//TODO MMTF[TESTS] should try to mimic things in gmf command or this is all?
-		bankModelType.createInstanceAndEditor("test/bank.xmi", ModelOrigin.CREATED, instanceMID);
-		//TODO MMTF[TESTS] create other instances
+		Model bankModel = bankModelType.createInstanceAndEditor("test/bank.xmi", ModelOrigin.CREATED, instanceMID);
+		EList<Model> transformationParameters = new BasicEList<Model>();
+		transformationParameters.add(kModelRelType);
+		transformationParameters.add(bankModel);
+		kModelRelType.getTypeTransformationOperator(bankModel).getExecutable().execute(transformationParameters);
+		//TODO MMTF[TESTS] test that result model + model rel are fine
 		fail("TODO");
 	}
 
