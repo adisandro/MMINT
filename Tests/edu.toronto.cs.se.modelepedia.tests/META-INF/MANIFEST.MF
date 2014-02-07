@@ -9,5 +9,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.junit;bundle-version="4.11.0",
  org.eclipse.emf.ecore,
- edu.toronto.cs.se.mmtf
+ org.eclipse.core.runtime,
+ edu.toronto.cs.se.mmtf,
+ edu.toronto.cs.se.modelepedia.kleisli
 Bundle-ActivationPolicy: lazy
