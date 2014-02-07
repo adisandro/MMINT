@@ -83,7 +83,7 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 				Bundle bundle = MultiModelTypeRegistry.getTypeBundle(modelType.getUri());
 				Enumeration<URL> metamodels = bundle.findEntries("/", "*." + EcorePackage.eNAME, true);
 				while (metamodels.hasMoreElements()) {
-					metamodelUris.add(URI.createURI(FileLocator.toFileURL(metamodels.nextElement()).toURI().toString()));
+					metamodelUris.add(URI.createURI(FileLocator.toFileURL(metamodels.nextElement()).toString()));
 				}
 				break;
 			}

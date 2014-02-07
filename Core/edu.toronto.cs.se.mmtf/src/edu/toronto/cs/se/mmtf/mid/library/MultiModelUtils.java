@@ -119,15 +119,15 @@ public class MultiModelUtils {
 		createTextFile(prependStateToUri(relativeFileUri), text);
 	}
 
-	public static void copyTextFileAndReplaceText(String oldFileUri, String newFileUri, String oldText, String newText) throws Exception {
+	public static void copyTextFileAndReplaceText(String origFileUri, String newFileUri, String origText, String newText) throws Exception {
 
-		Path oldFilePath = Paths.get(oldFileUri);
+		Path oldFilePath = Paths.get(origFileUri);
 		Path newFilePath = Paths.get(newFileUri);
 		try (BufferedReader oldBuffer = Files.newBufferedReader(oldFilePath, Charset.forName("UTF-8"))) {
 			try (BufferedWriter newBuffer = Files.newBufferedWriter(newFilePath, Charset.forName("UTF-8"))) {
 				String oldLine;
 				while ((oldLine = oldBuffer.readLine()) != null) {
-					newBuffer.write(oldLine.replaceAll(oldText, newText));
+					newBuffer.write(oldLine.replaceAll(origText, newText));
 					newBuffer.newLine();
 				}
 			}
