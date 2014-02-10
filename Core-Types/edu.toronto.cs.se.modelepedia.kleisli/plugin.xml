@@ -33,6 +33,10 @@
                   name="KleisliModelRel"
                   uri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel">
             </type>
+            <constraint
+                  implementation="edu.toronto.cs.se.modelepedia.kleisli.constraint.KleisliModelRelTypeConstraint"
+                  language="JAVA">
+            </constraint>
          </modelType>
          <modelTypeEndpoint>
             <type
