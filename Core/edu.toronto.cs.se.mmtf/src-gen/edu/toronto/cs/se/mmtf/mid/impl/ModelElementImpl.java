@@ -357,7 +357,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		}
 
 		Model model = (Model) eContainer();
-		String[] literals = getClassLiteral().split(MMTF.URI_SEPARATOR);
+		String[] literals = getClassLiteral().split("\\p{Punct}");
 		ENamedElement modelTypeObj = model.getEMFTypeRoot().getEClassifier(literals[0]);
 		if (literals.length > 1) {
 			modelTypeObj = ((EClass) modelTypeObj).getEStructuralFeature(literals[1]);

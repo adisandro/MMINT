@@ -259,6 +259,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 			return false;
 		}
 		// filter duplicates
+		//TODO MMTF[MODELELEMENT] if (metamodelObj instanceof EStructuralFeature) drop only if target type (or any subtype) is already dropped
 		for (ModelElementReference modelElemTypeRef : getModelElemRefs()) {
 			//TODO MMTF[MODELELEMENT] replace with something simpler once model element changes are in place, like:
 //				if (elementRef.getUri().equals(modelUri + MMTF.URI_SEPARATOR + modelElemUri)) {
