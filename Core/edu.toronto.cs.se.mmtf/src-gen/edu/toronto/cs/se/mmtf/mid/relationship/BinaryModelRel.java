@@ -106,9 +106,7 @@ public interface BinaryModelRel extends ModelRel {
 	 *             transformation constraint, or if the source model is not
 	 *             allowed by this binary model relationship type.
 	 *             <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        srcModelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" srcModelRequired="true"
 	 * @generated
 	 */
 	ConversionOperator getTypeTransformationOperator(Model srcModel) throws MMTFException;

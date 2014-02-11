@@ -256,6 +256,29 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.EMFInfo} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EMFInfoItemProvider emfInfoItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.EMFInfo}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEMFInfoAdapter() {
+		if (emfInfoItemProvider == null) {
+			emfInfoItemProvider = new EMFInfoItemProvider(this);
+		}
+
+		return emfInfoItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -388,6 +411,7 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 		if (modelElementItemProvider != null) modelElementItemProvider.dispose();
 		if (modelElementWildcardItemProvider != null) modelElementWildcardItemProvider.dispose();
 		if (modelEndpointItemProvider != null) modelEndpointItemProvider.dispose();
+		if (emfInfoItemProvider != null) emfInfoItemProvider.dispose();
 	}
 
 }

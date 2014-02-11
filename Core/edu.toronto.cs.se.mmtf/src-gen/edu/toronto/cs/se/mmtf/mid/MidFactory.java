@@ -85,6 +85,15 @@ public interface MidFactory extends EFactory {
 	ModelEndpoint createModelEndpoint();
 
 	/**
+	 * Returns a new object of class '<em>EMF Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>EMF Info</em>'.
+	 * @generated
+	 */
+	EMFInfo createEMFInfo();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

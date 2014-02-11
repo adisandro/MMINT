@@ -82,7 +82,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The unique uri identifier (types: arbitrary string; instances: workspace uri)."/>
+        <details key="documentation" value="The unique uri identifier (types: EMF-like uri; instances: workspace-relative uri)."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -371,10 +371,10 @@
     <eOperations name="deleteInstance" eExceptions="#//MMTFException"/>
     <eOperations name="getEMFObject" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         eExceptions="#//MMTFException"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classLiteral" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eInfo" lowerBound="1" eType="#//EMFInfo"
+        containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The class literal (types: the literal of the class or structural feature in the metamodel package; instances: currently unused TODO)."/>
+        <details key="documentation" value="The EMF information (types: metamodel info; instances: metamodel info)."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -453,6 +453,32 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A wrapper to throw exceptions in various operations."/>
     </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EMFInfo">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A selection of EMF information related to a model element, to avoid accessing the EObject every time they are needed."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The EClass name (types: metamodel class; instances: metamodel class)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The EStructuralFeature name, if applicable (types: metamodel feature; instances: metamodel feature)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reference" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="If applicable, true if the EStructuralFeature is an EReference, false otherwise (types: metamodel feature; instances: metamodel feature)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="containerClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The eContainer EClass name, if applicable (types: not used; instances: metamodel class of the container)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eSubpackages name="relationship" nsURI="http://se.cs.toronto.edu/mmtf/MID/Relationship"
       nsPrefix="relationship">

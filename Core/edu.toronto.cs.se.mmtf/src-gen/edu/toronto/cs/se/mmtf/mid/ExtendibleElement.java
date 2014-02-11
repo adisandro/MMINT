@@ -48,7 +48,7 @@ public interface ExtendibleElement extends MAVOElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The unique uri identifier (types: arbitrary string; instances: workspace uri).
+	 * The unique uri identifier (types: EMF-like uri; instances: workspace-relative uri).
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Uri</em>' attribute.
 	 * @see #setUri(String)

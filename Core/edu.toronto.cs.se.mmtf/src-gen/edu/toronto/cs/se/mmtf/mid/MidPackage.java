@@ -1023,13 +1023,13 @@ public interface MidPackage extends EPackage {
 	int MODEL_ELEMENT__CONSTRAINT = EXTENDIBLE_ELEMENT__CONSTRAINT;
 
 	/**
-	 * The feature id for the '<em><b>Class Literal</b></em>' attribute.
+	 * The feature id for the '<em><b>EInfo</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__CLASS_LITERAL = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
+	int MODEL_ELEMENT__EINFO = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Model Element</em>' class.
@@ -1457,6 +1457,70 @@ public interface MidPackage extends EPackage {
 	int MODEL_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 11;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EMFInfoImpl <em>EMF Info</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.EMFInfoImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEMFInfo()
+	 * @generated
+	 */
+	int EMF_INFO = 9;
+
+	/**
+	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMF_INFO__CLASS_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMF_INFO__FEATURE_NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMF_INFO__REFERENCE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Container Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMF_INFO__CONTAINER_CLASS_NAME = 3;
+
+	/**
+	 * The number of structural features of the '<em>EMF Info</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMF_INFO_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>EMF Info</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMF_INFO_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.MidLevel <em>Level</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1464,7 +1528,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getMidLevel()
 	 * @generated
 	 */
-	int MID_LEVEL = 9;
+	int MID_LEVEL = 10;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ModelOrigin <em>Model Origin</em>}' enum.
@@ -1474,7 +1538,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelOrigin()
 	 * @generated
 	 */
-	int MODEL_ORIGIN = 10;
+	int MODEL_ORIGIN = 11;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage <em>Extendible Element Constraint Language</em>}' enum.
@@ -1484,7 +1548,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getExtendibleElementConstraintLanguage()
 	 * @generated
 	 */
-	int EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE = 11;
+	int EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE = 12;
 
 	/**
 	 * The meta object id for the '<em>MMTF Exception</em>' data type.
@@ -1494,7 +1558,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getMMTFException()
 	 * @generated
 	 */
-	int MMTF_EXCEPTION = 12;
+	int MMTF_EXCEPTION = 13;
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement <em>Extendible Element</em>}'.
@@ -2016,15 +2080,15 @@ public interface MidPackage extends EPackage {
 	EClass getModelElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getClassLiteral <em>Class Literal</em>}'.
+	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getEInfo <em>EInfo</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Class Literal</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#getClassLiteral()
+	 * @return the meta object for the containment reference '<em>EInfo</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#getEInfo()
 	 * @see #getModelElement()
 	 * @generated
 	 */
-	EAttribute getModelElement_ClassLiteral();
+	EReference getModelElement_EInfo();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getMetatype() <em>Get Metatype</em>}' operation.
@@ -2225,6 +2289,60 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getModelEndpoint__DeleteInstanceAndReference__boolean();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo <em>EMF Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>EMF Info</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.EMFInfo
+	 * @generated
+	 */
+	EClass getEMFInfo();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#getClassName <em>Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Class Name</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.EMFInfo#getClassName()
+	 * @see #getEMFInfo()
+	 * @generated
+	 */
+	EAttribute getEMFInfo_ClassName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#getFeatureName <em>Feature Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Feature Name</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.EMFInfo#getFeatureName()
+	 * @see #getEMFInfo()
+	 * @generated
+	 */
+	EAttribute getEMFInfo_FeatureName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#isReference <em>Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reference</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.EMFInfo#isReference()
+	 * @see #getEMFInfo()
+	 * @generated
+	 */
+	EAttribute getEMFInfo_Reference();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#getContainerClassName <em>Container Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Container Class Name</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.EMFInfo#getContainerClassName()
+	 * @see #getEMFInfo()
+	 * @generated
+	 */
+	EAttribute getEMFInfo_ContainerClassName();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelEndpoint#replaceInstanceAndReference(edu.toronto.cs.se.mmtf.mid.ModelEndpoint, edu.toronto.cs.se.mmtf.mid.Model) <em>Replace Instance And Reference</em>}' operation.
@@ -2727,12 +2845,12 @@ public interface MidPackage extends EPackage {
 		EClass MODEL_ELEMENT = eINSTANCE.getModelElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Class Literal</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>EInfo</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MODEL_ELEMENT__CLASS_LITERAL = eINSTANCE.getModelElement_ClassLiteral();
+		EReference MODEL_ELEMENT__EINFO = eINSTANCE.getModelElement_EInfo();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
@@ -2897,6 +3015,48 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = eINSTANCE.getModelEndpoint__DeleteInstanceAndReference__boolean();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.EMFInfoImpl <em>EMF Info</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmtf.mid.impl.EMFInfoImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEMFInfo()
+		 * @generated
+		 */
+		EClass EMF_INFO = eINSTANCE.getEMFInfo();
+
+		/**
+		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EMF_INFO__CLASS_NAME = eINSTANCE.getEMFInfo_ClassName();
+
+		/**
+		 * The meta object literal for the '<em><b>Feature Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EMF_INFO__FEATURE_NAME = eINSTANCE.getEMFInfo_FeatureName();
+
+		/**
+		 * The meta object literal for the '<em><b>Reference</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EMF_INFO__REFERENCE = eINSTANCE.getEMFInfo_Reference();
+
+		/**
+		 * The meta object literal for the '<em><b>Container Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EMF_INFO__CONTAINER_CLASS_NAME = eINSTANCE.getEMFInfo_ContainerClassName();
 
 		/**
 		 * The meta object literal for the '<em><b>Replace Instance And Reference</b></em>' operation.

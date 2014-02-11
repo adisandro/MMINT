@@ -106,7 +106,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementConstraint/language"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ModelElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ModelElement/classLiteral"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//ModelElement/eInfo"/>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/getMetatype"/>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/getSupertype"/>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/createTypeReference">
@@ -178,6 +178,12 @@
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteInstanceAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteInstanceAndReference/isFullDelete"/>
       </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//EMFInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/className"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/featureName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/reference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/containerClassName"/>
     </genClasses>
     <nestedGenPackages prefix="Relationship" basePackage="edu.toronto.cs.se.mmtf.mid"
         disposableProviderFactory="true" ecorePackage="mid.ecore#//relationship">

@@ -115,6 +115,8 @@ public class MidValidator extends EObjectValidator {
 				return validateModelElementWildcard((ModelElementWildcard)value, diagnostics, context);
 			case MidPackage.MODEL_ENDPOINT:
 				return validateModelEndpoint((ModelEndpoint)value, diagnostics, context);
+			case MidPackage.EMF_INFO:
+				return validateEMFInfo((EMFInfo)value, diagnostics, context);
 			case MidPackage.MID_LEVEL:
 				return validateMidLevel((MidLevel)value, diagnostics, context);
 			case MidPackage.MODEL_ORIGIN:
@@ -317,6 +319,15 @@ public class MidValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateExtendibleElement_typeLevel(modelEndpoint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateExtendibleElementEndpoint_unboundedLevel(modelEndpoint, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEMFInfo(EMFInfo emfInfo, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(emfInfo, diagnostics, context);
 	}
 
 	/**

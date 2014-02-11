@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.impl;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
 import edu.toronto.cs.se.mmtf.mavo.impl.MavoPackageImpl;
+import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage;
@@ -119,6 +120,13 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	private EClass modelEndpointEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass emfInfoEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -678,8 +686,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getModelElement_ClassLiteral() {
-		return (EAttribute)modelElementEClass.getEStructuralFeatures().get(0);
+	public EReference getModelElement_EInfo() {
+		return (EReference)modelElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -867,6 +875,51 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getEMFInfo() {
+		return emfInfoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEMFInfo_ClassName() {
+		return (EAttribute)emfInfoEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEMFInfo_FeatureName() {
+		return (EAttribute)emfInfoEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEMFInfo_Reference() {
+		return (EAttribute)emfInfoEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEMFInfo_ContainerClassName() {
+		return (EAttribute)emfInfoEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model() {
 		return modelEndpointEClass.getEOperations().get(9);
 	}
@@ -1008,7 +1061,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(extendibleElementConstraintEClass, EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE);
 
 		modelElementEClass = createEClass(MODEL_ELEMENT);
-		createEAttribute(modelElementEClass, MODEL_ELEMENT__CLASS_LITERAL);
+		createEReference(modelElementEClass, MODEL_ELEMENT__EINFO);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_METATYPE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_SUPERTYPE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE);
@@ -1034,6 +1087,12 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_BOOLEAN_MODELREL);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN);
+
+		emfInfoEClass = createEClass(EMF_INFO);
+		createEAttribute(emfInfoEClass, EMF_INFO__CLASS_NAME);
+		createEAttribute(emfInfoEClass, EMF_INFO__FEATURE_NAME);
+		createEAttribute(emfInfoEClass, EMF_INFO__REFERENCE);
+		createEAttribute(emfInfoEClass, EMF_INFO__CONTAINER_CLASS_NAME);
 
 		// Create enums
 		midLevelEEnum = createEEnum(MID_LEVEL);
@@ -1194,7 +1253,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEAttribute(getExtendibleElementConstraint_Language(), this.getExtendibleElementConstraintLanguage(), "language", null, 1, 1, ExtendibleElementConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelElementEClass, ModelElement.class, "ModelElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModelElement_ClassLiteral(), ecorePackage.getEString(), "classLiteral", null, 1, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElement_EInfo(), this.getEMFInfo(), null, "eInfo", null, 1, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getModelElement__GetMetatype(), this.getModelElement(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1293,6 +1352,12 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 
+		initEClass(emfInfoEClass, EMFInfo.class, "EMFInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEMFInfo_ClassName(), ecorePackage.getEString(), "className", null, 1, 1, EMFInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEMFInfo_FeatureName(), ecorePackage.getEString(), "featureName", null, 0, 1, EMFInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEMFInfo_Reference(), ecorePackage.getEBoolean(), "reference", null, 0, 1, EMFInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEMFInfo_ContainerClassName(), ecorePackage.getEString(), "containerClassName", null, 0, 1, EMFInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(midLevelEEnum, MidLevel.class, "MidLevel");
 		addEEnumLiteral(midLevelEEnum, MidLevel.INSTANCES);
@@ -1347,7 +1412,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "unboundedLevel"
-		   });																																					
+		   });																																										
 	}
 
 	/**
@@ -1375,7 +1440,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "derivation", "target.uri"
-		   });																													
+		   });																																		
 	}
 
 } //MidPackageImpl

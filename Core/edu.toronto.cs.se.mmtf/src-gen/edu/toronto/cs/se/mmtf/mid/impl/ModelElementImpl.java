@@ -16,6 +16,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
+import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
@@ -34,11 +35,13 @@ import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -48,7 +51,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl#getClassLiteral <em>Class Literal</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl#getEInfo <em>EInfo</em>}</li>
  * </ul>
  * </p>
  *
@@ -56,24 +59,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class ModelElementImpl extends ExtendibleElementImpl implements ModelElement {
 	/**
-	 * The default value of the '{@link #getClassLiteral() <em>Class Literal</em>}' attribute.
+	 * The cached value of the '{@link #getEInfo() <em>EInfo</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getClassLiteral()
+	 * @see #getEInfo()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CLASS_LITERAL_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getClassLiteral() <em>Class Literal</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getClassLiteral()
-	 * @generated
-	 * @ordered
-	 */
-	protected String classLiteral = CLASS_LITERAL_EDEFAULT;
+	protected EMFInfo eInfo;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -99,8 +92,8 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getClassLiteral() {
-		return classLiteral;
+	public EMFInfo getEInfo() {
+		return eInfo;
 	}
 
 	/**
@@ -108,11 +101,33 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setClassLiteral(String newClassLiteral) {
-		String oldClassLiteral = classLiteral;
-		classLiteral = newClassLiteral;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL_ELEMENT__CLASS_LITERAL, oldClassLiteral, classLiteral));
+	public NotificationChain basicSetEInfo(EMFInfo newEInfo, NotificationChain msgs) {
+		EMFInfo oldEInfo = eInfo;
+		eInfo = newEInfo;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MidPackage.MODEL_ELEMENT__EINFO, oldEInfo, newEInfo);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEInfo(EMFInfo newEInfo) {
+		if (newEInfo != eInfo) {
+			NotificationChain msgs = null;
+			if (eInfo != null)
+				msgs = ((InternalEObject)eInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MidPackage.MODEL_ELEMENT__EINFO, null, msgs);
+			if (newEInfo != null)
+				msgs = ((InternalEObject)newEInfo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MidPackage.MODEL_ELEMENT__EINFO, null, msgs);
+			msgs = basicSetEInfo(newEInfo, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL_ELEMENT__EINFO, newEInfo, newEInfo));
 	}
 
 	/**
@@ -143,8 +158,8 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.MODEL_ELEMENT__CLASS_LITERAL:
-				return getClassLiteral();
+			case MidPackage.MODEL_ELEMENT__EINFO:
+				return getEInfo();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -157,8 +172,8 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.MODEL_ELEMENT__CLASS_LITERAL:
-				setClassLiteral((String)newValue);
+			case MidPackage.MODEL_ELEMENT__EINFO:
+				setEInfo((EMFInfo)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -172,8 +187,8 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL_ELEMENT__CLASS_LITERAL:
-				setClassLiteral(CLASS_LITERAL_EDEFAULT);
+			case MidPackage.MODEL_ELEMENT__EINFO:
+				setEInfo((EMFInfo)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -187,8 +202,8 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL_ELEMENT__CLASS_LITERAL:
-				return CLASS_LITERAL_EDEFAULT == null ? classLiteral != null : !CLASS_LITERAL_EDEFAULT.equals(classLiteral);
+			case MidPackage.MODEL_ELEMENT__EINFO:
+				return eInfo != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -265,22 +280,6 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				}
 		}
 		return super.eInvoke(operationID, arguments);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (classLiteral: ");
-		result.append(classLiteral);
-		result.append(')');
-		return result.toString();
 	}
 
 	/**
@@ -506,6 +505,20 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		}
 
 		return modelObj;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MidPackage.MODEL_ELEMENT__EINFO:
+				return basicSetEInfo(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 } //ModelElementImpl

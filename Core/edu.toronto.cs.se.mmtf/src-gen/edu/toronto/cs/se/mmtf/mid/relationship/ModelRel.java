@@ -200,9 +200,7 @@ public interface ModelRel extends Model {
 	 *             relationship type doesn't satisfy the transformation
 	 *             constraint, or if the source model is not allowed by this
 	 *             model relationship type. <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
-	 *        srcModelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" srcModelRequired="true"
 	 * @generated
 	 */
 	ConversionOperator getTypeTransformationOperator(Model srcModel) throws MMTFException;

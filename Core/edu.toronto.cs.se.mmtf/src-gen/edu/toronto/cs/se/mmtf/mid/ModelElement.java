@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getClassLiteral <em>Class Literal</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getEInfo <em>EInfo</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,29 +39,29 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ModelElement extends ExtendibleElement {
 	/**
-	 * Returns the value of the '<em><b>Class Literal</b></em>' attribute.
+	 * Returns the value of the '<em><b>EInfo</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The class literal (types: the literal of the class or structural feature in the metamodel package; instances: currently unused TODO).
+	 * The EMF information (types: metamodel info; instances: metamodel info).
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Class Literal</em>' attribute.
-	 * @see #setClassLiteral(String)
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelElement_ClassLiteral()
-	 * @model required="true"
+	 * @return the value of the '<em>EInfo</em>' containment reference.
+	 * @see #setEInfo(EMFInfo)
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getModelElement_EInfo()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	String getClassLiteral();
+	EMFInfo getEInfo();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getClassLiteral <em>Class Literal</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getEInfo <em>EInfo</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class Literal</em>' attribute.
-	 * @see #getClassLiteral()
+	 * @param value the new value of the '<em>EInfo</em>' containment reference.
+	 * @see #getEInfo()
 	 * @generated
 	 */
-	void setClassLiteral(String value);
+	void setEInfo(EMFInfo value);
 
 	/**
 	 * <!-- begin-user-doc -->
