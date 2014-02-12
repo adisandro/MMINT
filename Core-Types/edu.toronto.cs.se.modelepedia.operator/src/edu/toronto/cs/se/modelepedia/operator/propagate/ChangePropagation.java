@@ -149,7 +149,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		ModelEndpointReference refinedModelEndpointRef_propTraceRel = newPropTraceRel.getModelEndpointRefs().get(0);
 		for (ModelElementReference refinedModelElemRef_refinementRel : refinedModelElemRefs_refinementRel) {
 			// create refined model elem ref in propagated trace rel
-			ModelElementReference newRefinedModelElemRef_propTraceRel = ModelElementImpl.createMAVOInstanceAndReference(refinedModelElemRef_refinementRel.getObject().getEMFObject(), refinedModelElemRef_refinementRel.getObject().getName(), refinedModelEndpointRef_propTraceRel);
+			ModelElementReference newRefinedModelElemRef_propTraceRel = ModelElementImpl.createMAVOInstanceAndReference(refinedModelElemRef_refinementRel.getObject().getEMFInstanceObject(), refinedModelElemRef_refinementRel.getObject().getName(), refinedModelEndpointRef_propTraceRel);
 			newRefinedModelElemRefs_propTraceRel.add(newRefinedModelElemRef_propTraceRel);
 		}
 		ModelEndpointReference propModelEndpointRef_propTraceRel = newPropTraceRel.getModelEndpointRefs().get(1);
@@ -190,7 +190,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 		}
 		ModelElement traceModelElemTypeA = MultiModelConstraintChecker.getAllowedModelElementType(
 			traceRel.getModelEndpointRefs().get(indexA),
-			traceModelElemRefA.getObject().getEMFObject()
+			traceModelElemRefA.getObject().getEMFInstanceObject()
 		);
 		if (traceModelElemTypeA == null) {
 			return null;
@@ -210,7 +210,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 				continue;
 			}
 			// create new dangling trace link
-			ModelElementReference newTraceModelElemRefA = ModelElementImpl.createMAVOInstanceAndReference(traceModelElemRefA.getObject().getEMFObject(), traceModelElemRefA.getObject().getName(), traceRel.getModelEndpointRefs().get(indexA));
+			ModelElementReference newTraceModelElemRefA = ModelElementImpl.createMAVOInstanceAndReference(traceModelElemRefA.getObject().getEMFInstanceObject(), traceModelElemRefA.getObject().getName(), traceRel.getModelEndpointRefs().get(indexA));
 			newTraceLinkRef = (BinaryLinkReference) traceLinkTypeRef.getObject().createInstanceAndReference(true, traceRel);
 			newTraceLinkRef.getObject().setVar(true);
 			newTraceLinkRef.getObject().setName(PROPTRACE_RULE4_LINK_NAME);
@@ -488,7 +488,7 @@ traceLinks:
 		ModelElementReference newPropModelElemRef = getModelElementReference(propModelElemRef_propTraceRel, propModelEndpointRef_propRefinementRel.getModelElemRefs());
 		if (newPropModelElemRef == null) {
 			duplicateRefinement1 = false;
-			newPropModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(propModelElemRef_propTraceRel.getObject().getEMFObject(), propModelElemRef_propTraceRel.getObject().getName(), propModelEndpointRef_propRefinementRel);
+			newPropModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(propModelElemRef_propTraceRel.getObject().getEMFInstanceObject(), propModelElemRef_propTraceRel.getObject().getName(), propModelEndpointRef_propRefinementRel);
 		}
 
 		ModelElementReference refinedModelElemRef_propTraceRel = propTraceLinkRef.getSourceModelElemRef();
@@ -523,7 +523,7 @@ traceLinks:
 				ModelElementReference newRelatedModelElemRef = getModelElementReference(relatedModelElemRef_traceRel, relatedModelEndpointRef_propRefinementRel.getModelElemRefs());
 				if (newRelatedModelElemRef == null) {
 					duplicateRefinement2 = false;
-					newRelatedModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(relatedModelElemRef_traceRel.getObject().getEMFObject(), relatedModelElemRef_traceRel.getObject().getName(), relatedModelEndpointRef_propRefinementRel);
+					newRelatedModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(relatedModelElemRef_traceRel.getObject().getEMFInstanceObject(), relatedModelElemRef_traceRel.getObject().getName(), relatedModelEndpointRef_propRefinementRel);
 				}
 				refinementLinkType.getModelElemEndpoints().get(0).createInstanceAndReference(newRelatedModelElemRef, false, newPropRefinementLinkRef);
 			}

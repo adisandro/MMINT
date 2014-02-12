@@ -46,7 +46,7 @@ public interface MMTFConstants {
 	/** The uri of the root model type endpoint. */
 	public final static String ROOT_MODELENDPOINT_URI = ROOT_URI + URI_SEPARATOR + "ModelRel" + ENDPOINT_SEPARATOR + "Model" + URI_SEPARATOR + "ModelEndpoint";
 	/** The uri of the root model element type. */
-	public final static String ROOT_MODELELEM_URI = ROOT_MODEL_URI + ECORE_MODEL_URI_SEPARATOR + URI_SEPARATOR + "ModelElem";
+	public final static String ROOT_MODELELEM_URI = ROOT_MODEL_URI + ECORE_MODEL_URI_SEPARATOR + URI_SEPARATOR + "ModelElement";
 	/** The uri of the root link type. */
 	public final static String ROOT_LINK_URI = ROOT_MODELREL_URI + URI_SEPARATOR + "Link";
 	/** The uri of the root model element type endpoint. */
@@ -112,8 +112,6 @@ public interface MMTFConstants {
 	public final static String MODELRELS_CHILD_MODELTYPEENDPOINT = "modelTypeEndpoint";
 	/** The ModelRels extension point's modelTypeEndpoint's modelElemType child. */
 	public final static String MODELRELS_MODELTYPEENDPOINT_CHILD_MODELELEMTYPE = "modelElemType";
-	/** The ModelRels extension point's modelTypeEndpoint's modelElemType child's classLiteral attribute. */
-	public final static String MODELRELS_MODELTYPEENDPOINT_MODELELEMTYPE_ATTR_CLASSLITERAL = "classLiteral";
 	/** The ModelRels extension point's linkType child. */
 	public final static String MODELRELS_CHILD_LINKTYPE = "linkType";
 	/** The ModelRels extension point's linkType's modelElemTypeEndpoint child. */

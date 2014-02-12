@@ -1083,7 +1083,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+	int MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_EMFINFO_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -1119,7 +1119,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_STRING_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+	int MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1131,13 +1131,13 @@ public interface MidPackage extends EPackage {
 	int MODEL_ELEMENT___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
-	 * The operation id for the '<em>Get EMF Object</em>' operation.
+	 * The operation id for the '<em>Get EMF Instance Object</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT___GET_EMF_OBJECT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 9;
+	int MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>Model Element</em>' class.
@@ -1512,13 +1512,31 @@ public interface MidPackage extends EPackage {
 	int EMF_INFO_FEATURE_COUNT = 4;
 
 	/**
+	 * The operation id for the '<em>To Type String</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMF_INFO___TO_TYPE_STRING = 0;
+
+	/**
+	 * The operation id for the '<em>To Instance String</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMF_INFO___TO_INSTANCE_STRING = 1;
+
+	/**
 	 * The number of operations of the '<em>EMF Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EMF_INFO_OPERATION_COUNT = 0;
+	int EMF_INFO_OPERATION_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.MidLevel <em>Level</em>}' enum.
@@ -2121,24 +2139,14 @@ public interface MidPackage extends EPackage {
 	EOperation getModelElement__CreateTypeReference__ModelElementReference_boolean_ModelEndpointReference();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#createSubtypeAndReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference, java.lang.String, java.lang.String, edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference) <em>Create Subtype And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#createSubtypeAndReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference, java.lang.String, edu.toronto.cs.se.mmtf.mid.EMFInfo, edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference) <em>Create Subtype And Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Subtype And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#createSubtypeAndReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference, java.lang.String, java.lang.String, edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference)
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#createSubtypeAndReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference, java.lang.String, edu.toronto.cs.se.mmtf.mid.EMFInfo, edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference)
 	 * @generated
 	 */
-	EOperation getModelElement__CreateSubtypeAndReference__ModelElementReference_String_String_ModelEndpointReference();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#createInstanceAndReference(java.lang.String, java.lang.String, java.lang.String, edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference) <em>Create Instance And Reference</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Instance And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#createInstanceAndReference(java.lang.String, java.lang.String, java.lang.String, edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference)
-	 * @generated
-	 */
-	EOperation getModelElement__CreateInstanceAndReference__String_String_String_ModelEndpointReference();
+	EOperation getModelElement__CreateSubtypeAndReference__ModelElementReference_String_EMFInfo_ModelEndpointReference();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#deleteInstance() <em>Delete Instance</em>}' operation.
@@ -2151,14 +2159,14 @@ public interface MidPackage extends EPackage {
 	EOperation getModelElement__DeleteInstance();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getEMFObject() <em>Get EMF Object</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#getEMFInstanceObject() <em>Get EMF Instance Object</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get EMF Object</em>' operation.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#getEMFObject()
+	 * @return the meta object for the '<em>Get EMF Instance Object</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#getEMFInstanceObject()
 	 * @generated
 	 */
-	EOperation getModelElement__GetEMFObject();
+	EOperation getModelElement__GetEMFInstanceObject();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#deleteType() <em>Delete Type</em>}' operation.
@@ -2189,6 +2197,16 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getModelElement__CreateInstanceReference__ModelEndpointReference();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#createInstanceAndReference(java.lang.String, java.lang.String, edu.toronto.cs.se.mmtf.mid.EMFInfo, edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference) <em>Create Instance And Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance And Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#createInstanceAndReference(java.lang.String, java.lang.String, edu.toronto.cs.se.mmtf.mid.EMFInfo, edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference)
+	 * @generated
+	 */
+	EOperation getModelElement__CreateInstanceAndReference__String_String_EMFInfo_ModelEndpointReference();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelElementWildcard <em>Model Element Wildcard</em>}'.
@@ -2343,6 +2361,26 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getEMFInfo_ContainerClassName();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#toTypeString() <em>To Type String</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>To Type String</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.EMFInfo#toTypeString()
+	 * @generated
+	 */
+	EOperation getEMFInfo__ToTypeString();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#toInstanceString() <em>To Instance String</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>To Instance String</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.EMFInfo#toInstanceString()
+	 * @generated
+	 */
+	EOperation getEMFInfo__ToInstanceString();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelEndpoint#replaceInstanceAndReference(edu.toronto.cs.se.mmtf.mid.ModelEndpoint, edu.toronto.cs.se.mmtf.mid.Model) <em>Replace Instance And Reference</em>}' operation.
@@ -2882,15 +2920,7 @@ public interface MidPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_MODELENDPOINTREFERENCE = eINSTANCE.getModelElement__CreateSubtypeAndReference__ModelElementReference_String_String_ModelEndpointReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Create Instance And Reference</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_STRING_MODELENDPOINTREFERENCE = eINSTANCE.getModelElement__CreateInstanceAndReference__String_String_String_ModelEndpointReference();
+		EOperation MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_EMFINFO_MODELENDPOINTREFERENCE = eINSTANCE.getModelElement__CreateSubtypeAndReference__ModelElementReference_String_EMFInfo_ModelEndpointReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
@@ -2901,12 +2931,12 @@ public interface MidPackage extends EPackage {
 		EOperation MODEL_ELEMENT___DELETE_INSTANCE = eINSTANCE.getModelElement__DeleteInstance();
 
 		/**
-		 * The meta object literal for the '<em><b>Get EMF Object</b></em>' operation.
+		 * The meta object literal for the '<em><b>Get EMF Instance Object</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_ELEMENT___GET_EMF_OBJECT = eINSTANCE.getModelElement__GetEMFObject();
+		EOperation MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT = eINSTANCE.getModelElement__GetEMFInstanceObject();
 
 		/**
 		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
@@ -2931,6 +2961,14 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE = eINSTANCE.getModelElement__CreateInstanceReference__ModelEndpointReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Instance And Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE = eINSTANCE.getModelElement__CreateInstanceAndReference__String_String_EMFInfo_ModelEndpointReference();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementWildcardImpl <em>Model Element Wildcard</em>}' class.
@@ -3057,6 +3095,22 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EMF_INFO__CONTAINER_CLASS_NAME = eINSTANCE.getEMFInfo_ContainerClassName();
+
+		/**
+		 * The meta object literal for the '<em><b>To Type String</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EMF_INFO___TO_TYPE_STRING = eINSTANCE.getEMFInfo__ToTypeString();
+
+		/**
+		 * The meta object literal for the '<em><b>To Instance String</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EMF_INFO___TO_INSTANCE_STRING = eINSTANCE.getEMFInfo__ToInstanceString();
 
 		/**
 		 * The meta object literal for the '<em><b>Replace Instance And Reference</b></em>' operation.

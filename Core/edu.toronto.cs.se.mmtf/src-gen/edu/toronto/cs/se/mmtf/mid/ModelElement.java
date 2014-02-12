@@ -121,8 +121,8 @@ public interface ModelElement extends ExtendibleElement {
 	 *            endpoint reference container.
 	 * @param newModelElemTypeName
 	 *            The name of the new model element type.
-	 * @param classLiteral
-	 *            The class name of the new model element type.
+	 * @param eInfo
+	 *            The EMF info of the new model element type.
 	 * @param modelTypeEndpointRef
 	 *            The reference to the model type endpoint that will contain the
 	 *            new reference to the new model element type.
@@ -131,10 +131,10 @@ public interface ModelElement extends ExtendibleElement {
 	 *             If this is a model element instance, or if the uri of the new
 	 *             model element type is already registered in the Type MID.
 	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelElemTypeNameRequired="true" classLiteralRequired="true" containerModelTypeEndpointRefRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelElemTypeNameRequired="true" eInfoRequired="true" containerModelTypeEndpointRefRequired="true"
 	 * @generated
 	 */
-	ModelElementReference createSubtypeAndReference(ModelElementReference modelElemTypeRef, String newModelElemTypeName, String classLiteral, ModelEndpointReference containerModelTypeEndpointRef) throws MMTFException;
+	ModelElementReference createSubtypeAndReference(ModelElementReference modelElemTypeRef, String newModelElemTypeName, EMFInfo eInfo, ModelEndpointReference containerModelTypeEndpointRef) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model element type from the Type
@@ -182,8 +182,8 @@ public interface ModelElement extends ExtendibleElement {
 	 *            The uri of the new model element.
 	 * @param newModelElemName
 	 *            The name of the new model element.
-	 * @param classLiteral
-	 *            The class literal of the new model element.
+	 * @param eInfo
+	 *            The EMF info of the new model element.
 	 * @param containerModelEndpointRef
 	 *            The reference to the model endpoint that will contain the new
 	 *            reference to the new model element.
@@ -192,10 +192,10 @@ public interface ModelElement extends ExtendibleElement {
 	 *             If this is a model element instance, or if the uri of the new
 	 *             model element is already registered in the Instance MID.
 	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelElemUriRequired="true" newModelElemNameRequired="true" classLiteralRequired="true" containerModelEndpointRefRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelElemUriRequired="true" newModelElemNameRequired="true" eInfoRequired="true" containerModelEndpointRefRequired="true"
 	 * @generated
 	 */
-	ModelElementReference createInstanceAndReference(String newModelElemUri, String newModelElemName, String classLiteral, ModelEndpointReference containerModelEndpointRef) throws MMTFException;
+	ModelElementReference createInstanceAndReference(String newModelElemUri, String newModelElemName, EMFInfo eInfo, ModelEndpointReference containerModelEndpointRef) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model element instance from the
@@ -209,7 +209,8 @@ public interface ModelElement extends ExtendibleElement {
 	void deleteInstance() throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc --> Gets the EMF model object of this model element.
+	 * <!-- begin-user-doc --> Gets the EMF model object of this model element
+	 * instance.
 	 * 
 	 * @throws MMTFException
 	 *             If this is a model element type, or if the model file can't
@@ -217,6 +218,6 @@ public interface ModelElement extends ExtendibleElement {
 	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
-	EObject getEMFObject() throws MMTFException;
+	EObject getEMFInstanceObject() throws MMTFException;
 
 } // ModelElement

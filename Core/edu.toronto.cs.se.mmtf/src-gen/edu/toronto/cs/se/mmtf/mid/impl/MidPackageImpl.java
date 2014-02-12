@@ -722,17 +722,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElement__CreateSubtypeAndReference__ModelElementReference_String_String_ModelEndpointReference() {
+	public EOperation getModelElement__CreateSubtypeAndReference__ModelElementReference_String_EMFInfo_ModelEndpointReference() {
 		return modelElementEClass.getEOperations().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getModelElement__CreateInstanceAndReference__String_String_String_ModelEndpointReference() {
-		return modelElementEClass.getEOperations().get(7);
 	}
 
 	/**
@@ -749,7 +740,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElement__GetEMFObject() {
+	public EOperation getModelElement__GetEMFInstanceObject() {
 		return modelElementEClass.getEOperations().get(9);
 	}
 
@@ -778,6 +769,15 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 */
 	public EOperation getModelElement__CreateInstanceReference__ModelEndpointReference() {
 		return modelElementEClass.getEOperations().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelElement__CreateInstanceAndReference__String_String_EMFInfo_ModelEndpointReference() {
+		return modelElementEClass.getEOperations().get(7);
 	}
 
 	/**
@@ -913,6 +913,24 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 */
 	public EAttribute getEMFInfo_ContainerClassName() {
 		return (EAttribute)emfInfoEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getEMFInfo__ToTypeString() {
+		return emfInfoEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getEMFInfo__ToInstanceString() {
+		return emfInfoEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -1065,13 +1083,13 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_METATYPE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_SUPERTYPE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE);
-		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_MODELENDPOINTREFERENCE);
+		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_EMFINFO_MODELENDPOINTREFERENCE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___DELETE_TYPE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_EMF_TYPE_OBJECT);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE);
-		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_STRING_MODELENDPOINTREFERENCE);
+		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___DELETE_INSTANCE);
-		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_EMF_OBJECT);
+		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT);
 
 		modelElementWildcardEClass = createEClass(MODEL_ELEMENT_WILDCARD);
 
@@ -1093,6 +1111,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(emfInfoEClass, EMF_INFO__FEATURE_NAME);
 		createEAttribute(emfInfoEClass, EMF_INFO__REFERENCE);
 		createEAttribute(emfInfoEClass, EMF_INFO__CONTAINER_CLASS_NAME);
+		createEOperation(emfInfoEClass, EMF_INFO___TO_TYPE_STRING);
+		createEOperation(emfInfoEClass, EMF_INFO___TO_INSTANCE_STRING);
 
 		// Create enums
 		midLevelEEnum = createEEnum(MID_LEVEL);
@@ -1265,10 +1285,10 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		addEParameter(op, theRelationshipPackage.getModelEndpointReference(), "containerModelTypeEndpointRef", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 
-		op = initEOperation(getModelElement__CreateSubtypeAndReference__ModelElementReference_String_String_ModelEndpointReference(), theRelationshipPackage.getModelElementReference(), "createSubtypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelElement__CreateSubtypeAndReference__ModelElementReference_String_EMFInfo_ModelEndpointReference(), theRelationshipPackage.getModelElementReference(), "createSubtypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRelationshipPackage.getModelElementReference(), "modelElemTypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelElemTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "classLiteral", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEMFInfo(), "eInfo", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRelationshipPackage.getModelEndpointReference(), "containerModelTypeEndpointRef", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 
@@ -1282,17 +1302,17 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		addEParameter(op, theRelationshipPackage.getModelEndpointReference(), "containerModelEndpointRef", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 
-		op = initEOperation(getModelElement__CreateInstanceAndReference__String_String_String_ModelEndpointReference(), theRelationshipPackage.getModelElementReference(), "createInstanceAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelElement__CreateInstanceAndReference__String_String_EMFInfo_ModelEndpointReference(), theRelationshipPackage.getModelElementReference(), "createInstanceAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelElemUri", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelElemName", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "classLiteral", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEMFInfo(), "eInfo", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRelationshipPackage.getModelEndpointReference(), "containerModelEndpointRef", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 
 		op = initEOperation(getModelElement__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 
-		op = initEOperation(getModelElement__GetEMFObject(), ecorePackage.getEObject(), "getEMFObject", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelElement__GetEMFInstanceObject(), ecorePackage.getEObject(), "getEMFInstanceObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 
 		initEClass(modelElementWildcardEClass, ModelElementWildcard.class, "ModelElementWildcard", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1357,6 +1377,12 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEAttribute(getEMFInfo_FeatureName(), ecorePackage.getEString(), "featureName", null, 0, 1, EMFInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEMFInfo_Reference(), ecorePackage.getEBoolean(), "reference", null, 0, 1, EMFInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEMFInfo_ContainerClassName(), ecorePackage.getEString(), "containerClassName", null, 0, 1, EMFInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getEMFInfo__ToTypeString(), ecorePackage.getEString(), "toTypeString", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
+
+		op = initEOperation(getEMFInfo__ToInstanceString(), ecorePackage.getEString(), "toInstanceString", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMTFException());
 
 		// Initialize enums and add enum literals
 		initEEnum(midLevelEEnum, MidLevel.class, "MidLevel");

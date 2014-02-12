@@ -249,18 +249,16 @@
                   upperBound="1"
                   targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram">
             </typeEndpoint>
-            <modelElemType
-                  classLiteral="Usage">
+            <modelElemType>
                 <type
                      name="Usage"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram/Usage">
+                     uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram#//Usage">
                 </type>
             </modelElemType>
-            <modelElemType
-                  classLiteral="Component">
+            <modelElemType>
                 <type
                      name="Component"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram/Component">
+                     uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram#//Component">
                 </type>
             </modelElemType>
          </modelTypeEndpoint>
@@ -274,20 +272,18 @@
                   upperBound="1"
                   targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram">
             </typeEndpoint>
-            <modelElemType
-                  classLiteral="Node">
+            <modelElemType>
                 <type
                      name="Node"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram/Node">
+                     uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Node">
                 </type>
             </modelElemType>
-            <modelElemType
-                  classLiteral="Device">
+            <modelElemType>
                 <type
                      name="Device"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram/Device">
+                     uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Device">
                    <superType
-                         uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram/Node">
+                         uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Node">
                    </superType>
                 </type>
             </modelElemType>
@@ -305,7 +301,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram/Component">
+                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram#//Component">
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
@@ -316,7 +312,7 @@
                <typeEndpoint
                      lowerBound="1"
                      upperBound="1"
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram/Device">
+                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Device">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>
@@ -333,7 +329,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage">
+                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Usage">
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
@@ -344,7 +340,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="1"
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram/Node">
+                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Node">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>
@@ -589,18 +585,16 @@
                   upperBound="1"
                   targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO">
             </typeEndpoint>
-            <modelElemType
-                  classLiteral="Usage">
+            <modelElemType>
                 <type
                      name="Usage"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage">
+                     uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Usage">
                 </type>
             </modelElemType>
-            <modelElemType
-                  classLiteral="Component">
+            <modelElemType>
                 <type
                      name="Component"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component">
+                     uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Component">
                 </type>
             </modelElemType>
          </modelTypeEndpoint>
@@ -614,20 +608,18 @@
                   upperBound="1"
                   targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO">
             </typeEndpoint>
-            <modelElemType
-                  classLiteral="Node">
+            <modelElemType>
                 <type
                      name="Node"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node">
+                     uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Node">
                 </type>
             </modelElemType>
-            <modelElemType
-                  classLiteral="Device">
+            <modelElemType>
                 <type
                      name="Device"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Device">
+                     uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Device">
                    <superType
-                         uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node">
+                         uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Node">
                    </superType>
                 </type>
             </modelElemType>
@@ -645,7 +637,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Component">
+                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Component">
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
@@ -656,7 +648,7 @@
                <typeEndpoint
                      lowerBound="1"
                      upperBound="1"
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Device">
+                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Device">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>
@@ -673,7 +665,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO/Usage">
+                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Usage">
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
@@ -684,7 +676,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="1"
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO/Node">
+                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Node">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>

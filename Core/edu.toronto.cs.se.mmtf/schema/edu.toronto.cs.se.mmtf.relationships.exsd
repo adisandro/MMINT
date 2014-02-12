@@ -94,13 +94,6 @@ The relationship&apos;s enpoints model packages have to be registered too throug
          <sequence>
             <element ref="type"/>
          </sequence>
-         <attribute name="classLiteral" type="string" use="required">
-            <annotation>
-               <documentation>
-                  The model element typr meta object literal.
-               </documentation>
-            </annotation>
-         </attribute>
       </complexType>
    </element>
 

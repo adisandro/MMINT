@@ -60,32 +60,28 @@
                   upperBound="1"
                   targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
             </typeEndpoint>
-            <modelElemType
-                  classLiteral="Actor">
+            <modelElemType>
                 <type
                      name="Actor"
-                     uri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor">
+                     uri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Actor">
                 </type>
             </modelElemType>
-            <modelElemType
-                  classLiteral="Task">
+            <modelElemType>
                 <type
                      name="Task"
-                     uri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Task">
+                     uri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Task">
                 </type>
             </modelElemType>
-            <modelElemType
-                  classLiteral="Goal">
+            <modelElemType>
                 <type
                      name="Goal"
-                     uri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Goal">
+                     uri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Goal">
                 </type>
             </modelElemType>
-            <modelElemType
-                  classLiteral="Resource">
+            <modelElemType>
                 <type
                      name="Resource"
-                     uri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource">
+                     uri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Resource">
                 </type>
             </modelElemType>
          </modelTypeEndpoint>
@@ -99,25 +95,22 @@
                   upperBound="1"
                   targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
             </typeEndpoint>
-            <modelElemType
-                  classLiteral="Class">
+            <modelElemType>
                 <type
                      name="Class"
-                     uri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class">
+                     uri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class">
                 </type>
             </modelElemType>
-            <modelElemType
-                  classLiteral="Operation">
+            <modelElemType>
                 <type
                      name="Operation"
-                     uri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Operation">
+                     uri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Operation">
                 </type>
             </modelElemType>
-            <modelElemType
-                  classLiteral="Dependency">
+            <modelElemType>
                 <type
                      name="Dependency"
-                     uri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Dependency">
+                     uri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Dependency">
                 </type>
             </modelElemType>
          </modelTypeEndpoint>
@@ -134,7 +127,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="1"
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Actor">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Actor">
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
@@ -145,7 +138,7 @@
                <typeEndpoint
                      lowerBound="1"
                      upperBound="1"
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>
@@ -162,7 +155,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="1"
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Resource">
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
@@ -173,7 +166,7 @@
                <typeEndpoint
                      lowerBound="1"
                      upperBound="1"
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Class">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>
@@ -190,7 +183,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="1"
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Task">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Task">
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
@@ -201,7 +194,7 @@
                <typeEndpoint
                      lowerBound="1"
                      upperBound="1"
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Operation">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Operation">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>
@@ -218,7 +211,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Goal">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Goal">
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
@@ -229,7 +222,7 @@
                <typeEndpoint
                      lowerBound="1"
                      upperBound="1"
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Dependency">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Dependency">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>
@@ -246,7 +239,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO/Resource">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Resource">
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
@@ -257,7 +250,7 @@
                <typeEndpoint
                      lowerBound="1"
                      upperBound="1"
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO/Dependency">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Dependency">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>

@@ -589,7 +589,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 					newModelTypeEndpointRefSuper = MultiModelTypeHierarchy.getReference((ModelEndpointReference) origModelElemTypeRef.getSupertypeRef().eContainer(), newModelRelType.getModelEndpointRefs());
 					modelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemType.getUri(), newModelTypeEndpointRefSuper.getModelElemRefs());
 				}
-				modelElemType.createSubtypeAndReference(modelElemTypeRef, origModelElemTypeRef.getObject().getName(), origModelElemTypeRef.getObject().getClassLiteral(), newModelTypeEndpointRef);
+				modelElemType.createSubtypeAndReference(modelElemTypeRef, origModelElemTypeRef.getObject().getName(), origModelElemTypeRef.getObject().getEInfo(), newModelTypeEndpointRef);
 			}
 		}
 		// link types
@@ -737,7 +737,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			ModelEndpointReference newModelEndpointRef = oldModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, false, newModelRel);
 			// model elements
 			for (ModelElementReference oldModelElemRef : oldModelEndpointRef.getModelElemRefs()) {
-				EObject newModelObj = oldModelElemRef.getObject().getEMFObject();
+				EObject newModelObj = oldModelElemRef.getObject().getEMFInstanceObject();
 				ModelElementReference newModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(newModelObj, oldModelElemRef.getObject().getName(), newModelEndpointRef);
 				newModelElemRefs.put(newModelElemRef.getUri(), newModelElemRef);
 			}

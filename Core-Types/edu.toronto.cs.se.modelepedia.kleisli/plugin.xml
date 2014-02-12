@@ -48,11 +48,10 @@
                   upperBound="-1"
                   targetTypeUri="http://se.cs.toronto.edu/mmtf/Model">
             </typeEndpoint>
-            <modelElemType
-                  classLiteral="ModelElementWildcard">
+            <modelElemType>
                 <type
-                     name="KleisliModelElem"
-                     uri="http://se.cs.toronto.edu/mmtf/Model/KleisliModelElem">
+                     name="KleisliModelElement"
+                     uri="http://se.cs.toronto.edu/mmtf/Model#//ModelElement">
                 </type>
             </modelElemType>
          </modelTypeEndpoint>

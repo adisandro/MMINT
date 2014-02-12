@@ -16,6 +16,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+
+import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage;
@@ -178,14 +180,14 @@ public class MultiModelTypeFactory {
 	 * 
 	 * @param newModelElemType
 	 *            The new model element type being added.
-	 * @param classLiteral
-	 *            The class name of the new model element type.
+	 * @param eInfo
+	 *            The EMF info of the new model element type.
 	 * @param modelType
 	 *            The model type that will contain the new model element type.
 	 */
-	public static void addModelElementType(ModelElement newModelElemType, String classLiteral, Model modelType) {
+	public static void addModelElementType(ModelElement newModelElemType, EMFInfo eInfo, Model modelType) {
 
-		newModelElemType.setClassLiteral(classLiteral);
+		newModelElemType.setEInfo(eInfo);
 
 		modelType.getModelElems().add(newModelElemType);
 	}

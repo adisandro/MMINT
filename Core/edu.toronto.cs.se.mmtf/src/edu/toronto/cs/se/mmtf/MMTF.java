@@ -27,12 +27,15 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.handlers.RegistryToggleState;
 
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
+import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
@@ -42,6 +45,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
@@ -217,19 +221,23 @@ public class MMTF implements MMTFConstants {
 					lowerBound,
 					upperBound
 				);
+				EPackage rootModelTypeObj = newModelTypeEndpointRef.getObject().getTarget().getEMFTypeRoot();
 				// model element types
 				IConfigurationElement[] modelElemTypeConfigs = modelTypeEndpointConfig.getChildren(MODELRELS_MODELTYPEENDPOINT_CHILD_MODELELEMTYPE);
 				for (IConfigurationElement modelElemTypeConfig : modelElemTypeConfigs) {
 					newType = new ExtensionType(modelElemTypeConfig);
 					ModelElement newModelElemType = MultiModelTypeRegistry.getType(newType.getUri());
 					if (newModelElemType == null) { // create new model element type
-						String classLiteral = modelElemTypeConfig.getAttribute(MODELRELS_MODELTYPEENDPOINT_MODELELEMTYPE_ATTR_CLASSLITERAL);
+						//TODO add Instance to getEMFRoot
+						//TODO remove ModelElementWildcard
+						EObject modelElemTypeObj = MultiModelTypeIntrospection.getPointer(rootModelTypeObj.eResource(), newType.getUri());
+						EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelElemTypeObj, false);
 						try {
 							newModelElemType = MultiModelHeavyTypeFactory.createHeavyModelElementType(
 								newType.getUri(),
 								newType.getSupertypeUri(),
 								newType.getName(),
-								classLiteral,
+								eInfo,
 								newModelType
 							);
 						}

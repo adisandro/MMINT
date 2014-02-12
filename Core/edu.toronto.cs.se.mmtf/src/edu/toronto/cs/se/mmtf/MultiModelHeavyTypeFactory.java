@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
+import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -266,8 +267,8 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *            if the root model element type should be used as supertype.
 	 * @param newModelElemTypeName
 	 *            The name of the new model element type.
-	 * @param classLiteral
-	 *            The class name of the new model element type.
+	 * @param eInfo
+	 *            The EMF info of the new model element type.
 	 * @param modelType
 	 *            The model type that will contain the new model element type.
 	 * @return The created model element type.
@@ -275,12 +276,12 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new model element type is already
 	 *             registered in the repository.
 	 */
-	public static ModelElement createHeavyModelElementType(String newModelElemTypeUri, String modelElemTypeUri, String newModelElemTypeName, String classLiteral, Model modelType) throws MMTFException {
+	public static ModelElement createHeavyModelElementType(String newModelElemTypeUri, String modelElemTypeUri, String newModelElemTypeName, EMFInfo eInfo, Model modelType) throws MMTFException {
 
 		ModelElement newModelElemType = MidFactory.eINSTANCE.createModelElement();
 		ModelElement modelElemType = getSupertype(newModelElemType, newModelElemTypeUri, modelElemTypeUri);
 		addHeavyType(newModelElemType, modelElemType, newModelElemTypeUri, newModelElemTypeName);
-		addModelElementType(newModelElemType, classLiteral, modelType);
+		addModelElementType(newModelElemType, eInfo, modelType);
 
 		return newModelElemType;
 	}

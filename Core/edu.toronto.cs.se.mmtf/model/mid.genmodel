@@ -117,7 +117,7 @@
       <genOperations ecoreOperation="mid.ecore#//ModelElement/createSubtypeAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/modelElemTypeRef"/>
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/newModelElemTypeName"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/classLiteral"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/eInfo"/>
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/containerModelTypeEndpointRef"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/deleteType"/>
@@ -128,11 +128,11 @@
       <genOperations ecoreOperation="mid.ecore#//ModelElement/createInstanceAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/newModelElemUri"/>
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/newModelElemName"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/classLiteral"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/eInfo"/>
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/containerModelEndpointRef"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/deleteInstance"/>
-      <genOperations ecoreOperation="mid.ecore#//ModelElement/getEMFObject"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/getEMFInstanceObject"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ModelElementWildcard"/>
     <genClasses ecoreClass="mid.ecore#//ModelEndpoint">
@@ -184,6 +184,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/featureName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/reference"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/containerClassName"/>
+      <genOperations ecoreOperation="mid.ecore#//EMFInfo/toTypeString"/>
+      <genOperations ecoreOperation="mid.ecore#//EMFInfo/toInstanceString"/>
     </genClasses>
     <nestedGenPackages prefix="Relationship" basePackage="edu.toronto.cs.se.mmtf.mid"
         disposableProviderFactory="true" ecorePackage="mid.ecore#//relationship">

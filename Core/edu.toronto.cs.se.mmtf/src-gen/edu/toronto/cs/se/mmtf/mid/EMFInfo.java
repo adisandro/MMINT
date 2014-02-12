@@ -13,6 +13,8 @@ package edu.toronto.cs.se.mmtf.mid;
 
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmtf.MMTFException;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>EMF Info</b></em>'.
@@ -136,5 +138,29 @@ public interface EMFInfo extends EObject {
 	 * @generated
 	 */
 	void setContainerClassName(String value);
+
+	/**
+	 * <!-- begin-user-doc --> Returns a string representation of this EMF
+	 * metamodel info.
+	 * 
+	 * @throws MMTFException
+	 *             If the container is a model element instance.
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	String toTypeString() throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc --> Returns a string representation of this EMF model
+	 * info.
+	 * 
+	 * @throws MMTFException
+	 *             If the container is a model element type.
+	 * <!-- end-user-doc-->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @generated
+	 */
+	String toInstanceString() throws MMTFException;
 
 } // EMFInfo

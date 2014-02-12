@@ -95,7 +95,7 @@ public class CastTypeListener extends SelectionAdapter {
 						ModelElement modelElem = modelElemRef.getObject();
 						ModelElement modelElemType;
 						try {
-							modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelElem.getEMFObject());
+							modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelElem.getEMFInstanceObject());
 						}
 						catch (MMTFException e) {
 							MMTFException.print(MMTFException.Type.WARNING, "Can't get model object, skipping model element cast", e);

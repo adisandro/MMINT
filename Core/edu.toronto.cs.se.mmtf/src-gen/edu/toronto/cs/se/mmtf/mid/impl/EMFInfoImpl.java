@@ -11,13 +11,18 @@
  */
 package edu.toronto.cs.se.mmtf.mid.impl;
 
+import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
+import edu.toronto.cs.se.mmtf.mid.ModelElement;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
+
+import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -315,6 +320,32 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	 * @generated
 	 */
 	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MidPackage.EMF_INFO___TO_TYPE_STRING:
+				try {
+					return toTypeString();
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MidPackage.EMF_INFO___TO_INSTANCE_STRING:
+				try {
+					return toInstanceString();
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+		}
+		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
@@ -329,6 +360,47 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 		result.append(containerClassName);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public String toTypeString() throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel((ModelElement) eContainer())) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		String typeString = getClassName();
+		if (getFeatureName() != null) {
+			typeString += MMTF.MODELELEMENT_FEATURE_SEPARATOR1 + getFeatureName();
+			if (isReference()) {
+				typeString += MMTF.MODELELEMENT_REFERENCE_SEPARATOR;
+			}
+			typeString += MMTF.MODELELEMENT_FEATURE_SEPARATOR2;
+		}
+
+		return typeString;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public String toInstanceString() throws MMTFException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel((ModelElement) eContainer())) {
+			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		String instanceString = getClassName();
+		if (getContainerClassName() != null) {
+			instanceString = getContainerClassName() + MMTF.MODELELEMENT_FEATURE_SEPARATOR1 + getFeatureName() + MMTF.MODELELEMENT_REFERENCE_SEPARATOR + MMTF.MODELELEMENT_FEATURE_SEPARATOR2 + instanceString;
+		}
+		else {
+			instanceString += MMTF.MODELELEMENT_FEATURE_SEPARATOR1 + getFeatureName() + MMTF.MODELELEMENT_FEATURE_SEPARATOR2;
+		}
+
+		return instanceString;
 	}
 
 } //EMFInfoImpl
