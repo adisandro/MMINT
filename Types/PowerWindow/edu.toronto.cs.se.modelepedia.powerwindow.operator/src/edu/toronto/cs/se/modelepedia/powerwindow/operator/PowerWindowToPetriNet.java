@@ -40,7 +40,7 @@ public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
 
 		// convert
 		Model windowModel = actualParameters.get(0);
-		Window window = (Window) windowModel.getEMFRoot();
+		Window window = (Window) windowModel.getEMFInstanceRoot();
 		PetriNet newPetrinet = PetriNetFactory.eINSTANCE.createPetriNet();
 		if (window.getSensor() != null && window.getSensor().getDelay() < DELAY_BOUND) {
 			Place newPlace = PetriNetFactory.eINSTANCE.createPlace();

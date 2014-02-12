@@ -562,7 +562,7 @@ traceLinks:
 			List<BinaryLinkReference> propTraceLinkRefs = propagateTraceLinksFromRefinements(refinementLinkRef, traceRel, newPropModel, newPropTraceRel);
 			propTraceLinkRefsList.add(propTraceLinkRefs);
 		}
-		EObject newPropModelRoot = newPropModel.getEMFRoot();
+		EObject newPropModelRoot = newPropModel.getEMFInstanceRoot();
 		for (List<BinaryLinkReference> propTraceLinkRefs : propTraceLinkRefsList) {
 			reduceTraceLinkUncertainty(newPropModelRoot, propTraceLinkRefs, 0, 1);
 		}

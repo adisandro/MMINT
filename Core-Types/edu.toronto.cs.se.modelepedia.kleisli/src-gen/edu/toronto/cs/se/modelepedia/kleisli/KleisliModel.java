@@ -96,6 +96,6 @@ public interface KleisliModel extends Model {
 	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
-	EObject getEMFRoot() throws MMTFException;
+	EObject getEMFInstanceRoot() throws MMTFException;
 
 } // KleisliModel

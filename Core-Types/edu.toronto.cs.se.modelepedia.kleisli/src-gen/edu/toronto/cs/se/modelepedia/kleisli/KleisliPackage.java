@@ -1841,11 +1841,11 @@ public interface KleisliPackage extends EPackage {
 	EOperation getKleisliModel__DeleteInstance();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#getEMFRoot() <em>Get EMF Root</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#getEMFInstanceRoot() <em>Get EMF Root</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get EMF Root</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#getEMFRoot()
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#getEMFInstanceRoot()
 	 * @generated
 	 */
 	EOperation getKleisliModel__GetEMFRoot();

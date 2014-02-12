@@ -58,7 +58,7 @@ public class ModelDifference extends OperatorExecutableImpl {
 	private List<EObject> getDiffModelObjects(Model model, HashMap<String, ModelElementReference> modelElemRefTable) throws MMTFException {
 
 		List<EObject> diffModelEObjects = new ArrayList<EObject>();
-		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(model.getEMFRoot(), true);
+		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(model.getEMFInstanceRoot(), true);
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();
 			String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1];

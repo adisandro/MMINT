@@ -594,9 +594,9 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL___GET_EMF_ROOT:
+			case MidPackage.MODEL___GET_EMF_INSTANCE_ROOT:
 				try {
-					return getEMFRoot();
+					return getEMFInstanceRoot();
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -947,7 +947,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	public Model createMAVOInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
 
 		Model newMAVOModel = createInstance(newModelUri, origin, containerMultiModel);
-		MAVOUtils.initializeMAVOModel(newMAVOModel.getEMFRoot(), newMAVOModel);
+		MAVOUtils.initializeMAVOModel(newMAVOModel.getEMFInstanceRoot(), newMAVOModel);
 
 		return newMAVOModel;
 	}
@@ -958,7 +958,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	public Model createMAVOInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
 
 		Model newMAVOModel = createInstanceAndEditor(newModelUri, origin, containerMultiModel);
-		MAVOUtils.initializeMAVOModel(newMAVOModel.getEMFRoot(), newMAVOModel);
+		MAVOUtils.initializeMAVOModel(newMAVOModel.getEMFInstanceRoot(), newMAVOModel);
 
 		return newMAVOModel;
 	}
@@ -1051,7 +1051,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public EObject getEMFRoot() throws MMTFException {
+	public EObject getEMFInstanceRoot() throws MMTFException {
 
 		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");

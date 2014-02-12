@@ -24,7 +24,6 @@ import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.ModelElementWildcard;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -106,13 +105,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	private EClass modelElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass modelElementWildcardEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -614,7 +606,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__GetEMFRoot() {
+	public EOperation getModel__GetEMFInstanceRoot() {
 		return modelEClass.getEOperations().get(11);
 	}
 
@@ -778,15 +770,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 */
 	public EOperation getModelElement__CreateInstanceAndReference__String_String_EMFInfo_ModelEndpointReference() {
 		return modelElementEClass.getEOperations().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getModelElementWildcard() {
-		return modelElementWildcardEClass;
 	}
 
 	/**
@@ -1072,7 +1055,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEOperation(modelEClass, MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL);
 		createEOperation(modelEClass, MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL);
 		createEOperation(modelEClass, MODEL___DELETE_INSTANCE);
-		createEOperation(modelEClass, MODEL___GET_EMF_ROOT);
+		createEOperation(modelEClass, MODEL___GET_EMF_INSTANCE_ROOT);
 
 		extendibleElementConstraintEClass = createEClass(EXTENDIBLE_ELEMENT_CONSTRAINT);
 		createEAttribute(extendibleElementConstraintEClass, EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION);
@@ -1090,8 +1073,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___DELETE_INSTANCE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT);
-
-		modelElementWildcardEClass = createEClass(MODEL_ELEMENT_WILDCARD);
 
 		modelEndpointEClass = createEClass(MODEL_ENDPOINT);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___GET_SUPERTYPE);
@@ -1265,7 +1246,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		op = initEOperation(getModel__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 
-		op = initEOperation(getModel__GetEMFRoot(), ecorePackage.getEObject(), "getEMFRoot", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModel__GetEMFInstanceRoot(), ecorePackage.getEObject(), "getEMFInstanceRoot", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
 
 		initEClass(extendibleElementConstraintEClass, ExtendibleElementConstraint.class, "ExtendibleElementConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1314,8 +1295,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 
 		op = initEOperation(getModelElement__GetEMFInstanceObject(), ecorePackage.getEObject(), "getEMFInstanceObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMTFException());
-
-		initEClass(modelElementWildcardEClass, ModelElementWildcard.class, "ModelElementWildcard", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(modelEndpointEClass, ModelEndpoint.class, "ModelEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1438,7 +1417,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "unboundedLevel"
-		   });																																										
+		   });																																									
 	}
 
 	/**
@@ -1466,7 +1445,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "derivation", "target.uri"
-		   });																																		
+		   });																																	
 	}
 
 } //MidPackageImpl

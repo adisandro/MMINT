@@ -131,7 +131,7 @@ public class MAVOUtils {
 	public static boolean isMAVOModel(Model model) {
 
 		try {
-			return isMAVOModel(model.getEMFRoot());
+			return isMAVOModel(model.getEMFInstanceRoot());
 		}
 		catch (MMTFException e) {
 			MMTFException.print(Type.WARNING, "Can't get model root, skipping MAVO evaluation", e);

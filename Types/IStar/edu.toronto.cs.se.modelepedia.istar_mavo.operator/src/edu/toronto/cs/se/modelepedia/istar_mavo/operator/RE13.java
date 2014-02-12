@@ -322,7 +322,7 @@ nextNodeFunction:
 
 	protected void collectAnalysisModelObjs(Model istarModel) throws MMTFException {
 
-		istar = (IStar) istarModel.getEMFRoot();
+		istar = (IStar) istarModel.getEMFInstanceRoot();
 		for (Actor actor : istar.getActors()) {
 			for (Intention intention : actor.getIntentions()) {
 				intentions.put(intention.getName().replace(" ", ""), intention);

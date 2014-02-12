@@ -74,7 +74,6 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 			case MidPackage.MODEL: return createModel();
 			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT: return createExtendibleElementConstraint();
 			case MidPackage.MODEL_ELEMENT: return createModelElement();
-			case MidPackage.MODEL_ELEMENT_WILDCARD: return createModelElementWildcard();
 			case MidPackage.MODEL_ENDPOINT: return createModelEndpoint();
 			case MidPackage.EMF_INFO: return createEMFInfo();
 			default:
@@ -172,16 +171,6 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	public ModelElement createModelElement() {
 		ModelElementImpl modelElement = new ModelElementImpl();
 		return modelElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ModelElementWildcard createModelElementWildcard() {
-		ModelElementWildcardImpl modelElementWildcard = new ModelElementWildcardImpl();
-		return modelElementWildcard;
 	}
 
 	/**

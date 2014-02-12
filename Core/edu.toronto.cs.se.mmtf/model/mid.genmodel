@@ -99,7 +99,7 @@
         <genParameters ecoreParameter="mid.ecore#//Model/copyMAVOInstanceAndEditor/containerMultiModel"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/deleteInstance"/>
-      <genOperations ecoreOperation="mid.ecore#//Model/getEMFRoot"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/getEMFInstanceRoot"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ExtendibleElementConstraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementConstraint/implementation"/>
@@ -134,7 +134,6 @@
       <genOperations ecoreOperation="mid.ecore#//ModelElement/deleteInstance"/>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/getEMFInstanceObject"/>
     </genClasses>
-    <genClasses ecoreClass="mid.ecore#//ModelElementWildcard"/>
     <genClasses ecoreClass="mid.ecore#//ModelEndpoint">
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getSupertype"/>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getTarget"/>

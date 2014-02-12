@@ -111,7 +111,7 @@ public class MultiModelTypeIntrospection {
 			List<T> metamodelSubtypes = new ArrayList<T>();
 			EObject rootModelObj;
 			try {
-				rootModelObj = ((Model) element).getEMFRoot();
+				rootModelObj = ((Model) element).getEMFInstanceRoot();
 			}
 			catch (MMTFException e) {
 				MMTFException.print(Type.WARNING, "Can't get model root, subtypes filtering skipped", e);

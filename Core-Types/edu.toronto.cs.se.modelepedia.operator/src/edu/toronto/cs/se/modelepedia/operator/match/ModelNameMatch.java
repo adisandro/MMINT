@@ -76,7 +76,7 @@ public class ModelNameMatch extends OperatorExecutableImpl {
 			// create model endpoint
 			ModelEndpointReference newModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(model, false, matchRel);
 			// look for identical names in the models
-			checkModelObjNames(model.getEMFRoot(), newModelEndpointRef, modelObjNames, modelObjTable);
+			checkModelObjNames(model.getEMFInstanceRoot(), newModelEndpointRef, modelObjNames, modelObjTable);
 		}
 
 		// create model relationship structure

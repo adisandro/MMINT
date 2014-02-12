@@ -371,6 +371,6 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
 	 * @generated
 	 */
-	EObject getEMFRoot() throws MMTFException;
+	EObject getEMFInstanceRoot() throws MMTFException;
 
 } // Model

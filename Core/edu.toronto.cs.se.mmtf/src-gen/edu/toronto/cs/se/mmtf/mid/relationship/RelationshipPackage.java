@@ -579,13 +579,13 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = MidPackage.MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL;
 
 	/**
-	 * The operation id for the '<em>Get EMF Root</em>' operation.
+	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___GET_EMF_ROOT = MidPackage.MODEL___GET_EMF_ROOT;
+	int MODEL_REL___GET_EMF_INSTANCE_ROOT = MidPackage.MODEL___GET_EMF_INSTANCE_ROOT;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1029,13 +1029,13 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = MODEL_REL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL;
 
 	/**
-	 * The operation id for the '<em>Get EMF Root</em>' operation.
+	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL___GET_EMF_ROOT = MODEL_REL___GET_EMF_ROOT;
+	int BINARY_MODEL_REL___GET_EMF_INSTANCE_ROOT = MODEL_REL___GET_EMF_INSTANCE_ROOT;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.

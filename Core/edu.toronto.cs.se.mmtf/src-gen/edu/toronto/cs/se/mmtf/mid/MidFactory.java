@@ -67,15 +67,6 @@ public interface MidFactory extends EFactory {
 	ModelElement createModelElement();
 
 	/**
-	 * Returns a new object of class '<em>Model Element Wildcard</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Element Wildcard</em>'.
-	 * @generated
-	 */
-	ModelElementWildcard createModelElementWildcard();
-
-	/**
 	 * Returns a new object of class '<em>Model Endpoint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -113,7 +113,7 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 
 		ResourceSet resourceSet = (ResourceSet) contentOutlineViewer.getInput();
 		try {
-			resourceSet.getResources().add(model.getEMFRoot().eResource());
+			resourceSet.getResources().add(model.getEMFInstanceRoot().eResource());
 		}
 		catch (MMTFException e) {
 			MMTFException.print(Type.WARNING, "Can't get model root, skipping addition to outline", e);;

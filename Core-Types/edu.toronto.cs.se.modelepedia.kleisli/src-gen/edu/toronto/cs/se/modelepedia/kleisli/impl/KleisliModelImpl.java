@@ -259,9 +259,9 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 	 * @generated NOT
 	 */
 	@Override
-	public EObject getEMFRoot() throws MMTFException {
+	public EObject getEMFInstanceRoot() throws MMTFException {
 
-		return super.getEMFRoot();
+		return super.getEMFInstanceRoot();
 	}
 
 } //KleisliModelImpl

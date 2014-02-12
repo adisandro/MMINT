@@ -64,7 +64,7 @@ public class IStarMAVOToSMTLIB extends OperatorExecutableImpl {
 		File folder = (new File(MultiModelUtils.prependWorkspaceToUri(istarModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);
-		IStarMAVOToSMTLIB_M2T m2t = new IStarMAVOToSMTLIBWithListeners_M2T(istarModel.getEMFRoot(), folder, m2tArgs);
+		IStarMAVOToSMTLIB_M2T m2t = new IStarMAVOToSMTLIBWithListeners_M2T(istarModel.getEMFInstanceRoot(), folder, m2tArgs);
 		m2t.doGenerate(new BasicMonitor());
 
 		return actualParameters;

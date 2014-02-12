@@ -26,7 +26,7 @@ public class PetriNetSimulate extends OperatorExecutableImpl {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		// simulate
-		PetriNet petrinet = (PetriNet) actualParameters.get(0).getEMFRoot();
+		PetriNet petrinet = (PetriNet) actualParameters.get(0).getEMFInstanceRoot();
 		boolean goodResult = !petrinet.getNodes().isEmpty();
 
 		// show result

@@ -524,14 +524,14 @@ linkTypes:
 						modelEndpointRef.getObject().getName() :
 						modelEndpointRef.getObject().getMetatype().getName();
 					if (modelEndpointConstraintName.equals(modelEndpointName)) {
-						root = modelEndpointRef.getObject().getTarget().getEMFRoot();
+						root = modelEndpointRef.getObject().getTarget().getEMFInstanceRoot();
 						break;
 					}
 				}
 				oclConstraint = oclConstraint.substring(oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR) + 1, oclConstraint.length());
 			}
 			else {
-				root = model.getEMFRoot();
+				root = model.getEMFInstanceRoot();
 			}
 		}
 		catch (MMTFException e) {

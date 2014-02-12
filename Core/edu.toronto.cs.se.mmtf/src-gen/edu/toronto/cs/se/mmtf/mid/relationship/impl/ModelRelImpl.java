@@ -772,7 +772,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
-	public EObject getEMFRoot() throws MMTFException {
+	public EObject getEMFInstanceRoot() throws MMTFException {
 
 		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
@@ -851,7 +851,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		List<Resource> resources = resourceSet.getResources();
 		for (ModelEndpointReference modelEndpointRef : getModelEndpointRefs()) {
 			Model model = modelEndpointRef.getObject().getTarget();
-			resources.add(model.getEMFRoot().eResource());
+			resources.add(model.getEMFInstanceRoot().eResource());
 		}
 
 		return resourceSet;

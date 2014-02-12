@@ -172,7 +172,7 @@ public class FASE14 extends RE13 {
 	@Override
 	protected void collectAnalysisModelObjs(Model istarModel) throws MMTFException {
 
-		istar = (IStar) istarModel.getEMFRoot();
+		istar = (IStar) istarModel.getEMFInstanceRoot();
 		MAVOUtils.createIdsFromNames(istar);
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(istar, true);
 		while (iterator.hasNext()) {

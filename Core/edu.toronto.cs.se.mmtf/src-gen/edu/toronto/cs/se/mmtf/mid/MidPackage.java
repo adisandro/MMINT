@@ -841,13 +841,13 @@ public interface MidPackage extends EPackage {
 	int MODEL___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 10;
 
 	/**
-	 * The operation id for the '<em>Get EMF Root</em>' operation.
+	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___GET_EMF_ROOT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 11;
+	int MODEL___GET_EMF_INSTANCE_ROOT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 11;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -1149,34 +1149,6 @@ public interface MidPackage extends EPackage {
 	int MODEL_ELEMENT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 10;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementWildcardImpl <em>Model Element Wildcard</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.ModelElementWildcardImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElementWildcard()
-	 * @generated
-	 */
-	int MODEL_ELEMENT_WILDCARD = 7;
-
-	/**
-	 * The number of structural features of the '<em>Model Element Wildcard</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_WILDCARD_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Model Element Wildcard</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_WILDCARD_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelEndpointImpl <em>Model Endpoint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1184,7 +1156,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelEndpoint()
 	 * @generated
 	 */
-	int MODEL_ENDPOINT = 8;
+	int MODEL_ENDPOINT = 7;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -1464,7 +1436,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getEMFInfo()
 	 * @generated
 	 */
-	int EMF_INFO = 9;
+	int EMF_INFO = 8;
 
 	/**
 	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
@@ -1546,7 +1518,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getMidLevel()
 	 * @generated
 	 */
-	int MID_LEVEL = 10;
+	int MID_LEVEL = 9;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ModelOrigin <em>Model Origin</em>}' enum.
@@ -1556,7 +1528,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelOrigin()
 	 * @generated
 	 */
-	int MODEL_ORIGIN = 11;
+	int MODEL_ORIGIN = 10;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage <em>Extendible Element Constraint Language</em>}' enum.
@@ -1566,7 +1538,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getExtendibleElementConstraintLanguage()
 	 * @generated
 	 */
-	int EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE = 12;
+	int EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE = 11;
 
 	/**
 	 * The meta object id for the '<em>MMTF Exception</em>' data type.
@@ -1576,7 +1548,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getMMTFException()
 	 * @generated
 	 */
-	int MMTF_EXCEPTION = 13;
+	int MMTF_EXCEPTION = 12;
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElement <em>Extendible Element</em>}'.
@@ -2012,14 +1984,14 @@ public interface MidPackage extends EPackage {
 	EOperation getModel__DeleteInstance();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#getEMFRoot() <em>Get EMF Root</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.Model#getEMFInstanceRoot() <em>Get EMF Instance Root</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get EMF Root</em>' operation.
-	 * @see edu.toronto.cs.se.mmtf.mid.Model#getEMFRoot()
+	 * @return the meta object for the '<em>Get EMF Instance Root</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.Model#getEMFInstanceRoot()
 	 * @generated
 	 */
-	EOperation getModel__GetEMFRoot();
+	EOperation getModel__GetEMFInstanceRoot();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint <em>Extendible Element Constraint</em>}'.
@@ -2207,16 +2179,6 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getModelElement__CreateInstanceAndReference__String_String_EMFInfo_ModelEndpointReference();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelElementWildcard <em>Model Element Wildcard</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Model Element Wildcard</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelElementWildcard
-	 * @generated
-	 */
-	EClass getModelElementWildcard();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.ModelEndpoint <em>Model Endpoint</em>}'.
@@ -2813,12 +2775,12 @@ public interface MidPackage extends EPackage {
 		EOperation MODEL___DELETE_INSTANCE = eINSTANCE.getModel__DeleteInstance();
 
 		/**
-		 * The meta object literal for the '<em><b>Get EMF Root</b></em>' operation.
+		 * The meta object literal for the '<em><b>Get EMF Instance Root</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL___GET_EMF_ROOT = eINSTANCE.getModel__GetEMFRoot();
+		EOperation MODEL___GET_EMF_INSTANCE_ROOT = eINSTANCE.getModel__GetEMFInstanceRoot();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.
@@ -2969,16 +2931,6 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE = eINSTANCE.getModelElement__CreateInstanceAndReference__String_String_EMFInfo_ModelEndpointReference();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelElementWildcardImpl <em>Model Element Wildcard</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.ModelElementWildcardImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl#getModelElementWildcard()
-		 * @generated
-		 */
-		EClass MODEL_ELEMENT_WILDCARD = eINSTANCE.getModelElementWildcard();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.impl.ModelEndpointImpl <em>Model Endpoint</em>}' class.

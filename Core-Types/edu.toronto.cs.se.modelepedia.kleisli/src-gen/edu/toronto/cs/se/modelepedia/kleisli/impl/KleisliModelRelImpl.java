@@ -403,7 +403,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			Model model = (modelEndpoint instanceof KleisliModelEndpoint) ?
 				((KleisliModelEndpoint) modelEndpoint).getExtendedTarget() :
 				modelEndpoint.getTarget();
-			resources.add(model.getEMFRoot().eResource());
+			resources.add(model.getEMFInstanceRoot().eResource());
 		}
 
 		return resourceSet;
@@ -459,7 +459,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					MultiModelUtils.getLastSegmentFromUri(kModelTypeEndpoint.getTargetUri() + "." + EcorePackage.eNAME),
 					kModelTypeEndpoint.getExtendedTargetUri()
 				);
-				EObject kRootModelObj = kModelEndpoint.getExtendedTarget().getEMFRoot();
+				EObject kRootModelObj = kModelEndpoint.getExtendedTarget().getEMFInstanceRoot();
 				String classLiteral;
 				ExtendibleElementConstraint constraint;
 				// first pass: EClasses

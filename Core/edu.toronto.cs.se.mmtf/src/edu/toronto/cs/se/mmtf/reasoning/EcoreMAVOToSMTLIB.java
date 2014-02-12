@@ -65,7 +65,7 @@ public class EcoreMAVOToSMTLIB extends OperatorExecutableImpl {
 		File folder = (new File(MultiModelUtils.prependWorkspaceToUri(mavoModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);
-		EcoreMAVOToSMTLIB_M2T m2t = new EcoreMAVOToSMTLIBWithListeners_M2T(mavoModel.getEMFRoot(), folder, m2tArgs);
+		EcoreMAVOToSMTLIB_M2T m2t = new EcoreMAVOToSMTLIBWithListeners_M2T(mavoModel.getEMFInstanceRoot(), folder, m2tArgs);
 		m2t.doGenerate(new BasicMonitor());
 
 		return actualParameters;

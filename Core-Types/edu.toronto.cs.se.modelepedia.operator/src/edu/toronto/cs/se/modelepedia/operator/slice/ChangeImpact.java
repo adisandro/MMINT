@@ -90,7 +90,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 			List<EObject> unifiablesFromSameType = new ArrayList<EObject>();
 			typeTable.put(modelElemType.getUri(), unifiablesFromSameType);
 		}
-		TreeIterator<EObject> iterator = model.getEMFRoot().eAllContents();
+		TreeIterator<EObject> iterator = model.getEMFInstanceRoot().eAllContents();
 		while (iterator.hasNext()) {
 			EObject modelEObject = iterator.next();
 			if (!(modelEObject instanceof MAVOElement)) {

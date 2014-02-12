@@ -130,12 +130,6 @@ public class MidSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MidPackage.MODEL_ELEMENT_WILDCARD: {
-				ModelElementWildcard modelElementWildcard = (ModelElementWildcard)theEObject;
-				T result = caseModelElementWildcard(modelElementWildcard);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MidPackage.MODEL_ENDPOINT: {
 				ModelEndpoint modelEndpoint = (ModelEndpoint)theEObject;
 				T result = caseModelEndpoint(modelEndpoint);
@@ -287,21 +281,6 @@ public class MidSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModelElement(ModelElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Element Wildcard</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Element Wildcard</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelElementWildcard(ModelElementWildcard object) {
 		return null;
 	}
 

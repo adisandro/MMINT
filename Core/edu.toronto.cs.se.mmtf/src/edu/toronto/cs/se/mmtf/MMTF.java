@@ -228,8 +228,6 @@ public class MMTF implements MMTFConstants {
 					newType = new ExtensionType(modelElemTypeConfig);
 					ModelElement newModelElemType = MultiModelTypeRegistry.getType(newType.getUri());
 					if (newModelElemType == null) { // create new model element type
-						//TODO add Instance to getEMFRoot
-						//TODO remove ModelElementWildcard
 						EObject modelElemTypeObj = MultiModelTypeIntrospection.getPointer(rootModelTypeObj.eResource(), newType.getUri());
 						EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelElemTypeObj, false);
 						try {

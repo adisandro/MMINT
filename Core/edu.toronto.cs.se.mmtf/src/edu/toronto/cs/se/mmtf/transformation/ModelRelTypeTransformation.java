@@ -126,7 +126,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 		ModelRel traceModelRelType = traceModelRel.getMetatype();
 		ModelEndpointReference srcModelTypeEndpointRef = traceModelRelType.getModelEndpointRefs().get(srcIndex);
 		Map<EObject, ModelElementReference> srcModelObjs = new HashMap<EObject, ModelElementReference>();
-		TreeIterator<EObject> srcModelObjsIter = EcoreUtil.getAllContents(srcModel.getEMFRoot().eResource(), true);
+		TreeIterator<EObject> srcModelObjsIter = EcoreUtil.getAllContents(srcModel.getEMFInstanceRoot().eResource(), true);
 		// first pass: get model objects to be transformed
 		while (srcModelObjsIter.hasNext()) {
 			EObject srcModelObj = srcModelObjsIter.next();
