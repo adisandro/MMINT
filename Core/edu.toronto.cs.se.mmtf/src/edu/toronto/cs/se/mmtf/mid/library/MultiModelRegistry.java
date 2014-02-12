@@ -30,8 +30,10 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
@@ -55,9 +57,6 @@ import edu.toronto.cs.se.mmtf.mid.ui.ModelElementLabelProvider;
  */
 public class MultiModelRegistry {
 
-	public final static String MODEL_URI_SEPARATOR = "#";
-	public final static String ECORE_MODEL_URI_SEPARATOR = MODEL_URI_SEPARATOR + "/";
-	public final static String MODEL_FILEEXTENSION_SEPARATOR = ".";
 	public final static String RESOURCE_URI_PREFIX = "platform:/resource";
 	public final static String ECORE_EREFERENCE_URI_PREFIX = "@";
 
@@ -88,6 +87,29 @@ public class MultiModelRegistry {
 	public static String[] getModelAndModelElementUris(EObject modelObj, boolean isInstancesLevel) {
 
 		String modelUri, modelElemUri;
+		String attributeFeatureName = null;
+		if (isInstancesLevel && modelObj instanceof PrimitiveEObjectWrapper) {
+			attributeFeatureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
+			modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
+		}
+		URI emfUri = EcoreUtil.getURI(modelObj);
+		modelElemUri = emfUri.toString();
+		modelUri = modelElemUri.substring(0, modelElemUri.indexOf(MMTF.ECORE_MODEL_URI_SEPARATOR));
+		if (isInstancesLevel) {
+			modelElemUri = modelElemUri.substring(RESOURCE_URI_PREFIX.length());
+			modelUri = modelUri.substring(RESOURCE_URI_PREFIX.length());
+			if (attributeFeatureName != null) {
+				modelElemUri += MMTF.URI_SEPARATOR + attributeFeatureName;
+			}
+		}
+
+		return new String[] {modelUri, modelElemUri};
+	}
+
+	//TODO MMTF[MODELELEMENT] remove
+	public static String[] getModelAndModelElementUrisOld(EObject modelObj, boolean isInstancesLevel) {
+
+		String modelUri, modelElemUri;
 		String[] pieces;
 		URI uri;
 		//TODO MMTF[MODELELEMENT] remove type and instance modelElemUri disparity
@@ -98,9 +120,9 @@ public class MultiModelRegistry {
 				modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
 			}
 			uri = EcoreUtil.getURI(modelObj);
-			pieces = uri.toString().split(ECORE_MODEL_URI_SEPARATOR);
+			pieces = uri.toString().split(MMTF.ECORE_MODEL_URI_SEPARATOR);
 			modelUri = pieces[0].substring(RESOURCE_URI_PREFIX.length());
-			modelElemUri = modelUri + ECORE_MODEL_URI_SEPARATOR + MMTF.URI_SEPARATOR;
+			modelElemUri = modelUri + MMTF.ECORE_MODEL_URI_SEPARATOR + MMTF.URI_SEPARATOR;
 			if (pieces.length > 1) {
 				modelElemUri += pieces[1].substring(MMTF.URI_SEPARATOR.length());
 			}
@@ -110,7 +132,7 @@ public class MultiModelRegistry {
 		}
 		else {
 			uri = EcoreUtil.getURI(modelObj);
-			pieces = uri.toString().split(ECORE_MODEL_URI_SEPARATOR);
+			pieces = uri.toString().split(MMTF.ECORE_MODEL_URI_SEPARATOR);
 			modelUri = ((EPackage) EcoreUtil.getRootContainer(modelObj)).getNsURI();
 			modelElemUri = pieces[1].substring(MMTF.URI_SEPARATOR.length());
 		}
@@ -118,6 +140,44 @@ public class MultiModelRegistry {
 		return new String[] {modelUri, modelElemUri};
 	}
 
+	//TODO MMTF[MODELELEMENT] some info here are redundant and/or misplaced, review EMFInfo
+	public static EMFInfo getModelElementEMFInfo(EObject modelObj, boolean isInstancesLevel) {
+
+		EMFInfo emfInfo = MidFactory.eINSTANCE.createEMFInfo();
+		String className, featureName = null, containerClassName = null;
+		boolean isReference = false;
+		if (isInstancesLevel) {
+			if (modelObj instanceof PrimitiveEObjectWrapper) {
+				className = ((PrimitiveEObjectWrapper) modelObj).getOwner().eClass().getName();
+				featureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
+			}
+			else {
+				className = modelObj.eClass().getName();
+				if (modelObj.eContainer() != null) {
+					featureName = modelObj.eContainingFeature().getName();
+					containerClassName = modelObj.eContainer().eClass().getName();
+				}
+			}
+		}
+		else {
+			if (modelObj instanceof EStructuralFeature) {
+				className = ((EClass) modelObj.eContainer()).getName();
+				featureName = ((EStructuralFeature) modelObj).getName();
+				isReference = (modelObj instanceof EReference);
+			}
+			else {
+				className = ((EClass) modelObj).getName();
+			}
+		}
+		emfInfo.setClassName(className);
+		emfInfo.setClassName(featureName);
+		emfInfo.setClassName(containerClassName);
+		emfInfo.setReference(isReference);
+
+		return emfInfo;
+	}
+
+	//TODO MMTF[MODELELEMENT] remove
 	//TODO MMTF[MODELELEMENT] figure out a way to drop, e.g. Actor/may instead of MAVOElement/may
 	//TODO MMTF[MODELELEMENT] fix isAllowedModelElement afterwards
 	public static String getModelElementClassLiteral(EObject modelObj, boolean isInstancesLevel) {

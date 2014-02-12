@@ -50,14 +50,14 @@ public class MultiModelUtils {
 
 		String lastSegmentUri = getLastSegmentFromUri(uri);
 
-		return lastSegmentUri.substring(0, lastSegmentUri.lastIndexOf(MultiModelRegistry.MODEL_FILEEXTENSION_SEPARATOR));
+		return lastSegmentUri.substring(0, lastSegmentUri.lastIndexOf(MMTF.MODEL_FILEEXTENSION_SEPARATOR));
 	}
 
 	public static String getFileExtensionFromUri(String uri) {
 
 		String lastSegmentUri = getLastSegmentFromUri(uri);
 
-		return lastSegmentUri.substring(lastSegmentUri.lastIndexOf(MultiModelRegistry.MODEL_FILEEXTENSION_SEPARATOR) + 1, lastSegmentUri.length());
+		return lastSegmentUri.substring(lastSegmentUri.lastIndexOf(MMTF.MODEL_FILEEXTENSION_SEPARATOR) + 1, lastSegmentUri.length());
 	}
 
 	public static String replaceLastSegmentInUri(String uri, String newLastSegmentUri) {
@@ -78,14 +78,14 @@ public class MultiModelUtils {
 
 		String fileExtension = getFileExtensionFromUri(uri);
 
-		return uri.replace(MultiModelRegistry.MODEL_FILEEXTENSION_SEPARATOR + fileExtension, MultiModelRegistry.MODEL_FILEEXTENSION_SEPARATOR + newFileExtension);
+		return uri.replace(MMTF.MODEL_FILEEXTENSION_SEPARATOR + fileExtension, MMTF.MODEL_FILEEXTENSION_SEPARATOR + newFileExtension);
 	}
 
 	public static String addFileNameSuffixInUri(String uri, String newFileNameSuffix) {
 
 		String fileExtension = getFileExtensionFromUri(uri);
 
-		return uri.replace(MultiModelRegistry.MODEL_FILEEXTENSION_SEPARATOR + fileExtension, newFileNameSuffix + MultiModelRegistry.MODEL_FILEEXTENSION_SEPARATOR + fileExtension);
+		return uri.replace(MMTF.MODEL_FILEEXTENSION_SEPARATOR + fileExtension, newFileNameSuffix + MMTF.MODEL_FILEEXTENSION_SEPARATOR + fileExtension);
 	}
 
 	public static String prependWorkspaceToUri(String uri) {

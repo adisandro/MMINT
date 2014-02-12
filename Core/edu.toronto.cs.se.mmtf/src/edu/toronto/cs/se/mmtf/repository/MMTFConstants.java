@@ -20,6 +20,9 @@ package edu.toronto.cs.se.mmtf.repository;
 public interface MMTFConstants {
 
 	public final static String URI_SEPARATOR = "/";
+	public final static String MODEL_URI_SEPARATOR = "#";
+	public final static String ECORE_MODEL_URI_SEPARATOR = MODEL_URI_SEPARATOR + URI_SEPARATOR;
+	public final static String MODEL_FILEEXTENSION_SEPARATOR = ".";
 	public final static String ENDPOINT_SEPARATOR = "-";
 	public final static String EDITOR_SEPARATOR = "_";
 	public final static String MODELELEMENT_FEATURE_SEPARATOR1 = "[";
@@ -43,7 +46,7 @@ public interface MMTFConstants {
 	/** The uri of the root model type endpoint. */
 	public final static String ROOT_MODELENDPOINT_URI = ROOT_URI + URI_SEPARATOR + "ModelRel" + ENDPOINT_SEPARATOR + "Model" + URI_SEPARATOR + "ModelEndpoint";
 	/** The uri of the root model element type. */
-	public final static String ROOT_MODELELEM_URI = ROOT_MODEL_URI + URI_SEPARATOR + "ModelElem";
+	public final static String ROOT_MODELELEM_URI = ROOT_MODEL_URI + ECORE_MODEL_URI_SEPARATOR + URI_SEPARATOR + "ModelElem";
 	/** The uri of the root link type. */
 	public final static String ROOT_LINK_URI = ROOT_MODELREL_URI + URI_SEPARATOR + "Link";
 	/** The uri of the root model element type endpoint. */

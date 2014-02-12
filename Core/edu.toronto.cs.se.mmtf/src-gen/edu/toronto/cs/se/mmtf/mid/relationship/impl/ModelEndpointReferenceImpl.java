@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -251,7 +250,9 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 		}
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
-		String modelTypeUri = MultiModelRegistry.getModelAndModelElementUris(metamodelObj, false)[0];
+		String[] uris = MultiModelRegistry.getModelAndModelElementUris(metamodelObj, false);
+		String modelTypeUri = uris[0];
+		String modelElemTypeUri = uris[1];
 		if (
 			!modelTypeUri.equals(getTargetUri()) && // different model type
 			!MultiModelTypeHierarchy.isSubtypeOf(getTargetUri(), modelTypeUri, multiModel) // different light model type with no metamodel extension
@@ -259,16 +260,12 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 			return false;
 		}
 		// filter duplicates
-		//TODO MMTF[MODELELEMENT] if (metamodelObj instanceof EStructuralFeature) drop only if target type (or any subtype) is already dropped
 		for (ModelElementReference modelElemTypeRef : getModelElemRefs()) {
-			//TODO MMTF[MODELELEMENT] replace with something simpler once model element changes are in place, like:
-//				if (elementRef.getUri().equals(modelUri + MMTF.URI_SEPARATOR + modelElemUri)) {
-//					continue modelEndpointRef;
-//				}
-			if (EcoreUtil.equals(modelElemTypeRef.getObject().getEMFTypeObject(), metamodelObj)) {
+			if (modelElemTypeRef.getUri().equals(modelElemTypeUri)) {
 				return false;
 			}
 		}
+		//TODO MMTF[MODELELEMENT] if (metamodelObj instanceof EStructuralFeature) drop only if target type (or any subtype) is already dropped
 
 		return true;
 	}

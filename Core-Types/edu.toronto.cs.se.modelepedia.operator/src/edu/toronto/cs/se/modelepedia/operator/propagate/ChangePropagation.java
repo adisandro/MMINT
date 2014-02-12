@@ -160,7 +160,7 @@ public class ChangePropagation extends OperatorExecutableImpl {
 				ModelElementReference relatedModelElemRef_traceRel = traceLinkRef.getTargetModelElemRef();
 				String propModelObjUri =
 					newPropModel.getUri() +
-					getModelEObjectUri(relatedModelElemRef_traceRel.getUri()).substring(relatedModelElemRef_traceRel.getUri().lastIndexOf(MultiModelRegistry.MODEL_URI_SEPARATOR));
+					getModelEObjectUri(relatedModelElemRef_traceRel.getUri()).substring(relatedModelElemRef_traceRel.getUri().lastIndexOf(MMTF.MODEL_URI_SEPARATOR));
 				EObject propModelObj = MultiModelTypeIntrospection.getPointer(propModelObjUri);
 				// create propagated model elem ref in propagated trace rel
 				ModelElementReference newPropModelElemRef_propTraceRel = ModelElementImpl.createMAVOInstanceAndReference(propModelObj, relatedModelElemRef_traceRel.getObject().getName(), propModelEndpointRef_propTraceRel);

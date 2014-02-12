@@ -204,7 +204,7 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImp
 
 		// create model first in order to contain mavo model elements
 		String modelTypeName = labeledGraphModel.getMetatype().getName();
-		String newLastSegmentUri = modelTypeName + RANDOM_SUFFIX + (new Date()).getTime() + MultiModelRegistry.MODEL_FILEEXTENSION_SEPARATOR + RandomModelPackage.eNAME;
+		String newLastSegmentUri = modelTypeName + RANDOM_SUFFIX + (new Date()).getTime() + MMTF.MODEL_FILEEXTENSION_SEPARATOR + RandomModelPackage.eNAME;
 		String subdir = MultiModelOperatorUtils.getSubdir(inputProperties);
 		if (subdir != null) {
 			newLastSegmentUri = subdir + MMTF.URI_SEPARATOR + newLastSegmentUri;

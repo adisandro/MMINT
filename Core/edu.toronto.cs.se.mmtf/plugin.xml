@@ -69,7 +69,7 @@
                   classLiteral="ModelElementWildcard">
                 <type
                      name="ModelElem"
-                     uri="http://se.cs.toronto.edu/mmtf/Model/ModelElem">
+                     uri="http://se.cs.toronto.edu/mmtf/Model#//ModelElem">
                 </type>
             </modelElemType>
          </modelTypeEndpoint>
@@ -86,7 +86,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://se.cs.toronto.edu/mmtf/Model/ModelElem">
+                     targetTypeUri="http://se.cs.toronto.edu/mmtf/Model#//ModelElem">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>

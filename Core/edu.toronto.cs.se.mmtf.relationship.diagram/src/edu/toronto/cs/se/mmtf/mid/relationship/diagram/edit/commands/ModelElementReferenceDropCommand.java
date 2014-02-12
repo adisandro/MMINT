@@ -26,6 +26,7 @@ import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
+import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
@@ -121,6 +122,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
 
 		// navigate metamodel hierarchy
+		//TODO MMTF[MODELELEMENT] could this be in the drag part?
 		ModelElement modelElemType = null;
 		ModelElementReference modelElemTypeRef = null;
 		if (modelObj instanceof EClass) {
@@ -149,7 +151,7 @@ supertypes:
 			modelElemType = MultiModelRegistry.getExtendibleElement(modelElemTypeUri, multiModel);
 		}
 
-		String classLiteral = MultiModelRegistry.getModelElementClassLiteral(modelObj, false);
+		EMFInfo emfInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, false);
 		ModelElementReference newModelElemTypeRef = modelElemType.createSubtypeAndReference(modelElemTypeRef, classLiteral, classLiteral, modelTypeEndpointRef);
 		MAVOUtils.initializeMAVOModelElementReference(modelObj, newModelElemTypeRef);
 		MMTF.createTypeHierarchy(multiModel);
