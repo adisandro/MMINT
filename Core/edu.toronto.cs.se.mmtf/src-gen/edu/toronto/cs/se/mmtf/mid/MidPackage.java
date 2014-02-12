@@ -1083,7 +1083,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_EMFINFO_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+	int MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -2111,14 +2111,14 @@ public interface MidPackage extends EPackage {
 	EOperation getModelElement__CreateTypeReference__ModelElementReference_boolean_ModelEndpointReference();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#createSubtypeAndReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference, java.lang.String, edu.toronto.cs.se.mmtf.mid.EMFInfo, edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference) <em>Create Subtype And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#createSubtypeAndReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference, java.lang.String, java.lang.String, edu.toronto.cs.se.mmtf.mid.EMFInfo, edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference) <em>Create Subtype And Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Subtype And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#createSubtypeAndReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference, java.lang.String, edu.toronto.cs.se.mmtf.mid.EMFInfo, edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference)
+	 * @see edu.toronto.cs.se.mmtf.mid.ModelElement#createSubtypeAndReference(edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference, java.lang.String, java.lang.String, edu.toronto.cs.se.mmtf.mid.EMFInfo, edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference)
 	 * @generated
 	 */
-	EOperation getModelElement__CreateSubtypeAndReference__ModelElementReference_String_EMFInfo_ModelEndpointReference();
+	EOperation getModelElement__CreateSubtypeAndReference__ModelElementReference_String_String_EMFInfo_ModelEndpointReference();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.ModelElement#deleteInstance() <em>Delete Instance</em>}' operation.
@@ -2882,7 +2882,7 @@ public interface MidPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_EMFINFO_MODELENDPOINTREFERENCE = eINSTANCE.getModelElement__CreateSubtypeAndReference__ModelElementReference_String_EMFInfo_ModelEndpointReference();
+		EOperation MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE = eINSTANCE.getModelElement__CreateSubtypeAndReference__ModelElementReference_String_String_EMFInfo_ModelEndpointReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.

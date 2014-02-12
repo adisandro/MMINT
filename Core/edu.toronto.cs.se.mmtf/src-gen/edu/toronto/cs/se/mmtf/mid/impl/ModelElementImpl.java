@@ -227,9 +227,9 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_EMFINFO_MODELENDPOINTREFERENCE:
+			case MidPackage.MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE:
 				try {
-					return createSubtypeAndReference((ModelElementReference)arguments.get(0), (String)arguments.get(1), (EMFInfo)arguments.get(2), (ModelEndpointReference)arguments.get(3));
+					return createSubtypeAndReference((ModelElementReference)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (EMFInfo)arguments.get(3), (ModelEndpointReference)arguments.get(4));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -301,7 +301,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	/**
 	 * @generated NOT
 	 */
-	public ModelElementReference createSubtypeAndReference(ModelElementReference modelElemTypeRef, String newModelElemTypeName, EMFInfo eInfo, ModelEndpointReference containerModelTypeEndpointRef) throws MMTFException {
+	public ModelElementReference createSubtypeAndReference(ModelElementReference modelElemTypeRef, String newModelElemTypeUri, String newModelElemTypeName, EMFInfo eInfo, ModelEndpointReference containerModelTypeEndpointRef) throws MMTFException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
@@ -309,12 +309,11 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		ModelRel modelRelType = (ModelRel) containerModelTypeEndpointRef.eContainer();
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
-		String newTypeUri = containerModelTypeEndpointRef.getObject().createSubtypeUri(containerModelTypeEndpointRef.getObject().getName(), newModelElemTypeName);
-		ModelElement newModelElemType = MultiModelRegistry.getExtendibleElement(newTypeUri, multiModel);
+		ModelElement newModelElemType = MultiModelRegistry.getExtendibleElement(newModelElemTypeUri, multiModel);
 		if (newModelElemType == null) {
 			// create the "thing"
 			newModelElemType = MidFactory.eINSTANCE.createModelElement();
-			super.addSubtype(newModelElemType, containerModelTypeEndpointRef.getObject(), containerModelTypeEndpointRef.getObject().getName(), newModelElemTypeName);
+			super.addSubtype(newModelElemType, newModelElemTypeUri, newModelElemTypeName);
 			MultiModelTypeFactory.addModelElementType(newModelElemType, eInfo, containerModelTypeEndpointRef.getObject().getTarget());
 		}
 		// create the reference of the "thing"

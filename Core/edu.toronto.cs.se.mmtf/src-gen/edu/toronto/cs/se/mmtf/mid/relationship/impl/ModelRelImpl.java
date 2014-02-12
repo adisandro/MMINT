@@ -589,7 +589,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 					newModelTypeEndpointRefSuper = MultiModelTypeHierarchy.getReference((ModelEndpointReference) origModelElemTypeRef.getSupertypeRef().eContainer(), newModelRelType.getModelEndpointRefs());
 					modelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemType.getUri(), newModelTypeEndpointRefSuper.getModelElemRefs());
 				}
-				modelElemType.createSubtypeAndReference(modelElemTypeRef, origModelElemTypeRef.getObject().getName(), origModelElemTypeRef.getObject().getEInfo(), newModelTypeEndpointRef);
+				modelElemType.createSubtypeAndReference(modelElemTypeRef, origModelElemTypeRef.getUri(), origModelElemTypeRef.getObject().getName(), origModelElemTypeRef.getObject().getEInfo(), newModelTypeEndpointRef);
 			}
 		}
 		// link types

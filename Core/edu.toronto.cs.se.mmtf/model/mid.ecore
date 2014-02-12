@@ -350,6 +350,7 @@
     <eOperations name="createSubtypeAndReference" lowerBound="1" eType="#//relationship/ModelElementReference"
         eExceptions="#//MMTFException">
       <eParameters name="modelElemTypeRef" eType="#//relationship/ModelElementReference"/>
+      <eParameters name="newModelElemTypeUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="newModelElemTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="eInfo" lowerBound="1" eType="#//EMFInfo"/>
       <eParameters name="containerModelTypeEndpointRef" lowerBound="1" eType="#//relationship/ModelEndpointReference"/>
@@ -453,10 +454,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A selection of EMF information related to a model element, to avoid accessing the EObject every time they are needed."/>
     </eAnnotations>
-    <eOperations name="toTypeString" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        eExceptions="#//MMTFException"/>
-    <eOperations name="toInstanceString" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        eExceptions="#//MMTFException"/>
+    <eOperations name="toTypeString" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="toInstanceString" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

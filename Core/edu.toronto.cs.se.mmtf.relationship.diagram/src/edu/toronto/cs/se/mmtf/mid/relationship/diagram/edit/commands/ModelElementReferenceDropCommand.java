@@ -136,7 +136,6 @@ supertypes:
 					continue;
 				}
 				for (ModelEndpointReference modelTypeEndpointRefOrModelTypeEndpointRefSuper : modelTypeEndpointRefsOrModelTypeEndpointRefsSuper) {
-					modelElemTypeUri = modelTypeEndpointRefOrModelTypeEndpointRefSuper.getObject().createSubtypeUri(null, modelElemTypeUri);
 					modelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeUri, modelTypeEndpointRefOrModelTypeEndpointRefSuper.getModelElemRefs());
 					if (modelElemTypeRef != null) {
 						modelElemType = modelElemTypeRef.getObject();
@@ -152,7 +151,7 @@ supertypes:
 		}
 
 		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, false);
-		ModelElementReference newModelElemTypeRef = modelElemType.createSubtypeAndReference(modelElemTypeRef, eInfo.toTypeString(), eInfo, modelTypeEndpointRef);
+		ModelElementReference newModelElemTypeRef = modelElemType.createSubtypeAndReference(modelElemTypeRef, dropObj.getModelElementUri(), eInfo.toTypeString(), eInfo, modelTypeEndpointRef);
 		MAVOUtils.initializeMAVOModelElementReference(modelObj, newModelElemTypeRef);
 		MMTF.createTypeHierarchy(multiModel);
 

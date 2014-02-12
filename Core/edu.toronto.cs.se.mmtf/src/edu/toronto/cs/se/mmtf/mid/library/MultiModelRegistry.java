@@ -19,7 +19,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -106,44 +105,10 @@ public class MultiModelRegistry {
 		return new String[] {modelUri, modelElemUri};
 	}
 
-	//TODO MMTF[MODELELEMENT] remove
-	public static String[] getModelAndModelElementUrisOld(EObject modelObj, boolean isInstancesLevel) {
-
-		String modelUri, modelElemUri;
-		String[] pieces;
-		URI uri;
-		//TODO MMTF[MODELELEMENT] remove type and instance modelElemUri disparity
-		if (isInstancesLevel) {
-			String attributeFeatureName = null;
-			if (modelObj instanceof PrimitiveEObjectWrapper) {
-				attributeFeatureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
-				modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
-			}
-			uri = EcoreUtil.getURI(modelObj);
-			pieces = uri.toString().split(MMTF.ECORE_MODEL_URI_SEPARATOR);
-			modelUri = pieces[0].substring(RESOURCE_URI_PREFIX.length());
-			modelElemUri = modelUri + MMTF.ECORE_MODEL_URI_SEPARATOR + MMTF.URI_SEPARATOR;
-			if (pieces.length > 1) {
-				modelElemUri += pieces[1].substring(MMTF.URI_SEPARATOR.length());
-			}
-			if (attributeFeatureName != null) {
-				modelElemUri += MMTF.URI_SEPARATOR + attributeFeatureName;
-			}
-		}
-		else {
-			uri = EcoreUtil.getURI(modelObj);
-			pieces = uri.toString().split(MMTF.ECORE_MODEL_URI_SEPARATOR);
-			modelUri = ((EPackage) EcoreUtil.getRootContainer(modelObj)).getNsURI();
-			modelElemUri = pieces[1].substring(MMTF.URI_SEPARATOR.length());
-		}
-
-		return new String[] {modelUri, modelElemUri};
-	}
-
 	//TODO MMTF[MODELELEMENT] some info here are redundant and/or misplaced, review EMFInfo
 	public static EMFInfo getModelElementEMFInfo(EObject modelObj, boolean isInstancesLevel) {
 
-		EMFInfo emfInfo = MidFactory.eINSTANCE.createEMFInfo();
+		EMFInfo eInfo = MidFactory.eINSTANCE.createEMFInfo();
 		String className, featureName = null, containerClassName = null;
 		boolean isReference = false;
 		if (isInstancesLevel) {
@@ -169,48 +134,12 @@ public class MultiModelRegistry {
 				className = ((EClass) modelObj).getName();
 			}
 		}
-		emfInfo.setClassName(className);
-		emfInfo.setClassName(featureName);
-		emfInfo.setClassName(containerClassName);
-		emfInfo.setReference(isReference);
+		eInfo.setClassName(className);
+		eInfo.setFeatureName(featureName);
+		eInfo.setContainerClassName(containerClassName);
+		eInfo.setReference(isReference);
 
-		return emfInfo;
-	}
-
-	//TODO MMTF[MODELELEMENT] remove
-	//TODO MMTF[MODELELEMENT] figure out a way to drop, e.g. Actor/may instead of MAVOElement/may
-	//TODO MMTF[MODELELEMENT] fix isAllowedModelElement afterwards
-	public static String getModelElementClassLiteral(EObject modelObj, boolean isInstancesLevel) {
-
-		String classLiteral;
-		if (isInstancesLevel) {
-			if (modelObj instanceof PrimitiveEObjectWrapper) {
-				classLiteral = ((PrimitiveEObjectWrapper) modelObj).getOwner().eClass().getName() + MMTF.URI_SEPARATOR + ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
-			}
-			else {
-				classLiteral = modelObj.eClass().getName();
-				if (modelObj.eContainer() != null) {
-					classLiteral = modelObj.eContainer().eClass().getName() + MMTF.MODELELEMENT_FEATURE_SEPARATOR1 + modelObj.eContainingFeature().getName() + MMTF.MODELELEMENT_REFERENCE_SEPARATOR + MMTF.MODELELEMENT_FEATURE_SEPARATOR2 + classLiteral;
-				}
-			}
-			classLiteral = (modelObj instanceof PrimitiveEObjectWrapper) ?
-				((PrimitiveEObjectWrapper) modelObj).getOwner().eClass().getName() + MMTF.URI_SEPARATOR + ((PrimitiveEObjectWrapper) modelObj).getFeature().getName() :
-				modelObj.eContainer().eClass().getName() + MMTF.MODELELEMENT_FEATURE_SEPARATOR1 + modelObj.eContainingFeature().getName() + MMTF.MODELELEMENT_REFERENCE_SEPARATOR + MMTF.MODELELEMENT_FEATURE_SEPARATOR2 + modelObj.eClass().getName();
-		}
-		else {
-			if (modelObj instanceof EStructuralFeature) {
-				classLiteral = ((EClass) modelObj.eContainer()).getName() + MMTF.MODELELEMENT_FEATURE_SEPARATOR1 + ((EStructuralFeature) modelObj).getName();
-				if (modelObj instanceof EReference) {
-					classLiteral += MMTF.MODELELEMENT_REFERENCE_SEPARATOR;
-				}
-				classLiteral += MMTF.MODELELEMENT_FEATURE_SEPARATOR2;
-			}
-			else {
-				classLiteral = ((EClass) modelObj).getName();
-			}
-		}
-
-		return classLiteral;
+		return eInfo;
 	}
 
 	public static String getModelElementName(EObject modelObj, boolean isInstancesLevel) {

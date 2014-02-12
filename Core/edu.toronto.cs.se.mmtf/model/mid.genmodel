@@ -116,6 +116,7 @@
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/createSubtypeAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/modelElemTypeRef"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/newModelElemTypeUri"/>
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/newModelElemTypeName"/>
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/eInfo"/>
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createSubtypeAndReference/containerModelTypeEndpointRef"/>

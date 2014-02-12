@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mid;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
+
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 
@@ -119,6 +120,8 @@ public interface ModelElement extends ExtendibleElement {
 	 *            The reference to the supertype of the new model element type,
 	 *            null if such reference doesn't exist in the model type
 	 *            endpoint reference container.
+	 * @param newModelElemTypeUri
+	 *            The uri of the new model element type.
 	 * @param newModelElemTypeName
 	 *            The name of the new model element type.
 	 * @param eInfo
@@ -131,10 +134,10 @@ public interface ModelElement extends ExtendibleElement {
 	 *             If this is a model element instance, or if the uri of the new
 	 *             model element type is already registered in the Type MID.
 	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelElemTypeNameRequired="true" eInfoRequired="true" containerModelTypeEndpointRefRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" newModelElemTypeUriRequired="true" newModelElemTypeNameRequired="true" eInfoRequired="true" containerModelTypeEndpointRefRequired="true"
 	 * @generated
 	 */
-	ModelElementReference createSubtypeAndReference(ModelElementReference modelElemTypeRef, String newModelElemTypeName, EMFInfo eInfo, ModelEndpointReference containerModelTypeEndpointRef) throws MMTFException;
+	ModelElementReference createSubtypeAndReference(ModelElementReference modelElemTypeRef, String newModelElemTypeUri, String newModelElemTypeName, EMFInfo eInfo, ModelEndpointReference containerModelTypeEndpointRef) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model element type from the Type

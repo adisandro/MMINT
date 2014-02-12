@@ -388,13 +388,13 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL___DELETE_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 4;
 
 	/**
-	 * The operation id for the '<em>Get EMF Root</em>' operation.
+	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___GET_EMF_ROOT = MidPackage.MODEL_OPERATION_COUNT + 5;
+	int KLEISLI_MODEL___GET_EMF_INSTANCE_ROOT = MidPackage.MODEL_OPERATION_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -1011,13 +1011,13 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_REL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = RelationshipPackage.MODEL_REL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL;
 
 	/**
-	 * The operation id for the '<em>Get EMF Root</em>' operation.
+	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___GET_EMF_ROOT = RelationshipPackage.MODEL_REL___GET_EMF_ROOT;
+	int KLEISLI_MODEL_REL___GET_EMF_INSTANCE_ROOT = RelationshipPackage.MODEL_REL___GET_EMF_INSTANCE_ROOT;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1481,13 +1481,13 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_BINARY_MODEL_REL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = KLEISLI_MODEL_REL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL;
 
 	/**
-	 * The operation id for the '<em>Get EMF Root</em>' operation.
+	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_EMF_ROOT = KLEISLI_MODEL_REL___GET_EMF_ROOT;
+	int KLEISLI_BINARY_MODEL_REL___GET_EMF_INSTANCE_ROOT = KLEISLI_MODEL_REL___GET_EMF_INSTANCE_ROOT;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1841,14 +1841,14 @@ public interface KleisliPackage extends EPackage {
 	EOperation getKleisliModel__DeleteInstance();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#getEMFInstanceRoot() <em>Get EMF Root</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#getEMFInstanceRoot() <em>Get EMF Instance Root</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get EMF Root</em>' operation.
+	 * @return the meta object for the '<em>Get EMF Instance Root</em>' operation.
 	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModel#getEMFInstanceRoot()
 	 * @generated
 	 */
-	EOperation getKleisliModel__GetEMFRoot();
+	EOperation getKleisliModel__GetEMFInstanceRoot();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel <em>Model Rel</em>}'.
@@ -2218,12 +2218,12 @@ public interface KleisliPackage extends EPackage {
 		EOperation KLEISLI_MODEL___DELETE_INSTANCE = eINSTANCE.getKleisliModel__DeleteInstance();
 
 		/**
-		 * The meta object literal for the '<em><b>Get EMF Root</b></em>' operation.
+		 * The meta object literal for the '<em><b>Get EMF Instance Root</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation KLEISLI_MODEL___GET_EMF_ROOT = eINSTANCE.getKleisliModel__GetEMFRoot();
+		EOperation KLEISLI_MODEL___GET_EMF_INSTANCE_ROOT = eINSTANCE.getKleisliModel__GetEMFInstanceRoot();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelRelImpl <em>Model Rel</em>}' class.

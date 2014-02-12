@@ -206,7 +206,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getKleisliModel__GetEMFRoot() {
+	public EOperation getKleisliModel__GetEMFInstanceRoot() {
 		return kleisliModelEClass.getEOperations().get(5);
 	}
 
@@ -505,7 +505,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		createEOperation(kleisliModelEClass, KLEISLI_MODEL___GET_EMF_TYPE_ROOT);
 		createEOperation(kleisliModelEClass, KLEISLI_MODEL___KLEISLI_CREATE_INSTANCE__KLEISLIMODELENDPOINT);
 		createEOperation(kleisliModelEClass, KLEISLI_MODEL___DELETE_INSTANCE);
-		createEOperation(kleisliModelEClass, KLEISLI_MODEL___GET_EMF_ROOT);
+		createEOperation(kleisliModelEClass, KLEISLI_MODEL___GET_EMF_INSTANCE_ROOT);
 
 		kleisliModelEndpointEClass = createEClass(KLEISLI_MODEL_ENDPOINT);
 		createEReference(kleisliModelEndpointEClass, KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET);
@@ -601,7 +601,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		op = initEOperation(getKleisliModel__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
-		op = initEOperation(getKleisliModel__GetEMFRoot(), ecorePackage.getEObject(), "getEMFRoot", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getKleisliModel__GetEMFInstanceRoot(), ecorePackage.getEObject(), "getEMFInstanceRoot", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
 		initEClass(kleisliModelEndpointEClass, KleisliModelEndpoint.class, "KleisliModelEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

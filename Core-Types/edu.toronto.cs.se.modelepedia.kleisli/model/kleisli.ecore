@@ -22,7 +22,7 @@
       <eParameters name="containerModelEndpoint" lowerBound="1" eType="#//KleisliModelEndpoint"/>
     </eOperations>
     <eOperations name="deleteInstance" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
-    <eOperations name="getEMFRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+    <eOperations name="getEMFInstanceRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmtf/model/mid.ecore#//MMTFException"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="KleisliModelEndpoint" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mid.ecore#//ModelEndpoint">

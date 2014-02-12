@@ -625,8 +625,17 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 */
 	protected void addSubtype(ExtendibleElement newType, ExtendibleElement baseType, String newTypeFragmentUri, String newTypeName) throws MMTFException {
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
 		String newTypeUri = baseType.createSubtypeUri(newTypeFragmentUri, newTypeName);
+		addSubtype(newType, newTypeUri, newTypeName);
+	}
+
+	/**
+	 * TODO MMTF[MODELELEMENT] unify with the other
+	 * @generated NOT
+	 */
+	protected void addSubtype(ExtendibleElement newType, String newTypeUri, String newTypeName) throws MMTFException {
+
+		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
 		MultiModelTypeFactory.addType(newType, this, newTypeUri, newTypeName, multiModel);
 		newType.setDynamic(true);
 	}

@@ -12,12 +12,8 @@
 package edu.toronto.cs.se.mmtf.mid.impl;
 
 import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
-import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -323,19 +319,9 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case MidPackage.EMF_INFO___TO_TYPE_STRING:
-				try {
-					return toTypeString();
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
+				return toTypeString();
 			case MidPackage.EMF_INFO___TO_INSTANCE_STRING:
-				try {
-					return toInstanceString();
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
+				return toInstanceString();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -365,11 +351,7 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	/**
 	 * @generated NOT
 	 */
-	public String toTypeString() throws MMTFException {
-
-		if (MultiModelConstraintChecker.isInstancesLevel((ModelElement) eContainer())) {
-			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+	public String toTypeString() {
 
 		String typeString = getClassName();
 		if (getFeatureName() != null) {
@@ -386,11 +368,7 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	/**
 	 * @generated NOT
 	 */
-	public String toInstanceString() throws MMTFException {
-
-		if (!MultiModelConstraintChecker.isInstancesLevel((ModelElement) eContainer())) {
-			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+	public String toInstanceString() {
 
 		String instanceString = getClassName();
 		if (getContainerClassName() != null) {
