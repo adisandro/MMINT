@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.AttributeValueWrapperItemProvider;
 import org.eclipse.jface.util.LocalSelectionTransfer;
@@ -89,7 +90,14 @@ public class RelationshipDiagramOutlineDragListener extends DragSourceAdapter {
 					(EObject) selected;
 			}
 			else {
-				if (!(selected instanceof EClass) && !(selected instanceof EStructuralFeature)) {
+				if (
+					!(selected instanceof EClass) && (
+						!(selected instanceof EStructuralFeature) || (
+							selected instanceof EReference &&
+							!((EReference) selected).isContainment()
+						)
+					)
+				) {
 					continue;
 				}
 				modelObj = (EObject) selected;

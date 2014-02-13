@@ -17,6 +17,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -58,6 +59,7 @@ public class MultiModelRegistry {
 
 	public final static String RESOURCE_URI_PREFIX = "platform:/resource";
 	public final static String ECORE_EREFERENCE_URI_PREFIX = "@";
+	public final static String ECORE_ROOT_FEATURE = "root";
 
 	public static void initEndpointCardinalities(String uri, HashMap<String, Integer> cardinalityTable) {
 
@@ -110,11 +112,12 @@ public class MultiModelRegistry {
 
 		EMFInfo eInfo = MidFactory.eINSTANCE.createEMFInfo();
 		String className, featureName = null, containerClassName = null;
-		boolean isReference = false;
+		boolean isAttribute = false;
 		if (isInstancesLevel) {
 			if (modelObj instanceof PrimitiveEObjectWrapper) {
 				className = ((PrimitiveEObjectWrapper) modelObj).getOwner().eClass().getName();
 				featureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
+				isAttribute = true;
 			}
 			else {
 				className = modelObj.eClass().getName();
@@ -122,13 +125,19 @@ public class MultiModelRegistry {
 					featureName = modelObj.eContainingFeature().getName();
 					containerClassName = modelObj.eContainer().eClass().getName();
 				}
+				else {
+					featureName = ECORE_ROOT_FEATURE;
+				}
 			}
 		}
 		else {
 			if (modelObj instanceof EStructuralFeature) {
 				className = ((EClass) modelObj.eContainer()).getName();
 				featureName = ((EStructuralFeature) modelObj).getName();
-				isReference = (modelObj instanceof EReference);
+				isAttribute = (modelObj instanceof EAttribute);
+				if (modelObj instanceof EReference) {
+					containerClassName = ((EReference) modelObj).getEType().getName();
+				}
 			}
 			else {
 				className = ((EClass) modelObj).getName();
@@ -137,7 +146,7 @@ public class MultiModelRegistry {
 		eInfo.setClassName(className);
 		eInfo.setFeatureName(featureName);
 		eInfo.setContainerClassName(containerClassName);
-		eInfo.setReference(isReference);
+		eInfo.setAttribute(isAttribute);
 
 		return eInfo;
 	}
@@ -213,18 +222,12 @@ public class MultiModelRegistry {
 		}
 	}
 
-	public static ModelElementReference getModelElementReference(ModelEndpointReference modelEndpointRef, ModelElement modelElemType, EObject modelObj) {
-
-		String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1] + MMTF.ROLE_SEPARATOR + modelElemType.getUri();
-
-		return MultiModelTypeHierarchy.getReference(modelElemUri, modelEndpointRef.getModelElemRefs());
-	}
-
 	public static ModelElementReference getModelElementReference(ModelEndpointReference modelEndpointRef, EObject modelObj) {
 
 		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelObj);
+		String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1] + MMTF.ROLE_SEPARATOR + modelElemType.getUri();
 
-		return getModelElementReference(modelEndpointRef, modelElemType, modelObj);
+		return MultiModelTypeHierarchy.getReference(modelElemUri, modelEndpointRef.getModelElemRefs());
 	}
 
 	/**

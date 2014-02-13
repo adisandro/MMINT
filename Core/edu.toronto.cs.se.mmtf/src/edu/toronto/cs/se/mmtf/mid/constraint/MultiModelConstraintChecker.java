@@ -21,7 +21,6 @@ import java.util.Map;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
@@ -37,6 +36,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
+import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
@@ -72,7 +72,6 @@ import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
  */
 public class MultiModelConstraintChecker {
 
-	private final static String WILDCARD_CLASSIFIER_NAME = "ModelElementWildcard";
 	private final static String OCL_MODELENDPOINT_VARIABLE = "$ENDPOINT_";
 	private final static char OCL_VARIABLE_SEPARATOR = '.';
 	private final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
@@ -378,48 +377,84 @@ public class MultiModelConstraintChecker {
 		return true;
 	}
 
-	private static boolean isAllowedModelElement(ModelElement modelElemType, EObject modelObj) {
+	public static boolean instanceofEMFClass(EObject modelObj, String eClassName) {
 
-		EObject modelElemTypeObj;
-		try {
-			modelElemTypeObj = modelElemType.getEMFTypeObject();
-		}
-		catch (MMTFException e) {
-			MMTFException.print(MMTFException.Type.WARNING, "Can't get model object, skipping allowance evaluation", e);
-			return false;
-		}
-		// check wildcard
-		if (modelElemTypeObj instanceof EClassifier && ((EClassifier) modelElemTypeObj).getName().equals(WILDCARD_CLASSIFIER_NAME)) {
+		if (eClassName.equals(modelObj.eClass().getName())) {
 			return true;
 		}
-		//TODO MMTF[MODELELEMENT] is class literal really needed or obtainable from the uri?
+		for (EClass modelTypeObjSuper : modelObj.eClass().getEAllSuperTypes()) {
+			if (eClassName.equals(modelTypeObjSuper.getName())) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	private static boolean isAllowedModelElement(ModelEndpointReference modelTypeEndpointRef, EObject modelObj, ModelElement modelElemType) {
+
+		// check root
+		if (MultiModelTypeHierarchy.isRootType(modelElemType)) {
+			return true;
+		}
 		// check model element compliance
-		String modelObjClassLiteral = MultiModelRegistry.getModelElementClassLiteral(modelObj, true);
-		if (modelElemType.getClassLiteral().equals(modelObjClassLiteral)) {
-			return true;
-		}
-
-		// look for metamodel supertypes
-		if (modelObj instanceof PrimitiveEObjectWrapper) {
-			modelObjClassLiteral = MultiModelRegistry.getModelElementClassLiteral(((PrimitiveEObjectWrapper) modelObj).getFeature(), false);
-			if (modelElemType.getClassLiteral().equals(modelObjClassLiteral)) {
+		EMFInfo modelObjEInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, true), modelElemTypeEInfo = modelElemType.getEInfo();
+		if (modelObjEInfo.isAttribute()) {
+			// attribute compliance + class compliance
+			if (
+				modelElemTypeEInfo.isAttribute() &&
+				modelObjEInfo.getFeatureName().equals(modelElemTypeEInfo.getFeatureName()) &&
+				instanceofEMFClass(((PrimitiveEObjectWrapper) modelObj).getOwner(), modelElemTypeEInfo.getClassName())
+			) {
 				return true;
 			}
 		}
 		else {
-			for (EClass modelObjSuper : modelObj.eClass().getEAllSuperTypes()) {
-				modelObjClassLiteral = MultiModelRegistry.getModelElementClassLiteral(modelObjSuper, false);
-				if (modelElemType.getClassLiteral().equals(modelObjClassLiteral)) {
+			// class compliance + containment compliance
+			if (
+				modelElemTypeEInfo.getFeatureName() == null &&
+				instanceofEMFClass(modelObj, modelElemTypeEInfo.getClassName())
+			) {
+				if (modelObjEInfo.getContainerClassName() == null) { // root
+					return true;
+				}
+				boolean isAllowed = true; // default is to allow if no containment model element type is present
+				for (ModelElementReference modelElemTypeRef : modelTypeEndpointRef.getModelElemRefs()) {
+					if (modelElemTypeRef.getUri().equals(modelElemType.getUri())) { // same model element type under test
+						continue;
+					}
+					EMFInfo modelElemTypeContainmentEInfo = modelElemTypeRef.getObject().getEInfo();
+					if ( // not the right containment model element type
+						modelElemTypeContainmentEInfo.getFeatureName() == null ||
+						modelElemTypeContainmentEInfo.isAttribute() ||
+						!instanceofEMFClass(modelObj, modelElemTypeContainmentEInfo.getContainerClassName())
+					) {
+						continue;
+					}
+					if (
+						modelElemTypeContainmentEInfo.getFeatureName().equals(modelObjEInfo.getFeatureName()) &&
+						instanceofEMFClass(modelObj.eContainer(), modelElemTypeContainmentEInfo.getClassName())
+					) {
+						isAllowed = true;
+						break;
+					}
+					else { // found unallowed containment, default no longer applies
+						isAllowed = false;
+						continue;
+					}
+				}
+				if (isAllowed) {
 					return true;
 				}
 			}
 		}
 		// look for UML stereotypes
+		//TODO MMTF[MODELELEMENT] review
 		if (modelObj instanceof NamedElement) {
 			for (Stereotype stereotype : ((NamedElement) modelObj).getApplicableStereotypes()) {
 				if (
-					modelElemType.getClassLiteral().equals(stereotype.getName()) ||
-					stereotype.getName().equals(MAVOUtils.MAVO_UML_STEREOTYPE_EQUIVALENCE.get(modelElemType.getClassLiteral()))
+					modelElemTypeEInfo.getClassName().equals(stereotype.getName()) ||
+					stereotype.getName().equals(MAVOUtils.MAVO_UML_STEREOTYPE_EQUIVALENCE.get(modelElemTypeEInfo.getClassName()))
 				) {
 					return true;
 				}
@@ -436,7 +471,7 @@ public class MultiModelConstraintChecker {
 		Iterator<ModelElementReference> modelElemTypeRefIter = MultiModelTypeHierarchy.getInverseTypeRefHierarchyIterator(modelTypeEndpointRef.getModelElemRefs());
 		while (modelElemTypeRefIter.hasNext()) {
 			ModelElementReference modelElemTypeRef = modelElemTypeRefIter.next();
-			if (isAllowedModelElement(modelElemTypeRef.getObject(), modelObj)) {
+			if (isAllowedModelElement(modelTypeEndpointRef, modelObj, modelElemTypeRef.getObject())) {
 				return modelElemTypeRef.getObject();
 			}
 		}

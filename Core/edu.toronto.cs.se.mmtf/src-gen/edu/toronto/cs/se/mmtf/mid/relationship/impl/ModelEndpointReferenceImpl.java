@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
@@ -260,10 +261,8 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 			return false;
 		}
 		// filter duplicates
-		for (ModelElementReference modelElemTypeRef : getModelElemRefs()) {
-			if (modelElemTypeRef.getUri().equals(modelElemTypeUri)) {
-				return false;
-			}
+		if (MultiModelTypeHierarchy.getReference(modelElemTypeUri, getModelElemRefs()) != null) {
+			return false;
 		}
 		//TODO MMTF[MODELELEMENT] if (metamodelObj instanceof EStructuralFeature) drop only if target type (or any subtype) is already dropped
 
@@ -298,7 +297,9 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
-		String modelUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[0];
+		String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObj, true);
+		String modelUri = uris[0];
+		String modelElemUri = uris[1];
 		if (!modelUri.equals(getTargetUri())) { // different model
 			return null;
 		}
@@ -308,7 +309,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 			return null;
 		}
 		// filter duplicates
-		if (MultiModelRegistry.getModelElementReference(this, modelElemType, modelObj) != null) {
+		if (MultiModelTypeHierarchy.getReference(modelElemUri + MMTF.ROLE_SEPARATOR + modelElemType.getUri(), getModelElemRefs()) != null) {
 			return null;
 		}
 

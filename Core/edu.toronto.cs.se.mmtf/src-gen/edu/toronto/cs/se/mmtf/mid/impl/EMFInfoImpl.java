@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.EMFInfoImpl#getClassName <em>Class Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.EMFInfoImpl#getFeatureName <em>Feature Name</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.EMFInfoImpl#isReference <em>Reference</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.EMFInfoImpl#isAttribute <em>Attribute</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.EMFInfoImpl#getContainerClassName <em>Container Class Name</em>}</li>
  * </ul>
  * </p>
@@ -80,24 +80,24 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	protected String featureName = FEATURE_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isReference() <em>Reference</em>}' attribute.
+	 * The default value of the '{@link #isAttribute() <em>Attribute</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isReference()
+	 * @see #isAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean REFERENCE_EDEFAULT = false;
+	protected static final boolean ATTRIBUTE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isReference() <em>Reference</em>}' attribute.
+	 * The cached value of the '{@link #isAttribute() <em>Attribute</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isReference()
+	 * @see #isAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean reference = REFERENCE_EDEFAULT;
+	protected boolean attribute = ATTRIBUTE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getContainerClassName() <em>Container Class Name</em>}' attribute.
@@ -185,8 +185,8 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isReference() {
-		return reference;
+	public boolean isAttribute() {
+		return attribute;
 	}
 
 	/**
@@ -194,11 +194,11 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReference(boolean newReference) {
-		boolean oldReference = reference;
-		reference = newReference;
+	public void setAttribute(boolean newAttribute) {
+		boolean oldAttribute = attribute;
+		attribute = newAttribute;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EMF_INFO__REFERENCE, oldReference, reference));
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EMF_INFO__ATTRIBUTE, oldAttribute, attribute));
 	}
 
 	/**
@@ -234,8 +234,8 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 				return getClassName();
 			case MidPackage.EMF_INFO__FEATURE_NAME:
 				return getFeatureName();
-			case MidPackage.EMF_INFO__REFERENCE:
-				return isReference();
+			case MidPackage.EMF_INFO__ATTRIBUTE:
+				return isAttribute();
 			case MidPackage.EMF_INFO__CONTAINER_CLASS_NAME:
 				return getContainerClassName();
 		}
@@ -256,8 +256,8 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 			case MidPackage.EMF_INFO__FEATURE_NAME:
 				setFeatureName((String)newValue);
 				return;
-			case MidPackage.EMF_INFO__REFERENCE:
-				setReference((Boolean)newValue);
+			case MidPackage.EMF_INFO__ATTRIBUTE:
+				setAttribute((Boolean)newValue);
 				return;
 			case MidPackage.EMF_INFO__CONTAINER_CLASS_NAME:
 				setContainerClassName((String)newValue);
@@ -280,8 +280,8 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 			case MidPackage.EMF_INFO__FEATURE_NAME:
 				setFeatureName(FEATURE_NAME_EDEFAULT);
 				return;
-			case MidPackage.EMF_INFO__REFERENCE:
-				setReference(REFERENCE_EDEFAULT);
+			case MidPackage.EMF_INFO__ATTRIBUTE:
+				setAttribute(ATTRIBUTE_EDEFAULT);
 				return;
 			case MidPackage.EMF_INFO__CONTAINER_CLASS_NAME:
 				setContainerClassName(CONTAINER_CLASS_NAME_EDEFAULT);
@@ -302,8 +302,8 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 				return CLASS_NAME_EDEFAULT == null ? className != null : !CLASS_NAME_EDEFAULT.equals(className);
 			case MidPackage.EMF_INFO__FEATURE_NAME:
 				return FEATURE_NAME_EDEFAULT == null ? featureName != null : !FEATURE_NAME_EDEFAULT.equals(featureName);
-			case MidPackage.EMF_INFO__REFERENCE:
-				return reference != REFERENCE_EDEFAULT;
+			case MidPackage.EMF_INFO__ATTRIBUTE:
+				return attribute != ATTRIBUTE_EDEFAULT;
 			case MidPackage.EMF_INFO__CONTAINER_CLASS_NAME:
 				return CONTAINER_CLASS_NAME_EDEFAULT == null ? containerClassName != null : !CONTAINER_CLASS_NAME_EDEFAULT.equals(containerClassName);
 		}
@@ -340,8 +340,8 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 		result.append(className);
 		result.append(", featureName: ");
 		result.append(featureName);
-		result.append(", reference: ");
-		result.append(reference);
+		result.append(", attribute: ");
+		result.append(attribute);
 		result.append(", containerClassName: ");
 		result.append(containerClassName);
 		result.append(')');
@@ -356,7 +356,7 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 		String typeString = getClassName();
 		if (getFeatureName() != null) {
 			typeString += MMTF.MODELELEMENT_FEATURE_SEPARATOR1 + getFeatureName();
-			if (isReference()) {
+			if (!isAttribute()) {
 				typeString += MMTF.MODELELEMENT_REFERENCE_SEPARATOR;
 			}
 			typeString += MMTF.MODELELEMENT_FEATURE_SEPARATOR2;
@@ -370,13 +370,9 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	 */
 	public String toInstanceString() {
 
-		String instanceString = getClassName();
-		if (getContainerClassName() != null) {
-			instanceString = getContainerClassName() + MMTF.MODELELEMENT_FEATURE_SEPARATOR1 + getFeatureName() + MMTF.MODELELEMENT_REFERENCE_SEPARATOR + MMTF.MODELELEMENT_FEATURE_SEPARATOR2 + instanceString;
-		}
-		else {
-			instanceString += MMTF.MODELELEMENT_FEATURE_SEPARATOR1 + getFeatureName() + MMTF.MODELELEMENT_FEATURE_SEPARATOR2;
-		}
+		String instanceString = (isAttribute()) ?
+			getClassName() + MMTF.MODELELEMENT_FEATURE_SEPARATOR1 + getFeatureName() + MMTF.MODELELEMENT_FEATURE_SEPARATOR2:
+			MMTF.MODELELEMENT_FEATURE_SEPARATOR1 + getFeatureName() + MMTF.MODELELEMENT_REFERENCE_SEPARATOR + MMTF.MODELELEMENT_FEATURE_SEPARATOR2 + getClassName();
 
 		return instanceString;
 	}

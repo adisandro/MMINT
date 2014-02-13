@@ -11,7 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
@@ -122,7 +124,9 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
-		String modelUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[0];
+		String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObj, true);
+		String modelUri = uris[0];
+		String modelElemUri = uris[1];
 		if (!modelUri.equals(getExtendedTargetUri())) { // different extended model
 			return null;
 		}
@@ -132,7 +136,7 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 			return null;
 		}
 		// filter duplicates
-		if (MultiModelRegistry.getModelElementReference(this, modelElemType, modelObj) != null) {
+		if (MultiModelTypeHierarchy.getReference(modelElemUri + MMTF.ROLE_SEPARATOR + modelElemType.getUri(), getModelElemRefs()) != null) {
 			return null;
 		}
 

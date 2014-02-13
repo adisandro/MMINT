@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#getClassName <em>Class Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#getFeatureName <em>Feature Name</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#isReference <em>Reference</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#isAttribute <em>Attribute</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#getContainerClassName <em>Container Class Name</em>}</li>
  * </ul>
  * </p>
@@ -88,36 +88,36 @@ public interface EMFInfo extends EObject {
 	void setFeatureName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Reference</b></em>' attribute.
+	 * Returns the value of the '<em><b>Attribute</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * If applicable, true if the EStructuralFeature is an EReference, false otherwise (types: metamodel feature; instances: metamodel feature)
+	 * If applicable, true if the EStructuralFeature is an EAttribute, false otherwise (types: metamodel feature; instances: metamodel feature)
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Reference</em>' attribute.
-	 * @see #setReference(boolean)
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getEMFInfo_Reference()
+	 * @return the value of the '<em>Attribute</em>' attribute.
+	 * @see #setAttribute(boolean)
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getEMFInfo_Attribute()
 	 * @model
 	 * @generated
 	 */
-	boolean isReference();
+	boolean isAttribute();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#isReference <em>Reference</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#isAttribute <em>Attribute</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Reference</em>' attribute.
-	 * @see #isReference()
+	 * @param value the new value of the '<em>Attribute</em>' attribute.
+	 * @see #isAttribute()
 	 * @generated
 	 */
-	void setReference(boolean value);
+	void setAttribute(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Container Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The eContainer EClass name, if applicable (types: not used; instances: metamodel class of the container)
+	 * The eContainer EClass name, if applicable (types: not used; instances: metamodel class of the container if not root)
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Container Class Name</em>' attribute.
 	 * @see #setContainerClassName(String)

@@ -1457,13 +1457,13 @@ public interface MidPackage extends EPackage {
 	int EMF_INFO__FEATURE_NAME = 1;
 
 	/**
-	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * The feature id for the '<em><b>Attribute</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EMF_INFO__REFERENCE = 2;
+	int EMF_INFO__ATTRIBUTE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Container Class Name</b></em>' attribute.
@@ -2303,15 +2303,15 @@ public interface MidPackage extends EPackage {
 	EAttribute getEMFInfo_FeatureName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#isReference <em>Reference</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#isAttribute <em>Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Reference</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.EMFInfo#isReference()
+	 * @return the meta object for the attribute '<em>Attribute</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.EMFInfo#isAttribute()
 	 * @see #getEMFInfo()
 	 * @generated
 	 */
-	EAttribute getEMFInfo_Reference();
+	EAttribute getEMFInfo_Attribute();
 
 	/**
 	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#getContainerClassName <em>Container Class Name</em>}'.
@@ -3033,12 +3033,12 @@ public interface MidPackage extends EPackage {
 		EAttribute EMF_INFO__FEATURE_NAME = eINSTANCE.getEMFInfo_FeatureName();
 
 		/**
-		 * The meta object literal for the '<em><b>Reference</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Attribute</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EMF_INFO__REFERENCE = eINSTANCE.getEMFInfo_Reference();
+		EAttribute EMF_INFO__ATTRIBUTE = eINSTANCE.getEMFInfo_Attribute();
 
 		/**
 		 * The meta object literal for the '<em><b>Container Class Name</b></em>' attribute feature.

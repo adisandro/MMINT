@@ -56,20 +56,6 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 		tgtRootModelObj = null;
 	}
 
-	protected boolean conformsToEMFType(EObject modelObj, String emfTypeName) {
-
-		if (emfTypeName.equals(modelObj.eClass().getName())) {
-			return true;
-		}
-		for (EClass modelTypeObjSuper : modelObj.eClass().getEAllSuperTypes()) {
-			if (emfTypeName.equals(modelTypeObjSuper.getName())) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
 	@SuppressWarnings("unchecked")
 	protected EObject transformModelObj(EObject srcModelObj, Map<EObject, ModelElementReference> srcModelObjs, Map<EObject, EObject> tgtModelObjs) throws MMTFException {
 
@@ -92,7 +78,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 			}
 			EReference containmentReference = null;
 			for (EReference containment : tgtContainerModelObj.eClass().getEAllContainments()) {
-				if (conformsToEMFType(tgtModelObj, containment.getEType().getName())) {
+				if (MultiModelConstraintChecker.instanceofEMFClass(tgtModelObj, containment.getEType().getName())) {
 					containmentReference = containment;
 					break;
 				}
@@ -159,7 +145,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 			String[] tgtClassLiterals = tgtModelElemTypeRef.getObject().getClassLiteral().split(MMTF.URI_SEPARATOR);
 			for (Map.Entry<EObject, EObject> tgtModelObjsEntry : tgtModelObjs.entrySet()) {
 				EObject srcModelObj = tgtModelObjsEntry.getKey();
-				if (!conformsToEMFType(srcModelObj, srcClassLiterals[0])) {
+				if (!MultiModelConstraintChecker.instanceofEMFClass(srcModelObj, srcClassLiterals[0])) {
 					continue;
 				}
 				transformModelObjFeature(srcModelObj, srcClassLiterals[1], tgtModelObjsEntry.getValue(), tgtClassLiterals[1], tempTgtModelObjs);
