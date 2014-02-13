@@ -30,7 +30,7 @@ public interface MMTFConstants {
 	public final static String MODELELEMENT_FEATURE_SEPARATOR1 = "[";
 	public final static String MODELELEMENT_FEATURE_SEPARATOR2 = "]";
 	public final static String MODELELEMENT_REFERENCE_SEPARATOR = "->";
-	public final static String BINARY_MODELREL_LINK_SEPARATOR = "2";
+	public final static String BINARY_MODELREL_LINK_SEPARATOR = "_To_";
 	//TODO MMTF[MODELELEM] refine everywhere used when introducing additional model element level
 	public final static String ROLE_SEPARATOR = "_AS_";
 	/** The empty uri. */

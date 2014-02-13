@@ -58,7 +58,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 	}
 
 	@SuppressWarnings("unchecked")
-	protected EObject transformModelObj(EObject srcModelObj, Map<EObject, ModelElementReference> srcModelObjs, Map<EObject, EObject> tgtModelObjs) throws MMTFException {
+	protected EObject transformModelObj(ModelEndpointReference srcModelTypeEndpointRef, EObject srcModelObj, Map<EObject, ModelElementReference> srcModelObjs, ModelEndpointReference tgtModelTypeEndpointRef, Map<EObject, EObject> tgtModelObjs) throws MMTFException {
 
 		ModelElementReference tgtModelElemTypeRef = srcModelObjs.get(srcModelObj);
 		EClass tgtModelTypeObj = (EClass) tgtModelElemTypeRef.getObject().getEMFTypeObject();
@@ -68,21 +68,34 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 			tgtRootModelObj = tgtModelObj;
 		}
 		else {
-			/*TODO MMTF[TRANSFORMATION] this assumes that the model rel type is well defined with respect to the containment hierarchy:
-			 * symmetric containment -> EReference model elements
-			 * just one containing EStructuralFeature of the right type -> EReference model elements
-			 */
 			EObject tgtContainerModelObj = tgtModelObjs.get(srcContainerModelObj);
 			if (tgtContainerModelObj == null) {
 				// recursion
-				tgtContainerModelObj = transformModelObj(srcContainerModelObj, srcModelObjs, tgtModelObjs);
+				tgtContainerModelObj = transformModelObj(srcModelTypeEndpointRef, srcContainerModelObj, srcModelObjs, tgtModelTypeEndpointRef, tgtModelObjs);
 			}
-			EReference containmentReference = null;
+			// find containment based on model element types first, then fallback to first one available
+			String srcModelElemTypeContainmentUri = MultiModelRegistry.getModelAndModelElementUris(srcModelObj.eContainingFeature(), false)[1];
+			ModelElementReference srcModelElemTypeContainment = MultiModelTypeHierarchy.getReference(srcModelElemTypeContainmentUri, srcModelTypeEndpointRef.getModelElemRefs());
+			EReference containmentReference = null, fallbackContainmentReference = null;
 			for (EReference containment : tgtContainerModelObj.eClass().getEAllContainments()) {
 				if (MultiModelConstraintChecker.instanceofEMFClass(tgtModelObj, containment.getEType().getName())) {
+					String tgtModelElemTypeContainmentUri = MultiModelRegistry.getModelAndModelElementUris(containment, false)[1];
+					ModelElementReference tgtModelElemTypeContainment = MultiModelTypeHierarchy.getReference(tgtModelElemTypeContainmentUri, tgtModelTypeEndpointRef.getModelElemRefs());
+					if (
+						tgtModelElemTypeContainment == null ||
+						srcModelElemTypeContainment.getModelElemEndpointRefs().get(0).eContainer() != tgtModelElemTypeContainment.getModelElemEndpointRefs().get(0).eContainer()
+					) {
+						if (fallbackContainmentReference == null) {
+							fallbackContainmentReference = containment;
+						}
+						continue;
+					}
 					containmentReference = containment;
 					break;
 				}
+			}
+			if (containmentReference == null) {
+				containmentReference = fallbackContainmentReference;
 			}
 			Object containment = tgtContainerModelObj.eGet(containmentReference);
 			if (containment instanceof EList) {
@@ -112,6 +125,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 
 		ModelRel traceModelRelType = traceModelRel.getMetatype();
 		ModelEndpointReference srcModelTypeEndpointRef = traceModelRelType.getModelEndpointRefs().get(srcIndex);
+		ModelEndpointReference tgtModelTypeEndpointRef = traceModelRelType.getModelEndpointRefs().get(tgtIndex);
 		Map<EObject, ModelElementReference> srcModelObjs = new HashMap<EObject, ModelElementReference>();
 		TreeIterator<EObject> srcModelObjsIter = EcoreUtil.getAllContents(srcModel.getEMFInstanceRoot().eResource(), true);
 		// first pass: get model objects to be transformed
@@ -132,7 +146,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 			if (tgtModelObjs.get(srcModelObj) != null) { // already transformed
 				continue;
 			}
-			transformModelObj(srcModelObj, srcModelObjs, tgtModelObjs);
+			transformModelObj(srcModelTypeEndpointRef, srcModelObj, srcModelObjs, tgtModelTypeEndpointRef, tgtModelObjs);
 		}
 		// third pass: attributes
 		Map<PrimitiveEObjectWrapper, PrimitiveEObjectWrapper> tempTgtModelObjs = new HashMap<PrimitiveEObjectWrapper, PrimitiveEObjectWrapper>();
@@ -199,6 +213,8 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 		result.add(tgtModel);
 		result.add(traceModelRel);
 		return result;
+		//TODO MMTF[KLEISLI] can't open the root KleisliModelRel
+		//TODO MMTF[KLEISLI] a kleisli rel inherits KleisliLink
 	}
 
 }

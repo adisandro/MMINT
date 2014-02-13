@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -92,14 +93,17 @@ public class MultiModelRegistry {
 			modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
 		}
 		URI emfUri = EcoreUtil.getURI(modelObj);
-		modelElemUri = emfUri.toString();
-		modelUri = modelElemUri.substring(0, modelElemUri.indexOf(MMTF.ECORE_MODEL_URI_SEPARATOR));
+		String uri = emfUri.toString();
 		if (isInstancesLevel) {
-			modelElemUri = modelElemUri.substring(RESOURCE_URI_PREFIX.length());
-			modelUri = modelUri.substring(RESOURCE_URI_PREFIX.length());
+			modelElemUri = uri.substring(RESOURCE_URI_PREFIX.length());
+			modelUri = modelElemUri.substring(0, modelElemUri.indexOf(MMTF.ECORE_MODEL_URI_SEPARATOR));
 			if (attributeFeatureName != null) {
 				modelElemUri += MMTF.URI_SEPARATOR + attributeFeatureName;
 			}
+		}
+		else {
+			modelUri = ((EPackage) EcoreUtil.getRootContainer(modelObj)).getNsURI();
+			modelElemUri = modelUri + MMTF.ECORE_MODEL_URI_SEPARATOR + uri.substring(uri.indexOf(MMTF.ECORE_MODEL_URI_SEPARATOR)+MMTF.ECORE_MODEL_URI_SEPARATOR.length());
 		}
 
 		return new String[] {modelUri, modelElemUri};
