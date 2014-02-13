@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#getClassName <em>Class Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#getFeatureName <em>Feature Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#isAttribute <em>Attribute</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#getContainerClassName <em>Container Class Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#getRelatedClassName <em>Related Class Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -113,29 +113,29 @@ public interface EMFInfo extends EObject {
 	void setAttribute(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Container Class Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Related Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The eContainer EClass name, if applicable (types: not used; instances: metamodel class of the container if not root)
+	 * The related EClass name, if applicable (types: metamodel class of the type if reference; instances: metamodel class of the container if not root and not attribute)
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Container Class Name</em>' attribute.
-	 * @see #setContainerClassName(String)
-	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getEMFInfo_ContainerClassName()
+	 * @return the value of the '<em>Related Class Name</em>' attribute.
+	 * @see #setRelatedClassName(String)
+	 * @see edu.toronto.cs.se.mmtf.mid.MidPackage#getEMFInfo_RelatedClassName()
 	 * @model
 	 * @generated
 	 */
-	String getContainerClassName();
+	String getRelatedClassName();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#getContainerClassName <em>Container Class Name</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#getRelatedClassName <em>Related Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Container Class Name</em>' attribute.
-	 * @see #getContainerClassName()
+	 * @param value the new value of the '<em>Related Class Name</em>' attribute.
+	 * @see #getRelatedClassName()
 	 * @generated
 	 */
-	void setContainerClassName(String value);
+	void setRelatedClassName(String value);
 
 	/**
 	 * <!-- begin-user-doc --> Returns a string representation of this EMF

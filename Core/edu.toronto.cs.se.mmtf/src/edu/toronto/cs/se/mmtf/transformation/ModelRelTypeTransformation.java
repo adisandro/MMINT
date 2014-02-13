@@ -27,6 +27,7 @@ import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
@@ -136,19 +137,18 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 		// third pass: attributes
 		Map<PrimitiveEObjectWrapper, PrimitiveEObjectWrapper> tempTgtModelObjs = new HashMap<PrimitiveEObjectWrapper, PrimitiveEObjectWrapper>();
 		for (ModelElementReference srcModelElemTypeRef : srcModelTypeEndpointRef.getModelElemRefs()) {
-			String srcClassLiteral = srcModelElemTypeRef.getObject().getClassLiteral();
-			if (!srcClassLiteral.contains(MMTF.URI_SEPARATOR)) {
+			EMFInfo srcModelElemTypeEInfo = srcModelElemTypeRef.getObject().getEInfo();
+			if (!srcModelElemTypeEInfo.isAttribute()) {
 				continue;
 			}
-			String[] srcClassLiterals = srcClassLiteral.split(MMTF.URI_SEPARATOR);
 			ModelElementReference tgtModelElemTypeRef = ((LinkReference) srcModelElemTypeRef.getModelElemEndpointRefs().get(0).eContainer()).getModelElemEndpointRefs().get(tgtIndex).getModelElemRef();
-			String[] tgtClassLiterals = tgtModelElemTypeRef.getObject().getClassLiteral().split(MMTF.URI_SEPARATOR);
+			EMFInfo tgtModelElemTypeEInfo = tgtModelElemTypeRef.getObject().getEInfo();
 			for (Map.Entry<EObject, EObject> tgtModelObjsEntry : tgtModelObjs.entrySet()) {
 				EObject srcModelObj = tgtModelObjsEntry.getKey();
-				if (!MultiModelConstraintChecker.instanceofEMFClass(srcModelObj, srcClassLiterals[0])) {
+				if (!MultiModelConstraintChecker.instanceofEMFClass(srcModelObj, srcModelElemTypeEInfo.getClassName())) {
 					continue;
 				}
-				transformModelObjFeature(srcModelObj, srcClassLiterals[1], tgtModelObjsEntry.getValue(), tgtClassLiterals[1], tempTgtModelObjs);
+				transformModelObjFeature(srcModelObj, srcModelElemTypeEInfo.getFeatureName(), tgtModelObjsEntry.getValue(), tgtModelElemTypeEInfo.getFeatureName(), tempTgtModelObjs);
 			}
 			//TODO MMTF[TRANSFORMATION] do non-containment references
 		}

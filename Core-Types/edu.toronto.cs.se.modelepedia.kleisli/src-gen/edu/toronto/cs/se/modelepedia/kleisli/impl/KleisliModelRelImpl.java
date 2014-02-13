@@ -17,10 +17,10 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 
-import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -460,21 +460,21 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					kModelTypeEndpoint.getExtendedTargetUri()
 				);
 				EObject kRootModelObj = kModelEndpoint.getExtendedTarget().getEMFInstanceRoot();
-				String classLiteral;
-				ExtendibleElementConstraint constraint;
+				EMFInfo kModelElemTypeEInfo;
+				ExtendibleElementConstraint kConstraint;
 				// first pass: EClasses
 				Map<EObject, EObject> kModelObjs1 = new HashMap<EObject, EObject>();
 				for (ModelElementReference kModelElemTypeRef : kModelTypeEndpointRef.getModelElemRefs()) {
-					classLiteral = kModelElemTypeRef.getObject().getClassLiteral();
-					constraint = kModelElemTypeRef.getObject().getConstraint();
+					kModelElemTypeEInfo = kModelElemTypeRef.getObject().getEInfo();
+					kConstraint = kModelElemTypeRef.getObject().getConstraint();
 					if (
-						classLiteral.contains(MMTF.URI_SEPARATOR) ||
-						constraint == null ||
-						constraint.getImplementation().equals("")
+						kModelElemTypeEInfo.getFeatureName() != null ||
+						kConstraint == null ||
+						kConstraint.getImplementation().equals("")
 					) {
 						continue;
 					}
-					EClass kModelElemTypeClass = (EClass) kModelTypePackage.getEClassifier(classLiteral);
+					EClass kModelElemTypeClass = (EClass) kModelTypePackage.getEClassifier(kModelElemTypeEInfo.getClassName());
 					TreeIterator<EObject> modelObjIter = kRootModelObj.eAllContents();
 					while (modelObjIter.hasNext()) {
 						EObject modelObj = modelObjIter.next();
@@ -482,7 +482,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 							if (!kModelElemTypeClassSuper.getName().equals(modelObj.eClass().getName())) {
 								continue;
 							}
-							if (MultiModelConstraintChecker.checkOCLConstraint(modelObj, constraint.getImplementation()) != MAVOTruthValue.TRUE) {
+							if (MultiModelConstraintChecker.checkOCLConstraint(modelObj, kConstraint.getImplementation()) != MAVOTruthValue.TRUE) {
 								continue;
 							}
 							EObject kModelObj = kModelTypeFactory.create(kModelElemTypeClass);
@@ -499,28 +499,26 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					EcoreUtil.replace(modelObj, kModelObj);
 				}
 				// second pass: EAttributes
-				String[] classLiterals;
 				for (ModelElementReference kModelElemTypeRef : kModelTypeEndpointRef.getModelElemRefs()) {
 					Map<EObject, EObject> kModelObjs2 = new HashMap<EObject, EObject>();
-					classLiteral = kModelElemTypeRef.getObject().getClassLiteral();
-					constraint = kModelElemTypeRef.getObject().getConstraint();
+					kModelElemTypeEInfo = kModelElemTypeRef.getObject().getEInfo();
+					kConstraint = kModelElemTypeRef.getObject().getConstraint();
 					if (
-						!classLiteral.contains(MMTF.URI_SEPARATOR) ||
-						constraint == null ||
-						constraint.getImplementation().equals("")
+						!kModelElemTypeEInfo.isAttribute() ||
+						kConstraint == null ||
+						kConstraint.getImplementation().equals("")
 					) {
 						continue;
 					}
-					classLiterals = classLiteral.split(MMTF.URI_SEPARATOR);
 					TreeIterator<EObject> modelObjIter = kRootModelObj.eAllContents();
 					while (modelObjIter.hasNext()) {
 						EObject modelObj = modelObjIter.next();
-						if (!modelObj.eClass().getName().equals(classLiterals[0]) && kModelObjs1.get(modelObj) == null) {
+						if (!modelObj.eClass().getName().equals(kModelElemTypeEInfo.getClassName()) && kModelObjs1.get(modelObj) == null) {
 							continue;
 						}
 						if (kModelObjs1.get(modelObj) == null) {
 							// need to make a copy from extended factory for the ocl derivation to work
-							EObject kModelObj = kModelTypeFactory.create((EClass) kModelTypePackage.getEClassifier(classLiterals[0]));
+							EObject kModelObj = kModelTypeFactory.create((EClass) kModelTypePackage.getEClassifier(kModelElemTypeEInfo.getClassName()));
 							kModelObjs2.put(kModelObj, modelObj);
 						}
 						else {
@@ -537,8 +535,8 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 							}
 							EcoreUtil.replace(modelObj, kModelObj);
 						}
-						Object kModelObjAttr = MultiModelConstraintChecker.deriveOCLConstraint(kModelObj, constraint.getImplementation());
-						EStructuralFeature kFeature = kModelObj.eClass().getEStructuralFeature(classLiterals[1]);
+						Object kModelObjAttr = MultiModelConstraintChecker.deriveOCLConstraint(kModelObj, kConstraint.getImplementation());
+						EStructuralFeature kFeature = kModelObj.eClass().getEStructuralFeature(kModelElemTypeEInfo.getFeatureName());
 						kModelObj.eSet(kFeature, kModelObjAttr);
 					}
 				}

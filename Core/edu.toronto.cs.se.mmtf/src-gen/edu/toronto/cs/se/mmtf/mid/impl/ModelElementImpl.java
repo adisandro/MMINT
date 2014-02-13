@@ -428,7 +428,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		String newModelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1];
 		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, true);
 		if (newModelElemName == null) {
-			newModelElemName = MultiModelRegistry.getModelElementName(modelObj, true);
+			newModelElemName = MultiModelRegistry.getModelElementName(eInfo, modelObj, true);
 		}
 		ModelElementReference newModelElemRef = modelElemType.createInstanceAndReference(newModelElemUri, newModelElemName, eInfo, containerModelEndpointRef);
 

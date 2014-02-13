@@ -17,6 +17,8 @@ import org.eclipse.emf.edit.provider.AttributeValueWrapperItemProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 
 import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.mid.EMFInfo;
+import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
@@ -33,22 +35,24 @@ public class ModelElementLabelProvider extends AdapterFactoryLabelProvider {
 	@Override
 	public String getText(Object object) {
 
-		String text = "";
+		String text;
 		if (isInstancesLevel && (boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ALTERNATIVE_MODEL_TREE_ENABLED) && (object instanceof AttributeValueWrapperItemProvider || object instanceof EObject)) {
-			text += "[";
 			if (object instanceof AttributeValueWrapperItemProvider) {
-				text += ((AttributeValueWrapperItemProvider) object).getFeature().getName();
+				object = new PrimitiveEObjectWrapper((AttributeValueWrapperItemProvider) object);
 			}
-			if (object instanceof EObject) {
-				EObject modelObj = (EObject) object;
-				text += (modelObj.eContainingFeature() == null) ? "root" : modelObj.eContainingFeature().getName();
-				if (object instanceof PrimitiveEObjectWrapper) {
-					object = ((PrimitiveEObjectWrapper) object).getValue();
-				}
+			EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo((EObject) object, true);
+			text = eInfo.toInstanceString();
+			if (object instanceof PrimitiveEObjectWrapper) {
+				text = text.replace(MMTF.MODELELEMENT_PRIMITIVEVALUE_PLACEHOLDER, ((PrimitiveEObjectWrapper) object).getValue().toString());
+				text = text.replace(MMTF.MODELELEMENT_EMFVALUE_PLACEHOLDER, super.getText(((PrimitiveEObjectWrapper) object).getOwner()));
 			}
-			text += "] ";
+			else {
+				text = text.replace(MMTF.MODELELEMENT_EMFVALUE_PLACEHOLDER, super.getText(object));
+			}
 		}
-		text += super.getText(object);
+		else {
+			text = super.getText(object);
+		}
 
 		return text;
 	}

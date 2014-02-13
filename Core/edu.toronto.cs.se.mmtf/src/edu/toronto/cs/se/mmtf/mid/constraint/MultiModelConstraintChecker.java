@@ -415,7 +415,7 @@ public class MultiModelConstraintChecker {
 				modelElemTypeEInfo.getFeatureName() == null &&
 				instanceofEMFClass(modelObj, modelElemTypeEInfo.getClassName())
 			) {
-				if (modelObjEInfo.getContainerClassName() == null) { // root
+				if (modelObjEInfo.getRelatedClassName() == null) { // root
 					return true;
 				}
 				boolean isAllowed = true; // default is to allow if no containment model element type is present
@@ -427,7 +427,7 @@ public class MultiModelConstraintChecker {
 					if ( // not the right containment model element type
 						modelElemTypeContainmentEInfo.getFeatureName() == null ||
 						modelElemTypeContainmentEInfo.isAttribute() ||
-						!instanceofEMFClass(modelObj, modelElemTypeContainmentEInfo.getContainerClassName())
+						!instanceofEMFClass(modelObj, modelElemTypeContainmentEInfo.getRelatedClassName())
 					) {
 						continue;
 					}

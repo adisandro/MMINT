@@ -183,7 +183,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/className"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/featureName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/attribute"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/containerClassName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/relatedClassName"/>
       <genOperations ecoreOperation="mid.ecore#//EMFInfo/toTypeString"/>
       <genOperations ecoreOperation="mid.ecore#//EMFInfo/toInstanceString"/>
     </genClasses>

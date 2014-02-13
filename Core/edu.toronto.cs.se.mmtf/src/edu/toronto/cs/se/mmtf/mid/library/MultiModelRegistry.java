@@ -24,8 +24,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 
 import edu.toronto.cs.se.mmtf.MMTF;
@@ -47,7 +45,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.ui.ModelElementLabelProvider;
+import edu.toronto.cs.se.mmtf.mid.ui.GMFDiagramUtils;
 
 /**
  * The registry for querying a multimodel.
@@ -111,7 +109,7 @@ public class MultiModelRegistry {
 	public static EMFInfo getModelElementEMFInfo(EObject modelObj, boolean isInstancesLevel) {
 
 		EMFInfo eInfo = MidFactory.eINSTANCE.createEMFInfo();
-		String className, featureName = null, containerClassName = null;
+		String className, featureName = null, relatedClassName = null;
 		boolean isAttribute = false;
 		if (isInstancesLevel) {
 			if (modelObj instanceof PrimitiveEObjectWrapper) {
@@ -123,7 +121,7 @@ public class MultiModelRegistry {
 				className = modelObj.eClass().getName();
 				if (modelObj.eContainer() != null) {
 					featureName = modelObj.eContainingFeature().getName();
-					containerClassName = modelObj.eContainer().eClass().getName();
+					relatedClassName = modelObj.eContainer().eClass().getName();
 				}
 				else {
 					featureName = ECORE_ROOT_FEATURE;
@@ -136,7 +134,7 @@ public class MultiModelRegistry {
 				featureName = ((EStructuralFeature) modelObj).getName();
 				isAttribute = (modelObj instanceof EAttribute);
 				if (modelObj instanceof EReference) {
-					containerClassName = ((EReference) modelObj).getEType().getName();
+					relatedClassName = ((EReference) modelObj).getEType().getName();
 				}
 			}
 			else {
@@ -145,20 +143,32 @@ public class MultiModelRegistry {
 		}
 		eInfo.setClassName(className);
 		eInfo.setFeatureName(featureName);
-		eInfo.setContainerClassName(containerClassName);
+		eInfo.setRelatedClassName(relatedClassName);
 		eInfo.setAttribute(isAttribute);
 
 		return eInfo;
 	}
 
-	public static String getModelElementName(EObject modelObj, boolean isInstancesLevel) {
+	public static String getModelElementName(EMFInfo eInfo, EObject modelObj, boolean isInstancesLevel) {
 
-		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-		AdapterFactoryLabelProvider labelProvider = new ModelElementLabelProvider(adapterFactory, isInstancesLevel);
+		String name;
+		if (isInstancesLevel) {
+			ComposedAdapterFactory adapterFactory = GMFDiagramUtils.getAdapterFactory();
+			AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
+			name = eInfo.toInstanceString();
+			if (modelObj instanceof PrimitiveEObjectWrapper) {
+				name = name.replace(MMTF.MODELELEMENT_PRIMITIVEVALUE_PLACEHOLDER, ((PrimitiveEObjectWrapper) modelObj).getValue().toString());
+				name = name.replace(MMTF.MODELELEMENT_EMFVALUE_PLACEHOLDER, labelProvider.getText(((PrimitiveEObjectWrapper) modelObj).getOwner()));
+			}
+			else {
+				name = name.replace(MMTF.MODELELEMENT_EMFVALUE_PLACEHOLDER, labelProvider.getText(modelObj));
+			}
+		}
+		else {
+			name = eInfo.toTypeString();
+		}
 
-		return labelProvider.getText(modelObj);
+		return name;
 	}
 
 	/**

@@ -1466,13 +1466,13 @@ public interface MidPackage extends EPackage {
 	int EMF_INFO__ATTRIBUTE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Container Class Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Related Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EMF_INFO__CONTAINER_CLASS_NAME = 3;
+	int EMF_INFO__RELATED_CLASS_NAME = 3;
 
 	/**
 	 * The number of structural features of the '<em>EMF Info</em>' class.
@@ -2314,15 +2314,15 @@ public interface MidPackage extends EPackage {
 	EAttribute getEMFInfo_Attribute();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#getContainerClassName <em>Container Class Name</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#getRelatedClassName <em>Related Class Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Container Class Name</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.EMFInfo#getContainerClassName()
+	 * @return the meta object for the attribute '<em>Related Class Name</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.EMFInfo#getRelatedClassName()
 	 * @see #getEMFInfo()
 	 * @generated
 	 */
-	EAttribute getEMFInfo_ContainerClassName();
+	EAttribute getEMFInfo_RelatedClassName();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.EMFInfo#toTypeString() <em>To Type String</em>}' operation.
@@ -3041,12 +3041,12 @@ public interface MidPackage extends EPackage {
 		EAttribute EMF_INFO__ATTRIBUTE = eINSTANCE.getEMFInfo_Attribute();
 
 		/**
-		 * The meta object literal for the '<em><b>Container Class Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Related Class Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EMF_INFO__CONTAINER_CLASS_NAME = eINSTANCE.getEMFInfo_ContainerClassName();
+		EAttribute EMF_INFO__RELATED_CLASS_NAME = eINSTANCE.getEMFInfo_RelatedClassName();
 
 		/**
 		 * The meta object literal for the '<em><b>To Type String</b></em>' operation.

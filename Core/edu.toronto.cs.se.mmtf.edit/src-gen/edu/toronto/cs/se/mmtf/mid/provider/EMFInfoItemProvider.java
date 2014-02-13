@@ -73,7 +73,7 @@ public class EMFInfoItemProvider
 			addClassNamePropertyDescriptor(object);
 			addFeatureNamePropertyDescriptor(object);
 			addAttributePropertyDescriptor(object);
-			addContainerClassNamePropertyDescriptor(object);
+			addRelatedClassNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -145,19 +145,19 @@ public class EMFInfoItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Container Class Name feature.
+	 * This adds a property descriptor for the Related Class Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContainerClassNamePropertyDescriptor(Object object) {
+	protected void addRelatedClassNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EMFInfo_containerClassName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EMFInfo_containerClassName_feature", "_UI_EMFInfo_type"),
-				 MidPackage.Literals.EMF_INFO__CONTAINER_CLASS_NAME,
+				 getString("_UI_EMFInfo_relatedClassName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EMFInfo_relatedClassName_feature", "_UI_EMFInfo_type"),
+				 MidPackage.Literals.EMF_INFO__RELATED_CLASS_NAME,
 				 true,
 				 false,
 				 false,
@@ -206,7 +206,7 @@ public class EMFInfoItemProvider
 			case MidPackage.EMF_INFO__CLASS_NAME:
 			case MidPackage.EMF_INFO__FEATURE_NAME:
 			case MidPackage.EMF_INFO__ATTRIBUTE:
-			case MidPackage.EMF_INFO__CONTAINER_CLASS_NAME:
+			case MidPackage.EMF_INFO__RELATED_CLASS_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

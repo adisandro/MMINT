@@ -472,9 +472,9 @@
         <details key="documentation" value="If applicable, true if the EStructuralFeature is an EAttribute, false otherwise (types: metamodel feature; instances: metamodel feature)"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="containerClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="relatedClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The eContainer EClass name, if applicable (types: not used; instances: metamodel class of the container if not root)"/>
+        <details key="documentation" value="The related EClass name, if applicable (types: metamodel class of the type if reference; instances: metamodel class of the container if not root and not attribute)"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

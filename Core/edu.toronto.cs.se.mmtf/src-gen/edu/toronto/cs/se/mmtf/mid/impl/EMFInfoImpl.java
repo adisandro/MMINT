@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.EMFInfoImpl#getClassName <em>Class Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.EMFInfoImpl#getFeatureName <em>Feature Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.EMFInfoImpl#isAttribute <em>Attribute</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.EMFInfoImpl#getContainerClassName <em>Container Class Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.impl.EMFInfoImpl#getRelatedClassName <em>Related Class Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,24 +100,24 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	protected boolean attribute = ATTRIBUTE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getContainerClassName() <em>Container Class Name</em>}' attribute.
+	 * The default value of the '{@link #getRelatedClassName() <em>Related Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getContainerClassName()
+	 * @see #getRelatedClassName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CONTAINER_CLASS_NAME_EDEFAULT = null;
+	protected static final String RELATED_CLASS_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getContainerClassName() <em>Container Class Name</em>}' attribute.
+	 * The cached value of the '{@link #getRelatedClassName() <em>Related Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getContainerClassName()
+	 * @see #getRelatedClassName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String containerClassName = CONTAINER_CLASS_NAME_EDEFAULT;
+	protected String relatedClassName = RELATED_CLASS_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -206,8 +206,8 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getContainerClassName() {
-		return containerClassName;
+	public String getRelatedClassName() {
+		return relatedClassName;
 	}
 
 	/**
@@ -215,11 +215,11 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainerClassName(String newContainerClassName) {
-		String oldContainerClassName = containerClassName;
-		containerClassName = newContainerClassName;
+	public void setRelatedClassName(String newRelatedClassName) {
+		String oldRelatedClassName = relatedClassName;
+		relatedClassName = newRelatedClassName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EMF_INFO__CONTAINER_CLASS_NAME, oldContainerClassName, containerClassName));
+			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EMF_INFO__RELATED_CLASS_NAME, oldRelatedClassName, relatedClassName));
 	}
 
 	/**
@@ -236,8 +236,8 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 				return getFeatureName();
 			case MidPackage.EMF_INFO__ATTRIBUTE:
 				return isAttribute();
-			case MidPackage.EMF_INFO__CONTAINER_CLASS_NAME:
-				return getContainerClassName();
+			case MidPackage.EMF_INFO__RELATED_CLASS_NAME:
+				return getRelatedClassName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -259,8 +259,8 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 			case MidPackage.EMF_INFO__ATTRIBUTE:
 				setAttribute((Boolean)newValue);
 				return;
-			case MidPackage.EMF_INFO__CONTAINER_CLASS_NAME:
-				setContainerClassName((String)newValue);
+			case MidPackage.EMF_INFO__RELATED_CLASS_NAME:
+				setRelatedClassName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -283,8 +283,8 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 			case MidPackage.EMF_INFO__ATTRIBUTE:
 				setAttribute(ATTRIBUTE_EDEFAULT);
 				return;
-			case MidPackage.EMF_INFO__CONTAINER_CLASS_NAME:
-				setContainerClassName(CONTAINER_CLASS_NAME_EDEFAULT);
+			case MidPackage.EMF_INFO__RELATED_CLASS_NAME:
+				setRelatedClassName(RELATED_CLASS_NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -304,8 +304,8 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 				return FEATURE_NAME_EDEFAULT == null ? featureName != null : !FEATURE_NAME_EDEFAULT.equals(featureName);
 			case MidPackage.EMF_INFO__ATTRIBUTE:
 				return attribute != ATTRIBUTE_EDEFAULT;
-			case MidPackage.EMF_INFO__CONTAINER_CLASS_NAME:
-				return CONTAINER_CLASS_NAME_EDEFAULT == null ? containerClassName != null : !CONTAINER_CLASS_NAME_EDEFAULT.equals(containerClassName);
+			case MidPackage.EMF_INFO__RELATED_CLASS_NAME:
+				return RELATED_CLASS_NAME_EDEFAULT == null ? relatedClassName != null : !RELATED_CLASS_NAME_EDEFAULT.equals(relatedClassName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -342,8 +342,8 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 		result.append(featureName);
 		result.append(", attribute: ");
 		result.append(attribute);
-		result.append(", containerClassName: ");
-		result.append(containerClassName);
+		result.append(", relatedClassName: ");
+		result.append(relatedClassName);
 		result.append(')');
 		return result.toString();
 	}
@@ -371,8 +371,8 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	public String toInstanceString() {
 
 		String instanceString = (isAttribute()) ?
-			getClassName() + MMTF.MODELELEMENT_FEATURE_SEPARATOR1 + getFeatureName() + MMTF.MODELELEMENT_FEATURE_SEPARATOR2:
-			MMTF.MODELELEMENT_FEATURE_SEPARATOR1 + getFeatureName() + MMTF.MODELELEMENT_REFERENCE_SEPARATOR + MMTF.MODELELEMENT_FEATURE_SEPARATOR2 + getClassName();
+			MMTF.MODELELEMENT_EMFVALUE_PLACEHOLDER + MMTF.MODELELEMENT_FEATURE_SEPARATOR1 + getFeatureName() + MMTF.MODELELEMENT_FEATURE_SEPARATOR2 + " " + MMTF.MODELELEMENT_PRIMITIVEVALUE_PLACEHOLDER:
+			MMTF.MODELELEMENT_FEATURE_SEPARATOR1 + getFeatureName() + MMTF.MODELELEMENT_REFERENCE_SEPARATOR + MMTF.MODELELEMENT_FEATURE_SEPARATOR2 + " " + MMTF.MODELELEMENT_EMFVALUE_PLACEHOLDER;
 
 		return instanceString;
 	}

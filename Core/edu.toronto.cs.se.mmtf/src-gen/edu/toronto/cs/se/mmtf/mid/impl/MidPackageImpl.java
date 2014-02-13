@@ -894,7 +894,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEMFInfo_ContainerClassName() {
+	public EAttribute getEMFInfo_RelatedClassName() {
 		return (EAttribute)emfInfoEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1091,7 +1091,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEAttribute(emfInfoEClass, EMF_INFO__CLASS_NAME);
 		createEAttribute(emfInfoEClass, EMF_INFO__FEATURE_NAME);
 		createEAttribute(emfInfoEClass, EMF_INFO__ATTRIBUTE);
-		createEAttribute(emfInfoEClass, EMF_INFO__CONTAINER_CLASS_NAME);
+		createEAttribute(emfInfoEClass, EMF_INFO__RELATED_CLASS_NAME);
 		createEOperation(emfInfoEClass, EMF_INFO___TO_TYPE_STRING);
 		createEOperation(emfInfoEClass, EMF_INFO___TO_INSTANCE_STRING);
 
@@ -1356,7 +1356,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEAttribute(getEMFInfo_ClassName(), ecorePackage.getEString(), "className", null, 1, 1, EMFInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEMFInfo_FeatureName(), ecorePackage.getEString(), "featureName", null, 0, 1, EMFInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEMFInfo_Attribute(), ecorePackage.getEBoolean(), "attribute", null, 0, 1, EMFInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEMFInfo_ContainerClassName(), ecorePackage.getEString(), "containerClassName", null, 0, 1, EMFInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEMFInfo_RelatedClassName(), ecorePackage.getEString(), "relatedClassName", null, 0, 1, EMFInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getEMFInfo__ToTypeString(), ecorePackage.getEString(), "toTypeString", 1, 1, IS_UNIQUE, IS_ORDERED);
 

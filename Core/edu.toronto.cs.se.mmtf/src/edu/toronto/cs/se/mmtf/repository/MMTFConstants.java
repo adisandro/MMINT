@@ -25,6 +25,8 @@ public interface MMTFConstants {
 	public final static String MODEL_FILEEXTENSION_SEPARATOR = ".";
 	public final static String ENDPOINT_SEPARATOR = "-";
 	public final static String EDITOR_SEPARATOR = "_";
+	public final static String MODELELEMENT_EMFVALUE_PLACEHOLDER = "$1";
+	public final static String MODELELEMENT_PRIMITIVEVALUE_PLACEHOLDER = "$2";
 	public final static String MODELELEMENT_FEATURE_SEPARATOR1 = "[";
 	public final static String MODELELEMENT_FEATURE_SEPARATOR2 = "]";
 	public final static String MODELELEMENT_REFERENCE_SEPARATOR = "->";
