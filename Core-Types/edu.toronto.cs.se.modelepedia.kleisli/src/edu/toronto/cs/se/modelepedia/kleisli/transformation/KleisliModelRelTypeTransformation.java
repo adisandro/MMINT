@@ -11,10 +11,15 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.transformation;
 
+import org.eclipse.emf.common.util.EList;
+
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmtf.mid.relationship.Link;
+import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.transformation.ModelRelTypeTransformation;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 
 public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformation {
@@ -28,6 +33,24 @@ public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformatio
 			srcModel = ((KleisliModelEndpoint) srcModelEndpoint).getExtendedTarget();
 		}
 		super.transform(traceModelRel, srcModel, srcIndex, tgtIndex);
+	}
+
+	@Override
+	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+
+		EList<Model> result = super.execute(actualParameters);
+		KleisliBinaryModelRel kTraceModelRel = (KleisliBinaryModelRel) result.get(1);
+		kTraceModelRel.getModelEndpoints().move(1, 0);
+		kTraceModelRel.getModelEndpointRefs().move(1, 0);
+		for (Link kLink : kTraceModelRel.getLinks()) {
+			kLink.getModelElemEndpoints().move(1, 0);
+			kLink.getModelElemEndpointRefs().move(1, 0);
+		}
+		for (LinkReference kLinkRef : kTraceModelRel.getLinkRefs()) {
+			kLinkRef.getModelElemEndpointRefs().move(1, 0);
+		}
+
+		return result;
 	}
 
 }
