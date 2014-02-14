@@ -422,12 +422,15 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			if (!(modelTypeEndpoint instanceof KleisliModelEndpoint)) {
 				continue;
 			}
-			URI uri = URI.createFileURI(MultiModelUtils.isFileOrDirectoryInState(((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTargetUri()));
-			try {
-				activePage.openEditor(new URIEditorInput(uri), ModelOpenEditorCommand.ECORE_EDITORID);
-			}
-			catch (PartInitException e) {
-				MMTFException.print(Type.WARNING, "Error opening extended metamodel file", e);
+			String kModelTypeUri = MultiModelUtils.isFileOrDirectoryInState(((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTargetUri());
+			if (kModelTypeUri != null) { // the root KleisliModelRel has no extended metamodel to open
+				URI kUri = URI.createFileURI(kModelTypeUri);
+				try {
+					activePage.openEditor(new URIEditorInput(kUri), ModelOpenEditorCommand.ECORE_EDITORID);
+				}
+				catch (PartInitException e) {
+					MMTFException.print(Type.WARNING, "Error opening extended metamodel file", e);
+				}
 			}
 		}
 	}

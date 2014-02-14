@@ -213,8 +213,6 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 		result.add(tgtModel);
 		result.add(traceModelRel);
 		return result;
-		//TODO MMTF[KLEISLI] can't open the root KleisliModelRel
-		//TODO MMTF[KLEISLI] a kleisli rel inherits KleisliLink
 	}
 
 }

@@ -102,7 +102,7 @@ public class MultiModelRegistry {
 			}
 		}
 		else {
-			modelUri = ((EPackage) EcoreUtil.getRootContainer(modelObj)).getNsURI();
+			modelUri = ((EPackage) EcoreUtil.getRootContainer(modelObj)).getNsURI(); // safe against metamodels in state
 			modelElemUri = modelUri + MMTF.ECORE_MODEL_URI_SEPARATOR + uri.substring(uri.indexOf(MMTF.ECORE_MODEL_URI_SEPARATOR)+MMTF.ECORE_MODEL_URI_SEPARATOR.length());
 		}
 

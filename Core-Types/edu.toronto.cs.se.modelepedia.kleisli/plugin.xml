@@ -48,63 +48,7 @@
                   upperBound="-1"
                   targetTypeUri="http://se.cs.toronto.edu/mmtf/Model">
             </typeEndpoint>
-            <modelElemType>
-                <type
-                     name="KleisliModelElement"
-                     uri="http://se.cs.toronto.edu/mmtf/Model#//ModelElement">
-                </type>
-            </modelElemType>
          </modelTypeEndpoint>
-<!--
-         <modelTypeEndpoint>
-            <type
-                  name="ModelEndpoint"
-                  uri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel-Model/ModelEndpoint">
-            </type>
-            <typeEndpoint
-                  lowerBound="0"
-                  upperBound="-1"
-                  targetTypeUri="http://se.cs.toronto.edu/mmtf/Model">
-            </typeEndpoint>
-            <modelElemType
-                  classLiteral="ModelElementWildcard">
-                <type
-                     name="ModelElem"
-                     uri="http://se.cs.toronto.edu/mmtf/Model/ModelElem">
-                </type>
-            </modelElemType>
-         </modelTypeEndpoint>
--->
-         <linkType>
-            <type
-                  name="KleisliLink"
-                  uri="http://se.cs.toronto.edu/mmtf/KleisliModelRel/KleisliLink">
-            </type>
-            <modelElemTypeEndpoint>
-               <type
-                     name="KleisliModelElemEndpoint"
-                     uri="http://se.cs.toronto.edu/mmtf/KleisliModelRel/KleisliLink-KleisliModelElem/KleisliModelElemEndpoint">
-               </type>
-               <typeEndpoint
-                     lowerBound="0"
-                     upperBound="-1"
-                     targetTypeUri="http://se.cs.toronto.edu/mmtf/Model/KleisliModelElem">
-               </typeEndpoint>
-            </modelElemTypeEndpoint>
-<!--
-            <modelElemTypeEndpoint>
-               <type
-                     name="ModelElemEndpoint"
-                     uri="http://se.cs.toronto.edu/mmtf/KleisliModelRel/KleisliLink-ModelElem/ModelElemEndpoint">
-               </type>
-               <typeEndpoint
-                     lowerBound="0"
-                     upperBound="-1"
-                     targetTypeUri="http://se.cs.toronto.edu/mmtf/Model/ModelElem">
-               </typeEndpoint>
-            </modelElemTypeEndpoint>
--->
-         </linkType>
       </relationshipType>
    </extension>
 
