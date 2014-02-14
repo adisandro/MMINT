@@ -16,5 +16,5 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StudentAccount" eSuperTypes="#//Account"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ProfessorAccount" eSuperTypes="#//Account"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BusinessAccount" eSuperTypes="#//Account"/>
 </ecore:EPackage>

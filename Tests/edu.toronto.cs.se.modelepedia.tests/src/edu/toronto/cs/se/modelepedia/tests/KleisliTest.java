@@ -45,12 +45,12 @@ public class KleisliTest {
 	private final static String KLEISLI_MODELRELTYPE_URI = "http://se.cs.toronto.edu/modelepedia/KleisliModelRel";
 	private final static String SRC_MODELTYPE_NAME = "Bank";
 	private final static String SRC_MODELTYPEENDPOINT_NAME = SRC_MODELTYPE_NAME;
-	private final static String TGT_MODELTYPE_NAME = "Library";
+	private final static String TGT_MODELTYPE_NAME = "Company";
 	private final static String TGT_MODELTYPEENDPOINT_NAME = TGT_MODELTYPE_NAME;
 	private final static String MODELRELTYPE_NAME = SRC_MODELTYPE_NAME + MMTF.BINARY_MODELREL_LINK_SEPARATOR + TGT_MODELTYPE_NAME;
 	private final static String OCL_QUERY_1 = "id.substring(2,2)";
 	private final static String OCL_QUERY_2 = "id.startsWith('S')";
-	private final static String OCL_QUERY_3 = "id.startsWith('P')";
+	private final static String OCL_QUERY_3 = "id.startsWith('B')";
 
 	@Test
 	public void test() throws Exception {
