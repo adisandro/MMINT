@@ -27,6 +27,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.EMFInfo;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
@@ -106,8 +107,8 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 
 		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) getElementToEdit();
 		EObject modelObj = dropObj.getModelObject();
-		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, true);
-		String newModelElemName = MultiModelRegistry.getModelElementName(eInfo, modelObj, true);
+		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, MidLevel.INSTANCES);
+		String newModelElemName = MultiModelRegistry.getModelElementName(eInfo, modelObj, MidLevel.INSTANCES);
 		ModelElementReference newModelElemRef = dropObj.getModelElementType().createInstanceAndReference(dropObj.getModelElementUri(), newModelElemName, eInfo, modelEndpointRef);
 		MAVOUtils.initializeMAVOModelElementReference(modelObj, newModelElemRef);
 
@@ -128,7 +129,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 		if (modelObj instanceof EClass) {
 supertypes:
 			for (EClass modelObjSuper : ((EClass) modelObj).getEAllSuperTypes()) {
-				String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObjSuper, false);
+				String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObjSuper, MidLevel.TYPES);
 				String modelTypeUri = uris[0];
 				String modelElemTypeUri = uris[1];
 				List<ModelEndpointReference> modelTypeEndpointRefsOrModelTypeEndpointRefsSuper = MultiModelTypeHierarchy.getEndpointReferences(modelTypeUri, modelRelType.getModelEndpointRefs());
@@ -150,8 +151,8 @@ supertypes:
 			modelElemType = MultiModelRegistry.getExtendibleElement(modelElemTypeUri, multiModel);
 		}
 
-		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, false);
-		String newModelElemTypeName = MultiModelRegistry.getModelElementName(eInfo, modelObj, false);
+		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, MidLevel.TYPES);
+		String newModelElemTypeName = MultiModelRegistry.getModelElementName(eInfo, modelObj, MidLevel.TYPES);
 		ModelElementReference newModelElemTypeRef = modelElemType.createSubtypeAndReference(modelElemTypeRef, dropObj.getModelElementUri(), newModelElemTypeName, eInfo, modelTypeEndpointRef);
 		MAVOUtils.initializeMAVOModelElementReference(modelObj, newModelElemTypeRef);
 		MMTF.createTypeHierarchy(multiModel);

@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
@@ -449,7 +450,7 @@ traceLinks:
 		EFactory modelTypeFactory = model.getMetatype().getEMFTypeRoot().getEFactoryInstance();
 		ModelElementEndpointReference modelElemTypeEndpointRef = traceLinkRef.getObject().getMetatype().getModelElemEndpointRefs().get(indexB);
 		ModelElement modelElemType = modelElemTypeEndpointRef.getModelElemRef().getObject();
-		String modelElemTypeUri = MultiModelRegistry.getModelAndModelElementUris(modelElemType.getEMFTypeObject(), false)[1];
+		String modelElemTypeUri = MultiModelRegistry.getModelAndModelElementUris(modelElemType.getEMFTypeObject(), MidLevel.TYPES)[1];
 
 		EObject[] result = null;
 		for (EReference containment : modelRootB.eClass().getEAllContainments()) {

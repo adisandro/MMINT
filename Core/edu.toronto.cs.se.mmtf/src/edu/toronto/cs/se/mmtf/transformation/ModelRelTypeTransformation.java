@@ -28,6 +28,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.EMFInfo;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
@@ -74,12 +75,12 @@ public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl
 				tgtContainerModelObj = transformModelObj(srcModelTypeEndpointRef, srcContainerModelObj, srcModelObjs, tgtModelTypeEndpointRef, tgtModelObjs);
 			}
 			// find containment based on model element types first, then fallback to first one available
-			String srcModelElemTypeContainmentUri = MultiModelRegistry.getModelAndModelElementUris(srcModelObj.eContainingFeature(), false)[1];
+			String srcModelElemTypeContainmentUri = MultiModelRegistry.getModelAndModelElementUris(srcModelObj.eContainingFeature(), MidLevel.TYPES)[1];
 			ModelElementReference srcModelElemTypeContainment = MultiModelTypeHierarchy.getReference(srcModelElemTypeContainmentUri, srcModelTypeEndpointRef.getModelElemRefs());
 			EReference containmentReference = null, fallbackContainmentReference = null;
 			for (EReference containment : tgtContainerModelObj.eClass().getEAllContainments()) {
 				if (MultiModelConstraintChecker.instanceofEMFClass(tgtModelObj, containment.getEType().getName())) {
-					String tgtModelElemTypeContainmentUri = MultiModelRegistry.getModelAndModelElementUris(containment, false)[1];
+					String tgtModelElemTypeContainmentUri = MultiModelRegistry.getModelAndModelElementUris(containment, MidLevel.TYPES)[1];
 					ModelElementReference tgtModelElemTypeContainment = MultiModelTypeHierarchy.getReference(tgtModelElemTypeContainmentUri, tgtModelTypeEndpointRef.getModelElemRefs());
 					if (
 						tgtModelElemTypeContainment == null ||

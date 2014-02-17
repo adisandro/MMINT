@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -251,7 +252,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 		}
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
-		String[] uris = MultiModelRegistry.getModelAndModelElementUris(metamodelObj, false);
+		String[] uris = MultiModelRegistry.getModelAndModelElementUris(metamodelObj, MidLevel.TYPES);
 		String modelTypeUri = uris[0];
 		String modelElemTypeUri = uris[1];
 		if (
@@ -297,7 +298,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
-		String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObj, true);
+		String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObj, MidLevel.INSTANCES);
 		String modelUri = uris[0];
 		String modelElemUri = uris[1];
 		if (!modelUri.equals(getTargetUri())) { // different model

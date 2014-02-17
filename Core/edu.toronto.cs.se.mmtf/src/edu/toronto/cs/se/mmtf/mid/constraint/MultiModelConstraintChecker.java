@@ -398,7 +398,7 @@ public class MultiModelConstraintChecker {
 			return true;
 		}
 		// check model element compliance
-		EMFInfo modelObjEInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, true), modelElemTypeEInfo = modelElemType.getEInfo();
+		EMFInfo modelObjEInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, MidLevel.INSTANCES), modelElemTypeEInfo = modelElemType.getEInfo();
 		if (modelObjEInfo.isAttribute()) {
 			// attribute compliance + class compliance
 			if (

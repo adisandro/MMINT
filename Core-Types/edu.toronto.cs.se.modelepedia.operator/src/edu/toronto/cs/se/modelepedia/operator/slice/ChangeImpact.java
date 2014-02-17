@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
@@ -107,17 +108,17 @@ public class ChangeImpact extends OperatorExecutableImpl {
 		for (List<EObject> unifiablesFromSameType : typeTable.values()) {
 			for (EObject modelEObject : unifiablesFromSameType) {
 				List<EObject> unifiables = new ArrayList<EObject>();
-				String modelEObjectUri = MultiModelRegistry.getModelAndModelElementUris(modelEObject, true)[1];
+				String modelEObjectUri = MultiModelRegistry.getModelAndModelElementUris(modelEObject, MidLevel.INSTANCES)[1];
 				unifyTable.put(modelEObjectUri, unifiables);
 				unifiables.add(modelEObject);
 			}
 			for (int i = 0; i < unifiablesFromSameType.size(); i++) {
 				EObject modelEObject = unifiablesFromSameType.get(i);
-				String modelEObjectUri = MultiModelRegistry.getModelAndModelElementUris(modelEObject, true)[1];
+				String modelEObjectUri = MultiModelRegistry.getModelAndModelElementUris(modelEObject, MidLevel.INSTANCES)[1];
 				List<EObject> unifiables = unifyTable.get(modelEObjectUri);
 				for (int j = i+1; j < unifiablesFromSameType.size(); j++) {
 					EObject modelEObject2 = unifiablesFromSameType.get(j);
-					String modelEObjectUri2 = MultiModelRegistry.getModelAndModelElementUris(modelEObject2, true)[1];
+					String modelEObjectUri2 = MultiModelRegistry.getModelAndModelElementUris(modelEObject2, MidLevel.INSTANCES)[1];
 					List<EObject> unifiables2 = unifyTable.get(modelEObjectUri2);
 					if ((((MAVOElement) modelEObject).isVar() || ((MAVOElement) modelEObject2).isVar())) {
 						unifiables.add(modelEObject2);
@@ -148,7 +149,7 @@ public class ChangeImpact extends OperatorExecutableImpl {
 				// navigate tgt mergeability
 				List<EObject> impactedUnifiables = impactedUnifyTable.get(impactedModelElemRef.getUri());
 				for (EObject impactedUnifiable : impactedUnifiables) {
-					String impactedModelElemUri = MultiModelRegistry.getModelAndModelElementUris(impactedUnifiable, true)[1];
+					String impactedModelElemUri = MultiModelRegistry.getModelAndModelElementUris(impactedUnifiable, MidLevel.INSTANCES)[1];
 					// create or get impacted model element ref
 					ModelElementReference newImpactedModelElemRef = MultiModelTypeHierarchy.getReference(impactedModelElemUri, impactedModelEndpointRef.getModelElemRefs());
 					if (newImpactedModelElemRef == null) {

@@ -17,27 +17,28 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 
 import edu.toronto.cs.se.mmtf.MMTF;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
 public class RelationshipDiagramOutlineContentProvider extends AdapterFactoryContentProvider {
 
-	private boolean isInstancesLevel;
+	private MidLevel level;
 
-	public RelationshipDiagramOutlineContentProvider(AdapterFactory adapterFactory, boolean isInstancesLevel) {
+	public RelationshipDiagramOutlineContentProvider(AdapterFactory adapterFactory, MidLevel level) {
 
 		super(adapterFactory);
-		this.isInstancesLevel = isInstancesLevel;
+		this.level = level;
 	}
 
 	@Override
 	public boolean hasChildren(Object object) {
 
 		boolean hasChildren;
-		if (isInstancesLevel && (boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ALTERNATIVE_MODEL_TREE_ENABLED) && object instanceof EObject) {
+		if (level == MidLevel.INSTANCES && (boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ALTERNATIVE_MODEL_TREE_ENABLED) && object instanceof EObject) {
 			RelationshipDiagramOutlineItemProvider alternativeProvider = new RelationshipDiagramOutlineItemProvider(adapterFactory);
 			hasChildren = alternativeProvider.hasChildren(object);
 		}
-		else if (!isInstancesLevel && object instanceof EClass) {
+		else if (level == MidLevel.TYPES && object instanceof EClass) {
 			RelationshipDiagramOutlineEClassItemProvider alternativeProvider = new RelationshipDiagramOutlineEClassItemProvider(adapterFactory);
 			hasChildren = alternativeProvider.hasChildren(object);
 		}
@@ -52,11 +53,11 @@ public class RelationshipDiagramOutlineContentProvider extends AdapterFactoryCon
 	public Object[] getChildren(Object object) {
 
 		Object[] children;
-		if (isInstancesLevel && (boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ALTERNATIVE_MODEL_TREE_ENABLED) && object instanceof EObject) {
+		if (level == MidLevel.INSTANCES && (boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ALTERNATIVE_MODEL_TREE_ENABLED) && object instanceof EObject) {
 			RelationshipDiagramOutlineItemProvider alternativeProvider = new RelationshipDiagramOutlineItemProvider(adapterFactory);
 			children = alternativeProvider.getChildren(object).toArray();
 		}
-		else if (!isInstancesLevel && object instanceof EClass) {
+		else if (level == MidLevel.TYPES && object instanceof EClass) {
 			RelationshipDiagramOutlineEClassItemProvider alternativeProvider = new RelationshipDiagramOutlineEClassItemProvider(adapterFactory);
 			children = alternativeProvider.getChildren(object).toArray();
 		}

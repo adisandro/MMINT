@@ -103,7 +103,7 @@ public class RelationshipDiagramOutlineDragListener extends DragSourceAdapter {
 				modelObj = (EObject) selected;
 			}
 			// assign to container
-			String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, isInstancesLevel)[1];
+			String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, modelRel.getLevel())[1];
 			for (ModelEndpointReference modelEndpointRef : modelRel.getModelEndpointRefs()) {
 				try {
 					if (isInstancesLevel) {
@@ -121,7 +121,7 @@ public class RelationshipDiagramOutlineDragListener extends DragSourceAdapter {
 				catch (MMTFException e) {
 					continue;
 				}
-				RelationshipDiagramOutlineDropObject dropObject = new RelationshipDiagramOutlineDropObject(modelObj, isInstancesLevel, modelEndpointRef, modelElemType, modelElemUri);
+				RelationshipDiagramOutlineDropObject dropObject = new RelationshipDiagramOutlineDropObject(modelObj, modelRel.getLevel(), modelEndpointRef, modelElemType, modelElemUri);
 				transferData.add(dropObject);
 			}
 		}

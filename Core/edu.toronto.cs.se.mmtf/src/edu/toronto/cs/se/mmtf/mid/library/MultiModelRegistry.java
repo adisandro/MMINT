@@ -33,6 +33,7 @@ import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
@@ -84,17 +85,17 @@ public class MultiModelRegistry {
 		return false;
 	}
 
-	public static String[] getModelAndModelElementUris(EObject modelObj, boolean isInstancesLevel) {
+	public static String[] getModelAndModelElementUris(EObject modelObj, MidLevel level) {
 
 		String modelUri, modelElemUri;
 		String attributeFeatureName = null;
-		if (isInstancesLevel && modelObj instanceof PrimitiveEObjectWrapper) {
+		if (level == MidLevel.INSTANCES && modelObj instanceof PrimitiveEObjectWrapper) {
 			attributeFeatureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
 			modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
 		}
 		URI emfUri = EcoreUtil.getURI(modelObj);
 		String uri = emfUri.toString();
-		if (isInstancesLevel) {
+		if (level == MidLevel.INSTANCES) {
 			modelElemUri = uri.substring(RESOURCE_URI_PREFIX.length());
 			modelUri = modelElemUri.substring(0, modelElemUri.indexOf(MMTF.ECORE_MODEL_URI_SEPARATOR));
 			if (attributeFeatureName != null) {
@@ -110,12 +111,12 @@ public class MultiModelRegistry {
 	}
 
 	//TODO MMTF[MODELELEMENT] some info here are redundant and/or misplaced, review EMFInfo
-	public static EMFInfo getModelElementEMFInfo(EObject modelObj, boolean isInstancesLevel) {
+	public static EMFInfo getModelElementEMFInfo(EObject modelObj, MidLevel level) {
 
 		EMFInfo eInfo = MidFactory.eINSTANCE.createEMFInfo();
 		String className, featureName = null, relatedClassName = null;
 		boolean isAttribute = false;
-		if (isInstancesLevel) {
+		if (level == MidLevel.INSTANCES) {
 			if (modelObj instanceof PrimitiveEObjectWrapper) {
 				className = ((PrimitiveEObjectWrapper) modelObj).getOwner().eClass().getName();
 				featureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
@@ -153,10 +154,10 @@ public class MultiModelRegistry {
 		return eInfo;
 	}
 
-	public static String getModelElementName(EMFInfo eInfo, EObject modelObj, boolean isInstancesLevel) {
+	public static String getModelElementName(EMFInfo eInfo, EObject modelObj, MidLevel level) {
 
 		String name;
-		if (isInstancesLevel) {
+		if (level == MidLevel.INSTANCES) {
 			ComposedAdapterFactory adapterFactory = GMFDiagramUtils.getAdapterFactory();
 			AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
 			name = eInfo.toInstanceString();
@@ -239,7 +240,7 @@ public class MultiModelRegistry {
 	public static ModelElementReference getModelElementReference(ModelEndpointReference modelEndpointRef, EObject modelObj) {
 
 		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelObj);
-		String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1] + MMTF.ROLE_SEPARATOR + modelElemType.getUri();
+		String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, MidLevel.INSTANCES)[1] + MMTF.ROLE_SEPARATOR + modelElemType.getUri();
 
 		return MultiModelTypeHierarchy.getReference(modelElemUri, modelEndpointRef.getModelElemRefs());
 	}

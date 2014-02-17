@@ -23,6 +23,7 @@ import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
@@ -339,7 +340,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 */
 	private String getModelRelExtendedUri(KleisliModelRel modelRel) {
 
-		String baseModelRelExtendedUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(modelRel, true)[0], modelRel.getMetatype().getName());
+		String baseModelRelExtendedUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(modelRel, MidLevel.INSTANCES)[0], modelRel.getMetatype().getName());
 		int iModelRelExtendedUri = -1;
 		do {
 			iModelRelExtendedUri++;

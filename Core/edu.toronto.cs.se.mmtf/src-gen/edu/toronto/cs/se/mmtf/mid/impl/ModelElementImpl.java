@@ -19,6 +19,7 @@ import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.MidPackage;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
@@ -425,10 +426,10 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	public static ModelElementReference createInstanceAndReference(EObject modelObj, String newModelElemName, ModelEndpointReference containerModelEndpointRef) throws MMTFException {
 
 		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(containerModelEndpointRef, modelObj);
-		String newModelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, true)[1];
-		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, true);
+		String newModelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, MidLevel.INSTANCES)[1];
+		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, MidLevel.INSTANCES);
 		if (newModelElemName == null) {
-			newModelElemName = MultiModelRegistry.getModelElementName(eInfo, modelObj, true);
+			newModelElemName = MultiModelRegistry.getModelElementName(eInfo, modelObj, MidLevel.INSTANCES);
 		}
 		ModelElementReference newModelElemRef = modelElemType.createInstanceAndReference(newModelElemUri, newModelElemName, eInfo, containerModelEndpointRef);
 

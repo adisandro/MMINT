@@ -229,7 +229,7 @@ public class MMTF implements MMTFConstants {
 					ModelElement newModelElemType = MultiModelTypeRegistry.getType(newType.getUri());
 					if (newModelElemType == null) { // create new model element type
 						EObject modelElemTypeObj = MultiModelTypeIntrospection.getPointer(rootModelTypeObj.eResource(), newType.getUri());
-						EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelElemTypeObj, false);
+						EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelElemTypeObj, MidLevel.TYPES);
 						try {
 							newModelElemType = MultiModelHeavyTypeFactory.createHeavyModelElementType(
 								newType.getUri(),

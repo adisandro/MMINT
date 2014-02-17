@@ -18,29 +18,30 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 
 import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.mid.EMFInfo;
+import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
 public class ModelElementLabelProvider extends AdapterFactoryLabelProvider {
 
-	private boolean isInstancesLevel;
+	private MidLevel level;
 
-	public ModelElementLabelProvider(AdapterFactory adapterFactory, boolean isInstancesLevel) {
+	public ModelElementLabelProvider(AdapterFactory adapterFactory, MidLevel level) {
 
 		super(adapterFactory);
-		this.isInstancesLevel = isInstancesLevel;
+		this.level = level;
 	}
 
 	@Override
 	public String getText(Object object) {
 
 		String text;
-		if (isInstancesLevel && (boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ALTERNATIVE_MODEL_TREE_ENABLED) && (object instanceof AttributeValueWrapperItemProvider || object instanceof EObject)) {
+		if (level == MidLevel.INSTANCES && (boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ALTERNATIVE_MODEL_TREE_ENABLED) && (object instanceof AttributeValueWrapperItemProvider || object instanceof EObject)) {
 			if (object instanceof AttributeValueWrapperItemProvider) {
 				object = new PrimitiveEObjectWrapper((AttributeValueWrapperItemProvider) object);
 			}
-			EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo((EObject) object, true);
+			EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo((EObject) object, MidLevel.INSTANCES);
 			text = eInfo.toInstanceString();
 			if (object instanceof PrimitiveEObjectWrapper) {
 				text = text.replace(MMTF.MODELELEMENT_PRIMITIVEVALUE_PLACEHOLDER, ((PrimitiveEObjectWrapper) object).getValue().toString());
