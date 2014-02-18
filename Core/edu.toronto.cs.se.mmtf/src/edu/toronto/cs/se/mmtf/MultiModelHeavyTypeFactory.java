@@ -17,7 +17,6 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
@@ -32,7 +31,6 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -527,21 +525,22 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 * 
 	 * @param extensionType
 	 *            The extension info for the new operator type.
-	 * @param executable
-	 *            The implementation of the new operator type.
-	 * @param newOperatorTypeClass
-	 *            The class of the new operator type.
 	 * @return The created operator type.
 	 * @throws MMTFException
-	 *             If the uri of the new operator type is already registered in
-	 *             the repository.
+	 *             If the operator implementation is missing, or if the uri of
+	 *             the new operator type is already registered in the
+	 *             repository.
 	 */
-	public Operator createHeavyOperatorType(ExtensionType extensionType, OperatorExecutable executable, EClass newOperatorTypeClass) throws MMTFException {
+	public Operator createHeavyOperatorType(ExtensionType extensionType) throws MMTFException {
 
-		Operator newOperatorType = (Operator) OperatorFactory.eINSTANCE.create(newOperatorTypeClass);
+		if (extensionType.getNewType() == null) {
+			throw new MMTFException("Missing operator implementation for " + extensionType.getName());
+		}
+
+		Operator newOperatorType = (Operator) extensionType.getNewType();
 		Operator operatorType = getSupertype(newOperatorType, extensionType.getUri(), extensionType.getSupertypeUri());
 		addHeavyType(newOperatorType, operatorType, extensionType.getUri(), extensionType.getName());
-		addOperatorType(newOperatorType, executable, MMTF.repository);
+		addOperatorType(newOperatorType, MMTF.repository);
 
 		return newOperatorType;
 	}

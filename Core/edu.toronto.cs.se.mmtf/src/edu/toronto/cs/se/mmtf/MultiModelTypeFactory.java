@@ -31,7 +31,6 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -388,14 +387,11 @@ public class MultiModelTypeFactory {
 	 * 
 	 * @param newOperatorType
 	 *            The new operator type to be added.
-	 * @param executable
-	 *            The implementation of the new operator type.
 	 * @param multiModel
 	 *            The multimodel that will contain the new operator type.
 	 */
-	protected static void addOperatorType(Operator newOperatorType, OperatorExecutable executable, MultiModel multiModel) {
+	protected static void addOperatorType(Operator newOperatorType, MultiModel multiModel) {
 
-		newOperatorType.setExecutable(executable);
 		multiModel.getOperators().add(newOperatorType);
 	}
 

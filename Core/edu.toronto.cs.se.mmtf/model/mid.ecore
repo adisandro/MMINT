@@ -1134,6 +1134,10 @@
         </eAnnotations>
       </eOperations>
       <eOperations name="deleteType" eExceptions="#//MMTFException"/>
+      <eOperations name="execute" lowerBound="1" upperBound="-1" eType="#//Model"
+          eExceptions="#//operator/Exception">
+        <eParameters name="actualParameters" lowerBound="1" upperBound="-1" eType="#//Model"/>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
           eType="#//operator/Parameter" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1152,25 +1156,37 @@
           <details key="documentation" value="The hash map for all input and output parameters of this operator, using their names as keys."/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="executable" lowerBound="1"
-          eType="#//operator/OperatorExecutable" transient="true" containment="true">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="inputSubdir" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The executable implementation of the operator."/>
+          <details key="documentation" value="The subdirectory from where to get the input, when used in an operator chain."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="previousOperator" eType="#//operator/Operator">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The previous operator, when used in an operator chain."/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConversionOperator" eSuperTypes="#//operator/Operator">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="conversion executable"/>
+        <details key="constraints" value="conversion"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A conversion operator type or a conversion operator instance, enables substitution from the input parameter to the output parameter for other operators."/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="conversion" value="inputs->size() = 1 and outputs->size() = 1"/>
-        <details key="executable" value="executable.oclIsKindOf(ConversionOperatorExecutable)"/>
       </eAnnotations>
       <eOperations name="deleteType" eExceptions="#//MMTFException"/>
+      <eOperations name="cleanup" eExceptions="#//operator/Exception"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RandomOperator" eSuperTypes="#//operator/Operator">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" lowerBound="1"
+          eType="#//operator/Random">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The random variable."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Parameter">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1192,55 +1208,6 @@
           eType="#//Model">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The model type or model instance identified by this parameter (types: formal argument; instances: actual argument)."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OperatorExecutable" abstract="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The executable implementation interface of an operator."/>
-      </eAnnotations>
-      <eOperations name="execute" lowerBound="1" upperBound="-1" eType="#//Model"
-          eExceptions="#//operator/Exception">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Executes the operator."/>
-        </eAnnotations>
-        <eParameters name="actualParameters" lowerBound="1" upperBound="-1" eType="#//Model">
-          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="documentation" value="The list of model parameters."/>
-          </eAnnotations>
-        </eParameters>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="inputSubdir" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The subdirectory from where to get the input, when used in an operator chain."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="previousExecutable" eType="#//operator/OperatorExecutable">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The previous operator executable, when used in an operator chain."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ConversionOperatorExecutable" abstract="true"
-        eSuperTypes="#//operator/OperatorExecutable">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The executable implementation interface of a conversion operator."/>
-      </eAnnotations>
-      <eOperations name="cleanup" eExceptions="#//operator/Exception">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Cleans up the output of the conversion operator, to allow for a transparent conversion."/>
-        </eAnnotations>
-      </eOperations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="RandomOperatorExecutable" abstract="true"
-        eSuperTypes="#//operator/OperatorExecutable">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The executable implementation interface of a random operator."/>
-      </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" lowerBound="1"
-          eType="#//operator/Random">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The random variable."/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>

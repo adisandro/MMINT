@@ -121,10 +121,6 @@ public interface MMTFConstants {
 
 	/** The Operators extension point's id. */
 	public final static String OPERATORS_EXT_POINT = "edu.toronto.cs.se.mmtf.operators";
-	/** The Operators extension point's class attribute. */
-	public final static String OPERATORS_ATTR_CLASS = "class";
-	/** The Operators extension point's isConversion attribute. */
-	public final static String OPERATORS_ATTR_ISCONVERSION = "isConversion";
 	/** The Operators extension point's input child. */
 	public final static String OPERATORS_CHILD_INPUT = "input";
 	/** The Operators extension point's output child. */

@@ -388,18 +388,10 @@ public class MMTF implements MMTFConstants {
 
 		try {
 			ExtensionType extensionType = new ExtensionType(extensionConfig, typeFactory);
-			EClass newOperatorTypeClass = (Boolean.parseBoolean(extensionConfig.getAttribute(OPERATORS_ATTR_ISCONVERSION))) ?
-				OperatorPackage.eINSTANCE.getConversionOperator() :
-				OperatorPackage.eINSTANCE.getOperator();
-			OperatorExecutable executable = (OperatorExecutable) extensionConfig.createExecutableExtension(OPERATORS_ATTR_CLASS);
-			if (executable instanceof RandomOperatorExecutableImpl) {
-				((RandomOperatorExecutableImpl) executable).setState(new Random());
-			}
-			Operator newOperatorType = extensionType.getFactory().createHeavyOperatorType(
-				extensionType,
-				executable,
-				newOperatorTypeClass
-			);
+			Operator newOperatorType = extensionType.getFactory().createHeavyOperatorType(extensionType);
+//			if (newOperatorType instanceof RandomOperator) {
+//				((RandomOperator) newOperatorType).setState(new Random());
+//			}
 
 			return newOperatorType;
 		}
