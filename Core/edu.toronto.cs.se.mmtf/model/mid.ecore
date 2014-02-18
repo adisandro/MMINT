@@ -1182,7 +1182,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RandomOperator" eSuperTypes="#//operator/Operator">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" lowerBound="1"
-          eType="#//operator/Random">
+          eType="#//operator/Random" transient="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The random variable."/>
         </eAnnotations>

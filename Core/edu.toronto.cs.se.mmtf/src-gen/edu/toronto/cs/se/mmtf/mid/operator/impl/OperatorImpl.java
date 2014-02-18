@@ -439,14 +439,11 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+
+		throw new MMTFException("The default execute() function must be overridden");
 	}
 
 } //OperatorImpl

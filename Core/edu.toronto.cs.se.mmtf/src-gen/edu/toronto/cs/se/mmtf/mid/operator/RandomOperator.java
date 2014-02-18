@@ -40,7 +40,7 @@ public interface RandomOperator extends Operator {
 	 * @return the value of the '<em>State</em>' attribute.
 	 * @see #setState(Random)
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getRandomOperator_State()
-	 * @model dataType="edu.toronto.cs.se.mmtf.mid.operator.Random" required="true"
+	 * @model dataType="edu.toronto.cs.se.mmtf.mid.operator.Random" required="true" transient="true"
 	 * @generated
 	 */
 	Random getState();

@@ -53,17 +53,6 @@ public class ConversionOperatorImpl extends OperatorImpl implements ConversionOp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void cleanup() throws Exception {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
@@ -87,6 +76,14 @@ public class ConversionOperatorImpl extends OperatorImpl implements ConversionOp
 
 		super.deleteType();
 		getInputs().get(0).getModel().getConversionOperators().remove(this);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void cleanup() throws Exception {
+
+		throw new MMTFException("The default cleanup() function must be overridden");
 	}
 
 } //ConversionOperatorImpl

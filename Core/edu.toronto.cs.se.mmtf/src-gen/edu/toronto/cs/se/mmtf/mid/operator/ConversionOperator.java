@@ -44,8 +44,13 @@ public interface ConversionOperator extends Operator {
 	void deleteType() throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Cleans up temporary artifacts created during the
+	 * execution of the operator, when this operator is used in a conversion
+	 * chain and not standalone.
+	 * 
+	 * @throws Exception
+	 *             If something went wrong during the cleanup of the operator.
+	 *             <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.operator.Exception"
 	 * @generated
 	 */

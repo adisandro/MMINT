@@ -67,4 +67,39 @@
       </menuContribution>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmtf.operators">
+      <operatorType>
+         <type
+               name="KleisliModelRelTypeTransformation"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_KleisliModelRelTypeTransformation"
+               class="edu.toronto.cs.se.modelepedia.kleisli.transformation.KleisliModelRelTypeTransformation">
+         </type>
+         <input>
+            <parameter
+                  isVararg="false"
+                  name="kModelRelType"
+                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel">
+            </parameter>
+            <parameter
+                  isVararg="false"
+                  name="srcModel"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+            </parameter>
+         </input>
+         <output>
+            <parameter
+                  isVararg="false"
+                  name="tgtModel"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+            </parameter>
+            <parameter
+                  isVararg="false"
+                  name="kTraceModelRel"
+                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel">
+            </parameter>
+         </output>
+      </operatorType>
+   </extension>
+
 </plugin>

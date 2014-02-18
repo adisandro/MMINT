@@ -176,9 +176,17 @@ public interface Operator extends ExtendibleElement {
 	void deleteType() throws MMTFException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.operator.Exception" actualParametersRequired="true" actualParametersMany="true"
+	 * <!-- begin-user-doc --> Executes an instance of this operator type.
+	 * 
+	 * @param actualParameters
+	 *            A list of input model instances.
+	 * @return A list of output model instances.
+	 * @throws Exception
+	 *             If something went wrong during the execution of the operator.
+	 *             <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmtf.mid.operator.Exception"
+	 *        actualParametersRequired="true" actualParametersMany="true"
 	 * @generated
 	 */
 	EList<Model> execute(EList<Model> actualParameters) throws Exception;

@@ -218,4 +218,39 @@
       </operatorType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmtf.operators">
+      <operatorType>
+         <type
+               name="ModelRelTypeTransformation"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelRelTypeTransformation"
+               class="edu.toronto.cs.se.mmtf.transformation.ModelRelTypeTransformation">
+         </type>
+         <input>
+            <parameter
+                  isVararg="false"
+                  name="modelRelType"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+            </parameter>
+            <parameter
+                  isVararg="false"
+                  name="srcModel"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+            </parameter>
+         </input>
+         <output>
+            <parameter
+                  isVararg="false"
+                  name="tgtModel"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+            </parameter>
+            <parameter
+                  isVararg="false"
+                  name="traceModelRel"
+                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+            </parameter>
+         </output>
+      </operatorType>
+   </extension>
+
 </plugin>
