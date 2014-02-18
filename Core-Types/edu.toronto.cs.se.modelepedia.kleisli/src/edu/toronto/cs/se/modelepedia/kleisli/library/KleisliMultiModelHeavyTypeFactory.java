@@ -20,6 +20,7 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.repository.ExtensionType;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
@@ -70,12 +71,12 @@ public class KleisliMultiModelHeavyTypeFactory extends MultiModelHeavyTypeFactor
 	 * Kleisli version. {@inheritDoc}
 	 */
 	@Override
-	public ModelRel createHeavyModelRelType(String newModelRelTypeUri, String modelRelTypeUri, String newModelRelTypeName, boolean isAbstract, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMTFException {
+	public ModelRel createHeavyModelRelType(ExtensionType extensionType, boolean isAbstract, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
 		KleisliModelRel newModelRelType = (isBinary) ?
 			KleisliFactory.eINSTANCE.createKleisliBinaryModelRel() :
 			KleisliFactory.eINSTANCE.createKleisliModelRel();
-		super.addHeavyModelRelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, isAbstract, constraintLanguage, constraintImplementation);
+		super.addHeavyModelRelType(newModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), isAbstract, constraintLanguage, constraintImplementation);
 
 		return newModelRelType;
 	}
@@ -84,10 +85,10 @@ public class KleisliMultiModelHeavyTypeFactory extends MultiModelHeavyTypeFactor
 	 * Kleisli version. {@inheritDoc}
 	 */
 	@Override
-	public ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(String newModelTypeEndpointUri, String modelTypeEndpointUri, String newModelTypeEndpointName, Model targetModelType, ModelRel modelRelType) throws MMTFException {
+	public ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(ExtensionType extensionType, Model targetModelType, ModelRel modelRelType) throws MMTFException {
 
 		KleisliModelEndpoint newModelTypeEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
-		ModelEndpointReference newModelTypeEndpointRef = super.addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri, newModelTypeEndpointName, targetModelType, modelRelType);
+		ModelEndpointReference newModelTypeEndpointRef = super.addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, modelRelType);
 		kleisliCopyHeavyModelType(newModelTypeEndpoint);
 
 		return newModelTypeEndpointRef;

@@ -27,11 +27,11 @@
          point="edu.toronto.cs.se.mmtf.relationships">
       <relationshipType>
          <modelType
-               factoryClass="edu.toronto.cs.se.modelepedia.kleisli.library.KleisliMultiModelHeavyTypeFactory"
                isAbstract="true">
             <type
                   name="KleisliModelRel"
-                  uri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel">
+                  uri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel"
+                  class="edu.toronto.cs.se.modelepedia.kleisli.library.KleisliMultiModelHeavyTypeFactory">
             </type>
             <constraint
                   implementation="edu.toronto.cs.se.modelepedia.kleisli.constraint.KleisliModelRelTypeConstraint"
@@ -41,7 +41,8 @@
          <modelTypeEndpoint>
             <type
                   name="KleisliModelEndpoint"
-                  uri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel-Model/KleisliModelEndpoint">
+                  uri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel-Model/KleisliModelEndpoint"
+                  class="edu.toronto.cs.se.modelepedia.kleisli.library.KleisliMultiModelHeavyTypeFactory">
             </type>
             <typeEndpoint
                   lowerBound="0"

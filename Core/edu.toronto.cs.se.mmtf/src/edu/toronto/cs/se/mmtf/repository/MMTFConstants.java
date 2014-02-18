@@ -66,6 +66,8 @@ public interface MMTFConstants {
 	public final static String EXTENDIBLETYPE_ATTR_NAME = "name";
 	/** An extension point's type child's uri attribute. */
 	public final static String EXTENDIBLETYPE_ATTR_URI = "uri";
+	/** An extension point's type child's class attribute. */
+	public final static String EXTENDIBLETYPE_ATTR_CLASS = "class";
 	/** An extension point's type superType child. */
 	public final static String EXTENDIBLETYPE_CHILD_SUPERTYPE = "superType";
 	/** An extension point's type superType child's uri attribute. */
@@ -86,8 +88,6 @@ public interface MMTFConstants {
 	public final static String MODELS_CHILD_MODELTYPE = "modelType";
 	/** The Models extension point's modelType's abstract attribute. */
 	public final static String MODELS_MODELTYPE_ATTR_ABSTRACT = "isAbstract";
-	/** The Models extension point's modelType's factoryClass attribute. */
-	public final static String MODELS_MODELTYPE_ATTR_FACTORYCLASS = "factoryClass";
 	/** The Models extension point's modelType's constraint child. */
 	public final static String MODELS_MODELTYPE_CHILD_CONSTRAINT = "constraint";
 	/** The Models extension point's modelType's constraint child's language attribute. */

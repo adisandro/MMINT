@@ -71,6 +71,16 @@
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="class" type="string">
+            <annotation>
+               <documentation>
+                  The fully qualified name of a Java class that: a) implements this type; or b) extends MultiModelHeavyTypeFactory and handles the creation of this type in a custom way.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java"/>
+               </appinfo>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

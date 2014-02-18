@@ -43,6 +43,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipFactory;
+import edu.toronto.cs.se.mmtf.repository.ExtensionType;
 
 /**
  * The factory to create/modify/remove "heavy" types, i.e. types from
@@ -227,13 +228,8 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	/**
 	 * Creates and adds a "heavy" model type to the repository.
 	 * 
-	 * @param newModelTypeUri
-	 *            The uri of the new model type.
-	 * @param modelTypeUri
-	 *            The uri of the supertype of the new model type, null if the
-	 *            root model type should be used as supertype.
-	 * @param newModelTypeName
-	 *            The name of the new model type.
+	 * @param extensionType
+	 *            The extension info for the new model type.
 	 * @param isAbstract
 	 *            True if the new model type is abstract, false otherwise.
 	 * @param constraintLanguage
@@ -249,10 +245,12 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             or if the uri of the new model type is already registered in
 	 *             the repository.
 	 */
-	public static Model createHeavyModelType(String newModelTypeUri, String modelTypeUri, String newModelTypeName, boolean isAbstract, String constraintLanguage, String constraintImplementation) throws MMTFException {
+	public Model createHeavyModelType(ExtensionType extensionType, boolean isAbstract, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
-		Model newModelType = MidFactory.eINSTANCE.createModel();
-		addHeavyModelType(newModelType, newModelTypeUri, modelTypeUri, newModelTypeName, isAbstract, constraintLanguage, constraintImplementation);
+		Model newModelType = (extensionType.getNewType() == null) ?
+			MidFactory.eINSTANCE.createModel() :
+			(Model) extensionType.getNewType();
+		addHeavyModelType(newModelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), isAbstract, constraintLanguage, constraintImplementation);
 
 		return newModelType;
 	}
@@ -260,13 +258,8 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	/**
 	 * Creates and adds a "heavy" model element type to the repository.
 	 * 
-	 * @param newModelElemTypeUri
-	 *            The uri of the new model element type.
-	 * @param modelElemTypeUri
-	 *            The uri of the supertype of the new model element type, null
-	 *            if the root model element type should be used as supertype.
-	 * @param newModelElemTypeName
-	 *            The name of the new model element type.
+	 * @param extensionType
+	 *            The extension info for the new model element type.
 	 * @param eInfo
 	 *            The EMF info of the new model element type.
 	 * @param modelType
@@ -276,11 +269,13 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new model element type is already
 	 *             registered in the repository.
 	 */
-	public static ModelElement createHeavyModelElementType(String newModelElemTypeUri, String modelElemTypeUri, String newModelElemTypeName, EMFInfo eInfo, Model modelType) throws MMTFException {
+	public ModelElement createHeavyModelElementType(ExtensionType extensionType, EMFInfo eInfo, Model modelType) throws MMTFException {
 
-		ModelElement newModelElemType = MidFactory.eINSTANCE.createModelElement();
-		ModelElement modelElemType = getSupertype(newModelElemType, newModelElemTypeUri, modelElemTypeUri);
-		addHeavyType(newModelElemType, modelElemType, newModelElemTypeUri, newModelElemTypeName);
+		ModelElement newModelElemType = (extensionType.getNewType() == null) ?
+			MidFactory.eINSTANCE.createModelElement() :
+			(ModelElement) extensionType.getNewType();
+		ModelElement modelElemType = getSupertype(newModelElemType, extensionType.getUri(), extensionType.getSupertypeUri());
+		addHeavyType(newModelElemType, modelElemType, extensionType.getUri(), extensionType.getName());
 		addModelElementType(newModelElemType, eInfo, modelType);
 
 		return newModelElemType;
@@ -289,14 +284,8 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	/**
 	 * Creates and adds a "heavy" model relationship type to the repository.
 	 * 
-	 * @param newModelRelTypeUri
-	 *            The uri of the new model relationship type.
-	 * @param modelRelTypeUri
-	 *            The uri of the supertype of the new model relationship type,
-	 *            null if the root model relationship type should be used as
-	 *            supertype.
-	 * @param newModelRelTypeName
-	 *            The name of the new model relationship type.
+	 * @param extensionType
+	 *            The extension info for the new model relationship type.
 	 * @param isAbstract
 	 *            True if the new model relationship type is abstract, false
 	 *            otherwise.
@@ -318,12 +307,18 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             extension, or if the uri of the new model relationship type
 	 *             is already registered in the repository.
 	 */
-	public ModelRel createHeavyModelRelType(String newModelRelTypeUri, String modelRelTypeUri, String newModelRelTypeName, boolean isAbstract, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMTFException {
+	public ModelRel createHeavyModelRelType(ExtensionType extensionType, boolean isAbstract, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMTFException {
 
-		ModelRel newModelRelType = (isBinary) ?
-			RelationshipFactory.eINSTANCE.createBinaryModelRel() :
-			RelationshipFactory.eINSTANCE.createModelRel();
-		addHeavyModelRelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, isAbstract, constraintLanguage, constraintImplementation);
+		ModelRel newModelRelType;
+		if (extensionType.getNewType() == null) {
+			newModelRelType = (isBinary) ?
+				RelationshipFactory.eINSTANCE.createBinaryModelRel() :
+				RelationshipFactory.eINSTANCE.createModelRel();
+		}
+		else {
+			newModelRelType = (ModelRel) extensionType.getNewType();
+		}
+		addHeavyModelRelType(newModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), isAbstract, constraintLanguage, constraintImplementation);
 
 		return newModelRelType;
 	}
@@ -332,13 +327,8 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 * Creates and adds a "heavy" model type endpoint and a reference to it to
 	 * the repository.
 	 * 
-	 * @param newModelTypeEndpointUri
-	 *            The uri of the new model type endpoint.
-	 * @param modelTypeEndpointUri
-	 *            The uri of the supertype of the new model type endpoint, null
-	 *            if the root model type endpoint should be used as supertype.
-	 * @param newModelTypeEndpointName
-	 *            The name of the new model type endpoint.
+	 * @param extensionType
+	 *            The extension info for the new model type endpoint.
 	 * @param targetModelType
 	 *            The model type that is the target of the new model type
 	 *            endpoint.
@@ -350,10 +340,12 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new model type endpoint is already
 	 *             registered in the repository.
 	 */
-	public ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(String newModelTypeEndpointUri, String modelTypeEndpointUri, String newModelTypeEndpointName, Model targetModelType, ModelRel modelRelType) throws MMTFException {
+	public ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(ExtensionType extensionType, Model targetModelType, ModelRel modelRelType) throws MMTFException {
 
-		ModelEndpoint newModelTypeEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
-		ModelEndpointReference newModelTypeEndpointRef = addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri, newModelTypeEndpointName, targetModelType, modelRelType);
+		ModelEndpoint newModelTypeEndpoint = (extensionType.getNewType() == null) ?
+			MidFactory.eINSTANCE.createModelEndpoint() :
+			(ModelEndpoint) extensionType.getNewType();
+		ModelEndpointReference newModelTypeEndpointRef = addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, modelRelType);
 
 		return newModelTypeEndpointRef;
 	}
@@ -362,17 +354,10 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 * Creates and adds a "heavy" link type and a reference to it to the
 	 * repository.
 	 * 
-	 * @param newLinkTypeUri
-	 *            The uri of the new link type.
-	 * @param linkTypeUri
-	 *            The uri of the supertype of the new link type, null if the
-	 *            root link type should be used as supertype.
-	 * @param newLinkTypeName
-	 *            The name of the new link type.
-	 * @param newLinkTypeClass
-	 *            The class of the new link type.
-	 * @param newLinkTypeRefClass
-	 *            The class of the new reference to the new link type.
+	 * @param extensionType
+	 *            The extension info for the new link type.
+	 * @param isBinary
+	 *            True if the new link type is binary, false otherwise.
 	 * @param modelRelType
 	 *            The model relationship type that will contain the new link
 	 *            type.
@@ -381,13 +366,21 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new link type is already registered in the
 	 *             repository.
 	 */
-	public static LinkReference createHeavyLinkTypeAndLinkTypeReference(String newLinkTypeUri, String linkTypeUri, String newLinkTypeName, EClass newLinkTypeClass, EClass newLinkTypeRefClass, ModelRel modelRelType) throws MMTFException {
+	public LinkReference createHeavyLinkTypeAndLinkTypeReference(ExtensionType extensionType, boolean isBinary, ModelRel modelRelType) throws MMTFException {
 
-		Link newLinkType = (Link) RelationshipFactory.eINSTANCE.create(newLinkTypeClass);
-		Link linkType = getSupertype(newLinkType, newLinkTypeUri, linkTypeUri);
-		addHeavyType(newLinkType, linkType, newLinkTypeUri, newLinkTypeName);
+		Link newLinkType;
+		if (extensionType.getNewType() == null) {
+			newLinkType = (isBinary) ?
+				RelationshipFactory.eINSTANCE.createBinaryLink() :
+				RelationshipFactory.eINSTANCE.createLink();
+		}
+		else {
+			newLinkType = (Link) extensionType.getNewType();
+		}
+		Link linkType = getSupertype(newLinkType, extensionType.getUri(), extensionType.getSupertypeUri());
+		addHeavyType(newLinkType, linkType, extensionType.getUri(), extensionType.getName());
 		addLinkType(newLinkType, linkType, modelRelType);
-		LinkReference linkTypeRef = MultiModelTypeHierarchy.getReference(linkTypeUri, modelRelType.getLinkRefs());
+		LinkReference linkTypeRef = MultiModelTypeHierarchy.getReference(extensionType.getSupertypeUri(), modelRelType.getLinkRefs());
 		LinkReference newLinkTypeRef = newLinkType.createTypeReference(linkTypeRef, true, modelRelType);
 
 		return newLinkTypeRef;
@@ -397,14 +390,8 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 * Creates and adds a "heavy" model element type endpoint and a reference to
 	 * it to the repository.
 	 * 
-	 * @param newModelElemTypeEndpointUri
-	 *            The uri of the new model element type endpoint.
-	 * @param modelElemTypeEndpointUri
-	 *            The uri of the supertype of the new model element type
-	 *            endpoint, null if the root model element type endpoint should
-	 *            be used as supertype.
-	 * @param newModelElemTypeEndpointName
-	 *            The name of the new model element type endpoint.
+	 * @param extensionType
+	 *            The extension info for the new model element type endpoint.
 	 * @param newModelElemTypeRef
 	 *            The new reference to the new model element type that is the
 	 *            target of the new model element type endpoint.
@@ -416,13 +403,15 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new model element type endpoint is already
 	 *             registered in the repository.
 	 */
-	public static ModelElementEndpointReference createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(String newModelElemTypeEndpointUri, String modelElemTypeEndpointUri, String newModelElemTypeEndpointName, ModelElementReference newModelElemTypeRef, LinkReference containerLinkTypeRef) throws MMTFException {
+	public ModelElementEndpointReference createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(ExtensionType extensionType, ModelElementReference newModelElemTypeRef, LinkReference containerLinkTypeRef) throws MMTFException {
 
+		ModelElementEndpoint newModelElemTypeEndpoint = (extensionType.getNewType() == null) ?
+			RelationshipFactory.eINSTANCE.createModelElementEndpoint() :
+			(ModelElementEndpoint) extensionType.getNewType();
 		Link containerLinkType = containerLinkTypeRef.getObject();
-		ModelElementEndpoint newModelElemTypeEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
 		newModelElemTypeEndpoint.setTarget(newModelElemTypeRef.getObject()); // needed to get the right root uri
-		ModelElementEndpoint modelElemTypeEndpoint = getSupertype(newModelElemTypeEndpoint, newModelElemTypeEndpointUri, modelElemTypeEndpointUri);
-		addHeavyType(newModelElemTypeEndpoint, modelElemTypeEndpoint, newModelElemTypeEndpointUri, newModelElemTypeEndpointName);
+		ModelElementEndpoint modelElemTypeEndpoint = getSupertype(newModelElemTypeEndpoint, extensionType.getUri(), extensionType.getSupertypeUri());
+		addHeavyType(newModelElemTypeEndpoint, modelElemTypeEndpoint, extensionType.getUri(), extensionType.getName());
 		addModelElementTypeEndpoint(newModelElemTypeEndpoint, newModelElemTypeRef.getObject(), false, containerLinkType);
 		ModelElementEndpointReference modelElemTypeEndpointRef = null;
 		if (modelElemTypeEndpoint != null) { // may be root
@@ -447,13 +436,8 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	/**
 	 * Creates and adds a "heavy" editor type to the repository.
 	 * 
-	 * @param newEditorTypeUri
-	 *            The uri of the new editor type.
-	 * @param editorTypeUri
-	 *            The uri of the supertype of the new editor type, null if the
-	 *            root editor type should be used as supertype.
-	 * @param newEditorTypeName
-	 *            The name of the new editor type.
+	 * @param extensionType
+	 *            The extension info for the new editor type.
 	 * @param modelTypeUri
 	 *            The uri of the model type handled by the new editor type.
 	 * @param editorId
@@ -463,18 +447,26 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 * @param wizardDialogClassName
 	 *            The fully qualified name of a Java class that handles the
 	 *            creation of the model type through the new editor type.
-	 * @param newEditorTypeClass
-	 *            The class of the new editor type.
+	 * @param isDiagram
+	 *            True if the new editor type is a diagram, false otherwise.
 	 * @return The created editor type.
 	 * @throws MMTFException
 	 *             If the uri of the new editor type is already registered in
 	 *             the repository.
 	 */
-	public static Editor createHeavyEditorType(String newEditorTypeUri, String editorTypeUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, EClass newEditorTypeClass) throws MMTFException {
+	public Editor createHeavyEditorType(ExtensionType extensionType, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, boolean isDiagram) throws MMTFException {
 
-		Editor newEditorType = (Editor) EditorFactory.eINSTANCE.create(newEditorTypeClass);
-		Editor editorType = getSupertype(newEditorType, newEditorTypeUri, editorTypeUri);
-		addHeavyType(newEditorType, editorType, newEditorTypeUri, newEditorTypeName);
+		Editor newEditorType;
+		if (extensionType.getNewType() == null) {
+			newEditorType = (isDiagram) ?
+				EditorFactory.eINSTANCE.createDiagram() :
+				EditorFactory.eINSTANCE.createEditor();
+		}
+		else {
+			newEditorType = (Editor) extensionType.getNewType();
+		}
+		Editor editorType = getSupertype(newEditorType, extensionType.getUri(), extensionType.getSupertypeUri());
+		addHeavyType(newEditorType, editorType, extensionType.getUri(), extensionType.getName());
 		addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, MMTF.repository);
 
 		//TODO MMTF: this can be optimized to run once instead of for each editor, if needed
@@ -533,13 +525,8 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	/**
 	 * Creates and adds a "heavy" operator type to the repository.
 	 * 
-	 * @param newOperatorTypeUri
-	 *            The uri of the new operator type.
-	 * @param operatorTypeUri
-	 *            The uri of the supertype of the new operator type, null if the
-	 *            root operator type should be used as supertype.
-	 * @param newOperatorTypeName
-	 *            The name of the new operator type.
+	 * @param extensionType
+	 *            The extension info for the new operator type.
 	 * @param executable
 	 *            The implementation of the new operator type.
 	 * @param newOperatorTypeClass
@@ -549,11 +536,11 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new operator type is already registered in
 	 *             the repository.
 	 */
-	public static Operator createHeavyOperatorType(String newOperatorTypeUri, String operatorTypeUri, String newOperatorTypeName, OperatorExecutable executable, EClass newOperatorTypeClass) throws MMTFException {
+	public Operator createHeavyOperatorType(ExtensionType extensionType, OperatorExecutable executable, EClass newOperatorTypeClass) throws MMTFException {
 
 		Operator newOperatorType = (Operator) OperatorFactory.eINSTANCE.create(newOperatorTypeClass);
-		Operator operatorType = getSupertype(newOperatorType, newOperatorTypeUri, operatorTypeUri);
-		addHeavyType(newOperatorType, operatorType, newOperatorTypeUri, newOperatorTypeName);
+		Operator operatorType = getSupertype(newOperatorType, extensionType.getUri(), extensionType.getSupertypeUri());
+		addHeavyType(newOperatorType, operatorType, extensionType.getUri(), extensionType.getName());
 		addOperatorType(newOperatorType, executable, MMTF.repository);
 
 		return newOperatorType;
