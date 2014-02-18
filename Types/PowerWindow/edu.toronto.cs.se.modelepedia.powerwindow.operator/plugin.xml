@@ -17,12 +17,11 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
-      <operatorType
-            class="edu.toronto.cs.se.modelepedia.powerwindow.operator.PowerWindowToPetriNet"
-            isConversion="true">
+      <operatorType>
          <type
                name="PowerWindowToPetriNet"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_PowerWindowToPetriNet">
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_PowerWindowToPetriNet"
+               class="edu.toronto.cs.se.modelepedia.powerwindow.operator.PowerWindowToPetriNet">
          </type>
          <input>
             <parameter

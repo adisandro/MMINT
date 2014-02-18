@@ -58,6 +58,15 @@ public interface OperatorFactory extends EFactory {
 	ConversionOperator createConversionOperator();
 
 	/**
+	 * Returns a new object of class '<em>Random Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Random Operator</em>'.
+	 * @generated
+	 */
+	RandomOperator createRandomOperator();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

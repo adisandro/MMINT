@@ -22,14 +22,14 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNetFactory;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNetPackage;
 import edu.toronto.cs.se.modelepedia.petrinet.Place;
 import edu.toronto.cs.se.modelepedia.powerwindow.Window;
 
-public class PowerWindowToPetriNet extends ConversionOperatorExecutableImpl {
+public class PowerWindowToPetriNet extends ConversionOperatorImpl {
 
 	private static final int DELAY_BOUND = 50;
 	private static final String FILE_SUFFIX = "_pw2pn";

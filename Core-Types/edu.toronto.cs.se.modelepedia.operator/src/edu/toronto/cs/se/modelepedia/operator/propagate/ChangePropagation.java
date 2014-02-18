@@ -42,7 +42,7 @@ import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
@@ -52,7 +52,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 
-public class ChangePropagation extends OperatorExecutableImpl {
+public class ChangePropagation extends OperatorImpl {
 
 	private final static String PROP_MODEL_SUFFIX = "_propagated";
 	private final static String PROPREFINEMENT_MODELREL_NAME = "propRefinement";

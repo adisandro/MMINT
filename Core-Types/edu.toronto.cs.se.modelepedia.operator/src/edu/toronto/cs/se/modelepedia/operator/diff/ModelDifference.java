@@ -31,7 +31,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
@@ -39,7 +39,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
-public class ModelDifference extends OperatorExecutableImpl {
+public class ModelDifference extends OperatorImpl {
 
 	private final static String MODELREL_NAME = "diff";
 	private final static String DELETED_ELEMENT_LINK_NAME = "del";

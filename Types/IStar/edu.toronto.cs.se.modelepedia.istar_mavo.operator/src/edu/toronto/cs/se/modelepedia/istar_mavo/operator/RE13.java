@@ -25,7 +25,7 @@ import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils;
@@ -34,7 +34,7 @@ import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
 
-public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
+public class RE13 extends OperatorImpl implements Z3SMTSolver {
 
 	private enum SMTLIBLabel {
 
@@ -111,9 +111,9 @@ public class RE13 extends OperatorExecutableImpl implements Z3SMTSolver {
 
 		intentions = new HashMap<String, Intention>();
 		intentionLeafs = new HashSet<String>();
-		IStarMAVOToSMTLIB previousOperator = (previousExecutable == null) ?
-			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI).getExecutable() :
-			(IStarMAVOToSMTLIB) previousExecutable;
+		IStarMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
+			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
+			(IStarMAVOToSMTLIB) getPreviousOperator();
 		smtEncoding = previousOperator.getListener().getSMTEncoding();
 		smtNodes = previousOperator.getListener().getSMTNodes();
 		initOutput();

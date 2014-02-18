@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.operator;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 
+import edu.toronto.cs.se.mmtf.mid.Model;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
@@ -32,7 +33,8 @@ import org.eclipse.emf.common.util.EMap;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getInputs <em>Inputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getSignatureTable <em>Signature Table</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getExecutable <em>Executable</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getInputSubdir <em>Input Subdir</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getPreviousOperator <em>Previous Operator</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,29 +90,54 @@ public interface Operator extends ExtendibleElement {
 	EMap<String, Parameter> getSignatureTable();
 
 	/**
-	 * Returns the value of the '<em><b>Executable</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Input Subdir</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The executable implementation of the operator.
+	 * The subdirectory from where to get the input, when used in an operator chain.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Executable</em>' containment reference.
-	 * @see #setExecutable(OperatorExecutable)
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getOperator_Executable()
-	 * @model containment="true" required="true" transient="true"
+	 * @return the value of the '<em>Input Subdir</em>' attribute.
+	 * @see #setInputSubdir(String)
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getOperator_InputSubdir()
+	 * @model
 	 * @generated
 	 */
-	OperatorExecutable getExecutable();
+	String getInputSubdir();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getExecutable <em>Executable</em>}' containment reference.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getInputSubdir <em>Input Subdir</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Executable</em>' containment reference.
-	 * @see #getExecutable()
+	 * @param value the new value of the '<em>Input Subdir</em>' attribute.
+	 * @see #getInputSubdir()
 	 * @generated
 	 */
-	void setExecutable(OperatorExecutable value);
+	void setInputSubdir(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Previous Operator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The previous operator, when used in an operator chain.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Previous Operator</em>' reference.
+	 * @see #setPreviousOperator(Operator)
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getOperator_PreviousOperator()
+	 * @model
+	 * @generated
+	 */
+	Operator getPreviousOperator();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getPreviousOperator <em>Previous Operator</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Previous Operator</em>' reference.
+	 * @see #getPreviousOperator()
+	 * @generated
+	 */
+	void setPreviousOperator(Operator value);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -147,5 +174,13 @@ public interface Operator extends ExtendibleElement {
 	 * @generated
 	 */
 	void deleteType() throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.operator.Exception" actualParametersRequired="true" actualParametersMany="true"
+	 * @generated
+	 */
+	EList<Model> execute(EList<Model> actualParameters) throws Exception;
 
 } // Operator

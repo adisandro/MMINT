@@ -28,7 +28,6 @@ import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -661,10 +660,8 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			throw new MMTFException("Source model not allowed");
 		}
 
-		ConversionOperator transformationOperator = OperatorFactory.eINSTANCE.createConversionOperator();
-		transformationOperator.setExecutable(new ModelRelTypeTransformation());
-
-		return transformationOperator;
+		//TODO MMTF[transformation] get it from repository, don't create, same for binary and kleisli
+		return new ModelRelTypeTransformation();
 	}
 
 	/**

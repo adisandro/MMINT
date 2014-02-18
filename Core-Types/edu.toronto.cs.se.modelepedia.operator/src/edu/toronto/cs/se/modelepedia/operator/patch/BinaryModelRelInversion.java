@@ -17,12 +17,12 @@ import org.eclipse.emf.common.util.EList;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 
-public class BinaryModelRelInversion extends OperatorExecutableImpl {
+public class BinaryModelRelInversion extends OperatorImpl {
 
 	private static final String INVERTED_MODELREL_SUFFIX = "_inv";
 

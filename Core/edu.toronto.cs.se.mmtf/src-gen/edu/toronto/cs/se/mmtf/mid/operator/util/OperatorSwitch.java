@@ -103,29 +103,18 @@ public class OperatorSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OperatorPackage.RANDOM_OPERATOR: {
+				RandomOperator randomOperator = (RandomOperator)theEObject;
+				T result = caseRandomOperator(randomOperator);
+				if (result == null) result = caseOperator(randomOperator);
+				if (result == null) result = caseExtendibleElement(randomOperator);
+				if (result == null) result = caseMAVOElement(randomOperator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OperatorPackage.PARAMETER: {
 				Parameter parameter = (Parameter)theEObject;
 				T result = caseParameter(parameter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OperatorPackage.OPERATOR_EXECUTABLE: {
-				OperatorExecutable operatorExecutable = (OperatorExecutable)theEObject;
-				T result = caseOperatorExecutable(operatorExecutable);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OperatorPackage.CONVERSION_OPERATOR_EXECUTABLE: {
-				ConversionOperatorExecutable conversionOperatorExecutable = (ConversionOperatorExecutable)theEObject;
-				T result = caseConversionOperatorExecutable(conversionOperatorExecutable);
-				if (result == null) result = caseOperatorExecutable(conversionOperatorExecutable);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OperatorPackage.RANDOM_OPERATOR_EXECUTABLE: {
-				RandomOperatorExecutable randomOperatorExecutable = (RandomOperatorExecutable)theEObject;
-				T result = caseRandomOperatorExecutable(randomOperatorExecutable);
-				if (result == null) result = caseOperatorExecutable(randomOperatorExecutable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -194,47 +183,17 @@ public class OperatorSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Executable</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Random Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Executable</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Random Operator</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseOperatorExecutable(OperatorExecutable object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Conversion Operator Executable</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Conversion Operator Executable</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConversionOperatorExecutable(ConversionOperatorExecutable object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Random Operator Executable</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Random Operator Executable</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRandomOperatorExecutable(RandomOperatorExecutable object) {
+	public T caseRandomOperator(RandomOperator object) {
 		return null;
 	}
 

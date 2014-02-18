@@ -17,12 +17,11 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
-      <operatorType
-            class="edu.toronto.cs.se.modelepedia.randommodel.operator.RandomModelGenerateLabeledGraph"
-            isConversion="false">
+      <operatorType>
          <type
                name="RandomModelGenerateLabeledGraph"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_RandomModelGenerateLabeledGraph">
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_RandomModelGenerateLabeledGraph"
+               class="edu.toronto.cs.se.modelepedia.randommodel.operator.RandomModelGenerateLabeledGraph">
          </type>
          <input>
             <parameter
@@ -43,12 +42,11 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
-      <operatorType
-            class="edu.toronto.cs.se.modelepedia.randommodel.operator.RandomModelToSMTLIB"
-            isConversion="false">
+      <operatorType>
          <type
                name="RandomModelToSMTLIB"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_RandomModelToSMTLIB">
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_RandomModelToSMTLIB"
+               class="edu.toronto.cs.se.modelepedia.randommodel.operator.RandomModelToSMTLIB">
          </type>
          <input>
             <parameter
@@ -69,12 +67,11 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
-      <operatorType
-            class="edu.toronto.cs.se.modelepedia.randommodel.operator.TOSEM12"
-            isConversion="false">
+      <operatorType>
          <type
                name="TOSEM12"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_TOSEM12">
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_TOSEM12"
+               class="edu.toronto.cs.se.modelepedia.randommodel.operator.TOSEM12">
          </type>
          <input>
             <parameter

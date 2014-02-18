@@ -23,7 +23,6 @@ import org.eclipse.core.runtime.IPath;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 
 public class MultiModelOperatorUtils {
 
@@ -36,10 +35,9 @@ public class MultiModelOperatorUtils {
 	public static final String PROPERTY_IN_SUBDIR = "subdir";
 	public static final String PROPERTY_IN_OUTPUTENABLED_SUFFIX = ".enabled";
 
-	private static String getPropertiesUri(OperatorExecutable operator, Model anyOperatorParameter, String subdirName, boolean readonly) {
+	private static String getPropertiesUri(Operator operator, Model anyOperatorParameter, String subdirName, boolean readonly) {
 
 		String projectUri = anyOperatorParameter.getUri().substring(0, anyOperatorParameter.getUri().lastIndexOf(IPath.SEPARATOR)+1);
-		String operatorName = ((Operator) operator.eContainer()).getName();
 		String propertiesUri = MultiModelUtils.prependWorkspaceToUri(projectUri);
 		if (subdirName != null) {
 			File dir = new File(propertiesUri + subdirName);
@@ -48,12 +46,12 @@ public class MultiModelOperatorUtils {
 			}
 			propertiesUri += subdirName + IPath.SEPARATOR;
 		}
-		propertiesUri += operatorName;
+		propertiesUri += operator.getName();
 
 		return propertiesUri;
 	}
 
-	public static Properties getPropertiesFile(OperatorExecutable operator, Model anyOperatorParameter, String subdirName, String suffix) throws Exception {
+	public static Properties getPropertiesFile(Operator operator, Model anyOperatorParameter, String subdirName, String suffix) throws Exception {
 
 		String inputPropertiesFile =
 			getPropertiesUri(operator, anyOperatorParameter, subdirName, true) +
@@ -65,7 +63,7 @@ public class MultiModelOperatorUtils {
 		return inputProperties;
 	}
 
-	public static void writePropertiesFile(Properties outputProperties, OperatorExecutable operator, Model anyOperatorParameter, String subdirName, String suffix) throws Exception {
+	public static void writePropertiesFile(Properties outputProperties, Operator operator, Model anyOperatorParameter, String subdirName, String suffix) throws Exception {
 
 		String outputPropertiesFile =
 			getPropertiesUri(operator, anyOperatorParameter, subdirName, false) +
@@ -74,7 +72,7 @@ public class MultiModelOperatorUtils {
 		outputProperties.store(new FileOutputStream(outputPropertiesFile), null);
 	}
 
-	public static void writeTextFile(OperatorExecutable operator, Model anyOperatorParameter, String subdirName, String suffix, StringBuilder fileContent) throws IOException {
+	public static void writeTextFile(Operator operator, Model anyOperatorParameter, String subdirName, String suffix, StringBuilder fileContent) throws IOException {
 
 		String outputTextFile = getPropertiesUri(operator, anyOperatorParameter, subdirName, false) + suffix;
 		BufferedWriter writer = null;

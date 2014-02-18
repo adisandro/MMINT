@@ -17,10 +17,10 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
 
-public class PetriNetSimulate extends OperatorExecutableImpl {
+public class PetriNetSimulate extends OperatorImpl {
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {

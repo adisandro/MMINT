@@ -38,7 +38,7 @@ import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.library.PrimitiveEObjectWrapper;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
@@ -46,7 +46,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 
-public class ModelRelTypeTransformation extends ConversionOperatorExecutableImpl {
+public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 
 	protected static final String TRANSFORMATION_SUFFIX = "_transformed";
 

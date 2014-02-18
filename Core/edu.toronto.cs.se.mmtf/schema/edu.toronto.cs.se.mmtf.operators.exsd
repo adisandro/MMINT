@@ -61,23 +61,6 @@
             <element ref="input"/>
             <element ref="output"/>
          </sequence>
-         <attribute name="class" type="string" use="required">
-            <annotation>
-               <documentation>
-                  The operator type implementation.
-               </documentation>
-               <appinfo>
-                  <meta.attribute kind="java" basedOn="edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl:"/>
-               </appinfo>
-            </annotation>
-         </attribute>
-         <attribute name="isConversion" type="boolean" use="required">
-            <annotation>
-               <documentation>
-                  Whether this is a conversion operator type.
-               </documentation>
-            </annotation>
-         </attribute>
       </complexType>
    </element>
 

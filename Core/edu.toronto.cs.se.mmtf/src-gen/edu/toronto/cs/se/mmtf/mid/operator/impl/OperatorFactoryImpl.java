@@ -72,6 +72,7 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 			case OperatorPackage.ESTRING_TO_PARAMETER_MAP: return (EObject)createEStringToParameterMap();
 			case OperatorPackage.OPERATOR: return createOperator();
 			case OperatorPackage.CONVERSION_OPERATOR: return createConversionOperator();
+			case OperatorPackage.RANDOM_OPERATOR: return createRandomOperator();
 			case OperatorPackage.PARAMETER: return createParameter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -150,6 +151,16 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	public ConversionOperator createConversionOperator() {
 		ConversionOperatorImpl conversionOperator = new ConversionOperatorImpl();
 		return conversionOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RandomOperator createRandomOperator() {
+		RandomOperatorImpl randomOperator = new RandomOperatorImpl();
+		return randomOperator;
 	}
 
 	/**

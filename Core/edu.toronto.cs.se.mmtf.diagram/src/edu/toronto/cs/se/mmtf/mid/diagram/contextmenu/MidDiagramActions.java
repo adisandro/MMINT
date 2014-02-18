@@ -160,7 +160,6 @@ public class MidDiagramActions extends ContributionItem {
 					ConversionOperator transformationOperator;
 					try {
 						transformationOperator = modelRelType.getTypeTransformationOperator(models.get(0));
-						transformationOperator.setName(transformationOperator.getExecutable().getClass().getSimpleName() + "(" + modelRelType.getName() + ")");
 					}
 					catch (MMTFException e) {
 						continue;
@@ -181,9 +180,9 @@ public class MidDiagramActions extends ContributionItem {
 					MenuItem operatorSubitem = new MenuItem(operatorMenu, SWT.NONE);
 					String text;
 					EList<Model> actualParameters;
-					if (operator.getExecutable() instanceof ModelRelTypeTransformation) {
+					if (operator instanceof ModelRelTypeTransformation) {
 						ModelRel modelRelType = modelRelTypes.get(operator);
-						text = operator.getExecutable().getClass().getSimpleName() + "(" + modelRelType.getName() + ")";
+						text = operator.getName() + "(" + modelRelType.getName() + ")";
 						actualParameters = new BasicEList<Model>(models);
 						actualParameters.add(0, modelRelType);
 					}

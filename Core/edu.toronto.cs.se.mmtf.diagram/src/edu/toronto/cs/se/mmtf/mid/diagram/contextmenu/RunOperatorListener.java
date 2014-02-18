@@ -38,7 +38,6 @@ import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
-import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 
 public class RunOperatorListener extends SelectionAdapter {
@@ -105,18 +104,18 @@ public class RunOperatorListener extends SelectionAdapter {
 						for (ConversionOperator operator : conversionList) {
 							EList<Model> operatorParameters = new BasicEList<Model>();
 							operatorParameters.add(newActualParameter);
-							newActualParameter = operator.getExecutable().execute(operatorParameters).get(0);
+							newActualParameter = operator.execute(operatorParameters).get(0);
 						}
 						actualParameters.set(i, newActualParameter);
 					}
 				}
 				// run operator
-				operator.getExecutable().execute(actualParameters);
+				operator.execute(actualParameters);
 				// cleanup all conversion operators
 				if (!conversionMap.isEmpty()) {
 					for (Entry<Integer, List<ConversionOperator>> entry : conversionMap.entrySet()) {
 						for (ConversionOperator operator : entry.getValue()) {
-							((ConversionOperatorExecutable) operator.getExecutable()).cleanup();
+							((ConversionOperator) operator).cleanup();
 						}
 					}
 				}

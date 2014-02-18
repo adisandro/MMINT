@@ -28,7 +28,7 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
@@ -37,7 +37,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.modelepedia.operator.match.EMFModelNameMatch;
 
-public class EMFModelDifference extends OperatorExecutableImpl {
+public class EMFModelDifference extends OperatorImpl {
 
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EMFModelNameMatch";
 	private final static String MODELREL_NAME = "diff";
@@ -72,9 +72,9 @@ public class EMFModelDifference extends OperatorExecutableImpl {
 		ModelEndpointReference tgtModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(matchRel.getModelEndpoints().get(1).getTarget(), false, diffModelRel);
 
 		// get output from previous operator
-		EMFModelNameMatch previousOperator = (previousExecutable == null) ?
-			(EMFModelNameMatch) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI).getExecutable() :
-			(EMFModelNameMatch) previousExecutable;
+		EMFModelNameMatch previousOperator = (getPreviousOperator() == null) ?
+			(EMFModelNameMatch) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
+			(EMFModelNameMatch) getPreviousOperator();
 		Comparison comparison = previousOperator.getComparison();
 		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
 		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();

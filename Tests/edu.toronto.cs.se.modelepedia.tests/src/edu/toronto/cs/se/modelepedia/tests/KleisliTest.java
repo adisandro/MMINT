@@ -87,7 +87,7 @@ public class KleisliTest {
 		EList<Model> transformationParameters = new BasicEList<Model>();
 		transformationParameters.add(kModelRelType);
 		transformationParameters.add(bankModel);
-		kModelRelType.getTypeTransformationOperator(bankModel).getExecutable().execute(transformationParameters);
+		kModelRelType.getTypeTransformationOperator(bankModel).execute(transformationParameters);
 		//TODO MMTF[TESTS] test that result model + model rel are fine
 		fail("TODO");
 	}

@@ -25,7 +25,6 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -47,10 +46,8 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -389,9 +386,9 @@ public class MMTF implements MMTFConstants {
 		try {
 			ExtensionType extensionType = new ExtensionType(extensionConfig, typeFactory);
 			Operator newOperatorType = extensionType.getFactory().createHeavyOperatorType(extensionType);
-//			if (newOperatorType instanceof RandomOperator) {
-//				((RandomOperator) newOperatorType).setState(new Random());
-//			}
+			if (newOperatorType instanceof RandomOperator) {
+				((RandomOperator) newOperatorType).setState(new Random());
+			}
 
 			return newOperatorType;
 		}
@@ -709,15 +706,7 @@ public class MMTF implements MMTFConstants {
 	 */
 	public static void syncRepository(MultiModel multiModel) {
 
-		List<OperatorExecutable> executables = new ArrayList<OperatorExecutable>();
-		for (Operator operator : repository.getOperators()) {
-			executables.add(operator.getExecutable());
-		}
 		repository = EcoreUtil.copy(multiModel);
-		for (int i = 0; i < repository.getOperators().size(); i++) {
-			Operator operator = repository.getOperators().get(i);
-			operator.setExecutable(executables.get(i));
-		}
 		copySubtypeTable(subtypeTableMID, subtypeTable);
 		copyConversionTable(conversionTableMID, conversionTable);
 	}

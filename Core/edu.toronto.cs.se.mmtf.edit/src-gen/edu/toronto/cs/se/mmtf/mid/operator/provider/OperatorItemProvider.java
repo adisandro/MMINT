@@ -29,12 +29,14 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -72,8 +74,54 @@ public class OperatorItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addInputSubdirPropertyDescriptor(object);
+			addPreviousOperatorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Input Subdir feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInputSubdirPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Operator_inputSubdir_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Operator_inputSubdir_feature", "_UI_Operator_type"),
+				 OperatorPackage.Literals.OPERATOR__INPUT_SUBDIR,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Previous Operator feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPreviousOperatorPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Operator_previousOperator_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Operator_previousOperator_feature", "_UI_Operator_type"),
+				 OperatorPackage.Literals.OPERATOR__PREVIOUS_OPERATOR,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -91,7 +139,6 @@ public class OperatorItemProvider
 			childrenFeatures.add(OperatorPackage.Literals.OPERATOR__INPUTS);
 			childrenFeatures.add(OperatorPackage.Literals.OPERATOR__OUTPUTS);
 			childrenFeatures.add(OperatorPackage.Literals.OPERATOR__SIGNATURE_TABLE);
-			childrenFeatures.add(OperatorPackage.Literals.OPERATOR__EXECUTABLE);
 		}
 		return childrenFeatures;
 	}
@@ -146,10 +193,12 @@ public class OperatorItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Operator.class)) {
+			case OperatorPackage.OPERATOR__INPUT_SUBDIR:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case OperatorPackage.OPERATOR__INPUTS:
 			case OperatorPackage.OPERATOR__OUTPUTS:
 			case OperatorPackage.OPERATOR__SIGNATURE_TABLE:
-			case OperatorPackage.OPERATOR__EXECUTABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

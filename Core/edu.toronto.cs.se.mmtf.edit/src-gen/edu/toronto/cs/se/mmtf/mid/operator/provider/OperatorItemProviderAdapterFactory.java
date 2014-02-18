@@ -173,6 +173,29 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmtf.mid.operator.RandomOperator} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RandomOperatorItemProvider randomOperatorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmtf.mid.operator.RandomOperator}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRandomOperatorAdapter() {
+		if (randomOperatorItemProvider == null) {
+			randomOperatorItemProvider = new RandomOperatorItemProvider(this);
+		}
+
+		return randomOperatorItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -274,6 +297,7 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 		if (eStringToParameterMapItemProvider != null) eStringToParameterMapItemProvider.dispose();
 		if (operatorItemProvider != null) operatorItemProvider.dispose();
 		if (conversionOperatorItemProvider != null) conversionOperatorItemProvider.dispose();
+		if (randomOperatorItemProvider != null) randomOperatorItemProvider.dispose();
 		if (parameterItemProvider != null) parameterItemProvider.dispose();
 	}
 

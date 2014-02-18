@@ -200,12 +200,11 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
-      <operatorType
-            class="edu.toronto.cs.se.mmtf.reasoning.EcoreMAVOToSMTLIB"
-            isConversion="false">
+      <operatorType>
          <type
                name="EcoreMAVOToSMTLIB"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB">
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB"
+               class="edu.toronto.cs.se.mmtf.reasoning.EcoreMAVOToSMTLIB">
          </type>
          <input>
             <parameter

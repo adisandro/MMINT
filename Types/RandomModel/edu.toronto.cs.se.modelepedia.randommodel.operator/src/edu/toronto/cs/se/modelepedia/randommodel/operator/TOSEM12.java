@@ -26,13 +26,13 @@ import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
 import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
 
-public class TOSEM12 extends OperatorExecutableImpl implements Z3SMTSolver {
+public class TOSEM12 extends OperatorImpl implements Z3SMTSolver {
 
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_RandomModelToSMTLIB";
 	private static final String PROPERTY_OUT_TIMEMAVO = "timeMAVO";
@@ -329,9 +329,9 @@ public class TOSEM12 extends OperatorExecutableImpl implements Z3SMTSolver {
 		initOutput();
 
 		// get output from previous operator
-		RandomModelToSMTLIB previousOperator = (previousExecutable == null) ?
-			(RandomModelToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI).getExecutable() :
-			(RandomModelToSMTLIB) previousExecutable;
+		RandomModelToSMTLIB previousOperator = (getPreviousOperator() == null) ?
+			(RandomModelToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
+			(RandomModelToSMTLIB) getPreviousOperator();
 		final String smtlibEncoding = previousOperator.getSMTLIBEncoding();
 		final String smtlibMavoEncoding = previousOperator.getSMTLIBMAVOEncoding();
 		Set<String> smtlibConcretizations = previousOperator.getSMTLIBConcretizations();

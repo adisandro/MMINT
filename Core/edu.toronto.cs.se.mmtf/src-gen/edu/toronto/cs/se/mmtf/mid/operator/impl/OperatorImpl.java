@@ -14,12 +14,12 @@ package edu.toronto.cs.se.mmtf.mid.operator.impl;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.impl.ExtendibleElementImpl;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 
@@ -48,7 +48,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl#getInputs <em>Inputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl#getSignatureTable <em>Signature Table</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl#getExecutable <em>Executable</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl#getInputSubdir <em>Input Subdir</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl#getPreviousOperator <em>Previous Operator</em>}</li>
  * </ul>
  * </p>
  *
@@ -86,14 +87,34 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	protected EMap<String, Parameter> signatureTable;
 
 	/**
-	 * The cached value of the '{@link #getExecutable() <em>Executable</em>}' containment reference.
+	 * The default value of the '{@link #getInputSubdir() <em>Input Subdir</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExecutable()
+	 * @see #getInputSubdir()
 	 * @generated
 	 * @ordered
 	 */
-	protected OperatorExecutable executable;
+	protected static final String INPUT_SUBDIR_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getInputSubdir() <em>Input Subdir</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInputSubdir()
+	 * @generated
+	 * @ordered
+	 */
+	protected String inputSubdir = INPUT_SUBDIR_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getPreviousOperator() <em>Previous Operator</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPreviousOperator()
+	 * @generated
+	 * @ordered
+	 */
+	protected Operator previousOperator;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -155,8 +176,8 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OperatorExecutable getExecutable() {
-		return executable;
+	public String getInputSubdir() {
+		return inputSubdir;
 	}
 
 	/**
@@ -164,14 +185,11 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetExecutable(OperatorExecutable newExecutable, NotificationChain msgs) {
-		OperatorExecutable oldExecutable = executable;
-		executable = newExecutable;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__EXECUTABLE, oldExecutable, newExecutable);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public void setInputSubdir(String newInputSubdir) {
+		String oldInputSubdir = inputSubdir;
+		inputSubdir = newInputSubdir;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__INPUT_SUBDIR, oldInputSubdir, inputSubdir));
 	}
 
 	/**
@@ -179,18 +197,37 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExecutable(OperatorExecutable newExecutable) {
-		if (newExecutable != executable) {
-			NotificationChain msgs = null;
-			if (executable != null)
-				msgs = ((InternalEObject)executable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperatorPackage.OPERATOR__EXECUTABLE, null, msgs);
-			if (newExecutable != null)
-				msgs = ((InternalEObject)newExecutable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperatorPackage.OPERATOR__EXECUTABLE, null, msgs);
-			msgs = basicSetExecutable(newExecutable, msgs);
-			if (msgs != null) msgs.dispatch();
+	public Operator getPreviousOperator() {
+		if (previousOperator != null && previousOperator.eIsProxy()) {
+			InternalEObject oldPreviousOperator = (InternalEObject)previousOperator;
+			previousOperator = (Operator)eResolveProxy(oldPreviousOperator);
+			if (previousOperator != oldPreviousOperator) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OperatorPackage.OPERATOR__PREVIOUS_OPERATOR, oldPreviousOperator, previousOperator));
+			}
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__EXECUTABLE, newExecutable, newExecutable));
+		return previousOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Operator basicGetPreviousOperator() {
+		return previousOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPreviousOperator(Operator newPreviousOperator) {
+		Operator oldPreviousOperator = previousOperator;
+		previousOperator = newPreviousOperator;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__PREVIOUS_OPERATOR, oldPreviousOperator, previousOperator));
 	}
 
 	/**
@@ -227,8 +264,6 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 				return ((InternalEList<?>)getOutputs()).basicRemove(otherEnd, msgs);
 			case OperatorPackage.OPERATOR__SIGNATURE_TABLE:
 				return ((InternalEList<?>)getSignatureTable()).basicRemove(otherEnd, msgs);
-			case OperatorPackage.OPERATOR__EXECUTABLE:
-				return basicSetExecutable(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -248,8 +283,11 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 			case OperatorPackage.OPERATOR__SIGNATURE_TABLE:
 				if (coreType) return getSignatureTable();
 				else return getSignatureTable().map();
-			case OperatorPackage.OPERATOR__EXECUTABLE:
-				return getExecutable();
+			case OperatorPackage.OPERATOR__INPUT_SUBDIR:
+				return getInputSubdir();
+			case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
+				if (resolve) return getPreviousOperator();
+				return basicGetPreviousOperator();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -274,8 +312,11 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 			case OperatorPackage.OPERATOR__SIGNATURE_TABLE:
 				((EStructuralFeature.Setting)getSignatureTable()).set(newValue);
 				return;
-			case OperatorPackage.OPERATOR__EXECUTABLE:
-				setExecutable((OperatorExecutable)newValue);
+			case OperatorPackage.OPERATOR__INPUT_SUBDIR:
+				setInputSubdir((String)newValue);
+				return;
+			case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
+				setPreviousOperator((Operator)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -298,8 +339,11 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 			case OperatorPackage.OPERATOR__SIGNATURE_TABLE:
 				getSignatureTable().clear();
 				return;
-			case OperatorPackage.OPERATOR__EXECUTABLE:
-				setExecutable((OperatorExecutable)null);
+			case OperatorPackage.OPERATOR__INPUT_SUBDIR:
+				setInputSubdir(INPUT_SUBDIR_EDEFAULT);
+				return;
+			case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
+				setPreviousOperator((Operator)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -319,8 +363,10 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 				return outputs != null && !outputs.isEmpty();
 			case OperatorPackage.OPERATOR__SIGNATURE_TABLE:
 				return signatureTable != null && !signatureTable.isEmpty();
-			case OperatorPackage.OPERATOR__EXECUTABLE:
-				return executable != null;
+			case OperatorPackage.OPERATOR__INPUT_SUBDIR:
+				return INPUT_SUBDIR_EDEFAULT == null ? inputSubdir != null : !INPUT_SUBDIR_EDEFAULT.equals(inputSubdir);
+			case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
+				return previousOperator != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -331,6 +377,7 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case OperatorPackage.OPERATOR___GET_METATYPE:
@@ -345,8 +392,31 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case OperatorPackage.OPERATOR___EXECUTE__ELIST:
+				try {
+					return execute((EList<Model>)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (inputSubdir: ");
+		result.append(inputSubdir);
+		result.append(')');
+		return result.toString();
 	}
 
 	/**
@@ -366,6 +436,17 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 		for (Operator operatorSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, multiModel)) {
 			operatorSubtype.deleteType();
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 } //OperatorImpl

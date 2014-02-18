@@ -29,14 +29,14 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.randommodel.Edge;
 import edu.toronto.cs.se.modelepedia.randommodel.Node;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModel;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModelFactory;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
 
-public class RandomModelGenerateLabeledGraph extends RandomOperatorExecutableImpl {
+public class RandomModelGenerateLabeledGraph extends RandomOperatorImpl {
 
 	/** Min number of model objects in the random model. */
 	private static final String PROPERTY_IN_MINMODELOBJS = "minModelObjs";

@@ -26,9 +26,9 @@ import edu.toronto.cs.se.mmtf.mavo.library.EcoreMAVOToSMTLIBListener;
 import edu.toronto.cs.se.mmtf.mavo.library.EcoreMAVOToSMTLIB_M2T;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl;
 
-public class EcoreMAVOToSMTLIB extends OperatorExecutableImpl {
+public class EcoreMAVOToSMTLIB extends OperatorImpl {
 
 	public class EcoreMAVOToSMTLIBWithListeners_M2T extends EcoreMAVOToSMTLIB_M2T {
 

@@ -61,17 +61,17 @@ public interface MMTFConstants {
 	public final static String ROOT_EDITOR_ID = "org.eclipse.emf.ecore.presentation.ReflectiveEditorID";
 
 	/** An extension point's type child. */
-	public final static String CHILD_EXTENDIBLETYPE = "type";
+	public final static String CHILD_TYPE = "type";
 	/** An extension point's type child's name attribute. */
-	public final static String EXTENDIBLETYPE_ATTR_NAME = "name";
+	public final static String TYPE_ATTR_NAME = "name";
 	/** An extension point's type child's uri attribute. */
-	public final static String EXTENDIBLETYPE_ATTR_URI = "uri";
+	public final static String TYPE_ATTR_URI = "uri";
 	/** An extension point's type child's class attribute. */
-	public final static String EXTENDIBLETYPE_ATTR_CLASS = "class";
+	public final static String TYPE_ATTR_CLASS = "class";
 	/** An extension point's type superType child. */
-	public final static String EXTENDIBLETYPE_CHILD_SUPERTYPE = "superType";
+	public final static String TYPE_CHILD_SUPERTYPE = "superType";
 	/** An extension point's type superType child's uri attribute. */
-	public final static String EXTENDIBLETYPE_SUPERTYPE_ATTR_URI = "uri";
+	public final static String TYPE_SUPERTYPE_ATTR_URI = "uri";
 
 	/** An extension point's typeEndpoint child. */
 	public final static String CHILD_TYPEENDPOINT = "typeEndpoint";

@@ -21,10 +21,10 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 
-public class UMLToClassDiagramMAVO extends ConversionOperatorExecutableImpl {
+public class UMLToClassDiagramMAVO extends ConversionOperatorImpl {
 
 	private Model newCdModel;
 

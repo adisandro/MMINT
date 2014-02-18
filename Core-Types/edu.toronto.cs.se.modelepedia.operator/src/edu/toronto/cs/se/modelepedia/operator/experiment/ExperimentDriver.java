@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -34,13 +34,11 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentSamples.DistributionType;
 
-public class ExperimentDriver extends OperatorExecutableImpl {
+public class ExperimentDriver extends OperatorImpl {
 
 	protected class ExperimentWatchdog implements Runnable {
 
@@ -343,7 +341,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		return properties;
 	}
 
-	private void writeGnuplotFile(OperatorExecutable driver, Model initialModel, ExperimentSamples[] experiment, int experimentIndex, int varX) {
+	private void writeGnuplotFile(Operator driver, Model initialModel, ExperimentSamples[] experiment, int experimentIndex, int varX) {
 
 		if (experiment == null) { // no outputs
 			return;
@@ -392,19 +390,14 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 		}
 
 		// get operator
-		Operator operatorType = MultiModelTypeRegistry.getType(operatorUri);
-		if (operatorType == null) {
+		Operator operator = MultiModelTypeRegistry.getType(operatorUri);
+		if (operator == null) {
 			throw new MMTFException("Operator uri " + operatorUri + " is not registered");
 		}
-		//TODO MMTF: polish this
-		Operator operator = (Operator) OperatorFactory.eINSTANCE.create(operatorType.eClass());
-		operator.setName(operatorType.getName());
-		OperatorExecutable executable = (OperatorExecutable) operatorType.getExecutable().getClass().newInstance();
-		operator.setExecutable(executable);
 		operatorChain.add(operator);
 		int previousOperatorIndex = operatorChain.size() - 2;
 		if (previousOperatorIndex >= 0) {
-			executable.setPreviousExecutable(operatorChain.get(previousOperatorIndex).getExecutable());
+			operator.setPreviousOperator(operatorChain.get(previousOperatorIndex));
 		}
 
 		// write operator input properties
@@ -439,27 +432,27 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 					SAMPLE_SUBDIR + statisticsIndex;
 			}
 			operatorProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_SUBDIR, nextSubdir);
-			executable.setInputSubdir(nextSubdir);
+			operator.setInputSubdir(nextSubdir);
 		}
 		// set state if operator needs it
-		if (executable instanceof RandomOperatorExecutableImpl) {
-			((RandomOperatorExecutableImpl) executable).setState(state[experimentIndex]);
+		if (operator instanceof RandomOperatorImpl) {
+			((RandomOperatorImpl) operator).setState(state[experimentIndex]);
 		}
 		// never update the mid, it will explode
 		operatorProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_UPDATEMID, "false");
 		// write input properties for the operator
 		MultiModelOperatorUtils.writePropertiesFile(
 			operatorProperties,
-			operatorType.getExecutable(),
+			operator,
 			actualParameters.get(0),
 			nextSubdir,
 			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
 		);
 
 		// execute and get state
-		EList<Model> result = executable.execute(actualParameters);
-		if (executable instanceof RandomOperatorExecutableImpl) {
-			state[experimentIndex] = ((RandomOperatorExecutableImpl) executable).getState();
+		EList<Model> result = operator.execute(actualParameters);
+		if (operator instanceof RandomOperatorImpl) {
+			state[experimentIndex] = ((RandomOperatorImpl) operator).getState();
 		}
 
 		return result;
@@ -475,7 +468,7 @@ public class ExperimentDriver extends OperatorExecutableImpl {
 
 		String experimentSubdir = EXPERIMENT_SUBDIR + experimentIndex + MMTF.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex;
 		Properties resultProperties = MultiModelOperatorUtils.getPropertiesFile(
-			operator.getExecutable(),
+			operator,
 			initialModel,
 			experimentSubdir,
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX

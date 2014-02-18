@@ -114,14 +114,10 @@ public class OperatorValidator extends EObjectValidator {
 				return validateOperator((Operator)value, diagnostics, context);
 			case OperatorPackage.CONVERSION_OPERATOR:
 				return validateConversionOperator((ConversionOperator)value, diagnostics, context);
+			case OperatorPackage.RANDOM_OPERATOR:
+				return validateRandomOperator((RandomOperator)value, diagnostics, context);
 			case OperatorPackage.PARAMETER:
 				return validateParameter((Parameter)value, diagnostics, context);
-			case OperatorPackage.OPERATOR_EXECUTABLE:
-				return validateOperatorExecutable((OperatorExecutable)value, diagnostics, context);
-			case OperatorPackage.CONVERSION_OPERATOR_EXECUTABLE:
-				return validateConversionOperatorExecutable((ConversionOperatorExecutable)value, diagnostics, context);
-			case OperatorPackage.RANDOM_OPERATOR_EXECUTABLE:
-				return validateRandomOperatorExecutable((RandomOperatorExecutable)value, diagnostics, context);
 			case OperatorPackage.RANDOM:
 				return validateRandom((Random)value, diagnostics, context);
 			case OperatorPackage.EXCEPTION:
@@ -185,7 +181,6 @@ public class OperatorValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(conversionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(conversionOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConversionOperator_conversion(conversionOperator, diagnostics, context);
-		if (result || diagnostics != null) result &= validateConversionOperator_executable(conversionOperator, diagnostics, context);
 		return result;
 	}
 
@@ -219,59 +214,22 @@ public class OperatorValidator extends EObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the executable constraint of '<em>Conversion Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String CONVERSION_OPERATOR__EXECUTABLE__EEXPRESSION = "executable.oclIsKindOf(ConversionOperatorExecutable)";
-
-	/**
-	 * Validates the executable constraint of '<em>Conversion Operator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateConversionOperator_executable(ConversionOperator conversionOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(OperatorPackage.Literals.CONVERSION_OPERATOR,
-				 conversionOperator,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "executable",
-				 CONVERSION_OPERATOR__EXECUTABLE__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateOperatorExecutable(OperatorExecutable operatorExecutable, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(operatorExecutable, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateConversionOperatorExecutable(ConversionOperatorExecutable conversionOperatorExecutable, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(conversionOperatorExecutable, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateRandomOperatorExecutable(RandomOperatorExecutable randomOperatorExecutable, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(randomOperatorExecutable, diagnostics, context);
+	public boolean validateRandomOperator(RandomOperator randomOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(randomOperator, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(randomOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(randomOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(randomOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(randomOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(randomOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(randomOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(randomOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(randomOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(randomOperator, diagnostics, context);
+		return result;
 	}
 
 	/**

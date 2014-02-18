@@ -12,17 +12,14 @@
 package edu.toronto.cs.se.mmtf.mid.operator.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmtf.mid.provider.MidEditPlugin;
+import edu.toronto.cs.se.mmtf.mid.operator.RandomOperator;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -32,17 +29,16 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmtf.mid.operator.RandomOperator} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OperatorExecutableItemProvider
-	extends ItemProviderAdapter
+public class RandomOperatorItemProvider
+	extends OperatorItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -55,7 +51,7 @@ public class OperatorExecutableItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OperatorExecutableItemProvider(AdapterFactory adapterFactory) {
+	public RandomOperatorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -70,26 +66,25 @@ public class OperatorExecutableItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addInputSubdirPropertyDescriptor(object);
-			addPreviousExecutablePropertyDescriptor(object);
+			addStatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Input Subdir feature.
+	 * This adds a property descriptor for the State feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInputSubdirPropertyDescriptor(Object object) {
+	protected void addStatePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OperatorExecutable_inputSubdir_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OperatorExecutable_inputSubdir_feature", "_UI_OperatorExecutable_type"),
-				 OperatorPackage.Literals.OPERATOR_EXECUTABLE__INPUT_SUBDIR,
+				 getString("_UI_RandomOperator_state_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RandomOperator_state_feature", "_UI_RandomOperator_type"),
+				 OperatorPackage.Literals.RANDOM_OPERATOR__STATE,
 				 true,
 				 false,
 				 false,
@@ -99,25 +94,14 @@ public class OperatorExecutableItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Previous Executable feature.
+	 * This returns RandomOperator.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPreviousExecutablePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_OperatorExecutable_previousExecutable_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OperatorExecutable_previousExecutable_feature", "_UI_OperatorExecutable_type"),
-				 OperatorPackage.Literals.OPERATOR_EXECUTABLE__PREVIOUS_EXECUTABLE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/RandomOperator"));
 	}
 
 	/**
@@ -128,10 +112,10 @@ public class OperatorExecutableItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OperatorExecutable)object).getInputSubdir();
+		String label = ((RandomOperator)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_OperatorExecutable_type") :
-			getString("_UI_OperatorExecutable_type") + " " + label;
+			getString("_UI_RandomOperator_type") :
+			getString("_UI_RandomOperator_type") + " " + label;
 	}
 
 	/**
@@ -145,8 +129,8 @@ public class OperatorExecutableItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(OperatorExecutable.class)) {
-			case OperatorPackage.OPERATOR_EXECUTABLE__INPUT_SUBDIR:
+		switch (notification.getFeatureID(RandomOperator.class)) {
+			case OperatorPackage.RANDOM_OPERATOR__STATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -166,14 +150,26 @@ public class OperatorExecutableItemProvider
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getResourceLocator() {
-		return MidEditPlugin.INSTANCE;
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == OperatorPackage.Literals.OPERATOR__INPUTS ||
+			childFeature == OperatorPackage.Literals.OPERATOR__OUTPUTS;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

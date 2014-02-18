@@ -15,25 +15,21 @@ import java.util.Random;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Random Operator Executable</b></em>'.
+ * A representation of the model object '<em><b>Random Operator</b></em>'.
  * <!-- end-user-doc -->
- *
- * <!-- begin-model-doc -->
- * The executable implementation interface of a random operator.
- * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable#getState <em>State</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.RandomOperator#getState <em>State</em>}</li>
  * </ul>
  * </p>
  *
- * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getRandomOperatorExecutable()
- * @model abstract="true"
+ * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getRandomOperator()
+ * @model
  * @generated
  */
-public interface RandomOperatorExecutable extends OperatorExecutable {
+public interface RandomOperator extends Operator {
 	/**
 	 * Returns the value of the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -43,14 +39,14 @@ public interface RandomOperatorExecutable extends OperatorExecutable {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>State</em>' attribute.
 	 * @see #setState(Random)
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getRandomOperatorExecutable_State()
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getRandomOperator_State()
 	 * @model dataType="edu.toronto.cs.se.mmtf.mid.operator.Random" required="true"
 	 * @generated
 	 */
 	Random getState();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable#getState <em>State</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmtf.mid.operator.RandomOperator#getState <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>State</em>' attribute.
@@ -59,4 +55,4 @@ public interface RandomOperatorExecutable extends OperatorExecutable {
 	 */
 	void setState(Random value);
 
-} // RandomOperatorExecutable
+} // RandomOperator

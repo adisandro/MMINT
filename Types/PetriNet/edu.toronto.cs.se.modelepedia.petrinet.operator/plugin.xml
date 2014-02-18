@@ -17,12 +17,11 @@
 
    <extension
          point="edu.toronto.cs.se.mmtf.operators">
-      <operatorType
-            class="edu.toronto.cs.se.modelepedia.petrinet.operator.PetriNetSimulate"
-            isConversion="false">
+      <operatorType>
          <type
                name="PetriNetSimulate"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_PetriNetSimulate">
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_PetriNetSimulate"
+               class="edu.toronto.cs.se.modelepedia.petrinet.operator.PetriNetSimulate">
          </type>
          <input>
             <parameter

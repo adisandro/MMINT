@@ -599,7 +599,7 @@ linkTypes:
 			return MAVOTruthValue.FALSE;
 		}
 
-		EcoreMAVOToSMTLIB ecore2smt = (EcoreMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(ECOREMAVOTOSMTLIB_OPERATOR_URI).getExecutable();
+		EcoreMAVOToSMTLIB ecore2smt = (EcoreMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(ECOREMAVOTOSMTLIB_OPERATOR_URI);
 		EList<Model> actualParameters = new BasicEList<Model>();
 		actualParameters.add(model);
 		try {

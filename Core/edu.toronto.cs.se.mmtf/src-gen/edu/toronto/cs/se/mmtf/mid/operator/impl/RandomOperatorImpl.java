@@ -12,7 +12,7 @@
 package edu.toronto.cs.se.mmtf.mid.operator.impl;
 
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable;
+import edu.toronto.cs.se.mmtf.mid.operator.RandomOperator;
 
 import java.util.Random;
 
@@ -24,18 +24,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Random Operator Executable</b></em>'.
+ * An implementation of the model object '<em><b>Random Operator</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl#getState <em>State</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorImpl#getState <em>State</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class RandomOperatorExecutableImpl extends OperatorExecutableImpl implements RandomOperatorExecutable {
+public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
 	/**
 	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -61,7 +61,7 @@ public abstract class RandomOperatorExecutableImpl extends OperatorExecutableImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RandomOperatorExecutableImpl() {
+	protected RandomOperatorImpl() {
 		super();
 	}
 
@@ -72,7 +72,7 @@ public abstract class RandomOperatorExecutableImpl extends OperatorExecutableImp
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return OperatorPackage.Literals.RANDOM_OPERATOR_EXECUTABLE;
+		return OperatorPackage.Literals.RANDOM_OPERATOR;
 	}
 
 	/**
@@ -93,7 +93,7 @@ public abstract class RandomOperatorExecutableImpl extends OperatorExecutableImp
 		Random oldState = state;
 		state = newState;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.RANDOM_OPERATOR_EXECUTABLE__STATE, oldState, state));
+			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.RANDOM_OPERATOR__STATE, oldState, state));
 	}
 
 	/**
@@ -104,7 +104,7 @@ public abstract class RandomOperatorExecutableImpl extends OperatorExecutableImp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OperatorPackage.RANDOM_OPERATOR_EXECUTABLE__STATE:
+			case OperatorPackage.RANDOM_OPERATOR__STATE:
 				return getState();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -118,7 +118,7 @@ public abstract class RandomOperatorExecutableImpl extends OperatorExecutableImp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OperatorPackage.RANDOM_OPERATOR_EXECUTABLE__STATE:
+			case OperatorPackage.RANDOM_OPERATOR__STATE:
 				setState((Random)newValue);
 				return;
 		}
@@ -133,7 +133,7 @@ public abstract class RandomOperatorExecutableImpl extends OperatorExecutableImp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OperatorPackage.RANDOM_OPERATOR_EXECUTABLE__STATE:
+			case OperatorPackage.RANDOM_OPERATOR__STATE:
 				setState(STATE_EDEFAULT);
 				return;
 		}
@@ -148,7 +148,7 @@ public abstract class RandomOperatorExecutableImpl extends OperatorExecutableImp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OperatorPackage.RANDOM_OPERATOR_EXECUTABLE__STATE:
+			case OperatorPackage.RANDOM_OPERATOR__STATE:
 				return STATE_EDEFAULT == null ? state != null : !STATE_EDEFAULT.equals(state);
 		}
 		return super.eIsSet(featureID);
@@ -170,4 +170,4 @@ public abstract class RandomOperatorExecutableImpl extends OperatorExecutableImp
 		return result.toString();
 	}
 
-} //RandomOperatorExecutableImpl
+} //RandomOperatorImpl

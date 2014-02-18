@@ -232,6 +232,11 @@ public class MultiModelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(MidPackage.Literals.MULTI_MODEL__OPERATORS,
+				 OperatorFactory.eINSTANCE.createRandomOperator()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(MidPackage.Literals.MULTI_MODEL__EXTENDIBLE_TABLE,
 				 MidFactory.eINSTANCE.create(MidPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP)));
 	}

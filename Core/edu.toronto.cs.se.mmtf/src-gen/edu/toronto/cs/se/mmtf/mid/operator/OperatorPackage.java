@@ -262,13 +262,22 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR__SIGNATURE_TABLE = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Executable</b></em>' containment reference.
+	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__EXECUTABLE = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
+	int OPERATOR__INPUT_SUBDIR = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Previous Operator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__PREVIOUS_OPERATOR = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Operator</em>' class.
@@ -277,7 +286,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
+	int OPERATOR_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -316,13 +325,22 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___DELETE_TYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Execute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___EXECUTE__ELIST = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
 	 * The number of operations of the '<em>Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+	int OPERATOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -332,7 +350,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 3;
+	int PARAMETER = 4;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
@@ -480,13 +498,22 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR__SIGNATURE_TABLE = OPERATOR__SIGNATURE_TABLE;
 
 	/**
-	 * The feature id for the '<em><b>Executable</b></em>' containment reference.
+	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR__EXECUTABLE = OPERATOR__EXECUTABLE;
+	int CONVERSION_OPERATOR__INPUT_SUBDIR = OPERATOR__INPUT_SUBDIR;
+
+	/**
+	 * The feature id for the '<em><b>Previous Operator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR__PREVIOUS_OPERATOR = OPERATOR__PREVIOUS_OPERATOR;
 
 	/**
 	 * The number of structural features of the '<em>Conversion Operator</em>' class.
@@ -525,6 +552,15 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR___GET_SUPERTYPE = OPERATOR___GET_SUPERTYPE;
 
 	/**
+	 * The operation id for the '<em>Execute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___EXECUTE__ELIST = OPERATOR___EXECUTE__ELIST;
+
+	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -534,13 +570,257 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR___DELETE_TYPE = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Cleanup</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___CLEANUP = OPERATOR_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Conversion Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 1;
+	int CONVERSION_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorImpl <em>Random Operator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorImpl
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getRandomOperator()
+	 * @generated
+	 */
+	int RANDOM_OPERATOR = 3;
+
+	/**
+	 * The feature id for the '<em><b>May</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__MAY = OPERATOR__MAY;
+
+	/**
+	 * The feature id for the '<em><b>Set</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__SET = OPERATOR__SET;
+
+	/**
+	 * The feature id for the '<em><b>Var</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__VAR = OPERATOR__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__FORMULA_ID = OPERATOR__FORMULA_ID;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__SUPERTYPE = OPERATOR__SUPERTYPE;
+
+	/**
+	 * The feature id for the '<em><b>Metatype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__METATYPE = OPERATOR__METATYPE;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__URI = OPERATOR__URI;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__NAME = OPERATOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__LEVEL = OPERATOR__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__METATYPE_URI = OPERATOR__METATYPE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__DYNAMIC = OPERATOR__DYNAMIC;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__CONSTRAINT = OPERATOR__CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__INPUTS = OPERATOR__INPUTS;
+
+	/**
+	 * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__OUTPUTS = OPERATOR__OUTPUTS;
+
+	/**
+	 * The feature id for the '<em><b>Signature Table</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__SIGNATURE_TABLE = OPERATOR__SIGNATURE_TABLE;
+
+	/**
+	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__INPUT_SUBDIR = OPERATOR__INPUT_SUBDIR;
+
+	/**
+	 * The feature id for the '<em><b>Previous Operator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__PREVIOUS_OPERATOR = OPERATOR__PREVIOUS_OPERATOR;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__STATE = OPERATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Random Operator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___GET_METATYPE = OPERATOR___GET_METATYPE;
+
+	/**
+	 * The operation id for the '<em>Get Supertype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___GET_SUPERTYPE = OPERATOR___GET_SUPERTYPE;
+
+	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___DELETE_TYPE = OPERATOR___DELETE_TYPE;
+
+	/**
+	 * The operation id for the '<em>Execute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___EXECUTE__ELIST = OPERATOR___EXECUTE__ELIST;
+
+	/**
+	 * The number of operations of the '<em>Random Operator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -588,189 +868,6 @@ public interface OperatorPackage extends EPackage {
 	int PARAMETER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl <em>Executable</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getOperatorExecutable()
-	 * @generated
-	 */
-	int OPERATOR_EXECUTABLE = 4;
-
-	/**
-	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXECUTABLE__INPUT_SUBDIR = 0;
-
-	/**
-	 * The feature id for the '<em><b>Previous Executable</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXECUTABLE__PREVIOUS_EXECUTABLE = 1;
-
-	/**
-	 * The number of structural features of the '<em>Executable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXECUTABLE_FEATURE_COUNT = 2;
-
-	/**
-	 * The operation id for the '<em>Execute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXECUTABLE___EXECUTE__ELIST = 0;
-
-	/**
-	 * The number of operations of the '<em>Executable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXECUTABLE_OPERATION_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl <em>Conversion Operator Executable</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getConversionOperatorExecutable()
-	 * @generated
-	 */
-	int CONVERSION_OPERATOR_EXECUTABLE = 5;
-
-	/**
-	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR_EXECUTABLE__INPUT_SUBDIR = OPERATOR_EXECUTABLE__INPUT_SUBDIR;
-
-	/**
-	 * The feature id for the '<em><b>Previous Executable</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR_EXECUTABLE__PREVIOUS_EXECUTABLE = OPERATOR_EXECUTABLE__PREVIOUS_EXECUTABLE;
-
-	/**
-	 * The number of structural features of the '<em>Conversion Operator Executable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR_EXECUTABLE_FEATURE_COUNT = OPERATOR_EXECUTABLE_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Execute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR_EXECUTABLE___EXECUTE__ELIST = OPERATOR_EXECUTABLE___EXECUTE__ELIST;
-
-	/**
-	 * The operation id for the '<em>Cleanup</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR_EXECUTABLE___CLEANUP = OPERATOR_EXECUTABLE_OPERATION_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Conversion Operator Executable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR_EXECUTABLE_OPERATION_COUNT = OPERATOR_EXECUTABLE_OPERATION_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl <em>Random Operator Executable</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getRandomOperatorExecutable()
-	 * @generated
-	 */
-	int RANDOM_OPERATOR_EXECUTABLE = 6;
-
-	/**
-	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR_EXECUTABLE__INPUT_SUBDIR = OPERATOR_EXECUTABLE__INPUT_SUBDIR;
-
-	/**
-	 * The feature id for the '<em><b>Previous Executable</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR_EXECUTABLE__PREVIOUS_EXECUTABLE = OPERATOR_EXECUTABLE__PREVIOUS_EXECUTABLE;
-
-	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR_EXECUTABLE__STATE = OPERATOR_EXECUTABLE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Random Operator Executable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR_EXECUTABLE_FEATURE_COUNT = OPERATOR_EXECUTABLE_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Execute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR_EXECUTABLE___EXECUTE__ELIST = OPERATOR_EXECUTABLE___EXECUTE__ELIST;
-
-	/**
-	 * The number of operations of the '<em>Random Operator Executable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR_EXECUTABLE_OPERATION_COUNT = OPERATOR_EXECUTABLE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '<em>Random</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -778,7 +875,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getRandom()
 	 * @generated
 	 */
-	int RANDOM = 7;
+	int RANDOM = 5;
 
 
 	/**
@@ -789,7 +886,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getException()
 	 * @generated
 	 */
-	int EXCEPTION = 8;
+	int EXCEPTION = 6;
 
 
 	/**
@@ -870,15 +967,26 @@ public interface OperatorPackage extends EPackage {
 	EReference getOperator_SignatureTable();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getExecutable <em>Executable</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getInputSubdir <em>Input Subdir</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Executable</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.Operator#getExecutable()
+	 * @return the meta object for the attribute '<em>Input Subdir</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.Operator#getInputSubdir()
 	 * @see #getOperator()
 	 * @generated
 	 */
-	EReference getOperator_Executable();
+	EAttribute getOperator_InputSubdir();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getPreviousOperator <em>Previous Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Previous Operator</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.Operator#getPreviousOperator()
+	 * @see #getOperator()
+	 * @generated
+	 */
+	EReference getOperator_PreviousOperator();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getMetatype() <em>Get Metatype</em>}' operation.
@@ -909,6 +1017,16 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getOperator__DeleteType();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#execute(org.eclipse.emf.common.util.EList) <em>Execute</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Execute</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.Operator#execute(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getOperator__Execute__EList();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.Parameter <em>Parameter</em>}'.
@@ -974,87 +1092,35 @@ public interface OperatorPackage extends EPackage {
 	EOperation getConversionOperator__DeleteType();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable <em>Executable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Executable</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable
-	 * @generated
-	 */
-	EClass getOperatorExecutable();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable#getInputSubdir <em>Input Subdir</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Input Subdir</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable#getInputSubdir()
-	 * @see #getOperatorExecutable()
-	 * @generated
-	 */
-	EAttribute getOperatorExecutable_InputSubdir();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable#getPreviousExecutable <em>Previous Executable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Previous Executable</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable#getPreviousExecutable()
-	 * @see #getOperatorExecutable()
-	 * @generated
-	 */
-	EReference getOperatorExecutable_PreviousExecutable();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable#execute(org.eclipse.emf.common.util.EList) <em>Execute</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Execute</em>' operation.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable#execute(org.eclipse.emf.common.util.EList)
-	 * @generated
-	 */
-	EOperation getOperatorExecutable__Execute__EList();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.ConversionOperatorExecutable <em>Conversion Operator Executable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Conversion Operator Executable</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.ConversionOperatorExecutable
-	 * @generated
-	 */
-	EClass getConversionOperatorExecutable();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.operator.ConversionOperatorExecutable#cleanup() <em>Cleanup</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator#cleanup() <em>Cleanup</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Cleanup</em>' operation.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.ConversionOperatorExecutable#cleanup()
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator#cleanup()
 	 * @generated
 	 */
-	EOperation getConversionOperatorExecutable__Cleanup();
+	EOperation getConversionOperator__Cleanup();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable <em>Random Operator Executable</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.RandomOperator <em>Random Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Random Operator Executable</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable
+	 * @return the meta object for class '<em>Random Operator</em>'.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.RandomOperator
 	 * @generated
 	 */
-	EClass getRandomOperatorExecutable();
+	EClass getRandomOperator();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable#getState <em>State</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmtf.mid.operator.RandomOperator#getState <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>State</em>'.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable#getState()
-	 * @see #getRandomOperatorExecutable()
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.RandomOperator#getState()
+	 * @see #getRandomOperator()
 	 * @generated
 	 */
-	EAttribute getRandomOperatorExecutable_State();
+	EAttribute getRandomOperator_State();
 
 	/**
 	 * Returns the meta object for data type '{@link java.util.Random <em>Random</em>}'.
@@ -1162,12 +1228,20 @@ public interface OperatorPackage extends EPackage {
 		EReference OPERATOR__SIGNATURE_TABLE = eINSTANCE.getOperator_SignatureTable();
 
 		/**
-		 * The meta object literal for the '<em><b>Executable</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Input Subdir</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OPERATOR__EXECUTABLE = eINSTANCE.getOperator_Executable();
+		EAttribute OPERATOR__INPUT_SUBDIR = eINSTANCE.getOperator_InputSubdir();
+
+		/**
+		 * The meta object literal for the '<em><b>Previous Operator</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR__PREVIOUS_OPERATOR = eINSTANCE.getOperator_PreviousOperator();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
@@ -1192,6 +1266,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation OPERATOR___DELETE_TYPE = eINSTANCE.getOperator__DeleteType();
+
+		/**
+		 * The meta object literal for the '<em><b>Execute</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___EXECUTE__ELIST = eINSTANCE.getOperator__Execute__EList();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -1246,66 +1328,22 @@ public interface OperatorPackage extends EPackage {
 		EOperation CONVERSION_OPERATOR___DELETE_TYPE = eINSTANCE.getConversionOperator__DeleteType();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl <em>Executable</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getOperatorExecutable()
-		 * @generated
-		 */
-		EClass OPERATOR_EXECUTABLE = eINSTANCE.getOperatorExecutable();
-
-		/**
-		 * The meta object literal for the '<em><b>Input Subdir</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute OPERATOR_EXECUTABLE__INPUT_SUBDIR = eINSTANCE.getOperatorExecutable_InputSubdir();
-
-		/**
-		 * The meta object literal for the '<em><b>Previous Executable</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATOR_EXECUTABLE__PREVIOUS_EXECUTABLE = eINSTANCE.getOperatorExecutable_PreviousExecutable();
-
-		/**
-		 * The meta object literal for the '<em><b>Execute</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation OPERATOR_EXECUTABLE___EXECUTE__ELIST = eINSTANCE.getOperatorExecutable__Execute__EList();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl <em>Conversion Operator Executable</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorExecutableImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getConversionOperatorExecutable()
-		 * @generated
-		 */
-		EClass CONVERSION_OPERATOR_EXECUTABLE = eINSTANCE.getConversionOperatorExecutable();
-
-		/**
 		 * The meta object literal for the '<em><b>Cleanup</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CONVERSION_OPERATOR_EXECUTABLE___CLEANUP = eINSTANCE.getConversionOperatorExecutable__Cleanup();
+		EOperation CONVERSION_OPERATOR___CLEANUP = eINSTANCE.getConversionOperator__Cleanup();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl <em>Random Operator Executable</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorImpl <em>Random Operator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl
-		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getRandomOperatorExecutable()
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorImpl
+		 * @see edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorPackageImpl#getRandomOperator()
 		 * @generated
 		 */
-		EClass RANDOM_OPERATOR_EXECUTABLE = eINSTANCE.getRandomOperatorExecutable();
+		EClass RANDOM_OPERATOR = eINSTANCE.getRandomOperator();
 
 		/**
 		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
@@ -1313,7 +1351,7 @@ public interface OperatorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute RANDOM_OPERATOR_EXECUTABLE__STATE = eINSTANCE.getRandomOperatorExecutable_State();
+		EAttribute RANDOM_OPERATOR__STATE = eINSTANCE.getRandomOperator_State();
 
 		/**
 		 * The meta object literal for the '<em>Random</em>' data type.

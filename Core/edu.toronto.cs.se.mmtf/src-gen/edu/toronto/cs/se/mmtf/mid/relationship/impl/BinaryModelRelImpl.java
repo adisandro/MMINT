@@ -17,7 +17,6 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
@@ -220,10 +219,7 @@ public class BinaryModelRelImpl extends ModelRelImpl implements BinaryModelRel {
 			throw new MMTFException("Source model not allowed");
 		}
 
-		ConversionOperator transformationOperator = OperatorFactory.eINSTANCE.createConversionOperator();
-		transformationOperator.setExecutable(new ModelRelTypeTransformation());
-
-		return transformationOperator;
+		return new ModelRelTypeTransformation();
 	}
 
 } //BinaryModelRelImpl

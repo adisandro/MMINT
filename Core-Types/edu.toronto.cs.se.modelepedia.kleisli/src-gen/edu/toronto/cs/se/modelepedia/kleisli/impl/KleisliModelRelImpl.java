@@ -39,6 +39,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelRelImpl;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
+import edu.toronto.cs.se.mmtf.transformation.ModelRelTypeTransformationConstraint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
@@ -324,10 +325,20 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	@Override
 	public ConversionOperator getTypeTransformationOperator(Model srcModel) throws MMTFException {
 
-		ConversionOperator transformationOperator = super.getTypeTransformationOperator(srcModel);
-		transformationOperator.setExecutable(new KleisliModelRelTypeTransformation());
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+		if (new ModelRelTypeTransformationConstraint(this).validate() != MAVOTruthValue.TRUE) {
+			throw new MMTFException("Transformation constraint not satisfied");
+		}
+		if (
+			!MultiModelConstraintChecker.isAllowedModelEndpoint(getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>()) &&
+			!MultiModelConstraintChecker.isAllowedModelEndpoint(getModelEndpointRefs().get(1), srcModel, new HashMap<String, Integer>())
+		) {
+			throw new MMTFException("Source model not allowed");
+		}
 
-		return transformationOperator;
+		return new KleisliModelRelTypeTransformation();
 	}
 
 	/**

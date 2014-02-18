@@ -48,13 +48,13 @@ public class ExtensionType {
 	 */
 	public ExtensionType(IConfigurationElement extensionConfig) {
 
-		IConfigurationElement typeConfig = extensionConfig.getChildren(MMTFConstants.CHILD_EXTENDIBLETYPE)[0];
-		uri = typeConfig.getAttribute(MMTFConstants.EXTENDIBLETYPE_ATTR_URI);
-		name = typeConfig.getAttribute(MMTFConstants.EXTENDIBLETYPE_ATTR_NAME);
-		IConfigurationElement[] supertypeConfigs = typeConfig.getChildren(MMTFConstants.EXTENDIBLETYPE_CHILD_SUPERTYPE);
+		IConfigurationElement typeConfig = extensionConfig.getChildren(MMTFConstants.CHILD_TYPE)[0];
+		uri = typeConfig.getAttribute(MMTFConstants.TYPE_ATTR_URI);
+		name = typeConfig.getAttribute(MMTFConstants.TYPE_ATTR_NAME);
+		IConfigurationElement[] supertypeConfigs = typeConfig.getChildren(MMTFConstants.TYPE_CHILD_SUPERTYPE);
 		supertypeUri = (supertypeConfigs.length == 0) ?
 			null :
-			supertypeConfigs[0].getAttribute(MMTFConstants.EXTENDIBLETYPE_SUPERTYPE_ATTR_URI);
+			supertypeConfigs[0].getAttribute(MMTFConstants.TYPE_SUPERTYPE_ATTR_URI);
 	}
 
 	/**
@@ -69,15 +69,14 @@ public class ExtensionType {
 	public ExtensionType(IConfigurationElement extensionConfig, MultiModelHeavyTypeFactory defaultFactory) {
 
 		this(extensionConfig);
-		IConfigurationElement typeConfig = extensionConfig.getChildren(MMTFConstants.CHILD_EXTENDIBLETYPE)[0];
-		String extensionClass = typeConfig.getAttribute(MMTFConstants.EXTENDIBLETYPE_ATTR_CLASS);
-		if (extensionClass == null) {
+		IConfigurationElement typeConfig = extensionConfig.getChildren(MMTFConstants.CHILD_TYPE)[0];
+		if (typeConfig.getAttribute(MMTFConstants.TYPE_ATTR_CLASS) == null) {
 			factory = defaultFactory;
 			newType = null;
 		}
 		else {
 			try {
-				Object object = typeConfig.createExecutableExtension(extensionClass);
+				Object object = typeConfig.createExecutableExtension(MMTFConstants.TYPE_ATTR_CLASS);
 				if (object instanceof MultiModelHeavyTypeFactory) {
 					factory = (MultiModelHeavyTypeFactory) object;
 					newType = null;
@@ -108,10 +107,10 @@ public class ExtensionType {
 	public ExtensionType(IConfigurationElement extensionConfig, Map<String, Set<String>> multipleInheritanceTable, MultiModelHeavyTypeFactory defaultFactory) {
 
 		this(extensionConfig, defaultFactory);
-		IConfigurationElement[] supertypeConfigs = extensionConfig.getChildren(MMTFConstants.CHILD_EXTENDIBLETYPE)[0].getChildren(MMTFConstants.EXTENDIBLETYPE_CHILD_SUPERTYPE);
+		IConfigurationElement[] supertypeConfigs = extensionConfig.getChildren(MMTFConstants.CHILD_TYPE)[0].getChildren(MMTFConstants.TYPE_CHILD_SUPERTYPE);
 		if (supertypeConfigs.length > 1) {
 			for (int i = 1; i < supertypeConfigs.length; i++) {
-				String multipleSupertypeUri = supertypeConfigs[i].getAttribute(MMTFConstants.EXTENDIBLETYPE_SUPERTYPE_ATTR_URI);
+				String multipleSupertypeUri = supertypeConfigs[i].getAttribute(MMTFConstants.TYPE_SUPERTYPE_ATTR_URI);
 				Set<String> supertypes = multipleInheritanceTable.get(multipleSupertypeUri);
 				if (supertypes == null) {
 					supertypes = new HashSet<String>();

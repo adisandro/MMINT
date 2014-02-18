@@ -94,20 +94,12 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 				return createConversionOperatorAdapter();
 			}
 			@Override
+			public Adapter caseRandomOperator(RandomOperator object) {
+				return createRandomOperatorAdapter();
+			}
+			@Override
 			public Adapter caseParameter(Parameter object) {
 				return createParameterAdapter();
-			}
-			@Override
-			public Adapter caseOperatorExecutable(OperatorExecutable object) {
-				return createOperatorExecutableAdapter();
-			}
-			@Override
-			public Adapter caseConversionOperatorExecutable(ConversionOperatorExecutable object) {
-				return createConversionOperatorExecutableAdapter();
-			}
-			@Override
-			public Adapter caseRandomOperatorExecutable(RandomOperatorExecutable object) {
-				return createRandomOperatorExecutableAdapter();
 			}
 			@Override
 			public Adapter caseMAVOElement(MAVOElement object) {
@@ -194,44 +186,16 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable <em>Executable</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.operator.RandomOperator <em>Random Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.RandomOperator
 	 * @generated
 	 */
-	public Adapter createOperatorExecutableAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.operator.ConversionOperatorExecutable <em>Conversion Operator Executable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.ConversionOperatorExecutable
-	 * @generated
-	 */
-	public Adapter createConversionOperatorExecutableAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable <em>Random Operator Executable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable
-	 * @generated
-	 */
-	public Adapter createRandomOperatorExecutableAdapter() {
+	public Adapter createRandomOperatorAdapter() {
 		return null;
 	}
 

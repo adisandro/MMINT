@@ -22,14 +22,12 @@ import edu.toronto.cs.se.mmtf.mid.editor.impl.EditorPackageImpl;
 import edu.toronto.cs.se.mmtf.mid.impl.MidPackageImpl;
 
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
-import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.operator.OperatorExecutable;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmtf.mid.operator.Parameter;
 
-import edu.toronto.cs.se.mmtf.mid.operator.RandomOperatorExecutable;
+import edu.toronto.cs.se.mmtf.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmtf.mid.operator.util.OperatorValidator;
 
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
@@ -87,21 +85,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass operatorExecutableEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass conversionOperatorExecutableEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass randomOperatorExecutableEClass = null;
+	private EClass randomOperatorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -269,8 +253,17 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperator_Executable() {
-		return (EReference)operatorEClass.getEStructuralFeatures().get(3);
+	public EAttribute getOperator_InputSubdir() {
+		return (EAttribute)operatorEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperator_PreviousOperator() {
+		return (EReference)operatorEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -298,6 +291,15 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 */
 	public EOperation getOperator__DeleteType() {
 		return operatorEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__Execute__EList() {
+		return operatorEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -359,8 +361,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getOperatorExecutable() {
-		return operatorExecutableEClass;
+	public EOperation getConversionOperator__Cleanup() {
+		return conversionOperatorEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -368,8 +370,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOperatorExecutable_InputSubdir() {
-		return (EAttribute)operatorExecutableEClass.getEStructuralFeatures().get(0);
+	public EClass getRandomOperator() {
+		return randomOperatorEClass;
 	}
 
 	/**
@@ -377,53 +379,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperatorExecutable_PreviousExecutable() {
-		return (EReference)operatorExecutableEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getOperatorExecutable__Execute__EList() {
-		return operatorExecutableEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getConversionOperatorExecutable() {
-		return conversionOperatorExecutableEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getConversionOperatorExecutable__Cleanup() {
-		return conversionOperatorExecutableEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getRandomOperatorExecutable() {
-		return randomOperatorExecutableEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRandomOperatorExecutable_State() {
-		return (EAttribute)randomOperatorExecutableEClass.getEStructuralFeatures().get(0);
+	public EAttribute getRandomOperator_State() {
+		return (EAttribute)randomOperatorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -480,29 +437,24 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEReference(operatorEClass, OPERATOR__INPUTS);
 		createEReference(operatorEClass, OPERATOR__OUTPUTS);
 		createEReference(operatorEClass, OPERATOR__SIGNATURE_TABLE);
-		createEReference(operatorEClass, OPERATOR__EXECUTABLE);
+		createEAttribute(operatorEClass, OPERATOR__INPUT_SUBDIR);
+		createEReference(operatorEClass, OPERATOR__PREVIOUS_OPERATOR);
 		createEOperation(operatorEClass, OPERATOR___GET_METATYPE);
 		createEOperation(operatorEClass, OPERATOR___GET_SUPERTYPE);
 		createEOperation(operatorEClass, OPERATOR___DELETE_TYPE);
+		createEOperation(operatorEClass, OPERATOR___EXECUTE__ELIST);
 
 		conversionOperatorEClass = createEClass(CONVERSION_OPERATOR);
 		createEOperation(conversionOperatorEClass, CONVERSION_OPERATOR___DELETE_TYPE);
+		createEOperation(conversionOperatorEClass, CONVERSION_OPERATOR___CLEANUP);
+
+		randomOperatorEClass = createEClass(RANDOM_OPERATOR);
+		createEAttribute(randomOperatorEClass, RANDOM_OPERATOR__STATE);
 
 		parameterEClass = createEClass(PARAMETER);
 		createEAttribute(parameterEClass, PARAMETER__NAME);
 		createEAttribute(parameterEClass, PARAMETER__VARARG);
 		createEReference(parameterEClass, PARAMETER__MODEL);
-
-		operatorExecutableEClass = createEClass(OPERATOR_EXECUTABLE);
-		createEAttribute(operatorExecutableEClass, OPERATOR_EXECUTABLE__INPUT_SUBDIR);
-		createEReference(operatorExecutableEClass, OPERATOR_EXECUTABLE__PREVIOUS_EXECUTABLE);
-		createEOperation(operatorExecutableEClass, OPERATOR_EXECUTABLE___EXECUTE__ELIST);
-
-		conversionOperatorExecutableEClass = createEClass(CONVERSION_OPERATOR_EXECUTABLE);
-		createEOperation(conversionOperatorExecutableEClass, CONVERSION_OPERATOR_EXECUTABLE___CLEANUP);
-
-		randomOperatorExecutableEClass = createEClass(RANDOM_OPERATOR_EXECUTABLE);
-		createEAttribute(randomOperatorExecutableEClass, RANDOM_OPERATOR_EXECUTABLE__STATE);
 
 		// Create data types
 		randomEDataType = createEDataType(RANDOM);
@@ -542,8 +494,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		// Add supertypes to classes
 		operatorEClass.getESuperTypes().add(theMidPackage.getExtendibleElement());
 		conversionOperatorEClass.getESuperTypes().add(this.getOperator());
-		conversionOperatorExecutableEClass.getESuperTypes().add(this.getOperatorExecutable());
-		randomOperatorExecutableEClass.getESuperTypes().add(this.getOperatorExecutable());
+		randomOperatorEClass.getESuperTypes().add(this.getOperator());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(eStringToParameterMapEClass, Map.Entry.class, "EStringToParameterMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
@@ -554,7 +505,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		initEReference(getOperator_Inputs(), this.getParameter(), null, "inputs", null, 0, -1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperator_Outputs(), this.getParameter(), null, "outputs", null, 0, -1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperator_SignatureTable(), this.getEStringToParameterMap(), null, "signatureTable", null, 0, -1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperator_Executable(), this.getOperatorExecutable(), null, "executable", null, 1, 1, Operator.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOperator_InputSubdir(), ecorePackage.getEString(), "inputSubdir", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperator_PreviousOperator(), this.getOperator(), null, "previousOperator", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getOperator__GetMetatype(), this.getOperator(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -563,31 +515,25 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		EOperation op = initEOperation(getOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
+		op = initEOperation(getOperator__Execute__EList(), theMidPackage.getModel(), "execute", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMidPackage.getModel(), "actualParameters", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getException());
+
 		initEClass(conversionOperatorEClass, ConversionOperator.class, "ConversionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		op = initEOperation(getConversionOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMTFException());
 
+		op = initEOperation(getConversionOperator__Cleanup(), null, "cleanup", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getException());
+
+		initEClass(randomOperatorEClass, RandomOperator.class, "RandomOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRandomOperator_State(), this.getRandom(), "state", null, 1, 1, RandomOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getParameter_Name(), ecorePackage.getEString(), "name", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getParameter_Vararg(), ecorePackage.getEBoolean(), "vararg", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getParameter_Model(), theMidPackage.getModel(), null, "model", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(operatorExecutableEClass, OperatorExecutable.class, "OperatorExecutable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getOperatorExecutable_InputSubdir(), ecorePackage.getEString(), "inputSubdir", null, 0, 1, OperatorExecutable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperatorExecutable_PreviousExecutable(), this.getOperatorExecutable(), null, "previousExecutable", null, 0, 1, OperatorExecutable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		op = initEOperation(getOperatorExecutable__Execute__EList(), theMidPackage.getModel(), "execute", 1, -1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMidPackage.getModel(), "actualParameters", 1, -1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, this.getException());
-
-		initEClass(conversionOperatorExecutableEClass, ConversionOperatorExecutable.class, "ConversionOperatorExecutable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		op = initEOperation(getConversionOperatorExecutable__Cleanup(), null, "cleanup", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, this.getException());
-
-		initEClass(randomOperatorExecutableEClass, RandomOperatorExecutable.class, "RandomOperatorExecutable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRandomOperatorExecutable_State(), this.getRandom(), "state", null, 1, 1, RandomOperatorExecutable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(randomEDataType, Random.class, "Random", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
@@ -615,13 +561,13 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });												
+		   });													
 		addAnnotation
 		  (conversionOperatorEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "conversion executable"
-		   });																	
+			 "constraints", "conversion"
+		   });									
 	}
 
 	/**
@@ -631,14 +577,13 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";															
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";																
 		addAnnotation
 		  (conversionOperatorEClass, 
 		   source, 
 		   new String[] {
-			 "conversion", "inputs->size() = 1 and outputs->size() = 1",
-			 "executable", "executable.oclIsKindOf(ConversionOperatorExecutable)"
-		   });															
+			 "conversion", "inputs->size() = 1 and outputs->size() = 1"
+		   });							
 	}
 
 } //OperatorPackageImpl

@@ -25,8 +25,8 @@ import edu.toronto.cs.se.mmtf.MMTFException;
  *
  *
  * @see edu.toronto.cs.se.mmtf.mid.operator.OperatorPackage#getConversionOperator()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='conversion executable'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot conversion='inputs->size() = 1 and outputs->size() = 1' executable='executable.oclIsKindOf(ConversionOperatorExecutable)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='conversion'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot conversion='inputs->size() = 1 and outputs->size() = 1'"
  * @generated
  */
 public interface ConversionOperator extends Operator {
@@ -42,5 +42,13 @@ public interface ConversionOperator extends Operator {
 	 * @generated
 	 */
 	void deleteType() throws MMTFException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.operator.Exception"
+	 * @generated
+	 */
+	void cleanup() throws Exception;
 
 } // ConversionOperator

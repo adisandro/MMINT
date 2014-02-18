@@ -37,13 +37,13 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver;
 import edu.toronto.cs.se.modelepedia.randommodel.Edge;
 import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
 import edu.toronto.cs.se.modelepedia.randommodel.Node;
 
-public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
+public class RandomModelToSMTLIB extends RandomOperatorImpl {
 
 	public class RandomModelToSMTLIB_M2TWithListeners extends RandomModelToSMTLIB_M2T {
 
@@ -491,9 +491,9 @@ public class RandomModelToSMTLIB extends RandomOperatorExecutableImpl {
 		readProperties(inputProperties);
 
 		// get output from previous operator
-		RandomModelGenerateLabeledGraph previousOperator = (previousExecutable == null) ?
-			(RandomModelGenerateLabeledGraph) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI).getExecutable() :
-			(RandomModelGenerateLabeledGraph) previousExecutable;
+		RandomModelGenerateLabeledGraph previousOperator = (getPreviousOperator() == null) ?
+			(RandomModelGenerateLabeledGraph) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
+			(RandomModelGenerateLabeledGraph) getPreviousOperator();
 		mayModelObjs = previousOperator.getMAVOModelObjects();
 		if (mayModelObjs == null) {
 			mayModelObjs = new ArrayList<MAVOElement>();
