@@ -83,6 +83,7 @@ public class ConversionOperatorImpl extends OperatorImpl implements ConversionOp
 	 */
 	public void cleanup() throws Exception {
 
+		//TODO MMTF[OPERATOR] why don't we pass a flag when the operator is in a conversion chain to let the implementation know it shouldn't create stuff?
 		throw new MMTFException("The default cleanup() function must be overridden");
 	}
 
