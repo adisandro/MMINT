@@ -342,6 +342,10 @@ public class MMTF implements MMTFConstants {
 		for (IConfigurationElement paramTypeConfigElem : paramTypeConfigElems) {
 			String newParamTypeName = paramTypeConfigElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_NAME);
 			boolean isVararg = Boolean.parseBoolean(paramTypeConfigElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_ISVARARG));
+			boolean isType = Boolean.parseBoolean(paramTypeConfigElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_ISTYPE));
+			if (isType) {
+				newParamTypeName = "META-" + newParamTypeName; 
+			}
 			if (isVararg && i != (paramTypeConfigElems.length-1)) {
 				throw new MMTFException("Only the last parameter can be vararg");
 			}

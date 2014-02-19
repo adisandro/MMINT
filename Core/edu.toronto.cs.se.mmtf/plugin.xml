@@ -229,6 +229,7 @@
          <input>
             <parameter
                   isVararg="false"
+                  isType="true"
                   name="modelRelType"
                   modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
             </parameter>

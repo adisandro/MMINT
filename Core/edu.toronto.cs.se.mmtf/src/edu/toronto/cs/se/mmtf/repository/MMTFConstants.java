@@ -131,6 +131,8 @@ public interface MMTFConstants {
 	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_NAME = "name";
 	/** The Operators extension point's input/output's parameter child's isVararg attribute. */
 	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_ISVARARG = "isVararg";
+	/** The Operators extension point's input/output's parameter child's isType attribute. */
+	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_ISTYPE = "isType";
 	/** The Operators extension point's input/output's parameter child's modelTypeUri attribute. */
 	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_MODELTYPEURI = "modelTypeUri";
 

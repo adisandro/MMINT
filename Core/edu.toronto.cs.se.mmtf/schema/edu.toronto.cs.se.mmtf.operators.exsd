@@ -107,7 +107,14 @@
          <attribute name="isVararg" type="boolean" use="required">
             <annotation>
                <documentation>
-                  Whether this parameter represents a variable number of actual parameters. Only last parameter can be a vararg.
+                  True if this parameter represents a variable number of actual parameters, false otherwise. Only last parameter can be a vararg.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="isType" type="boolean">
+            <annotation>
+               <documentation>
+                  True if this parameter represents an actual parameter from the types level, false otherwise. False is default.
                </documentation>
             </annotation>
          </attribute>

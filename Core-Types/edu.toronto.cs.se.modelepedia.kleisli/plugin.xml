@@ -74,10 +74,14 @@
                name="KleisliModelRelTypeTransformation"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_KleisliModelRelTypeTransformation"
                class="edu.toronto.cs.se.modelepedia.kleisli.transformation.KleisliModelRelTypeTransformation">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelRelTypeTransformation">
+            </superType>
          </type>
          <input>
             <parameter
                   isVararg="false"
+                  isType="true"
                   name="kModelRelType"
                   modelTypeUri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel">
             </parameter>
