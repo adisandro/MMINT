@@ -12,9 +12,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Account">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="/number" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="_number" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="/StudentAccount" eSuperTypes="#//Account"/>
-  <eClassifiers xsi:type="ecore:EClass" name="/BusinessAccount" eSuperTypes="#//Account"/>
+  <eClassifiers xsi:type="ecore:EClass" name="_StudentAccount" eSuperTypes="#//Account"/>
+  <eClassifiers xsi:type="ecore:EClass" name="_BusinessAccount" eSuperTypes="#//Account"/>
 </ecore:EPackage>

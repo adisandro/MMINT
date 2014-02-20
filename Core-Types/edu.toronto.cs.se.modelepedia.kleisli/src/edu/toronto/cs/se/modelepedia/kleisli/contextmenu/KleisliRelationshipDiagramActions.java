@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.diagram.library.AddModifyConstraintListener;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
@@ -67,10 +68,21 @@ public class KleisliRelationshipDiagramActions extends ContributionItem {
 			) {
 				GraphicalEditPart editPart = (GraphicalEditPart) object;
 				modelElemRef = (ModelElementReference) ((View) editPart.getModel()).getElement();
+				//TODO MMTF[KLEISLI] replace with KleisliModelElement
+				EMFInfo eInfo = modelElemRef.getObject().getEInfo();
 				if (
 					!(((ModelEndpointReference) modelElemRef.eContainer()).getObject() instanceof KleisliModelEndpoint) ||
-					MultiModelConstraintChecker.isInstancesLevel(modelElemRef)) // no instances
-				{ 
+					MultiModelConstraintChecker.isInstancesLevel(modelElemRef) || ( // only types
+						!eInfo.getClassName().startsWith("_") && ( // only derived classes
+							eInfo.getFeatureName() == null ||
+							!eInfo.getFeatureName().startsWith("_")
+						)
+					) || (
+						eInfo.getClassName().startsWith("_") && // only derived features
+						eInfo.getFeatureName() != null &&
+						!eInfo.getFeatureName().startsWith("_")
+					)
+				) {
 					doDerivation = false;
 				}
 			}
