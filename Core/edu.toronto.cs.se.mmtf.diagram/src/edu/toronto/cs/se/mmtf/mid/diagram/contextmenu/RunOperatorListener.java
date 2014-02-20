@@ -44,9 +44,9 @@ public class RunOperatorListener extends SelectionAdapter {
 
 	Operator operator;
 	EList<Model> actualParameters;
-	Map<Integer, List<ConversionOperator>> conversionMap;
+	Map<Integer, EList<ConversionOperator>> conversionMap;
 
-	public RunOperatorListener(Operator operator, EList<Model> actualParameters, Map<Integer, List<ConversionOperator>> conversionMap) {
+	public RunOperatorListener(Operator operator, EList<Model> actualParameters, Map<Integer, EList<ConversionOperator>> conversionMap) {
 
 		this.operator = operator;
 		this.actualParameters = actualParameters;
@@ -97,7 +97,7 @@ public class RunOperatorListener extends SelectionAdapter {
 				//TODO MMTF: is conversionMap ordered?? I don't think so
 				// run all conversion operators
 				if (!conversionMap.isEmpty()) {
-					for (Entry<Integer, List<ConversionOperator>> entry : conversionMap.entrySet()) {
+					for (Entry<Integer, EList<ConversionOperator>> entry : conversionMap.entrySet()) {
 						int i = entry.getKey();
 						List<ConversionOperator> conversionList = entry.getValue();
 						Model newActualParameter = actualParameters.get(i);
@@ -113,7 +113,7 @@ public class RunOperatorListener extends SelectionAdapter {
 				operator.execute(actualParameters);
 				// cleanup all conversion operators
 				if (!conversionMap.isEmpty()) {
-					for (Entry<Integer, List<ConversionOperator>> entry : conversionMap.entrySet()) {
+					for (Entry<Integer, EList<ConversionOperator>> entry : conversionMap.entrySet()) {
 						for (ConversionOperator operator : entry.getValue()) {
 							((ConversionOperator) operator).cleanup();
 						}

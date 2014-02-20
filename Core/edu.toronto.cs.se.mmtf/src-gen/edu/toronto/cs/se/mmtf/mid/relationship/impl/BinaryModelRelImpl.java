@@ -219,7 +219,10 @@ public class BinaryModelRelImpl extends ModelRelImpl implements BinaryModelRel {
 			throw new MMTFException("Source model not allowed");
 		}
 
-		return new ModelRelTypeTransformation();
+		ConversionOperator transformationOperator = new ModelRelTypeTransformation();
+		transformationOperator.setName("ModelRelTypeTransformation");
+
+		return transformationOperator;
 	}
 
 } //BinaryModelRelImpl

@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
+import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
@@ -184,11 +185,17 @@ public interface Operator extends ExtendibleElement {
 	 * @throws Exception
 	 *             If something went wrong during the execution of the operator.
 	 *             <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmtf.mid.operator.Exception"
-	 *        actualParametersRequired="true" actualParametersMany="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.operator.Exception" actualParametersRequired="true" actualParametersMany="true"
 	 * @generated
 	 */
 	EList<Model> execute(EList<Model> actualParameters) throws Exception;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" actualModelsMany="true" actualModelTypesMany="true"
+	 * @generated
+	 */
+	Map<Integer, EList<ConversionOperator>> isExecutable(EList<Model> actualModels, EList<EList<Model>> actualModelTypes);
 
 } // Operator

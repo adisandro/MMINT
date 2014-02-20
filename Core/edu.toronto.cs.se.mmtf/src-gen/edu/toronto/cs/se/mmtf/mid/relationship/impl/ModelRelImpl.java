@@ -647,6 +647,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 */
 	public ConversionOperator getTypeTransformationOperator(Model srcModel) throws MMTFException {
 
+		//TODO MMTF[TRANSFORMATION] delete this function and move into ModelRelTypeTransformation.isExecutable(), same for binary and kleisli
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
 		}
@@ -660,8 +661,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			throw new MMTFException("Source model not allowed");
 		}
 
-		//TODO MMTF[transformation] get it from repository, don't create, same for binary and kleisli
-		return new ModelRelTypeTransformation();
+		ConversionOperator transformationOperator = new ModelRelTypeTransformation();
+		transformationOperator.setName("ModelRelTypeTransformation");
+
+		return transformationOperator;
 	}
 
 	/**

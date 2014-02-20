@@ -11,10 +11,13 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.transformation;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
@@ -51,6 +54,12 @@ public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformatio
 		}
 
 		return result;
+	}
+
+	@Override
+	public Map<Integer, EList<ConversionOperator>> isExecutable(EList<Model> actualModels, EList<EList<Model>> actualModelTypes) {
+
+		return null;
 	}
 
 }

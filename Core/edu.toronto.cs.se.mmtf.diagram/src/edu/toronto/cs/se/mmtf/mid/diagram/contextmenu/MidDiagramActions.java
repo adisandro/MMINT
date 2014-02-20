@@ -136,11 +136,11 @@ public class MidDiagramActions extends ContributionItem {
 		}
 
 		// polymorphism
-		List<List<Model>> runtimeModelTypes = null;
+		EList<EList<Model>> runtimeModelTypes = null;
 		if (doOperator || doCast) {
-			runtimeModelTypes = new ArrayList<List<Model>>();
+			runtimeModelTypes = new BasicEList<EList<Model>>();
 			for (Model model : models) {
-				runtimeModelTypes.add(MultiModelTypeIntrospection.getRuntimeTypes(model));
+				runtimeModelTypes.add(new BasicEList<Model>(MultiModelTypeIntrospection.getRuntimeTypes(model)));
 			}
 		}
 		// create dynamic menus
@@ -150,11 +150,12 @@ public class MidDiagramActions extends ContributionItem {
 		mmtfItem.setMenu(mmtfMenu);
 		// operator
 		if (doOperator) {
-			List<Map<Integer, List<ConversionOperator>>> conversions = new ArrayList<Map<Integer, List<ConversionOperator>>>();
+			List<Map<Integer, EList<ConversionOperator>>> conversions = new ArrayList<Map<Integer, EList<ConversionOperator>>>();
 			//TODO MMTF[TRANSFORMATION] the other operators should be aware of the possible transformation operators
 			List<Operator> operators = MultiModelTypeHierarchy.getExecutableOperators(models, runtimeModelTypes, conversions);
 			//transformation
 			Map<ConversionOperator, ModelRel> modelRelTypes = new HashMap<ConversionOperator, ModelRel>();
+			//TODO MMTF[TRANSFORMATION] remove doTransformation, move into ModelRelTypeTransformation.isExecutable()
 			if (doTransformation) {
 				for (ModelRel modelRelType : MultiModelTypeRegistry.getModelRelTypes()) {
 					ConversionOperator transformationOperator;
@@ -166,7 +167,7 @@ public class MidDiagramActions extends ContributionItem {
 					}
 					modelRelTypes.put(transformationOperator, modelRelType);
 					operators.add(transformationOperator);
-					conversions.add(new HashMap<Integer, List<ConversionOperator>>());
+					conversions.add(new HashMap<Integer, EList<ConversionOperator>>());
 				}
 			}
 			if (!operators.isEmpty()) {
@@ -176,7 +177,7 @@ public class MidDiagramActions extends ContributionItem {
 				operatorItem.setMenu(operatorMenu);
 				for (int i = 0; i < operators.size(); i++) {
 					Operator operator = operators.get(i);
-					Map<Integer, List<ConversionOperator>> conversionMap = conversions.get(i);
+					Map<Integer, EList<ConversionOperator>> conversionMap = conversions.get(i);
 					MenuItem operatorSubitem = new MenuItem(operatorMenu, SWT.NONE);
 					String text;
 					EList<Model> actualParameters;

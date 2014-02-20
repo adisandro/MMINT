@@ -338,7 +338,10 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			throw new MMTFException("Source model not allowed");
 		}
 
-		return new KleisliModelRelTypeTransformation();
+		ConversionOperator transformationOperator = new KleisliModelRelTypeTransformation();
+		transformationOperator.setName("KleisliModelRelTypeTransformation");
+
+		return transformationOperator;
 	}
 
 	/**

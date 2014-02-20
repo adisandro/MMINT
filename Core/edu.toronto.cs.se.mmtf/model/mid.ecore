@@ -1138,6 +1138,20 @@
           eExceptions="#//operator/Exception">
         <eParameters name="actualParameters" lowerBound="1" upperBound="-1" eType="#//Model"/>
       </eOperations>
+      <eOperations name="isExecutable" lowerBound="1">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+            <eTypeArguments eClassifier="#//operator/ConversionOperator"/>
+          </eTypeArguments>
+        </eGenericType>
+        <eParameters name="actualModels" upperBound="-1" eType="#//Model"/>
+        <eParameters name="actualModelTypes" upperBound="-1">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+            <eTypeArguments eClassifier="#//Model"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
           eType="#//operator/Parameter" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

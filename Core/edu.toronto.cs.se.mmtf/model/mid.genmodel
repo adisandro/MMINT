@@ -462,6 +462,10 @@
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/execute">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/execute/actualParameters"/>
         </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/isExecutable">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/isExecutable/actualModels"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/isExecutable/actualModelTypes"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/ConversionOperator">
         <genOperations ecoreOperation="mid.ecore#//operator/ConversionOperator/deleteType"/>

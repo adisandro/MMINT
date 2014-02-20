@@ -254,7 +254,10 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 			throw new MMTFException("Source model not allowed");
 		}
 
-		return new KleisliModelRelTypeTransformation();
+		ConversionOperator transformationOperator = new KleisliModelRelTypeTransformation();
+		transformationOperator.setName("KleisliModelRelTypeTransformation");
+
+		return transformationOperator;
 	}
 
 } //KleisliBinaryModelRelImpl
