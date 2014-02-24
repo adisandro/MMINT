@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Vivien Suen.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -14,9 +14,9 @@ package edu.toronto.cs.se.modelepedia.necsis13.operator;
 import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorExecutableImpl;
+import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorImpl;
 
-public class Dummy extends OperatorExecutableImpl {
+public class DummyUML2Java extends ConversionOperatorImpl {
 
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 

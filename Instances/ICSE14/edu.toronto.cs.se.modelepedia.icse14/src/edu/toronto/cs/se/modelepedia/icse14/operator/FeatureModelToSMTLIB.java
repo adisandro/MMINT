@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -27,14 +27,13 @@ import java.util.Set;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.operator.patch.LiftingHenshinTransformation;
-import edu.toronto.cs.se.modelepedia.operator.reasoning.Z3SMTSolver;
 import splar.core.constraints.CNFClause;
 import splar.core.constraints.CNFFormula;
 import splar.core.constraints.CNFLiteral;
 import splar.core.fm.FeatureModel;
 import splar.core.fm.XMLFeatureModel;
 
-public class FeatureModelToSMTLIB implements Z3SMTSolver {
+public class FeatureModelToSMTLIB implements edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver {
 
 	private static final Set<String> Z3_KEYWORDS = new HashSet<String>();
 	static {
