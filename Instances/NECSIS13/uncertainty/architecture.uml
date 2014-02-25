@@ -17,9 +17,9 @@
     <packagedElement xmi:type="uml:Dependency" xmi:id="_K0dv4M7pEeKKq4cKovaOgw" name="ECU3_Bus3" client="_v2zPkM7oEeKKq4cKovaOgw" supplier="_1CsssM7oEeKKq4cKovaOgw"/>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_c6I1cNFSEeKgVPFJhzAu7w">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_c6Z7MNFSEeKgVPFJhzAu7w" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="platform:/plugin/edu.toronto.cs.se.mmtf/model/mavo.profile.uml#_lRSGYNEtEeKoJbXh4vbX1A"/>
+        <references xmi:type="ecore:EPackage" href="platform:/plugin/edu.toronto.cs.se.modelepedia.uml/model/mavo.profile.uml#_lRSGYNEtEeKoJbXh4vbX1A"/>
       </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/edu.toronto.cs.se.mmtf/model/mavo.profile.uml#_H_nKEMlAEeKrhsRgWa0Oxg"/>
+      <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/edu.toronto.cs.se.modelepedia.uml/model/mavo.profile.uml#_H_nKEMlAEeKrhsRgWa0Oxg"/>
     </profileApplication>
   </uml:Model>
   <MAVOProfile:may xmi:id="_lgEwgNFSEeKgVPFJhzAu7w" base_Classifier="_0RX9cM7oEeKKq4cKovaOgw"/>
