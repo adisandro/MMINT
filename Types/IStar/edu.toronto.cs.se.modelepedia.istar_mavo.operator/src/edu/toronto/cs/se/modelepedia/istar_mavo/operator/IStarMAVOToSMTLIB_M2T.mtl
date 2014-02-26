@@ -640,7 +640,7 @@
 (assert (forall ((c SoftGoal)) (xor (fs c) (ps c) (un c) (co c) (pd c) (fd c) (n c))))
 (assert (forall ((c Resource)) (xor (fs c) (ps c) (un c) (co c) (pd c) (fd c) (n c))))
 
-;Initial lables
+;Initial labels
 	[let intentionEclass : EClass = istar.eClass().ePackage.eAllContents(EClass)->any(name = 'Intention')]
 	[for (intention : Intention | istar.getObjectsOfKind(intentionEclass)->collect(oclAsType(Intention)))]
 (assert (forall ((c [intention.eClass().name/])) (=>

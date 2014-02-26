@@ -177,9 +177,6 @@ public class FASE14 extends RE13 {
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(istar, true);
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();
-			if (modelObj instanceof DependerLink && ((DependerLink) modelObj).getDepender() instanceof Actor) {
-				
-			}
 			if (modelObj instanceof Intention) {
 				Intention intention = (Intention) modelObj;
 				intentions.put(intention.getFormulaId(), intention);
@@ -192,7 +189,7 @@ public class FASE14 extends RE13 {
 					intention.isFullyDenied() ||
 					intention.isNoLabel()
 				) {
-					intentionLeafs.add(intention.getFormulaId());
+					initialIntentions.add(intention.getFormulaId());
 				}
 			}
 			if (

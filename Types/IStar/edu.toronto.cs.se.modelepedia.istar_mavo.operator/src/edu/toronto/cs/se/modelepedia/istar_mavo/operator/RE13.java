@@ -82,7 +82,7 @@ public class RE13 extends OperatorImpl implements Z3SMTSolver {
 
 	protected IStar istar;
 	protected Map<String, Intention> intentions;
-	protected Set<String> intentionLeafs;
+	protected Set<String> initialIntentions;
 	private String smtEncoding;
 	private Map<Integer, String> smtNodes;
 	protected Z3IncResult z3IncResult;
@@ -110,7 +110,7 @@ public class RE13 extends OperatorImpl implements Z3SMTSolver {
 	protected void init() {
 
 		intentions = new HashMap<String, Intention>();
-		intentionLeafs = new HashSet<String>();
+		initialIntentions = new HashSet<String>();
 		IStarMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
 			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
 			(IStarMAVOToSMTLIB) getPreviousOperator();
@@ -268,7 +268,7 @@ nextNodeFunction:
 		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
 			String intentionName = entry.getKey();
 			Intention intention = entry.getValue();
-			if (intentionLeafs.contains(intentionName)) { // skip leafs
+			if (initialIntentions.contains(intentionName)) { // skip intentions with initial label
 				continue;
 			}
 			intentionProperty = SMTLIB_ASSERT;
@@ -342,7 +342,7 @@ nextNodeFunction:
 				intention.isFullyDenied() ||
 				intention.isNoLabel()
 			) {
-				intentionLeafs.add(entry.getKey());
+				initialIntentions.add(entry.getKey());
 			}
 		}
 	}

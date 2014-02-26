@@ -78,18 +78,21 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 	protected void doExecuteTypesLevel(Model modelType) throws Exception {
 
 		List<URI> metamodelUris = new ArrayList<URI>();
+		//TODO MMTF[EDITOR] fix a) references to inherited metamodels not good in runtime eclipse b) open UML
 		while (true) {
-			if (!modelType.isDynamic()) { // get metamodel files from bundle
+			if (modelType.isDynamic()) {
+				String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(modelType);
+				if (metamodelUri != null) { // get metamodel file from mmtf state area
+					metamodelUris.add(URI.createFileURI(metamodelUri));
+					break;
+				}
+			}
+			else { // get metamodel files from bundle
 				Bundle bundle = MultiModelTypeRegistry.getTypeBundle(modelType.getUri());
 				Enumeration<URL> metamodels = bundle.findEntries("/", "*." + EcorePackage.eNAME, true);
 				while (metamodels.hasMoreElements()) {
 					metamodelUris.add(URI.createURI(FileLocator.toFileURL(metamodels.nextElement()).toString()));
 				}
-				break;
-			}
-			String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(modelType);
-			if (metamodelUri != null) { // get metamodel file from mmtf state area
-				metamodelUris.add(URI.createFileURI(metamodelUri));
 				break;
 			}
 			// climb up light types
