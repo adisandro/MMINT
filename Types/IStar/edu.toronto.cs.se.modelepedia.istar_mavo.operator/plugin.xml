@@ -62,6 +62,32 @@
                name="FASE14"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_FASE14"
                class="edu.toronto.cs.se.modelepedia.istar_mavo.operator.FASE14">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/Operator_RE13">
+            </superType>
+         </type>
+         <input>
+            <parameter
+                  isVararg="false"
+                  name="istarModel"
+                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+            </parameter>
+         </input>
+         <output>
+         </output>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.operators">
+      <operatorType>
+         <type
+               name="RE14"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_RE14"
+               class="edu.toronto.cs.se.modelepedia.istar_mavo.operator.RE14">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/Operator_FASE14">
+            </superType>
          </type>
          <input>
             <parameter
