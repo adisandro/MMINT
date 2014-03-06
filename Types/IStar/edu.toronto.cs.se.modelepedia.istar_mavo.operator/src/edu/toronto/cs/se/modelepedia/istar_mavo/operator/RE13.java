@@ -44,7 +44,7 @@ public class RE13 extends OperatorImpl implements Z3SMTSolver {
 		co(IStar_MAVOPackage.eINSTANCE.getIntention_Conflict()),
 		pd(IStar_MAVOPackage.eINSTANCE.getIntention_PartiallyDenied()),
 		fd(IStar_MAVOPackage.eINSTANCE.getIntention_FullyDenied()),
-		n(IStar_MAVOPackage.eINSTANCE.getIntention_NoLabel());
+		no(IStar_MAVOPackage.eINSTANCE.getIntention_NoLabel());
 
 		private final EStructuralFeature modelFeature;
 
@@ -160,6 +160,9 @@ public class RE13 extends OperatorImpl implements Z3SMTSolver {
 		else {
 			for (String z3LabelNodeName : z3LabelNodes) {
 				Integer z3LabelNodeNumber = z3ModelNodes.get(z3LabelNodeName);
+				if (z3LabelNodeNumber == null) { // result of a node all true function
+					continue;
+				}
 				intentions.get(smtNodes.get(z3LabelNodeNumber)).eSet(labelFeature, true);
 			}
 		}
