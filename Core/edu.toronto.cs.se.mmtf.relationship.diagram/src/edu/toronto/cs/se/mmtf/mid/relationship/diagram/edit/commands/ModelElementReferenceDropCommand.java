@@ -118,7 +118,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected ModelElementReference doExecuteTypesLevel() throws MMTFException {
 
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) getElementToEdit();
-		EObject modelObj = dropObj.getModelObject();
+		EObject metamodelObj = dropObj.getModelObject();
 		ModelRel modelRelType = (ModelRel) modelTypeEndpointRef.eContainer();
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
 
@@ -126,9 +126,9 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 		//TODO MMTF[MODELELEMENT] could this be in the drag part?
 		ModelElement modelElemType = null;
 		ModelElementReference modelElemTypeRef = null;
-		if (modelObj instanceof EClass) {
+		if (metamodelObj instanceof EClass) {
 supertypes:
-			for (EClass modelObjSuper : ((EClass) modelObj).getEAllSuperTypes()) {
+			for (EClass modelObjSuper : ((EClass) metamodelObj).getEAllSuperTypes()) {
 				String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObjSuper, MidLevel.TYPES);
 				String modelTypeUri = uris[0];
 				String modelElemTypeUri = uris[1];
@@ -151,10 +151,10 @@ supertypes:
 			modelElemType = MultiModelRegistry.getExtendibleElement(modelElemTypeUri, multiModel);
 		}
 
-		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, MidLevel.TYPES);
-		String newModelElemTypeName = MultiModelRegistry.getModelElementName(eInfo, modelObj, MidLevel.TYPES);
+		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(metamodelObj, MidLevel.TYPES);
+		String newModelElemTypeName = MultiModelRegistry.getModelElementName(eInfo, metamodelObj, MidLevel.TYPES);
 		ModelElementReference newModelElemTypeRef = modelElemType.createSubtypeAndReference(modelElemTypeRef, dropObj.getModelElementUri(), newModelElemTypeName, eInfo, modelTypeEndpointRef);
-		MAVOUtils.initializeMAVOModelElementReference(modelObj, newModelElemTypeRef);
+		MAVOUtils.initializeMAVOModelElementReference(metamodelObj, newModelElemTypeRef);
 		MMTF.createTypeHierarchy(multiModel);
 
 		return newModelElemTypeRef;
