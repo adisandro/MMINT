@@ -11,9 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 
 /**
@@ -31,12 +28,4 @@ import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
  * @generated
  */
 public interface KleisliBinaryModelRel extends KleisliModelRel, BinaryModelRel {
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" srcModelRequired="true"
-	 * @generated
-	 */
-	ConversionOperator getTypeTransformationOperator(Model srcModel) throws MMTFException;
 } // KleisliBinaryModelRel

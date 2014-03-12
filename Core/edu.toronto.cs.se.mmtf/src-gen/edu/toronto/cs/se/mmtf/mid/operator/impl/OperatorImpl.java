@@ -31,6 +31,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
@@ -402,8 +403,13 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___IS_EXECUTABLE__ELIST_ELIST:
-				return isExecutable((EList<Model>)arguments.get(0), (EList<EList<Model>>)arguments.get(1));
+			case OperatorPackage.OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST:
+				try {
+					return getExecutables((EList<Model>)arguments.get(0), (EList<EList<Model>>)arguments.get(1), (EList<Map<Integer, EList<ConversionOperator>>>)arguments.get(2), (EList<EList<Model>>)arguments.get(3));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -454,14 +460,18 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public Map<Integer, EList<ConversionOperator>> isExecutable(EList<Model> actualModels, EList<EList<Model>> actualModelTypes) {
+	public EList<Operator> getExecutables(EList<Model> actualModels, EList<EList<Model>> actualModelTypes, EList<Map<Integer, EList<ConversionOperator>>> conversions, EList<EList<Model>> generics) throws MMTFException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
 
 		int i = 0;
-		Map<Integer, EList<ConversionOperator>> conversionMap = new HashMap<Integer, EList<ConversionOperator>>();
+		Map<Integer, EList<ConversionOperator>> conversion = new HashMap<Integer, EList<ConversionOperator>>();
 		for (Parameter parameter : getInputs()) {
 			// check 1: not enough actual parameters
 			if (i >= actualModels.size()) {
-				return null;
+				return new BasicEList<Operator>();
 			}
 			// check 2: type or substitutable types
 			while (i < actualModels.size()) {
@@ -471,10 +481,10 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 				if (!MultiModelTypeHierarchy.isRootType(formalParameter) || !formalParameter.getClass().isAssignableFrom(actualParameter.getClass())) {
 					EList<ConversionOperator> conversionOperatorTypes = MultiModelTypeHierarchy.isEligibleParameter(actualModelTypes.get(i), formalParameter);
 					if (conversionOperatorTypes == null) {
-						return null;
+						return new BasicEList<Operator>();
 					}
 					if (!conversionOperatorTypes.isEmpty()) {
-						conversionMap.put(new Integer(i), conversionOperatorTypes);
+						conversion.put(new Integer(i), conversionOperatorTypes);
 					}
 				}
 				i++;
@@ -486,10 +496,15 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 		}
 		// check 3: too many actual parameters
 		if (i < actualModels.size()) {
-			return null;
+			return new BasicEList<Operator>();
 		}
+		// create return structures with this operator type as the only executable
+		EList<Operator> executableOperatorTypes = new BasicEList<Operator>();
+		executableOperatorTypes.add(this);
+		conversions.add(conversion);
+		generics.add(new BasicEList<Model>());
 
-		return conversionMap;
+		return executableOperatorTypes;
 	}
 
 } //OperatorImpl

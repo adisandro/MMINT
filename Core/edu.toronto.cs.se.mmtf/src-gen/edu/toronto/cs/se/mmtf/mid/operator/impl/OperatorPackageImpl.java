@@ -308,7 +308,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__IsExecutable__EList_EList() {
+	public EOperation getOperator__GetExecutables__EList_EList_EList_EList() {
 		return operatorEClass.getEOperations().get(4);
 	}
 
@@ -453,7 +453,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(operatorEClass, OPERATOR___GET_SUPERTYPE);
 		createEOperation(operatorEClass, OPERATOR___DELETE_TYPE);
 		createEOperation(operatorEClass, OPERATOR___EXECUTE__ELIST);
-		createEOperation(operatorEClass, OPERATOR___IS_EXECUTABLE__ELIST_ELIST);
+		createEOperation(operatorEClass, OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST);
 
 		conversionOperatorEClass = createEClass(CONVERSION_OPERATOR);
 		createEOperation(conversionOperatorEClass, CONVERSION_OPERATOR___DELETE_TYPE);
@@ -530,7 +530,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		addEParameter(op, theMidPackage.getModel(), "actualParameters", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getException());
 
-		op = initEOperation(getOperator__IsExecutable__EList_EList(), null, "isExecutable", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getOperator__GetExecutables__EList_EList_EList_EList(), this.getOperator(), "getExecutables", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMidPackage.getModel(), "actualModels", 0, -1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
 		EGenericType g2 = createEGenericType(theMidPackage.getModel());
@@ -543,7 +543,12 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		g1.getETypeArguments().add(g2);
 		EGenericType g3 = createEGenericType(this.getConversionOperator());
 		g2.getETypeArguments().add(g3);
-		initEOperation(op, g1);
+		addEParameter(op, g1, "conversions", 0, -1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEEList());
+		g2 = createEGenericType(theMidPackage.getModel());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "generics", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMTFException());
 
 		initEClass(conversionOperatorEClass, ConversionOperator.class, "ConversionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

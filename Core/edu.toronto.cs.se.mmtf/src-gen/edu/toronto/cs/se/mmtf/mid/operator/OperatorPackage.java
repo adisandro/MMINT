@@ -334,13 +334,13 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___EXECUTE__ELIST = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
-	 * The operation id for the '<em>Is Executable</em>' operation.
+	 * The operation id for the '<em>Get Executables</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___IS_EXECUTABLE__ELIST_ELIST = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+	int OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -570,13 +570,13 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR___EXECUTE__ELIST = OPERATOR___EXECUTE__ELIST;
 
 	/**
-	 * The operation id for the '<em>Is Executable</em>' operation.
+	 * The operation id for the '<em>Get Executables</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR___IS_EXECUTABLE__ELIST_ELIST = OPERATOR___IS_EXECUTABLE__ELIST_ELIST;
+	int CONVERSION_OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -832,13 +832,13 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___EXECUTE__ELIST = OPERATOR___EXECUTE__ELIST;
 
 	/**
-	 * The operation id for the '<em>Is Executable</em>' operation.
+	 * The operation id for the '<em>Get Executables</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_OPERATOR___IS_EXECUTABLE__ELIST_ELIST = OPERATOR___IS_EXECUTABLE__ELIST_ELIST;
+	int RANDOM_OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST;
 
 	/**
 	 * The number of operations of the '<em>Random Operator</em>' class.
@@ -1056,14 +1056,14 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__Execute__EList();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#isExecutable(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Is Executable</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmtf.mid.operator.Operator#getExecutables(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Executables</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Is Executable</em>' operation.
-	 * @see edu.toronto.cs.se.mmtf.mid.operator.Operator#isExecutable(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @return the meta object for the '<em>Get Executables</em>' operation.
+	 * @see edu.toronto.cs.se.mmtf.mid.operator.Operator#getExecutables(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getOperator__IsExecutable__EList_EList();
+	EOperation getOperator__GetExecutables__EList_EList_EList_EList();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmtf.mid.operator.Parameter <em>Parameter</em>}'.
@@ -1313,12 +1313,12 @@ public interface OperatorPackage extends EPackage {
 		EOperation OPERATOR___EXECUTE__ELIST = eINSTANCE.getOperator__Execute__EList();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Executable</b></em>' operation.
+		 * The meta object literal for the '<em><b>Get Executables</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation OPERATOR___IS_EXECUTABLE__ELIST_ELIST = eINSTANCE.getOperator__IsExecutable__EList_EList();
+		EOperation OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = eINSTANCE.getOperator__GetExecutables__EList_EList_EList_EList();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmtf.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.

@@ -595,10 +595,6 @@
       <eOperations name="getOutlineResourceTypes" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
           eExceptions="#//MMTFException"/>
       <eOperations name="deleteType" eExceptions="#//MMTFException"/>
-      <eOperations name="getTypeTransformationOperator" lowerBound="1" eType="#//operator/ConversionOperator"
-          eExceptions="#//MMTFException">
-        <eParameters name="srcModel" lowerBound="1" eType="#//Model"/>
-      </eOperations>
       <eOperations name="createInstance" lowerBound="1" eType="#//relationship/ModelRel"
           eExceptions="#//MMTFException">
         <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -658,10 +654,6 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="isBinaryModelRel" value="modelEndpoints->size() = 2"/>
       </eAnnotations>
-      <eOperations name="getTypeTransformationOperator" lowerBound="1" eType="#//operator/ConversionOperator"
-          eExceptions="#//MMTFException">
-        <eParameters name="srcModel" lowerBound="1" eType="#//Model"/>
-      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceModel" lowerBound="1"
           eType="#//Model" volatile="true" transient="true" derived="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -1138,15 +1130,23 @@
           eExceptions="#//operator/Exception">
         <eParameters name="actualParameters" lowerBound="1" upperBound="-1" eType="#//Model"/>
       </eOperations>
-      <eOperations name="isExecutable" lowerBound="1">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-            <eTypeArguments eClassifier="#//operator/ConversionOperator"/>
-          </eTypeArguments>
-        </eGenericType>
+      <eOperations name="getExecutables" upperBound="-1" eType="#//operator/Operator"
+          eExceptions="#//MMTFException">
         <eParameters name="actualModels" upperBound="-1" eType="#//Model"/>
         <eParameters name="actualModelTypes" upperBound="-1">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+            <eTypeArguments eClassifier="#//Model"/>
+          </eGenericType>
+        </eParameters>
+        <eParameters name="conversions" upperBound="-1">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+              <eTypeArguments eClassifier="#//operator/ConversionOperator"/>
+            </eTypeArguments>
+          </eGenericType>
+        </eParameters>
+        <eParameters name="generics" upperBound="-1">
           <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
             <eTypeArguments eClassifier="#//Model"/>
           </eGenericType>

@@ -11,18 +11,9 @@
  */
 package edu.toronto.cs.se.mmtf.mid.relationship.impl;
 
-import java.util.HashMap;
-
-import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
-import edu.toronto.cs.se.mmtf.transformation.ModelRelTypeTransformation;
-import edu.toronto.cs.se.mmtf.transformation.ModelRelTypeTransformationConstraint;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -201,28 +192,6 @@ public class BinaryModelRelImpl extends ModelRelImpl implements BinaryModelRel {
 				return TARGET_MODEL__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public ConversionOperator getTypeTransformationOperator(Model srcModel) throws MMTFException {
-
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
-		}
-		if (new ModelRelTypeTransformationConstraint(this).validate() != MAVOTruthValue.TRUE) {
-			throw new MMTFException("Transformation constraint not satisfied");
-		}
-		if (!MultiModelConstraintChecker.isAllowedModelEndpoint(getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>())) {
-			throw new MMTFException("Source model not allowed");
-		}
-
-		ConversionOperator transformationOperator = new ModelRelTypeTransformation();
-		transformationOperator.setName("ModelRelTypeTransformation");
-
-		return transformationOperator;
 	}
 
 } //BinaryModelRelImpl

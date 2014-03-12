@@ -39,6 +39,7 @@ import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmtf.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -46,6 +47,7 @@ import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
 
 public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 
@@ -218,9 +220,44 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 	}
 
 	@Override
-	public Map<Integer, EList<ConversionOperator>> isExecutable(EList<Model> actualModels, EList<EList<Model>> actualModelTypes) {
+	public EList<Operator> getExecutables(EList<Model> actualModels, EList<EList<Model>> actualModelTypes, EList<Map<Integer, EList<ConversionOperator>>> conversions, EList<EList<Model>> generics) throws MMTFException {
 
-		return null;
+		//TODO MMTF[TRANSFORMATION] this operator shouldn't appear when only a kleisli model rel type is available
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		EList<Operator> executableOperatorTypes = new BasicEList<Operator>();
+		// check 1: only one actual parameter
+		if (actualModels.size() != 1) {
+			return executableOperatorTypes;
+		}
+		for (ModelRel modelRelType : MultiModelTypeRegistry.getModelRelTypes()) {
+			// check 2: satisfies transformation constraint
+			if (new ModelRelTypeTransformationConstraint(modelRelType).validate() != MAVOTruthValue.TRUE) {
+				continue;
+			}
+			Model srcModel = actualModels.get(0);
+			// check 3: allowed source model
+			if (
+				!MultiModelConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>()) && (
+					modelRelType instanceof BinaryModelRel ||
+					!MultiModelConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(1), srcModel, new HashMap<String, Integer>())
+				)
+			) {
+				continue;
+			}
+			// create return structures with a new instance of this operator type
+			Operator operatorType = new ModelRelTypeTransformation();
+			operatorType.setName(getName());
+			executableOperatorTypes.add(operatorType);
+			conversions.add(new HashMap<Integer, EList<ConversionOperator>>());
+			EList<Model> generic = new BasicEList<Model>();
+			generic.add(modelRelType);
+			generics.add(generic);
+		}
+
+		return executableOperatorTypes;
 	}
 
 }

@@ -11,20 +11,11 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
-import java.util.HashMap;
-
-import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
-import edu.toronto.cs.se.mmtf.transformation.ModelRelTypeTransformationConstraint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
-import edu.toronto.cs.se.modelepedia.kleisli.transformation.KleisliModelRelTypeTransformation;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -236,28 +227,6 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public ConversionOperator getTypeTransformationOperator(Model srcModel) throws MMTFException {
-
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
-		}
-		if (new ModelRelTypeTransformationConstraint(this).validate() != MAVOTruthValue.TRUE) {
-			throw new MMTFException("Transformation constraint not satisfied");
-		}
-		if (!MultiModelConstraintChecker.isAllowedModelEndpoint(getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>())) {
-			throw new MMTFException("Source model not allowed");
-		}
-
-		ConversionOperator transformationOperator = new KleisliModelRelTypeTransformation();
-		transformationOperator.setName("KleisliModelRelTypeTransformation");
-
-		return transformationOperator;
 	}
 
 } //KleisliBinaryModelRelImpl

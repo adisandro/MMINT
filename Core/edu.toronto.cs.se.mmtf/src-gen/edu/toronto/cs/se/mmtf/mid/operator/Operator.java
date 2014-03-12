@@ -191,11 +191,33 @@ public interface Operator extends ExtendibleElement {
 	EList<Model> execute(EList<Model> actualParameters) throws Exception;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" actualModelsMany="true" actualModelTypesMany="true"
+	 * <!-- begin-user-doc --> Gets the list of executable operator types given
+	 * a list of actual parameters to be used for their invocation. Contract:
+	 * for each executable operator type, populate conversions and generics with
+	 * the corresponding structures.
+	 * 
+	 * @param actualModels
+	 *            The list of actual model parameters.
+	 * @param actualModelTypes
+	 *            A list of model types obtained through polymorphism for each
+	 *            actual model parameter.
+	 * @param conversions
+	 *            Used as output, a list of conversion operator types for each
+	 *            executable operator type and for each actual model parameter
+	 *            to be converted into an equivalent one. The actual model
+	 *            parameter to be converted is given by the integer index of the
+	 *            map, to avoid the creation of many empty lists.
+	 * @param generics
+	 *            Used as output, a list of model types for each executable
+	 *            operator type to parameterize its execution.
+	 * @return The list of executable operator types.
+	 * @throws MMTFException
+	 *             If this is an operator instance. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 *        actualModelsMany="true" actualModelTypesMany="true"
+	 *        conversionsMany="true" genericsMany="true"
 	 * @generated
 	 */
-	Map<Integer, EList<ConversionOperator>> isExecutable(EList<Model> actualModels, EList<EList<Model>> actualModelTypes);
+	EList<Operator> getExecutables(EList<Model> actualModels, EList<EList<Model>> actualModelTypes, EList<Map<Integer, EList<ConversionOperator>>> conversions, EList<EList<Model>> generics) throws MMTFException;
 
 } // Operator

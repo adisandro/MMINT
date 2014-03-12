@@ -1092,22 +1092,13 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 3;
 
 	/**
-	 * The operation id for the '<em>Get Type Transformation Operator</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_REL___GET_TYPE_TRANSFORMATION_OPERATOR__MODEL = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 4;
-
-	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 5;
+	int KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1116,7 +1107,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___DELETE_INSTANCE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 6;
+	int KLEISLI_MODEL_REL___DELETE_INSTANCE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -1125,7 +1116,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 7;
+	int KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Open Type</em>' operation.
@@ -1134,7 +1125,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___OPEN_TYPE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 8;
+	int KLEISLI_MODEL_REL___OPEN_TYPE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -1143,7 +1134,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___OPEN_INSTANCE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 9;
+	int KLEISLI_MODEL_REL___OPEN_INSTANCE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Model Rel</em>' class.
@@ -1152,7 +1143,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL_OPERATION_COUNT = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 10;
+	int KLEISLI_MODEL_REL_OPERATION_COUNT = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 9;
 
 
 	/**
@@ -1607,22 +1598,13 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_BINARY_MODEL_REL___OPEN_INSTANCE = KLEISLI_MODEL_REL___OPEN_INSTANCE;
 
 	/**
-	 * The operation id for the '<em>Get Type Transformation Operator</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_TYPE_TRANSFORMATION_OPERATOR__MODEL = KLEISLI_MODEL_REL_OPERATION_COUNT + 1;
-
-	/**
 	 * The number of operations of the '<em>Binary Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL_OPERATION_COUNT = KLEISLI_MODEL_REL_OPERATION_COUNT + 2;
+	int KLEISLI_BINARY_MODEL_REL_OPERATION_COUNT = KLEISLI_MODEL_REL_OPERATION_COUNT + 0;
 
 
 	/**
@@ -1952,16 +1934,6 @@ public interface KleisliPackage extends EPackage {
 	EOperation getKleisliModelRel__GetOutlineResourceTypes();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#getTypeTransformationOperator(edu.toronto.cs.se.mmtf.mid.Model) <em>Get Type Transformation Operator</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Type Transformation Operator</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#getTypeTransformationOperator(edu.toronto.cs.se.mmtf.mid.Model)
-	 * @generated
-	 */
-	EOperation getKleisliModelRel__GetTypeTransformationOperator__Model();
-
-	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#getOutlineResourceInstances() <em>Get Outline Resource Instances</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2092,16 +2064,6 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getKleisliBinaryModelRel();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel#getTypeTransformationOperator(edu.toronto.cs.se.mmtf.mid.Model) <em>Get Type Transformation Operator</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Type Transformation Operator</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel#getTypeTransformationOperator(edu.toronto.cs.se.mmtf.mid.Model)
-	 * @generated
-	 */
-	EOperation getKleisliBinaryModelRel__GetTypeTransformationOperator__Model();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference <em>Model Endpoint Reference</em>}'.
@@ -2308,14 +2270,6 @@ public interface KleisliPackage extends EPackage {
 		EOperation KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = eINSTANCE.getKleisliModelRel__GetOutlineResourceTypes();
 
 		/**
-		 * The meta object literal for the '<em><b>Get Type Transformation Operator</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation KLEISLI_MODEL_REL___GET_TYPE_TRANSFORMATION_OPERATOR__MODEL = eINSTANCE.getKleisliModelRel__GetTypeTransformationOperator__Model();
-
-		/**
 		 * The meta object literal for the '<em><b>Get Outline Resource Instances</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2422,14 +2376,6 @@ public interface KleisliPackage extends EPackage {
 		 * @generated
 		 */
 		EClass KLEISLI_BINARY_MODEL_REL = eINSTANCE.getKleisliBinaryModelRel();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Type Transformation Operator</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation KLEISLI_BINARY_MODEL_REL___GET_TYPE_TRANSFORMATION_OPERATOR__MODEL = eINSTANCE.getKleisliBinaryModelRel__GetTypeTransformationOperator__Model();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointReferenceImpl <em>Model Endpoint Reference</em>}' class.

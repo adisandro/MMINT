@@ -46,6 +46,7 @@ import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
 import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
@@ -61,6 +62,7 @@ public class KleisliTest {
 	private final static String TESTS_BUNDLE_MODEL_DIR= "model";
 	private final static String TESTS_BUNDLE_TEST_DIR= "test";
 	private final static String KLEISLI_MODELRELTYPE_URI = "http://se.cs.toronto.edu/modelepedia/KleisliModelRel";
+	private final static String KLEISLI_TRANSFORMATIONOPERATORTYPE_URI = "http://se.cs.toronto.edu/modelepedia/KleisliModelRel";
 	private final static String SRC_MODELTYPE_NAME = "Company";
 	private final static String SRC_MODELTYPEENDPOINT_NAME = SRC_MODELTYPE_NAME;
 	private final static String TGT_MODELTYPE_NAME = "Bank";
@@ -162,11 +164,10 @@ public class KleisliTest {
 			y.add(classValue);
 		}
 		MultiModelUtils.createModelFile(rootModelObj, newModelUri, true);
-		//TODO MMTF[TESTS] refactor with poly operators
 		EList<Model> transformationParameters = new BasicEList<Model>();
 		transformationParameters.add(kModelRelType);
 		transformationParameters.add(bankModel);
-		kModelRelType.getTypeTransformationOperator(bankModel).execute(transformationParameters);
+		MultiModelTypeRegistry.<Operator>getType(KLEISLI_TRANSFORMATIONOPERATORTYPE_URI).execute(transformationParameters);
 		//TODO MMTF[TESTS] test that result model + model rel are fine
 		fail("TODO");
 	}

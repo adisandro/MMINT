@@ -12,10 +12,8 @@
 package edu.toronto.cs.se.modelepedia.kleisli;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -100,15 +98,6 @@ public interface KleisliModelRel extends ModelRel {
 	 * @generated
 	 */
 	ResourceSet getOutlineResourceTypes() throws MMTFException;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Kleisli version. {@inheritDoc}
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" srcModelRequired="true"
-	 * @generated
-	 */
-	ConversionOperator getTypeTransformationOperator(Model srcModel) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc -->

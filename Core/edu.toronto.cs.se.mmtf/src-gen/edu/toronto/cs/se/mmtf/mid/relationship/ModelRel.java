@@ -16,7 +16,6 @@ import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -186,24 +185,6 @@ public interface ModelRel extends Model {
 	 * @generated
 	 */
 	void deleteType() throws MMTFException;
-
-	/**
-	 * <!-- begin-user-doc --> Gets the transformation operator based on this
-	 * model relationship type.
-	 * 
-	 * @param srcModel
-	 *            The source model to be transformed through the model
-	 *            relationship type.
-	 * @return The transformation operator.
-	 * @throws MMTFException
-	 *             If this is a model relationship instance, if this model
-	 *             relationship type doesn't satisfy the transformation
-	 *             constraint, or if the source model is not allowed by this
-	 *             model relationship type. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" srcModelRequired="true"
-	 * @generated
-	 */
-	ConversionOperator getTypeTransformationOperator(Model srcModel) throws MMTFException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and possibly adds a model relationship

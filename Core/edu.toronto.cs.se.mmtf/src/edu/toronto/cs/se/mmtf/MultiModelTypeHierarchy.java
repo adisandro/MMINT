@@ -34,7 +34,6 @@ import edu.toronto.cs.se.mmtf.mid.MultiModel;
 import edu.toronto.cs.se.mmtf.mid.editor.Editor;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
-import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmtf.mid.relationship.Link;
@@ -688,39 +687,6 @@ public class MultiModelTypeHierarchy {
 		}
 
 		return null;
-	}
-
-	/**
-	 * Gets the list of executable operators given a list of actual parameters
-	 * to be used for their invocation.
-	 * 
-	 * @param actualModels
-	 *            The list of actual model parameters.
-	 * @param actualModelTypes
-	 *            A list of model types obtained through polymorphism for each
-	 *            actual model parameter.
-	 * @param conversions
-	 *            Used as output, a list of conversion operators for each
-	 *            executable operator and for each actual model parameter to be
-	 *            converted into an equivalent one. The actual model parameter
-	 *            to be converted is given by the integer index of the map, to
-	 *            avoid the creation of many empty lists.
-	 * @return The list of executable operators.
-	 */
-	public static List<Operator> getExecutableOperators(EList<Model> actualModels, EList<EList<Model>> actualModelTypes, List<Map<Integer, EList<ConversionOperator>>> conversions) {
-
-		List<Operator> executableOperatorTypes = new ArrayList<Operator>();
-
-		for (Operator operatorType : MultiModelTypeRegistry.getOperatorTypes()) {
-			Map<Integer, EList<ConversionOperator>> conversionMap = operatorType.isExecutable(actualModels, actualModelTypes);
-			if (conversionMap == null) {
-				continue;
-			}
-			executableOperatorTypes.add(operatorType);
-			conversions.add(conversionMap);
-		}
-
-		return executableOperatorTypes;
 	}
 
 	/**
