@@ -7,6 +7,8 @@
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>state.ecore</foreignModel>
+  <foreignModel>army.ecore</foreignModel>
+  <foreignModel>economy.ecore</foreignModel>
   <genPackages prefix="State" basePackage="edu.toronto.cs.se.modelepedia.tutorial"
       disposableProviderFactory="true" ecorePackage="state.ecore#/">
     <genClasses ecoreClass="state.ecore#//State">
@@ -24,5 +26,22 @@
     <genClasses ecoreClass="state.ecore#//City">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute state.ecore#//City/population"/>
     </genClasses>
+  </genPackages>
+  <genPackages prefix="Army" basePackage="edu.toronto.cs.se.modelepedia.tutorial"
+      disposableProviderFactory="true" ecorePackage="army.ecore#/">
+    <genClasses ecoreClass="army.ecore#//Army">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference army.ecore#//Army/units"/>
+    </genClasses>
+    <genClasses ecoreClass="army.ecore#//Unit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute army.ecore#//Unit/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute army.ecore#//Unit/type"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Economy" basePackage="edu.toronto.cs.se.modelepedia.tutorial"
+      disposableProviderFactory="true" ecorePackage="economy.ecore#/">
+    <genClasses ecoreClass="economy.ecore#//Economy">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference economy.ecore#//Economy/gold"/>
+    </genClasses>
+    <genClasses ecoreClass="economy.ecore#//Gold"/>
   </genPackages>
 </genmodel:GenModel>

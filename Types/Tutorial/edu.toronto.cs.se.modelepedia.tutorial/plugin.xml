@@ -23,6 +23,22 @@
             genModel="model/tutorial.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated tutorial -->
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/Army"
+            class="edu.toronto.cs.se.modelepedia.tutorial.army.ArmyPackage"
+            genModel="model/tutorial.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated tutorial -->
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/Economy"
+            class="edu.toronto.cs.se.modelepedia.tutorial.economy.EconomyPackage"
+            genModel="model/tutorial.genmodel"/>
+   </extension>
+
    <extension
          point="edu.toronto.cs.se.mmtf.models">
       <modelType
@@ -30,6 +46,28 @@
          <type
                name="State"
                uri="http://se.cs.toronto.edu/modelepedia/State">
+         </type>
+      </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.models">
+      <modelType
+            isAbstract="false">
+         <type
+               name="Army"
+               uri="http://se.cs.toronto.edu/modelepedia/Army">
+         </type>
+      </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmtf.models">
+      <modelType
+            isAbstract="false">
+         <type
+               name="Economy"
+               uri="http://se.cs.toronto.edu/modelepedia/Economy">
          </type>
       </modelType>
    </extension>

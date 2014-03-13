@@ -11,6 +11,10 @@
  */
 package edu.toronto.cs.se.modelepedia.tutorial.state.impl;
 
+import edu.toronto.cs.se.modelepedia.tutorial.army.ArmyPackage;
+import edu.toronto.cs.se.modelepedia.tutorial.army.impl.ArmyPackageImpl;
+import edu.toronto.cs.se.modelepedia.tutorial.economy.EconomyPackage;
+import edu.toronto.cs.se.modelepedia.tutorial.economy.impl.EconomyPackageImpl;
 import edu.toronto.cs.se.modelepedia.tutorial.state.AdministrativeDivision;
 import edu.toronto.cs.se.modelepedia.tutorial.state.City;
 import edu.toronto.cs.se.modelepedia.tutorial.state.NamedElement;
@@ -112,11 +116,19 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 		isInited = true;
 
+		// Obtain or create and register interdependencies
+		ArmyPackageImpl theArmyPackage = (ArmyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ArmyPackage.eNS_URI) instanceof ArmyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ArmyPackage.eNS_URI) : ArmyPackage.eINSTANCE);
+		EconomyPackageImpl theEconomyPackage = (EconomyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EconomyPackage.eNS_URI) instanceof EconomyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EconomyPackage.eNS_URI) : EconomyPackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theStatePackage.createPackageContents();
+		theArmyPackage.createPackageContents();
+		theEconomyPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theStatePackage.initializePackageContents();
+		theArmyPackage.initializePackageContents();
+		theEconomyPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theStatePackage.freeze();

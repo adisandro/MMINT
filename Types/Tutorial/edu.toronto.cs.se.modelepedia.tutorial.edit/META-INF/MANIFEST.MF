@@ -8,7 +8,9 @@ Bundle-Activator: edu.toronto.cs.se.modelepedia.tutorial.state.provider.Tutorial
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: edu.toronto.cs.se.modelepedia.tutorial.state.provider
+Export-Package: edu.toronto.cs.se.modelepedia.tutorial.army.provider,
+ edu.toronto.cs.se.modelepedia.tutorial.economy.provider,
+ edu.toronto.cs.se.modelepedia.tutorial.state.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit,
  edu.toronto.cs.se.modelepedia.tutorial

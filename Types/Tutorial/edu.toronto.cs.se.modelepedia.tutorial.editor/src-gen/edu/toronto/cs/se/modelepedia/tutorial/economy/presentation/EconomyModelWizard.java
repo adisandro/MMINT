@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.tutorial.state.presentation;
+package edu.toronto.cs.se.modelepedia.tutorial.economy.presentation;
 
 
 import java.util.ArrayList;
@@ -78,10 +78,12 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
-import edu.toronto.cs.se.modelepedia.tutorial.state.StateFactory;
-import edu.toronto.cs.se.modelepedia.tutorial.state.StatePackage;
+import edu.toronto.cs.se.modelepedia.tutorial.economy.EconomyFactory;
+import edu.toronto.cs.se.modelepedia.tutorial.economy.EconomyPackage;
 import edu.toronto.cs.se.modelepedia.tutorial.state.provider.TutorialEditPlugin;
 
+
+import edu.toronto.cs.se.modelepedia.tutorial.state.presentation.TutorialEditorPlugin;
 
 import org.eclipse.core.runtime.Path;
 
@@ -100,7 +102,7 @@ import org.eclipse.ui.PartInitException;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StateModelWizard extends Wizard implements INewWizard {
+public class EconomyModelWizard extends Wizard implements INewWizard {
 	/**
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
@@ -108,7 +110,7 @@ public class StateModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(TutorialEditorPlugin.INSTANCE.getString("_UI_StateEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(TutorialEditorPlugin.INSTANCE.getString("_UI_EconomyEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -117,7 +119,7 @@ public class StateModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		TutorialEditorPlugin.INSTANCE.getString("_UI_StateEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		TutorialEditorPlugin.INSTANCE.getString("_UI_EconomyEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -125,7 +127,7 @@ public class StateModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StatePackage statePackage = StatePackage.eINSTANCE;
+	protected EconomyPackage economyPackage = EconomyPackage.eINSTANCE;
 
 	/**
 	 * This caches an instance of the model factory.
@@ -133,7 +135,7 @@ public class StateModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StateFactory stateFactory = statePackage.getStateFactory();
+	protected EconomyFactory economyFactory = economyPackage.getEconomyFactory();
 
 	/**
 	 * This is the file creation page.
@@ -141,7 +143,7 @@ public class StateModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StateModelWizardNewFileCreationPage newFileCreationPage;
+	protected EconomyModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
 	 * This is the initial object creation page.
@@ -149,7 +151,7 @@ public class StateModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StateModelWizardInitialObjectCreationPage initialObjectCreationPage;
+	protected EconomyModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
@@ -185,7 +187,7 @@ public class StateModelWizard extends Wizard implements INewWizard {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(TutorialEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(TutorialEditorPlugin.INSTANCE.getImage("full/wizban/NewState")));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(TutorialEditorPlugin.INSTANCE.getImage("full/wizban/NewEconomy")));
 	}
 
 	/**
@@ -197,7 +199,7 @@ public class StateModelWizard extends Wizard implements INewWizard {
 	protected Collection<String> getInitialObjectNames() {
 		if (initialObjectNames == null) {
 			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : statePackage.getEClassifiers()) {
+			for (EClassifier eClassifier : economyPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
@@ -217,8 +219,8 @@ public class StateModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass)statePackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-		EObject rootObject = stateFactory.create(eClass);
+		EClass eClass = (EClass)economyPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+		EObject rootObject = economyFactory.create(eClass);
 		return rootObject;
 	}
 
@@ -319,14 +321,14 @@ public class StateModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class StateModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+	public class EconomyModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
 		/**
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public StateModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+		public EconomyModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
 			super(pageId, selection);
 		}
 
@@ -366,7 +368,7 @@ public class StateModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class StateModelWizardInitialObjectCreationPage extends WizardPage {
+	public class EconomyModelWizardInitialObjectCreationPage extends WizardPage {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -394,7 +396,7 @@ public class StateModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public StateModelWizardInitialObjectCreationPage(String pageId) {
+		public EconomyModelWizardInitialObjectCreationPage(String pageId) {
 			super(pageId);
 		}
 
@@ -404,7 +406,8 @@ public class StateModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE); {
+			Composite composite = new Composite(parent, SWT.NONE);
+			{
 				GridLayout layout = new GridLayout();
 				layout.numColumns = 1;
 				layout.verticalSpacing = 12;
@@ -578,10 +581,10 @@ public class StateModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new StateModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(TutorialEditorPlugin.INSTANCE.getString("_UI_StateModelWizard_label"));
-		newFileCreationPage.setDescription(TutorialEditorPlugin.INSTANCE.getString("_UI_StateModelWizard_description"));
-		newFileCreationPage.setFileName(TutorialEditorPlugin.INSTANCE.getString("_UI_StateEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage = new EconomyModelWizardNewFileCreationPage("Whatever", selection);
+		newFileCreationPage.setTitle(TutorialEditorPlugin.INSTANCE.getString("_UI_EconomyModelWizard_label"));
+		newFileCreationPage.setDescription(TutorialEditorPlugin.INSTANCE.getString("_UI_EconomyModelWizard_description"));
+		newFileCreationPage.setFileName(TutorialEditorPlugin.INSTANCE.getString("_UI_EconomyEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -607,7 +610,7 @@ public class StateModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = TutorialEditorPlugin.INSTANCE.getString("_UI_StateEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = TutorialEditorPlugin.INSTANCE.getString("_UI_EconomyEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
@@ -617,8 +620,8 @@ public class StateModelWizard extends Wizard implements INewWizard {
 				}
 			}
 		}
-		initialObjectCreationPage = new StateModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage.setTitle(TutorialEditorPlugin.INSTANCE.getString("_UI_StateModelWizard_label"));
+		initialObjectCreationPage = new EconomyModelWizardInitialObjectCreationPage("Whatever2");
+		initialObjectCreationPage.setTitle(TutorialEditorPlugin.INSTANCE.getString("_UI_EconomyModelWizard_label"));
 		initialObjectCreationPage.setDescription(TutorialEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}

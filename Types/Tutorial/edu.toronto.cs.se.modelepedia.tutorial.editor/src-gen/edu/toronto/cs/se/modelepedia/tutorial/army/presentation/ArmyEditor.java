@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.tutorial.state.presentation;
+package edu.toronto.cs.se.modelepedia.tutorial.army.presentation;
 
 
 import java.io.IOException;
@@ -163,20 +163,24 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
+import edu.toronto.cs.se.modelepedia.tutorial.army.provider.ArmyItemProviderAdapterFactory;
+
+import edu.toronto.cs.se.modelepedia.tutorial.economy.provider.EconomyItemProviderAdapterFactory;
+
+import edu.toronto.cs.se.modelepedia.tutorial.state.presentation.TutorialEditorPlugin;
+
 import edu.toronto.cs.se.modelepedia.tutorial.state.provider.StateItemProviderAdapterFactory;
 
-import edu.toronto.cs.se.modelepedia.tutorial.army.provider.ArmyItemProviderAdapterFactory;
-import edu.toronto.cs.se.modelepedia.tutorial.economy.provider.EconomyItemProviderAdapterFactory;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
 /**
- * This is an example of a State model editor.
+ * This is an example of a Army model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class StateEditor
+public class ArmyEditor
 	extends MultiPageEditorPart
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
@@ -338,18 +342,18 @@ public class StateEditor
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(StateEditor.this);
+						getActionBarContributor().setActiveEditor(ArmyEditor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
-						getActionBarContributor().setActiveEditor(StateEditor.this);
+						getActionBarContributor().setActiveEditor(ArmyEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == StateEditor.this) {
+				else if (p == ArmyEditor.this) {
 					handleActivate();
 				}
 			}
@@ -522,7 +526,7 @@ public class StateEditor
 								 public void run() {
 									 removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(StateEditor.this, false);
+										 getSite().getPage().closeEditor(ArmyEditor.this, false);
 									 }
 								 }
 							 });
@@ -533,7 +537,7 @@ public class StateEditor
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == StateEditor.this) {
+									 if (getSite().getPage().getActiveEditor() == ArmyEditor.this) {
 										 handleActivate();
 									 }
 								 }
@@ -565,7 +569,7 @@ public class StateEditor
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(StateEditor.this, false);
+				getSite().getPage().closeEditor(ArmyEditor.this, false);
 			}
 			else {
 				removedResources.clear();
@@ -695,7 +699,7 @@ public class StateEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateEditor() {
+	public ArmyEditor() {
 		super();
 		initializeEditingDomain();
 	}
@@ -1034,7 +1038,7 @@ public class StateEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), StateEditor.this) {
+					new ViewerPane(getSite().getPage(), ArmyEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1068,7 +1072,7 @@ public class StateEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), StateEditor.this) {
+					new ViewerPane(getSite().getPage(), ArmyEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1097,7 +1101,7 @@ public class StateEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), StateEditor.this) {
+					new ViewerPane(getSite().getPage(), ArmyEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new ListViewer(composite);
@@ -1122,7 +1126,7 @@ public class StateEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), StateEditor.this) {
+					new ViewerPane(getSite().getPage(), ArmyEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1149,7 +1153,7 @@ public class StateEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), StateEditor.this) {
+					new ViewerPane(getSite().getPage(), ArmyEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TableViewer(composite);
@@ -1192,7 +1196,7 @@ public class StateEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), StateEditor.this) {
+					new ViewerPane(getSite().getPage(), ArmyEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1412,8 +1416,8 @@ public class StateEditor
 			new ExtendedPropertySheetPage(editingDomain) {
 				@Override
 				public void setSelectionToViewer(List<?> selection) {
-					StateEditor.this.setSelectionToViewer(selection);
-					StateEditor.this.setFocus();
+					ArmyEditor.this.setSelectionToViewer(selection);
+					ArmyEditor.this.setFocus();
 				}
 
 				@Override
