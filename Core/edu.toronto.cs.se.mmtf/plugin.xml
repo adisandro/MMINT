@@ -21,6 +21,22 @@
    <extension-point id="edu.toronto.cs.se.mmtf.operators" name="MMTF operator types" schema="schema/edu.toronto.cs.se.mmtf.operators.exsd"/>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mid -->
+      <package
+            uri="http://se.cs.toronto.edu/mmtf/MID"
+            class="edu.toronto.cs.se.mmtf.mid.MidPackage"
+            genModel="model/mid.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mid -->
+      <package
+            uri="http://se.cs.toronto.edu/mmtf/MAVO"
+            class="edu.toronto.cs.se.mmtf.mavo.MavoPackage"
+            genModel="model/mid.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://se.cs.toronto.edu/mmtf/Model"
             class="edu.toronto.cs.se.mmtf.mid.MidPackage"/>
@@ -92,14 +108,6 @@
       </relationshipType>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated mid -->
-      <package
-            uri="http://se.cs.toronto.edu/mmtf/MID"
-            class="edu.toronto.cs.se.mmtf.mid.MidPackage"
-            genModel="model/mid.genmodel"/>
-   </extension>
-
    <extension
          point="edu.toronto.cs.se.mmtf.models">
       <modelType>
@@ -111,14 +119,6 @@
             </superType>
          </type>
       </modelType>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated mid -->
-      <package
-            uri="http://se.cs.toronto.edu/mmtf/MAVO"
-            class="edu.toronto.cs.se.mmtf.mavo.MavoPackage"
-            genModel="model/mid.genmodel"/>
    </extension>
 
    <extension
