@@ -23,9 +23,17 @@ import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorImpl;
 
 public abstract class ATLConversion extends ConversionOperatorImpl {
 
+	protected Model inputModel;
 	protected Model convertedModel;
+	protected String convertedModelUri;
 
-	protected EList<Model> x(Model inputModel, String convertedModelTypeUri, String convertedModelUri) throws MMTFException {
+	protected void init(EList<Model> actualParameters, String convertedModelFileExtension) {
+
+		inputModel = actualParameters.get(0);
+		convertedModelUri = MultiModelUtils.replaceFileExtensionInUri(inputModel.getUri(), convertedModelFileExtension);
+	}
+
+	protected EList<Model> createConvertedModel(String convertedModelTypeUri) throws MMTFException {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(inputModel);
 		Model convertedModelType = MultiModelTypeRegistry.getType(convertedModelTypeUri);
@@ -39,6 +47,7 @@ public abstract class ATLConversion extends ConversionOperatorImpl {
 	@Override
 	public void cleanup() throws Exception {
 
+		inputModel = null;
 		if (convertedModel != null) {
 			MultiModelUtils.deleteModelFile(convertedModel);
 			convertedModel = null;
