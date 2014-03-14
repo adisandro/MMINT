@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<army:Army xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:army="http://se.cs.toronto.edu/modelepedia/Army">
+  <units name="U1" type="infantry"/>
+  <units name="U2" type="artillery"/>
+</army:Army>
