@@ -11,7 +11,10 @@ rule State2Army {
 		army : Army!Army (
 			units <-
 				State!Region.allInstancesFrom('IN')->collect(
-					region | Sequence{thisModule.Region2Unit(region), thisModule.Region2Unit(region)}
+					region | Sequence{
+						thisModule.Region2Unit(region),
+						thisModule.Region2Unit(region)
+					}
 				)
 		)
 }

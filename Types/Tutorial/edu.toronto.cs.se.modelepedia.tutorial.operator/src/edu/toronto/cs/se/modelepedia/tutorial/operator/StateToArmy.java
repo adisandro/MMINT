@@ -12,21 +12,14 @@
 package edu.toronto.cs.se.modelepedia.tutorial.operator;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
-import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmtf.mid.library.ATLConversion;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.modelepedia.tutorial.army.ArmyPackage;
 
-public class StateToArmy extends ConversionOperatorImpl {
-
-	private Model newArmyModel;
+public class StateToArmy extends ATLConversion {
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
@@ -38,22 +31,7 @@ public class StateToArmy extends ConversionOperatorImpl {
 		atl.doStateToArmy_M2M(new NullProgressMonitor());
 		atl.saveModels(newArmyModelUri);
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(stateModel);
-		Model armyModelType = MultiModelTypeRegistry.getType(ArmyPackage.eNS_URI);
-		newArmyModel = armyModelType.createMAVOInstanceAndEditor(newArmyModelUri, ModelOrigin.CREATED, multiModel);
-		EList<Model> result = new BasicEList<Model>();
-		result.add(newArmyModel);
-
-		return result;
-	}
-
-	@Override
-	public void cleanup() throws Exception {
-
-		if (newArmyModel != null) {
-			MultiModelUtils.deleteModelFile(newArmyModel);
-			newArmyModel = null;
-		}
+		return super.x(stateModel, ArmyPackage.eNS_URI, newArmyModelUri);
 	}
 
 }
