@@ -16,20 +16,20 @@ import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.library.ATLConversion;
-import edu.toronto.cs.se.modelepedia.tutorial.economy.EconomyPackage;
+import edu.toronto.cs.se.modelepedia.tutorial.army.ArmyPackage;
 
-public class StateToEconomy extends ATLConversion {
+public class EconomyToArmy extends ATLConversion {
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		init(actualParameters, EconomyPackage.eNAME);
-		StateToEconomy_M2M atl = new StateToEconomy_M2M();
+		init(actualParameters, ArmyPackage.eNAME);
+		EconomyToArmy_M2M atl = new EconomyToArmy_M2M();
 		atl.loadModels(inputModel.getUri());
-		atl.doStateToEconomy_M2M(new NullProgressMonitor());
+		atl.doEconomyToArmy_M2M(new NullProgressMonitor());
 		atl.saveModels(convertedModelUri);
 
-		return super.createConvertedModel(EconomyPackage.eNS_URI);
+		return super.createConvertedModel(ArmyPackage.eNS_URI);
 	}
 
 }
