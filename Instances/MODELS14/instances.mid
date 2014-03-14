@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID">
+  <models uri="/MODELS14/eastasia.state" name="eastasia" metatypeUri="http://se.cs.toronto.edu/modelepedia/State" dynamic="true" origin="CREATED" fileExtension="state" editors="//@editors.0"/>
+  <models uri="/MODELS14/eurasia.xmi" name="eurasia" metatypeUri="http://se.cs.toronto.edu/modelepedia/FederalState" dynamic="true" origin="CREATED" fileExtension="xmi" editors="//@editors.1"/>
+  <editors uri="/MODELS14/eastasia.state" name="State editor for model /MODELS14/eastasia.state" metatypeUri="http://se.cs.toronto.edu/modelepedia/State_editor" dynamic="true" modelUri="/MODELS14/eastasia.state" id="edu.toronto.cs.se.modelepedia.tutorial.state.presentation.StateEditorID" wizardId="edu.toronto.cs.se.modelepedia.tutorial.state.presentation.StateModelWizardID">
+    <fileExtensions>state</fileExtensions>
+  </editors>
+  <editors uri="/MODELS14/eurasia.xmi" name="Ecore Reflective tree for model /MODELS14/eurasia.xmi" metatypeUri="http://se.cs.toronto.edu/modelepedia/FederalState/Ecore Reflective tree" dynamic="true" modelUri="/MODELS14/eurasia.xmi" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID">
+    <fileExtensions>xmi</fileExtensions>
+  </editors>
+  <extendibleTable key="/MODELS14/eastasia.state" value="//@models.0"/>
+  <extendibleTable key="/MODELS14/eurasia.xmi" value="//@models.1"/>
+</mid:MultiModel>
