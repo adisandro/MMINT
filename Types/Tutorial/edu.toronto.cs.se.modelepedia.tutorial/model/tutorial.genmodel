@@ -10,7 +10,7 @@
   <foreignModel>army.ecore</foreignModel>
   <foreignModel>economy.ecore</foreignModel>
   <genPackages prefix="State" basePackage="edu.toronto.cs.se.modelepedia.tutorial"
-      disposableProviderFactory="true" ecorePackage="state.ecore#/">
+      disposableProviderFactory="true" extensibleProviderFactory="true" ecorePackage="state.ecore#/">
     <genClasses ecoreClass="state.ecore#//State">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference state.ecore#//State/regions"/>
     </genClasses>
@@ -28,7 +28,7 @@
     </genClasses>
   </genPackages>
   <genPackages prefix="Army" basePackage="edu.toronto.cs.se.modelepedia.tutorial"
-      disposableProviderFactory="true" ecorePackage="army.ecore#/">
+      disposableProviderFactory="true" extensibleProviderFactory="true" ecorePackage="army.ecore#/">
     <genClasses ecoreClass="army.ecore#//Army">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference army.ecore#//Army/units"/>
     </genClasses>
@@ -38,7 +38,7 @@
     </genClasses>
   </genPackages>
   <genPackages prefix="Economy" basePackage="edu.toronto.cs.se.modelepedia.tutorial"
-      disposableProviderFactory="true" ecorePackage="economy.ecore#/">
+      disposableProviderFactory="true" extensibleProviderFactory="true" ecorePackage="economy.ecore#/">
     <genClasses ecoreClass="economy.ecore#//Economy">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference economy.ecore#//Economy/gold"/>
     </genClasses>

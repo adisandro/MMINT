@@ -15,19 +15,13 @@ package edu.toronto.cs.se.modelepedia.tutorial.army.provider;
 import edu.toronto.cs.se.modelepedia.tutorial.army.Army;
 import edu.toronto.cs.se.modelepedia.tutorial.army.ArmyFactory;
 import edu.toronto.cs.se.modelepedia.tutorial.army.ArmyPackage;
-
-import edu.toronto.cs.se.modelepedia.tutorial.state.provider.TutorialEditPlugin;
-
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -172,7 +166,7 @@ public class ArmyItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return TutorialEditPlugin.INSTANCE;
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

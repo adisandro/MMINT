@@ -14,17 +14,17 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
    Alessio Di Sandro - Implementation.
 
-Compliance Level -> 6.0 when generating diagrams
-X Directory -> modify to src-gen
-Operation Reflection -> true
-Model Name -> use a nice version here (uppercase initials), ideally this would be the model type name or the name of a collection of model types
-Edit Child Creation Extenders/Extensible Provider Factory -> true for extended/base
+All>Compliance Level -> 6.0 when generating diagrams
+Model>Name -> use a nice version here (uppercase initials), ideally this would be the model type name or the name of a collection of model types
+X>Directory -> modify to src-gen
+Model>Operation Reflection -> true
 
 	Ecore Package
 	-------------
 	
-	Base Package -> edu.toronto.cs.se.mmtf/edu.toronto.cs.se.modelepedia
-	Prefix -> use the model type name
+	All>Base Package -> edu.toronto.cs.se.mmtf/edu.toronto.cs.se.modelepedia
+	All>Prefix -> use the model type name
+	Edit>Child Creation Extenders/Extensible Provider Factory -> true for extended/base
 
 ------
 GMFGen
