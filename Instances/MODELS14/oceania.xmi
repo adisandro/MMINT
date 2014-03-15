@@ -8,16 +8,16 @@
     name="Oceania"
     capital="//@regions.0/@cities.0">
   <regions xsi:type="federalstate:CapitalRegion"
-      name="A"
+      name="RegionA"
       capital="//@regions.0/@cities.0">
     <cities
-        name="AA"
+        name="CityA"
         population="1"/>
   </regions>
-  <regions name="B"
+  <regions name="RegionB"
       capital="//@regions.1/@cities.0">
     <cities
-        name="BB"
+        name="CityB"
         population="1"/>
   </regions>
 </federalstate:FederalState>

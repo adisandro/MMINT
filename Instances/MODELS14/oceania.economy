@@ -2,5 +2,4 @@
 <economy:Economy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:economy="http://se.cs.toronto.edu/modelepedia/Economy">
   <gold/>
   <gold/>
-  <gold/>
 </economy:Economy>

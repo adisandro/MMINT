@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <state:State xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:state="http://se.cs.toronto.edu/modelepedia/State" name="Eastasia" capital="//@regions.0/@cities.0">
-  <regions name="C" capital="//@regions.0/@cities.0">
-    <cities name="CC" population="1"/>
+  <regions name="RegionX">
+    <cities name="CityX1" population="1"/>
+    <cities name="CityX2" population="1"/>
+  </regions>
+  <regions name="RegionY">
+    <cities name="CityY" population="1"/>
   </regions>
 </state:State>
