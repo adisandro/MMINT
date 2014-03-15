@@ -15,7 +15,7 @@ Contributors:
    Alessio Di Sandro - Implementation.
 
 All>Compliance Level -> 6.0 when generating diagrams
-Model>Name -> use a nice version here (uppercase initials), ideally this would be the model type name or the name of a collection of model types
+All>Model Name -> use a nice version here (uppercase initials), ideally this would be the model type name or the name of a collection of model types
 X>Directory -> modify to src-gen
 Model>Operation Reflection -> true
 

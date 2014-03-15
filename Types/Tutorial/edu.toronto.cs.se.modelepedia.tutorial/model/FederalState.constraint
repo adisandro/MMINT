@@ -1,1 +1,0 @@
-regions->one(oclIsTypeOf(CapitalRegion)) and capital=regions->any(oclIsTypeOf(CapitalRegion)).capital
