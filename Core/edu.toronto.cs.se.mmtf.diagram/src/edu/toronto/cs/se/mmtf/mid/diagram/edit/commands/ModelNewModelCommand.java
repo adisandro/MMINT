@@ -107,7 +107,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		String[] constraint = MidDiagramUtils.getConstraintInput("Create new light model type", null);
 		if (ExtendibleElementConstraintLanguage.valueOf(constraint[0]) == ExtendibleElementConstraintLanguage.OCL) {
 			if (!MultiModelConstraintChecker.checkOCLConstraintConsistency(modelType, constraint[1])) {
-				throw new MMTFException("New OCL constraint is inconsistent with supertypes' constraints");
+				throw new MMTFException("The combined OCL constraint (this type + supertypes) is inconsistent");
 			}
 		}
 		boolean isMetamodelExtension = (MultiModelTypeHierarchy.isRootType(modelType)) ?

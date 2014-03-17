@@ -671,7 +671,6 @@ linkTypes:
 	 */
 	public static MAVOTruthValue checkConstraint(ExtendibleElement element, ExtendibleElementConstraint constraint) {
 
-		//TODO MMTF: support all extendible elements?
 		if (!(element instanceof Model)) {
 			return MAVOTruthValue.TRUE;
 		}
@@ -710,22 +709,26 @@ linkTypes:
 		}
 	}
 
-	public static boolean checkOCLConstraintConsistency(Model modelType, String oclConstraint) throws MMTFException {
+	public static boolean checkOCLConstraintConsistency(ExtendibleElement type, String oclConstraint) throws MMTFException {
 
+		if (!(type instanceof Model) || oclConstraint.equals("")) {
+			return true;
+		}
 		// detect EMFtoCSP
 		if (Platform.getBundle(EMFTOCSP_BUNDLE) == null) {
 			MMTFException.print(MMTFException.Type.WARNING, "Can't find EMFtoCSP installation, skipping consistency check", null);
 			return true;
 		}
+
 		// create and-ed global constraint
-		Model baseModelType = modelType;
+		Model baseModelType = (Model) type;
 		String oclConsistencyConstraint = oclConstraint;
-		while (!MultiModelTypeHierarchy.isRootType(modelType)) {
-			ExtendibleElementConstraint constraint = modelType.getConstraint();
+		while (!MultiModelTypeHierarchy.isRootType(type)) {
+			ExtendibleElementConstraint constraint = type.getConstraint();
 			if (constraint != null && constraint.getLanguage() == ExtendibleElementConstraintLanguage.OCL) {
 				oclConsistencyConstraint += " and " + constraint.getImplementation();
 			}
-			modelType = modelType.getSupertype();
+			type = type.getSupertype();
 		}
 		// add constraint as annotation into the metamodel
 		EPackage modelTypeObj = baseModelType.getEMFTypeRoot();

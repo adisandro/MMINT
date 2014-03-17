@@ -35,6 +35,7 @@ import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.MidFactory;
+import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
 
 public class AddModifyConstraintListener extends SelectionAdapter {
@@ -95,12 +96,17 @@ public class AddModifyConstraintListener extends SelectionAdapter {
 					implementation = "";
 				}
 				String[] newConstraint = MidDiagramUtils.getConstraintInput("Add/Modify Constraint", constraint.getLanguage().getLiteral() + MidDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + implementation);
+				if (!MultiModelConstraintChecker.isInstancesLevel(element) && ExtendibleElementConstraintLanguage.valueOf(newConstraint[0]) == ExtendibleElementConstraintLanguage.OCL) {
+					if (!MultiModelConstraintChecker.checkOCLConstraintConsistency(element.getSupertype(), newConstraint[1])) {
+						throw new MMTFException("The combined OCL constraint (this type + supertypes) is inconsistent");
+					}
+				}
 				constraint.setLanguage(ExtendibleElementConstraintLanguage.get(newConstraint[0]));
 				constraint.setImplementation(newConstraint[1]);
 
 				return CommandResult.newOKCommandResult(constraint);
 			}
-			catch (Exception e) {
+			catch (MMTFException e) {
 				MMTFException.print(MMTFException.Type.WARNING, "No constraint added", e);
 				return CommandResult.newErrorCommandResult("No constraint added");
 			}
