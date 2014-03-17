@@ -40,6 +40,12 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.draw2d.ui,
  org.eclipse.gef,
  edu.toronto.cs.se.mmtf,
- edu.toronto.cs.se.mmtf.edit
+ edu.toronto.cs.se.mmtf.edit,
+ fr.inria.atlanmod.emftocsp;resolution:=optional,
+ fr.inria.atlanmod.emftocsp.eclipsecs;resolution:=optional,
+ fr.inria.atlanmod.emftocsp.eclipsecs.libs;resolution:=optional,
+ fr.inria.atlanmod.emftocsp.emf;resolution:=optional,
+ fr.inria.atlanmod.emftocsp.emftoecl;resolution:=optional,
+ fr.inria.atlanmod.emftocsp.ui.main;resolution:=optional
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
