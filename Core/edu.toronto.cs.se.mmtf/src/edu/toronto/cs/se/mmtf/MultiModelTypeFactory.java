@@ -53,6 +53,7 @@ public class MultiModelTypeFactory {
 	public final static String ECORE_INVOCATION_DELEGATE = "invocationDelegates";
 	public final static String ECORE_SETTING_DELEGATE = "settingDelegates";
 	public final static String ECORE_VALIDATION_DELEGATE = "validationDelegates";
+	public final static String ECORE_VALIDATION_CONSTRAINTS = "constraints";
 	public final static String ECORE_REFLECTIVE_FILE_EXTENSION = "xmi";
 
 	/**

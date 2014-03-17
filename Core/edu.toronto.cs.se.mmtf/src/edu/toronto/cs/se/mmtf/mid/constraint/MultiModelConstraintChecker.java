@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmtf.mid.constraint;
 
+import java.io.File;
+import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,10 +20,24 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
@@ -31,14 +47,19 @@ import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
+import org.osgi.framework.FrameworkUtil;
+
+import com.parctechnologies.eclipse.CompoundTerm;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelElement;
@@ -63,6 +84,17 @@ import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver.CLibrary;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils;
 import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
+import fr.inria.atlanmod.emftocsp.ICspSolver;
+import fr.inria.atlanmod.emftocsp.IModelProperty;
+import fr.inria.atlanmod.emftocsp.IModelReader;
+import fr.inria.atlanmod.emftocsp.IModelToCspSolver;
+import fr.inria.atlanmod.emftocsp.IModelToCspSolverFactory;
+import fr.inria.atlanmod.emftocsp.eclipsecs.EclipseSolver;
+import fr.inria.atlanmod.emftocsp.emf.impl.EAssociation;
+import fr.inria.atlanmod.emftocsp.emf.impl.EmfModelToCspSolverFactory;
+import fr.inria.atlanmod.emftocsp.emftoecl.EmfToEclCodeGenerator;
+import fr.inria.atlanmod.emftocsp.impl.StrongSatisfiabilityModelProperty;
+import fr.inria.atlanmod.emftocsp.ui.main.Activator;
 
 /**
  * The constraint checker for multimodels.
@@ -75,6 +107,12 @@ public class MultiModelConstraintChecker {
 	private final static String OCL_MODELENDPOINT_VARIABLE = "$ENDPOINT_";
 	private final static char OCL_VARIABLE_SEPARATOR = '.';
 	private final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
+	private final static String ECORE_PIVOT_CONSISTENCYCONSTRAINT = "consistencyConstraint";
+	private final static String EMFTOCSP_PREFERENCE_ECLIPSEPATH = "EclipsePath";
+	private final static String EMFTOCSP_PREFERENCE_GRAPHVIZPATH = "GraphvizPath";
+	private final static String EMFTOCSP_BUNDLE = "fr.inria.atlanmod.emftocsp";
+	private final static String EMFTOCSP_TEMPPROJECT = "edu.toronto.cs.se.mmtf.emftocsp";
+	private final static String EMFTOCSP_TEMPFOLDER = "consistency";
 
 	/**
 	 * Checks if an extendible element is a TYPES element or an INSTANCES
@@ -655,6 +693,146 @@ linkTypes:
 			default:
 				return MAVOTruthValue.FALSE;
 		}
+	}
+
+	private static void cleanupOCLConstraintConsistency(EPackage modelTypeObj, EClass modelTypeRootObj, IProject tempProject) {
+
+		modelTypeObj.getEAnnotations().remove(modelTypeObj.getEAnnotations().size()-1);
+		modelTypeRootObj.getEAnnotations().remove(modelTypeRootObj.getEAnnotations().size()-1);
+		modelTypeRootObj.getEAnnotations().remove(modelTypeRootObj.getEAnnotations().size()-1);
+		try {
+			if (tempProject != null) {
+				tempProject.delete(true, true, null);
+			}
+		}
+		catch (CoreException e) {
+			MMTFException.print(MMTFException.Type.WARNING, "Can't delete EMFtoCSP temporary project", e);
+		}
+	}
+
+	public static boolean checkOCLConstraintConsistency(Model modelType, String oclConstraint) throws MMTFException {
+
+		// detect EMFtoCSP
+		if (Platform.getBundle(EMFTOCSP_BUNDLE) == null) {
+			MMTFException.print(MMTFException.Type.WARNING, "Can't find EMFtoCSP installation, skipping consistency check", null);
+			return true;
+		}
+		// create and-ed global constraint
+		Model baseModelType = modelType;
+		String oclConsistencyConstraint = oclConstraint;
+		while (!MultiModelTypeHierarchy.isRootType(modelType)) {
+			ExtendibleElementConstraint constraint = modelType.getConstraint();
+			if (constraint != null && constraint.getLanguage() == ExtendibleElementConstraintLanguage.OCL) {
+				oclConsistencyConstraint += " and " + constraint.getImplementation();
+			}
+			modelType = modelType.getSupertype();
+		}
+		// add constraint as annotation into the metamodel
+		EPackage modelTypeObj = baseModelType.getEMFTypeRoot();
+		EAnnotation newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		newEAnnotation.setSource(EcorePackage.eNS_URI);
+		EMap<String, String> newEAnnotationDetails = newEAnnotation.getDetails();
+		newEAnnotationDetails.put(MultiModelTypeFactory.ECORE_VALIDATION_DELEGATE, MultiModelTypeFactory.ECORE_PIVOT_URI);
+		modelTypeObj.getEAnnotations().add(newEAnnotation);
+		EClass modelTypeRootObj = (EClass) modelTypeObj.getEClassifiers().get(0);
+		newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		newEAnnotation.setSource(EcorePackage.eNS_URI);
+		newEAnnotationDetails = newEAnnotation.getDetails();
+		newEAnnotationDetails.put(MultiModelTypeFactory.ECORE_VALIDATION_CONSTRAINTS, ECORE_PIVOT_CONSISTENCYCONSTRAINT);
+		modelTypeRootObj.getEAnnotations().add(newEAnnotation);
+		newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		newEAnnotation.setSource(MultiModelTypeFactory.ECORE_PIVOT_URI);
+		newEAnnotationDetails = newEAnnotation.getDetails();
+		newEAnnotationDetails.put(ECORE_PIVOT_CONSISTENCYCONSTRAINT, oclConsistencyConstraint);
+		modelTypeRootObj.getEAnnotations().add(newEAnnotation);
+		// use EMFtoCSP to check strong satisfiability
+		// EMFtoCSP init
+		String eclipsePath = Activator.getDefault().getPreferenceStore().getString(EMFTOCSP_PREFERENCE_ECLIPSEPATH);
+		String graphvizPath = Activator.getDefault().getPreferenceStore().getString(EMFTOCSP_PREFERENCE_GRAPHVIZPATH);
+		ICspSolver<?> solver = new EclipseSolver(eclipsePath, graphvizPath);
+		IModelToCspSolverFactory<Resource, CompoundTerm> modelSolverFactory = new EmfModelToCspSolverFactory();
+		IModelToCspSolver<Resource, CompoundTerm> modelSolver = modelSolverFactory.getModelToCspSolver();
+		modelSolver.setModelFileName(baseModelType.getName());
+		modelSolver.setModel(modelTypeObj.eResource());
+		modelSolver.setSolver(solver);
+		modelSolver.setCspCodeGenerator(new EmfToEclCodeGenerator(modelSolver));
+		modelSolver.getBuilder();
+		// EMFtoCSP ui screen 1
+		IFile oclFile = null;
+		modelSolver.setConstraintsDocument(oclFile);
+		// EMFtoCSP ui screen 2
+		Map<String, String> modelElementsDomain = new HashMap<String, String>();
+		modelSolver.setModelElementsDomain(modelElementsDomain);
+		@SuppressWarnings("unchecked")
+		IModelReader<Resource, EPackage, EClass, EAssociation, EAttribute, EOperation> modelReader = (IModelReader<Resource, EPackage, EClass, EAssociation, EAttribute, EOperation>) modelSolver.getModelReader();    
+		for (EClass c : modelReader.getClasses()) {
+			modelElementsDomain.put(c.getEPackage().getName() + "." + c.getName(), "0..5");
+			for (EAttribute at : modelReader.getClassAttributes(c)) { 
+				if (at.getEAttributeType().getName().equalsIgnoreCase("boolean") || at.getEAttributeType().getName().equalsIgnoreCase("boolean")) {
+					modelElementsDomain.put(at.getEContainingClass().getName() + "." + at.getName(), "0..1");
+				}
+				else if (at.getEAttributeType().getName().equalsIgnoreCase("string") || at.getEAttributeType().getName().equalsIgnoreCase("estring") ) {
+					modelElementsDomain.put(at.getEContainingClass().getName() + "." + at.getName() + ".length", "0..10");
+					modelElementsDomain.put(at.getEContainingClass().getName() + "." + at.getName() + ".domain", "");
+				}
+				else {
+					modelElementsDomain.put(at.getEContainingClass().getName() + "." + at.getName(), "[1,10,20]");
+				}
+			}
+		}
+		for (String asName : modelReader.getAssociationsNames()) {
+			modelElementsDomain.put(asName, "0..10");
+		}
+		// EMFtoCSP ui screen 3
+		List<IModelProperty> modelProperties = new ArrayList<IModelProperty>();
+		modelProperties.add(new StrongSatisfiabilityModelProperty());
+		modelSolver.setModelProperties(modelProperties);
+		// EMFtoCSP ui screen 4
+		IProject tempProject = ResourcesPlugin.getWorkspace().getRoot().getProject(EMFTOCSP_TEMPPROJECT);
+		IFolder resultLocation;
+		try {
+			if (!tempProject.exists()) {
+				tempProject.create(null);
+			}
+			if (!tempProject.isOpen()) {
+				tempProject.open(null);
+			}
+			resultLocation = tempProject.getFolder(EMFTOCSP_TEMPFOLDER);
+			if (!resultLocation.exists()) {
+				resultLocation.create(true, true, null);
+			}
+		}
+		catch (CoreException e) {
+			MMTFException.print(MMTFException.Type.WARNING, "Can't create EMFtoCSP temporary project, skipping consistency check", e);
+			cleanupOCLConstraintConsistency(modelTypeObj, modelTypeRootObj, tempProject);
+			return true;
+		}
+		modelSolver.setResultLocation(resultLocation);
+		// EMFtoCSP performFinish()
+		File importsFolder;
+		try {
+			importsFolder = new File(FileLocator.toFileURL(FrameworkUtil.getBundle(fr.inria.atlanmod.emftocsp.eclipsecs.EclipseSolver.class).getEntry("/libs")).toURI());
+		}
+		catch (Exception e) {
+			MMTFException.print(MMTFException.Type.WARNING, "Can't find EMFtoCSP libs, skipping consistency check", e);
+			cleanupOCLConstraintConsistency(modelTypeObj, modelTypeRootObj, tempProject);
+			return true;
+		}
+		File[] libs = importsFolder.listFiles(
+			new FilenameFilter() {
+				public boolean accept(File dir, String name) {    
+					return name.matches(".*\\.ecl$");
+				}
+			}
+		);
+		ArrayList<File> libList = new ArrayList<File>();
+		for(int i = 0; i < libs.length; i++) {
+			libList.add(libs[i]);
+		}
+		boolean isConsistent = modelSolver.solveModel(libList);
+		cleanupOCLConstraintConsistency(modelTypeObj, modelTypeRootObj, tempProject);
+
+		return isConsistent;
 	}
 
 }

@@ -543,7 +543,7 @@ public class MMTF implements MMTFConstants {
 			}
 		}
 		catch (MMTFException e) {
-			MMTFException.print(MMTFException.Type.WARNING, "Dynamic type " + dynamicModelType.getName() + " can't be recreated", e);
+			MMTFException.print(Type.WARNING, "Dynamic type " + dynamicModelType.getName() + " can't be recreated", e);
 		}
 
 		return newModelType;

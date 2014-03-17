@@ -43,6 +43,12 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.diagram.core,
  org.eclipse.acceleo.engine,
  org.eclipse.emf.common,
- org.eclipse.emf.ecore.editor
+ org.eclipse.emf.ecore.editor,
+ fr.inria.atlanmod.emftocsp;resolution:=optional,
+ fr.inria.atlanmod.emftocsp.eclipsecs;resolution:=optional,
+ fr.inria.atlanmod.emftocsp.eclipsecs.libs;resolution:=optional,
+ fr.inria.atlanmod.emftocsp.emf;resolution:=optional,
+ fr.inria.atlanmod.emftocsp.emftoecl;resolution:=optional,
+ fr.inria.atlanmod.emftocsp.ui.main;resolution:=optional
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: edu.toronto.cs.se.mmtf.MMTFActivator
