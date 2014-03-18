@@ -485,86 +485,6 @@
       <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     </eAnnotations>
-    <eClassifiers xsi:type="ecore:EClass" name="ExtendibleElementReference" abstract="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="oneObject"/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A reference to an extendible element."/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="oneObject" value="referencedObject.oclIsUndefined() xor containedObject.oclIsUndefined()"/>
-      </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="referencedObject" eType="#//ExtendibleElement">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The referenced element, when owned by some other entity."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="containedObject" eType="#//ExtendibleElement"
-          containment="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The referenced element, when owned by this reference itself."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="object" lowerBound="1"
-          eType="#//ExtendibleElement" changeable="false" volatile="true" transient="true"
-          derived="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The referenced element. It can be owned by some other entity or by this reference itself, but not both."/>
-        </eAnnotations>
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="derivation" value="if containedObject.oclIsUndefined() then referencedObject else containedObject endif"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="supertypeRef" eType="#//relationship/ExtendibleElementReference">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The reference to the supertype of the referenced element."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifiable" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="True if the referenced element can be modified through this reference."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          changeable="false" volatile="true" transient="true" derived="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The uri of the referenced element."/>
-        </eAnnotations>
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="derivation" value="if object.oclIsUndefined() then null else object.uri endif"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ExtendibleElementEndpointReference"
-        abstract="true" eSuperTypes="#//relationship/ExtendibleElementReference">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A reference to an extendible element endpoint."/>
-      </eAnnotations>
-      <eOperations name="getObject" lowerBound="1" eType="#//ExtendibleElementEndpoint">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (ExtendibleElementEndpoint) object;"/>
-          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the referenced element endpoint."/>
-        </eAnnotations>
-      </eOperations>
-      <eOperations name="getSupertypeRef" eType="#//relationship/ExtendibleElementEndpointReference">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the element supertype endpoint reference of this element type endpoint reference."/>
-          <details key="body" value="ExtendibleElementReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (ExtendibleElementEndpointReference) supertypeRef;"/>
-        </eAnnotations>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetUri" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          changeable="false" volatile="true" transient="true" derived="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The uri of the referenced endpoint's target."/>
-        </eAnnotations>
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="derivation" value="object.oclAsType(mid::ExtendibleElementEndpoint).targetUri"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelRel" eSuperTypes="#//Model">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A model relationship type among model types or a model relationship instance among model instances."/>
@@ -670,6 +590,86 @@
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The target model endpoint."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExtendibleElementReference" abstract="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="oneObject"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A reference to an extendible element."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="oneObject" value="referencedObject.oclIsUndefined() xor containedObject.oclIsUndefined()"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referencedObject" eType="#//ExtendibleElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The referenced element, when owned by some other entity."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containedObject" eType="#//ExtendibleElement"
+          containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The referenced element, when owned by this reference itself."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="object" lowerBound="1"
+          eType="#//ExtendibleElement" changeable="false" volatile="true" transient="true"
+          derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The referenced element. It can be owned by some other entity or by this reference itself, but not both."/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="derivation" value="if containedObject.oclIsUndefined() then referencedObject else containedObject endif"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="supertypeRef" eType="#//relationship/ExtendibleElementReference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The reference to the supertype of the referenced element."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifiable" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="True if the referenced element can be modified through this reference."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          changeable="false" volatile="true" transient="true" derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The uri of the referenced element."/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="derivation" value="if object.oclIsUndefined() then null else object.uri endif"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExtendibleElementEndpointReference"
+        abstract="true" eSuperTypes="#//relationship/ExtendibleElementReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A reference to an extendible element endpoint."/>
+      </eAnnotations>
+      <eOperations name="getObject" lowerBound="1" eType="#//ExtendibleElementEndpoint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (ExtendibleElementEndpoint) object;"/>
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the referenced element endpoint."/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getSupertypeRef" eType="#//relationship/ExtendibleElementEndpointReference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the element supertype endpoint reference of this element type endpoint reference."/>
+          <details key="body" value="ExtendibleElementReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (ExtendibleElementEndpointReference) supertypeRef;"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetUri" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          changeable="false" volatile="true" transient="true" derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The uri of the referenced endpoint's target."/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="derivation" value="object.oclAsType(mid::ExtendibleElementEndpoint).targetUri"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>

@@ -22,7 +22,6 @@ import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -105,10 +104,8 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		Model modelType = MidDiagramUtils.selectModelTypeToExtend(multiModel);
 		String newModelTypeName = MidDiagramUtils.getStringInput("Create new light model type", "Insert new model type name", null);
 		String[] constraint = MidDiagramUtils.getConstraintInput("Create new light model type", null);
-		if (ExtendibleElementConstraintLanguage.valueOf(constraint[0]) == ExtendibleElementConstraintLanguage.OCL) {
-			if (!MultiModelConstraintChecker.checkOCLConstraintConsistency(modelType, constraint[1])) {
-				throw new MMTFException("The combined OCL constraint (this type + supertypes) is inconsistent");
-			}
+		if (!MultiModelConstraintChecker.checkConstraintConsistency(modelType, constraint[0], constraint[1])) {
+			throw new MMTFException("The combined constraint (this type + supertypes) is inconsistent");
 		}
 		boolean isMetamodelExtension = (MultiModelTypeHierarchy.isRootType(modelType)) ?
 			true :

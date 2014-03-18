@@ -538,6 +538,37 @@ linkTypes:
 		return null;
 	}
 
+	private static EObject getOCLConstraintContext(Model model, String oclConstraint, boolean isInstanceConstraint) throws MMTFException {
+
+		//TODO MMTF[CONSTRAINT] find language to express more complex contraints on model rels
+		boolean isInstancesLevel = isInstancesLevel(model);
+		EObject modelObj = null;
+		if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
+			String modelEndpointConstraintName = oclConstraint.substring(OCL_MODELENDPOINT_VARIABLE.length(), oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR));
+			for (ModelEndpointReference modelEndpointRef : ((ModelRel) model).getModelEndpointRefs()) {
+				String modelEndpointName = (isInstancesLevel && !isInstanceConstraint) ?
+					modelEndpointRef.getObject().getMetatype().getName() :
+					modelEndpointRef.getObject().getName();
+				if (modelEndpointConstraintName.equals(modelEndpointName)) {
+					modelObj = (isInstancesLevel) ?
+						modelEndpointRef.getObject().getTarget().getEMFInstanceRoot() :
+						modelEndpointRef.getObject().getTarget().getEMFTypeRoot();
+					break;
+				}
+			}
+			if (modelObj == null) {
+				throw new MMTFException("Can't find model endpoint " + modelEndpointConstraintName + " used in model relationship constraint");
+			}
+		}
+		else {
+			modelObj = (isInstancesLevel) ?
+				model.getEMFInstanceRoot() :
+				model.getEMFTypeRoot();
+		}
+
+		return modelObj;
+	}
+
 	private static void initOCL(OCLHelper helper, EObject modelObj) {
 
 		//TODO MMTF: workaround for bug #375485
@@ -584,35 +615,17 @@ linkTypes:
 
 	private static MAVOTruthValue checkOCLConstraint(Model model, String oclConstraint, boolean isInstanceConstraint) {
 
-		if (oclConstraint.equals("")) { // empty constraint
-			return MAVOTruthValue.TRUE;
-		}
-
-		EObject root = null;
 		try {
+			EObject modelObj = getOCLConstraintContext(model, oclConstraint, isInstanceConstraint);
 			if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
-				String modelEndpointConstraintName = oclConstraint.substring(OCL_MODELENDPOINT_VARIABLE.length(), oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR));
-				for (ModelEndpointReference modelEndpointRef : ((ModelRel) model).getModelEndpointRefs()) {
-					String modelEndpointName = (isInstanceConstraint) ?
-						modelEndpointRef.getObject().getName() :
-						modelEndpointRef.getObject().getMetatype().getName();
-					if (modelEndpointConstraintName.equals(modelEndpointName)) {
-						root = modelEndpointRef.getObject().getTarget().getEMFInstanceRoot();
-						break;
-					}
-				}
 				oclConstraint = oclConstraint.substring(oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR) + 1, oclConstraint.length());
 			}
-			else {
-				root = model.getEMFInstanceRoot();
-			}
+			return checkOCLConstraint(modelObj, oclConstraint);
 		}
 		catch (MMTFException e) {
-			MMTFException.print(MMTFException.Type.WARNING, "Can't get model root, skipping constraint evaluation", e);
+			MMTFException.print(MMTFException.Type.WARNING, "Can't get context for OCL constraint", e);
 			return MAVOTruthValue.FALSE;
 		}
-
-		return checkOCLConstraint(root, oclConstraint);
 	}
 
 	private static MAVOTruthValue checkJAVAConstraint(Model model, String modelTypeUri, String javaClassName) {
@@ -674,7 +687,7 @@ linkTypes:
 		if (!(element instanceof Model)) {
 			return MAVOTruthValue.TRUE;
 		}
-		if (constraint == null || constraint.getImplementation() == null) {
+		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return MAVOTruthValue.TRUE;
 		}
 
@@ -709,29 +722,43 @@ linkTypes:
 		}
 	}
 
-	public static boolean checkOCLConstraintConsistency(ExtendibleElement type, String oclConstraint) throws MMTFException {
+	public static boolean checkOCLConstraintConsistency(Model modelType, String oclConstraint) {
 
-		if (!(type instanceof Model) || oclConstraint.equals("")) {
-			return true;
-		}
 		// detect EMFtoCSP
 		if (Platform.getBundle(EMFTOCSP_BUNDLE) == null) {
 			MMTFException.print(MMTFException.Type.WARNING, "Can't find EMFtoCSP installation, skipping consistency check", null);
 			return true;
 		}
 
+		EPackage modelTypeObj;
+		try {
+			modelTypeObj = (EPackage) getOCLConstraintContext(modelType, oclConstraint, false);
+		}
+		catch (MMTFException e) {
+			MMTFException.print(MMTFException.Type.WARNING, "Can't get context for OCL constraint", e);
+			return false;
+		}
+		String modelTypeName = modelType.getName();
+		//TODO MMTF[CONSTRAINT] find language to express more complex contraints on model rels
 		// create and-ed global constraint
-		Model baseModelType = (Model) type;
-		String oclConsistencyConstraint = oclConstraint;
-		while (!MultiModelTypeHierarchy.isRootType(type)) {
-			ExtendibleElementConstraint constraint = type.getConstraint();
+		String oclConsistencyConstraint = (modelType instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) ?
+			oclConstraint.substring(oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR) + 1, oclConstraint.length()) :
+			oclConstraint;
+		while (!MultiModelTypeHierarchy.isRootType(modelType)) {
+			ExtendibleElementConstraint constraint = modelType.getConstraint();
 			if (constraint != null && constraint.getLanguage() == ExtendibleElementConstraintLanguage.OCL) {
-				oclConsistencyConstraint += " and " + constraint.getImplementation();
+				oclConsistencyConstraint += " and ";
+				oclConsistencyConstraint += (modelType instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) ?
+					constraint.getImplementation().substring(constraint.getImplementation().indexOf(OCL_VARIABLE_SEPARATOR) + 1, constraint.getImplementation().length()) :
+					constraint.getImplementation();
 			}
-			type = type.getSupertype();
+			modelType = modelType.getSupertype();
+		}
+		// a constraint on model rel must be consistent with endpoints
+		if (modelType instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
+			return checkOCLConstraintConsistency(MultiModelTypeRegistry.<Model>getType(modelTypeObj.getNsURI()), oclConsistencyConstraint);
 		}
 		// add constraint as annotation into the metamodel
-		EPackage modelTypeObj = baseModelType.getEMFTypeRoot();
 		EAnnotation newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		newEAnnotation.setSource(EcorePackage.eNS_URI);
 		EMap<String, String> newEAnnotationDetails = newEAnnotation.getDetails();
@@ -755,7 +782,7 @@ linkTypes:
 		ICspSolver<?> solver = new EclipseSolver(eclipsePath, graphvizPath);
 		IModelToCspSolverFactory<Resource, CompoundTerm> modelSolverFactory = new EmfModelToCspSolverFactory();
 		IModelToCspSolver<Resource, CompoundTerm> modelSolver = modelSolverFactory.getModelToCspSolver();
-		modelSolver.setModelFileName(baseModelType.getName());
+		modelSolver.setModelFileName(modelTypeName);
 		modelSolver.setModel(modelTypeObj.eResource());
 		modelSolver.setSolver(solver);
 		modelSolver.setCspCodeGenerator(new EmfToEclCodeGenerator(modelSolver));
@@ -836,6 +863,24 @@ linkTypes:
 		cleanupOCLConstraintConsistency(modelTypeObj, modelTypeRootObj, tempProject);
 
 		return isConsistent;
+	}
+
+	public static boolean checkConstraintConsistency(ExtendibleElement type, String constraintLanguage, String constraintImplementation) {
+
+		if (!(type instanceof Model) || constraintImplementation.equals("")) {
+			return true;
+		}
+
+		switch (ExtendibleElementConstraintLanguage.valueOf(constraintLanguage)) {
+			case OCL:
+				return checkOCLConstraintConsistency((Model) type, constraintImplementation);
+			case JAVA:
+				return true;
+			case SMTLIB:
+				return true;
+			default:
+				return false;
+		}
 	}
 
 }

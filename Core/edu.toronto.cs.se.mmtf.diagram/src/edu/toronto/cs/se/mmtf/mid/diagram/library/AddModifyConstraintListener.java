@@ -96,9 +96,9 @@ public class AddModifyConstraintListener extends SelectionAdapter {
 					implementation = "";
 				}
 				String[] newConstraint = MidDiagramUtils.getConstraintInput("Add/Modify Constraint", constraint.getLanguage().getLiteral() + MidDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + implementation);
-				if (!MultiModelConstraintChecker.isInstancesLevel(element) && ExtendibleElementConstraintLanguage.valueOf(newConstraint[0]) == ExtendibleElementConstraintLanguage.OCL) {
-					if (!MultiModelConstraintChecker.checkOCLConstraintConsistency(element.getSupertype(), newConstraint[1])) {
-						throw new MMTFException("The combined OCL constraint (this type + supertypes) is inconsistent");
+				if (!MultiModelConstraintChecker.isInstancesLevel(element)) {
+					if (!MultiModelConstraintChecker.checkConstraintConsistency(element.getSupertype(), newConstraint[0], newConstraint[1])) {
+						throw new MMTFException("The combined constraint (this type + supertypes) is inconsistent");
 					}
 				}
 				constraint.setLanguage(ExtendibleElementConstraintLanguage.get(newConstraint[0]));
