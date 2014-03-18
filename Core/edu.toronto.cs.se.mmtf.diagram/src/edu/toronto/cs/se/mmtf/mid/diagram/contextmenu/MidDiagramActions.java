@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.diagram.contextmenu;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -29,6 +30,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
+import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
@@ -75,13 +77,14 @@ public class MidDiagramActions extends ContributionItem {
 			return;
 		}
 		Object[] objects = ((StructuredSelection) selection).toArray();
-		boolean doOperator = true, doCast = true, doValidate = true, doCopy = true, doProperty = true, doModelepedia = true;
+		boolean doOperator = true, doCast = true, doValidate = true, doCopy = true, doProperty = true, doModelepedia = true, doCoherence = true;;
 		if (objects.length > 1) { // actions that don't work on multiple objects
 			doCast = false;
 			doValidate = false;
 			doCopy = false;
 			doProperty = false;
 			doModelepedia = false;
+			doCoherence = false;
 		}
 
 		// get selection
@@ -103,11 +106,12 @@ public class MidDiagramActions extends ContributionItem {
 					doCast = false;
 					doValidate = false;
 					doCopy = false;
+					doCoherence = false;
 				}
 				if (model instanceof ModelRel) { // actions that don't work on model relationships
 					doCopy = false;
 				}
-				if (doOperator || doCast || doValidate || doCopy || doProperty || doModelepedia) {
+				if (doOperator || doCast || doValidate || doCopy || doProperty || doModelepedia || doCoherence) {
 					models.add(model);
 				}
 				if (doCast) {
@@ -122,7 +126,7 @@ public class MidDiagramActions extends ContributionItem {
 					editParts.add(editPart);
 				}
 			}
-			if (!doOperator && !doCast && !doValidate && !doCopy && !doProperty && !doModelepedia) { // no action available
+			if (!doOperator && !doCast && !doValidate && !doCopy && !doProperty && !doModelepedia && !doCoherence) { // no action available
 				return;
 			}
 		}
@@ -217,6 +221,23 @@ public class MidDiagramActions extends ContributionItem {
 					castSubitem.setText(text);
 					castSubitem.addSelectionListener(
 						new CastTypeListener(models.get(0), runtimeModelType, label)
+					);
+				}
+			}
+		}
+		// coherence
+		if (doCoherence) {
+			Map<Model, Set<List<ConversionOperator>>> y = MultiModelTypeHierarchy.x(models.get(0).getMetatypeUri());
+			if (!y.isEmpty()) {
+				MenuItem coherenceItem = new MenuItem(mmtfMenu, SWT.CASCADE);
+				coherenceItem.setText("Check Runtime Coherence");
+				Menu coherenceMenu = new Menu(menu);
+				coherenceItem.setMenu(coherenceMenu);
+				for (Map.Entry<Model, Set<List<ConversionOperator>>> yy : y.entrySet()) {
+					MenuItem coherenceSubitem = new MenuItem(coherenceMenu, SWT.NONE);
+					coherenceSubitem.setText("To " + yy.getKey().getName());
+					coherenceSubitem.addSelectionListener(
+						new CheckCoherenceListener(yy.getValue())
 					);
 				}
 			}

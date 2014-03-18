@@ -519,11 +519,33 @@ public class MultiModelTypeHierarchy {
 	 *            The repository, or the Type MID.
 	 * @return The table for model type conversion.
 	 */
-	private static Map<String, Map<String, List<String>>> getConversionTable(MultiModel multiModel) {
+	private static Map<String, Map<String, Set<List<String>>>> getConversionTable(MultiModel multiModel) {
 
 		return (multiModel == MMTF.repository) ?
 			MMTF.conversionTable :
 			MMTF.conversionTableMID;
+	}
+
+	public static Map<Model, Set<List<ConversionOperator>>> x(String srcModelTypeUri) {
+
+		Map<String, Set<List<String>>> a = getConversionTable(MMTF.repository).get(srcModelTypeUri);
+		Map<Model, Set<List<ConversionOperator>>> b = new HashMap<Model, Set<List<ConversionOperator>>>();
+		for (Map.Entry<String, Set<List<String>>> aEntry : a.entrySet()) {
+			if (aEntry.getValue().size() == 1) {
+				continue;
+			}
+			Set<List<ConversionOperator>> bb = new HashSet<List<ConversionOperator>>();
+			b.put(MultiModelTypeRegistry.<Model>getType(aEntry.getKey()), bb);
+			for (List<String> aa : aEntry.getValue()) {
+				List<ConversionOperator> bbb = new ArrayList<ConversionOperator>();
+				bb.add(bbb);
+				for (String aaa : aa) {
+					bbb.add(MultiModelTypeRegistry.<ConversionOperator>getType(aaa));
+				}
+			}
+		}
+
+		return b;
 	}
 
 	/**
@@ -669,17 +691,19 @@ public class MultiModelTypeHierarchy {
 			return new BasicEList<ConversionOperator>();
 		}
 
-		// convertible type
+		// conversion
 		for (String actualModelTypeUri : actualModelTypeUris) {
-			Map<String, List<String>> conversions = getConversionTable(MMTF.repository).get(actualModelTypeUri);
-			for (Map.Entry<String, List<String>> conversion : conversions.entrySet()) {
-				// use first substitution found
+			Map<String, Set<List<String>>> conversions = getConversionTable(MMTF.repository).get(actualModelTypeUri);
+			for (Map.Entry<String, Set<List<String>>> conversion : conversions.entrySet()) {
 				String convertedActualModelTypeUri = conversion.getKey();
 				if (formalModelTypeUri.equals(convertedActualModelTypeUri) || isSubtypeOf(convertedActualModelTypeUri, formalModelTypeUri)) {
 					EList<ConversionOperator> conversionOperatorTypes = new BasicEList<ConversionOperator>();
-					for (String conversionOperatorTypeUri : conversion.getValue()) {
-						ConversionOperator conversionOperatorType = MultiModelTypeRegistry.getType(conversionOperatorTypeUri);
-						conversionOperatorTypes.add(conversionOperatorType);
+					for (List<String> conversionOperatorPath : conversion.getValue()) {
+						for (String conversionOperatorTypeUri : conversionOperatorPath) {
+							ConversionOperator conversionOperatorType = MultiModelTypeRegistry.getType(conversionOperatorTypeUri);
+							conversionOperatorTypes.add(conversionOperatorType);
+						}
+						break; // use first conversion found
 					}
 					return conversionOperatorTypes;
 				}

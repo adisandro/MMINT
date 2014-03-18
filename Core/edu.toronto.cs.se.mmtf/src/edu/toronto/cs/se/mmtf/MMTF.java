@@ -93,11 +93,11 @@ public class MMTF implements MMTFConstants {
 	/**	The table for subtyping in the repository. */
 	static Map<String, Set<String>> subtypeTable;
 	/**	The table for model type conversion in the repository. */
-	static Map<String, Map<String, List<String>>> conversionTable;
+	static Map<String, Map<String, Set<List<String>>>> conversionTable;
 	/**	The table for subtyping in the Type MID. */
 	static Map<String, Set<String>> subtypeTableMID;
 	/**	The table for model type conversion in the Type MID. */
-	static Map<String, Map<String, List<String>>> conversionTableMID;
+	static Map<String, Map<String, Set<List<String>>>> conversionTableMID;
 	/** The table to map type uris to their bundle name. */
 	static Map<String, String> bundleTable;
 	/** The settings table. */
@@ -437,25 +437,25 @@ public class MMTF implements MMTFConstants {
 	 * @param conversionTypes
 	 *            The subtable for type conversion.
 	 */
-	private static void createConversionHierarchy(ExtendibleElement type, Map<String, List<String>> conversionTypes) {
-
-		// previous conversions
-		List<String> previousConversions = conversionTypes.get(type.getUri());
+	private static void createConversionHierarchy(ExtendibleElement currentType, List<String> prevConversionPath, Map<String, Set<List<String>>> conversionsTo) {
 
 		// add conversions
-		for (ConversionOperator operatorType : ((Model) type).getConversionOperators()) {
-			Model conversionType = operatorType.getOutputs().get(0).getModel();
-			String conversionTypeUri = conversionType.getUri();
-			if (!conversionTypes.containsKey(conversionTypeUri)) { // coherence of multiple paths is assumed
-				// keep track of conversion operators used
-				List<String> conversions = (previousConversions == null) ?
-					new ArrayList<String>() :
-					new ArrayList<String>(previousConversions);
-				conversions.add(operatorType.getUri()); // add new operator to be used
-				conversionTypes.put(conversionTypeUri, conversions);
-				// recursion
-				createConversionHierarchy(conversionType, conversionTypes);
+		for (ConversionOperator conversionOperatorType : ((Model) currentType).getConversionOperators()) {
+			if (prevConversionPath.contains(conversionOperatorType.getUri())) { // cycle
+				continue;
 			}
+			Model conversionType = conversionOperatorType.getOutputs().get(0).getModel();
+			Set<List<String>> conversionPaths = conversionsTo.get(conversionType.getUri()); // handles multiple paths
+			if (conversionPaths == null) {
+				conversionPaths = new HashSet<List<String>>();
+				conversionsTo.put(conversionType.getUri(), conversionPaths);
+			}
+			// keep track of conversion operator used
+			prevConversionPath.add(conversionOperatorType.getUri());
+			List<String> conversionPath = new ArrayList<String>(prevConversionPath);
+			conversionPaths.add(conversionPath);
+			// recursion
+			createConversionHierarchy(conversionType, prevConversionPath, conversionsTo);
 		}
 	}
 
@@ -470,21 +470,21 @@ public class MMTF implements MMTFConstants {
 	 * @param conversionTable
 	 *            The table for model type conversion in the multimodel.
 	 */
-	private static void createTypeHierarchy(MultiModel multiModel, Map<String, Set<String>> subtypeTable, Map<String, Map<String, List<String>>> conversionTable) {
+	private static void createTypeHierarchy(MultiModel multiModel, Map<String, Set<String>> subtypeTable, Map<String, Map<String, Set<List<String>>>> conversionTable) {
 
 		subtypeTable.clear();
 		conversionTable.clear();
 		for (ExtendibleElement type : multiModel.getExtendibleTable().values()) {
 			subtypeTable.put(type.getUri(), new HashSet<String>());
-			conversionTable.put(type.getUri(), new HashMap<String, List<String>>());
+			conversionTable.put(type.getUri(), new HashMap<String, Set<List<String>>>());
 		}
 		for (ExtendibleElement type : multiModel.getExtendibleTable().values()) {
 			createSubtypeHierarchy(type, type, subtypeTable);
 		}
 		for (Model modelType : MultiModelRegistry.getModels(multiModel)) {
-			createConversionHierarchy(modelType, conversionTable.get(modelType.getUri()));
+			createConversionHierarchy(modelType, new ArrayList<String>(), conversionTable.get(modelType.getUri()));
 			for (Model modelSubtype : MultiModelTypeHierarchy.getSubtypes(modelType, multiModel)) {
-				createConversionHierarchy(modelType, conversionTable.get(modelSubtype.getUri()));
+				createConversionHierarchy(modelType, new ArrayList<String>(), conversionTable.get(modelSubtype.getUri()));
 			}
 		}
 	}
@@ -644,9 +644,9 @@ public class MMTF implements MMTFConstants {
 
 		// type hierarchy
 		subtypeTable = new HashMap<String, Set<String>>();
-		conversionTable = new HashMap<String, Map<String, List<String>>>();
+		conversionTable = new HashMap<String, Map<String, Set<List<String>>>>();
 		subtypeTableMID = new HashMap<String, Set<String>>();
-		conversionTableMID = new HashMap<String, Map<String, List<String>>>();
+		conversionTableMID = new HashMap<String, Map<String, Set<List<String>>>>();
 		storeRepository();
 	}
 
@@ -674,15 +674,19 @@ public class MMTF implements MMTFConstants {
 	 * @param tgtTable
 	 *            The target conversion table.
 	 */
-	private static void copyConversionTable(Map<String, Map<String, List<String>>> srcTable, Map<String, Map<String, List<String>>> tgtTable) {
+	private static void copyConversionTable(Map<String, Map<String, Set<List<String>>>> srcTable, Map<String, Map<String, Set<List<String>>>> tgtTable) {
 
-		for (Map.Entry<String, Map<String, List<String>>> entry : srcTable.entrySet()) {
-			Map<String, List<String>> newValue = new HashMap<String, List<String>>();
-			for (Map.Entry<String, List<String>> nestedEntry : entry.getValue().entrySet()) {
-				List<String> newNestedValue = new ArrayList<String>(nestedEntry.getValue());
-				newValue.put(nestedEntry.getKey(), newNestedValue);
-			}
+		for (Map.Entry<String, Map<String, Set<List<String>>>> entry : srcTable.entrySet()) {
+			Map<String, Set<List<String>>> newValue = new HashMap<String, Set<List<String>>>();
 			tgtTable.put(entry.getKey(), newValue);
+			for (Map.Entry<String, Set<List<String>>> nestedEntry : entry.getValue().entrySet()) {
+				Set<List<String>> newNestedValue = new HashSet<List<String>>();
+				newValue.put(nestedEntry.getKey(), newNestedValue);
+				for (List<String> nestedNestedValue : nestedEntry.getValue()) {
+					List<String> newNestedNestedValue = new ArrayList<String>(nestedNestedValue);
+					newNestedValue.add(newNestedNestedValue);
+				}
+			}
 		}
 	}
 
