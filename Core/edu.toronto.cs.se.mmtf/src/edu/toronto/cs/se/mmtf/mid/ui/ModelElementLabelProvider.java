@@ -21,7 +21,6 @@ import edu.toronto.cs.se.mmtf.mid.EMFInfo;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
 import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmtf.mid.library.PrimitiveEObjectWrapper;
-import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
 public class ModelElementLabelProvider extends AdapterFactoryLabelProvider {
 
@@ -37,7 +36,7 @@ public class ModelElementLabelProvider extends AdapterFactoryLabelProvider {
 	public String getText(Object object) {
 
 		String text;
-		if (level == MidLevel.INSTANCES && (boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ALTERNATIVE_MODEL_TREE_ENABLED) && (object instanceof AttributeValueWrapperItemProvider || object instanceof EObject)) {
+		if (level == MidLevel.INSTANCES && (object instanceof AttributeValueWrapperItemProvider || object instanceof EObject)) {
 			if (object instanceof AttributeValueWrapperItemProvider) {
 				object = new PrimitiveEObjectWrapper((AttributeValueWrapperItemProvider) object);
 			}

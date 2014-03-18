@@ -16,9 +16,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 
-import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.mid.MidLevel;
-import edu.toronto.cs.se.mmtf.repository.MMTFConstants;
 
 public class RelationshipDiagramOutlineContentProvider extends AdapterFactoryContentProvider {
 
@@ -34,7 +32,7 @@ public class RelationshipDiagramOutlineContentProvider extends AdapterFactoryCon
 	public boolean hasChildren(Object object) {
 
 		boolean hasChildren;
-		if (level == MidLevel.INSTANCES && (boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ALTERNATIVE_MODEL_TREE_ENABLED) && object instanceof EObject) {
+		if (level == MidLevel.INSTANCES && object instanceof EObject) {
 			RelationshipDiagramOutlineItemProvider alternativeProvider = new RelationshipDiagramOutlineItemProvider(adapterFactory);
 			hasChildren = alternativeProvider.hasChildren(object);
 		}
@@ -53,7 +51,7 @@ public class RelationshipDiagramOutlineContentProvider extends AdapterFactoryCon
 	public Object[] getChildren(Object object) {
 
 		Object[] children;
-		if (level == MidLevel.INSTANCES && (boolean) MMTF.getSetting(MMTFConstants.SETTING_MENU_ALTERNATIVE_MODEL_TREE_ENABLED) && object instanceof EObject) {
+		if (level == MidLevel.INSTANCES && object instanceof EObject) {
 			RelationshipDiagramOutlineItemProvider alternativeProvider = new RelationshipDiagramOutlineItemProvider(adapterFactory);
 			children = alternativeProvider.getChildren(object).toArray();
 		}

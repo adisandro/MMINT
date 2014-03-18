@@ -737,9 +737,6 @@ public class MMTF implements MMTFConstants {
 		command = commandService.getCommand(SETTING_MENU_DIAGRAMS_CREATION_ENABLED);
 		isEnabled = (boolean) command.getState(RegistryToggleState.STATE_ID).getValue();
 		settings.put(SETTING_MENU_DIAGRAMS_CREATION_ENABLED, new Boolean(isEnabled));
-		command = commandService.getCommand(SETTING_MENU_ALTERNATIVE_MODEL_TREE_ENABLED);
-		isEnabled = (boolean) command.getState(RegistryToggleState.STATE_ID).getValue();
-		settings.put(SETTING_MENU_ALTERNATIVE_MODEL_TREE_ENABLED, new Boolean(isEnabled));
 	}
 
 	/**
