@@ -66,7 +66,7 @@ public class ValidateListener extends SelectionAdapter {
 			OperationHistoryFactory.getOperationHistory().execute(operatorCommand, null, null);
 		}
 		catch (ExecutionException ex) {
-			MMTFException.print(Type.WARNING, "Type validation history execution error", ex);
+			MMTFException.print(Type.WARNING, "Validate history execution error", ex);
 		}
 	}
 

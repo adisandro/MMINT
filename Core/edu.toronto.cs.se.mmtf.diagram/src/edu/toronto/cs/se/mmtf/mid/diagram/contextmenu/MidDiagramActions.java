@@ -237,7 +237,7 @@ public class MidDiagramActions extends ContributionItem {
 					MenuItem coherenceSubitem = new MenuItem(coherenceMenu, SWT.NONE);
 					coherenceSubitem.setText("To " + yy.getKey().getName());
 					coherenceSubitem.addSelectionListener(
-						new CheckCoherenceListener(yy.getValue())
+						new CheckCoherenceListener(models.get(0), yy.getValue())
 					);
 				}
 			}

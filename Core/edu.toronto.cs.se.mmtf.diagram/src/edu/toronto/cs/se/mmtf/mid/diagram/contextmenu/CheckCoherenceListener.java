@@ -13,9 +13,7 @@ package edu.toronto.cs.se.mmtf.mid.diagram.contextmenu;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -37,16 +35,16 @@ import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmtf.mid.operator.ConversionOperator;
-import edu.toronto.cs.se.mmtf.mid.operator.Operator;
 
 public class CheckCoherenceListener extends SelectionAdapter {
 
+	Model model;
 	Set<List<ConversionOperator>> conversionPaths;
 
-	public CheckCoherenceListener(Set<List<ConversionOperator>> conversionPaths) {
+	public CheckCoherenceListener(Model model, Set<List<ConversionOperator>> conversionPaths) {
 
+		this.model = model;
 		this.conversionPaths = conversionPaths;
 	}
 
@@ -60,29 +58,22 @@ public class CheckCoherenceListener extends SelectionAdapter {
 			files.add(diagramFile);
 			files.add(modelFile);
 		}
-		Model editingDomainParameter;
-		int i = 0;
-		do {
-			editingDomainParameter = actualParameters.get(i);
-			i++;
-		}
-		while (!MultiModelConstraintChecker.isInstancesLevel(editingDomainParameter));
-		AbstractTransactionalCommand operatorCommand = new RunOperatorCommand(
-			TransactionUtil.getEditingDomain(editingDomainParameter),
-			"Run operator",
+		AbstractTransactionalCommand operatorCommand = new CheckCoherenceCommand(
+			TransactionUtil.getEditingDomain(model),
+			"Check Coherence",
 			files
 		);
 		try {
 			OperationHistoryFactory.getOperationHistory().execute(operatorCommand, null, null);
 		}
 		catch (ExecutionException ex) {
-			MMTFException.print(Type.WARNING, "Operator " + operator.getName() + " history execution error", ex);
+			MMTFException.print(Type.WARNING, "Check coherence history execution error", ex);
 		}
 	}
 
-	protected class RunOperatorCommand extends AbstractTransactionalCommand {
+	protected class CheckCoherenceCommand extends AbstractTransactionalCommand {
 
-		public RunOperatorCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public CheckCoherenceCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}
@@ -90,38 +81,29 @@ public class CheckCoherenceListener extends SelectionAdapter {
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+			//TODO run every operator list in the set, compare the output, cleanup, show popup with result
 			try {
-				//TODO MMTF: is conversionMap ordered?? I don't think so
-				// run all conversion operators
-				if (!conversionMap.isEmpty()) {
-					for (Entry<Integer, EList<ConversionOperator>> entry : conversionMap.entrySet()) {
-						int i = entry.getKey();
-						List<ConversionOperator> conversionList = entry.getValue();
-						Model newActualParameter = actualParameters.get(i);
-						for (ConversionOperator operator : conversionList) {
-							EList<Model> operatorParameters = new BasicEList<Model>();
-							operatorParameters.add(newActualParameter);
-							newActualParameter = operator.execute(operatorParameters).get(0);
-						}
-						actualParameters.set(i, newActualParameter);
+				// create results for each conversion path
+				for (List<ConversionOperator> conversionPath : conversionPaths) {
+					Model newActualParameter = model;
+					for (ConversionOperator conversionOperatorType : conversionPath) {
+						EList<Model> actualParameters = new BasicEList<Model>();
+						actualParameters.add(newActualParameter);
+						newActualParameter = conversionOperatorType.execute(actualParameters).get(0);
 					}
 				}
-				// run operator
-				operator.execute(actualParameters);
-				// cleanup all conversion operators
-				if (!conversionMap.isEmpty()) {
-					for (Entry<Integer, EList<ConversionOperator>> entry : conversionMap.entrySet()) {
-						for (ConversionOperator operator : entry.getValue()) {
-							((ConversionOperator) operator).cleanup();
-						}
-					}
-				}
+				// cleanup
+//				for (List<ConversionOperator> conversionPath : conversionPaths) {
+//					for (ConversionOperator conversionOperatorType : conversionPath) {
+//						conversionOperatorType.cleanup();
+//					}
+//				}
 
 				return CommandResult.newOKCommandResult();
 			}
 			catch (Exception e) {
-				MMTFException.print(Type.WARNING, "Operator " + operator.getName() + " execution error", e);
-				return CommandResult.newErrorCommandResult("Operator " + operator.getName() + " execution error");
+				MMTFException.print(Type.WARNING, "Coherence check execution error", e);
+				return CommandResult.newErrorCommandResult("Coherence check execution error");
 			}
 		}
 
