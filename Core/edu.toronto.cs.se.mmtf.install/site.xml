@@ -27,6 +27,9 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.tutorial_1.2.0.jar" id="edu.toronto.cs.se.modelepedia.tutorial" version="1.2.0">
       <category name="Modelepedia"/>
    </feature>
+   <feature url="features/fr.inria.atlanmod.emftocsp.tool.feature_1.1.1.qualifier.jar" id="fr.inria.atlanmod.emftocsp.tool.feature" version="1.1.1.qualifier">
+      <category name="Modeling"/>
+   </feature>
    <category-def name="Modeling" label="Modeling"/>
    <category-def name="Modelepedia" label="Modelepedia"/>
 </site>
