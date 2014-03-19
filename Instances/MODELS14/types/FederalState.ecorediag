@@ -14,7 +14,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_aVEQQa8zEeO_M7GkOUpibQ" fontColor="4210752" fontName="Cantarell" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="FederalState.ecore#//FederalState"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aVEQQq8zEeO_M7GkOUpibQ" x="168" y="120"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aVEQQq8zEeO_M7GkOUpibQ" x="168" y="228"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_aVFeYK8zEeO_M7GkOUpibQ" type="1001">
     <children xmi:type="notation:Node" xmi:id="_aVGFcK8zEeO_M7GkOUpibQ" type="4001"/>
@@ -30,7 +30,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_aVFeYa8zEeO_M7GkOUpibQ" fontColor="4210752" fontName="Cantarell" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="FederalState.ecore#//CapitalRegion"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aVFeYq8zEeO_M7GkOUpibQ" x="324" y="120"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aVFeYq8zEeO_M7GkOUpibQ" x="324" y="228"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_iVAiUK8zEeO_M7GkOUpibQ" type="1001">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iVC-kK8zEeO_M7GkOUpibQ" source="Shortcut">
@@ -49,7 +49,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_iVAiUa8zEeO_M7GkOUpibQ" fontColor="4210752" fontName="Cantarell" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="http://se.cs.toronto.edu/modelepedia/State#//State"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iVAiUq8zEeO_M7GkOUpibQ" x="168"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iVAiUq8zEeO_M7GkOUpibQ" x="168" y="108"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_jKkRUK8zEeO_M7GkOUpibQ" type="1001">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jKlfcK8zEeO_M7GkOUpibQ" source="Shortcut">
@@ -68,7 +68,19 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_jKkRUa8zEeO_M7GkOUpibQ" fontColor="4210752" fontName="Cantarell" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="http://se.cs.toronto.edu/modelepedia/State#//Region"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jKkRUq8zEeO_M7GkOUpibQ" x="324"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jKkRUq8zEeO_M7GkOUpibQ" x="324" y="108"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_87eOIK80EeOHhsPTFKw30A" type="Note" fontName="Cantarell" description="regions -> one(oclIsTypeOf(CapitalRegion)) and capital = regions -> any(oclIsTypeOf(CapitalRegion)).capital" fillColor="13369343" transparency="0" lineColor="6737151" lineWidth="1">
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_87gqYK80EeOHhsPTFKw30A" type="DiagramName">
+      <element xsi:nil="true"/>
+    </children>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_87gqYa80EeOHhsPTFKw30A" type="Description">
+      <element xsi:nil="true"/>
+    </children>
+    <styles xmi:type="notation:TextStyle" xmi:id="_87eOIa80EeOHhsPTFKw30A"/>
+    <styles xmi:type="notation:LineTypeStyle" xmi:id="_87eOIq80EeOHhsPTFKw30A"/>
+    <element xsi:nil="true"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_87eOI680EeOHhsPTFKw30A" x="36" y="324" width="241" height="97"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_aUzKga8zEeO_M7GkOUpibQ"/>
   <element xmi:type="ecore:EPackage" href="FederalState.ecore#/"/>
@@ -87,5 +99,12 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jKq_A68zEeO_M7GkOUpibQ" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jKv3gK8zEeO_M7GkOUpibQ" id="(0.49514563106796117,0.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jKv3ga8zEeO_M7GkOUpibQ" id="(0.5,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_BuAwEK81EeOHhsPTFKw30A" type="NoteAttachment" source="_87eOIK80EeOHhsPTFKw30A" target="_aVEQQK8zEeO_M7GkOUpibQ" lineWidth="1">
+    <styles xmi:type="notation:ArrowStyle" xmi:id="_BuAwEa81EeOHhsPTFKw30A"/>
+    <styles xmi:type="notation:LineTypeStyle" xmi:id="_BuAwEq81EeOHhsPTFKw30A"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BuAwE681EeOHhsPTFKw30A" points="[-34, -35, 85, 75]$[-110, -131, 9, -21]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BuDMUK81EeOHhsPTFKw30A" id="(0.6146179401993356,0.2465753424657534)"/>
   </edges>
 </notation:Diagram>

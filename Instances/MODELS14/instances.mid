@@ -33,20 +33,20 @@
       <eInfo className="Unit" featureName="units" relatedClassName="Army"/>
     </modelElems>
   </models>
-  <models xsi:type="relationship:BinaryModelRel" uri="" name="d" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deploy" dynamic="true" origin="CREATED" fileExtension="">
-    <modelEndpoints uri="" name="eastasia" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deploy-Army/ArmyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
-    <modelEndpoints uri="" name="eastasia" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deploy-State/StateEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
-    <links xsi:type="relationship:BinaryLink" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deploy/DeployLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.0/@modelElemEndpointRefs.0 //@models.4/@linkRefs.0/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="[units->] Unit U1" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deploy/DeployLink-Unit/UnitEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.0"/>
-      <modelElemEndpoints uri="" name="[regions->] Region RegionX" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deploy/DeployLink-Region/RegionEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="d" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="eastasia" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed-Army/ArmyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+    <modelEndpoints uri="" name="eastasia" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed-State/StateEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <links xsi:type="relationship:BinaryLink" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.0/@modelElemEndpointRefs.0 //@models.4/@linkRefs.0/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="[units->] Unit U1" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink-Unit/UnitEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.0"/>
+      <modelElemEndpoints uri="" name="[regions->] Region RegionX" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink-Region/RegionEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
     </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deploy/DeployLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.1/@modelElemEndpointRefs.0 //@models.4/@linkRefs.1/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="[units->] Unit U2" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deploy/DeployLink-Unit/UnitEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.1"/>
-      <modelElemEndpoints uri="" name="[regions->] Region RegionX" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deploy/DeployLink-Region/RegionEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
+    <links xsi:type="relationship:BinaryLink" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.1/@modelElemEndpointRefs.0 //@models.4/@linkRefs.1/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="[units->] Unit U2" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink-Unit/UnitEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.1"/>
+      <modelElemEndpoints uri="" name="[regions->] Region RegionX" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink-Region/RegionEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
     </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deploy/DeployLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.2/@modelElemEndpointRefs.0 //@models.4/@linkRefs.2/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="[units->] Unit U3" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deploy/DeployLink-Unit/UnitEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.2"/>
-      <modelElemEndpoints uri="" name="[regions->] Region RegionY" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deploy/DeployLink-Region/RegionEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
+    <links xsi:type="relationship:BinaryLink" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.2/@modelElemEndpointRefs.0 //@models.4/@linkRefs.2/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="[units->] Unit U3" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink-Unit/UnitEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.2"/>
+      <modelElemEndpoints uri="" name="[regions->] Region RegionY" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink-Region/RegionEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
     </links>
     <modelEndpointRefs referencedObject="//@models.4/@modelEndpoints.0" modifiable="true">
       <modelElemRefs referencedObject="//@models.3/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.0/@modelElemEndpointRefs.0"/>
