@@ -32,6 +32,7 @@ import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -62,11 +63,11 @@ public class MidDiagramUtils {
 		Object selection = dialog.getOnlyResult();
 		if (selection == null) { // more than one choice
 			if (dialog.open() == Window.CANCEL) {
-				throw new MMTFException("Dialog cancel button pressed");
+				throw new MMTFException(Type.WARNING, "Dialog cancel button pressed");
 			}
 			selection = dialog.getFirstResult();
 			if (selection == null) { // dialog opened and nothing selected
-				throw new MMTFException("Dialog ok button pressed with no selection");
+				throw new MMTFException(Type.WARNING, "Dialog ok button pressed with no selection");
 			}
 		}
 

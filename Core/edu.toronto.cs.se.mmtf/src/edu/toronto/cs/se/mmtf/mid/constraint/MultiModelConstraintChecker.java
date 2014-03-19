@@ -546,6 +546,7 @@ linkTypes:
 		if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
 			String modelEndpointConstraintName = oclConstraint.substring(OCL_MODELENDPOINT_VARIABLE.length(), oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR));
 			for (ModelEndpointReference modelEndpointRef : ((ModelRel) model).getModelEndpointRefs()) {
+				//TODO MMTF[ENDPOINT] consider overridden endpoints here
 				String modelEndpointName = (isInstancesLevel && !isInstanceConstraint) ?
 					modelEndpointRef.getObject().getMetatype().getName() :
 					modelEndpointRef.getObject().getName();
@@ -741,12 +742,13 @@ linkTypes:
 		String modelTypeName = modelType.getName();
 		//TODO MMTF[CONSTRAINT] find language to express more complex contraints on model rels
 		// create and-ed global constraint
+		//TODO MMTF[CONSTRAINT] when invoked from add/remove don't consider the constraint on itself
 		String oclConsistencyConstraint = (modelType instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) ?
 			oclConstraint.substring(oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR) + 1, oclConstraint.length()) :
 			oclConstraint;
 		while (!MultiModelTypeHierarchy.isRootType(modelType)) {
 			ExtendibleElementConstraint constraint = modelType.getConstraint();
-			if (constraint != null && constraint.getLanguage() == ExtendibleElementConstraintLanguage.OCL) {
+			if (constraint != null && constraint.getLanguage() == ExtendibleElementConstraintLanguage.OCL && constraint.getImplementation() != null && !constraint.getImplementation().equals("")) {
 				oclConsistencyConstraint += " and ";
 				oclConsistencyConstraint += (modelType instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) ?
 					constraint.getImplementation().substring(constraint.getImplementation().indexOf(OCL_VARIABLE_SEPARATOR) + 1, constraint.getImplementation().length()) :

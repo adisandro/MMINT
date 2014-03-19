@@ -22,6 +22,7 @@ import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmtf.MMTFException.Type;
 import edu.toronto.cs.se.mmtf.mid.Model;
 import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
 import edu.toronto.cs.se.mmtf.mid.MultiModel;
@@ -105,7 +106,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		String newModelTypeName = MidDiagramUtils.getStringInput("Create new light model type", "Insert new model type name", null);
 		String[] constraint = MidDiagramUtils.getConstraintInput("Create new light model type", null);
 		if (!MultiModelConstraintChecker.checkConstraintConsistency(modelType, constraint[0], constraint[1])) {
-			throw new MMTFException("The combined constraint (this type + supertypes) is inconsistent");
+			throw new MMTFException(Type.ERROR, "The combined constraint (this type + supertypes) is inconsistent");
 		}
 		boolean isMetamodelExtension = (MultiModelTypeHierarchy.isRootType(modelType)) ?
 			true :
@@ -144,7 +145,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 			throw ee;
 		}
 		catch (Exception e) {
-			MMTFException.print(MMTFException.Type.WARNING, "No model created", e);
+			MMTFException.print("No model created", e);
 			return CommandResult.newErrorCommandResult("No model created");
 		}
 	}
