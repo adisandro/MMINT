@@ -1,1 +1,1 @@
-$ENDPOINT_Army.units->size()>2
+$ENDPOINT_ArmyEndpoint.units->size()>2
