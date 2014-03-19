@@ -23,6 +23,12 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.compare.Comparison;
+import org.eclipse.emf.compare.EMFCompare;
+import org.eclipse.emf.compare.scope.IComparisonScope;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -81,9 +87,9 @@ public class CheckCoherenceListener extends SelectionAdapter {
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			//TODO run every operator list in the set, compare the output, cleanup, show popup with result
 			try {
 				// create results for each conversion path
+				List<Model> coherentModels = new ArrayList<Model>(), coherentModels2 = new ArrayList<Model>();
 				for (List<ConversionOperator> conversionPath : conversionPaths) {
 					Model newActualParameter = model;
 					for (ConversionOperator conversionOperatorType : conversionPath) {
@@ -91,13 +97,31 @@ public class CheckCoherenceListener extends SelectionAdapter {
 						actualParameters.add(newActualParameter);
 						newActualParameter = conversionOperatorType.execute(actualParameters).get(0);
 					}
+					coherentModels.add(newActualParameter);
+					coherentModels2.add(newActualParameter);
+				}
+				// do model compare
+coherence:
+				for (int i = 0; i < coherentModels.size(); i++) {
+					for (int j = i + 1; j < coherentModels2.size(); j++) {
+						ResourceSet resourceSet = new ResourceSetImpl();
+						resourceSet.getResource(URI.createPlatformResourceURI(coherentModels.get(i).getUri(), true), true);
+						ResourceSet resourceSet2 = new ResourceSetImpl();
+						resourceSet2.getResource(URI.createPlatformResourceURI(coherentModels2.get(j).getUri(), true), true);
+						IComparisonScope scope = EMFCompare.createDefaultScope(resourceSet, resourceSet2);
+						Comparison comparison = EMFCompare.builder().build().compare(scope);
+						if (!comparison.getDifferences().isEmpty()) {
+							MMTFException.print(Type.ERROR, "Your type system is not coherent", new MMTFException("The following conversion paths yield different results: " + conversionPaths));
+							break coherence;
+						}
+					}
 				}
 				// cleanup
-//				for (List<ConversionOperator> conversionPath : conversionPaths) {
-//					for (ConversionOperator conversionOperatorType : conversionPath) {
-//						conversionOperatorType.cleanup();
-//					}
-//				}
+				for (List<ConversionOperator> conversionPath : conversionPaths) {
+					for (ConversionOperator conversionOperatorType : conversionPath) {
+						conversionOperatorType.cleanup();
+					}
+				}
 
 				return CommandResult.newOKCommandResult();
 			}

@@ -24,7 +24,7 @@ lazy rule Region2Unit {
 		region : State!Region
 	to
 		unit : Army!Unit (
-			name <- region.name,
+			name <- 'generated',
 			type <- 'infantry'
 		)
 }

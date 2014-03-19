@@ -11,6 +11,11 @@
  */
 package edu.toronto.cs.se.mmtf;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.ui.PlatformUI;
+
 /**
  * Custom exception for MMTF.
  *
@@ -54,12 +59,11 @@ public class MMTFException extends Exception {
 		if (e != null) {
 			System.err.println(" -> " + e.toString());
 		}
-
 		if (type == Type.ERROR) {
-			if (e != null) {
-				e.printStackTrace();
-			}
-			System.exit(-1);
+			IStatus status = (e == null) ?
+				new Status(IStatus.ERROR, "edu.toronto.cs.se.mmtf", "") :
+				new Status(IStatus.ERROR, "edu.toronto.cs.se.mmtf", e.toString());
+			ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "MMTF Error", message, status);
 		}
 	}
 

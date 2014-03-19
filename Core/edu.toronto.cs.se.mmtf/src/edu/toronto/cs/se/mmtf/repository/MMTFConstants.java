@@ -22,6 +22,7 @@ public interface MMTFConstants {
 	public final static String URI_SEPARATOR = "/";
 	public final static String MODEL_URI_SEPARATOR = "#";
 	public final static String ECORE_MODEL_URI_SEPARATOR = MODEL_URI_SEPARATOR + URI_SEPARATOR;
+	public final static String MODEL_FILENAMESUFFIX_SEPARATOR = "_";
 	public final static String MODEL_FILEEXTENSION_SEPARATOR = ".";
 	public final static String ENDPOINT_SEPARATOR = "-";
 	public final static String EDITOR_SEPARATOR = "_";

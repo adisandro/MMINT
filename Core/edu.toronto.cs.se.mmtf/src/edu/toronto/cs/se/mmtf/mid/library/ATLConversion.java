@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmtf.mid.library;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
+import edu.toronto.cs.se.mmtf.MMTF;
 import edu.toronto.cs.se.mmtf.MMTFException;
 import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmtf.mid.Model;
@@ -30,7 +31,18 @@ public abstract class ATLConversion extends ConversionOperatorImpl {
 	protected void init(EList<Model> actualParameters, String convertedModelFileExtension) {
 
 		inputModel = actualParameters.get(0);
-		convertedModelUri = MultiModelUtils.replaceFileExtensionInUri(inputModel.getUri(), convertedModelFileExtension);
+		String modelName = inputModel.getName();
+		int i = modelName.lastIndexOf(MMTF.MODEL_FILENAMESUFFIX_SEPARATOR);
+		if (i != -1) {
+			try {
+				Long.parseLong(modelName.substring(i+1));
+				modelName = modelName.substring(0, i);
+			}
+			catch (NumberFormatException e) {
+				// modelName is ok
+			}
+		}
+		convertedModelUri = MultiModelUtils.replaceLastSegmentInUri(inputModel.getUri(), modelName + MMTF.MODEL_FILENAMESUFFIX_SEPARATOR + System.currentTimeMillis() + MMTF.MODEL_FILEEXTENSION_SEPARATOR + convertedModelFileExtension);
 	}
 
 	protected EList<Model> createConvertedModel(String convertedModelTypeUri) throws MMTFException {

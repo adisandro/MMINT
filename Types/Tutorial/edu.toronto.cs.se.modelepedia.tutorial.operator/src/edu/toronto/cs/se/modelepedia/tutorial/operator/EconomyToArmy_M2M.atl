@@ -23,7 +23,7 @@ lazy rule Gold2Unit {
 		gold : Economy!Gold
 	to
 		unit : Army!Unit (
-			name <- 'mercenary',
+			name <- 'generated',
 			type <- 'infantry'
 		)
 }

@@ -451,11 +451,11 @@ public class MMTF implements MMTFConstants {
 				conversionsTo.put(conversionType.getUri(), conversionPaths);
 			}
 			// keep track of conversion operator used
-			prevConversionPath.add(conversionOperatorType.getUri());
 			List<String> conversionPath = new ArrayList<String>(prevConversionPath);
+			conversionPath.add(conversionOperatorType.getUri());
 			conversionPaths.add(conversionPath);
 			// recursion
-			createConversionHierarchy(conversionType, prevConversionPath, conversionsTo);
+			createConversionHierarchy(conversionType, conversionPath, conversionsTo);
 		}
 	}
 
@@ -476,6 +476,9 @@ public class MMTF implements MMTFConstants {
 		conversionTable.clear();
 		for (ExtendibleElement type : multiModel.getExtendibleTable().values()) {
 			subtypeTable.put(type.getUri(), new HashSet<String>());
+			if (!(type instanceof Model)) {
+				continue;
+			}
 			conversionTable.put(type.getUri(), new HashMap<String, Set<List<String>>>());
 		}
 		for (ExtendibleElement type : multiModel.getExtendibleTable().values()) {
