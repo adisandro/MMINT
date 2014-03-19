@@ -81,7 +81,7 @@
       <eInfo className="Gold" featureName="gold" relatedClassName="Economy"/>
     </modelElems>
   </models>
-  <models xsi:type="relationship:BinaryModelRel" uri="" name="h_ea" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has" dynamic="true" origin="CREATED" fileExtension="">
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="h1" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has" dynamic="true" origin="CREATED" fileExtension="">
     <modelEndpoints uri="" name="eastasia" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has-State/StateEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
     <modelEndpoints uri="" name="eastasia" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has-Economy/EconomyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
     <links uri="" name="h1" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has/HasLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.0/@modelElemEndpointRefs.0 //@models.6/@linkRefs.0/@modelElemEndpointRefs.1 //@models.6/@linkRefs.0/@modelElemEndpointRefs.2">
@@ -120,7 +120,7 @@
       <eInfo className="Gold" featureName="gold" relatedClassName="Economy"/>
     </modelElems>
   </models>
-  <models xsi:type="relationship:BinaryModelRel" uri="" name="h_oc" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has" dynamic="true" origin="CREATED" fileExtension="">
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="h2" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has" dynamic="true" origin="CREATED" fileExtension="">
     <modelEndpoints uri="" name="oceania" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has-State/StateEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
     <modelEndpoints uri="" name="oceania" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has-Economy/EconomyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.7"/>
     <links uri="" name="h1" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has/HasLink" dynamic="true" modelElemEndpointRefs="//@models.8/@linkRefs.0/@modelElemEndpointRefs.0 //@models.8/@linkRefs.0/@modelElemEndpointRefs.1">
