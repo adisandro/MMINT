@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmtf/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID" xmlns:relationship="http://se.cs.toronto.edu/mmtf/MID/Relationship">
+<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship">
   <models uri="/MODELS14/oceania.xmi" name="oceania" metatypeUri="http://se.cs.toronto.edu/modelepedia/FederalState" dynamic="true" origin="CREATED" fileExtension="xmi" editors="//@editors.0"/>
   <models uri="/MODELS14/eastasia.state" name="eastasia" metatypeUri="http://se.cs.toronto.edu/modelepedia/State" dynamic="true" origin="CREATED" fileExtension="state" editors="//@editors.1">
     <modelElems uri="/MODELS14/eastasia.state#//@regions.0_AS_http://se.cs.toronto.edu/modelepedia/State#//Region" name="[regions->] Region NorthRegion" metatypeUri="http://se.cs.toronto.edu/modelepedia/State#//Region" dynamic="true">

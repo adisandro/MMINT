@@ -24,8 +24,8 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.operator.patch.LiftingHenshinTransformation;
 import splar.core.constraints.CNFClause;
 import splar.core.constraints.CNFFormula;
@@ -33,7 +33,7 @@ import splar.core.constraints.CNFLiteral;
 import splar.core.fm.FeatureModel;
 import splar.core.fm.XMLFeatureModel;
 
-public class FeatureModelToSMTLIB implements edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver {
+public class FeatureModelToSMTLIB implements edu.toronto.cs.se.mmint.reasoning.Z3SMTSolver {
 
 	private static final Set<String> Z3_KEYWORDS = new HashSet<String>();
 	static {

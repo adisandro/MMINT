@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmtf/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID">
+<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
   <models uri="/ICSE14/casestudy/lifting/bCMS-SPL-PC.uml" name="bCMS-SPL-PC" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UML" dynamic="true" fileExtension="uml" editors="//@editors.0"/>
   <models uri="/ICSE14/casestudy/lifting/bCMS-SPL-PC.classdiagram_mavo" name="bCMS-SPL-PC" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO" dynamic="true" origin="CREATED" fileExtension="classdiagram_mavo" editors="//@editors.1"/>
   <editors uri="/ICSE14/casestudy/lifting/bCMS-SPL-PC.uml" name="UML tree for model /ICSE14/casestudy/lifting/bCMS-SPL-PC.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UML_tree" dynamic="true" modelUri="/ICSE14/casestudy/lifting/bCMS-SPL-PC.uml" id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID" wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MAVOProfile="http:///schemas/MAVOProfile/_lRQRMNEtEeKoJbXh4vbX1A/3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/MAVOProfile/_lRQRMNEtEeKoJbXh4vbX1A/3 platform:/plugin/edu.toronto.cs.se.mmtf/model/mavo.profile.uml#_lRSGYNEtEeKoJbXh4vbX1A">
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MAVOProfile="http:///schemas/MAVOProfile/_lRQRMNEtEeKoJbXh4vbX1A/3" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/MAVOProfile/_lRQRMNEtEeKoJbXh4vbX1A/3 platform:/plugin/edu.toronto.cs.se.mmint/model/mavo.profile.uml#_lRSGYNEtEeKoJbXh4vbX1A">
   <uml:Model xmi:id="_U-SNsM4nEeK1AuhmU80SXg" name="model">
     <packagedElement xmi:type="uml:Device" xmi:id="_sILowM7oEeKKq4cKovaOgw" clientDependency="_GcwIwM7pEeKKq4cKovaOgw _Iub3gM7pEeKKq4cKovaOgw" name="UI"/>
     <packagedElement xmi:type="uml:Device" xmi:id="_uXq_IM7oEeKKq4cKovaOgw" clientDependency="_IMV3EM7pEeKKq4cKovaOgw _KciYEM7pEeKKq4cKovaOgw" name="ECU1"/>

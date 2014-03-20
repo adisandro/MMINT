@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID">
+<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
   <models uri="/RE13/MeetingScheduler/1S/uncertain1.istar_mavo" name="uncertain1" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" fileExtension="istar_mavo" editors="//@editors.0"/>
   <models uri="/RE13/MeetingScheduler/1S/uncertain2.istar_mavo" name="uncertain2" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" fileExtension="istar_mavo" editors="//@editors.1"/>
   <models uri="/RE13/MeetingScheduler/1S/uncertain3.istar_mavo" name="uncertain3" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" fileExtension="istar_mavo" editors="//@editors.2"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID" xmlns:relationship="http://se.cs.toronto.edu/mmtf/MID/Relationship">
+<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship">
   <models uri="/REJ12/Inflo/orig.istar_mavo" name="orig" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" fileExtension="istar_mavo" editors="//@editors.0">
     <modelElems uri="/REJ12/Inflo/orig.istar_mavo#//@actors.0_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Actor" name="Actor Inflo User" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Actor" dynamic="true">
       <eInfo className="Actor" featureName="actors" relatedClassName="IStar"/>
@@ -43,58 +43,58 @@
     <modelElems may="true" uri="/REJ12/Inflo/orig.istar_mavo#//@actors.3/@intentions.1_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Task" name="Task Moderation ARS" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Task" dynamic="true">
       <eInfo className="Task" featureName="intentions" relatedClassName="Actor"/>
     </modelElems>
-    <modelElems may="true" var="true" uri="/REJ12/Inflo/orig.istar_mavo#//@actors.1/@intentions.3_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Task Less Extensive Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems may="true" var="true" uri="/REJ12/Inflo/orig.istar_mavo#//@actors.1/@intentions.3_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Task Less Extensive Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Task" featureName="intentions" relatedClassName="Actor"/>
     </modelElems>
-    <modelElems may="true" set="true" uri="/REJ12/Inflo/orig.istar_mavo#//@actors.4/@intentions.6_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Task Moderation Tasks" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems may="true" set="true" uri="/REJ12/Inflo/orig.istar_mavo#//@actors.4/@intentions.6_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Task Moderation Tasks" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Task" featureName="intentions" relatedClassName="Actor"/>
     </modelElems>
-    <modelElems may="true" var="true" uri="/REJ12/Inflo/orig.istar_mavo#//@actors.1/@intentions.3/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Means End Less Extensive Moderation 2 Moderate Inflo" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems may="true" var="true" uri="/REJ12/Inflo/orig.istar_mavo#//@actors.1/@intentions.3/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Means End Less Extensive Moderation 2 Moderate Inflo" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="MeansEnd" featureName="linksAsSrc" relatedClassName="Task"/>
     </modelElems>
-    <modelElems may="true" set="true" uri="/REJ12/Inflo/orig.istar_mavo#//@actors.4/@intentions.6/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Means End Moderation Tasks 2 Allow Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems may="true" set="true" uri="/REJ12/Inflo/orig.istar_mavo#//@actors.4/@intentions.6/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Means End Moderation Tasks 2 Allow Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="MeansEnd" featureName="linksAsSrc" relatedClassName="Task"/>
     </modelElems>
-    <modelElems may="true" uri="/REJ12/Inflo/orig.istar_mavo#//@actors.3/@intentions.1_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Task Moderation ARS" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems may="true" uri="/REJ12/Inflo/orig.istar_mavo#//@actors.3/@intentions.1_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Task Moderation ARS" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Task" featureName="intentions" relatedClassName="Actor"/>
     </modelElems>
-    <modelElems may="true" uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.0/@dependeeLinks.1_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Dependee Link Moderation 2 Extensive Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems may="true" uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.0/@dependeeLinks.1_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Dependee Link Moderation 2 Extensive Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="DependeeLink" featureName="dependeeLinks" relatedClassName="Resource"/>
     </modelElems>
-    <modelElems may="true" uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.0/@dependeeLinks.2_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Dependee Link Moderation 2 Moderation ARS" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems may="true" uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.0/@dependeeLinks.2_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Dependee Link Moderation 2 Moderation ARS" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="DependeeLink" featureName="dependeeLinks" relatedClassName="Resource"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/orig.istar_mavo#//@actors.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Actor Inflo User" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/orig.istar_mavo#//@actors.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Actor Inflo User" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Actor" featureName="actors" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/orig.istar_mavo#//@actors.1_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Actor Inflo Manager Editors" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/orig.istar_mavo#//@actors.1_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Actor Inflo Manager Editors" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Actor" featureName="actors" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/orig.istar_mavo#//@actors.4_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Actor Inflo" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/orig.istar_mavo#//@actors.4_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Actor Inflo" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Actor" featureName="actors" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/orig.istar_mavo#//@actors.3_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Actor Automated Reputation System" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/orig.istar_mavo#//@actors.3_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Actor Automated Reputation System" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Actor" featureName="actors" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems set="true" uri="/REJ12/Inflo/orig.istar_mavo#//@actors.2_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Actor Source" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems set="true" uri="/REJ12/Inflo/orig.istar_mavo#//@actors.2_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Actor Source" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Actor" featureName="actors" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems set="true" uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.3_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems set="true" uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.3_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Resource" featureName="dependums" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.1_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Resource Graphing" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.1_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Resource Graphing" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Resource" featureName="dependums" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems may="true" uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.4_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Resource Authorship" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems may="true" uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.4_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Resource Authorship" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Resource" featureName="dependums" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.2_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Resource Reputation Values" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.2_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Resource Reputation Values" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Resource" featureName="dependums" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Resource Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/orig.istar_mavo#//@dependums.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Resource Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Resource" featureName="dependums" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems may="true" var="true" uri="/REJ12/Inflo/orig.istar_mavo#//@actors.0/@intentions.10_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Task Create Discussions" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems may="true" var="true" uri="/REJ12/Inflo/orig.istar_mavo#//@actors.0/@intentions.10_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Task Create Discussions" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Task" featureName="intentions" relatedClassName="Actor"/>
     </modelElems>
   </models>
@@ -387,157 +387,157 @@
     </linkRefs>
   </models>
   <models uri="/REJ12/Inflo/refined.istar_mavo" name="refined" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" fileExtension="istar_mavo" editors="//@editors.2">
-    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.1/@intentions.3_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Task Less Extensive Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.1/@intentions.3_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Task Less Extensive Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Task" featureName="intentions" relatedClassName="Actor"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.6_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Task Edit Post" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.6_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Task Edit Post" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Task" featureName="intentions" relatedClassName="Actor"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.7_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Task Delete Post" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.7_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Task Delete Post" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Task" featureName="intentions" relatedClassName="Actor"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.8_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Task Add Moderator Message" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.8_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Task Add Moderator Message" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Task" featureName="intentions" relatedClassName="Actor"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.1/@intentions.3/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Means End Less Extensive Moderation 2 Moderate Inflo" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.1/@intentions.3/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Means End Less Extensive Moderation 2 Moderate Inflo" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="MeansEnd" featureName="linksAsSrc" relatedClassName="Task"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.6/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Means End Edit Post 2 Allow Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.6/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Means End Edit Post 2 Allow Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="MeansEnd" featureName="linksAsSrc" relatedClassName="Task"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.7/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Means End Delete Post 2 Allow Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.7/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Means End Delete Post 2 Allow Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="MeansEnd" featureName="linksAsSrc" relatedClassName="Task"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.8/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Means End Add Moderator Message 2 Allow Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.8/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Means End Add Moderator Message 2 Allow Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="MeansEnd" featureName="linksAsSrc" relatedClassName="Task"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Actor Inflo User" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Actor Inflo User" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Actor" featureName="actors" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.1_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Actor Inflo Manager Editors" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.1_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Actor Inflo Manager Editors" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Actor" featureName="actors" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.4_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Actor Inflo" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.4_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Actor Inflo" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Actor" featureName="actors" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.3_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Actor Automated Reputation System" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@actors.3_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Actor Automated Reputation System" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Actor" featureName="actors" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems set="true" uri="/REJ12/Inflo/refined.istar_mavo#//@actors.2_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Actor Source" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems set="true" uri="/REJ12/Inflo/refined.istar_mavo#//@actors.2_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Actor Source" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Actor" featureName="actors" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems set="true" uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.3_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems set="true" uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.3_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Resource" featureName="dependums" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.1_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Resource Graphing" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.1_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Resource Graphing" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Resource" featureName="dependums" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems may="true" uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.4_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Resource Authorship" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems may="true" uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.4_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Resource Authorship" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Resource" featureName="dependums" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.2_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Resource Reputation Values" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.2_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Resource Reputation Values" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Resource" featureName="dependums" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Resource Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Resource Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Resource" featureName="dependums" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems may="true" var="true" uri="/REJ12/Inflo/refined.istar_mavo#//@actors.0/@intentions.10_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Task Create Discussions" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems may="true" var="true" uri="/REJ12/Inflo/refined.istar_mavo#//@actors.0/@intentions.10_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Task Create Discussions" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Task" featureName="intentions" relatedClassName="Actor"/>
     </modelElems>
-    <modelElems may="true" uri="/REJ12/Inflo/refined.istar_mavo#//@actors.0/@intentions.10/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Decomposition Create Discussions 2 Use Discussions" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems may="true" uri="/REJ12/Inflo/refined.istar_mavo#//@actors.0/@intentions.10/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Decomposition Create Discussions 2 Use Discussions" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Decomposition" featureName="linksAsSrc" relatedClassName="Task"/>
     </modelElems>
-    <modelElems may="true" uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.4/@dependerLinks.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Depender Link Track Authorship 2 Authorship" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems may="true" uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.4/@dependerLinks.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Depender Link Track Authorship 2 Authorship" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="DependerLink" featureName="dependerLinks" relatedClassName="Resource"/>
     </modelElems>
-    <modelElems may="true" uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.4/@dependeeLinks.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Dependee Link Authorship 2 Create Graph" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems may="true" uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.4/@dependeeLinks.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Dependee Link Authorship 2 Create Graph" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="DependeeLink" featureName="dependeeLinks" relatedClassName="Resource"/>
     </modelElems>
-    <modelElems may="true" uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.4/@dependeeLinks.1_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Dependee Link Authorship 2 Create Discussions" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems may="true" uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.4/@dependeeLinks.1_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Dependee Link Authorship 2 Create Discussions" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="DependeeLink" featureName="dependeeLinks" relatedClassName="Resource"/>
     </modelElems>
-    <modelElems set="true" uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.3/@dependerLinks.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Depender Link Add Source In Description 2 Info" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems set="true" uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.3/@dependerLinks.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Depender Link Add Source In Description 2 Info" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="DependerLink" featureName="dependerLinks" relatedClassName="Resource"/>
     </modelElems>
-    <modelElems set="true" uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.3/@dependeeLinks.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Dependee Link Info 2 Source" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems set="true" uri="/REJ12/Inflo/refined.istar_mavo#//@dependums.3/@dependeeLinks.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Dependee Link Info 2 Source" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="DependeeLink" featureName="dependeeLinks" relatedClassName="Resource"/>
     </modelElems>
   </models>
-  <models xsi:type="relationship:BinaryModelRel" uri="" name="refinement" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel" dynamic="true" origin="CREATED" fileExtension="">
-    <modelEndpoints uri="" name="orig" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
-    <modelEndpoints uri="" name="refined" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
-    <links uri="" name="refine1" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.0/@modelElemEndpointRefs.0 //@models.4/@linkRefs.0/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="Task Less Extensive Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.14"/>
-      <modelElemEndpoints uri="" name="Task Less Extensive Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.0"/>
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="refinement" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="orig" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <modelEndpoints uri="" name="refined" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+    <links uri="" name="refine1" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.0/@modelElemEndpointRefs.0 //@models.4/@linkRefs.0/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Task Less Extensive Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.14"/>
+      <modelElemEndpoints uri="" name="Task Less Extensive Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.0"/>
     </links>
-    <links uri="" name="refine2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.1/@modelElemEndpointRefs.0 //@models.4/@linkRefs.1/@modelElemEndpointRefs.1 //@models.4/@linkRefs.1/@modelElemEndpointRefs.2 //@models.4/@linkRefs.1/@modelElemEndpointRefs.3">
-      <modelElemEndpoints uri="" name="Task Moderation Tasks" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.15"/>
-      <modelElemEndpoints uri="" name="Task Edit Post" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.1"/>
-      <modelElemEndpoints uri="" name="Task Delete Post" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.2"/>
-      <modelElemEndpoints uri="" name="Task Add Moderator Message" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.3"/>
+    <links uri="" name="refine2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.1/@modelElemEndpointRefs.0 //@models.4/@linkRefs.1/@modelElemEndpointRefs.1 //@models.4/@linkRefs.1/@modelElemEndpointRefs.2 //@models.4/@linkRefs.1/@modelElemEndpointRefs.3">
+      <modelElemEndpoints uri="" name="Task Moderation Tasks" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.15"/>
+      <modelElemEndpoints uri="" name="Task Edit Post" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.1"/>
+      <modelElemEndpoints uri="" name="Task Delete Post" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.2"/>
+      <modelElemEndpoints uri="" name="Task Add Moderator Message" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.3"/>
     </links>
-    <links uri="" name="refine3" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.2/@modelElemEndpointRefs.0 //@models.4/@linkRefs.2/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="Means End Less Extensive Moderation 2 Moderate Inflo" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.16"/>
-      <modelElemEndpoints uri="" name="Means End Less Extensive Moderation 2 Moderate Inflo" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.4"/>
+    <links uri="" name="refine3" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.2/@modelElemEndpointRefs.0 //@models.4/@linkRefs.2/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Means End Less Extensive Moderation 2 Moderate Inflo" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.16"/>
+      <modelElemEndpoints uri="" name="Means End Less Extensive Moderation 2 Moderate Inflo" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.4"/>
     </links>
-    <links uri="" name="refine4" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.3/@modelElemEndpointRefs.0 //@models.4/@linkRefs.3/@modelElemEndpointRefs.1 //@models.4/@linkRefs.3/@modelElemEndpointRefs.2 //@models.4/@linkRefs.3/@modelElemEndpointRefs.3">
-      <modelElemEndpoints uri="" name="Means End Moderation Tasks 2 Allow Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.17"/>
-      <modelElemEndpoints uri="" name="Means End Edit Post 2 Allow Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.5"/>
-      <modelElemEndpoints uri="" name="Means End Delete Post 2 Allow Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.6"/>
-      <modelElemEndpoints uri="" name="Means End Add Moderator Message 2 Allow Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.7"/>
+    <links uri="" name="refine4" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.3/@modelElemEndpointRefs.0 //@models.4/@linkRefs.3/@modelElemEndpointRefs.1 //@models.4/@linkRefs.3/@modelElemEndpointRefs.2 //@models.4/@linkRefs.3/@modelElemEndpointRefs.3">
+      <modelElemEndpoints uri="" name="Means End Moderation Tasks 2 Allow Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.17"/>
+      <modelElemEndpoints uri="" name="Means End Edit Post 2 Allow Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.5"/>
+      <modelElemEndpoints uri="" name="Means End Delete Post 2 Allow Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.6"/>
+      <modelElemEndpoints uri="" name="Means End Add Moderator Message 2 Allow Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.7"/>
     </links>
-    <links uri="" name="refine5" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.4/@modelElemEndpointRefs.0">
-      <modelElemEndpoints uri="" name="Task Moderation ARS" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.18"/>
+    <links uri="" name="refine5" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.4/@modelElemEndpointRefs.0">
+      <modelElemEndpoints uri="" name="Task Moderation ARS" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.18"/>
     </links>
-    <links uri="" name="refine6" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.5/@modelElemEndpointRefs.0">
-      <modelElemEndpoints uri="" name="Dependee Link Moderation 2 Extensive Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.19"/>
+    <links uri="" name="refine6" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.5/@modelElemEndpointRefs.0">
+      <modelElemEndpoints uri="" name="Dependee Link Moderation 2 Extensive Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.19"/>
     </links>
-    <links uri="" name="refine7" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.6/@modelElemEndpointRefs.0">
-      <modelElemEndpoints uri="" name="Dependee Link Moderation 2 Moderation ARS" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.20"/>
+    <links uri="" name="refine7" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.6/@modelElemEndpointRefs.0">
+      <modelElemEndpoints uri="" name="Dependee Link Moderation 2 Moderation ARS" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.20"/>
     </links>
-    <links uri="" name="match1" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.7/@modelElemEndpointRefs.0 //@models.4/@linkRefs.7/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="Actor Inflo User" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.21"/>
-      <modelElemEndpoints uri="" name="Actor Inflo User" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.8"/>
+    <links uri="" name="match1" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.7/@modelElemEndpointRefs.0 //@models.4/@linkRefs.7/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Actor Inflo User" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.21"/>
+      <modelElemEndpoints uri="" name="Actor Inflo User" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.8"/>
     </links>
-    <links uri="" name="match2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.8/@modelElemEndpointRefs.0 //@models.4/@linkRefs.8/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="Actor Inflo Manager Editors" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.22"/>
-      <modelElemEndpoints uri="" name="Actor Inflo Manager Editors" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.9"/>
+    <links uri="" name="match2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.8/@modelElemEndpointRefs.0 //@models.4/@linkRefs.8/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Actor Inflo Manager Editors" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.22"/>
+      <modelElemEndpoints uri="" name="Actor Inflo Manager Editors" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.9"/>
     </links>
-    <links uri="" name="match3" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.9/@modelElemEndpointRefs.0 //@models.4/@linkRefs.9/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="Actor Inflo" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.23"/>
-      <modelElemEndpoints uri="" name="Actor Inflo" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.10"/>
+    <links uri="" name="match3" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.9/@modelElemEndpointRefs.0 //@models.4/@linkRefs.9/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Actor Inflo" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.23"/>
+      <modelElemEndpoints uri="" name="Actor Inflo" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.10"/>
     </links>
-    <links uri="" name="match4" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.10/@modelElemEndpointRefs.0 //@models.4/@linkRefs.10/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="Actor Automated Reputation System" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.24"/>
-      <modelElemEndpoints uri="" name="Actor Automated Reputation System" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.11"/>
+    <links uri="" name="match4" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.10/@modelElemEndpointRefs.0 //@models.4/@linkRefs.10/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Actor Automated Reputation System" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.24"/>
+      <modelElemEndpoints uri="" name="Actor Automated Reputation System" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.11"/>
     </links>
-    <links uri="" name="match5" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.11/@modelElemEndpointRefs.0 //@models.4/@linkRefs.11/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="Actor Source" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.25"/>
-      <modelElemEndpoints uri="" name="Actor Source" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.12"/>
+    <links uri="" name="match5" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.11/@modelElemEndpointRefs.0 //@models.4/@linkRefs.11/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Actor Source" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.25"/>
+      <modelElemEndpoints uri="" name="Actor Source" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.12"/>
     </links>
-    <links uri="" name="match6" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.12/@modelElemEndpointRefs.0 //@models.4/@linkRefs.12/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.26"/>
-      <modelElemEndpoints uri="" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.13"/>
+    <links uri="" name="match6" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.12/@modelElemEndpointRefs.0 //@models.4/@linkRefs.12/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.26"/>
+      <modelElemEndpoints uri="" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.13"/>
     </links>
-    <links uri="" name="match7" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.13/@modelElemEndpointRefs.0 //@models.4/@linkRefs.13/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="Resource Graphing" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.27"/>
-      <modelElemEndpoints uri="" name="Resource Graphing" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.14"/>
+    <links uri="" name="match7" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.13/@modelElemEndpointRefs.0 //@models.4/@linkRefs.13/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Resource Graphing" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.27"/>
+      <modelElemEndpoints uri="" name="Resource Graphing" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.14"/>
     </links>
-    <links uri="" name="match8" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.14/@modelElemEndpointRefs.0 //@models.4/@linkRefs.14/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="Resource Authorship" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.28"/>
-      <modelElemEndpoints uri="" name="Resource Authorship" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.15"/>
+    <links uri="" name="match8" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.14/@modelElemEndpointRefs.0 //@models.4/@linkRefs.14/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Resource Authorship" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.28"/>
+      <modelElemEndpoints uri="" name="Resource Authorship" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.15"/>
     </links>
-    <links uri="" name="match9" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.15/@modelElemEndpointRefs.0 //@models.4/@linkRefs.15/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="Resource Reputation Values" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.29"/>
-      <modelElemEndpoints uri="" name="Resource Reputation Values" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.16"/>
+    <links uri="" name="match9" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.15/@modelElemEndpointRefs.0 //@models.4/@linkRefs.15/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Resource Reputation Values" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.29"/>
+      <modelElemEndpoints uri="" name="Resource Reputation Values" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.16"/>
     </links>
-    <links uri="" name="match10" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.16/@modelElemEndpointRefs.0 //@models.4/@linkRefs.16/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="Resource Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.30"/>
-      <modelElemEndpoints uri="" name="Resource Moderation" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.17"/>
+    <links uri="" name="match10" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.16/@modelElemEndpointRefs.0 //@models.4/@linkRefs.16/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Resource Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.30"/>
+      <modelElemEndpoints uri="" name="Resource Moderation" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.17"/>
     </links>
-    <links uri="" name="match11" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.17/@modelElemEndpointRefs.0 //@models.4/@linkRefs.17/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="Task Create Discussions" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.31"/>
-      <modelElemEndpoints uri="" name="Task Create Discussions" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.18"/>
+    <links uri="" name="match11" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.17/@modelElemEndpointRefs.0 //@models.4/@linkRefs.17/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Task Create Discussions" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.31"/>
+      <modelElemEndpoints uri="" name="Task Create Discussions" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.18"/>
     </links>
     <modelEndpointRefs referencedObject="//@models.4/@modelEndpoints.0" modifiable="true">
       <modelElemRefs referencedObject="//@models.0/@modelElems.14" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.0/@modelElemEndpointRefs.0"/>
@@ -655,71 +655,71 @@
     </linkRefs>
   </models>
   <models uri="/REJ12/Inflo/refined2.istar_mavo" name="refined2" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" fileExtension="istar_mavo" editors="//@editors.3">
-    <modelElems uri="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Resource" featureName="dependums" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined2.istar_mavo#//@actors.2_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Actor Academic Paper" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined2.istar_mavo#//@actors.2_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Actor Academic Paper" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Actor" featureName="actors" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined2.istar_mavo#//@actors.5_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Actor Book" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined2.istar_mavo#//@actors.5_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Actor Book" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Actor" featureName="actors" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined2.istar_mavo#//@actors.6_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Actor Online Source" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined2.istar_mavo#//@actors.6_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Actor Online Source" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Actor" featureName="actors" relatedClassName="IStar"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3/@dependerLinks.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Depender Link Add Source In Description 2 Info" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3/@dependerLinks.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Depender Link Add Source In Description 2 Info" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="DependerLink" featureName="dependerLinks" relatedClassName="Resource"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3/@dependeeLinks.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Dependee Link Info 2 Academic Paper" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3/@dependeeLinks.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Dependee Link Info 2 Academic Paper" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="DependeeLink" featureName="dependeeLinks" relatedClassName="Resource"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3/@dependeeLinks.1_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Dependee Link Info 2 Book" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3/@dependeeLinks.1_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Dependee Link Info 2 Book" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="DependeeLink" featureName="dependeeLinks" relatedClassName="Resource"/>
     </modelElems>
-    <modelElems uri="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3/@dependeeLinks.2_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" name="Dependee Link Info 2 Online Source" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" dynamic="true">
+    <modelElems uri="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3/@dependeeLinks.2_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="Dependee Link Info 2 Online Source" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="DependeeLink" featureName="dependeeLinks" relatedClassName="Resource"/>
     </modelElems>
   </models>
-  <models xsi:type="relationship:BinaryModelRel" uri="" name="refinement2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel" dynamic="true" origin="CREATED" fileExtension="">
-    <modelEndpoints uri="" name="refined" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
-    <modelEndpoints uri="" name="refined2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
-    <links uri="" name="refine1" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.0/@modelElemEndpointRefs.0">
-      <modelElemEndpoints uri="" name="Task Create Discussions" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.18"/>
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="refinement2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="refined" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+    <modelEndpoints uri="" name="refined2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
+    <links uri="" name="refine1" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.0/@modelElemEndpointRefs.0">
+      <modelElemEndpoints uri="" name="Task Create Discussions" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.18"/>
     </links>
-    <links uri="" name="refine2" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.1/@modelElemEndpointRefs.0">
-      <modelElemEndpoints uri="" name="Decomposition Create Discussions 2 Use Discussions" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.19"/>
+    <links uri="" name="refine2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.1/@modelElemEndpointRefs.0">
+      <modelElemEndpoints uri="" name="Decomposition Create Discussions 2 Use Discussions" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.19"/>
     </links>
-    <links uri="" name="refine3" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.2/@modelElemEndpointRefs.0">
-      <modelElemEndpoints uri="" name="Resource Authorship" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.15"/>
+    <links uri="" name="refine3" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.2/@modelElemEndpointRefs.0">
+      <modelElemEndpoints uri="" name="Resource Authorship" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.15"/>
     </links>
-    <links uri="" name="refine4" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.3/@modelElemEndpointRefs.0">
-      <modelElemEndpoints uri="" name="Depender Link Track Authorship 2 Authorship" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.20"/>
+    <links uri="" name="refine4" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.3/@modelElemEndpointRefs.0">
+      <modelElemEndpoints uri="" name="Depender Link Track Authorship 2 Authorship" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.20"/>
     </links>
-    <links uri="" name="refine5" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.4/@modelElemEndpointRefs.0">
-      <modelElemEndpoints uri="" name="Dependee Link Authorship 2 Create Graph" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.21"/>
+    <links uri="" name="refine5" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.4/@modelElemEndpointRefs.0">
+      <modelElemEndpoints uri="" name="Dependee Link Authorship 2 Create Graph" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.21"/>
     </links>
-    <links uri="" name="refine6" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.5/@modelElemEndpointRefs.0">
-      <modelElemEndpoints uri="" name="Dependee Link Authorship 2 Create Discussions" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.22"/>
+    <links uri="" name="refine6" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.5/@modelElemEndpointRefs.0">
+      <modelElemEndpoints uri="" name="Dependee Link Authorship 2 Create Discussions" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.22"/>
     </links>
-    <links uri="" name="refine7" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.6/@modelElemEndpointRefs.0 //@models.6/@linkRefs.6/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.13"/>
-      <modelElemEndpoints uri="" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.0"/>
+    <links uri="" name="refine7" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.6/@modelElemEndpointRefs.0 //@models.6/@linkRefs.6/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.13"/>
+      <modelElemEndpoints uri="" name="Resource Info" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.0"/>
     </links>
-    <links uri="" name="refine8" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.7/@modelElemEndpointRefs.0 //@models.6/@linkRefs.7/@modelElemEndpointRefs.1 //@models.6/@linkRefs.7/@modelElemEndpointRefs.2 //@models.6/@linkRefs.7/@modelElemEndpointRefs.3">
-      <modelElemEndpoints uri="" name="Actor Source" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.12"/>
-      <modelElemEndpoints uri="" name="Actor Academic Paper" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.1"/>
-      <modelElemEndpoints uri="" name="Actor Book" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.2"/>
-      <modelElemEndpoints uri="" name="Actor Online Source" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.3"/>
+    <links uri="" name="refine8" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.7/@modelElemEndpointRefs.0 //@models.6/@linkRefs.7/@modelElemEndpointRefs.1 //@models.6/@linkRefs.7/@modelElemEndpointRefs.2 //@models.6/@linkRefs.7/@modelElemEndpointRefs.3">
+      <modelElemEndpoints uri="" name="Actor Source" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.12"/>
+      <modelElemEndpoints uri="" name="Actor Academic Paper" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.1"/>
+      <modelElemEndpoints uri="" name="Actor Book" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.2"/>
+      <modelElemEndpoints uri="" name="Actor Online Source" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.3"/>
     </links>
-    <links uri="" name="refine9" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.8/@modelElemEndpointRefs.0 //@models.6/@linkRefs.8/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="Depender Link Add Source In Description 2 Info" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.23"/>
-      <modelElemEndpoints uri="" name="Depender Link Add Source In Description 2 Info" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.4"/>
+    <links uri="" name="refine9" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.8/@modelElemEndpointRefs.0 //@models.6/@linkRefs.8/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Depender Link Add Source In Description 2 Info" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.23"/>
+      <modelElemEndpoints uri="" name="Depender Link Add Source In Description 2 Info" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.4"/>
     </links>
-    <links uri="" name="refine10" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.9/@modelElemEndpointRefs.0 //@models.6/@linkRefs.9/@modelElemEndpointRefs.1 //@models.6/@linkRefs.9/@modelElemEndpointRefs.2 //@models.6/@linkRefs.9/@modelElemEndpointRefs.3">
-      <modelElemEndpoints uri="" name="Dependee Link Info 2 Source" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.24"/>
-      <modelElemEndpoints uri="" name="Dependee Link Info 2 Academic Paper" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.5"/>
-      <modelElemEndpoints uri="" name="Dependee Link Info 2 Book" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.6"/>
-      <modelElemEndpoints uri="" name="Dependee Link Info 2 Online Source" metatypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.7"/>
+    <links uri="" name="refine10" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.9/@modelElemEndpointRefs.0 //@models.6/@linkRefs.9/@modelElemEndpointRefs.1 //@models.6/@linkRefs.9/@modelElemEndpointRefs.2 //@models.6/@linkRefs.9/@modelElemEndpointRefs.3">
+      <modelElemEndpoints uri="" name="Dependee Link Info 2 Source" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.24"/>
+      <modelElemEndpoints uri="" name="Dependee Link Info 2 Academic Paper" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.5"/>
+      <modelElemEndpoints uri="" name="Dependee Link Info 2 Book" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.6"/>
+      <modelElemEndpoints uri="" name="Dependee Link Info 2 Online Source" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.7"/>
     </links>
     <modelEndpointRefs referencedObject="//@models.6/@modelEndpoints.0" modifiable="true">
       <modelElemRefs referencedObject="//@models.3/@modelElems.18" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.0/@modelElemEndpointRefs.0"/>
@@ -833,56 +833,56 @@
   <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.3/@intentions.1_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Task" value="//@models.0/@modelElems.13"/>
   <extendibleTable key="/REJ12/Inflo/related.classdiagram_mavo#//@classes.4/@ownedOperations.1_AS_http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Operation" value="//@models.1/@modelElems.21"/>
   <extendibleTable key="/REJ12/Inflo/refined.istar_mavo" value="//@models.3"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.1/@intentions.3_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.14"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.1/@intentions.3_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.0"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.4/@intentions.6_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.15"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.6_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.1"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.7_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.2"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.8_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.3"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.1/@intentions.3/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.16"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.1/@intentions.3/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.4"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.4/@intentions.6/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.17"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.6/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.5"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.7/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.6"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.8/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.7"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.3/@intentions.1_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.18"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.0/@dependeeLinks.1_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.19"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.0/@dependeeLinks.2_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.20"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.21"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.8"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.1_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.22"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.1_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.9"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.4_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.23"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.4_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.10"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.3_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.24"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.3_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.11"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.2_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.25"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.2_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.12"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.3_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.26"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.3_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.13"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.1_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.27"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.4_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.28"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.1_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.14"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.4_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.15"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.2_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.29"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.30"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.2_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.16"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.17"/>
-  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.0/@intentions.10_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.0/@modelElems.31"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.0/@intentions.10_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.18"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.1/@intentions.3_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.14"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.1/@intentions.3_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.0"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.4/@intentions.6_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.15"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.6_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.1"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.7_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.2"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.8_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.3"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.1/@intentions.3/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.16"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.1/@intentions.3/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.4"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.4/@intentions.6/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.17"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.6/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.5"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.7/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.6"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.4/@intentions.8/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.7"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.3/@intentions.1_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.18"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.0/@dependeeLinks.1_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.19"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.0/@dependeeLinks.2_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.20"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.21"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.8"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.1_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.22"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.1_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.9"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.4_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.23"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.4_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.10"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.3_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.24"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.3_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.11"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.2_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.25"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.2_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.12"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.3_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.26"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.3_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.13"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.1_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.27"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.4_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.28"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.1_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.14"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.4_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.15"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.2_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.29"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@dependums.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.30"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.2_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.16"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.17"/>
+  <extendibleTable key="/REJ12/Inflo/orig.istar_mavo#//@actors.0/@intentions.10_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.31"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.0/@intentions.10_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.18"/>
   <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo" value="//@models.5"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.0/@intentions.10/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.19"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.4/@dependerLinks.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.20"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.4/@dependeeLinks.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.21"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.4/@dependeeLinks.1_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.22"/>
-  <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.5/@modelElems.0"/>
-  <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo#//@actors.2_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.5/@modelElems.1"/>
-  <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo#//@actors.5_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.5/@modelElems.2"/>
-  <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo#//@actors.6_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.5/@modelElems.3"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.3/@dependerLinks.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.23"/>
-  <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3/@dependerLinks.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.5/@modelElems.4"/>
-  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.3/@dependeeLinks.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.3/@modelElems.24"/>
-  <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3/@dependeeLinks.0_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.5/@modelElems.5"/>
-  <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3/@dependeeLinks.1_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.5/@modelElems.6"/>
-  <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3/@dependeeLinks.2_AS_http://se.cs.toronto.edu/mmtf/MAVO#//MAVOElement" value="//@models.5/@modelElems.7"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@actors.0/@intentions.10/@linksAsSrc.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.19"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.4/@dependerLinks.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.20"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.4/@dependeeLinks.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.21"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.4/@dependeeLinks.1_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.22"/>
+  <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.5/@modelElems.0"/>
+  <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo#//@actors.2_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.5/@modelElems.1"/>
+  <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo#//@actors.5_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.5/@modelElems.2"/>
+  <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo#//@actors.6_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.5/@modelElems.3"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.3/@dependerLinks.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.23"/>
+  <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3/@dependerLinks.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.5/@modelElems.4"/>
+  <extendibleTable key="/REJ12/Inflo/refined.istar_mavo#//@dependums.3/@dependeeLinks.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.3/@modelElems.24"/>
+  <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3/@dependeeLinks.0_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.5/@modelElems.5"/>
+  <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3/@dependeeLinks.1_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.5/@modelElems.6"/>
+  <extendibleTable key="/REJ12/Inflo/refined2.istar_mavo#//@dependums.3/@dependeeLinks.2_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.5/@modelElems.7"/>
 </mid:MultiModel>

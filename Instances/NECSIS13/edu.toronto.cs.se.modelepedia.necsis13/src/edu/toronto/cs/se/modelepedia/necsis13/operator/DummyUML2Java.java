@@ -13,8 +13,8 @@ package edu.toronto.cs.se.modelepedia.necsis13.operator;
 
 import org.eclipse.emf.common.util.EList;
 
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.ConversionOperatorImpl;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
 
 public class DummyUML2Java extends ConversionOperatorImpl {
 

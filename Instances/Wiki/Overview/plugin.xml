@@ -15,78 +15,78 @@
 
 <plugin>
 
-   <extension-point id="edu.toronto.cs.se.mmtf.models" name="MMTF model types" schema="schema/edu.toronto.cs.se.mmtf.models.exsd"/>
-   <extension-point id="edu.toronto.cs.se.mmtf.relationships" name="MMTF model relationship types" schema="schema/edu.toronto.cs.se.mmtf.relationships.exsd"/>
-   <extension-point id="edu.toronto.cs.se.mmtf.editors" name="MMTF editor types" schema="schema/edu.toronto.cs.se.mmtf.editors.exsd"/>
-   <extension-point id="edu.toronto.cs.se.mmtf.operators" name="MMTF operator types" schema="schema/edu.toronto.cs.se.mmtf.operators.exsd"/>
+   <extension-point id="edu.toronto.cs.se.mmint.models" name="MMINT model types" schema="schema/edu.toronto.cs.se.mmint.models.exsd"/>
+   <extension-point id="edu.toronto.cs.se.mmint.relationships" name="MMINT model relationship types" schema="schema/edu.toronto.cs.se.mmint.relationships.exsd"/>
+   <extension-point id="edu.toronto.cs.se.mmint.editors" name="MMINT editor types" schema="schema/edu.toronto.cs.se.mmint.editors.exsd"/>
+   <extension-point id="edu.toronto.cs.se.mmint.operators" name="MMINT operator types" schema="schema/edu.toronto.cs.se.mmint.operators.exsd"/>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/mmtf/Model"
-            class="edu.toronto.cs.se.mmtf.mid.MidPackage"/>
+            uri="http://se.cs.toronto.edu/mmint/Model"
+            class="edu.toronto.cs.se.mmint.mid.MidPackage"/>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.models">
+         point="edu.toronto.cs.se.mmint.models">
       <modelType
             isAbstract="true">
          <extendibleType
                name="Model"
-               uri="http://se.cs.toronto.edu/mmtf/Model">
+               uri="http://se.cs.toronto.edu/mmint/Model">
          </extendibleType>
       </modelType>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/mmtf/ModelRel"
-            class="edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage"/>
+            uri="http://se.cs.toronto.edu/mmint/ModelRel"
+            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"/>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.relationships">
+         point="edu.toronto.cs.se.mmint.relationships">
       <relationshipType>
          <modelType>
             <extendibleType
                   name="ModelRel"
-                  uri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  uri="http://se.cs.toronto.edu/mmint/ModelRel">
             <superType
-                  uri="http://se.cs.toronto.edu/mmtf/Model">
+                  uri="http://se.cs.toronto.edu/mmint/Model">
             </superType>
             </extendibleType>
          </modelType>
          <modelTypeEndpoint>
             <extendibleType
                   name="ModelEndpoint"
-                  uri="http://se.cs.toronto.edu/mmtf/ModelRel-Model/ModelEndpoint">
+                  uri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint">
             </extendibleType>
             <typeEndpoint
                   lowerBound="0"
                   upperBound="-1"
-                  targetTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </typeEndpoint>
             <modelElemType
                   classLiteral="ModelElementWildcard">
                 <extendibleType
                      name="ModelElem"
-                     uri="http://se.cs.toronto.edu/mmtf/Model/ModelElem">
+                     uri="http://se.cs.toronto.edu/mmint/Model/ModelElem">
                 </extendibleType>
             </modelElemType>
          </modelTypeEndpoint>
          <linkType>
             <extendibleType
                   name="Link"
-                  uri="http://se.cs.toronto.edu/mmtf/ModelRel/Link">
+                  uri="http://se.cs.toronto.edu/mmint/ModelRel/Link">
             </extendibleType>
             <modelElemTypeEndpoint>
                <extendibleType
                      name="ModelElemEndpoint"
-                     uri="http://se.cs.toronto.edu/mmtf/ModelRel/Link-ModelElem/ModelElemEndpoint">
+                     uri="http://se.cs.toronto.edu/mmint/ModelRel/Link-ModelElem/ModelElemEndpoint">
                </extendibleType>
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://se.cs.toronto.edu/mmtf/Model/ModelElem">
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/Model/ModelElem">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>
@@ -95,101 +95,101 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/mmtf/Model1"
-            class="edu.toronto.cs.se.mmtf.mid.MidPackage"/>
+            uri="http://se.cs.toronto.edu/mmint/Model1"
+            class="edu.toronto.cs.se.mmint.mid.MidPackage"/>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.models">
+         point="edu.toronto.cs.se.mmint.models">
       <modelType
             isAbstract="false">
          <extendibleType
                name="Model Type 1"
-               uri="http://se.cs.toronto.edu/mmtf/Model1">
+               uri="http://se.cs.toronto.edu/mmint/Model1">
          </extendibleType>
       </modelType>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.editors">
+         point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://se.cs.toronto.edu/mmtf/Model1"
-            id="edu.toronto.cs.se.mmtf.mid.presentation.MidEditorID"
+            modelTypeUri="http://se.cs.toronto.edu/mmint/Model1"
+            id="edu.toronto.cs.se.mmint.mid.presentation.MidEditorID"
             isDiagram="false"
-            wizardId="edu.toronto.cs.se.mmtf.mid.presentation.MidModelWizardID">
+            wizardId="edu.toronto.cs.se.mmint.mid.presentation.MidModelWizardID">
          <extendibleType
                name="Model1 tree"
-               uri="http://se.cs.toronto.edu/mmtf/Model1_tree">
+               uri="http://se.cs.toronto.edu/mmint/Model1_tree">
          </extendibleType>
       </editorType>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/mmtf/Model2"
-            class="edu.toronto.cs.se.mmtf.mid.MidPackage"/>
+            uri="http://se.cs.toronto.edu/mmint/Model2"
+            class="edu.toronto.cs.se.mmint.mid.MidPackage"/>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.models">
+         point="edu.toronto.cs.se.mmint.models">
       <modelType
             isAbstract="false">
          <extendibleType
                name="Model Type 2"
-               uri="http://se.cs.toronto.edu/mmtf/Model2">
+               uri="http://se.cs.toronto.edu/mmint/Model2">
          </extendibleType>
       </modelType>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.editors">
+         point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://se.cs.toronto.edu/mmtf/Model2"
-            id="edu.toronto.cs.se.mmtf.mid.presentation.MidEditorID"
+            modelTypeUri="http://se.cs.toronto.edu/mmint/Model2"
+            id="edu.toronto.cs.se.mmint.mid.presentation.MidEditorID"
             isDiagram="false"
-            wizardId="edu.toronto.cs.se.mmtf.mid.presentation.MidModelWizardID">
+            wizardId="edu.toronto.cs.se.mmint.mid.presentation.MidModelWizardID">
          <extendibleType
                name="Model2 tree"
-               uri="http://se.cs.toronto.edu/mmtf/Model2_tree">
+               uri="http://se.cs.toronto.edu/mmint/Model2_tree">
          </extendibleType>
       </editorType>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/mmtf/Model3"
-            class="edu.toronto.cs.se.mmtf.mid.MidPackage"/>
+            uri="http://se.cs.toronto.edu/mmint/Model3"
+            class="edu.toronto.cs.se.mmint.mid.MidPackage"/>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.models">
+         point="edu.toronto.cs.se.mmint.models">
       <modelType
             isAbstract="false">
          <extendibleType
                name="Model Type 3"
-               uri="http://se.cs.toronto.edu/mmtf/Model3">
+               uri="http://se.cs.toronto.edu/mmint/Model3">
          </extendibleType>
       </modelType>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.editors">
+         point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://se.cs.toronto.edu/mmtf/Model3"
-            id="edu.toronto.cs.se.mmtf.mid.presentation.MidEditorID"
+            modelTypeUri="http://se.cs.toronto.edu/mmint/Model3"
+            id="edu.toronto.cs.se.mmint.mid.presentation.MidEditorID"
             isDiagram="false"
-            wizardId="edu.toronto.cs.se.mmtf.mid.presentation.MidModelWizardID">
+            wizardId="edu.toronto.cs.se.mmint.mid.presentation.MidModelWizardID">
          <extendibleType
                name="Model3 tree"
-               uri="http://se.cs.toronto.edu/mmtf/Model3_tree">
+               uri="http://se.cs.toronto.edu/mmint/Model3_tree">
          </extendibleType>
       </editorType>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType
-            class="edu.toronto.cs.se.mmtf.reasoning.EcoreMAVOToSMTLIB"
+            class="edu.toronto.cs.se.mmint.reasoning.EcoreMAVOToSMTLIB"
             isConversion="false">
          <extendibleType
                name="Operator"
@@ -199,14 +199,14 @@
             <parameter
                   isVararg="false"
                   name="inputModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model1">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model1">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="outputModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model2">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model2">
             </parameter>
          </output>
       </operatorType>

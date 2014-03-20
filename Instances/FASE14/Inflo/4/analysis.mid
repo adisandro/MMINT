@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID">
+<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
   <models uri="/FASE14/Inflo/4/certain.istar_mavo" name="certain" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" fileExtension="istar_mavo" editors="//@editors.0"/>
   <models uri="/FASE14/Inflo/4/uncertain.istar_mavo" name="uncertain" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" fileExtension="istar_mavo" editors="//@editors.1"/>
   <editors uri="/FASE14/Inflo/4/certain.istar_mavo" name="IStar_MAVO tree for model /FASE14/Inflo/4/certain.istar_mavo" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_IStar_MAVO" dynamic="true" modelUri="/FASE14/Inflo/4/certain.istar_mavo" id="edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOEditorID" wizardId="edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOModelWizardID">

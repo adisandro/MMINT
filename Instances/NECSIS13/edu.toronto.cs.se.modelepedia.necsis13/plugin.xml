@@ -18,11 +18,11 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://se.cs.toronto.edu/modelepedia/Java"
-            class="edu.toronto.cs.se.mmtf.mid.MidPackage"/>
+            class="edu.toronto.cs.se.mmint.mid.MidPackage"/>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.models">
+         point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
                name="Java"
@@ -34,11 +34,11 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://se.cs.toronto.edu/modelepedia/WellFormedJava"
-            class="edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage"/>
+            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"/>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.relationships">
+         point="edu.toronto.cs.se.mmint.relationships">
       <relationshipType>
          <modelType>
             <type
@@ -63,11 +63,11 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://se.cs.toronto.edu/modelepedia/PreserveComponentInterfaces"
-            class="edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage"/>
+            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"/>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.relationships">
+         point="edu.toronto.cs.se.mmint.relationships">
       <relationshipType>
          <modelType>
             <type
@@ -101,7 +101,7 @@
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="UML2Java"
@@ -126,7 +126,7 @@
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="JavaOpt"

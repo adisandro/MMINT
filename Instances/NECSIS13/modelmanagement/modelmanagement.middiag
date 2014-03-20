@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmtf/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_Qek4gNJWEeK_hrLf4Op2GQ" type="Mid" name="modelmanagement.middiag" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_Qek4gNJWEeK_hrLf4Op2GQ" type="Mid" name="modelmanagement.middiag" measurementUnit="Pixel">
   <children xmi:type="notation:Node" xmi:id="_ysbI8NO2EeKGVcUQAf90_g" type="2011">
     <children xmi:type="notation:DecorationNode" xmi:id="_ysbwANO2EeKGVcUQAf90_g" type="5011"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_ysbwAdO2EeKGVcUQAf90_g" type="5016"/>
