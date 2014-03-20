@@ -35,7 +35,7 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_9SH-AqvbEeO-lIn4nMqR2w" fontName="Cantarell" fontHeight="10"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_9SH-A6vbEeO-lIn4nMqR2w" hint="Mid"/>
       <element xmi:type="mid:Model" href="instances.mid#//@models.3"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9SH-BKvbEeO-lIn4nMqR2w" x="552" y="324"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9SH-BKvbEeO-lIn4nMqR2w" x="552" y="288"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_0pamUKvcEeO-lIn4nMqR2w" type="2011">
       <children xmi:type="notation:DecorationNode" xmi:id="_0pamVavcEeO-lIn4nMqR2w" type="5011"/>
@@ -44,7 +44,7 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_0pamUqvcEeO-lIn4nMqR2w" fontName="Cantarell" fontHeight="10"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_0pamU6vcEeO-lIn4nMqR2w" hint="Mid"/>
       <element xmi:type="mid:Model" href="instances.mid#//@models.5"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0pamVKvcEeO-lIn4nMqR2w" x="540" y="60"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0pamVKvcEeO-lIn4nMqR2w" x="540" y="96"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_EaZy0KvdEeO-lIn4nMqR2w" type="2011">
       <children xmi:type="notation:DecorationNode" xmi:id="_EaZy1avdEeO-lIn4nMqR2w" type="5011"/>
@@ -53,7 +53,7 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_EaZy0qvdEeO-lIn4nMqR2w" fontName="Cantarell" fontHeight="10"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_EaZy06vdEeO-lIn4nMqR2w" hint="Mid"/>
       <element xmi:type="mid:Model" href="instances.mid#//@models.7"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EaZy1KvdEeO-lIn4nMqR2w" x="36" y="60"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EaZy1KvdEeO-lIn4nMqR2w" x="36" y="96"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_4qTLAaueEeOAroWDCdIHhQ"/>
     <element xmi:type="mid:MultiModel" href="instances.mid#/"/>
