@@ -13,8 +13,10 @@ package edu.toronto.cs.se.modelepedia.tutorial.army.diagram.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
+import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -29,7 +31,6 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.lite.svg.SVGFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
 
@@ -261,7 +262,7 @@ public class UnitEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public class UnitFigure extends SVGFigure {
+	public class UnitFigure extends RoundedRectangle {
 
 		/**
 		 * @generated
@@ -272,7 +273,8 @@ public class UnitEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		public UnitFigure() {
-			this.setURI("platform:/plugin/edu.toronto.cs.se.modelepedia.tutorial.army.edit/icons/Unit.svg");
+			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8),
+					getMapMode().DPtoLP(8)));
 			this.setBorder(new MarginBorder(getMapMode().DPtoLP(5),
 					getMapMode().DPtoLP(5), getMapMode().DPtoLP(5),
 					getMapMode().DPtoLP(5)));

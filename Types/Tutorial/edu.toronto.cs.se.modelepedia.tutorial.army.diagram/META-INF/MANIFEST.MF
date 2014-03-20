@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.tutorial.army.diagram.part.ArmyDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: edu.toronto.cs.se.modelepedia.tutorial.army.diagram.edit.parts, 
+Export-Package: edu.toronto.cs.se.modelepedia.tutorial.army.diagram.edit.parts,
  edu.toronto.cs.se.modelepedia.tutorial.army.diagram.part,
  edu.toronto.cs.se.modelepedia.tutorial.army.diagram.providers
 Require-Bundle: org.eclipse.core.runtime,
@@ -36,7 +36,6 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.modelepedia.tutorial.army;visibility:=reexport,
  edu.toronto.cs.se.modelepedia.tutorial.army.edit;visibility:=reexport,
  org.eclipse.emf.validation;visibility:=reexport,
- org.eclipse.gef;visibility:=reexport,
- org.eclipse.gmf.runtime.lite.svg
+ org.eclipse.gef;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

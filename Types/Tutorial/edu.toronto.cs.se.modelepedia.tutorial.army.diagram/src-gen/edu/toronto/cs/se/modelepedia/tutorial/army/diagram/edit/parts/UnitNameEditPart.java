@@ -208,7 +208,11 @@ public class UnitNameEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		return null;
+		EObject parserElement = getParserElement();
+		if (parserElement == null) {
+			return null;
+		}
+		return ArmyElementTypes.getImage(parserElement.eClass());
 	}
 
 	/**
