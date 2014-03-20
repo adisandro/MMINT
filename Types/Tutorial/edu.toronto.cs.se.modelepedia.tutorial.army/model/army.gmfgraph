@@ -10,9 +10,8 @@
     <descriptors
         name="UnitFigure">
       <actualFigure
-          xsi:type="gmfgraph:SVGFigure"
-          name="UnitFigure"
-          documentURI="platform:/plugin/edu.toronto.cs.se.modelepedia.tutorial.army.edit/icons/Unit.svg">
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="UnitFigure">
         <border
             xsi:type="gmfgraph:MarginBorder">
           <insets
@@ -37,6 +36,5 @@
   <labels
       name="UnitLabel"
       figure="UnitFigure"
-      elementIcon="false"
       accessor="//@figures.0/@descriptors.0/@accessors.0"/>
 </gmfgraph:Canvas>

@@ -9,9 +9,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Unit">
     <eAnnotations source="gmf.node">
       <details key="label" value="name"/>
-      <details key="figure" value="svg"/>
-      <details key="svg.uri" value="platform:/plugin/edu.toronto.cs.se.modelepedia.tutorial.army.edit/icons/Unit.svg"/>
-      <details key="label.icon" value="false"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
