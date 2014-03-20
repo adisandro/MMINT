@@ -20,25 +20,25 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
-import edu.toronto.cs.se.mmtf.mid.MidLevel;
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
-import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.Link;
-import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpoint;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.ModelOrigin;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.Link;
+import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class ChangeImpact extends OperatorImpl {
 
@@ -83,7 +83,7 @@ public class ChangeImpact extends OperatorImpl {
 		//TODO smart check to reduce average complexity, if in same container in src model
 	}
 
-	private void createImpactedVarTables(ModelEndpointReference modelEndpointRef, HashMap<String, List<EObject>> unifyTable, HashMap<String, List<EObject>> typeTable) throws MMTFException {
+	private void createImpactedVarTables(ModelEndpointReference modelEndpointRef, HashMap<String, List<EObject>> unifyTable, HashMap<String, List<EObject>> typeTable) throws MMINTException {
 
 		// type table
 		Model model = modelEndpointRef.getObject().getTarget();
@@ -130,7 +130,7 @@ public class ChangeImpact extends OperatorImpl {
 		//TODO smart check to reduce average complexity, if in same container in src model
 	}
 
-	private void addImpactedModelElementReferences(ModelElementReference origModelElemRef, ModelEndpointReference impactedModelEndpointRef, LinkReference impactLinkRef, HashMap<String, List<EObject>> impactedUnifyTable) throws MMTFException {
+	private void addImpactedModelElementReferences(ModelElementReference origModelElemRef, ModelEndpointReference impactedModelEndpointRef, LinkReference impactLinkRef, HashMap<String, List<EObject>> impactedUnifyTable) throws MMINTException {
 
 		if (origModelElemRef.getModelElemEndpointRefs().isEmpty()) {
 			return;
@@ -176,7 +176,7 @@ public class ChangeImpact extends OperatorImpl {
 		HashMap<String, List<ModelElementReference>> origTypeTable = new HashMap<String, List<ModelElementReference>>();
 		HashMap<String, List<EObject>> impactedUnifyTable = new HashMap<String, List<EObject>>();
 		HashMap<String, List<EObject>> impactedTypeTable = new HashMap<String, List<EObject>>();
-		//TODO MMTF: be careful when overriding is implemented
+		//TODO MMINT: be careful when overriding is implemented
 		createOrigVarTables(traceRel.getModelEndpointRefs().get(0), origUnifyTable, origTypeTable); // O(n log n)
 		createImpactedVarTables(traceRel.getModelEndpointRefs().get(1), impactedUnifyTable, impactedTypeTable); // O(n log n)
 

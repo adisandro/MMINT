@@ -20,15 +20,15 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.reasoning.Z3SMTSolver;
+import edu.toronto.cs.se.mmint.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
 import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
 
@@ -225,7 +225,7 @@ public class TOSEM12 extends OperatorImpl implements Z3SMTSolver {
 		}
 	}
 
-	private void doMAVOBackbonePropertyCheck(String smtlibMavoEncoding, String property, Set<String> z3MayModelElems) throws MMTFException {
+	private void doMAVOBackbonePropertyCheck(String smtlibMavoEncoding, String property, Set<String> z3MayModelElems) throws MMINTException {
 
 		Z3IncResult z3IncResult;
 		String encoding;
@@ -237,7 +237,7 @@ public class TOSEM12 extends OperatorImpl implements Z3SMTSolver {
 		flags.append(z3IncResult.flag);
 		flags.append(',');
 		if (z3IncResult.flag != 1) {
-			throw new MMTFException("Property checking for MAVO model was SAT-SAT but the incremental baseline now is UNSAT.");
+			throw new MMINTException("Property checking for MAVO model was SAT-SAT but the incremental baseline now is UNSAT.");
 		}
 		Map<String, Boolean> initialZ3ModelElems = parseZ3Model(z3IncResult.model.getString(0), z3MayModelElems);
 		Map<String, Boolean> currentZ3ModelElems;

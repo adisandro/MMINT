@@ -11,5 +11,5 @@ Export-Package: edu.toronto.cs.se.modelepedia.classdiagram_mavo,
  edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl,
  edu.toronto.cs.se.modelepedia.classdiagram_mavo.util
 Require-Bundle: org.eclipse.emf.ecore,
- edu.toronto.cs.se.mmtf
+ edu.toronto.cs.se.mmint
 Bundle-ActivationPolicy: lazy

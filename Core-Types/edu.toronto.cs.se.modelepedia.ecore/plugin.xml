@@ -16,20 +16,20 @@
 <plugin>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.editors">
+         point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://se.cs.toronto.edu/mmtf/Model"
+            modelTypeUri="http://se.cs.toronto.edu/mmint/Model"
             id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID"
             isDiagram="false">
          <type
                name="Ecore Reflective tree"
-               uri="http://se.cs.toronto.edu/mmtf/Model_tree">
+               uri="http://se.cs.toronto.edu/mmint/Model_tree">
          </type>
       </editorType>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.models">
+         point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
                name="Ecore"
@@ -39,7 +39,7 @@
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.editors">
+         point="edu.toronto.cs.se.mmint.editors">
       <editorType
             modelTypeUri="http://www.eclipse.org/emf/2002/Ecore"
             id="org.eclipse.emf.ecore.presentation.EcoreEditorID"
@@ -53,7 +53,7 @@
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.editors">
+         point="edu.toronto.cs.se.mmint.editors">
       <editorType
             id="org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID"
             isDiagram="true"

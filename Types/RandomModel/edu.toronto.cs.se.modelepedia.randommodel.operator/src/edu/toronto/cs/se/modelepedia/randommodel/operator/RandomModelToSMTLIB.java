@@ -30,15 +30,15 @@ import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorImpl;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
+import edu.toronto.cs.se.mmint.reasoning.Z3SMTSolver;
 import edu.toronto.cs.se.modelepedia.randommodel.Edge;
 import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
 import edu.toronto.cs.se.modelepedia.randommodel.Node;
@@ -188,7 +188,7 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 		smtlibConcretizations.add(concretization.toString());
 	}
 
-	//TODO MMTF: this would remove unnecessary logic
+	//TODO MMINT: this would remove unnecessary logic
 //	private boolean groundProperty6(Node node, StringBuilder propertyBuilder) {
 //
 //		// property 6: not more than one edge from a node to another
@@ -500,7 +500,7 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 		}
 		long maxConcretizations = Math.round(Math.pow(2, mayModelObjs.size()));
 		if (numConcretizations > maxConcretizations) {
-			throw new MMTFException("numConcretizations (" + numConcretizations + ") > maxConcretizations (" + maxConcretizations + ")");
+			throw new MMINTException("numConcretizations (" + numConcretizations + ") > maxConcretizations (" + maxConcretizations + ")");
 		}
 		EList<Node> randommodelNodes = previousOperator.getRandommodelNodes();
 		if (randommodelNodes == null) {
@@ -511,7 +511,7 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 		smtlibConcretizations = new HashSet<String>();
 		String concretizations = "";
 		if (maxConcretizations > 1) {
-			//TODO MMTF: add heuristics to detect too large number of concretizations (when it's more efficient to generate them all and then cut some)
+			//TODO MMINT: add heuristics to detect too large number of concretizations (when it's more efficient to generate them all and then cut some)
 			for (int i = 0; i < numConcretizations; i++) {
 				generateSMTLIBConcretization();
 			}

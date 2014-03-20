@@ -11,12 +11,12 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.constraint;
 
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.constraint.JavaModelConstraint;
-import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
-import edu.toronto.cs.se.mmtf.transformation.ModelRelTypeTransformationConstraint;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.constraint.JavaModelConstraint;
+import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmint.reasoning.Z3SMTUtils.MAVOTruthValue;
+import edu.toronto.cs.se.mmint.transformation.ModelRelTypeTransformationConstraint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 
 public class KleisliModelRelTypeConstraint extends JavaModelConstraint {

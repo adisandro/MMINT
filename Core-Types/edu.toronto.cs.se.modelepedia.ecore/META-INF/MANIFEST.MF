@@ -6,4 +6,4 @@ Bundle-Version: 1.2.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.emf.ecoretools.diagram,
- edu.toronto.cs.se.mmtf
+ edu.toronto.cs.se.mmint

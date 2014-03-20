@@ -11,10 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.util;
 
-import edu.toronto.cs.se.mmtf.mid.relationship.util.RelationshipValidator;
-
-import edu.toronto.cs.se.mmtf.mid.util.MidValidator;
-
+import edu.toronto.cs.se.mmint.mid.relationship.util.RelationshipValidator;
+import edu.toronto.cs.se.mmint.mid.util.MidValidator;
 import edu.toronto.cs.se.modelepedia.kleisli.*;
 
 import java.util.Map;
@@ -22,9 +20,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.EObjectValidator;
 
 /**

@@ -16,7 +16,7 @@
 <plugin>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="IStarMAVOToSMTLIB"
@@ -36,7 +36,7 @@
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="RE13"
@@ -56,7 +56,7 @@
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="FASE14"

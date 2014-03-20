@@ -11,14 +11,14 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
-import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmtf.mid.MidLevel;
-import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelEndpointReferenceImpl;
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelEndpointReferenceImpl;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 
@@ -109,9 +109,9 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 	 * @generated NOT
 	 */
 	@Override
-	public boolean acceptModelElementType(EObject metamodelObj) throws MMTFException {
+	public boolean acceptModelElementType(EObject metamodelObj) throws MMINTException {
 
-		//TODO MMTF[KLEISLI] do we need to do something here?
+		//TODO MMINT[KLEISLI] do we need to do something here?
 		return super.acceptModelElementType(metamodelObj);
 	}
 
@@ -119,10 +119,10 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 	 * @generated NOT
 	 */
 	@Override
-	public ModelElement acceptModelElementInstance(EObject modelObj) throws MMTFException {
+	public ModelElement acceptModelElementInstance(EObject modelObj) throws MMINTException {
 
 		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
 		String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObj, MidLevel.INSTANCES);
@@ -137,7 +137,7 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 			return null;
 		}
 		// filter duplicates
-		if (MultiModelTypeHierarchy.getReference(modelElemUri + MMTF.ROLE_SEPARATOR + modelElemType.getUri(), getModelElemRefs()) != null) {
+		if (MultiModelTypeHierarchy.getReference(modelElemUri + MMINT.ROLE_SEPARATOR + modelElemType.getUri(), getModelElemRefs()) != null) {
 			return null;
 		}
 

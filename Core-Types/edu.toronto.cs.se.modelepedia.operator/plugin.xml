@@ -16,7 +16,7 @@
 <plugin>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="ExperimentDriver"
@@ -27,7 +27,7 @@
             <parameter
                   isVararg="false"
                   name="modelType"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
          </input>
          <output>
@@ -36,7 +36,7 @@
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="ModelNameMatch"
@@ -47,21 +47,21 @@
             <parameter
                   isVararg="true"
                   name="models"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="nameMatch"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
          </output>
       </operatorType>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="EMFModelNameMatch"
@@ -72,26 +72,26 @@
             <parameter
                   isVararg="false"
                   name="srcModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
             <parameter
                   isVararg="false"
                   name="tgtModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="nameMatchRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
          </output>
       </operatorType>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="ModelDifference"
@@ -102,31 +102,31 @@
             <parameter
                   isVararg="false"
                   name="srcModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
             <parameter
                   isVararg="false"
                   name="matchRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
             <parameter
                   isVararg="false"
                   name="tgtModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="diffRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
          </output>
       </operatorType>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="EMFModelDifference"
@@ -137,31 +137,31 @@
             <parameter
                   isVararg="false"
                   name="srcModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
             <parameter
                   isVararg="false"
                   name="matchRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
             <parameter
                   isVararg="false"
                   name="tgtModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="diffRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
          </output>
       </operatorType>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="EMFModelMerge"
@@ -172,41 +172,41 @@
             <parameter
                   isVararg="false"
                   name="srcModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
             <parameter
                   isVararg="false"
                   name="matchRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
             <parameter
                   isVararg="false"
                   name="tgtModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="mergedModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
             <parameter
                   isVararg="false"
                   name="srcMatchRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
             <parameter
                   isVararg="false"
                   name="tgtMatchRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
          </output>
       </operatorType>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="ChangeImpact"
@@ -217,41 +217,41 @@
             <parameter
                   isVararg="false"
                   name="original"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
             <parameter
                   isVararg="false"
                   name="difference"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
             <parameter
                   isVararg="false"
                   name="modified"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
             <parameter
                   isVararg="false"
                   name="trace"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
             <parameter
                   isVararg="false"
                   name="impacted"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="changeImpact"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
          </output>
       </operatorType>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="ChangePropagation"
@@ -262,51 +262,51 @@
             <parameter
                   isVararg="false"
                   name="original"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
             </parameter>
             <parameter
                   isVararg="false"
                   name="refinement"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel">
             </parameter>
             <parameter
                   isVararg="false"
                   name="refined"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
             </parameter>
             <parameter
                   isVararg="false"
                   name="trace"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
             <parameter
                   isVararg="false"
                   name="related"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="propagated"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
             </parameter>
             <parameter
                   isVararg="false"
                   name="propagatedRefinement"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVORefinementRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel">
             </parameter>
             <parameter
                   isVararg="false"
                   name="propagatedTrace"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
          </output>
       </operatorType>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="BinaryModelRelInversion"
@@ -317,21 +317,21 @@
             <parameter
                   isVararg="false"
                   name="modelRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="invertedModelRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/ModelRel">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
          </output>
       </operatorType>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="MAVOHenshinTransformation"
@@ -342,26 +342,26 @@
             <parameter
                   isVararg="false"
                   name="mavoModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="transformedMavoModelInput"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
             </parameter>
             <parameter
                   isVararg="false"
                   name="transformedMavoModelOutput"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
             </parameter>
          </output>
       </operatorType>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="ProductLineHenshinTransformation"
@@ -372,19 +372,19 @@
             <parameter
                   isVararg="false"
                   name="model"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="transformedModelInput"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
             </parameter>
             <parameter
                   isVararg="false"
                   name="transformedModelOutput"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
             </parameter>
          </output>
       </operatorType>

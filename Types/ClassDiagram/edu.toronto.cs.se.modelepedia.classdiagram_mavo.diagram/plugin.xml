@@ -624,7 +624,7 @@ Contributors:
    <!-- optionally, specify keybindings -->
 
    <extension
-         point="edu.toronto.cs.se.mmtf.editors">
+         point="edu.toronto.cs.se.mmint.editors">
       <editorType
             modelTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO"
             id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVODiagramEditorID"

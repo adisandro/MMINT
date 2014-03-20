@@ -11,25 +11,21 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.util;
 
-import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
-import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
-
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
-
-import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementEndpointReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-
+import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mavo.MAVOModel;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.*;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
 /**

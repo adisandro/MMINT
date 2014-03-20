@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.uml2.uml,
  org.eclipse.emf.henshin.interpreter,
  org.eclipse.emf.henshin.model,
  org.eclipse.emf.henshin.trace,
- edu.toronto.cs.se.mmtf,
+ edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.operator,
  edu.toronto.cs.se.modelepedia.classdiagram_mavo
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

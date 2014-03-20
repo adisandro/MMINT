@@ -16,7 +16,7 @@
 <plugin>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="RandomModelGenerateLabeledGraph"
@@ -41,7 +41,7 @@
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="RandomModelToSMTLIB"
@@ -66,7 +66,7 @@
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="TOSEM12"

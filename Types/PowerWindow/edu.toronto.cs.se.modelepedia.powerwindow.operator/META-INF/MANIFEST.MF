@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.powerwindow.operator; singleton:=true
 Bundle-Version: 1.2.0
 Require-Bundle: org.eclipse.emf.ecore,
- edu.toronto.cs.se.mmtf,
+ edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.petrinet,
  edu.toronto.cs.se.modelepedia.powerwindow
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

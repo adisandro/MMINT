@@ -10,4 +10,4 @@ Require-Bundle: org.eclipse.papyrus.uml.diagram.wizards,
  org.eclipse.ui.ide,
  org.eclipse.uml2.uml,
  org.eclipse.gmf.runtime.notation,
- edu.toronto.cs.se.mmtf
+ edu.toronto.cs.se.mmint

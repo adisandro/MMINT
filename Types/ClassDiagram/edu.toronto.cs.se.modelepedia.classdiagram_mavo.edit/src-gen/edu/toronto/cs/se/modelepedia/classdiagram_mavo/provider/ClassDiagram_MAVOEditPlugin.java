@@ -11,10 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.provider;
 
-import edu.toronto.cs.se.mmtf.mid.provider.MidEditPlugin;
+import edu.toronto.cs.se.mmint.mid.provider.MidEditPlugin;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**

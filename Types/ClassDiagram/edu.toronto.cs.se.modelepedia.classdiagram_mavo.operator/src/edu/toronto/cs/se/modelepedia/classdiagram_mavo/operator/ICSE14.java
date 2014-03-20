@@ -33,12 +33,12 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 
-import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentDriver;
 import edu.toronto.cs.se.modelepedia.operator.patch.ProductLineHenshinTransformation;
@@ -79,7 +79,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		String constraintPropertiesFile = MultiModelUtils.prependWorkspaceToUri(
 			MultiModelUtils.replaceLastSegmentInUri(
 				inputModel.getUri(),
-				FEATURE_MODELS_SUBDIR + MMTF.URI_SEPARATOR + featureModelName + MultiModelOperatorUtils.PROPERTIES_SUFFIX
+				FEATURE_MODELS_SUBDIR + MMINT.URI_SEPARATOR + featureModelName + MultiModelOperatorUtils.PROPERTIES_SUFFIX
 			)
 		);
 		constraintProperties.load(new FileInputStream(constraintPropertiesFile));
@@ -173,7 +173,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		return checkZ3ApplicabilityFormula();
 	}
 
-	private void doSimulatedLifting() throws MMTFException {
+	private void doSimulatedLifting() throws MMINTException {
 
 		long startTime = System.nanoTime();
 		while (ruleApplicationsLifting < numIterations) {

@@ -12,5 +12,5 @@ Export-Package: edu.toronto.cs.se.modelepedia.tutorial.state,
  edu.toronto.cs.se.modelepedia.tutorial.state.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
- edu.toronto.cs.se.mmtf
+ edu.toronto.cs.se.mmint
 Bundle-ActivationPolicy: lazy

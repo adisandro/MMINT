@@ -24,7 +24,7 @@
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.relationships">
+         point="edu.toronto.cs.se.mmint.relationships">
       <relationshipType>
          <modelType
                isAbstract="true">
@@ -47,7 +47,7 @@
             <typeEndpoint
                   lowerBound="0"
                   upperBound="-1"
-                  targetTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </typeEndpoint>
          </modelTypeEndpoint>
       </relationshipType>
@@ -60,7 +60,7 @@
                id="edu.toronto.cs.se.modelepedia.kleisli.contextmenu.KleisliRelationshipDiagramActions">
             <visibleWhen>
                <with variable="activePartId">
-                  <equals value="edu.toronto.cs.se.mmtf.mid.relationship.diagram.part.RelationshipDiagramEditorID"/>
+                  <equals value="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.RelationshipDiagramEditorID"/>
                </with>
             </visibleWhen>
          </dynamic>
@@ -68,7 +68,7 @@
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="KleisliModelRelTypeTransformation"
@@ -88,14 +88,14 @@
             <parameter
                   isVararg="false"
                   name="srcModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="tgtModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmtf/Model">
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
             <parameter
                   isVararg="false"

@@ -11,15 +11,12 @@
  */
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl;
 
-import edu.toronto.cs.se.mmtf.mavo.impl.MAVOElementImpl;
-
+import edu.toronto.cs.se.mmint.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.NamedElement;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

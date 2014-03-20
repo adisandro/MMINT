@@ -6,7 +6,7 @@
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
-      A relational database to be used in MMTF.
+      A relational database to be used in MMINT.
    </description>
 
    <copyright>
@@ -48,8 +48,8 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.gef"/>
       <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="edu.toronto.cs.se.mmtf"/>
-      <import plugin="edu.toronto.cs.se.mmtf.edit"/>
+      <import plugin="edu.toronto.cs.se.mmint"/>
+      <import plugin="edu.toronto.cs.se.mmint.edit"/>
    </requires>
 
    <plugin

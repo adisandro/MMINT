@@ -12,20 +12,17 @@
 package edu.toronto.cs.se.modelepedia.kleisli.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.provider.ModelEndpointItemProvider;
-
+import edu.toronto.cs.se.mmint.mid.provider.ModelEndpointItemProvider;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
-
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
+
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;

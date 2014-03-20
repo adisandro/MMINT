@@ -11,7 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.randommodel;
 
-import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
+import edu.toronto.cs.se.mmint.mavo.MAVOModel;
+
 import org.eclipse.emf.common.util.EList;
 
 /**

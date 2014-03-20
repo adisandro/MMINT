@@ -2,7 +2,7 @@
 [**
  * 
  */]
-[module RandomModelToSMTLIB_M2T('http://se.cs.toronto.edu/mmtf/MAVO', 'http://se.cs.toronto.edu/modelepedia/RandomModel')]
+[module RandomModelToSMTLIB_M2T('http://se.cs.toronto.edu/mmint/MAVO', 'http://se.cs.toronto.edu/modelepedia/RandomModel')]
 
 [template private encodePreamble(randommodel : RandomModel)]
 ;Parameters

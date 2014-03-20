@@ -31,7 +31,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import edu.toronto.cs.se.mmtf.mavo.provider.MavoItemProviderAdapterFactory;
+import edu.toronto.cs.se.mmint.mavo.provider.MavoItemProviderAdapterFactory;
 
 /**
  * @generated

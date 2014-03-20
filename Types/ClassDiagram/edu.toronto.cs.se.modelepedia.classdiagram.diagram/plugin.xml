@@ -614,7 +614,7 @@
    <!-- optionally, specify keybindings -->
 
    <extension
-         point="edu.toronto.cs.se.mmtf.editors">
+         point="edu.toronto.cs.se.mmint.editors">
       <editorType
             modelTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram"
             id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagramEditorID"

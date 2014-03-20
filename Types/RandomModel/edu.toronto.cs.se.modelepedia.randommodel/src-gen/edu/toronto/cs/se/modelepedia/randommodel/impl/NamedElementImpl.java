@@ -11,14 +11,12 @@
  */
 package edu.toronto.cs.se.modelepedia.randommodel.impl;
 
-import edu.toronto.cs.se.mmtf.mavo.impl.MAVOElementImpl;
+import edu.toronto.cs.se.mmint.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

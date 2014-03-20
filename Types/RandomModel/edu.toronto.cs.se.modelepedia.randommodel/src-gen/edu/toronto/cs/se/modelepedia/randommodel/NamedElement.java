@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.randommodel;
 
-import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mavo.MAVOElement;
 
 /**
  * <!-- begin-user-doc -->

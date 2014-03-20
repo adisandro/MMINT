@@ -12,8 +12,7 @@
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.provider;
 
 
-import edu.toronto.cs.se.mmtf.mavo.provider.MAVOElementItemProvider;
-
+import edu.toronto.cs.se.mmint.mavo.provider.MAVOElementItemProvider;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.NamedElement;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage;
 
@@ -22,9 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;

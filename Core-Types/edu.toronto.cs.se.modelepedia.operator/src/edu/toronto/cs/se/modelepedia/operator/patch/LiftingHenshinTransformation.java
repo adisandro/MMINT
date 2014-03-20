@@ -34,11 +34,11 @@ import org.eclipse.emf.henshin.model.NestedCondition;
 import org.eclipse.emf.henshin.model.Node;
 import org.eclipse.emf.henshin.model.Rule;
 
-import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorImpl;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
+import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
+import edu.toronto.cs.se.mmint.reasoning.Z3SMTSolver;
+import edu.toronto.cs.se.mmint.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
 
 public abstract class LiftingHenshinTransformation extends RandomOperatorImpl implements Z3SMTSolver {
 
@@ -281,7 +281,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl im
 				if (previousNSimplified && modelObjsN.size() == 1) {
 					smtEncoding.append(" ");
 				}
-				//TODO MMTF: review if true or false here when simplifying
+				//TODO MMINT: review if true or false here when simplifying
 				createZ3ApplyFormulaMatchSet(modelObjsN, SMTLIB_AND, SMTLIB_FALSE);
 				previousNSimplified = (modelObjsN.size() == 1) ? true : false;
 			}

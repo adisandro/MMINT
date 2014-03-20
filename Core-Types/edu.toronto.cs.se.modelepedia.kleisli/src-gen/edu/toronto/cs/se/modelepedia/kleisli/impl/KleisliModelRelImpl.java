@@ -17,31 +17,32 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTFException.Type;
-import edu.toronto.cs.se.mmtf.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmtf.mid.EMFInfo;
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmtf.mid.MidFactory;
-import edu.toronto.cs.se.mmtf.mid.MidLevel;
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.diagram.edit.commands.ModelOpenEditorCommand;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.impl.ModelRelImpl;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
+import edu.toronto.cs.se.mmint.mid.EMFInfo;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.MidFactory;
+import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.ModelOrigin;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelOpenEditorCommand;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl;
+import edu.toronto.cs.se.mmint.reasoning.Z3SMTUtils.MAVOTruthValue;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
+
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -224,10 +225,10 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public ModelRel createSubtype(String newModelRelTypeName, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMTFException {
+	public ModelRel createSubtype(String newModelRelTypeName, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		KleisliModelRel newModelRelType = (isBinary) ?
@@ -242,7 +243,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			}
 			catch (Exception e) {
 				newModelRelType.deleteType();
-				throw new MMTFException("Error creating directory for extended metamodels", e);
+				throw new MMINTException("Error creating directory for extended metamodels", e);
 			}
 		}
 
@@ -253,7 +254,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public ModelRel copySubtype(ModelRel origModelRelType) throws MMTFException {
+	public ModelRel copySubtype(ModelRel origModelRelType) throws MMINTException {
 
 		ModelRel newModelRelType = super.copySubtype(origModelRelType);
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(newModelRelType);
@@ -282,7 +283,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public void deleteType() throws MMTFException {
+	public void deleteType() throws MMINTException {
 
 		super.deleteType();
 		MultiModelUtils.deleteDirectoryInState(getExtendedUri());
@@ -292,10 +293,10 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public ResourceSet getOutlineResourceTypes() throws MMTFException {
+	public ResourceSet getOutlineResourceTypes() throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -339,10 +340,10 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public ModelRel createInstance(String newModelRelUri, boolean isBinary, ModelOrigin origin, MultiModel containerMultiModel) throws MMTFException {
+	public ModelRel createInstance(String newModelRelUri, boolean isBinary, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		KleisliModelRel newModelRel = (isBinary) ?
@@ -356,7 +357,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 		}
 		catch (Exception e) {
 			newModelRel.deleteInstance();
-			throw new MMTFException("Error creating directory for extended models", e);
+			throw new MMINTException("Error creating directory for extended models", e);
 		}
 
 		return newModelRel;
@@ -366,7 +367,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public void deleteInstance() throws MMTFException {
+	public void deleteInstance() throws MMINTException {
 
 		super.deleteInstance();
 		MultiModelUtils.deleteDirectory(getExtendedUri(), true);
@@ -376,10 +377,10 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public ResourceSet getOutlineResourceInstances() throws MMTFException {
+	public ResourceSet getOutlineResourceInstances() throws MMINTException {
 
 		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -399,7 +400,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public void openType() throws MMTFException {
+	public void openType() throws MMINTException {
 
 		super.openType();
 
@@ -415,7 +416,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					activePage.openEditor(new URIEditorInput(kUri), ModelOpenEditorCommand.ECORE_EDITORID);
 				}
 				catch (PartInitException e) {
-					MMTFException.print(Type.WARNING, "Error opening extended metamodel file", e);
+					MMINTException.print(Type.WARNING, "Error opening extended metamodel file", e);
 				}
 			}
 		}
@@ -425,7 +426,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public void openInstance() throws MMTFException {
+	public void openInstance() throws MMINTException {
 
 		super.openInstance();
 
@@ -533,7 +534,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				MultiModelUtils.createModelFile(kRootModelObj, kModelUri, true);
 			}
 			catch (Exception e) {
-				MMTFException.print(Type.WARNING, "Error creating extended model file, fallback to no extension", e);
+				MMINTException.print(Type.WARNING, "Error creating extended model file, fallback to no extension", e);
 			}
 		}
 	}

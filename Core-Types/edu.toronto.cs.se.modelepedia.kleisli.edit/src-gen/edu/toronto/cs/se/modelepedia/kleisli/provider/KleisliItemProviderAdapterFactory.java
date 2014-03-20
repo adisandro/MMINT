@@ -11,19 +11,14 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.provider;
 
-import edu.toronto.cs.se.mmtf.mid.MidPackage;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
-
-import edu.toronto.cs.se.mmtf.mid.relationship.ExtendibleElementReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-
-import edu.toronto.cs.se.mmtf.mid.relationship.util.RelationshipSwitch;
-
-import edu.toronto.cs.se.mmtf.mid.util.MidSwitch;
-
+import edu.toronto.cs.se.mmint.mid.MidPackage;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmint.mid.relationship.util.RelationshipSwitch;
+import edu.toronto.cs.se.mmint.mid.util.MidSwitch;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
-
 import edu.toronto.cs.se.modelepedia.kleisli.util.KleisliAdapterFactory;
 
 import java.util.ArrayList;
@@ -33,15 +28,10 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.edit.command.CommandParameter;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;

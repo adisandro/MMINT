@@ -1,8 +1,8 @@
-MMTF
+MMINT
 ====
 
 ***
-An Eclipse-based infrastructure for Model Management.
+An Eclipse-based infrastructure for INTeractive Model Management.
 ***
 
-Take a look at the [Wiki](https://github.com/adisandro/MMTF/wiki) for the documentation.
+Take a look at the [Wiki](https://github.com/adisandro/MMINT/wiki) for the documentation.

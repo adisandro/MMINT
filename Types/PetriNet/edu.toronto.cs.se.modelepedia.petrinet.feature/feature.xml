@@ -6,7 +6,7 @@
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
-      A petri net to be used in MMTF.
+      A petri net to be used in MMINT.
    </description>
 
    <copyright>
@@ -26,7 +26,7 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="edu.toronto.cs.se.mmtf"/>
+      <import plugin="edu.toronto.cs.se.mmint"/>
       <import plugin="org.eclipse.ui"/>
    </requires>
 

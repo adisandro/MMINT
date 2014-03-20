@@ -11,8 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl;
 
-import edu.toronto.cs.se.mmtf.mavo.impl.MAVOReferenceImpl;
-
+import edu.toronto.cs.se.mmint.mavo.impl.MAVOReferenceImpl;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Column;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignColumnReference;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey;
@@ -20,12 +19,9 @@ import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**

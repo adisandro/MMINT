@@ -18,11 +18,11 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://se.cs.toronto.edu/modelepedia/Border"
-            class="edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage"/>
+            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"/>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.relationships">
+         point="edu.toronto.cs.se.mmint.relationships">
       <relationshipType>
          <modelType
                isAbstract="false">
@@ -71,11 +71,11 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://se.cs.toronto.edu/modelepedia/Deployed"
-            class="edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage"/>
+            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"/>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.relationships">
+         point="edu.toronto.cs.se.mmint.relationships">
       <relationshipType>
          <modelType
                isAbstract="false">
@@ -152,11 +152,11 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://se.cs.toronto.edu/modelepedia/Has"
-            class="edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage"/>
+            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"/>
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.relationships">
+         point="edu.toronto.cs.se.mmint.relationships">
       <relationshipType>
          <modelType
                isAbstract="false">
@@ -231,7 +231,7 @@
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="StateToArmy"
@@ -256,7 +256,7 @@
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="StateToEconomy"
@@ -281,7 +281,7 @@
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.operators">
+         point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
                name="EconomyToArmy"

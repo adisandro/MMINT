@@ -19,17 +19,17 @@ import java.util.Properties;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
-import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorImpl;
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelOrigin;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.randommodel.Edge;
 import edu.toronto.cs.se.modelepedia.randommodel.Node;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModel;
@@ -42,7 +42,7 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorImpl {
 	private static final String PROPERTY_IN_MINMODELOBJS = "minModelObjs";
 	/** Max number of model objects in the random model. */
 	private static final String PROPERTY_IN_MAXMODELOBJS = "maxModelObjs";
-	//TODO MMTF: to be generic here we need a list a model elements and a ratio formula
+	//TODO MMINT: to be generic here we need a list a model elements and a ratio formula
 	private static final String PROPERTY_IN_EDGESTONODESRATIO = "edges.toNodesRatio";
 	/** % of annotated objects in the random model. */
 	private static final String PROPERTY_IN_PERCANNOTATIONS = "percAnnotations";
@@ -188,7 +188,7 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorImpl {
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		//TODO MMTF: fix this inputSubdir thing
+		//TODO MMINT: fix this inputSubdir thing
 		Model labeledGraphModel = actualParameters.get(0);
 		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
 			this,
@@ -198,16 +198,16 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorImpl {
 		);
 		readProperties(inputProperties);
 		if (minModelObjs > maxModelObjs) {
-			throw new MMTFException("minModelElems (" + minModelObjs + ") > maxModelElems (" + maxModelObjs + ")");
+			throw new MMINTException("minModelElems (" + minModelObjs + ") > maxModelElems (" + maxModelObjs + ")");
 		}
 		mavoModelObjs = new ArrayList<MAVOElement>();
 
 		// create model first in order to contain mavo model elements
 		String modelTypeName = labeledGraphModel.getMetatype().getName();
-		String newLastSegmentUri = modelTypeName + RANDOM_SUFFIX + (new Date()).getTime() + MMTF.MODEL_FILEEXTENSION_SEPARATOR + RandomModelPackage.eNAME;
+		String newLastSegmentUri = modelTypeName + RANDOM_SUFFIX + (new Date()).getTime() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + RandomModelPackage.eNAME;
 		String subdir = MultiModelOperatorUtils.getSubdir(inputProperties);
 		if (subdir != null) {
-			newLastSegmentUri = subdir + MMTF.URI_SEPARATOR + newLastSegmentUri;
+			newLastSegmentUri = subdir + MMINT.URI_SEPARATOR + newLastSegmentUri;
 		}
 		String newRandommodelModelUri = MultiModelUtils.replaceLastSegmentInUri(labeledGraphModel.getUri(), newLastSegmentUri);
 		EList<Model> result = new BasicEList<Model>();

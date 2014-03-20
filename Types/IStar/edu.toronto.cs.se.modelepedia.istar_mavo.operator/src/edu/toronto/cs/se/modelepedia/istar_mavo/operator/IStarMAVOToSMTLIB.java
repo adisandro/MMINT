@@ -22,10 +22,10 @@ import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.mmtf.mavo.library.EcoreMAVOToSMTLIBListener;
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mavo.library.EcoreMAVOToSMTLIBListener;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
 public class IStarMAVOToSMTLIB extends OperatorImpl {
 

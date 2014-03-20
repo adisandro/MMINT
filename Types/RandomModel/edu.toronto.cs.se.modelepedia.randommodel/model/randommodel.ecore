@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="randommodel" nsURI="http://se.cs.toronto.edu/modelepedia/RandomModel"
     nsPrefix="randommodel">
-  <eClassifiers xsi:type="ecore:EClass" name="RandomModel" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mavo.ecore#//MAVOModel">
+  <eClassifiers xsi:type="ecore:EClass" name="RandomModel" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mavo.ecore#//MAVOModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
         eType="#//Node" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
@@ -28,7 +28,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="tgt" lowerBound="1" eType="#//Node"
         eOpposite="#//Node/edgesAsTgt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mavo.ecore#//MAVOElement">
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mavo.ecore#//MAVOElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -1,6 +1,6 @@
 [comment encoding = UTF-8 /]
-[module IStarMAVOToSMTLIB_M2T('http://www.eclipse.org/emf/2002/Ecore', 'http://se.cs.toronto.edu/mmtf/MAVO', 'http://se.cs.toronto.edu/modelepedia/IStar_MAVO')]
-[import edu::toronto::cs::se::mmtf::mavo::library::EcoreMAVOToSMTLIBUtils_M2T /]
+[module IStarMAVOToSMTLIB_M2T('http://www.eclipse.org/emf/2002/Ecore', 'http://se.cs.toronto.edu/mmint/MAVO', 'http://se.cs.toronto.edu/modelepedia/IStar_MAVO')]
+[import edu::toronto::cs::se::mmint::mavo::library::EcoreMAVOToSMTLIBUtils_M2T /]
 
 [template private encodeModelIStar(istar : IStar)]
 ;Contribution Types

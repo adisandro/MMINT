@@ -26,16 +26,16 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 
-import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.MMTFException.Type;
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.RandomOperatorImpl;
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentSamples.DistributionType;
 
 public class ExperimentDriver extends OperatorImpl {
@@ -75,7 +75,7 @@ public class ExperimentDriver extends OperatorImpl {
 						outerParameters = executeOperator(experimentIndex, -1, op, experimentOperators[op], outerParameters, operatorChain, outputConfidences);
 					}
 					catch (Exception e) {
-						MMTFException.print(MMTFException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + " failed", e);
+						MMINTException.print(MMINTException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + " failed", e);
 						MultiModelOperatorUtils.writePropertiesFile(
 							writeProperties(null, experimentIndex),
 							driver,
@@ -96,7 +96,7 @@ public class ExperimentDriver extends OperatorImpl {
 				int j;
 				for (j = 0; j < maxSamples; j++) {
 					// create sample folder
-					folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MultiModelUtils.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex + MMTF.URI_SEPARATOR + SAMPLE_SUBDIR + j)));
+					folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MultiModelUtils.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + j)));
 					if (!folder.exists(null)) {
 						folder.create(true, true, null);
 					}
@@ -113,7 +113,7 @@ public class ExperimentDriver extends OperatorImpl {
 					catch (Exception e) {
 						executor.shutdownNow();
 						timedOut = true;
-						MMTFException.print(Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + j + " ran over time limit", e);
+						MMINTException.print(Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + j + " ran over time limit", e);
 					}
 					// skip warmup phase
 					if (j < skipWarmupSamples) {
@@ -126,13 +126,13 @@ public class ExperimentDriver extends OperatorImpl {
 								outputDefaults[out] :
 								getOutput(initialModel, out, experimentIndex, j);
 							if (sample == Double.MAX_VALUE) {
-								MMTFException.print(MMTFException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + j + ", output " + outputs[out] + " skipped", null);
+								MMINTException.print(MMINTException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + j + ", output " + outputs[out] + " skipped", null);
 								continue;
 							}
 							outputConfidences[out] = experiment[out].addSample(sample);
 						}
 						catch (Exception e) {
-							MMTFException.print(MMTFException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + j + ", output " + outputs[out] + " not available", e);
+							MMINTException.print(MMINTException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + j + ", output " + outputs[out] + " not available", e);
 						}
 					}
 					// evaluate confidence intervals
@@ -156,7 +156,7 @@ public class ExperimentDriver extends OperatorImpl {
 				writeGnuplotFile(driver, initialModel, experiment, experimentIndex, varX);
 			}
 			catch (Exception e) {
-				MMTFException.print(MMTFException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + " failed", e);
+				MMINTException.print(MMINTException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + " failed", e);
 			}
 		}
 	}
@@ -187,7 +187,7 @@ public class ExperimentDriver extends OperatorImpl {
 					parameters = executeOperator(experimentIndex, statisticsIndex, op, statisticsOperators[op], parameters, operatorChain, outputConfidences);
 				}
 				catch (Exception e) {
-					MMTFException.print(Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + statisticsIndex + " failed", e);
+					MMINTException.print(Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + statisticsIndex + " failed", e);
 					return;
 				}
 			}
@@ -365,7 +365,7 @@ public class ExperimentDriver extends OperatorImpl {
 			MultiModelOperatorUtils.writeTextFile(driver, initialModel, EXPERIMENT_SUBDIR + experimentIndex, GNUPLOT_SUFFIX, gnuplotBuilder);
 		}
 		catch (IOException e) {
-			MMTFException.print(Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", gnuplot output failed", e);
+			MMINTException.print(Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", gnuplot output failed", e);
 		}
 	}
 
@@ -392,7 +392,7 @@ public class ExperimentDriver extends OperatorImpl {
 		// get operator
 		Operator operator = MultiModelTypeRegistry.getType(operatorUri);
 		if (operator == null) {
-			throw new MMTFException("Operator uri " + operatorUri + " is not registered");
+			throw new MMINTException("Operator uri " + operatorUri + " is not registered");
 		}
 		operatorChain.add(operator);
 		int previousOperatorIndex = operatorChain.size() - 2;
@@ -428,7 +428,7 @@ public class ExperimentDriver extends OperatorImpl {
 			}
 			else {
 				nextSubdir = (experimentOperators.length == 0) ?
-					EXPERIMENT_SUBDIR + experimentIndex + MMTF.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex:
+					EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex:
 					SAMPLE_SUBDIR + statisticsIndex;
 			}
 			operatorProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_SUBDIR, nextSubdir);
@@ -463,10 +463,10 @@ public class ExperimentDriver extends OperatorImpl {
 		// get output operator
 		Operator operator = MultiModelTypeRegistry.getType(outputOperators[outputIndex]);
 		if (operator == null) {
-			throw new MMTFException("Operator uri " + outputOperators[outputIndex] + " is not registered");
+			throw new MMINTException("Operator uri " + outputOperators[outputIndex] + " is not registered");
 		}
 
-		String experimentSubdir = EXPERIMENT_SUBDIR + experimentIndex + MMTF.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex;
+		String experimentSubdir = EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex;
 		Properties resultProperties = MultiModelOperatorUtils.getPropertiesFile(
 			operator,
 			initialModel,
@@ -508,7 +508,7 @@ public class ExperimentDriver extends OperatorImpl {
 				executor.submit(new ExperimentWatchdog(this, actualParameters, i));
 			}
 			catch (Exception e) {
-				MMTFException.print(MMTFException.Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + " failed", e);
+				MMINTException.print(MMINTException.Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + " failed", e);
 			}
 		}
 

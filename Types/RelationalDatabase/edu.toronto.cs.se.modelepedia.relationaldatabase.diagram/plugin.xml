@@ -600,7 +600,7 @@ Contributors:
    <!-- optionally, specify keybindings -->
 
    <extension
-         point="edu.toronto.cs.se.mmtf.editors">
+         point="edu.toronto.cs.se.mmint.editors">
       <editorType
             modelTypeUri="http://se.cs.toronto.edu/modelepedia/RelationalDatabase"
             id="edu.toronto.cs.se.modelepedia.relationaldatabase.diagram.part.RelationalDatabaseDiagramEditorID"

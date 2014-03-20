@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli;
 
-import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 
 /**
  * <!-- begin-user-doc -->

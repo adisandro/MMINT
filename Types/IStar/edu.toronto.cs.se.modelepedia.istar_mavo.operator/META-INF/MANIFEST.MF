@@ -6,7 +6,7 @@ Bundle-Version: 1.2.0
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.acceleo.engine,
  org.eclipse.core.resources,
- edu.toronto.cs.se.mmtf,
+ edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.istar_mavo
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy

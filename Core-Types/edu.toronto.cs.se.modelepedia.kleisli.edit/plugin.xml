@@ -31,10 +31,10 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated kleisli -->
       <extender
-            uri="http://se.cs.toronto.edu/mmtf/MID"
+            uri="http://se.cs.toronto.edu/mmint/MID"
             class="edu.toronto.cs.se.modelepedia.kleisli.provider.KleisliItemProviderAdapterFactory$MidChildCreationExtender"/>
       <extender
-            uri="http://se.cs.toronto.edu/mmtf/MID/Relationship"
+            uri="http://se.cs.toronto.edu/mmint/MID/Relationship"
             class="edu.toronto.cs.se.modelepedia.kleisli.provider.KleisliItemProviderAdapterFactory$RelationshipChildCreationExtender"/>
    </extension>
 

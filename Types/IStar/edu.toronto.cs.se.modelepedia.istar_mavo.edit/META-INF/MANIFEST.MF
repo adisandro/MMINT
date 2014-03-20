@@ -11,7 +11,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: edu.toronto.cs.se.modelepedia.istar_mavo.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit,
- edu.toronto.cs.se.mmtf,
- edu.toronto.cs.se.mmtf.edit,
+ edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.mmint.edit,
  edu.toronto.cs.se.modelepedia.istar_mavo
 Bundle-ActivationPolicy: lazy

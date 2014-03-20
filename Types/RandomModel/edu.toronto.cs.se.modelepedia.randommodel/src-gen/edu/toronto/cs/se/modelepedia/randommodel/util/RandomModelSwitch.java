@@ -11,13 +11,12 @@
  */
 package edu.toronto.cs.se.modelepedia.randommodel.util;
 
-import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
-import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
+import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mavo.MAVOModel;
 import edu.toronto.cs.se.modelepedia.randommodel.*;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
 /**

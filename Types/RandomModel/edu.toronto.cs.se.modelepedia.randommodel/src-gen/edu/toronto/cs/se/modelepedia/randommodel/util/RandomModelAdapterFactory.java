@@ -11,15 +11,13 @@
  */
 package edu.toronto.cs.se.modelepedia.randommodel.util;
 
-import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
-import edu.toronto.cs.se.mmtf.mavo.MAVOModel;
+import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mavo.MAVOModel;
 import edu.toronto.cs.se.modelepedia.randommodel.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -179,13 +177,13 @@ public class RandomModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mavo.MAVOModel <em>MAVO Model</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.MAVOModel <em>MAVO Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mavo.MAVOModel
+	 * @see edu.toronto.cs.se.mmint.mavo.MAVOModel
 	 * @generated
 	 */
 	public Adapter createMAVOModelAdapter() {
@@ -193,13 +191,13 @@ public class RandomModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmtf.mavo.MAVOElement <em>MAVO Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.MAVOElement <em>MAVO Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmtf.mavo.MAVOElement
+	 * @see edu.toronto.cs.se.mmint.mavo.MAVOElement
 	 * @generated
 	 */
 	public Adapter createMAVOElementAdapter() {

@@ -11,16 +11,16 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
-import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmtf.mid.MidFactory;
-import edu.toronto.cs.se.mmtf.mid.MidLevel;
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
-import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.impl.ModelImpl;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.MidFactory;
+import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelOrigin;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
@@ -107,9 +107,9 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 
 		return
 			modelRelType.getExtendedUri() +
-			MMTF.URI_SEPARATOR +
+			MMINT.URI_SEPARATOR +
 			modelTypeEndpointName +
-			MMTF.ENDPOINT_SEPARATOR +
+			MMINT.ENDPOINT_SEPARATOR +
 			modelType.getName() + "." + EcorePackage.eNAME;
 	}
 
@@ -130,11 +130,11 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 	/**
 	 * @generated NOT
 	 */
-	public KleisliModel kleisliCreateType(KleisliModelEndpoint containerModelTypeEndpoint) throws MMTFException {
+	public KleisliModel kleisliCreateType(KleisliModelEndpoint containerModelTypeEndpoint) throws MMINTException {
 
-		//TODO MMTF[KLEISLI] should try to emulate normal api structure
+		//TODO MMINT[KLEISLI] should try to emulate normal api structure
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		Model origModelType = containerModelTypeEndpoint.getTarget();
@@ -144,7 +144,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 				MultiModelUtils.createModelFileInState(origModelType.getEMFTypeRoot(), kModelTypeUri);
 			}
 			catch (Exception e) {
-				throw new MMTFException("Error creating extended metamodel file");
+				throw new MMINTException("Error creating extended metamodel file");
 			}
 		}
 
@@ -173,10 +173,10 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 	 * @generated NOT
 	 */
 	@Override
-	public void deleteType() throws MMTFException {
+	public void deleteType() throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		MultiModelUtils.deleteFileInState(getUri());
@@ -186,17 +186,17 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 	 * @generated NOT
 	 */
 	@Override
-	public EPackage getEMFTypeRoot() throws MMTFException {
+	public EPackage getEMFTypeRoot() throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		try {
 			return (EPackage) MultiModelUtils.getModelFileInState(getUri());
 		}
 		catch (Exception e) {
-			throw new MMTFException("Error accessing the extended metamodel file for model type" + getUri(), e);
+			throw new MMINTException("Error accessing the extended metamodel file for model type" + getUri(), e);
 		}
 	}
 
@@ -212,19 +212,19 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 
 		return
 			((KleisliModelRel) modelEndpoint.eContainer()).getExtendedUri() +
-			MMTF.URI_SEPARATOR +
+			MMINT.URI_SEPARATOR +
 			modelEndpoint.getMetatype().getName() +
-			MMTF.ENDPOINT_SEPARATOR +
+			MMINT.ENDPOINT_SEPARATOR +
 			modelEndpoint.getTarget().getName() + "." + modelEndpoint.getTarget().getFileExtension();
 	}
 
 	/**
 	 * @generated NOT
 	 */
-	public KleisliModel kleisliCreateInstance(KleisliModelEndpoint containerModelEndpoint) throws MMTFException {
+	public KleisliModel kleisliCreateInstance(KleisliModelEndpoint containerModelEndpoint) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute TYPES level operation on INSTANCES level element");
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		Model origModel = containerModelEndpoint.getTarget();
@@ -246,10 +246,10 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 	 * @generated NOT
 	 */
 	@Override
-	public void deleteInstance() throws MMTFException {
+	public void deleteInstance() throws MMINTException {
 
 		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMTFException("Can't execute INSTANCES level operation on TYPES level element");
+			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
 		MultiModelUtils.deleteFile(getUri(), true);
@@ -259,7 +259,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 	 * @generated NOT
 	 */
 	@Override
-	public EObject getEMFInstanceRoot() throws MMTFException {
+	public EObject getEMFInstanceRoot() throws MMINTException {
 
 		return super.getEMFInstanceRoot();
 	}

@@ -7,7 +7,7 @@
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mavo.ecore#//MAVOModel">
+  <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mavo.ecore#//MAVOModel">
     <eAnnotations source="gmf.diagram"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
         eType="#//Class" containment="true"/>
@@ -56,7 +56,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Class"
         eOpposite="#//Class/ownedAttributes"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mavo.ecore#//MAVOElement">
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mavo.ecore#//MAVOElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//TypedElement">
@@ -66,7 +66,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Class"
         eOpposite="#//Class/ownedOperations"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Dependency" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mavo.ecore#//MAVOElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Dependency" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mavo.ecore#//MAVOElement">
     <eAnnotations source="gmf.link">
       <details key="source" value="dependee"/>
       <details key="target" value="depender"/>
@@ -102,7 +102,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//Class" eOpposite="#//Class/associationsAsTarget"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NestedInReference" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mavo.ecore#//MAVOReference">
+  <eClassifiers xsi:type="ecore:EClass" name="NestedInReference" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mavo.ecore#//MAVOReference">
     <eAnnotations source="gmf.link">
       <details key="target.decoration" value="square"/>
       <details key="source" value="source"/>
@@ -113,7 +113,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//Class" eOpposite="#//Class/nested"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SuperclassReference" eSuperTypes="../../edu.toronto.cs.se.mmtf/model/mavo.ecore#//MAVOReference">
+  <eClassifiers xsi:type="ecore:EClass" name="SuperclassReference" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mavo.ecore#//MAVOReference">
     <eAnnotations source="gmf.link">
       <details key="target.decoration" value="closedarrow"/>
       <details key="source" value="source"/>

@@ -11,8 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.uml.constraint;
 
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.reasoning.Z3SMTUtils.MAVOTruthValue;
 
 public class UMLComponentDiagramModelConstraint extends UMLModelConstraint {
 

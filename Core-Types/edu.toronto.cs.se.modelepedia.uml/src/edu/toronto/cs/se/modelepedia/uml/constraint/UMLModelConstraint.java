@@ -13,10 +13,10 @@ package edu.toronto.cs.se.modelepedia.uml.constraint;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.constraint.JavaModelConstraint;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.constraint.JavaModelConstraint;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.reasoning.Z3SMTUtils.MAVOTruthValue;
 
 public abstract class UMLModelConstraint extends JavaModelConstraint {
 

@@ -21,13 +21,13 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
-import edu.toronto.cs.se.mmtf.mid.EMFInfo;
-import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.diagram.library.AddModifyConstraintListener;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelElementReference2EditPart;
-import edu.toronto.cs.se.mmtf.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart;
+import edu.toronto.cs.se.mmint.mid.EMFInfo;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.diagram.library.AddModifyConstraintListener;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReference2EditPart;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 
 public class KleisliRelationshipDiagramActions extends ContributionItem {
@@ -68,7 +68,7 @@ public class KleisliRelationshipDiagramActions extends ContributionItem {
 			) {
 				GraphicalEditPart editPart = (GraphicalEditPart) object;
 				modelElemRef = (ModelElementReference) ((View) editPart.getModel()).getElement();
-				//TODO MMTF[KLEISLI] replace with KleisliModelElement
+				//TODO MMINT[KLEISLI] replace with KleisliModelElement
 				EMFInfo eInfo = modelElemRef.getObject().getEInfo();
 				if (
 					!(((ModelEndpointReference) modelElemRef.eContainer()).getObject() instanceof KleisliModelEndpoint) ||
@@ -95,13 +95,13 @@ public class KleisliRelationshipDiagramActions extends ContributionItem {
 		}
 
 		// create dynamic menus
-		MenuItem mmtfItem = new MenuItem(menu, SWT.CASCADE, index);
-		mmtfItem.setText("MMTF");
-		Menu mmtfMenu = new Menu(menu);
-		mmtfItem.setMenu(mmtfMenu);
+		MenuItem mmintItem = new MenuItem(menu, SWT.CASCADE, index);
+		mmintItem.setText("MMINT");
+		Menu mmintMenu = new Menu(menu);
+		mmintItem.setMenu(mmintMenu);
 		// derivation
 		if (doDerivation) {
-			MenuItem derivationItem = new MenuItem(mmtfMenu, SWT.NONE);
+			MenuItem derivationItem = new MenuItem(mmintMenu, SWT.NONE);
 			derivationItem.setText("Add/Modify Kleisli Query");
 			derivationItem.addSelectionListener(
 				new AddModifyConstraintListener(modelElemRef)

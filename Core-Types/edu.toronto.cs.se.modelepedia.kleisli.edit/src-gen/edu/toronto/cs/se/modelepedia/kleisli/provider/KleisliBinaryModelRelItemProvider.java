@@ -12,22 +12,18 @@
 package edu.toronto.cs.se.modelepedia.kleisli.provider;
 
 
-import edu.toronto.cs.se.mmtf.mid.relationship.RelationshipPackage;
-
-import edu.toronto.cs.se.mmtf.mid.relationship.provider.BinaryModelRelItemProvider;
-
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmint.mid.relationship.provider.BinaryModelRelItemProvider;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
-
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
+
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;

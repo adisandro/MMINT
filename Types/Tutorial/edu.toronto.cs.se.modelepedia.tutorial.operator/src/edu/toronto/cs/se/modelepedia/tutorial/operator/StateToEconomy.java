@@ -14,8 +14,8 @@ package edu.toronto.cs.se.modelepedia.tutorial.operator;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.library.ATLConversion;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.library.ATLConversion;
 import edu.toronto.cs.se.modelepedia.tutorial.economy.EconomyPackage;
 
 public class StateToEconomy extends ATLConversion {

@@ -11,8 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl;
 
-import edu.toronto.cs.se.mmtf.mavo.impl.MAVOModelImpl;
-
+import edu.toronto.cs.se.mmint.mavo.impl.MAVOModelImpl;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Table;
@@ -20,12 +19,9 @@ import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Table;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 

@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo;
 
-import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
+import edu.toronto.cs.se.mmint.mavo.MavoPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;

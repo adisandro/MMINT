@@ -11,11 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
-
-import edu.toronto.cs.se.mmtf.mid.ModelElement;
-
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -60,18 +58,18 @@ public interface KleisliModelEndpointReference extends ModelEndpointReference {
 	 * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" metamodelObjRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" metamodelObjRequired="true"
 	 * @generated
 	 */
-	boolean acceptModelElementType(EObject metamodelObj) throws MMTFException;
+	boolean acceptModelElementType(EObject metamodelObj) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" modelObjRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelObjRequired="true"
 	 * @generated
 	 */
-	ModelElement acceptModelElementInstance(EObject modelObj) throws MMTFException;
+	ModelElement acceptModelElementInstance(EObject modelObj) throws MMINTException;
 
 } // KleisliModelEndpointReference

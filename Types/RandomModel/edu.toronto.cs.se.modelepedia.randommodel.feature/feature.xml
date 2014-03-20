@@ -6,7 +6,7 @@
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
-      A random model to be used in MMTF.
+      A random model to be used in MMINT.
    </description>
 
    <copyright>
@@ -20,10 +20,10 @@ Famelis, Rick Salay. All rights reserved.
 
    <requires>
       <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="edu.toronto.cs.se.mmtf"/>
+      <import plugin="edu.toronto.cs.se.mmint"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="edu.toronto.cs.se.mmtf.edit"/>
+      <import plugin="edu.toronto.cs.se.mmint.edit"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.edit.ui"/>

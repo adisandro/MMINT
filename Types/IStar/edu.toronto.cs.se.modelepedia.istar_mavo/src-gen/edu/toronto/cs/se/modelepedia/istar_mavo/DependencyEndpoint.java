@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo;
 
-import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mavo.MAVOElement;
 
 import org.eclipse.emf.common.util.EList;
 

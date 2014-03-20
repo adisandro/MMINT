@@ -22,15 +22,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTFException.Type;
-import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
-import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
-import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
+import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mavo.MavoPackage;
+import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.reasoning.Z3SMTUtils;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint;
@@ -74,7 +74,7 @@ public class FASE14 extends RE13 {
 		properties.setProperty(PROPERTY_OUT_TIMERNF, String.valueOf(timeRNF));
 	}
 
-	//TODO MMTF: unify/refactor these functions when simplifying the i* metamodel
+	//TODO MMINT: unify/refactor these functions when simplifying the i* metamodel
 	private String encodeMAVConstraintFunction(MAVOElement mavoModelObj) {
 
 		return (mavoModelObj instanceof DependencyEndpoint) ?
@@ -124,7 +124,7 @@ public class FASE14 extends RE13 {
 
 		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)), 1, 0);
 		if (z3IncResult.flag == Z3_SAT) {
-			//TODO MMTF: optimize search for other annotations in output model using the map mavoModelObjs
+			//TODO MMINT: optimize search for other annotations in output model using the map mavoModelObjs
 		}
 		else {
 			if (mavoAnnotation == MavoPackage.eINSTANCE.getMAVOElement_May() && smtMavoConstraint.startsWith(SMTLIB_NOT)) { // M model object deletion
@@ -170,7 +170,7 @@ public class FASE14 extends RE13 {
 	}
 
 	@Override
-	protected void collectAnalysisModelObjs(Model istarModel) throws MMTFException {
+	protected void collectAnalysisModelObjs(Model istarModel) throws MMINTException {
 
 		istar = (IStar) istarModel.getEMFInstanceRoot();
 		MAVOUtils.createIdsFromNames(istar);
@@ -254,7 +254,7 @@ public class FASE14 extends RE13 {
 				);
 			}
 			catch (Exception e) {
-				MMTFException.print(Type.WARNING, "RNF file writing failed", e);
+				MMINTException.print(Type.WARNING, "RNF file writing failed", e);
 			}
 		}
 

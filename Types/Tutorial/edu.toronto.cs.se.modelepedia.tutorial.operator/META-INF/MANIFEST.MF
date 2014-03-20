@@ -7,7 +7,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.m2m.atl.engine.emfvm,
- edu.toronto.cs.se.mmtf,
+ edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.tutorial.state,
  edu.toronto.cs.se.modelepedia.tutorial.army,
  edu.toronto.cs.se.modelepedia.tutorial.economy

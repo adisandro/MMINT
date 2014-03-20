@@ -24,7 +24,7 @@
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.models">
+         point="edu.toronto.cs.se.mmint.models">
       <modelType
             isAbstract="false">
          <type

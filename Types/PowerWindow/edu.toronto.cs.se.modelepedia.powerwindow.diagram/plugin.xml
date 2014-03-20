@@ -556,7 +556,7 @@ Contributors:
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.editors">
+         point="edu.toronto.cs.se.mmint.editors">
       <editorType
             modelTypeUri="http://se.cs.toronto.edu/modelepedia/PowerWindow"
             id="edu.toronto.cs.se.modelepedia.powerwindow.diagram.part.PowerWindowDiagramEditorID"

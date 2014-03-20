@@ -20,15 +20,15 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmtf.mid.operator.Operator;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.reasoning.Z3SMTSolver;
+import edu.toronto.cs.se.mmint.reasoning.Z3SMTUtils;
+import edu.toronto.cs.se.mmint.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
@@ -185,7 +185,7 @@ public class RE13 extends OperatorImpl implements Z3SMTSolver {
 					return;
 				}
 				if (line.equals("true")) { // all true
-					//TODO MMTF: do something about it?
+					//TODO MMINT: do something about it?
 					return;
 				}
 				if (line.startsWith(SMTLIB_PREDICATE_START + label.name())) { // jump to subfunction
@@ -323,7 +323,7 @@ nextNodeFunction:
 		timeTargets = System.nanoTime() - startTime;
 	}
 
-	protected void collectAnalysisModelObjs(Model istarModel) throws MMTFException {
+	protected void collectAnalysisModelObjs(Model istarModel) throws MMINTException {
 
 		istar = (IStar) istarModel.getEMFInstanceRoot();
 		for (Actor actor : istar.getActors()) {

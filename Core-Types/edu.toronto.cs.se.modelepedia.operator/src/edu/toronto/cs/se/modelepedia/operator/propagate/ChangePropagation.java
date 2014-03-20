@@ -26,31 +26,31 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import edu.toronto.cs.se.mmtf.MMTF;
-import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmtf.mavo.MAVOElement;
-import edu.toronto.cs.se.mmtf.mavo.library.MAVOUtils;
-import edu.toronto.cs.se.mmtf.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmtf.mid.MidLevel;
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.ModelElement;
-import edu.toronto.cs.se.mmtf.mid.ModelOrigin;
-import edu.toronto.cs.se.mmtf.mid.MultiModel;
-import edu.toronto.cs.se.mmtf.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmtf.mid.impl.ModelElementImpl;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelTypeIntrospection;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmtf.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLink;
-import edu.toronto.cs.se.mmtf.mid.relationship.BinaryLinkReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.Link;
-import edu.toronto.cs.se.mmtf.mid.relationship.LinkReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementEndpointReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.ModelOrigin;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryLink;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.Link;
+import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 
 public class ChangePropagation extends OperatorImpl {
 
@@ -68,20 +68,20 @@ public class ChangePropagation extends OperatorImpl {
 	 *            The reference to be removed to the model element to be
 	 *            removed.
 	 */
-	private void removeModelElementAndModelElementReference(ModelElementReference modelElemRef) throws MMTFException {
+	private void removeModelElementAndModelElementReference(ModelElementReference modelElemRef) throws MMINTException {
 
-		//TODO MMTF[OO] does this have a meaning somewhere else?
+		//TODO MMINT[OO] does this have a meaning somewhere else?
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelElemRef);
 		multiModel.getExtendibleTable().removeKey(modelElemRef.getUri());
 		modelElemRef.deleteInstanceReference();
 		ModelElement modelElem = modelElemRef.getObject();
 		((Model) modelElem.eContainer()).getModelElems().remove(modelElem);
-		//TODO MMTF should remove from all model rels too?
+		//TODO MMINT should remove from all model rels too?
 	}
 
 	private String getModelEObjectUri(String modelElemUri) {
 
-		return modelElemUri.substring(0, modelElemUri.indexOf(MMTF.ROLE_SEPARATOR));
+		return modelElemUri.substring(0, modelElemUri.indexOf(MMINT.ROLE_SEPARATOR));
 	}
 
 	private ModelElementReference getModelElementReference(String modelElemRefUri, EList<ModelElementReference> modelElemRefs) {
@@ -161,7 +161,7 @@ public class ChangePropagation extends OperatorImpl {
 				ModelElementReference relatedModelElemRef_traceRel = traceLinkRef.getTargetModelElemRef();
 				String propModelObjUri =
 					newPropModel.getUri() +
-					getModelEObjectUri(relatedModelElemRef_traceRel.getUri()).substring(relatedModelElemRef_traceRel.getUri().lastIndexOf(MMTF.MODEL_URI_SEPARATOR));
+					getModelEObjectUri(relatedModelElemRef_traceRel.getUri()).substring(relatedModelElemRef_traceRel.getUri().lastIndexOf(MMINT.MODEL_URI_SEPARATOR));
 				EObject propModelObj = MultiModelTypeIntrospection.getPointer(propModelObjUri);
 				// create propagated model elem ref in propagated trace rel
 				ModelElementReference newPropModelElemRef_propTraceRel = ModelElementImpl.createMAVOInstanceAndReference(propModelObj, relatedModelElemRef_traceRel.getObject().getName(), propModelEndpointRef_propTraceRel);
@@ -183,7 +183,7 @@ public class ChangePropagation extends OperatorImpl {
 		return newPropTraceLinkRefs;
 	}
 
-	private BinaryLinkReference createDanglingTraceLink(ModelElementReference traceModelElemRefA, BinaryModelRel traceRel, int indexA, int indexB) throws MMTFException {
+	private BinaryLinkReference createDanglingTraceLink(ModelElementReference traceModelElemRefA, BinaryModelRel traceRel, int indexA, int indexB) throws MMINTException {
 
 		// rule 4, 1st half
 		if (!traceRel.getModelEndpoints().get(indexB).getTarget().isInc()) {
@@ -217,8 +217,8 @@ public class ChangePropagation extends OperatorImpl {
 			newTraceLinkRef.getObject().setName(PROPTRACE_RULE4_LINK_NAME);
 			traceLinkTypeRef.getModelElemEndpointRefs().get(indexA).getObject().createInstanceAndReference(newTraceModelElemRefA, false, newTraceLinkRef);
 			// if more than one link type with same model element type A exist, they all get created (the user will merge unnecessary ones)
-			//TODO MMTF: should I also mark them as M, because I want them to be mutually exclusive?
-			//TODO MMTF: (prop rule that forces the removal of M if the endpoints are E sounds wrong in this case, mostly because mutual exclusion has not been formalized)
+			//TODO MMINT: should I also mark them as M, because I want them to be mutually exclusive?
+			//TODO MMINT: (prop rule that forces the removal of M if the endpoints are E sounds wrong in this case, mostly because mutual exclusion has not been formalized)
 		}
 
 		return newTraceLinkRef;
@@ -352,9 +352,9 @@ traceLinks:
 			// other model element to be affected by unification of model elements
 			if (otherModelElemUri.contains(unifiedModelElemUriBase)) {
 				String otherModelElemUriExtra = otherModelElemUri.substring(otherModelElemUri.lastIndexOf(unifiedModelElemUriBase) + unifiedModelElemUriBase.length());
-				int otherModelElemUriIndex = (otherModelElemUriExtra.indexOf(MMTF.URI_SEPARATOR) == -1) ?
+				int otherModelElemUriIndex = (otherModelElemUriExtra.indexOf(MMINT.URI_SEPARATOR) == -1) ?
 					Integer.parseInt(otherModelElemUriExtra) :
-					Integer.parseInt(otherModelElemUriExtra.substring(0, otherModelElemUriExtra.indexOf(MMTF.URI_SEPARATOR)));
+					Integer.parseInt(otherModelElemUriExtra.substring(0, otherModelElemUriExtra.indexOf(MMINT.URI_SEPARATOR)));
 				String newOtherModelElemUri = null;
 				if (otherModelElemUriIndex == unifiedModelElemUriIndex) { // uri to be fully replaced
 					newOtherModelElemUri = otherModelElem.getUri().replace(unifiedModelElemUri, modelElemUri);
@@ -394,7 +394,7 @@ traceLinks:
 
 		// remove var object
 		 EcoreUtil.delete(varModelObj);
-		//TODO MMTF: should we try to preserve references to it, maybe using EcoreUtil.CrossReferencer?
+		//TODO MMINT: should we try to preserve references to it, maybe using EcoreUtil.CrossReferencer?
 		// remove unified links and model elements
 		removeModelElementAndModelElementReference(varModelElemRef);
 		// update uris due to model element unification
@@ -480,7 +480,7 @@ traceLinks:
 		modelElemTypeEndpointRef.getObject().createInstanceAndReference(newModelElemRef, false, traceLinkRef);
 	}
 
-	private void propagateRefinementLinks(BinaryLinkReference propTraceLinkRef, BinaryModelRel refinementRel, Model relatedModel, BinaryModelRel traceRel, BinaryModelRel newPropRefinementRel) throws MMTFException {
+	private void propagateRefinementLinks(BinaryLinkReference propTraceLinkRef, BinaryModelRel refinementRel, Model relatedModel, BinaryModelRel traceRel, BinaryModelRel newPropRefinementRel) throws MMINTException {
 
 		ModelElementReference propModelElemRef_propTraceRel = propTraceLinkRef.getTargetModelElemRef();
 		ModelEndpointReference propModelEndpointRef_propRefinementRel = newPropRefinementRel.getModelEndpointRefs().get(1);
@@ -573,7 +573,7 @@ traceLinks:
 				propagateRefinementLinks(propTraceLinkRef, refinementRel, relatedModel, traceRel, newPropRefinementRel);
 			}
 		}
-		//TODO MMTF: reason about how to concretely use indexA and indexB, when the refineUncertainty becomes an independent operator
+		//TODO MMINT: reason about how to concretely use indexA and indexB, when the refineUncertainty becomes an independent operator
 
 		EList<Model> result = new BasicEList<Model>();
 		result.add(newPropModel);

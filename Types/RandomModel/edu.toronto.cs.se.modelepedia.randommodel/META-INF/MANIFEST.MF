@@ -11,5 +11,5 @@ Export-Package: edu.toronto.cs.se.modelepedia.randommodel,
  edu.toronto.cs.se.modelepedia.randommodel.impl,
  edu.toronto.cs.se.modelepedia.randommodel.util
 Require-Bundle: org.eclipse.emf.ecore,
- edu.toronto.cs.se.mmtf
+ edu.toronto.cs.se.mmint
 Bundle-ActivationPolicy: lazy

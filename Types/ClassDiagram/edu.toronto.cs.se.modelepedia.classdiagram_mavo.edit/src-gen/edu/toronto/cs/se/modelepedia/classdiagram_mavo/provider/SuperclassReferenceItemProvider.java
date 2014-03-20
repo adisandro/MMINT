@@ -12,8 +12,7 @@
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.provider;
 
 
-import edu.toronto.cs.se.mmtf.mavo.provider.MAVOReferenceItemProvider;
-
+import edu.toronto.cs.se.mmint.mavo.provider.MAVOReferenceItemProvider;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference;
 
@@ -22,9 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;

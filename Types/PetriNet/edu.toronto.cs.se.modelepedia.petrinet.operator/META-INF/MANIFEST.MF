@@ -7,5 +7,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.ui,
- edu.toronto.cs.se.mmtf,
+ edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.petrinet

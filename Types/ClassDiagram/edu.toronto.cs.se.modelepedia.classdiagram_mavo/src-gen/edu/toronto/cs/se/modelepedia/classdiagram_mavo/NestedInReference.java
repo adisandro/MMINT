@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo;
 
-import edu.toronto.cs.se.mmtf.mavo.MAVOReference;
+import edu.toronto.cs.se.mmint.mavo.MAVOReference;
 
 /**
  * <!-- begin-user-doc -->

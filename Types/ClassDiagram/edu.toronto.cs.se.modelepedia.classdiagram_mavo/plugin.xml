@@ -23,13 +23,13 @@
    </extension>
 
    <extension
-         point="edu.toronto.cs.se.mmtf.models">
+         point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
                name="ClassDiagram_MAVO"
                uri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
             <superType
-                  uri="http://se.cs.toronto.edu/mmtf/MAVO">
+                  uri="http://se.cs.toronto.edu/mmint/MAVO">
             </superType>
          </type>
       </modelType>

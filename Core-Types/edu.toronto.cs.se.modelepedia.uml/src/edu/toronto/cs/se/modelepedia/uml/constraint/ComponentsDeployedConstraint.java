@@ -14,14 +14,14 @@ package edu.toronto.cs.se.modelepedia.uml.constraint;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.PackageableElement;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
-import edu.toronto.cs.se.mmtf.MMTFException.Type;
-import edu.toronto.cs.se.mmtf.mid.Model;
-import edu.toronto.cs.se.mmtf.mid.constraint.JavaModelConstraint;
-import edu.toronto.cs.se.mmtf.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmtf.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmtf.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmtf.reasoning.Z3SMTUtils.MAVOTruthValue;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.constraint.JavaModelConstraint;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmint.reasoning.Z3SMTUtils.MAVOTruthValue;
 
 public class ComponentsDeployedConstraint extends JavaModelConstraint {
 
@@ -38,8 +38,8 @@ public class ComponentsDeployedConstraint extends JavaModelConstraint {
 		try {
 			srcUmlModel = (org.eclipse.uml2.uml.Model) deplRel.getSourceModel().getEMFInstanceRoot();
 		}
-		catch (MMTFException e) {
-			MMTFException.print(Type.WARNING, "Can't get model root, skipping validation",  e);
+		catch (MMINTException e) {
+			MMINTException.print(Type.WARNING, "Can't get model root, skipping validation",  e);
 			return MAVOTruthValue.FALSE;
 		}
 		for (PackageableElement umlModelObj : srcUmlModel.getPackagedElements()) {

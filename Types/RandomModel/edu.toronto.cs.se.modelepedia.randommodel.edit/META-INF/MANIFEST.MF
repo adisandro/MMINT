@@ -11,6 +11,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: edu.toronto.cs.se.modelepedia.randommodel.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit,
- edu.toronto.cs.se.mmtf.edit,
+ edu.toronto.cs.se.mmint.edit,
  edu.toronto.cs.se.modelepedia.randommodel
 Bundle-ActivationPolicy: lazy

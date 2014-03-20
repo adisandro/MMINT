@@ -11,9 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli;
 
-import edu.toronto.cs.se.mmtf.MMTFException;
-
-import edu.toronto.cs.se.mmtf.mid.Model;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.Model;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -40,31 +39,31 @@ public interface KleisliModel extends Model {
 	 *            The Kleisli model type endpoint that will contain the new
 	 *            Kleisli model type.
 	 * @return The created Kleisli model type.
-	 * @throws MMTFException
+	 * @throws MMINTException
 	 *             If this is a model instance, or if the extended metamodel
 	 *             can't be created. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" containerModelTypeEndpointRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" containerModelTypeEndpointRequired="true"
 	 * @generated
 	 */
-	KleisliModel kleisliCreateType(KleisliModelEndpoint containerModelTypeEndpoint) throws MMTFException;
+	KleisliModel kleisliCreateType(KleisliModelEndpoint containerModelTypeEndpoint) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
-	void deleteType() throws MMTFException;
+	void deleteType() throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
-	EPackage getEMFTypeRoot() throws MMTFException;
+	EPackage getEMFTypeRoot() throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates a Kleisli model instance.
@@ -73,29 +72,29 @@ public interface KleisliModel extends Model {
 	 *            The Kleisli model endpoint that will contain the new Kleisli
 	 *            model.
 	 * @return The created Kleisli model.
-	 * @throws MMTFException
+	 * @throws MMINTException
 	 *             If this is a model instance. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException" containerModelEndpointRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" containerModelEndpointRequired="true"
 	 * @generated
 	 */
-	KleisliModel kleisliCreateInstance(KleisliModelEndpoint containerModelEndpoint) throws MMTFException;
+	KleisliModel kleisliCreateInstance(KleisliModelEndpoint containerModelEndpoint) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
-	void deleteInstance() throws MMTFException;
+	void deleteInstance() throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmtf.mid.MMTFException"
+	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
-	EObject getEMFInstanceRoot() throws MMTFException;
+	EObject getEMFInstanceRoot() throws MMINTException;
 
 } // KleisliModel

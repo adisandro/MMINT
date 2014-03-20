@@ -11,8 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 
-import edu.toronto.cs.se.mmtf.mavo.MavoPackage;
-
+import edu.toronto.cs.se.mmint.mavo.MavoPackage;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Contribution;
 import edu.toronto.cs.se.modelepedia.istar_mavo.ContributionType;
@@ -30,7 +29,6 @@ import edu.toronto.cs.se.modelepedia.istar_mavo.MeansEnd;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Resource;
 import edu.toronto.cs.se.modelepedia.istar_mavo.SoftGoal;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Task;
-
 import edu.toronto.cs.se.modelepedia.istar_mavo.util.IStar_MAVOValidator;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -39,7 +37,6 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**

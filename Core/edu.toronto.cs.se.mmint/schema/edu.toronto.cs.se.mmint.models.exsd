@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="edu.toronto.cs.se.mmint" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="edu.toronto.cs.se.mmint" id="edu.toronto.cs.se.mmint.models" name="MMINT model types"/>
+      </appinfo>
+      <documentation>
+         Allows model types to be registered with MMINT.
+The model package has to be registered through the org.eclipse.emf.ecore.generated_package extension point too.
+      </documentation>
+   </annotation>
+
+   <include schemaLocation="edu.toronto.cs.se.mmint.types.exsd"/>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="modelType"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="modelType">
+      <annotation>
+         <documentation>
+            A model type. Its uri must be registered through the org.eclipse.emf.ecore.generated_package extension point too.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="type"/>
+            <element ref="constraint" minOccurs="0" maxOccurs="1"/>
+         </sequence>
+         <attribute name="isAbstract" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  True if the model type is not to be instanciated, false otherwise.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="constraint">
+      <annotation>
+         <documentation>
+            A model type constraint.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="language" use="required">
+            <annotation>
+               <documentation>
+                  The constraint language (OCL | JAVA | SMTLIB).
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="OCL">
+                  </enumeration>
+                  <enumeration value="JAVA">
+                  </enumeration>
+                  <enumeration value="SMTLIB">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="implementation" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The constraint implementation (an OCL constraint, the fully qualified name of a JAVA class, or an SMTLIB assertion).
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         https://github.com/adisandro/MMINT/wiki
+      </documentation>
+   </annotation>
+
+
+
+
+</schema>
