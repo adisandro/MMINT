@@ -6,11 +6,11 @@
   </children>
   <children xmi:type="notation:Shape" xmi:id="_1VAhAKvcEeO-lIn4nMqR2w" type="2001" fontName="Cantarell">
     <element xmi:type="economy:Gold" href="eastasia.economy#//@gold.1"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1VAhAavcEeO-lIn4nMqR2w" x="304" y="89"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1VAhAavcEeO-lIn4nMqR2w" x="304" y="96"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_1g1WgKvcEeO-lIn4nMqR2w" type="2001" fontName="Cantarell">
     <element xmi:type="economy:Gold" href="eastasia.economy#//@gold.2"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1g1WgavcEeO-lIn4nMqR2w" x="385" y="93"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1g1WgavcEeO-lIn4nMqR2w" x="385" y="96"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_0mAF8avcEeO-lIn4nMqR2w"/>
   <element xmi:type="economy:Economy" href="eastasia.economy#/"/>

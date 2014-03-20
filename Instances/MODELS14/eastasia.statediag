@@ -18,7 +18,7 @@
     </children>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_bjdD8avbEeO-lIn4nMqR2w"/>
     <element xmi:type="state:Region" href="eastasia.state#//@regions.0"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bjdD8qvbEeO-lIn4nMqR2w" x="150" y="62" width="115" height="131"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bjdD8qvbEeO-lIn4nMqR2w" x="156" y="60" width="109" height="121"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_eRhzwKvbEeO-lIn4nMqR2w" type="2001" fontName="Cantarell">
     <children xmi:type="notation:DecorationNode" xmi:id="_eRia0KvbEeO-lIn4nMqR2w" type="5002"/>
@@ -33,7 +33,7 @@
     </children>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_eRhzwavbEeO-lIn4nMqR2w"/>
     <element xmi:type="state:Region" href="eastasia.state#//@regions.1"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eRhzwqvbEeO-lIn4nMqR2w" x="156" y="216" width="97" height="97"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eRhzwqvbEeO-lIn4nMqR2w" x="156" y="192" width="109" height="85"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_ale_0avbEeO-lIn4nMqR2w"/>
   <element xmi:type="state:State" href="eastasia.state#/"/>

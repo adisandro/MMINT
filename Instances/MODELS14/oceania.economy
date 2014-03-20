@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<economy:Economy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:economy="http://se.cs.toronto.edu/modelepedia/Economy">
-  <gold/>
-  <gold/>
-</economy:Economy>
