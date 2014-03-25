@@ -27,7 +27,6 @@ import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.handlers.RegistryToggleState;
@@ -717,7 +716,9 @@ public class MMINT implements MMINTConstants {
 	 */
 	public static void syncRepository(MultiModel multiModel) {
 
-		repository = EcoreUtil.copy(multiModel);
+		//TODO MMINT[OO] to store operators' custom code in the mid, we would need them to be ecore-generated, but that's a burden for users
+		//TODO MMINT[OO] review the copy-on-sync mechanism and find an alternative
+		repository = MMINTEcoreUtil.copy(multiModel);
 		copySubtypeTable(subtypeTableMID, subtypeTable);
 		copyConversionTable(conversionTableMID, conversionTable);
 	}
