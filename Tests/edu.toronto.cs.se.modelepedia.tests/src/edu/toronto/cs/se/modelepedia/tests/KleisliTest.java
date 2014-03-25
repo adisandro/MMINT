@@ -16,6 +16,7 @@ import static org.junit.Assert.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
@@ -101,17 +102,16 @@ public class KleisliTest {
 	public void test() throws Exception {
 
 		Bundle bundle = Platform.getBundle(TESTS_BUNDLE_NAME);
-		//TODO MMINT[TESTS] MMINT has to run before this, with dynamic types from previous run discarded
 		// model types
 		Model rootModelType = MultiModelTypeRegistry.getType(MMINT.ROOT_MODEL_URI);
 		Model srcModelType = rootModelType.createSubtype(SRC_MODELTYPE_NAME, null, null, true);
 		String srcMetamodelName = SRC_MODELTYPE_NAME + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
 		URL srcMetamodelUrl = bundle.findEntries(TESTS_BUNDLE_MODEL_DIR, srcMetamodelName, false).nextElement();
-		Files.copy(Paths.get(FileLocator.toFileURL(srcMetamodelUrl).toURI()), Paths.get(MultiModelUtils.prependStateToUri(srcMetamodelName)));
+		Files.copy(Paths.get(FileLocator.toFileURL(srcMetamodelUrl).toURI()), Paths.get(MultiModelUtils.prependStateToUri(srcMetamodelName)), StandardCopyOption.REPLACE_EXISTING);
 		Model tgtModelType = rootModelType.createSubtype(TGT_MODELTYPE_NAME, null, null, true);
 		String tgtMetamodelName = TGT_MODELTYPE_NAME + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
 		URL tgtMetamodelUrl = bundle.findEntries(TESTS_BUNDLE_MODEL_DIR, tgtMetamodelName, false).nextElement();
-		Files.copy(Paths.get(FileLocator.toFileURL(tgtMetamodelUrl).toURI()), Paths.get(MultiModelUtils.prependStateToUri(tgtMetamodelName)));
+		Files.copy(Paths.get(FileLocator.toFileURL(tgtMetamodelUrl).toURI()), Paths.get(MultiModelUtils.prependStateToUri(tgtMetamodelName)), StandardCopyOption.REPLACE_EXISTING);
 
 		// model rel type
 		KleisliModelRel kRootModelRelType = MultiModelTypeRegistry.getType(KLEISLI_MODELRELTYPE_URI);
