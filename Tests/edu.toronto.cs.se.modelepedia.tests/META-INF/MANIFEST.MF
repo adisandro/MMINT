@@ -11,5 +11,6 @@ Require-Bundle: org.junit;bundle-version="4.11.0",
  org.eclipse.emf.ecore,
  org.eclipse.core.runtime,
  edu.toronto.cs.se.mmint,
- edu.toronto.cs.se.modelepedia.kleisli
+ edu.toronto.cs.se.modelepedia.kleisli,
+ org.eclipse.core.resources
 Bundle-ActivationPolicy: lazy

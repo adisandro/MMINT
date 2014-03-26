@@ -18,6 +18,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
@@ -53,6 +55,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
@@ -61,9 +64,8 @@ public class KleisliTest {
 
 	private final static String TESTS_BUNDLE_NAME = "edu.toronto.cs.se.modelepedia.tests";
 	private final static String TESTS_BUNDLE_MODEL_DIR= "model";
-	private final static String TESTS_BUNDLE_TEST_DIR= "test";
 	private final static String KLEISLI_MODELRELTYPE_URI = "http://se.cs.toronto.edu/modelepedia/KleisliModelRel";
-	private final static String KLEISLI_TRANSFORMATIONOPERATORTYPE_URI = "http://se.cs.toronto.edu/modelepedia/KleisliModelRel";
+	private final static String KLEISLI_TRANSFORMATIONOPERATORTYPE_URI = "http://se.cs.toronto.edu/modelepedia/Operator_KleisliModelRelTypeTransformation";
 	private final static String SRC_MODELTYPE_NAME = "Company";
 	private final static String SRC_MODELTYPEENDPOINT_NAME = SRC_MODELTYPE_NAME;
 	private final static String TGT_MODELTYPE_NAME = "Bank";
@@ -77,6 +79,7 @@ public class KleisliTest {
 	private final static String TGT_MODELOBJ_METAMODELCONTAININGFEATURE = "accounts";
 	private final static String TGT_MODELOBJ_METAMODELATTRIBUTETOCREATE = "id";
 	private final static String[] TGT_MODELOBJ_ATTRIBUTEVALUES = {"S1", "B2", "A3"};
+	private final static String TESTS_TEMPPROJECT = "edu.toronto.cs.se.modelepedia.tests";
 
 	private ModelElementReference dropMetamodelObject(EPackage metamodelRootObj, String metamodelObjName, ModelEndpointReference containerModelTypeEndpointRef, ModelElement rootModelElemType) throws MMINTException {
 
@@ -94,6 +97,7 @@ public class KleisliTest {
 		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(metamodelObj, MidLevel.TYPES);
 		String newModelElemTypeName = MultiModelRegistry.getModelElementName(eInfo, metamodelObj, MidLevel.TYPES);
 		ModelElementReference newModelElemTypeRef = rootModelElemType.createSubtypeAndReference(null, modelElemTypeUri, newModelElemTypeName, eInfo, containerModelTypeEndpointRef);
+		MMINT.createTypeHierarchy();
 
 		return newModelElemTypeRef;
 	}
@@ -101,14 +105,19 @@ public class KleisliTest {
 	@Test
 	public void test() throws Exception {
 
+		//TODO MMINT[OO] move createTypeHierarchy() call into type creation? (also, look into which of the createSubtypes() need the call)
+		//TODO MMINT[OO] shouldn't a call to createEditor() try to create the model file always, or never? (== be consistent, diagrams are created, editors not)
+		MMINT.setSetting(MMINTConstants.SETTING_TESTS_ENABLED, true);
 		Bundle bundle = Platform.getBundle(TESTS_BUNDLE_NAME);
 		// model types
 		Model rootModelType = MultiModelTypeRegistry.getType(MMINT.ROOT_MODEL_URI);
 		Model srcModelType = rootModelType.createSubtype(SRC_MODELTYPE_NAME, null, null, true);
+		MMINT.createTypeHierarchy();
 		String srcMetamodelName = SRC_MODELTYPE_NAME + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
 		URL srcMetamodelUrl = bundle.findEntries(TESTS_BUNDLE_MODEL_DIR, srcMetamodelName, false).nextElement();
 		Files.copy(Paths.get(FileLocator.toFileURL(srcMetamodelUrl).toURI()), Paths.get(MultiModelUtils.prependStateToUri(srcMetamodelName)), StandardCopyOption.REPLACE_EXISTING);
 		Model tgtModelType = rootModelType.createSubtype(TGT_MODELTYPE_NAME, null, null, true);
+		MMINT.createTypeHierarchy();
 		String tgtMetamodelName = TGT_MODELTYPE_NAME + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
 		URL tgtMetamodelUrl = bundle.findEntries(TESTS_BUNDLE_MODEL_DIR, tgtMetamodelName, false).nextElement();
 		Files.copy(Paths.get(FileLocator.toFileURL(tgtMetamodelUrl).toURI()), Paths.get(MultiModelUtils.prependStateToUri(tgtMetamodelName)), StandardCopyOption.REPLACE_EXISTING);
@@ -116,18 +125,20 @@ public class KleisliTest {
 		// model rel type
 		KleisliModelRel kRootModelRelType = MultiModelTypeRegistry.getType(KLEISLI_MODELRELTYPE_URI);
 		KleisliModelRel kModelRelType = (KleisliModelRel) kRootModelRelType.createSubtype(MODELRELTYPE_NAME, false, null, null);
+		MMINT.createTypeHierarchy();
 		KleisliModelEndpoint kRootModelTypeEndpoint = (KleisliModelEndpoint) kRootModelRelType.getModelEndpoints().get(0);
-		//TODO MMINT[TESTS] here we need MMINT.isInitialized() to return false
 		kRootModelTypeEndpoint.createSubtypeAndReference(null, SRC_MODELTYPEENDPOINT_NAME, srcModelType, false, kModelRelType);
+		MMINT.createTypeHierarchy();
 		String kTgtMetamodelName = TGT_MODELTYPEENDPOINT_NAME + MMINT.ENDPOINT_SEPARATOR + TGT_MODELTYPE_NAME + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
 		URL kTgtMetamodelUrl = bundle.findEntries(TESTS_BUNDLE_MODEL_DIR, kTgtMetamodelName, false).nextElement();
-		Files.copy(Paths.get(FileLocator.toFileURL(kTgtMetamodelUrl).toURI()), Paths.get(MultiModelUtils.prependStateToUri(MODELRELTYPE_NAME + MMINT.URI_SEPARATOR + kTgtMetamodelName)));
+		Files.copy(Paths.get(FileLocator.toFileURL(kTgtMetamodelUrl).toURI()), Paths.get(MultiModelUtils.prependStateToUri(MODELRELTYPE_NAME + MMINT.URI_SEPARATOR + kTgtMetamodelName)), StandardCopyOption.REPLACE_EXISTING);
 		kRootModelTypeEndpoint.createSubtypeAndReference(null, TGT_MODELTYPEENDPOINT_NAME, tgtModelType, false, kModelRelType);
+		MMINT.createTypeHierarchy();
 		// model element types and link types
 		ModelEndpointReference srcModelTypeEndpointRef = kModelRelType.getModelEndpointRefs().get(0);
 		EPackage srcMetamodelRootObj = (EPackage) MultiModelUtils.getModelFileInState(srcMetamodelName);
 		KleisliModelEndpointReference kTgtModelTypeEndpointRef = (KleisliModelEndpointReference) kModelRelType.getModelEndpointRefs().get(1);
-		EPackage kTgtMetamodelRootObj = (EPackage) MultiModelUtils.getModelFileInState(kTgtMetamodelName);
+		EPackage kTgtMetamodelRootObj = (EPackage) MultiModelUtils.getModelFileInState(MODELRELTYPE_NAME + MMINT.URI_SEPARATOR + kTgtMetamodelName);
 		ModelElement rootModelElemType = MultiModelTypeRegistry.getType(MMINT.ROOT_MODELELEM_URI);
 		Link rootLinkType = MultiModelTypeRegistry.getType(MMINT.ROOT_LINK_URI);
 		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeRegistry.getType(MMINT.ROOT_MODELELEMENDPOINT_URI);
@@ -142,33 +153,44 @@ public class KleisliTest {
 			}
 			String newLinkTypeName = srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_LINK_SEPARATOR + tgtModelElemTypeRef.getObject().getName();
 			LinkReference linkTypeRef = rootLinkType.createSubtypeAndReference(null, newLinkTypeName, true, kModelRelType);
+			MMINT.createTypeHierarchy();
 			rootModelElemTypeEndpoint.createSubtypeAndReference(null, srcModelElemTypeRef.getObject().getName(), srcModelElemTypeRef, false, linkTypeRef);
+			MMINT.createTypeHierarchy();
 			rootModelElemTypeEndpoint.createSubtypeAndReference(null, tgtModelElemTypeRef.getObject().getName(), tgtModelElemTypeRef, false, linkTypeRef);
+			MMINT.createTypeHierarchy();
 		}
 
 		// instances
+		IProject tempProject = ResourcesPlugin.getWorkspace().getRoot().getProject(TESTS_TEMPPROJECT);
+		tempProject.create(null);
+		tempProject.open(null);
+		String tempProjectUri = IPath.SEPARATOR + TESTS_TEMPPROJECT + IPath.SEPARATOR;
+		String instanceMIDUri = tempProjectUri + "instances.mid";
 		MultiModel instanceMID = MidFactory.eINSTANCE.createMultiModel();
-		String newModelUri = TESTS_BUNDLE_TEST_DIR + IPath.SEPARATOR + TGT_MODELTYPE_NAME.toLowerCase() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MultiModelTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION;
-		Model bankModel = tgtModelType.createInstanceAndEditor(newModelUri, ModelOrigin.CREATED, instanceMID);
-		EObject rootModelObj = bankModel.getEMFInstanceRoot();
 		EPackage tgtMetamodelRootObj = (EPackage) MultiModelUtils.getModelFileInState(tgtMetamodelName);
 		EFactory tgtMetamodelFactory = tgtMetamodelRootObj.getEFactoryInstance();
+		EObject rootModelObj = tgtMetamodelFactory.create((EClass) tgtMetamodelRootObj.getEClassifiers().get(0));
+		String newModelUri = tempProjectUri + TGT_MODELTYPE_NAME.toLowerCase() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MultiModelTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION;
+		Model bankModel = tgtModelType.createInstanceAndEditor(newModelUri, ModelOrigin.CREATED, instanceMID);
 		EStructuralFeature tgtMetamodelContainingFeature = ((EClass) tgtMetamodelRootObj.getEClassifier(TGT_MODELOBJ_METAMODELROOTCLASS)).getEStructuralFeature(TGT_MODELOBJ_METAMODELCONTAININGFEATURE);
 		EClass tgtMetamodelClassToCreate = (EClass) tgtMetamodelRootObj.getEClassifier(TGT_MODELOBJ_METAMODELCLASSTOCREATE);
 		EStructuralFeature tgtMetamodelAttributeToCreate = tgtMetamodelClassToCreate.getEStructuralFeature(TGT_MODELOBJ_METAMODELATTRIBUTETOCREATE);
 		@SuppressWarnings("unchecked")
-		EList<EObject> y = (EList<EObject>) rootModelObj.eGet(tgtMetamodelContainingFeature);
+		EList<EObject> rootModelObjContainment = (EList<EObject>) rootModelObj.eGet(tgtMetamodelContainingFeature);
 		for (String attributeValue : TGT_MODELOBJ_ATTRIBUTEVALUES) {
 			EObject classValue = tgtMetamodelFactory.create(tgtMetamodelClassToCreate);
 			classValue.eSet(tgtMetamodelAttributeToCreate, attributeValue);
-			y.add(classValue);
+			rootModelObjContainment.add(classValue);
 		}
 		MultiModelUtils.createModelFile(rootModelObj, newModelUri, true);
+		MultiModelUtils.createModelFile(instanceMID, instanceMIDUri, true);
 		EList<Model> transformationParameters = new BasicEList<Model>();
 		transformationParameters.add(kModelRelType);
 		transformationParameters.add(bankModel);
 		MultiModelTypeRegistry.<Operator>getType(KLEISLI_TRANSFORMATIONOPERATORTYPE_URI).execute(transformationParameters);
-		//TODO MMINT[TESTS] test that result model + model rel are fine
+		MultiModelUtils.createModelFile(instanceMID, instanceMIDUri, true);
+		//TODO MMINT[TESTS] are all those write to file needed?
+		//TODO MMINT[TESTS] test that result model + model rel are equals to pregenerated files
 		fail("TODO");
 	}
 

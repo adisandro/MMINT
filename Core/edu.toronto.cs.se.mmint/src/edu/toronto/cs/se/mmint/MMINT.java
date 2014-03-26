@@ -745,6 +745,7 @@ public class MMINT implements MMINTConstants {
 		command = commandService.getCommand(SETTING_MENU_DIAGRAMS_CREATION_ENABLED);
 		isEnabled = (boolean) command.getState(RegistryToggleState.STATE_ID).getValue();
 		settings.put(SETTING_MENU_DIAGRAMS_CREATION_ENABLED, new Boolean(isEnabled));
+		settings.put(SETTING_TESTS_ENABLED, false);
 	}
 
 	/**

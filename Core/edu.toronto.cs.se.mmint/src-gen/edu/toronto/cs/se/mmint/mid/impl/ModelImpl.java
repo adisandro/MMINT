@@ -1062,7 +1062,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			rootModelObj = MultiModelUtils.getModelFile(getUri(), true);
 		}
 		catch (Exception e) {
-			throw new MMINTException("Error accessing the model file for model" + getUri(), e);
+			throw new MMINTException("Error accessing the model file for model " + getUri(), e);
 		}
 
 		return rootModelObj;
