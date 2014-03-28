@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:kleisli="http://se.cs.toronto.edu/modelepedia/KleisliModelRel" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship">
   <models uri="/edu.toronto.cs.se.modelepedia.tests/bank.xmi" name="bank" metatypeUri="http://se.cs.toronto.edu/mmint/Bank" dynamic="true" origin="CREATED" fileExtension="xmi" editors="//@editors.0">
-    <modelElems uri="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#//@accounts.0_AS_http://se.cs.toronto.edu/mmint/Bank#//_StudentAccount" name="[accounts->] Student Account S1" metatypeUri="http://se.cs.toronto.edu/mmint/Bank#//_StudentAccount" dynamic="true">
-      <eInfo className="_StudentAccount" featureName="accounts" relatedClassName="Bank"/>
-    </modelElems>
     <modelElems uri="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#/_AS_http://se.cs.toronto.edu/mmint/Bank#//Bank" name="[root->] Bank" metatypeUri="http://se.cs.toronto.edu/mmint/Bank#//Bank" dynamic="true">
       <eInfo className="Bank" featureName="root"/>
     </modelElems>
-    <modelElems uri="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#//@accounts.1/_number_AS_http://se.cs.toronto.edu/mmint/Bank#//Account/_number" name="Business Account B2[_number] 2" metatypeUri="http://se.cs.toronto.edu/mmint/Bank#//Account/_number" dynamic="true">
-      <eInfo className="_BusinessAccount" featureName="_number" attribute="true"/>
-    </modelElems>
-    <modelElems uri="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#//@accounts.0/_number_AS_http://se.cs.toronto.edu/mmint/Bank#//Account/_number" name="Student Account S1[_number] 1" metatypeUri="http://se.cs.toronto.edu/mmint/Bank#//Account/_number" dynamic="true">
-      <eInfo className="_StudentAccount" featureName="_number" attribute="true"/>
+    <modelElems uri="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#//@accounts.0_AS_http://se.cs.toronto.edu/mmint/Bank#//_StudentAccount" name="[accounts->] Student Account S1" metatypeUri="http://se.cs.toronto.edu/mmint/Bank#//_StudentAccount" dynamic="true">
+      <eInfo className="_StudentAccount" featureName="accounts" relatedClassName="Bank"/>
     </modelElems>
     <modelElems uri="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#//@accounts.1_AS_http://se.cs.toronto.edu/mmint/Bank#//_BusinessAccount" name="[accounts->] Business Account B2" metatypeUri="http://se.cs.toronto.edu/mmint/Bank#//_BusinessAccount" dynamic="true">
       <eInfo className="_BusinessAccount" featureName="accounts" relatedClassName="Bank"/>
     </modelElems>
+    <modelElems uri="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#//@accounts.0/_number_AS_http://se.cs.toronto.edu/mmint/Bank#//Account/_number" name="Student Account S1[_number] 1" metatypeUri="http://se.cs.toronto.edu/mmint/Bank#//Account/_number" dynamic="true">
+      <eInfo className="_StudentAccount" featureName="_number" attribute="true"/>
+    </modelElems>
+    <modelElems uri="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#//@accounts.1/_number_AS_http://se.cs.toronto.edu/mmint/Bank#//Account/_number" name="Business Account B2[_number] 2" metatypeUri="http://se.cs.toronto.edu/mmint/Bank#//Account/_number" dynamic="true">
+      <eInfo className="_BusinessAccount" featureName="_number" attribute="true"/>
+    </modelElems>
   </models>
   <models uri="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi" name="bank_transformed" metatypeUri="http://se.cs.toronto.edu/mmint/Company" dynamic="true" origin="CREATED" fileExtension="xmi" editors="//@editors.1">
-    <modelElems uri="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#//@clients.0_AS_http://se.cs.toronto.edu/mmint/Company#//Student" name="[clients->] Student 1" metatypeUri="http://se.cs.toronto.edu/mmint/Company#//Student" dynamic="true">
-      <eInfo className="Student" featureName="clients" relatedClassName="Company"/>
-    </modelElems>
     <modelElems uri="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#/_AS_http://se.cs.toronto.edu/mmint/Company#//Company" name="[root->] Company" metatypeUri="http://se.cs.toronto.edu/mmint/Company#//Company" dynamic="true">
       <eInfo className="Company" featureName="root"/>
     </modelElems>
-    <modelElems uri="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#//@clients.1/number_AS_http://se.cs.toronto.edu/mmint/Company#//Client/number" name="Businessman 2[number] 2" metatypeUri="http://se.cs.toronto.edu/mmint/Company#//Client/number" dynamic="true">
-      <eInfo className="Businessman" featureName="number" attribute="true"/>
+    <modelElems uri="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#//@clients.0_AS_http://se.cs.toronto.edu/mmint/Company#//Student" name="[clients->] Student 1" metatypeUri="http://se.cs.toronto.edu/mmint/Company#//Student" dynamic="true">
+      <eInfo className="Student" featureName="clients" relatedClassName="Company"/>
+    </modelElems>
+    <modelElems uri="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#//@clients.1_AS_http://se.cs.toronto.edu/mmint/Company#//Businessman" name="[clients->] Businessman 2" metatypeUri="http://se.cs.toronto.edu/mmint/Company#//Businessman" dynamic="true">
+      <eInfo className="Businessman" featureName="clients" relatedClassName="Company"/>
     </modelElems>
     <modelElems uri="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#//@clients.0/number_AS_http://se.cs.toronto.edu/mmint/Company#//Client/number" name="Student 1[number] 1" metatypeUri="http://se.cs.toronto.edu/mmint/Company#//Client/number" dynamic="true">
       <eInfo className="Student" featureName="number" attribute="true"/>
     </modelElems>
-    <modelElems uri="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#//@clients.1_AS_http://se.cs.toronto.edu/mmint/Company#//Businessman" name="[clients->] Businessman 2" metatypeUri="http://se.cs.toronto.edu/mmint/Company#//Businessman" dynamic="true">
-      <eInfo className="Businessman" featureName="clients" relatedClassName="Company"/>
+    <modelElems uri="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#//@clients.1/number_AS_http://se.cs.toronto.edu/mmint/Company#//Client/number" name="Businessman 2[number] 2" metatypeUri="http://se.cs.toronto.edu/mmint/Company#//Client/number" dynamic="true">
+      <eInfo className="Businessman" featureName="number" attribute="true"/>
     </modelElems>
   </models>
   <models xsi:type="kleisli:KleisliBinaryModelRel" uri="" name="bank_To_bank_transformed" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank" dynamic="true" origin="CREATED" fileExtension="" extendedUri="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0">
@@ -39,25 +39,25 @@
     <modelEndpoints xsi:type="kleisli:KleisliModelEndpoint" uri="" name="bank" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank-Bank/Bank" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0">
       <extendedTarget uri="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi" name="bank" metatypeUri="http://se.cs.toronto.edu/mmint/Bank" dynamic="true" origin="CREATED" fileExtension="xmi"/>
     </modelEndpoints>
-    <links xsi:type="relationship:BinaryLink" uri="" name="[accounts->] Student Account S1_To_[clients->] Student 1" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Student_To__StudentAccount" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.0/@modelElemEndpointRefs.0 //@models.2/@linkRefs.0/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="[clients->] Student 1" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Student_To__StudentAccount-Student/Student" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
-      <modelElemEndpoints uri="" name="[accounts->] Student Account S1" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Student_To__StudentAccount-_StudentAccount/_StudentAccount" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.0"/>
+    <links xsi:type="relationship:BinaryLink" uri="" name="[root->] Bank_To_[root->] Company" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Company_To_Bank" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.0/@modelElemEndpointRefs.0 //@models.2/@linkRefs.0/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="[root->] Company" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Company_To_Bank-Company/Company" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
+      <modelElemEndpoints uri="" name="[root->] Bank" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Company_To_Bank-Bank/Bank" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.0"/>
     </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="[root->] Bank_To_[root->] Company" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Company_To_Bank" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.1/@modelElemEndpointRefs.0 //@models.2/@linkRefs.1/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="[root->] Company" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Company_To_Bank-Company/Company" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
-      <modelElemEndpoints uri="" name="[root->] Bank" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Company_To_Bank-Bank/Bank" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
+    <links xsi:type="relationship:BinaryLink" uri="" name="[accounts->] Student Account S1_To_[clients->] Student 1" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Student_To__StudentAccount" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.1/@modelElemEndpointRefs.0 //@models.2/@linkRefs.1/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="[clients->] Student 1" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Student_To__StudentAccount-Student/Student" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
+      <modelElemEndpoints uri="" name="[accounts->] Student Account S1" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Student_To__StudentAccount-_StudentAccount/_StudentAccount" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
     </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="Business Account B2[_number] 2_To_Businessman 2[number] 2" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Client[number]_To_Account[_number]" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.2/@modelElemEndpointRefs.0 //@models.2/@linkRefs.2/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="Businessman 2[number] 2" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Client[number]_To_Account[_number]-Client[number]/Client[number]" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.2"/>
-      <modelElemEndpoints uri="" name="Business Account B2[_number] 2" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Client[number]_To_Account[_number]-Account[_number]/Account[_number]" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.2"/>
+    <links xsi:type="relationship:BinaryLink" uri="" name="[accounts->] Business Account B2_To_[clients->] Businessman 2" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Businessman_To__BusinessAccount" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.2/@modelElemEndpointRefs.0 //@models.2/@linkRefs.2/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="[clients->] Businessman 2" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Businessman_To__BusinessAccount-Businessman/Businessman" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.2"/>
+      <modelElemEndpoints uri="" name="[accounts->] Business Account B2" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Businessman_To__BusinessAccount-_BusinessAccount/_BusinessAccount" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.2"/>
     </links>
     <links xsi:type="relationship:BinaryLink" uri="" name="Student Account S1[_number] 1_To_Student 1[number] 1" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Client[number]_To_Account[_number]" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.3/@modelElemEndpointRefs.0 //@models.2/@linkRefs.3/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Student 1[number] 1" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Client[number]_To_Account[_number]-Client[number]/Client[number]" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.3"/>
       <modelElemEndpoints uri="" name="Student Account S1[_number] 1" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Client[number]_To_Account[_number]-Account[_number]/Account[_number]" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.3"/>
     </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="[accounts->] Business Account B2_To_[clients->] Businessman 2" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Businessman_To__BusinessAccount" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.4/@modelElemEndpointRefs.0 //@models.2/@linkRefs.4/@modelElemEndpointRefs.1">
-      <modelElemEndpoints uri="" name="[clients->] Businessman 2" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Businessman_To__BusinessAccount-Businessman/Businessman" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.4"/>
-      <modelElemEndpoints uri="" name="[accounts->] Business Account B2" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Businessman_To__BusinessAccount-_BusinessAccount/_BusinessAccount" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.4"/>
+    <links xsi:type="relationship:BinaryLink" uri="" name="Business Account B2[_number] 2_To_Businessman 2[number] 2" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Client[number]_To_Account[_number]" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.4/@modelElemEndpointRefs.0 //@models.2/@linkRefs.4/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Businessman 2[number] 2" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Client[number]_To_Account[_number]-Client[number]/Client[number]" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.4"/>
+      <modelElemEndpoints uri="" name="Business Account B2[_number] 2" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank/Client[number]_To_Account[_number]-Account[_number]/Account[_number]" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.4"/>
     </links>
     <modelEndpointRefs referencedObject="//@models.2/@modelEndpoints.0" modifiable="true">
       <modelElemRefs referencedObject="//@models.1/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.0/@modelElemEndpointRefs.0"/>
@@ -102,14 +102,14 @@
   </editors>
   <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/bank.xmi" value="//@models.0"/>
   <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi" value="//@models.1"/>
-  <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#//@accounts.0_AS_http://se.cs.toronto.edu/mmint/Bank#//_StudentAccount" value="//@models.0/@modelElems.0"/>
-  <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#//@clients.0_AS_http://se.cs.toronto.edu/mmint/Company#//Student" value="//@models.1/@modelElems.0"/>
-  <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#/_AS_http://se.cs.toronto.edu/mmint/Bank#//Bank" value="//@models.0/@modelElems.1"/>
-  <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#/_AS_http://se.cs.toronto.edu/mmint/Company#//Company" value="//@models.1/@modelElems.1"/>
-  <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#//@accounts.1/_number_AS_http://se.cs.toronto.edu/mmint/Bank#//Account/_number" value="//@models.0/@modelElems.2"/>
-  <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#//@clients.1/number_AS_http://se.cs.toronto.edu/mmint/Company#//Client/number" value="//@models.1/@modelElems.2"/>
+  <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#/_AS_http://se.cs.toronto.edu/mmint/Bank#//Bank" value="//@models.0/@modelElems.0"/>
+  <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#/_AS_http://se.cs.toronto.edu/mmint/Company#//Company" value="//@models.1/@modelElems.0"/>
+  <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#//@accounts.0_AS_http://se.cs.toronto.edu/mmint/Bank#//_StudentAccount" value="//@models.0/@modelElems.1"/>
+  <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#//@clients.0_AS_http://se.cs.toronto.edu/mmint/Company#//Student" value="//@models.1/@modelElems.1"/>
+  <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#//@accounts.1_AS_http://se.cs.toronto.edu/mmint/Bank#//_BusinessAccount" value="//@models.0/@modelElems.2"/>
+  <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#//@clients.1_AS_http://se.cs.toronto.edu/mmint/Company#//Businessman" value="//@models.1/@modelElems.2"/>
   <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#//@accounts.0/_number_AS_http://se.cs.toronto.edu/mmint/Bank#//Account/_number" value="//@models.0/@modelElems.3"/>
   <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#//@clients.0/number_AS_http://se.cs.toronto.edu/mmint/Company#//Client/number" value="//@models.1/@modelElems.3"/>
-  <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#//@accounts.1_AS_http://se.cs.toronto.edu/mmint/Bank#//_BusinessAccount" value="//@models.0/@modelElems.4"/>
-  <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#//@clients.1_AS_http://se.cs.toronto.edu/mmint/Company#//Businessman" value="//@models.1/@modelElems.4"/>
+  <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi#//@accounts.1/_number_AS_http://se.cs.toronto.edu/mmint/Bank#//Account/_number" value="//@models.0/@modelElems.4"/>
+  <extendibleTable key="/edu.toronto.cs.se.modelepedia.tests/bank_transformed.xmi#//@clients.1/number_AS_http://se.cs.toronto.edu/mmint/Company#//Client/number" value="//@models.1/@modelElems.4"/>
 </mid:MultiModel>

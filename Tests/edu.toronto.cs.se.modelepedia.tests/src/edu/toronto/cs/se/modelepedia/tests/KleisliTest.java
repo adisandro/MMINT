@@ -86,7 +86,7 @@ public class KleisliTest {
 	private final static String TGT_MODELOBJ_METAMODELCONTAININGFEATURE = "accounts";
 	private final static String TGT_MODELOBJ_METAMODELATTRIBUTETOCREATE = "id";
 	private final static String[] TGT_MODELOBJ_ATTRIBUTEVALUES = {"S1", "B2", "A3"};
-	private final static String TESTS_TEMPPROJECT = "edu.toronto.cs.se.modelepedia.tests";
+	private final static String TESTS_TEMPPROJECT = TESTS_BUNDLE_NAME;
 	private final static String TESTS_INSTANCEMID_FILENAME = "instances" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MidPackage.eNAME;
 
 	private ModelElementReference dropMetamodelObject(EPackage metamodelRootObj, String metamodelObjName, ModelEndpointReference containerModelTypeEndpointRef, ModelElement rootModelElemType) throws MMINTException {
@@ -186,13 +186,12 @@ public class KleisliTest {
 			rootModelObjContainment.add(classValue);
 		}
 		MultiModelUtils.createModelFile(rootModelObj, bankModelUri, true);
-		MultiModelUtils.createModelFile(instanceMID, instanceMIDUri, true);
+		MultiModelUtils.createModelFile(instanceMID, instanceMIDUri, true); // this is needed for correct uris in the operator
 		EList<Model> transformationParameters = new BasicEList<Model>();
 		transformationParameters.add(kModelRelType);
 		transformationParameters.add(bankModel);
 		EList<Model> transformationResult = MultiModelTypeRegistry.<Operator>getType(KLEISLI_TRANSFORMATIONOPERATORTYPE_URI).execute(transformationParameters);
 		MultiModelUtils.createModelFile(instanceMID, instanceMIDUri, true);
-		//TODO MMINT[TESTS] are all those write to file needed?
 
 		// test equivalence with oracle
 		ResourceSet oracleResourceSet = new ResourceSetImpl();
