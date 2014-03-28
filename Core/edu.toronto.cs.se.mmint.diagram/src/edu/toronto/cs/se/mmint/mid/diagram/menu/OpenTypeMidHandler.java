@@ -32,7 +32,7 @@ public class OpenTypeMidHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		String pluginPath = MMINTActivator.getDefault().getStateLocation().toOSString();
-		String midModelUri = pluginPath + IPath.SEPARATOR + MMINT.TYPE_MID_FILENAME;
+		String midModelUri = pluginPath + IPath.SEPARATOR + MMINT.TYPEMID_FILENAME;
 		String midDiagramUri = midModelUri + MMINT.MID_DIAGRAM_SUFFIX;
 		File middiag = new File(midDiagramUri);
 		if (!middiag.exists()) {
@@ -51,7 +51,7 @@ public class OpenTypeMidHandler extends AbstractHandler {
 	public static void createTypeMIDDiagram() {
 
 		String pluginPath = MMINTActivator.getDefault().getStateLocation().toOSString();
-		String midModelUri = pluginPath + IPath.SEPARATOR + MMINT.TYPE_MID_FILENAME;
+		String midModelUri = pluginPath + IPath.SEPARATOR + MMINT.TYPEMID_FILENAME;
 		String midDiagramUri = midModelUri + MMINT.MID_DIAGRAM_SUFFIX;
 		try {
 			GMFDiagramUtils.createGMFDiagram(midModelUri, midDiagramUri, MultiModelEditPart.MODEL_ID, MidDiagramEditorPlugin.ID);

@@ -36,6 +36,7 @@ import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MidFactory;
 import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MidPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -108,7 +109,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	static Map<String, Set<String>> multipleInheritanceTable;
 	/** The type MID filename. */
-	public static final String TYPE_MID_FILENAME = "types.mid";
+	public static final String TYPEMID_FILENAME = "types" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MidPackage.eNAME;
 	/** The MID diagram suffix. */
 	public static final String MID_DIAGRAM_SUFFIX = "diag";
 
@@ -471,6 +472,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	private static void createTypeHierarchy(MultiModel multiModel, Map<String, Set<String>> subtypeTable, Map<String, Map<String, Set<List<String>>>> conversionTable) {
 
+		//TODO MMINT[OO] this should be called directly by the various createSubtype(), when the mechanism will be less expensive
 		subtypeTable.clear();
 		conversionTable.clear();
 		for (ExtendibleElement type : multiModel.getExtendibleTable().values()) {
@@ -504,12 +506,17 @@ public class MMINT implements MMINTConstants {
 	 * Creates the necessary structures to support the type hierarchy for the
 	 * Type MID.
 	 * 
-	 * @param multiModel
+	 * @param typeMID
 	 *            The multimodel root of the Type MID.
 	 */
-	public static void createTypeHierarchy(MultiModel multiModel) {
+	public static void createTypeHierarchy(MultiModel typeMID) {
 
-		createTypeHierarchy(multiModel, subtypeTableMID, conversionTableMID);
+		if (typeMID == repository) {
+			createTypeHierarchy();
+		}
+		else {
+			createTypeHierarchy(typeMID, subtypeTableMID, conversionTableMID);
+		}
 	}
 
 	/**
@@ -559,7 +566,7 @@ public class MMINT implements MMINTConstants {
 
 		MultiModel multiModel;
 		try {
-			multiModel = (MultiModel) MultiModelUtils.getModelFileInState(TYPE_MID_FILENAME);
+			multiModel = (MultiModel) MultiModelUtils.getModelFileInState(TYPEMID_FILENAME);
 		}
 		catch (Exception e) {
 			MMINTException.print(Type.WARNING, "No previous Type MID found, skipping dynamic types", e);
@@ -701,7 +708,7 @@ public class MMINT implements MMINTConstants {
 		copySubtypeTable(subtypeTable, subtypeTableMID);
 		copyConversionTable(conversionTable, conversionTableMID);
 		try {
-			MultiModelUtils.createModelFileInState(repository, TYPE_MID_FILENAME);
+			MultiModelUtils.createModelFileInState(repository, TYPEMID_FILENAME);
 		}
 		catch (Exception e) {
 			MMINTException.print(Type.ERROR, "Error creating Type MID file", e);

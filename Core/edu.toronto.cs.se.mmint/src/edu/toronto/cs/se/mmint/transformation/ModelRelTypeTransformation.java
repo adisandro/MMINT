@@ -144,7 +144,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			srcModelObjs.put(srcModelObj, tgtModelElemTypeRef);
 		}
 		// second pass: transform
-		//TODO MMINT[TRANSFORMATION] order of elements in lists should be preserved
+		//TODO MMINT[TRANSFORMATION] order of elements in lists should be preserved == make this operator deterministic
 		Map<EObject, EObject> tgtModelObjs = new HashMap<EObject, EObject>();
 		for (EObject srcModelObj : srcModelObjs.keySet()) {
 			if (tgtModelObjs.get(srcModelObj) != null) { // already transformed
