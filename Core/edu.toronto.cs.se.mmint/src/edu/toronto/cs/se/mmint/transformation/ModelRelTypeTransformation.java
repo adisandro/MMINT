@@ -11,7 +11,10 @@
  */
 package edu.toronto.cs.se.mmint.transformation;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -114,15 +117,16 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		return tgtModelObj;
 	}
 
-	protected EObject transformModelObjFeature(EObject srcModelObj, String srcFeatureClassLiteral, EObject tgtModelObj, String tgtFeatureClassLiteral, Map<PrimitiveEObjectWrapper, PrimitiveEObjectWrapper> tempTgtModelObjs) {
+	protected EObject transformModelObjFeature(EObject srcModelObj, String srcFeatureClassLiteral, EObject tgtModelObj, String tgtFeatureClassLiteral, List<PrimitiveEObjectWrapper> primitiveSrcModelObjs, List<PrimitiveEObjectWrapper> primitiveTgtModelObjs) {
 
 		EStructuralFeature srcFeature = srcModelObj.eClass().getEStructuralFeature(srcFeatureClassLiteral), tgtFeature = tgtModelObj.eClass().getEStructuralFeature(tgtFeatureClassLiteral);
 		Object value = srcModelObj.eGet(srcFeature);
 		tgtModelObj.eSet(tgtFeature, value);
-		PrimitiveEObjectWrapper tgtModelObjValue = new PrimitiveEObjectWrapper(tgtModelObj, tgtFeature, value);
-		tempTgtModelObjs.put(new PrimitiveEObjectWrapper(srcModelObj, srcFeature, value), tgtModelObjValue);
+		PrimitiveEObjectWrapper primitiveTgtModelObj = new PrimitiveEObjectWrapper(tgtModelObj, tgtFeature, value);
+		primitiveSrcModelObjs.add(new PrimitiveEObjectWrapper(srcModelObj, srcFeature, value));
+		primitiveTgtModelObjs.add(primitiveTgtModelObj);
 
-		return tgtModelObjValue;
+		return primitiveTgtModelObj;
 	}
 
 	protected void transform(BinaryModelRel traceModelRel, Model srcModel, int srcIndex, int tgtIndex) throws Exception {
@@ -130,7 +134,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		ModelRel traceModelRelType = traceModelRel.getMetatype();
 		ModelEndpointReference srcModelTypeEndpointRef = traceModelRelType.getModelEndpointRefs().get(srcIndex);
 		ModelEndpointReference tgtModelTypeEndpointRef = traceModelRelType.getModelEndpointRefs().get(tgtIndex);
-		Map<EObject, ModelElementReference> srcModelObjs = new HashMap<EObject, ModelElementReference>();
+		Map<EObject, ModelElementReference> srcModelObjs = new LinkedHashMap<EObject, ModelElementReference>();
 		TreeIterator<EObject> srcModelObjsIter = EcoreUtil.getAllContents(srcModel.getEMFInstanceRoot().eResource(), true);
 		// first pass: get model objects to be transformed
 		while (srcModelObjsIter.hasNext()) {
@@ -144,8 +148,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			srcModelObjs.put(srcModelObj, tgtModelElemTypeRef);
 		}
 		// second pass: transform
-		//TODO MMINT[TRANSFORMATION] order of elements in lists should be preserved == make this operator deterministic
-		Map<EObject, EObject> tgtModelObjs = new HashMap<EObject, EObject>();
+		Map<EObject, EObject> tgtModelObjs = new LinkedHashMap<EObject, EObject>();
 		for (EObject srcModelObj : srcModelObjs.keySet()) {
 			if (tgtModelObjs.get(srcModelObj) != null) { // already transformed
 				continue;
@@ -153,7 +156,8 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			transformModelObj(srcModelTypeEndpointRef, srcModelObj, srcModelObjs, tgtModelTypeEndpointRef, tgtModelObjs);
 		}
 		// third pass: attributes
-		Map<PrimitiveEObjectWrapper, PrimitiveEObjectWrapper> tempTgtModelObjs = new HashMap<PrimitiveEObjectWrapper, PrimitiveEObjectWrapper>();
+		//TODO here they are really two lists: tempTgtModelObjs
+		List<PrimitiveEObjectWrapper> primitiveSrcModelObjs = new ArrayList<PrimitiveEObjectWrapper>(), primitiveTgtModelObjs = new ArrayList<PrimitiveEObjectWrapper>();
 		for (ModelElementReference srcModelElemTypeRef : srcModelTypeEndpointRef.getModelElemRefs()) {
 			EMFInfo srcModelElemTypeEInfo = srcModelElemTypeRef.getObject().getEInfo();
 			if (!srcModelElemTypeEInfo.isAttribute()) {
@@ -166,12 +170,12 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 				if (!MultiModelConstraintChecker.instanceofEMFClass(srcModelObj, srcModelElemTypeEInfo.getClassName())) {
 					continue;
 				}
-				transformModelObjFeature(srcModelObj, srcModelElemTypeEInfo.getFeatureName(), tgtModelObjsEntry.getValue(), tgtModelElemTypeEInfo.getFeatureName(), tempTgtModelObjs);
+				transformModelObjFeature(srcModelObj, srcModelElemTypeEInfo.getFeatureName(), tgtModelObjsEntry.getValue(), tgtModelElemTypeEInfo.getFeatureName(), primitiveSrcModelObjs, primitiveTgtModelObjs);
 			}
 			//TODO MMINT[TRANSFORMATION] do non-containment references
 		}
-		for (Map.Entry<PrimitiveEObjectWrapper, PrimitiveEObjectWrapper> tempTgtModelObjsEntry : tempTgtModelObjs.entrySet()) {
-			tgtModelObjs.put(tempTgtModelObjsEntry.getKey(), tempTgtModelObjsEntry.getValue());
+		for (int i = 0; i < primitiveSrcModelObjs.size(); i++) {
+			tgtModelObjs.put(primitiveSrcModelObjs.get(i), primitiveTgtModelObjs.get(i));
 		}
 		// fourth pass: create model elements and links
 		MultiModelUtils.createModelFile(tgtRootModelObj, tgtModelUri, true);
