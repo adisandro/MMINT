@@ -26,19 +26,27 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -51,6 +59,7 @@ import org.osgi.framework.FrameworkUtil;
 
 import com.parctechnologies.eclipse.CompoundTerm;
 
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
@@ -66,6 +75,7 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
@@ -708,11 +718,31 @@ linkTypes:
 		}
 	}
 
-	private static void cleanupOCLConstraintConsistency(EPackage modelTypeObj, EClass modelTypeRootObj, IProject tempProject) {
+	private static void flattenEClass(EPackage flatPackage, EClass flatClass, EList<EClass> flatSuperClasses) {
 
-		modelTypeObj.getEAnnotations().remove(modelTypeObj.getEAnnotations().size()-1);
-		modelTypeRootObj.getEAnnotations().remove(modelTypeRootObj.getEAnnotations().size()-1);
-		modelTypeRootObj.getEAnnotations().remove(modelTypeRootObj.getEAnnotations().size()-1);
+		for (EClass superClass : flatClass.getEAllSuperTypes()) {
+			// copy features from superclass
+			for (EStructuralFeature flatFeature : superClass.getEStructuralFeatures()) {
+				flatClass.getEStructuralFeatures().add(EcoreUtil.copy(flatFeature));
+			}
+			if (superClass.getEPackage() != flatPackage) { // superclass not in same package (assuming package == file)
+				// copy superclasses from other packages (recursion not needed because superSuperClass is also superClass)
+				EClass flatSuperClass = EcoreUtil.copy(superClass);
+				flattenEClass(flatPackage, flatSuperClass, flatSuperClasses);
+				for (EClass superSuperClass : superClass.getEAllSuperTypes()) {
+					for (EStructuralFeature flatSuperFeature : superSuperClass.getEStructuralFeatures()) {
+						flatSuperClass.getEStructuralFeatures().add(EcoreUtil.copy(flatSuperFeature));
+					}
+				}
+				flatSuperClass.getESuperTypes().clear();
+				flatSuperClasses.add(flatSuperClass);
+			}
+		}
+		flatClass.getESuperTypes().clear();
+	}
+
+	private static void cleanupCheckOCLConstraintConsistency(IProject tempProject) {
+
 		try {
 			if (tempProject != null) {
 				tempProject.delete(true, true, null);
@@ -760,13 +790,56 @@ linkTypes:
 		if (modelType instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
 			return checkOCLConstraintConsistency(MultiModelTypeRegistry.<Model>getType(modelTypeObj.getNsURI()), oclConsistencyConstraint);
 		}
+		// flatten hierarchy and add constraint as annotation into the metamodel
+		//TODO wrong on many levels: types of ereferences must be flattened too
+		ResourceSet flatResourceSet = new ResourceSetImpl();
+		URI flatUri = URI.createPlatformResourceURI(EMFTOCSP_TEMPPROJECT + IPath.SEPARATOR + EMFTOCSP_TEMPFOLDER + IPath.SEPARATOR + modelTypeObj.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME, true);
+		Resource flatResource = flatResourceSet.createResource(flatUri);
+		EPackage flatModelTypeObj = EcoreUtil.copy(modelTypeObj);
+		flatResource.getContents().add(flatModelTypeObj);
+		EList<EClass> flatSuperClasses = new BasicEList<EClass>();
+		for (EClassifier flatClassifier : flatModelTypeObj.getEClassifiers()) {
+			if (!(flatClassifier instanceof EClass)) {
+				continue;
+			}
+			EClass flatClass = (EClass) flatClassifier;
+			for (EClass superClass : flatClass.getEAllSuperTypes()) {
+				for (EStructuralFeature flatFeature : superClass.getEStructuralFeatures()) {
+					flatClass.getEStructuralFeatures().add(EcoreUtil.copy(flatFeature));
+				}
+				if (superClass.getEPackage() != flatModelTypeObj) {
+					EClass flatSuperClass = EcoreUtil.copy(superClass);
+					for (EClass superClass2 : superClass.getEAllSuperTypes()) {
+						for (EStructuralFeature flatSuperFeature : superClass2.getEStructuralFeatures()) {
+							flatSuperClass.getEStructuralFeatures().add(EcoreUtil.copy(flatSuperFeature));
+						}
+					}
+					flatSuperClass.getESuperTypes().clear();
+					flatSuperClasses.add(flatSuperClass);
+				}
+			}
+			flatClass.getESuperTypes().clear();
+		}
+		flatModelTypeObj.getEClassifiers().addAll(flatSuperClasses);
+		for (EClassifier flatClassifier : flatModelTypeObj.getEClassifiers()) {
+			if (!(flatClassifier instanceof EClass)) {
+				continue;
+			}
+			EClass flatClass = (EClass) flatClassifier;
+			for (EStructuralFeature flatFeature : flatClass.getEStructuralFeatures()) {
+				if (!(flatFeature instanceof EReference)) {
+					continue;
+				}
+				flatFeature.setEType(flatModelTypeObj.getEClassifier(flatFeature.getEType().getName()));
+			}
+		}
 		// add constraint as annotation into the metamodel
 		EAnnotation newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		newEAnnotation.setSource(EcorePackage.eNS_URI);
 		EMap<String, String> newEAnnotationDetails = newEAnnotation.getDetails();
 		newEAnnotationDetails.put(MultiModelTypeFactory.ECORE_VALIDATION_DELEGATE, MultiModelTypeFactory.ECORE_PIVOT_URI);
-		modelTypeObj.getEAnnotations().add(newEAnnotation);
-		EClass modelTypeRootObj = (EClass) modelTypeObj.getEClassifiers().get(0);
+		flatModelTypeObj.getEAnnotations().add(newEAnnotation);
+		EClass modelTypeRootObj = (EClass) flatModelTypeObj.getEClassifiers().get(0);
 		newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		newEAnnotation.setSource(EcorePackage.eNS_URI);
 		newEAnnotationDetails = newEAnnotation.getDetails();
@@ -785,7 +858,7 @@ linkTypes:
 		IModelToCspSolverFactory<Resource, CompoundTerm> modelSolverFactory = new EmfModelToCspSolverFactory();
 		IModelToCspSolver<Resource, CompoundTerm> modelSolver = modelSolverFactory.getModelToCspSolver();
 		modelSolver.setModelFileName(modelTypeName);
-		modelSolver.setModel(modelTypeObj.eResource());
+		modelSolver.setModel(flatModelTypeObj.eResource());
 		modelSolver.setSolver(solver);
 		modelSolver.setCspCodeGenerator(new EmfToEclCodeGenerator(modelSolver));
 		modelSolver.getBuilder();
@@ -836,9 +909,17 @@ linkTypes:
 		}
 		catch (CoreException e) {
 			MMINTException.print(MMINTException.Type.WARNING, "Can't create EMFtoCSP temporary project, skipping consistency check", e);
-			cleanupOCLConstraintConsistency(modelTypeObj, modelTypeRootObj, tempProject);
+			cleanupCheckOCLConstraintConsistency(tempProject);
 			return true;
 		}
+
+		//TODO TEMP
+		try {
+			MultiModelUtils.createModelFile(flatModelTypeObj, EMFTOCSP_TEMPPROJECT + IPath.SEPARATOR + EMFTOCSP_TEMPFOLDER + IPath.SEPARATOR + modelTypeObj.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME, true);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+
 		modelSolver.setResultLocation(resultLocation);
 		// EMFtoCSP performFinish()
 		File importsFolder;
@@ -847,7 +928,7 @@ linkTypes:
 		}
 		catch (Exception e) {
 			MMINTException.print(MMINTException.Type.WARNING, "Can't find EMFtoCSP libs, skipping consistency check", e);
-			cleanupOCLConstraintConsistency(modelTypeObj, modelTypeRootObj, tempProject);
+			cleanupCheckOCLConstraintConsistency(tempProject);
 			return true;
 		}
 		File[] libs = importsFolder.listFiles(
@@ -862,7 +943,8 @@ linkTypes:
 			libList.add(libs[i]);
 		}
 		boolean isConsistent = modelSolver.solveModel(libList);
-		cleanupOCLConstraintConsistency(modelTypeObj, modelTypeRootObj, tempProject);
+		//TODO TEMP
+		//cleanupCheckOCLConstraintConsistency(tempProject);
 
 		return isConsistent;
 	}

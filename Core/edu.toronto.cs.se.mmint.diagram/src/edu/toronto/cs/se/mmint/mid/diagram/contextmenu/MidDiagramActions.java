@@ -261,7 +261,7 @@ public class MidDiagramActions extends ContributionItem {
 		// constraint
 		if (doProperty) {
 			MenuItem propertyItem = new MenuItem(mmintMenu, SWT.NONE);
-			propertyItem.setText("Add/Modify Property");
+			propertyItem.setText("Add/Modify Constraint");
 			propertyItem.addSelectionListener(
 				new AddModifyConstraintListener(models.get(0))
 			);
