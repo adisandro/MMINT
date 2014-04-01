@@ -570,6 +570,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 */
 	public Editor createInstance(String modelUri, MultiModel containerMultiModel) throws MMINTException {
 
+		//TODO MMINT[OO] shouldn't this try to create the model file always, or never? (== be consistent, diagrams are created, editors not)
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}

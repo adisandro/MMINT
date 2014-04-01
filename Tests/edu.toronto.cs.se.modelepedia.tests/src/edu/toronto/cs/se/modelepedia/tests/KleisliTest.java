@@ -113,7 +113,6 @@ public class KleisliTest {
 	@Test
 	public void test() throws Exception {
 
-		//TODO MMINT[OO] shouldn't a call to createEditor() try to create the model file always, or never? (== be consistent, diagrams are created, editors not)
 		MMINT.setSetting(MMINTConstants.SETTING_TESTS_ENABLED, true);
 		Bundle bundle = Platform.getBundle(TESTS_BUNDLE_NAME);
 		// model types

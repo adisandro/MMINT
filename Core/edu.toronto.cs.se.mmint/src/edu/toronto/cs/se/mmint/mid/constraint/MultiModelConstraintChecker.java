@@ -718,27 +718,53 @@ linkTypes:
 		}
 	}
 
-	private static void flattenEClass(EPackage flatPackage, EClass flatClass, EList<EClass> flatSuperClasses) {
+	private static void flattenEPackage(EPackage flatPackage) {
 
+		Map<String, EClass> flatClasses = new HashMap<String, EClass>();
+		for (EClassifier flatClassifier : flatPackage.getEClassifiers()) {
+			if (!(flatClassifier instanceof EClass)) {
+				continue;
+			}
+			flattenEClass((EClass) flatClassifier, flatPackage, flatClasses);
+		}
+		flatPackage.getEClassifiers().addAll(flatClasses.values());
+	}
+
+	private static void flattenEClass(EClass flatClass, EPackage flatPackage, Map<String, EClass> flatClasses) {
+
+		// first pass: flatten superclasses
+		flatClasses.put(flatClass.getName(), flatClass);
 		for (EClass superClass : flatClass.getEAllSuperTypes()) {
-			// copy features from superclass
 			for (EStructuralFeature flatFeature : superClass.getEStructuralFeatures()) {
 				flatClass.getEStructuralFeatures().add(EcoreUtil.copy(flatFeature));
 			}
-			if (superClass.getEPackage() != flatPackage) { // superclass not in same package (assuming package == file)
-				// copy superclasses from other packages (recursion not needed because superSuperClass is also superClass)
-				EClass flatSuperClass = EcoreUtil.copy(superClass);
-				flattenEClass(flatPackage, flatSuperClass, flatSuperClasses);
-				for (EClass superSuperClass : superClass.getEAllSuperTypes()) {
-					for (EStructuralFeature flatSuperFeature : superSuperClass.getEStructuralFeatures()) {
-						flatSuperClass.getEStructuralFeatures().add(EcoreUtil.copy(flatSuperFeature));
-					}
-				}
-				flatSuperClass.getESuperTypes().clear();
-				flatSuperClasses.add(flatSuperClass);
-			}
+			checkAndReflatten(superClass, flatPackage, flatClasses);
 		}
 		flatClass.getESuperTypes().clear();
+		// second pass: flatten types
+		for (EStructuralFeature flatFeature : flatClass.getEStructuralFeatures()) {
+			if (!(flatFeature instanceof EReference)) {
+				continue;
+			}
+			EClassifier flatFeatureClassifier = flatFeature.getEType();
+			if (!(flatFeatureClassifier instanceof EClass)) {
+				continue;
+			}
+			EClass flatFeatureClass = checkAndReflatten((EClass) flatFeatureClassifier, flatPackage, flatClasses);
+			flatFeature.setEType(flatFeatureClass);
+		}
+	}
+
+	private static EClass checkAndReflatten(EClass checkedClass, EPackage flatPackage, Map<String, EClass> flatClasses) {
+
+		if (checkedClass.getEPackage() != flatPackage && !flatClasses.containsKey(checkedClass.getName())) { // not in same package (assuming package == file)
+			EClass flatClass = EcoreUtil.copy(checkedClass);
+			flattenEClass(flatClass, flatPackage, flatClasses);
+
+			return flatClass;
+		}
+
+		return flatClasses.get(checkedClass.getName());
 	}
 
 	private static void cleanupCheckOCLConstraintConsistency(IProject tempProject) {
@@ -791,49 +817,12 @@ linkTypes:
 			return checkOCLConstraintConsistency(MultiModelTypeRegistry.<Model>getType(modelTypeObj.getNsURI()), oclConsistencyConstraint);
 		}
 		// flatten hierarchy and add constraint as annotation into the metamodel
-		//TODO wrong on many levels: types of ereferences must be flattened too
 		ResourceSet flatResourceSet = new ResourceSetImpl();
 		URI flatUri = URI.createPlatformResourceURI(EMFTOCSP_TEMPPROJECT + IPath.SEPARATOR + EMFTOCSP_TEMPFOLDER + IPath.SEPARATOR + modelTypeObj.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME, true);
 		Resource flatResource = flatResourceSet.createResource(flatUri);
 		EPackage flatModelTypeObj = EcoreUtil.copy(modelTypeObj);
 		flatResource.getContents().add(flatModelTypeObj);
-		EList<EClass> flatSuperClasses = new BasicEList<EClass>();
-		for (EClassifier flatClassifier : flatModelTypeObj.getEClassifiers()) {
-			if (!(flatClassifier instanceof EClass)) {
-				continue;
-			}
-			EClass flatClass = (EClass) flatClassifier;
-			for (EClass superClass : flatClass.getEAllSuperTypes()) {
-				for (EStructuralFeature flatFeature : superClass.getEStructuralFeatures()) {
-					flatClass.getEStructuralFeatures().add(EcoreUtil.copy(flatFeature));
-				}
-				if (superClass.getEPackage() != flatModelTypeObj) {
-					EClass flatSuperClass = EcoreUtil.copy(superClass);
-					for (EClass superClass2 : superClass.getEAllSuperTypes()) {
-						for (EStructuralFeature flatSuperFeature : superClass2.getEStructuralFeatures()) {
-							flatSuperClass.getEStructuralFeatures().add(EcoreUtil.copy(flatSuperFeature));
-						}
-					}
-					flatSuperClass.getESuperTypes().clear();
-					flatSuperClasses.add(flatSuperClass);
-				}
-			}
-			flatClass.getESuperTypes().clear();
-		}
-		flatModelTypeObj.getEClassifiers().addAll(flatSuperClasses);
-		for (EClassifier flatClassifier : flatModelTypeObj.getEClassifiers()) {
-			if (!(flatClassifier instanceof EClass)) {
-				continue;
-			}
-			EClass flatClass = (EClass) flatClassifier;
-			for (EStructuralFeature flatFeature : flatClass.getEStructuralFeatures()) {
-				if (!(flatFeature instanceof EReference)) {
-					continue;
-				}
-				flatFeature.setEType(flatModelTypeObj.getEClassifier(flatFeature.getEType().getName()));
-			}
-		}
-		// add constraint as annotation into the metamodel
+		flattenEPackage(flatModelTypeObj);
 		EAnnotation newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		newEAnnotation.setSource(EcorePackage.eNS_URI);
 		EMap<String, String> newEAnnotationDetails = newEAnnotation.getDetails();
@@ -924,7 +913,7 @@ linkTypes:
 		// EMFtoCSP performFinish()
 		File importsFolder;
 		try {
-			importsFolder = new File(FileLocator.toFileURL(FrameworkUtil.getBundle(fr.inria.atlanmod.emftocsp.eclipsecs.EclipseSolver.class).getEntry("/libs")).toURI());
+			importsFolder = new File(FileLocator.toFileURL(FrameworkUtil.getBundle(fr.inria.atlanmod.emftocsp.eclipsecs.EclipseSolver.class).getEntry("/libs")).getFile());
 		}
 		catch (Exception e) {
 			MMINTException.print(MMINTException.Type.WARNING, "Can't find EMFtoCSP libs, skipping consistency check", e);
