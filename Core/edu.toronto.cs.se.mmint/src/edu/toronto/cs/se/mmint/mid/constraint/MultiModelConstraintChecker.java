@@ -721,6 +721,14 @@ linkTypes:
 	private static void flattenEPackage(EPackage flatPackage) {
 
 		Map<String, EClass> flatClasses = new HashMap<String, EClass>();
+		// first pass: pre-populate classes in the package
+		for (EClassifier flatClassifier : flatPackage.getEClassifiers()) {
+			if (!(flatClassifier instanceof EClass)) {
+				continue;
+			}
+			flatClasses.put(flatClassifier.getName(), (EClass) flatClassifier);
+		}
+		// second pass: flatten
 		for (EClassifier flatClassifier : flatPackage.getEClassifiers()) {
 			if (!(flatClassifier instanceof EClass)) {
 				continue;
@@ -733,7 +741,6 @@ linkTypes:
 	private static void flattenEClass(EClass flatClass, EPackage flatPackage, Map<String, EClass> flatClasses) {
 
 		// first pass: flatten superclasses
-		flatClasses.put(flatClass.getName(), flatClass);
 		for (EClass superClass : flatClass.getEAllSuperTypes()) {
 			for (EStructuralFeature flatFeature : superClass.getEStructuralFeatures()) {
 				flatClass.getEStructuralFeatures().add(EcoreUtil.copy(flatFeature));
@@ -759,6 +766,7 @@ linkTypes:
 
 		if (checkedClass.getEPackage() != flatPackage && !flatClasses.containsKey(checkedClass.getName())) { // not in same package (assuming package == file)
 			EClass flatClass = EcoreUtil.copy(checkedClass);
+			flatClasses.put(flatClass.getName(), flatClass);
 			flattenEClass(flatClass, flatPackage, flatClasses);
 
 			return flatClass;
@@ -818,8 +826,8 @@ linkTypes:
 		}
 		// flatten hierarchy and add constraint as annotation into the metamodel
 		ResourceSet flatResourceSet = new ResourceSetImpl();
-		URI flatUri = URI.createPlatformResourceURI(EMFTOCSP_TEMPPROJECT + IPath.SEPARATOR + EMFTOCSP_TEMPFOLDER + IPath.SEPARATOR + modelTypeObj.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME, true);
-		Resource flatResource = flatResourceSet.createResource(flatUri);
+		String flatUri = EMFTOCSP_TEMPPROJECT + IPath.SEPARATOR + EMFTOCSP_TEMPFOLDER + IPath.SEPARATOR + modelTypeName + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
+		Resource flatResource = flatResourceSet.createResource(URI.createPlatformResourceURI(flatUri, true));
 		EPackage flatModelTypeObj = EcoreUtil.copy(modelTypeObj);
 		flatResource.getContents().add(flatModelTypeObj);
 		flattenEPackage(flatModelTypeObj);
@@ -840,6 +848,27 @@ linkTypes:
 		newEAnnotationDetails.put(ECORE_PIVOT_CONSISTENCYCONSTRAINT, oclConsistencyConstraint);
 		modelTypeRootObj.getEAnnotations().add(newEAnnotation);
 		// use EMFtoCSP to check strong satisfiability
+		// EMFtoCSP ui screen 4 (preview)
+		IProject tempProject = ResourcesPlugin.getWorkspace().getRoot().getProject(EMFTOCSP_TEMPPROJECT);
+		IFolder resultLocation;
+		try {
+			if (!tempProject.exists()) {
+				tempProject.create(null);
+			}
+			if (!tempProject.isOpen()) {
+				tempProject.open(null);
+			}
+			resultLocation = tempProject.getFolder(EMFTOCSP_TEMPFOLDER);
+			if (!resultLocation.exists()) {
+				resultLocation.create(true, true, null);
+			}
+			MultiModelUtils.createModelFile(flatModelTypeObj, flatUri, true);
+		}
+		catch (Exception e) {
+			MMINTException.print(MMINTException.Type.WARNING, "Can't create EMFtoCSP temporary project, skipping consistency check", e);
+			cleanupCheckOCLConstraintConsistency(tempProject);
+			return true;
+		}
 		// EMFtoCSP init
 		String eclipsePath = Activator.getDefault().getPreferenceStore().getString(EMFTOCSP_PREFERENCE_ECLIPSEPATH);
 		String graphvizPath = Activator.getDefault().getPreferenceStore().getString(EMFTOCSP_PREFERENCE_GRAPHVIZPATH);
@@ -881,34 +910,7 @@ linkTypes:
 		List<IModelProperty> modelProperties = new ArrayList<IModelProperty>();
 		modelProperties.add(new StrongSatisfiabilityModelProperty());
 		modelSolver.setModelProperties(modelProperties);
-		// EMFtoCSP ui screen 4
-		IProject tempProject = ResourcesPlugin.getWorkspace().getRoot().getProject(EMFTOCSP_TEMPPROJECT);
-		IFolder resultLocation;
-		try {
-			if (!tempProject.exists()) {
-				tempProject.create(null);
-			}
-			if (!tempProject.isOpen()) {
-				tempProject.open(null);
-			}
-			resultLocation = tempProject.getFolder(EMFTOCSP_TEMPFOLDER);
-			if (!resultLocation.exists()) {
-				resultLocation.create(true, true, null);
-			}
-		}
-		catch (CoreException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Can't create EMFtoCSP temporary project, skipping consistency check", e);
-			cleanupCheckOCLConstraintConsistency(tempProject);
-			return true;
-		}
-
-		//TODO TEMP
-		try {
-			MultiModelUtils.createModelFile(flatModelTypeObj, EMFTOCSP_TEMPPROJECT + IPath.SEPARATOR + EMFTOCSP_TEMPFOLDER + IPath.SEPARATOR + modelTypeObj.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME, true);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-
+		// EMFtoCSP ui screen 4 (reprise)
 		modelSolver.setResultLocation(resultLocation);
 		// EMFtoCSP performFinish()
 		File importsFolder;
@@ -932,8 +934,9 @@ linkTypes:
 			libList.add(libs[i]);
 		}
 		boolean isConsistent = modelSolver.solveModel(libList);
-		//TODO TEMP
-		//cleanupCheckOCLConstraintConsistency(tempProject);
+		// restore original package, EMFtoCSP messed up with it
+		EPackage.Registry.INSTANCE.put(modelType.getUri(), modelTypeObj);
+		cleanupCheckOCLConstraintConsistency(tempProject);
 
 		return isConsistent;
 	}
