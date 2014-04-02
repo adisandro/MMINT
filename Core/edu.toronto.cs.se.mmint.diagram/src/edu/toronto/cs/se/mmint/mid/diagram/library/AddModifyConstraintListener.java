@@ -98,7 +98,7 @@ public class AddModifyConstraintListener extends SelectionAdapter {
 				String[] newConstraint = MidDiagramUtils.getConstraintInput("Add/Modify Constraint", constraint.getLanguage().getLiteral() + MidDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + implementation);
 				if (!MultiModelConstraintChecker.isInstancesLevel(element)) {
 					if (!MultiModelConstraintChecker.checkConstraintConsistency(element, newConstraint[0], newConstraint[1])) {
-						throw new MMINTException(Type.ERROR, "The combined constraint (this type + supertypes) is inconsistent");
+						throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");
 					}
 				}
 				constraint.setLanguage(ExtendibleElementConstraintLanguage.get(newConstraint[0]));
@@ -106,8 +106,11 @@ public class AddModifyConstraintListener extends SelectionAdapter {
 
 				return CommandResult.newOKCommandResult(constraint);
 			}
+			catch (MidDialogCancellation e) {
+				return CommandResult.newCancelledCommandResult();
+			}
 			catch (MMINTException e) {
-				MMINTException.print("No constraint added", e);
+				MMINTException.print(Type.ERROR, "No constraint added", e);
 				return CommandResult.newErrorCommandResult("No constraint added");
 			}
 		}

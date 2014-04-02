@@ -27,6 +27,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
@@ -106,7 +107,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 			);
 	}
 
-	protected BinaryLinkReference doExecuteInstancesLevel() throws MMINTException {
+	protected BinaryLinkReference doExecuteInstancesLevel() throws MMINTException, MidDialogCancellation {
 
 		ModelRel modelRel = getContainer();
 		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToCreate(modelRel, getSource(), getTarget());
@@ -122,7 +123,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 		return newLinkRef;
 	}
 
-	protected BinaryLinkReference doExecuteTypesLevel() throws MMINTException {
+	protected BinaryLinkReference doExecuteTypesLevel() throws MMINTException, MidDialogCancellation {
 
 		ModelRel modelRelType = getContainer();
 		ModelElementReference srcModelElemTypeRef = getSource(), tgtModelElemTypeRef = getTarget();
@@ -171,6 +172,9 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 		}
 		catch (ExecutionException ee) {
 			throw ee;
+		}
+		catch (MidDialogCancellation e) {
+			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
 			MMINTException.print(MMINTException.Type.WARNING, "No binary link created", e);

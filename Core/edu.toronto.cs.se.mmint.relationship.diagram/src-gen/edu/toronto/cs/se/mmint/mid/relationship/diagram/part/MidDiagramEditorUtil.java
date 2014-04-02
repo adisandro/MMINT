@@ -60,7 +60,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -246,7 +245,7 @@ public class MidDiagramEditorUtil {
 		try {
 			ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToCreate(null, null);
 			return modelRelType.createInstance(null, false, ModelOrigin.CREATED, null);
-		} catch (MMINTException e) {
+		} catch (Exception e) {
 			return createInitialModelGen();
 		}
 	}

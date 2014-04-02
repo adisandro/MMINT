@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.BinaryModelRelCreateCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -104,7 +105,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 			);
 	}
 
-	protected BinaryModelRel doExecuteInstancesLevel() throws MMINTException {
+	protected BinaryModelRel doExecuteInstancesLevel() throws MMINTException, MidDialogCancellation {
 
 		MultiModel multiModel = getContainer();
 		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToCreate(getSource(), getTarget());
@@ -120,7 +121,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		return newModelRel;
 	}
 
-	protected BinaryModelRel doExecuteTypesLevel() throws MMINTException {
+	protected BinaryModelRel doExecuteTypesLevel() throws MMINTException, MidDialogCancellation {
 
 		MultiModel multiModel = getContainer();
 		Model srcModelType = getSource(), tgtModelType = getTarget();
@@ -170,6 +171,9 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		}
 		catch (ExecutionException ee) {
 			throw ee;
+		}
+		catch (MidDialogCancellation e) {
+			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
 			MMINTException.print(MMINTException.Type.WARNING, "No binary model relationship created", e);

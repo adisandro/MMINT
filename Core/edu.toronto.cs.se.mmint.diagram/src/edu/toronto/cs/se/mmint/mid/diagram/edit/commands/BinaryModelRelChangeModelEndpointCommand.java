@@ -24,6 +24,7 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.BinaryModelRelReorientCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 
@@ -104,7 +105,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 			));
 	}
 
-	protected void doExecuteInstancesLevel(BinaryModelRel modelRel, Model model, boolean isBinarySrc) throws MMINTException {
+	protected void doExecuteInstancesLevel(BinaryModelRel modelRel, Model model, boolean isBinarySrc) throws MMINTException, MidDialogCancellation {
 
 		ModelEndpoint oldModelEndpoint = (isBinarySrc) ?
 			modelRel.getModelEndpoints().get(0) :
@@ -144,6 +145,9 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
+		catch (MidDialogCancellation e) {
+			return CommandResult.newCancelledCommandResult();
+		}
 		catch (MMINTException e) {
 			MMINTException.print(MMINTException.Type.WARNING, "No model endpoint changed", e);
 			return CommandResult.newErrorCommandResult("No model endpoint changed");
@@ -169,6 +173,9 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 			}
 
 			return CommandResult.newOKCommandResult(getLink());
+		}
+		catch (MidDialogCancellation e) {
+			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
 			MMINTException.print(MMINTException.Type.WARNING, "No model endpoint changed", e);

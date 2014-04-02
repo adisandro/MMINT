@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -77,7 +78,7 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 			));
 	}
 
-	protected ModelElementEndpointReference doExecuteInstancesLevel() throws MMINTException {
+	protected ModelElementEndpointReference doExecuteInstancesLevel() throws MMINTException, MidDialogCancellation {
 
 		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramUtils.selectModelElementTypeEndpointToCreate(getSource(), modelElemTypeEndpointUris);
 		ModelElementEndpointReference newModelElemEndpointRef = modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), false, getSource());
@@ -85,7 +86,7 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 		return newModelElemEndpointRef;
 	}
 
-	protected ModelElementEndpointReference doExecuteTypesLevel() throws MMINTException {
+	protected ModelElementEndpointReference doExecuteTypesLevel() throws MMINTException, MidDialogCancellation {
 
 		ModelElementReference tgtModelElemTypeRef = getTarget();
 		String newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new light model element type endpoint", "Insert new model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
@@ -114,6 +115,9 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 		}
 		catch (ExecutionException ee) {
 			throw ee;
+		}
+		catch (MidDialogCancellation e) {
+			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
 			MMINTException.print(MMINTException.Type.WARNING, "No model element endpoint created", e);

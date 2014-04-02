@@ -28,6 +28,7 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelEndpointCreateCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 
 /**
@@ -77,7 +78,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 			));
 	}
 
-	protected ModelEndpoint doExecuteInstancesLevel() throws MMINTException {
+	protected ModelEndpoint doExecuteInstancesLevel() throws MMINTException, MidDialogCancellation {
 
 		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
 		ModelEndpointReference newModelEndpointRef = modelTypeEndpointRef.getObject().createInstanceAndReference((Model) getTarget(), false, getSource());
@@ -85,7 +86,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 		return newModelEndpointRef.getObject();
 	}
 
-	protected ModelEndpoint doExecuteTypesLevel() throws MMINTException {
+	protected ModelEndpoint doExecuteTypesLevel() throws MMINTException, MidDialogCancellation {
 
 		Model tgtModelType = (Model) getTarget();
 		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new light model type endpoint", "Insert new model type endpoint role", tgtModelType.getName());
@@ -125,6 +126,9 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 		}
 		catch (ExecutionException ee) {
 			throw ee;
+		}
+		catch (MidDialogCancellation e) {
+			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
 			MMINTException.print(MMINTException.Type.WARNING, "No model endpoint created", e);

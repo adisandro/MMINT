@@ -25,6 +25,7 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRelCreateCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -85,7 +86,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		return super.canExecute();
 	}
 
-	protected ModelRel doExecuteInstancesLevel() throws MMINTException {
+	protected ModelRel doExecuteInstancesLevel() throws MMINTException, MidDialogCancellation {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToCreate(null, null);
@@ -94,7 +95,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		return newModelRel;
 	}
 
-	protected ModelRel doExecuteTypesLevel() throws MMINTException {
+	protected ModelRel doExecuteTypesLevel() throws MMINTException, MidDialogCancellation {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToExtend(multiModel, null, null);
@@ -131,6 +132,9 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		}
 		catch (ExecutionException ee) {
 			throw ee;
+		}
+		catch (MidDialogCancellation e) {
+			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
 			MMINTException.print(MMINTException.Type.WARNING, "No model relationship created", e);

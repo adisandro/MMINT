@@ -23,6 +23,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
@@ -94,7 +95,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 			);
 	}
 
-	protected LinkReference doExecuteInstancesLevel() throws MMINTException {
+	protected LinkReference doExecuteInstancesLevel() throws MMINTException, MidDialogCancellation {
 
 		ModelRel modelRel = (ModelRel) getElementToEdit();
 		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToCreate(modelRel, null, null);
@@ -103,7 +104,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 		return newLinkRef;
 	}
 
-	protected LinkReference doExecuteTypesLevel() throws MMINTException {
+	protected LinkReference doExecuteTypesLevel() throws MMINTException, MidDialogCancellation {
 
 		ModelRel modelRelType = (ModelRel) getElementToEdit();
 		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToExtend(modelRelType, null, null);
@@ -143,6 +144,9 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 		}
 		catch (ExecutionException ee) {
 			throw ee;
+		}
+		catch (MidDialogCancellation e) {
+			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
 			MMINTException.print(MMINTException.Type.WARNING, "No link created", e);

@@ -27,19 +27,12 @@ public class MMINTException extends Exception {
 	/** Exception types. */
 	public enum Type {WARNING, ERROR}
 
+	/** Default serial version. */
 	private static final long serialVersionUID = 1L;
 
-	private Type type;
-
-	//TODO MMINT: rework ->
-	// 1) Use a private Type type, pass it in constructor and create a print function that inspects it.
-	// 2) Everywhere an exception is used, clearly differentiate between mmint exceptions and other ones.
-	// 3) Make gmf commands aware of "real" errors or simple user cancellations (e.g. returning a cancel command)
 	/**
 	 * Prints an exception.
 	 * 
-	 * @param type
-	 *            The exception category.
 	 * @param message
 	 *            The exception message.
 	 * @param e
@@ -63,57 +56,35 @@ public class MMINTException extends Exception {
 		}
 		if (type == Type.ERROR) {
 			IStatus status = (e == null) ?
-				new Status(IStatus.ERROR, "edu.toronto.cs.se.mmint", "") :
-				new Status(IStatus.ERROR, "edu.toronto.cs.se.mmint", e.toString());
+				new Status(IStatus.ERROR, MMINTActivator.PLUGIN_ID, "") :
+				new Status(IStatus.ERROR, MMINTActivator.PLUGIN_ID, e.toString());
 			ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "MMINT Error", message, status);
 		}
 	}
 
-	public static void print(String message, Exception e) {
-
-		Type type = (e instanceof MMINTException) ? ((MMINTException) e).getType() : Type.ERROR;
-		print(type, message, e);
-	}
-
 	/**
-	 * Constructor: initialises the superclass.
+	 * Constructor: initializes superclass.
 	 * 
 	 * @param message
-	 *            The exception message.
+	 *            The message that explains the exception.
 	 */
 	public MMINTException(String message) {
 
-		this(Type.WARNING, message);
+		super(message);
 	}
 
 	/**
-	 * Constructor: initialises the superclass with a chained exception.
+	 * Constructor: initializes superclass with a chained
+	 * exception.
 	 * 
 	 * @param message
-	 *            The exception message.
+	 *            The message that explains the exception.
 	 * @param cause
 	 *            The exception that caused this exception.
 	 */
 	public MMINTException(String message, Throwable cause) {
 
-		this(Type.WARNING, message, cause);
-	}
-
-	public MMINTException(Type type, String message) {
-
-		super(message);
-		this.type = type;
-	}
-
-	public MMINTException(Type type, String message, Throwable cause) {
-
 		super(message, cause);
-		this.type = type;
-	}
-
-	public Type getType() {
-
-		return type;
 	}
 
 }

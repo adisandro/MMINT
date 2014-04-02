@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -13,9 +13,9 @@ package edu.toronto.cs.se.mmint.mid.relationship.diagram.library;
 
 import java.util.List;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mmint.mid.ui.MultiModelTreeSelectionDialog;
  */
 public class RelationshipDiagramUtils extends MidDiagramUtils {
 
-	public static LinkReference selectLinkTypeReferenceToCreate(ModelRel modelRel, ModelElementReference srcModelElemRef, ModelElementReference tgtModelElemRef) throws MMINTException {
+	public static LinkReference selectLinkTypeReferenceToCreate(ModelRel modelRel, ModelElementReference srcModelElemRef, ModelElementReference tgtModelElemRef) throws MidDialogCancellation {
 
 		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getLinkReferenceCreationDialog(srcModelElemRef, tgtModelElemRef, modelRel);
 		String title = "Create new link";
@@ -39,7 +39,7 @@ public class RelationshipDiagramUtils extends MidDiagramUtils {
 		return (LinkReference) openSelectDialog(dialog, title, message);
 	}
 
-	public static LinkReference selectLinkTypeReferenceToExtend(ModelRel modelRelType, ModelElementReference srcModelElemTypeRef, ModelElementReference tgtModelElemTypeRef) throws MMINTException {
+	public static LinkReference selectLinkTypeReferenceToExtend(ModelRel modelRelType, ModelElementReference srcModelElemTypeRef, ModelElementReference tgtModelElemTypeRef) throws MidDialogCancellation {
 
 		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getLinkTypeReferenceCreationDialog(srcModelElemTypeRef, tgtModelElemTypeRef, modelRelType);
 		String title = "Create new light link type";
@@ -48,7 +48,7 @@ public class RelationshipDiagramUtils extends MidDiagramUtils {
 		return (LinkReference) openSelectDialog(dialog, title, message);
 	}
 
-	public static ModelElementEndpointReference selectModelElementTypeEndpointToCreate(LinkReference linkRef, List<String> modelElemTypeEndpointUris) throws MMINTException {
+	public static ModelElementEndpointReference selectModelElementTypeEndpointToCreate(LinkReference linkRef, List<String> modelElemTypeEndpointUris) throws MidDialogCancellation {
 
 		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelElementEndpointCreationDialog(linkRef, modelElemTypeEndpointUris);
 		String title = "Create new model endpoint";

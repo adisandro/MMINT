@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
@@ -96,7 +97,7 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 			);
 	}
 
-	protected void doExecuteInstancesLevel(LinkReference linkRef, ModelElementReference modelElemRef, boolean isFullDelete) throws MMINTException {
+	protected void doExecuteInstancesLevel(LinkReference linkRef, ModelElementReference modelElemRef, boolean isFullDelete) throws MMINTException, MidDialogCancellation {
 
 		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramUtils.selectModelElementTypeEndpointToCreate(linkRef, modelElemTypeEndpointUris);
 		if (isFullDelete) {
@@ -135,6 +136,9 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
+		catch (MidDialogCancellation e) {
+			return CommandResult.newCancelledCommandResult();
+		}
 		catch (MMINTException e) {
 			MMINTException.print(MMINTException.Type.WARNING, "No model element endpoint changed", e);
 			return CommandResult.newErrorCommandResult("No model element endpoint changed");
@@ -153,6 +157,9 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 			}
 
 			return CommandResult.newOKCommandResult(getLink());
+		}
+		catch (MidDialogCancellation e) {
+			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
 			MMINTException.print(MMINTException.Type.WARNING, "No model element endpoint changed", e);

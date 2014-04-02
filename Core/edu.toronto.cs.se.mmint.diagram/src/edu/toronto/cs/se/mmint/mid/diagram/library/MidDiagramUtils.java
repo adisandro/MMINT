@@ -32,7 +32,6 @@ import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -54,7 +53,7 @@ public class MidDiagramUtils {
 
 	public final static String CONSTRAINT_LANGUAGE_SEPARATOR = ":";
 
-	protected static Object openSelectDialog(MultiModelTreeSelectionDialog dialog, String title, String message) throws MMINTException {
+	protected static Object openSelectDialog(MultiModelTreeSelectionDialog dialog, String title, String message) throws MidDialogCancellation {
 
 		dialog.setTitle(title);
 		dialog.setMessage(message);
@@ -63,11 +62,11 @@ public class MidDiagramUtils {
 		Object selection = dialog.getOnlyResult();
 		if (selection == null) { // more than one choice
 			if (dialog.open() == Window.CANCEL) {
-				throw new MMINTException(Type.WARNING, "Dialog cancel button pressed");
+				throw new MidDialogCancellation();
 			}
 			selection = dialog.getFirstResult();
 			if (selection == null) { // dialog opened and nothing selected
-				throw new MMINTException(Type.WARNING, "Dialog ok button pressed with no selection");
+				throw new MidDialogCancellation();
 			}
 		}
 
@@ -81,10 +80,10 @@ public class MidDiagramUtils {
 	 *            True to allow the selection of relationship files only, false
 	 *            to allow all registered model files.
 	 * @return The uri of the imported model.
-	 * @throws Exception
+	 * @throws MidDialogCancellation
 	 *             If the model import was not completed for any reason.
 	 */
-	public static String selectModelToImport(boolean relOnly) throws Exception {
+	public static String selectModelToImport(boolean relOnly) throws MidDialogCancellation {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		DiagramDocumentEditor editor = (DiagramDocumentEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
@@ -92,7 +91,7 @@ public class MidDiagramUtils {
 
 		MidElementChooserDialog dialog = new MidElementChooserDialog(shell, view, relOnly);
 		if (dialog.open() == Window.CANCEL) {
-			throw new MMINTException("Dialog cancel button pressed");
+			throw new MidDialogCancellation();
 		}
 
 		return dialog.getSelectedModelElementURI().toPlatformString(true);
@@ -105,10 +104,10 @@ public class MidDiagramUtils {
 	 * @param multiModel
 	 *            The multimodel.
 	 * @return The editor for the created model.
-	 * @throws Exception
+	 * @throws MidDialogCancellation, MMINTException
 	 *             If the model creation was not completed for any reason.
 	 */
-	public static Editor selectModelTypeToCreate(MultiModel multiModel) throws Exception {
+	public static Editor selectModelTypeToCreate(MultiModel multiModel) throws MidDialogCancellation, MMINTException {
 
 		ElementTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelCreationDialog();
 		dialog.setTitle("Create new model");
@@ -116,11 +115,11 @@ public class MidDiagramUtils {
 		dialog.setAllowMultiple(false);
 
 		if (dialog.open() == Window.CANCEL) {
-			throw new MMINTException("Model creation cancelled");
+			throw new MidDialogCancellation();
 		}
 		Object selection = dialog.getFirstResult();
 		if (selection == null) {
-			throw new MMINTException("Model creation dialog ok button pressed with no selection");
+			throw new MidDialogCancellation();
 		}
 		Editor editorType = (Editor) selection;
 
@@ -140,13 +139,13 @@ public class MidDiagramUtils {
 		}
 		EditorCreationWizardDialog wizDialog = editorType.invokeInstanceWizard(multiModelContainer);
 		if (wizDialog == null) {
-			throw new MMINTException("Model creation cancelled");
+			throw new MidDialogCancellation();
 		}
 
 		return editorType.createInstance(wizDialog.getCreatedModelUri(), multiModel);
 	}
 
-	public static ModelEndpointReference selectModelTypeEndpointToCreate(ModelRel modelRel, List<String> modelTypeEndpointUris, String modelEndpointId) throws MMINTException {
+	public static ModelEndpointReference selectModelTypeEndpointToCreate(ModelRel modelRel, List<String> modelTypeEndpointUris, String modelEndpointId) throws MidDialogCancellation {
 
 		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelEndpointCreationDialog(modelRel, modelTypeEndpointUris);
 		String title = "Create new model endpoint";
@@ -155,7 +154,7 @@ public class MidDiagramUtils {
 		return (ModelEndpointReference) openSelectDialog(dialog, title, message);
 	}
 
-	public static ModelRel selectModelRelTypeToCreate(Model srcModel, Model tgtModel) throws MMINTException {
+	public static ModelRel selectModelRelTypeToCreate(Model srcModel, Model tgtModel) throws MidDialogCancellation {
 
 		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelRelCreationDialog(srcModel, tgtModel);
 		String title = "Create new model relationship";
@@ -169,10 +168,10 @@ public class MidDiagramUtils {
 	 * model types.
 	 * 
 	 * @return The choosen model type.
-	 * @throws MMINTException
+	 * @throws MidDialogCancellation
 	 *             If the selection was not completed for any reason.
 	 */
-	public static Model selectModelTypeToExtend(MultiModel multiModel) throws MMINTException {
+	public static Model selectModelTypeToExtend(MultiModel multiModel) throws MidDialogCancellation {
 
 		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelTypeCreationDialog(multiModel);
 		String title = "Create new light model type";
@@ -186,10 +185,10 @@ public class MidDiagramUtils {
 	 * registered model relationship types.
 	 * 
 	 * @return The choosen model relationship type.
-	 * @throws MMINTException
+	 * @throws MidDialogCancellation
 	 *             If the selection was not completed for any reason.
 	 */
-	public static ModelRel selectModelRelTypeToExtend(MultiModel multiModel, Model srcModelType, Model tgtModelType) throws MMINTException {
+	public static ModelRel selectModelRelTypeToExtend(MultiModel multiModel, Model srcModelType, Model tgtModelType) throws MidDialogCancellation {
 
 		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelRelTypeCreationDialog(srcModelType, tgtModelType, multiModel);
 		String title = "Create new light model relationship type";
@@ -214,26 +213,23 @@ public class MidDiagramUtils {
 	 *            The dialog message.
 	 * @param dialogInitial TODO
 	 * @return The text input from the user.
-	 * @throws MMINTException
+	 * @throws MidDialogCancellation
 	 *             If the text input was not completed for any reason.
 	 */
-	public static String getStringInput(String dialogTitle, String dialogMessage, String dialogInitial) throws MMINTException {
+	public static String getStringInput(String dialogTitle, String dialogMessage, String dialogInitial) throws MidDialogCancellation {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		InputDialog dialog = new InputDialog(shell, dialogTitle, dialogMessage, dialogInitial, null);
 
 		if (dialog.open() == Window.CANCEL) {
-			throw new MMINTException("Operation cancelled");
-		}
-		String text = dialog.getValue();
-		if (text == null) {
-			text = "";
+			throw new MidDialogCancellation();
 		}
 
-		return text;
+		return dialog.getValue();
 	}
 
-	public static String getBigStringInput(String dialogTitle, String dialogMessage, String dialogInitial) throws MMINTException {
+	//TODO MMINT[MISC] merge with getStringInput()
+	public static String getBigStringInput(String dialogTitle, String dialogMessage, String dialogInitial) throws MidDialogCancellation {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		InputDialog dialog = new InputDialog(shell, dialogTitle, dialogMessage, dialogInitial, null) {
@@ -250,17 +246,13 @@ public class MidDiagramUtils {
 		};
 
 		if (dialog.open() == Window.CANCEL) {
-			throw new MMINTException("Operation cancelled");
-		}
-		String text = dialog.getValue();
-		if (text == null) {
-			text = "";
+			throw new MidDialogCancellation();
 		}
 
-		return text;
+		return dialog.getValue();
 	}
 
-	public static String[] getConstraintInput(String dialogTitle, String dialogInitial) throws MMINTException {
+	public static String[] getConstraintInput(String dialogTitle, String dialogInitial) throws MidDialogCancellation {
 
 		String text = getBigStringInput(dialogTitle, "Insert new constraint", dialogInitial);
 		String[] constraint = text.split(CONSTRAINT_LANGUAGE_SEPARATOR);

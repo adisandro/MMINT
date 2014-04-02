@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelCreateCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 
 /**
@@ -89,7 +90,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		return super.canExecute();
 	}
 
-	protected Model doExecuteInstancesLevel() throws Exception {
+	protected Model doExecuteInstancesLevel() throws MMINTException, MidDialogCancellation {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		Editor newEditor = MidDiagramUtils.selectModelTypeToCreate(multiModel);
@@ -100,14 +101,14 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		return newModel;
 	}
 
-	protected Model doExecuteTypesLevel() throws MMINTException {
+	protected Model doExecuteTypesLevel() throws MMINTException, MidDialogCancellation {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		Model modelType = MidDiagramUtils.selectModelTypeToExtend(multiModel);
 		String newModelTypeName = MidDiagramUtils.getStringInput("Create new light model type", "Insert new model type name", null);
 		String[] constraint = MidDiagramUtils.getConstraintInput("Create new light model type", null);
 		if (!MultiModelConstraintChecker.checkConstraintConsistency(modelType, constraint[0], constraint[1])) {
-			throw new MMINTException(Type.ERROR, "The combined constraint (this type + supertypes) is inconsistent");
+			throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");
 		}
 		boolean isMetamodelExtension = (MultiModelTypeHierarchy.isRootType(modelType)) ?
 			true :
@@ -145,8 +146,11 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (Exception e) {
-			MMINTException.print("No model created", e);
+		catch (MidDialogCancellation e) {
+			return CommandResult.newCancelledCommandResult();
+		}
+		catch (MMINTException e) {
+			MMINTException.print(Type.ERROR, "No model created", e);
 			return CommandResult.newErrorCommandResult("No model created");
 		}
 	}

@@ -24,6 +24,7 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelEndpointReorientCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
@@ -95,7 +96,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 			);
 	}
 
-	protected void doExecuteInstancesLevel(ModelRel modelRel, Model model, boolean isFullDelete) throws MMINTException {
+	protected void doExecuteInstancesLevel(ModelRel modelRel, Model model, boolean isFullDelete) throws MMINTException, MidDialogCancellation {
 
 		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
 		if (isFullDelete) {
@@ -141,6 +142,9 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
+		catch (MidDialogCancellation e) {
+			return CommandResult.newCancelledCommandResult();
+		}
 		catch (MMINTException e) {
 			MMINTException.print(MMINTException.Type.WARNING, "No model endpoint changed", e);
 			return CommandResult.newErrorCommandResult("No model endpoint changed");
@@ -166,6 +170,9 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 			}
 
 			return CommandResult.newOKCommandResult(getLink());
+		}
+		catch (MidDialogCancellation e) {
+			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
 			MMINTException.print(MMINTException.Type.WARNING, "No model endpoint changed", e);
