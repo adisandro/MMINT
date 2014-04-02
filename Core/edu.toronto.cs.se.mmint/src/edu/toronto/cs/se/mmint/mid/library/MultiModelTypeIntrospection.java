@@ -114,7 +114,7 @@ public class MultiModelTypeIntrospection {
 				rootModelObj = ((Model) element).getEMFInstanceRoot();
 			}
 			catch (MMINTException e) {
-				MMINTException.print(Type.WARNING, "Can't get model root, subtypes filtering skipped", e);
+				MMINTException.print(Type.WARNING, "Can't get model root, skipping subtypes filtering", e);
 				return metamodelSubtypes;
 			}
 			String metamodelUri = rootModelObj.eClass().getEPackage().getNsURI();

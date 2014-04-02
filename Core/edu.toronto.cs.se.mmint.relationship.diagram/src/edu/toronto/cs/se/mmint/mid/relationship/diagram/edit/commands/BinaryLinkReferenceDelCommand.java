@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
@@ -100,7 +101,7 @@ public class BinaryLinkReferenceDelCommand extends DestroyElementCommand {
 			return super.doExecuteWithResult(monitor, info);
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "No binary link deleted", e);
+			MMINTException.print(Type.ERROR, "No binary link deleted", e);
 			return CommandResult.newErrorCommandResult("No binary link deleted");
 		}
 	}

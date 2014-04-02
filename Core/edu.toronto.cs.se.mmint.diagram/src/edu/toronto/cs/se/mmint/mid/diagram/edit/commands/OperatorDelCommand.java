@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -112,7 +113,7 @@ public class OperatorDelCommand extends DestroyElementCommand {
 			return super.doExecuteWithResult(monitor, info);
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "No operator deleted", e);
+			MMINTException.print(Type.ERROR, "No operator deleted", e);
 			return CommandResult.newErrorCommandResult("No operator deleted");
 		}
 	}

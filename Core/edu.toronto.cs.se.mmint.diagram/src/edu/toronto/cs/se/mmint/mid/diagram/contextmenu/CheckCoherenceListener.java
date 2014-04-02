@@ -73,7 +73,7 @@ public class CheckCoherenceListener extends SelectionAdapter {
 			OperationHistoryFactory.getOperationHistory().execute(operatorCommand, null, null);
 		}
 		catch (ExecutionException ex) {
-			MMINTException.print(Type.WARNING, "Check coherence history execution error", ex);
+			MMINTException.print(Type.ERROR, "Check coherence history execution error", ex);
 		}
 	}
 
@@ -111,7 +111,7 @@ coherence:
 						IComparisonScope scope = EMFCompare.createDefaultScope(resourceSet, resourceSet2);
 						Comparison comparison = EMFCompare.builder().build().compare(scope);
 						if (!comparison.getDifferences().isEmpty()) {
-							MMINTException.print(Type.ERROR, "Your type system is not coherent", new MMINTException("The following conversion paths yield different results: " + conversionPaths));
+							MMINTException.print(Type.ERROR, "The type system is not coherent", new MMINTException("The following conversion paths yield different results: " + conversionPaths));
 							break coherence;
 						}
 					}
@@ -126,7 +126,7 @@ coherence:
 				return CommandResult.newOKCommandResult();
 			}
 			catch (Exception e) {
-				MMINTException.print(Type.WARNING, "Coherence check execution error", e);
+				MMINTException.print(Type.ERROR, "Coherence check execution error", e);
 				return CommandResult.newErrorCommandResult("Coherence check execution error");
 			}
 		}

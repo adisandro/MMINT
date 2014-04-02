@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
@@ -95,7 +96,7 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 			throw ee;
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "No model imported", e);
+			MMINTException.print(Type.ERROR, "No model imported", e);
 			return CommandResult.newErrorCommandResult("No model imported");
 		}
 	}

@@ -39,7 +39,7 @@ public class ComponentsDeployedConstraint extends JavaModelConstraint {
 			srcUmlModel = (org.eclipse.uml2.uml.Model) deplRel.getSourceModel().getEMFInstanceRoot();
 		}
 		catch (MMINTException e) {
-			MMINTException.print(Type.WARNING, "Can't get model root, skipping validation",  e);
+			MMINTException.print(Type.WARNING, "Can't get model root, skipping validation", e);
 			return MAVOTruthValue.FALSE;
 		}
 		for (PackageableElement umlModelObj : srcUmlModel.getPackagedElements()) {

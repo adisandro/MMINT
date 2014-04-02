@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
@@ -177,7 +178,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "No binary link created", e);
+			MMINTException.print(Type.ERROR, "No binary link created", e);
 			return CommandResult.newErrorCommandResult("No binary link created");
 		}
 	}

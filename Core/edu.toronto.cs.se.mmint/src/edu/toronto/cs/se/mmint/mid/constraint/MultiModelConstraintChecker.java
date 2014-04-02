@@ -603,7 +603,7 @@ linkTypes:
 			return ocl.evaluate(modelObj, expression);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "OCL constraint error: " + oclConstraint, e);
+			MMINTException.print(MMINTException.Type.WARNING, "OCL derivation error: " + oclConstraint, e);
 			return null;
 		}
 	}
@@ -619,7 +619,7 @@ linkTypes:
 			return (ocl.check(modelObj, expression)) ? MAVOTruthValue.TRUE : MAVOTruthValue.FALSE;
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "OCL constraint error: " + oclConstraint, e);
+			MMINTException.print(MMINTException.Type.WARNING, "OCL constraint error, evaluating to false: " + oclConstraint, e);
 			return MAVOTruthValue.FALSE;
 		}
 	}
@@ -634,7 +634,7 @@ linkTypes:
 			return checkOCLConstraint(modelObj, oclConstraint);
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Can't get context for OCL constraint", e);
+			MMINTException.print(MMINTException.Type.WARNING, "Can't get context for OCL constraint, evaluating to false", e);
 			return MAVOTruthValue.FALSE;
 		}
 	}
@@ -650,7 +650,7 @@ linkTypes:
 			return javaConstraint.validate();
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Java constraint error: " + javaClassName, e);
+			MMINTException.print(MMINTException.Type.WARNING, "Java constraint error, evaluating to false: " + javaClassName, e);
 			return MAVOTruthValue.FALSE;
 		}
 	}
@@ -800,7 +800,7 @@ linkTypes:
 			modelTypeObj = (EPackage) getOCLConstraintContext(modelType, oclConstraint, false);
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Can't get context for OCL constraint", e);
+			MMINTException.print(MMINTException.Type.WARNING, "Can't get context for OCL constraint, evaluating to false", e);
 			return false;
 		}
 		String modelTypeName = modelType.getName();

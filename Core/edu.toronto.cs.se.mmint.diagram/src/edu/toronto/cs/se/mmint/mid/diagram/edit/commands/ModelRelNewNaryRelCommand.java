@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
@@ -137,7 +138,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "No model relationship created", e);
+			MMINTException.print(Type.ERROR, "No model relationship created", e);
 			return CommandResult.newErrorCommandResult("No model relationship created");
 		}
 	}

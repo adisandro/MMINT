@@ -64,7 +64,7 @@ public class CopyModelListener extends SelectionAdapter {
 			OperationHistoryFactory.getOperationHistory().execute(copyCommand, null, null);
 		}
 		catch (ExecutionException ex) {
-			MMINTException.print(Type.WARNING, "Copy model history execution error", ex);
+			MMINTException.print(Type.ERROR, "Copy model history execution error", ex);
 		}
 	}
 
@@ -86,7 +86,7 @@ public class CopyModelListener extends SelectionAdapter {
 				return CommandResult.newOKCommandResult(newModel);
 			}
 			catch (Exception e) {
-				MMINTException.print(MMINTException.Type.WARNING, "No model copied", e);
+				MMINTException.print(Type.ERROR, "No model copied", e);
 				return CommandResult.newErrorCommandResult("No model copied");
 			}
 		}

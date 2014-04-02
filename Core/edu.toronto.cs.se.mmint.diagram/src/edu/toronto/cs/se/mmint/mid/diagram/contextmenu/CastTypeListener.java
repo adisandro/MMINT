@@ -72,7 +72,7 @@ public class CastTypeListener extends SelectionAdapter {
 			OperationHistoryFactory.getOperationHistory().execute(operatorCommand, null, null);
 		}
 		catch (ExecutionException ex) {
-			MMINTException.print(Type.WARNING, "Casting of " + model.getName() + " into " + newMetatype.getName() + " history execution error", ex);
+			MMINTException.print(Type.ERROR, "Casting of " + model.getName() + " into " + newMetatype.getName() + " history execution error", ex);
 		}
 	}
 

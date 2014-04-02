@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
@@ -149,7 +150,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "No link created", e);
+			MMINTException.print(Type.ERROR, "No link created", e);
 			return CommandResult.newErrorCommandResult("No link created");
 		}
 	}

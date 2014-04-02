@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRel2CreateCommand;
@@ -91,7 +92,7 @@ public class ModelRelImportNaryRelCommand extends ModelRel2CreateCommand {
 			throw ee;
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "No model relationship imported", e);
+			MMINTException.print(Type.ERROR, "No model relationship imported", e);
 			return CommandResult.newErrorCommandResult("No model relationship imported");
 		}
 	}

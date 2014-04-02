@@ -76,6 +76,7 @@ import org.eclipse.ui.part.ShowInContext;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.navigator.MidNavigatorItem;
@@ -273,7 +274,7 @@ public class MidDiagramEditor extends DiagramDocumentEditor implements
 					try {
 						provider2.synchronize(editorRef.getEditorInput());
 					} catch (Exception e) {
-						MMINTException.print(MMINTException.Type.WARNING,
+						MMINTException.print(Type.ERROR,
 								"Diagram synchronization failed", e);
 					}
 				}

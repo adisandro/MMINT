@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
@@ -120,7 +121,7 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "No model element endpoint created", e);
+			MMINTException.print(Type.ERROR, "No model element endpoint created", e);
 			return CommandResult.newErrorCommandResult("No model element endpoint created");
 		}
 	}

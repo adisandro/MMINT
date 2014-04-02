@@ -134,7 +134,7 @@ public class MAVOUtils {
 			return isMAVOModel(model.getEMFInstanceRoot());
 		}
 		catch (MMINTException e) {
-			MMINTException.print(Type.WARNING, "Can't get model root, skipping MAVO evaluation", e);
+			MMINTException.print(Type.WARNING, "Can't get model root object, skipping MAVO evaluation", e);
 			return false;
 		}
 	}

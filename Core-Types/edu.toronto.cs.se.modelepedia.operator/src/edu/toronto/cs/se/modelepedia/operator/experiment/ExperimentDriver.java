@@ -75,7 +75,7 @@ public class ExperimentDriver extends OperatorImpl {
 						outerParameters = executeOperator(experimentIndex, -1, op, experimentOperators[op], outerParameters, operatorChain, outputConfidences);
 					}
 					catch (Exception e) {
-						MMINTException.print(MMINTException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + " failed", e);
+						MMINTException.print(Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + " failed", e);
 						MultiModelOperatorUtils.writePropertiesFile(
 							writeProperties(null, experimentIndex),
 							driver,
@@ -126,13 +126,13 @@ public class ExperimentDriver extends OperatorImpl {
 								outputDefaults[out] :
 								getOutput(initialModel, out, experimentIndex, j);
 							if (sample == Double.MAX_VALUE) {
-								MMINTException.print(MMINTException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + j + ", output " + outputs[out] + " skipped", null);
+								MMINTException.print(Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + j + ", output " + outputs[out] + " skipped", null);
 								continue;
 							}
 							outputConfidences[out] = experiment[out].addSample(sample);
 						}
 						catch (Exception e) {
-							MMINTException.print(MMINTException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + j + ", output " + outputs[out] + " not available", e);
+							MMINTException.print(Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + j + ", output " + outputs[out] + " not available", e);
 						}
 					}
 					// evaluate confidence intervals
@@ -156,7 +156,7 @@ public class ExperimentDriver extends OperatorImpl {
 				writeGnuplotFile(driver, initialModel, experiment, experimentIndex, varX);
 			}
 			catch (Exception e) {
-				MMINTException.print(MMINTException.Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + " failed", e);
+				MMINTException.print(Type.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + " failed", e);
 			}
 		}
 	}
@@ -508,7 +508,7 @@ public class ExperimentDriver extends OperatorImpl {
 				executor.submit(new ExperimentWatchdog(this, actualParameters, i));
 			}
 			catch (Exception e) {
-				MMINTException.print(MMINTException.Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + " failed", e);
+				MMINTException.print(Type.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + " failed", e);
 			}
 		}
 

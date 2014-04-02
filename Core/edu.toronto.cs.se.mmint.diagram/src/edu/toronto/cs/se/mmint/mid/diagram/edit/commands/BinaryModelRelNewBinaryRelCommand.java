@@ -176,7 +176,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "No binary model relationship created", e);
+			MMINTException.print(MMINTException.Type.ERROR, "No binary model relationship created", e);
 			return CommandResult.newErrorCommandResult("No binary model relationship created");
 		}
 	}

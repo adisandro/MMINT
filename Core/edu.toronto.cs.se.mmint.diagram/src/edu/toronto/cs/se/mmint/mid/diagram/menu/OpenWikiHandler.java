@@ -21,6 +21,7 @@ import org.eclipse.ui.browser.IWebBrowser;
 import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 
 public class OpenWikiHandler extends AbstractHandler {
 	
@@ -35,7 +36,7 @@ public class OpenWikiHandler extends AbstractHandler {
 			browser.openURL(new URL(WIKI_WWW));
 		}
 		catch (Exception ex) {
-			MMINTException.print(MMINTException.Type.WARNING, "Error opening wiki page " + WIKI_WWW, ex);
+			MMINTException.print(Type.ERROR, "Error opening wiki page " + WIKI_WWW, ex);
 		}
 
 		return null;

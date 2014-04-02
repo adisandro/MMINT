@@ -42,7 +42,7 @@ public class OpenModelepediaListener extends SelectionAdapter {
 			browser.openURL(new URL(url));
 		}
 		catch (Exception ex) {
-			MMINTException.print(MMINTException.Type.WARNING, "Error opening wiki page " + url, ex);
+			MMINTException.print(MMINTException.Type.ERROR, "Error opening wiki page " + url, ex);
 		}
 	}
 

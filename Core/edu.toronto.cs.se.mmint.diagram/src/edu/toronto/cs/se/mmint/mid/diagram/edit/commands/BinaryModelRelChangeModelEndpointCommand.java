@@ -149,7 +149,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "No model endpoint changed", e);
+			MMINTException.print(MMINTException.Type.ERROR, "No model endpoint changed", e);
 			return CommandResult.newErrorCommandResult("No model endpoint changed");
 		}
 	}
@@ -178,7 +178,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "No model endpoint changed", e);
+			MMINTException.print(MMINTException.Type.ERROR, "No model endpoint changed", e);
 			return CommandResult.newErrorCommandResult("No model endpoint changed");
 		}
 	}

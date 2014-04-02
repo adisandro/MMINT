@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
@@ -72,7 +73,7 @@ public class LinkReferenceRemoveModelElementEndpointReferenceCommand extends Des
 			return super.doExecuteWithResult(monitor, info);
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "No model element endpoint deleted", e);
+			MMINTException.print(Type.ERROR, "No model element endpoint deleted", e);
 			return CommandResult.newErrorCommandResult("No model element endpoint deleted");
 		}
 	}

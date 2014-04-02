@@ -33,6 +33,7 @@ import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
@@ -133,7 +134,7 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 			return CommandResult.newOKCommandResult();
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "No editor associated", e);
+			MMINTException.print(Type.ERROR, "No editor associated", e);
 			return CommandResult.newErrorCommandResult("No editor associated");
 		}
 	}

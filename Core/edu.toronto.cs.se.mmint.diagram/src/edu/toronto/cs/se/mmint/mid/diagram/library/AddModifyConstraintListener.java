@@ -71,7 +71,7 @@ public class AddModifyConstraintListener extends SelectionAdapter {
 			OperationHistoryFactory.getOperationHistory().execute(copyCommand, null, null);
 		}
 		catch (ExecutionException ex) {
-			MMINTException.print(Type.WARNING, "Add/modify constraint history execution error", ex);
+			MMINTException.print(Type.ERROR, "Add/modify constraint history execution error", ex);
 		}
 	}
 

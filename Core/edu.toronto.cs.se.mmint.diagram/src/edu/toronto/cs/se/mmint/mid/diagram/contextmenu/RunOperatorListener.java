@@ -79,7 +79,7 @@ public class RunOperatorListener extends SelectionAdapter {
 			OperationHistoryFactory.getOperationHistory().execute(operatorCommand, null, null);
 		}
 		catch (ExecutionException ex) {
-			MMINTException.print(Type.WARNING, "Operator " + operator.getName() + " history execution error", ex);
+			MMINTException.print(Type.ERROR, "Operator " + operator.getName() + " history execution error", ex);
 		}
 	}
 
@@ -123,7 +123,7 @@ public class RunOperatorListener extends SelectionAdapter {
 				return CommandResult.newOKCommandResult();
 			}
 			catch (Exception e) {
-				MMINTException.print(Type.WARNING, "Operator " + operator.getName() + " execution error", e);
+				MMINTException.print(Type.ERROR, "Operator " + operator.getName() + " execution error", e);
 				return CommandResult.newErrorCommandResult("Operator " + operator.getName() + " execution error");
 			}
 		}

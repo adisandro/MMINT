@@ -292,7 +292,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 					activePage.openEditor(new URIEditorInput(kUri), ModelOpenEditorCommand.ECORE_EDITORID);
 				}
 				catch (PartInitException e) {
-					MMINTException.print(Type.WARNING, "Error opening extended metamodel file", e);
+					MMINTException.print(Type.ERROR, "Error opening extended metamodel file", e);
 				}
 			}
 		}

@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -146,7 +147,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "No model endpoint changed", e);
+			MMINTException.print(Type.ERROR, "No model endpoint changed", e);
 			return CommandResult.newErrorCommandResult("No model endpoint changed");
 		}
 	}
@@ -175,7 +176,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "No model endpoint changed", e);
+			MMINTException.print(Type.ERROR, "No model endpoint changed", e);
 			return CommandResult.newErrorCommandResult("No model endpoint changed");
 		}
 	}

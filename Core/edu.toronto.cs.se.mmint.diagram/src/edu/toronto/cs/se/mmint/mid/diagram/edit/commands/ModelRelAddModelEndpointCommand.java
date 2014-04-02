@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -131,7 +132,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "No model endpoint created", e);
+			MMINTException.print(Type.ERROR, "No model endpoint created", e);
 			return CommandResult.newErrorCommandResult("No model endpoint created");
 		}
 	}
