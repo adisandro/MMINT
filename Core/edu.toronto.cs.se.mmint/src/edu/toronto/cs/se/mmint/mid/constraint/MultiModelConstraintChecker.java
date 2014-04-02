@@ -848,6 +848,7 @@ linkTypes:
 		newEAnnotationDetails.put(ECORE_PIVOT_CONSISTENCYCONSTRAINT, oclConsistencyConstraint);
 		modelTypeRootObj.getEAnnotations().add(newEAnnotation);
 		// use EMFtoCSP to check strong satisfiability
+		EPackage modelTypeObjToRestore = EPackage.Registry.INSTANCE.getEPackage(flatModelTypeObj.getNsURI()); // EMFtoCSP will mess this up, save it to restore later
 		// EMFtoCSP ui screen 4 (preview)
 		IProject tempProject = ResourcesPlugin.getWorkspace().getRoot().getProject(EMFTOCSP_TEMPPROJECT);
 		IFolder resultLocation;
@@ -934,8 +935,7 @@ linkTypes:
 			libList.add(libs[i]);
 		}
 		boolean isConsistent = modelSolver.solveModel(libList);
-		// restore original package, EMFtoCSP messed up with it
-		EPackage.Registry.INSTANCE.put(modelType.getUri(), modelTypeObj);
+		EPackage.Registry.INSTANCE.put(flatModelTypeObj.getNsURI(), modelTypeObjToRestore); // EMFtoCSP messed this up, restore it
 		cleanupCheckOCLConstraintConsistency(tempProject);
 
 		return isConsistent;
