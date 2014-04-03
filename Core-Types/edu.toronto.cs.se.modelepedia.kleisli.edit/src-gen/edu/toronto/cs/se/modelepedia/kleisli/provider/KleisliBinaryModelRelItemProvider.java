@@ -13,17 +13,11 @@ package edu.toronto.cs.se.modelepedia.kleisli.provider;
 
 
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmint.mid.relationship.provider.BinaryModelRelItemProvider;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
-
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -31,8 +25,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel} object.
@@ -41,7 +33,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class KleisliBinaryModelRelItemProvider
-	extends BinaryModelRelItemProvider
+	extends KleisliModelRelItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -69,29 +61,52 @@ public class KleisliBinaryModelRelItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addExtendedUriPropertyDescriptor(object);
+			addSourceModelPropertyDescriptor(object);
+			addTargetModelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Extended Uri feature.
+	 * This adds a property descriptor for the Source Model feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addExtendedUriPropertyDescriptor(Object object) {
+	protected void addSourceModelPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_KleisliModelRel_extendedUri_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_KleisliModelRel_extendedUri_feature", "_UI_KleisliModelRel_type"),
-				 KleisliPackage.Literals.KLEISLI_MODEL_REL__EXTENDED_URI,
+				 getString("_UI_BinaryModelRel_sourceModel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BinaryModelRel_sourceModel_feature", "_UI_BinaryModelRel_type"),
+				 RelationshipPackage.Literals.BINARY_MODEL_REL__SOURCE_MODEL,
 				 true,
 				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Target Model feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetModelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BinaryModelRel_targetModel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BinaryModelRel_targetModel_feature", "_UI_BinaryModelRel_type"),
+				 RelationshipPackage.Literals.BINARY_MODEL_REL__TARGET_MODEL,
+				 true,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -131,12 +146,6 @@ public class KleisliBinaryModelRelItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(KleisliBinaryModelRel.class)) {
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__EXTENDED_URI:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -150,27 +159,6 @@ public class KleisliBinaryModelRelItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINTS,
-				 KleisliFactory.eINSTANCE.createKleisliModelEndpoint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINT_REFS,
-				 KleisliFactory.eINSTANCE.createKleisliModelEndpointReference()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return KleisliEditPlugin.INSTANCE;
 	}
 
 }

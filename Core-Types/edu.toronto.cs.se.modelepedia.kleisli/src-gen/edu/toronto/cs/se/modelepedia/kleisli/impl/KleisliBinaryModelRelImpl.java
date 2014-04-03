@@ -16,9 +16,10 @@ import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
-
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,23 +37,23 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  */
 public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements KleisliBinaryModelRel {
 	/**
-	 * The cached setting delegate for the '{@link #getSourceModel() <em>Source Model</em>}' reference.
+	 * The cached value of the '{@link #getSourceModel() <em>Source Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSourceModel()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate SOURCE_MODEL__ESETTING_DELEGATE = ((EStructuralFeature.Internal)RelationshipPackage.Literals.BINARY_MODEL_REL__SOURCE_MODEL).getSettingDelegate();
+	protected Model sourceModel;
 	/**
-	 * The cached setting delegate for the '{@link #getTargetModel() <em>Target Model</em>}' reference.
+	 * The cached value of the '{@link #getTargetModel() <em>Target Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTargetModel()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate TARGET_MODEL__ESETTING_DELEGATE = ((EStructuralFeature.Internal)RelationshipPackage.Literals.BINARY_MODEL_REL__TARGET_MODEL).getSettingDelegate();
+	protected Model targetModel;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,7 +79,15 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	 * @generated
 	 */
 	public Model getSourceModel() {
-		return (Model)SOURCE_MODEL__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		if (sourceModel != null && sourceModel.eIsProxy()) {
+			InternalEObject oldSourceModel = (InternalEObject)sourceModel;
+			sourceModel = (Model)eResolveProxy(oldSourceModel);
+			if (sourceModel != oldSourceModel) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL, oldSourceModel, sourceModel));
+			}
+		}
+		return sourceModel;
 	}
 
 	/**
@@ -87,7 +96,7 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	 * @generated
 	 */
 	public Model basicGetSourceModel() {
-		return (Model)SOURCE_MODEL__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+		return sourceModel;
 	}
 
 	/**
@@ -96,7 +105,10 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	 * @generated
 	 */
 	public void setSourceModel(Model newSourceModel) {
-		SOURCE_MODEL__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSourceModel);
+		Model oldSourceModel = sourceModel;
+		sourceModel = newSourceModel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL, oldSourceModel, sourceModel));
 	}
 
 	/**
@@ -105,7 +117,15 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	 * @generated
 	 */
 	public Model getTargetModel() {
-		return (Model)TARGET_MODEL__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		if (targetModel != null && targetModel.eIsProxy()) {
+			InternalEObject oldTargetModel = (InternalEObject)targetModel;
+			targetModel = (Model)eResolveProxy(oldTargetModel);
+			if (targetModel != oldTargetModel) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL, oldTargetModel, targetModel));
+			}
+		}
+		return targetModel;
 	}
 
 	/**
@@ -114,7 +134,7 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	 * @generated
 	 */
 	public Model basicGetTargetModel() {
-		return (Model)TARGET_MODEL__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+		return targetModel;
 	}
 
 	/**
@@ -123,7 +143,10 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	 * @generated
 	 */
 	public void setTargetModel(Model newTargetModel) {
-		TARGET_MODEL__ESETTING_DELEGATE.dynamicSet(this, null, 0, newTargetModel);
+		Model oldTargetModel = targetModel;
+		targetModel = newTargetModel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL, oldTargetModel, targetModel));
 	}
 
 	/**
@@ -189,9 +212,9 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL:
-				return SOURCE_MODEL__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+				return sourceModel != null;
 			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL:
-				return TARGET_MODEL__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+				return targetModel != null;
 		}
 		return super.eIsSet(featureID);
 	}
