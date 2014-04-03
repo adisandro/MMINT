@@ -214,9 +214,7 @@ public interface Operator extends ExtendibleElement {
 	 * @return The list of executable operator types.
 	 * @throws MMINTException
 	 *             If this is an operator instance. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 *        actualModelsMany="true" actualModelTypesMany="true"
-	 *        conversionsMany="true" genericsMany="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" actualModelsMany="true" actualModelTypesMany="true" conversionsMany="true" genericsMany="true"
 	 * @generated
 	 */
 	EList<Operator> getExecutables(EList<Model> actualModels, EList<EList<Model>> actualModelTypes, EList<Map<Integer, EList<ConversionOperator>>> conversions, EList<EList<Model>> generics) throws MMINTException;

@@ -43,13 +43,12 @@ public interface BinaryModelRel extends ModelRel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The source model endpoint.
+	 * The source model.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Model</em>' reference.
 	 * @see #setSourceModel(Model)
 	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryModelRel_SourceModel()
-	 * @model required="true" transient="true" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if modelEndpoints->size() < 1 then null else modelEndpoints->at(1).target.oclAsType(mid::Model) endif'"
+	 * @model required="true"
 	 * @generated
 	 */
 	Model getSourceModel();
@@ -69,13 +68,12 @@ public interface BinaryModelRel extends ModelRel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The target model endpoint.
+	 * The target model.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Model</em>' reference.
 	 * @see #setTargetModel(Model)
 	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryModelRel_TargetModel()
-	 * @model required="true" transient="true" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if modelEndpoints->size() < 2 then null else modelEndpoints->at(2).target.oclAsType(mid::Model) endif'"
+	 * @model required="true"
 	 * @generated
 	 */
 	Model getTargetModel();

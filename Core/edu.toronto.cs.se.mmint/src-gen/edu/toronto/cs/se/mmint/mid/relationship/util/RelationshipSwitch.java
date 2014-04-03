@@ -79,19 +79,6 @@ public class RelationshipSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE: {
-				ExtendibleElementReference extendibleElementReference = (ExtendibleElementReference)theEObject;
-				T result = caseExtendibleElementReference(extendibleElementReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE: {
-				ExtendibleElementEndpointReference extendibleElementEndpointReference = (ExtendibleElementEndpointReference)theEObject;
-				T result = caseExtendibleElementEndpointReference(extendibleElementEndpointReference);
-				if (result == null) result = caseExtendibleElementReference(extendibleElementEndpointReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case RelationshipPackage.MODEL_REL: {
 				ModelRel modelRel = (ModelRel)theEObject;
 				T result = caseModelRel(modelRel);
@@ -110,6 +97,19 @@ public class RelationshipSwitch<T> extends Switch<T> {
 				if (result == null) result = caseExtendibleElement(binaryModelRel);
 				if (result == null) result = caseMAVOModel(binaryModelRel);
 				if (result == null) result = caseMAVOElement(binaryModelRel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE: {
+				ExtendibleElementReference extendibleElementReference = (ExtendibleElementReference)theEObject;
+				T result = caseExtendibleElementReference(extendibleElementReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE: {
+				ExtendibleElementEndpointReference extendibleElementEndpointReference = (ExtendibleElementEndpointReference)theEObject;
+				T result = caseExtendibleElementEndpointReference(extendibleElementEndpointReference);
+				if (result == null) result = caseExtendibleElementReference(extendibleElementEndpointReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
