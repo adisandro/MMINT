@@ -81,8 +81,8 @@ public class EMFModelNameMatch extends OperatorImpl {
 		matchRel.setName(MODELREL_NAME);
 		// create model endpoints
 		ModelEndpoint rootModelTypeEndpoint = MultiModelTypeHierarchy.getRootModelTypeEndpoint();
-		ModelEndpointReference srcModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(srcModel, false, matchRel);
-		ModelEndpointReference tgtModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(tgtModel, false, matchRel);
+		ModelEndpointReference srcModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(srcModel, matchRel);
+		ModelEndpointReference tgtModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(tgtModel, matchRel);
 
 		// create model relationship structure
 		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();

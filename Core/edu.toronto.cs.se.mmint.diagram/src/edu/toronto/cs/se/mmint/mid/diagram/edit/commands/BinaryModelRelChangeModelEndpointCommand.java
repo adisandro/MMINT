@@ -111,7 +111,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 			modelRel.getModelEndpoints().get(0) :
 			modelRel.getModelEndpoints().get(1);
 		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
-		modelTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelEndpoint, model);
+		modelTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelEndpoint, model, modelRel);
 	}
 
 	protected void doExecuteTypesLevel(BinaryModelRel modelRelType, Model modelType, boolean isBinarySrc) throws MMINTException {

@@ -142,14 +142,12 @@
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createTypeReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/modelTypeEndpointRef"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/isModifiable"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/isBinarySrc"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/containerModelRelType"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createSubtypeAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/modelTypeEndpointRef"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/newModelTypeEndpointName"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/targetModelType"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/isBinarySrc"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/containerModelRelType"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference">
@@ -163,17 +161,16 @@
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteTypeAndReference/isFullDelete"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createInstanceReference">
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceReference/isBinarySrc"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceReference/containerModelRel"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createInstanceAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/targetModel"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/isBinarySrc"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/containerModelRel"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceInstanceAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceInstanceAndReference/oldModelEndpoint"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceInstanceAndReference/targetModel"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceInstanceAndReference/containerModelRel"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteInstanceAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteInstanceAndReference/isFullDelete"/>

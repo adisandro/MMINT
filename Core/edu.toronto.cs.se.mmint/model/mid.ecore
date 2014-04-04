@@ -405,7 +405,6 @@
         eExceptions="#//MMINTException">
       <eParameters name="modelTypeEndpointRef" eType="#//relationship/ModelEndpointReference"/>
       <eParameters name="isModifiable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="containerModelRelType" lowerBound="1" eType="#//relationship/ModelRel"/>
     </eOperations>
     <eOperations name="createSubtypeAndReference" lowerBound="1" eType="#//relationship/ModelEndpointReference"
@@ -413,7 +412,6 @@
       <eParameters name="modelTypeEndpointRef" eType="#//relationship/ModelEndpointReference"/>
       <eParameters name="newModelTypeEndpointName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="targetModelType" lowerBound="1" eType="#//Model"/>
-      <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="containerModelRelType" lowerBound="1" eType="#//relationship/ModelRel"/>
     </eOperations>
     <eOperations name="replaceSubtypeAndReference" eExceptions="#//MMINTException">
@@ -428,18 +426,17 @@
     </eOperations>
     <eOperations name="createInstanceReference" lowerBound="1" eType="#//relationship/ModelEndpointReference"
         eExceptions="#//MMINTException">
-      <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
     </eOperations>
     <eOperations name="createInstanceAndReference" lowerBound="1" eType="#//relationship/ModelEndpointReference"
         eExceptions="#//MMINTException">
       <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
-      <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
     </eOperations>
     <eOperations name="replaceInstanceAndReference" eExceptions="#//MMINTException">
       <eParameters name="oldModelEndpoint" lowerBound="1" eType="#//ModelEndpoint"/>
       <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
+      <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
     </eOperations>
     <eOperations name="deleteInstanceAndReference" eExceptions="#//MMINTException">
       <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>

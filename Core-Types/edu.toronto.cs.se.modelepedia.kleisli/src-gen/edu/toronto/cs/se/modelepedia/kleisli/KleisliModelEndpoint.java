@@ -84,28 +84,28 @@ public interface KleisliModelEndpoint extends ModelEndpoint {
 	 * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isModifiableRequired="true" isBinarySrcRequired="true" containerModelRelTypeRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isModifiableRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createTypeReference(ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException;
+	ModelEndpointReference createTypeReference(ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, ModelRel containerModelRelType) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isBinarySrcRequired="true" containerModelRelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" containerModelRelRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createInstanceReference(boolean isBinarySrc, ModelRel containerModelRel) throws MMINTException;
+	ModelEndpointReference createInstanceReference(ModelRel containerModelRel) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true" isBinarySrcRequired="true" containerModelRelTypeRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException;
+	ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -129,10 +129,10 @@ public interface KleisliModelEndpoint extends ModelEndpoint {
 	 * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true" isBinarySrcRequired="true" containerModelRelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true" containerModelRelRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createInstanceAndReference(Model targetModel, boolean isBinarySrc, ModelRel containerModelRel) throws MMINTException;
+	ModelEndpointReference createInstanceAndReference(Model targetModel, ModelRel containerModelRel) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -151,9 +151,9 @@ public interface KleisliModelEndpoint extends ModelEndpoint {
 	 *             If a native model endpoint is being replaced with a Kleisli
 	 *             one. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelEndpointRequired="true" targetModelRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelEndpointRequired="true" targetModelRequired="true" containerModelRelRequired="true"
 	 * @generated
 	 */
-	void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException;
+	void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel, ModelRel containerModelRel) throws MMINTException;
 
 } // KleisliModelEndpoint

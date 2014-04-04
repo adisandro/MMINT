@@ -113,10 +113,10 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 
 		List<String> modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, getSource());
 		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");
-		modelTypeEndpointRef.getObject().createInstanceAndReference(getSource(), false, newModelRel);
+		modelTypeEndpointRef.getObject().createInstanceAndReference(getSource(), newModelRel);
 		modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, getTarget());
 		modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "tgt ");
-		modelTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), false, newModelRel);
+		modelTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), newModelRel);
 
 		return newModelRel;
 	}
@@ -134,11 +134,11 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role", srcModelType.getName());
 		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(newModelRelType, srcModelType);
 		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), newModelRelType.getModelEndpointRefs());
-		modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, srcModelType, false, newModelRelType);
+		modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, srcModelType, newModelRelType);
 		newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role", tgtModelType.getName());
 		modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(newModelRelType, tgtModelType);
 		modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), newModelRelType.getModelEndpointRefs());
-		modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, tgtModelType, false, newModelRelType);
+		modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, tgtModelType, newModelRelType);
 
 		return newModelRelType;
 	}

@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.Parameter;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
@@ -217,7 +218,7 @@ public class MultiModelTypeFactory {
 				continue;
 			}
 			ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpointRefSuper.getSupertypeRef(), newModelRelType.getModelEndpointRefs());
-			ModelEndpointReference newModelTypeEndpointRef = modelTypeEndpointRefSuper.getObject().createTypeReference(modelTypeEndpointRef, false, false, newModelRelType);
+			ModelEndpointReference newModelTypeEndpointRef = modelTypeEndpointRefSuper.getObject().createTypeReference(modelTypeEndpointRef, false, newModelRelType);
 			// copy model element type references
 			Iterator<ModelElementReference> modelElemTypeRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(modelTypeEndpointRefSuper.getModelElemRefs());
 			while (modelElemTypeRefIter.hasNext()) {
@@ -259,24 +260,24 @@ public class MultiModelTypeFactory {
 	 * 
 	 * @param newModelTypeEndpoint
 	 *            The new model type endpoint to be added.
-	 * @param newModelType
+	 * @param targetModelType
 	 *            The new model type that is the target of the new model type
 	 *            endpoint.
-	 * @param isBinarySrc
-	 *            True if the model type endpoint is the source in the binary
-	 *            model relationship type container, false otherwise.
-	 * @param modelRelType
+	 * @param containerModelRelType
 	 *            The model relationship type that will contain the new model
 	 *            type endpoint.
 	 */
-	public static void addModelTypeEndpoint(ModelEndpoint newModelTypeEndpoint, Model newModelType, boolean isBinarySrc, ModelRel modelRelType) {
+	public static void addModelTypeEndpoint(ModelEndpoint newModelTypeEndpoint, Model targetModelType, ModelRel containerModelRelType) {
 
-		addTypeEndpoint(newModelTypeEndpoint, newModelType);
-		if (isBinarySrc) {
-			modelRelType.getModelEndpoints().add(0, newModelTypeEndpoint);
-		}
-		else {
-			modelRelType.getModelEndpoints().add(newModelTypeEndpoint);
+		addTypeEndpoint(newModelTypeEndpoint, targetModelType);
+		containerModelRelType.getModelEndpoints().add(newModelTypeEndpoint);
+		if (containerModelRelType instanceof BinaryModelRel) {
+			if (containerModelRelType.getModelEndpoints().size() == 1) {
+				((BinaryModelRel) containerModelRelType).setSourceModel(targetModelType);
+			}
+			else {
+				((BinaryModelRel) containerModelRelType).setTargetModel(targetModelType);
+			}
 		}
 	}
 

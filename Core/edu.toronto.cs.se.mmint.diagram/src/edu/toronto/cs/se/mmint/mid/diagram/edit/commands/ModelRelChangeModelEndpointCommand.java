@@ -102,10 +102,10 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
 		if (isFullDelete) {
 			getLink().deleteInstanceAndReference(isFullDelete);
-			modelTypeEndpointRef.getObject().createInstanceAndReference(model, false, modelRel);
+			modelTypeEndpointRef.getObject().createInstanceAndReference(model, modelRel);
 		}
 		else {
-			modelTypeEndpointRef.getObject().replaceInstanceAndReference(getLink(), model);
+			modelTypeEndpointRef.getObject().replaceInstanceAndReference(getLink(), model, modelRel);
 		}
 	}
 
@@ -115,7 +115,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), modelRelType.getModelEndpointRefs());
 		if (isFullDelete) {
 			getLink().deleteTypeAndReference(isFullDelete);
-			modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, getLink().getName(), modelType, false, modelRelType);
+			modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, getLink().getName(), modelType, modelRelType);
 		}
 		else {
 			modelTypeEndpoint.replaceSubtypeAndReference(getLink(), modelTypeEndpointRef, getLink().getName(), modelType, modelRelType);

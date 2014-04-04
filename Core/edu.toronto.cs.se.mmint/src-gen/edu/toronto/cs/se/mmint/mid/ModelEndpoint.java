@@ -81,19 +81,16 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @param isModifiable
 	 *            True if the new reference will allow modifications of the
 	 *            referenced model type endpoint, false otherwise.
-	 * @param isBinarySrc
-	 *            True if the referenced model type endpoint is the source in
-	 *            the binary model relationship container, false otherwise.
 	 * @param containerModelRelType
 	 *            The model relationship type that will contain the new
 	 *            reference to the model type endpoint.
 	 * @return The created reference to the model type endpoint.
 	 * @throws MMINTException
 	 *             If this is a model instance endpoint. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isModifiableRequired="true" isBinarySrcRequired="true" containerModelRelTypeRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isModifiableRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createTypeReference(ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException;
+	ModelEndpointReference createTypeReference(ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, ModelRel containerModelRelType) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a subtype of this model type
@@ -108,9 +105,6 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @param targetModelType
 	 *            The model type that is the target of the new model type
 	 *            endpoint.
-	 * @param isBinarySrc
-	 *            True if the model type endpoint is the source in the binary
-	 *            model relationship type container, false otherwise.
 	 * @param containerModelRelType
 	 *            The model relationship type that will contain the new model
 	 *            type endpoint.
@@ -119,10 +113,10 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 *             If this is a model instance endpoint, or if the uri of the
 	 *             new model type endpoint is already registered in the Type
 	 *             MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true" isBinarySrcRequired="true" containerModelRelTypeRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException;
+	ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Replaces an old subtype of this model type
@@ -169,19 +163,16 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * <!-- begin-user-doc --> Creates and adds a reference to this model
 	 * instance endpoint to an Instance MID.
 	 * 
-	 * @param isBinarySrc
-	 *            True if the model endpoint is the source in the binary model
-	 *            relationship container, false otherwise.
 	 * @param containerModelRel
 	 *            The model relationship that will contain the new reference to
 	 *            the model endpoint.
 	 * @return The created reference to the model endpoint.
 	 * @throws MMINTException
 	 *             If this is a model type endpoint. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isBinarySrcRequired="true" containerModelRelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" containerModelRelRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createInstanceReference(boolean isBinarySrc, ModelRel containerModelRel) throws MMINTException;
+	ModelEndpointReference createInstanceReference(ModelRel containerModelRel) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a model instance endpoint of
@@ -189,19 +180,16 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * 
 	 * @param targetModel
 	 *            The model that is the target of the new model endpoint.
-	 * @param isBinarySrc
-	 *            True if the model endpoint is the source in the binary model
-	 *            relationship container, false otherwise.
 	 * @param containerModelRel
 	 *            The model relationship that will contain the new model
 	 *            endpoint.
 	 * @return The created reference to the new model endpoint.
 	 * @throws MMINTException
 	 *             If this is a model instance endpoint. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true" isBinarySrcRequired="true" containerModelRelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true" containerModelRelRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createInstanceAndReference(Model targetModel, boolean isBinarySrc, ModelRel containerModelRel) throws MMINTException;
+	ModelEndpointReference createInstanceAndReference(Model targetModel, ModelRel containerModelRel) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model instance endpoint and the
@@ -211,7 +199,9 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 *            True if this model endpoint is going to be fully deleted,
 	 *            false if it is going to be replaced later.
 	 * @throws MMINTException
-	 *             If this is a model type endpoint. <!-- end-user-doc -->
+	 *             If this is a model type endpoint, or if there is no model
+	 *             endpoint reference corresponding to this model endpoint.
+	 *             <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isFullDeleteRequired="true"
 	 * @generated
 	 */
@@ -225,13 +215,16 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 *            The old model endpoint to be replaced.
 	 * @param targetModel
 	 *            The model that is the target of the new model endpoint.
+	 * @param containerModelRel
+	 *            The model relationship that will contain the new model
+	 *            endpoint.
 	 * @throws MMINTException
 	 *             If this is a model instance endpoint, or if a user-defined
 	 *             model endpoint is being replaced with a native one.
 	 *             <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelEndpointRequired="true" targetModelRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelEndpointRequired="true" targetModelRequired="true" containerModelRelRequired="true"
 	 * @generated
 	 */
-	void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException;
+	void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel, ModelRel containerModelRel) throws MMINTException;
 
 } // ModelEndpoint

@@ -560,7 +560,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			Model newModelType = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getTargetUri(), multiModel);
 			ModelEndpoint modelTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getSupertype().getUri(), multiModel);
 			ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), newModelRelType.getModelEndpointRefs());
-			modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, origModelTypeEndpoint.getName(), newModelType, false, newModelRelType);
+			modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, origModelTypeEndpoint.getName(), newModelType, newModelRelType);
 		}
 		// model element types
 		Iterator<ModelEndpointReference> origModelTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(origModelRelType.getModelEndpointRefs());
@@ -680,7 +680,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		for (Model targetModel : targetModels) {
 			String modelTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, targetModel).get(0);
 			ModelEndpoint modelTypeEndpoint = MultiModelTypeRegistry.getType(modelTypeEndpointUri);
-			modelTypeEndpoint.createInstanceAndReference(targetModel, false, newModelRel);
+			modelTypeEndpoint.createInstanceAndReference(targetModel, newModelRel);
 		}
 
 		return newModelRel;
@@ -698,7 +698,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
 		for (ModelEndpointReference oldModelEndpointRef : origModelRel.getModelEndpointRefs()) {
 			Model newModel = MultiModelRegistry.getExtendibleElement(oldModelEndpointRef.getTargetUri(), containerMultiModel);
-			ModelEndpointReference newModelEndpointRef = oldModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, false, newModelRel);
+			ModelEndpointReference newModelEndpointRef = oldModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, newModelRel);
 			// model elements
 			for (ModelElementReference oldModelElemRef : oldModelEndpointRef.getModelElemRefs()) {
 				EObject newModelObj = oldModelElemRef.getObject().getEMFInstanceObject();

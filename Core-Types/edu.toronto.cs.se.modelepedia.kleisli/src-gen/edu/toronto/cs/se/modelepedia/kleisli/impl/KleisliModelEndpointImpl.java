@@ -227,14 +227,14 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public ModelEndpointReference createTypeReference(ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
+	public ModelEndpointReference createTypeReference(ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, ModelRel containerModelRelType) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		KleisliModelEndpointReference newModelTypeEndpointRef = KleisliFactory.eINSTANCE.createKleisliModelEndpointReference();
-		super.addTypeReference(newModelTypeEndpointRef, modelTypeEndpointRef, isModifiable, isBinarySrc, containerModelRelType);
+		super.addTypeReference(newModelTypeEndpointRef, modelTypeEndpointRef, isModifiable, containerModelRelType);
 
 		return newModelTypeEndpointRef;
 	}
@@ -242,14 +242,14 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	/**
 	 * @generated NOT
 	 */
-	public ModelEndpointReference createInstanceReference(boolean isBinarySrc, ModelRel containerModelRel) throws MMINTException {
+	public ModelEndpointReference createInstanceReference(ModelRel containerModelRel) throws MMINTException {
 
 		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
 		KleisliModelEndpointReference newModelEndpointRef = KleisliFactory.eINSTANCE.createKleisliModelEndpointReference();
-		super.addInstanceReference(newModelEndpointRef, isBinarySrc, containerModelRel);
+		super.addInstanceReference(newModelEndpointRef, containerModelRel);
 
 		return newModelEndpointRef;
 	}
@@ -258,7 +258,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
+	public ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
@@ -276,7 +276,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		ModelEndpointReference newModelTypeEndpointRef;
 		if (isK) {
 			KleisliModelEndpoint newModelTypeEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
-			newModelTypeEndpointRef = super.addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
+			newModelTypeEndpointRef = super.addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, targetModelType, containerModelRelType);
 			KleisliModel kModelType;
 			try {
 				kModelType = getExtendedTarget().kleisliCreateType(newModelTypeEndpoint);
@@ -297,7 +297,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			}
 		}
 		else {
-			newModelTypeEndpointRef = super.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
+			newModelTypeEndpointRef = super.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, targetModelType, containerModelRelType);
 		}
 
 		return newModelTypeEndpointRef;
@@ -337,14 +337,14 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public ModelEndpointReference createInstanceAndReference(Model targetModel, boolean isBinarySrc, ModelRel containerModelRel) throws MMINTException {
+	public ModelEndpointReference createInstanceAndReference(Model targetModel, ModelRel containerModelRel) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		KleisliModelEndpoint newModelEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
-		ModelEndpointReference newModelEndpointRef = super.addInstanceAndReference(newModelEndpoint, targetModel, isBinarySrc, containerModelRel);
+		ModelEndpointReference newModelEndpointRef = super.addInstanceAndReference(newModelEndpoint, targetModel, containerModelRel);
 		getExtendedTarget().kleisliCreateInstance(newModelEndpoint);
 
 		return newModelEndpointRef;
@@ -354,13 +354,13 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException {
+	public void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel, ModelRel containerModelRel) throws MMINTException {
 
 		// can't transform non-kleisli into kleisli
 		if (!(oldModelEndpoint instanceof KleisliModelEndpoint)) {
 			throw new MMINTException("Can't replace a native model endpoint with a Kleisli one");
 		}
-		super.replaceInstanceAndReference(oldModelEndpoint, targetModel);
+		super.replaceInstanceAndReference(oldModelEndpoint, targetModel, containerModelRel);
 		getExtendedTarget().kleisliCreateInstance((KleisliModelEndpoint) oldModelEndpoint);
 	}
 

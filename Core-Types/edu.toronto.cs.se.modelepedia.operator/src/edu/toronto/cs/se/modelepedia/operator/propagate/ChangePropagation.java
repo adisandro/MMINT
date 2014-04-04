@@ -550,12 +550,12 @@ traceLinks:
 		Model newPropModel = relatedModel.getMetatype().copyMAVOInstanceAndEditor(relatedModel, relatedModel.getName() + PROP_MODEL_SUFFIX, false, multiModel);
 		BinaryModelRel newPropRefinementRel = (BinaryModelRel) refinementRel.getMetatype().createInstance(null, true, ModelOrigin.CREATED, multiModel);
 		newPropRefinementRel.setName(PROPREFINEMENT_MODELREL_NAME);
-		refinementRel.getModelEndpoints().get(0).getMetatype().createInstanceAndReference(relatedModel, false, newPropRefinementRel);
-		refinementRel.getModelEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModel, false, newPropRefinementRel);
+		refinementRel.getModelEndpoints().get(0).getMetatype().createInstanceAndReference(relatedModel, newPropRefinementRel);
+		refinementRel.getModelEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModel, newPropRefinementRel);
 		BinaryModelRel newPropTraceRel = (BinaryModelRel) traceRel.getMetatype().createInstance(null, true, ModelOrigin.CREATED, multiModel);
 		newPropTraceRel.setName(PROPTRACE_MODELREL_NAME);
-		traceRel.getModelEndpoints().get(0).getMetatype().createInstanceAndReference(refinedModel, false, newPropTraceRel);
-		traceRel.getModelEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModel, false, newPropTraceRel);
+		traceRel.getModelEndpoints().get(0).getMetatype().createInstanceAndReference(refinedModel, newPropTraceRel);
+		traceRel.getModelEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModel, newPropTraceRel);
 
 		// change propagation algorithm
 		List<List<BinaryLinkReference>> propTraceLinkRefsList = new ArrayList<List<BinaryLinkReference>>();
