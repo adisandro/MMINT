@@ -226,6 +226,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	protected void addTypeReference(ModelEndpointReference newModelTypeEndpointRef, ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, ModelRel containerModelRelType) {
 
 		MultiModelTypeFactory.addTypeReference(newModelTypeEndpointRef, this, modelTypeEndpointRef, isModifiable, false);
+		containerModelRelType.getModelEndpointRefs().add(newModelTypeEndpointRef);
 	}
 
 	/**
@@ -373,6 +374,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 
 		boolean isContainer = (containerModelRel.eContainer() == null);
 		super.addInstanceReference(newModelEndpointRef, isContainer);
+		containerModelRel.getModelEndpointRefs().add(newModelEndpointRef);
 	}
 
 	/**
@@ -409,6 +411,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 
 		super.addBasicInstance(newModelEndpoint, null, targetModel.getName());
 		super.addInstanceEndpoint(newModelEndpoint, targetModel);
+		containerModelRel.getModelEndpoints().add(newModelEndpoint);
 		if (containerModelRel instanceof BinaryModelRel) {
 			if (containerModelRel.getModelEndpoints().size() == 1) {
 				((BinaryModelRel) containerModelRel).setSourceModel(targetModel);
