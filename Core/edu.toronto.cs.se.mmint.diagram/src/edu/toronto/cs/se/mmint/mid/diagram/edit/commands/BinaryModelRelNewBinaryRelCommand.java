@@ -73,7 +73,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 
 		return status;
     }
-	
+
     /**
      * Overrides superclass to re-initialize diagram type hierarchy.
      */
@@ -87,7 +87,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 
 		return status;
     }
-	
+
 	/**
 	 * Checks if a binary model relationship can be created.
 	 * 
@@ -139,7 +139,6 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		}
 		else {
 			newModelTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role", srcModelType.getName());
-			modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), newModelRelType.getModelEndpointRefs());
 			modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, srcModelType, newModelRelType);
 		}
 
@@ -149,7 +148,6 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		}
 		else {
 			newModelTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role", tgtModelType.getName());
-			modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), newModelRelType.getModelEndpointRefs());
 			modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, tgtModelType, newModelRelType);
 		}
 

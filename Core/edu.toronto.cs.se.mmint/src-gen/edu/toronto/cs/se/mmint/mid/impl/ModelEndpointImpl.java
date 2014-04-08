@@ -272,6 +272,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	protected ModelEndpointReference addSubtypeAndReference(ModelEndpoint newModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(containerModelRelType);
+		modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), containerModelRelType.getModelEndpointRefs());
 		// create the "thing" and the corresponding reference
 		super.addSubtype(newModelTypeEndpoint, containerModelRelType, containerModelRelType.getName() + MMINT.ENDPOINT_SEPARATOR + targetModelType.getName(), newModelTypeEndpointName);
 		MultiModelTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, targetModelType, containerModelRelType);
@@ -311,8 +312,9 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		oldModelTypeEndpoint.deleteTypeAndReference(false);
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(containerModelRelType);
+		modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), containerModelRelType.getModelEndpointRefs());
+		oldModelTypeEndpoint.deleteTypeAndReference(false);
 		// modify the "thing" and the corresponding reference
 		super.addSubtype(oldModelTypeEndpoint, containerModelRelType, containerModelRelType.getName() + MMINT.ENDPOINT_SEPARATOR + targetModelType.getName(), newModelTypeEndpointName);
 		if (containerModelRelType instanceof BinaryModelRel) {

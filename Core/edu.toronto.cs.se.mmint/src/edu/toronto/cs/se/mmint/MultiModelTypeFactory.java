@@ -271,6 +271,7 @@ public class MultiModelTypeFactory {
 
 		addTypeEndpoint(newModelTypeEndpoint, targetModelType);
 		containerModelRelType.getModelEndpoints().add(newModelTypeEndpoint);
+		//TODO[MODELREL] the target could be index 0 if it is the only one overriding
 		if (containerModelRelType instanceof BinaryModelRel) {
 			if (containerModelRelType.getModelEndpoints().size() == 1) {
 				((BinaryModelRel) containerModelRelType).setSourceModel(targetModelType);

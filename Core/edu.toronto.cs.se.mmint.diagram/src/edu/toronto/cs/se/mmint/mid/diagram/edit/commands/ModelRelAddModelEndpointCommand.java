@@ -92,7 +92,6 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 		Model tgtModelType = (Model) getTarget();
 		String newModelTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new light model type endpoint", "Insert new model type endpoint role", tgtModelType.getName());
 		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(getSource(), tgtModelType);
-		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), getSource().getModelEndpointRefs());
 		ModelEndpointReference newModelTypeEndpointRef = modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, tgtModelType, getSource());
 		// no need to init type hierarchy, no need for undo/redo
 

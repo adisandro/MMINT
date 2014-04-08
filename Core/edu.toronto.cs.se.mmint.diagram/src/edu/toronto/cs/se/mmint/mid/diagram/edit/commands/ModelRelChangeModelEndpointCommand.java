@@ -112,7 +112,6 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 	protected void doExecuteTypesLevel(ModelRel modelRelType, Model modelType, boolean isFullDelete) throws MMINTException {
 
 		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(modelRelType, modelType);
-		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), modelRelType.getModelEndpointRefs());
 		if (isFullDelete) {
 			getLink().deleteTypeAndReference(isFullDelete);
 			modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, getLink().getName(), modelType, modelRelType);

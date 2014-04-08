@@ -116,11 +116,19 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 
 	protected void doExecuteTypesLevel(BinaryModelRel modelRelType, Model modelType, boolean isBinarySrc) throws MMINTException {
 
+		//TODO[MODELREL] the old endpoint could be null, or the target could be index 0
 		ModelEndpoint oldModelTypeEndpoint = (isBinarySrc) ?
 			modelRelType.getModelEndpoints().get(0) :
 			modelRelType.getModelEndpoints().get(1);
 		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(modelRelType, modelType);
-		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), modelRelType.getModelEndpointRefs());
+//		if (modelTypeEndpoint == null) {
+//			if (isBinarySrc) {
+//				modelRelType.setSourceModel(modelType);
+//			}
+//			else {
+//				modelRelType.setTargetModel(modelType);
+//			}
+//		}
 		modelTypeEndpoint.replaceSubtypeAndReference(oldModelTypeEndpoint, modelTypeEndpointRef, oldModelTypeEndpoint.getName(), modelType, modelRelType);
 		// no need to init type hierarchy, no need for undo/redo
 	}
