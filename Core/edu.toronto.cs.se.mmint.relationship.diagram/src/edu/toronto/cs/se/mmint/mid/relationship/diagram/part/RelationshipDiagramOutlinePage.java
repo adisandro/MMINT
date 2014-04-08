@@ -91,6 +91,7 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 	 */
 	public void loadOutlineModels() {
 
+		//TODO MMINT[MODELREL] with two rel types open on the same metamodels, only one will show them
 		ResourceSet resourceSet;
 		try {
 			resourceSet = (MultiModelConstraintChecker.isInstancesLevel(modelRel)) ?

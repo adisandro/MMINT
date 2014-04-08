@@ -794,7 +794,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			Model modelType = modelTypeEndpointRef.getObject().getTarget();
 			do {
 				resources.add(modelType.getEMFTypeRoot().eResource());
-				modelType = modelType.getSupertype(); // types only
+				modelType = modelType.getSupertype();
 			}
 			while (modelType != null && !modelType.isAbstract());
 		}

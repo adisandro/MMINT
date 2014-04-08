@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -24,7 +24,7 @@ public class BinaryModelRelSourceModelEndpointLabelParser extends ExtendibleElem
 	protected IAdaptable getSourceModelEndpointAdaptable(IAdaptable element) {
 
 		EObject modelObj = (EObject) element.getAdapter(EObject.class);
-		ModelEndpoint modelEndpoint = ((BinaryModelRel) modelObj).getModelEndpoints().get(0);
+		ModelEndpoint modelEndpoint = ((BinaryModelRel) modelObj).getModelEndpointRefs().get(0).getObject();
 
 		return new ParserHintAdapter(modelEndpoint, "");
 	}
