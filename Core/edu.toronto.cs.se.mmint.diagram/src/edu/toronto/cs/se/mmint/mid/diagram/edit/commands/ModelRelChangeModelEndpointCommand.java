@@ -24,10 +24,10 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelEndpointReorientCommand;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
 /**
  * The command to change a model of a mapping reference.
@@ -97,9 +97,9 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 			);
 	}
 
-	protected void doExecuteInstancesLevel(ModelRel modelRel, Model model, boolean isFullDelete) throws MMINTException, MidDialogCancellation {
+	protected void doExecuteInstancesLevel(ModelRel modelRel, Model model, boolean isFullDelete) throws MMINTException, MultiModelDialogCancellation {
 
-		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
+		ModelEndpointReference modelTypeEndpointRef = MultiModelDiagramUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
 		if (isFullDelete) {
 			getLink().deleteInstanceAndReference(isFullDelete);
 			modelTypeEndpointRef.getObject().createInstanceAndReference(model, modelRel);
@@ -143,7 +143,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (MidDialogCancellation e) {
+		catch (MultiModelDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
@@ -172,7 +172,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (MidDialogCancellation e) {
+		catch (MultiModelDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

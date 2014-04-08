@@ -9,9 +9,9 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.diagram.library;
+package edu.toronto.cs.se.mmint.mid.ui;
 
-public class MidDialogCancellation extends Exception {
+public class MultiModelDialogCancellation extends Exception {
 
 	/** Default serial version. */
 	private static final long serialVersionUID = 1L;

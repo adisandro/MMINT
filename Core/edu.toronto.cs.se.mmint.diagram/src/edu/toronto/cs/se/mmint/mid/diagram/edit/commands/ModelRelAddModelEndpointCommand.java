@@ -28,9 +28,9 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelEndpointCreateCommand;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
 /**
  * The command to add a model to a model relationship.
@@ -79,18 +79,18 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 			));
 	}
 
-	protected ModelEndpoint doExecuteInstancesLevel() throws MMINTException, MidDialogCancellation {
+	protected ModelEndpoint doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
 
-		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
+		ModelEndpointReference modelTypeEndpointRef = MultiModelDiagramUtils.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
 		ModelEndpointReference newModelEndpointRef = modelTypeEndpointRef.getObject().createInstanceAndReference((Model) getTarget(), getSource());
 
 		return newModelEndpointRef.getObject();
 	}
 
-	protected ModelEndpoint doExecuteTypesLevel() throws MMINTException, MidDialogCancellation {
+	protected ModelEndpoint doExecuteTypesLevel() throws MMINTException, MultiModelDialogCancellation {
 
 		Model tgtModelType = (Model) getTarget();
-		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new light model type endpoint", "Insert new model type endpoint role", tgtModelType.getName());
+		String newModelTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new light model type endpoint", "Insert new model type endpoint role", tgtModelType.getName());
 		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(getSource(), tgtModelType);
 		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), getSource().getModelEndpointRefs());
 		ModelEndpointReference newModelTypeEndpointRef = modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, tgtModelType, getSource());
@@ -128,7 +128,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (MidDialogCancellation e) {
+		catch (MultiModelDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

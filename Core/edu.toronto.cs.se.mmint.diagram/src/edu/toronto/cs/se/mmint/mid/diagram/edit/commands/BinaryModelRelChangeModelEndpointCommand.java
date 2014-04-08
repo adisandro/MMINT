@@ -23,10 +23,10 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.BinaryModelRelReorientCommand;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
 /**
  * The command to change a model of a binary model relationship.
@@ -105,12 +105,12 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 			));
 	}
 
-	protected void doExecuteInstancesLevel(BinaryModelRel modelRel, Model model, boolean isBinarySrc) throws MMINTException, MidDialogCancellation {
+	protected void doExecuteInstancesLevel(BinaryModelRel modelRel, Model model, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {
 
 		ModelEndpoint oldModelEndpoint = (isBinarySrc) ?
 			modelRel.getModelEndpoints().get(0) :
 			modelRel.getModelEndpoints().get(1);
-		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
+		ModelEndpointReference modelTypeEndpointRef = MultiModelDiagramUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
 		modelTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelEndpoint, model, modelRel);
 	}
 
@@ -145,7 +145,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (MidDialogCancellation e) {
+		catch (MultiModelDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
@@ -174,7 +174,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (MidDialogCancellation e) {
+		catch (MultiModelDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

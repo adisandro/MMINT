@@ -37,6 +37,8 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmint.mid.MidFactory;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
 public class AddModifyConstraintListener extends SelectionAdapter {
 
@@ -95,7 +97,7 @@ public class AddModifyConstraintListener extends SelectionAdapter {
 				if (implementation == null) {
 					implementation = "";
 				}
-				String[] newConstraint = MidDiagramUtils.getConstraintInput("Add/Modify Constraint", constraint.getLanguage().getLiteral() + MidDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + implementation);
+				String[] newConstraint = MultiModelDiagramUtils.getConstraintInput("Add/Modify Constraint", constraint.getLanguage().getLiteral() + MultiModelDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + implementation);
 				if (!MultiModelConstraintChecker.isInstancesLevel(element)) {
 					if (!MultiModelConstraintChecker.checkConstraintConsistency(element, newConstraint[0], newConstraint[1])) {
 						throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");
@@ -106,7 +108,7 @@ public class AddModifyConstraintListener extends SelectionAdapter {
 
 				return CommandResult.newOKCommandResult(constraint);
 			}
-			catch (MidDialogCancellation e) {
+			catch (MultiModelDialogCancellation e) {
 				return CommandResult.newCancelledCommandResult();
 			}
 			catch (MMINTException e) {

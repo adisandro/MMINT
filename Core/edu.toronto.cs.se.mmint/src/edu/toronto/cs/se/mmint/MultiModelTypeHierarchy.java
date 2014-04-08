@@ -42,6 +42,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.mmint.repository.ExtensionType;
 
 /**
@@ -795,9 +796,7 @@ public class MultiModelTypeHierarchy {
 				}
 				if (MultiModelTypeHierarchy.isSubtypeOf(targetModelType.getUri(), modelTypeEndpoint.getTargetUri(), typeMID)) {
 					if (!isBinary) {
-						//TODO MMINT[MODELENDPOINT] ask to override or not
-						boolean override = true;//getBooleanInput("Override model type endpoint", "Override " + modelTypeEndpoint.getName() + "?");
-						if (!override) {
+						if (!MultiModelDiagramUtils.getBooleanInput("Override model type endpoint", "Override " + modelTypeEndpoint.getName() + "?")) {
 							continue;
 						}
 					}

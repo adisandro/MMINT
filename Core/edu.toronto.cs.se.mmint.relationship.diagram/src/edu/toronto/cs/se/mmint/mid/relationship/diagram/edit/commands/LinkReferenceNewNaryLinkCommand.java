@@ -24,13 +24,13 @@ import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.LinkReferenceCreateCommand;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.library.RelationshipDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
 /**
  * The command to create a link.
@@ -96,24 +96,24 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 			);
 	}
 
-	protected LinkReference doExecuteInstancesLevel() throws MMINTException, MidDialogCancellation {
+	protected LinkReference doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
 
 		ModelRel modelRel = (ModelRel) getElementToEdit();
-		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToCreate(modelRel, null, null);
+		LinkReference linkTypeRef = MultiModelDiagramUtils.selectLinkTypeReferenceToCreate(modelRel, null, null);
 		LinkReference newLinkRef = linkTypeRef.getObject().createInstanceAndReference(false, modelRel);
 
 		return newLinkRef;
 	}
 
-	protected LinkReference doExecuteTypesLevel() throws MMINTException, MidDialogCancellation {
+	protected LinkReference doExecuteTypesLevel() throws MMINTException, MultiModelDialogCancellation {
 
 		ModelRel modelRelType = (ModelRel) getElementToEdit();
-		LinkReference linkTypeRef = RelationshipDiagramUtils.selectLinkTypeReferenceToExtend(modelRelType, null, null);
+		LinkReference linkTypeRef = MultiModelDiagramUtils.selectLinkTypeReferenceToExtend(modelRelType, null, null);
 		Link linkType = linkTypeRef.getObject();
 		if (MultiModelTypeHierarchy.getRootTypeUri(linkType).equals(linkType.getUri())) {
 			linkTypeRef = null; // the link reference to the root is never shown
 		}
-		String newLinkTypeName = RelationshipDiagramUtils.getStringInput("Create new light link type", "Insert new link type name", null);
+		String newLinkTypeName = MultiModelDiagramUtils.getStringInput("Create new light link type", "Insert new link type name", null);
 		LinkReference newLinkTypeRef = linkType.createSubtypeAndReference(linkTypeRef, newLinkTypeName, false, modelRelType);
 		MMINT.createTypeHierarchy(MultiModelRegistry.getMultiModel(modelRelType));
 
@@ -146,7 +146,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (MidDialogCancellation e) {
+		catch (MultiModelDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

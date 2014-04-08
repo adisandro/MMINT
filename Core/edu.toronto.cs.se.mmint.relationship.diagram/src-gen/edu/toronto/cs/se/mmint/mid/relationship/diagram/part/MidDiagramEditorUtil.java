@@ -61,10 +61,10 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelRelEditPart;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 
 /**
  * @generated
@@ -243,7 +243,7 @@ public class MidDiagramEditorUtil {
 	private static ModelRel createInitialModel() {
 
 		try {
-			ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToCreate(null, null);
+			ModelRel modelRelType = MultiModelDiagramUtils.selectModelRelTypeToCreate(null, null);
 			return modelRelType.createInstance(null, false, ModelOrigin.CREATED, null);
 		} catch (Exception e) {
 			return createInitialModelGen();
