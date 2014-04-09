@@ -13,6 +13,7 @@ package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -265,8 +266,13 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
-		if ((containerModelRelType instanceof BinaryModelRel) && (containerModelRelType.getModelEndpoints().size() == 2)) {
-			throw new MMINTException("Can't add more than 2 model type endpoints to a binary model relationship type");
+		if (containerModelRelType instanceof BinaryModelRel) {
+			if (containerModelRelType.getModelEndpoints().size() == 2) {
+				throw new MMINTException("Can't add more than 2 model type endpoints to a binary model relationship type");
+			}
+			if (MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(containerModelRelType, targetModelType) != this) {
+				throw new MMINTException("Invalid overriding of this model type endpoint");
+			}
 		}
 
 		boolean isK =

@@ -104,7 +104,9 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @throws MMINTException
 	 *             If this is a model instance endpoint, if the container model
 	 *             relationship type is binary and has already 2 model type
-	 *             endpoints, or if the uri of the new model type endpoint is
+	 *             endpoints, if the container model relationship type is binary
+	 *             and there would be an invalid overriding of this model type
+	 *             endpoint, or if the uri of the new model type endpoint is
 	 *             already registered in the Type MID. <!-- end-user-doc -->
 	 * @model required="true"
 	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
