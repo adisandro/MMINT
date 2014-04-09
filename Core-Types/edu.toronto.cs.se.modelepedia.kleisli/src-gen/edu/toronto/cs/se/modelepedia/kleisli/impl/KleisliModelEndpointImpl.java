@@ -20,6 +20,7 @@ import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelOpenEditorCommand;
 import edu.toronto.cs.se.mmint.mid.impl.ModelEndpointImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
@@ -264,6 +265,9 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
+		if ((containerModelRelType instanceof BinaryModelRel) && (containerModelRelType.getModelEndpoints().size() == 2)) {
+			throw new MMINTException("Can't add more than 2 model type endpoints to a binary model relationship type");
+		}
 
 		boolean isK =
 			MultiModelUtils.isFileOrDirectoryInState(
@@ -342,6 +346,9 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+		if ((containerModelRel instanceof BinaryModelRel) && (containerModelRel.getModelEndpoints().size() == 2)) {
+			throw new MMINTException("Can't add more than 2 model endpoints to a binary model relationship");
 		}
 
 		KleisliModelEndpoint newModelEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();

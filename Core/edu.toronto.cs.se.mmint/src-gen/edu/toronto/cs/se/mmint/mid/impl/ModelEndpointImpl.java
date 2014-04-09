@@ -287,6 +287,9 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
+		if ((containerModelRelType instanceof BinaryModelRel) && (containerModelRelType.getModelEndpoints().size() == 2)) {
+			throw new MMINTException("Can't add more than 2 model type endpoints to a binary model relationship type");
+		}
 
 		ModelEndpoint newModelTypeEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
 		ModelEndpointReference newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, newModelTypeEndpointName, targetModelType, containerModelRelType);
@@ -425,6 +428,9 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+		if ((containerModelRel instanceof BinaryModelRel) && (containerModelRel.getModelEndpoints().size() == 2)) {
+			throw new MMINTException("Can't add more than 2 model endpoints to a binary model relationship");
 		}
 
 		ModelEndpoint newModelEndpoint = MidFactory.eINSTANCE.createModelEndpoint();

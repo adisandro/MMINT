@@ -102,10 +102,15 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 *            type endpoint.
 	 * @return The created reference to the new model type endpoint.
 	 * @throws MMINTException
-	 *             If this is a model instance endpoint, or if the uri of the
-	 *             new model type endpoint is already registered in the Type
-	 *             MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true" containerModelRelTypeRequired="true"
+	 *             If this is a model instance endpoint, if the container model
+	 *             relationship type is binary and has already 2 model type
+	 *             endpoints, or if the uri of the new model type endpoint is
+	 *             already registered in the Type MID. <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 *        newModelTypeEndpointNameRequired="true"
+	 *        targetModelTypeRequired="true"
+	 *        containerModelRelTypeRequired="true"
 	 * @generated
 	 */
 	ModelEndpointReference createSubtypeAndReference(String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException;
@@ -173,8 +178,12 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 *            endpoint.
 	 * @return The created reference to the new model endpoint.
 	 * @throws MMINTException
-	 *             If this is a model instance endpoint. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true" containerModelRelRequired="true"
+	 *             If this is a model instance endpoint, or if the container
+	 *             model relationship is binary and has already 2 model
+	 *             endpoints. <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 *        targetModelRequired="true" containerModelRelRequired="true"
 	 * @generated
 	 */
 	ModelEndpointReference createInstanceAndReference(Model targetModel, ModelRel containerModelRel) throws MMINTException;
