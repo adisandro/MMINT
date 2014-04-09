@@ -373,9 +373,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST:
+			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODELORIGIN_ELIST:
 				try {
-					return createInstanceAndEndpointsAndReferences((String)arguments.get(0), (Boolean)arguments.get(1), (ModelOrigin)arguments.get(2), (EList<Model>)arguments.get(3));
+					return createInstanceAndEndpointsAndReferences((String)arguments.get(0), (ModelOrigin)arguments.get(1), (EList<Model>)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -552,7 +552,8 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			origModelRelType.getConstraint().getImplementation()
 		);
 
-		// model types
+		// model type endpoints
+		//TODO MMINT[MODELREL] initialize binary that don't have endpoints
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(newModelRelType);
 		Iterator<ModelEndpoint> origModelTypeEndpointIter = MultiModelTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getModelEndpoints());
 		while (origModelTypeEndpointIter.hasNext()) {
@@ -663,7 +664,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
-	public ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, boolean isBinary, ModelOrigin origin, EList<Model> targetModels) throws MMINTException {
+	public ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, ModelOrigin origin, EList<Model> targetModels) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
@@ -674,6 +675,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(targetModels.get(0));
 		// create model rel
+		boolean isBinary = targetModels.size() == 2;
 		ModelRel newModelRel = createInstance(newModelRelUri, isBinary, origin, multiModel);
 		// create model rel endpoints
 		for (Model targetModel : targetModels) {

@@ -185,7 +185,7 @@ public class ChangeImpact extends OperatorImpl {
 		EList<Model> targetModels = new BasicEList<Model>();
 		targetModels.add(diffRel);
 		targetModels.add(impactedModel);
-		ModelRel newImpactModelRel = rootModelRelType.createInstanceAndEndpointsAndReferences(null, true, ModelOrigin.CREATED, targetModels);
+		ModelRel newImpactModelRel = rootModelRelType.createInstanceAndEndpointsAndReferences(null, ModelOrigin.CREATED, targetModels);
 		newImpactModelRel.setName(MODELREL_NAME);
 		ModelEndpointReference newDiffModelEndpointRef = newImpactModelRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference newImpactedModelEndpointRef = newImpactModelRel.getModelEndpointRefs().get(1);

@@ -519,7 +519,6 @@
       <eOperations name="createInstanceAndEndpointsAndReferences" lowerBound="1" eType="#//relationship/ModelRel"
           eExceptions="#//MMINTException">
         <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
         <eParameters name="targetModels" lowerBound="1" upperBound="-1" eType="#//Model"/>
       </eOperations>

@@ -576,7 +576,8 @@ public class MMINT implements MMINTConstants {
 		// do model types first
 		//TODO MMINT: this probably explains the todo in type hierarchy (are type and type ref iterators really needed, or are the lists already ordered by construction?)
 		for (Model dynamicModelType : MultiModelRegistry.getModels(multiModel)) {
-			if (!(dynamicModelType instanceof ModelRel) &&
+			if (
+				!(dynamicModelType instanceof ModelRel) &&
 				dynamicModelType.isDynamic() &&
 				MultiModelTypeRegistry.getType(dynamicModelType.getUri()) == null
 			) {
@@ -584,7 +585,8 @@ public class MMINT implements MMINTConstants {
 			}
 		}
 		for (ModelRel dynamicModelRelType : MultiModelRegistry.getModelRels(multiModel)) {
-			if (dynamicModelRelType.isDynamic() &&
+			if (
+				dynamicModelRelType.isDynamic() &&
 				MultiModelTypeRegistry.getType(dynamicModelRelType.getUri()) == null
 			) {
 				createDynamicModelType(dynamicModelRelType);

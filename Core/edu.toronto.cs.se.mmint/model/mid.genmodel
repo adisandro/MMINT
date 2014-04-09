@@ -209,7 +209,6 @@
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/newModelRelUri"/>
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/isBinary"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/origin"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/targetModels"/>
         </genOperations>
