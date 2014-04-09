@@ -26,19 +26,16 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference kleisli.ecore#//KleisliModelEndpoint/extendedTarget"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute kleisli.ecore#//KleisliModelEndpoint/extendedTargetUri"/>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/createTypeReference">
-        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createTypeReference/modelTypeEndpointRef"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createTypeReference/isModifiable"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createTypeReference/containerModelRelType"/>
       </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference">
-        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference/modelTypeEndpointRef"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference/newModelTypeEndpointName"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference/targetModelType"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference/containerModelRelType"/>
       </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/replaceSubtypeAndReference">
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/replaceSubtypeAndReference/oldModelTypeEndpoint"/>
-        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/replaceSubtypeAndReference/modelTypeEndpointRef"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/replaceSubtypeAndReference/newModelTypeEndpointName"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/replaceSubtypeAndReference/targetModelType"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/replaceSubtypeAndReference/containerModelRelType"/>

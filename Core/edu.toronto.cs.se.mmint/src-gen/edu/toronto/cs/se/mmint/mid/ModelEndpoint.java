@@ -74,10 +74,6 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * <!-- begin-user-doc --> Creates and adds a reference to this model type
 	 * endpoint to the Type MID.
 	 * 
-	 * @param modelTypeEndpointRef
-	 *            The reference to the supertype of the model type endpoint,
-	 *            null if such reference doesn't exist in the model relationship
-	 *            type container.
 	 * @param isModifiable
 	 *            True if the new reference will allow modifications of the
 	 *            referenced model type endpoint, false otherwise.
@@ -90,16 +86,12 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isModifiableRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createTypeReference(ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, ModelRel containerModelRelType) throws MMINTException;
+	ModelEndpointReference createTypeReference(boolean isModifiable, ModelRel containerModelRelType) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a subtype of this model type
 	 * endpoint and a reference to it to the Type MID.
 	 * 
-	 * @param modelTypeEndpointRef
-	 *            The reference to the supertype of the new model type endpoint,
-	 *            null if such reference doesn't exist in the model relationship
-	 *            type container.
 	 * @param newModelTypeEndpointName
 	 *            The name of the new model type endpoint.
 	 * @param targetModelType
@@ -116,7 +108,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException;
+	ModelEndpointReference createSubtypeAndReference(String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Replaces an old subtype of this model type
@@ -124,10 +116,6 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * 
 	 * @param oldModelTypeEndpoint
 	 *            The old model type endpoint to be replaced.
-	 * @param modelTypeEndpointRef
-	 *            The reference to the supertype of the new model type endpoint,
-	 *            null if such reference doesn't exist in the model relationship
-	 *            type container.
 	 * @param newModelTypeEndpointName
 	 *            The name of the new model type endpoint.
 	 * @param targetModelType
@@ -143,7 +131,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelTypeEndpointRequired="true" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
-	void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException;
+	void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model type endpoint and all

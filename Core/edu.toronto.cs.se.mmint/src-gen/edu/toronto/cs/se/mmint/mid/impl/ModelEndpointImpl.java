@@ -124,23 +124,23 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				return getTarget();
 			case MidPackage.MODEL_ENDPOINT___GET_METATYPE:
 				return getMetatype();
-			case MidPackage.MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__MODELENDPOINTREFERENCE_BOOLEAN_MODELREL:
+			case MidPackage.MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL:
 				try {
-					return createTypeReference((ModelEndpointReference)arguments.get(0), (Boolean)arguments.get(1), (ModelRel)arguments.get(2));
+					return createTypeReference((Boolean)arguments.get(0), (ModelRel)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__MODELENDPOINTREFERENCE_STRING_MODEL_MODELREL:
+			case MidPackage.MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_MODELREL:
 				try {
-					return createSubtypeAndReference((ModelEndpointReference)arguments.get(0), (String)arguments.get(1), (Model)arguments.get(2), (ModelRel)arguments.get(3));
+					return createSubtypeAndReference((String)arguments.get(0), (Model)arguments.get(1), (ModelRel)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_MODELENDPOINTREFERENCE_STRING_MODEL_MODELREL:
+			case MidPackage.MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL_MODELREL:
 				try {
-					replaceSubtypeAndReference((ModelEndpoint)arguments.get(0), (ModelEndpointReference)arguments.get(1), (String)arguments.get(2), (Model)arguments.get(3), (ModelRel)arguments.get(4));
+					replaceSubtypeAndReference((ModelEndpoint)arguments.get(0), (String)arguments.get(1), (Model)arguments.get(2), (ModelRel)arguments.get(3));
 					return null;
 				}
 				catch (Throwable throwable) {
@@ -211,10 +211,6 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 * 
 	 * @param newModelTypeEndpointRef
 	 *            The new reference to this model type endpoint to be added.
-	 * @param modelTypeEndpointRef
-	 *            The reference to the supertype of the model type endpoint,
-	 *            null if such reference doesn't exist in the model relationship
-	 *            type container.
 	 * @param isModifiable
 	 *            True if the new reference will allow modifications of the
 	 *            referenced model type endpoint, false otherwise.
@@ -223,8 +219,11 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 *            reference to the model type endpoint.
 	 * @generated NOT
 	 */
-	protected void addTypeReference(ModelEndpointReference newModelTypeEndpointRef, ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, ModelRel containerModelRelType) {
+	protected void addTypeReference(ModelEndpointReference newModelTypeEndpointRef, boolean isModifiable, ModelRel containerModelRelType) {
 
+		ModelEndpointReference modelTypeEndpointRef = (getSupertype() != null) ? // may be root
+			MultiModelTypeHierarchy.getReference(getSupertype().getUri(), containerModelRelType.getModelEndpointRefs()) :
+			null;
 		MultiModelTypeFactory.addTypeReference(newModelTypeEndpointRef, this, modelTypeEndpointRef, isModifiable, false);
 		containerModelRelType.getModelEndpointRefs().add(newModelTypeEndpointRef);
 	}
@@ -232,14 +231,14 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public ModelEndpointReference createTypeReference(ModelEndpointReference modelTypeEndpointRef, boolean isModifiable, ModelRel containerModelRelType) throws MMINTException {
+	public ModelEndpointReference createTypeReference(boolean isModifiable, ModelRel containerModelRelType) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		ModelEndpointReference newModelTypeEndpointRef = RelationshipFactory.eINSTANCE.createModelEndpointReference();
-		addTypeReference(newModelTypeEndpointRef, modelTypeEndpointRef, isModifiable, containerModelRelType);
+		addTypeReference(newModelTypeEndpointRef, isModifiable, containerModelRelType);
 
 		return newModelTypeEndpointRef;
 	}
@@ -250,10 +249,6 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 * 
 	 * @param newModelTypeEndpoint
 	 *            The new model type endpoint to be added.
-	 * @param modelTypeEndpointRef
-	 *            The reference to the supertype of the new model type endpoint,
-	 *            null if such reference doesn't exist in the model relationship
-	 *            type container.
 	 * @param newModelTypeEndpointName
 	 *            The name of the new model type endpoint.
 	 * @param targetModelType
@@ -269,20 +264,16 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 *             already registered in the Type MID.
 	 * @generated NOT
 	 */
-	protected ModelEndpointReference addSubtypeAndReference(ModelEndpoint newModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException {
+	protected ModelEndpointReference addSubtypeAndReference(ModelEndpoint newModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(containerModelRelType);
-		modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), containerModelRelType.getModelEndpointRefs());
 		// create the "thing" and the corresponding reference
 		super.addSubtype(newModelTypeEndpoint, containerModelRelType, containerModelRelType.getName() + MMINT.ENDPOINT_SEPARATOR + targetModelType.getName(), newModelTypeEndpointName);
 		MultiModelTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, targetModelType, containerModelRelType);
-		ModelEndpointReference newModelTypeEndpointRef = newModelTypeEndpoint.createTypeReference(modelTypeEndpointRef, true, containerModelRelType);
+		ModelEndpointReference newModelTypeEndpointRef = newModelTypeEndpoint.createTypeReference(true, containerModelRelType);
 		// create references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(containerModelRelType, multiModel)) {
-			ModelEndpointReference modelSubtypeEndpointRef = (modelTypeEndpointRef == null) ?
-				null :
-				MultiModelTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
-			newModelTypeEndpoint.createTypeReference(modelSubtypeEndpointRef, false, modelRelSubtype);
+			newModelTypeEndpoint.createTypeReference(false, modelRelSubtype);
 		}
 
 		return newModelTypeEndpointRef;
@@ -291,14 +282,14 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public ModelEndpointReference createSubtypeAndReference(ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException {
+	public ModelEndpointReference createSubtypeAndReference(String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		ModelEndpoint newModelTypeEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
-		ModelEndpointReference newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, modelTypeEndpointRef, newModelTypeEndpointName, targetModelType, containerModelRelType);
+		ModelEndpointReference newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, newModelTypeEndpointName, targetModelType, containerModelRelType);
 
 		return newModelTypeEndpointRef;
 	}
@@ -306,14 +297,14 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, ModelEndpointReference modelTypeEndpointRef, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException {
+	public void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(containerModelRelType);
-		modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), containerModelRelType.getModelEndpointRefs());
+		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), containerModelRelType.getModelEndpointRefs());
 		oldModelTypeEndpoint.deleteTypeAndReference(false);
 		// modify the "thing" and the corresponding reference
 		super.addSubtype(oldModelTypeEndpoint, containerModelRelType, containerModelRelType.getName() + MMINT.ENDPOINT_SEPARATOR + targetModelType.getName(), newModelTypeEndpointName);

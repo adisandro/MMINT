@@ -140,19 +140,16 @@
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getTarget"/>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getMetatype"/>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createTypeReference">
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/modelTypeEndpointRef"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/isModifiable"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/containerModelRelType"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createSubtypeAndReference">
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/modelTypeEndpointRef"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/newModelTypeEndpointName"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/targetModelType"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/containerModelRelType"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/oldModelTypeEndpoint"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/modelTypeEndpointRef"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/newModelTypeEndpointName"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/targetModelType"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/containerModelRelType"/>

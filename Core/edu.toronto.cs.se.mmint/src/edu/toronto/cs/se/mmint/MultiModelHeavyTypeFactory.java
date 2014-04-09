@@ -215,10 +215,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		ModelEndpoint modelTypeEndpoint = getSupertype(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri);
 		addHeavyType(newModelTypeEndpoint, modelTypeEndpoint, newModelTypeEndpointUri, newModelTypeEndpointName);
 		addModelTypeEndpoint(newModelTypeEndpoint, newModelType, containerModelRelType);
-		ModelEndpointReference modelTypeEndpointRef = (modelTypeEndpoint == null) ? // may be root
-			null :
-			MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), containerModelRelType.getModelEndpointRefs());
-		ModelEndpointReference newModelTypeEndpointRef = newModelTypeEndpoint.createTypeReference(modelTypeEndpointRef, true, containerModelRelType);
+		ModelEndpointReference newModelTypeEndpointRef = newModelTypeEndpoint.createTypeReference(true, containerModelRelType);
 
 		return newModelTypeEndpointRef;
 	}

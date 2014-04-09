@@ -559,7 +559,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			ModelEndpoint origModelTypeEndpoint = origModelTypeEndpointIter.next();
 			Model newModelType = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getTargetUri(), multiModel);
 			ModelEndpoint modelTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getSupertype().getUri(), multiModel);
-			modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, origModelTypeEndpoint.getName(), newModelType, newModelRelType);
+			modelTypeEndpoint.createSubtypeAndReference(origModelTypeEndpoint.getName(), newModelType, newModelRelType);
 		}
 		// model element types
 		Iterator<ModelEndpointReference> origModelTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(origModelRelType.getModelEndpointRefs());

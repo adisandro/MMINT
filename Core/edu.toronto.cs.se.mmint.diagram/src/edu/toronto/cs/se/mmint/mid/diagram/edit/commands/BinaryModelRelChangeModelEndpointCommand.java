@@ -129,7 +129,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 //				modelRelType.setTargetModel(modelType);
 //			}
 //		}
-		modelTypeEndpoint.replaceSubtypeAndReference(oldModelTypeEndpoint, modelTypeEndpointRef, oldModelTypeEndpoint.getName(), modelType, modelRelType);
+		modelTypeEndpoint.replaceSubtypeAndReference(oldModelTypeEndpoint, oldModelTypeEndpoint.getName(), modelType, modelRelType);
 		// no need to init type hierarchy, no need for undo/redo
 	}
 
