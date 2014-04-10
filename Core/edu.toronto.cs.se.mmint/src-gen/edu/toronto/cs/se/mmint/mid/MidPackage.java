@@ -1364,7 +1364,7 @@ public interface MidPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 4;
+	int MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Replace Subtype And Reference</em>' operation.
@@ -2232,14 +2232,14 @@ public interface MidPackage extends EPackage {
 	EOperation getModelEndpoint__CreateTypeReference__boolean_ModelRel();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#createSubtypeAndReference(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Subtype And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#createSubtypeAndReference(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Subtype And Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Subtype And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#createSubtypeAndReference(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
+	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#createSubtypeAndReference(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
 	 * @generated
 	 */
-	EOperation getModelEndpoint__CreateSubtypeAndReference__String_Model_ModelRel();
+	EOperation getModelEndpoint__CreateSubtypeAndReference__String_Model_boolean_ModelRel();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#replaceSubtypeAndReference(edu.toronto.cs.se.mmint.mid.ModelEndpoint, java.lang.String, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Replace Subtype And Reference</em>}' operation.
@@ -2981,7 +2981,7 @@ public interface MidPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_MODELREL = eINSTANCE.getModelEndpoint__CreateSubtypeAndReference__String_Model_ModelRel();
+		EOperation MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL = eINSTANCE.getModelEndpoint__CreateSubtypeAndReference__String_Model_boolean_ModelRel();
 
 		/**
 		 * The meta object literal for the '<em><b>Replace Subtype And Reference</b></em>' operation.

@@ -647,7 +647,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 1;
+	int KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Replace Subtype And Reference</em>' operation.
@@ -1597,13 +1597,22 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_BINARY_MODEL_REL___OPEN_INSTANCE = KLEISLI_MODEL_REL___OPEN_INSTANCE;
 
 	/**
+	 * The operation id for the '<em>Add Model Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN = KLEISLI_MODEL_REL_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Binary Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL_OPERATION_COUNT = KLEISLI_MODEL_REL_OPERATION_COUNT + 0;
+	int KLEISLI_BINARY_MODEL_REL_OPERATION_COUNT = KLEISLI_MODEL_REL_OPERATION_COUNT + 1;
 
 
 	/**
@@ -1985,14 +1994,14 @@ public interface KleisliPackage extends EPackage {
 	EOperation getKleisliModelEndpoint__CreateTypeReference__boolean_ModelRel();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createSubtypeAndReference(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Subtype And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createSubtypeAndReference(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Subtype And Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Subtype And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createSubtypeAndReference(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createSubtypeAndReference(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
 	 * @generated
 	 */
-	EOperation getKleisliModelEndpoint__CreateSubtypeAndReference__String_Model_ModelRel();
+	EOperation getKleisliModelEndpoint__CreateSubtypeAndReference__String_Model_boolean_ModelRel();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#replaceSubtypeAndReference(edu.toronto.cs.se.mmint.mid.ModelEndpoint, java.lang.String, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Replace Subtype And Reference</em>}' operation.
@@ -2316,7 +2325,7 @@ public interface KleisliPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_MODELREL = eINSTANCE.getKleisliModelEndpoint__CreateSubtypeAndReference__String_Model_ModelRel();
+		EOperation KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL = eINSTANCE.getKleisliModelEndpoint__CreateSubtypeAndReference__String_Model_boolean_ModelRel();
 
 		/**
 		 * The meta object literal for the '<em><b>Replace Subtype And Reference</b></em>' operation.

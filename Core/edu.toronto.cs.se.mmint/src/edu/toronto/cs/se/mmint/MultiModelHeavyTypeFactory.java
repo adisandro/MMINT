@@ -33,6 +33,7 @@ import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.Parameter;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -214,7 +215,8 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 
 		ModelEndpoint modelTypeEndpoint = getSupertype(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri);
 		addHeavyType(newModelTypeEndpoint, modelTypeEndpoint, newModelTypeEndpointUri, newModelTypeEndpointName);
-		addModelTypeEndpoint(newModelTypeEndpoint, newModelType, containerModelRelType);
+		//TODO MMINT[SUBREL] fix this (probably in the ext point too
+		addModelTypeEndpoint(newModelTypeEndpoint, newModelType, (containerModelRelType instanceof BinaryModelRel && containerModelRelType.getModelEndpoints().size() == 0), containerModelRelType);
 		ModelEndpointReference newModelTypeEndpointRef = newModelTypeEndpoint.createTypeReference(true, containerModelRelType);
 
 		return newModelTypeEndpointRef;

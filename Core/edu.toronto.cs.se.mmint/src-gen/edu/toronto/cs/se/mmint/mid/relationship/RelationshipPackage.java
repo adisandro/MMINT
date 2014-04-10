@@ -975,13 +975,22 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL___OPEN_INSTANCE = MODEL_REL___OPEN_INSTANCE;
 
 	/**
+	 * The operation id for the '<em>Add Model Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN = MODEL_REL_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Binary Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL_OPERATION_COUNT = MODEL_REL_OPERATION_COUNT + 0;
+	int BINARY_MODEL_REL_OPERATION_COUNT = MODEL_REL_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Object</b></em>' reference.
@@ -2845,6 +2854,16 @@ public interface RelationshipPackage extends EPackage {
 	EReference getBinaryModelRel_TargetModel();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel#addModelType(edu.toronto.cs.se.mmint.mid.Model, boolean) <em>Add Model Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Add Model Type</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel#addModelType(edu.toronto.cs.se.mmint.mid.Model, boolean)
+	 * @generated
+	 */
+	EOperation getBinaryModelRel__AddModelType__Model_boolean();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference <em>Model Endpoint Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3743,6 +3762,14 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EReference BINARY_MODEL_REL__TARGET_MODEL = eINSTANCE.getBinaryModelRel_TargetModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Add Model Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN = eINSTANCE.getBinaryModelRel__AddModelType__Model_boolean();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelEndpointReferenceImpl <em>Model Endpoint Reference</em>}' class.

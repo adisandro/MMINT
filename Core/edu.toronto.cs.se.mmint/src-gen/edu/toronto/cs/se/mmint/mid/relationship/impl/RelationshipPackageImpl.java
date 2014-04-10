@@ -412,6 +412,15 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getBinaryModelRel__AddModelType__Model_boolean() {
+		return binaryModelRelEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getModelEndpointReference() {
 		return modelEndpointReferenceEClass;
 	}
@@ -1078,6 +1087,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		binaryModelRelEClass = createEClass(BINARY_MODEL_REL);
 		createEReference(binaryModelRelEClass, BINARY_MODEL_REL__SOURCE_MODEL);
 		createEReference(binaryModelRelEClass, BINARY_MODEL_REL__TARGET_MODEL);
+		createEOperation(binaryModelRelEClass, BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN);
 
 		extendibleElementReferenceEClass = createEClass(EXTENDIBLE_ELEMENT_REFERENCE);
 		createEReference(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT);
@@ -1263,6 +1273,11 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		initEClass(binaryModelRelEClass, BinaryModelRel.class, "BinaryModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBinaryModelRel_SourceModel(), theMidPackage.getModel(), null, "sourceModel", null, 1, 1, BinaryModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBinaryModelRel_TargetModel(), theMidPackage.getModel(), null, "targetModel", null, 1, 1, BinaryModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getBinaryModelRel__AddModelType__Model_boolean(), null, "addModelType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMidPackage.getModel(), "modelType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isBinarySrc", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMINTException());
 
 		initEClass(extendibleElementReferenceEClass, ExtendibleElementReference.class, "ExtendibleElementReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExtendibleElementReference_ReferencedObject(), theMidPackage.getExtendibleElement(), null, "referencedObject", null, 0, 1, ExtendibleElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

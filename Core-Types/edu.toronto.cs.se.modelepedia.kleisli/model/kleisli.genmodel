@@ -32,6 +32,7 @@
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference">
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference/newModelTypeEndpointName"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference/targetModelType"/>
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference/isBinarySrc"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference/containerModelRelType"/>
       </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/replaceSubtypeAndReference">

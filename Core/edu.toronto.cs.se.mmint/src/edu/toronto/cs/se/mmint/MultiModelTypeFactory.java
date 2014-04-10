@@ -262,22 +262,21 @@ public class MultiModelTypeFactory {
 	 * @param targetModelType
 	 *            The new model type that is the target of the new model type
 	 *            endpoint.
+	 * @param isBinarySrc
+	 *            (Only for a binary model relationship type container) True if
+	 *            the target model type is the source in the binary model
+	 *            relationship type container, false otherwise.
 	 * @param containerModelRelType
 	 *            The model relationship type that will contain the new model
 	 *            type endpoint.
+	 * @throws MMINTException 
 	 */
-	public static void addModelTypeEndpoint(ModelEndpoint newModelTypeEndpoint, Model targetModelType, ModelRel containerModelRelType) {
+	public static void addModelTypeEndpoint(ModelEndpoint newModelTypeEndpoint, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
 
 		addTypeEndpoint(newModelTypeEndpoint, targetModelType);
 		containerModelRelType.getModelEndpoints().add(newModelTypeEndpoint);
-		//TODO[MODELREL] the target could be index 0 if it is the only one overriding
 		if (containerModelRelType instanceof BinaryModelRel) {
-			if (containerModelRelType.getModelEndpoints().size() == 1) {
-				((BinaryModelRel) containerModelRelType).setSourceModel(targetModelType);
-			}
-			else {
-				((BinaryModelRel) containerModelRelType).setTargetModel(targetModelType);
-			}
+			((BinaryModelRel) containerModelRelType).addModelType(targetModelType, isBinarySrc);
 		}
 	}
 

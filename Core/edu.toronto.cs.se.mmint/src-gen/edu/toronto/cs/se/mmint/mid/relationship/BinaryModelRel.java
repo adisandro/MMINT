@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 
 
@@ -87,4 +88,22 @@ public interface BinaryModelRel extends ModelRel {
 	 * @generated
 	 */
 	void setTargetModel(Model value);
+
+	/**
+	 * <!-- begin-user-doc --> Adds the source or target model type to this
+	 * binary model relationship type.
+	 * 
+	 * @param modelType
+	 *            The model type that is the source or target of this binary
+	 *            model relationship type.
+	 * @param isBinarySrc
+	 *            True if the model type is the source in the binary model
+	 *            relationship type container, false otherwise.
+	 * @throws MMINTException
+	 *             If this is a model relationship instance.
+	 *             <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelTypeRequired="true" isBinarySrcRequired="true"
+	 * @generated
+	 */
+	void addModelType(Model modelType, boolean isBinarySrc) throws MMINTException;
 } // BinaryModelRel

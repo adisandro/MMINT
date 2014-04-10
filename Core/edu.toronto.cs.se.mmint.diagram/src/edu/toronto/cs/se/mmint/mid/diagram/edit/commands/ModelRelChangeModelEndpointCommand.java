@@ -114,7 +114,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(modelRelType, modelType);
 		if (isFullDelete) {
 			getLink().deleteTypeAndReference(isFullDelete);
-			modelTypeEndpoint.createSubtypeAndReference(getLink().getName(), modelType, modelRelType);
+			modelTypeEndpoint.createSubtypeAndReference(getLink().getName(), modelType, false, modelRelType);
 		}
 		else {
 			modelTypeEndpoint.replaceSubtypeAndReference(getLink(), getLink().getName(), modelType, modelRelType);

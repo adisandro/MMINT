@@ -131,9 +131,9 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_MODELREL:
+			case MidPackage.MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL:
 				try {
-					return createSubtypeAndReference((String)arguments.get(0), (Model)arguments.get(1), (ModelRel)arguments.get(2));
+					return createSubtypeAndReference((String)arguments.get(0), (Model)arguments.get(1), (Boolean)arguments.get(2), (ModelRel)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -254,6 +254,10 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 * @param targetModelType
 	 *            The model type that is the target of the new model type
 	 *            endpoint.
+	 * @param isBinarySrc
+	 *            (Only for a binary model relationship type container) True if
+	 *            the target model type is the source in the binary model
+	 *            relationship type container, false otherwise.
 	 * @param containerModelRelType
 	 *            The model relationship type that will contain the new model
 	 *            type endpoint.
@@ -264,12 +268,12 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 *             already registered in the Type MID.
 	 * @generated NOT
 	 */
-	protected ModelEndpointReference addSubtypeAndReference(ModelEndpoint newModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException {
+	protected ModelEndpointReference addSubtypeAndReference(ModelEndpoint newModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(containerModelRelType);
 		// create the "thing" and the corresponding reference
 		super.addSubtype(newModelTypeEndpoint, containerModelRelType, containerModelRelType.getName() + MMINT.ENDPOINT_SEPARATOR + targetModelType.getName(), newModelTypeEndpointName);
-		MultiModelTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, targetModelType, containerModelRelType);
+		MultiModelTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, targetModelType, isBinarySrc, containerModelRelType);
 		ModelEndpointReference newModelTypeEndpointRef = newModelTypeEndpoint.createTypeReference(true, containerModelRelType);
 		// create references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(containerModelRelType, multiModel)) {
@@ -282,7 +286,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public ModelEndpointReference createSubtypeAndReference(String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException {
+	public ModelEndpointReference createSubtypeAndReference(String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
@@ -297,7 +301,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		}
 
 		ModelEndpoint newModelTypeEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
-		ModelEndpointReference newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, newModelTypeEndpointName, targetModelType, containerModelRelType);
+		ModelEndpointReference newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
 
 		return newModelTypeEndpointRef;
 	}
@@ -317,12 +321,8 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		// modify the "thing" and the corresponding reference
 		super.addSubtype(oldModelTypeEndpoint, containerModelRelType, containerModelRelType.getName() + MMINT.ENDPOINT_SEPARATOR + targetModelType.getName(), newModelTypeEndpointName);
 		if (containerModelRelType instanceof BinaryModelRel) {
-			if (((BinaryModelRel) containerModelRelType).getSourceModel() == oldModelTypeEndpoint.getTarget()) {
-				((BinaryModelRel) containerModelRelType).setSourceModel(targetModelType);
-			}
-			else {
-				((BinaryModelRel) containerModelRelType).setTargetModel(targetModelType);
-			}
+			boolean isBinarySrc = ((BinaryModelRel) containerModelRelType).getSourceModel() == oldModelTypeEndpoint.getTarget();
+			((BinaryModelRel) containerModelRelType).addModelType(targetModelType, isBinarySrc);
 		}
 		oldModelTypeEndpoint.setTarget(targetModelType);
 		if (modelTypeEndpointRef != null) {
@@ -414,7 +414,8 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		super.addInstanceEndpoint(newModelEndpoint, targetModel);
 		containerModelRel.getModelEndpoints().add(newModelEndpoint);
 		if (containerModelRel instanceof BinaryModelRel) {
-			if (containerModelRel.getModelEndpoints().size() == 1) {
+			boolean isBinarySrc = containerModelRel.getModelEndpoints().size() == 1;
+			if (isBinarySrc) {
 				((BinaryModelRel) containerModelRel).setSourceModel(targetModel);
 			}
 			else {
@@ -459,7 +460,8 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		oldModelEndpoint.deleteInstanceAndReference(false);
 		super.addBasicInstance(oldModelEndpoint, null, null);
 		if (containerModelRel instanceof BinaryModelRel) {
-			if (((BinaryModelRel) containerModelRel).getSourceModel() == oldModelEndpoint.getTarget()) {
+			boolean isBinarySrc = ((BinaryModelRel) containerModelRel).getSourceModel() == oldModelEndpoint.getTarget();
+			if (isBinarySrc) {
 				((BinaryModelRel) containerModelRel).setSourceModel(targetModel);
 			}
 			else {

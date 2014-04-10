@@ -553,14 +553,22 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		);
 
 		// model type endpoints
-		//TODO MMINT[MODELREL] initialize binary that don't have endpoints
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(newModelRelType);
+		if (origModelRelType instanceof BinaryModelRel) { // this is useful only when there are 0 or 1 overridden endpoints, but doesn't hurt in case of 2
+			Model newSrcModelType = MultiModelRegistry.getExtendibleElement(((BinaryModelRel) origModelRelType).getSourceModel().getUri(), multiModel);
+			((BinaryModelRel) newModelRelType).addModelType(newSrcModelType, true);
+			Model newTgtModelType = MultiModelRegistry.getExtendibleElement(((BinaryModelRel) origModelRelType).getTargetModel().getUri(), multiModel);
+			((BinaryModelRel) newModelRelType).addModelType(newTgtModelType, false);
+		}
 		Iterator<ModelEndpoint> origModelTypeEndpointIter = MultiModelTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getModelEndpoints());
 		while (origModelTypeEndpointIter.hasNext()) {
 			ModelEndpoint origModelTypeEndpoint = origModelTypeEndpointIter.next();
 			Model newModelType = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getTargetUri(), multiModel);
 			ModelEndpoint modelTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getSupertype().getUri(), multiModel);
-			modelTypeEndpoint.createSubtypeAndReference(origModelTypeEndpoint.getName(), newModelType, newModelRelType);
+			boolean isBinarySrc = ((origModelRelType instanceof BinaryModelRel) && (((BinaryModelRel) origModelRelType).getSourceModel() == origModelTypeEndpoint.getTarget())) ?
+				true :
+				false;
+			modelTypeEndpoint.createSubtypeAndReference(origModelTypeEndpoint.getName(), newModelType, isBinarySrc, newModelRelType);
 		}
 		// model element types
 		Iterator<ModelEndpointReference> origModelTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(origModelRelType.getModelEndpointRefs());

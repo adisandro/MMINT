@@ -11,11 +11,16 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -217,6 +222,43 @@ public class BinaryModelRelImpl extends ModelRelImpl implements BinaryModelRel {
 				return targetModel != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case RelationshipPackage.BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN:
+				try {
+					addModelType((Model)arguments.get(0), (Boolean)arguments.get(1));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+		}
+		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void addModelType(Model modelType, boolean isBinarySrc) throws MMINTException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		if (isBinarySrc) {
+			setSourceModel(modelType);
+		}
+		else {
+			setTargetModel(modelType);
+		}
 	}
 
 } //BinaryModelRelImpl

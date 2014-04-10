@@ -134,20 +134,20 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		String newModelTypeEndpointName;
 		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(newModelRelType, srcModelType);
 		if (modelTypeEndpoint == null) {
-			newModelRelType.setSourceModel(srcModelType);
+			newModelRelType.addModelType(srcModelType, true);
 		}
 		else {
 			newModelTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role", srcModelType.getName());
-			modelTypeEndpoint.createSubtypeAndReference(newModelTypeEndpointName, srcModelType, newModelRelType);
+			modelTypeEndpoint.createSubtypeAndReference(newModelTypeEndpointName, srcModelType, true, newModelRelType);
 		}
 
 		modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(newModelRelType, tgtModelType);
 		if (modelTypeEndpoint == null) {
-			newModelRelType.setTargetModel(tgtModelType);
+			newModelRelType.addModelType(tgtModelType, false);
 		}
 		else {
 			newModelTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role", tgtModelType.getName());
-			modelTypeEndpoint.createSubtypeAndReference(newModelTypeEndpointName, tgtModelType, newModelRelType);
+			modelTypeEndpoint.createSubtypeAndReference(newModelTypeEndpointName, tgtModelType, false, newModelRelType);
 		}
 
 		return newModelRelType;
