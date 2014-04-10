@@ -114,22 +114,53 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 		modelTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelEndpoint, model, modelRel);
 	}
 
-	protected void doExecuteTypesLevel(BinaryModelRel modelRelType, Model modelType, boolean isBinarySrc) throws MMINTException {
+	protected void doExecuteTypesLevel(BinaryModelRel containerModelRelType, Model targetModelType, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {
 
-		//TODO[MODELREL] the old endpoint could be null, or the target could be index 0
-		ModelEndpoint oldModelTypeEndpoint = (isBinarySrc) ?
-			modelRelType.getModelEndpoints().get(0) :
-			modelRelType.getModelEndpoints().get(1);
-		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(modelRelType, modelType);
-//		if (modelTypeEndpoint == null) {
-//			if (isBinarySrc) {
-//				modelRelType.setSourceModel(modelType);
-//			}
-//			else {
-//				modelRelType.setTargetModel(modelType);
-//			}
-//		}
-		modelTypeEndpoint.replaceSubtypeAndReference(oldModelTypeEndpoint, oldModelTypeEndpoint.getName(), modelType, modelRelType);
+		boolean wasOverriding = false;
+		ModelEndpoint oldModelTypeEndpoint = null;
+		if (containerModelRelType.getModelEndpoints().size() == 2) {
+			oldModelTypeEndpoint = (isBinarySrc) ?
+				containerModelRelType.getModelEndpoints().get(0) :
+				containerModelRelType.getModelEndpoints().get(1);
+			wasOverriding = true;
+		}
+		else if (containerModelRelType.getModelEndpoints().size() == 1) {
+			ModelEndpoint singleModelTypeEndpoint = containerModelRelType.getModelEndpoints().get(0);
+			wasOverriding = (isBinarySrc) ?
+				(containerModelRelType.getSourceModel() == singleModelTypeEndpoint.getTarget()) :
+				(containerModelRelType.getTargetModel() == singleModelTypeEndpoint.getTarget());
+			if (wasOverriding) {
+				oldModelTypeEndpoint = singleModelTypeEndpoint;
+			}
+		}
+
+		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(containerModelRelType, targetModelType);
+		if (modelTypeEndpoint == null) {
+			if (wasOverriding) { // was overriding, becomes non-overriding
+				oldModelTypeEndpoint.deleteTypeAndReference(true);
+			}
+			// was overriding, becomes non-overriding
+			// was non-overriding, remains non-overriding
+			containerModelRelType.addModelType(targetModelType, isBinarySrc);
+		}
+		else {
+			if (wasOverriding) { // was overriding, remains overriding
+				modelTypeEndpoint.replaceSubtypeAndReference(oldModelTypeEndpoint, oldModelTypeEndpoint.getName(), targetModelType, containerModelRelType);
+			}
+			else { // was non-overriding, becomes overriding
+				String detail = (isBinarySrc) ? "source" : "target";
+				String newModelTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new " + detail + " model type endpoint", "Insert new " + detail + " model type endpoint role", targetModelType.getName());
+				if (isBinarySrc && containerModelRelType.getModelEndpoints().size() == 1) { // guarantee that src endpoint comes before tgt endpoint
+					ModelEndpoint tgtModelTypeEndpoint = containerModelRelType.getModelEndpoints().get(0);
+					tgtModelTypeEndpoint.deleteTypeAndReference(true);
+					modelTypeEndpoint.createSubtypeAndReference(newModelTypeEndpointName, targetModelType, true, containerModelRelType);
+					tgtModelTypeEndpoint.getSupertype().createSubtypeAndReference(tgtModelTypeEndpoint.getName(), tgtModelTypeEndpoint.getTarget(), false, containerModelRelType);
+				}
+				else {
+					modelTypeEndpoint.createSubtypeAndReference(newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
+				}
+			}
+		}
 		// no need to init type hierarchy, no need for undo/redo
 	}
 

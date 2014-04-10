@@ -578,6 +578,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			Iterator<ModelElementReference> origModelElemTypeRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(origModelTypeEndpointRef.getModelElemRefs());
 			while (origModelElemTypeRefIter.hasNext()) {
 				ModelElementReference origModelElemTypeRef = origModelElemTypeRefIter.next();
+				if (!origModelElemTypeRef.isModifiable()) { // already copied by createSubtype()
+					continue;
+				}
 				ModelElement modelElemType = MultiModelRegistry.getExtendibleElement(origModelElemTypeRef.getObject().getSupertype().getUri(), multiModel);
 				ModelEndpointReference newModelTypeEndpointRefSuper = null;
 				ModelElementReference modelElemTypeRef = null;

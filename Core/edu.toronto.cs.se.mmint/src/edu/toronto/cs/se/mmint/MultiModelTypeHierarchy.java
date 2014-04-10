@@ -783,7 +783,7 @@ public class MultiModelTypeHierarchy {
 		return type.getUri().equals(getRootTypeUri(type));
 	}
 
-	//TODO[MODELENDPOINT] returns null for pure augmentation or overridden model type endpoint (which can be the root one)
+	//TODO[MODELENDPOINT] returns null for non-overriding, or overridden model type endpoint (which can be the root one)
 	public static ModelEndpoint getOverriddenModelTypeEndpoint(ModelRel modelRelType, Model targetModelType) {
 
 		boolean isBinary = (modelRelType instanceof BinaryModelRel);
