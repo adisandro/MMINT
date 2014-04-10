@@ -105,7 +105,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 			modelTypeEndpointRef.getObject().createInstanceAndReference(model, modelRel);
 		}
 		else {
-			modelTypeEndpointRef.getObject().replaceInstanceAndReference(getLink(), model, modelRel);
+			modelTypeEndpointRef.getObject().replaceInstanceAndReference(getLink(), model);
 		}
 	}
 
@@ -117,7 +117,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 			modelTypeEndpoint.createSubtypeAndReference(getLink().getName(), modelType, false, modelRelType);
 		}
 		else {
-			modelTypeEndpoint.replaceSubtypeAndReference(getLink(), getLink().getName(), modelType, modelRelType);
+			modelTypeEndpoint.replaceSubtypeAndReference(getLink(), getLink().getName(), modelType);
 		}
 		// no need to init type hierarchy, no need for undo/redo
 	}

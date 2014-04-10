@@ -128,17 +128,16 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @param targetModelType
 	 *            The model type that is the target of the new model type
 	 *            endpoint.
-	 * @param containerModelRelType
-	 *            The model relationship type that will contain the new model
-	 *            type endpoint.
 	 * @throws MMINTException
-	 *             If this is a model instance endpoint, or if the uri of the
+	 *             If this is a model instance endpoint, if the container model
+	 *             relationship type is binary and there would be an invalid
+	 *             overriding of this model type endpoint, or if the uri of the
 	 *             new model type endpoint is already registered in the Type
 	 *             MID. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelTypeEndpointRequired="true" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true" containerModelRelTypeRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelTypeEndpointRequired="true" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true"
 	 * @generated
 	 */
-	void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException;
+	void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model type endpoint and all
@@ -212,16 +211,13 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 *            The old model endpoint to be replaced.
 	 * @param targetModel
 	 *            The model that is the target of the new model endpoint.
-	 * @param containerModelRel
-	 *            The model relationship that will contain the new model
-	 *            endpoint.
 	 * @throws MMINTException
 	 *             If this is a model instance endpoint, or if a user-defined
 	 *             model endpoint is being replaced with a native one.
 	 *             <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelEndpointRequired="true" targetModelRequired="true" containerModelRelRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelEndpointRequired="true" targetModelRequired="true"
 	 * @generated
 	 */
-	void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel, ModelRel containerModelRel) throws MMINTException;
+	void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException;
 
 } // ModelEndpoint

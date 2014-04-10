@@ -138,9 +138,9 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL_MODELREL:
+			case MidPackage.MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL:
 				try {
-					replaceSubtypeAndReference((ModelEndpoint)arguments.get(0), (String)arguments.get(1), (Model)arguments.get(2), (ModelRel)arguments.get(3));
+					replaceSubtypeAndReference((ModelEndpoint)arguments.get(0), (String)arguments.get(1), (Model)arguments.get(2));
 					return null;
 				}
 				catch (Throwable throwable) {
@@ -168,9 +168,9 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL_MODELREL:
+			case MidPackage.MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL:
 				try {
-					replaceInstanceAndReference((ModelEndpoint)arguments.get(0), (Model)arguments.get(1), (ModelRel)arguments.get(2));
+					replaceInstanceAndReference((ModelEndpoint)arguments.get(0), (Model)arguments.get(1));
 					return null;
 				}
 				catch (Throwable throwable) {
@@ -309,10 +309,16 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType, ModelRel containerModelRelType) throws MMINTException {
+	public void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+		ModelRel containerModelRelType = (ModelRel) oldModelTypeEndpoint.eContainer();
+		if (containerModelRelType instanceof BinaryModelRel) {
+			if (MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(containerModelRelType, targetModelType) != this) {
+				throw new MMINTException("Invalid overriding of this model type endpoint");
+			}
 		}
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(containerModelRelType);
@@ -448,7 +454,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel, ModelRel containerModelRel) throws MMINTException {
+	public void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
@@ -457,6 +463,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			throw new MMINTException("Can't replace a user-defined model endpoint with a native one");
 		}
 
+		ModelRel containerModelRel = (ModelRel) oldModelEndpoint.eContainer();
 		oldModelEndpoint.deleteInstanceAndReference(false);
 		super.addBasicInstance(oldModelEndpoint, null, null);
 		if (containerModelRel instanceof BinaryModelRel) {

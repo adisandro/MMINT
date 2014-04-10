@@ -788,8 +788,8 @@ public class MultiModelTypeHierarchy {
 
 		boolean isBinary = (modelRelType instanceof BinaryModelRel);
 		MultiModel typeMID = MultiModelRegistry.getMultiModel(modelRelType);
-		do {
-			modelRelType = (ModelRel) modelRelType.getSupertype();
+		modelRelType = (ModelRel) modelRelType.getSupertype();
+		while (!isRootType(modelRelType)) {
 			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
 				if (isBinary && targetModelType.getUri().equals(modelTypeEndpoint.getTargetUri())) {
 					return null;
@@ -803,22 +803,21 @@ public class MultiModelTypeHierarchy {
 					return modelTypeEndpoint;
 				}
 			}
+			modelRelType = (ModelRel) modelRelType.getSupertype();
 		}
-		while (!isRootType(modelRelType));
 
 		return MultiModelRegistry.getExtendibleElement(MMINT.ROOT_MODELENDPOINT_URI, typeMID);
 	}
 
 	public static ModelElementEndpoint getOverriddenModelElementTypeEndpoint(LinkReference linkTypeRef, ModelElementReference targetModelElemTypeRef) {
 
-		//TODO MMINT[MODELENDPOINT] very dumb first approach to the override problem
+		//TODO MMINT[MODELENDPOINT] this should reflect all the changes done to the model endpoints
 		MultiModel typeMID = MultiModelRegistry.getMultiModel(linkTypeRef);
 		Link linkType = linkTypeRef.getObject();
 		do {
 			linkType = linkType.getSupertype();
 			for (ModelElementEndpoint modelElemTypeEndpoint : linkType.getModelElemEndpoints()) {
 				if (MultiModelTypeHierarchy.isSubtypeOf(targetModelElemTypeRef.getUri(), modelElemTypeEndpoint.getTargetUri(), typeMID)) {
-					//TODO MMINT[MODELENDPOINT] ask to override or not
 					return modelElemTypeEndpoint;
 				}
 			}
