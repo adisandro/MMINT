@@ -37,7 +37,7 @@
       <eInfo className="Gold" featureName="gold" relatedClassName="Economy"/>
     </modelElems>
   </models>
-  <models xsi:type="relationship:BinaryModelRel" uri="" name="d" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed" dynamic="true" origin="CREATED" fileExtension="">
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="d" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.3" targetModel="//@models.1">
     <modelEndpoints uri="" name="eastasia" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed-Army/ArmyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
     <modelEndpoints uri="" name="eastasia" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed-State/StateEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
     <links xsi:type="relationship:BinaryLink" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink" dynamic="true" modelElemEndpointRefs="//@models.5/@linkRefs.0/@modelElemEndpointRefs.0 //@models.5/@linkRefs.0/@modelElemEndpointRefs.1">
@@ -74,7 +74,7 @@
       <modelElemEndpointRefs referencedObject="//@models.5/@links.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.1/@modelElemRefs.1"/>
     </linkRefs>
   </models>
-  <models xsi:type="relationship:BinaryModelRel" uri="" name="h" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has" dynamic="true" origin="CREATED" fileExtension="">
+  <models xsi:type="relationship:BinaryModelRel" uri="" name="h" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.1" targetModel="//@models.4">
     <modelEndpoints uri="" name="eastasia" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has-State/StateEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
     <modelEndpoints uri="" name="eastasia" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has-Economy/EconomyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
     <links xsi:type="relationship:BinaryLink" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has/HasLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.0/@modelElemEndpointRefs.0 //@models.6/@linkRefs.0/@modelElemEndpointRefs.1">
