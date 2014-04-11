@@ -34,7 +34,7 @@
       <eInfo className="Businessman" featureName="number" attribute="true"/>
     </modelElems>
   </models>
-  <models xsi:type="kleisli:KleisliBinaryModelRel" uri="" name="bank_To_bank_transformed" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank" dynamic="true" origin="CREATED" fileExtension="" extendedUri="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0">
+  <models xsi:type="kleisli:KleisliBinaryModelRel" uri="" name="bank_To_bank_transformed" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank" dynamic="true" origin="CREATED" fileExtension="" extendedUri="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0" sourceModel="//@models.1" targetModel="//@models.0">
     <modelEndpoints uri="" name="bank_transformed" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank-Company/Company" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
     <modelEndpoints xsi:type="kleisli:KleisliModelEndpoint" uri="" name="bank" metatypeUri="http://se.cs.toronto.edu/modelepedia/Company_To_Bank-Bank/Bank" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0">
       <extendedTarget uri="/edu.toronto.cs.se.modelepedia.tests/Company_To_Bank0/Bank-bank.xmi" name="bank" metatypeUri="http://se.cs.toronto.edu/mmint/Bank" dynamic="true" origin="CREATED" fileExtension="xmi"/>

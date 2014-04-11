@@ -73,6 +73,12 @@ public interface MMINTConstants {
 	public final static String TYPE_CHILD_SUPERTYPE = "superType";
 	/** An extension point's type superType child's uri attribute. */
 	public final static String TYPE_SUPERTYPE_ATTR_URI = "uri";
+	/** An extension point's binaryType child. */
+	public final static String CHILD_BINARYTYPE = "binaryType";
+	/** An extension point's binaryType child's sourceTypeUri attribute. */
+	public final static String BINARYTYPE_ATTR_SOURCETYPEURI = "sourceTypeUri";
+	/** An extension point's binaryType child's targetTypeUri attribute. */
+	public final static String BINARYTYPE_ATTR_TARGETTYPEURI = "targetTypeUri";
 
 	/** An extension point's typeEndpoint child. */
 	public final static String CHILD_TYPEENDPOINT = "typeEndpoint";

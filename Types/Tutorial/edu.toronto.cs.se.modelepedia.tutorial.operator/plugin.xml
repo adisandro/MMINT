@@ -84,6 +84,10 @@
                   uri="http://se.cs.toronto.edu/modelepedia/Deployed">
             </type>
          </modelType>
+         <binaryType
+               sourceTypeUri="http://se.cs.toronto.edu/modelepedia/Army"
+               targetTypeUri="http://se.cs.toronto.edu/modelepedia/State">
+         </binaryType>
          <modelTypeEndpoint>
             <type
                   name="ArmyEndpoint"
@@ -165,6 +169,10 @@
                   uri="http://se.cs.toronto.edu/modelepedia/Has">
             </type>
          </modelType>
+         <binaryType
+               sourceTypeUri="http://se.cs.toronto.edu/modelepedia/State"
+               targetTypeUri="http://se.cs.toronto.edu/modelepedia/Economy">
+         </binaryType>
          <modelTypeEndpoint>
             <type
                   name="StateEndpoint"

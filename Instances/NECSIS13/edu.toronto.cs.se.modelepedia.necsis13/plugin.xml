@@ -75,6 +75,10 @@
                   uri="http://se.cs.toronto.edu/modelepedia/PreserveComponentInterfaces">
             </type>
          </modelType>
+         <binaryType
+               sourceTypeUri="http://www.eclipse.org/uml2/4.0.0/UML"
+               targetTypeUri="http://se.cs.toronto.edu/modelepedia/Java">
+         </binaryType>
          <modelTypeEndpoint>
             <type
                   name="UMLEndpoint"

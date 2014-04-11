@@ -239,6 +239,10 @@
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel">
             </type>
          </modelType>
+         <binaryType
+               sourceTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram"
+               targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram">
+         </binaryType>
          <modelTypeEndpoint>
             <type
                   name="UMLComponentEndpoint"
@@ -575,6 +579,10 @@
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO">
             </type>
          </modelType>
+         <binaryType
+               sourceTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO"
+               targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO">
+         </binaryType>
          <modelTypeEndpoint>
             <type
                   name="UMLComponentEndpoint"
