@@ -46,6 +46,9 @@ public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformatio
 
 		EList<Model> result = super.execute(actualParameters);
 		KleisliBinaryModelRel kTraceModelRel = (KleisliBinaryModelRel) result.get(1);
+		Model pivot = kTraceModelRel.getSourceModel();
+		kTraceModelRel.setSourceModel(kTraceModelRel.getTargetModel());
+		kTraceModelRel.setTargetModel(pivot);
 		kTraceModelRel.getModelEndpoints().move(1, 0);
 		kTraceModelRel.getModelEndpointRefs().move(1, 0);
 		for (Link kLink : kTraceModelRel.getLinks()) {
