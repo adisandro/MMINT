@@ -103,14 +103,14 @@ public class RelationshipValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
-			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE:
-				return validateExtendibleElementReference((ExtendibleElementReference)value, diagnostics, context);
-			case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE:
-				return validateExtendibleElementEndpointReference((ExtendibleElementEndpointReference)value, diagnostics, context);
 			case RelationshipPackage.MODEL_REL:
 				return validateModelRel((ModelRel)value, diagnostics, context);
 			case RelationshipPackage.BINARY_MODEL_REL:
 				return validateBinaryModelRel((BinaryModelRel)value, diagnostics, context);
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE:
+				return validateExtendibleElementReference((ExtendibleElementReference)value, diagnostics, context);
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE:
+				return validateExtendibleElementEndpointReference((ExtendibleElementEndpointReference)value, diagnostics, context);
 			case RelationshipPackage.MODEL_ENDPOINT_REFERENCE:
 				return validateModelEndpointReference((ModelEndpointReference)value, diagnostics, context);
 			case RelationshipPackage.MODEL_ELEMENT_REFERENCE:

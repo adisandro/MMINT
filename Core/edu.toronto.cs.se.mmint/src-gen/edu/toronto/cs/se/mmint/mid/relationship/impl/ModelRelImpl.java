@@ -373,9 +373,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST:
+			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODELORIGIN_ELIST:
 				try {
-					return createInstanceAndEndpointsAndReferences((String)arguments.get(0), (Boolean)arguments.get(1), (ModelOrigin)arguments.get(2), (EList<Model>)arguments.get(3));
+					return createInstanceAndEndpointsAndReferences((String)arguments.get(0), (ModelOrigin)arguments.get(1), (EList<Model>)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -552,15 +552,23 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			origModelRelType.getConstraint().getImplementation()
 		);
 
-		// model types
+		// model type endpoints
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(newModelRelType);
+		if (origModelRelType instanceof BinaryModelRel) { // this is useful only when there are 0 or 1 overridden endpoints, but doesn't hurt in case of 2
+			Model newSrcModelType = MultiModelRegistry.getExtendibleElement(((BinaryModelRel) origModelRelType).getSourceModel().getUri(), multiModel);
+			((BinaryModelRel) newModelRelType).addModelType(newSrcModelType, true);
+			Model newTgtModelType = MultiModelRegistry.getExtendibleElement(((BinaryModelRel) origModelRelType).getTargetModel().getUri(), multiModel);
+			((BinaryModelRel) newModelRelType).addModelType(newTgtModelType, false);
+		}
 		Iterator<ModelEndpoint> origModelTypeEndpointIter = MultiModelTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getModelEndpoints());
 		while (origModelTypeEndpointIter.hasNext()) {
 			ModelEndpoint origModelTypeEndpoint = origModelTypeEndpointIter.next();
 			Model newModelType = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getTargetUri(), multiModel);
 			ModelEndpoint modelTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getSupertype().getUri(), multiModel);
-			ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), newModelRelType.getModelEndpointRefs());
-			modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, origModelTypeEndpoint.getName(), newModelType, false, newModelRelType);
+			boolean isBinarySrc = ((origModelRelType instanceof BinaryModelRel) && (((BinaryModelRel) origModelRelType).getSourceModel() == origModelTypeEndpoint.getTarget())) ?
+				true :
+				false;
+			modelTypeEndpoint.createSubtypeAndReference(origModelTypeEndpoint.getName(), newModelType, isBinarySrc, newModelRelType);
 		}
 		// model element types
 		Iterator<ModelEndpointReference> origModelTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(origModelRelType.getModelEndpointRefs());
@@ -570,6 +578,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			Iterator<ModelElementReference> origModelElemTypeRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(origModelTypeEndpointRef.getModelElemRefs());
 			while (origModelElemTypeRefIter.hasNext()) {
 				ModelElementReference origModelElemTypeRef = origModelElemTypeRefIter.next();
+				if (!origModelElemTypeRef.isModifiable()) { // already copied by createSubtype()
+					continue;
+				}
 				ModelElement modelElemType = MultiModelRegistry.getExtendibleElement(origModelElemTypeRef.getObject().getSupertype().getUri(), multiModel);
 				ModelEndpointReference newModelTypeEndpointRefSuper = null;
 				ModelElementReference modelElemTypeRef = null;
@@ -664,7 +675,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
-	public ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, boolean isBinary, ModelOrigin origin, EList<Model> targetModels) throws MMINTException {
+	public ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, ModelOrigin origin, EList<Model> targetModels) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
@@ -675,12 +686,13 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(targetModels.get(0));
 		// create model rel
+		boolean isBinary = targetModels.size() == 2;
 		ModelRel newModelRel = createInstance(newModelRelUri, isBinary, origin, multiModel);
 		// create model rel endpoints
 		for (Model targetModel : targetModels) {
 			String modelTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, targetModel).get(0);
 			ModelEndpoint modelTypeEndpoint = MultiModelTypeRegistry.getType(modelTypeEndpointUri);
-			modelTypeEndpoint.createInstanceAndReference(targetModel, false, newModelRel);
+			modelTypeEndpoint.createInstanceAndReference(targetModel, newModelRel);
 		}
 
 		return newModelRel;
@@ -698,7 +710,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
 		for (ModelEndpointReference oldModelEndpointRef : origModelRel.getModelEndpointRefs()) {
 			Model newModel = MultiModelRegistry.getExtendibleElement(oldModelEndpointRef.getTargetUri(), containerMultiModel);
-			ModelEndpointReference newModelEndpointRef = oldModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, false, newModelRel);
+			ModelEndpointReference newModelEndpointRef = oldModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, newModelRel);
 			// model elements
 			for (ModelElementReference oldModelElemRef : oldModelEndpointRef.getModelElemRefs()) {
 				EObject newModelObj = oldModelElemRef.getObject().getEMFInstanceObject();
@@ -794,7 +806,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			Model modelType = modelTypeEndpointRef.getObject().getTarget();
 			do {
 				resources.add(modelType.getEMFTypeRoot().eResource());
-				modelType = modelType.getSupertype(); // types only
+				modelType = modelType.getSupertype();
 			}
 			while (modelType != null && !modelType.isAbstract());
 		}

@@ -33,8 +33,8 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 
 public class CopyModelListener extends SelectionAdapter {
 
@@ -79,7 +79,7 @@ public class CopyModelListener extends SelectionAdapter {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
-				String newModelName = MidDiagramUtils.getStringInput("Copy Model", "Insert new model name", oldModel.getName());
+				String newModelName = MultiModelDiagramUtils.getStringInput("Copy Model", "Insert new model name", oldModel.getName());
 				MultiModel multiModel = MultiModelRegistry.getMultiModel(oldModel);
 				Model newModel = oldModel.getMetatype().copyMAVOInstanceAndEditor(oldModel, newModelName, true, multiModel);
 	

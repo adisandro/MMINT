@@ -31,11 +31,11 @@ import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.BinaryModelRelCreateCommand;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
 /**
  * The command to create a binary model relationship.
@@ -73,7 +73,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 
 		return status;
     }
-	
+
     /**
      * Overrides superclass to re-initialize diagram type hierarchy.
      */
@@ -87,7 +87,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 
 		return status;
     }
-	
+
 	/**
 	 * Checks if a binary model relationship can be created.
 	 * 
@@ -105,40 +105,50 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 			);
 	}
 
-	protected BinaryModelRel doExecuteInstancesLevel() throws MMINTException, MidDialogCancellation {
+	protected BinaryModelRel doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
 
 		MultiModel multiModel = getContainer();
-		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToCreate(getSource(), getTarget());
+		ModelRel modelRelType = MultiModelDiagramUtils.selectModelRelTypeToCreate(getSource(), getTarget());
 		BinaryModelRel newModelRel = (BinaryModelRel) modelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
 
 		List<String> modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, getSource());
-		ModelEndpointReference modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");
-		modelTypeEndpointRef.getObject().createInstanceAndReference(getSource(), false, newModelRel);
+		ModelEndpointReference modelTypeEndpointRef = MultiModelDiagramUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");
+		modelTypeEndpointRef.getObject().createInstanceAndReference(getSource(), newModelRel);
 		modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, getTarget());
-		modelTypeEndpointRef = MidDiagramUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "tgt ");
-		modelTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), false, newModelRel);
+		modelTypeEndpointRef = MultiModelDiagramUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "tgt ");
+		modelTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), newModelRel);
 
 		return newModelRel;
 	}
 
-	protected BinaryModelRel doExecuteTypesLevel() throws MMINTException, MidDialogCancellation {
+	protected BinaryModelRel doExecuteTypesLevel() throws MMINTException, MultiModelDialogCancellation {
 
 		MultiModel multiModel = getContainer();
 		Model srcModelType = getSource(), tgtModelType = getTarget();
-		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToExtend(multiModel, srcModelType, tgtModelType);
-		String newModelRelTypeName = MidDiagramUtils.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name", srcModelType.getName() + MMINT.BINARY_MODELREL_LINK_SEPARATOR + tgtModelType.getName());
-		String[] constraint = MidDiagramUtils.getConstraintInput("Create new light binary model relationship type", null);
+		ModelRel modelRelType = MultiModelDiagramUtils.selectModelRelTypeToExtend(multiModel, srcModelType, tgtModelType);
+		String newModelRelTypeName = MultiModelDiagramUtils.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name", srcModelType.getName() + MMINT.BINARY_MODELREL_LINK_SEPARATOR + tgtModelType.getName());
+		String[] constraint = MultiModelDiagramUtils.getConstraintInput("Create new light binary model relationship type", null);
 		BinaryModelRel newModelRelType = (BinaryModelRel) modelRelType.createSubtype(newModelRelTypeName, true, constraint[0], constraint[1]);
 		MMINT.createTypeHierarchy(multiModel);
 
-		String newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role", srcModelType.getName());
+		String newModelTypeEndpointName;
 		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(newModelRelType, srcModelType);
-		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), newModelRelType.getModelEndpointRefs());
-		modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, srcModelType, false, newModelRelType);
-		newModelTypeEndpointName = MidDiagramUtils.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role", tgtModelType.getName());
+		if (modelTypeEndpoint == null) {
+			newModelRelType.addModelType(srcModelType, true);
+		}
+		else {
+			newModelTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role", srcModelType.getName());
+			modelTypeEndpoint.createSubtypeAndReference(newModelTypeEndpointName, srcModelType, true, newModelRelType);
+		}
+
 		modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(newModelRelType, tgtModelType);
-		modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), newModelRelType.getModelEndpointRefs());
-		modelTypeEndpoint.createSubtypeAndReference(modelTypeEndpointRef, newModelTypeEndpointName, tgtModelType, false, newModelRelType);
+		if (modelTypeEndpoint == null) {
+			newModelRelType.addModelType(tgtModelType, false);
+		}
+		else {
+			newModelTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role", tgtModelType.getName());
+			modelTypeEndpoint.createSubtypeAndReference(newModelTypeEndpointName, tgtModelType, false, newModelRelType);
+		}
 
 		return newModelRelType;
 	}
@@ -172,7 +182,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (MidDialogCancellation e) {
+		catch (MultiModelDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

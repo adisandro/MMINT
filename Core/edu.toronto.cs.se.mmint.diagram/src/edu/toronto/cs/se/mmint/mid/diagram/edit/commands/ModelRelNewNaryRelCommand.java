@@ -25,9 +25,9 @@ import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRelCreateCommand;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
 /**
  * The command to create a model relationship.
@@ -87,21 +87,21 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		return super.canExecute();
 	}
 
-	protected ModelRel doExecuteInstancesLevel() throws MMINTException, MidDialogCancellation {
+	protected ModelRel doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToCreate(null, null);
+		ModelRel modelRelType = MultiModelDiagramUtils.selectModelRelTypeToCreate(null, null);
 		ModelRel newModelRel = modelRelType.createInstance(null, false, ModelOrigin.CREATED, multiModel);
 
 		return newModelRel;
 	}
 
-	protected ModelRel doExecuteTypesLevel() throws MMINTException, MidDialogCancellation {
+	protected ModelRel doExecuteTypesLevel() throws MMINTException, MultiModelDialogCancellation {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		ModelRel modelRelType = MidDiagramUtils.selectModelRelTypeToExtend(multiModel, null, null);
-		String newModelRelTypeName = MidDiagramUtils.getStringInput("Create new light model relationship type", "Insert new model relationship type name", null);
-		String[] constraint = MidDiagramUtils.getConstraintInput("Create new light model relationship type", null);
+		ModelRel modelRelType = MultiModelDiagramUtils.selectModelRelTypeToExtend(multiModel, null, null);
+		String newModelRelTypeName = MultiModelDiagramUtils.getStringInput("Create new light model relationship type", "Insert new model relationship type name", null);
+		String[] constraint = MultiModelDiagramUtils.getConstraintInput("Create new light model relationship type", null);
 		ModelRel newModelRelType = modelRelType.createSubtype(newModelRelTypeName, false, constraint[0], constraint[1]);
 		MMINT.createTypeHierarchy(multiModel);
 
@@ -134,7 +134,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (MidDialogCancellation e) {
+		catch (MultiModelDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

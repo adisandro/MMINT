@@ -50,6 +50,10 @@
                   uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel">
             </type>
          </modelType>
+         <binaryType
+               sourceTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO"
+               targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
+         </binaryType>
          <modelTypeEndpoint>
             <type
                   name="IStarEndpoint"

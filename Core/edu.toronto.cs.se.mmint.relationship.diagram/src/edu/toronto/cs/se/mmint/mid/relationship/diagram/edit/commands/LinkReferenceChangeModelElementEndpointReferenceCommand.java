@@ -21,13 +21,13 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.ModelElementEndpointReferenceReorientCommand;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.library.RelationshipDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
 /**
  * The command to change a model element reference of a link.
@@ -98,9 +98,9 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 			);
 	}
 
-	protected void doExecuteInstancesLevel(LinkReference linkRef, ModelElementReference modelElemRef, boolean isFullDelete) throws MMINTException, MidDialogCancellation {
+	protected void doExecuteInstancesLevel(LinkReference linkRef, ModelElementReference modelElemRef, boolean isFullDelete) throws MMINTException, MultiModelDialogCancellation {
 
-		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramUtils.selectModelElementTypeEndpointToCreate(linkRef, modelElemTypeEndpointUris);
+		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(linkRef, modelElemTypeEndpointUris);
 		if (isFullDelete) {
 			getLink().deleteInstanceAndReference(isFullDelete);
 			modelElemTypeEndpointRef.getObject().createInstanceAndReference(modelElemRef, false, linkRef);
@@ -137,7 +137,7 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (MidDialogCancellation e) {
+		catch (MultiModelDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
@@ -159,7 +159,7 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (MidDialogCancellation e) {
+		catch (MultiModelDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

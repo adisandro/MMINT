@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 
 
@@ -43,13 +44,12 @@ public interface BinaryModelRel extends ModelRel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The source model endpoint.
+	 * The source model.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Model</em>' reference.
 	 * @see #setSourceModel(Model)
 	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryModelRel_SourceModel()
-	 * @model required="true" transient="true" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if modelEndpoints->size() < 1 then null else modelEndpoints->at(1).target.oclAsType(mid::Model) endif'"
+	 * @model required="true"
 	 * @generated
 	 */
 	Model getSourceModel();
@@ -69,13 +69,12 @@ public interface BinaryModelRel extends ModelRel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The target model endpoint.
+	 * The target model.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Model</em>' reference.
 	 * @see #setTargetModel(Model)
 	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryModelRel_TargetModel()
-	 * @model required="true" transient="true" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if modelEndpoints->size() < 2 then null else modelEndpoints->at(2).target.oclAsType(mid::Model) endif'"
+	 * @model required="true"
 	 * @generated
 	 */
 	Model getTargetModel();
@@ -89,4 +88,22 @@ public interface BinaryModelRel extends ModelRel {
 	 * @generated
 	 */
 	void setTargetModel(Model value);
+
+	/**
+	 * <!-- begin-user-doc --> Adds the source or target model type to this
+	 * binary model relationship type.
+	 * 
+	 * @param modelType
+	 *            The model type that is the source or target of this binary
+	 *            model relationship type.
+	 * @param isBinarySrc
+	 *            True if the model type is the source in the binary model
+	 *            relationship type container, false otherwise.
+	 * @throws MMINTException
+	 *             If this is a model relationship instance.
+	 *             <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelTypeRequired="true" isBinarySrcRequired="true"
+	 * @generated
+	 */
+	void addModelType(Model modelType, boolean isBinarySrc) throws MMINTException;
 } // BinaryModelRel

@@ -28,9 +28,9 @@ import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelCreateCommand;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
 /**
  * The command to create a model.
@@ -90,10 +90,10 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		return super.canExecute();
 	}
 
-	protected Model doExecuteInstancesLevel() throws MMINTException, MidDialogCancellation {
+	protected Model doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		Editor newEditor = MidDiagramUtils.selectModelTypeToCreate(multiModel);
+		Editor newEditor = MultiModelDiagramUtils.selectModelTypeToCreate(multiModel);
 		Model modelType = MultiModelTypeRegistry.getType(newEditor.getMetatype().getModelUri());
 		Model newModel = modelType.createInstance(newEditor.getModelUri(), ModelOrigin.CREATED, multiModel);
 		newModel.getEditors().add(newEditor);
@@ -101,18 +101,18 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		return newModel;
 	}
 
-	protected Model doExecuteTypesLevel() throws MMINTException, MidDialogCancellation {
+	protected Model doExecuteTypesLevel() throws MMINTException, MultiModelDialogCancellation {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		Model modelType = MidDiagramUtils.selectModelTypeToExtend(multiModel);
-		String newModelTypeName = MidDiagramUtils.getStringInput("Create new light model type", "Insert new model type name", null);
-		String[] constraint = MidDiagramUtils.getConstraintInput("Create new light model type", null);
+		Model modelType = MultiModelDiagramUtils.selectModelTypeToExtend(multiModel);
+		String newModelTypeName = MultiModelDiagramUtils.getStringInput("Create new light model type", "Insert new model type name", null);
+		String[] constraint = MultiModelDiagramUtils.getConstraintInput("Create new light model type", null);
 		if (!MultiModelConstraintChecker.checkConstraintConsistency(modelType, constraint[0], constraint[1])) {
 			throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");
 		}
 		boolean isMetamodelExtension = (MultiModelTypeHierarchy.isRootType(modelType)) ?
 			true :
-			MidDiagramUtils.getBooleanInput("Create new light model type", "Extend metamodel?");
+			MultiModelDiagramUtils.getBooleanInput("Create new light model type", "Extend metamodel?");
 		Model newModelType = modelType.createSubtype(newModelTypeName, constraint[0], constraint[1], isMetamodelExtension);
 		MMINT.createTypeHierarchy(multiModel);
 
@@ -146,7 +146,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (MidDialogCancellation e) {
+		catch (MultiModelDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

@@ -223,8 +223,6 @@ public interface ModelRel extends Model {
 	 *            relationship is not in a separate file; e.g. a standalone
 	 *            model relationship is in its own files, a plain model
 	 *            relationship is not.
-	 * @param isBinary
-	 *            True if the new model relationship is binary, false otherwise.
 	 * @param origin
 	 *            The origin of the new model relationship.
 	 * @param targetModels
@@ -234,10 +232,10 @@ public interface ModelRel extends Model {
 	 *             If this is a model relationship instance, if no target models
 	 *             are specified, or if the uri of the new model relationship is
 	 *             already registered in the Instance MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isBinaryRequired="true" originRequired="true" targetModelsRequired="true" targetModelsMany="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" originRequired="true" targetModelsRequired="true" targetModelsMany="true"
 	 * @generated
 	 */
-	ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, boolean isBinary, ModelOrigin origin, EList<Model> targetModels) throws MMINTException;
+	ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, ModelOrigin origin, EList<Model> targetModels) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->Creates and adds a model relationship instance of

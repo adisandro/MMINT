@@ -68,8 +68,8 @@ public class EMFModelDifference extends OperatorImpl {
 
 		// create model endpoints
 		ModelEndpoint rootModelTypeEndpoint = MultiModelTypeHierarchy.getRootModelTypeEndpoint();
-		ModelEndpointReference srcModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(matchRel.getModelEndpoints().get(0).getTarget(), false, diffModelRel);
-		ModelEndpointReference tgtModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(matchRel.getModelEndpoints().get(1).getTarget(), false, diffModelRel);
+		ModelEndpointReference srcModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(matchRel.getModelEndpoints().get(0).getTarget(), diffModelRel);
+		ModelEndpointReference tgtModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(matchRel.getModelEndpoints().get(1).getTarget(), diffModelRel);
 
 		// get output from previous operator
 		EMFModelNameMatch previousOperator = (getPreviousOperator() == null) ?

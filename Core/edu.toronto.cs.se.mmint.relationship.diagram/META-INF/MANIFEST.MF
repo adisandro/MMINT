@@ -41,6 +41,5 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts,
- edu.toronto.cs.se.mmint.mid.relationship.diagram.library,
  edu.toronto.cs.se.mmint.mid.relationship.diagram.part,
  edu.toronto.cs.se.mmint.mid.relationship.diagram.providers

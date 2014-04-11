@@ -48,6 +48,7 @@ import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.Parameter;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -168,8 +169,8 @@ public class MMINT implements MMINTConstants {
 			IConfigurationElement modelTypeConfig = extensionConfig.getChildren(MODELS_CHILD_MODELTYPE)[0];
 			boolean isAbstract = Boolean.parseBoolean(modelTypeConfig.getAttribute(MODELS_MODELTYPE_ATTR_ABSTRACT));
 			ExtensionType extensionType = new ExtensionType(modelTypeConfig, typeFactory);
-			IConfigurationElement[] modelTypeEndpointConfigs = extensionConfig.getChildren(MODELRELS_CHILD_MODELTYPEENDPOINT);
-			boolean isBinary = (modelTypeEndpointConfigs.length == 2);
+			IConfigurationElement[] binaryTypeConfigs = extensionConfig.getChildren(CHILD_BINARYTYPE);
+			boolean isBinary = (binaryTypeConfigs.length == 0) ? false : true;
 			IConfigurationElement[] constraintConfig = modelTypeConfig.getChildren(MODELS_MODELTYPE_CHILD_CONSTRAINT);
 			String constraintLanguage = (constraintConfig.length == 0) ?
 				null :
@@ -184,18 +185,29 @@ public class MMINT implements MMINTConstants {
 				constraintLanguage,
 				constraintImplementation
 			);
+			// binary model rel type
+			String srcModelTypeUri = null, tgtModelTypeUri = null;
+			if (isBinary) {
+				srcModelTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_SOURCETYPEURI);
+				((BinaryModelRel) newModelRelType).addModelType(MultiModelTypeRegistry.<Model>getType(srcModelTypeUri), true);
+				tgtModelTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_TARGETTYPEURI);
+				((BinaryModelRel) newModelRelType).addModelType(MultiModelTypeRegistry.<Model>getType(tgtModelTypeUri), false);
+			}
 			// model type endpoints
+			IConfigurationElement[] modelTypeEndpointConfigs = extensionConfig.getChildren(MODELRELS_CHILD_MODELTYPEENDPOINT);
 			for (IConfigurationElement modelTypeEndpointConfig : modelTypeEndpointConfigs) {
 				extensionType = new ExtensionType(modelTypeEndpointConfig, typeFactory);
 				IConfigurationElement modelTypeEndpointSubconfig = modelTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
-				String newModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
-				Model newModelType = MultiModelTypeRegistry.getType(newModelTypeUri);
-				if (newModelType == null) {
+				String targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
+				Model targetModelType = MultiModelTypeRegistry.getType(targetModelTypeUri);
+				if (targetModelType == null) {
 					continue;
 				}
+				boolean isBinarySrc = (isBinary && srcModelTypeUri.equals(targetModelTypeUri));
 				ModelEndpointReference newModelTypeEndpointRef = extensionType.getFactory().createHeavyModelTypeEndpointAndModelTypeEndpointReference(
 					extensionType,
-					newModelType,
+					targetModelType,
+					isBinarySrc,
 					newModelRelType
 				);
 				int lowerBound = Integer.parseInt(modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND));
@@ -218,7 +230,7 @@ public class MMINT implements MMINTConstants {
 							newModelElemType = extensionType.getFactory().createHeavyModelElementType(
 								extensionType,
 								eInfo,
-								newModelType
+								targetModelType
 							);
 						}
 						catch (Exception e) {
@@ -576,7 +588,8 @@ public class MMINT implements MMINTConstants {
 		// do model types first
 		//TODO MMINT: this probably explains the todo in type hierarchy (are type and type ref iterators really needed, or are the lists already ordered by construction?)
 		for (Model dynamicModelType : MultiModelRegistry.getModels(multiModel)) {
-			if (!(dynamicModelType instanceof ModelRel) &&
+			if (
+				!(dynamicModelType instanceof ModelRel) &&
 				dynamicModelType.isDynamic() &&
 				MultiModelTypeRegistry.getType(dynamicModelType.getUri()) == null
 			) {
@@ -584,7 +597,8 @@ public class MMINT implements MMINTConstants {
 			}
 		}
 		for (ModelRel dynamicModelRelType : MultiModelRegistry.getModelRels(multiModel)) {
-			if (dynamicModelRelType.isDynamic() &&
+			if (
+				dynamicModelRelType.isDynamic() &&
 				MultiModelTypeRegistry.getType(dynamicModelRelType.getUri()) == null
 			) {
 				createDynamicModelType(dynamicModelRelType);

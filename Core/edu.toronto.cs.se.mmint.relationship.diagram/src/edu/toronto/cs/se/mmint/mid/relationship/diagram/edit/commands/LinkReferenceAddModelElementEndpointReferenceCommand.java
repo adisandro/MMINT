@@ -25,12 +25,12 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.ModelElementEndpointReferenceCreateCommand;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.library.RelationshipDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
 /**
  * The command to add a model element reference to a link.
@@ -79,18 +79,18 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 			));
 	}
 
-	protected ModelElementEndpointReference doExecuteInstancesLevel() throws MMINTException, MidDialogCancellation {
+	protected ModelElementEndpointReference doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
 
-		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramUtils.selectModelElementTypeEndpointToCreate(getSource(), modelElemTypeEndpointUris);
+		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(getSource(), modelElemTypeEndpointUris);
 		ModelElementEndpointReference newModelElemEndpointRef = modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), false, getSource());
 
 		return newModelElemEndpointRef;
 	}
 
-	protected ModelElementEndpointReference doExecuteTypesLevel() throws MMINTException, MidDialogCancellation {
+	protected ModelElementEndpointReference doExecuteTypesLevel() throws MMINTException, MultiModelDialogCancellation {
 
 		ModelElementReference tgtModelElemTypeRef = getTarget();
-		String newModelElemTypeEndpointName = RelationshipDiagramUtils.getStringInput("Create new light model element type endpoint", "Insert new model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
+		String newModelElemTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new light model element type endpoint", "Insert new model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
 		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(getSource(), tgtModelElemTypeRef);
 		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), getSource().getModelElemEndpointRefs());
 		ModelElementEndpointReference newModelElemTypeEndpointRef = modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, newModelElemTypeEndpointName, tgtModelElemTypeRef, false, getSource());
@@ -117,7 +117,7 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (MidDialogCancellation e) {
+		catch (MultiModelDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

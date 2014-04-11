@@ -80,20 +80,20 @@ public class RelationshipAdapterFactory extends AdapterFactoryImpl {
 	protected RelationshipSwitch<Adapter> modelSwitch =
 		new RelationshipSwitch<Adapter>() {
 			@Override
-			public Adapter caseExtendibleElementReference(ExtendibleElementReference object) {
-				return createExtendibleElementReferenceAdapter();
-			}
-			@Override
-			public Adapter caseExtendibleElementEndpointReference(ExtendibleElementEndpointReference object) {
-				return createExtendibleElementEndpointReferenceAdapter();
-			}
-			@Override
 			public Adapter caseModelRel(ModelRel object) {
 				return createModelRelAdapter();
 			}
 			@Override
 			public Adapter caseBinaryModelRel(BinaryModelRel object) {
 				return createBinaryModelRelAdapter();
+			}
+			@Override
+			public Adapter caseExtendibleElementReference(ExtendibleElementReference object) {
+				return createExtendibleElementReferenceAdapter();
+			}
+			@Override
+			public Adapter caseExtendibleElementEndpointReference(ExtendibleElementEndpointReference object) {
+				return createExtendibleElementEndpointReferenceAdapter();
 			}
 			@Override
 			public Adapter caseModelEndpointReference(ModelEndpointReference object) {

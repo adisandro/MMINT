@@ -26,13 +26,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference kleisli.ecore#//KleisliModelEndpoint/extendedTarget"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute kleisli.ecore#//KleisliModelEndpoint/extendedTargetUri"/>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/createTypeReference">
-        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createTypeReference/modelTypeEndpointRef"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createTypeReference/isModifiable"/>
-        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createTypeReference/isBinarySrc"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createTypeReference/containerModelRelType"/>
       </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference">
-        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference/modelTypeEndpointRef"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference/newModelTypeEndpointName"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference/targetModelType"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createSubtypeAndReference/isBinarySrc"/>
@@ -40,21 +37,17 @@
       </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/replaceSubtypeAndReference">
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/replaceSubtypeAndReference/oldModelTypeEndpoint"/>
-        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/replaceSubtypeAndReference/modelTypeEndpointRef"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/replaceSubtypeAndReference/newModelTypeEndpointName"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/replaceSubtypeAndReference/targetModelType"/>
-        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/replaceSubtypeAndReference/containerModelRelType"/>
       </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/deleteTypeAndReference">
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/deleteTypeAndReference/isFullDelete"/>
       </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/createInstanceReference">
-        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createInstanceReference/isBinarySrc"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createInstanceReference/containerModelRel"/>
       </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/createInstanceAndReference">
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createInstanceAndReference/targetModel"/>
-        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createInstanceAndReference/isBinarySrc"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelEndpoint/createInstanceAndReference/containerModelRel"/>
       </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelEndpoint/replaceInstanceAndReference">

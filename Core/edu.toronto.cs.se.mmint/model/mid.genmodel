@@ -140,13 +140,10 @@
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getTarget"/>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getMetatype"/>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createTypeReference">
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/modelTypeEndpointRef"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/isModifiable"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/isBinarySrc"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/containerModelRelType"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createSubtypeAndReference">
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/modelTypeEndpointRef"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/newModelTypeEndpointName"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/targetModelType"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/isBinarySrc"/>
@@ -154,21 +151,17 @@
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/oldModelTypeEndpoint"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/modelTypeEndpointRef"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/newModelTypeEndpointName"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/targetModelType"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/containerModelRelType"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteTypeAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteTypeAndReference/isFullDelete"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createInstanceReference">
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceReference/isBinarySrc"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceReference/containerModelRel"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createInstanceAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/targetModel"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/isBinarySrc"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/containerModelRel"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceInstanceAndReference">
@@ -189,21 +182,6 @@
     </genClasses>
     <nestedGenPackages prefix="Relationship" basePackage="edu.toronto.cs.se.mmint.mid"
         disposableProviderFactory="true" ecorePackage="mid.ecore#//relationship">
-      <genClasses image="false" ecoreClass="mid.ecore#//relationship/ExtendibleElementReference">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/referencedObject"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/containedObject"/>
-        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/object"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/supertypeRef"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ExtendibleElementReference/modifiable"/>
-        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ExtendibleElementReference/uri"/>
-      </genClasses>
-      <genClasses image="false" ecoreClass="mid.ecore#//relationship/ExtendibleElementEndpointReference">
-        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ExtendibleElementEndpointReference/targetUri"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementEndpointReference/getObject"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementEndpointReference/getSupertypeRef"/>
-      </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/ModelRel">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelRel/modelEndpoints"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelRel/links"/>
@@ -230,7 +208,6 @@
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/newModelRelUri"/>
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/isBinary"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/origin"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/targetModels"/>
         </genOperations>
@@ -248,6 +225,25 @@
             ecoreFeature="ecore:EReference mid.ecore#//relationship/BinaryModelRel/sourceModel"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//relationship/BinaryModelRel/targetModel"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/BinaryModelRel/addModelType">
+          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryModelRel/addModelType/modelType"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryModelRel/addModelType/isBinarySrc"/>
+        </genOperations>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mid.ecore#//relationship/ExtendibleElementReference">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/referencedObject"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/containedObject"/>
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/object"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/supertypeRef"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ExtendibleElementReference/modifiable"/>
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ExtendibleElementReference/uri"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mid.ecore#//relationship/ExtendibleElementEndpointReference">
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ExtendibleElementEndpointReference/targetUri"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementEndpointReference/getObject"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementEndpointReference/getSupertypeRef"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/ModelEndpointReference">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelEndpointReference/modelElemRefs"/>

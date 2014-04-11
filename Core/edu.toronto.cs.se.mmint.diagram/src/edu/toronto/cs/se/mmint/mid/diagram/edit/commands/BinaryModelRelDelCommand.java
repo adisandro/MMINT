@@ -44,7 +44,7 @@ public class BinaryModelRelDelCommand extends DestroyElementCommand {
 
 		super(request);
 	}
-	
+
     /**
      * Overrides superclass to re-initialize diagram type hierarchy.
      */
@@ -123,7 +123,7 @@ public class BinaryModelRelDelCommand extends DestroyElementCommand {
 			else {
 				doExecuteTypesLevel();
 			}
-	
+
 			return super.doExecuteWithResult(monitor, info);
 		}
 		catch (MMINTException e) {

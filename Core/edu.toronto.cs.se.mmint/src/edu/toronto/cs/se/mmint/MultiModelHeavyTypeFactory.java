@@ -199,9 +199,13 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *            if the root model type endpoint should be used as supertype.
 	 * @param newModelTypeEndpointName
 	 *            The name of the new model type endpoint.
-	 * @param newModelType
+	 * @param targetModelType
 	 *            The new model type that is the target of the new model type
 	 *            endpoint.
+	 * @param isBinarySrc
+	 *            (Only for a binary model relationship type container) True if
+	 *            the target model type is the source in the binary model
+	 *            relationship type container, false otherwise.
 	 * @param containerModelRelType
 	 *            The model relationship type that will contain the new model
 	 *            type endpoint.
@@ -210,15 +214,12 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new model type endpoint is already
 	 *             registered in the repository.
 	 */
-	protected ModelEndpointReference addHeavyModelTypeEndpointAndModelTypeEndpointReference(ModelEndpoint newModelTypeEndpoint, String newModelTypeEndpointUri, String modelTypeEndpointUri, String newModelTypeEndpointName, Model newModelType, ModelRel containerModelRelType) throws MMINTException {
+	protected ModelEndpointReference addHeavyModelTypeEndpointAndModelTypeEndpointReference(ModelEndpoint newModelTypeEndpoint, String newModelTypeEndpointUri, String modelTypeEndpointUri, String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
 
 		ModelEndpoint modelTypeEndpoint = getSupertype(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri);
 		addHeavyType(newModelTypeEndpoint, modelTypeEndpoint, newModelTypeEndpointUri, newModelTypeEndpointName);
-		addModelTypeEndpoint(newModelTypeEndpoint, newModelType, false, containerModelRelType);
-		ModelEndpointReference modelTypeEndpointRef = (modelTypeEndpoint == null) ? // may be root
-			null :
-			MultiModelTypeHierarchy.getReference(modelTypeEndpoint.getUri(), containerModelRelType.getModelEndpointRefs());
-		ModelEndpointReference newModelTypeEndpointRef = newModelTypeEndpoint.createTypeReference(modelTypeEndpointRef, true, false, containerModelRelType);
+		addModelTypeEndpoint(newModelTypeEndpoint, targetModelType, isBinarySrc, containerModelRelType);
+		ModelEndpointReference newModelTypeEndpointRef = newModelTypeEndpoint.createTypeReference(true, containerModelRelType);
 
 		return newModelTypeEndpointRef;
 	}
@@ -330,7 +331,11 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 * @param targetModelType
 	 *            The model type that is the target of the new model type
 	 *            endpoint.
-	 * @param modelRelType
+	 * @param isBinarySrc
+	 *            (Only for a binary model relationship type container) True if
+	 *            the target model type is the source in the binary model
+	 *            relationship type container, false otherwise.
+	 * @param containerModelRelType
 	 *            The model relationship type that will contain the new model
 	 *            type endpoint.
 	 * @return The created reference to the new model type endpoint.
@@ -338,12 +343,12 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new model type endpoint is already
 	 *             registered in the repository.
 	 */
-	public ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(ExtensionType extensionType, Model targetModelType, ModelRel modelRelType) throws MMINTException {
+	public ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(ExtensionType extensionType, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
 
 		ModelEndpoint newModelTypeEndpoint = (extensionType.getNewType() == null) ?
 			MidFactory.eINSTANCE.createModelEndpoint() :
 			(ModelEndpoint) extensionType.getNewType();
-		ModelEndpointReference newModelTypeEndpointRef = addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, modelRelType);
+		ModelEndpointReference newModelTypeEndpointRef = addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, isBinarySrc, containerModelRelType);
 
 		return newModelTypeEndpointRef;
 	}

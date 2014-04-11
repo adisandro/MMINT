@@ -21,13 +21,13 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.BinaryLinkReferenceReorientCommand;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.library.RelationshipDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
 /**
  * The command to change a model element reference of a binary mapping link.
@@ -109,12 +109,12 @@ public class BinaryLinkReferenceChangeModelElementReferenceCommand extends Binar
 			));
 	}
 
-	protected void doExecuteInstancesLevel(BinaryLinkReference linkRef, ModelElementReference modelElemRef, boolean isBinarySrc) throws MMINTException, MidDialogCancellation {
+	protected void doExecuteInstancesLevel(BinaryLinkReference linkRef, ModelElementReference modelElemRef, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {
 
 		ModelElementEndpointReference oldModelElemEndpointRef = (isBinarySrc) ?
 			linkRef.getModelElemEndpointRefs().get(0) :
 			linkRef.getModelElemEndpointRefs().get(1);
-		ModelElementEndpointReference modelElemTypeEndpointRef = RelationshipDiagramUtils.selectModelElementTypeEndpointToCreate(linkRef, modelElemTypeEndpointUris);
+		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(linkRef, modelElemTypeEndpointUris);
 		modelElemTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelElemEndpointRef, modelElemRef);
 	}
 
@@ -149,7 +149,7 @@ public class BinaryLinkReferenceChangeModelElementReferenceCommand extends Binar
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (MidDialogCancellation e) {
+		catch (MultiModelDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
@@ -178,7 +178,7 @@ public class BinaryLinkReferenceChangeModelElementReferenceCommand extends Binar
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (MidDialogCancellation e) {
+		catch (MultiModelDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

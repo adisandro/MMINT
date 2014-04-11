@@ -63,6 +63,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
       <complexType>
          <sequence>
             <element ref="modelType"/>
+            <element ref="binaryType" minOccurs="0" maxOccurs="1"/>
             <element ref="modelTypeEndpoint" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="linkType" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
@@ -72,7 +73,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
    <element name="modelTypeEndpoint">
       <annotation>
          <documentation>
-            A relationship&apos;s model type endpoint.
+            A model type endpoint.
          </documentation>
       </annotation>
       <complexType>
@@ -87,7 +88,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
    <element name="modelElemType">
       <annotation>
          <documentation>
-            An endpoint&apos;s model element type.
+            An model element type.
          </documentation>
       </annotation>
       <complexType>

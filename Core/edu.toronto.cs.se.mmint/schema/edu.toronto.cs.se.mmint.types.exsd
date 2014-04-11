@@ -101,6 +101,30 @@
       </complexType>
    </element>
 
+   <element name="binaryType">
+      <annotation>
+         <documentation>
+            A binary type that connects two other types.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="sourceTypeUri" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The uri of the source type connected by the binary type.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="targetTypeUri" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The uri of the target type connected by the binary type.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
 
    <annotation>
       <appinfo>

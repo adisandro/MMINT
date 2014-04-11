@@ -34,6 +34,7 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
@@ -41,6 +42,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.mmint.repository.ExtensionType;
 
 /**
@@ -777,45 +779,52 @@ public class MultiModelTypeHierarchy {
 	 * @return True if the given type is the root type, false otherwise.
 	 */
 	public static boolean isRootType(ExtendibleElement type) {
-	
+
 		return type.getUri().equals(getRootTypeUri(type));
 	}
 
+	//TODO[MODELENDPOINT] returns null for non-overriding, or overridden model type endpoint (which can be the root one)
 	public static ModelEndpoint getOverriddenModelTypeEndpoint(ModelRel modelRelType, Model targetModelType) {
 
-		//TODO MMINT[MODELENDPOINT] very dumb first approach to the override problem
-		MultiModel typeMultiModel = MultiModelRegistry.getMultiModel(modelRelType);
-		do {
-			modelRelType = (ModelRel) modelRelType.getSupertype();
+		boolean isBinary = (modelRelType instanceof BinaryModelRel);
+		MultiModel typeMID = MultiModelRegistry.getMultiModel(modelRelType);
+		modelRelType = (ModelRel) modelRelType.getSupertype();
+		while (!isRootType(modelRelType)) {
 			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
-				if (MultiModelTypeHierarchy.isSubtypeOf(targetModelType.getUri(), modelTypeEndpoint.getTargetUri(), typeMultiModel)) {
-					//TODO MMINT[MODELENDPOINT] ask to override or not
+				if (isBinary && targetModelType.getUri().equals(modelTypeEndpoint.getTargetUri())) {
+					return null;
+				}
+				if (MultiModelTypeHierarchy.isSubtypeOf(targetModelType.getUri(), modelTypeEndpoint.getTargetUri(), typeMID)) {
+					if (!isBinary) {
+						if (!MultiModelDiagramUtils.getBooleanInput("Override model type endpoint", "Override " + modelTypeEndpoint.getName() + "?")) {
+							continue;
+						}
+					}
 					return modelTypeEndpoint;
 				}
 			}
+			modelRelType = (ModelRel) modelRelType.getSupertype();
 		}
-		while (!isRootType(modelRelType));
 
-		return MultiModelRegistry.getExtendibleElement(MMINT.ROOT_MODELENDPOINT_URI, typeMultiModel);
+		return MultiModelRegistry.getExtendibleElement(MMINT.ROOT_MODELENDPOINT_URI, typeMID);
 	}
 
 	public static ModelElementEndpoint getOverriddenModelElementTypeEndpoint(LinkReference linkTypeRef, ModelElementReference targetModelElemTypeRef) {
 
-		//TODO MMINT[MODELENDPOINT] very dumb first approach to the override problem
-		MultiModel typeMultiModel = MultiModelRegistry.getMultiModel(linkTypeRef);
+		//TODO MMINT[MODELENDPOINT] this should reflect all the changes done to the model endpoints
+		MultiModel typeMID = MultiModelRegistry.getMultiModel(linkTypeRef);
 		Link linkType = linkTypeRef.getObject();
 		do {
 			linkType = linkType.getSupertype();
 			for (ModelElementEndpoint modelElemTypeEndpoint : linkType.getModelElemEndpoints()) {
-				if (MultiModelTypeHierarchy.isSubtypeOf(targetModelElemTypeRef.getUri(), modelElemTypeEndpoint.getTargetUri(), typeMultiModel)) {
-					//TODO MMINT[MODELENDPOINT] ask to override or not
+				if (MultiModelTypeHierarchy.isSubtypeOf(targetModelElemTypeRef.getUri(), modelElemTypeEndpoint.getTargetUri(), typeMID)) {
 					return modelElemTypeEndpoint;
 				}
 			}
 		}
 		while (!isRootType(linkType));
 
-		return MultiModelRegistry.getExtendibleElement(MMINT.ROOT_MODELELEMENDPOINT_URI, typeMultiModel);
+		return MultiModelRegistry.getExtendibleElement(MMINT.ROOT_MODELELEMENDPOINT_URI, typeMID);
 	}
 
 }
