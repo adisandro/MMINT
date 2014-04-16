@@ -749,12 +749,6 @@ Contributors:
                   style="toggle"
                   tooltip="Enables/disables the automatic creation of diagrams for models used in MIDs">
             </command>
-            <command
-                  commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.AlternativeModelTreeEnabled"
-                  label="Alternative Model Tree Enabled"
-                  style="toggle"
-                  tooltip="Enables/disables the alternative model tree for drag and drop of model elements in MIDs">
-            </command>
          </menu>
       </menuContribution>
    </extension>
@@ -811,15 +805,6 @@ Contributors:
             defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.AppearanceHandler"
             id="edu.toronto.cs.se.mmint.mid.diagram.menu.DiagramsCreationEnabled"
             name="Diagrams Creation Enabled">
-         <state
-               class="org.eclipse.ui.handlers.RegistryToggleState:true"
-               id="org.eclipse.ui.commands.toggleState">
-         </state>
-      </command>
-      <command
-            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.AppearanceHandler"
-            id="edu.toronto.cs.se.mmint.mid.diagram.menu.AlternativeModelTreeEnabled"
-            name="Alternative Model Tree Enabled">
          <state
                class="org.eclipse.ui.handlers.RegistryToggleState:true"
                id="org.eclipse.ui.commands.toggleState">
