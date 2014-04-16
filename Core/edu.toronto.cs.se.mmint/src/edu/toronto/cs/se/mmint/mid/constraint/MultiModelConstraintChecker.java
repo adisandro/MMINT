@@ -237,7 +237,7 @@ public class MultiModelConstraintChecker {
 			if (targetSrcModel != null) {
 				for (ModelEndpointReference modelTypeEndpointRef : modelRelType.getModelEndpointRefs()) {
 					if (MultiModelConstraintChecker.isAllowedModelEndpoint(modelTypeEndpointRef, targetSrcModel, cardinalityTable)) {
-						MultiModelRegistry.initEndpointCardinalities(modelTypeEndpointRef.getUri(), cardinalityTable);
+						MultiModelRegistry.addEndpointCardinality(modelTypeEndpointRef.getUri(), cardinalityTable);
 						isAllowedSrc = true;
 						break;
 					}
@@ -247,7 +247,7 @@ public class MultiModelConstraintChecker {
 			if (targetTgtModel != null) {
 				for (ModelEndpointReference modelTypeEndpointRef : modelRelType.getModelEndpointRefs()) {
 					if (MultiModelConstraintChecker.isAllowedModelEndpoint(modelTypeEndpointRef, targetTgtModel, cardinalityTable)) {
-						MultiModelRegistry.initEndpointCardinalities(modelTypeEndpointRef.getUri(), cardinalityTable);
+						MultiModelRegistry.addEndpointCardinality(modelTypeEndpointRef.getUri(), cardinalityTable);
 						isAllowedTgt = true;
 						break;
 					}
@@ -276,7 +276,7 @@ public class MultiModelConstraintChecker {
 			if (targetSrcModelElemRef != null) {
 				for (ModelElementEndpointReference modelElemTypeEndpointRef : linkTypeRef.getObject().getModelElemEndpointRefs()) {
 					if (MultiModelConstraintChecker.isAllowedModelElementEndpointReference(modelElemTypeEndpointRef.getObject(), targetSrcModelElemRef, cardinalityTable)) {
-						MultiModelRegistry.initEndpointCardinalities(modelElemTypeEndpointRef.getUri(), cardinalityTable);
+						MultiModelRegistry.addEndpointCardinality(modelElemTypeEndpointRef.getUri(), cardinalityTable);
 						isAllowedSrc = true;
 						break;
 					}
@@ -286,7 +286,7 @@ public class MultiModelConstraintChecker {
 			if (targetTgtModelElemRef != null) {
 				for (ModelElementEndpointReference modelElemTypeEndpointRef : linkTypeRef.getObject().getModelElemEndpointRefs()) {
 					if (MultiModelConstraintChecker.isAllowedModelElementEndpointReference(modelElemTypeEndpointRef.getObject(), targetTgtModelElemRef, cardinalityTable)) {
-						MultiModelRegistry.initEndpointCardinalities(modelElemTypeEndpointRef.getUri(), cardinalityTable);
+						MultiModelRegistry.addEndpointCardinality(modelElemTypeEndpointRef.getUri(), cardinalityTable);
 						isAllowedTgt = true;
 						break;
 					}
@@ -320,7 +320,7 @@ public class MultiModelConstraintChecker {
 		return false;
 	}
 
-	public static List<String> getAllowedModelEndpoints(ModelRel modelRel, Model targetModel) {
+	public static List<String> getAllowedModelEndpoints(ModelRel modelRel, ModelEndpoint oldModelEndpoint, Model targetModel) {
 
 		if (targetModel == null) { // model not added yet
 			return new ArrayList<String>();
@@ -330,7 +330,16 @@ public class MultiModelConstraintChecker {
 		// count existing instances
 		HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
 		for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
-			MultiModelRegistry.initEndpointCardinalities(modelEndpoint.getMetatypeUri(), cardinalityTable);
+			MultiModelRegistry.addEndpointCardinality(modelEndpoint.getMetatypeUri(), cardinalityTable);
+		}
+		// possibly subtract model endpoint to be replaced
+		if (oldModelEndpoint != null) {
+			try {
+				MultiModelRegistry.subtractEndpointCardinality(oldModelEndpoint.getMetatypeUri(), cardinalityTable);
+			}
+			catch (MMINTException e) {
+				MMINTException.print(MMINTException.Type.WARNING, "The model endpoint to be replaced can't be found in the model relationship, skipping it", e);
+			}
 		}
 		// check allowance
 		for (ModelEndpointReference modelTypeEndpointRef : modelRel.getMetatype().getModelEndpointRefs()) {
@@ -353,7 +362,7 @@ public class MultiModelConstraintChecker {
 			//TODO MMINT: order of visit might affect the result, should be from the most specific to the less
 			for (ModelEndpointReference modelTypeEndpointRef : newModelRelType.getModelEndpointRefs()) {
 				if (isAllowed = isAllowedModelEndpoint(modelTypeEndpointRef, modelEndpoint.getTarget(), cardinalityTable)) {
-					MultiModelRegistry.initEndpointCardinalities(modelTypeEndpointRef.getUri(), cardinalityTable);
+					MultiModelRegistry.addEndpointCardinality(modelTypeEndpointRef.getUri(), cardinalityTable);
 					break;
 				}
 			}
@@ -380,7 +389,7 @@ public class MultiModelConstraintChecker {
 		return false;
 	}
 
-	public static List<String> getAllowedModelElementEndpointReferences(LinkReference linkRef, ModelElementReference newModelElemRef) {
+	public static List<String> getAllowedModelElementEndpointReferences(LinkReference linkRef, ModelElementEndpointReference oldModelElemEndpointRef, ModelElementReference newModelElemRef) {
 
 		if (newModelElemRef == null) { // model element reference not added yet
 			return new ArrayList<String>();
@@ -390,7 +399,16 @@ public class MultiModelConstraintChecker {
 		// count existing instances
 		HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
 		for (ModelElementEndpointReference modelElemEndpointRef : linkRef.getModelElemEndpointRefs()) {
-			MultiModelRegistry.initEndpointCardinalities(modelElemEndpointRef.getObject().getMetatypeUri(), cardinalityTable);
+			MultiModelRegistry.addEndpointCardinality(modelElemEndpointRef.getObject().getMetatypeUri(), cardinalityTable);
+		}
+		// possibly subtract model element endpoint to be replaced
+		if (oldModelElemEndpointRef != null) {
+			try {
+				MultiModelRegistry.subtractEndpointCardinality(oldModelElemEndpointRef.getObject().getMetatypeUri(), cardinalityTable);
+			}
+			catch (MMINTException e) {
+				MMINTException.print(MMINTException.Type.WARNING, "The model element endpoint to be replaced can't be found in the link, skipping it", e);
+			}
 		}
 		// check allowance
 		for (ModelElementEndpoint modelElemTypeEndpoint : linkRef.getObject().getMetatype().getModelElemEndpoints()) {
@@ -413,7 +431,7 @@ public class MultiModelConstraintChecker {
 			//TODO MMINT: order of visit might affect the result, should be from the most specific to the less
 			for (ModelElementEndpointReference modelElemTypeEndpointRef : newLinkType.getModelElemEndpointRefs()) {
 				if (isAllowed = isAllowedModelElementEndpointReference(modelElemTypeEndpointRef.getObject(), modelElemEndpointRef.getModelElemRef(), cardinalityTable)) {
-					MultiModelRegistry.initEndpointCardinalities(modelElemTypeEndpointRef.getUri(), cardinalityTable);
+					MultiModelRegistry.addEndpointCardinality(modelElemTypeEndpointRef.getUri(), cardinalityTable);
 					break;
 				}
 			}

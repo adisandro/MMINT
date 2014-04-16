@@ -114,10 +114,10 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 		LinkReference linkTypeRef = MultiModelDiagramUtils.selectLinkTypeReferenceToCreate(modelRel, getSource(), getTarget());
 		BinaryLinkReference newLinkRef = (BinaryLinkReference) linkTypeRef.getObject().createInstanceAndReference(true, modelRel);
 
-		List<String> modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, getSource());
+		List<String> modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, null, getSource());
 		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(newLinkRef, modelElemTypeEndpointUris);
 		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getSource(), false, newLinkRef);
-		modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, getTarget());
+		modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, null, getTarget());
 		modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(newLinkRef, modelElemTypeEndpointUris);
 		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), false, newLinkRef);
 

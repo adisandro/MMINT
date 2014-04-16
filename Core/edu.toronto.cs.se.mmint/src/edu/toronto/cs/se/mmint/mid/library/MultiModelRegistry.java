@@ -28,6 +28,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -61,13 +62,22 @@ public class MultiModelRegistry {
 	public final static String ECORE_EREFERENCE_URI_PREFIX = "@";
 	public final static String ECORE_ROOT_FEATURE = "root";
 
-	public static void initEndpointCardinalities(String uri, HashMap<String, Integer> cardinalityTable) {
+	public static void addEndpointCardinality(String uri, HashMap<String, Integer> cardinalityTable) {
 
 		Integer value = cardinalityTable.get(uri);
 		Integer newValue = (value == null) ?
 			new Integer(1) :
 			new Integer(value.intValue()+1);
 		cardinalityTable.put(uri, newValue);
+	}
+
+	public static void subtractEndpointCardinality(String uri, HashMap<String, Integer> cardinalityTable) throws MMINTException {
+
+		Integer value = cardinalityTable.get(uri);
+		if (value == null) {
+			throw new MMINTException("Uri " + uri + " doesn't exist in the cardinality table");
+		}
+		cardinalityTable.put(uri, new Integer(value.intValue()-1));
 	}
 
 	public static boolean checkNewEndpointUpperCardinality(ExtendibleElementEndpoint typeEndpoint, Map<String, Integer> cardinalityTable) {

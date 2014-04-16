@@ -465,7 +465,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 
 		ModelRel containerModelRel = (ModelRel) oldModelEndpoint.eContainer();
 		oldModelEndpoint.deleteInstanceAndReference(false);
-		super.addBasicInstance(oldModelEndpoint, null, null);
+		super.addBasicInstance(oldModelEndpoint, null, targetModel.getName());
 		if (containerModelRel instanceof BinaryModelRel) {
 			boolean isBinarySrc = ((BinaryModelRel) containerModelRel).getSourceModel() == oldModelEndpoint.getTarget();
 			if (isBinarySrc) {

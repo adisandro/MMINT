@@ -441,7 +441,7 @@ public class LinkImpl extends ExtendibleElementImpl implements Link {
 		LinkReference newLinkRef = createInstanceAndReference(isBinary, containerModelRel);
 		// create model element endpoints
 		for (ModelElementReference targetModelElemRef : targetModelElemRefs) {
-			String modelElemTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, targetModelElemRef).get(0);
+			String modelElemTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, null, targetModelElemRef).get(0);
 			ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeRegistry.getType(modelElemTypeEndpointUri);
 			modelElemTypeEndpoint.createInstanceAndReference(targetModelElemRef, false, newLinkRef);
 		}

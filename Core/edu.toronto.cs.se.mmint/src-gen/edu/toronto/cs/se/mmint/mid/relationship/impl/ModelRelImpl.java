@@ -690,7 +690,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		ModelRel newModelRel = createInstance(newModelRelUri, isBinary, origin, multiModel);
 		// create model rel endpoints
 		for (Model targetModel : targetModels) {
-			String modelTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, targetModel).get(0);
+			String modelTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, null, targetModel).get(0);
 			ModelEndpoint modelTypeEndpoint = MultiModelTypeRegistry.getType(modelTypeEndpointUri);
 			modelTypeEndpoint.createInstanceAndReference(targetModel, newModelRel);
 		}

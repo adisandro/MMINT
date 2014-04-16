@@ -71,7 +71,7 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 		return
 			super.canExecute() && ((
 				instance &&
-				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(getSource(), getTarget())) != null
+				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(getSource(), null, getTarget())) != null
 			) || (
 				!instance &&
 				!MultiModelTypeHierarchy.isRootType(getSource().getObject()) &&

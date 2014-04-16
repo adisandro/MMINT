@@ -71,7 +71,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 		return
 			super.canExecute() && ((
 				instance &&
-				(modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(getSource(), (Model) getTarget())) != null
+				(modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(getSource(), null, (Model) getTarget())) != null
 			) || (
 				!instance &&
 				!MultiModelTypeHierarchy.isRootType(getSource()) &&

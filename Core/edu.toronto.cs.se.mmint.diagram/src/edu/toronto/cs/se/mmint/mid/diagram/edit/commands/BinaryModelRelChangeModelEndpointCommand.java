@@ -78,7 +78,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 		return
 			super.canReorientSource() && ((
 				instance &&
-				(modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(getLink(), getNewSource())) != null
+				(modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(getLink(), getLink().getModelEndpoints().get(0), getNewSource())) != null
 			) || (
 				!instance &&
 				MultiModelConstraintChecker.isAllowedModelTypeEndpoint(getLink(), getNewSource(), null)
@@ -98,7 +98,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 		return
 			super.canReorientTarget() && ((
 				instance &&
-				(modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(getLink(), getNewTarget())) != null
+				(modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(getLink(), getLink().getModelEndpoints().get(1), getNewTarget())) != null
 			) || (
 				!instance &&
 				MultiModelConstraintChecker.isAllowedModelTypeEndpoint(getLink(), null, getNewTarget())

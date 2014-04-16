@@ -78,7 +78,7 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 		return
 			super.canReorientSource() && (
 				!MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
-				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(getNewSource(), getLink().getModelElemRef())) != null
+				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(getNewSource(), null, getLink().getModelElemRef())) != null
 			);
 	}
 
@@ -94,7 +94,7 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 		return
 			super.canReorientTarget() && (
 				!MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
-				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences((LinkReference) getLink().eContainer(), getNewTarget())) != null
+				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences((LinkReference) getLink().eContainer(), getLink(), getNewTarget())) != null
 			);
 	}
 

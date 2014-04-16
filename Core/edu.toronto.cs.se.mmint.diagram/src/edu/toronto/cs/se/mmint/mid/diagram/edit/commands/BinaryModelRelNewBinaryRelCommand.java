@@ -111,10 +111,10 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		ModelRel modelRelType = MultiModelDiagramUtils.selectModelRelTypeToCreate(getSource(), getTarget());
 		BinaryModelRel newModelRel = (BinaryModelRel) modelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
 
-		List<String> modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, getSource());
+		List<String> modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, null, getSource());
 		ModelEndpointReference modelTypeEndpointRef = MultiModelDiagramUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");
 		modelTypeEndpointRef.getObject().createInstanceAndReference(getSource(), newModelRel);
-		modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, getTarget());
+		modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, null, getTarget());
 		modelTypeEndpointRef = MultiModelDiagramUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "tgt ");
 		modelTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), newModelRel);
 

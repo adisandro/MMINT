@@ -81,7 +81,7 @@ public class BinaryLinkReferenceChangeModelElementReferenceCommand extends Binar
 		return
 			super.canReorientSource() && ((
 				instance &&
-				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(getLink(), getNewSource())) != null
+				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(getLink(), getLink().getModelElemEndpointRefs().get(0), getNewSource())) != null
 			) || (
 				!instance &&
 				MultiModelConstraintChecker.isAllowedModelElementTypeEndpointReference(getLink(), getNewSource(), null)
@@ -102,7 +102,7 @@ public class BinaryLinkReferenceChangeModelElementReferenceCommand extends Binar
 		return
 			super.canReorientTarget() && ((
 				instance &&
-				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(getLink(), getNewTarget())) != null
+				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(getLink(), getLink().getModelElemEndpointRefs().get(1), getNewTarget())) != null
 			) || (
 				!instance &&
 				MultiModelConstraintChecker.isAllowedModelElementTypeEndpointReference(getLink(), null, getNewTarget())

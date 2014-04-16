@@ -487,7 +487,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		String modelElemUri = getUri().substring(0, getUri().indexOf(MMINT.ROLE_SEPARATOR));
 		int lastSegmentIndex = modelElemUri.lastIndexOf(MMINT.URI_SEPARATOR);
-		String lastSegment = modelElemUri.substring(lastSegmentIndex, modelElemUri.length()-1);
+		String lastSegment = modelElemUri.substring(lastSegmentIndex + 1, modelElemUri.length());
 		boolean isPrimitive = !lastSegment.startsWith(MultiModelRegistry.ECORE_EREFERENCE_URI_PREFIX);
 		if (isPrimitive) {
 			modelElemUri = modelElemUri.substring(0, lastSegmentIndex);

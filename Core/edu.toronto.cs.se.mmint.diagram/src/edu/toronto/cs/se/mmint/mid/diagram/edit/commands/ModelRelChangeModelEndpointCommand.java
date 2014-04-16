@@ -78,7 +78,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 		return
 			super.canReorientSource() && (
 				!MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
-				(modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(getNewSource(), getLink().getTarget())) != null
+				(modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(getNewSource(), null, getLink().getTarget())) != null
 			);
 	}
 
@@ -93,7 +93,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 		return
 			super.canReorientTarget() && (
 				!MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
-				(modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints((ModelRel) getLink().eContainer(), (Model) getNewTarget())) != null
+				(modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints((ModelRel) getLink().eContainer(), getLink(), (Model) getNewTarget())) != null
 			);
 	}
 
