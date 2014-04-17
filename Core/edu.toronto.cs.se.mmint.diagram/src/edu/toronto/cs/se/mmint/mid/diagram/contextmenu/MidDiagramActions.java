@@ -187,11 +187,8 @@ public class MidDiagramActions extends ContributionItem {
 						}
 						text += ">";
 					}
-					if (operatorType instanceof ConversionOperator) {
-						text += " [converter]";
-					}
 					if (!conversion.isEmpty()) {
-						text += " [inferred]";
+						text += " [coercion]";
 					}
 					MenuItem operatorSubitem = new MenuItem(operatorMenu, SWT.NONE);
 					operatorSubitem.setText(text);
