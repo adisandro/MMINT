@@ -1452,8 +1452,8 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEException(op, theMidPackage.getMMINTException());
 
 		initEClass(binaryLinkReferenceEClass, BinaryLinkReference.class, "BinaryLinkReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBinaryLinkReference_SourceModelElemRef(), this.getModelElementReference(), null, "sourceModelElemRef", null, 1, 1, BinaryLinkReference.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getBinaryLinkReference_TargetModelElemRef(), this.getModelElementReference(), null, "targetModelElemRef", null, 1, 1, BinaryLinkReference.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getBinaryLinkReference_SourceModelElemRef(), this.getModelElementReference(), null, "sourceModelElemRef", null, 1, 1, BinaryLinkReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBinaryLinkReference_TargetModelElemRef(), this.getModelElementReference(), null, "targetModelElemRef", null, 1, 1, BinaryLinkReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getBinaryLinkReference__GetObject(), this.getBinaryLink(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1540,7 +1540,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		   source, 
 		   new String[] {
 			 "constraints", "isBinaryLinkRef binaryLinkType"
-		   });										
+		   });								
 		addAnnotation
 		  (modelElementEndpointReferenceEClass, 
 		   source, 
@@ -1617,19 +1617,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		   new String[] {
 			 "isBinaryLinkRef", "modelElemEndpointRefs->size() = 2",
 			 "binaryLinkType", "object.oclIsKindOf(BinaryLink)"
-		   });			
-		addAnnotation
-		  (getBinaryLinkReference_SourceModelElemRef(), 
-		   source, 
-		   new String[] {
-			 "derivation", "if modelElemEndpointRefs->size() < 1 then null else modelElemEndpointRefs->at(1).modelElemRef endif"
-		   });			
-		addAnnotation
-		  (getBinaryLinkReference_TargetModelElemRef(), 
-		   source, 
-		   new String[] {
-			 "derivation", "if modelElemEndpointRefs->size() < 2 then null else modelElemEndpointRefs->at(2).modelElemRef endif"
-		   });					
+		   });							
 		addAnnotation
 		  (modelElementEndpointReferenceEClass, 
 		   source, 

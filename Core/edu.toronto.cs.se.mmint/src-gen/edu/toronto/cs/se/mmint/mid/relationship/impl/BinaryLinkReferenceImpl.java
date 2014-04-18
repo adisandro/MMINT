@@ -20,9 +20,11 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
 import java.lang.reflect.InvocationTargetException;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,24 +42,23 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  */
 public class BinaryLinkReferenceImpl extends LinkReferenceImpl implements BinaryLinkReference {
 	/**
-	 * The cached setting delegate for the '{@link #getSourceModelElemRef() <em>Source Model Elem Ref</em>}' reference.
+	 * The cached value of the '{@link #getSourceModelElemRef() <em>Source Model Elem Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSourceModelElemRef()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate SOURCE_MODEL_ELEM_REF__ESETTING_DELEGATE = ((EStructuralFeature.Internal)RelationshipPackage.Literals.BINARY_LINK_REFERENCE__SOURCE_MODEL_ELEM_REF).getSettingDelegate();
+	protected ModelElementReference sourceModelElemRef;
 	/**
-	 * The cached setting delegate for the '{@link #getTargetModelElemRef() <em>Target Model Elem Ref</em>}' reference.
+	 * The cached value of the '{@link #getTargetModelElemRef() <em>Target Model Elem Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTargetModelElemRef()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate TARGET_MODEL_ELEM_REF__ESETTING_DELEGATE = ((EStructuralFeature.Internal)RelationshipPackage.Literals.BINARY_LINK_REFERENCE__TARGET_MODEL_ELEM_REF).getSettingDelegate();
-
+	protected ModelElementReference targetModelElemRef;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,7 +84,15 @@ public class BinaryLinkReferenceImpl extends LinkReferenceImpl implements Binary
 	 * @generated
 	 */
 	public ModelElementReference getSourceModelElemRef() {
-		return (ModelElementReference)SOURCE_MODEL_ELEM_REF__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		if (sourceModelElemRef != null && sourceModelElemRef.eIsProxy()) {
+			InternalEObject oldSourceModelElemRef = (InternalEObject)sourceModelElemRef;
+			sourceModelElemRef = (ModelElementReference)eResolveProxy(oldSourceModelElemRef);
+			if (sourceModelElemRef != oldSourceModelElemRef) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.BINARY_LINK_REFERENCE__SOURCE_MODEL_ELEM_REF, oldSourceModelElemRef, sourceModelElemRef));
+			}
+		}
+		return sourceModelElemRef;
 	}
 
 	/**
@@ -92,7 +101,7 @@ public class BinaryLinkReferenceImpl extends LinkReferenceImpl implements Binary
 	 * @generated
 	 */
 	public ModelElementReference basicGetSourceModelElemRef() {
-		return (ModelElementReference)SOURCE_MODEL_ELEM_REF__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+		return sourceModelElemRef;
 	}
 
 	/**
@@ -101,7 +110,10 @@ public class BinaryLinkReferenceImpl extends LinkReferenceImpl implements Binary
 	 * @generated
 	 */
 	public void setSourceModelElemRef(ModelElementReference newSourceModelElemRef) {
-		SOURCE_MODEL_ELEM_REF__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSourceModelElemRef);
+		ModelElementReference oldSourceModelElemRef = sourceModelElemRef;
+		sourceModelElemRef = newSourceModelElemRef;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.BINARY_LINK_REFERENCE__SOURCE_MODEL_ELEM_REF, oldSourceModelElemRef, sourceModelElemRef));
 	}
 
 	/**
@@ -110,7 +122,15 @@ public class BinaryLinkReferenceImpl extends LinkReferenceImpl implements Binary
 	 * @generated
 	 */
 	public ModelElementReference getTargetModelElemRef() {
-		return (ModelElementReference)TARGET_MODEL_ELEM_REF__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		if (targetModelElemRef != null && targetModelElemRef.eIsProxy()) {
+			InternalEObject oldTargetModelElemRef = (InternalEObject)targetModelElemRef;
+			targetModelElemRef = (ModelElementReference)eResolveProxy(oldTargetModelElemRef);
+			if (targetModelElemRef != oldTargetModelElemRef) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.BINARY_LINK_REFERENCE__TARGET_MODEL_ELEM_REF, oldTargetModelElemRef, targetModelElemRef));
+			}
+		}
+		return targetModelElemRef;
 	}
 
 	/**
@@ -119,7 +139,7 @@ public class BinaryLinkReferenceImpl extends LinkReferenceImpl implements Binary
 	 * @generated
 	 */
 	public ModelElementReference basicGetTargetModelElemRef() {
-		return (ModelElementReference)TARGET_MODEL_ELEM_REF__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+		return targetModelElemRef;
 	}
 
 	/**
@@ -128,7 +148,10 @@ public class BinaryLinkReferenceImpl extends LinkReferenceImpl implements Binary
 	 * @generated
 	 */
 	public void setTargetModelElemRef(ModelElementReference newTargetModelElemRef) {
-		TARGET_MODEL_ELEM_REF__ESETTING_DELEGATE.dynamicSet(this, null, 0, newTargetModelElemRef);
+		ModelElementReference oldTargetModelElemRef = targetModelElemRef;
+		targetModelElemRef = newTargetModelElemRef;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.BINARY_LINK_REFERENCE__TARGET_MODEL_ELEM_REF, oldTargetModelElemRef, targetModelElemRef));
 	}
 
 	/**
@@ -204,9 +227,9 @@ public class BinaryLinkReferenceImpl extends LinkReferenceImpl implements Binary
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case RelationshipPackage.BINARY_LINK_REFERENCE__SOURCE_MODEL_ELEM_REF:
-				return SOURCE_MODEL_ELEM_REF__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+				return sourceModelElemRef != null;
 			case RelationshipPackage.BINARY_LINK_REFERENCE__TARGET_MODEL_ELEM_REF:
-				return TARGET_MODEL_ELEM_REF__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+				return targetModelElemRef != null;
 		}
 		return super.eIsSet(featureID);
 	}

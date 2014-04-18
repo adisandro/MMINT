@@ -40,13 +40,12 @@ public interface BinaryLinkReference extends LinkReference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The source model element reference endpoint.
+	 * The source model element reference.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Model Elem Ref</em>' reference.
 	 * @see #setSourceModelElemRef(ModelElementReference)
 	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryLinkReference_SourceModelElemRef()
-	 * @model required="true" transient="true" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if modelElemEndpointRefs->size() < 1 then null else modelElemEndpointRefs->at(1).modelElemRef endif'"
+	 * @model required="true"
 	 * @generated
 	 */
 	ModelElementReference getSourceModelElemRef();
@@ -66,13 +65,12 @@ public interface BinaryLinkReference extends LinkReference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The target model element reference endpoint.
+	 * The target model element reference.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Model Elem Ref</em>' reference.
 	 * @see #setTargetModelElemRef(ModelElementReference)
 	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryLinkReference_TargetModelElemRef()
-	 * @model required="true" transient="true" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if modelElemEndpointRefs->size() < 2 then null else modelElemEndpointRefs->at(2).modelElemRef endif'"
+	 * @model required="true"
 	 * @generated
 	 */
 	ModelElementReference getTargetModelElemRef();

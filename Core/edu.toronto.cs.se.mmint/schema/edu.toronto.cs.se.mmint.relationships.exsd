@@ -107,6 +107,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
       <complexType>
          <sequence>
             <element ref="type"/>
+            <element ref="binaryType" minOccurs="0" maxOccurs="1"/>
             <element ref="modelElemTypeEndpoint" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
       </complexType>
