@@ -2137,7 +2137,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
+	int MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -2155,7 +2155,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 7;
+	int MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
@@ -2164,7 +2164,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 8;
+	int MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODELELEMENTREFERENCE_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Replace Instance And Reference</em>' operation.
@@ -3217,14 +3217,14 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelElementEndpoint__CreateSubtypeAndReference__String_ModelElementReference_boolean_LinkReference();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#replaceSubtypeAndReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference, edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference, java.lang.String, edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, edu.toronto.cs.se.mmint.mid.relationship.LinkReference) <em>Replace Subtype And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#replaceSubtypeAndReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference, java.lang.String, edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference) <em>Replace Subtype And Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Replace Subtype And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#replaceSubtypeAndReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference, edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference, java.lang.String, edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, edu.toronto.cs.se.mmint.mid.relationship.LinkReference)
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#replaceSubtypeAndReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference, java.lang.String, edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference)
 	 * @generated
 	 */
-	EOperation getModelElementEndpoint__ReplaceSubtypeAndReference__ModelElementEndpointReference_ModelElementEndpointReference_String_ModelElementReference_LinkReference();
+	EOperation getModelElementEndpoint__ReplaceSubtypeAndReference__ModelElementEndpointReference_String_ModelElementReference();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#deleteType(boolean) <em>Delete Type</em>}' operation.
@@ -3237,24 +3237,24 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelElementEndpoint__DeleteType__boolean();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#createInstanceReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, boolean, edu.toronto.cs.se.mmint.mid.relationship.LinkReference) <em>Create Instance Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#createInstanceReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, edu.toronto.cs.se.mmint.mid.relationship.LinkReference) <em>Create Instance Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Instance Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#createInstanceReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, boolean, edu.toronto.cs.se.mmint.mid.relationship.LinkReference)
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#createInstanceReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, edu.toronto.cs.se.mmint.mid.relationship.LinkReference)
 	 * @generated
 	 */
-	EOperation getModelElementEndpoint__CreateInstanceReference__ModelElementReference_boolean_LinkReference();
+	EOperation getModelElementEndpoint__CreateInstanceReference__ModelElementReference_LinkReference();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#createInstanceAndReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, boolean, edu.toronto.cs.se.mmint.mid.relationship.LinkReference) <em>Create Instance And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#createInstanceAndReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, edu.toronto.cs.se.mmint.mid.relationship.LinkReference) <em>Create Instance And Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Instance And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#createInstanceAndReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, boolean, edu.toronto.cs.se.mmint.mid.relationship.LinkReference)
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#createInstanceAndReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, edu.toronto.cs.se.mmint.mid.relationship.LinkReference)
 	 * @generated
 	 */
-	EOperation getModelElementEndpoint__CreateInstanceAndReference__ModelElementReference_boolean_LinkReference();
+	EOperation getModelElementEndpoint__CreateInstanceAndReference__ModelElementReference_LinkReference();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#replaceInstanceAndReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference, edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference) <em>Replace Instance And Reference</em>}' operation.
@@ -4078,7 +4078,7 @@ public interface RelationshipPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE_LINKREFERENCE = eINSTANCE.getModelElementEndpoint__ReplaceSubtypeAndReference__ModelElementEndpointReference_ModelElementEndpointReference_String_ModelElementReference_LinkReference();
+		EOperation MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE = eINSTANCE.getModelElementEndpoint__ReplaceSubtypeAndReference__ModelElementEndpointReference_String_ModelElementReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
@@ -4094,7 +4094,7 @@ public interface RelationshipPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE = eINSTANCE.getModelElementEndpoint__CreateInstanceReference__ModelElementReference_boolean_LinkReference();
+		EOperation MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_LINKREFERENCE = eINSTANCE.getModelElementEndpoint__CreateInstanceReference__ModelElementReference_LinkReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Instance And Reference</b></em>' operation.
@@ -4102,7 +4102,7 @@ public interface RelationshipPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE = eINSTANCE.getModelElementEndpoint__CreateInstanceAndReference__ModelElementReference_boolean_LinkReference();
+		EOperation MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODELELEMENTREFERENCE_LINKREFERENCE = eINSTANCE.getModelElementEndpoint__CreateInstanceAndReference__ModelElementReference_LinkReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Replace Instance And Reference</b></em>' operation.

@@ -307,25 +307,17 @@ public class MultiModelTypeFactory {
 	 * 
 	 * @param newModelElemTypeEndpoint
 	 *            The new model element type endpoint to be added.
-	 * @param newModelElemType
+	 * @param targetModelElemType
 	 *            The new model element type that is the target of the new model
 	 *            element type endpoint.
-	 * @param isBinarySrc
-	 *            True if the model element type endpoint is the source in the
-	 *            binary link type container, false otherwise.
-	 * @param linkType
+	 * @param containerLinkType
 	 *            The link type that will contain the new model element type
 	 *            endpoint.
 	 */
-	public static void addModelElementTypeEndpoint(ModelElementEndpoint newModelElemTypeEndpoint, ModelElement newModelElemType, boolean isBinarySrc, Link linkType) {
+	public static void addModelElementTypeEndpoint(ModelElementEndpoint newModelElemTypeEndpoint, ModelElement targetModelElemType, Link containerLinkType) {
 
-		addTypeEndpoint(newModelElemTypeEndpoint, newModelElemType);
-		if (isBinarySrc) {
-			linkType.getModelElemEndpoints().add(0, newModelElemTypeEndpoint);
-		}
-		else {
-			linkType.getModelElemEndpoints().add(newModelElemTypeEndpoint);
-		}
+		addTypeEndpoint(newModelElemTypeEndpoint, targetModelElemType);
+		containerLinkType.getModelElemEndpoints().add(newModelElemTypeEndpoint);
 	}
 
 	/**

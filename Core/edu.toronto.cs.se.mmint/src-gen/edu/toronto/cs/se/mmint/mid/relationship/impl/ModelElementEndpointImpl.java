@@ -143,9 +143,9 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE_LINKREFERENCE:
+			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE:
 				try {
-					replaceSubtypeAndReference((ModelElementEndpointReference)arguments.get(1), (String)arguments.get(2), (ModelElementReference)arguments.get(3));
+					replaceSubtypeAndReference((ModelElementEndpointReference)arguments.get(0), (String)arguments.get(1), (ModelElementReference)arguments.get(2));
 					return null;
 				}
 				catch (Throwable throwable) {
@@ -159,16 +159,16 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE:
+			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_LINKREFERENCE:
 				try {
-					return createInstanceReference((ModelElementReference)arguments.get(0), (LinkReference)arguments.get(2));
+					return createInstanceReference((ModelElementReference)arguments.get(0), (LinkReference)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE:
+			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODELELEMENTREFERENCE_LINKREFERENCE:
 				try {
-					return createInstanceAndReference((ModelElementReference)arguments.get(0), (LinkReference)arguments.get(2));
+					return createInstanceAndReference((ModelElementReference)arguments.get(0), (LinkReference)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -197,11 +197,9 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 		ModelElementEndpointReference newModelElemTypeEndpointRef = RelationshipFactory.eINSTANCE.createModelElementEndpointReference();
 		super.addTypeReference(newModelElemTypeEndpointRef, modelElemTypeEndpointRef, isModifiable, false);
 		newModelElemTypeEndpointRef.setModelElemRef(targetModelElemTypeRef);
-		if (isBinarySrc) {
-			containerLinkTypeRef.getModelElemEndpointRefs().add(0, newModelElemTypeEndpointRef);
-		}
-		else {
-			containerLinkTypeRef.getModelElemEndpointRefs().add(newModelElemTypeEndpointRef);
+		containerLinkTypeRef.getModelElemEndpointRefs().add(newModelElemTypeEndpointRef);
+		if (containerLinkTypeRef instanceof BinaryLinkReference) {
+			((BinaryLinkReference) containerLinkTypeRef).addModelElementTypeReference(targetModelElemTypeRef, isBinarySrc);
 		}
 
 		return newModelElemTypeEndpointRef;
@@ -233,7 +231,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 		// create the "thing" and the corresponding reference
 		ModelElementEndpoint newModelElemTypeEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
 		super.addSubtype(newModelElemTypeEndpoint, linkType, linkType.getName() + MMINT.ENDPOINT_SEPARATOR + targetModelElemTypeRef.getObject().getName(), newModelElemTypeEndpointName);
-		MultiModelTypeFactory.addModelElementTypeEndpoint(newModelElemTypeEndpoint, targetModelElemType, isBinarySrc, linkType);
+		MultiModelTypeFactory.addModelElementTypeEndpoint(newModelElemTypeEndpoint, targetModelElemType, linkType);
 		ModelElementEndpointReference newModelElemTypeEndpointRef = newModelElemTypeEndpoint.createTypeReference(modelElemTypeEndpointRef, targetModelElemTypeRef, true, isBinarySrc, containerLinkTypeRef);
 		MultiModelTypeFactory.addModelElementTypeEndpointReference(newModelElemTypeEndpointRef, linkType);
 		// create references of the "thing" in subtypes of the container's container
@@ -282,6 +280,10 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(containerLinkTypeRef);
 		// modify the "thing" and the corresponding reference
 		super.addSubtype(oldModelElemTypeEndpoint, linkType, linkType.getName() + MMINT.ENDPOINT_SEPARATOR + newModelElemType.getName(), newModelElemTypeEndpointName);
+		if (containerLinkTypeRef instanceof BinaryLinkReference) {
+			boolean isBinarySrc = ((BinaryLinkReference) containerLinkTypeRef).getSourceModelElemRef() == oldModelElemTypeEndpointRef.getModelElemRef();
+			((BinaryLinkReference) containerLinkTypeRef).addModelElementTypeReference(targetModelElemTypeRef, isBinarySrc);
+		}
 		oldModelElemTypeEndpoint.setTarget(newModelElemType);
 		oldModelElemTypeEndpointRef.setModelElemRef(targetModelElemTypeRef);
 		if (modelElemTypeEndpointRef != null) {

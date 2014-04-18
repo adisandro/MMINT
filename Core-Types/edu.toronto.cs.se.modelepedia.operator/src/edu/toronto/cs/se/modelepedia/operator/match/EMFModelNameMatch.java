@@ -112,8 +112,8 @@ nextMatch:
 				ModelElementReference srcModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(match.getLeft(), null, srcModelEndpointRef);
 				ModelElementReference tgtModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(match.getRight(), null, tgtModelEndpointRef);
 				// create model element endpoints
-				rootModelElemTypeEndpoint.createInstanceAndReference(srcModelElemRef, false, matchLinkRef);
-				rootModelElemTypeEndpoint.createInstanceAndReference(tgtModelElemRef, false, matchLinkRef);
+				rootModelElemTypeEndpoint.createInstanceAndReference(srcModelElemRef, matchLinkRef);
+				rootModelElemTypeEndpoint.createInstanceAndReference(tgtModelElemRef, matchLinkRef);
 			}
 		}
 

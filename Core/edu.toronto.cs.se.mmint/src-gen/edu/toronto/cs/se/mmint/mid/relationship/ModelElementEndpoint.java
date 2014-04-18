@@ -124,11 +124,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 *             type endpoint, or if the uri of the new model element type
 	 *             endpoint is already registered in the Type MID.
 	 *             <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 *        newModelElemTypeEndpointNameRequired="true"
-	 *        targetModelElemTypeRefRequired="true" isBinarySrcRequired="true"
-	 *        containerLinkTypeRefRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelElemTypeEndpointNameRequired="true" targetModelElemTypeRefRequired="true" isBinarySrcRequired="true" containerLinkTypeRefRequired="true"
 	 * @generated
 	 */
 	ModelElementEndpointReference createSubtypeAndReference(String newModelElemTypeEndpointName, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc, LinkReference containerLinkTypeRef) throws MMINTException;
@@ -151,11 +147,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 *             overriding of this model element type endpoint, or if the uri
 	 *             of the new model element type endpoint is already registered
 	 *             in the Type MID. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 *        oldModelElemTypeEndpointRefRequired="true"
-	 *        newModelElemTypeEndpointNameRequired="true"
-	 *        targetModelElemTypeRefRequired="true"
-	 *        containerLinkTypeRefRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelElemTypeEndpointRefRequired="true" newModelElemTypeEndpointNameRequired="true" targetModelElemTypeRefRequired="true"
 	 * @generated
 	 */
 	void replaceSubtypeAndReference(ModelElementEndpointReference oldModelElemTypeEndpointRef, String newModelElemTypeEndpointName, ModelElementReference targetModelElemTypeRef) throws MMINTException;
@@ -190,7 +182,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 * @throws MMINTException
 	 *             If this is a model element type endpoint.
 	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelElemRefRequired="true" isBinarySrcRequired="true" containerLinkRefRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelElemRefRequired="true" containerLinkRefRequired="true"
 	 * @generated
 	 */
 	ModelElementEndpointReference createInstanceReference(ModelElementReference targetModelElemRef, LinkReference containerLinkRef) throws MMINTException;
@@ -211,10 +203,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 *             If this is a model element instance endpoint, or if the
 	 *             container link is binary and has already 2 model element
 	 *             endpoints. <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 *        targetModelElemRefRequired="true" isBinarySrcRequired="true"
-	 *        containerLinkRefRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelElemRefRequired="true" containerLinkRefRequired="true"
 	 * @generated
 	 */
 	ModelElementEndpointReference createInstanceAndReference(ModelElementReference targetModelElemRef, LinkReference containerLinkRef) throws MMINTException;

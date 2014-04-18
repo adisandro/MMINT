@@ -443,7 +443,7 @@ public class LinkImpl extends ExtendibleElementImpl implements Link {
 		for (ModelElementReference targetModelElemRef : targetModelElemRefs) {
 			String modelElemTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, null, targetModelElemRef).get(0);
 			ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeRegistry.getType(modelElemTypeEndpointUri);
-			modelElemTypeEndpoint.createInstanceAndReference(targetModelElemRef, false, newLinkRef);
+			modelElemTypeEndpoint.createInstanceAndReference(targetModelElemRef, newLinkRef);
 		}
 
 		return newLinkRef;

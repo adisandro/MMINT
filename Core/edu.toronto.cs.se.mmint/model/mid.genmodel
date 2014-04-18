@@ -327,22 +327,18 @@
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/replaceSubtypeAndReference">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/replaceSubtypeAndReference/oldModelElemTypeEndpointRef"/>
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/replaceSubtypeAndReference/modelElemTypeEndpointRef"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/replaceSubtypeAndReference/newModelElemTypeEndpointName"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/replaceSubtypeAndReference/targetModelElemTypeRef"/>
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/replaceSubtypeAndReference/containerLinkTypeRef"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/deleteType">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/deleteType/isFullDelete"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/createInstanceReference">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createInstanceReference/targetModelElemRef"/>
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createInstanceReference/isBinarySrc"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createInstanceReference/containerLinkRef"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/createInstanceAndReference">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createInstanceAndReference/targetModelElemRef"/>
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createInstanceAndReference/isBinarySrc"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createInstanceAndReference/containerLinkRef"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/replaceInstanceAndReference">

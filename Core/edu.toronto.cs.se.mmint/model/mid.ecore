@@ -728,7 +728,7 @@
       <eOperations name="deleteTypeReference" eExceptions="#//MMINTException"/>
       <eOperations name="deleteInstanceReference" eExceptions="#//MMINTException"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElemEndpointRefs"
-          upperBound="-1" eType="#//relationship/ModelElementEndpointReference" eOpposite="#//relationship/ModelElementEndpointReference/targetModelElemRef">
+          upperBound="-1" eType="#//relationship/ModelElementEndpointReference" eOpposite="#//relationship/ModelElementEndpointReference/modelElemRef">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The list of references to links that use this as an endpoint."/>
         </eAnnotations>
@@ -971,7 +971,7 @@
       <eOperations name="deleteInstanceAndReference" eExceptions="#//MMINTException">
         <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="targetModelElemRef" lowerBound="1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelElemRef" lowerBound="1"
           eType="#//relationship/ModelElementReference" eOpposite="#//relationship/ModelElementReference/modelElemEndpointRefs">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The reference to the endpoint target model element."/>

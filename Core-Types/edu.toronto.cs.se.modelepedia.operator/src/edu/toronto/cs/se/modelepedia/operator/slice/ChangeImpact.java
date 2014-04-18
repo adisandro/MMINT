@@ -156,7 +156,7 @@ public class ChangeImpact extends OperatorImpl {
 						newImpactedModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(impactedUnifiable, null, impactedModelEndpointRef);
 					}
 					// add impacted model element endpoint to impact link
-					ModelElementEndpointReference newImpactModelElemEndpointRef = rootModelElemTypeEndpoint.createInstanceAndReference(newImpactedModelElemRef, false, impactLinkRef);
+					ModelElementEndpointReference newImpactModelElemEndpointRef = rootModelElemTypeEndpoint.createInstanceAndReference(newImpactedModelElemRef, impactLinkRef);
 					newImpactModelElemEndpointRef.getObject().setName(TGT_MODELELEMENDPOINT_NAME);
 				}
 			}

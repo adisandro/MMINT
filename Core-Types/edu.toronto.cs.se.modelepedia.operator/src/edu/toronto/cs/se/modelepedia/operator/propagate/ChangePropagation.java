@@ -168,8 +168,8 @@ public class ChangePropagation extends OperatorImpl {
 				// create new propagated trace links
 				for (ModelElementReference newRefinedModelElemRef_propTraceRel : newRefinedModelElemRefs_propTraceRel) {
 					BinaryLinkReference newPropTraceLinkRef = (BinaryLinkReference) traceLink.getMetatype().createInstanceAndReference(true, newPropTraceRel);
-					traceLink.getModelElemEndpoints().get(0).getMetatype().createInstanceAndReference(newRefinedModelElemRef_propTraceRel, false, newPropTraceLinkRef);
-					traceLink.getModelElemEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModelElemRef_propTraceRel, false, newPropTraceLinkRef);
+					traceLink.getModelElemEndpoints().get(0).getMetatype().createInstanceAndReference(newRefinedModelElemRef_propTraceRel, newPropTraceLinkRef);
+					traceLink.getModelElemEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModelElemRef_propTraceRel, newPropTraceLinkRef);
 					Link newPropTraceLink = newPropTraceLinkRef.getObject();
 					newPropTraceLink.setName(traceLink.getName());
 					newPropTraceLink.setMay(traceLink.isMay());
@@ -215,7 +215,7 @@ public class ChangePropagation extends OperatorImpl {
 			newTraceLinkRef = (BinaryLinkReference) traceLinkTypeRef.getObject().createInstanceAndReference(true, traceRel);
 			newTraceLinkRef.getObject().setVar(true);
 			newTraceLinkRef.getObject().setName(PROPTRACE_RULE4_LINK_NAME);
-			traceLinkTypeRef.getModelElemEndpointRefs().get(indexA).getObject().createInstanceAndReference(newTraceModelElemRefA, false, newTraceLinkRef);
+			traceLinkTypeRef.getModelElemEndpointRefs().get(indexA).getObject().createInstanceAndReference(newTraceModelElemRefA, newTraceLinkRef);
 			// if more than one link type with same model element type A exist, they all get created (the user will merge unnecessary ones)
 			//TODO MMINT: should I also mark them as M, because I want them to be mutually exclusive?
 			//TODO MMINT: (prop rule that forces the removal of M if the endpoints are E sounds wrong in this case, mostly because mutual exclusion has not been formalized)
@@ -477,7 +477,7 @@ traceLinks:
 		}
 
 		ModelElementReference newModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(result[1], null, modelEndpointRef);
-		modelElemTypeEndpointRef.getObject().createInstanceAndReference(newModelElemRef, false, traceLinkRef);
+		modelElemTypeEndpointRef.getObject().createInstanceAndReference(newModelElemRef, traceLinkRef);
 	}
 
 	private void propagateRefinementLinks(BinaryLinkReference propTraceLinkRef, BinaryModelRel refinementRel, Model relatedModel, BinaryModelRel traceRel, BinaryModelRel newPropRefinementRel) throws MMINTException {
@@ -503,7 +503,7 @@ traceLinks:
 		// create new propagated refinement link
 		LinkReference newPropRefinementLinkRef = refinementLinkType.createInstanceAndReference(false, newPropRefinementRel);
 		newPropRefinementLinkRef.getObject().setName(refinementLinkRef.getObject().getName());
-		refinementLinkType.getModelElemEndpoints().get(0).createInstanceAndReference(newPropModelElemRef, false, newPropRefinementLinkRef);
+		refinementLinkType.getModelElemEndpoints().get(0).createInstanceAndReference(newPropModelElemRef, newPropRefinementLinkRef);
 
 		boolean duplicateRefinement2 = true;
 		for (ModelElementEndpointReference refinementModelElemEndpointRef2 : refinementLinkRef.getModelElemEndpointRefs()) {
@@ -526,7 +526,7 @@ traceLinks:
 					duplicateRefinement2 = false;
 					newRelatedModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(relatedModelElemRef_traceRel.getObject().getEMFInstanceObject(), relatedModelElemRef_traceRel.getObject().getName(), relatedModelEndpointRef_propRefinementRel);
 				}
-				refinementLinkType.getModelElemEndpoints().get(0).createInstanceAndReference(newRelatedModelElemRef, false, newPropRefinementLinkRef);
+				refinementLinkType.getModelElemEndpoints().get(0).createInstanceAndReference(newRelatedModelElemRef, newPropRefinementLinkRef);
 			}
 		}
 

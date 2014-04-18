@@ -42,7 +42,7 @@ public interface ModelElementEndpointReference extends ExtendibleElementEndpoint
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The model element reference endpoint reference.
+	 * The reference to the endpoint target model element.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Model Elem Ref</em>' reference.
 	 * @see #setModelElemRef(ModelElementReference)

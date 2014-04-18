@@ -94,7 +94,7 @@ public class ModelNameMatch extends OperatorImpl {
 					// create model element
 					ModelElementReference matchModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(modelObj, null, modelEndpointRef);
 					// create model element endpoints
-					rootModelElemTypeEndpoint.createInstanceAndReference(matchModelElemRef, false, matchLinkRef);
+					rootModelElemTypeEndpoint.createInstanceAndReference(matchModelElemRef, matchLinkRef);
 				}
 			}
 		}

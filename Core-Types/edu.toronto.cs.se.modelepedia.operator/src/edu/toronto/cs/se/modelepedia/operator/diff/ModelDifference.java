@@ -84,7 +84,7 @@ public class ModelDifference extends OperatorImpl {
 			// create model element
 			ModelElementReference diffModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(modelObj, null, newModelEndpointRef);
 			// create model element endpoint
-			rootModelElemTypeEndpoint.createInstanceAndReference(diffModelElemRef, false, diffLinkRef);
+			rootModelElemTypeEndpoint.createInstanceAndReference(diffModelElemRef, diffLinkRef);
 		}
 
 		return newModelEndpointRef;

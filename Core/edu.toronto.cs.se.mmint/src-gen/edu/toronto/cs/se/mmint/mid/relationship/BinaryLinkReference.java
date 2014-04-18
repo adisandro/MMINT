@@ -113,8 +113,7 @@ public interface BinaryLinkReference extends LinkReference {
 	 * @throws MMINTException
 	 *             If this is a reference to link instance.
 	 *             <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 *        modelElemTypeRefRequired="true" isBinarySrcRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelElemTypeRefRequired="true" isBinarySrcRequired="true"
 	 * @generated
 	 */
 	void addModelElementTypeReference(ModelElementReference modelElemTypeRef, boolean isBinarySrc) throws MMINTException;

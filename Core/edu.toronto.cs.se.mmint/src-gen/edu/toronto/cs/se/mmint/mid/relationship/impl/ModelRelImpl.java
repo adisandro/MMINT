@@ -28,6 +28,7 @@ import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLink;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
@@ -595,11 +596,20 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		Iterator<Link> origLinkTypeIter = MultiModelTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getLinks());
 		while (origLinkTypeIter.hasNext()) {
 			Link origLinkType = origLinkTypeIter.next();
+			LinkReference origLinkTypeRef = MultiModelTypeHierarchy.getReference(origLinkType.getUri(), origModelRelType.getLinkRefs());
 			Link linkType = MultiModelRegistry.getExtendibleElement(origLinkType.getSupertype().getUri(), multiModel);
 			LinkReference linkTypeRef = MultiModelTypeHierarchy.getReference(origLinkType.getSupertype().getUri(), newModelRelType.getLinkRefs());
 			LinkReference newLinkTypeRef = linkType.createSubtypeAndReference(linkTypeRef, origLinkType.getName(), (origLinkType instanceof BinaryLink), newModelRelType);
-			// connect it to model element type references (takes care of binary too)
-			LinkReference origLinkTypeRef = MultiModelTypeHierarchy.getReference(newLinkTypeRef, origModelRelType.getLinkRefs());
+			if (origLinkTypeRef instanceof BinaryLinkReference) { // this is useful only when there are 0 or 1 overridden endpoints, but doesn't hurt in case of 2
+				ModelElementReference origSrcModelElemTypeRef = ((BinaryLinkReference) origLinkTypeRef).getSourceModelElemRef();
+				ModelEndpointReference newModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(((ModelEndpointReference) origSrcModelElemTypeRef.eContainer()), newModelRelType.getModelEndpointRefs());
+				ModelElementReference newSrcModelElemTypeRef = MultiModelTypeHierarchy.getReference(origSrcModelElemTypeRef, newModelTypeEndpointRef.getModelElemRefs());
+				((BinaryLinkReference) newLinkTypeRef).addModelElementTypeReference(newSrcModelElemTypeRef, true);
+				ModelElementReference origTgtModelElemTypeRef = ((BinaryLinkReference) origLinkTypeRef).getSourceModelElemRef();
+				newModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(((ModelEndpointReference) origTgtModelElemTypeRef.eContainer()), newModelRelType.getModelEndpointRefs());
+				ModelElementReference newTgtModelElemTypeRef = MultiModelTypeHierarchy.getReference(origTgtModelElemTypeRef, newModelTypeEndpointRef.getModelElemRefs());
+				((BinaryLinkReference) newLinkTypeRef).addModelElementTypeReference(newTgtModelElemTypeRef, false);
+			}
 			Iterator<ModelElementEndpointReference> origModelElemTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(origLinkTypeRef.getModelElemEndpointRefs());
 			while (origModelElemTypeEndpointRefIter.hasNext()) {
 				ModelElementEndpointReference origModelElemTypeEndpointRef = origModelElemTypeEndpointRefIter.next();
@@ -607,11 +617,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				ModelEndpointReference newModelTypeEndpointRef = MultiModelTypeHierarchy.getReference((ModelEndpointReference) origModelElemTypeRef.eContainer(), newModelRelType.getModelEndpointRefs());
 				ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(origModelElemTypeRef, newModelTypeEndpointRef.getModelElemRefs());
 				ModelElementEndpoint modelElemTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelElemTypeEndpointRef.getObject().getSupertype().getUri(), multiModel);
-				LinkReference newLinkTypeRefSuper = MultiModelTypeHierarchy.getReference(((Link) modelElemTypeEndpoint.eContainer()).getUri(), newModelRelType.getLinkRefs());
-				ModelElementEndpointReference modelElemTypeEndpointRef = (newLinkTypeRefSuper == null) ?
-					null :
-					MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), newLinkTypeRefSuper.getModelElemEndpointRefs());
-				modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, origModelElemTypeEndpointRef.getObject().getName(), newModelElemTypeRef, false, newLinkTypeRef);
+				boolean isBinarySrc = ((origLinkTypeRef instanceof BinaryLinkReference) && (((BinaryLinkReference) origLinkTypeRef).getSourceModelElemRef() == origModelElemTypeEndpointRef.getModelElemRef())) ?
+					true :
+					false;
+				modelElemTypeEndpoint.createSubtypeAndReference(origModelElemTypeEndpointRef.getObject().getName(), newModelElemTypeRef, isBinarySrc, newLinkTypeRef);
 			}
 		}
 
@@ -725,7 +734,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			newLinkRef.getObject().setName(oldLinkRef.getObject().getName());
 			for (ModelElementEndpointReference oldModelElemEndpointRef : oldLinkRef.getModelElemEndpointRefs()) {
 				ModelElementReference newModelElemRef = newModelElemRefs.get(oldModelElemEndpointRef.getTargetUri());
-				oldModelElemEndpointRef.getObject().getMetatype().createInstanceAndReference(newModelElemRef, false, newLinkRef);
+				oldModelElemEndpointRef.getObject().getMetatype().createInstanceAndReference(newModelElemRef, newLinkRef);
 			}
 		}
 

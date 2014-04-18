@@ -52,7 +52,7 @@ public class EMFModelDifference extends OperatorImpl {
 		// create model element
 		ModelElementReference diffModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(modelObj, null, diffModelEndpointRef);
 		// create model element endpoint
-		rootModelElemTypeEndpoint.createInstanceAndReference(diffModelElemRef, false, diffLinkRef);
+		rootModelElemTypeEndpoint.createInstanceAndReference(diffModelElemRef, diffLinkRef);
 	}
 
 	@Override
