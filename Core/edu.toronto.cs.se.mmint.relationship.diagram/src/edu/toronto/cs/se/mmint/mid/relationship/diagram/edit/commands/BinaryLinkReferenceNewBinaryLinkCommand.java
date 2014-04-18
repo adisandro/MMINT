@@ -116,10 +116,10 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 
 		List<String> modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, null, getSource());
 		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(newLinkRef, modelElemTypeEndpointUris);
-		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getSource(), false, newLinkRef);
+		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getSource(), newLinkRef);
 		modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, null, getTarget());
 		modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(newLinkRef, modelElemTypeEndpointUris);
-		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), false, newLinkRef);
+		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), newLinkRef);
 
 		return newLinkRef;
 	}
@@ -133,14 +133,24 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 		BinaryLinkReference newLinkTypeRef = (BinaryLinkReference) linkTypeRef.getObject().createSubtypeAndReference(linkTypeRef, newLinkTypeName, true, modelRelType);
 		MMINT.createTypeHierarchy(MultiModelRegistry.getMultiModel(modelRelType));
 
-		String newModelElemTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new source model element type endpoint", "Insert new source model element type endpoint role", srcModelElemTypeRef.getObject().getName());
+		String newModelElemTypeEndpointName;
 		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(newLinkTypeRef, srcModelElemTypeRef);
-		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), newLinkTypeRef.getModelElemEndpointRefs());
-		modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, newModelElemTypeEndpointName, srcModelElemTypeRef, false, newLinkTypeRef);
-		newModelElemTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new target model element type endpoint", "Insert new target model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
+		if (modelElemTypeEndpoint == null) {
+			newLinkTypeRef.addModelElementTypeReference(srcModelElemTypeRef, true);
+		}
+		else {
+			newModelElemTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new source model element type endpoint", "Insert new source model element type endpoint role", srcModelElemTypeRef.getObject().getName());
+			modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, srcModelElemTypeRef, true, newLinkTypeRef);
+		}
+
 		modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(newLinkTypeRef, tgtModelElemTypeRef);
-		modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), newLinkTypeRef.getModelElemEndpointRefs());
-		modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, newModelElemTypeEndpointName, tgtModelElemTypeRef, false, newLinkTypeRef);
+		if (modelElemTypeEndpoint == null) {
+			newLinkTypeRef.addModelElementTypeReference(tgtModelElemTypeRef, false);
+		}
+		else {
+			newModelElemTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new target model element type endpoint", "Insert new target model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
+			modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, tgtModelElemTypeRef, false, newLinkTypeRef);
+		}
 
 		return newLinkTypeRef;
 	}

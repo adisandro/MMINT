@@ -320,7 +320,6 @@
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createTypeReference/containerLinkTypeRef"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/createSubtypeAndReference">
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createSubtypeAndReference/modelElemTypeEndpointRef"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createSubtypeAndReference/newModelElemTypeEndpointName"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createSubtypeAndReference/targetModelElemTypeRef"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createSubtypeAndReference/isBinarySrc"/>
@@ -366,6 +365,10 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//relationship/BinaryLinkReference/targetModelElemRef"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/BinaryLinkReference/getObject"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/BinaryLinkReference/addModelElementTypeReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryLinkReference/addModelElementTypeReference/modelElemTypeRef"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryLinkReference/addModelElementTypeReference/isBinarySrc"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/ModelElementEndpointReference">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

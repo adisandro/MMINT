@@ -103,7 +103,7 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(linkRef, modelElemTypeEndpointUris);
 		if (isFullDelete) {
 			getLink().deleteInstanceAndReference(isFullDelete);
-			modelElemTypeEndpointRef.getObject().createInstanceAndReference(modelElemRef, false, linkRef);
+			modelElemTypeEndpointRef.getObject().createInstanceAndReference(modelElemRef, linkRef);
 		}
 		else {
 			modelElemTypeEndpointRef.getObject().replaceInstanceAndReference(getLink(), modelElemRef);
@@ -113,13 +113,12 @@ public class LinkReferenceChangeModelElementEndpointReferenceCommand extends Mod
 	protected void doExecuteTypesLevel(LinkReference linkTypeRef, ModelElementReference modelElemTypeRef, boolean isFullDelete) throws MMINTException {
 
 		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(linkTypeRef, modelElemTypeRef);
-		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), linkTypeRef.getModelElemEndpointRefs());
 		if (isFullDelete) {
 			getLink().deleteTypeAndReference(isFullDelete);
-			modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, getLink().getObject().getName(), modelElemTypeRef, false, linkTypeRef);
+			modelElemTypeEndpoint.createSubtypeAndReference(getLink().getObject().getName(), modelElemTypeRef, false, linkTypeRef);
 		}
 		else {
-			modelElemTypeEndpoint.replaceSubtypeAndReference(getLink(), modelElemTypeEndpointRef, getLink().getObject().getName(), modelElemTypeRef, linkTypeRef);
+			modelElemTypeEndpoint.replaceSubtypeAndReference(getLink(), getLink().getObject().getName(), modelElemTypeRef);
 		}
 		// no need to init type hierarchy, no need for undo/redo
 	}

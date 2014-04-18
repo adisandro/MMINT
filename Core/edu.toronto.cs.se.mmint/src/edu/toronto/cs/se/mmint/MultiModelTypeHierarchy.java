@@ -34,6 +34,7 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
@@ -811,18 +812,25 @@ public class MultiModelTypeHierarchy {
 
 	public static ModelElementEndpoint getOverriddenModelElementTypeEndpoint(LinkReference linkTypeRef, ModelElementReference targetModelElemTypeRef) {
 
-		//TODO MMINT[MODELENDPOINT] this should reflect all the changes done to the model endpoints
+		boolean isBinary = (linkTypeRef instanceof BinaryLinkReference);
 		MultiModel typeMID = MultiModelRegistry.getMultiModel(linkTypeRef);
-		Link linkType = linkTypeRef.getObject();
-		do {
-			linkType = linkType.getSupertype();
+		Link linkType = linkTypeRef.getObject().getSupertype();
+		while (!isRootType(linkType)) {
 			for (ModelElementEndpoint modelElemTypeEndpoint : linkType.getModelElemEndpoints()) {
+				if (isBinary && targetModelElemTypeRef.getUri().equals(modelElemTypeEndpoint.getTargetUri())) {
+					return null;
+				}
 				if (MultiModelTypeHierarchy.isSubtypeOf(targetModelElemTypeRef.getUri(), modelElemTypeEndpoint.getTargetUri(), typeMID)) {
+					if (!isBinary) {
+						if (!MultiModelDiagramUtils.getBooleanInput("Override model element type endpoint", "Override " + modelElemTypeEndpoint.getName() + "?")) {
+							continue;
+						}
+					}
 					return modelElemTypeEndpoint;
 				}
 			}
+			linkType = linkType.getSupertype();
 		}
-		while (!isRootType(linkType));
 
 		return MultiModelRegistry.getExtendibleElement(MMINT.ROOT_MODELELEMENDPOINT_URI, typeMID);
 	}

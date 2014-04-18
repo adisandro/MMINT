@@ -2128,7 +2128,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 4;
+	int MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Replace Subtype And Reference</em>' operation.
@@ -2484,13 +2484,22 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_LINK_REFERENCE___GET_OBJECT = LINK_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Add Model Element Type Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK_REFERENCE___ADD_MODEL_ELEMENT_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN = LINK_REFERENCE_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Binary Link Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_LINK_REFERENCE_OPERATION_COUNT = LINK_REFERENCE_OPERATION_COUNT + 1;
+	int BINARY_LINK_REFERENCE_OPERATION_COUNT = LINK_REFERENCE_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelElementEndpointReferenceImpl <em>Model Element Endpoint Reference</em>}' class.
@@ -3198,14 +3207,14 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelElementEndpoint__CreateTypeReference__ModelElementEndpointReference_ModelElementReference_boolean_boolean_LinkReference();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#createSubtypeAndReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference, java.lang.String, edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, boolean, edu.toronto.cs.se.mmint.mid.relationship.LinkReference) <em>Create Subtype And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#createSubtypeAndReference(java.lang.String, edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, boolean, edu.toronto.cs.se.mmint.mid.relationship.LinkReference) <em>Create Subtype And Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Subtype And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#createSubtypeAndReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference, java.lang.String, edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, boolean, edu.toronto.cs.se.mmint.mid.relationship.LinkReference)
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#createSubtypeAndReference(java.lang.String, edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, boolean, edu.toronto.cs.se.mmint.mid.relationship.LinkReference)
 	 * @generated
 	 */
-	EOperation getModelElementEndpoint__CreateSubtypeAndReference__ModelElementEndpointReference_String_ModelElementReference_boolean_LinkReference();
+	EOperation getModelElementEndpoint__CreateSubtypeAndReference__String_ModelElementReference_boolean_LinkReference();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint#replaceSubtypeAndReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference, edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference, java.lang.String, edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, edu.toronto.cs.se.mmint.mid.relationship.LinkReference) <em>Replace Subtype And Reference</em>}' operation.
@@ -3496,6 +3505,16 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getBinaryLinkReference__GetObject();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference#addModelElementTypeReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, boolean) <em>Add Model Element Type Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Add Model Element Type Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference#addModelElementTypeReference(edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference, boolean)
+	 * @generated
+	 */
+	EOperation getBinaryLinkReference__AddModelElementTypeReference__ModelElementReference_boolean();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference <em>Model Element Endpoint Reference</em>}'.
@@ -4051,7 +4070,7 @@ public interface RelationshipPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE = eINSTANCE.getModelElementEndpoint__CreateSubtypeAndReference__ModelElementEndpointReference_String_ModelElementReference_boolean_LinkReference();
+		EOperation MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE = eINSTANCE.getModelElementEndpoint__CreateSubtypeAndReference__String_ModelElementReference_boolean_LinkReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Replace Subtype And Reference</b></em>' operation.
@@ -4284,6 +4303,14 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation BINARY_LINK_REFERENCE___GET_OBJECT = eINSTANCE.getBinaryLinkReference__GetObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Add Model Element Type Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation BINARY_LINK_REFERENCE___ADD_MODEL_ELEMENT_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN = eINSTANCE.getBinaryLinkReference__AddModelElementTypeReference__ModelElementReference_boolean();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelElementEndpointReferenceImpl <em>Model Element Endpoint Reference</em>}' class.

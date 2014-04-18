@@ -103,30 +103,35 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 * <!-- begin-user-doc --> Creates and adds a subtype of this model element
 	 * type endpoint and a reference to it to the Type MID.
 	 * 
-	 * @param modelElemTypeEndpointRef
-	 *            The reference to the supertype of the new model element type
-	 *            endpoint, null if such reference doesn't exist in the link
-	 *            type container.
 	 * @param newModelElemTypeEndpointName
 	 *            The name of the new model element type endpoint.
 	 * @param targetModelElemTypeRef
 	 *            The reference to the model element type that is the target of
 	 *            the new model element type endpoint.
 	 * @param isBinarySrc
-	 *            True if the model element type endpoint is the source in the
-	 *            binary link type container, false otherwise.
+	 *            (Only for a binary link type container) True if the model
+	 *            element type endpoint is the source in the binary link type
+	 *            container, false otherwise.
 	 * @param containerLinkTypeRef
 	 *            The reference to the link type that will contain the new model
 	 *            element type endpoint.
 	 * @return The created reference to the new model element type endpoint.
 	 * @throws MMINTException
-	 *             If this is a model element instance endpoint, or if the uri
-	 *             of the new model element type endpoint is already registered
-	 *             in the Type MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelElemTypeEndpointNameRequired="true" targetModelElemTypeRefRequired="true" isBinarySrcRequired="true" containerLinkTypeRefRequired="true"
+	 *             If this is a model element instance endpoint, if the
+	 *             container link type is binary and has already 2 model element
+	 *             type endpoints, if the container link type is binary and
+	 *             there would be an invalid overriding of this model element
+	 *             type endpoint, or if the uri of the new model element type
+	 *             endpoint is already registered in the Type MID.
+	 *             <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 *        newModelElemTypeEndpointNameRequired="true"
+	 *        targetModelElemTypeRefRequired="true" isBinarySrcRequired="true"
+	 *        containerLinkTypeRefRequired="true"
 	 * @generated
 	 */
-	ModelElementEndpointReference createSubtypeAndReference(ModelElementEndpointReference modelElemTypeEndpointRef, String newModelElemTypeEndpointName, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc, LinkReference containerLinkTypeRef) throws MMINTException;
+	ModelElementEndpointReference createSubtypeAndReference(String newModelElemTypeEndpointName, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc, LinkReference containerLinkTypeRef) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Replaces an old subtype of this model element
@@ -135,26 +140,25 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 * @param oldModelElemTypeEndpointRef
 	 *            The reference to the old model element type endpoint to be
 	 *            replaced.
-	 * @param modelElemTypeEndpointRef
-	 *            The reference to the supertype of the new model element type
-	 *            endpoint, null if such reference doesn't exist in the link
-	 *            type container.
 	 * @param newModelElemTypeEndpointName
 	 *            The name of the new model element type endpoint.
 	 * @param targetModelElemTypeRef
 	 *            The reference to the model element type that is the target of
 	 *            the new model element type endpoint.
-	 * @param containerLinkTypeRef
-	 *            The reference to the link type that will contain the new model
-	 *            element type endpoint.
 	 * @throws MMINTException
-	 *             If this is a model element instance endpoint, or if the uri
+	 *             If this is a model element instance endpoint, if the
+	 *             container link type is binary and there would be an invalid
+	 *             overriding of this model element type endpoint, or if the uri
 	 *             of the new model element type endpoint is already registered
 	 *             in the Type MID. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelElemTypeEndpointRefRequired="true" newModelElemTypeEndpointNameRequired="true" targetModelElemTypeRefRequired="true" containerLinkTypeRefRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 *        oldModelElemTypeEndpointRefRequired="true"
+	 *        newModelElemTypeEndpointNameRequired="true"
+	 *        targetModelElemTypeRefRequired="true"
+	 *        containerLinkTypeRefRequired="true"
 	 * @generated
 	 */
-	void replaceSubtypeAndReference(ModelElementEndpointReference oldModelElemTypeEndpointRef, ModelElementEndpointReference modelElemTypeEndpointRef, String newModelElemTypeEndpointName, ModelElementReference targetModelElemTypeRef, LinkReference containerLinkTypeRef) throws MMINTException;
+	void replaceSubtypeAndReference(ModelElementEndpointReference oldModelElemTypeEndpointRef, String newModelElemTypeEndpointName, ModelElementReference targetModelElemTypeRef) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -179,10 +183,6 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 * @param targetModelElemRef
 	 *            The reference to the model element that is the target of the
 	 *            model element endpoint.
-	 * @param isBinarySrc
-	 *            True if the reference to the model element endpoint is the
-	 *            source in the binary link reference container, false
-	 *            otherwise.
 	 * @param containerLinkRef
 	 *            The reference to the link that will contain the new reference
 	 *            to the model element endpoint.
@@ -193,7 +193,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelElemRefRequired="true" isBinarySrcRequired="true" containerLinkRefRequired="true"
 	 * @generated
 	 */
-	ModelElementEndpointReference createInstanceReference(ModelElementReference targetModelElemRef, boolean isBinarySrc, LinkReference containerLinkRef) throws MMINTException;
+	ModelElementEndpointReference createInstanceReference(ModelElementReference targetModelElemRef, LinkReference containerLinkRef) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a model element instance
@@ -203,20 +203,21 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 * @param targetModelElemRef
 	 *            The reference to the model element that is the target of the
 	 *            new model element endpoint.
-	 * @param isBinarySrc
-	 *            True if the model element endpoint is the source in the binary
-	 *            link container, false otherwise.
 	 * @param containerLinkRef
 	 *            The reference to the link that will contain the new model
 	 *            element endpoint.
 	 * @return The created reference to the new model element endpoint.
 	 * @throws MMINTException
-	 *             If this is a model element instance endpoint.
-	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelElemRefRequired="true" isBinarySrcRequired="true" containerLinkRefRequired="true"
+	 *             If this is a model element instance endpoint, or if the
+	 *             container link is binary and has already 2 model element
+	 *             endpoints. <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 *        targetModelElemRefRequired="true" isBinarySrcRequired="true"
+	 *        containerLinkRefRequired="true"
 	 * @generated
 	 */
-	ModelElementEndpointReference createInstanceAndReference(ModelElementReference targetModelElemRef, boolean isBinarySrc, LinkReference containerLinkRef) throws MMINTException;
+	ModelElementEndpointReference createInstanceAndReference(ModelElementReference targetModelElemRef, LinkReference containerLinkRef) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Replaces an old model element instance endpoint

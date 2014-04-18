@@ -158,8 +158,8 @@ public class KleisliTest {
 			String newLinkTypeName = srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_LINK_SEPARATOR + tgtModelElemTypeRef.getObject().getName();
 			LinkReference linkTypeRef = rootLinkType.createSubtypeAndReference(null, newLinkTypeName, true, kModelRelType);
 			MMINT.createTypeHierarchy();
-			rootModelElemTypeEndpoint.createSubtypeAndReference(null, srcModelElemTypeRef.getObject().getName(), srcModelElemTypeRef, false, linkTypeRef);
-			rootModelElemTypeEndpoint.createSubtypeAndReference(null, tgtModelElemTypeRef.getObject().getName(), tgtModelElemTypeRef, false, linkTypeRef);
+			rootModelElemTypeEndpoint.createSubtypeAndReference(srcModelElemTypeRef.getObject().getName(), srcModelElemTypeRef, false, linkTypeRef);
+			rootModelElemTypeEndpoint.createSubtypeAndReference(tgtModelElemTypeRef.getObject().getName(), tgtModelElemTypeRef, false, linkTypeRef);
 		}
 
 		// instances

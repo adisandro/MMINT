@@ -11,7 +11,9 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
@@ -260,8 +262,33 @@ public class BinaryLinkReferenceImpl extends LinkReferenceImpl implements Binary
 		switch (operationID) {
 			case RelationshipPackage.BINARY_LINK_REFERENCE___GET_OBJECT:
 				return getObject();
+			case RelationshipPackage.BINARY_LINK_REFERENCE___ADD_MODEL_ELEMENT_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN:
+				try {
+					addModelElementTypeReference((ModelElementReference)arguments.get(0), (Boolean)arguments.get(1));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void addModelElementTypeReference(ModelElementReference modelElemTypeRef, boolean isBinarySrc) throws MMINTException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		if (isBinarySrc) {
+			setSourceModelElemRef(modelElemTypeRef);
+		}
+		else {
+			setTargetModelElemRef(modelElemTypeRef);
+		}
 	}
 
 } //BinaryLinkReferenceImpl

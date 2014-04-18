@@ -728,7 +728,7 @@
       <eOperations name="deleteTypeReference" eExceptions="#//MMINTException"/>
       <eOperations name="deleteInstanceReference" eExceptions="#//MMINTException"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElemEndpointRefs"
-          upperBound="-1" eType="#//relationship/ModelElementEndpointReference" eOpposite="#//relationship/ModelElementEndpointReference/modelElemRef">
+          upperBound="-1" eType="#//relationship/ModelElementEndpointReference" eOpposite="#//relationship/ModelElementEndpointReference/targetModelElemRef">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The list of references to links that use this as an endpoint."/>
         </eAnnotations>
@@ -845,7 +845,6 @@
       </eOperations>
       <eOperations name="createSubtypeAndReference" lowerBound="1" eType="#//relationship/ModelElementEndpointReference"
           eExceptions="#//MMINTException">
-        <eParameters name="modelElemTypeEndpointRef" eType="#//relationship/ModelElementEndpointReference"/>
         <eParameters name="newModelElemTypeEndpointName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="targetModelElemTypeRef" lowerBound="1" eType="#//relationship/ModelElementReference"/>
         <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -853,10 +852,8 @@
       </eOperations>
       <eOperations name="replaceSubtypeAndReference" eExceptions="#//MMINTException">
         <eParameters name="oldModelElemTypeEndpointRef" lowerBound="1" eType="#//relationship/ModelElementEndpointReference"/>
-        <eParameters name="modelElemTypeEndpointRef" eType="#//relationship/ModelElementEndpointReference"/>
         <eParameters name="newModelElemTypeEndpointName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="targetModelElemTypeRef" lowerBound="1" eType="#//relationship/ModelElementReference"/>
-        <eParameters name="containerLinkTypeRef" lowerBound="1" eType="#//relationship/LinkReference"/>
       </eOperations>
       <eOperations name="deleteType" eExceptions="#//MMINTException">
         <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -864,13 +861,11 @@
       <eOperations name="createInstanceReference" lowerBound="1" eType="#//relationship/ModelElementEndpointReference"
           eExceptions="#//MMINTException">
         <eParameters name="targetModelElemRef" lowerBound="1" eType="#//relationship/ModelElementReference"/>
-        <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eParameters name="containerLinkRef" lowerBound="1" eType="#//relationship/LinkReference"/>
       </eOperations>
       <eOperations name="createInstanceAndReference" lowerBound="1" eType="#//relationship/ModelElementEndpointReference"
           eExceptions="#//MMINTException">
         <eParameters name="targetModelElemRef" lowerBound="1" eType="#//relationship/ModelElementReference"/>
-        <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eParameters name="containerLinkRef" lowerBound="1" eType="#//relationship/LinkReference"/>
       </eOperations>
       <eOperations name="replaceInstanceAndReference" eExceptions="#//MMINTException">
@@ -928,6 +923,10 @@
           <details key="body" value="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (BinaryLink) object;"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="addModelElementTypeReference" eExceptions="#//MMINTException">
+        <eParameters name="modelElemTypeRef" lowerBound="1" eType="#//relationship/ModelElementReference"/>
+        <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceModelElemRef" lowerBound="1"
           eType="#//relationship/ModelElementReference">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -972,10 +971,10 @@
       <eOperations name="deleteInstanceAndReference" eExceptions="#//MMINTException">
         <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="modelElemRef" lowerBound="1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetModelElemRef" lowerBound="1"
           eType="#//relationship/ModelElementReference" eOpposite="#//relationship/ModelElementReference/modelElemEndpointRefs">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The model element reference endpoint reference."/>
+          <details key="documentation" value="The reference to the endpoint target model element."/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>

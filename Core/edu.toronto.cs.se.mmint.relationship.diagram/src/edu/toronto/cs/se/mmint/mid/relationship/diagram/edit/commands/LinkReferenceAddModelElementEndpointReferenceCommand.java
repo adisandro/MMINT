@@ -82,7 +82,7 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 	protected ModelElementEndpointReference doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
 
 		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(getSource(), modelElemTypeEndpointUris);
-		ModelElementEndpointReference newModelElemEndpointRef = modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), false, getSource());
+		ModelElementEndpointReference newModelElemEndpointRef = modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), getSource());
 
 		return newModelElemEndpointRef;
 	}
@@ -92,8 +92,7 @@ public class LinkReferenceAddModelElementEndpointReferenceCommand extends ModelE
 		ModelElementReference tgtModelElemTypeRef = getTarget();
 		String newModelElemTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new light model element type endpoint", "Insert new model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
 		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(getSource(), tgtModelElemTypeRef);
-		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), getSource().getModelElemEndpointRefs());
-		ModelElementEndpointReference newModelElemTypeEndpointRef = modelElemTypeEndpoint.createSubtypeAndReference(modelElemTypeEndpointRef, newModelElemTypeEndpointName, tgtModelElemTypeRef, false, getSource());
+		ModelElementEndpointReference newModelElemTypeEndpointRef = modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, tgtModelElemTypeRef, false, getSource());
 		// no need to init type hierarchy, no need for undo/redo
 
 		return newModelElemTypeEndpointRef;

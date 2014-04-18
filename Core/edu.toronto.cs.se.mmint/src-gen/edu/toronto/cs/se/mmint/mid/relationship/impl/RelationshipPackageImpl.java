@@ -718,7 +718,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElementEndpoint__CreateSubtypeAndReference__ModelElementEndpointReference_String_ModelElementReference_boolean_LinkReference() {
+	public EOperation getModelElementEndpoint__CreateSubtypeAndReference__String_ModelElementReference_boolean_LinkReference() {
 		return modelElementEndpointEClass.getEOperations().get(4);
 	}
 
@@ -979,6 +979,15 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getBinaryLinkReference__AddModelElementTypeReference__ModelElementReference_boolean() {
+		return binaryLinkReferenceEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getModelElementEndpointReference() {
 		return modelElementEndpointReferenceEClass;
 	}
@@ -1139,7 +1148,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___GET_TARGET);
 		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___GET_METATYPE);
 		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___CREATE_TYPE_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE_BOOLEAN_BOOLEAN_LINKREFERENCE);
-		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE);
+		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE);
 		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE_LINKREFERENCE);
 		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___DELETE_TYPE__BOOLEAN);
 		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE);
@@ -1159,6 +1168,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEReference(binaryLinkReferenceEClass, BINARY_LINK_REFERENCE__SOURCE_MODEL_ELEM_REF);
 		createEReference(binaryLinkReferenceEClass, BINARY_LINK_REFERENCE__TARGET_MODEL_ELEM_REF);
 		createEOperation(binaryLinkReferenceEClass, BINARY_LINK_REFERENCE___GET_OBJECT);
+		createEOperation(binaryLinkReferenceEClass, BINARY_LINK_REFERENCE___ADD_MODEL_ELEMENT_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN);
 
 		modelElementEndpointReferenceEClass = createEClass(MODEL_ELEMENT_ENDPOINT_REFERENCE);
 		createEReference(modelElementEndpointReferenceEClass, MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF);
@@ -1395,8 +1405,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEParameter(op, this.getLinkReference(), "containerLinkTypeRef", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMINTException());
 
-		op = initEOperation(getModelElementEndpoint__CreateSubtypeAndReference__ModelElementEndpointReference_String_ModelElementReference_boolean_LinkReference(), this.getModelElementEndpointReference(), "createSubtypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModelElementEndpointReference(), "modelElemTypeEndpointRef", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelElementEndpoint__CreateSubtypeAndReference__String_ModelElementReference_boolean_LinkReference(), this.getModelElementEndpointReference(), "createSubtypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelElemTypeEndpointName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelElementReference(), "targetModelElemTypeRef", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinarySrc", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -1456,6 +1465,11 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		initEReference(getBinaryLinkReference_TargetModelElemRef(), this.getModelElementReference(), null, "targetModelElemRef", null, 1, 1, BinaryLinkReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getBinaryLinkReference__GetObject(), this.getBinaryLink(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getBinaryLinkReference__AddModelElementTypeReference__ModelElementReference_boolean(), null, "addModelElementTypeReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelElementReference(), "modelElemTypeRef", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isBinarySrc", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMINTException());
 
 		initEClass(modelElementEndpointReferenceEClass, ModelElementEndpointReference.class, "ModelElementEndpointReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelElementEndpointReference_ModelElemRef(), this.getModelElementReference(), this.getModelElementReference_ModelElemEndpointRefs(), "modelElemRef", null, 1, 1, ModelElementEndpointReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

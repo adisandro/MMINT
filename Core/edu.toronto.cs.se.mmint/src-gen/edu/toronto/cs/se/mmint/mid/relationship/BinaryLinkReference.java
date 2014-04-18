@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship;
 
+import edu.toronto.cs.se.mmint.MMINTException;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -97,5 +99,24 @@ public interface BinaryLinkReference extends LinkReference {
 	 * @generated
 	 */
 	BinaryLink getObject();
+
+	/**
+	 * <!-- begin-user-doc --> Adds the source or target reference to model
+	 * element type to this reference to binary link type.
+	 * 
+	 * @param modelElemTypeRef
+	 *            The reference to model element type that is the source or
+	 *            target of this reference to binary link type.
+	 * @param isBinarySrc
+	 *            True if the model element type is the source in the binary
+	 *            link type container, false otherwise.
+	 * @throws MMINTException
+	 *             If this is a reference to link instance.
+	 *             <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 *        modelElemTypeRefRequired="true" isBinarySrcRequired="true"
+	 * @generated
+	 */
+	void addModelElementTypeReference(ModelElementReference modelElemTypeRef, boolean isBinarySrc) throws MMINTException;
 
 } // BinaryLinkReference

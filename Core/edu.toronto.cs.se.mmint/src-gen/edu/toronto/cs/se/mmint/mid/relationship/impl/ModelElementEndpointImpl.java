@@ -23,6 +23,7 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -135,16 +136,16 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE:
+			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE:
 				try {
-					return createSubtypeAndReference((ModelElementEndpointReference)arguments.get(0), (String)arguments.get(1), (ModelElementReference)arguments.get(2), (Boolean)arguments.get(3), (LinkReference)arguments.get(4));
+					return createSubtypeAndReference((String)arguments.get(0), (ModelElementReference)arguments.get(1), (Boolean)arguments.get(2), (LinkReference)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
 			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE_LINKREFERENCE:
 				try {
-					replaceSubtypeAndReference((ModelElementEndpointReference)arguments.get(0), (ModelElementEndpointReference)arguments.get(1), (String)arguments.get(2), (ModelElementReference)arguments.get(3), (LinkReference)arguments.get(4));
+					replaceSubtypeAndReference((ModelElementEndpointReference)arguments.get(1), (String)arguments.get(2), (ModelElementReference)arguments.get(3));
 					return null;
 				}
 				catch (Throwable throwable) {
@@ -160,14 +161,14 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 				}
 			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE:
 				try {
-					return createInstanceReference((ModelElementReference)arguments.get(0), (Boolean)arguments.get(1), (LinkReference)arguments.get(2));
+					return createInstanceReference((ModelElementReference)arguments.get(0), (LinkReference)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
 			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE:
 				try {
-					return createInstanceAndReference((ModelElementReference)arguments.get(0), (Boolean)arguments.get(1), (LinkReference)arguments.get(2));
+					return createInstanceAndReference((ModelElementReference)arguments.get(0), (LinkReference)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -209,12 +210,21 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 	/**
 	 * @generated NOT
 	 */
-	public ModelElementEndpointReference createSubtypeAndReference(ModelElementEndpointReference modelElemTypeEndpointRef, String newModelElemTypeEndpointName, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc, LinkReference containerLinkTypeRef) throws MMINTException {
+	public ModelElementEndpointReference createSubtypeAndReference(String newModelElemTypeEndpointName, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc, LinkReference containerLinkTypeRef) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
+		if (containerLinkTypeRef instanceof BinaryLinkReference) {
+			if (containerLinkTypeRef.getModelElemEndpointRefs().size() == 2) {
+				throw new MMINTException("Can't add more than 2 model element type endpoints to a binary link type");
+			}
+			if (MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(containerLinkTypeRef, targetModelElemTypeRef) != this) {
+				throw new MMINTException("Invalid overriding of this model element type endpoint");
+			}
+		}
 
+		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), containerLinkTypeRef.getModelElemEndpointRefs());
 		Link linkType = containerLinkTypeRef.getObject();
 		ModelElement targetModelElemType = targetModelElemTypeRef.getObject();
 		ModelRel modelRelType = (ModelRel) containerLinkTypeRef.eContainer();
@@ -250,12 +260,19 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 	/**
 	 * @generated NOT
 	 */
-	public void replaceSubtypeAndReference(ModelElementEndpointReference oldModelElemTypeEndpointRef, ModelElementEndpointReference modelElemTypeEndpointRef, String newModelElemTypeEndpointName, ModelElementReference targetModelElemTypeRef, LinkReference containerLinkTypeRef) throws MMINTException {
+	public void replaceSubtypeAndReference(ModelElementEndpointReference oldModelElemTypeEndpointRef, String newModelElemTypeEndpointName, ModelElementReference targetModelElemTypeRef) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
+		LinkReference containerLinkTypeRef = (LinkReference) oldModelElemTypeEndpointRef.eContainer();
+		if (containerLinkTypeRef instanceof BinaryLinkReference) {
+			if (MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(containerLinkTypeRef, targetModelElemTypeRef) != this) {
+				throw new MMINTException("Invalid overriding of this model element type endpoint");
+			}
+		}
 
+		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), containerLinkTypeRef.getModelElemEndpointRefs());
 		oldModelElemTypeEndpointRef.deleteTypeAndReference(false);
 		ModelElementEndpoint oldModelElemTypeEndpoint = oldModelElemTypeEndpointRef.getObject();
 		Link linkType = containerLinkTypeRef.getObject();
@@ -305,7 +322,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 	/**
 	 * @generated NOT
 	 */
-	public ModelElementEndpointReference createInstanceReference(ModelElementReference targetModelElemRef, boolean isBinarySrc, LinkReference containerLinkRef) throws MMINTException {
+	public ModelElementEndpointReference createInstanceReference(ModelElementReference targetModelElemRef, LinkReference containerLinkRef) throws MMINTException {
 
 		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
@@ -315,11 +332,15 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 		boolean isContainer = containerLinkRef.eContainer().eContainer() == null;
 		super.addInstanceReference(newModelElemEndpointRef, isContainer);
 		newModelElemEndpointRef.setModelElemRef(targetModelElemRef);
-		if (isBinarySrc) {
-			containerLinkRef.getModelElemEndpointRefs().add(0, newModelElemEndpointRef);
-		} 
-		else {
-			containerLinkRef.getModelElemEndpointRefs().add(newModelElemEndpointRef);
+		containerLinkRef.getModelElemEndpointRefs().add(newModelElemEndpointRef);
+		if (containerLinkRef instanceof BinaryLinkReference) {
+			boolean isBinarySrc = containerLinkRef.getModelElemEndpointRefs().size() == 1;
+			if (isBinarySrc) {
+				((BinaryLinkReference) containerLinkRef).setSourceModelElemRef(targetModelElemRef);
+			}
+			else {
+				((BinaryLinkReference) containerLinkRef).setTargetModelElemRef(targetModelElemRef);
+			}
 		}
 
 		return newModelElemEndpointRef;
@@ -328,22 +349,20 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 	/**
 	 * @generated NOT
 	 */
-	public ModelElementEndpointReference createInstanceAndReference(ModelElementReference targetModelElemRef, boolean isBinarySrc, LinkReference containerLinkRef) throws MMINTException {
+	public ModelElementEndpointReference createInstanceAndReference(ModelElementReference targetModelElemRef, LinkReference containerLinkRef) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+		if ((containerLinkRef instanceof BinaryLinkReference) && (containerLinkRef.getModelElemEndpointRefs().size() == 2)) {
+			throw new MMINTException("Can't add more than 2 model element endpoints to a binary link");
 		}
 
 		ModelElementEndpoint newModelElemEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
 		super.addBasicInstance(newModelElemEndpoint, null, targetModelElemRef.getObject().getName());
 		super.addInstanceEndpoint(newModelElemEndpoint, targetModelElemRef.getObject());
-		if (isBinarySrc) {
-			containerLinkRef.getObject().getModelElemEndpoints().add(0, newModelElemEndpoint);
-		}
-		else {
-			containerLinkRef.getObject().getModelElemEndpoints().add(newModelElemEndpoint);
-		}
-		ModelElementEndpointReference modelElemEndpointRef = newModelElemEndpoint.createInstanceReference(targetModelElemRef, isBinarySrc, containerLinkRef);
+		containerLinkRef.getObject().getModelElemEndpoints().add(newModelElemEndpoint);
+		ModelElementEndpointReference modelElemEndpointRef = newModelElemEndpoint.createInstanceReference(targetModelElemRef, containerLinkRef);
 		containerLinkRef.getObject().getModelElemEndpointRefs().add(modelElemEndpointRef);
 
 		return modelElemEndpointRef;
@@ -358,9 +377,19 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
+		LinkReference containerLinkRef = (LinkReference) oldModelElemEndpointRef.eContainer();
 		oldModelElemEndpointRef.deleteInstanceAndReference(false);
 		ModelElementEndpoint oldModelElemEndpoint = oldModelElemEndpointRef.getObject();
 		super.addBasicInstance(oldModelElemEndpoint, null, null);
+		if (containerLinkRef instanceof BinaryLinkReference) {
+			boolean isBinarySrc = ((BinaryLinkReference) containerLinkRef).getSourceModelElemRef() == oldModelElemEndpointRef.getModelElemRef();
+			if (isBinarySrc) {
+				((BinaryLinkReference) containerLinkRef).setSourceModelElemRef(targetModelElemRef);
+			}
+			else {
+				((BinaryLinkReference) containerLinkRef).setTargetModelElemRef(targetModelElemRef);
+			}
+		}
 		oldModelElemEndpoint.setTarget(targetModelElemRef.getObject());
 		oldModelElemEndpointRef.setModelElemRef(targetModelElemRef);
 	}

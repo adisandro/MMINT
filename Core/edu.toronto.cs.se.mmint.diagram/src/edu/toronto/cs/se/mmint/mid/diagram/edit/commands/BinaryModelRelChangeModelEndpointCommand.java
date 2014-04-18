@@ -105,13 +105,13 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 			));
 	}
 
-	protected void doExecuteInstancesLevel(BinaryModelRel modelRel, Model model, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {
+	protected void doExecuteInstancesLevel(BinaryModelRel containerModelRel, Model targetModel, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {
 
 		ModelEndpoint oldModelEndpoint = (isBinarySrc) ?
-			modelRel.getModelEndpoints().get(0) :
-			modelRel.getModelEndpoints().get(1);
-		ModelEndpointReference modelTypeEndpointRef = MultiModelDiagramUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
-		modelTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelEndpoint, model);
+			containerModelRel.getModelEndpoints().get(0) :
+			containerModelRel.getModelEndpoints().get(1);
+		ModelEndpointReference modelTypeEndpointRef = MultiModelDiagramUtils.selectModelTypeEndpointToCreate(containerModelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
+		modelTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelEndpoint, targetModel);
 	}
 
 	protected void doExecuteTypesLevel(BinaryModelRel containerModelRelType, Model targetModelType, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {

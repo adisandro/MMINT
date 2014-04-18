@@ -109,23 +109,62 @@ public class BinaryLinkReferenceChangeModelElementReferenceCommand extends Binar
 			));
 	}
 
-	protected void doExecuteInstancesLevel(BinaryLinkReference linkRef, ModelElementReference modelElemRef, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {
+	protected void doExecuteInstancesLevel(BinaryLinkReference containerLinkRef, ModelElementReference targetModelElemRef, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {
 
 		ModelElementEndpointReference oldModelElemEndpointRef = (isBinarySrc) ?
-			linkRef.getModelElemEndpointRefs().get(0) :
-			linkRef.getModelElemEndpointRefs().get(1);
-		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(linkRef, modelElemTypeEndpointUris);
-		modelElemTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelElemEndpointRef, modelElemRef);
+			containerLinkRef.getModelElemEndpointRefs().get(0) :
+			containerLinkRef.getModelElemEndpointRefs().get(1);
+		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(containerLinkRef, modelElemTypeEndpointUris);
+		modelElemTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelElemEndpointRef, targetModelElemRef);
 	}
 
-	protected void doExecuteTypesLevel(BinaryLinkReference linkTypeRef, ModelElementReference modelElemTypeRef, boolean isBinarySrc) throws MMINTException {
+	protected void doExecuteTypesLevel(BinaryLinkReference containerLinkTypeRef, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {
 
-		ModelElementEndpointReference oldModelElemTypeEndpointRef = (isBinarySrc) ?
-			linkTypeRef.getModelElemEndpointRefs().get(0) :
-			linkTypeRef.getModelElemEndpointRefs().get(1);
-		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(linkTypeRef, modelElemTypeRef);
-		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), linkTypeRef.getModelElemEndpointRefs());
-		modelElemTypeEndpoint.replaceSubtypeAndReference(oldModelElemTypeEndpointRef, modelElemTypeEndpointRef, oldModelElemTypeEndpointRef.getObject().getName(), modelElemTypeRef, linkTypeRef);
+		boolean wasOverriding = false;
+		ModelElementEndpointReference oldModelElemTypeEndpointRef = null;
+		if (containerLinkTypeRef.getModelElemEndpointRefs().size() == 2) {
+			oldModelElemTypeEndpointRef = (isBinarySrc) ?
+				containerLinkTypeRef.getModelElemEndpointRefs().get(0) :
+				containerLinkTypeRef.getModelElemEndpointRefs().get(1);
+			wasOverriding = true;
+		}
+		else if (containerLinkTypeRef.getModelElemEndpointRefs().size() == 1) {
+			ModelElementEndpointReference singleModelElemTypeEndpointRef = containerLinkTypeRef.getModelElemEndpointRefs().get(0);
+			wasOverriding = (isBinarySrc) ?
+				(containerLinkTypeRef.getSourceModelElemRef() == singleModelElemTypeEndpointRef.getModelElemRef()) :
+				(containerLinkTypeRef.getTargetModelElemRef() == singleModelElemTypeEndpointRef.getModelElemRef());
+			if (wasOverriding) {
+				oldModelElemTypeEndpointRef = singleModelElemTypeEndpointRef;
+			}
+		}
+
+		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(containerLinkTypeRef, targetModelElemTypeRef);
+		if (modelElemTypeEndpoint == null) {
+			if (wasOverriding) { // was overriding, becomes non-overriding
+				oldModelElemTypeEndpointRef.deleteTypeAndReference(true);
+			}
+			// was overriding, becomes non-overriding
+			// was non-overriding, remains non-overriding
+			containerLinkTypeRef.addModelElementTypeReference(targetModelElemTypeRef, isBinarySrc);
+		}
+		else {
+			if (wasOverriding) { // was overriding, remains overriding
+				modelElemTypeEndpoint.replaceSubtypeAndReference(oldModelElemTypeEndpointRef, oldModelElemTypeEndpointRef.getObject().getName(), targetModelElemTypeRef);
+			}
+			else { // was non-overriding, becomes overriding
+				String detail = (isBinarySrc) ? "source" : "target";
+				String newModelElemTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new " + detail + " model element type endpoint", "Insert new " + detail + " model element type endpoint role", targetModelElemTypeRef.getObject().getName());
+				if (isBinarySrc && containerLinkTypeRef.getModelElemEndpointRefs().size() == 1) { // guarantee that src endpoint comes before tgt endpoint
+					ModelElementEndpointReference tgtModelElemTypeEndpointRef = containerLinkTypeRef.getModelElemEndpointRefs().get(0);
+					tgtModelElemTypeEndpointRef.deleteTypeAndReference(true);
+					modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, targetModelElemTypeRef, true, containerLinkTypeRef);
+					tgtModelElemTypeEndpointRef.getObject().getSupertype().createSubtypeAndReference(tgtModelElemTypeEndpointRef.getObject().getName(), tgtModelElemTypeEndpointRef.getModelElemRef(), false, containerLinkTypeRef);
+				}
+				else {
+					modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, targetModelElemTypeRef, isBinarySrc, containerLinkTypeRef);
+				}
+			}
+		}
 		// no need to init type hierarchy, no need for undo/redo
 	}
 
