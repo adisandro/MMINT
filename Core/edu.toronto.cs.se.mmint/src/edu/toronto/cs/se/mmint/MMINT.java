@@ -50,6 +50,7 @@ import edu.toronto.cs.se.mmint.mid.operator.Parameter;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -247,8 +248,8 @@ public class MMINT implements MMINTConstants {
 			// link types
 			IConfigurationElement[] linkTypeConfigs = extensionConfig.getChildren(MODELRELS_CHILD_LINKTYPE);
 			for (IConfigurationElement linkTypeConfig : linkTypeConfigs) {
-				IConfigurationElement[] modelElemTypeEndpointConfigs = linkTypeConfig.getChildren(MODELRELS_LINKTYPE_CHILD_MODELELEMTYPEENDPOINT);
-				isBinary = (modelElemTypeEndpointConfigs.length == 2);
+				binaryTypeConfigs = linkTypeConfig.getChildren(CHILD_BINARYTYPE);
+				isBinary = (binaryTypeConfigs.length == 0) ? false : true;
 				extensionType = new ExtensionType(linkTypeConfig, typeFactory);
 				LinkReference newLinkTypeRef;
 				try {
@@ -262,20 +263,40 @@ public class MMINT implements MMINTConstants {
 					MMINTException.print(Type.WARNING, "Link type can't be created", e);
 					continue;
 				}
+				// binary link type
+				String srcModelElemTypeUri = null, tgtModelElemTypeUri = null;
+				if (isBinary) {
+					srcModelElemTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_SOURCETYPEURI);
+					ModelEndpointReference containerModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(
+						((Model) MultiModelTypeRegistry.<ModelElement>getType(srcModelElemTypeUri).eContainer()).getUri(),
+						newModelRelType.getModelEndpointRefs()
+					);
+					((BinaryLinkReference) newLinkTypeRef).addModelElementTypeReference(MultiModelTypeHierarchy.getReference(srcModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), true);
+					tgtModelElemTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_TARGETTYPEURI);
+					containerModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(
+						((Model) MultiModelTypeRegistry.<ModelElement>getType(tgtModelElemTypeUri).eContainer()).getUri(),
+						newModelRelType.getModelEndpointRefs()
+					);
+					((BinaryLinkReference) newLinkTypeRef).addModelElementTypeReference(MultiModelTypeHierarchy.getReference(tgtModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), false);
+				}
+				// model element type endpoints
+				IConfigurationElement[] modelElemTypeEndpointConfigs = linkTypeConfig.getChildren(MODELRELS_LINKTYPE_CHILD_MODELELEMTYPEENDPOINT);
 				for (IConfigurationElement modelElemTypeEndpointConfig : modelElemTypeEndpointConfigs) {
 					extensionType = new ExtensionType(modelElemTypeEndpointConfig, typeFactory);
 					IConfigurationElement modelElemTypeEndpointSubconfig = modelElemTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
-					String newModelElemTypeUri = modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
-					ModelElement modelElemType = MultiModelTypeRegistry.getType(newModelElemTypeUri);
+					String targetModelElemTypeUri = modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
+					ModelElement modelElemType = MultiModelTypeRegistry.getType(targetModelElemTypeUri);
 					if (modelElemType == null) {
 						continue;
 					}
 					//TODO MMINT[MODELENDPOINT] well model elements should *really* be contained in the model endpoint now that they exist
 					ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getEndpointReferences(((Model) modelElemType.eContainer()).getUri(), newModelRelType.getModelEndpointRefs()).get(0);
-					ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(newModelElemTypeUri, modelTypeEndpointRef.getModelElemRefs());
+					ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(targetModelElemTypeUri, modelTypeEndpointRef.getModelElemRefs());
+					boolean isBinarySrc = (isBinary && srcModelElemTypeUri.equals(targetModelElemTypeUri));
 					ModelElementEndpointReference newModelElemTypeEndpointRef = extensionType.getFactory().createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(
 						extensionType,
 						newModelElemTypeRef,
+						isBinarySrc,
 						newLinkTypeRef
 					);
 					int lowerBound = Integer.parseInt(modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND));

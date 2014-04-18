@@ -297,6 +297,10 @@
                   name="ComponentDeviceLink"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink">
             </type>
+            <binaryType
+                  sourceTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram#//Component"
+                  targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Device">
+            </binaryType>
             <modelElemTypeEndpoint>
                <type
                      name="ComponentEndpoint"
@@ -325,6 +329,10 @@
                   name="UsageNodeLink"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink">
             </type>
+            <binaryType
+                  sourceTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Usage"
+                  targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Node">
+            </binaryType>
             <modelElemTypeEndpoint>
                <type
                      name="UsageEndpoint"
@@ -637,6 +645,10 @@
                   name="ComponentDeviceLink"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/ComponentDeviceLink">
             </type>
+            <binaryType
+                  sourceTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Component"
+                  targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Device">
+            </binaryType>
             <modelElemTypeEndpoint>
                <type
                      name="ComponentEndpoint"
@@ -665,6 +677,10 @@
                   name="UsageNodeLink"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/UsageNodeLink">
             </type>
+            <binaryType
+                  sourceTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Usage"
+                  targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Node">
+            </binaryType>
             <modelElemTypeEndpoint>
                <type
                      name="UsageEndpoint"

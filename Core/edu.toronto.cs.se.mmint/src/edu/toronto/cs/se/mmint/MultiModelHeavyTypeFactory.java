@@ -395,9 +395,13 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 * 
 	 * @param extensionType
 	 *            The extension info for the new model element type endpoint.
-	 * @param newModelElemTypeRef
+	 * @param targetModelElemTypeRef
 	 *            The new reference to the new model element type that is the
 	 *            target of the new model element type endpoint.
+	 * @param isBinarySrc
+	 *            (Only for a binary link type container) True if the model
+	 *            element type endpoint is the source in the binary link type
+	 *            container, false otherwise.
 	 * @param containerLinkTypeRef
 	 *            The reference to the link type that will contain the new model
 	 *            element type endpoint.
@@ -406,16 +410,16 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new model element type endpoint is already
 	 *             registered in the repository.
 	 */
-	public ModelElementEndpointReference createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(ExtensionType extensionType, ModelElementReference newModelElemTypeRef, LinkReference containerLinkTypeRef) throws MMINTException {
+	public ModelElementEndpointReference createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(ExtensionType extensionType, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc, LinkReference containerLinkTypeRef) throws MMINTException {
 
 		ModelElementEndpoint newModelElemTypeEndpoint = (extensionType.getNewType() == null) ?
 			RelationshipFactory.eINSTANCE.createModelElementEndpoint() :
 			(ModelElementEndpoint) extensionType.getNewType();
 		Link containerLinkType = containerLinkTypeRef.getObject();
-		newModelElemTypeEndpoint.setTarget(newModelElemTypeRef.getObject()); // needed to get the right root uri
+		newModelElemTypeEndpoint.setTarget(targetModelElemTypeRef.getObject()); // needed to get the right root uri
 		ModelElementEndpoint modelElemTypeEndpoint = getSupertype(newModelElemTypeEndpoint, extensionType.getUri(), extensionType.getSupertypeUri());
 		addHeavyType(newModelElemTypeEndpoint, modelElemTypeEndpoint, extensionType.getUri(), extensionType.getName());
-		addModelElementTypeEndpoint(newModelElemTypeEndpoint, newModelElemTypeRef.getObject(), containerLinkType);
+		addModelElementTypeEndpoint(newModelElemTypeEndpoint, targetModelElemTypeRef.getObject(), containerLinkType);
 		ModelElementEndpointReference modelElemTypeEndpointRef = null;
 		if (modelElemTypeEndpoint != null) { // may be root
 			LinkReference newLinkTypeRefSuper = MultiModelTypeHierarchy.getReference(((Link) modelElemTypeEndpoint.eContainer()).getUri(), ((ModelRel) containerLinkTypeRef.eContainer()).getLinkRefs());
@@ -423,7 +427,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 				modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), newLinkTypeRefSuper.getModelElemEndpointRefs());
 			}
 		}
-		ModelElementEndpointReference newModelElemTypeEndpointRef = newModelElemTypeEndpoint.createTypeReference(modelElemTypeEndpointRef, newModelElemTypeRef, true, false, containerLinkTypeRef);
+		ModelElementEndpointReference newModelElemTypeEndpointRef = newModelElemTypeEndpoint.createTypeReference(modelElemTypeEndpointRef, targetModelElemTypeRef, true, isBinarySrc, containerLinkTypeRef);
 		addModelElementTypeEndpointReference(newModelElemTypeEndpointRef, containerLinkType);
 		// copy from supertype
 		Link linkTypeSuper = containerLinkType.getSupertype();

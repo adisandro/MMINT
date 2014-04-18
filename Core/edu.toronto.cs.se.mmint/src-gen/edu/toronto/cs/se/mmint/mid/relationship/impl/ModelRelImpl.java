@@ -602,12 +602,12 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			LinkReference newLinkTypeRef = linkType.createSubtypeAndReference(linkTypeRef, origLinkType.getName(), (origLinkType instanceof BinaryLink), newModelRelType);
 			if (origLinkTypeRef instanceof BinaryLinkReference) { // this is useful only when there are 0 or 1 overridden endpoints, but doesn't hurt in case of 2
 				ModelElementReference origSrcModelElemTypeRef = ((BinaryLinkReference) origLinkTypeRef).getSourceModelElemRef();
-				ModelEndpointReference newModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(((ModelEndpointReference) origSrcModelElemTypeRef.eContainer()), newModelRelType.getModelEndpointRefs());
-				ModelElementReference newSrcModelElemTypeRef = MultiModelTypeHierarchy.getReference(origSrcModelElemTypeRef, newModelTypeEndpointRef.getModelElemRefs());
+				ModelEndpointReference containerModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(((ModelEndpointReference) origSrcModelElemTypeRef.eContainer()), newModelRelType.getModelEndpointRefs());
+				ModelElementReference newSrcModelElemTypeRef = MultiModelTypeHierarchy.getReference(origSrcModelElemTypeRef, containerModelTypeEndpointRef.getModelElemRefs());
 				((BinaryLinkReference) newLinkTypeRef).addModelElementTypeReference(newSrcModelElemTypeRef, true);
 				ModelElementReference origTgtModelElemTypeRef = ((BinaryLinkReference) origLinkTypeRef).getSourceModelElemRef();
-				newModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(((ModelEndpointReference) origTgtModelElemTypeRef.eContainer()), newModelRelType.getModelEndpointRefs());
-				ModelElementReference newTgtModelElemTypeRef = MultiModelTypeHierarchy.getReference(origTgtModelElemTypeRef, newModelTypeEndpointRef.getModelElemRefs());
+				containerModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(((ModelEndpointReference) origTgtModelElemTypeRef.eContainer()), newModelRelType.getModelEndpointRefs());
+				ModelElementReference newTgtModelElemTypeRef = MultiModelTypeHierarchy.getReference(origTgtModelElemTypeRef, containerModelTypeEndpointRef.getModelElemRefs());
 				((BinaryLinkReference) newLinkTypeRef).addModelElementTypeReference(newTgtModelElemTypeRef, false);
 			}
 			Iterator<ModelElementEndpointReference> origModelElemTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(origLinkTypeRef.getModelElemEndpointRefs());

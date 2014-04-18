@@ -127,6 +127,10 @@
                   name="DeployedLink"
                   uri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink">
             </type>
+            <binaryType
+                  sourceTypeUri="http://se.cs.toronto.edu/modelepedia/Army#//Unit"
+                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/State#//Region">
+            </binaryType>
             <modelElemTypeEndpoint>
                <type
                      name="UnitEndpoint"
@@ -212,6 +216,10 @@
                   name="HasLink"
                   uri="http://se.cs.toronto.edu/modelepedia/Has/HasLink">
             </type>
+            <binaryType
+                  sourceTypeUri="http://se.cs.toronto.edu/modelepedia/State#//Region"
+                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/Economy#//Gold">
+            </binaryType>
             <modelElemTypeEndpoint>
                <type
                      name="RegionEndpoint"

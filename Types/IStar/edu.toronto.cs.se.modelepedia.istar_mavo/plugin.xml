@@ -123,6 +123,10 @@
                   name="ActorClassLink"
                   uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink">
             </type>
+            <binaryType
+                  sourceTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Actor"
+                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class">
+            </binaryType>
             <modelElemTypeEndpoint>
                <type
                      name="ActorEndpoint"
@@ -151,6 +155,10 @@
                   name="ResourceClassLink"
                   uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink">
             </type>
+            <binaryType
+                  sourceTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Resource"
+                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class">
+            </binaryType>
             <modelElemTypeEndpoint>
                <type
                      name="ResourceEndpoint"
@@ -179,6 +187,10 @@
                   name="TaskOperationLink"
                   uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink">
             </type>
+            <binaryType
+                  sourceTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Task"
+                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Operation">
+            </binaryType>
             <modelElemTypeEndpoint>
                <type
                      name="TaskEndpoint"
@@ -207,6 +219,10 @@
                   name="GoalDependumDependencyLink"
                   uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumDependencyLink">
             </type>
+            <binaryType
+                  sourceTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Goal"
+                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Dependency">
+            </binaryType>
             <modelElemTypeEndpoint>
                <type
                      name="GoalDependumEndpoint"
@@ -235,6 +251,10 @@
                   name="ResourceDependumDependencyLink"
                   uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink">
             </type>
+            <binaryType
+                  sourceTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Resource"
+                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Dependency">
+            </binaryType>
             <modelElemTypeEndpoint>
                <type
                      name="ResourceDependumEndpoint"
