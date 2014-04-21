@@ -70,7 +70,7 @@ public class NewLinkTypeReferenceDialogContentProvider implements ITreeContentPr
 		if (parentElement instanceof ModelRel) {
 			List<LinkReference> linkTypeRefs = new ArrayList<LinkReference>();
 			// add root link ref first
-			//TODO MMINT: this won't work for standalone model relationship types (will it ever be a usecase?)
+			//TODO MMINT[MODELREL] this won't work for standalone model relationship types (will it ever be a use case?)
 			MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
 			ModelRel rootModelRelType = MultiModelRegistry.getExtendibleElement(MultiModelTypeHierarchy.getRootTypeUri(modelRelType), multiModel);
 			LinkReference rootLinkTypeRef = rootModelRelType.getLinkRefs().get(0);

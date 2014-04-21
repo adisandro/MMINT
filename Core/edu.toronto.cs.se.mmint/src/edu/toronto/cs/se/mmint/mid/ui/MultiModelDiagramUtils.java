@@ -172,16 +172,16 @@ public class MultiModelDiagramUtils {
 	}
 
 	public static LinkReference selectLinkTypeReferenceToCreate(ModelRel modelRel, ModelElementReference srcModelElemRef, ModelElementReference tgtModelElemRef) throws MultiModelDialogCancellation {
-	
+
 		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getLinkReferenceCreationDialog(srcModelElemRef, tgtModelElemRef, modelRel);
 		String title = "Create new link";
 		String message = "Choose link type";
-	
+
 		return (LinkReference) openSelectDialog(dialog, title, message);
 	}
 
 	public static LinkReference selectLinkTypeReferenceToExtend(ModelRel modelRelType, ModelElementReference srcModelElemTypeRef, ModelElementReference tgtModelElemTypeRef) throws MultiModelDialogCancellation {
-	
+
 		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getLinkTypeReferenceCreationDialog(srcModelElemTypeRef, tgtModelElemTypeRef, modelRelType);
 		String title = "Create new light link type";
 		String message = "Choose link supertype";
@@ -190,7 +190,7 @@ public class MultiModelDiagramUtils {
 	}
 
 	public static ModelElementEndpointReference selectModelElementTypeEndpointToCreate(LinkReference linkRef, List<String> modelElemTypeEndpointUris) throws MultiModelDialogCancellation {
-	
+
 		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelElementEndpointCreationDialog(linkRef, modelElemTypeEndpointUris);
 		String title = "Create new model endpoint";
 		String message = "Choose model type endpoint role";

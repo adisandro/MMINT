@@ -330,7 +330,7 @@
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink">
             </type>
             <binaryType
-                  sourceTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Usage"
+                  sourceTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram#//Usage"
                   targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Node">
             </binaryType>
             <modelElemTypeEndpoint>
@@ -341,7 +341,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Usage">
+                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram#//Usage">
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>

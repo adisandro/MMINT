@@ -20,6 +20,7 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 
 /**
@@ -43,12 +44,18 @@ public class EditorsExtensionListener extends MMINTExtensionListener {
 			return;
 		}
 
-		IConfigurationElement[] config;
+		IConfigurationElement[] configs;
 		for (IExtension extension : extensions) {
-			config = extension.getConfigurationElements();
-			for (IConfigurationElement elem : config) {
-				Editor editorType = MMINT.createEditorType(elem);
-				MultiModelHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
+			configs = extension.getConfigurationElements();
+			for (IConfigurationElement config : configs) {
+				Editor editorType;
+				try {
+					editorType = MMINT.createEditorType(config);
+					MultiModelHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
+				}
+				catch (MMINTException e) {
+					MMINTException.print(Type.ERROR, "Editor type can't be created in " + config.getContributor().getName(), e);
+				}
 			}
 		}
 		MMINT.storeRepository();

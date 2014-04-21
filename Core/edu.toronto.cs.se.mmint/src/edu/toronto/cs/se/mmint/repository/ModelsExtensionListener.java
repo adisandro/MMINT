@@ -18,6 +18,7 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.Model;
 
 /**
@@ -36,12 +37,18 @@ public class ModelsExtensionListener extends MMINTExtensionListener {
 	@Override
 	public void added(IExtension[] extensions) {
 
-		IConfigurationElement[] config;
+		IConfigurationElement[] configs;
 		for (IExtension extension : extensions) {
-			config = extension.getConfigurationElements();
-			for (IConfigurationElement elem : config) {
-				Model modelType = MMINT.createModelType(elem);
-				MultiModelHeavyTypeFactory.createHeavyModelTypeEditors(modelType);
+			configs = extension.getConfigurationElements();
+			for (IConfigurationElement config : configs) {
+				Model modelType;
+				try {
+					modelType = MMINT.createModelType(config);
+					MultiModelHeavyTypeFactory.createHeavyModelTypeEditors(modelType);
+				}
+				catch (MMINTException e) {
+					MMINTException.print(Type.ERROR, "Model type can't be created in " + config.getContributor().getName(), e);
+				}
 			}
 		}
 		MMINT.storeRepository();

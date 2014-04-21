@@ -90,7 +90,7 @@
     </descriptors>
     <descriptors name="ExtendibleElementReferenceSupertypeRefFigure">
       <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ExtendibleElementReferenceSupertypeRefFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.2">
-        <foregroundColor xsi:type="gmfgraph:ConstantColor" value="lightGray"/>
+        <foregroundColor xsi:type="gmfgraph:ConstantColor" value="gray"/>
       </actualFigure>
     </descriptors>
     <descriptors name="LinkReferenceSuperFigure">

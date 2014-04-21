@@ -124,32 +124,28 @@ public class MMINT implements MMINTConstants {
 	 * @param extensionConfig
 	 *            The edu.toronto.cs.se.mmint.models extension configuration.
 	 * @return The created model type, null if the model type can't be created.
+	 * @throws MMINTException
+	 *             If the model type can't be created.
 	 */
-	public static Model createModelType(IConfigurationElement extensionConfig) {
+	public static Model createModelType(IConfigurationElement extensionConfig) throws MMINTException {
 
-		try {
-			boolean isAbstract = Boolean.parseBoolean(extensionConfig.getAttribute(MODELS_MODELTYPE_ATTR_ABSTRACT));
-			ExtensionType extensionType = new ExtensionType(extensionConfig, multipleInheritanceTable, typeFactory);
-			IConfigurationElement[] constraintConfig = extensionConfig.getChildren(MODELS_MODELTYPE_CHILD_CONSTRAINT);
-			String constraintLanguage = (constraintConfig.length == 0) ?
-				null :
-				constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_LANGUAGE);
-			String constraintImplementation = (constraintConfig.length == 0) ?
-				null :
-				constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION);
-			Model newModelType = extensionType.getFactory().createHeavyModelType(
-				extensionType,
-				isAbstract,
-				constraintLanguage,
-				constraintImplementation
-			);
+		boolean isAbstract = Boolean.parseBoolean(extensionConfig.getAttribute(MODELS_MODELTYPE_ATTR_ABSTRACT));
+		ExtensionType extensionType = new ExtensionType(extensionConfig, multipleInheritanceTable, typeFactory);
+		IConfigurationElement[] constraintConfig = extensionConfig.getChildren(MODELS_MODELTYPE_CHILD_CONSTRAINT);
+		String constraintLanguage = (constraintConfig.length == 0) ?
+			null :
+			constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_LANGUAGE);
+		String constraintImplementation = (constraintConfig.length == 0) ?
+			null :
+			constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION);
+		Model newModelType = extensionType.getFactory().createHeavyModelType(
+			extensionType,
+			isAbstract,
+			constraintLanguage,
+			constraintImplementation
+		);
 
-			return newModelType;
-		}
-		catch (Exception e) {
-			MMINTException.print(Type.WARNING, "Model type can't be created", e);
-			return null;
-		}
+		return newModelType;
 	}
 
 	/**
@@ -163,158 +159,154 @@ public class MMINT implements MMINTConstants {
 	 *            configuration.
 	 * @return The created model relationship type, null if the model
 	 *         relationship type can't be created.
+	 * @throws Exception
+	 *             If the model relationship type can't be created.
 	 */
-	public static ModelRel createModelRelType(IConfigurationElement extensionConfig) {
+	public static ModelRel createModelRelType(IConfigurationElement extensionConfig) throws Exception {
 
-		try {
-			IConfigurationElement modelTypeConfig = extensionConfig.getChildren(MODELS_CHILD_MODELTYPE)[0];
-			boolean isAbstract = Boolean.parseBoolean(modelTypeConfig.getAttribute(MODELS_MODELTYPE_ATTR_ABSTRACT));
-			ExtensionType extensionType = new ExtensionType(modelTypeConfig, typeFactory);
-			IConfigurationElement[] binaryTypeConfigs = extensionConfig.getChildren(CHILD_BINARYTYPE);
-			boolean isBinary = (binaryTypeConfigs.length == 0) ? false : true;
-			IConfigurationElement[] constraintConfig = modelTypeConfig.getChildren(MODELS_MODELTYPE_CHILD_CONSTRAINT);
-			String constraintLanguage = (constraintConfig.length == 0) ?
-				null :
-				constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_LANGUAGE);
-			String constraintImplementation = (constraintConfig.length == 0) ?
-				null :
-				constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION);
-			ModelRel newModelRelType = extensionType.getFactory().createHeavyModelRelType(
-				extensionType,
-				isAbstract,
-				isBinary,
-				constraintLanguage,
-				constraintImplementation
-			);
-			// binary model rel type
-			String srcModelTypeUri = null, tgtModelTypeUri = null;
-			if (isBinary) {
-				srcModelTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_SOURCETYPEURI);
-				((BinaryModelRel) newModelRelType).addModelType(MultiModelTypeRegistry.<Model>getType(srcModelTypeUri), true);
-				tgtModelTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_TARGETTYPEURI);
-				((BinaryModelRel) newModelRelType).addModelType(MultiModelTypeRegistry.<Model>getType(tgtModelTypeUri), false);
+		IConfigurationElement modelTypeConfig = extensionConfig.getChildren(MODELS_CHILD_MODELTYPE)[0];
+		boolean isAbstract = Boolean.parseBoolean(modelTypeConfig.getAttribute(MODELS_MODELTYPE_ATTR_ABSTRACT));
+		ExtensionType extensionType = new ExtensionType(modelTypeConfig, typeFactory);
+		IConfigurationElement[] binaryTypeConfigs = extensionConfig.getChildren(CHILD_BINARYTYPE);
+		boolean isBinary = (binaryTypeConfigs.length == 0) ? false : true;
+		IConfigurationElement[] constraintConfig = modelTypeConfig.getChildren(MODELS_MODELTYPE_CHILD_CONSTRAINT);
+		String constraintLanguage = (constraintConfig.length == 0) ?
+			null :
+			constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_LANGUAGE);
+		String constraintImplementation = (constraintConfig.length == 0) ?
+			null :
+			constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION);
+		ModelRel newModelRelType = extensionType.getFactory().createHeavyModelRelType(
+			extensionType,
+			isAbstract,
+			isBinary,
+			constraintLanguage,
+			constraintImplementation
+		);
+		// binary model rel type
+		String srcModelTypeUri = null, tgtModelTypeUri = null;
+		if (isBinary) {
+			srcModelTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_SOURCETYPEURI);
+			((BinaryModelRel) newModelRelType).addModelType(MultiModelTypeRegistry.<Model>getType(srcModelTypeUri), true);
+			tgtModelTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_TARGETTYPEURI);
+			((BinaryModelRel) newModelRelType).addModelType(MultiModelTypeRegistry.<Model>getType(tgtModelTypeUri), false);
+		}
+		// model type endpoints
+		IConfigurationElement[] modelTypeEndpointConfigs = extensionConfig.getChildren(MODELRELS_CHILD_MODELTYPEENDPOINT);
+		for (IConfigurationElement modelTypeEndpointConfig : modelTypeEndpointConfigs) {
+			extensionType = new ExtensionType(modelTypeEndpointConfig, typeFactory);
+			IConfigurationElement modelTypeEndpointSubconfig = modelTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
+			String targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
+			Model targetModelType = MultiModelTypeRegistry.getType(targetModelTypeUri);
+			if (targetModelType == null) {
+				continue;
 			}
-			// model type endpoints
-			IConfigurationElement[] modelTypeEndpointConfigs = extensionConfig.getChildren(MODELRELS_CHILD_MODELTYPEENDPOINT);
-			for (IConfigurationElement modelTypeEndpointConfig : modelTypeEndpointConfigs) {
-				extensionType = new ExtensionType(modelTypeEndpointConfig, typeFactory);
-				IConfigurationElement modelTypeEndpointSubconfig = modelTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
-				String targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
-				Model targetModelType = MultiModelTypeRegistry.getType(targetModelTypeUri);
-				if (targetModelType == null) {
-					continue;
+			boolean isBinarySrc = (isBinary && srcModelTypeUri.equals(targetModelTypeUri));
+			ModelEndpointReference newModelTypeEndpointRef = extensionType.getFactory().createHeavyModelTypeEndpointAndModelTypeEndpointReference(
+				extensionType,
+				targetModelType,
+				isBinarySrc,
+				newModelRelType
+			);
+			int lowerBound = Integer.parseInt(modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND));
+			int upperBound = Integer.parseInt(modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND));
+			MultiModelTypeFactory.addTypeEndpointCardinality(
+				newModelTypeEndpointRef.getObject(),
+				lowerBound,
+				upperBound
+			);
+			EPackage rootModelTypeObj = newModelTypeEndpointRef.getObject().getTarget().getEMFTypeRoot();
+			// model element types
+			IConfigurationElement[] modelElemTypeConfigs = modelTypeEndpointConfig.getChildren(MODELRELS_MODELTYPEENDPOINT_CHILD_MODELELEMTYPE);
+			for (IConfigurationElement modelElemTypeConfig : modelElemTypeConfigs) {
+				extensionType = new ExtensionType(modelElemTypeConfig, typeFactory);
+				ModelElement newModelElemType = MultiModelTypeRegistry.getType(extensionType.getUri());
+				if (newModelElemType == null) { // create new model element type
+					EObject modelElemTypeObj = MultiModelTypeIntrospection.getPointer(rootModelTypeObj.eResource(), extensionType.getUri());
+					EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelElemTypeObj, MidLevel.TYPES);
+					try {
+						newModelElemType = extensionType.getFactory().createHeavyModelElementType(
+							extensionType,
+							eInfo,
+							targetModelType
+						);
+					}
+					catch (Exception e) {
+						MMINTException.print(Type.WARNING, "Model element type can't be created", e);
+						continue;
+					}
 				}
-				boolean isBinarySrc = (isBinary && srcModelTypeUri.equals(targetModelTypeUri));
-				ModelEndpointReference newModelTypeEndpointRef = extensionType.getFactory().createHeavyModelTypeEndpointAndModelTypeEndpointReference(
+				ModelElementReference modelElemTypeRef = (extensionType.getSupertypeUri() == null) ?
+					null :
+					MultiModelTypeHierarchy.getReference(extensionType.getSupertypeUri(), newModelTypeEndpointRef.getModelElemRefs());
+				newModelElemType.createTypeReference(modelElemTypeRef, true, newModelTypeEndpointRef);
+			}
+		}
+		// link types
+		IConfigurationElement[] linkTypeConfigs = extensionConfig.getChildren(MODELRELS_CHILD_LINKTYPE);
+		for (IConfigurationElement linkTypeConfig : linkTypeConfigs) {
+			binaryTypeConfigs = linkTypeConfig.getChildren(CHILD_BINARYTYPE);
+			isBinary = (binaryTypeConfigs.length == 0) ? false : true;
+			extensionType = new ExtensionType(linkTypeConfig, typeFactory);
+			LinkReference newLinkTypeRef;
+			try {
+				newLinkTypeRef = extensionType.getFactory().createHeavyLinkTypeAndLinkTypeReference(
 					extensionType,
-					targetModelType,
-					isBinarySrc,
+					isBinary,
 					newModelRelType
 				);
-				int lowerBound = Integer.parseInt(modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND));
-				int upperBound = Integer.parseInt(modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND));
+			}
+			catch (Exception e) {
+				MMINTException.print(Type.WARNING, "Link type can't be created", e);
+				continue;
+			}
+			// binary link type
+			String srcModelElemTypeUri = null, tgtModelElemTypeUri = null;
+			if (isBinary) {
+				srcModelElemTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_SOURCETYPEURI);
+				ModelEndpointReference containerModelTypeEndpointRef = MultiModelTypeHierarchy.getEndpointReferences(
+					((Model) MultiModelTypeRegistry.<ModelElement>getType(srcModelElemTypeUri).eContainer()).getUri(),
+					newModelRelType.getModelEndpointRefs()
+				).get(0);
+				((BinaryLinkReference) newLinkTypeRef).addModelElementTypeReference(MultiModelTypeHierarchy.getReference(srcModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), true);
+				tgtModelElemTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_TARGETTYPEURI);
+				containerModelTypeEndpointRef = MultiModelTypeHierarchy.getEndpointReferences(
+					((Model) MultiModelTypeRegistry.<ModelElement>getType(tgtModelElemTypeUri).eContainer()).getUri(),
+					newModelRelType.getModelEndpointRefs()
+				).get(0);
+				((BinaryLinkReference) newLinkTypeRef).addModelElementTypeReference(MultiModelTypeHierarchy.getReference(tgtModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), false);
+			}
+			// model element type endpoints
+			IConfigurationElement[] modelElemTypeEndpointConfigs = linkTypeConfig.getChildren(MODELRELS_LINKTYPE_CHILD_MODELELEMTYPEENDPOINT);
+			for (IConfigurationElement modelElemTypeEndpointConfig : modelElemTypeEndpointConfigs) {
+				extensionType = new ExtensionType(modelElemTypeEndpointConfig, typeFactory);
+				IConfigurationElement modelElemTypeEndpointSubconfig = modelElemTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
+				String targetModelElemTypeUri = modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
+				ModelElement modelElemType = MultiModelTypeRegistry.getType(targetModelElemTypeUri);
+				if (modelElemType == null) {
+					continue;
+				}
+				//TODO MMINT[MODELENDPOINT] well model elements should *really* be contained in the model endpoint now that they exist
+				ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getEndpointReferences(((Model) modelElemType.eContainer()).getUri(), newModelRelType.getModelEndpointRefs()).get(0);
+				ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(targetModelElemTypeUri, modelTypeEndpointRef.getModelElemRefs());
+				boolean isBinarySrc = (isBinary && srcModelElemTypeUri.equals(targetModelElemTypeUri));
+				ModelElementEndpointReference newModelElemTypeEndpointRef = extensionType.getFactory().createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(
+					extensionType,
+					newModelElemTypeRef,
+					isBinarySrc,
+					newLinkTypeRef
+				);
+				int lowerBound = Integer.parseInt(modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND));
+				int upperBound = Integer.parseInt(modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND));
 				MultiModelTypeFactory.addTypeEndpointCardinality(
-					newModelTypeEndpointRef.getObject(),
+					newModelElemTypeEndpointRef.getObject(),
 					lowerBound,
 					upperBound
 				);
-				EPackage rootModelTypeObj = newModelTypeEndpointRef.getObject().getTarget().getEMFTypeRoot();
-				// model element types
-				IConfigurationElement[] modelElemTypeConfigs = modelTypeEndpointConfig.getChildren(MODELRELS_MODELTYPEENDPOINT_CHILD_MODELELEMTYPE);
-				for (IConfigurationElement modelElemTypeConfig : modelElemTypeConfigs) {
-					extensionType = new ExtensionType(modelElemTypeConfig, typeFactory);
-					ModelElement newModelElemType = MultiModelTypeRegistry.getType(extensionType.getUri());
-					if (newModelElemType == null) { // create new model element type
-						EObject modelElemTypeObj = MultiModelTypeIntrospection.getPointer(rootModelTypeObj.eResource(), extensionType.getUri());
-						EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelElemTypeObj, MidLevel.TYPES);
-						try {
-							newModelElemType = extensionType.getFactory().createHeavyModelElementType(
-								extensionType,
-								eInfo,
-								targetModelType
-							);
-						}
-						catch (Exception e) {
-							MMINTException.print(Type.WARNING, "Model element type can't be created", e);
-							continue;
-						}
-					}
-					ModelElementReference modelElemTypeRef = (extensionType.getSupertypeUri() == null) ?
-						null :
-						MultiModelTypeHierarchy.getReference(extensionType.getSupertypeUri(), newModelTypeEndpointRef.getModelElemRefs());
-					newModelElemType.createTypeReference(modelElemTypeRef, true, newModelTypeEndpointRef);
-				}
 			}
-			// link types
-			IConfigurationElement[] linkTypeConfigs = extensionConfig.getChildren(MODELRELS_CHILD_LINKTYPE);
-			for (IConfigurationElement linkTypeConfig : linkTypeConfigs) {
-				binaryTypeConfigs = linkTypeConfig.getChildren(CHILD_BINARYTYPE);
-				isBinary = (binaryTypeConfigs.length == 0) ? false : true;
-				extensionType = new ExtensionType(linkTypeConfig, typeFactory);
-				LinkReference newLinkTypeRef;
-				try {
-					newLinkTypeRef = extensionType.getFactory().createHeavyLinkTypeAndLinkTypeReference(
-						extensionType,
-						isBinary,
-						newModelRelType
-					);
-				}
-				catch (Exception e) {
-					MMINTException.print(Type.WARNING, "Link type can't be created", e);
-					continue;
-				}
-				// binary link type
-				String srcModelElemTypeUri = null, tgtModelElemTypeUri = null;
-				if (isBinary) {
-					srcModelElemTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_SOURCETYPEURI);
-					ModelEndpointReference containerModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(
-						((Model) MultiModelTypeRegistry.<ModelElement>getType(srcModelElemTypeUri).eContainer()).getUri(),
-						newModelRelType.getModelEndpointRefs()
-					);
-					((BinaryLinkReference) newLinkTypeRef).addModelElementTypeReference(MultiModelTypeHierarchy.getReference(srcModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), true);
-					tgtModelElemTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_TARGETTYPEURI);
-					containerModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(
-						((Model) MultiModelTypeRegistry.<ModelElement>getType(tgtModelElemTypeUri).eContainer()).getUri(),
-						newModelRelType.getModelEndpointRefs()
-					);
-					((BinaryLinkReference) newLinkTypeRef).addModelElementTypeReference(MultiModelTypeHierarchy.getReference(tgtModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), false);
-				}
-				// model element type endpoints
-				IConfigurationElement[] modelElemTypeEndpointConfigs = linkTypeConfig.getChildren(MODELRELS_LINKTYPE_CHILD_MODELELEMTYPEENDPOINT);
-				for (IConfigurationElement modelElemTypeEndpointConfig : modelElemTypeEndpointConfigs) {
-					extensionType = new ExtensionType(modelElemTypeEndpointConfig, typeFactory);
-					IConfigurationElement modelElemTypeEndpointSubconfig = modelElemTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
-					String targetModelElemTypeUri = modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
-					ModelElement modelElemType = MultiModelTypeRegistry.getType(targetModelElemTypeUri);
-					if (modelElemType == null) {
-						continue;
-					}
-					//TODO MMINT[MODELENDPOINT] well model elements should *really* be contained in the model endpoint now that they exist
-					ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getEndpointReferences(((Model) modelElemType.eContainer()).getUri(), newModelRelType.getModelEndpointRefs()).get(0);
-					ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(targetModelElemTypeUri, modelTypeEndpointRef.getModelElemRefs());
-					boolean isBinarySrc = (isBinary && srcModelElemTypeUri.equals(targetModelElemTypeUri));
-					ModelElementEndpointReference newModelElemTypeEndpointRef = extensionType.getFactory().createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(
-						extensionType,
-						newModelElemTypeRef,
-						isBinarySrc,
-						newLinkTypeRef
-					);
-					int lowerBound = Integer.parseInt(modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND));
-					int upperBound = Integer.parseInt(modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND));
-					MultiModelTypeFactory.addTypeEndpointCardinality(
-						newModelElemTypeEndpointRef.getObject(),
-						lowerBound,
-						upperBound
-					);
-				}
-			}
+		}
 
-			return newModelRelType;
-		}
-		catch (Exception e) {
-			MMINTException.print(Type.WARNING, "Model relationship type can't be created", e);
-			return null;
-		}
+		return newModelRelType;
 	}
 
 	/**
@@ -327,30 +319,26 @@ public class MMINT implements MMINTConstants {
 	 *            The edu.toronto.cs.se.mmint.editors extension configuration.
 	 * @return The created editor type, null if the editor type can't be
 	 *         created.
+	 * @throws MMINTException
+	 *             If the editor type can't be created.
 	 */
-	public static Editor createEditorType(IConfigurationElement extensionConfig) {
+	public static Editor createEditorType(IConfigurationElement extensionConfig) throws MMINTException {
 
-		try {
-			ExtensionType extensionType = new ExtensionType(extensionConfig, typeFactory);
-			String modelTypeUri = extensionConfig.getAttribute(EDITORS_ATTR_MODELTYPEURI);
-			String editorId = extensionConfig.getAttribute(EDITORS_ATTR_ID);
-			String wizardId = extensionConfig.getAttribute(EDITORS_ATTR_WIZARDID);
-			String wizardDialogClassName = extensionConfig.getAttribute(EDITORS_ATTR_WIZARDDIALOGCLASS);
-			Editor newEditorType = extensionType.getFactory().createHeavyEditorType(
-				extensionType,
-				modelTypeUri,
-				editorId,
-				wizardId,
-				wizardDialogClassName,
-				Boolean.parseBoolean(extensionConfig.getAttribute(EDITORS_ATTR_ISDIAGRAM))
-			);
+		ExtensionType extensionType = new ExtensionType(extensionConfig, typeFactory);
+		String modelTypeUri = extensionConfig.getAttribute(EDITORS_ATTR_MODELTYPEURI);
+		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_ID);
+		String wizardId = extensionConfig.getAttribute(EDITORS_ATTR_WIZARDID);
+		String wizardDialogClassName = extensionConfig.getAttribute(EDITORS_ATTR_WIZARDDIALOGCLASS);
+		Editor newEditorType = extensionType.getFactory().createHeavyEditorType(
+			extensionType,
+			modelTypeUri,
+			editorId,
+			wizardId,
+			wizardDialogClassName,
+			Boolean.parseBoolean(extensionConfig.getAttribute(EDITORS_ATTR_ISDIAGRAM))
+		);
 
-			return newEditorType;
-		}
-		catch (MMINTException e) {
-			MMINTException.print(Type.WARNING, "Editor type can't be created", e);
-			return null;
-		}
+		return newEditorType;
 	}
 
 	/**
@@ -417,22 +405,18 @@ public class MMINT implements MMINTConstants {
 	 *            The edu.toronto.cs.se.mmint.operators extension configuration.
 	 * @return The created operator type, null if the operator type can't be
 	 *         created.
+	 * @throws MMINTException
+	 *             If the operator type can't be created.
 	 */
-	public static Operator createOperatorType(IConfigurationElement extensionConfig) {
+	public static Operator createOperatorType(IConfigurationElement extensionConfig) throws MMINTException {
 
-		try {
-			ExtensionType extensionType = new ExtensionType(extensionConfig, typeFactory);
-			Operator newOperatorType = extensionType.getFactory().createHeavyOperatorType(extensionType);
-			if (newOperatorType instanceof RandomOperator) {
-				((RandomOperator) newOperatorType).setState(new Random());
-			}
+		ExtensionType extensionType = new ExtensionType(extensionConfig, typeFactory);
+		Operator newOperatorType = extensionType.getFactory().createHeavyOperatorType(extensionType);
+		if (newOperatorType instanceof RandomOperator) {
+			((RandomOperator) newOperatorType).setState(new Random());
+		}
 
-			return newOperatorType;
-		}
-		catch (Exception e) {
-			MMINTException.print(Type.WARNING, "Operator type can't be created", e);
-			return null;
-		}
+		return newOperatorType;
 	}
 
 	/**
@@ -652,35 +636,57 @@ public class MMINT implements MMINTConstants {
 		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, null, ROOT_MODEL_URI);
 		while (extensionsIter.hasNext()) {
 			config = extensionsIter.next();
-			type = createModelType(config);
-			bundleTable.put(type.getUri(), config.getContributor().getName());
+			try {
+				type = createModelType(config);
+				bundleTable.put(type.getUri(), config.getContributor().getName());
+			}
+			catch (MMINTException e) {
+				MMINTException.print(Type.ERROR, "Model type can't be created in " + config.getContributor().getName(), e);
+			}
 		}
 		// model relationship types
 		configs = registry.getConfigurationElementsFor(MODELRELS_EXT_POINT);
 		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, MODELS_CHILD_MODELTYPE, ROOT_MODELREL_URI);
 		while (extensionsIter.hasNext()) {
 			config = extensionsIter.next();
-			type = createModelRelType(config);
-			bundleTable.put(type.getUri(), config.getContributor().getName());
+			try {
+				type = createModelRelType(config);
+				bundleTable.put(type.getUri(), config.getContributor().getName());
+			}
+			catch (Exception e) {
+				MMINTException.print(Type.ERROR, "Model relationship type can't be created in " + config.getContributor().getName(), e);
+			}
 		}
 		// editor types
 		configs = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
 		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, null, ROOT_EDITOR_URI);
 		while (extensionsIter.hasNext()) {
 			config = extensionsIter.next();
-			Editor editorType = createEditorType(config);
-			bundleTable.put(editorType.getUri(), config.getContributor().getName());
-			MultiModelHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
+			Editor editorType;
+			try {
+				editorType = createEditorType(config);
+				bundleTable.put(editorType.getUri(), config.getContributor().getName());
+				MultiModelHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
+			}
+			catch (MMINTException e) {
+				MMINTException.print(Type.ERROR, "Editor type can't be created in " + config.getContributor().getName(), e);
+			}
 		}
 		// operator types
 		configs = registry.getConfigurationElementsFor(OPERATORS_EXT_POINT);
 		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, null, null);
 		while (extensionsIter.hasNext()) {
-			IConfigurationElement extensionConfig = extensionsIter.next();
-			Operator newOperatorType = createOperatorType(extensionConfig);
-			createOperatorTypeParameters(extensionConfig, newOperatorType);
-			if (newOperatorType instanceof ConversionOperator) {
-				MultiModelTypeFactory.createOperatorTypeConversion((ConversionOperator) newOperatorType);
+			config = extensionsIter.next();
+			Operator newOperatorType;
+			try {
+				newOperatorType = createOperatorType(config);
+				createOperatorTypeParameters(config, newOperatorType);
+				if (newOperatorType instanceof ConversionOperator) {
+					MultiModelTypeFactory.createOperatorTypeConversion((ConversionOperator) newOperatorType);
+				}
+			}
+			catch (MMINTException e) {
+				MMINTException.print(Type.ERROR, "Operator type can't be created in " + config.getContributor().getName(), e);
 			}
 		}
 		// dynamic types from last shutdown

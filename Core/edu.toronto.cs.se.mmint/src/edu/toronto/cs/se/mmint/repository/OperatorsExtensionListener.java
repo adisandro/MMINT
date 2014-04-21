@@ -18,6 +18,7 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
@@ -37,14 +38,20 @@ public class OperatorsExtensionListener extends MMINTExtensionListener {
 	@Override
 	public void added(IExtension[] extensions) {
 
-		IConfigurationElement[] config;
+		IConfigurationElement[] configs;
 		for (IExtension extension : extensions) {
-			config = extension.getConfigurationElements();
-			for (IConfigurationElement elem : config) {
-				Operator newOperatorType = MMINT.createOperatorType(elem);
-				MMINT.createOperatorTypeParameters(elem, newOperatorType);
-				if (newOperatorType instanceof ConversionOperator) {
-					MultiModelTypeFactory.createOperatorTypeConversion((ConversionOperator) newOperatorType);
+			configs = extension.getConfigurationElements();
+			for (IConfigurationElement config : configs) {
+				Operator newOperatorType;
+				try {
+					newOperatorType = MMINT.createOperatorType(config);
+					MMINT.createOperatorTypeParameters(config, newOperatorType);
+					if (newOperatorType instanceof ConversionOperator) {
+						MultiModelTypeFactory.createOperatorTypeConversion((ConversionOperator) newOperatorType);
+					}
+				}
+				catch (MMINTException e) {
+					MMINTException.print(Type.ERROR, "Operator type can't be created in " + config.getContributor().getName(), e);
 				}
 			}
 		}

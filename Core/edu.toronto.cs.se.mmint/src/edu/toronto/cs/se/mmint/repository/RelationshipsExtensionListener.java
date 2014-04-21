@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IExtension;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -35,11 +36,16 @@ public class RelationshipsExtensionListener extends MMINTExtensionListener {
 	@Override
 	public void added(IExtension[] extensions) {
 
-		IConfigurationElement[] config;
+		IConfigurationElement[] configs;
 		for (IExtension extension : extensions) {
-			config = extension.getConfigurationElements();
-			for (IConfigurationElement elem : config) {
-				MMINT.createModelRelType(elem);
+			configs = extension.getConfigurationElements();
+			for (IConfigurationElement config : configs) {
+				try {
+					MMINT.createModelRelType(config);
+				}
+				catch (Exception e) {
+					MMINTException.print(Type.ERROR, "Model relationship type can't be created in " + config.getContributor().getName(), e);
+				}
 			}
 		}
 		MMINT.storeRepository();

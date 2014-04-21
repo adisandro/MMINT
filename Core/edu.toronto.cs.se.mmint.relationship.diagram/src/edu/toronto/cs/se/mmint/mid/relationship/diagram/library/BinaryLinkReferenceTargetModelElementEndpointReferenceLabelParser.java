@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -24,7 +24,7 @@ public class BinaryLinkReferenceTargetModelElementEndpointReferenceLabelParser e
 	protected IAdaptable getTargetModelElementEndpointReferenceAdaptable(IAdaptable element) {
 
 		EObject modelObj = (EObject) element.getAdapter(EObject.class);
-		ModelElementEndpointReference modelElemEndpointRef = ((BinaryLinkReference) modelObj).getModelElemEndpointRefs().get(1);
+		ModelElementEndpointReference modelElemEndpointRef = ((BinaryLinkReference) modelObj).getObject().getModelElemEndpointRefs().get(1);
 
 		return new ParserHintAdapter(modelElemEndpointRef, "");
 	}

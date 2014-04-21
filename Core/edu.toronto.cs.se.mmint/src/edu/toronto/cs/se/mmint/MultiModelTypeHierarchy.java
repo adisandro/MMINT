@@ -447,7 +447,7 @@ public class MultiModelTypeHierarchy {
 	}
 
 	/**
-	 * Gets an extendible element endpoint in a list of extendible element
+	 * Gets the extendible element endpoints in a list of extendible element
 	 * endpoints.
 	 * 
 	 * @param targetUri
@@ -455,21 +455,22 @@ public class MultiModelTypeHierarchy {
 	 *            endpoint.
 	 * @param endpoints
 	 *            The list of extendible element endpoints.
-	 * @return The extendible element endpoint, null if it can't be found.
+	 * @return The extendible element endpoints.
 	 */
-	public static <T extends ExtendibleElementEndpoint> T getEndpoint(String targetUri, EList<T> endpoints) {
+	public static <T extends ExtendibleElementEndpoint> List<T> getEndpoints(String targetUri, EList<T> endpoints) {
 
 		if (targetUri == null) {
 			return null;
 		}
 
+		List<T> targetEndpoints = new ArrayList<T>();
 		for (T endpoint : endpoints) {
 			if (targetUri.equals(endpoint.getTargetUri())) {
-				return endpoint;
+				targetEndpoints.add(endpoint);
 			}
 		}
 
-		return null;
+		return targetEndpoints;
 	}
 
 	/**
@@ -481,8 +482,7 @@ public class MultiModelTypeHierarchy {
 	 *            endpoint.
 	 * @param endpointRefs
 	 *            The list of references to extendible element endpoints.
-	 * @return The references to the extendible element endpoint, null if it
-	 *         can't be found.
+	 * @return The references to the extendible element endpoints.
 	 */
 	public static <T extends ExtendibleElementEndpointReference> List<T> getEndpointReferences(String targetUri, EList<T> endpointRefs) {
 
