@@ -21,9 +21,11 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.transformation.ModelRelTypeTransformation;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
@@ -46,9 +48,9 @@ public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformatio
 
 		EList<Model> result = super.execute(actualParameters);
 		KleisliBinaryModelRel kTraceModelRel = (KleisliBinaryModelRel) result.get(1);
-		Model pivot = kTraceModelRel.getSourceModel();
+		Model modelPivot = kTraceModelRel.getSourceModel();
 		kTraceModelRel.setSourceModel(kTraceModelRel.getTargetModel());
-		kTraceModelRel.setTargetModel(pivot);
+		kTraceModelRel.setTargetModel(modelPivot);
 		kTraceModelRel.getModelEndpoints().move(1, 0);
 		kTraceModelRel.getModelEndpointRefs().move(1, 0);
 		for (Link kLink : kTraceModelRel.getLinks()) {
@@ -57,6 +59,9 @@ public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformatio
 		}
 		for (LinkReference kLinkRef : kTraceModelRel.getLinkRefs()) {
 			kLinkRef.getModelElemEndpointRefs().move(1, 0);
+			ModelElementReference modelElemRefPivot = ((BinaryLinkReference) kLinkRef).getSourceModelElemRef();
+			((BinaryLinkReference) kLinkRef).setSourceModelElemRef(((BinaryLinkReference) kLinkRef).getTargetModelElemRef());
+			((BinaryLinkReference) kLinkRef).setTargetModelElemRef(modelElemRefPivot);
 		}
 
 		return result;

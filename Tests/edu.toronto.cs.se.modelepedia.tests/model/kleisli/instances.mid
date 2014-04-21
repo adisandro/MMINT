@@ -73,23 +73,23 @@
       <modelElemRefs referencedObject="//@models.0/@modelElems.3" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.3/@modelElemEndpointRefs.1"/>
       <modelElemRefs referencedObject="//@models.0/@modelElems.4" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.4/@modelElemEndpointRefs.1"/>
     </modelEndpointRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.0" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.0" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.1" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.1" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.1/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.2" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.2" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.3" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.3" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.3" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.3">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.3/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.3"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.3/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.3"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.4" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.4" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.4" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.4/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.4"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.4/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
     </linkRefs>

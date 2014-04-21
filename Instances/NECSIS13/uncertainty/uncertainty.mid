@@ -216,91 +216,91 @@
       <modelElemRefs referencedObject="//@models.0/@modelElems.5" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.11/@modelElemEndpointRefs.1 //@models.2/@linkRefs.13/@modelElemEndpointRefs.1 //@models.2/@linkRefs.15/@modelElemEndpointRefs.1 //@models.2/@linkRefs.17/@modelElemEndpointRefs.1 //@models.2/@linkRefs.18/@modelElemEndpointRefs.1 //@models.2/@linkRefs.21/@modelElemEndpointRefs.1"/>
       <modelElemRefs referencedObject="//@models.0/@modelElems.6" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.19/@modelElemEndpointRefs.1 //@models.2/@linkRefs.20/@modelElemEndpointRefs.1"/>
     </modelEndpointRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.0" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.0" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.1" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.1" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.1/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.2" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.2" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.3" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.3" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.3" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.3/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.3"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.3/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.4" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.4" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.4" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.4/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.4"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.4/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.5" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.5" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.4" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.5/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.4"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.5/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.6" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.6" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.5" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.6/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.5"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.6/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.7" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.7" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.6" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.3">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.7/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.6"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.7/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.3"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.8" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.8" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.7" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.8/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.7"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.8/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.9" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.9" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.8" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.9/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.8"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.9/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.10" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.10" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.10/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.10/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.11" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.11" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.11/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.11/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.12" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.12" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.10" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.12/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.10"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.12/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.13" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.13" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.10" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.13/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.10"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.13/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.14" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.14" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.11" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.14/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.11"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.14/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.15" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.15" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.11" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.15/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.11"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.15/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.16" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.16" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.12" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.16/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.12"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.16/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.17" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.17" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.12" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.17/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.12"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.17/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.18" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.18" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.13" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.18/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.13"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.18/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.19" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.19" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.14" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.19/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.14"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.19/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.20" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.20" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.15" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.20/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.15"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.20/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6"/>
     </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.21" modifiable="true">
+    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.21" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.16" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5">
       <modelElemEndpointRefs referencedObject="//@models.2/@links.21/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.16"/>
       <modelElemEndpointRefs referencedObject="//@models.2/@links.21/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5"/>
     </linkRefs>
