@@ -98,6 +98,7 @@ public class Z3SMTIncrementalSolver {
 		}
 		catch (Z3Exception e) {
 			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result", e);
+			reset();
 			return new Z3ModelResult(Status.UNKNOWN, null);
 		}
 	}
@@ -126,9 +127,16 @@ public class Z3SMTIncrementalSolver {
 		}
 		catch (Z3Exception e) {
 			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result", e);
-			model = null;
+			reset();
 			return new Z3ModelResult(Status.UNKNOWN, null);
 		}
+	}
+
+	public void reset() {
+
+		context = null;
+		solver = null;
+		model = null;
 	}
 
 }

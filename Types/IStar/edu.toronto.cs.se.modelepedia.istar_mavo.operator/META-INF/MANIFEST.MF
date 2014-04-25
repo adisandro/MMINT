@@ -7,7 +7,8 @@ Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.acceleo.engine,
  org.eclipse.core.resources,
  edu.toronto.cs.se.mmint,
- edu.toronto.cs.se.modelepedia.istar_mavo
+ edu.toronto.cs.se.modelepedia.istar_mavo,
+ edu.toronto.cs.se.mmint.z3
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true

@@ -30,7 +30,11 @@ import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmint.reasoning.Z3SMTUtils;
+import edu.toronto.cs.se.mmint.z3.Z3SMTIncrementalSolver;
+import edu.toronto.cs.se.mmint.z3.Z3SMTUtils;
+import edu.toronto.cs.se.mmint.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
+import edu.toronto.cs.se.mmint.z3.Z3SMTUtils.Z3BoolResult;
+import edu.toronto.cs.se.mmint.z3.Z3SMTUtils.Z3ModelResult;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint;
@@ -120,14 +124,14 @@ public class FASE14 extends RE13 {
 		);
 	}
 
-	private void checkMAVOAnnotation(MAVOElement mavoModelObj, EStructuralFeature mavoAnnotation, String smtMavoConstraint) {
+	private void checkMAVOAnnotation(MAVOElement mavoModelObj, EStructuralFeature mavoAnnotation, String smtMavoConstraint, Z3SMTIncrementalSolver z3IncSolver) {
 
-		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)), 1, 0);
-		if (z3IncResult.flag == Z3_SAT) {
+		Z3ModelResult z3ModelResult = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)), Z3IncrementalBehavior.POP);
+		if (z3ModelResult.getZ3BoolResult() == Z3BoolResult.SAT) {
 			//TODO MMINT: optimize search for other annotations in output model using the map mavoModelObjs
 		}
 		else {
-			if (mavoAnnotation == MavoPackage.eINSTANCE.getMAVOElement_May() && smtMavoConstraint.startsWith(SMTLIB_NOT)) { // M model object deletion
+			if (mavoAnnotation == MavoPackage.eINSTANCE.getMAVOElement_May() && smtMavoConstraint.startsWith(Z3SMTUtils.SMTLIB_NOT)) { // M model object deletion
 				EcoreUtil.delete(mavoModelObj, true);
 			}
 			else { // M-S-V removal
@@ -135,11 +139,11 @@ public class FASE14 extends RE13 {
 			}
 			String smtMavoAssertion = Z3SMTUtils.assertion(smtMavoConstraint);
 			smtEncodingRNF += smtMavoAssertion + "\n";
-			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, smtMavoAssertion, 0, 0);
+			z3IncSolver.checkSatAndGetModel(smtMavoAssertion, Z3IncrementalBehavior.NORMAL);
 		}
 	}
 
-	private void doRNF() {
+	private void doRNF(Z3SMTIncrementalSolver z3IncSolver) {
 
 		long startTime = System.nanoTime();
 
@@ -150,18 +154,18 @@ public class FASE14 extends RE13 {
 			String function = encodeMAVConstraintFunction(mavoModelObj);
 			if (mavoModelObj.isMay()) {
 				String smtMConstraint = encodeMConstraint(sort, function, id);
-				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_May(), smtMConstraint);
-				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_May(), Z3SMTUtils.not(smtMConstraint));
+				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_May(), smtMConstraint, z3IncSolver);
+				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_May(), Z3SMTUtils.not(smtMConstraint), z3IncSolver);
 			}
 			if (mavoModelObj.isSet()) {
 				String smtSConstraint = encodeSConstraint(sort, function, id);
-				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Set(), smtSConstraint);
+				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Set(), smtSConstraint, z3IncSolver);
 			}
 			if (mavoModelObj.isVar()) {
 				List<String> mergeableIds = MAVOUtils.getMergeableIds(istar, mavoModelObj);
 				if (!mergeableIds.isEmpty()) {
 					String smtVConstraint = encodeVConstraint(sort, function, id, mergeableIds);
-					checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint);
+					checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint, z3IncSolver);
 				}
 			}
 		}
@@ -222,14 +226,14 @@ public class FASE14 extends RE13 {
 
 		// run solver
 		collectAnalysisModelObjs(istarModel);
-		doAnalysis();
+		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
+		doAnalysis(z3IncSolver);
 		if (timeTargetsEnabled) {
-			doTargets();
-			if (targets.equals(Integer.toString(Z3_SAT))) {
-				doRNF();
+			doTargets(z3IncSolver);
+			if (targets.equals(Z3BoolResult.SAT)) {
+				doRNF(z3IncSolver);
 			}
 		}
-		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3IncResult);
 
 		// save output
 		Properties outputProperties = new Properties();
@@ -247,7 +251,7 @@ public class FASE14 extends RE13 {
 					MultiModelUtils.prependWorkspaceToUri(
 						MultiModelUtils.replaceFileExtensionInUri(
 							MultiModelUtils.addFileNameSuffixInUri(istarModel.getUri(), RNF_OUTPUT_SUFFIX),
-							SMTLIB_FILE_EXTENSION
+							Z3SMTUtils.SMTLIB_FILE_EXTENSION
 						)
 					),
 					smtEncodingRNF

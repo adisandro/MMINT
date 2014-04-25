@@ -43,6 +43,8 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.z3.Z3SMTIncrementalSolver;
+import edu.toronto.cs.se.mmint.z3.Z3SMTUtils;
 
 public class ProductLineHenshinTransformation extends LiftingHenshinTransformation {
 
@@ -52,15 +54,15 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	@Override
 	protected void transformWhenLifted(MAVOElement modelObjA) {
 
-		modelObjA.setFormulaId(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + SMTLIB_PREDICATE_END);
+		modelObjA.setFormulaId(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + Z3SMTUtils.SMTLIB_PREDICATE_END);
 	}
 
 	@Override
 	protected void createZ3ApplyFormula() {
 
 		createZ3ApplyFormulaMatchSetNIteration();
-		createZ3ApplyFormulaMatchSetIteration(modelObjsC, SMTLIB_APPLICABILITY_FUN_C, SMTLIB_AND, SMTLIB_TRUE);
-		createZ3ApplyFormulaMatchSetIteration(modelObjsD, SMTLIB_APPLICABILITY_FUN_D, SMTLIB_AND, SMTLIB_TRUE);
+		createZ3ApplyFormulaMatchSetIteration(modelObjsC, SMTLIB_APPLICABILITY_FUN_C, Z3SMTUtils.SMTLIB_AND, Z3SMTUtils.SMTLIB_TRUE);
+		createZ3ApplyFormulaMatchSetIteration(modelObjsD, SMTLIB_APPLICABILITY_FUN_D, Z3SMTUtils.SMTLIB_AND, Z3SMTUtils.SMTLIB_TRUE);
 	}
 
 	protected void updateLiterals() {
@@ -69,7 +71,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		for (MAVOElement modelObjCDN : modelObjsCDN) {
 			Integer modelObjCDNLiterals = modelObjsLiterals.get(modelObjCDN);
 			if (modelObjCDNLiterals == null) {
-				modelObjCDNLiterals = (modelObjCDN.getFormulaId().equals(SMTLIB_TRUE)) ? new Integer(0) : new Integer(1);
+				modelObjCDNLiterals = (modelObjCDN.getFormulaId().equals(Z3SMTUtils.SMTLIB_TRUE)) ? new Integer(0) : new Integer(1);
 				modelObjsLiterals.put(modelObjCDN, modelObjCDNLiterals);
 			}
 			countLiterals += modelObjCDNLiterals;
@@ -92,7 +94,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		}
 	}
 
-	private TransformationApplicabilityCondition checkApplicabilityConditions(Rule rule, Engine engine, EGraph graph) {
+	private TransformationApplicabilityCondition checkApplicabilityConditions(Rule rule, Engine engine, EGraph graph, Z3SMTIncrementalSolver z3IncSolver) {
 
 		Set<Node> nodesN = new HashSet<Node>();
 		Set<Node> nodesC = new HashSet<Node>();
@@ -131,7 +133,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 				getMatchedModelObjs(matchNj, nodesD, modelObjsD, modelObjsCDN);
 			}
 			// check apply formula
-			if (checkZ3ApplicabilityFormula()) {
+			if (checkZ3ApplicabilityFormula(z3IncSolver)) {
 				return new TransformationApplicabilityCondition(ruleCopyN, matchNi, true); // <NBar,C,D> lifted match
 			}
 		}
@@ -151,7 +153,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			Match match = matches.get(i);
 			getMatchedModelObjs(match, nodesC, modelObjsC, modelObjsCDN);
 			getMatchedModelObjs(match, nodesD, modelObjsD, modelObjsCDN);
-			if (checkZ3ApplicabilityFormula()) {
+			if (checkZ3ApplicabilityFormula(z3IncSolver)) {
 				return new TransformationApplicabilityCondition(ruleCopy, match, true); // <C,D> lifted match
 			}
 		}
@@ -160,11 +162,11 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	}
 
 	@Override
-	protected void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph) {
+	protected void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3SMTIncrementalSolver z3IncSolver) {
 
 		RuleApplication application = new RuleApplicationImpl(engine);
 		TransformationApplicabilityCondition condition;
-		while ((condition = checkApplicabilityConditions(rule, engine, graph)) != null) {
+		while ((condition = checkApplicabilityConditions(rule, engine, graph, z3IncSolver)) != null) {
 			application.setRule(condition.getMatchedRule());
 			application.setEGraph(graph);
 			// transform

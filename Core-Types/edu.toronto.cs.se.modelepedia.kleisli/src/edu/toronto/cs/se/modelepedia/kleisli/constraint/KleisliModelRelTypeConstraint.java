@@ -13,9 +13,9 @@ package edu.toronto.cs.se.modelepedia.kleisli.constraint;
 
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.JavaModelConstraint;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmint.reasoning.Z3SMTUtils.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.transformation.ModelRelTypeTransformationConstraint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 

@@ -22,12 +22,12 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.emf.validation.model.ConstraintStatus;
 
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorPlugin;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MidVisualIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.reasoning.Z3SMTUtils.MAVOTruthValue;
 
 /**
  * @generated

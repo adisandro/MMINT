@@ -38,7 +38,7 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
-import edu.toronto.cs.se.mmint.reasoning.Z3SMTSolver;
+import edu.toronto.cs.se.mmint.z3.Z3SMTUtils;
 import edu.toronto.cs.se.modelepedia.randommodel.Edge;
 import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
 import edu.toronto.cs.se.modelepedia.randommodel.Node;
@@ -115,8 +115,8 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_RandomModelGenerateLabeledGraph";
 	private static final String SMTLIB_CONCRETIZATION_MARKER1 = ";Concretizations-START";
 	private static final String SMTLIB_CONCRETIZATION_MARKER2 = ";Concretizations-END";
-	private static final String SMTLIB_CONCRETIZATION_PREAMBLE = Z3SMTSolver.SMTLIB_ASSERT + Z3SMTSolver.SMTLIB_OR + '\n';
-	private static final String SMTLIB_CONCRETIZATION_POSTAMBLE = Z3SMTSolver.SMTLIB_PREDICATE_END + Z3SMTSolver.SMTLIB_PREDICATE_END;
+	private static final String SMTLIB_CONCRETIZATION_PREAMBLE = Z3SMTUtils.SMTLIB_ASSERT + Z3SMTUtils.SMTLIB_OR + '\n';
+	private static final String SMTLIB_CONCRETIZATION_POSTAMBLE = Z3SMTUtils.SMTLIB_PREDICATE_END + Z3SMTUtils.SMTLIB_PREDICATE_END;
 
 	private int numConcretizations;
 	private int property;
@@ -134,7 +134,7 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 
 	public String getNamedElementSMTLIBEncoding(NamedElement namedElement) {
 
-		return Z3SMTSolver.SMTLIB_PREDICATE_START + namedElement.getType() + ' ' + namedElement.getName() + Z3SMTSolver.SMTLIB_PREDICATE_END;
+		return Z3SMTUtils.SMTLIB_PREDICATE_START + namedElement.getType() + ' ' + namedElement.getName() + Z3SMTUtils.SMTLIB_PREDICATE_END;
 	}
 
 	private void generateSMTLIBConcretization() {
@@ -143,7 +143,7 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 		Map<String, Boolean> wellFormednessConstraints = new HashMap<String, Boolean>();
 		do {
 			String mayModelObjSMTEncoding;
-			concretization = new StringBuilder(Z3SMTSolver.SMTLIB_AND);
+			concretization = new StringBuilder(Z3SMTUtils.SMTLIB_AND);
 			for (int j = 0; j < mayModelObjs.size(); j++) {
 				// analyze well formedness rules
 				NamedElement mayModelObj = (NamedElement) mayModelObjs.get(j);
@@ -175,14 +175,14 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 				}
 				// create encoding
 				if (!exists) {
-					concretization.append(Z3SMTSolver.SMTLIB_NOT);
+					concretization.append(Z3SMTUtils.SMTLIB_NOT);
 				}
 				concretization.append(mayModelObjSMTEncoding);
 				if (!exists) {
-					concretization.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+					concretization.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 				}
 			}
-			concretization.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+			concretization.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 		}
 		while (smtlibConcretizations.contains(concretization.toString()));
 		smtlibConcretizations.add(concretization.toString());
@@ -219,36 +219,36 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 //			// do this only once, outer AND
 //			if (allTrueByConstruction) {
 //				propertyBuilder.append('\n');
-//				propertyBuilder.append(Z3SMTSolver.SMTLIB_AND);
+//				propertyBuilder.append(Z3SMTUtils.SMTLIB_AND);
 //				allTrueByConstruction = false;
 //			}
-//			propertyBuilder.append(Z3SMTSolver.SMTLIB_OR);
+//			propertyBuilder.append(Z3SMTUtils.SMTLIB_OR);
 //			// no edges
-//			propertyBuilder.append(Z3SMTSolver.SMTLIB_AND);
+//			propertyBuilder.append(Z3SMTUtils.SMTLIB_AND);
 //			for (Edge outEdge : tgtNode2Edges) {
-//				propertyBuilder.append(Z3SMTSolver.SMTLIB_NOT);
+//				propertyBuilder.append(Z3SMTUtils.SMTLIB_NOT);
 //				propertyBuilder.append(getNamedElementSMTLIBEncoding(outEdge));
-//				propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+//				propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 //			}
-//			propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+//			propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 //			// one edge only
 //			for (Edge outEdgeI : tgtNode2Edges) {
-//				propertyBuilder.append(Z3SMTSolver.SMTLIB_AND);
+//				propertyBuilder.append(Z3SMTUtils.SMTLIB_AND);
 //				propertyBuilder.append(getNamedElementSMTLIBEncoding(outEdgeI));
 //				for (Edge outEdgeJ : tgtNode2Edges) {
 //					if (outEdgeI == outEdgeJ) {
 //						continue;
 //					}
-//					propertyBuilder.append(Z3SMTSolver.SMTLIB_NOT);
+//					propertyBuilder.append(Z3SMTUtils.SMTLIB_NOT);
 //					propertyBuilder.append(getNamedElementSMTLIBEncoding(outEdgeJ));
-//					propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+//					propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 //				}
-//				propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+//				propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 //			}
-//			propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+//			propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 //		}
 //		if (!allTrueByConstruction) {
-//			propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+//			propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 //		}
 //
 //		return allTrueByConstruction;
@@ -279,14 +279,14 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 //			}
 //			// do this only once, outer AND
 //			if (allTrueByConstruction) {
-//				propertyBuilder.insert(0, Z3SMTSolver.SMTLIB_AND + '\n');
+//				propertyBuilder.insert(0, Z3SMTUtils.SMTLIB_AND + '\n');
 //				allTrueByConstruction = false;
 //			}
 //		}
 //
 //		if (!allTrueByConstruction) {
 //			propertyBuilder.append('\n');
-//			propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+//			propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 //		}
 //		groundedProperty = propertyBuilder.toString();
 //	}
@@ -296,33 +296,33 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 		// property 5: at most one outgoing edge per node
 		// true by construction
 		if (node.getEdgesAsSrc().size() <= 1) {
-			propertyBuilder.append(Z3SMTSolver.SMTLIB_TRUE);
+			propertyBuilder.append(Z3SMTUtils.SMTLIB_TRUE);
 			return;
 		}
-		propertyBuilder.append(Z3SMTSolver.SMTLIB_OR);
+		propertyBuilder.append(Z3SMTUtils.SMTLIB_OR);
 		// no edges
-		propertyBuilder.append(Z3SMTSolver.SMTLIB_AND);
+		propertyBuilder.append(Z3SMTUtils.SMTLIB_AND);
 		for (Edge outEdge : node.getEdgesAsSrc()) {
-			propertyBuilder.append(Z3SMTSolver.SMTLIB_NOT);
+			propertyBuilder.append(Z3SMTUtils.SMTLIB_NOT);
 			propertyBuilder.append(getNamedElementSMTLIBEncoding(outEdge));
-			propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+			propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 		}
-		propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+		propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 		// one edge only
 		for (Edge outEdgeI : node.getEdgesAsSrc()) {
-			propertyBuilder.append(Z3SMTSolver.SMTLIB_AND);
+			propertyBuilder.append(Z3SMTUtils.SMTLIB_AND);
 			propertyBuilder.append(getNamedElementSMTLIBEncoding(outEdgeI));
 			for (Edge outEdgeJ : node.getEdgesAsSrc()) {
 				if (outEdgeI == outEdgeJ) {
 					continue;
 				}
-				propertyBuilder.append(Z3SMTSolver.SMTLIB_NOT);
+				propertyBuilder.append(Z3SMTUtils.SMTLIB_NOT);
 				propertyBuilder.append(getNamedElementSMTLIBEncoding(outEdgeJ));
-				propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+				propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 			}
-			propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+			propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 		}
-		propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+		propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 	}
 
 	private void groundProperty6(Node node, StringBuilder propertyBuilder) {
@@ -330,10 +330,10 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 		// property 6: not more than one edge from a node to another
 		// true by construction
 		if (node.getEdgesAsSrc().size() <= 1) {
-			propertyBuilder.append(Z3SMTSolver.SMTLIB_TRUE);
+			propertyBuilder.append(Z3SMTUtils.SMTLIB_TRUE);
 			return;
 		}
-		propertyBuilder.append(Z3SMTSolver.SMTLIB_AND);
+		propertyBuilder.append(Z3SMTUtils.SMTLIB_AND);
 		// construct map of target nodes
 		Map<Node, List<Edge>> tgtNode2EdgesMap = new HashMap<Node, List<Edge>>();
 		for (Edge outEdge : node.getEdgesAsSrc()) {
@@ -351,35 +351,35 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 		for (List<Edge> tgtNode2Edges : tgtNode2EdgesMap.values()) {
 			// true by construction
 			if (tgtNode2Edges.size() <= 1) {
-				propertyBuilder.append(Z3SMTSolver.SMTLIB_TRUE);
+				propertyBuilder.append(Z3SMTUtils.SMTLIB_TRUE);
 				continue;
 			}
-			propertyBuilder.append(Z3SMTSolver.SMTLIB_OR);
+			propertyBuilder.append(Z3SMTUtils.SMTLIB_OR);
 			// no edges
-			propertyBuilder.append(Z3SMTSolver.SMTLIB_AND);
+			propertyBuilder.append(Z3SMTUtils.SMTLIB_AND);
 			for (Edge outEdge : tgtNode2Edges) {
-				propertyBuilder.append(Z3SMTSolver.SMTLIB_NOT);
+				propertyBuilder.append(Z3SMTUtils.SMTLIB_NOT);
 				propertyBuilder.append(getNamedElementSMTLIBEncoding(outEdge));
-				propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+				propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 			}
-			propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+			propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 			// one edge only
 			for (Edge outEdgeI : tgtNode2Edges) {
-				propertyBuilder.append(Z3SMTSolver.SMTLIB_AND);
+				propertyBuilder.append(Z3SMTUtils.SMTLIB_AND);
 				propertyBuilder.append(getNamedElementSMTLIBEncoding(outEdgeI));
 				for (Edge outEdgeJ : tgtNode2Edges) {
 					if (outEdgeI == outEdgeJ) {
 						continue;
 					}
-					propertyBuilder.append(Z3SMTSolver.SMTLIB_NOT);
+					propertyBuilder.append(Z3SMTUtils.SMTLIB_NOT);
 					propertyBuilder.append(getNamedElementSMTLIBEncoding(outEdgeJ));
-					propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+					propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 				}
-				propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+				propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 			}
-			propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+			propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 		}
-		propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+		propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 	}
 
 	private void groundProperty8(Node node, StringBuilder propertyBuilder) {
@@ -389,15 +389,15 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 		for (Edge outEdge : node.getEdgesAsSrc()) {
 			// same src and tgt
 			if (outEdge.getTgt() == node) {
-				propertyBuilder.append(Z3SMTSolver.SMTLIB_NOT);
+				propertyBuilder.append(Z3SMTUtils.SMTLIB_NOT);
 				propertyBuilder.append(getNamedElementSMTLIBEncoding(outEdge));
-				propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+				propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 				noSelfLoops = false;
 			}
 		}
 		// true by construction
 		if (noSelfLoops) {
-			propertyBuilder.append(Z3SMTSolver.SMTLIB_TRUE);
+			propertyBuilder.append(Z3SMTUtils.SMTLIB_TRUE);
 		}
 	}
 
@@ -406,18 +406,18 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 		// property 10: at least one incoming or outgoing edge per node
 		// false by construction
 		if ((node.getEdgesAsSrc().size() + node.getEdgesAsTgt().size()) < 1) {
-			propertyBuilder.append(Z3SMTSolver.SMTLIB_FALSE);
+			propertyBuilder.append(Z3SMTUtils.SMTLIB_FALSE);
 			return;
 		}
 		// at least one edge
-		propertyBuilder.append(Z3SMTSolver.SMTLIB_OR);
+		propertyBuilder.append(Z3SMTUtils.SMTLIB_OR);
 		for (Edge outEdge : node.getEdgesAsSrc()) {
 			propertyBuilder.append(getNamedElementSMTLIBEncoding(outEdge));
 		}
 		for (Edge inEdge : node.getEdgesAsTgt()) {
 			propertyBuilder.append(getNamedElementSMTLIBEncoding(inEdge));
 		}
-		propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+		propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 	}
 
 	private void generateSMTLIBGroundedProperty(EList<Node> randommodelNodes) {
@@ -428,7 +428,7 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 		}
 
 		StringBuilder propertyBuilder = new StringBuilder();
-		propertyBuilder.append(Z3SMTSolver.SMTLIB_AND);
+		propertyBuilder.append(Z3SMTUtils.SMTLIB_AND);
 		for (Node node : randommodelNodes) {
 			propertyBuilder.append('\n');
 
@@ -449,7 +449,7 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 		}
 
 		propertyBuilder.append('\n');
-		propertyBuilder.append(Z3SMTSolver.SMTLIB_PREDICATE_END);
+		propertyBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 		groundedProperty = propertyBuilder.toString();
 	}
 

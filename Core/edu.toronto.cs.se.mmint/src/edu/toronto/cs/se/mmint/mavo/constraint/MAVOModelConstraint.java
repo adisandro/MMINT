@@ -14,7 +14,7 @@ package edu.toronto.cs.se.mmint.mavo.constraint;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.JavaModelConstraint;
-import edu.toronto.cs.se.mmint.reasoning.Z3SMTUtils.MAVOTruthValue;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 
 public class MAVOModelConstraint extends JavaModelConstraint {
 

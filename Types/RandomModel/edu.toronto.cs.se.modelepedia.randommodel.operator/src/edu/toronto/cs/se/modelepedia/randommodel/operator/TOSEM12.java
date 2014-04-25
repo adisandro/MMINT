@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -27,12 +27,16 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.reasoning.Z3SMTSolver;
-import edu.toronto.cs.se.mmint.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
+import edu.toronto.cs.se.mmint.z3.Z3SMTIncrementalSolver;
+import edu.toronto.cs.se.mmint.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
+import edu.toronto.cs.se.mmint.z3.Z3SMTSolver;
+import edu.toronto.cs.se.mmint.z3.Z3SMTUtils;
+import edu.toronto.cs.se.mmint.z3.Z3SMTUtils.Z3BoolResult;
+import edu.toronto.cs.se.mmint.z3.Z3SMTUtils.Z3ModelResult;
 import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
 
-public class TOSEM12 extends OperatorImpl implements Z3SMTSolver {
+public class TOSEM12 extends OperatorImpl {
 
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_RandomModelToSMTLIB";
 	private static final String PROPERTY_OUT_TIMEMAVO = "timeMAVO";
@@ -87,23 +91,23 @@ public class TOSEM12 extends OperatorImpl implements Z3SMTSolver {
 
 	private void doMAVOPropertyCheck(String smtlibMavoEncoding, String property) {
 
-		int z3Result;
-		String encoding;
+		String smtEncoding;
 
 		long startTime = System.nanoTime();
-		encoding = smtlibMavoEncoding + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END;
-		z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(encoding);
-		if (z3Result != 1) {
+		Z3SMTSolver z3Solver = new Z3SMTSolver();
+		smtEncoding = smtlibMavoEncoding + Z3SMTUtils.SMTLIB_ASSERT + property + Z3SMTUtils.SMTLIB_PREDICATE_END;
+		Z3BoolResult z3BoolResult = z3Solver.checkSat(smtEncoding);
+		if (z3BoolResult != Z3BoolResult.SAT) {
 			isMAVOMaybe = false;
 		}
-		flags.append(z3Result);
+		flags.append(z3BoolResult);
 		flags.append(',');
-		encoding = smtlibMavoEncoding + SMTLIB_ASSERT + SMTLIB_NOT + property + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
-		z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(encoding);
-		if (z3Result != 1) {
+		smtEncoding = smtlibMavoEncoding + Z3SMTUtils.SMTLIB_ASSERT + Z3SMTUtils.SMTLIB_NOT + property + Z3SMTUtils.SMTLIB_PREDICATE_END + Z3SMTUtils.SMTLIB_PREDICATE_END;
+		z3BoolResult = z3Solver.checkSat(smtEncoding);
+		if (z3BoolResult != Z3BoolResult.SAT) {
 			isMAVOMaybe = false;
 		}
-		flags.append(z3Result);
+		flags.append(z3BoolResult);
 		flags.append(',');
 		long endTime = System.nanoTime();
 
@@ -112,22 +116,23 @@ public class TOSEM12 extends OperatorImpl implements Z3SMTSolver {
 
 	private void doClassicalPropertyCheck(String smtlibEncoding, String property, Set<String> smtlibConcretizations) {
 
-		int z3Result, firstZ3Result = 0;
-		String encoding;
+		Z3BoolResult z3BoolResult, firstZ3BoolResult = Z3BoolResult.UNKNOWN;
+		String smtEncoding;
 		long endTime = 0;
 
 		long startTime = System.nanoTime();
+		Z3SMTSolver z3Solver = new Z3SMTSolver();
 		Iterator<String> iter = smtlibConcretizations.iterator();
 		while (iter.hasNext()) {
 			String concretization = iter.next();
-			encoding = smtlibEncoding + SMTLIB_ASSERT + concretization + SMTLIB_PREDICATE_END + '\n' + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END;
-			z3Result = CLibrary.OPERATOR_INSTANCE.checkSat(encoding);
-			flags.append(z3Result);
+			smtEncoding = smtlibEncoding + Z3SMTUtils.SMTLIB_ASSERT + concretization + Z3SMTUtils.SMTLIB_PREDICATE_END + '\n' + Z3SMTUtils.SMTLIB_ASSERT + property + Z3SMTUtils.SMTLIB_PREDICATE_END;
+			z3BoolResult = z3Solver.checkSat(smtEncoding);
+			flags.append(z3BoolResult);
 			flags.append(',');
-			if (firstZ3Result == 0) {
-				firstZ3Result = z3Result;
+			if (firstZ3BoolResult == Z3BoolResult.UNKNOWN) {
+				firstZ3BoolResult = z3BoolResult;
 			}
-			if (z3Result == 0 || (z3Result != firstZ3Result)) {
+			if (z3BoolResult == Z3BoolResult.UNKNOWN || (z3BoolResult != firstZ3BoolResult)) {
 				endTime = System.nanoTime();
 				break;
 			}
@@ -141,18 +146,18 @@ public class TOSEM12 extends OperatorImpl implements Z3SMTSolver {
 
 	private void parseZ3Elements(String z3Model, String z3ElemType, int z3MaxElems, Map<String, Boolean> z3ModelElems, Set<String> z3MayModelElems) {
 
-		int z3ElemsIndex = z3Model.indexOf(Z3_MODEL_NEWLINE + z3ElemType + Z3_MODEL_SEPARATOR);
+		int z3ElemsIndex = z3Model.indexOf(Z3SMTUtils.Z3_MODEL_NEWLINE + z3ElemType + Z3SMTUtils.Z3_MODEL_SEPARATOR);
 		if (z3ElemsIndex != -1) {
-			int begin = z3Model.indexOf(Z3_MODEL_FUNCTION_START, z3ElemsIndex) + 1;
-			int end = z3Model.indexOf(Z3_MODEL_FUNCTION_END, z3ElemsIndex);
+			int begin = z3Model.indexOf(Z3SMTUtils.Z3_MODEL_FUNCTION_START, z3ElemsIndex) + 1;
+			int end = z3Model.indexOf(Z3SMTUtils.Z3_MODEL_FUNCTION_END, z3ElemsIndex);
 			String z3ElemsString = z3Model.substring(begin, end).trim();
-			int newLine = z3ElemsString.indexOf(Z3_MODEL_NEWLINE);
+			int newLine = z3ElemsString.indexOf(Z3SMTUtils.Z3_MODEL_NEWLINE);
 			int z3ElemArg;
 			boolean z3ModelElemValue;
 			while (!z3ElemsString.isEmpty()) {
-				String[] z3ElemFunc = z3ElemsString.substring(0, newLine).split(Z3_MODEL_DEFINITION);
+				String[] z3ElemFunc = z3ElemsString.substring(0, newLine).split(Z3SMTUtils.Z3_MODEL_DEFINITION);
 				z3ElemsString = z3ElemsString.substring(newLine).trim();
-				newLine = z3ElemsString.indexOf(Z3_MODEL_NEWLINE);
+				newLine = z3ElemsString.indexOf(Z3SMTUtils.Z3_MODEL_NEWLINE);
 				if (newLine == -1) {
 					newLine = z3ElemsString.length();
 				}
@@ -164,7 +169,7 @@ public class TOSEM12 extends OperatorImpl implements Z3SMTSolver {
 					Iterator<String> z3MayModelElemsIter = z3MayModelElems.iterator();
 					while (z3MayModelElemsIter.hasNext()) {
 						String z3MayModelElem = z3MayModelElemsIter.next();
-						if (!z3MayModelElem.startsWith(SMTLIB_PREDICATE_START + z3ElemType) || z3ModelElems.containsKey(z3MayModelElem)) {
+						if (!z3MayModelElem.startsWith(Z3SMTUtils.SMTLIB_PREDICATE_START + z3ElemType) || z3ModelElems.containsKey(z3MayModelElem)) {
 							continue;
 						}
 						z3ModelElems.put(z3MayModelElem, new Boolean(z3ModelElemValue));
@@ -174,7 +179,7 @@ public class TOSEM12 extends OperatorImpl implements Z3SMTSolver {
 				if (z3ElemArg == 0 || z3ElemArg > z3MaxElems) {
 					continue;
 				}
-				String z3ModelElemName = SMTLIB_PREDICATE_START + z3ElemType + ' ' + z3ElemArg + SMTLIB_PREDICATE_END;
+				String z3ModelElemName = Z3SMTUtils.SMTLIB_PREDICATE_START + z3ElemType + ' ' + z3ElemArg + Z3SMTUtils.SMTLIB_PREDICATE_END;
 				if (!z3MayModelElems.contains(z3ModelElemName)) {
 					continue;
 				}
@@ -188,17 +193,17 @@ public class TOSEM12 extends OperatorImpl implements Z3SMTSolver {
 		// nodes
 		Map<String, Boolean> z3ModelElems = new HashMap<String, Boolean>();
 		String z3ElemType = RandomModelPackage.eINSTANCE.getNode().getName();
-		String z3ElemString = "numberOf" + z3ElemType + 's' + Z3_MODEL_DEFINITION;
+		String z3ElemString = "numberOf" + z3ElemType + 's' + Z3SMTUtils.Z3_MODEL_DEFINITION;
 		int begin = z3Model.indexOf(z3ElemString) + z3ElemString.length();
-		int end = z3Model.indexOf(Z3_MODEL_NEWLINE, begin);
+		int end = z3Model.indexOf(Z3SMTUtils.Z3_MODEL_NEWLINE, begin);
 		int z3MaxElems = Integer.parseInt(z3Model.substring(begin, end));
 		parseZ3Elements(z3Model, z3ElemType.toLowerCase(), z3MaxElems, z3ModelElems, z3MayModelElems);
 
 		// edges
 		z3ElemType = RandomModelPackage.eINSTANCE.getEdge().getName();
-		z3ElemString = "numberOf" + z3ElemType + 's' + Z3_MODEL_DEFINITION;
+		z3ElemString = "numberOf" + z3ElemType + 's' + Z3SMTUtils.Z3_MODEL_DEFINITION;
 		begin = z3Model.indexOf(z3ElemString) + z3ElemString.length();
-		end = z3Model.indexOf(Z3_MODEL_NEWLINE, begin);
+		end = z3Model.indexOf(Z3SMTUtils.Z3_MODEL_NEWLINE, begin);
 		z3MaxElems = Integer.parseInt(z3Model.substring(begin, end));
 		parseZ3Elements(z3Model, z3ElemType.toLowerCase(), z3MaxElems, z3ModelElems, z3MayModelElems);
 
@@ -227,19 +232,19 @@ public class TOSEM12 extends OperatorImpl implements Z3SMTSolver {
 
 	private void doMAVOBackbonePropertyCheck(String smtlibMavoEncoding, String property, Set<String> z3MayModelElems) throws MMINTException {
 
-		Z3IncResult z3IncResult;
-		String encoding;
+		String smtEncoding;
 		Set<String> outOfBackboneZ3ModelElems = new HashSet<String>();
 
 		long startTime = System.nanoTime();
-		encoding = smtlibMavoEncoding + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END;
-		z3IncResult = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(encoding);
-		flags.append(z3IncResult.flag);
+		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
+		smtEncoding = smtlibMavoEncoding + Z3SMTUtils.SMTLIB_ASSERT + property + Z3SMTUtils.SMTLIB_PREDICATE_END;
+		Z3ModelResult z3ModelResult = z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
+		flags.append(z3ModelResult.getZ3BoolResult());
 		flags.append(',');
-		if (z3IncResult.flag != 1) {
+		if (z3ModelResult.getZ3BoolResult() != Z3BoolResult.SAT) {
 			throw new MMINTException("Property checking for MAVO model was SAT-SAT but the incremental baseline now is UNSAT.");
 		}
-		Map<String, Boolean> initialZ3ModelElems = parseZ3Model(z3IncResult.model.getString(0), z3MayModelElems);
+		Map<String, Boolean> initialZ3ModelElems = parseZ3Model(z3ModelResult.getZ3Model(), z3MayModelElems);
 		Map<String, Boolean> currentZ3ModelElems;
 		Iterator<String> z3MayModelElemsIter = z3MayModelElems.iterator();
 		while (z3MayModelElemsIter.hasNext()) {
@@ -247,30 +252,29 @@ public class TOSEM12 extends OperatorImpl implements Z3SMTSolver {
 			if (outOfBackboneZ3ModelElems.contains(z3MayModelElem)) { // optimization
 				continue;
 			}
-			encoding = SMTLIB_ASSERT + z3MayModelElem + SMTLIB_PREDICATE_END;
-			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, encoding, 1, 0);
-			flags.append(z3IncResult.flag);
+			smtEncoding = Z3SMTUtils.SMTLIB_ASSERT + z3MayModelElem + Z3SMTUtils.SMTLIB_PREDICATE_END;
+			z3ModelResult = z3IncSolver.checkSatAndGetModel(smtEncoding, Z3IncrementalBehavior.POP);
+			flags.append(z3ModelResult.getZ3BoolResult());
 			flags.append(',');
-			if (z3IncResult.flag != 1) { // UNSAT (here z3MayModelElem value should be == to its value in the initial model)
+			if (z3ModelResult.getZ3BoolResult() != Z3BoolResult.SAT) { // UNSAT (here z3MayModelElem value should be == to its value in the initial model)
 				continue;
 			}
-			currentZ3ModelElems = parseZ3Model(z3IncResult.model.getString(0), z3MayModelElems);
+			currentZ3ModelElems = parseZ3Model(z3ModelResult.getZ3Model(), z3MayModelElems);
 			optimizeBackboneElements(initialZ3ModelElems, currentZ3ModelElems, outOfBackboneZ3ModelElems);
 			initialZ3ModelElems.get(z3MayModelElem);
 			if (optimizeBackboneElement(initialZ3ModelElems, z3MayModelElem, currentZ3ModelElems.get(z3MayModelElem), outOfBackboneZ3ModelElems)) { // z3MayModelElem value has already changed
 				continue;
 			}
-			encoding = SMTLIB_ASSERT + SMTLIB_NOT + z3MayModelElem + SMTLIB_PREDICATE_END + SMTLIB_PREDICATE_END;
-			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, encoding, 1, 0);
-			flags.append(z3IncResult.flag);
+			smtEncoding = Z3SMTUtils.SMTLIB_ASSERT + Z3SMTUtils.SMTLIB_NOT + z3MayModelElem + Z3SMTUtils.SMTLIB_PREDICATE_END + Z3SMTUtils.SMTLIB_PREDICATE_END;
+			z3ModelResult = z3IncSolver.checkSatAndGetModel(smtEncoding, Z3IncrementalBehavior.POP);
+			flags.append(z3ModelResult.getZ3BoolResult());
 			flags.append(',');
-			if (z3IncResult.flag != 1) { // UNSAT
+			if (z3ModelResult.getZ3BoolResult() != Z3BoolResult.SAT) { // UNSAT
 				continue;
 			}
-			currentZ3ModelElems = parseZ3Model(z3IncResult.model.getString(0), z3MayModelElems);
+			currentZ3ModelElems = parseZ3Model(z3ModelResult.getZ3Model(), z3MayModelElems);
 			optimizeBackboneElements(initialZ3ModelElems, currentZ3ModelElems, outOfBackboneZ3ModelElems);
 		}
-		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3IncResult);
 		long endTime = System.nanoTime();
 
 		timeMAVOBackbone = endTime - startTime;
@@ -278,38 +282,37 @@ public class TOSEM12 extends OperatorImpl implements Z3SMTSolver {
 
 	private void doMAVOAllsatPropertyCheck(String smtlibMavoEncoding, String property, Set<String> z3MayModelElems) {
 
-		Z3IncResult z3IncResult;
-		String encoding;
+		String smtEncoding;
 
 		long startTime = System.nanoTime();
-		encoding = smtlibMavoEncoding + SMTLIB_ASSERT + property + SMTLIB_PREDICATE_END;
-		z3IncResult = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(encoding);
-		flags.append(z3IncResult.flag);
+		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
+		smtEncoding = smtlibMavoEncoding + Z3SMTUtils.SMTLIB_ASSERT + property + Z3SMTUtils.SMTLIB_PREDICATE_END;
+		Z3ModelResult z3ModelResult = z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
+		flags.append(z3ModelResult.getZ3BoolResult());
 		flags.append(',');
-		while (z3IncResult.flag == 1) {
-			Map<String, Boolean> z3ModelElems = parseZ3Model(z3IncResult.model.getString(0), z3MayModelElems);
+		while (z3ModelResult.getZ3BoolResult() == Z3BoolResult.SAT) {
+			Map<String, Boolean> z3ModelElems = parseZ3Model(z3ModelResult.getZ3Model(), z3MayModelElems);
 			StringBuilder encodingBuilder = new StringBuilder();
-			encodingBuilder.append(SMTLIB_ASSERT);
-			encodingBuilder.append(SMTLIB_OR);
+			encodingBuilder.append(Z3SMTUtils.SMTLIB_ASSERT);
+			encodingBuilder.append(Z3SMTUtils.SMTLIB_OR);
 			for (Map.Entry<String, Boolean> z3ModelElem : z3ModelElems.entrySet()) {
 				String z3ModelElemName = z3ModelElem.getKey();
 				boolean z3ModelElemValue = z3ModelElem.getValue();
 				if (z3ModelElemValue) {
-					encodingBuilder.append(SMTLIB_NOT);
+					encodingBuilder.append(Z3SMTUtils.SMTLIB_NOT);
 					encodingBuilder.append(z3ModelElemName);
-					encodingBuilder.append(SMTLIB_PREDICATE_END);
+					encodingBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 				}
 				else {
 					encodingBuilder.append(z3ModelElemName);
 				}
 			}
-			encodingBuilder.append(SMTLIB_PREDICATE_END);
-			encodingBuilder.append(SMTLIB_PREDICATE_END);
-			CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3IncResult, encodingBuilder.toString(), 0, 0);
-			flags.append(z3IncResult.flag);
+			encodingBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
+			encodingBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
+			z3ModelResult = z3IncSolver.checkSatAndGetModel(encodingBuilder.toString(), Z3IncrementalBehavior.NORMAL);
+			flags.append(z3ModelResult.getZ3BoolResult());
 			flags.append(',');
 		}
-		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3IncResult);
 		long endTime = System.nanoTime();
 
 		timeMAVOAllsat = endTime - startTime;

@@ -7,3 +7,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Require-Bundle: edu.toronto.cs.se.mmint
+Export-Package: edu.toronto.cs.se.mmint.z3

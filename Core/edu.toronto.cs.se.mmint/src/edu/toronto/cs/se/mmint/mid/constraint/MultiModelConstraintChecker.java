@@ -89,11 +89,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.reasoning.EcoreMAVOToSMTLIB;
-import edu.toronto.cs.se.mmint.reasoning.Z3SMTSolver;
-import edu.toronto.cs.se.mmint.reasoning.Z3SMTUtils;
-import edu.toronto.cs.se.mmint.reasoning.Z3SMTSolver.CLibrary;
-import edu.toronto.cs.se.mmint.reasoning.Z3SMTSolver.CLibrary.Z3IncResult;
-import edu.toronto.cs.se.mmint.reasoning.Z3SMTUtils.MAVOTruthValue;
 import fr.inria.atlanmod.emftocsp.ICspSolver;
 import fr.inria.atlanmod.emftocsp.IModelProperty;
 import fr.inria.atlanmod.emftocsp.IModelReader;
@@ -123,6 +118,43 @@ public class MultiModelConstraintChecker {
 	private final static String EMFTOCSP_BUNDLE = "fr.inria.atlanmod.emftocsp";
 	private final static String EMFTOCSP_TEMPPROJECT = "edu.toronto.cs.se.mmint.emftocsp";
 	private final static String EMFTOCSP_TEMPFOLDER = "consistency";
+
+	public enum MAVOTruthValue {
+
+		TRUE, FALSE, MAYBE, ERROR;
+
+		public boolean toBoolean() {
+
+			switch (this) {
+				case TRUE:
+				case MAYBE:
+					return true;
+				case FALSE:
+				case ERROR:
+				default:
+					return false;
+			}
+		}
+
+		public static MAVOTruthValue toMAVOTruthValue(boolean truthValue) {
+
+			return (truthValue) ? TRUE : FALSE;
+		}
+
+		public static MAVOTruthValue toMAVOTruthValue(boolean propertyTruthValue, boolean notPropertyTruthValue) {
+	
+			if (propertyTruthValue == true && notPropertyTruthValue == false) {
+				return TRUE;
+			}
+			if (propertyTruthValue == false && notPropertyTruthValue == true) {
+				return FALSE;
+			}
+			if (propertyTruthValue == true && notPropertyTruthValue == true) {
+				return MAYBE;
+			}
+			return ERROR;
+		}
+	}
 
 	/**
 	 * Checks if an extendible element is a TYPES element or an INSTANCES
@@ -673,33 +705,34 @@ linkTypes:
 		}
 	}
 
-	private static MAVOTruthValue checkSMTLIBConstraint(Model model, String smtProperty) {
-
-		if (!MAVOUtils.isMAVOModel(model)) {
-			return MAVOTruthValue.FALSE;
-		}
-
-		EcoreMAVOToSMTLIB ecore2smt = (EcoreMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(ECOREMAVOTOSMTLIB_OPERATOR_URI);
-		EList<Model> actualParameters = new BasicEList<Model>();
-		actualParameters.add(model);
-		try {
-			ecore2smt.execute(actualParameters);
-		}
-		catch (Exception e) {
-			return MAVOTruthValue.FALSE;
-		}
-		ecore2smt.cleanup();
-
-		// tri-state logic
-		Z3IncResult z3Result = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(ecore2smt.getListener().getSMTEncoding());
-		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3Result, Z3SMTUtils.assertion(smtProperty), 1, 0);
-		boolean propertyTruthValue = z3Result.flag == Z3SMTSolver.Z3_SAT;
-		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3Result, Z3SMTUtils.assertion(Z3SMTUtils.not(smtProperty)), 1, 0);
-		boolean notPropertyTruthValue = z3Result.flag == Z3SMTSolver.Z3_SAT;
-		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3Result);
-
-		return MAVOTruthValue.toMAVOTruthValue(propertyTruthValue, notPropertyTruthValue);
-	}
+	//TODO MMINT[CONSTRAINT] write extension point for constraint evaluation engine, move this and ecore2smt into z3 project
+//	private static MAVOTruthValue checkSMTLIBConstraint(Model model, String smtProperty) {
+//
+//		if (!MAVOUtils.isMAVOModel(model)) {
+//			return MAVOTruthValue.FALSE;
+//		}
+//
+//		EcoreMAVOToSMTLIB ecore2smt = (EcoreMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(ECOREMAVOTOSMTLIB_OPERATOR_URI);
+//		EList<Model> actualParameters = new BasicEList<Model>();
+//		actualParameters.add(model);
+//		try {
+//			ecore2smt.execute(actualParameters);
+//		}
+//		catch (Exception e) {
+//			return MAVOTruthValue.FALSE;
+//		}
+//		ecore2smt.cleanup();
+//
+//		// tri-state logic
+//		Z3IncResult z3Result = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(ecore2smt.getListener().getSMTEncoding());
+//		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3Result, Z3SMTUtils.assertion(smtProperty), 1, 0);
+//		boolean propertyTruthValue = z3Result.flag == Z3SMTSolver.Z3_SAT;
+//		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3Result, Z3SMTUtils.assertion(Z3SMTUtils.not(smtProperty)), 1, 0);
+//		boolean notPropertyTruthValue = z3Result.flag == Z3SMTSolver.Z3_SAT;
+//		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3Result);
+//
+//		return MAVOTruthValue.toMAVOTruthValue(propertyTruthValue, notPropertyTruthValue);
+//	}
 
 	/**
 	 * Checks if a constraint is satisfied on an extendible element (only models
@@ -730,7 +763,7 @@ linkTypes:
 					((Model) constraint.eContainer()).getUri();
 				return checkJAVAConstraint((Model) element, modelTypeUri, constraint.getImplementation());
 			case SMTLIB:
-				return checkSMTLIBConstraint((Model) element, constraint.getImplementation());
+//				return checkSMTLIBConstraint((Model) element, constraint.getImplementation());
 			default:
 				return MAVOTruthValue.FALSE;
 		}
