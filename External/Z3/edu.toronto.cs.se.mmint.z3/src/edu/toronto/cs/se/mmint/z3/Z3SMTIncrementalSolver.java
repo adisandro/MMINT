@@ -47,20 +47,12 @@ public class Z3SMTIncrementalSolver {
 			for (int i = 0; i < sorts.length; i++) {
 				sortSymbols[i] = sorts[i].getName();
 			}
-			FuncDecl[] consts = model.getConstDecls();
-			FuncDecl[] funcs = model.getFuncDecls();
-			FuncDecl[] constsFuncs = new FuncDecl[consts.length+funcs.length];
-			Symbol[] constFuncSymbols = new Symbol[consts.length+funcs.length];
-			int i;
-			for (i = 0; i < consts.length; i++) {
-				constsFuncs[i] = consts[i];
-				constFuncSymbols[i] = consts[i].getName();
+			FuncDecl[] decls = model.getDecls();
+			Symbol[] declSymbols = new Symbol[decls.length];
+			for (int i = 0; i < decls.length; i++) {
+				declSymbols[i] = decls[i].getName();
 			}
-			for (int j = 0; j < funcs.length; j++) {
-				constsFuncs[i+j] = funcs[j];
-				constFuncSymbols[i+j] = funcs[j].getName();
-			}
-			expr = context.parseSMTLIB2String(smtEncoding, sortSymbols, sorts, constFuncSymbols, constsFuncs);
+			expr = context.parseSMTLIB2String(smtEncoding, sortSymbols, sorts, declSymbols, decls);
 		}
 		else {
 			// parse baseline encoding

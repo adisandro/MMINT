@@ -230,7 +230,7 @@ public class FASE14 extends RE13 {
 		doAnalysis(z3IncSolver);
 		if (timeTargetsEnabled) {
 			doTargets(z3IncSolver);
-			if (targets.equals(Z3BoolResult.SAT)) {
+			if (targets == Z3BoolResult.SAT) {
 				doRNF(z3IncSolver);
 			}
 		}

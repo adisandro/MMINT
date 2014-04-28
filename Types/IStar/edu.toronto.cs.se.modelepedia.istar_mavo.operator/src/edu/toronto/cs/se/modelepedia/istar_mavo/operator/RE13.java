@@ -91,7 +91,7 @@ public class RE13 extends OperatorImpl {
 	private long timeModel;
 	private long timeAnalysis;
 	private long timeTargets;
-	protected String targets;
+	protected Z3BoolResult targets;
 
 	protected void readProperties(Properties properties) throws Exception {
 
@@ -105,7 +105,7 @@ public class RE13 extends OperatorImpl {
 		timeModel = -1;
 		timeAnalysis = -1;
 		timeTargets = -1;
-		targets = "0";
+		targets = Z3BoolResult.UNKNOWN;
 	}
 
 	protected void init() {
@@ -125,7 +125,7 @@ public class RE13 extends OperatorImpl {
 		properties.setProperty(PROPERTY_OUT_TIMEMODEL, String.valueOf(timeModel));
 		properties.setProperty(PROPERTY_OUT_TIMEANALYSIS, String.valueOf(timeAnalysis));
 		properties.setProperty(PROPERTY_OUT_TIMETARGETS, String.valueOf(timeTargets));
-		properties.setProperty(PROPERTY_OUT_TARGETS, targets);
+		properties.setProperty(PROPERTY_OUT_TARGETS, targets.toString());
 		String labels;
 		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
 			Intention intention = entry.getValue();
@@ -304,7 +304,7 @@ nextNodeFunction:
 				Z3ModelResult z3ModelResult = z3IncSolver.checkSatAndGetModel(labelProperty, Z3IncrementalBehavior.POP);
 				if (z3ModelResult.getZ3BoolResult() == Z3BoolResult.SAT) {
 					intention.eSet(label.getModelFeature(), true);
-					optimizeAnalysis(z3ModelResult.getZ3Model());
+					//optimizeAnalysis(z3ModelResult.getZ3Model());
 				}
 			}
 		}
@@ -318,7 +318,7 @@ nextNodeFunction:
 
 		String property = Z3SMTUtils.SMTLIB_ASSERT + targetsProperty + Z3SMTUtils.SMTLIB_PREDICATE_END;
 		Z3ModelResult z3ModelResult = z3IncSolver.checkSatAndGetModel(property, Z3IncrementalBehavior.NORMAL);
-		targets = z3ModelResult.getZ3BoolResult().toString();
+		targets = z3ModelResult.getZ3BoolResult();
 
 		timeTargets = System.nanoTime() - startTime;
 	}
