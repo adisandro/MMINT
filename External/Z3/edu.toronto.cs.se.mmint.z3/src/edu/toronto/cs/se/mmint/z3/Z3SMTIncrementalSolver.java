@@ -123,6 +123,11 @@ public class Z3SMTIncrementalSolver {
 		}
 	}
 
+	public Model getCurrentModel() {
+
+		return model;
+	}
+
 	public void reset() {
 
 		context = null;

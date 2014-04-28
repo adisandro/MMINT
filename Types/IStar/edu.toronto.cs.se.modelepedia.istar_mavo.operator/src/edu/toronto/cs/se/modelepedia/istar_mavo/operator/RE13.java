@@ -20,6 +20,11 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import com.microsoft.z3.FuncDecl;
+import com.microsoft.z3.FuncInterp;
+import com.microsoft.z3.Z3Exception;
+import com.microsoft.z3.FuncInterp.Entry;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -247,6 +252,32 @@ nextNodeFunction:
 		return z3ModelNodes;
 	}
 
+	private Map<String, Integer> parseZ3ModelNodes2(Z3SMTIncrementalSolver z3IncSolver) {
+
+		Map<String, Integer> z3ModelNodes = new HashMap<String, Integer>();
+		try {
+			com.microsoft.z3.Model model = z3IncSolver.getCurrentModel();
+			if (model == null) {
+				return z3ModelNodes;
+			}
+			String nodeFunction = "node" + Z3SMTUtils.Z3_MODEL_SEPARATOR;
+			for (FuncDecl f : model.getFuncDecls()) {
+				if (f.getName().toString().contains(nodeFunction)) {
+					FuncInterp fi = model.getFuncInterp(f);
+					for (Entry e : fi.getEntries()) {
+						System.err.println(e);
+					}
+					System.err.println(fi.getElse());
+				}
+			}
+		}
+		catch (Z3Exception e) {
+			e.printStackTrace();
+		}
+
+		return z3ModelNodes;
+	}
+
 	private void optimizeAnalysis(String z3Model) {
 
 		Map<String, Integer> z3ModelNodes = parseZ3ModelNodes(z3Model);
@@ -257,6 +288,11 @@ nextNodeFunction:
 				optimizeLabelFunction(z3Model, z3ModelNodes, label, i);
 			}
 		}
+	}
+
+	private void optimizeAnalysis2(Z3SMTIncrementalSolver z3IncSolver) {
+
+		Map<String, Integer> z3ModelNodes = parseZ3ModelNodes2(z3IncSolver);
 	}
 
 	protected void doAnalysis(Z3SMTIncrementalSolver z3IncSolver) {
@@ -305,6 +341,7 @@ nextNodeFunction:
 				if (z3ModelResult.getZ3BoolResult() == Z3BoolResult.SAT) {
 					intention.eSet(label.getModelFeature(), true);
 					//optimizeAnalysis(z3ModelResult.getZ3Model());
+					//optimizeAnalysis2(z3IncSolver);
 				}
 			}
 		}
