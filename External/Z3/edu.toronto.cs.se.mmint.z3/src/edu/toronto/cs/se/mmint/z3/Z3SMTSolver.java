@@ -58,7 +58,6 @@ public class Z3SMTSolver {
 
 		Map<String, String> config = new HashMap<String, String>();
 		config.put("model", "true");
-		config.put("model-completion", "true");
 		try {
 			Solver solver = loadSMTEncoding(config, smtEncoding);
 			Status status = solver.check();

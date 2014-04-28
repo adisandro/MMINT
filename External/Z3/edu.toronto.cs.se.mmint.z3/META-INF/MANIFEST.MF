@@ -8,3 +8,5 @@ Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Require-Bundle: edu.toronto.cs.se.mmint
 Export-Package: edu.toronto.cs.se.mmint.z3
+Bundle-ClassPath: lib/com.microsoft.z3.jar,
+ .

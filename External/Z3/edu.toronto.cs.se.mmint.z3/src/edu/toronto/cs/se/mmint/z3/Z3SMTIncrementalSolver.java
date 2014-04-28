@@ -88,7 +88,6 @@ public class Z3SMTIncrementalSolver {
 
 		Map<String, String> config = new HashMap<String, String>();
 		config.put("model", "true");
-		config.put("model-completion", "true");
 		try {
 			context = new Context(config);
 			solver = context.mkSolver();
