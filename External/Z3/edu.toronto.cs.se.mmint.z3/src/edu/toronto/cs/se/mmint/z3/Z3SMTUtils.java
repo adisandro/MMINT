@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.z3;
 
+import com.microsoft.z3.Model;
 import com.microsoft.z3.Status;
 
 public class Z3SMTUtils {
@@ -59,14 +60,14 @@ public class Z3SMTUtils {
 	public static class Z3ModelResult {
 
 		private Z3BoolResult z3BoolResult;
-		private String z3Model;
+		private Model z3Model;
 
-		public Z3ModelResult(Z3BoolResult z3BoolResult, String z3Model) {
+		public Z3ModelResult(Z3BoolResult z3BoolResult, Model z3Model) {
 			this.z3BoolResult = z3BoolResult;
 			this.z3Model = z3Model;
 		}
 
-		public Z3ModelResult(Status z3Status, String z3Model) {
+		public Z3ModelResult(Status z3Status, Model z3Model) {
 			this.z3BoolResult = Z3BoolResult.toZ3BoolResult(z3Status);
 			this.z3Model = z3Model;
 		}
@@ -75,7 +76,7 @@ public class Z3SMTUtils {
 			return z3BoolResult;
 		}
 
-		public String getZ3Model() {
+		public Model getZ3Model() {
 			return z3Model;
 		}
 	}

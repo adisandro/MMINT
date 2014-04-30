@@ -190,6 +190,7 @@ public class TOSEM12 extends OperatorImpl {
 
 	private Map<String, Boolean> parseZ3Model(String z3Model, Set<String> z3MayModelElems) {
 
+		//TODO MMINT[Z3] broken since the switch to z3java api
 		// nodes
 		Map<String, Boolean> z3ModelElems = new HashMap<String, Boolean>();
 		String z3ElemType = RandomModelPackage.eINSTANCE.getNode().getName();
@@ -244,7 +245,7 @@ public class TOSEM12 extends OperatorImpl {
 		if (z3ModelResult.getZ3BoolResult() != Z3BoolResult.SAT) {
 			throw new MMINTException("Property checking for MAVO model was SAT-SAT but the incremental baseline now is UNSAT.");
 		}
-		Map<String, Boolean> initialZ3ModelElems = parseZ3Model(z3ModelResult.getZ3Model(), z3MayModelElems);
+		Map<String, Boolean> initialZ3ModelElems = parseZ3Model(z3ModelResult.getZ3Model().toString(), z3MayModelElems);
 		Map<String, Boolean> currentZ3ModelElems;
 		Iterator<String> z3MayModelElemsIter = z3MayModelElems.iterator();
 		while (z3MayModelElemsIter.hasNext()) {
@@ -259,7 +260,7 @@ public class TOSEM12 extends OperatorImpl {
 			if (z3ModelResult.getZ3BoolResult() != Z3BoolResult.SAT) { // UNSAT (here z3MayModelElem value should be == to its value in the initial model)
 				continue;
 			}
-			currentZ3ModelElems = parseZ3Model(z3ModelResult.getZ3Model(), z3MayModelElems);
+			currentZ3ModelElems = parseZ3Model(z3ModelResult.getZ3Model().toString(), z3MayModelElems);
 			optimizeBackboneElements(initialZ3ModelElems, currentZ3ModelElems, outOfBackboneZ3ModelElems);
 			initialZ3ModelElems.get(z3MayModelElem);
 			if (optimizeBackboneElement(initialZ3ModelElems, z3MayModelElem, currentZ3ModelElems.get(z3MayModelElem), outOfBackboneZ3ModelElems)) { // z3MayModelElem value has already changed
@@ -272,7 +273,7 @@ public class TOSEM12 extends OperatorImpl {
 			if (z3ModelResult.getZ3BoolResult() != Z3BoolResult.SAT) { // UNSAT
 				continue;
 			}
-			currentZ3ModelElems = parseZ3Model(z3ModelResult.getZ3Model(), z3MayModelElems);
+			currentZ3ModelElems = parseZ3Model(z3ModelResult.getZ3Model().toString(), z3MayModelElems);
 			optimizeBackboneElements(initialZ3ModelElems, currentZ3ModelElems, outOfBackboneZ3ModelElems);
 		}
 		long endTime = System.nanoTime();
@@ -291,7 +292,7 @@ public class TOSEM12 extends OperatorImpl {
 		flags.append(z3ModelResult.getZ3BoolResult());
 		flags.append(',');
 		while (z3ModelResult.getZ3BoolResult() == Z3BoolResult.SAT) {
-			Map<String, Boolean> z3ModelElems = parseZ3Model(z3ModelResult.getZ3Model(), z3MayModelElems);
+			Map<String, Boolean> z3ModelElems = parseZ3Model(z3ModelResult.getZ3Model().toString(), z3MayModelElems);
 			StringBuilder encodingBuilder = new StringBuilder();
 			encodingBuilder.append(Z3SMTUtils.SMTLIB_ASSERT);
 			encodingBuilder.append(Z3SMTUtils.SMTLIB_OR);

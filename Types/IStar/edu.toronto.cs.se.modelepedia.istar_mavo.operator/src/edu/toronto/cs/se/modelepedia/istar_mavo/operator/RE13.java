@@ -27,6 +27,7 @@ import com.microsoft.z3.FuncInterp.Entry;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -74,7 +75,8 @@ public class RE13 extends OperatorImpl {
 	private static final String PROPERTY_OUT_TARGETS = "targets";
 
 	protected static final String SMTLIB_CONCRETIZATION = " c ";
-	protected static final String SMTLIB_NODEFUNCTION = Z3SMTUtils.SMTLIB_PREDICATE_START + "node ";
+	protected static final String SMTLIB_NODE = "node";
+	protected static final String SMTLIB_NODEFUNCTION = Z3SMTUtils.SMTLIB_PREDICATE_START + SMTLIB_NODE + " ";
 	private static final Set<String> Z3_MODEL_NODETYPES = new HashSet<String>();
 	static {
 		Z3_MODEL_NODETYPES.add("Task");
@@ -174,125 +176,52 @@ public class RE13 extends OperatorImpl {
 		}
 	}
 
-	private void optimizeLabelFunction(String z3Model, Map<String, Integer> z3ModelNodes, SMTLIBLabel label, int startIndex) {
-
-		String line;
-		int lineLength;
-		String[] tokens;
-		Set<String> z3LabelNodes = new HashSet<String>();
-		boolean firstCheck = true;
-		String nodeType = "";
-		do {
-			line = z3Model.substring(startIndex, z3Model.indexOf(Z3SMTUtils.Z3_MODEL_NEWLINE, startIndex)+1);
-			lineLength = line.length();
-			line = line.trim();
-			if (firstCheck) { // just check it once
-				if (line.equals("false")) { // all false
-					return;
-				}
-				if (line.equals("true")) { // all true
-					//TODO MMINT: do something about it?
-					return;
-				}
-				if (line.startsWith(Z3SMTUtils.SMTLIB_PREDICATE_START + label.name())) { // jump to subfunction
-					String subfunction = line.substring(1, line.indexOf(' ')) + Z3SMTUtils.Z3_MODEL_DEFINITION + Z3SMTUtils.Z3_MODEL_FUNCTION_START + Z3SMTUtils.Z3_MODEL_NEWLINE;
-					optimizeLabelFunction(z3Model, z3ModelNodes, label, z3Model.indexOf(subfunction)+subfunction.length());
-					return;
-				}
-				nodeType = line.substring(0, line.indexOf(Z3SMTUtils.Z3_MODEL_SEPARATOR));
-				if (!Z3_MODEL_NODETYPES.contains(nodeType)) { // edge function
-					return;
-				}
-			}
-			// node function
-			firstCheck = false;
-			tokens = line.split(Z3SMTUtils.Z3_MODEL_DEFINITION);
-			if (tokens[0].equals(Z3SMTUtils.Z3_MODEL_ELSE)) {
-				optimizeLabelNodes(z3ModelNodes, z3LabelNodes, label, nodeType, Boolean.parseBoolean(tokens[1]));
-				return;
-			}
-			z3LabelNodes.add(tokens[0]);
-			startIndex += lineLength;
-		}
-		while (!line.equals(Z3SMTUtils.Z3_MODEL_FUNCTION_END));
-	}
-
-	private Map<String, Integer> parseZ3ModelNodes(String z3Model) {
+	private Map<String, Integer> parseZ3ModelNodes(com.microsoft.z3.Model z3Model) throws Z3Exception {
 
 		Map<String, Integer> z3ModelNodes = new HashMap<String, Integer>();
-		String nodeFunction = "node" + Z3SMTUtils.Z3_MODEL_SEPARATOR;
-		String nodeFunctionDefinition = Z3SMTUtils.Z3_MODEL_DEFINITION + Z3SMTUtils.Z3_MODEL_FUNCTION_START + Z3SMTUtils.Z3_MODEL_NEWLINE;
-		String line;
-		int lineLength;
-
-nextNodeFunction:
-		for (int i = z3Model.indexOf(nodeFunction); i != -1; i = z3Model.indexOf(nodeFunction, i)) {
-			if (z3Model.substring(i-1, i).equals(Z3SMTUtils.SMTLIB_PREDICATE_START)) { // function invocation
-				i += nodeFunction.length();
+		for (FuncDecl decl : z3Model.getFuncDecls()) {
+			if (!(decl.getName().toString().equals(SMTLIB_NODE) || decl.getName().toString().contains(SMTLIB_NODE+Z3SMTUtils.Z3_MODEL_SEPARATOR))) {
 				continue;
 			}
-			i = z3Model.indexOf(nodeFunctionDefinition, i);
-			i += nodeFunctionDefinition.length();
-			do {
-				line = z3Model.substring(i, z3Model.indexOf(Z3SMTUtils.Z3_MODEL_NEWLINE, i)+1);
-				lineLength = line.length();
-				line = line.trim();
-				int spaceIndex = line.indexOf(' ');
-				String z3ModelNodeNumber = line.substring(0, spaceIndex);
-				if (z3ModelNodeNumber.equals(Z3SMTUtils.Z3_MODEL_ELSE)) {
-					continue nextNodeFunction;
-				}
-				String z3ModelNodeName = line.substring(spaceIndex+1, line.indexOf(' ', spaceIndex+1));
-				z3ModelNodes.put(z3ModelNodeName, new Integer(z3ModelNodeNumber));
-				i += lineLength;
+			FuncInterp interp = z3Model.getFuncInterp(decl);
+			if (Boolean.parseBoolean(interp.getElse().toString())) {
+				continue;
 			}
-			while (!line.equals(Z3SMTUtils.Z3_MODEL_FUNCTION_END));
+			// if the function calls another function, then it doesn't have entries
+			for (Entry entry : interp.getEntries()) {
+				z3ModelNodes.put(entry.getArgs()[1].toString(), new Integer(entry.getArgs()[0].toString()));
+			}
 		}
 
 		return z3ModelNodes;
 	}
 
-	private Map<String, Integer> parseZ3ModelNodes2(Z3SMTIncrementalSolver z3IncSolver) {
+	private void optimizeAnalysis(com.microsoft.z3.Model z3Model) {
 
-		Map<String, Integer> z3ModelNodes = new HashMap<String, Integer>();
 		try {
-			com.microsoft.z3.Model model = z3IncSolver.getCurrentModel();
-			if (model == null) {
-				return z3ModelNodes;
-			}
-			String nodeFunction = "node" + Z3SMTUtils.Z3_MODEL_SEPARATOR;
-			for (FuncDecl f : model.getFuncDecls()) {
-				if (f.getName().toString().contains(nodeFunction)) {
-					FuncInterp fi = model.getFuncInterp(f);
-					for (Entry e : fi.getEntries()) {
-						System.err.println(e);
+			Map<String, Integer> z3ModelNodes = parseZ3ModelNodes(z3Model);
+			for (SMTLIBLabel label : SMTLIBLabel.values()) {
+				for (FuncDecl decl : z3Model.getFuncDecls()) {
+					if (!(decl.getName().toString().equals(label.name()) || decl.getName().toString().contains(label.name()+Z3SMTUtils.Z3_MODEL_SEPARATOR))) {
+						continue;
 					}
-					System.err.println(fi.getElse());
+					String nodeType = decl.getDomain()[0].getName().toString();
+					if (!Z3_MODEL_NODETYPES.contains(nodeType)) { // edge function
+						continue;
+					}
+					Set<String> z3LabelNodes = new HashSet<String>();
+					FuncInterp interp = z3Model.getFuncInterp(decl);
+					// if the function calls another function, then it doesn't have entries and the else will be evaluated to false
+					for (Entry entry : interp.getEntries()) {
+						z3LabelNodes.add(entry.getArgs()[0].toString());
+					}
+					optimizeLabelNodes(z3ModelNodes, z3LabelNodes, label, nodeType, Boolean.parseBoolean(interp.getElse().toString()));
 				}
 			}
 		}
 		catch (Z3Exception e) {
-			e.printStackTrace();
+			MMINTException.print(Type.WARNING, "Can't optimize analysis, skipping it", e);
 		}
-
-		return z3ModelNodes;
-	}
-
-	private void optimizeAnalysis(String z3Model) {
-
-		Map<String, Integer> z3ModelNodes = parseZ3ModelNodes(z3Model);
-		for (SMTLIBLabel label : SMTLIBLabel.values()) {
-			String labelFunctionDefinition = label.name() + Z3SMTUtils.Z3_MODEL_DEFINITION + Z3SMTUtils.Z3_MODEL_FUNCTION_START + Z3SMTUtils.Z3_MODEL_NEWLINE;
-			for (int i = z3Model.indexOf(labelFunctionDefinition); i != -1; i = z3Model.indexOf(labelFunctionDefinition, i)) {
-				i += labelFunctionDefinition.length();
-				optimizeLabelFunction(z3Model, z3ModelNodes, label, i);
-			}
-		}
-	}
-
-	private void optimizeAnalysis2(Z3SMTIncrementalSolver z3IncSolver) {
-
-		Map<String, Integer> z3ModelNodes = parseZ3ModelNodes2(z3IncSolver);
 	}
 
 	protected void doAnalysis(Z3SMTIncrementalSolver z3IncSolver) {
@@ -340,8 +269,7 @@ nextNodeFunction:
 				Z3ModelResult z3ModelResult = z3IncSolver.checkSatAndGetModel(labelProperty, Z3IncrementalBehavior.POP);
 				if (z3ModelResult.getZ3BoolResult() == Z3BoolResult.SAT) {
 					intention.eSet(label.getModelFeature(), true);
-					//optimizeAnalysis(z3ModelResult.getZ3Model());
-					//optimizeAnalysis2(z3IncSolver);
+					optimizeAnalysis(z3ModelResult.getZ3Model());
 				}
 			}
 		}

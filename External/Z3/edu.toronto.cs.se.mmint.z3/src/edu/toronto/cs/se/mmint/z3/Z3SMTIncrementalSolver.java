@@ -62,17 +62,16 @@ public class Z3SMTIncrementalSolver {
 		// check sat and get model
 		solver.add(expr);
 		Status status = solver.check();
-		String modelText = null;
+		Model returnModel = null;
 		if (status == Status.SATISFIABLE) {
-			Model tempModel = solver.getModel();
+			returnModel = solver.getModel();
 			// store current model if encoding is piling up, or just keep the previous one
 			if (incBehavior != Z3IncrementalBehavior.POP) {
-				model = tempModel;
+				model = returnModel;
 			}
-			modelText = tempModel.toString();
 		}
 
-		return new Z3ModelResult(status, modelText);
+		return new Z3ModelResult(status, returnModel);
 	}
 
 	// first check sat and get model as baseline
@@ -121,11 +120,6 @@ public class Z3SMTIncrementalSolver {
 			reset();
 			return new Z3ModelResult(Status.UNKNOWN, null);
 		}
-	}
-
-	public Model getCurrentModel() {
-
-		return model;
 	}
 
 	public void reset() {

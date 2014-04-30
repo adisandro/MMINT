@@ -16,6 +16,7 @@ import java.util.Map;
 
 import com.microsoft.z3.BoolExpr;
 import com.microsoft.z3.Context;
+import com.microsoft.z3.Model;
 import com.microsoft.z3.Solver;
 import com.microsoft.z3.Status;
 import com.microsoft.z3.Z3Exception;
@@ -61,12 +62,12 @@ public class Z3SMTSolver {
 		try {
 			Solver solver = loadSMTEncoding(config, smtEncoding);
 			Status status = solver.check();
-			String modelText = null;
+			Model model = null;
 			if (status == Status.SATISFIABLE) {
-				modelText = solver.getModel().toString();
+				model = solver.getModel();
 			}
 
-			return new Z3ModelResult(status, modelText);
+			return new Z3ModelResult(status, model);
 		}
 		catch (Z3Exception e) {
 			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result", e);
