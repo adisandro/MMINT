@@ -1,6 +1,6 @@
 [comment encoding = UTF-8 /]
 [module EcoreMAVOToSMTLIB_M2T('http://www.eclipse.org/emf/2002/Ecore', 'http://se.cs.toronto.edu/mmint/MAVO')/]
-[import edu::toronto::cs::se::mmint::mavo::library::EcoreMAVOToSMTLIBUtils_M2T /]
+[import edu::toronto::cs::se::mmint::z3::mavo::EcoreMAVOToSMTLIBUtils_M2T /]
 
 [template public encodeMAVOModel(mavoModel : MAVOModel, mavoModelName : String)]
 	[comment @main /]

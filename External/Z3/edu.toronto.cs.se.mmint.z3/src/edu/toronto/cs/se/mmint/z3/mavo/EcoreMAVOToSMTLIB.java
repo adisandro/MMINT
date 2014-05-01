@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.reasoning;
+package edu.toronto.cs.se.mmint.z3.mavo;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,8 +22,6 @@ import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.mmint.mavo.library.EcoreMAVOToSMTLIBListener;
-import edu.toronto.cs.se.mmint.mavo.library.EcoreMAVOToSMTLIB_M2T;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;

@@ -28,8 +28,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -77,7 +75,6 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
@@ -88,7 +85,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.reasoning.EcoreMAVOToSMTLIB;
 import fr.inria.atlanmod.emftocsp.ICspSolver;
 import fr.inria.atlanmod.emftocsp.IModelProperty;
 import fr.inria.atlanmod.emftocsp.IModelReader;
@@ -111,7 +107,6 @@ public class MultiModelConstraintChecker {
 
 	private final static String OCL_MODELENDPOINT_VARIABLE = "$ENDPOINT_";
 	private final static char OCL_VARIABLE_SEPARATOR = '.';
-	private final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
 	private final static String ECORE_PIVOT_CONSISTENCYCONSTRAINT = "consistencyConstraint";
 	private final static String EMFTOCSP_PREFERENCE_ECLIPSEPATH = "EclipsePath";
 	private final static String EMFTOCSP_PREFERENCE_GRAPHVIZPATH = "GraphvizPath";
@@ -704,35 +699,6 @@ linkTypes:
 			return MAVOTruthValue.FALSE;
 		}
 	}
-
-	//TODO MMINT[CONSTRAINT] write extension point for constraint evaluation engine, move this and ecore2smt into z3 project
-//	private static MAVOTruthValue checkSMTLIBConstraint(Model model, String smtProperty) {
-//
-//		if (!MAVOUtils.isMAVOModel(model)) {
-//			return MAVOTruthValue.FALSE;
-//		}
-//
-//		EcoreMAVOToSMTLIB ecore2smt = (EcoreMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(ECOREMAVOTOSMTLIB_OPERATOR_URI);
-//		EList<Model> actualParameters = new BasicEList<Model>();
-//		actualParameters.add(model);
-//		try {
-//			ecore2smt.execute(actualParameters);
-//		}
-//		catch (Exception e) {
-//			return MAVOTruthValue.FALSE;
-//		}
-//		ecore2smt.cleanup();
-//
-//		// tri-state logic
-//		Z3IncResult z3Result = CLibrary.OPERATOR_INSTANCE.firstCheckSatAndGetModelIncremental(ecore2smt.getListener().getSMTEncoding());
-//		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3Result, Z3SMTUtils.assertion(smtProperty), 1, 0);
-//		boolean propertyTruthValue = z3Result.flag == Z3SMTSolver.Z3_SAT;
-//		CLibrary.OPERATOR_INSTANCE.checkSatAndGetModelIncremental(z3Result, Z3SMTUtils.assertion(Z3SMTUtils.not(smtProperty)), 1, 0);
-//		boolean notPropertyTruthValue = z3Result.flag == Z3SMTSolver.Z3_SAT;
-//		CLibrary.OPERATOR_INSTANCE.freeResultIncremental(z3Result);
-//
-//		return MAVOTruthValue.toMAVOTruthValue(propertyTruthValue, notPropertyTruthValue);
-//	}
 
 	/**
 	 * Checks if a constraint is satisfied on an extendible element (only models
