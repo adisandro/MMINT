@@ -19,6 +19,7 @@
    <extension-point id="edu.toronto.cs.se.mmint.relationships" name="MMINT model relationship types" schema="schema/edu.toronto.cs.se.mmint.relationships.exsd"/>
    <extension-point id="edu.toronto.cs.se.mmint.editors" name="MMINT editor types" schema="schema/edu.toronto.cs.se.mmint.editors.exsd"/>
    <extension-point id="edu.toronto.cs.se.mmint.operators" name="MMINT operator types" schema="schema/edu.toronto.cs.se.mmint.operators.exsd"/>
+   <extension-point id="edu.toronto.cs.se.mmint.reasoners" name="MMINT reasoning engines" schema="schema/edu.toronto.cs.se.mmint.reasoners.exsd"/>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated mid -->
