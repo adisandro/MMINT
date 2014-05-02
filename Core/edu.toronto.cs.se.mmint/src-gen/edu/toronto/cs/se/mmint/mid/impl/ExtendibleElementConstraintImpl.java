@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.mmint.mid.impl;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmint.mid.MidPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -63,7 +62,7 @@ public class ExtendibleElementConstraintImpl extends EObjectImpl implements Exte
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ExtendibleElementConstraintLanguage LANGUAGE_EDEFAULT = ExtendibleElementConstraintLanguage.OCL;
+	protected static final String LANGUAGE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.
@@ -73,7 +72,7 @@ public class ExtendibleElementConstraintImpl extends EObjectImpl implements Exte
 	 * @generated
 	 * @ordered
 	 */
-	protected ExtendibleElementConstraintLanguage language = LANGUAGE_EDEFAULT;
+	protected String language = LANGUAGE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,7 +119,7 @@ public class ExtendibleElementConstraintImpl extends EObjectImpl implements Exte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtendibleElementConstraintLanguage getLanguage() {
+	public String getLanguage() {
 		return language;
 	}
 
@@ -129,9 +128,9 @@ public class ExtendibleElementConstraintImpl extends EObjectImpl implements Exte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLanguage(ExtendibleElementConstraintLanguage newLanguage) {
-		ExtendibleElementConstraintLanguage oldLanguage = language;
-		language = newLanguage == null ? LANGUAGE_EDEFAULT : newLanguage;
+	public void setLanguage(String newLanguage) {
+		String oldLanguage = language;
+		language = newLanguage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE, oldLanguage, language));
 	}
@@ -164,7 +163,7 @@ public class ExtendibleElementConstraintImpl extends EObjectImpl implements Exte
 				setImplementation((String)newValue);
 				return;
 			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
-				setLanguage((ExtendibleElementConstraintLanguage)newValue);
+				setLanguage((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -199,7 +198,7 @@ public class ExtendibleElementConstraintImpl extends EObjectImpl implements Exte
 			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
 				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
 			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
-				return language != LANGUAGE_EDEFAULT;
+				return LANGUAGE_EDEFAULT == null ? language != null : !LANGUAGE_EDEFAULT.equals(language);
 		}
 		return super.eIsSet(featureID);
 	}

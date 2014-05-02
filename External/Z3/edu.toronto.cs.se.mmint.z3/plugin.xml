@@ -19,6 +19,9 @@
       <reasoner
             class="edu.toronto.cs.se.mmint.z3.reasoning.Z3SMTReasoningEngine"
             name="Z3 SMT Solver">
+         <language
+               id="SMTLIB">
+         </language>
       </reasoner>
    </extension>
 

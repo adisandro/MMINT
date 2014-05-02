@@ -30,7 +30,6 @@ import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
@@ -255,12 +254,12 @@ public class MultiModelDiagramUtils {
 
 	public static String[] getConstraintInput(String dialogTitle, String dialogInitial) throws MultiModelDialogCancellation {
 
-		String text = getBigStringInput(dialogTitle, "Insert new constraint", dialogInitial);
+		String text = getBigStringInput(dialogTitle, "Insert new constraint in the format \"language: constraint\"", dialogInitial);
 		String[] constraint = text.split(CONSTRAINT_LANGUAGE_SEPARATOR);
 		if (constraint.length == 1) {
 			String constraintImplementation = constraint[0];
 			constraint = new String[2];
-			constraint[0] = ExtendibleElementConstraintLanguage.OCL.getLiteral();
+			constraint[0] = "OCL";
 			constraint[1] = constraintImplementation;
 		}
 

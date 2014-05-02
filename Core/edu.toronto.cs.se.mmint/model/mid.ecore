@@ -299,31 +299,11 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" lowerBound="1"
-        eType="#//ExtendibleElementConstraintLanguage">
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The language used to evaluate the constraint."/>
+        <details key="documentation" value="The constraint language."/>
       </eAnnotations>
     </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ExtendibleElementConstraintLanguage">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="The language used to evaluate an extendible element constraint."/>
-    </eAnnotations>
-    <eLiterals name="OCL">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The OCL language."/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="JAVA" value="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The JAVA language."/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SMTLIB" value="2" literal="SMTLIB">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The SMTLIB language."/>
-      </eAnnotations>
-    </eLiterals>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelElement" eSuperTypes="#//ExtendibleElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

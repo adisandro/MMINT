@@ -117,8 +117,6 @@ public class MidValidator extends EObjectValidator {
 				return validateMidLevel((MidLevel)value, diagnostics, context);
 			case MidPackage.MODEL_ORIGIN:
 				return validateModelOrigin((ModelOrigin)value, diagnostics, context);
-			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE:
-				return validateExtendibleElementConstraintLanguage((ExtendibleElementConstraintLanguage)value, diagnostics, context);
 			case MidPackage.MMINT_EXCEPTION:
 				return validateMMINTException((MMINTException)value, diagnostics, context);
 			default:
@@ -332,15 +330,6 @@ public class MidValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateModelOrigin(ModelOrigin modelOrigin, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateExtendibleElementConstraintLanguage(ExtendibleElementConstraintLanguage extendibleElementConstraintLanguage, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

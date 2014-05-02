@@ -20,7 +20,6 @@ import org.eclipse.emf.common.util.EList;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.MidFactory;
 import edu.toronto.cs.se.mmint.mid.MidLevel;
@@ -168,7 +167,7 @@ public class MultiModelTypeFactory {
 		ExtendibleElementConstraint modelConstraint = null;
 		if (constraintLanguage != null) {
 			modelConstraint = MidFactory.eINSTANCE.createExtendibleElementConstraint();
-			modelConstraint.setLanguage(ExtendibleElementConstraintLanguage.valueOf(constraintLanguage));
+			modelConstraint.setLanguage(constraintLanguage);
 			modelConstraint.setImplementation(constraintImplementation);
 		}
 		newModelType.setConstraint(modelConstraint);

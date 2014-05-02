@@ -11,27 +11,27 @@
  */
 package edu.toronto.cs.se.mmint.repository;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.reasoning.ReasoningEngine;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the
- * Relationships extension point.
+ * Reasoners extension point.
  * 
  * @author Alessio Di Sandro
  * 
  */
-public class RelationshipsExtensionListener extends MMINTExtensionListener {
+public class ReasonersExtensionListener extends MMINTExtensionListener {
 
 	/**
 	 * {@inheritDoc}
-	 * Installs a new Relationships extension.
+	 * Installs a new Reasoners extension.
 	 */
 	@Override
 	public void added(IExtension[] extensions) {
@@ -41,19 +41,18 @@ public class RelationshipsExtensionListener extends MMINTExtensionListener {
 			configs = extension.getConfigurationElements();
 			for (IConfigurationElement config : configs) {
 				try {
-					MMINT.createModelRelType(config);
+					MMINT.createReasoner(config);
 				}
-				catch (Exception e) {
-					MMINTException.print(Type.ERROR, "Model relationship type can't be created in " + config.getContributor().getName(), e);
+				catch (CoreException e) {
+					MMINTException.print(Type.ERROR, "Reasoner can't be created in " + config.getContributor().getName(), e);
 				}
 			}
 		}
-		MMINT.storeRepository();
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * Uninstalls a Relationships extension.
+	 * Uninstalls a Reasoners extension.
 	 */
 	@Override
 	public void removed(IExtension[] extensions) {
@@ -62,19 +61,21 @@ public class RelationshipsExtensionListener extends MMINTExtensionListener {
 		for (IExtension extension : extensions) {
 			configs = extension.getConfigurationElements();
 			for (IConfigurationElement config : configs) {
-				String uri = config.getAttribute(MMINT.TYPE_ATTR_URI);
-				ModelRel modelRelType = MultiModelTypeRegistry.getType(uri);
-				if (modelRelType != null) {
-					try {
-						modelRelType.deleteType();
+				String reasonerClass = config.getAttribute(MMINT.REASONERS_REASONER_ATTR_CLASS);
+				IConfigurationElement[] languageConfigs = config.getChildren(MMINT.REASONERS_REASONER_CHILD_LANGUAGE);
+				for (IConfigurationElement languageConfig : languageConfigs) {
+					String languageId = languageConfig.getAttribute(MMINT.REASONERS_REASONER_LANGUAGE_ATTR_ID);
+					ReasoningEngine reasonerToRemove = null;
+					for (ReasoningEngine reasoner : MMINT.getLanguageReasoners(languageId)) {
+						if (reasonerClass.equals(reasoner.getClass().getName())) {
+							reasonerToRemove = reasoner;
+							break;
+						}
 					}
-					catch (MMINTException e) {
-						// never happens by construction
-					}
+					MMINT.getLanguageReasoners(languageId).remove(reasonerToRemove);
 				}
 			}
 		}
-		MMINT.storeRepository();
 	}
 
 }

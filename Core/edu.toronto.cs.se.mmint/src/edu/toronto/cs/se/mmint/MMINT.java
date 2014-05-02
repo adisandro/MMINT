@@ -21,6 +21,7 @@ import java.util.Random;
 import java.util.Set;
 
 import org.eclipse.core.commands.Command;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
@@ -55,6 +56,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.reasoning.ReasoningEngine;
 import edu.toronto.cs.se.mmint.repository.EditorsExtensionListener;
 import edu.toronto.cs.se.mmint.repository.ExtensionType;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
@@ -102,6 +104,8 @@ public class MMINT implements MMINTConstants {
 	static Map<String, Map<String, Set<List<String>>>> conversionTableMID;
 	/** The table to map type uris to their bundle name. */
 	static Map<String, String> bundleTable;
+	/** The reasoners table. */
+	static Map<String, Set<ReasoningEngine>> languageReasoners;
 	/** The settings table. */
 	static Map<String, Object> settings;
 	/**
@@ -562,7 +566,7 @@ public class MMINT implements MMINTConstants {
 			else {
 				newModelType = modelType.createSubtype(
 					dynamicModelType.getName(),
-					dynamicModelType.getConstraint().getLanguage().getLiteral(),
+					dynamicModelType.getConstraint().getLanguage(),
 					dynamicModelType.getConstraint().getImplementation(),
 					(MultiModelTypeRegistry.getExtendedMetamodelUri(dynamicModelType) != null)
 				);
@@ -611,6 +615,23 @@ public class MMINT implements MMINTConstants {
 		}
 	}
 
+	public static ReasoningEngine createReasoner(IConfigurationElement extensionConfig) throws CoreException {
+
+		ReasoningEngine reasoner = (ReasoningEngine) extensionConfig.createExecutableExtension(REASONERS_REASONER_ATTR_CLASS);
+		IConfigurationElement[] languageConfigs = extensionConfig.getChildren(REASONERS_REASONER_CHILD_LANGUAGE);
+		for (IConfigurationElement languageConfig : languageConfigs) {
+			String languageId = languageConfig.getAttribute(REASONERS_REASONER_LANGUAGE_ATTR_ID).toUpperCase();
+			Set<ReasoningEngine> reasoners = languageReasoners.get(languageId);
+			if (reasoners == null) {
+				reasoners = new HashSet<ReasoningEngine>();
+				languageReasoners.put(languageId, reasoners);
+			}
+			reasoners.add(reasoner);
+		}
+
+		return reasoner;
+	}
+
 	/**
 	 * Initializes the repository from the registered extensions and the dynamic
 	 * types created at runtime before the last shutdown, then stores it in the
@@ -626,10 +647,10 @@ public class MMINT implements MMINTConstants {
 		bundleTable = new HashMap<String, String>();
 		multipleInheritanceTable = new HashMap<String, Set<String>>();
 		typeFactory = new MultiModelHeavyTypeFactory();
+		languageReasoners = new HashMap<String, Set<ReasoningEngine>>();
 		IConfigurationElement[] configs;
 		Iterator<IConfigurationElement> extensionsIter;
 		IConfigurationElement config;
-		ExtendibleElement type;
 
 		// model types
 		configs = registry.getConfigurationElementsFor(MODELS_EXT_POINT);
@@ -637,8 +658,8 @@ public class MMINT implements MMINTConstants {
 		while (extensionsIter.hasNext()) {
 			config = extensionsIter.next();
 			try {
-				type = createModelType(config);
-				bundleTable.put(type.getUri(), config.getContributor().getName());
+				Model modelType = createModelType(config);
+				bundleTable.put(modelType.getUri(), config.getContributor().getName());
 			}
 			catch (MMINTException e) {
 				MMINTException.print(Type.ERROR, "Model type can't be created in " + config.getContributor().getName(), e);
@@ -650,8 +671,8 @@ public class MMINT implements MMINTConstants {
 		while (extensionsIter.hasNext()) {
 			config = extensionsIter.next();
 			try {
-				type = createModelRelType(config);
-				bundleTable.put(type.getUri(), config.getContributor().getName());
+				ModelRel modelRelType = createModelRelType(config);
+				bundleTable.put(modelRelType.getUri(), config.getContributor().getName());
 			}
 			catch (Exception e) {
 				MMINTException.print(Type.ERROR, "Model relationship type can't be created in " + config.getContributor().getName(), e);
@@ -662,9 +683,8 @@ public class MMINT implements MMINTConstants {
 		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, null, ROOT_EDITOR_URI);
 		while (extensionsIter.hasNext()) {
 			config = extensionsIter.next();
-			Editor editorType;
 			try {
-				editorType = createEditorType(config);
+				Editor editorType = createEditorType(config);
 				bundleTable.put(editorType.getUri(), config.getContributor().getName());
 				MultiModelHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
 			}
@@ -677,9 +697,8 @@ public class MMINT implements MMINTConstants {
 		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, null, null);
 		while (extensionsIter.hasNext()) {
 			config = extensionsIter.next();
-			Operator newOperatorType;
 			try {
-				newOperatorType = createOperatorType(config);
+				Operator newOperatorType = createOperatorType(config);
 				createOperatorTypeParameters(config, newOperatorType);
 				if (newOperatorType instanceof ConversionOperator) {
 					MultiModelTypeFactory.createOperatorTypeConversion((ConversionOperator) newOperatorType);
@@ -691,6 +710,17 @@ public class MMINT implements MMINTConstants {
 		}
 		// dynamic types from last shutdown
 		createDynamicModelTypes();
+		// reasoners
+		configs = registry.getConfigurationElementsFor(REASONERS_EXT_POINT);
+		for (int i = 0; i < configs.length; i++) {
+			config = configs[i];
+			try {
+				createReasoner(config);
+			}
+			catch (CoreException e) {
+				MMINTException.print(Type.ERROR, "Reasoner can't be created in " + config.getContributor().getName(), e);
+			}
+		}
 
 		// type hierarchy
 		subtypeTable = new HashMap<String, Set<String>>();
@@ -826,6 +856,11 @@ public class MMINT implements MMINTConstants {
 		settings.put(settingName, setting);
 
 		return true;
+	}
+
+	public static Set<ReasoningEngine> getLanguageReasoners(String languageId) {
+
+		return languageReasoners.get(languageId.toUpperCase());
 	}
 
 	public static boolean isInitialized() {

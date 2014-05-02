@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -66,7 +67,6 @@ import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmint.mid.MidLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
@@ -85,6 +85,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.reasoning.ReasoningEngine;
 import fr.inria.atlanmod.emftocsp.ICspSolver;
 import fr.inria.atlanmod.emftocsp.IModelProperty;
 import fr.inria.atlanmod.emftocsp.IModelReader;
@@ -593,7 +594,7 @@ linkTypes:
 		return null;
 	}
 
-	private static EObject getOCLConstraintContext(Model model, String oclConstraint, boolean isInstanceConstraint) throws MMINTException {
+	private static EObject getOCLConstraintContext(Model model, String oclConstraint, MidLevel constraintLevel) throws MMINTException {
 
 		//TODO MMINT[CONSTRAINT] find language to express more complex contraints on model rels
 		boolean isInstancesLevel = isInstancesLevel(model);
@@ -602,7 +603,7 @@ linkTypes:
 			String modelEndpointConstraintName = oclConstraint.substring(OCL_MODELENDPOINT_VARIABLE.length(), oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR));
 			for (ModelEndpointReference modelEndpointRef : ((ModelRel) model).getModelEndpointRefs()) {
 				//TODO MMINT[ENDPOINT] consider overridden endpoints here
-				String modelEndpointName = (isInstancesLevel && !isInstanceConstraint) ?
+				String modelEndpointName = (isInstancesLevel && constraintLevel != MidLevel.INSTANCES) ?
 					modelEndpointRef.getObject().getMetatype().getName() :
 					modelEndpointRef.getObject().getName();
 				if (modelEndpointConstraintName.equals(modelEndpointName)) {
@@ -669,10 +670,11 @@ linkTypes:
 		}
 	}
 
-	private static MAVOTruthValue checkOCLConstraint(Model model, String oclConstraint, boolean isInstanceConstraint) {
+	private static MAVOTruthValue checkOCLConstraint(Model model, ExtendibleElementConstraint constraint, MidLevel constraintLevel) {
 
+		String oclConstraint = constraint.getImplementation();
 		try {
-			EObject modelObj = getOCLConstraintContext(model, oclConstraint, isInstanceConstraint);
+			EObject modelObj = getOCLConstraintContext(model, oclConstraint, constraintLevel);
 			if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
 				oclConstraint = oclConstraint.substring(oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR) + 1, oclConstraint.length());
 			}
@@ -684,8 +686,12 @@ linkTypes:
 		}
 	}
 
-	private static MAVOTruthValue checkJAVAConstraint(Model model, String modelTypeUri, String javaClassName) {
+	private static MAVOTruthValue checkJAVAConstraint(Model model, ExtendibleElementConstraint constraint, MidLevel constraintLevel) {
 
+		String javaClassName = constraint.getImplementation();
+		String modelTypeUri = (constraintLevel == MidLevel.INSTANCES) ?
+			((Model) constraint.eContainer()).getMetatypeUri() :
+			((Model) constraint.eContainer()).getUri();
 		try {
 			JavaModelConstraint javaConstraint = (JavaModelConstraint)
 				MultiModelTypeRegistry.getTypeBundle(modelTypeUri).
@@ -718,18 +724,20 @@ linkTypes:
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return MAVOTruthValue.TRUE;
 		}
-
-		boolean isInstanceConstraint = element.getUri().equals(((Model) constraint.eContainer()).getUri());
+//		Set<ReasoningEngine> reasoners = MMINT.getLanguageReasoners(constraint.getLanguage());
+//		if (reasoners == null || reasoners.isEmpty()) {
+//			MMINTException.print(MMINTException.Type.WARNING, "Can't find a reasoner to evaluate language " + constraint.getLanguage() + ", skipping constraint check", null);
+//			return MAVOTruthValue.TRUE;
+//		}
+//
+//		ReasoningEngine reasoner = reasoners.iterator().next();
+		MidLevel constraintLevel = (element.getUri().equals(((Model) constraint.eContainer()).getUri())) ? MidLevel.INSTANCES : MidLevel.TYPES;
+//		reasoner.checkConstraint((Model) element, constraint, constraintLevel);
 		switch (constraint.getLanguage()) {
-			case OCL:
-				return checkOCLConstraint((Model) element, constraint.getImplementation(), isInstanceConstraint);
-			case JAVA:
-				String modelTypeUri = (isInstanceConstraint) ?
-					((Model) constraint.eContainer()).getMetatypeUri() :
-					((Model) constraint.eContainer()).getUri();
-				return checkJAVAConstraint((Model) element, modelTypeUri, constraint.getImplementation());
-			case SMTLIB:
-//				return checkSMTLIBConstraint((Model) element, constraint.getImplementation());
+			case "OCL":
+				return checkOCLConstraint((Model) element, constraint, constraintLevel);
+			case "JAVA":
+				return checkJAVAConstraint((Model) element, constraint, constraintLevel);
 			default:
 				return MAVOTruthValue.FALSE;
 		}
@@ -814,7 +822,7 @@ linkTypes:
 
 		EPackage modelTypeObj;
 		try {
-			modelTypeObj = (EPackage) getOCLConstraintContext(modelType, oclConstraint, false);
+			modelTypeObj = (EPackage) getOCLConstraintContext(modelType, oclConstraint, MidLevel.TYPES);
 		}
 		catch (MMINTException e) {
 			MMINTException.print(MMINTException.Type.WARNING, "Can't get context for OCL constraint, evaluating to false", e);
@@ -829,7 +837,7 @@ linkTypes:
 			oclConstraint;
 		while (!MultiModelTypeHierarchy.isRootType(modelType)) {
 			ExtendibleElementConstraint constraint = modelType.getConstraint();
-			if (constraint != null && constraint.getLanguage() == ExtendibleElementConstraintLanguage.OCL && constraint.getImplementation() != null && !constraint.getImplementation().equals("")) {
+			if (constraint != null && constraint.getLanguage().equals("OCL") && constraint.getImplementation() != null && !constraint.getImplementation().equals("")) {
 				oclConsistencyConstraint += " and ";
 				oclConsistencyConstraint += (modelType instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) ?
 					constraint.getImplementation().substring(constraint.getImplementation().indexOf(OCL_VARIABLE_SEPARATOR) + 1, constraint.getImplementation().length()) :
@@ -964,12 +972,12 @@ linkTypes:
 			return true;
 		}
 
-		switch (ExtendibleElementConstraintLanguage.valueOf(constraintLanguage)) {
-			case OCL:
+		switch (constraintLanguage) {
+			case "OCL":
 				return checkOCLConstraintConsistency((Model) type, constraintImplementation);
-			case JAVA:
+			case "JAVA":
 				return true;
-			case SMTLIB:
+			case "SMTLIB":
 				return true;
 			default:
 				return false;

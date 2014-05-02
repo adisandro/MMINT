@@ -62,30 +62,27 @@ public interface ExtendibleElementConstraint extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Language</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The language used to evaluate the constraint.
+	 * The constraint language.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Language</em>' attribute.
-	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage
-	 * @see #setLanguage(ExtendibleElementConstraintLanguage)
+	 * @see #setLanguage(String)
 	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElementConstraint_Language()
 	 * @model required="true"
 	 * @generated
 	 */
-	ExtendibleElementConstraintLanguage getLanguage();
+	String getLanguage();
 
 	/**
 	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint#getLanguage <em>Language</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Language</em>' attribute.
-	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage
 	 * @see #getLanguage()
 	 * @generated
 	 */
-	void setLanguage(ExtendibleElementConstraintLanguage value);
+	void setLanguage(String value);
 
 } // ExtendibleElementConstraint

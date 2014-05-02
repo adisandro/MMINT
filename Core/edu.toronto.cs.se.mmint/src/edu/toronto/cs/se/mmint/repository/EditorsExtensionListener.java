@@ -13,9 +13,6 @@ package edu.toronto.cs.se.mmint.repository;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.IExtensionRegistry;
-import org.eclipse.core.runtime.RegistryFactory;
-
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelHeavyTypeFactory;
@@ -39,18 +36,12 @@ public class EditorsExtensionListener extends MMINTExtensionListener {
 	@Override
 	public void added(IExtension[] extensions) {
 
-		IExtensionRegistry registry = RegistryFactory.getRegistry();
-		if (registry == null) {
-			return;
-		}
-
 		IConfigurationElement[] configs;
 		for (IExtension extension : extensions) {
 			configs = extension.getConfigurationElements();
 			for (IConfigurationElement config : configs) {
-				Editor editorType;
 				try {
-					editorType = MMINT.createEditorType(config);
+					Editor editorType = MMINT.createEditorType(config);
 					MultiModelHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
 				}
 				catch (MMINTException e) {
@@ -68,11 +59,11 @@ public class EditorsExtensionListener extends MMINTExtensionListener {
 	@Override
 	public void removed(IExtension[] extensions) {
 
-		IConfigurationElement[] config;
+		IConfigurationElement[] configs;
 		for (IExtension extension : extensions) {
-			config = extension.getConfigurationElements();
-			for (IConfigurationElement elem : config) {
-				String uri = elem.getAttribute(MMINT.TYPE_ATTR_URI);
+			configs = extension.getConfigurationElements();
+			for (IConfigurationElement config : configs) {
+				String uri = config.getAttribute(MMINT.TYPE_ATTR_URI);
 				Editor editorType = MultiModelTypeRegistry.getType(uri);
 				if (editorType != null) {
 					try {

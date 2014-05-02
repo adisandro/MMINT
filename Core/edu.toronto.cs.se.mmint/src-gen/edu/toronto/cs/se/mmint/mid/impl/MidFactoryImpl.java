@@ -91,8 +91,6 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 				return createMidLevelFromString(eDataType, initialValue);
 			case MidPackage.MODEL_ORIGIN:
 				return createModelOriginFromString(eDataType, initialValue);
-			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE:
-				return createExtendibleElementConstraintLanguageFromString(eDataType, initialValue);
 			case MidPackage.MMINT_EXCEPTION:
 				return createMMINTExceptionFromString(eDataType, initialValue);
 			default:
@@ -112,8 +110,6 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 				return convertMidLevelToString(eDataType, instanceValue);
 			case MidPackage.MODEL_ORIGIN:
 				return convertModelOriginToString(eDataType, instanceValue);
-			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE:
-				return convertExtendibleElementConstraintLanguageToString(eDataType, instanceValue);
 			case MidPackage.MMINT_EXCEPTION:
 				return convertMMINTExceptionToString(eDataType, instanceValue);
 			default:
@@ -228,26 +224,6 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * @generated
 	 */
 	public String convertModelOriginToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExtendibleElementConstraintLanguage createExtendibleElementConstraintLanguageFromString(EDataType eDataType, String initialValue) {
-		ExtendibleElementConstraintLanguage result = ExtendibleElementConstraintLanguage.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertExtendibleElementConstraintLanguageToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

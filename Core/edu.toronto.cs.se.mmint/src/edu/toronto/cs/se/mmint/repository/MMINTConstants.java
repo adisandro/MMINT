@@ -150,6 +150,17 @@ public interface MMINTConstants {
 	/** The Eclipse's Editors extension's extensions attribute. */
 	public final static String ECLIPSE_EDITORS_ATTR_EXTENSIONS = "extensions";
 
+	/** The Reasoners extension point's id. */
+	public final static String REASONERS_EXT_POINT = "edu.toronto.cs.se.mmint.reasoners";
+	/** The Reasoners extension point's reasoner child. */
+	public final static String REASONERS_CHILD_REASONER = "reasoner";
+	/** The Reasoners extension point's reasoner's class attribute. */
+	public final static String REASONERS_REASONER_ATTR_CLASS = "class";
+	/** The Reasoners extension point's reasoner's language child. */
+	public final static String REASONERS_REASONER_CHILD_LANGUAGE = "language";
+	/** The Reasoners extension point's reasoner's language child's id attribute. */
+	public final static String REASONERS_REASONER_LANGUAGE_ATTR_ID = "id";
+
 	public final static String SETTING_MENU_ID = "edu.toronto.cs.se.mmint.mid.diagram.menu";
 	public final static String SETTING_MENU_ICONS_ENABLED = SETTING_MENU_ID + ".IconsEnabled";
 	public final static String SETTING_MENU_ENDPOINTS_ENABLED = SETTING_MENU_ID + ".EndpointsEnabled";

@@ -42,9 +42,8 @@ public class OperatorsExtensionListener extends MMINTExtensionListener {
 		for (IExtension extension : extensions) {
 			configs = extension.getConfigurationElements();
 			for (IConfigurationElement config : configs) {
-				Operator newOperatorType;
 				try {
-					newOperatorType = MMINT.createOperatorType(config);
+					Operator newOperatorType = MMINT.createOperatorType(config);
 					MMINT.createOperatorTypeParameters(config, newOperatorType);
 					if (newOperatorType instanceof ConversionOperator) {
 						MultiModelTypeFactory.createOperatorTypeConversion((ConversionOperator) newOperatorType);
@@ -65,11 +64,11 @@ public class OperatorsExtensionListener extends MMINTExtensionListener {
 	@Override
 	public void removed(IExtension[] extensions) {
 
-		IConfigurationElement[] config;
+		IConfigurationElement[] configs;
 		for (IExtension extension : extensions) {
-			config = extension.getConfigurationElements();
-			for (IConfigurationElement elem : config) {
-				String uri = elem.getAttribute(MMINT.TYPE_ATTR_URI);
+			configs = extension.getConfigurationElements();
+			for (IConfigurationElement config : configs) {
+				String uri = config.getAttribute(MMINT.TYPE_ATTR_URI);
 				Operator operatorType = MultiModelTypeRegistry.getType(uri);
 				if (operatorType != null) {
 					try {

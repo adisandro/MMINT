@@ -549,7 +549,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		ModelRel newModelRelType = createSubtype(
 			origModelRelType.getName(),
 			(origModelRelType instanceof BinaryModelRel),
-			origModelRelType.getConstraint().getLanguage().getLiteral(),
+			origModelRelType.getConstraint().getLanguage(),
 			origModelRelType.getConstraint().getImplementation()
 		);
 

@@ -41,9 +41,8 @@ public class ModelsExtensionListener extends MMINTExtensionListener {
 		for (IExtension extension : extensions) {
 			configs = extension.getConfigurationElements();
 			for (IConfigurationElement config : configs) {
-				Model modelType;
 				try {
-					modelType = MMINT.createModelType(config);
+					Model modelType = MMINT.createModelType(config);
 					MultiModelHeavyTypeFactory.createHeavyModelTypeEditors(modelType);
 				}
 				catch (MMINTException e) {
@@ -61,11 +60,11 @@ public class ModelsExtensionListener extends MMINTExtensionListener {
 	@Override
 	public void removed(IExtension[] extensions) {
 
-		IConfigurationElement[] config;
+		IConfigurationElement[] configs;
 		for (IExtension extension : extensions) {
-			config = extension.getConfigurationElements();
-			for (IConfigurationElement elem : config) {
-				String uri = elem.getAttribute(MMINT.TYPE_ATTR_URI);
+			configs = extension.getConfigurationElements();
+			for (IConfigurationElement config : configs) {
+				String uri = config.getAttribute(MMINT.TYPE_ATTR_URI);
 				Model modelType = MultiModelTypeRegistry.getType(uri);
 				if (modelType != null) {
 					try {

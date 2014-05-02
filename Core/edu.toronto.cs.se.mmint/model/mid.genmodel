@@ -16,11 +16,6 @@
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelOrigin/IMPORTED"/>
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelOrigin/CREATED"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//ExtendibleElementConstraintLanguage">
-      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ExtendibleElementConstraintLanguage/OCL"/>
-      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ExtendibleElementConstraintLanguage/JAVA"/>
-      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ExtendibleElementConstraintLanguage/SMTLIB"/>
-    </genEnums>
     <genDataTypes ecoreDataType="mid.ecore#//MMINTException"/>
     <genClasses ecoreClass="mid.ecore#//MultiModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MultiModel/models"/>

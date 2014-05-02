@@ -33,7 +33,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmint.mid.MidFactory;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
@@ -97,13 +96,13 @@ public class AddModifyConstraintListener extends SelectionAdapter {
 				if (implementation == null) {
 					implementation = "";
 				}
-				String[] newConstraint = MultiModelDiagramUtils.getConstraintInput("Add/Modify Constraint", constraint.getLanguage().getLiteral() + MultiModelDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + implementation);
+				String[] newConstraint = MultiModelDiagramUtils.getConstraintInput("Add/Modify Constraint", constraint.getLanguage() + MultiModelDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + implementation);
 				if (!MultiModelConstraintChecker.isInstancesLevel(element)) {
 					if (!MultiModelConstraintChecker.checkConstraintConsistency(element, newConstraint[0], newConstraint[1])) {
 						throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");
 					}
 				}
-				constraint.setLanguage(ExtendibleElementConstraintLanguage.get(newConstraint[0]));
+				constraint.setLanguage(newConstraint[0]);
 				constraint.setImplementation(newConstraint[1]);
 
 				return CommandResult.newOKCommandResult(constraint);

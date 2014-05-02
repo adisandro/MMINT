@@ -46,7 +46,6 @@ import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmint.mid.MidFactory;
 import edu.toronto.cs.se.mmint.mid.MidLevel;
 import edu.toronto.cs.se.mmint.mid.MidPackage;
@@ -80,6 +79,7 @@ public class KleisliTest {
 	private final static String MODELRELTYPE_NAME = SRC_MODELTYPE_NAME + MMINT.BINARY_MODELREL_LINK_SEPARATOR + TGT_MODELTYPE_NAME;
 	private final static String[] SRC_METAMODELOBJ_NAMES = {"Company", "Student", "Businessman", "Company/clients", "Client/number"};
 	private final static String[] TGT_METAMODELOBJ_NAMES = {"Bank", "_StudentAccount", "_BusinessAccount", "Bank/accounts", "Account/_number"};
+	private final static String TGT_MODELELEM_QUERYLANGUAGE = "OCL";
 	private final static String[] TGT_MODELELEM_OCLQUERIES = {null, "id.startsWith('S')", "id.startsWith('B')", null, "id.substring(2,2)"};
 	private final static String TGT_MODELOBJ_METAMODELROOTCLASS = "Bank";
 	private final static String TGT_MODELOBJ_METAMODELCLASSTOCREATE = "Account";
@@ -151,7 +151,7 @@ public class KleisliTest {
 			ModelElementReference tgtModelElemTypeRef = dropMetamodelObject(kTgtMetamodelRootObj, TGT_METAMODELOBJ_NAMES[i], kTgtModelTypeEndpointRef, rootModelElemType);
 			if (TGT_MODELELEM_OCLQUERIES[i] != null) {
 				ExtendibleElementConstraint constraint = MidFactory.eINSTANCE.createExtendibleElementConstraint();
-				constraint.setLanguage(ExtendibleElementConstraintLanguage.OCL);
+				constraint.setLanguage(TGT_MODELELEM_QUERYLANGUAGE);
 				constraint.setImplementation(TGT_MODELELEM_OCLQUERIES[i]);
 				tgtModelElemTypeRef.getObject().setConstraint(constraint);
 			}

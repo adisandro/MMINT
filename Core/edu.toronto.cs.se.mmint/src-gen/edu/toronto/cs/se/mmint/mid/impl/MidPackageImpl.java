@@ -17,7 +17,6 @@ import edu.toronto.cs.se.mmint.mavo.impl.MavoPackageImpl;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.MidFactory;
 import edu.toronto.cs.se.mmint.mid.MidLevel;
@@ -130,13 +129,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	private EEnum modelOriginEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum extendibleElementConstraintLanguageEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -963,15 +955,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getExtendibleElementConstraintLanguage() {
-		return extendibleElementConstraintLanguageEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EDataType getMMINTException() {
 		return mmintExceptionEDataType;
 	}
@@ -1095,7 +1078,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		// Create enums
 		midLevelEEnum = createEEnum(MID_LEVEL);
 		modelOriginEEnum = createEEnum(MODEL_ORIGIN);
-		extendibleElementConstraintLanguageEEnum = createEEnum(EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE);
 
 		// Create data types
 		mmintExceptionEDataType = createEDataType(MMINT_EXCEPTION);
@@ -1248,7 +1230,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 
 		initEClass(extendibleElementConstraintEClass, ExtendibleElementConstraint.class, "ExtendibleElementConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExtendibleElementConstraint_Implementation(), ecorePackage.getEString(), "implementation", null, 1, 1, ExtendibleElementConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getExtendibleElementConstraint_Language(), this.getExtendibleElementConstraintLanguage(), "language", null, 1, 1, ExtendibleElementConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExtendibleElementConstraint_Language(), ecorePackage.getEString(), "language", null, 1, 1, ExtendibleElementConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelElementEClass, ModelElement.class, "ModelElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelElement_EInfo(), this.getEMFInfo(), null, "eInfo", null, 1, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1361,11 +1343,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		addEEnumLiteral(modelOriginEEnum, ModelOrigin.IMPORTED);
 		addEEnumLiteral(modelOriginEEnum, ModelOrigin.CREATED);
 
-		initEEnum(extendibleElementConstraintLanguageEEnum, ExtendibleElementConstraintLanguage.class, "ExtendibleElementConstraintLanguage");
-		addEEnumLiteral(extendibleElementConstraintLanguageEEnum, ExtendibleElementConstraintLanguage.OCL);
-		addEEnumLiteral(extendibleElementConstraintLanguageEEnum, ExtendibleElementConstraintLanguage.JAVA);
-		addEEnumLiteral(extendibleElementConstraintLanguageEEnum, ExtendibleElementConstraintLanguage.SMTLIB);
-
 		// Initialize data types
 		initEDataType(mmintExceptionEDataType, MMINTException.class, "MMINTException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
@@ -1406,7 +1383,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "unboundedLevel"
-		   });																																									
+		   });																																					
 	}
 
 	/**
@@ -1434,7 +1411,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		   source, 
 		   new String[] {
 			 "derivation", "target.uri"
-		   });																																	
+		   });																													
 	}
 
 } //MidPackageImpl

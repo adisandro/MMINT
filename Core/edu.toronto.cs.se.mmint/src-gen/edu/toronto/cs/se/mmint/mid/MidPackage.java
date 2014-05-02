@@ -1532,16 +1532,6 @@ public interface MidPackage extends EPackage {
 	int MODEL_ORIGIN = 10;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage <em>Extendible Element Constraint Language</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage
-	 * @see edu.toronto.cs.se.mmint.mid.impl.MidPackageImpl#getExtendibleElementConstraintLanguage()
-	 * @generated
-	 */
-	int EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE = 11;
-
-	/**
 	 * The meta object id for the '<em>MMINT Exception</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1549,7 +1539,7 @@ public interface MidPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.impl.MidPackageImpl#getMMINTException()
 	 * @generated
 	 */
-	int MMINT_EXCEPTION = 12;
+	int MMINT_EXCEPTION = 11;
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement <em>Extendible Element</em>}'.
@@ -2396,16 +2386,6 @@ public interface MidPackage extends EPackage {
 	EEnum getModelOrigin();
 
 	/**
-	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage <em>Extendible Element Constraint Language</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Extendible Element Constraint Language</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage
-	 * @generated
-	 */
-	EEnum getExtendibleElementConstraintLanguage();
-
-	/**
 	 * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.MMINTException <em>MMINT Exception</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3108,16 +3088,6 @@ public interface MidPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum MODEL_ORIGIN = eINSTANCE.getModelOrigin();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage <em>Extendible Element Constraint Language</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraintLanguage
-		 * @see edu.toronto.cs.se.mmint.mid.impl.MidPackageImpl#getExtendibleElementConstraintLanguage()
-		 * @generated
-		 */
-		EEnum EXTENDIBLE_ELEMENT_CONSTRAINT_LANGUAGE = eINSTANCE.getExtendibleElementConstraintLanguage();
 
 		/**
 		 * The meta object literal for the '<em>MMINT Exception</em>' data type.
