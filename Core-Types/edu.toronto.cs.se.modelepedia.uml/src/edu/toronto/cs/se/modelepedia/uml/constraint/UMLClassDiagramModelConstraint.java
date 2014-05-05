@@ -16,15 +16,10 @@ import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTr
 
 public class UMLClassDiagramModelConstraint extends UMLModelConstraint {
 
-	public UMLClassDiagramModelConstraint(Model model) {
-
-		super(model);
-	}
-
 	@Override
-	public MAVOTruthValue validate() {
+	public MAVOTruthValue validate(Model model) {
 
-		return validate(UMLModelConstraint.UML_CLASSDIAGRAM_TYPE);
+		return super.validate(model, UMLModelConstraint.UML_CLASSDIAGRAM_TYPE);
 	}
 
 }

@@ -9,17 +9,13 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.uml.constraint;
+package edu.toronto.cs.se.modelepedia.java.reasoning;
 
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 
-public class UMLComponentDiagramModelConstraint extends UMLModelConstraint {
+public interface IJavaModelConstraint {
 
-	@Override
-	public MAVOTruthValue validate(Model model) {
-
-		return super.validate(model, UMLModelConstraint.UML_COMPONENTDIAGRAM_TYPE);
-	}
+	public MAVOTruthValue validate(Model model);
 
 }

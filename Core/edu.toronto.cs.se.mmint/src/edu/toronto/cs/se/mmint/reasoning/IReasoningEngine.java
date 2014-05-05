@@ -16,13 +16,13 @@ import edu.toronto.cs.se.mmint.mid.MidLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 
-public interface ReasoningEngine {
+public interface IReasoningEngine {
 
 	/*TODO:
 	 * 1)- Define interface to check constraint
 	 * 2)- Define extension point to plug in reasoners
 	 * 3)- Read extension point in MMINT and instantiate reasoners
-	 * 4) Dispatch to the appropriate reasoner in MultiModelConstraintChecker.checkConstraint()
+	 * 4)- Dispatch to the appropriate reasoner in MultiModelConstraintChecker.checkConstraint()
 	 * 5)- Remove ExtendibleElementConstraintLanguage enum and use engine id
 	 * 6) Isolate all reasoners (OCL, JAVA, SMTLIB, EMFtoCSP) in their own projects
 	 * 7) Review constraint input

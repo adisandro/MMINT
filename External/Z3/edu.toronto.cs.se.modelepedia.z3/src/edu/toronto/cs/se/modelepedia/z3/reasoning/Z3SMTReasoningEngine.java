@@ -21,7 +21,7 @@ import edu.toronto.cs.se.mmint.mid.MidLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.reasoning.ReasoningEngine;
+import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
@@ -29,7 +29,7 @@ import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3BoolResult;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3ModelResult;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
 
-public class Z3SMTReasoningEngine implements ReasoningEngine {
+public class Z3SMTReasoningEngine implements IReasoningEngine {
 
 	private final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
 

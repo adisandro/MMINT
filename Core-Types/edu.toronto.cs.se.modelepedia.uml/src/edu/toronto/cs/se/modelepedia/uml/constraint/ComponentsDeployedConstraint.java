@@ -17,21 +17,16 @@ import org.eclipse.uml2.uml.PackageableElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.JavaModelConstraint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.modelepedia.java.reasoning.IJavaModelConstraint;
 
-public class ComponentsDeployedConstraint extends JavaModelConstraint {
-
-	public ComponentsDeployedConstraint(Model model) {
-
-		super(model);
-	}
+public class ComponentsDeployedConstraint implements IJavaModelConstraint {
 
 	@Override
-	public MAVOTruthValue validate() {
+	public MAVOTruthValue validate(Model model) {
 
 		BinaryModelRel deplRel = (BinaryModelRel) model;
 		org.eclipse.uml2.uml.Model srcUmlModel;
@@ -39,7 +34,7 @@ public class ComponentsDeployedConstraint extends JavaModelConstraint {
 			srcUmlModel = (org.eclipse.uml2.uml.Model) deplRel.getSourceModel().getEMFInstanceRoot();
 		}
 		catch (MMINTException e) {
-			MMINTException.print(Type.WARNING, "Can't get model root, skipping validation", e);
+			MMINTException.print(Type.ERROR, "Can't get model root, skipping validation", e);
 			return MAVOTruthValue.FALSE;
 		}
 		for (PackageableElement umlModelObj : srcUmlModel.getPackagedElements()) {

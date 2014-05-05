@@ -16,15 +16,10 @@ import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTr
 
 public class UMLDeploymentDiagramModelConstraint extends UMLModelConstraint {
 
-	public UMLDeploymentDiagramModelConstraint(Model model) {
-
-		super(model);
-	}
-
 	@Override
-	public MAVOTruthValue validate() {
+	public MAVOTruthValue validate(Model model) {
 
-		return validate(UMLModelConstraint.UML_DEPLOYMENTDIAGRAM_TYPE);
+		return super.validate(model, UMLModelConstraint.UML_DEPLOYMENTDIAGRAM_TYPE);
 	}
 
 }

@@ -63,7 +63,7 @@
                   The fully qualified name of a Java class that implements the reasoning engine.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":edu.toronto.cs.se.mmint.reasoning.ReasoningEngine"/>
+                  <meta.attribute kind="java" basedOn=":edu.toronto.cs.se.mmint.reasoning.IReasoningEngine"/>
                </appinfo>
             </annotation>
          </attribute>

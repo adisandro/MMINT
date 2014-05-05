@@ -56,7 +56,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.reasoning.ReasoningEngine;
+import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.mmint.repository.EditorsExtensionListener;
 import edu.toronto.cs.se.mmint.repository.ExtensionType;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
@@ -105,7 +105,7 @@ public class MMINT implements MMINTConstants {
 	/** The table to map type uris to their bundle name. */
 	static Map<String, String> bundleTable;
 	/** The reasoners table. */
-	static Map<String, Set<ReasoningEngine>> languageReasoners;
+	static Map<String, Set<IReasoningEngine>> languageReasoners;
 	/** The settings table. */
 	static Map<String, Object> settings;
 	/**
@@ -615,15 +615,15 @@ public class MMINT implements MMINTConstants {
 		}
 	}
 
-	public static ReasoningEngine createReasoner(IConfigurationElement extensionConfig) throws CoreException {
+	public static IReasoningEngine createReasoner(IConfigurationElement extensionConfig) throws CoreException {
 
-		ReasoningEngine reasoner = (ReasoningEngine) extensionConfig.createExecutableExtension(REASONERS_REASONER_ATTR_CLASS);
+		IReasoningEngine reasoner = (IReasoningEngine) extensionConfig.createExecutableExtension(REASONERS_REASONER_ATTR_CLASS);
 		IConfigurationElement[] languageConfigs = extensionConfig.getChildren(REASONERS_REASONER_CHILD_LANGUAGE);
 		for (IConfigurationElement languageConfig : languageConfigs) {
 			String languageId = languageConfig.getAttribute(REASONERS_REASONER_LANGUAGE_ATTR_ID).toUpperCase();
-			Set<ReasoningEngine> reasoners = languageReasoners.get(languageId);
+			Set<IReasoningEngine> reasoners = languageReasoners.get(languageId);
 			if (reasoners == null) {
-				reasoners = new HashSet<ReasoningEngine>();
+				reasoners = new HashSet<IReasoningEngine>();
 				languageReasoners.put(languageId, reasoners);
 			}
 			reasoners.add(reasoner);
@@ -647,7 +647,7 @@ public class MMINT implements MMINTConstants {
 		bundleTable = new HashMap<String, String>();
 		multipleInheritanceTable = new HashMap<String, Set<String>>();
 		typeFactory = new MultiModelHeavyTypeFactory();
-		languageReasoners = new HashMap<String, Set<ReasoningEngine>>();
+		languageReasoners = new HashMap<String, Set<IReasoningEngine>>();
 		IConfigurationElement[] configs;
 		Iterator<IConfigurationElement> extensionsIter;
 		IConfigurationElement config;
@@ -858,7 +858,7 @@ public class MMINT implements MMINTConstants {
 		return true;
 	}
 
-	public static Set<ReasoningEngine> getLanguageReasoners(String languageId) {
+	public static Set<IReasoningEngine> getLanguageReasoners(String languageId) {
 
 		return languageReasoners.get(languageId.toUpperCase());
 	}

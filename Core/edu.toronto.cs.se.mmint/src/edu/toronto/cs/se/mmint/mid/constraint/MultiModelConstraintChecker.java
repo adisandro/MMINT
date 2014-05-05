@@ -79,7 +79,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.reasoning.ReasoningEngine;
+import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 import fr.inria.atlanmod.emftocsp.ICspSolver;
 import fr.inria.atlanmod.emftocsp.IModelProperty;
 import fr.inria.atlanmod.emftocsp.IModelReader;
@@ -620,26 +620,6 @@ linkTypes:
 		return modelObj;
 	}
 
-	private static MAVOTruthValue checkJAVAConstraint(Model model, ExtendibleElementConstraint constraint, MidLevel constraintLevel) {
-
-		String javaClassName = constraint.getImplementation();
-		String modelTypeUri = (constraintLevel == MidLevel.INSTANCES) ?
-			((Model) constraint.eContainer()).getMetatypeUri() :
-			((Model) constraint.eContainer()).getUri();
-		try {
-			JavaModelConstraint javaConstraint = (JavaModelConstraint)
-				MultiModelTypeRegistry.getTypeBundle(modelTypeUri).
-				loadClass(javaClassName).
-				getConstructor(Model.class).
-				newInstance(model);
-			return javaConstraint.validate();
-		}
-		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Java constraint error, evaluating to false: " + javaClassName, e);
-			return MAVOTruthValue.FALSE;
-		}
-	}
-
 	/**
 	 * Checks if a constraint is satisfied on an extendible element (only models
 	 * are currently evaluated).
@@ -658,13 +638,13 @@ linkTypes:
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return MAVOTruthValue.TRUE;
 		}
-		Set<ReasoningEngine> reasoners = MMINT.getLanguageReasoners(constraint.getLanguage());
+		Set<IReasoningEngine> reasoners = MMINT.getLanguageReasoners(constraint.getLanguage());
 		if (reasoners == null || reasoners.isEmpty()) {
 			MMINTException.print(MMINTException.Type.WARNING, "Can't find a reasoner to evaluate language " + constraint.getLanguage() + ", skipping constraint check", null);
 			return MAVOTruthValue.TRUE;
 		}
 
-		ReasoningEngine reasoner = reasoners.iterator().next();
+		IReasoningEngine reasoner = reasoners.iterator().next();
 		MidLevel constraintLevel = (element.getUri().equals(((Model) constraint.eContainer()).getUri())) ? MidLevel.INSTANCES : MidLevel.TYPES;
 
 		return reasoner.checkConstraint((Model) element, constraint, constraintLevel);

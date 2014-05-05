@@ -12,22 +12,17 @@
 package edu.toronto.cs.se.modelepedia.kleisli.constraint;
 
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.JavaModelConstraint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.transformation.ModelRelTypeTransformationConstraint;
+import edu.toronto.cs.se.modelepedia.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 
-public class KleisliModelRelTypeConstraint extends JavaModelConstraint {
-
-	public KleisliModelRelTypeConstraint(Model model) {
-
-		super(model);
-	}
+public class KleisliModelRelTypeConstraint implements IJavaModelConstraint {
 
 	@Override
-	public MAVOTruthValue validate() {
+	public MAVOTruthValue validate(Model model) {
 
 		KleisliModelRel kModelRelType = (KleisliModelRel) model;
 		if (new ModelRelTypeTransformationConstraint(kModelRelType).validate() != MAVOTruthValue.TRUE) {
