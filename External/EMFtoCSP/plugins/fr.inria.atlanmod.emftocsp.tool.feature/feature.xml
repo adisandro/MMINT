@@ -96,4 +96,11 @@ of contradictory constraints
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.emftocsp"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>

@@ -863,6 +863,11 @@ public class MMINT implements MMINTConstants {
 		return languageReasoners.get(languageId.toUpperCase());
 	}
 
+	public static Set<String> getReasonerLanguages() {
+
+		return languageReasoners.keySet();
+	}
+
 	public static boolean isInitialized() {
 
 		return INSTANCE != null;

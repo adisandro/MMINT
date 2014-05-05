@@ -29,22 +29,14 @@ Export-Package: edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.mid.util,
  edu.toronto.cs.se.mmint.reasoning,
  edu.toronto.cs.se.mmint.repository
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore,
+Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.edit,
  org.eclipse.emf.edit.ui,
- org.eclipse.ui.ide,
  org.eclipse.ocl.examples.pivot,
  org.eclipse.gmf.runtime.emf.ui,
  org.eclipse.gmf.runtime.diagram.core,
  org.eclipse.emf.common,
- org.eclipse.emf.ecore.editor,
- fr.inria.atlanmod.emftocsp;resolution:=optional,
- fr.inria.atlanmod.emftocsp.eclipsecs;resolution:=optional,
- fr.inria.atlanmod.emftocsp.eclipsecs.libs;resolution:=optional,
- fr.inria.atlanmod.emftocsp.emf;resolution:=optional,
- fr.inria.atlanmod.emftocsp.emftoecl;resolution:=optional,
- fr.inria.atlanmod.emftocsp.ui.main;resolution:=optional
+ org.eclipse.emf.ecore.editor
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: edu.toronto.cs.se.mmint.MMINTActivator

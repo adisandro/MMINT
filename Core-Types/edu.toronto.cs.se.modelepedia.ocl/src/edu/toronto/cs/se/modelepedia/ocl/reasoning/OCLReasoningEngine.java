@@ -33,8 +33,8 @@ import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 
 public class OCLReasoningEngine implements IReasoningEngine {
 
-	private final static String OCL_MODELENDPOINT_VARIABLE = "$ENDPOINT_";
-	private final static char OCL_VARIABLE_SEPARATOR = '.';
+	protected final static String OCL_MODELENDPOINT_VARIABLE = "$ENDPOINT_";
+	protected final static char OCL_VARIABLE_SEPARATOR = '.';
 
 	private void initOCL(OCLHelper helper, EObject modelObj) {
 
@@ -48,7 +48,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 		helper.setContext(pivotType);
 	}
 
-	private EObject getConstraintContext(Model model, String oclConstraint, MidLevel constraintLevel) throws MMINTException {
+	protected EObject getConstraintContext(Model model, String oclConstraint, MidLevel constraintLevel) throws MMINTException {
 
 		//TODO MMINT[CONSTRAINT] find language to express more complex contraints on model rels
 		boolean isInstancesLevel = MultiModelConstraintChecker.isInstancesLevel(model);
