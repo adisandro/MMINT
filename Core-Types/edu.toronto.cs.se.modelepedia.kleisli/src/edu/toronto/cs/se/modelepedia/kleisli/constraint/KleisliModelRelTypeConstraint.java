@@ -15,9 +15,9 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmint.transformation.ModelRelTypeTransformationConstraint;
 import edu.toronto.cs.se.modelepedia.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
+import edu.toronto.cs.se.modelepedia.operator.patch.ModelRelTypeTransformationConstraint;
 
 public class KleisliModelRelTypeConstraint implements IJavaModelConstraint {
 
@@ -25,7 +25,7 @@ public class KleisliModelRelTypeConstraint implements IJavaModelConstraint {
 	public MAVOTruthValue validate(Model model) {
 
 		KleisliModelRel kModelRelType = (KleisliModelRel) model;
-		if (new ModelRelTypeTransformationConstraint(kModelRelType).validate() != MAVOTruthValue.TRUE) {
+		if (new ModelRelTypeTransformationConstraint().validate(kModelRelType) != MAVOTruthValue.TRUE) {
 			return MAVOTruthValue.FALSE;
 		}
 		// must be homomorphism

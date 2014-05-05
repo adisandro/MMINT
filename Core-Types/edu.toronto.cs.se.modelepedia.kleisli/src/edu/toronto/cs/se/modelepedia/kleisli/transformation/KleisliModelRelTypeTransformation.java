@@ -26,9 +26,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmint.transformation.ModelRelTypeTransformation;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
+import edu.toronto.cs.se.modelepedia.operator.patch.ModelRelTypeTransformation;
 
 public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformation {
 

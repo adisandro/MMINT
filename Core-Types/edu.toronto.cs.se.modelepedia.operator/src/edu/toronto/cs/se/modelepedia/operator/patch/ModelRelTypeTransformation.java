@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.transformation;
+package edu.toronto.cs.se.modelepedia.operator.patch;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -238,7 +238,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		}
 		for (ModelRel modelRelType : MultiModelTypeRegistry.getModelRelTypes()) {
 			// check 2: satisfies transformation constraint
-			if (new ModelRelTypeTransformationConstraint(modelRelType).validate() != MAVOTruthValue.TRUE) {
+			if (new ModelRelTypeTransformationConstraint().validate(modelRelType) != MAVOTruthValue.TRUE) {
 				continue;
 			}
 			Model srcModel = actualModels.get(0);

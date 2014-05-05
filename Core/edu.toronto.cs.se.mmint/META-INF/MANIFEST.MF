@@ -28,8 +28,7 @@ Export-Package: edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.mid.ui,
  edu.toronto.cs.se.mmint.mid.util,
  edu.toronto.cs.se.mmint.reasoning,
- edu.toronto.cs.se.mmint.repository,
- edu.toronto.cs.se.mmint.transformation
+ edu.toronto.cs.se.mmint.repository
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,

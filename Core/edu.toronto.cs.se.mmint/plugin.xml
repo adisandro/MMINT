@@ -199,40 +199,4 @@
       </relationshipType>
    </extension>
 
-   <extension
-         point="edu.toronto.cs.se.mmint.operators">
-      <operatorType>
-         <type
-               name="ModelRelTypeTransformation"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelRelTypeTransformation"
-               class="edu.toronto.cs.se.mmint.transformation.ModelRelTypeTransformation">
-         </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  isType="true"
-                  name="modelRelType"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-            </parameter>
-            <parameter
-                  isVararg="false"
-                  name="srcModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
-            </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="tgtModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
-            </parameter>
-            <parameter
-                  isVararg="false"
-                  name="traceModelRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-            </parameter>
-         </output>
-      </operatorType>
-   </extension>
-
 </plugin>

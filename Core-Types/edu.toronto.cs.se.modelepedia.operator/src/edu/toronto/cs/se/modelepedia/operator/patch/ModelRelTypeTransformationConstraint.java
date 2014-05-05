@@ -9,22 +9,17 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.transformation;
+package edu.toronto.cs.se.modelepedia.operator.patch;
 
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.JavaModelConstraint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.modelepedia.java.reasoning.IJavaModelConstraint;
 
-public class ModelRelTypeTransformationConstraint extends JavaModelConstraint {
-
-	public ModelRelTypeTransformationConstraint(Model model) {
-
-		super(model);
-	}
+public class ModelRelTypeTransformationConstraint implements IJavaModelConstraint {
 
 	@Override
-	public MAVOTruthValue validate() {
+	public MAVOTruthValue validate(Model model) {
 
 		ModelRel modelRelType = (ModelRel) model;
 		if (modelRelType.getModelEndpointRefs().size() != 2) {
