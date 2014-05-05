@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.z3.reasoning;
+package edu.toronto.cs.se.modelepedia.z3.reasoning;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -22,12 +22,12 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.reasoning.ReasoningEngine;
-import edu.toronto.cs.se.mmint.z3.Z3SMTIncrementalSolver;
-import edu.toronto.cs.se.mmint.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.mmint.z3.Z3SMTUtils;
-import edu.toronto.cs.se.mmint.z3.Z3SMTUtils.Z3BoolResult;
-import edu.toronto.cs.se.mmint.z3.Z3SMTUtils.Z3ModelResult;
-import edu.toronto.cs.se.mmint.z3.mavo.EcoreMAVOToSMTLIB;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3BoolResult;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3ModelResult;
+import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
 
 public class Z3SMTReasoningEngine implements ReasoningEngine {
 

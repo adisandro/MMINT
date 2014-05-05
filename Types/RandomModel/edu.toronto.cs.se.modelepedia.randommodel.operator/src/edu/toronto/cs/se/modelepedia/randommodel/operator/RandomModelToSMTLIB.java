@@ -38,10 +38,10 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
-import edu.toronto.cs.se.mmint.z3.Z3SMTUtils;
 import edu.toronto.cs.se.modelepedia.randommodel.Edge;
 import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
 import edu.toronto.cs.se.modelepedia.randommodel.Node;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
 
 public class RandomModelToSMTLIB extends RandomOperatorImpl {
 

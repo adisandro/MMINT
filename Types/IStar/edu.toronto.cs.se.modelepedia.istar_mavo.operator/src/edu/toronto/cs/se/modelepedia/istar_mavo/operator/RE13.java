@@ -32,15 +32,15 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.z3.Z3SMTIncrementalSolver;
-import edu.toronto.cs.se.mmint.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.mmint.z3.Z3SMTUtils;
-import edu.toronto.cs.se.mmint.z3.Z3SMTUtils.Z3BoolResult;
-import edu.toronto.cs.se.mmint.z3.Z3SMTUtils.Z3ModelResult;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3BoolResult;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3ModelResult;
 
 public class RE13 extends OperatorImpl {
 

@@ -43,8 +43,8 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmint.z3.Z3SMTIncrementalSolver;
-import edu.toronto.cs.se.mmint.z3.Z3SMTUtils;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
 
 public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 

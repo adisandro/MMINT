@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.z3;
+package edu.toronto.cs.se.modelepedia.z3;
 
 import com.microsoft.z3.Model;
 import com.microsoft.z3.Status;

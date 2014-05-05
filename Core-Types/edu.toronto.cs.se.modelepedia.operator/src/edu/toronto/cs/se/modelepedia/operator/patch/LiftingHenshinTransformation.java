@@ -37,11 +37,11 @@ import org.eclipse.emf.henshin.model.Rule;
 import edu.toronto.cs.se.mmint.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
-import edu.toronto.cs.se.mmint.z3.Z3SMTIncrementalSolver;
-import edu.toronto.cs.se.mmint.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.mmint.z3.Z3SMTUtils.Z3BoolResult;
-import edu.toronto.cs.se.mmint.z3.Z3SMTUtils.Z3ModelResult;
-import edu.toronto.cs.se.mmint.z3.Z3SMTUtils;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3BoolResult;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3ModelResult;
 
 public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 

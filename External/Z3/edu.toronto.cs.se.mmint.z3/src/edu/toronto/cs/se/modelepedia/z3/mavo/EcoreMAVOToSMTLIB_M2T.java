@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package edu.toronto.cs.se.mmint.z3.mavo;
+package edu.toronto.cs.se.modelepedia.z3.mavo;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class EcoreMAVOToSMTLIB_M2T extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public static final String MODULE_FILE_NAME = "/edu/toronto/cs/se/mmint/z3/mavo/EcoreMAVOToSMTLIB_M2T";
+    public static final String MODULE_FILE_NAME = "/edu/toronto/cs/se/modelepedia/z3/mavo/EcoreMAVOToSMTLIB_M2T";
     
     /**
      * The name of the templates that are to be generated.

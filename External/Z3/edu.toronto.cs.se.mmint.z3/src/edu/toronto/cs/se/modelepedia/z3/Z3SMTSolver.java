@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.z3;
+package edu.toronto.cs.se.modelepedia.z3;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,8 +23,8 @@ import com.microsoft.z3.Z3Exception;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
-import edu.toronto.cs.se.mmint.z3.Z3SMTUtils.Z3BoolResult;
-import edu.toronto.cs.se.mmint.z3.Z3SMTUtils.Z3ModelResult;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3BoolResult;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3ModelResult;
 
 public class Z3SMTSolver {
 

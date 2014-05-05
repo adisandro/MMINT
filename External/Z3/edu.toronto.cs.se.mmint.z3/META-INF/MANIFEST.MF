@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: edu.toronto.cs.se.mmint.z3;singleton:=true
+Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.z3;singleton:=true
 Bundle-Version: 1.3.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: %providerName
@@ -9,8 +9,8 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.acceleo.engine,
  edu.toronto.cs.se.mmint
 Export-Package: com.microsoft.z3,
- edu.toronto.cs.se.mmint.z3,
- edu.toronto.cs.se.mmint.z3.mavo,
- edu.toronto.cs.se.mmint.z3.reasoning
+ edu.toronto.cs.se.modelepedia.z3,
+ edu.toronto.cs.se.modelepedia.z3.mavo,
+ edu.toronto.cs.se.modelepedia.z3.reasoning
 Bundle-ClassPath: lib/com.microsoft.z3.jar,
  .

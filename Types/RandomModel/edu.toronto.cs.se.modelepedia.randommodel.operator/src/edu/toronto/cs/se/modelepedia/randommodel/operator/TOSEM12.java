@@ -27,14 +27,14 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.z3.Z3SMTIncrementalSolver;
-import edu.toronto.cs.se.mmint.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.mmint.z3.Z3SMTSolver;
-import edu.toronto.cs.se.mmint.z3.Z3SMTUtils;
-import edu.toronto.cs.se.mmint.z3.Z3SMTUtils.Z3BoolResult;
-import edu.toronto.cs.se.mmint.z3.Z3SMTUtils.Z3ModelResult;
 import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3BoolResult;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3ModelResult;
 
 public class TOSEM12 extends OperatorImpl {
 

@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.z3.mavo;
+package edu.toronto.cs.se.modelepedia.z3.mavo;
 
 import java.util.HashMap;
 import java.util.Map;
