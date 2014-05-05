@@ -42,6 +42,7 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
+import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
 
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -431,6 +432,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 		super.openInstance();
 
 		// extend models (doing it at every open is robust against model change)
+		OCLReasoningEngine oclReasoner = new OCLReasoningEngine();
 		for (ModelEndpoint modelEndpoint : getModelEndpoints()) {
 			ModelEndpoint modelTypeEndpoint = modelEndpoint.getMetatype();
 			if (!(modelTypeEndpoint instanceof KleisliModelEndpoint)) {
@@ -472,7 +474,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 							if (!kModelElemTypeClassSuper.getName().equals(modelObj.eClass().getName())) {
 								continue;
 							}
-							if (MultiModelConstraintChecker.checkOCLConstraint(modelObj, kConstraint.getImplementation()) != MAVOTruthValue.TRUE) {
+							if (oclReasoner.checkConstraint(modelObj, kConstraint.getImplementation()) != MAVOTruthValue.TRUE) {
 								continue;
 							}
 							EObject kModelObj = kModelTypeFactory.create(kModelElemTypeClass);
@@ -525,7 +527,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 							}
 							EcoreUtil.replace(modelObj, kModelObj);
 						}
-						Object kModelObjAttr = MultiModelConstraintChecker.deriveOCLConstraint(kModelObj, kConstraint.getImplementation());
+						Object kModelObjAttr = oclReasoner.deriveUsingConstraint(kModelObj, kConstraint.getImplementation());
 						EStructuralFeature kFeature = kModelObj.eClass().getEStructuralFeature(kModelElemTypeEInfo.getFeatureName());
 						kModelObj.eSet(kFeature, kModelObjAttr);
 					}

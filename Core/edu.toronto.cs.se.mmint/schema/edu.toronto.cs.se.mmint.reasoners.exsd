@@ -57,13 +57,6 @@
          <sequence>
             <element ref="language" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
-         <attribute name="name" type="string" use="required">
-            <annotation>
-               <documentation>
-                  The name of the reasoning engine.
-               </documentation>
-            </annotation>
-         </attribute>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>

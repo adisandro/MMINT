@@ -56,6 +56,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
+		//TODO MMINT[REASONING] generalize for non-mavo too
 		Model mavoModel = actualParameters.get(0);
 
 		List<Object> m2tArgs = new ArrayList<Object>();

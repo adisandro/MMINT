@@ -14,8 +14,8 @@ package edu.toronto.cs.se.modelepedia.z3.reasoning;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MidLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -36,10 +36,6 @@ public class Z3SMTReasoningEngine implements ReasoningEngine {
 	@Override
 	public MAVOTruthValue checkConstraint(Model model, ExtendibleElementConstraint constraint, MidLevel constraintLevel) {
 
-		if (!MAVOUtils.isMAVOModel(model)) {
-			return MAVOTruthValue.FALSE;
-		}
-
 		String smtlibConstraint = constraint.getImplementation();
 		EcoreMAVOToSMTLIB ecore2smt = (EcoreMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(ECOREMAVOTOSMTLIB_OPERATOR_URI);
 		EList<Model> actualParameters = new BasicEList<Model>();
@@ -48,6 +44,7 @@ public class Z3SMTReasoningEngine implements ReasoningEngine {
 			ecore2smt.execute(actualParameters);
 		}
 		catch (Exception e) {
+			MMINTException.print(MMINTException.Type.ERROR, "Can't generate SMTLIB encoding, evaluating to false", e);
 			return MAVOTruthValue.FALSE;
 		}
 		ecore2smt.cleanup();

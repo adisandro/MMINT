@@ -6,7 +6,7 @@
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
-      Support for using the Z3 SMT solver from MMINT.
+      Support for using the Z3 SMT solver in MMINT.
    </description>
 
    <copyright>

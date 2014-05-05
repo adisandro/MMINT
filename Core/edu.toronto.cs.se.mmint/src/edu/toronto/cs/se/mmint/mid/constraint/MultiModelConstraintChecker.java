@@ -46,12 +46,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.osgi.framework.FrameworkUtil;
@@ -626,66 +620,6 @@ linkTypes:
 		return modelObj;
 	}
 
-	private static void initOCL(OCLHelper helper, EObject modelObj) {
-
-		//TODO MMINT: workaround for bug #375485
-//		helper.setInstanceContext(modelObj);
-		MetaModelManager metaModelManager = helper.getOCL().getMetaModelManager();
-		EClass modelObjClass = modelObj.eClass();
-		Resource resource = modelObjClass.eResource();
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, metaModelManager);
-		Type pivotType = ecore2Pivot.getCreated(Type.class, modelObjClass);
-		helper.setContext(pivotType);
-	}
-
-	public static Object deriveOCLConstraint(EObject modelObj, String oclConstraint) {
-
-		OCL ocl = OCL.newInstance();
-		OCLHelper helper = ocl.createOCLHelper();
-		initOCL(helper, modelObj);
-
-		try {
-			ExpressionInOCL expression = helper.createQuery(oclConstraint);
-			return ocl.evaluate(modelObj, expression);
-		}
-		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "OCL derivation error: " + oclConstraint, e);
-			return null;
-		}
-	}
-
-	public static MAVOTruthValue checkOCLConstraint(EObject modelObj, String oclConstraint) {
-
-		OCL ocl = OCL.newInstance();
-		OCLHelper helper = ocl.createOCLHelper();
-		initOCL(helper, modelObj);
-
-		try {
-			ExpressionInOCL expression = helper.createInvariant(oclConstraint);
-			return (ocl.check(modelObj, expression)) ? MAVOTruthValue.TRUE : MAVOTruthValue.FALSE;
-		}
-		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "OCL constraint error, evaluating to false: " + oclConstraint, e);
-			return MAVOTruthValue.FALSE;
-		}
-	}
-
-	private static MAVOTruthValue checkOCLConstraint(Model model, ExtendibleElementConstraint constraint, MidLevel constraintLevel) {
-
-		String oclConstraint = constraint.getImplementation();
-		try {
-			EObject modelObj = getOCLConstraintContext(model, oclConstraint, constraintLevel);
-			if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
-				oclConstraint = oclConstraint.substring(oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR) + 1, oclConstraint.length());
-			}
-			return checkOCLConstraint(modelObj, oclConstraint);
-		}
-		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Can't get context for OCL constraint, evaluating to false", e);
-			return MAVOTruthValue.FALSE;
-		}
-	}
-
 	private static MAVOTruthValue checkJAVAConstraint(Model model, ExtendibleElementConstraint constraint, MidLevel constraintLevel) {
 
 		String javaClassName = constraint.getImplementation();
@@ -724,23 +658,16 @@ linkTypes:
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return MAVOTruthValue.TRUE;
 		}
-//		Set<ReasoningEngine> reasoners = MMINT.getLanguageReasoners(constraint.getLanguage());
-//		if (reasoners == null || reasoners.isEmpty()) {
-//			MMINTException.print(MMINTException.Type.WARNING, "Can't find a reasoner to evaluate language " + constraint.getLanguage() + ", skipping constraint check", null);
-//			return MAVOTruthValue.TRUE;
-//		}
-//
-//		ReasoningEngine reasoner = reasoners.iterator().next();
-		MidLevel constraintLevel = (element.getUri().equals(((Model) constraint.eContainer()).getUri())) ? MidLevel.INSTANCES : MidLevel.TYPES;
-//		reasoner.checkConstraint((Model) element, constraint, constraintLevel);
-		switch (constraint.getLanguage()) {
-			case "OCL":
-				return checkOCLConstraint((Model) element, constraint, constraintLevel);
-			case "JAVA":
-				return checkJAVAConstraint((Model) element, constraint, constraintLevel);
-			default:
-				return MAVOTruthValue.FALSE;
+		Set<ReasoningEngine> reasoners = MMINT.getLanguageReasoners(constraint.getLanguage());
+		if (reasoners == null || reasoners.isEmpty()) {
+			MMINTException.print(MMINTException.Type.WARNING, "Can't find a reasoner to evaluate language " + constraint.getLanguage() + ", skipping constraint check", null);
+			return MAVOTruthValue.TRUE;
 		}
+
+		ReasoningEngine reasoner = reasoners.iterator().next();
+		MidLevel constraintLevel = (element.getUri().equals(((Model) constraint.eContainer()).getUri())) ? MidLevel.INSTANCES : MidLevel.TYPES;
+
+		return reasoner.checkConstraint((Model) element, constraint, constraintLevel);
 	}
 
 	private static void flattenEPackage(EPackage flatPackage) {
