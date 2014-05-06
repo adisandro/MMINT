@@ -78,7 +78,7 @@ public class NewModelDialogContentProvider implements ITreeContentProvider {
 			return modelTypes.toArray();
 		}
 		if (parentElement instanceof Model) {
-			boolean allowDiagramTypes = (boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_DIAGRAMS_CREATION_ENABLED);
+			boolean allowDiagramTypes = Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_DIAGRAMS_CREATION_ENABLED));
 			if (allowDiagramTypes) {
 				return ((Model) parentElement).getEditors().toArray();
 			}

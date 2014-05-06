@@ -688,7 +688,7 @@ Contributors:
    <extension point="org.eclipse.ui.menus">
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <dynamic
-               class="edu.toronto.cs.se.mmint.mid.diagram.contextmenu.MidDiagramActions"
+               class="edu.toronto.cs.se.mmint.mid.diagram.contextmenu.MIDContextMenu"
                id="edu.toronto.cs.se.mmint.mid.diagram.contextmenu.MidDiagramActions">
             <visibleWhen>
                <with variable="activePartId">
@@ -749,6 +749,10 @@ Contributors:
                   style="toggle"
                   tooltip="Enables/disables the automatic creation of diagrams for models used in MIDs">
             </command>
+            <dynamic
+                  class="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTLanguageReasonersMenu"
+                  id="edu.toronto.cs.se.mmint.mid.diagram.menu.ReasoningDropdown">
+            </dynamic>
          </menu>
       </menuContribution>
    </extension>
@@ -756,17 +760,17 @@ Contributors:
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.OpenTypeMidHandler"
+            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTOpenTypeMIDMenu"
             id="edu.toronto.cs.se.mmint.mid.diagram.menu.OpenTypeMidHandler"
             name="Open Type MID">
       </command>
       <command
-            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.OpenWikiHandler"
+            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTOpenWikiMenu"
             id="edu.toronto.cs.se.mmint.mid.diagram.menu.OpenWikiHandler"
             name="Open Wiki">
       </command>
       <command
-            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.AppearanceHandler"
+            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
             id="edu.toronto.cs.se.mmint.mid.diagram.menu.IconsEnabled"
             name="Icons Enabled">
          <state
@@ -775,7 +779,7 @@ Contributors:
          </state>
       </command>
       <command
-            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.AppearanceHandler"
+            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
             id="edu.toronto.cs.se.mmint.mid.diagram.menu.EndpointsEnabled"
             name="Endpoints Enabled">
          <state
@@ -784,7 +788,7 @@ Contributors:
          </state>
       </command>
       <command
-            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.AppearanceHandler"
+            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
             id="edu.toronto.cs.se.mmint.mid.diagram.menu.ModelRelsEnabled"
             name="ModelRels Enabled">
          <state
@@ -793,7 +797,7 @@ Contributors:
          </state>
       </command>
       <command
-            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.AppearanceHandler"
+            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
             id="edu.toronto.cs.se.mmint.mid.diagram.menu.LinksEnabled"
             name="Links Enabled">
          <state
@@ -802,7 +806,7 @@ Contributors:
          </state>
       </command>
       <command
-            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.AppearanceHandler"
+            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
             id="edu.toronto.cs.se.mmint.mid.diagram.menu.DiagramsCreationEnabled"
             name="Diagrams Creation Enabled">
          <state

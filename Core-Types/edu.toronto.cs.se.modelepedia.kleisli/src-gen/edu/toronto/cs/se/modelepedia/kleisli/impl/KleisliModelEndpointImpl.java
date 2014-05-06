@@ -280,7 +280,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 				KleisliModelImpl.getModelTypeExtendedUri((KleisliModelRel) containerModelRelType, targetModelType, newModelTypeEndpointName)
 			) != null;
 		boolean extendMetamodel = false;
-		if (!isK && MMINT.isInitialized() && !((boolean) MMINT.getSetting(MMINTConstants.SETTING_TESTS_ENABLED))) {
+		if (!isK && MMINT.isInitialized() && !Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_TESTS_ENABLED))) {
 			extendMetamodel = MultiModelDiagramUtils.getBooleanInput("Create new Kleisli model type endpoint", "Extend " + targetModelType.getName() + " metamodel?");
 			isK = extendMetamodel;
 		}

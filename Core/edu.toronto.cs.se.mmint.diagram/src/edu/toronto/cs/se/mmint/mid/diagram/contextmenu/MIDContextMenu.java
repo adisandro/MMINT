@@ -52,7 +52,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  * @author Alessio Di Sandro
  * 
  */
-public class MidDiagramActions extends ContributionItem {
+public class MIDContextMenu extends ContributionItem {
 
 	private static final int INVALID_MENU_ITEM_LIMIT = 20;
 	private static final String DOWNCAST_LABEL = " (downcast)";

@@ -17,7 +17,8 @@
    <extension
          point="edu.toronto.cs.se.mmint.reasoners">
       <reasoner
-            class="edu.toronto.cs.se.modelepedia.z3.reasoning.Z3SMTReasoningEngine">
+            class="edu.toronto.cs.se.modelepedia.z3.reasoning.Z3SMTReasoningEngine"
+            name="Z3 SMT Solver">
          <language
                id="SMTLIB">
          </language>

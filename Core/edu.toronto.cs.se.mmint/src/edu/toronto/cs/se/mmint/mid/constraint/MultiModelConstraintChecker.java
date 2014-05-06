@@ -17,12 +17,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
+
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
@@ -49,6 +48,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
+import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 /**
  * The constraint checker for multimodels.
@@ -552,13 +552,14 @@ linkTypes:
 		if (!(element instanceof Model) || constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return MAVOTruthValue.TRUE;
 		}
-		Set<IReasoningEngine> reasoners = MMINT.getLanguageReasoners(constraint.getLanguage());
+		Map<String, IReasoningEngine> reasoners = MMINT.getLanguageReasoners(constraint.getLanguage());
 		if (reasoners == null || reasoners.isEmpty()) {
 			MMINTException.print(MMINTException.Type.WARNING, "Can't find a reasoner for language " + constraint.getLanguage() + ", skipping constraint check", null);
 			return MAVOTruthValue.TRUE;
 		}
-		IReasoningEngine reasoner = reasoners.iterator().next();
+		String reasonerName = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_LANGUAGE_REASONER + constraint.getLanguage());
 		MidLevel constraintLevel = (element.getUri().equals(((Model) constraint.eContainer()).getUri())) ? MidLevel.INSTANCES : MidLevel.TYPES;
+		IReasoningEngine reasoner = reasoners.get(reasonerName);
 
 		return reasoner.checkConstraint((Model) element, constraint, constraintLevel);
 	}
@@ -568,12 +569,13 @@ linkTypes:
 		if (!(type instanceof Model) || constraintImplementation.equals("")) {
 			return true;
 		}
-		Set<IReasoningEngine> reasoners = MMINT.getLanguageReasoners(constraintLanguage);
+		Map<String, IReasoningEngine> reasoners = MMINT.getLanguageReasoners(constraintLanguage);
 		if (reasoners == null || reasoners.isEmpty()) {
 			MMINTException.print(MMINTException.Type.WARNING, "Can't find a reasoner for language " + constraintLanguage + ", skipping constraint consistency check", null);
 			return true;
 		}
-		IReasoningEngine reasoner = reasoners.iterator().next();
+		String reasonerName = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_LANGUAGE_REASONER + constraintLanguage);
+		IReasoningEngine reasoner = reasoners.get(reasonerName);
 
 		return reasoner.checkConstraintConsistency((Model) type, constraintImplementation);
 	}

@@ -27,7 +27,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditor;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorPlugin;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-public class OpenTypeMidHandler extends AbstractHandler {
+public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {

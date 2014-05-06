@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementR
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 
-public class KleisliRelationshipDiagramActions extends ContributionItem {
+public class KleisliRelationshipDiagramContextMenu extends ContributionItem {
 
 	private static final int INVALID_MENU_ITEM_LIMIT = 20;
 

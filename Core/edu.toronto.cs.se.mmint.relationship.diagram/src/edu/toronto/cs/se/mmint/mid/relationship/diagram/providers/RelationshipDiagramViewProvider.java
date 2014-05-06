@@ -110,7 +110,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		if (!(boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_ENDPOINTS_ENABLED)) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ENDPOINTS_ENABLED))) {
 			return edge;
 		}
 		Node label6007 = createLabel(edge,
@@ -120,7 +120,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 		Location location6007 = (Location) label6007.getLayoutConstraint();
 		location6007.setX(0);
 		location6007.setY(40);
-		if ((boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_ICONS_ENABLED)) {
+		if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ICONS_ENABLED))) {
 			Node label6015 = createLabel(edge,
 					MidVisualIDRegistry.getType(WrappingLabel23EditPart.VISUAL_ID));
 			label6015.setLayoutConstraint(NotationFactory.eINSTANCE
@@ -178,7 +178,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		if (!(boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_LINKS_ENABLED)) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_LINKS_ENABLED))) {
 			return edge;
 		}
 		Node label6008 = createLabel(edge,
@@ -188,7 +188,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 		Location location6008 = (Location) label6008.getLayoutConstraint();
 		location6008.setX(0);
 		location6008.setY(40);
-		if ((boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_ICONS_ENABLED)) {
+		if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ICONS_ENABLED))) {
 			Node label6009 = createLabel(edge,
 					MidVisualIDRegistry.getType(WrappingLabel10EditPart.VISUAL_ID));
 			label6009.setLayoutConstraint(NotationFactory.eINSTANCE
@@ -197,7 +197,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 			location6009.setX(0);
 			location6009.setY(60);
 		}
-		if (!(boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_ENDPOINTS_ENABLED)) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ENDPOINTS_ENABLED))) {
 			return edge;
 		}
 		Node label6010 = createLabel(edge,
@@ -263,7 +263,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		if (!(boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_LINKS_ENABLED)) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_LINKS_ENABLED))) {
 			return edge;
 		}
 		Node label6011 = createLabel(edge,
@@ -273,7 +273,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 		Location location6011 = (Location) label6011.getLayoutConstraint();
 		location6011.setX(0);
 		location6011.setY(40);
-		if ((boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_ICONS_ENABLED)) {
+		if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ICONS_ENABLED))) {
 			Node label6012 = createLabel(edge,
 					MidVisualIDRegistry.getType(WrappingLabel13EditPart.VISUAL_ID));
 			label6012.setLayoutConstraint(NotationFactory.eINSTANCE
@@ -282,7 +282,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 			location6012.setX(0);
 			location6012.setY(60);
 		}
-		if (!(boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_ENDPOINTS_ENABLED)) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ENDPOINTS_ENABLED))) {
 			return edge;
 		}
 		Node label6013 = createLabel(edge,
@@ -348,7 +348,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		if (!(boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_ENDPOINTS_ENABLED)) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ENDPOINTS_ENABLED))) {
 			return edge;
 		}
 		Node label6014 = createLabel(edge,
@@ -358,7 +358,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 		Location location6014 = (Location) label6014.getLayoutConstraint();
 		location6014.setX(0);
 		location6014.setY(40);
-		if ((boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_ICONS_ENABLED)) {
+		if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ICONS_ENABLED))) {
 			Node label6018 = createLabel(edge,
 					MidVisualIDRegistry.getType(WrappingLabel26EditPart.VISUAL_ID));
 			label6018.setLayoutConstraint(NotationFactory.eINSTANCE

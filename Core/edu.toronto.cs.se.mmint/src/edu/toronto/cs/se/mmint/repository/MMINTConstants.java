@@ -154,6 +154,8 @@ public interface MMINTConstants {
 	public final static String REASONERS_EXT_POINT = "edu.toronto.cs.se.mmint.reasoners";
 	/** The Reasoners extension point's reasoner child. */
 	public final static String REASONERS_CHILD_REASONER = "reasoner";
+	/** The Reasoners extension point's reasoner's name attribute. */
+	public final static String REASONERS_REASONER_ATTR_NAME = "name";
 	/** The Reasoners extension point's reasoner's class attribute. */
 	public final static String REASONERS_REASONER_ATTR_CLASS = "class";
 	/** The Reasoners extension point's reasoner's language child. */
@@ -161,12 +163,14 @@ public interface MMINTConstants {
 	/** The Reasoners extension point's reasoner's language child's id attribute. */
 	public final static String REASONERS_REASONER_LANGUAGE_ATTR_ID = "id";
 
-	public final static String SETTING_MENU_ID = "edu.toronto.cs.se.mmint.mid.diagram.menu";
-	public final static String SETTING_MENU_ICONS_ENABLED = SETTING_MENU_ID + ".IconsEnabled";
-	public final static String SETTING_MENU_ENDPOINTS_ENABLED = SETTING_MENU_ID + ".EndpointsEnabled";
-	public final static String SETTING_MENU_MODELRELS_ENABLED = SETTING_MENU_ID + ".ModelRelsEnabled";
-	public final static String SETTING_MENU_LINKS_ENABLED = SETTING_MENU_ID + ".LinksEnabled";
-	public final static String SETTING_MENU_DIAGRAMS_CREATION_ENABLED = SETTING_MENU_ID + ".DiagramsCreationEnabled";
-	public final static String SETTING_TESTS_ENABLED = SETTING_MENU_ID + ".TestsEnabled";
+	public final static String PREFERENCE_MMINT_ID = "edu.toronto.cs.se.mmint";
+	public final static String PREFERENCE_MENU_ID = PREFERENCE_MMINT_ID + ".mid.diagram.menu";
+	public final static String PREFERENCE_MENU_ICONS_ENABLED = PREFERENCE_MENU_ID + ".IconsEnabled";
+	public final static String PREFERENCE_MENU_ENDPOINTS_ENABLED = PREFERENCE_MENU_ID + ".EndpointsEnabled";
+	public final static String PREFERENCE_MENU_MODELRELS_ENABLED = PREFERENCE_MENU_ID + ".ModelRelsEnabled";
+	public final static String PREFERENCE_MENU_LINKS_ENABLED = PREFERENCE_MENU_ID + ".LinksEnabled";
+	public final static String PREFERENCE_MENU_DIAGRAMS_CREATION_ENABLED = PREFERENCE_MENU_ID + ".DiagramsCreationEnabled";
+	public final static String PREFERENCE_MENU_LANGUAGE_REASONER = PREFERENCE_MENU_ID + ".Reasoner";
+	public final static String PREFERENCE_TESTS_ENABLED = PREFERENCE_MMINT_ID + ".TestsEnabled";
 
 }

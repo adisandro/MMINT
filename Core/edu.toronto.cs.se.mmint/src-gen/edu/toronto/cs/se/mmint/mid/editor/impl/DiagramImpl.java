@@ -91,7 +91,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 
 		// check if diagram file already exists in model directory
 		if (MultiModelUtils.isFileOrDirectory(MultiModelUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0)), true) == null) {
-			if (!(boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_DIAGRAMS_CREATION_ENABLED)) {
+			if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_DIAGRAMS_CREATION_ENABLED))) {
 				throw new MMINTException("Diagram creation not enabled by setting");
 			}
 			// try to build a new diagram through its wizard, inited with the existing model file

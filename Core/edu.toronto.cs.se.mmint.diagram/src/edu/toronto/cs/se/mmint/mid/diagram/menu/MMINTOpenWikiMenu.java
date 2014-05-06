@@ -23,7 +23,7 @@ import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 
-public class OpenWikiHandler extends AbstractHandler {
+public class MMINTOpenWikiMenu extends AbstractHandler {
 	
 	private final static String WIKI_WWW = "http://www.cs.toronto.edu:40404/modelepedia_local/index.php";
 	

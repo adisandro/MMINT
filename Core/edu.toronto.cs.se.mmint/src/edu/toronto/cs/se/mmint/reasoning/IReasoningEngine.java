@@ -24,7 +24,7 @@ public interface IReasoningEngine {
 	 * 3)- Read extension point in MMINT and instantiate reasoners
 	 * 4)- Dispatch to the appropriate reasoner in MultiModelConstraintChecker.checkConstraint()
 	 * 5)- Remove ExtendibleElementConstraintLanguage enum and use engine id
-	 * 6) Isolate all reasoners (OCL, JAVA, SMTLIB, EMFtoCSP) in their own projects
+	 * 6)- Isolate all reasoners (OCL, JAVA, SMTLIB, EMFtoCSP) in their own projects
 	 * 7) Review constraint input
 	 */
 	public MAVOTruthValue checkConstraint(Model model, ExtendibleElementConstraint constraint, MidLevel constraintLevel);

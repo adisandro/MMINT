@@ -17,7 +17,8 @@
    <extension
          point="edu.toronto.cs.se.mmint.reasoners">
       <reasoner
-            class="edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine">
+            class="edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine"
+            name="OCL Pivot">
          <language
                id="OCL">
          </language>

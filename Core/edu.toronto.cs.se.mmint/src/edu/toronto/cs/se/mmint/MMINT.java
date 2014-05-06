@@ -20,17 +20,16 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-import org.eclipse.core.commands.Command;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.commands.ICommandService;
-import org.eclipse.ui.handlers.RegistryToggleState;
+import org.osgi.service.prefs.BackingStoreException;
 
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
@@ -105,9 +104,7 @@ public class MMINT implements MMINTConstants {
 	/** The table to map type uris to their bundle name. */
 	static Map<String, String> bundleTable;
 	/** The reasoners table. */
-	static Map<String, Set<IReasoningEngine>> languageReasoners;
-	/** The settings table. */
-	static Map<String, Object> settings;
+	static Map<String, Map<String, IReasoningEngine>> languageReasoners;
 	/**
 	 * The table to have some very poor sort of multiple inheritance,
 	 * i.e. to have UML_MAVO properly recognized.
@@ -617,16 +614,17 @@ public class MMINT implements MMINTConstants {
 
 	public static IReasoningEngine createReasoner(IConfigurationElement extensionConfig) throws CoreException {
 
+		String reasonerName = extensionConfig.getAttribute(REASONERS_REASONER_ATTR_NAME);
 		IReasoningEngine reasoner = (IReasoningEngine) extensionConfig.createExecutableExtension(REASONERS_REASONER_ATTR_CLASS);
 		IConfigurationElement[] languageConfigs = extensionConfig.getChildren(REASONERS_REASONER_CHILD_LANGUAGE);
 		for (IConfigurationElement languageConfig : languageConfigs) {
 			String languageId = languageConfig.getAttribute(REASONERS_REASONER_LANGUAGE_ATTR_ID).toUpperCase();
-			Set<IReasoningEngine> reasoners = languageReasoners.get(languageId);
+			Map<String, IReasoningEngine> reasoners = languageReasoners.get(languageId);
 			if (reasoners == null) {
-				reasoners = new HashSet<IReasoningEngine>();
+				reasoners = new HashMap<String, IReasoningEngine>();
 				languageReasoners.put(languageId, reasoners);
 			}
-			reasoners.add(reasoner);
+			reasoners.put(reasonerName, reasoner);
 		}
 
 		return reasoner;
@@ -647,7 +645,7 @@ public class MMINT implements MMINTConstants {
 		bundleTable = new HashMap<String, String>();
 		multipleInheritanceTable = new HashMap<String, Set<String>>();
 		typeFactory = new MultiModelHeavyTypeFactory();
-		languageReasoners = new HashMap<String, Set<IReasoningEngine>>();
+		languageReasoners = new HashMap<String, Map<String, IReasoningEngine>>();
 		IConfigurationElement[] configs;
 		Iterator<IConfigurationElement> extensionsIter;
 		IConfigurationElement config;
@@ -802,63 +800,92 @@ public class MMINT implements MMINTConstants {
 	}
 
 	/**
-	 * Initializes the settings.
+	 * Initializes a preference.
+	 * 
+	 * @param preferences
+	 *            The preferences.
+	 * @param preferenceName
+	 *            The preference name.
+	 * @param preferenceValue
+	 *            The preferenceValue.
+	 * @param override
+	 *            True if the preference should always be initialized with its
+	 *            value, false if it should be initialized only when not found.
 	 */
-	private void initSettings() {
+	private void initPreference(IEclipsePreferences preferences, String preferenceName, String preferenceValue, boolean override) {
 
-		settings = new HashMap<String, Object>();
-		ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getService(ICommandService.class);
-		Command command = commandService.getCommand(SETTING_MENU_ICONS_ENABLED);
-		boolean isEnabled = (boolean) command.getState(RegistryToggleState.STATE_ID).getValue();
-		settings.put(SETTING_MENU_ICONS_ENABLED, new Boolean(isEnabled));
-		command = commandService.getCommand(SETTING_MENU_ENDPOINTS_ENABLED);
-		isEnabled = (boolean) command.getState(RegistryToggleState.STATE_ID).getValue();
-		settings.put(SETTING_MENU_ENDPOINTS_ENABLED, new Boolean(isEnabled));
-		command = commandService.getCommand(SETTING_MENU_MODELRELS_ENABLED);
-		isEnabled = (boolean) command.getState(RegistryToggleState.STATE_ID).getValue();
-		settings.put(SETTING_MENU_MODELRELS_ENABLED, new Boolean(isEnabled));
-		command = commandService.getCommand(SETTING_MENU_LINKS_ENABLED);
-		isEnabled = (boolean) command.getState(RegistryToggleState.STATE_ID).getValue();
-		settings.put(SETTING_MENU_LINKS_ENABLED, new Boolean(isEnabled));
-		command = commandService.getCommand(SETTING_MENU_DIAGRAMS_CREATION_ENABLED);
-		isEnabled = (boolean) command.getState(RegistryToggleState.STATE_ID).getValue();
-		settings.put(SETTING_MENU_DIAGRAMS_CREATION_ENABLED, new Boolean(isEnabled));
-		settings.put(SETTING_TESTS_ENABLED, false);
+		if (override || preferences.get(preferenceName, null) == null) {
+			preferences.put(preferenceName, preferenceValue);
+		}
 	}
 
 	/**
-	 * Gets a setting.
-	 * 
-	 * @param settingName
-	 *            The setting name.
-	 * @return The setting, null if the setting name could not be found.
+	 * Initializes the preferences.
 	 */
-	public static Object getSetting(String settingName) {
+	private void initPreferences() {
 
-		return settings.get(settingName);
+		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(MMINTActivator.PLUGIN_ID);
+		initPreference(preferences, PREFERENCE_MENU_ICONS_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_MENU_ENDPOINTS_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_MENU_MODELRELS_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_MENU_LINKS_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_MENU_DIAGRAMS_CREATION_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_TESTS_ENABLED, "false", true);
+		for (String languageId : languageReasoners.keySet()) {
+			String reasonerName = preferences.get(PREFERENCE_MENU_LANGUAGE_REASONER + languageId, null);
+			if (reasonerName != null) {
+				IReasoningEngine reasoner = languageReasoners.get(languageId).get(reasonerName);
+				if (reasoner != null) {
+					continue;
+				}
+			}
+			reasonerName = languageReasoners.get(languageId).keySet().iterator().next();
+			initPreference(preferences, PREFERENCE_MENU_LANGUAGE_REASONER + languageId, reasonerName, true);
+		}
 	}
 
 	/**
-	 * Sets a setting.
+	 * Gets a preference.
 	 * 
-	 * @param settingName
-	 *            The setting name.
-	 * @param setting
-	 *            The new setting.
-	 * @return True if the setting was set, false if the setting name could not
-	 *         be found.
+	 * @param preferenceName
+	 *            The preference name.
+	 * @return The preference value, null if the preference name could not be
+	 *         found.
 	 */
-	public static boolean setSetting(String settingName, Object setting) {
+	public static String getPreference(String preferenceName) {
 
-		if (!settings.containsKey(settingName)) {
+		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(MMINTActivator.PLUGIN_ID);
+
+		return preferences.get(preferenceName, null);
+	}
+
+	/**
+	 * Sets a preference.
+	 * 
+	 * @param preferenceName
+	 *            The preference name.
+	 * @param preferenceValue
+	 *            The new preference value.
+	 * @return True if the preference was set, false if the preference name
+	 *         could not be found.
+	 */
+	public static boolean setPreference(String preferenceName, String preferenceValue) {
+
+		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(MMINTActivator.PLUGIN_ID);
+		if (preferences.get(preferenceName, null) == null) {
 			return false;
 		}
-		settings.put(settingName, setting);
-
-		return true;
+		preferences.put(preferenceName, preferenceValue);
+		try {
+			preferences.flush();
+			return true;
+		}
+		catch (BackingStoreException e) {
+			return false;
+		}
 	}
 
-	public static Set<IReasoningEngine> getLanguageReasoners(String languageId) {
+	public static Map<String, IReasoningEngine> getLanguageReasoners(String languageId) {
 
 		return languageReasoners.get(languageId.toUpperCase());
 	}
@@ -879,7 +906,6 @@ public class MMINT implements MMINTConstants {
 	 */
 	private MMINT() {
 
-		initSettings();
 		IExtensionRegistry registry = RegistryFactory.getRegistry();
 		if (registry != null) {
 			initRepository(registry);
@@ -888,6 +914,7 @@ public class MMINT implements MMINTConstants {
 			registry.addListener(new EditorsExtensionListener(), EDITORS_EXT_POINT);
 			registry.addListener(new OperatorsExtensionListener(), OPERATORS_EXT_POINT);
 		}
+		initPreferences();
 	}
 
 }

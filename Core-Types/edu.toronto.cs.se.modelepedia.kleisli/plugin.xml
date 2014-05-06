@@ -56,7 +56,7 @@
    <extension point="org.eclipse.ui.menus">
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <dynamic
-               class="edu.toronto.cs.se.modelepedia.kleisli.contextmenu.KleisliRelationshipDiagramActions"
+               class="edu.toronto.cs.se.modelepedia.kleisli.contextmenu.KleisliRelationshipDiagramContextMenu"
                id="edu.toronto.cs.se.modelepedia.kleisli.contextmenu.KleisliRelationshipDiagramActions">
             <visibleWhen>
                <with variable="activePartId">

@@ -113,7 +113,7 @@ public class KleisliTest {
 	@Test
 	public void test() throws Exception {
 
-		MMINT.setSetting(MMINTConstants.SETTING_TESTS_ENABLED, true);
+		MMINT.setPreference(MMINTConstants.PREFERENCE_TESTS_ENABLED, "true");
 		Bundle bundle = Platform.getBundle(TESTS_BUNDLE_NAME);
 		// model types
 		Model rootModelType = MultiModelTypeRegistry.getType(MMINT.ROOT_MODEL_URI);

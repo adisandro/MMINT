@@ -34,7 +34,7 @@ import org.osgi.framework.BundleContext;
 import edu.toronto.cs.se.mmint.mavo.provider.MavoItemProviderAdapterFactory;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.diagram.expressions.MidOCLFactory;
-import edu.toronto.cs.se.mmint.mid.diagram.menu.OpenTypeMidHandler;
+import edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTOpenTypeMIDMenu;
 import edu.toronto.cs.se.mmint.mid.diagram.providers.ElementInitializers;
 import edu.toronto.cs.se.mmint.mid.editor.provider.EditorItemProviderAdapterFactory;
 import edu.toronto.cs.se.mmint.mid.operator.provider.OperatorItemProviderAdapterFactory;
@@ -100,7 +100,7 @@ public class MidDiagramEditorPlugin extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 
 		startGen(context);
-		OpenTypeMidHandler.createTypeMIDDiagram();
+		MMINTOpenTypeMIDMenu.createTypeMIDDiagram();
 	}
 
 	/**

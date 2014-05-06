@@ -103,7 +103,7 @@ public class MidDiagramViewProvider extends MidViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		if (!(boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_ENDPOINTS_ENABLED)) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ENDPOINTS_ENABLED))) {
 			return edge;
 		}
 		Node label6011 = createLabel(edge,
@@ -113,7 +113,7 @@ public class MidDiagramViewProvider extends MidViewProvider {
 		Location location6011 = (Location) label6011.getLayoutConstraint();
 		location6011.setX(0);
 		location6011.setY(40);
-		if ((boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_ICONS_ENABLED)) {
+		if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ICONS_ENABLED))) {
 			Node label6017 = createLabel(edge,
 					MidVisualIDRegistry.getType(WrappingLabel14EditPart.VISUAL_ID));
 			label6017.setLayoutConstraint(NotationFactory.eINSTANCE
@@ -185,7 +185,7 @@ public class MidDiagramViewProvider extends MidViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		if (!(boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_MODELRELS_ENABLED)) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_MODELRELS_ENABLED))) {
 			return edge;
 		}
 		Node label6012 = createLabel(edge,
@@ -195,7 +195,7 @@ public class MidDiagramViewProvider extends MidViewProvider {
 		Location location6012 = (Location) label6012.getLayoutConstraint();
 		location6012.setX(0);
 		location6012.setY(40);
-		if ((boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_ICONS_ENABLED)) {
+		if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ICONS_ENABLED))) {
 			Node label6013 = createLabel(edge,
 					MidVisualIDRegistry.getType(WrappingLabel8EditPart.VISUAL_ID));
 			label6013.setLayoutConstraint(NotationFactory.eINSTANCE
@@ -204,7 +204,7 @@ public class MidDiagramViewProvider extends MidViewProvider {
 			location6013.setX(0);
 			location6013.setY(60);
 		}
-		if (!(boolean) MMINT.getSetting(MMINTConstants.SETTING_MENU_ENDPOINTS_ENABLED)) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ENDPOINTS_ENABLED))) {
 			return edge;
 		}
 		Node label6014 = createLabel(edge,

@@ -57,6 +57,13 @@
          <sequence>
             <element ref="language" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The reasoner name.
+               </documentation>
+            </annotation>
+         </attribute>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>

@@ -19,14 +19,14 @@ import org.eclipse.ui.handlers.HandlerUtil;
 
 import edu.toronto.cs.se.mmint.MMINT;
 
-public class AppearanceHandler extends AbstractHandler {
+public class MMINTAppearanceMenus extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		Command command = event.getCommand();
 		boolean isEnabled = !HandlerUtil.toggleCommandState(command);
-		MMINT.setSetting(command.getId(), new Boolean(isEnabled));
+		MMINT.setPreference(command.getId(), Boolean.toString(isEnabled));
 
 		return null;
 	}

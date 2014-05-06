@@ -18,7 +18,6 @@ import org.eclipse.core.runtime.IExtension;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
-import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the
@@ -61,18 +60,11 @@ public class ReasonersExtensionListener extends MMINTExtensionListener {
 		for (IExtension extension : extensions) {
 			configs = extension.getConfigurationElements();
 			for (IConfigurationElement config : configs) {
-				String reasonerClass = config.getAttribute(MMINT.REASONERS_REASONER_ATTR_CLASS);
+				String reasonerName = config.getAttribute(MMINT.REASONERS_REASONER_ATTR_NAME);
 				IConfigurationElement[] languageConfigs = config.getChildren(MMINT.REASONERS_REASONER_CHILD_LANGUAGE);
 				for (IConfigurationElement languageConfig : languageConfigs) {
 					String languageId = languageConfig.getAttribute(MMINT.REASONERS_REASONER_LANGUAGE_ATTR_ID);
-					IReasoningEngine reasonerToRemove = null;
-					for (IReasoningEngine reasoner : MMINT.getLanguageReasoners(languageId)) {
-						if (reasonerClass.equals(reasoner.getClass().getName())) {
-							reasonerToRemove = reasoner;
-							break;
-						}
-					}
-					MMINT.getLanguageReasoners(languageId).remove(reasonerToRemove);
+					MMINT.getLanguageReasoners(languageId).remove(reasonerName);
 				}
 			}
 		}
