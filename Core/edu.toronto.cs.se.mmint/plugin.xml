@@ -122,81 +122,10 @@
       </modelType>
    </extension>
 
-   <extension
-         point="edu.toronto.cs.se.mmint.models">
-      <modelType
-            isAbstract="true">
-         <type
-               name="Model_MAVO"
-               uri="http://se.cs.toronto.edu/mmint/MAVO">
-            <superType
-                  uri="http://se.cs.toronto.edu/mmint/Model">
-            </superType>
-         </type>
-         <constraint
-               implementation="edu.toronto.cs.se.mmint.mavo.constraint.MAVOModelConstraint"
-               language="JAVA">
-         </constraint>
-      </modelType>
-   </extension>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://se.cs.toronto.edu/mmint/MAVORefinementRel"
             class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"/>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmint.relationships">
-      <relationshipType>
-         <modelType>
-            <type
-                  name="MAVORefinementRel"
-                  uri="http://se.cs.toronto.edu/mmint/MAVORefinementRel">
-            <superType
-                  uri="http://se.cs.toronto.edu/mmint/ModelRel">
-            </superType>
-            </type>
-            <constraint
-                  implementation="modelEndpoints-&gt;at(1).target.metatypeUri = modelEndpoints-&gt;at(2).target.metatypeUri and links-&gt;forAll(let origModelElemEndpoints : Sequence(mid::relationship::ModelElementEndpoint) = modelElemEndpoints-&gt;select(target.oclContainer().oclAsType(mid::Model).uri = oclContainer().oclContainer().oclAsType(mid::relationship::ModelRel).modelEndpoints-&gt;at(1).target.uri), refinedModelElemEndpoints : Sequence(mid::relationship::ModelElementEndpoint) = modelElemEndpoints-&gt;select(target.oclContainer().oclAsType(mid::Model).uri = oclContainer().oclContainer().oclAsType(mid::relationship::ModelRel).modelEndpoints-&gt;at(2).target.uri) in ((origModelElemEndpoints-&gt;size() = 1 and ((not origModelElemEndpoints-&gt;at(1).target.may implies refinedModelElemEndpoints-&gt;exists(not target.may)) and (not origModelElemEndpoints-&gt;at(1).target.set implies (refinedModelElemEndpoints-&gt;size() = 1 and refinedModelElemEndpoints-&gt;exists(not target.set))) and (not origModelElemEndpoints-&gt;at(1).target.var implies refinedModelElemEndpoints-&gt;forAll(not target.var)))) or (origModelElemEndpoints-&gt;size() = 1 and (origModelElemEndpoints-&gt;at(1).target.may and refinedModelElemEndpoints-&gt;isEmpty())) or (refinedModelElemEndpoints-&gt;size() = 1 and ((origModelElemEndpoints-&gt;exists(not target.may) implies not refinedModelElemEndpoints-&gt;at(1).target.may) and (origModelElemEndpoints-&gt;exists(not target.set) implies not refinedModelElemEndpoints-&gt;at(1).target.set) and (origModelElemEndpoints-&gt;exists(not target.var) implies (origModelElemEndpoints-&gt;one(not target.var) and not refinedModelElemEndpoints-&gt;at(1).target.var)))) or (refinedModelElemEndpoints-&gt;size() = 1 and (origModelElemEndpoints-&gt;isEmpty() and oclContainer().oclAsType(mid::relationship::ModelRel).modelEndpoints-&gt;at(1).target.oclAsType(mid::Model).inc))))"
-                  language="OCL">
-            </constraint>
-         </modelType>
-         <modelTypeEndpoint>
-            <type
-                  name="MAVOModelEndpoint"
-                  uri="http://se.cs.toronto.edu/mmint/MAVORefinementRel-MAVO/MAVOModelEndpoint">
-            </type>
-            <typeEndpoint
-                  lowerBound="2"
-                  upperBound="2"
-                  targetTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
-            </typeEndpoint>
-            <modelElemType>
-                <type
-                     name="MAVOElement"
-                     uri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement">
-                </type>
-            </modelElemType>
-         </modelTypeEndpoint>
-         <linkType>
-            <type
-                  name="RefinementLink"
-                  uri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink">
-            </type>
-            <modelElemTypeEndpoint>
-               <type
-                     name="MAVOElementEndpoint"
-                     uri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint">
-               </type>
-               <typeEndpoint
-                     lowerBound="0"
-                     upperBound="-1"
-                     targetTypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement">
-               </typeEndpoint>
-            </modelElemTypeEndpoint>
-         </linkType>
-      </relationshipType>
    </extension>
 
 </plugin>

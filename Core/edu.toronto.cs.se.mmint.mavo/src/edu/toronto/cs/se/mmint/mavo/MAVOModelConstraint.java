@@ -9,20 +9,22 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.constraint;
+package edu.toronto.cs.se.mmint.mavo;
 
+import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
+import edu.toronto.cs.se.modelepedia.java.reasoning.IJavaModelConstraint;
 
-public abstract class JavaModelConstraint {
+public class MAVOModelConstraint implements IJavaModelConstraint {
 
-	protected Model model;
+	@Override
+	public MAVOTruthValue validate(Model model) {
 
-	public JavaModelConstraint(Model model) {
-
-		this.model = model;
+		if (MAVOUtils.isMAVOModel(model)) {
+			return MAVOTruthValue.TRUE;
+		}
+		return MAVOTruthValue.FALSE;
 	}
-
-	public abstract MAVOTruthValue validate();
 
 }
