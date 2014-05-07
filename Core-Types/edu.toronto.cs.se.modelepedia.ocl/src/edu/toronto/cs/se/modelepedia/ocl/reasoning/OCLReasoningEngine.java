@@ -114,7 +114,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 			return (ocl.check(modelObj, expression)) ? MAVOTruthValue.TRUE : MAVOTruthValue.FALSE;
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.ERROR, "OCL constraint error, evaluating to false: " + oclConstraint, e);
+			MMINTException.print(MMINTException.Type.WARNING, "OCL constraint error, evaluating to false: " + oclConstraint, e);
 			return MAVOTruthValue.FALSE;
 		}
 	}

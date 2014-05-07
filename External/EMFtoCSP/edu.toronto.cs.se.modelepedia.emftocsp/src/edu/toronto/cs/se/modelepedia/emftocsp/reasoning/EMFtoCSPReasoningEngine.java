@@ -61,6 +61,7 @@ import fr.inria.atlanmod.emftocsp.IModelProperty;
 import fr.inria.atlanmod.emftocsp.IModelReader;
 import fr.inria.atlanmod.emftocsp.IModelToCspSolver;
 import fr.inria.atlanmod.emftocsp.IModelToCspSolverFactory;
+import fr.inria.atlanmod.emftocsp.ProcessingException;
 import fr.inria.atlanmod.emftocsp.eclipsecs.EclipseSolver;
 import fr.inria.atlanmod.emftocsp.emf.impl.EAssociation;
 import fr.inria.atlanmod.emftocsp.emf.impl.EmfModelToCspSolverFactory;
@@ -287,9 +288,17 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 		for(int i = 0; i < libs.length; i++) {
 			libList.add(libs[i]);
 		}
-		boolean isConsistent = modelSolver.solveModel(libList);
-		EPackage.Registry.INSTANCE.put(flatModelTypeObj.getNsURI(), modelTypeObjToRestore); // EMFtoCSP messed this up, restore it
-		cleanupCheckOCLConstraintConsistency(tempProject);
+		boolean isConsistent = true;
+		try {
+			isConsistent = modelSolver.solveModel(libList);
+		}
+		catch (ProcessingException e) {
+			MMINTException.print(MMINTException.Type.WARNING, "EMFtoCSP processing error, skipping consistency check", e);
+		}
+		finally {
+			EPackage.Registry.INSTANCE.put(flatModelTypeObj.getNsURI(), modelTypeObjToRestore); // EMFtoCSP messed this up, restore it
+			cleanupCheckOCLConstraintConsistency(tempProject);
+		}
 
 		return isConsistent;
 	}
