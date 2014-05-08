@@ -22,20 +22,20 @@
          version="0.0.0"/>
 
    <requires>
-      <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
-      <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.ocl.examples.pivot"/>
       <import plugin="org.eclipse.gmf.runtime.emf.ui"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.core"/>
-      <import plugin="org.eclipse.acceleo.engine"/>
       <import plugin="org.eclipse.emf.common"/>
+      <import plugin="org.eclipse.emf.ecore.editor"/>
+      <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.jface"/>
+      <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.ui.views"/>
       <import plugin="org.eclipse.ui.navigator"/>
       <import plugin="org.eclipse.ui.navigator.resources"/>
@@ -56,6 +56,7 @@
       <import plugin="org.eclipse.gmf.runtime.draw2d.ui"/>
       <import plugin="org.eclipse.gef"/>
       <import plugin="org.eclipse.emf.compare"/>
+      <import plugin="org.eclipse.emf.ecore.edit"/>
       <import plugin="org.eclipse.emf.compare.rcp"/>
       <import plugin="org.eclipse.emf.henshin.interpreter"/>
       <import plugin="org.eclipse.emf.henshin.model"/>
@@ -65,9 +66,7 @@
       <import plugin="org.eclipse.uml2.uml"/>
       <import plugin="org.eclipse.gmf.runtime.notation"/>
       <import plugin="org.eclipse.emf.ecoretools.diagram"/>
-      <import plugin="org.eclipse.emf.ecore.editor"/>
-      <import plugin="org.eclipse.emf.ecore.edit"/>
-      <import plugin="org.eclipse.equinox.registry"/>
+      <import plugin="edu.toronto.cs.se.modelepedia.z3"/>
    </requires>
 
    <plugin
@@ -121,20 +120,6 @@
 
    <plugin
          id="edu.toronto.cs.se.modelepedia.ecore"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.kleisli"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.kleisli.edit"
          download-size="0"
          install-size="0"
          version="0.0.0"
