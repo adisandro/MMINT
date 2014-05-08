@@ -37,6 +37,13 @@ public class Z3SMTIncrementalSolver {
 	private Solver solver;
 	private Model model;
 
+	private void reset() {
+
+		context = null;
+		solver = null;
+		model = null;
+	}
+
 	private Z3ModelResult runCheckSatAndGetModel(String smtEncoding, Z3IncrementalBehavior incBehavior) throws Z3Exception {
 
 		BoolExpr expr;
@@ -120,13 +127,6 @@ public class Z3SMTIncrementalSolver {
 			reset();
 			return new Z3ModelResult(Status.UNKNOWN, null);
 		}
-	}
-
-	public void reset() {
-
-		context = null;
-		solver = null;
-		model = null;
 	}
 
 }

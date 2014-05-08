@@ -18,17 +18,23 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.Parameter;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -41,6 +47,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * <!-- begin-user-doc -->
@@ -428,6 +435,30 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 		result.append(inputSubdir);
 		result.append(')');
 		return result.toString();
+	}
+
+	private String getPropertiesUri(String suffix) {
+
+		IFile midDiagram = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
+		String propertiesUri = MultiModelUtils.prependWorkspaceToUri(midDiagram.getParent().getFullPath().toString());
+		propertiesUri += this.getName() + suffix + MultiModelOperatorUtils.PROPERTIES_SUFFIX;
+
+		return propertiesUri;
+	}
+
+	protected Properties getInputPropertiesFile() throws Exception {
+
+		String propertiesUri =  getPropertiesUri(MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX);
+		Properties properties = new Properties();
+		properties.load(new FileInputStream(propertiesUri));
+
+		return properties;
+	}
+
+	protected void writeOutputPropertiesFile(Properties properties) throws Exception {
+
+		String propertiesUri =  getPropertiesUri(MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX);
+		properties.store(new FileOutputStream(propertiesUri), null);
 	}
 
 	/**
