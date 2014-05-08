@@ -4,7 +4,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:federalstate="http://se.cs.toronto.edu/modelepedia/FederalState"
-    xsi:schemaLocation="http://se.cs.toronto.edu/modelepedia/FederalState file:/media/data/alessio/rworkspace-kepler/.metadata/.plugins/edu.toronto.cs.se.mmint/FederalState.ecore"
+    xsi:schemaLocation="http://se.cs.toronto.edu/modelepedia/FederalState file:/media/alessio/Dati/alessio/rworkspace-kepler/.metadata/.plugins/edu.toronto.cs.se.mmint/FederalState.ecore"
     name="Oceania"
     capital="//@regions.0/@cities.0">
   <regions xsi:type="federalstate:CapitalRegion"
