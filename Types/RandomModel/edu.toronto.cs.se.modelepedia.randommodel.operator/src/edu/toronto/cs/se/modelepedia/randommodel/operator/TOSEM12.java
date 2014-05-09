@@ -59,11 +59,12 @@ public class TOSEM12 extends OperatorImpl {
 	private double speedupMAVOAllsatMAVOBackbone;
 	private boolean isMAVOMaybe;
 
-	private void readProperties(Properties properties) throws Exception {
+	@Override
+	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-		timeClassicalEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMECLASSICAL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		timeMAVOBackboneEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMEMAVOBACKBONE+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		timeMAVOAllsatEnabled = MultiModelOperatorUtils.getBoolProperty(properties, PROPERTY_OUT_TIMEMAVOALLSAT+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeClassicalEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeMAVOBackboneEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOBACKBONE+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeMAVOAllsatEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOALLSAT+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 	}
 
 	private void initOutput() {
@@ -323,13 +324,6 @@ public class TOSEM12 extends OperatorImpl {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		Model randommodelModel = actualParameters.get(0);
-		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
-			this,
-			randommodelModel,
-			null,
-			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
-		);
-		readProperties(inputProperties);
 		initOutput();
 
 		// get output from previous operator
@@ -370,7 +364,7 @@ public class TOSEM12 extends OperatorImpl {
 			outputProperties,
 			this,
 			randommodelModel,
-			MultiModelOperatorUtils.getSubdir(inputProperties),
+			MultiModelOperatorUtils.getSubdir(getInputProperties()),
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 

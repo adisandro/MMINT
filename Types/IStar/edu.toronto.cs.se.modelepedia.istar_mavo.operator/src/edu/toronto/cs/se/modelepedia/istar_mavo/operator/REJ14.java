@@ -15,6 +15,7 @@ import java.util.Properties;
 
 import org.eclipse.emf.common.util.EList;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
@@ -28,23 +29,17 @@ public class REJ14 extends FASE14 {
 
 	private AnalysisDirection analysisDirection;
 
-	protected void readProperties(Properties properties) throws Exception {
+	@Override
+	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-		super.readProperties(properties);
-		analysisDirection = AnalysisDirection.valueOf(MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_ANALYSISDIRECTION));
+		super.readInputProperties(inputProperties);
+		analysisDirection = AnalysisDirection.valueOf(MultiModelOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_ANALYSISDIRECTION));
 	}
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		Model istarModel = actualParameters.get(0);
-		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
-			this,
-			istarModel,
-			null,
-			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
-		);
-		readProperties(inputProperties);
 		init();
 
 		// run solver

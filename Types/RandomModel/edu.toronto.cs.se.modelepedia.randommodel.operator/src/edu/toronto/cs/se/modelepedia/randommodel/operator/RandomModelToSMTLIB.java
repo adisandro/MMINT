@@ -126,10 +126,11 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 	private Set<String> smtlibConcretizations;
 	private String groundedProperty;
 
-	private void readProperties(Properties properties) throws Exception {
+	@Override
+	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-		numConcretizations = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_NUMCONCRETIZATIONS);
-		property = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_PROPERTY);
+		numConcretizations = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMCONCRETIZATIONS);
+		property = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_PROPERTY);
 	}
 
 	public String getNamedElementSMTLIBEncoding(NamedElement namedElement) {
@@ -482,13 +483,6 @@ public class RandomModelToSMTLIB extends RandomOperatorImpl {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		Model randommodelModel = actualParameters.get(0);
-		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
-			this,
-			randommodelModel,
-			null,
-			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
-		);
-		readProperties(inputProperties);
 
 		// get output from previous operator
 		RandomModelGenerateLabeledGraph previousOperator = (getPreviousOperator() == null) ?

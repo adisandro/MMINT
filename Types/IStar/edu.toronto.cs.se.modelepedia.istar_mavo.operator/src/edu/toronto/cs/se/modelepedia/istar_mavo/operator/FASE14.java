@@ -233,13 +233,6 @@ public class FASE14 extends RE13 {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		Model istarModel = actualParameters.get(0);
-		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
-			this,
-			istarModel,
-			null,
-			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
-		);
-		readProperties(inputProperties);
 		init();
 
 		// run solver

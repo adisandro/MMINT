@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint.mid.diagram.contextmenu;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -95,6 +96,8 @@ public class CheckCoherenceListener extends SelectionAdapter {
 					for (ConversionOperator conversionOperatorType : conversionPath) {
 						EList<Model> actualParameters = new BasicEList<Model>();
 						actualParameters.add(newActualParameter);
+						Properties inputProperties = conversionOperatorType.getInputProperties();
+						conversionOperatorType.readInputProperties(inputProperties);
 						newActualParameter = conversionOperatorType.execute(actualParameters).get(0);
 					}
 					coherentModels.add(newActualParameter);

@@ -28,6 +28,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl;
 
 import java.util.Map;
+import java.util.Properties;
 import java.util.Random;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -95,6 +96,13 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	private EDataType exceptionEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType propertiesEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -294,7 +302,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	public EOperation getOperator__Execute__EList() {
-		return operatorEClass.getEOperations().get(3);
+		return operatorEClass.getEOperations().get(6);
 	}
 
 	/**
@@ -303,7 +311,25 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	public EOperation getOperator__GetExecutables__EList_EList_EList_EList() {
+		return operatorEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__GetInputProperties() {
 		return operatorEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__ReadInputProperties__Properties() {
+		return operatorEClass.getEOperations().get(5);
 	}
 
 	/**
@@ -410,6 +436,15 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getProperties() {
+		return propertiesEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public OperatorFactory getOperatorFactory() {
 		return (OperatorFactory)getEFactoryInstance();
 	}
@@ -446,8 +481,10 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(operatorEClass, OPERATOR___GET_METATYPE);
 		createEOperation(operatorEClass, OPERATOR___GET_SUPERTYPE);
 		createEOperation(operatorEClass, OPERATOR___DELETE_TYPE);
-		createEOperation(operatorEClass, OPERATOR___EXECUTE__ELIST);
 		createEOperation(operatorEClass, OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST);
+		createEOperation(operatorEClass, OPERATOR___GET_INPUT_PROPERTIES);
+		createEOperation(operatorEClass, OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES);
+		createEOperation(operatorEClass, OPERATOR___EXECUTE__ELIST);
 
 		conversionOperatorEClass = createEClass(CONVERSION_OPERATOR);
 		createEOperation(conversionOperatorEClass, CONVERSION_OPERATOR___DELETE_TYPE);
@@ -464,6 +501,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		// Create data types
 		randomEDataType = createEDataType(RANDOM);
 		exceptionEDataType = createEDataType(EXCEPTION);
+		propertiesEDataType = createEDataType(PROPERTIES);
 	}
 
 	/**
@@ -520,10 +558,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		EOperation op = initEOperation(getOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMINTException());
 
-		op = initEOperation(getOperator__Execute__EList(), theMidPackage.getModel(), "execute", 1, -1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMidPackage.getModel(), "actualParameters", 1, -1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, this.getException());
-
 		op = initEOperation(getOperator__GetExecutables__EList_EList_EList_EList(), this.getOperator(), "getExecutables", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMidPackage.getModel(), "actualModels", 0, -1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
@@ -544,6 +578,16 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		addEParameter(op, g1, "generics", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMINTException());
 
+		initEOperation(getOperator__GetInputProperties(), this.getProperties(), "getInputProperties", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getOperator__ReadInputProperties__Properties(), null, "readInputProperties", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getProperties(), "inputProperties", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMINTException());
+
+		op = initEOperation(getOperator__Execute__EList(), theMidPackage.getModel(), "execute", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMidPackage.getModel(), "actualParameters", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getException());
+
 		initEClass(conversionOperatorEClass, ConversionOperator.class, "ConversionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		op = initEOperation(getConversionOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -563,6 +607,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		// Initialize data types
 		initEDataType(randomEDataType, Random.class, "Random", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(exceptionEDataType, Exception.class, "Exception", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(propertiesEDataType, Properties.class, "Properties", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
@@ -592,7 +637,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		   source, 
 		   new String[] {
 			 "constraints", "conversion"
-		   });									
+		   });										
 	}
 
 	/**
@@ -608,7 +653,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		   source, 
 		   new String[] {
 			 "conversion", "inputs->size() = 1 and outputs->size() = 1"
-		   });							
+		   });								
 	}
 
 } //OperatorPackageImpl

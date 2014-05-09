@@ -191,13 +191,6 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		// long as all elements in the Henshin rules are MAVO elements, the only
 		// exception being the root which is always present.
 		Model model = actualParameters.get(0);
-		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
-			this,
-			model,
-			null,
-			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
-		);
-		readProperties(inputProperties);
 		init();
 		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
@@ -221,7 +214,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 
 		// save transformed model(s) and update mid
 		EList<Model> result = new BasicEList<Model>();
-		boolean updateMid = MultiModelOperatorUtils.isUpdatingMid(inputProperties);
+		boolean updateMid = MultiModelOperatorUtils.isUpdatingMid(getInputProperties());
 		MultiModel multiModel = (updateMid) ?
 			MultiModelRegistry.getMultiModel(model) :
 			null;
@@ -267,7 +260,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			outputProperties,
 			this,
 			model,
-			MultiModelOperatorUtils.getSubdir(inputProperties),
+			MultiModelOperatorUtils.getSubdir(getInputProperties()),
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 

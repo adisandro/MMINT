@@ -36,6 +36,12 @@ public class MultiModelOperatorUtils {
 	public static final String PROPERTY_IN_SUBDIR = "subdir";
 	public static final String PROPERTY_IN_OUTPUTENABLED_SUFFIX = ".enabled";
 
+//	public void writeOutputPropertiesFile(Properties properties) throws Exception {
+//
+//		String propertiesUri =  getPropertiesUri(MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX);
+//		properties.store(new FileOutputStream(propertiesUri), null);
+//	}
+
 	private static String getPropertiesUri(Operator operator, Model anyOperatorParameter, String subdirName, boolean readonly) {
 
 		String projectUri = anyOperatorParameter.getUri().substring(0, anyOperatorParameter.getUri().lastIndexOf(IPath.SEPARATOR)+1);
@@ -118,7 +124,7 @@ public class MultiModelOperatorUtils {
 		return property;
 	}
 
-	public static boolean getOptionalBoolProperty(Properties properties, String propertyName, boolean defaultValue) throws MMINTException {
+	public static boolean getOptionalBoolProperty(Properties properties, String propertyName, boolean defaultValue) {
 
 		try {
 			return getBoolProperty(properties, propertyName);

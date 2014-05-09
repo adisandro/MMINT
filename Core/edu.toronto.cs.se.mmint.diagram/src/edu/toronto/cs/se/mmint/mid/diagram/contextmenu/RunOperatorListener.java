@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Properties;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -104,12 +105,16 @@ public class RunOperatorListener extends SelectionAdapter {
 						for (ConversionOperator operator : conversionList) {
 							EList<Model> operatorParameters = new BasicEList<Model>();
 							operatorParameters.add(newActualParameter);
+							Properties inputProperties = operator.getInputProperties();
+							operator.readInputProperties(inputProperties);
 							newActualParameter = operator.execute(operatorParameters).get(0);
 						}
 						actualParameters.set(i, newActualParameter);
 					}
 				}
 				// run operator
+				Properties inputProperties = operator.getInputProperties();
+				operator.readInputProperties(inputProperties);
 				operator.execute(actualParameters);
 				// cleanup all conversion operators
 				if (!conversionMap.isEmpty()) {

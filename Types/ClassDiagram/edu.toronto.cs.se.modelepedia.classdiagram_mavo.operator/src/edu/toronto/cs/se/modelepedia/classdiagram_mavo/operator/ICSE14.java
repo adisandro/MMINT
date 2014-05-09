@@ -74,9 +74,10 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	private List<MAVOElement> modelObjsBucketA;
 	private List<Integer> modelObjsChainsA;
 
-	protected void readProperties(Properties properties) throws Exception {
+	@Override
+	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-		featureModelName = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_FEATUREMODELNAME);
+		featureModelName = MultiModelOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_FEATUREMODELNAME);
 		Properties constraintProperties = new Properties();
 		String constraintPropertiesFile = MultiModelUtils.prependWorkspaceToUri(
 			MultiModelUtils.replaceLastSegmentInUri(
@@ -84,18 +85,22 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 				FEATURE_MODELS_SUBDIR + MMINT.URI_SEPARATOR + featureModelName + MultiModelOperatorUtils.PROPERTIES_SUFFIX
 			)
 		);
-		constraintProperties.load(new FileInputStream(constraintPropertiesFile));
+		try {
+			constraintProperties.load(new FileInputStream(constraintPropertiesFile));
+		}
+		catch (Exception e) {
+		}
 		constraint = MultiModelOperatorUtils.getStringProperty(constraintProperties, PROPERTY_IN_CONSTRAINT);
 		constraintVariables = MultiModelOperatorUtils.getStringProperties(constraintProperties, PROPERTY_IN_CONSTRAINTVARIABLES);
-		String[] numRuleElements = MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_NUMRULEELEMENTS).split(PROPERTY_IN_NUMRULEELEMENTS_SEPARATOR);
+		String[] numRuleElements = MultiModelOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_NUMRULEELEMENTS).split(PROPERTY_IN_NUMRULEELEMENTS_SEPARATOR);
 		numRuleElementsN = Integer.parseInt(numRuleElements[0]);
 		numRuleElementsC = Integer.parseInt(numRuleElements[1]);
 		numRuleElementsA = Integer.parseInt(numRuleElements[2]);
-		modelSize = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MODELSIZE);
-		maxChains = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXCHAINS);
-		numIterations = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_NUMITERATIONS);
-		nacMatchPerc = MultiModelOperatorUtils.getOptionalDoubleProperty(properties, PROPERTY_IN_NACMATCHPERC, PROPERTY_IN_NACMATCHPERC_DEFAULT);
-		alwaysPresentPerc = MultiModelOperatorUtils.getOptionalDoubleProperty(properties, PROPERTY_IN_ALWAYSPRESENTPERC, PROPERTY_IN_ALWAYSPRESENTPERC_DEFAULT);
+		modelSize = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MODELSIZE);
+		maxChains = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXCHAINS);
+		numIterations = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMITERATIONS);
+		nacMatchPerc = MultiModelOperatorUtils.getOptionalDoubleProperty(inputProperties, PROPERTY_IN_NACMATCHPERC, PROPERTY_IN_NACMATCHPERC_DEFAULT);
+		alwaysPresentPerc = MultiModelOperatorUtils.getOptionalDoubleProperty(inputProperties, PROPERTY_IN_ALWAYSPRESENTPERC, PROPERTY_IN_ALWAYSPRESENTPERC_DEFAULT);
 	}
 
 	protected void writeProperties(Properties properties) {
@@ -192,13 +197,6 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		inputModel = actualParameters.get(0);
-		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
-			this,
-			inputModel,
-			inputSubdir,
-			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
-		);
-		readProperties(inputProperties);
 		init();
 		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
@@ -213,7 +211,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 			outputProperties,
 			this,
 			inputModel,
-			MultiModelOperatorUtils.getSubdir(inputProperties),
+			MultiModelOperatorUtils.getSubdir(getInputProperties()),
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 

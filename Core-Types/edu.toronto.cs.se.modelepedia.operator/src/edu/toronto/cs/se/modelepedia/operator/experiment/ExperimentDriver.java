@@ -270,54 +270,55 @@ public class ExperimentDriver extends OperatorImpl {
 	private int maxProcessingTime;
 	private int numThreads;
 
-	private void readProperties(Properties properties) throws Exception {
+	@Override
+	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		// outer cycle parameters: vary experiment setup
-		vars = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_VARIABLES);
+		vars = MultiModelOperatorUtils.getStringProperties(inputProperties, PROPERTY_IN_VARIABLES);
 		varValues = new String[vars.length][];
 		numExperiments = 1;
 		for (int i = 0; i < vars.length; i++) {
-			varValues[i] = MultiModelOperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_IN_VARIABLEVALUES_SUFFIX);
+			varValues[i] = MultiModelOperatorUtils.getStringProperties(inputProperties, vars[i]+PROPERTY_IN_VARIABLEVALUES_SUFFIX);
 			numExperiments *= varValues[i].length;
-			if (MultiModelOperatorUtils.getOptionalBoolProperty(properties, vars[i]+PROPERTY_IN_VARIABLEX_SUFFIX, false)) {
+			if (MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, vars[i]+PROPERTY_IN_VARIABLEX_SUFFIX, false)) {
 				varX = i;
 			}
 		}
 
 		// inner cycle parameters: experiment setup is fixed, vary randomness and statistics
-		seed = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_SEED);
-		skipWarmupSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_SKIPWARMUPSAMPLES);
-		minSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MINSAMPLES);
-		maxSamples = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXSAMPLES);
-		distribution = DistributionType.valueOf(MultiModelOperatorUtils.getStringProperty(properties, PROPERTY_IN_DISTRIBUTIONTYPE));
-		requestedConfidence = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_REQUESTEDCONFIDENCE);
+		seed = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_SEED);
+		skipWarmupSamples = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_SKIPWARMUPSAMPLES);
+		minSamples = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MINSAMPLES);
+		maxSamples = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXSAMPLES);
+		distribution = DistributionType.valueOf(MultiModelOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_DISTRIBUTIONTYPE));
+		requestedConfidence = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_REQUESTEDCONFIDENCE);
 
 		// operators
-		experimentOperators = MultiModelOperatorUtils.getOptionalStringProperties(properties, PROPERTY_IN_EXPERIMENTOPERATORS, PROPERTY_IN_EXPERIMENTOPERATORS_DEFAULT);
-		statisticsOperators = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_STATISTICSOPERATORS);
+		experimentOperators = MultiModelOperatorUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_EXPERIMENTOPERATORS, PROPERTY_IN_EXPERIMENTOPERATORS_DEFAULT);
+		statisticsOperators = MultiModelOperatorUtils.getStringProperties(inputProperties, PROPERTY_IN_STATISTICSOPERATORS);
 		varOperators = new String[vars.length][];
 		for (int i = 0; i < vars.length; i++) {
-			varOperators[i] = MultiModelOperatorUtils.getStringProperties(properties, vars[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
+			varOperators[i] = MultiModelOperatorUtils.getStringProperties(inputProperties, vars[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
 		}
 
 		// outputs
-		outputs = MultiModelOperatorUtils.getStringProperties(properties, PROPERTY_IN_OUTPUTS);
+		outputs = MultiModelOperatorUtils.getStringProperties(inputProperties, PROPERTY_IN_OUTPUTS);
 		outputOperators = new String[outputs.length];
 		outputDefaults = new double[outputs.length];
 		outputMins = new double[outputs.length];
 		outputMaxs = new double[outputs.length];
 		outputDoConfidences = new boolean[outputs.length];
 		for (int i = 0; i < outputs.length; i++) {
-			outputOperators[i] = MultiModelOperatorUtils.getStringProperty(properties, outputs[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
-			outputDefaults[i] = MultiModelOperatorUtils.getDoubleProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTDEFAULT_SUFFIX);
-			outputMins[i] = MultiModelOperatorUtils.getDoubleProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTMINSAMPLEVALUE_SUFFIX);
-			outputMaxs[i] = MultiModelOperatorUtils.getDoubleProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTMAXSAMPLEVALUE_SUFFIX);
-			outputDoConfidences[i] = MultiModelOperatorUtils.getBoolProperty(properties, outputs[i]+PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX);
+			outputOperators[i] = MultiModelOperatorUtils.getStringProperty(inputProperties, outputs[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
+			outputDefaults[i] = MultiModelOperatorUtils.getDoubleProperty(inputProperties, outputs[i]+PROPERTY_IN_OUTPUTDEFAULT_SUFFIX);
+			outputMins[i] = MultiModelOperatorUtils.getDoubleProperty(inputProperties, outputs[i]+PROPERTY_IN_OUTPUTMINSAMPLEVALUE_SUFFIX);
+			outputMaxs[i] = MultiModelOperatorUtils.getDoubleProperty(inputProperties, outputs[i]+PROPERTY_IN_OUTPUTMAXSAMPLEVALUE_SUFFIX);
+			outputDoConfidences[i] = MultiModelOperatorUtils.getBoolProperty(inputProperties, outputs[i]+PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX);
 		}
 
 		// efficiency
-		maxProcessingTime = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXPROCESSINGTIME);
-		numThreads = MultiModelOperatorUtils.getOptionalIntProperty(properties, PROPERTY_IN_NUMTHREADS, PROPERTY_IN_NUMTHREADS_DEFAULT);
+		maxProcessingTime = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXPROCESSINGTIME);
+		numThreads = MultiModelOperatorUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_NUMTHREADS, PROPERTY_IN_NUMTHREADS_DEFAULT);
 	}
 
 	private Properties writeProperties(ExperimentSamples[] experiment, int experimentIndex) {
@@ -440,16 +441,9 @@ public class ExperimentDriver extends OperatorImpl {
 		}
 		// never update the mid, it will explode
 		operatorProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_UPDATEMID, "false");
-		// write input properties for the operator
-		MultiModelOperatorUtils.writePropertiesFile(
-			operatorProperties,
-			operator,
-			actualParameters.get(0),
-			nextSubdir,
-			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
-		);
 
 		// execute and get state
+		operator.readInputProperties(operatorProperties);
 		EList<Model> result = operator.execute(actualParameters);
 		if (operator instanceof RandomOperatorImpl) {
 			state[experimentIndex] = ((RandomOperatorImpl) operator).getState();
@@ -481,15 +475,6 @@ public class ExperimentDriver extends OperatorImpl {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		long startTime = System.nanoTime();
-		// get experiment properties
-		Model initialModel = actualParameters.get(0);
-		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
-			this,
-			initialModel,
-			null,
-			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
-		);
-		readProperties(inputProperties);
 
 		// prepare experiment setup
 		state = new Random[numExperiments];

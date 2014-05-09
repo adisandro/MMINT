@@ -17,6 +17,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 
 import java.util.Map;
 
+import java.util.Properties;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
@@ -218,5 +219,32 @@ public interface Operator extends ExtendibleElement {
 	 * @generated
 	 */
 	EList<Operator> getExecutables(EList<Model> actualModels, EList<EList<Model>> actualModelTypes, EList<Map<Integer, EList<ConversionOperator>>> conversions, EList<EList<Model>> generics) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Gets the input properties of this operator.
+	 * 
+	 * @return The input properties of this operator. <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        dataType="edu.toronto.cs.se.mmint.mid.operator.Properties"
+	 *        required="true"
+	 * @generated
+	 */
+	Properties getInputProperties();
+
+	/**
+	 * <!-- begin-user-doc --> Reads the input properties of this operator.
+	 * 
+	 * @param inputProperties
+	 *            The input properties of this operator.
+	 * @throws MMINTException
+	 *             If any required property is not available, or if a property
+	 *             is not in its intended format. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 *        inputPropertiesDataType
+	 *        ="edu.toronto.cs.se.mmint.mid.operator.Properties"
+	 *        inputPropertiesRequired="true"
+	 * @generated
+	 */
+	void readInputProperties(Properties inputProperties) throws MMINTException;
 
 } // Operator

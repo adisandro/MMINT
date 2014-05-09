@@ -27,7 +27,6 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.Parameter;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashMap;
@@ -35,6 +34,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -403,16 +403,26 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___EXECUTE__ELIST:
+			case OperatorPackage.OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST:
 				try {
-					return execute((EList<Model>)arguments.get(0));
+					return getExecutables((EList<Model>)arguments.get(0), (EList<EList<Model>>)arguments.get(1), (EList<Map<Integer, EList<ConversionOperator>>>)arguments.get(2), (EList<EList<Model>>)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST:
+			case OperatorPackage.OPERATOR___GET_INPUT_PROPERTIES:
+				return getInputProperties();
+			case OperatorPackage.OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES:
 				try {
-					return getExecutables((EList<Model>)arguments.get(0), (EList<EList<Model>>)arguments.get(1), (EList<Map<Integer, EList<ConversionOperator>>>)arguments.get(2), (EList<EList<Model>>)arguments.get(3));
+					readInputProperties((Properties)arguments.get(0));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___EXECUTE__ELIST:
+				try {
+					return execute((EList<Model>)arguments.get(0));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -437,30 +447,6 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 		return result.toString();
 	}
 
-	private String getPropertiesUri(String suffix) {
-
-		IFile midDiagram = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
-		String propertiesUri = MultiModelUtils.prependWorkspaceToUri(midDiagram.getParent().getFullPath().toString());
-		propertiesUri += this.getName() + suffix + MultiModelOperatorUtils.PROPERTIES_SUFFIX;
-
-		return propertiesUri;
-	}
-
-	protected Properties getInputPropertiesFile() throws Exception {
-
-		String propertiesUri =  getPropertiesUri(MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX);
-		Properties properties = new Properties();
-		properties.load(new FileInputStream(propertiesUri));
-
-		return properties;
-	}
-
-	protected void writeOutputPropertiesFile(Properties properties) throws Exception {
-
-		String propertiesUri =  getPropertiesUri(MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX);
-		properties.store(new FileOutputStream(propertiesUri), null);
-	}
-
 	/**
 	 * @generated NOT
 	 */
@@ -478,14 +464,6 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 		for (Operator operatorSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, multiModel)) {
 			operatorSubtype.deleteType();
 		}
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
-
-		throw new MMINTException("The default execute() function must be overridden");
 	}
 
 	/**
@@ -536,6 +514,56 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 		generics.add(new BasicEList<Model>());
 
 		return executableOperatorTypes;
+	}
+
+	/**
+	 * Gets the uri of the properties file of this operator.
+	 * 
+	 * @param suffix
+	 *            The suffix of the properties file.
+	 * @return The uri of the properties file.
+	 * @generated NOT
+	 */
+	private String getPropertiesUri(String suffix) {
+
+		IFile midDiagram = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
+		String propertiesUri = MultiModelUtils.prependWorkspaceToUri(midDiagram.getParent().getFullPath().toString());
+		propertiesUri += IPath.SEPARATOR + this.getName() + suffix + MultiModelOperatorUtils.PROPERTIES_SUFFIX;
+
+		return propertiesUri;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Properties getInputProperties() {
+
+		String propertiesUri =  getPropertiesUri(MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX);
+		Properties inputProperties = new Properties();
+		try {
+			inputProperties.load(new FileInputStream(propertiesUri));
+		}
+		catch (Exception e) {
+			// do nothing
+		}
+
+		return inputProperties;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void readInputProperties(Properties inputProperties) throws MMINTException {
+
+		// do nothing
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+
+		throw new MMINTException("The default execute() function must be overridden");
 	}
 
 } //OperatorImpl
