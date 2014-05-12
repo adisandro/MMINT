@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mmint.mid.operator.*;
 import edu.toronto.cs.se.mmint.mid.util.MidValidator;
 
 import java.util.Map;
+import java.util.Properties;
 import java.util.Random;
 
 import org.eclipse.emf.common.util.Diagnostic;
@@ -119,6 +120,8 @@ public class OperatorValidator extends EObjectValidator {
 				return validateRandom((Random)value, diagnostics, context);
 			case OperatorPackage.EXCEPTION:
 				return validateException((Exception)value, diagnostics, context);
+			case OperatorPackage.PROPERTIES:
+				return validateProperties((Properties)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -244,6 +247,15 @@ public class OperatorValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateException(Exception exception, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateProperties(Properties properties, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

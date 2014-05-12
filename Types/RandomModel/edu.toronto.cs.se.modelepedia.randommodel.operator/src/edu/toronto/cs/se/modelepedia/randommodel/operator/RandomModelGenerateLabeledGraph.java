@@ -68,15 +68,16 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorImpl {
 		M, S, V
 	}
 
-	private void readProperties(Properties properties) throws Exception {
+	@Override
+	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-		maxModelObjs = MultiModelOperatorUtils.getIntProperty(properties, PROPERTY_IN_MAXMODELOBJS);
-		minModelObjs = MultiModelOperatorUtils.getOptionalIntProperty(properties, PROPERTY_IN_MINMODELOBJS, maxModelObjs);
-		edgesToNodesRatio = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_EDGESTONODESRATIO);
-		percAnnotations = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_PERCANNOTATIONS);
-		percMay = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_PERCMAY);
-		percSet = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_PERCSET);
-		percVar = MultiModelOperatorUtils.getDoubleProperty(properties, PROPERTY_IN_PERCVAR);
+		maxModelObjs = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXMODELOBJS);
+		minModelObjs = MultiModelOperatorUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_MINMODELOBJS, maxModelObjs);
+		edgesToNodesRatio = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_EDGESTONODESRATIO);
+		percAnnotations = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCANNOTATIONS);
+		percMay = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCMAY);
+		percSet = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCSET);
+		percVar = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCVAR);
 	}
 
 	private int increaseEdgesMayUncertainty(Model newRandommodelModel, Node mayAnnotatedNode, List<MAVOElement> mavoAnnotatableModelObjs) {
@@ -188,15 +189,8 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorImpl {
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		//TODO MMINT: fix this inputSubdir thing
 		Model labeledGraphModel = actualParameters.get(0);
-		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
-			this,
-			labeledGraphModel,
-			inputSubdir,
-			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
-		);
-		readProperties(inputProperties);
+		Properties inputProperties = getInputProperties();
 		if (minModelObjs > maxModelObjs) {
 			throw new MMINTException("minModelElems (" + minModelObjs + ") > maxModelElems (" + maxModelObjs + ")");
 		}

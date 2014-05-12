@@ -325,22 +325,40 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___DELETE_TYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Execute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR___EXECUTE__ELIST = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
-
-	/**
 	 * The operation id for the '<em>Get Executables</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+	int OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Get Input Properties</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___GET_INPUT_PROPERTIES = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Read Input Properties</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Execute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___EXECUTE__ELIST = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -349,7 +367,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+	int OPERATOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -561,15 +579,6 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR___GET_SUPERTYPE = OPERATOR___GET_SUPERTYPE;
 
 	/**
-	 * The operation id for the '<em>Execute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR___EXECUTE__ELIST = OPERATOR___EXECUTE__ELIST;
-
-	/**
 	 * The operation id for the '<em>Get Executables</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -577,6 +586,33 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST;
+
+	/**
+	 * The operation id for the '<em>Get Input Properties</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___GET_INPUT_PROPERTIES = OPERATOR___GET_INPUT_PROPERTIES;
+
+	/**
+	 * The operation id for the '<em>Read Input Properties</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
+
+	/**
+	 * The operation id for the '<em>Execute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___EXECUTE__ELIST = OPERATOR___EXECUTE__ELIST;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -823,15 +859,6 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___DELETE_TYPE = OPERATOR___DELETE_TYPE;
 
 	/**
-	 * The operation id for the '<em>Execute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR___EXECUTE__ELIST = OPERATOR___EXECUTE__ELIST;
-
-	/**
 	 * The operation id for the '<em>Get Executables</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -839,6 +866,33 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST;
+
+	/**
+	 * The operation id for the '<em>Get Input Properties</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___GET_INPUT_PROPERTIES = OPERATOR___GET_INPUT_PROPERTIES;
+
+	/**
+	 * The operation id for the '<em>Read Input Properties</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
+
+	/**
+	 * The operation id for the '<em>Execute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___EXECUTE__ELIST = OPERATOR___EXECUTE__ELIST;
 
 	/**
 	 * The number of operations of the '<em>Random Operator</em>' class.
@@ -914,6 +968,17 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	int EXCEPTION = 6;
+
+
+	/**
+	 * The meta object id for the '<em>Properties</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.util.Properties
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getProperties()
+	 * @generated
+	 */
+	int PROPERTIES = 7;
 
 
 	/**
@@ -1066,6 +1131,26 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__GetExecutables__EList_EList_EList_EList();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getInputProperties() <em>Get Input Properties</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Input Properties</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#getInputProperties()
+	 * @generated
+	 */
+	EOperation getOperator__GetInputProperties();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#readInputProperties(java.util.Properties) <em>Read Input Properties</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Read Input Properties</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#readInputProperties(java.util.Properties)
+	 * @generated
+	 */
+	EOperation getOperator__ReadInputProperties__Properties();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.Parameter <em>Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1180,6 +1265,17 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EDataType getException();
+
+	/**
+	 * Returns the meta object for data type '{@link java.util.Properties <em>Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Properties</em>'.
+	 * @see java.util.Properties
+	 * @model instanceClass="java.util.Properties"
+	 * @generated
+	 */
+	EDataType getProperties();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1321,6 +1417,22 @@ public interface OperatorPackage extends EPackage {
 		EOperation OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = eINSTANCE.getOperator__GetExecutables__EList_EList_EList_EList();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Input Properties</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___GET_INPUT_PROPERTIES = eINSTANCE.getOperator__GetInputProperties();
+
+		/**
+		 * The meta object literal for the '<em><b>Read Input Properties</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = eINSTANCE.getOperator__ReadInputProperties__Properties();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1417,6 +1529,16 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType EXCEPTION = eINSTANCE.getException();
+
+		/**
+		 * The meta object literal for the '<em>Properties</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.util.Properties
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getProperties()
+		 * @generated
+		 */
+		EDataType PROPERTIES = eINSTANCE.getProperties();
 
 	}
 

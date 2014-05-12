@@ -54,7 +54,7 @@ public class FASE14 extends RE13 {
 	private Map<String, MAVOElement> mavoModelObjs;
 	private String smtEncodingRNF;
 
-	private long timeRNF;
+	protected long timeRNF;
 
 	@Override
 	protected void initOutput() {
@@ -143,7 +143,7 @@ public class FASE14 extends RE13 {
 		}
 	}
 
-	private void doRNF(Z3SMTIncrementalSolver z3IncSolver) {
+	protected void doRNF(Z3SMTIncrementalSolver z3IncSolver) {
 
 		long startTime = System.nanoTime();
 
@@ -171,6 +171,24 @@ public class FASE14 extends RE13 {
 		}
 
 		timeRNF = System.nanoTime() - startTime;
+	}
+
+	protected void writeRNF(Model istarModel) {
+
+		try {
+			MultiModelUtils.createTextFile(
+				MultiModelUtils.prependWorkspaceToUri(
+					MultiModelUtils.replaceFileExtensionInUri(
+						MultiModelUtils.addFileNameSuffixInUri(istarModel.getUri(), RNF_OUTPUT_SUFFIX),
+						Z3SMTUtils.SMTLIB_FILE_EXTENSION
+					)
+				),
+				smtEncodingRNF
+			);
+		}
+		catch (Exception e) {
+			MMINTException.print(Type.WARNING, "RNF file writing failed", e);
+		}
 	}
 
 	@Override
@@ -215,13 +233,6 @@ public class FASE14 extends RE13 {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		Model istarModel = actualParameters.get(0);
-		Properties inputProperties = MultiModelOperatorUtils.getPropertiesFile(
-			this,
-			istarModel,
-			null,
-			MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX
-		);
-		readProperties(inputProperties);
 		init();
 
 		// run solver
@@ -246,20 +257,7 @@ public class FASE14 extends RE13 {
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 		if (timeRNF != -1) {
-			try {
-				MultiModelUtils.createTextFile(
-					MultiModelUtils.prependWorkspaceToUri(
-						MultiModelUtils.replaceFileExtensionInUri(
-							MultiModelUtils.addFileNameSuffixInUri(istarModel.getUri(), RNF_OUTPUT_SUFFIX),
-							Z3SMTUtils.SMTLIB_FILE_EXTENSION
-						)
-					),
-					smtEncodingRNF
-				);
-			}
-			catch (Exception e) {
-				MMINTException.print(Type.WARNING, "RNF file writing failed", e);
-			}
+			writeRNF(istarModel);
 		}
 
 		return actualParameters;

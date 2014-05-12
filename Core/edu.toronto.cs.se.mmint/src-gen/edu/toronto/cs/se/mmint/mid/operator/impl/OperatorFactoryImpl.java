@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.mid.operator.impl;
 import edu.toronto.cs.se.mmint.mid.operator.*;
 
 import java.util.Map;
+import java.util.Properties;
 import java.util.Random;
 
 import org.eclipse.emf.ecore.EClass;
@@ -89,6 +90,8 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 				return createRandomFromString(eDataType, initialValue);
 			case OperatorPackage.EXCEPTION:
 				return createExceptionFromString(eDataType, initialValue);
+			case OperatorPackage.PROPERTIES:
+				return createPropertiesFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -106,6 +109,8 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 				return convertRandomToString(eDataType, instanceValue);
 			case OperatorPackage.EXCEPTION:
 				return convertExceptionToString(eDataType, instanceValue);
+			case OperatorPackage.PROPERTIES:
+				return convertPropertiesToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -194,6 +199,24 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	 * @generated
 	 */
 	public String convertExceptionToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Properties createPropertiesFromString(EDataType eDataType, String initialValue) {
+		return (Properties)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPropertiesToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

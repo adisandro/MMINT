@@ -429,6 +429,7 @@
         disposableProviderFactory="true" ecorePackage="mid.ecore#//operator">
       <genDataTypes ecoreDataType="mid.ecore#//operator/Random"/>
       <genDataTypes ecoreDataType="mid.ecore#//operator/Exception"/>
+      <genDataTypes ecoreDataType="mid.ecore#//operator/Properties"/>
       <genClasses ecoreClass="mid.ecore#//operator/EStringToParameterMap">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/EStringToParameterMap/key"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/EStringToParameterMap/value"/>
@@ -443,14 +444,18 @@
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMetatype"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getSupertype"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteType"/>
-        <genOperations ecoreOperation="mid.ecore#//operator/Operator/execute">
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/execute/actualParameters"/>
-        </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getExecutables">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/getExecutables/actualModels"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/getExecutables/actualModelTypes"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/getExecutables/conversions"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/getExecutables/generics"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getInputProperties"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/readInputProperties">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/readInputProperties/inputProperties"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/execute">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/execute/actualParameters"/>
         </genOperations>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/ConversionOperator">
