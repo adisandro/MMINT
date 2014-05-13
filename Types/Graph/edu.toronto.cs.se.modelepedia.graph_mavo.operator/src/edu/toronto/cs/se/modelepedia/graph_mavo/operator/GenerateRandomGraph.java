@@ -16,14 +16,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.gef.EditPart;
-import org.eclipse.ui.PlatformUI;
-
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
@@ -32,7 +28,6 @@ import edu.toronto.cs.se.mmint.mavo.MavoPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
@@ -194,20 +189,14 @@ public class GenerateRandomGraph extends RandomOperatorImpl {
 		if (subdir != null) {
 			lastSegmentUri = subdir + MMINT.URI_SEPARATOR + lastSegmentUri;
 		}
-		IFile midDiagram = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
-		String randomGraphModelUri = midDiagram.getParent().getFullPath().toString() + IPath.SEPARATOR + lastSegmentUri;
+		MultiModel instanceMid = MultiModelOperatorUtils.getInstanceMIDFromOperatorWithNoParameters();
+		String randomGraphModelUri = MultiModelUtils.replaceLastSegmentInUri(EcoreUtil.getURI(instanceMid).toPlatformString(true), lastSegmentUri);
 		MultiModelUtils.createModelFile(randomGraph, randomGraphModelUri, true);
 		Model graphModelType = MultiModelTypeRegistry.getType(Graph_MAVOPackage.eINSTANCE.getNsURI());
 		Model randomGraphModel;
-		if (MultiModelOperatorUtils.isUpdatingMID(getInputProperties())) {
-			// this is an operator without actualParameters, hard to get the instanceMid
-			EditPart editPart = (EditPart) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getAdapter(EditPart.class);
-			MultiModel instanceMid = (MultiModel) ((MultiModelEditPart) editPart.getChildren().get(0)).getDiagramView().getElement();
-			randomGraphModel = graphModelType.createInstanceAndEditor(randomGraphModelUri, ModelOrigin.CREATED, instanceMid);
-		}
-		else {
-			randomGraphModel = graphModelType.createInstance(randomGraphModelUri, ModelOrigin.CREATED, null);
-		}
+		randomGraphModel = (MultiModelOperatorUtils.isUpdatingMID(getInputProperties())) ?
+			graphModelType.createInstanceAndEditor(randomGraphModelUri, ModelOrigin.CREATED, instanceMid) :
+			graphModelType.createInstance(randomGraphModelUri, ModelOrigin.CREATED, null);
 
 		EList<Model> result = new BasicEList<Model>();
 		result.add(randomGraphModel);

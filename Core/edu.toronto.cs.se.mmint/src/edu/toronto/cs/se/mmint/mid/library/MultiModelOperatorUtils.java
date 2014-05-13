@@ -20,9 +20,13 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
 public class MultiModelOperatorUtils {
@@ -197,6 +201,15 @@ public class MultiModelOperatorUtils {
 	public static String getSubdir(Properties properties) {
 
 		return getOptionalStringProperty(properties, PROPERTY_IN_SUBDIR, null);
+	}
+
+	public static MultiModel getInstanceMIDFromOperatorWithNoParameters() {
+
+		//TODO MMINT[OPERATOR] make it better integrated with Operator
+		EditPart editPart = (EditPart) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getAdapter(EditPart.class);
+		MultiModel instanceMid = (MultiModel) ((DiagramEditPart) editPart.getChildren().get(0)).getDiagramView().getElement();
+
+		return instanceMid;
 	}
 
 }
