@@ -72,7 +72,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="parameter" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="parameter" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
       </complexType>
    </element>

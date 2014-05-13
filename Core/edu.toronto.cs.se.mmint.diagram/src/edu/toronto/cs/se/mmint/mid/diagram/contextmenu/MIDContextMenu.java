@@ -18,6 +18,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.notation.View;
@@ -33,12 +34,14 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.library.AddModifyConstraintListener;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
@@ -77,7 +80,7 @@ public class MIDContextMenu extends ContributionItem {
 			return;
 		}
 		Object[] objects = ((StructuredSelection) selection).toArray();
-		boolean doOperator = true, doCast = true, doValidate = true, doCopy = true, doProperty = true, doModelepedia = true, doCoherence = true;;
+		boolean doOperator = true, doCast = true, doValidate = true, doCopy = true, doProperty = true, doModelepedia = true, doCoherence = true;
 		if (objects.length > 1) { // actions that don't work on multiple objects
 			doCast = false;
 			doValidate = false;
@@ -87,21 +90,38 @@ public class MIDContextMenu extends ContributionItem {
 			doCoherence = false;
 		}
 
-		// get selection
+		// get model selection
+		MultiModel multiModel = null;
 		EList<Model> models = new BasicEList<Model>();
 		ITextAwareEditPart label = null;
 		List<GraphicalEditPart> editParts = new ArrayList<GraphicalEditPart>();
 		for (Object object : objects) {
-			if (
+			if (!(
+				object instanceof MultiModelEditPart ||
 				object instanceof ModelEditPart ||
 				object instanceof Model2EditPart ||
 				object instanceof ModelRelEditPart ||
 				object instanceof ModelRel2EditPart ||
 				object instanceof BinaryModelRelEditPart
-			) {
-				GraphicalEditPart editPart = (GraphicalEditPart) object;
-				Model model = (Model) ((View) editPart.getModel()).getElement();
-				if (!MultiModelConstraintChecker.isInstancesLevel(model)) { // actions that don't work on types
+			)) {
+				continue;
+			}
+			GraphicalEditPart editPart = (GraphicalEditPart) object;
+			EObject editPartElement = ((View) editPart.getModel()).getElement();
+			if (editPartElement instanceof MultiModel) {
+				doCast = false;
+				doValidate = false;
+				doCopy = false;
+				doProperty = false;
+				doModelepedia = false;
+				doCoherence = false;
+				if (MultiModelConstraintChecker.isInstancesLevel((MultiModel) editPartElement)) { // instances only
+					multiModel = (MultiModel) editPartElement;
+				}
+			}
+			else {
+				Model model = (Model) editPartElement;
+				if (!MultiModelConstraintChecker.isInstancesLevel(model)) { // instances only
 					doOperator = false;
 					doCast = false;
 					doValidate = false;
@@ -130,7 +150,7 @@ public class MIDContextMenu extends ContributionItem {
 				return;
 			}
 		}
-		if (models.isEmpty()) { // no relevant edit parts selected
+		if (multiModel == null && models.isEmpty()) { // no relevant edit parts selected
 			return;
 		}
 
