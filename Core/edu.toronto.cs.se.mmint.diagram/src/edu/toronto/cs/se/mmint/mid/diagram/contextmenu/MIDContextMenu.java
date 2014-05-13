@@ -43,6 +43,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.library.AddModifyConstraintListener;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -91,7 +92,7 @@ public class MIDContextMenu extends ContributionItem {
 		}
 
 		// get model selection
-		MultiModel multiModel = null;
+		MultiModel instanceMid = null;
 		EList<Model> models = new BasicEList<Model>();
 		ITextAwareEditPart label = null;
 		List<GraphicalEditPart> editParts = new ArrayList<GraphicalEditPart>();
@@ -116,7 +117,7 @@ public class MIDContextMenu extends ContributionItem {
 				doModelepedia = false;
 				doCoherence = false;
 				if (MultiModelConstraintChecker.isInstancesLevel((MultiModel) editPartElement)) { // instances only
-					multiModel = (MultiModel) editPartElement;
+					instanceMid = (MultiModel) editPartElement;
 				}
 			}
 			else {
@@ -150,7 +151,7 @@ public class MIDContextMenu extends ContributionItem {
 				return;
 			}
 		}
-		if (multiModel == null && models.isEmpty()) { // no relevant edit parts selected
+		if (instanceMid == null && models.isEmpty()) { // no relevant edit parts selected
 			return;
 		}
 
@@ -169,6 +170,9 @@ public class MIDContextMenu extends ContributionItem {
 		mmintItem.setMenu(mmintMenu);
 		// operator
 		if (doOperator) {
+			if (instanceMid == null) {
+				instanceMid = MultiModelRegistry.getMultiModel(models.get(0));
+			}
 			EList<Operator> operatorTypes = new BasicEList<Operator>();
 			EList<Map<Integer, EList<ConversionOperator>>> conversions = new BasicEList<Map<Integer, EList<ConversionOperator>>>();
 			EList<EList<Model>> generics = new BasicEList<EList<Model>>();
@@ -213,7 +217,7 @@ public class MIDContextMenu extends ContributionItem {
 					MenuItem operatorSubitem = new MenuItem(operatorMenu, SWT.NONE);
 					operatorSubitem.setText(text);
 					operatorSubitem.addSelectionListener(
-						new RunOperatorListener(operatorType, actualParameters, conversion)
+						new RunOperatorListener(instanceMid, operatorType, actualParameters, conversion)
 					);
 					//TODO MMINT[OPERATOR] nice to show label of operator invocation with actual parameters
 					//TODO MMINT[OPERATOR] traceability, could be nice to create an instance of operator, with name = actual parameters

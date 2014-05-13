@@ -189,24 +189,14 @@ public class MultiModelOperatorUtils {
 		}
 	}
 
-	public static boolean isUpdatingMid(Properties properties) {
+	public static boolean isUpdatingMID(Properties properties) {
 
-		try {
-			return Boolean.parseBoolean(getStringProperty(properties, PROPERTY_IN_UPDATEMID));
-		}
-		catch (MMINTException e) {
-			return true;
-		}
+		return getOptionalBoolProperty(properties, PROPERTY_IN_UPDATEMID, true);
 	}
 
 	public static String getSubdir(Properties properties) {
 
-		try {
-			return getStringProperty(properties, PROPERTY_IN_SUBDIR);
-		}
-		catch (MMINTException e) {
-			return null;
-		}
+		return getOptionalStringProperty(properties, PROPERTY_IN_SUBDIR, null);
 	}
 
 }

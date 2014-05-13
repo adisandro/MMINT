@@ -16,18 +16,24 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gef.EditPart;
+import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mavo.MavoPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Edge;
@@ -38,34 +44,30 @@ import edu.toronto.cs.se.modelepedia.graph_mavo.Node;
 
 public class GenerateRandomGraph extends RandomOperatorImpl {
 
-	/** Min number of model objects in the random model. */
+	/** Min number of model objects in the random graph. */
 	private static final String PROPERTY_IN_MINMODELOBJS = "minModelObjs";
-	/** Max number of model objects in the random model. */
+	/** Max number of model objects in the random graph. */
 	private static final String PROPERTY_IN_MAXMODELOBJS = "maxModelObjs";
 	private static final String PROPERTY_IN_EDGESTONODESRATIO = "edges.toNodesRatio";
-	/** % of annotated objects in the random model. */
-	private static final String PROPERTY_IN_PERCANNOTATIONS = "percAnnotations";
-	/** % of may objects among the annotated elements. */
+	/** % of MAVO model objects in the random model. */
+	private static final String PROPERTY_IN_PERCMAVO = "percMavo";
+	/** % of may model objects among the MAVO ones. */
 	private static final String PROPERTY_IN_PERCMAY = "percMay";
-	/** % of set objects among the annotated elements. */
+	/** % of set model objects among the MAVO ones. */
 	private static final String PROPERTY_IN_PERCSET = "percSet";
-	/** % of var objects among the annotated elements. */
+	/** % of var model objects among the MAVO ones. */
 	private static final String PROPERTY_IN_PERCVAR = "percVar";
-	private static final String RANDOM_SUFFIX = "_random";
+	private static final String RANDOM_MODEL_NAME = "random";
 
 	private int minModelObjs;
 	private int maxModelObjs;
 	private double edgesToNodesRatio;
-	private double percAnnotations;
+	private double percMavo;
 	private double percMay;
 	private double percSet;
 	private double percVar;
 	private List<MAVOElement> mavoModelObjs;
-	private EList<Node> randommodelNodes;
-
-	public enum MAVOAnnotation {
-		M, S, V
-	}
+	private EList<Node> randomGraphNodes;
 
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
@@ -73,16 +75,22 @@ public class GenerateRandomGraph extends RandomOperatorImpl {
 		maxModelObjs = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXMODELOBJS);
 		minModelObjs = MultiModelOperatorUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_MINMODELOBJS, maxModelObjs);
 		edgesToNodesRatio = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_EDGESTONODESRATIO);
-		percAnnotations = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCANNOTATIONS);
+		percMavo = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCMAVO);
 		percMay = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCMAY);
 		percSet = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCSET);
 		percVar = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCVAR);
 	}
 
-	private int increaseEdgesMayUncertainty(Model newRandommodelModel, Node mayAnnotatedNode, List<MAVOElement> mavoAnnotatableModelObjs) {
+	private void init() {
+
+		mavoModelObjs = new ArrayList<MAVOElement>();
+		randomGraphNodes = null;
+	}
+
+	private int addMayEdges(Node mayNode, List<MAVOElement> mavoAnnotatableModelObjs) {
 
 		int i = 0;
-		for (Edge edgeAsSrc : mayAnnotatedNode.getEdgesAsSource()) {
+		for (Edge edgeAsSrc : mayNode.getEdgesAsSource()) {
 			if (!edgeAsSrc.isMay()) {
 				mavoAnnotatableModelObjs.remove(edgeAsSrc);
 				edgeAsSrc.setMay(true);
@@ -90,7 +98,7 @@ public class GenerateRandomGraph extends RandomOperatorImpl {
 				i++;
 			}
 		}
-		for (Edge edgeAsTgt : mayAnnotatedNode.getEdgesAsTarget()) {
+		for (Edge edgeAsTgt : mayNode.getEdgesAsTarget()) {
 			if (!edgeAsTgt.isMay()) {
 				mavoAnnotatableModelObjs.remove(edgeAsTgt);
 				edgeAsTgt.setMay(true);
@@ -102,32 +110,22 @@ public class GenerateRandomGraph extends RandomOperatorImpl {
 		return i;
 	}
 
-	private void annotateMAVOElements(Model newRandommodelModel, List<MAVOElement> annotatableModelObjs, MAVOAnnotation mavoAnnotation, double mavoPerc) {
+	private void addMAVOElements(List<MAVOElement> mavoableModelObjs, EStructuralFeature mavoFeature, double mavoPerc) {
 
-		List<MAVOElement> mavoAnnotatableModelObjs = new ArrayList<MAVOElement>(annotatableModelObjs);
+		List<MAVOElement> mavoAnnotatableModelObjs = new ArrayList<MAVOElement>(mavoableModelObjs);
 		MAVOElement mavoModelObj;
-		int numMavo = (int) Math.round(mavoPerc * annotatableModelObjs.size());
+		int numMavo = (int) Math.round(mavoPerc * mavoableModelObjs.size());
 		for (int i = 0; i < numMavo; i++) {
 			mavoModelObj = mavoAnnotatableModelObjs.remove(state.nextInt(mavoAnnotatableModelObjs.size()));
-			switch (mavoAnnotation) {
-				case M:
-					mavoModelObj.setMay(true);
-					if (mavoModelObj instanceof Node) {
-						i += increaseEdgesMayUncertainty(newRandommodelModel, (Node) mavoModelObj, mavoAnnotatableModelObjs);
-					}
-					break;
-				case S:
-					mavoModelObj.setSet(true);
-					break;
-				case V:
-					mavoModelObj.setVar(true);
-					break;
+			mavoModelObj.eSet(mavoFeature, true);
+			if (mavoFeature == MavoPackage.eINSTANCE.getMAVOElement_May() && mavoModelObj instanceof Node) {
+				i += addMayEdges((Node) mavoModelObj, mavoAnnotatableModelObjs);
 			}
 			mavoModelObjs.add(mavoModelObj);
 		}
 	}
 
-	private Graph generateRandomMAVOModel(Model labeledGraphModel, Model newRandommodelModel) throws Exception {
+	private Graph generateRandomGraph() throws Exception {
 
 		int totModelObjs = state.nextInt(maxModelObjs - minModelObjs + 1) + minModelObjs;
 		int[] numModelObjs = new int[2];
@@ -137,38 +135,39 @@ public class GenerateRandomGraph extends RandomOperatorImpl {
 		);
 		numModelObjs[1] = totModelObjs - numModelObjs[0];
 
+		// generate nodes and edges
 		List<MAVOElement> randomModelObjs = new ArrayList<MAVOElement>();
-		Graph randomRoot = Graph_MAVOFactory.eINSTANCE.createGraph();
-		randommodelNodes = randomRoot.getNodes();
+		Graph randomGraph = Graph_MAVOFactory.eINSTANCE.createGraph();
+		randomGraphNodes = randomGraph.getNodes();
 		Node node;
 		for (int i = 0; i < numModelObjs[0]; i++) {
 			node = Graph_MAVOFactory.eINSTANCE.createNode();
 			node.setName(String.valueOf(i+1));
-			randommodelNodes.add(node);
+			randomGraphNodes.add(node);
 			randomModelObjs.add(node);
 		}
-		EList<Edge> randommodelEdges = randomRoot.getEdges();
+		EList<Edge> randomGraphEdges = randomGraph.getEdges();
 		Edge edge;
 		for (int i = 0; i < numModelObjs[1]; i++) {
 			edge = Graph_MAVOFactory.eINSTANCE.createEdge();
 			edge.setName(String.valueOf(i+1));
-			edge.setSource(randommodelNodes.get(state.nextInt(numModelObjs[0])));
-			edge.setTarget(randommodelNodes.get(state.nextInt(numModelObjs[0])));
-			randommodelEdges.add(edge);
+			edge.setSource(randomGraphNodes.get(state.nextInt(numModelObjs[0])));
+			edge.setTarget(randomGraphNodes.get(state.nextInt(numModelObjs[0])));
+			randomGraphEdges.add(edge);
 			randomModelObjs.add(edge);
 		}
 
-		// all annotated elements
-		List<MAVOElement> annotatableModelObjs = new ArrayList<MAVOElement>();
-		int numAnnotations = (int) Math.round(percAnnotations * randomModelObjs.size());
-		for (int i = 0; i < numAnnotations; i++) {
-			annotatableModelObjs.add(randomModelObjs.remove(state.nextInt(randomModelObjs.size())));
+		// add mavo annotations
+		List<MAVOElement> mavoableModelObjs = new ArrayList<MAVOElement>();
+		int numMavo = (int) Math.round(percMavo * randomModelObjs.size());
+		for (int i = 0; i < numMavo; i++) {
+			mavoableModelObjs.add(randomModelObjs.remove(state.nextInt(randomModelObjs.size())));
 		}
-		annotateMAVOElements(newRandommodelModel, annotatableModelObjs, MAVOAnnotation.M, percMay);
-		annotateMAVOElements(newRandommodelModel, annotatableModelObjs, MAVOAnnotation.S, percSet);
-		annotateMAVOElements(newRandommodelModel, annotatableModelObjs, MAVOAnnotation.V, percVar);
+		addMAVOElements(mavoableModelObjs, MavoPackage.eINSTANCE.getMAVOElement_May(), percMay);
+		addMAVOElements(mavoableModelObjs, MavoPackage.eINSTANCE.getMAVOElement_Set(), percSet);
+		addMAVOElements(mavoableModelObjs, MavoPackage.eINSTANCE.getMAVOElement_Var(), percVar);
 
-		return randomRoot;
+		return randomGraph;
 	}
 
 	public List<MAVOElement> getMAVOModelObjects() {
@@ -176,44 +175,42 @@ public class GenerateRandomGraph extends RandomOperatorImpl {
 		return mavoModelObjs;
 	}
 
-	public EList<Node> getRandommodelNodes() {
+	public EList<Node> getRandomGraphNodes() {
 
-		return randommodelNodes;
+		return randomGraphNodes;
 	}
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		Model labeledGraphModel = actualParameters.get(0);
-		Properties inputProperties = getInputProperties();
 		if (minModelObjs > maxModelObjs) {
 			throw new MMINTException("minModelElems (" + minModelObjs + ") > maxModelElems (" + maxModelObjs + ")");
 		}
-		mavoModelObjs = new ArrayList<MAVOElement>();
 
-		// create model first in order to contain mavo model elements
-		String modelTypeName = labeledGraphModel.getMetatype().getName();
-		String newLastSegmentUri = modelTypeName + RANDOM_SUFFIX + (new Date()).getTime() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + Graph_MAVOPackage.eNAME;
-		String subdir = MultiModelOperatorUtils.getSubdir(inputProperties);
+		init();
+		Graph randomGraph = generateRandomGraph();
+		String lastSegmentUri = RANDOM_MODEL_NAME + (new Date()).getTime() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + Graph_MAVOPackage.eNAME;
+		String subdir = MultiModelOperatorUtils.getSubdir(getInputProperties());
 		if (subdir != null) {
-			newLastSegmentUri = subdir + MMINT.URI_SEPARATOR + newLastSegmentUri;
+			lastSegmentUri = subdir + MMINT.URI_SEPARATOR + lastSegmentUri;
 		}
-		String newRandommodelModelUri = MultiModelUtils.replaceLastSegmentInUri(labeledGraphModel.getUri(), newLastSegmentUri);
+		IFile midDiagram = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
+		String randomGraphModelUri = midDiagram.getParent().getFullPath().toString() + IPath.SEPARATOR + lastSegmentUri;
+		MultiModelUtils.createModelFile(randomGraph, randomGraphModelUri, true);
+		Model graphModelType = MultiModelTypeRegistry.getType(Graph_MAVOPackage.eINSTANCE.getNsURI());
+		Model randomGraphModel;
+		if (MultiModelOperatorUtils.isUpdatingMID(getInputProperties())) {
+			// this is an operator without actualParameters, hard to get the instanceMid
+			EditPart editPart = (EditPart) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getAdapter(EditPart.class);
+			MultiModel instanceMid = (MultiModel) ((MultiModelEditPart) editPart.getChildren().get(0)).getDiagramView().getElement();
+			randomGraphModel = graphModelType.createInstanceAndEditor(randomGraphModelUri, ModelOrigin.CREATED, instanceMid);
+		}
+		else {
+			randomGraphModel = graphModelType.createInstance(randomGraphModelUri, ModelOrigin.CREATED, null);
+		}
+
 		EList<Model> result = new BasicEList<Model>();
-		boolean updateMid = MultiModelOperatorUtils.isUpdatingMid(inputProperties);
-		MultiModel multiModel = (updateMid) ?
-			MultiModelRegistry.getMultiModel(labeledGraphModel) :
-			null;
-		Model modelType = MultiModelTypeRegistry.getType(Graph_MAVOPackage.eINSTANCE.getNsURI());
-		Model newRandommodelModel = (updateMid) ?
-			modelType.createInstanceAndEditor(newRandommodelModelUri, ModelOrigin.CREATED, multiModel) :
-			modelType.createInstance(newRandommodelModelUri, ModelOrigin.CREATED, null);
-		result.add(newRandommodelModel);
-
-		// create random instance
-		Graph randomRoot = generateRandomMAVOModel(labeledGraphModel, newRandommodelModel);
-		MultiModelUtils.createModelFile(randomRoot, newRandommodelModelUri, true);
-
+		result.add(randomGraphModel);
 		return result;
 	}
 
