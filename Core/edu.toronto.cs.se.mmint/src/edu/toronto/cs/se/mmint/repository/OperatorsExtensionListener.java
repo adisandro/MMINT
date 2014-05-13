@@ -16,10 +16,8 @@ import org.eclipse.core.runtime.IExtension;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
-import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
 /**
@@ -43,11 +41,7 @@ public class OperatorsExtensionListener extends MMINTExtensionListener {
 			configs = extension.getConfigurationElements();
 			for (IConfigurationElement config : configs) {
 				try {
-					Operator newOperatorType = MMINT.createOperatorType(config);
-					MMINT.createOperatorTypeParameters(config, newOperatorType);
-					if (newOperatorType instanceof ConversionOperator) {
-						MultiModelTypeFactory.createOperatorTypeConversion((ConversionOperator) newOperatorType);
-					}
+					MMINT.createOperatorType(config);
 				}
 				catch (MMINTException e) {
 					MMINTException.print(Type.ERROR, "Operator type can't be created in " + config.getContributor().getName(), e);

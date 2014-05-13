@@ -17,7 +17,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
@@ -357,7 +356,7 @@ public class MMINT implements MMINTConstants {
 	 *             If there exists a vararg parameter type which is not the last
 	 *             parameter type.
 	 */
-	private static void createOperatorParameters(IConfigurationElement paramTypeConfig, EList<Parameter> paramTypes, Operator operatorType) throws MMINTException {
+	private static void createOperatorTypeParameters(IConfigurationElement paramTypeConfig, EList<Parameter> paramTypes, Operator operatorType) throws MMINTException {
 
 		int i = 0;
 		IConfigurationElement[] paramTypeConfigElems = paramTypeConfig.getChildren(OPERATORS_INPUTOUTPUT_CHILD_PARAMETER);
@@ -378,27 +377,6 @@ public class MMINT implements MMINTConstants {
 	}
 
 	/**
-	 * Creates and adds input/output parameter types to an operator type.
-	 * 
-	 * @param extensionConfig
-	 *            The edu.toronto.cs.se.mmint.operators extension configuration.
-	 * @param operatorType
-	 *            The operator type that will contain the new parameter types.
-	 */
-	public static void createOperatorTypeParameters(IConfigurationElement extensionConfig, Operator operatorType) {
-
-		try {
-			IConfigurationElement inputParamTypeConfig = extensionConfig.getChildren(OPERATORS_CHILD_INPUT)[0];
-			createOperatorParameters(inputParamTypeConfig, operatorType.getInputs(), operatorType);
-			IConfigurationElement outputParamTypeConfig = extensionConfig.getChildren(OPERATORS_CHILD_OUTPUT)[0];
-			createOperatorParameters(outputParamTypeConfig, operatorType.getOutputs(), operatorType);
-		}
-		catch (Exception e) {
-			MMINTException.print(Type.WARNING, "Operator type parameters can't be created", e);
-		}
-	}
-
-	/**
 	 * Creates and adds an editor type to the repository from a registered
 	 * edu.toronto.cs.se.mmint.operators extension.
 	 * 
@@ -413,8 +391,15 @@ public class MMINT implements MMINTConstants {
 
 		ExtensionType extensionType = new ExtensionType(extensionConfig, typeFactory);
 		Operator newOperatorType = extensionType.getFactory().createHeavyOperatorType(extensionType);
+		IConfigurationElement inputParamTypeConfig = extensionConfig.getChildren(OPERATORS_CHILD_INPUT)[0];
+		createOperatorTypeParameters(inputParamTypeConfig, newOperatorType.getInputs(), newOperatorType);
+		IConfigurationElement outputParamTypeConfig = extensionConfig.getChildren(OPERATORS_CHILD_OUTPUT)[0];
+		createOperatorTypeParameters(outputParamTypeConfig, newOperatorType.getOutputs(), newOperatorType);
 		if (newOperatorType instanceof RandomOperator) {
-			((RandomOperator) newOperatorType).setState(new Random());
+			MultiModelTypeFactory.addOperatorTypeRandom((RandomOperator) newOperatorType);
+		}
+		if (newOperatorType instanceof ConversionOperator) {
+			MultiModelTypeFactory.addOperatorTypeConversion((ConversionOperator) newOperatorType);
 		}
 
 		return newOperatorType;
@@ -696,11 +681,7 @@ public class MMINT implements MMINTConstants {
 		while (extensionsIter.hasNext()) {
 			config = extensionsIter.next();
 			try {
-				Operator newOperatorType = createOperatorType(config);
-				createOperatorTypeParameters(config, newOperatorType);
-				if (newOperatorType instanceof ConversionOperator) {
-					MultiModelTypeFactory.createOperatorTypeConversion((ConversionOperator) newOperatorType);
-				}
+				createOperatorType(config);
 			}
 			catch (MMINTException e) {
 				MMINTException.print(Type.ERROR, "Operator type can't be created in " + config.getContributor().getName(), e);
