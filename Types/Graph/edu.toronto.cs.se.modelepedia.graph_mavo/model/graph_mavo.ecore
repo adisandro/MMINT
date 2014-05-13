@@ -12,12 +12,17 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//NamedElement">
+    <eAnnotations source="gmf.node"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="edgesAsSource" upperBound="-1"
         eType="#//Edge" eOpposite="#//Edge/source"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="edgesAsTarget" upperBound="-1"
         eType="#//Edge" eOpposite="#//Edge/target"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Edge" eSuperTypes="#//NamedElement">
+    <eAnnotations source="gmf.link">
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
         eType="#//Node" eOpposite="#//Node/edgesAsSource"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"

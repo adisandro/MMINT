@@ -26,7 +26,7 @@ package edu.toronto.cs.se.modelepedia.graph_mavo;
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage#getEdge()
- * @model
+ * @model annotation="gmf.link source='source' target='target'"
  * @generated
  */
 public interface Edge extends NamedElement {

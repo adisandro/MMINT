@@ -323,6 +323,44 @@ public class Graph_MAVOPackageImpl extends EPackageImpl implements Graph_MAVOPac
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// gmf.node
+		createGmfAnnotations();
+		// gmf.link
+		createGmf_1Annotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.node</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmfAnnotations() {
+		String source = "gmf.node";		
+		addAnnotation
+		  (nodeEClass, 
+		   source, 
+		   new String[] {
+		   });	
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.link</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmf_1Annotations() {
+		String source = "gmf.link";			
+		addAnnotation
+		  (edgeEClass, 
+		   source, 
+		   new String[] {
+			 "source", "source",
+			 "target", "target"
+		   });
 	}
 
 } //Graph_MAVOPackageImpl

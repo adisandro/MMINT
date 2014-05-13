@@ -10,6 +10,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: edu.toronto.cs.se.modelepedia.graph_mavo,
  edu.toronto.cs.se.modelepedia.graph_mavo.impl,
  edu.toronto.cs.se.modelepedia.graph_mavo.util
-Require-Bundle: org.eclipse.emf.ecore,
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
  edu.toronto.cs.se.mmint
 Bundle-ActivationPolicy: lazy

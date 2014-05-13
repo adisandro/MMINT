@@ -39,6 +39,8 @@ import edu.toronto.cs.se.modelepedia.graph_mavo.Node;
 
 public class GenerateRandomGraph extends RandomOperatorImpl {
 
+	private static final String NODE_NAME_PREFIX = "n";
+	private static final String EDGE_NAME_PREFIX = "e";
 	/** Min number of model objects in the random graph. */
 	private static final String PROPERTY_IN_MINMODELOBJS = "minModelObjs";
 	/** Max number of model objects in the random graph. */
@@ -137,7 +139,7 @@ public class GenerateRandomGraph extends RandomOperatorImpl {
 		Node node;
 		for (int i = 0; i < numModelObjs[0]; i++) {
 			node = Graph_MAVOFactory.eINSTANCE.createNode();
-			node.setName(String.valueOf(i+1));
+			node.setName(NODE_NAME_PREFIX + (i+1));
 			randomGraphNodes.add(node);
 			randomModelObjs.add(node);
 		}
@@ -145,7 +147,7 @@ public class GenerateRandomGraph extends RandomOperatorImpl {
 		Edge edge;
 		for (int i = 0; i < numModelObjs[1]; i++) {
 			edge = Graph_MAVOFactory.eINSTANCE.createEdge();
-			edge.setName(String.valueOf(i+1));
+			edge.setName(EDGE_NAME_PREFIX + (i+1));
 			edge.setSource(randomGraphNodes.get(state.nextInt(numModelObjs[0])));
 			edge.setTarget(randomGraphNodes.get(state.nextInt(numModelObjs[0])));
 			randomGraphEdges.add(edge);
