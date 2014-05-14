@@ -38,7 +38,11 @@ public class MultiModelUtils {
 
 	private static String getFirstSegmentFromUri(String uri) {
 
-		return uri.substring(1, uri.indexOf(MMINT.URI_SEPARATOR, 1));
+		int firstSeparator = uri.indexOf(MMINT.URI_SEPARATOR, 1);
+
+		return (firstSeparator == -1) ?
+			uri.substring(1) :
+			uri.substring(1, firstSeparator);
 	}
 
 	public static String getLastSegmentFromUri(String uri) {

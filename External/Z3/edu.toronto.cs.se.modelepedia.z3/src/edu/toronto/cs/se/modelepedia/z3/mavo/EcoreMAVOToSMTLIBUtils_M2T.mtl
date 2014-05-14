@@ -73,6 +73,68 @@
 	endif
 /]
 
+[template public encodeModelMay(mavoModel : MAVOModel)]
+;Concretizations
+	[for (eclass : EClass | mavoModel.getMetamodelMAVOClasses())]
+(define-sort [eclass.getMAVOClassName()/] () Int)
+		[let function : String = eclass.getGraphFunction()]
+(declare-fun [function/] ([eclass.getMAVOClassName()/]) Bool)
+		[if (function = 'node')]
+(declare-const [eclass.getMAVOClassName().toUpperCase()/] NodeType)
+(assert (= [eclass.getMAVOClassName().toUpperCase()/] [i/]))
+		[elseif (function = 'edge')]
+			[let srcFeature : String = eclass.getEdgeSrcFeatureName()]
+			[let tgtFeature : String = eclass.getEdgeTgtFeatureName()]
+			[let srcEclass : EClass = eclass.eAllReferences->any(name = srcFeature).eReferenceType]
+			[let tgtEclass : EClass = eclass.eAllReferences->any(name = tgtFeature).eReferenceType]
+(declare-fun srcType ([eclass.getMAVOClassName()/]) NodeType)
+(declare-fun tgtType ([eclass.getMAVOClassName()/]) NodeType)
+			[for (endpointEclass : EClass | mavoModel.getMetamodelMAVOClasses())]
+				[if (srcEclass.isSuperTypeOf(endpointEclass))]
+(declare-fun src ([eclass.getMAVOClassName()/]) [endpointEclass.getMAVOClassName()/])
+				[/if]
+				[if (tgtEclass.isSuperTypeOf(endpointEclass))]
+(declare-fun tgt ([eclass.getMAVOClassName()/]) [endpointEclass.getMAVOClassName()/])
+				[/if]
+			[/for]
+			[/let]
+			[/let]
+			[/let]
+			[/let]
+		[/if]
+		[/let]
+	[/for]
+
+;Model
+	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
+		[let numTypes : Integer = mavoModel.getMetamodelMAVOClasses()->size()]
+		[let function : String = mavoElement.eClass().getGraphFunction()]
+[if (mavoElement.may)];[/if](assert ([function/] [numTypes+i/]))[if (function = 'node')];Node[/if]
+		[/let]
+		[/let]
+	[/for]
+;End Nodes
+	[for (mavoElement : MAVOElement | mavoModel.getMAVOEdges())]
+		[let srcMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeSrcFeatureName()).oclAsType(MAVOElement)]
+		[let tgtMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeTgtFeatureName()).oclAsType(MAVOElement)]
+		[let srcEclass : EClass = srcMavoElement.eClass()]
+		[let tgtEclass : EClass = tgtMavoElement.eClass()]
+(assert (forall ((c [mavoElement.eClass().getMAVOClassName()/])) (=>
+	(edge [mavoElement.formulaId/] c)
+	(and
+		(= (srcType c) [srcEclass.getMAVOClassName().toUpperCase()/])
+		(= (tgtType c) [tgtEclass.getMAVOClassName().toUpperCase()/])
+		(node [srcMavoElement.formulaId/] ((as src ([srcEclass.getMAVOClassName()/])) c))
+		(node [tgtMavoElement.formulaId/] ((as tgt ([tgtEclass.getMAVOClassName()/])) c))
+	)
+)))
+		[/let]
+		[/let]
+		[/let]
+		[/let]
+	[/for]
+[/template]
+
 [template public encodeModel(mavoModel : MAVOModel)]
 ;Concretizations
 (define-sort Node () Int)
