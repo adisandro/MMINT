@@ -73,8 +73,9 @@
 	endif
 /]
 
-[template public encodeModelMay(mavoModel : MAVOModel)]
+[template public encodeModelMayOnly(mavoModel : MAVOModel)]
 ;Concretizations
+(define-sort NodeType () Int)
 	[for (eclass : EClass | mavoModel.getMetamodelMAVOClasses())]
 (define-sort [eclass.getMAVOClassName()/] () Int)
 		[let function : String = eclass.getGraphFunction()]
@@ -109,7 +110,8 @@
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
 		[let numTypes : Integer = mavoModel.getMetamodelMAVOClasses()->size()]
 		[let function : String = mavoElement.eClass().getGraphFunction()]
-[if (mavoElement.may)];[/if](assert ([function/] [numTypes+i/]))[if (function = 'node')];Node[/if]
+(declare-const [mavoElement.formulaId/] Int)[if (function = 'node')];Node[/if]
+(assert (= [mavoElement.formulaId/] [numTypes+i/]))
 		[/let]
 		[/let]
 	[/for]
@@ -119,18 +121,37 @@
 		[let tgtMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeTgtFeatureName()).oclAsType(MAVOElement)]
 		[let srcEclass : EClass = srcMavoElement.eClass()]
 		[let tgtEclass : EClass = tgtMavoElement.eClass()]
-(assert (forall ((c [mavoElement.eClass().getMAVOClassName()/])) (=>
-	(edge [mavoElement.formulaId/] c)
-	(and
-		(= (srcType c) [srcEclass.getMAVOClassName().toUpperCase()/])
-		(= (tgtType c) [tgtEclass.getMAVOClassName().toUpperCase()/])
-		(node [srcMavoElement.formulaId/] ((as src ([srcEclass.getMAVOClassName()/])) c))
-		(node [tgtMavoElement.formulaId/] ((as tgt ([tgtEclass.getMAVOClassName()/])) c))
+(assert (= (srcType [mavoElement.formulaId/]) [srcEclass.getMAVOClassName().toUpperCase()/]))
+(assert (= (tgtType [mavoElement.formulaId/]) [tgtEclass.getMAVOClassName().toUpperCase()/]))
+(assert (= ((as src ([srcEclass.getMAVOClassName()/])) [mavoElement.formulaId/]) [srcMavoElement.formulaId/]))
+(assert (= ((as tgt ([tgtEclass.getMAVOClassName()/])) [mavoElement.formulaId/]) [tgtMavoElement.formulaId/]))
+		[/let]
+		[/let]
+		[/let]
+		[/let]
+	[/for]
+[/template]
+
+[template public encodeMAVOConstraintsMayOnly(mavoModel : MAVOModel)]
+;Model is Complete
+	[for (eclass : EClass | mavoModel.getMetamodelMAVOClasses())]
+		[let function : String = eclass.getGraphFunction()]
+(assert	(forall ((c [eclass.getMAVOClassName()/])) (=>
+	([function/] c)
+	(or
+		[for (mavoElement : MAVOElement | mavoModel.getObjectsOfType(eclass)->asMAVOElements())]
+		(= [mavoElement.formulaId/] c)
+		[/for]
 	)
 )))
 		[/let]
-		[/let]
-		[/let]
+	[/for]
+	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
+		[let function : String = mavoElement.eClass().getGraphFunction()]
+		[if (not mavoElement.may)]
+;[mavoElement.formulaId/] Exists
+(assert ([function/] [mavoElement.formulaId/]))
+		[/if]
 		[/let]
 	[/for]
 [/template]

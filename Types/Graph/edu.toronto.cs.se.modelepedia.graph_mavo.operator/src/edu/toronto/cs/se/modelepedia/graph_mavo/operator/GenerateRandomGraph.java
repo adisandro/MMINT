@@ -39,8 +39,6 @@ import edu.toronto.cs.se.modelepedia.graph_mavo.Node;
 
 public class GenerateRandomGraph extends RandomOperatorImpl {
 
-	private static final String NODE_NAME_PREFIX = "n";
-	private static final String EDGE_NAME_PREFIX = "e";
 	/** Min number of model objects in the random graph. */
 	private static final String PROPERTY_IN_MINMODELOBJS = "minModelObjs";
 	/** Max number of model objects in the random graph. */
@@ -54,6 +52,8 @@ public class GenerateRandomGraph extends RandomOperatorImpl {
 	private static final String PROPERTY_IN_PERCSET = "percSet";
 	/** % of var model objects among the MAVO ones. */
 	private static final String PROPERTY_IN_PERCVAR = "percVar";
+	private static final String NODE_NAME_PREFIX = "n";
+	private static final String EDGE_NAME_PREFIX = "e";
 	private static final String RANDOM_MODEL_NAME = "random";
 
 	private int minModelObjs;
