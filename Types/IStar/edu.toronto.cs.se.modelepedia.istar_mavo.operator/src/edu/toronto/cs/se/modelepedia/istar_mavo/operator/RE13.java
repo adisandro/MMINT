@@ -123,8 +123,8 @@ public class RE13 extends OperatorImpl {
 		IStarMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
 			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
 			(IStarMAVOToSMTLIB) getPreviousOperator();
-		smtEncoding = previousOperator.getListener().getSMTEncoding();
-		smtNodes = previousOperator.getListener().getSMTNodes();
+		smtEncoding = previousOperator.getListener().getSMTLIBEncoding();
+		smtNodes = previousOperator.getListener().getSMTLIBNodes();
 		initOutput();
 	}
 

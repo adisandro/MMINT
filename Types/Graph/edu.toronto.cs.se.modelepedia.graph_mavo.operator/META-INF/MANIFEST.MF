@@ -8,4 +8,5 @@ Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.modelepedia.z3,
  edu.toronto.cs.se.modelepedia.graph_mavo

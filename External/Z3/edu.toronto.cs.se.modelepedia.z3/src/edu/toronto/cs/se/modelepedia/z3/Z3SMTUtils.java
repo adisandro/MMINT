@@ -81,43 +81,6 @@ public class Z3SMTUtils {
 		}
 	}
 
-	public enum MAVOTruthValue {
-
-		TRUE, FALSE, MAYBE, ERROR;
-
-		public boolean toBoolean() {
-
-			switch (this) {
-				case TRUE:
-				case MAYBE:
-					return true;
-				case FALSE:
-				case ERROR:
-				default:
-					return false;
-			}
-		}
-
-		public static MAVOTruthValue toMAVOTruthValue(boolean truthValue) {
-
-			return (truthValue) ? TRUE : FALSE;
-		}
-
-		public static MAVOTruthValue toMAVOTruthValue(boolean propertyTruthValue, boolean notPropertyTruthValue) {
-
-			if (propertyTruthValue == true && notPropertyTruthValue == false) {
-				return TRUE;
-			}
-			if (propertyTruthValue == false && notPropertyTruthValue == true) {
-				return FALSE;
-			}
-			if (propertyTruthValue == true && notPropertyTruthValue == true) {
-				return MAYBE;
-			}
-			return ERROR;
-		}
-	}
-
 	public static String predicate(String predicateStart, String smtTerms) {
 
 		return predicateStart + smtTerms + SMTLIB_PREDICATE_END;

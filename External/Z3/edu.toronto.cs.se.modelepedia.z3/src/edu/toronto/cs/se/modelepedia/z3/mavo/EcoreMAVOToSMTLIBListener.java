@@ -89,17 +89,17 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 		return false;
 	}
 
-	public String getSMTEncoding() {
+	public String getSMTLIBEncoding() {
 
 		return smtEncoding;
 	}
 
-	public String getSMTEncodingUri() {
+	public String getSMTLIBEncodingUri() {
 
 		return smtEncodingUri;
 	}
 
-	public Map<Integer, String> getSMTNodes() {
+	public Map<Integer, String> getSMTLIBNodes() {
 
 		return smtNodes;
 	}
