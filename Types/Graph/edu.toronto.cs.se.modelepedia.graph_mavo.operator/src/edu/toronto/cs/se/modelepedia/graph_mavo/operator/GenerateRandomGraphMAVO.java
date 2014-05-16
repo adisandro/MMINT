@@ -37,7 +37,7 @@ import edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Node;
 
-public class GenerateRandomGraph extends RandomOperatorImpl {
+public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 
 	/** Min number of model objects in the random graph. */
 	private static final String PROPERTY_IN_MINMODELOBJS = "minModelObjs";

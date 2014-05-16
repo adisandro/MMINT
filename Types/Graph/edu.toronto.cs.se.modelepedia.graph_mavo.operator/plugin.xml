@@ -21,7 +21,7 @@
          <type
                name="GenerateRandomGraph"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_GenerateRandomGraph"
-               class="edu.toronto.cs.se.modelepedia.graph_mavo.operator.GenerateRandomGraph">
+               class="edu.toronto.cs.se.modelepedia.graph_mavo.operator.GenerateRandomGraphMAVO">
          </type>
          <input>
          </input>
@@ -31,6 +31,26 @@
                   name="randomGraphModel"
                   modelTypeUri="http://se.cs.toronto.edu/modelepedia/Graph_MAVO">
             </parameter>
+         </output>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="TOSEM12"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_TOSEM12"
+               class="edu.toronto.cs.se.modelepedia.graph_mavo.operator.TOSEM12">
+         </type>
+         <input>
+            <parameter
+                  isVararg="false"
+                  name="randomGraphModel"
+                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/Graph_MAVO">
+            </parameter>
+         </input>
+         <output>
          </output>
       </operatorType>
    </extension>
