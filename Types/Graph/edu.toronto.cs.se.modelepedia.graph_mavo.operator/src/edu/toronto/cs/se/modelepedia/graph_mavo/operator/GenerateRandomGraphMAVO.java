@@ -64,13 +64,15 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 	private double percSet;
 	private double percVar;
 	private List<MAVOElement> mavoModelObjs;
-	private EList<Node> randomGraphNodes;
 
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		maxModelObjs = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXMODELOBJS);
 		minModelObjs = MultiModelOperatorUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_MINMODELOBJS, maxModelObjs);
+		if (minModelObjs > maxModelObjs) {
+			throw new MMINTException("minModelElems (" + minModelObjs + ") > maxModelElems (" + maxModelObjs + ")");
+		}
 		edgesToNodesRatio = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_EDGESTONODESRATIO);
 		percMavo = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCMAVO);
 		percMay = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCMAY);
@@ -78,10 +80,11 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		percVar = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCVAR);
 	}
 
-	private void init() {
+	@Override
+	public void init() throws MMINTException {
 
+		// state
 		mavoModelObjs = new ArrayList<MAVOElement>();
-		randomGraphNodes = null;
 	}
 
 	private int addMayEdges(Node mayNode, List<MAVOElement> mavoAnnotatableModelObjs) {
@@ -135,7 +138,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		// generate nodes and edges
 		List<MAVOElement> randomModelObjs = new ArrayList<MAVOElement>();
 		Graph randomGraph = Graph_MAVOFactory.eINSTANCE.createGraph();
-		randomGraphNodes = randomGraph.getNodes();
+		EList<Node> randomGraphNodes = randomGraph.getNodes();
 		Node node;
 		for (int i = 0; i < numModelObjs[0]; i++) {
 			node = Graph_MAVOFactory.eINSTANCE.createNode();
@@ -172,19 +175,9 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		return mavoModelObjs;
 	}
 
-	public EList<Node> getRandomGraphNodes() {
-
-		return randomGraphNodes;
-	}
-
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		if (minModelObjs > maxModelObjs) {
-			throw new MMINTException("minModelElems (" + minModelObjs + ") > maxModelElems (" + maxModelObjs + ")");
-		}
-
-		init();
 		Graph randomGraph = generateRandomGraph();
 		String lastSegmentUri = RANDOM_MODEL_NAME + (new Date()).getTime() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + Graph_MAVOPackage.eNAME;
 		String subdir = MultiModelOperatorUtils.getSubdir(getInputProperties());

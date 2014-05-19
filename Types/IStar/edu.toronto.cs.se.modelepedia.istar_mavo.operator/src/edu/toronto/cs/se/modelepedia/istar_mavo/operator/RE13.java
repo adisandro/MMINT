@@ -108,16 +108,10 @@ public class RE13 extends OperatorImpl {
 		targetsProperty = MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_TARGETSPROPERTY, PROPERTY_IN_TARGETSPROPERTY_DEFAULT);
 	}
 
-	protected void initOutput() {
+	@Override
+	public void init() throws MMINTException {
 
-		timeModel = -1;
-		timeAnalysis = -1;
-		timeTargets = -1;
-		targets = Z3BoolResult.UNKNOWN;
-	}
-
-	protected void init() {
-
+		// state
 		intentions = new HashMap<String, Intention>();
 		initialIntentions = new HashSet<String>();
 		IStarMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
@@ -125,7 +119,12 @@ public class RE13 extends OperatorImpl {
 			(IStarMAVOToSMTLIB) getPreviousOperator();
 		smtEncoding = previousOperator.getListener().getSMTLIBEncoding();
 		smtNodes = previousOperator.getListener().getSMTLIBNodes();
-		initOutput();
+
+		// output
+		timeModel = -1;
+		timeAnalysis = -1;
+		timeTargets = -1;
+		targets = Z3BoolResult.UNKNOWN;
 	}
 
 	protected void writeProperties(Properties properties) {
@@ -320,7 +319,6 @@ public class RE13 extends OperatorImpl {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		Model istarModel = actualParameters.get(0);
-		init();
 
 		// run solver
 		collectAnalysisModelObjs(istarModel);

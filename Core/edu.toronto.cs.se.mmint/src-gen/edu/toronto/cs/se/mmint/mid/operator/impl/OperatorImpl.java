@@ -39,13 +39,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ui.PlatformUI;
 
@@ -58,7 +55,6 @@ import org.eclipse.ui.PlatformUI;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getInputs <em>Inputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getOutputs <em>Outputs</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getSignatureTable <em>Signature Table</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getInputSubdir <em>Input Subdir</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getPreviousOperator <em>Previous Operator</em>}</li>
  * </ul>
@@ -86,16 +82,6 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	 * @ordered
 	 */
 	protected EList<Parameter> outputs;
-
-	/**
-	 * The cached value of the '{@link #getSignatureTable() <em>Signature Table</em>}' map.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSignatureTable()
-	 * @generated
-	 * @ordered
-	 */
-	protected EMap<String, Parameter> signatureTable;
 
 	/**
 	 * The default value of the '{@link #getInputSubdir() <em>Input Subdir</em>}' attribute.
@@ -168,18 +154,6 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 			outputs = new EObjectContainmentEList<Parameter>(Parameter.class, this, OperatorPackage.OPERATOR__OUTPUTS);
 		}
 		return outputs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EMap<String, Parameter> getSignatureTable() {
-		if (signatureTable == null) {
-			signatureTable = new EcoreEMap<String,Parameter>(OperatorPackage.Literals.ESTRING_TO_PARAMETER_MAP, EStringToParameterMapImpl.class, this, OperatorPackage.OPERATOR__SIGNATURE_TABLE);
-		}
-		return signatureTable;
 	}
 
 	/**
@@ -273,8 +247,6 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 				return ((InternalEList<?>)getInputs()).basicRemove(otherEnd, msgs);
 			case OperatorPackage.OPERATOR__OUTPUTS:
 				return ((InternalEList<?>)getOutputs()).basicRemove(otherEnd, msgs);
-			case OperatorPackage.OPERATOR__SIGNATURE_TABLE:
-				return ((InternalEList<?>)getSignatureTable()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -291,9 +263,6 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 				return getInputs();
 			case OperatorPackage.OPERATOR__OUTPUTS:
 				return getOutputs();
-			case OperatorPackage.OPERATOR__SIGNATURE_TABLE:
-				if (coreType) return getSignatureTable();
-				else return getSignatureTable().map();
 			case OperatorPackage.OPERATOR__INPUT_SUBDIR:
 				return getInputSubdir();
 			case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
@@ -320,9 +289,6 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 				getOutputs().clear();
 				getOutputs().addAll((Collection<? extends Parameter>)newValue);
 				return;
-			case OperatorPackage.OPERATOR__SIGNATURE_TABLE:
-				((EStructuralFeature.Setting)getSignatureTable()).set(newValue);
-				return;
 			case OperatorPackage.OPERATOR__INPUT_SUBDIR:
 				setInputSubdir((String)newValue);
 				return;
@@ -347,9 +313,6 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 			case OperatorPackage.OPERATOR__OUTPUTS:
 				getOutputs().clear();
 				return;
-			case OperatorPackage.OPERATOR__SIGNATURE_TABLE:
-				getSignatureTable().clear();
-				return;
 			case OperatorPackage.OPERATOR__INPUT_SUBDIR:
 				setInputSubdir(INPUT_SUBDIR_EDEFAULT);
 				return;
@@ -372,8 +335,6 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 				return inputs != null && !inputs.isEmpty();
 			case OperatorPackage.OPERATOR__OUTPUTS:
 				return outputs != null && !outputs.isEmpty();
-			case OperatorPackage.OPERATOR__SIGNATURE_TABLE:
-				return signatureTable != null && !signatureTable.isEmpty();
 			case OperatorPackage.OPERATOR__INPUT_SUBDIR:
 				return INPUT_SUBDIR_EDEFAULT == null ? inputSubdir != null : !INPUT_SUBDIR_EDEFAULT.equals(inputSubdir);
 			case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
@@ -415,6 +376,14 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 			case OperatorPackage.OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES:
 				try {
 					readInputProperties((Properties)arguments.get(0));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___INIT:
+				try {
+					init();
 					return null;
 				}
 				catch (Throwable throwable) {
@@ -554,6 +523,14 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	 * @generated NOT
 	 */
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
+
+		// do nothing
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void init() throws MMINTException {
 
 		// do nothing
 	}

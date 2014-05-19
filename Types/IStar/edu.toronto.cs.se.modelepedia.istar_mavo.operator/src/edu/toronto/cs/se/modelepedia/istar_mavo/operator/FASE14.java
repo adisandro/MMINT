@@ -57,18 +57,16 @@ public class FASE14 extends RE13 {
 	protected long timeRNF;
 
 	@Override
-	protected void initOutput() {
-
-		super.initOutput();
-		timeRNF = -1;
-	}
-
-	@Override
-	protected void init() {
+	public void init() throws MMINTException {
 
 		super.init();
+
+		// state
 		mavoModelObjs = new HashMap<String, MAVOElement>();
 		smtEncodingRNF = "";
+
+		// output
+		timeRNF = -1;
 	}
 
 	@Override
@@ -233,7 +231,6 @@ public class FASE14 extends RE13 {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		Model istarModel = actualParameters.get(0);
-		init();
 
 		// run solver
 		collectAnalysisModelObjs(istarModel);

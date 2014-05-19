@@ -71,52 +71,6 @@ public interface OperatorPackage extends EPackage {
 	OperatorPackage eINSTANCE = edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.EStringToParameterMapImpl <em>EString To Parameter Map</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.EStringToParameterMapImpl
-	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getEStringToParameterMap()
-	 * @generated
-	 */
-	int ESTRING_TO_PARAMETER_MAP = 0;
-
-	/**
-	 * The feature id for the '<em><b>Key</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_PARAMETER_MAP__KEY = 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_PARAMETER_MAP__VALUE = 1;
-
-	/**
-	 * The number of structural features of the '<em>EString To Parameter Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_PARAMETER_MAP_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>EString To Parameter Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ESTRING_TO_PARAMETER_MAP_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl <em>Operator</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -124,7 +78,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperator()
 	 * @generated
 	 */
-	int OPERATOR = 1;
+	int OPERATOR = 0;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -253,22 +207,13 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR__OUTPUTS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Signature Table</b></em>' map.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__SIGNATURE_TABLE = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__INPUT_SUBDIR = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
+	int OPERATOR__INPUT_SUBDIR = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Previous Operator</b></em>' reference.
@@ -277,7 +222,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__PREVIOUS_OPERATOR = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
+	int OPERATOR__PREVIOUS_OPERATOR = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Operator</em>' class.
@@ -286,7 +231,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 5;
+	int OPERATOR_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -352,13 +297,22 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
+	 * The operation id for the '<em>Init</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___INIT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
+
+	/**
 	 * The operation id for the '<em>Execute</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___EXECUTE__ELIST = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
+	int OPERATOR___EXECUTE__ELIST = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -367,7 +321,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+	int OPERATOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -377,7 +331,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 4;
+	int PARAMETER = 3;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
@@ -387,7 +341,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getConversionOperator()
 	 * @generated
 	 */
-	int CONVERSION_OPERATOR = 2;
+	int CONVERSION_OPERATOR = 1;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -516,15 +470,6 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR__OUTPUTS = OPERATOR__OUTPUTS;
 
 	/**
-	 * The feature id for the '<em><b>Signature Table</b></em>' map.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR__SIGNATURE_TABLE = OPERATOR__SIGNATURE_TABLE;
-
-	/**
 	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -606,6 +551,15 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
 
 	/**
+	 * The operation id for the '<em>Init</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___INIT = OPERATOR___INIT;
+
+	/**
 	 * The operation id for the '<em>Execute</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -649,7 +603,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getRandomOperator()
 	 * @generated
 	 */
-	int RANDOM_OPERATOR = 3;
+	int RANDOM_OPERATOR = 2;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -778,15 +732,6 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR__OUTPUTS = OPERATOR__OUTPUTS;
 
 	/**
-	 * The feature id for the '<em><b>Signature Table</b></em>' map.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR__SIGNATURE_TABLE = OPERATOR__SIGNATURE_TABLE;
-
-	/**
 	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -886,6 +831,15 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
 
 	/**
+	 * The operation id for the '<em>Init</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___INIT = OPERATOR___INIT;
+
+	/**
 	 * The operation id for the '<em>Execute</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -956,7 +910,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getRandom()
 	 * @generated
 	 */
-	int RANDOM = 5;
+	int RANDOM = 4;
 
 
 	/**
@@ -967,7 +921,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getException()
 	 * @generated
 	 */
-	int EXCEPTION = 6;
+	int EXCEPTION = 5;
 
 
 	/**
@@ -978,42 +932,8 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getProperties()
 	 * @generated
 	 */
-	int PROPERTIES = 7;
+	int PROPERTIES = 6;
 
-
-	/**
-	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Parameter Map</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>EString To Parameter Map</em>'.
-	 * @see java.util.Map.Entry
-	 * @model keyDataType="org.eclipse.emf.ecore.EString" keyRequired="true"
-	 *        valueType="edu.toronto.cs.se.mmint.mid.operator.Parameter" valueRequired="true"
-	 * @generated
-	 */
-	EClass getEStringToParameterMap();
-
-	/**
-	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Key</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getEStringToParameterMap()
-	 * @generated
-	 */
-	EAttribute getEStringToParameterMap_Key();
-
-	/**
-	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Value</em>'.
-	 * @see java.util.Map.Entry
-	 * @see #getEStringToParameterMap()
-	 * @generated
-	 */
-	EReference getEStringToParameterMap_Value();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.Operator <em>Operator</em>}'.
@@ -1046,17 +966,6 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOperator_Outputs();
-
-	/**
-	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getSignatureTable <em>Signature Table</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Signature Table</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#getSignatureTable()
-	 * @see #getOperator()
-	 * @generated
-	 */
-	EReference getOperator_SignatureTable();
 
 	/**
 	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getInputSubdir <em>Input Subdir</em>}'.
@@ -1149,6 +1058,16 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getOperator__ReadInputProperties__Properties();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#init() <em>Init</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Init</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#init()
+	 * @generated
+	 */
+	EOperation getOperator__Init();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.Parameter <em>Parameter</em>}'.
@@ -1301,32 +1220,6 @@ public interface OperatorPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.EStringToParameterMapImpl <em>EString To Parameter Map</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.EStringToParameterMapImpl
-		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getEStringToParameterMap()
-		 * @generated
-		 */
-		EClass ESTRING_TO_PARAMETER_MAP = eINSTANCE.getEStringToParameterMap();
-
-		/**
-		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ESTRING_TO_PARAMETER_MAP__KEY = eINSTANCE.getEStringToParameterMap_Key();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ESTRING_TO_PARAMETER_MAP__VALUE = eINSTANCE.getEStringToParameterMap_Value();
-
-		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl <em>Operator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1351,14 +1244,6 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATOR__OUTPUTS = eINSTANCE.getOperator_Outputs();
-
-		/**
-		 * The meta object literal for the '<em><b>Signature Table</b></em>' map feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATOR__SIGNATURE_TABLE = eINSTANCE.getOperator_SignatureTable();
 
 		/**
 		 * The meta object literal for the '<em><b>Input Subdir</b></em>' attribute feature.
@@ -1431,6 +1316,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = eINSTANCE.getOperator__ReadInputProperties__Properties();
+
+		/**
+		 * The meta object literal for the '<em><b>Init</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___INIT = eINSTANCE.getOperator__Init();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.

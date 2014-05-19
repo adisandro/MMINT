@@ -251,7 +251,6 @@ matchesN:
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		Model model = actualParameters.get(0);
-		init();
 		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		// do transformations

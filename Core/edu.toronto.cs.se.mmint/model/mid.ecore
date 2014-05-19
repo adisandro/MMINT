@@ -1054,22 +1054,6 @@
       <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     </eAnnotations>
-    <eClassifiers xsi:type="ecore:EClass" name="EStringToParameterMap" instanceClassName="java.util.Map$Entry">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The hash map entry for an input or output parameter of this operator."/>
-      </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The parameter name."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
-          eType="#//operator/Parameter">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The parameter."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Operator" eSuperTypes="#//ExtendibleElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="An operator type or an operator instance."/>
@@ -1113,6 +1097,7 @@
       <eOperations name="readInputProperties" eExceptions="#//MMINTException">
         <eParameters name="inputProperties" lowerBound="1" eType="#//operator/Properties"/>
       </eOperations>
+      <eOperations name="init" eExceptions="#//MMINTException"/>
       <eOperations name="execute" lowerBound="1" upperBound="-1" eType="#//Model"
           eExceptions="#//operator/Exception">
         <eParameters name="actualParameters" lowerBound="1" upperBound="-1" eType="#//Model"/>
@@ -1127,12 +1112,6 @@
           eType="#//operator/Parameter" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The list of output parameters of this operator."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="signatureTable" upperBound="-1"
-          eType="#//operator/EStringToParameterMap" containment="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The hash map for all input and output parameters of this operator, using their names as keys."/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="inputSubdir" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">

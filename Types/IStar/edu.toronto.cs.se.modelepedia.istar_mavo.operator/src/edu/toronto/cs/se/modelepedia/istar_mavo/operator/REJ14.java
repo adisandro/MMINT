@@ -40,7 +40,6 @@ public class REJ14 extends FASE14 {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		Model istarModel = actualParameters.get(0);
-		init();
 
 		// run solver
 		//TODO MMINT[ISTAR] change encoding based on analysisDirection

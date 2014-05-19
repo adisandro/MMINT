@@ -100,6 +100,7 @@ public class RunOperatorListener extends SelectionAdapter {
 							operatorParameters.add(newActualParameter);
 							Properties inputProperties = operator.getInputProperties();
 							operator.readInputProperties(inputProperties);
+							operator.init();
 							newActualParameter = operator.execute(operatorParameters).get(0);
 						}
 						actualParameters.set(i, newActualParameter);
@@ -108,6 +109,7 @@ public class RunOperatorListener extends SelectionAdapter {
 				// run operator
 				Properties inputProperties = operator.getInputProperties();
 				operator.readInputProperties(inputProperties);
+				operator.init();
 				operator.execute(actualParameters);
 				// cleanup all conversion operators
 				if (!conversionMap.isEmpty()) {

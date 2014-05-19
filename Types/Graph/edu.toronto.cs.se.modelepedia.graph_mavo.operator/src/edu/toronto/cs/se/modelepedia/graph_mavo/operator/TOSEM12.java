@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.graph_mavo.operator;
 
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
@@ -34,6 +36,7 @@ import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3SMTReasoningEngine;
 public class TOSEM12 extends OperatorImpl {
 
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
+	private static final String PREVIOUS_OPERATOR2_URI = "http://se.cs.toronto.edu/modelepedia/Operator_GenerateRandomGraphMAVO";
 	private static final String PROPERTY_IN_NUMCONCRETIZATIONS = "numConcretizations";
 	private static final String PROPERTY_IN_PROPERTYID = "propertyId";
 	private static final String PROPERTY_OUT_TIMEMAVO = "timeMAVO";
@@ -69,27 +72,32 @@ public class TOSEM12 extends OperatorImpl {
 		timeMAVOAllsatEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOALLSAT+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 	}
 
-	private void initOutput() {
+	@Override
+	public void init() throws MMINTException {
 
+		// state
+		EcoreMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
+			(EcoreMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
+			(EcoreMAVOToSMTLIB) getPreviousOperator();
+		GenerateRandomGraphMAVO previousOperator2 = (GenerateRandomGraphMAVO) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR2_URI);
+		List<MAVOElement> mayModelObjs = previousOperator2.getMAVOModelObjects();
+		long maxConcretizations = Math.round(Math.pow(2, mayModelObjs.size()));
+		if (numConcretizations > maxConcretizations) {
+			throw new MMINTException("numConcretizations (" + numConcretizations + ") > maxConcretizations (" + maxConcretizations + ")");
+		}
+		resultMAVO = MAVOTruthValue.ERROR;
+		smtEncoding = previousOperator.getListener().getSMTLIBEncoding();
+		//TODO generate smtConcretizationsConstraint (asserted or not?) and smtProperty (not asserted)
+		smtConcretizationsConstraint = null;
+		smtProperty = null;
+
+		// output
 		timeMAVO = -1;
 		timeClassical = -1;
 		timeMAVOBackbone = -1;
 		timeMAVOAllsat = -1;
 		speedupClassicalMAVO = -1;
 		speedupMAVOAllsatMAVOBackbone = -1;
-	}
-
-	private void init() {
-
-		EcoreMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
-			(EcoreMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
-			(EcoreMAVOToSMTLIB) getPreviousOperator();
-		resultMAVO = MAVOTruthValue.ERROR;
-		smtEncoding = previousOperator.getListener().getSMTLIBEncoding();
-		//TODO generate smtConcretizationsConstraint and smtProperty
-		smtConcretizationsConstraint = null;
-		smtProperty = null;
-		initOutput();
 	}
 
 	private void writeProperties(Properties properties) {
@@ -131,17 +139,34 @@ public class TOSEM12 extends OperatorImpl {
 		timeClassical = endTime - startTime;
 	}
 
+	private void doMAVOBackbonePropertyCheck() throws MMINTException {
+
+		long startTime = System.nanoTime();
+		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
+		Z3ModelResult z3ModelResult = z3IncSolver.firstCheckSatAndGetModel(smtEncoding + smtConcretizationsConstraint + Z3SMTUtils.assertion(smtProperty));
+		if (z3ModelResult.getZ3BoolResult() != Z3BoolResult.SAT) {
+			throw new MMINTException("MAVO Property checking was SAT but now backbone baseline is UNSAT.");
+		}
+		long endTime = System.nanoTime();
+
+		timeMAVOBackbone = endTime - startTime;
+	}
+
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		Model randomGraphModel = actualParameters.get(0);
-		init();
 
 		doMAVOPropertyCheck();
 		if (timeClassicalEnabled) {
 			//TODO get set of concretizations
 			doClassicalPropertyCheck(null);
 			speedupClassicalMAVO = ((double) timeClassical) / timeMAVO;
+		}
+		if (resultMAVO == MAVOTruthValue.MAYBE) {
+			if (timeMAVOBackboneEnabled) {
+				doMAVOBackbonePropertyCheck();
+			}
 		}
 
 		return null;
