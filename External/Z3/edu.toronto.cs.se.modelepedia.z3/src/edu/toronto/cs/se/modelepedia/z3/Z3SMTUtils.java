@@ -32,6 +32,11 @@ public class Z3SMTUtils {
 	public static final String SMTLIB_CONST = SMTLIB_PREDICATE_START + "declare-const ";
 	public static final String SMTLIB_TYPE_BOOL = "Bool";
 
+	public static final String SMTLIB_NODE = "node";
+	public static final String SMTLIB_EDGE = "edge";
+	public static final String SMTLIB_NODE_FUNCTION = SMTLIB_PREDICATE_START + SMTLIB_NODE + " ";
+	public static final String SMTLIB_EDGE_FUNCTION = SMTLIB_PREDICATE_START + SMTLIB_EDGE + " ";
+
 	public static final String Z3_MODEL_SEPARATOR = "!";
 	public static final String Z3_MODEL_DEFINITION = " -> ";
 	public static final String Z3_MODEL_ELSE = "else";

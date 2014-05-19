@@ -75,8 +75,6 @@ public class RE13 extends OperatorImpl {
 	private static final String PROPERTY_OUT_TARGETS = "targets";
 
 	protected static final String SMTLIB_CONCRETIZATION = " c ";
-	protected static final String SMTLIB_NODE = "node";
-	protected static final String SMTLIB_NODEFUNCTION = Z3SMTUtils.SMTLIB_PREDICATE_START + SMTLIB_NODE + " ";
 	private static final Set<String> Z3_MODEL_NODETYPES = new HashSet<String>();
 	static {
 		Z3_MODEL_NODETYPES.add("Task");
@@ -180,7 +178,7 @@ public class RE13 extends OperatorImpl {
 
 		Map<String, Integer> z3ModelNodes = new HashMap<String, Integer>();
 		for (FuncDecl decl : z3Model.getFuncDecls()) {
-			if (!(decl.getName().toString().equals(SMTLIB_NODE) || decl.getName().toString().contains(SMTLIB_NODE+Z3SMTUtils.Z3_MODEL_SEPARATOR))) {
+			if (!(decl.getName().toString().equals(Z3SMTUtils.SMTLIB_NODE) || decl.getName().toString().contains(Z3SMTUtils.SMTLIB_NODE+Z3SMTUtils.Z3_MODEL_SEPARATOR))) {
 				continue;
 			}
 			FuncInterp interp = z3Model.getFuncInterp(decl);
@@ -245,7 +243,7 @@ public class RE13 extends OperatorImpl {
 						Z3SMTUtils.SMTLIB_AND +
 					Z3SMTUtils.exists(
 						Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION + intention.eClass().getName()),
-						Z3SMTUtils.predicate(SMTLIB_NODEFUNCTION, intentionName + SMTLIB_CONCRETIZATION)
+						Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_NODE_FUNCTION, intentionName + SMTLIB_CONCRETIZATION)
 					)
 				;
 			}
@@ -255,7 +253,7 @@ public class RE13 extends OperatorImpl {
 				Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION + intention.eClass().getName()) +
 				Z3SMTUtils.SMTLIB_PREDICATE_END +
 				Z3SMTUtils.SMTLIB_IMPLICATION +
-				Z3SMTUtils.predicate(SMTLIB_NODEFUNCTION, intentionName + SMTLIB_CONCRETIZATION)
+				Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_NODE_FUNCTION, intentionName + SMTLIB_CONCRETIZATION)
 			;
 			for (SMTLIBLabel label : SMTLIBLabel.values()) {
 				if ((boolean) intention.eGet(label.getModelFeature())) { // skip already checked

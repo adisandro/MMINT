@@ -46,7 +46,6 @@ public class FASE14 extends RE13 {
 
 	private static final String SMTLIB_CONCRETIZATION1 = " c1 ";
 	private static final String SMTLIB_CONCRETIZATION2 = " c2 ";
-	private static final String SMTLIB_EDGEFUNCTION = "(edge ";
 
 	private static final String PROPERTY_OUT_TIMERNF = "timeRNF";
 	private static final String RNF_OUTPUT_SUFFIX = "_rnf";
@@ -80,8 +79,8 @@ public class FASE14 extends RE13 {
 	private String encodeMAVConstraintFunction(MAVOElement mavoModelObj) {
 
 		return (mavoModelObj instanceof DependencyEndpoint) ?
-			SMTLIB_NODEFUNCTION :
-			SMTLIB_EDGEFUNCTION;
+			Z3SMTUtils.SMTLIB_NODE_FUNCTION :
+			Z3SMTUtils.SMTLIB_EDGE_FUNCTION;
 	}
 
 	private String encodeMConstraint(String sort, String function, String id) {

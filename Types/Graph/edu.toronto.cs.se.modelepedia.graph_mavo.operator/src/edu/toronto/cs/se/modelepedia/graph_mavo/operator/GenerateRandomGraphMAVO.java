@@ -139,10 +139,13 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		List<MAVOElement> randomModelObjs = new ArrayList<MAVOElement>();
 		Graph randomGraph = Graph_MAVOFactory.eINSTANCE.createGraph();
 		EList<Node> randomGraphNodes = randomGraph.getNodes();
+		String name;
 		Node node;
 		for (int i = 0; i < numModelObjs[0]; i++) {
 			node = Graph_MAVOFactory.eINSTANCE.createNode();
-			node.setName(NODE_NAME_PREFIX + (i+1));
+			name = NODE_NAME_PREFIX + (i+1);
+			node.setName(name);
+			node.setFormulaId(name);
 			randomGraphNodes.add(node);
 			randomModelObjs.add(node);
 		}
@@ -150,7 +153,9 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		Edge edge;
 		for (int i = 0; i < numModelObjs[1]; i++) {
 			edge = Graph_MAVOFactory.eINSTANCE.createEdge();
-			edge.setName(EDGE_NAME_PREFIX + (i+1));
+			name = EDGE_NAME_PREFIX + (i+1);
+			edge.setName(name);
+			edge.setFormulaId(name);
 			edge.setSource(randomGraphNodes.get(state.nextInt(numModelObjs[0])));
 			edge.setTarget(randomGraphNodes.get(state.nextInt(numModelObjs[0])));
 			randomGraphEdges.add(edge);
