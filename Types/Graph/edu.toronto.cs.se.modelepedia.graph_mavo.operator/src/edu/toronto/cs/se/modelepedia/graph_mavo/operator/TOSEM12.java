@@ -202,14 +202,15 @@ public class TOSEM12 extends RandomOperatorImpl {
 		timeMAVO = endTime - startTime;
 	}
 
-	private void doClassicalPropertyCheck(Set<String> smtConcretizations) {
+	private void doClassicalPropertyCheck() {
 
 		long startTime = System.nanoTime();
 		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
-		Z3BoolResult z3BoolResult, firstZ3BoolResult = null;
+		Z3BoolResult firstZ3BoolResult = null;
 		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
 		for (String smtConcretization : smtConcretizations) {
-			z3BoolResult = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(smtConcretization) + Z3SMTUtils.assertion(smtProperty), Z3IncrementalBehavior.POP).getZ3BoolResult();
+			Z3ModelResult z3ModelResult = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(smtConcretization) + Z3SMTUtils.assertion(smtProperty), Z3IncrementalBehavior.POP);
+			Z3BoolResult z3BoolResult = z3ModelResult.getZ3BoolResult();
 			if (firstZ3BoolResult == null) { // first run only
 				firstZ3BoolResult = z3BoolResult;
 			}
@@ -222,14 +223,22 @@ public class TOSEM12 extends RandomOperatorImpl {
 		timeClassical = endTime - startTime;
 	}
 
+	private Map<String, Boolean> parseZ3Model(com.microsoft.z3.Model z3Model) {
+
+		Map<String, Boolean> ret = new HashMap<String, Boolean>();
+
+		return ret;
+	}
+
 	private void doMAVOBackbonePropertyCheck() throws MMINTException {
 
 		long startTime = System.nanoTime();
 		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
 		Z3ModelResult z3ModelResult = z3IncSolver.firstCheckSatAndGetModel(smtEncoding + Z3SMTUtils.assertion(smtConcretizationsConstraint) + Z3SMTUtils.assertion(smtProperty));
 		if (z3ModelResult.getZ3BoolResult() != Z3BoolResult.SAT) {
-			throw new MMINTException("MAVO Property checking was SAT but now backbone baseline is UNSAT.");
+			throw new MMINTException("MAVO Property checking was SAT but now backbone baseline is not.");
 		}
+		Map<String, Boolean> initialZ3ModelElems = parseZ3Model(z3ModelResult.getZ3Model());
 		long endTime = System.nanoTime();
 
 		timeMAVOBackbone = endTime - startTime;
@@ -244,8 +253,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 
 		doMAVOPropertyCheck();
 		if (timeClassicalEnabled) {
-			//TODO get set of concretizations
-			doClassicalPropertyCheck(null);
+			doClassicalPropertyCheck();
 			speedupClassicalMAVO = ((double) timeClassical) / timeMAVO;
 		}
 		if (resultMAVO == MAVOTruthValue.MAYBE) {

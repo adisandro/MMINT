@@ -110,12 +110,12 @@
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
 		[let numTypes : Integer = mavoModel.getMetamodelMAVOClasses()->size()]
 		[let function : String = mavoElement.eClass().getGraphFunction()]
-(declare-const [mavoElement.formulaId/] Int)[if (function = 'node')];Node[/if]
+(declare-const [mavoElement.formulaId/] Int);[function.toUpperFirst()/]
 (assert (= [mavoElement.formulaId/] [numTypes+i/]))
 		[/let]
 		[/let]
 	[/for]
-;End Nodes
+;End Model
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOEdges())]
 		[let srcMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeSrcFeatureName()).oclAsType(MAVOElement)]
 		[let tgtMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeTgtFeatureName()).oclAsType(MAVOElement)]
@@ -195,12 +195,12 @@
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
 		[let numTypes : Integer = mavoModel.getMetamodelMAVOClasses()->size()]
 		[let function : String = mavoElement.eClass().getGraphFunction()]
-(declare-const [mavoElement.formulaId/] [function.toUpperFirst()/])[if (function = 'node')];Node[/if]
+(declare-const [mavoElement.formulaId/] [function.toUpperFirst()/]);[function.toUpperFirst()/]
 (assert (= [mavoElement.formulaId/] [numTypes+i/]))
 		[/let]
 		[/let]
 	[/for]
-;End Nodes
+;End Model
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOEdges())]
 		[let srcMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeSrcFeatureName()).oclAsType(MAVOElement)]
 		[let tgtMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeTgtFeatureName()).oclAsType(MAVOElement)]
