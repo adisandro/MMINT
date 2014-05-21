@@ -182,10 +182,12 @@ public class RE13 extends OperatorImpl {
 				continue;
 			}
 			FuncInterp interp = z3Model.getFuncInterp(decl);
-			if (Boolean.parseBoolean(interp.getElse().toString())) {
+			if (interp.getEntries().length == 0) {// function that calls another function
 				continue;
 			}
-			// if the function calls another function, then it doesn't have entries
+			if (Boolean.parseBoolean(interp.getElse().toString())) { // nodes will be false
+				continue;
+			}
 			for (Entry entry : interp.getEntries()) {
 				z3ModelNodes.put(entry.getArgs()[1].toString(), new Integer(entry.getArgs()[0].toString()));
 			}
@@ -207,9 +209,11 @@ public class RE13 extends OperatorImpl {
 					if (!Z3_MODEL_NODETYPES.contains(nodeType)) { // edge function
 						continue;
 					}
-					Set<String> z3LabelNodes = new HashSet<String>();
 					FuncInterp interp = z3Model.getFuncInterp(decl);
-					// if the function calls another function, then it doesn't have entries and the else will be evaluated to false
+					if (interp.getEntries().length == 0) {// function that calls another function
+						continue;
+					}
+					Set<String> z3LabelNodes = new HashSet<String>();
 					for (Entry entry : interp.getEntries()) {
 						z3LabelNodes.add(entry.getArgs()[0].toString());
 					}

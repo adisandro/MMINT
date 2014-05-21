@@ -21,6 +21,7 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 
 	private static final String NODE_MARKER = ";Node";
 	private static final String EDGE_MARKER = ";Edge";
+	private static final String MODEL_START_MARKER = ";Model\n";
 	private static final String MODEL_END_MARKER = ";End Model\n";
 	private static final int NUM_TOKENS = 4;
 
@@ -29,6 +30,7 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 	private String smtEncodingUri;
 	private Map<Integer, String> smtNodes;
 	private Map<Integer, String> smtEdges;
+	private Map<Integer, String> smtCurrentElems;
 	private boolean checkTokens;
 	private String[] smtTokens;
 	int smtTokenCounter;
@@ -38,7 +40,7 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 		textGeneration = new StringBuilder();
 		smtNodes = new HashMap<Integer, String>();
 		smtEdges = new HashMap<Integer, String>();
-		checkTokens = true;
+		checkTokens = false;
 		smtTokens = new String[NUM_TOKENS];
 		smtTokenCounter = NUM_TOKENS;
 	}
@@ -48,25 +50,29 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 
 		String text = event.getText();
 		textGeneration.append(text);
+
+		if (text.endsWith(MODEL_START_MARKER)) {
+			checkTokens = true;
+			return;
+		}
 		if (!checkTokens) {
 			return;
 		}
-
-		Map<Integer, String> smtElems = smtNodes; // useless initialization, required by compiler
 		if (text.endsWith(MODEL_END_MARKER)) {
 			checkTokens = false;
 			return;
 		}
+
 		if (smtTokenCounter < NUM_TOKENS) {
 			smtTokens[smtTokenCounter] = text;
 			smtTokenCounter++;
 			if (smtTokenCounter == (NUM_TOKENS)) {
-				smtElems.put(new Integer(smtTokens[NUM_TOKENS-1]), smtTokens[NUM_TOKENS-3]);
+				smtCurrentElems.put(new Integer(smtTokens[NUM_TOKENS-1]), smtTokens[NUM_TOKENS-3]);
 			}
 		}
 		else if (text.endsWith(NODE_MARKER) || text.endsWith(EDGE_MARKER)) {
 			smtTokenCounter = 0;
-			smtElems = (text.endsWith(NODE_MARKER)) ? smtNodes : smtEdges;
+			smtCurrentElems = (text.endsWith(NODE_MARKER)) ? smtNodes : smtEdges;
 		}
 	}
 

@@ -20,6 +20,11 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 
+import com.microsoft.z3.FuncDecl;
+import com.microsoft.z3.FuncInterp;
+import com.microsoft.z3.Z3Exception;
+import com.microsoft.z3.FuncInterp.Entry;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.MAVOElement;
@@ -191,6 +196,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 	private void generateSMTLIBGroundedProperty() {
 
 		//TODO generate smtProperty (not asserted)
+		smtProperty = "(edge e1)";
 	}
 
 	private void doMAVOPropertyCheck() {
@@ -223,14 +229,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		timeClassical = endTime - startTime;
 	}
 
-	private Map<String, Boolean> parseZ3Model(com.microsoft.z3.Model z3Model) {
-
-		Map<String, Boolean> ret = new HashMap<String, Boolean>();
-
-		return ret;
-	}
-
-	private void doMAVOBackbonePropertyCheck() throws MMINTException {
+	private void doMAVOBackbonePropertyCheck() throws MMINTException, Z3Exception {
 
 		long startTime = System.nanoTime();
 		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
@@ -238,10 +237,37 @@ public class TOSEM12 extends RandomOperatorImpl {
 		if (z3ModelResult.getZ3BoolResult() != Z3BoolResult.SAT) {
 			throw new MMINTException("MAVO Property checking was SAT but now backbone baseline is not.");
 		}
-		Map<String, Boolean> initialZ3ModelElems = parseZ3Model(z3ModelResult.getZ3Model());
+		Map<String, Integer> initialZ3ModelElems = parseZ3Model(z3ModelResult.getZ3Model());
 		long endTime = System.nanoTime();
 
 		timeMAVOBackbone = endTime - startTime;
+	}
+
+	private Map<String, Integer> parseZ3Model(com.microsoft.z3.Model z3Model) throws Z3Exception {
+
+		/*TODO put this in Z3SMTUtils:
+		 * apply to edges as well
+		 * the else continue needs to be thought (depends if the result contains only true elements)
+		 * the entries won't have the sort concretization getArgs()[1], but only the integer, to be unified
+		 */
+		Map<String, Integer> z3ModelNodes = new HashMap<String, Integer>();
+		for (FuncDecl decl : z3Model.getFuncDecls()) {
+			if (!(decl.getName().toString().equals(Z3SMTUtils.SMTLIB_NODE) || decl.getName().toString().contains(Z3SMTUtils.SMTLIB_NODE+Z3SMTUtils.Z3_MODEL_SEPARATOR))) {
+				continue;
+			}
+			FuncInterp interp = z3Model.getFuncInterp(decl);
+			if (interp.getEntries().length == 0) {// function that calls another function
+				continue;
+			}
+			if (Boolean.parseBoolean(interp.getElse().toString())) { // nodes will be false
+				continue;
+			}
+			for (Entry entry : interp.getEntries()) {
+				z3ModelNodes.put(entry.getArgs()[1].toString(), new Integer(entry.getArgs()[0].toString()));
+			}
+		}
+
+		return z3ModelNodes;
 	}
 
 	@Override
