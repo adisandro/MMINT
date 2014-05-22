@@ -19,7 +19,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3BoolResult;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
 
 public class REJ14 extends FASE14 {
 
@@ -48,7 +48,7 @@ public class REJ14 extends FASE14 {
 		doAnalysis(z3IncSolver);
 		if (timeTargetsEnabled) {
 			doTargets(z3IncSolver);
-			if (targets == Z3BoolResult.SAT) {
+			if (targets == Z3SMTBool.SAT) {
 				doRNF(z3IncSolver);
 			}
 		}

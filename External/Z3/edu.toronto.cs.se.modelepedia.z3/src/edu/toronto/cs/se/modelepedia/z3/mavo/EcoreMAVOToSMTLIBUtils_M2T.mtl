@@ -135,15 +135,19 @@
 [template public encodeMAVOConstraintsMayOnly(mavoModel : MAVOModel)]
 ;Model is Complete
 	[for (eclass : EClass | mavoModel.getMetamodelMAVOClasses())]
-		[let function : String = eclass.getGraphFunction()]
+		[let eclassMavoElements : Sequence(MAVOElement) = mavoModel.getObjectsOfType(eclass)->asMAVOElements()]
+		[if (eclassMavoElements->size() > 0)]
+			[let function : String = eclass.getGraphFunction()]
 (assert	(forall ((c [eclass.getMAVOClassName()/])) (=>
 	([function/] c)
 	(or
-		[for (mavoElement : MAVOElement | mavoModel.getObjectsOfType(eclass)->asMAVOElements())]
+			[for (mavoElement : MAVOElement | eclassMavoElements)]
 		(= [mavoElement.formulaId/] c)
-		[/for]
+			[/for]
 	)
 )))
+			[/let]
+		[/if]
 		[/let]
 	[/for]
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
@@ -225,13 +229,17 @@
 [template public encodeMAVOConstraints(mavoModel : MAVOModel)]
 ;Model is Complete
 	[for (eclass : EClass | mavoModel.getMetamodelMAVOClasses())]
+		[let eclassMavoElements : Sequence(MAVOElement) = mavoModel.getObjectsOfType(eclass)->asMAVOElements()]
+		[if (eclassMavoElements->size() > 0)]
 (assert	(forall ((c [eclass.getMAVOClassName()/])) (or
-		[for (mavoElement : MAVOElement | mavoModel.getObjectsOfType(eclass)->asMAVOElements())]
-			[let function : String = eclass.getGraphFunction()]
+			[for (mavoElement : MAVOElement | eclassMavoElements)]
+				[let function : String = eclass.getGraphFunction()]
 	([function/] [mavoElement.formulaId/] c)
-			[/let]
-		[/for]
+				[/let]
+			[/for]
 )))
+		[/if]
+		[/let]
 	[/for]
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
 		[let function : String = mavoElement.eClass().getGraphFunction()]

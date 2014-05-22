@@ -38,11 +38,11 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3BoolResult;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3ModelResult;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
 
 public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 
@@ -316,8 +316,8 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 		smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 
-		Z3ModelResult z3ModelResult = z3IncSolver.checkSatAndGetModel(smtEncoding.substring(checkpointUnsat), Z3IncrementalBehavior.POP_IF_UNSAT);
-		if (z3ModelResult.getZ3BoolResult() == Z3BoolResult.SAT) {
+		Z3SMTModel z3ModelResult = z3IncSolver.checkSatAndGetModel(smtEncoding.substring(checkpointUnsat), Z3IncrementalBehavior.POP_IF_UNSAT);
+		if (z3ModelResult.getZ3Bool() == Z3SMTBool.SAT) {
 			satCountLifting++;
 			return true;
 		}

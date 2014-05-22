@@ -36,11 +36,11 @@ import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3BoolResult;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3ModelResult;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
 
 public class RE13 extends OperatorImpl {
 
@@ -96,7 +96,7 @@ public class RE13 extends OperatorImpl {
 	private long timeModel;
 	private long timeAnalysis;
 	private long timeTargets;
-	protected Z3BoolResult targets;
+	protected Z3SMTBool targets;
 
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
@@ -122,7 +122,7 @@ public class RE13 extends OperatorImpl {
 		timeModel = -1;
 		timeAnalysis = -1;
 		timeTargets = -1;
-		targets = Z3BoolResult.UNKNOWN;
+		targets = Z3SMTBool.UNKNOWN;
 	}
 
 	protected void writeProperties(Properties properties) {
@@ -174,34 +174,13 @@ public class RE13 extends OperatorImpl {
 		}
 	}
 
-	private Map<String, Integer> parseZ3ModelNodes(com.microsoft.z3.Model z3Model) throws Z3Exception {
-
-		Map<String, Integer> z3ModelNodes = new HashMap<String, Integer>();
-		for (FuncDecl decl : z3Model.getFuncDecls()) {
-			if (!(decl.getName().toString().equals(Z3SMTUtils.SMTLIB_NODE) || decl.getName().toString().contains(Z3SMTUtils.SMTLIB_NODE+Z3SMTUtils.Z3_MODEL_SEPARATOR))) {
-				continue;
-			}
-			FuncInterp interp = z3Model.getFuncInterp(decl);
-			if (interp.getEntries().length == 0) {// function that calls another function
-				continue;
-			}
-			if (Boolean.parseBoolean(interp.getElse().toString())) { // nodes will be false
-				continue;
-			}
-			for (Entry entry : interp.getEntries()) {
-				z3ModelNodes.put(entry.getArgs()[1].toString(), new Integer(entry.getArgs()[0].toString()));
-			}
-		}
-
-		return z3ModelNodes;
-	}
-
-	private void optimizeAnalysis(com.microsoft.z3.Model z3Model) {
+	private void optimizeAnalysis(Z3SMTModel z3Model) {
 
 		try {
-			Map<String, Integer> z3ModelNodes = parseZ3ModelNodes(z3Model);
+			com.microsoft.z3.Model z3InternalModel = z3Model.getZ3InternalModel();
+			Map<String, Integer> z3ModelNodes = z3Model.getZ3ModelNodes();
 			for (SMTLIBLabel label : SMTLIBLabel.values()) {
-				for (FuncDecl decl : z3Model.getFuncDecls()) {
+				for (FuncDecl decl : z3InternalModel.getFuncDecls()) {
 					if (!(decl.getName().toString().equals(label.name()) || decl.getName().toString().contains(label.name()+Z3SMTUtils.Z3_MODEL_SEPARATOR))) {
 						continue;
 					}
@@ -209,7 +188,7 @@ public class RE13 extends OperatorImpl {
 					if (!Z3_MODEL_NODETYPES.contains(nodeType)) { // edge function
 						continue;
 					}
-					FuncInterp interp = z3Model.getFuncInterp(decl);
+					FuncInterp interp = z3InternalModel.getFuncInterp(decl);
 					if (interp.getEntries().length == 0) {// function that calls another function
 						continue;
 					}
@@ -268,10 +247,10 @@ public class RE13 extends OperatorImpl {
 					labelProperty += Z3SMTUtils.SMTLIB_PREDICATE_END;
 				}
 				labelProperty += Z3SMTUtils.SMTLIB_PREDICATE_END;
-				Z3ModelResult z3ModelResult = z3IncSolver.checkSatAndGetModel(labelProperty, Z3IncrementalBehavior.POP);
-				if (z3ModelResult.getZ3BoolResult() == Z3BoolResult.SAT) {
+				Z3SMTModel z3Model = z3IncSolver.checkSatAndGetModel(labelProperty, Z3IncrementalBehavior.POP);
+				if (z3Model.getZ3Bool() == Z3SMTBool.SAT) {
 					intention.eSet(label.getModelFeature(), true);
-					optimizeAnalysis(z3ModelResult.getZ3Model());
+					optimizeAnalysis(z3Model);
 				}
 			}
 		}
@@ -284,8 +263,8 @@ public class RE13 extends OperatorImpl {
 		long startTime = System.nanoTime();
 
 		String property = Z3SMTUtils.SMTLIB_ASSERT + targetsProperty + Z3SMTUtils.SMTLIB_PREDICATE_END;
-		Z3ModelResult z3ModelResult = z3IncSolver.checkSatAndGetModel(property, Z3IncrementalBehavior.NORMAL);
-		targets = z3ModelResult.getZ3BoolResult();
+		Z3SMTModel z3Model = z3IncSolver.checkSatAndGetModel(property, Z3IncrementalBehavior.NORMAL);
+		targets = z3Model.getZ3Bool();
 
 		timeTargets = System.nanoTime() - startTime;
 	}

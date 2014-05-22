@@ -11,9 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.z3;
 
-import com.microsoft.z3.Model;
-import com.microsoft.z3.Status;
-
 public class Z3SMTUtils {
 
 	public static final String SMTLIB_FILE_EXTENSION = "smt2";
@@ -43,48 +40,6 @@ public class Z3SMTUtils {
 	public static final String Z3_MODEL_FUNCTION_START = "{";
 	public static final String Z3_MODEL_FUNCTION_END = "}";
 	public static final String Z3_MODEL_NEWLINE = "\n";
-
-	public enum Z3BoolResult {
-
-		SAT, UNSAT, UNKNOWN;
-
-		public static Z3BoolResult toZ3BoolResult(Status z3Status) {
-
-			switch (z3Status) {
-				case UNSATISFIABLE:
-					return UNSAT;
-				case SATISFIABLE:
-					return SAT;
-				default:
-					return UNKNOWN;
-			}
-		}
-
-	}
-
-	public static class Z3ModelResult {
-
-		private Z3BoolResult z3BoolResult;
-		private Model z3Model;
-
-		public Z3ModelResult(Z3BoolResult z3BoolResult, Model z3Model) {
-			this.z3BoolResult = z3BoolResult;
-			this.z3Model = z3Model;
-		}
-
-		public Z3ModelResult(Status z3Status, Model z3Model) {
-			this.z3BoolResult = Z3BoolResult.toZ3BoolResult(z3Status);
-			this.z3Model = z3Model;
-		}
-
-		public Z3BoolResult getZ3BoolResult() {
-			return z3BoolResult;
-		}
-
-		public Model getZ3Model() {
-			return z3Model;
-		}
-	}
 
 	public static String predicate(String predicateStart, String smtTerms) {
 

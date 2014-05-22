@@ -35,11 +35,11 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Edge;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Node;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3BoolResult;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3ModelResult;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3SMTReasoningEngine;
 
@@ -212,15 +212,15 @@ public class TOSEM12 extends RandomOperatorImpl {
 
 		long startTime = System.nanoTime();
 		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
-		Z3BoolResult firstZ3BoolResult = null;
+		Z3SMTBool firstZ3Bool = null;
 		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
 		for (String smtConcretization : smtConcretizations) {
-			Z3ModelResult z3ModelResult = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(smtConcretization) + Z3SMTUtils.assertion(smtProperty), Z3IncrementalBehavior.POP);
-			Z3BoolResult z3BoolResult = z3ModelResult.getZ3BoolResult();
-			if (firstZ3BoolResult == null) { // first run only
-				firstZ3BoolResult = z3BoolResult;
+			Z3SMTModel z3Model = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(smtConcretization) + Z3SMTUtils.assertion(smtProperty), Z3IncrementalBehavior.POP);
+			Z3SMTBool z3Bool = z3Model.getZ3Bool();
+			if (firstZ3Bool == null) { // first run only
+				firstZ3Bool = z3Bool;
 			}
-			if (z3BoolResult == Z3BoolResult.UNKNOWN || z3BoolResult != firstZ3BoolResult) { // == result never changes
+			if (z3Bool == Z3SMTBool.UNKNOWN || z3Bool != firstZ3Bool) { // == result never changes
 				break;
 			}
 		}
@@ -233,11 +233,11 @@ public class TOSEM12 extends RandomOperatorImpl {
 
 		long startTime = System.nanoTime();
 		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
-		Z3ModelResult z3ModelResult = z3IncSolver.firstCheckSatAndGetModel(smtEncoding + Z3SMTUtils.assertion(smtConcretizationsConstraint) + Z3SMTUtils.assertion(smtProperty));
-		if (z3ModelResult.getZ3BoolResult() != Z3BoolResult.SAT) {
+		Z3SMTModel z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding + Z3SMTUtils.assertion(smtConcretizationsConstraint) + Z3SMTUtils.assertion(smtProperty));
+		if (z3Model.getZ3Bool() != Z3SMTBool.SAT) {
 			throw new MMINTException("MAVO Property checking was SAT but now backbone baseline is not.");
 		}
-		Map<String, Integer> initialZ3ModelElems = parseZ3Model(z3ModelResult.getZ3Model());
+		Map<String, Integer> initialZ3ModelElems = parseZ3Model(z3Model.getZ3InternalModel());
 		long endTime = System.nanoTime();
 
 		timeMAVOBackbone = endTime - startTime;

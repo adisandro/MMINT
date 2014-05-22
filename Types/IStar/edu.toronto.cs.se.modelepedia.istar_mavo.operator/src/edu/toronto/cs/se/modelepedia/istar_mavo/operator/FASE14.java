@@ -36,11 +36,11 @@ import edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3BoolResult;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3ModelResult;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
 
 public class FASE14 extends RE13 {
 
@@ -123,8 +123,8 @@ public class FASE14 extends RE13 {
 
 	private void checkMAVOAnnotation(MAVOElement mavoModelObj, EStructuralFeature mavoAnnotation, String smtMavoConstraint, Z3SMTIncrementalSolver z3IncSolver) {
 
-		Z3ModelResult z3ModelResult = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)), Z3IncrementalBehavior.POP);
-		if (z3ModelResult.getZ3BoolResult() == Z3BoolResult.SAT) {
+		Z3SMTModel z3ModelResult = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)), Z3IncrementalBehavior.POP);
+		if (z3ModelResult.getZ3Bool() == Z3SMTBool.SAT) {
 			//TODO MMINT: optimize search for other annotations in output model using the map mavoModelObjs
 		}
 		else {
@@ -237,7 +237,7 @@ public class FASE14 extends RE13 {
 		doAnalysis(z3IncSolver);
 		if (timeTargetsEnabled) {
 			doTargets(z3IncSolver);
-			if (targets == Z3BoolResult.SAT) {
+			if (targets == Z3SMTBool.SAT) {
 				doRNF(z3IncSolver);
 			}
 		}
