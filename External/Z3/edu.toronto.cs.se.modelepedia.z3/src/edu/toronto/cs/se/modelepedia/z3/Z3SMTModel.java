@@ -5,9 +5,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import com.microsoft.z3.Expr;
 import com.microsoft.z3.FuncDecl;
 import com.microsoft.z3.FuncInterp;
 import com.microsoft.z3.Model;
+import com.microsoft.z3.Sort;
 import com.microsoft.z3.Status;
 import com.microsoft.z3.Z3Exception;
 import com.microsoft.z3.FuncInterp.Entry;
@@ -79,6 +81,31 @@ public class Z3SMTModel {
 			for (Entry entry : interp.getEntries()) {
 				z3ModelElems.put(entry.getArgs()[1].toString(), new Integer(entry.getArgs()[0].toString()));
 			}
+
+
+//			Sort entriesSort = interp.getEntries()[0].getArgs()[0].getSort(); // same for all entries
+//			boolean mayOnly = entriesSort.toString().equals(Z3SMTUtils.SMTLIB_TYPE_INT); // may-only encoding
+//			boolean elseValue = Boolean.parseBoolean(interp.getElse().toString());
+//			if (elseValue) { // entries are false
+//				if (mayOnly) {
+//					Set<Integer> smtElems = new HashSet<Integer>();//TODO from listener
+//				}
+//				else {
+//					for (Expr concretization : z3InternalModel.getSortUniverse(entriesSort)) {
+//						//TODO try this branch and see what it needs
+//					}
+//				}
+//			}
+//			else { // entries are true
+//				for (Entry entry : interp.getEntries()) {
+//					if (mayOnly) {
+//						z3ModelElems.put(entry.getArgs()[0].toString(), new Integer(entry.getArgs()[0].toString()));
+//					}
+//					else {
+//						z3ModelElems.put(entry.getArgs()[1].toString(), new Integer(entry.getArgs()[0].toString()));
+//					}
+//				}
+//			}
 		}
 
 		return z3ModelElems;
