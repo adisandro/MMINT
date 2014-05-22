@@ -20,9 +20,13 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
 public class MultiModelOperatorUtils {
@@ -189,24 +193,23 @@ public class MultiModelOperatorUtils {
 		}
 	}
 
-	public static boolean isUpdatingMid(Properties properties) {
+	public static boolean isUpdatingMID(Properties properties) {
 
-		try {
-			return Boolean.parseBoolean(getStringProperty(properties, PROPERTY_IN_UPDATEMID));
-		}
-		catch (MMINTException e) {
-			return true;
-		}
+		return getOptionalBoolProperty(properties, PROPERTY_IN_UPDATEMID, true);
 	}
 
 	public static String getSubdir(Properties properties) {
 
-		try {
-			return getStringProperty(properties, PROPERTY_IN_SUBDIR);
-		}
-		catch (MMINTException e) {
-			return null;
-		}
+		return getOptionalStringProperty(properties, PROPERTY_IN_SUBDIR, null);
+	}
+
+	public static MultiModel getInstanceMIDFromOperatorWithNoParameters() {
+
+		//TODO MMINT[OPERATOR] make it better integrated with Operator
+		EditPart editPart = (EditPart) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getAdapter(EditPart.class);
+		MultiModel instanceMid = (MultiModel) ((DiagramEditPart) editPart.getChildren().get(0)).getDiagramView().getElement();
+
+		return instanceMid;
 	}
 
 }

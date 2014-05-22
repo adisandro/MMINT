@@ -444,6 +444,7 @@ public class ExperimentDriver extends OperatorImpl {
 
 		// execute and get state
 		operator.readInputProperties(operatorProperties);
+		operator.init();
 		EList<Model> result = operator.execute(actualParameters);
 		if (operator instanceof RandomOperatorImpl) {
 			state[experimentIndex] = ((RandomOperatorImpl) operator).getState();

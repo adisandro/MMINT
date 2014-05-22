@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.eclipse.acceleo.common.preference.AcceleoPreferences;
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
@@ -22,7 +23,9 @@ import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
@@ -53,6 +56,17 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 		return smtListener;
 	}
 
+	private static final String PROPERTY_IN_MAYONLY = "mayOnly";
+	private static final boolean PROPERTY_IN_MAYONLY_DEFAULT = false;
+
+	private boolean mayOnly;
+
+	@Override
+	public void readInputProperties(Properties inputProperties) throws MMINTException {
+
+		mayOnly = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_MAYONLY, PROPERTY_IN_MAYONLY_DEFAULT);
+	}
+
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
@@ -61,6 +75,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 
 		List<Object> m2tArgs = new ArrayList<Object>();
 		m2tArgs.add(mavoModel.getName());
+		m2tArgs.add(mayOnly);
 		File folder = (new File(MultiModelUtils.prependWorkspaceToUri(mavoModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);
@@ -72,7 +87,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 
 	public void cleanup() {
 
-		MultiModelUtils.deleteFile(smtListener.getSMTEncodingUri(), false);
+		MultiModelUtils.deleteFile(smtListener.getSMTLIBEncodingUri(), false);
 	}
 
 }

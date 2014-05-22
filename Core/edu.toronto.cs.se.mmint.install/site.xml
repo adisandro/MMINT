@@ -1,42 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/edu.toronto.cs.se.mmint_1.3.0.201404141339.jar" id="edu.toronto.cs.se.mmint" version="1.3.0.201404141339">
+   <feature url="features/edu.toronto.cs.se.mmint.feature_1.3.0.201404141339.jar" id="edu.toronto.cs.se.mmint.feature" version="1.3.0.201404141339">
       <category name="Modeling"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mmint.z3.feature_1.3.0.qualifier.jar" id="edu.toronto.cs.se.mmint.z3.feature" version="1.3.0.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.z3.feature_1.3.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.z3.feature" version="1.3.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
    <feature url="features/fr.inria.atlanmod.emftocsp.tool.feature_1.1.1.201404141339.jar" id="fr.inria.atlanmod.emftocsp.tool.feature" version="1.1.1.201404141339">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.kleisli.feature_1.3.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.kleisli.feature" version="1.3.0.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.classdiagram.feature_1.3.0.201404141339.jar" id="edu.toronto.cs.se.modelepedia.classdiagram.feature" version="1.3.0.201404141339">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.classdiagram_1.3.0.201404141339.jar" id="edu.toronto.cs.se.modelepedia.classdiagram" version="1.3.0.201404141339">
-      <category name="Modelepedia"/>
-   </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.istar_1.3.0.201404141339.jar" id="edu.toronto.cs.se.modelepedia.istar" version="1.3.0.201404141339">
-      <category name="Modelepedia"/>
-   </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.labeledgraph_1.3.0.201404141339.jar" id="edu.toronto.cs.se.modelepedia.labeledgraph" version="1.3.0.201404141339">
-      <category name="Modelepedia"/>
-   </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.petrinet_1.3.0.201404141339.jar" id="edu.toronto.cs.se.modelepedia.petrinet" version="1.3.0.201404141339">
-      <category name="Modelepedia"/>
-   </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.powerwindow_1.3.0.201404141339.jar" id="edu.toronto.cs.se.modelepedia.powerwindow" version="1.3.0.201404141339">
-      <category name="Modelepedia"/>
-   </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.randommodel_1.3.0.201404141339.jar" id="edu.toronto.cs.se.modelepedia.randommodel" version="1.3.0.201404141339">
-      <category name="Modelepedia"/>
-   </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.relationaldatabase_1.3.0.201404141339.jar" id="edu.toronto.cs.se.modelepedia.relationaldatabase" version="1.3.0.201404141339">
-      <category name="Modelepedia"/>
-   </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.tutorial_1.3.0.201404141339.jar" id="edu.toronto.cs.se.modelepedia.tutorial" version="1.3.0.201404141339">
+   <feature url="features/edu.toronto.cs.se.modelepedia.graph.feature_1.3.0.201404141339.jar" id="edu.toronto.cs.se.modelepedia.graph.feature" version="1.3.0.201404141339">
       <category name="Modelepedia"/>
    </feature>
    <feature url="features/edu.toronto.cs.se.modelepedia.kleisli.feature_1.3.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.kleisli.feature" version="1.3.0.qualifier">
+      <category name="Modelepedia"/>
+   </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.istar.feature_1.3.0.201404141339.jar" id="edu.toronto.cs.se.modelepedia.istar.feature" version="1.3.0.201404141339">
+      <category name="Modelepedia"/>
+   </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.petrinet.feature_1.3.0.201404141339.jar" id="edu.toronto.cs.se.modelepedia.petrinet.feature" version="1.3.0.201404141339">
+      <category name="Modelepedia"/>
+   </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.powerwindow.feature_1.3.0.201404141339.jar" id="edu.toronto.cs.se.modelepedia.powerwindow.feature" version="1.3.0.201404141339">
+      <category name="Modelepedia"/>
+   </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.randommodel.feature_1.3.0.201404141339.jar" id="edu.toronto.cs.se.modelepedia.randommodel.feature" version="1.3.0.201404141339">
+      <category name="Modelepedia"/>
+   </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.relationaldatabase.feature_1.3.0.201404141339.jar" id="edu.toronto.cs.se.modelepedia.relationaldatabase.feature" version="1.3.0.201404141339">
+      <category name="Modelepedia"/>
+   </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.tutorial.feature_1.3.0.201404141339.jar" id="edu.toronto.cs.se.modelepedia.tutorial.feature" version="1.3.0.201404141339">
       <category name="Modelepedia"/>
    </feature>
    <category-def name="Modeling" label="Modeling"/>

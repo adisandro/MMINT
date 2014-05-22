@@ -29,12 +29,12 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.modelepedia.randommodel.NamedElement;
 import edu.toronto.cs.se.modelepedia.randommodel.RandomModelPackage;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3BoolResult;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3ModelResult;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
 
 public class TOSEM12 extends OperatorImpl {
 
@@ -97,15 +97,15 @@ public class TOSEM12 extends OperatorImpl {
 		long startTime = System.nanoTime();
 		Z3SMTSolver z3Solver = new Z3SMTSolver();
 		smtEncoding = smtlibMavoEncoding + Z3SMTUtils.SMTLIB_ASSERT + property + Z3SMTUtils.SMTLIB_PREDICATE_END;
-		Z3BoolResult z3BoolResult = z3Solver.checkSat(smtEncoding);
-		if (z3BoolResult != Z3BoolResult.SAT) {
+		Z3SMTBool z3BoolResult = z3Solver.checkSat(smtEncoding);
+		if (z3BoolResult != Z3SMTBool.SAT) {
 			isMAVOMaybe = false;
 		}
 		flags.append(z3BoolResult);
 		flags.append(',');
 		smtEncoding = smtlibMavoEncoding + Z3SMTUtils.SMTLIB_ASSERT + Z3SMTUtils.SMTLIB_NOT + property + Z3SMTUtils.SMTLIB_PREDICATE_END + Z3SMTUtils.SMTLIB_PREDICATE_END;
 		z3BoolResult = z3Solver.checkSat(smtEncoding);
-		if (z3BoolResult != Z3BoolResult.SAT) {
+		if (z3BoolResult != Z3SMTBool.SAT) {
 			isMAVOMaybe = false;
 		}
 		flags.append(z3BoolResult);
@@ -117,7 +117,7 @@ public class TOSEM12 extends OperatorImpl {
 
 	private void doClassicalPropertyCheck(String smtlibEncoding, String property, Set<String> smtlibConcretizations) {
 
-		Z3BoolResult z3BoolResult, firstZ3BoolResult = Z3BoolResult.UNKNOWN;
+		Z3SMTBool z3BoolResult, firstZ3BoolResult = Z3SMTBool.UNKNOWN;
 		String smtEncoding;
 		long endTime = 0;
 
@@ -130,10 +130,10 @@ public class TOSEM12 extends OperatorImpl {
 			z3BoolResult = z3Solver.checkSat(smtEncoding);
 			flags.append(z3BoolResult);
 			flags.append(',');
-			if (firstZ3BoolResult == Z3BoolResult.UNKNOWN) {
+			if (firstZ3BoolResult == Z3SMTBool.UNKNOWN) {
 				firstZ3BoolResult = z3BoolResult;
 			}
-			if (z3BoolResult == Z3BoolResult.UNKNOWN || (z3BoolResult != firstZ3BoolResult)) {
+			if (z3BoolResult == Z3SMTBool.UNKNOWN || (z3BoolResult != firstZ3BoolResult)) {
 				endTime = System.nanoTime();
 				break;
 			}
@@ -240,13 +240,13 @@ public class TOSEM12 extends OperatorImpl {
 		long startTime = System.nanoTime();
 		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
 		smtEncoding = smtlibMavoEncoding + Z3SMTUtils.SMTLIB_ASSERT + property + Z3SMTUtils.SMTLIB_PREDICATE_END;
-		Z3ModelResult z3ModelResult = z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
-		flags.append(z3ModelResult.getZ3BoolResult());
+		Z3SMTModel z3ModelResult = z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
+		flags.append(z3ModelResult.getZ3Bool());
 		flags.append(',');
-		if (z3ModelResult.getZ3BoolResult() != Z3BoolResult.SAT) {
+		if (z3ModelResult.getZ3Bool() != Z3SMTBool.SAT) {
 			throw new MMINTException("Property checking for MAVO model was SAT-SAT but the incremental baseline now is UNSAT.");
 		}
-		Map<String, Boolean> initialZ3ModelElems = parseZ3Model(z3ModelResult.getZ3Model().toString(), z3MayModelElems);
+		Map<String, Boolean> initialZ3ModelElems = parseZ3Model(z3ModelResult.getZ3InternalModel().toString(), z3MayModelElems);
 		Map<String, Boolean> currentZ3ModelElems;
 		Iterator<String> z3MayModelElemsIter = z3MayModelElems.iterator();
 		while (z3MayModelElemsIter.hasNext()) {
@@ -256,12 +256,12 @@ public class TOSEM12 extends OperatorImpl {
 			}
 			smtEncoding = Z3SMTUtils.SMTLIB_ASSERT + z3MayModelElem + Z3SMTUtils.SMTLIB_PREDICATE_END;
 			z3ModelResult = z3IncSolver.checkSatAndGetModel(smtEncoding, Z3IncrementalBehavior.POP);
-			flags.append(z3ModelResult.getZ3BoolResult());
+			flags.append(z3ModelResult.getZ3Bool());
 			flags.append(',');
-			if (z3ModelResult.getZ3BoolResult() != Z3BoolResult.SAT) { // UNSAT (here z3MayModelElem value should be == to its value in the initial model)
+			if (z3ModelResult.getZ3Bool() != Z3SMTBool.SAT) { // UNSAT (here z3MayModelElem value should be == to its value in the initial model)
 				continue;
 			}
-			currentZ3ModelElems = parseZ3Model(z3ModelResult.getZ3Model().toString(), z3MayModelElems);
+			currentZ3ModelElems = parseZ3Model(z3ModelResult.getZ3InternalModel().toString(), z3MayModelElems);
 			optimizeBackboneElements(initialZ3ModelElems, currentZ3ModelElems, outOfBackboneZ3ModelElems);
 			initialZ3ModelElems.get(z3MayModelElem);
 			if (optimizeBackboneElement(initialZ3ModelElems, z3MayModelElem, currentZ3ModelElems.get(z3MayModelElem), outOfBackboneZ3ModelElems)) { // z3MayModelElem value has already changed
@@ -269,12 +269,12 @@ public class TOSEM12 extends OperatorImpl {
 			}
 			smtEncoding = Z3SMTUtils.SMTLIB_ASSERT + Z3SMTUtils.SMTLIB_NOT + z3MayModelElem + Z3SMTUtils.SMTLIB_PREDICATE_END + Z3SMTUtils.SMTLIB_PREDICATE_END;
 			z3ModelResult = z3IncSolver.checkSatAndGetModel(smtEncoding, Z3IncrementalBehavior.POP);
-			flags.append(z3ModelResult.getZ3BoolResult());
+			flags.append(z3ModelResult.getZ3Bool());
 			flags.append(',');
-			if (z3ModelResult.getZ3BoolResult() != Z3BoolResult.SAT) { // UNSAT
+			if (z3ModelResult.getZ3Bool() != Z3SMTBool.SAT) { // UNSAT
 				continue;
 			}
-			currentZ3ModelElems = parseZ3Model(z3ModelResult.getZ3Model().toString(), z3MayModelElems);
+			currentZ3ModelElems = parseZ3Model(z3ModelResult.getZ3InternalModel().toString(), z3MayModelElems);
 			optimizeBackboneElements(initialZ3ModelElems, currentZ3ModelElems, outOfBackboneZ3ModelElems);
 		}
 		long endTime = System.nanoTime();
@@ -289,11 +289,11 @@ public class TOSEM12 extends OperatorImpl {
 		long startTime = System.nanoTime();
 		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
 		smtEncoding = smtlibMavoEncoding + Z3SMTUtils.SMTLIB_ASSERT + property + Z3SMTUtils.SMTLIB_PREDICATE_END;
-		Z3ModelResult z3ModelResult = z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
-		flags.append(z3ModelResult.getZ3BoolResult());
+		Z3SMTModel z3ModelResult = z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
+		flags.append(z3ModelResult.getZ3Bool());
 		flags.append(',');
-		while (z3ModelResult.getZ3BoolResult() == Z3BoolResult.SAT) {
-			Map<String, Boolean> z3ModelElems = parseZ3Model(z3ModelResult.getZ3Model().toString(), z3MayModelElems);
+		while (z3ModelResult.getZ3Bool() == Z3SMTBool.SAT) {
+			Map<String, Boolean> z3ModelElems = parseZ3Model(z3ModelResult.getZ3InternalModel().toString(), z3MayModelElems);
 			StringBuilder encodingBuilder = new StringBuilder();
 			encodingBuilder.append(Z3SMTUtils.SMTLIB_ASSERT);
 			encodingBuilder.append(Z3SMTUtils.SMTLIB_OR);
@@ -312,7 +312,7 @@ public class TOSEM12 extends OperatorImpl {
 			encodingBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 			encodingBuilder.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 			z3ModelResult = z3IncSolver.checkSatAndGetModel(encodingBuilder.toString(), Z3IncrementalBehavior.NORMAL);
-			flags.append(z3ModelResult.getZ3BoolResult());
+			flags.append(z3ModelResult.getZ3Bool());
 			flags.append(',');
 		}
 		long endTime = System.nanoTime();

@@ -413,7 +413,6 @@ public class MultiModelTypeFactory {
 		newParamType.setName(newParamTypeName);
 		newParamType.setVararg(isVararg);
 		paramTypes.add(newParamType);
-		operatorType.getSignatureTable().put(newParamTypeName, newParamType);
 	}
 
 	/**

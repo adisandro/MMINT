@@ -430,14 +430,9 @@
       <genDataTypes ecoreDataType="mid.ecore#//operator/Random"/>
       <genDataTypes ecoreDataType="mid.ecore#//operator/Exception"/>
       <genDataTypes ecoreDataType="mid.ecore#//operator/Properties"/>
-      <genClasses ecoreClass="mid.ecore#//operator/EStringToParameterMap">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/EStringToParameterMap/key"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/EStringToParameterMap/value"/>
-      </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/Operator">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/inputs"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/outputs"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/signatureTable"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Operator/inputSubdir"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/previousOperator"/>
@@ -454,6 +449,7 @@
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/readInputProperties">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/readInputProperties/inputProperties"/>
         </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/init"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/execute">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/execute/actualParameters"/>
         </genOperations>

@@ -27,7 +27,6 @@ import edu.toronto.cs.se.mmint.mid.operator.util.OperatorValidator;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl;
 
-import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 
@@ -48,13 +47,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * @generated
  */
 public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass eStringToParameterMapEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -193,33 +185,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEStringToParameterMap() {
-		return eStringToParameterMapEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getEStringToParameterMap_Key() {
-		return (EAttribute)eStringToParameterMapEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEStringToParameterMap_Value() {
-		return (EReference)eStringToParameterMapEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getOperator() {
 		return operatorEClass;
 	}
@@ -247,17 +212,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperator_SignatureTable() {
-		return (EReference)operatorEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getOperator_InputSubdir() {
-		return (EAttribute)operatorEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)operatorEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -266,7 +222,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	public EReference getOperator_PreviousOperator() {
-		return (EReference)operatorEClass.getEStructuralFeatures().get(4);
+		return (EReference)operatorEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -302,7 +258,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	public EOperation getOperator__Execute__EList() {
-		return operatorEClass.getEOperations().get(6);
+		return operatorEClass.getEOperations().get(7);
 	}
 
 	/**
@@ -330,6 +286,15 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 */
 	public EOperation getOperator__ReadInputProperties__Properties() {
 		return operatorEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__Init() {
+		return operatorEClass.getEOperations().get(6);
 	}
 
 	/**
@@ -468,14 +433,9 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		isCreated = true;
 
 		// Create classes and their features
-		eStringToParameterMapEClass = createEClass(ESTRING_TO_PARAMETER_MAP);
-		createEAttribute(eStringToParameterMapEClass, ESTRING_TO_PARAMETER_MAP__KEY);
-		createEReference(eStringToParameterMapEClass, ESTRING_TO_PARAMETER_MAP__VALUE);
-
 		operatorEClass = createEClass(OPERATOR);
 		createEReference(operatorEClass, OPERATOR__INPUTS);
 		createEReference(operatorEClass, OPERATOR__OUTPUTS);
-		createEReference(operatorEClass, OPERATOR__SIGNATURE_TABLE);
 		createEAttribute(operatorEClass, OPERATOR__INPUT_SUBDIR);
 		createEReference(operatorEClass, OPERATOR__PREVIOUS_OPERATOR);
 		createEOperation(operatorEClass, OPERATOR___GET_METATYPE);
@@ -484,6 +444,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(operatorEClass, OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST);
 		createEOperation(operatorEClass, OPERATOR___GET_INPUT_PROPERTIES);
 		createEOperation(operatorEClass, OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES);
+		createEOperation(operatorEClass, OPERATOR___INIT);
 		createEOperation(operatorEClass, OPERATOR___EXECUTE__ELIST);
 
 		conversionOperatorEClass = createEClass(CONVERSION_OPERATOR);
@@ -540,14 +501,9 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		randomOperatorEClass.getESuperTypes().add(this.getOperator());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(eStringToParameterMapEClass, Map.Entry.class, "EStringToParameterMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEStringToParameterMap_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEStringToParameterMap_Value(), this.getParameter(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(operatorEClass, Operator.class, "Operator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOperator_Inputs(), this.getParameter(), null, "inputs", null, 0, -1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperator_Outputs(), this.getParameter(), null, "outputs", null, 0, -1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperator_SignatureTable(), this.getEStringToParameterMap(), null, "signatureTable", null, 0, -1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOperator_InputSubdir(), ecorePackage.getEString(), "inputSubdir", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperator_PreviousOperator(), this.getOperator(), null, "previousOperator", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -582,6 +538,9 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		op = initEOperation(getOperator__ReadInputProperties__Properties(), null, "readInputProperties", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getProperties(), "inputProperties", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMidPackage.getMMINTException());
+
+		op = initEOperation(getOperator__Init(), null, "init", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMidPackage.getMMINTException());
 
 		op = initEOperation(getOperator__Execute__EList(), theMidPackage.getModel(), "execute", 1, -1, IS_UNIQUE, IS_ORDERED);
@@ -631,7 +590,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });													
+		   });									
 		addAnnotation
 		  (conversionOperatorEClass, 
 		   source, 
@@ -647,7 +606,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";																
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";												
 		addAnnotation
 		  (conversionOperatorEClass, 
 		   source, 

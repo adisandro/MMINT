@@ -19,7 +19,6 @@ import java.util.Map;
 
 import java.util.Properties;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +34,6 @@ import org.eclipse.emf.common.util.EMap;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getInputs <em>Inputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getOutputs <em>Outputs</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getSignatureTable <em>Signature Table</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getInputSubdir <em>Input Subdir</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getPreviousOperator <em>Previous Operator</em>}</li>
  * </ul>
@@ -75,22 +73,6 @@ public interface Operator extends ExtendibleElement {
 	 * @generated
 	 */
 	EList<Parameter> getOutputs();
-
-	/**
-	 * Returns the value of the '<em><b>Signature Table</b></em>' map.
-	 * The key is of type {@link java.lang.String},
-	 * and the value is of type {@link edu.toronto.cs.se.mmint.mid.operator.Parameter},
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The hash map for all input and output parameters of this operator, using their names as keys.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Signature Table</em>' map.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperator_SignatureTable()
-	 * @model mapType="edu.toronto.cs.se.mmint.mid.operator.EStringToParameterMap<org.eclipse.emf.ecore.EString, edu.toronto.cs.se.mmint.mid.operator.Parameter>"
-	 * @generated
-	 */
-	EMap<String, Parameter> getSignatureTable();
 
 	/**
 	 * Returns the value of the '<em><b>Input Subdir</b></em>' attribute.
@@ -179,20 +161,6 @@ public interface Operator extends ExtendibleElement {
 	void deleteType() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Executes an instance of this operator type.
-	 * 
-	 * @param actualParameters
-	 *            A list of input model instances.
-	 * @return A list of output model instances.
-	 * @throws Exception
-	 *             If something went wrong during the execution of the operator.
-	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" actualParametersRequired="true" actualParametersMany="true"
-	 * @generated
-	 */
-	EList<Model> execute(EList<Model> actualParameters) throws Exception;
-
-	/**
 	 * <!-- begin-user-doc --> Gets the list of executable operator types given
 	 * a list of actual parameters to be used for their invocation. Contract:
 	 * for each executable operator type, populate conversions and generics with
@@ -224,15 +192,15 @@ public interface Operator extends ExtendibleElement {
 	 * <!-- begin-user-doc --> Gets the input properties of this operator.
 	 * 
 	 * @return The input properties of this operator. <!-- end-user-doc -->
-	 * @model kind="operation"
-	 *        dataType="edu.toronto.cs.se.mmint.mid.operator.Properties"
-	 *        required="true"
+	 * @model kind="operation" dataType="edu.toronto.cs.se.mmint.mid.operator.Properties" required="true"
 	 * @generated
 	 */
 	Properties getInputProperties();
 
 	/**
-	 * <!-- begin-user-doc --> Reads the input properties of this operator.
+	 * <!-- begin-user-doc --> Reads the input properties of this operator
+	 * instance. When running an operator instance, MMINT invokes
+	 * readInputProperties() -> init() -> execute().
 	 * 
 	 * @param inputProperties
 	 *            The input properties of this operator.
@@ -246,5 +214,36 @@ public interface Operator extends ExtendibleElement {
 	 * @generated
 	 */
 	void readInputProperties(Properties inputProperties) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Initializes the state and output variables of
+	 * this operator instance. When running an operator instance, MMINT invokes
+	 * readInputProperties() -> init() -> execute().
+	 * 
+	 * @throws MMINTException
+	 *             If the operator variables can't be initialized.
+	 *             <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	void init() throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Executes this operator instance. When running an
+	 * operator instance, MMINT invokes readInputProperties() -> init() ->
+	 * execute().
+	 * 
+	 * @param actualParameters
+	 *            A list of input model instances.
+	 * @return A list of output model instances.
+	 * @throws Exception
+	 *             If something went wrong during the execution of the operator.
+	 *             <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
+	 *        actualParametersRequired="true" actualParametersMany="true"
+	 * @generated
+	 */
+	EList<Model> execute(EList<Model> actualParameters) throws Exception;
 
 } // Operator

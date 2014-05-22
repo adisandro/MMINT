@@ -38,11 +38,11 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3BoolResult;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3ModelResult;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
 
 public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 
@@ -183,8 +183,20 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		}
 	}
 
-	private void initOutput() {
+	@Override
+	public void init() throws MMINTException {
 
+		//state
+		modelObjsNBar = new ArrayList<Set<MAVOElement>>();
+		modelObjsC = new HashSet<MAVOElement>();
+		modelObjsD = new HashSet<MAVOElement>();
+		modelObjsA = new HashSet<MAVOElement>();
+		modelObjsCDN = new HashSet<MAVOElement>();
+		modelObjACounter = 0;
+		smtEncoding = new StringBuilder();
+		smtEncodingVariables = new HashSet<String>();
+
+		// output
 		timeClassical = -1;
 		timeLifting = -1;
 		ruleApplicationsClassical = 0;
@@ -194,19 +206,6 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		unsatCountLifting = 0;
 		modelObjsChains = new HashMap<MAVOElement, Integer>();
 		modelObjsLiterals = new HashMap<MAVOElement, Integer>();
-	}
-
-	protected void init() {
-
-		modelObjsNBar = new ArrayList<Set<MAVOElement>>();
-		modelObjsC = new HashSet<MAVOElement>();
-		modelObjsD = new HashSet<MAVOElement>();
-		modelObjsA = new HashSet<MAVOElement>();
-		modelObjsCDN = new HashSet<MAVOElement>();
-		modelObjACounter = 0;
-		smtEncoding = new StringBuilder();
-		smtEncodingVariables = new HashSet<String>();
-		initOutput();
 	}
 
 	protected void initSMTEncoding(String preamble, String postamble) {
@@ -317,8 +316,8 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 		smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 
-		Z3ModelResult z3ModelResult = z3IncSolver.checkSatAndGetModel(smtEncoding.substring(checkpointUnsat), Z3IncrementalBehavior.POP_IF_UNSAT);
-		if (z3ModelResult.getZ3BoolResult() == Z3BoolResult.SAT) {
+		Z3SMTModel z3ModelResult = z3IncSolver.checkSatAndGetModel(smtEncoding.substring(checkpointUnsat), Z3IncrementalBehavior.POP_IF_UNSAT);
+		if (z3ModelResult.getZ3Bool() == Z3SMTBool.SAT) {
 			satCountLifting++;
 			return true;
 		}

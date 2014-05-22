@@ -205,7 +205,7 @@ public class RandomModelGenerateLabeledGraph extends RandomOperatorImpl {
 		}
 		String newRandommodelModelUri = MultiModelUtils.replaceLastSegmentInUri(labeledGraphModel.getUri(), newLastSegmentUri);
 		EList<Model> result = new BasicEList<Model>();
-		boolean updateMid = MultiModelOperatorUtils.isUpdatingMid(inputProperties);
+		boolean updateMid = MultiModelOperatorUtils.isUpdatingMID(inputProperties);
 		MultiModel multiModel = (updateMid) ?
 			MultiModelRegistry.getMultiModel(labeledGraphModel) :
 			null;

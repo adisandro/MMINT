@@ -22,21 +22,34 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3BoolResult;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3ModelResult;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
 
 public class Z3SMTReasoningEngine implements IReasoningEngine {
 
 	private final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
 
+	public static MAVOTruthValue checkMAVOProperty(String smtEncoding, String smtProperty) {
+
+		// tri-state MAVO logic
+		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
+		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
+		Z3SMTModel z3Model = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(smtProperty), Z3IncrementalBehavior.POP);
+		boolean propertyTruthValue = z3Model.getZ3Bool() == Z3SMTBool.SAT;
+		z3Model = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(Z3SMTUtils.not(smtProperty)), Z3IncrementalBehavior.POP);
+		boolean notPropertyTruthValue = z3Model.getZ3Bool() == Z3SMTBool.SAT;
+
+		return MAVOTruthValue.toMAVOTruthValue(propertyTruthValue, notPropertyTruthValue);
+	}
+
 	@Override
 	public MAVOTruthValue checkConstraint(Model model, ExtendibleElementConstraint constraint, MidLevel constraintLevel) {
 
-		String smtlibConstraint = constraint.getImplementation();
+		String smtConstraint = constraint.getImplementation();
 		EcoreMAVOToSMTLIB ecore2smt = (EcoreMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(ECOREMAVOTOSMTLIB_OPERATOR_URI);
 		EList<Model> actualParameters = new BasicEList<Model>();
 		actualParameters.add(model);
@@ -49,15 +62,7 @@ public class Z3SMTReasoningEngine implements IReasoningEngine {
 		}
 		ecore2smt.cleanup();
 
-		// tri-state logic
-		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
-		z3IncSolver.firstCheckSatAndGetModel(ecore2smt.getListener().getSMTEncoding());
-		Z3ModelResult z3ModelResult = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(smtlibConstraint), Z3IncrementalBehavior.POP);
-		boolean propertyTruthValue = z3ModelResult.getZ3BoolResult() == Z3BoolResult.SAT;
-		z3ModelResult = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(Z3SMTUtils.not(smtlibConstraint)), Z3IncrementalBehavior.POP);
-		boolean notPropertyTruthValue = z3ModelResult.getZ3BoolResult() == Z3BoolResult.SAT;
-
-		return MAVOTruthValue.toMAVOTruthValue(propertyTruthValue, notPropertyTruthValue);
+		return checkMAVOProperty(ecore2smt.getListener().getSMTLIBEncoding(), smtConstraint);
 	}
 
 	@Override

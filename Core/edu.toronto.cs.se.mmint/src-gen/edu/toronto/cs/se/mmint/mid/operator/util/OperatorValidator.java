@@ -21,7 +21,6 @@ import java.util.Random;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 
@@ -106,8 +105,6 @@ public class OperatorValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
-			case OperatorPackage.ESTRING_TO_PARAMETER_MAP:
-				return validateEStringToParameterMap((Map.Entry<?, ?>)value, diagnostics, context);
 			case OperatorPackage.OPERATOR:
 				return validateOperator((Operator)value, diagnostics, context);
 			case OperatorPackage.CONVERSION_OPERATOR:
@@ -125,15 +122,6 @@ public class OperatorValidator extends EObjectValidator {
 			default:
 				return true;
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateEStringToParameterMap(Map.Entry<?, ?> eStringToParameterMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)eStringToParameterMap, diagnostics, context);
 	}
 
 	/**

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -37,18 +37,20 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
 public class RunOperatorListener extends SelectionAdapter {
 
+	MultiModel instanceMid;
 	Operator operator;
 	EList<Model> actualParameters;
 	Map<Integer, EList<ConversionOperator>> conversionMap;
 
-	public RunOperatorListener(Operator operator, EList<Model> actualParameters, Map<Integer, EList<ConversionOperator>> conversionMap) {
+	public RunOperatorListener(MultiModel instanceMid, Operator operator, EList<Model> actualParameters, Map<Integer, EList<ConversionOperator>> conversionMap) {
 
+		this.instanceMid = instanceMid;
 		this.operator = operator;
 		this.actualParameters = actualParameters;
 		this.conversionMap = conversionMap;
@@ -59,20 +61,11 @@ public class RunOperatorListener extends SelectionAdapter {
 
 		List<IFile> files = new ArrayList<IFile>();
 		IFile diagramFile = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
-		if (diagramFile != null) {
-			IFile modelFile = diagramFile.getParent().getFile(new Path(diagramFile.getName().substring(0, diagramFile.getName().length() - MMINT.MID_DIAGRAM_SUFFIX.length())));
-			files.add(diagramFile);
-			files.add(modelFile);
-		}
-		Model editingDomainParameter;
-		int i = 0;
-		do {
-			editingDomainParameter = actualParameters.get(i);
-			i++;
-		}
-		while (!MultiModelConstraintChecker.isInstancesLevel(editingDomainParameter));
+		IFile modelFile = diagramFile.getParent().getFile(new Path(diagramFile.getName().substring(0, diagramFile.getName().length() - MMINT.MID_DIAGRAM_SUFFIX.length())));
+		files.add(diagramFile);
+		files.add(modelFile);
 		AbstractTransactionalCommand operatorCommand = new RunOperatorCommand(
-			TransactionUtil.getEditingDomain(editingDomainParameter),
+			TransactionUtil.getEditingDomain(instanceMid),
 			"Run operator",
 			files
 		);
@@ -107,6 +100,7 @@ public class RunOperatorListener extends SelectionAdapter {
 							operatorParameters.add(newActualParameter);
 							Properties inputProperties = operator.getInputProperties();
 							operator.readInputProperties(inputProperties);
+							operator.init();
 							newActualParameter = operator.execute(operatorParameters).get(0);
 						}
 						actualParameters.set(i, newActualParameter);
@@ -115,6 +109,7 @@ public class RunOperatorListener extends SelectionAdapter {
 				// run operator
 				Properties inputProperties = operator.getInputProperties();
 				operator.readInputProperties(inputProperties);
+				operator.init();
 				operator.execute(actualParameters);
 				// cleanup all conversion operators
 				if (!conversionMap.isEmpty()) {
