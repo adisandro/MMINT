@@ -62,8 +62,9 @@ public class Z3SMTModel {
 		Map<String, Integer> z3ModelElems = new HashMap<String, Integer>();
 		for (FuncDecl decl : z3InternalModel.getFuncDecls()) {
 			String funcName = decl.getName().toString();
-			if (funcName.endsWith(Z3SMTUtils.Z3_MODEL_SEPARATOR)) {
-				funcName = funcName.substring(0, funcName.length()-1);
+			int subfuncIndex = funcName.indexOf(Z3SMTUtils.Z3_MODEL_SEPARATOR);
+			if (subfuncIndex != -1) {
+				funcName = funcName.substring(0, subfuncIndex);
 			}
 			if (!functionNames.contains(funcName)) {
 				continue;
