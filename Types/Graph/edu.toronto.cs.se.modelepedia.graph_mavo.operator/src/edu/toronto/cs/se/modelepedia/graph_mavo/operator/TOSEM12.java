@@ -20,8 +20,6 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 
-import com.microsoft.z3.Z3Exception;
-
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.MAVOElement;
@@ -230,7 +228,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		timeClassical = endTime - startTime;
 	}
 
-	private void doMAVOBackbonePropertyCheck() throws MMINTException, Z3Exception {
+	private void doMAVOBackbonePropertyCheck() throws MMINTException {
 
 		long startTime = System.nanoTime();
 		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
@@ -248,6 +246,29 @@ public class TOSEM12 extends RandomOperatorImpl {
 	private void doMAVOAllsatPropertyCheck() {
 
 		long startTime = System.nanoTime();
+		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
+		String smtAllsatEncoding = smtEncoding + Z3SMTUtils.assertion(smtConcretizationsConstraint) + Z3SMTUtils.assertion(smtProperty);
+		Z3SMTModel z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding + Z3SMTUtils.assertion(smtConcretizationsConstraint) + Z3SMTUtils.assertion(smtProperty));
+		while (z3Model.getZ3Bool() == Z3SMTBool.SAT) {
+			Set<String> formulaIds = new HashSet<String>();
+			Map<String, Integer> z3ModelNodes = z3Model.getZ3ModelNodes(smtNodes);
+			for (Integer z3ModelNode : z3ModelNodes.values()) {
+				formulaIds.add(smtNodes.get(z3ModelNode));
+			}
+			Map<String, Integer> z3ModelEdges = z3Model.getZ3ModelEdges(smtEdges);
+			for (Integer z3ModelEdge : z3ModelEdges.values()) {
+				formulaIds.add(smtEdges.get(z3ModelEdge));
+			}
+			String smtConcretizationConstraint = "";
+			for (MAVOElement mayModelObj : mayModelObjs) {
+				String smtConcretizationElem = Z3SMTUtils.predicate((mayModelObj instanceof Node) ? Z3SMTUtils.SMTLIB_NODE_FUNCTION : Z3SMTUtils.SMTLIB_EDGE_FUNCTION, mayModelObj.getFormulaId());
+				smtConcretizationConstraint += (formulaIds.contains(mayModelObj.getFormulaId())) ? 
+					Z3SMTUtils.not(smtConcretizationElem) :
+					smtConcretizationElem;
+			}
+			smtAllsatEncoding += Z3SMTUtils.assertion(smtConcretizationConstraint);
+			z3Model = z3IncSolver.checkSatAndGetModel(smtAllsatEncoding, Z3IncrementalBehavior.NORMAL);
+		}
 		long endTime = System.nanoTime();
 
 		timeMAVOAllsat = endTime - startTime;
