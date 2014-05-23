@@ -110,23 +110,14 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 		return smtEncodingUri;
 	}
 
-	public Map<Integer, String> getSMTLIBNodes() {
+	public Map<Integer, String> getSMTLIBEncodingNodes() {
 
 		return smtNodes;
 	}
 
-	public Map<Integer, String> getSMTLIBEdges() {
+	public Map<Integer, String> getSMTLIBEncodingEdges() {
 
 		return smtEdges;
-	}
-
-	public Map<Integer, String> getSMTLIBNodesAndEdges() {
-
-		Map<Integer, String> smtElems = new HashMap<Integer, String>();
-		smtElems.putAll(smtNodes);
-		smtElems.putAll(smtEdges);
-
-		return smtElems;
 	}
 
 }

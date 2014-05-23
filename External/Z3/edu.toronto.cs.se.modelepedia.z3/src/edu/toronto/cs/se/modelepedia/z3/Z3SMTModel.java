@@ -1,7 +1,6 @@
 package edu.toronto.cs.se.modelepedia.z3;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -55,85 +54,68 @@ public class Z3SMTModel {
 		return z3InternalModel;
 	}
 
-	private Map<String, Integer> getZ3ModelElements(Set<String> functionNames) throws Z3Exception {
+	private Map<String, Integer> getZ3ModelElements(Map<Integer, String> smtEncodingElems, String functionName) throws Z3Exception {
 
-		/*TODO
-		 * the else continue needs to be thought (depends if the result contains only true elements)
-		 * the entries won't have the sort concretization getArgs()[1], but only the integer, to be unified
-		 */
 		Map<String, Integer> z3ModelElems = new HashMap<String, Integer>();
 		for (FuncDecl decl : z3InternalModel.getFuncDecls()) {
-			String funcName = decl.getName().toString();
-			int subfuncIndex = funcName.indexOf(Z3SMTUtils.Z3_MODEL_SEPARATOR);
+			// filter function
+			String declName = decl.getName().toString();
+			int subfuncIndex = declName.indexOf(Z3SMTUtils.Z3_MODEL_SEPARATOR);
 			if (subfuncIndex != -1) {
-				funcName = funcName.substring(0, subfuncIndex);
+				declName = declName.substring(0, subfuncIndex);
 			}
-			if (!functionNames.contains(funcName)) {
+			if (!functionName.equals(declName)) {
 				continue;
 			}
 			FuncInterp interp = z3InternalModel.getFuncInterp(decl);
 			if (interp.getEntries().length == 0) {// function that calls another function
 				continue;
 			}
-			if (Boolean.parseBoolean(interp.getElse().toString())) { // nodes will be false
-				continue;
-			}
-			for (Entry entry : interp.getEntries()) {
-				z3ModelElems.put(entry.getArgs()[1].toString(), new Integer(entry.getArgs()[0].toString()));
-			}
-
-
-//			Sort entriesSort = interp.getEntries()[0].getArgs()[0].getSort(); // same for all entries
-//			boolean mayOnly = entriesSort.toString().equals(Z3SMTUtils.SMTLIB_TYPE_INT); // may-only encoding
-//			boolean elseValue = Boolean.parseBoolean(interp.getElse().toString());
-//			if (elseValue) { // entries are false
-//				if (mayOnly) {
-//					Set<Integer> smtElems = new HashSet<Integer>();//TODO from listener
-//				}
-//				else {
+			// parse entries
+			boolean mayOnly = (interp.getEntries()[0].getNumArgs() == 1); // may-only encoding
+			boolean elseValue = Boolean.parseBoolean(interp.getElse().toString());
+			if (elseValue) { // entries are false
+				if (mayOnly) {
+					Set<Integer> smtElems = smtEncodingElems.keySet();
+					Map<String, Integer> funcZ3ModelElems = new HashMap<String, Integer>();
+					for (Integer smtElem : smtElems) { // add all
+						funcZ3ModelElems.put(smtElem.toString(), new Integer(smtElem));
+					}
+					for (Entry entry : interp.getEntries()) { // remove false entries
+						funcZ3ModelElems.remove(entry.getArgs()[0].toString());
+					}
+					z3ModelElems.putAll(funcZ3ModelElems);
+				}
+				else {
+					//TODO MMINT[TOSEM] is this branch ever going to be a use case?
 //					for (Expr concretization : z3InternalModel.getSortUniverse(entriesSort)) {
-//						//TODO try this branch and see what it needs
+//						
 //					}
-//				}
-//			}
-//			else { // entries are true
-//				for (Entry entry : interp.getEntries()) {
-//					if (mayOnly) {
-//						z3ModelElems.put(entry.getArgs()[0].toString(), new Integer(entry.getArgs()[0].toString()));
-//					}
-//					else {
-//						z3ModelElems.put(entry.getArgs()[1].toString(), new Integer(entry.getArgs()[0].toString()));
-//					}
-//				}
-//			}
+				}
+			}
+			else { // entries are true
+				for (Entry entry : interp.getEntries()) {
+					if (mayOnly) {
+						z3ModelElems.put(entry.getArgs()[0].toString(), new Integer(entry.getArgs()[0].toString()));
+					}
+					else {
+						z3ModelElems.put(entry.getArgs()[1].toString(), new Integer(entry.getArgs()[0].toString()));
+					}
+				}
+			}
 		}
 
 		return z3ModelElems;
 	}
 
-	public Map<String, Integer> getZ3ModelNodes() throws Z3Exception {
+	public Map<String, Integer> getZ3ModelNodes(Map<Integer, String> smtEncodingNodes) throws Z3Exception {
 
-		Set<String> functionNames = new HashSet<String>();
-		functionNames.add(Z3SMTUtils.SMTLIB_NODE);
-
-		return getZ3ModelElements(functionNames);
+		return getZ3ModelElements(smtEncodingNodes, Z3SMTUtils.SMTLIB_NODE);
 	}
 
-	public Map<String, Integer> getZ3ModelEdges() throws Z3Exception {
+	public Map<String, Integer> getZ3ModelEdges(Map<Integer, String> smtEncodingEdges) throws Z3Exception {
 
-		Set<String> functionNames = new HashSet<String>();
-		functionNames.add(Z3SMTUtils.SMTLIB_EDGE);
-
-		return getZ3ModelElements(functionNames);
-	}
-
-	public Map<String, Integer> getZ3ModelNodesAndEdges() throws Z3Exception {
-
-		Set<String> functionNames = new HashSet<String>();
-		functionNames.add(Z3SMTUtils.SMTLIB_NODE);
-		functionNames.add(Z3SMTUtils.SMTLIB_EDGE);
-
-		return getZ3ModelElements(functionNames);
+		return getZ3ModelElements(smtEncodingEdges, Z3SMTUtils.SMTLIB_EDGE);
 	}
 
 }

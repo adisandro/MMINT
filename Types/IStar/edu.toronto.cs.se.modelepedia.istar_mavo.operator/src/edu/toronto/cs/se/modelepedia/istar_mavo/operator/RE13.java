@@ -116,7 +116,7 @@ public class RE13 extends OperatorImpl {
 			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
 			(IStarMAVOToSMTLIB) getPreviousOperator();
 		smtEncoding = previousOperator.getListener().getSMTLIBEncoding();
-		smtNodes = previousOperator.getListener().getSMTLIBNodes();
+		smtNodes = previousOperator.getListener().getSMTLIBEncodingNodes();
 
 		// output
 		timeModel = -1;
@@ -178,7 +178,7 @@ public class RE13 extends OperatorImpl {
 
 		try {
 			com.microsoft.z3.Model z3InternalModel = z3Model.getZ3InternalModel();
-			Map<String, Integer> z3ModelNodes = z3Model.getZ3ModelNodes();
+			Map<String, Integer> z3ModelNodes = z3Model.getZ3ModelNodes(smtNodes);
 			for (SMTLIBLabel label : SMTLIBLabel.values()) {
 				for (FuncDecl decl : z3InternalModel.getFuncDecls()) {
 					if (!(decl.getName().toString().equals(label.name()) || decl.getName().toString().contains(label.name()+Z3SMTUtils.Z3_MODEL_SEPARATOR))) {

@@ -21,6 +21,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 
 import com.microsoft.z3.Z3Exception;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.MAVOElement;
@@ -60,6 +61,8 @@ public class TOSEM12 extends RandomOperatorImpl {
 	private MAVOTruthValue resultMAVO;
 	private List<MAVOElement> mayModelObjs;
 	private String smtEncoding;
+	private Map<Integer, String> smtNodes;
+	private Map<Integer, String> smtEdges;
 	private String smtConcretizationsConstraint;
 	private Set<String> smtConcretizations;
 	private String smtProperty;
@@ -91,6 +94,8 @@ public class TOSEM12 extends RandomOperatorImpl {
 		resultMAVO = MAVOTruthValue.ERROR;
 		mayModelObjs = previousOperator2.getMAVOModelObjects();
 		smtEncoding = previousOperator.getListener().getSMTLIBEncoding();
+		smtNodes = previousOperator.getListener().getSMTLIBEncodingNodes();
+		smtEdges = previousOperator.getListener().getSMTLIBEncodingEdges();
 		smtConcretizationsConstraint = "";
 		smtConcretizations = new HashSet<String>();
 		smtProperty = "";
@@ -233,10 +238,19 @@ public class TOSEM12 extends RandomOperatorImpl {
 		if (z3Model.getZ3Bool() != Z3SMTBool.SAT) {
 			throw new MMINTException("MAVO Property checking was SAT but now backbone baseline is not.");
 		}
-		Map<String, Integer> initialZ3ModelElems = z3Model.getZ3ModelNodesAndEdges();
+		Map<String, Integer> initialZ3ModelElems = z3Model.getZ3ModelNodes(smtNodes);
+		initialZ3ModelElems.putAll(z3Model.getZ3ModelEdges(smtEdges));
 		long endTime = System.nanoTime();
 
 		timeMAVOBackbone = endTime - startTime;
+	}
+
+	private void doMAVOAllsatPropertyCheck() {
+
+		long startTime = System.nanoTime();
+		long endTime = System.nanoTime();
+
+		timeMAVOAllsat = endTime - startTime;
 	}
 
 	@Override
@@ -254,6 +268,12 @@ public class TOSEM12 extends RandomOperatorImpl {
 		if (resultMAVO == MAVOTruthValue.MAYBE) {
 			if (timeMAVOBackboneEnabled) {
 				doMAVOBackbonePropertyCheck();
+			}
+			if (timeMAVOAllsatEnabled) {
+				doMAVOAllsatPropertyCheck();
+			}
+			if (timeMAVOBackboneEnabled && timeMAVOAllsatEnabled) {
+				speedupMAVOAllsatMAVOBackbone = ((double) timeMAVOAllsat) / timeMAVOBackbone;
 			}
 		}
 
