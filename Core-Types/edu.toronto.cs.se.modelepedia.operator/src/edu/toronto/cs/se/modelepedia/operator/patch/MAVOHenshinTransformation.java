@@ -251,7 +251,6 @@ matchesN:
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		Model model = actualParameters.get(0);
-		init();
 		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		// do transformations
@@ -274,7 +273,7 @@ matchesN:
 
 		// save transformed model(s) and update mid
 		EList<Model> result = new BasicEList<Model>();
-		boolean updateMid = MultiModelOperatorUtils.isUpdatingMid(getInputProperties());
+		boolean updateMid = MultiModelOperatorUtils.isUpdatingMID(getInputProperties());
 		MultiModel multiModel = (updateMid) ?
 			MultiModelRegistry.getMultiModel(model) :
 			null;

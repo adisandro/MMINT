@@ -23,8 +23,7 @@ import com.microsoft.z3.Z3Exception;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3BoolResult;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils.Z3ModelResult;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
 
 public class Z3SMTSolver {
 
@@ -39,23 +38,23 @@ public class Z3SMTSolver {
 	}
 
 	// check sat, no incremental
-	public Z3BoolResult checkSat(String smtEncoding) {
+	public Z3SMTBool checkSat(String smtEncoding) {
 
 		Map<String, String> config = new HashMap<String, String>();
 		try {
 			Solver solver = loadSMTEncoding(config, smtEncoding);
 			Status status = solver.check();
 
-			return Z3BoolResult.toZ3BoolResult(status);
+			return Z3SMTBool.toZ3Bool(status);
 		}
 		catch (Z3Exception e) {
 			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result", e);
-			return Z3BoolResult.UNKNOWN;
+			return Z3SMTBool.UNKNOWN;
 		}
 	}
 
 	// check sat and get model, no incremental
-	public Z3ModelResult checkSatAndGetModel(String smtEncoding) {
+	public Z3SMTModel checkSatAndGetModel(String smtEncoding) {
 
 		Map<String, String> config = new HashMap<String, String>();
 		config.put("model", "true");
@@ -67,11 +66,11 @@ public class Z3SMTSolver {
 				model = solver.getModel();
 			}
 
-			return new Z3ModelResult(status, model);
+			return new Z3SMTModel(status, model);
 		}
 		catch (Z3Exception e) {
 			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result", e);
-			return new Z3ModelResult(Status.UNKNOWN, null);
+			return new Z3SMTModel(Status.UNKNOWN, null);
 		}
 	}
 

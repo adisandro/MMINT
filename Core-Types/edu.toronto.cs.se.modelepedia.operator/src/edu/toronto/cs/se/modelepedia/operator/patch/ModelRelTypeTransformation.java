@@ -59,8 +59,10 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 	protected EObject tgtRootModelObj;
 	protected String tgtModelUri;
 
-	protected void init() {
+	@Override
+	public void init() throws MMINTException {
 
+		// state
 		tgtRootModelObj = null;
 	}
 
@@ -197,7 +199,6 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		ModelRel traceModelRelType = (ModelRel) actualParameters.get(0);
 		Model srcModel = actualParameters.get(1);
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(srcModel);
-		init();
 
 		int srcIndex = (
 			traceModelRelType instanceof BinaryModelRel ||

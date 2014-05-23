@@ -13,7 +13,6 @@ package edu.toronto.cs.se.mmint.mid.operator.impl;
 
 import edu.toronto.cs.se.mmint.mid.operator.*;
 
-import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 
@@ -68,7 +67,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case OperatorPackage.ESTRING_TO_PARAMETER_MAP: return (EObject)createEStringToParameterMap();
 			case OperatorPackage.OPERATOR: return createOperator();
 			case OperatorPackage.CONVERSION_OPERATOR: return createConversionOperator();
 			case OperatorPackage.RANDOM_OPERATOR: return createRandomOperator();
@@ -114,16 +112,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Map.Entry<String, Parameter> createEStringToParameterMap() {
-		EStringToParameterMapImpl eStringToParameterMap = new EStringToParameterMapImpl();
-		return eStringToParameterMap;
 	}
 
 	/**

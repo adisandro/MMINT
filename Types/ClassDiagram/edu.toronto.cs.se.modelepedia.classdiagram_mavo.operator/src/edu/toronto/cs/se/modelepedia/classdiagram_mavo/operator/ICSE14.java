@@ -112,9 +112,12 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		properties.setProperty(PROPERTY_OUT_SMTENCODINGVARIABLES, String.valueOf(smtEncodingVariables.size()));
 	}
 
-	protected void init() {
+	@Override
+	public void init() throws MMINTException {
 
 		super.init();
+
+		// state
 		modelObjsBucketA = new ArrayList<MAVOElement>();
 		modelObjsChainsA = new ArrayList<Integer>();
 	}
@@ -197,7 +200,6 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		inputModel = actualParameters.get(0);
-		init();
 		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();

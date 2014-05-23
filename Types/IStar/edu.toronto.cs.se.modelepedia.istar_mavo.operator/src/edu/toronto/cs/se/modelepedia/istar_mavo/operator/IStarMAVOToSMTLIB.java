@@ -47,7 +47,6 @@ public class IStarMAVOToSMTLIB extends OperatorImpl {
 		}
 	}
 
-
 	private EcoreMAVOToSMTLIBListener smtListener;
 
 	public EcoreMAVOToSMTLIBListener getListener() {

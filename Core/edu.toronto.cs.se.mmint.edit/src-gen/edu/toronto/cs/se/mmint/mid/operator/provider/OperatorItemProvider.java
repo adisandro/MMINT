@@ -134,7 +134,6 @@ public class OperatorItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(OperatorPackage.Literals.OPERATOR__INPUTS);
 			childrenFeatures.add(OperatorPackage.Literals.OPERATOR__OUTPUTS);
-			childrenFeatures.add(OperatorPackage.Literals.OPERATOR__SIGNATURE_TABLE);
 		}
 		return childrenFeatures;
 	}
@@ -194,7 +193,6 @@ public class OperatorItemProvider
 				return;
 			case OperatorPackage.OPERATOR__INPUTS:
 			case OperatorPackage.OPERATOR__OUTPUTS:
-			case OperatorPackage.OPERATOR__SIGNATURE_TABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -221,11 +219,6 @@ public class OperatorItemProvider
 			(createChildParameter
 				(OperatorPackage.Literals.OPERATOR__OUTPUTS,
 				 OperatorFactory.eINSTANCE.createParameter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(OperatorPackage.Literals.OPERATOR__SIGNATURE_TABLE,
-				 OperatorFactory.eINSTANCE.create(OperatorPackage.Literals.ESTRING_TO_PARAMETER_MAP)));
 	}
 
 	/**

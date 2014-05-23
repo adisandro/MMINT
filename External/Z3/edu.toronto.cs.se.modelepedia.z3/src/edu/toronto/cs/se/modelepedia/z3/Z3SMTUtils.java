@@ -11,9 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.z3;
 
-import com.microsoft.z3.Model;
-import com.microsoft.z3.Status;
-
 public class Z3SMTUtils {
 
 	public static final String SMTLIB_FILE_EXTENSION = "smt2";
@@ -31,6 +28,12 @@ public class Z3SMTUtils {
 	public static final String SMTLIB_IMPLICATION = SMTLIB_PREDICATE_START + "=> ";
 	public static final String SMTLIB_CONST = SMTLIB_PREDICATE_START + "declare-const ";
 	public static final String SMTLIB_TYPE_BOOL = "Bool";
+	public static final String SMTLIB_TYPE_INT = "Int";
+
+	public static final String SMTLIB_NODE = "node";
+	public static final String SMTLIB_EDGE = "edge";
+	public static final String SMTLIB_NODE_FUNCTION = SMTLIB_PREDICATE_START + SMTLIB_NODE + " ";
+	public static final String SMTLIB_EDGE_FUNCTION = SMTLIB_PREDICATE_START + SMTLIB_EDGE + " ";
 
 	public static final String Z3_MODEL_SEPARATOR = "!";
 	public static final String Z3_MODEL_DEFINITION = " -> ";
@@ -38,85 +41,6 @@ public class Z3SMTUtils {
 	public static final String Z3_MODEL_FUNCTION_START = "{";
 	public static final String Z3_MODEL_FUNCTION_END = "}";
 	public static final String Z3_MODEL_NEWLINE = "\n";
-
-	public enum Z3BoolResult {
-
-		SAT, UNSAT, UNKNOWN;
-
-		public static Z3BoolResult toZ3BoolResult(Status z3Status) {
-
-			switch (z3Status) {
-				case UNSATISFIABLE:
-					return UNSAT;
-				case SATISFIABLE:
-					return SAT;
-				default:
-					return UNKNOWN;
-			}
-		}
-
-	}
-
-	public static class Z3ModelResult {
-
-		private Z3BoolResult z3BoolResult;
-		private Model z3Model;
-
-		public Z3ModelResult(Z3BoolResult z3BoolResult, Model z3Model) {
-			this.z3BoolResult = z3BoolResult;
-			this.z3Model = z3Model;
-		}
-
-		public Z3ModelResult(Status z3Status, Model z3Model) {
-			this.z3BoolResult = Z3BoolResult.toZ3BoolResult(z3Status);
-			this.z3Model = z3Model;
-		}
-
-		public Z3BoolResult getZ3BoolResult() {
-			return z3BoolResult;
-		}
-
-		public Model getZ3Model() {
-			return z3Model;
-		}
-	}
-
-	public enum MAVOTruthValue {
-
-		TRUE, FALSE, MAYBE, ERROR;
-
-		public boolean toBoolean() {
-
-			switch (this) {
-				case TRUE:
-				case MAYBE:
-					return true;
-				case FALSE:
-				case ERROR:
-				default:
-					return false;
-			}
-		}
-
-		public static MAVOTruthValue toMAVOTruthValue(boolean truthValue) {
-
-			return (truthValue) ? TRUE : FALSE;
-		}
-
-		public static MAVOTruthValue toMAVOTruthValue(boolean propertyTruthValue, boolean notPropertyTruthValue) {
-
-			if (propertyTruthValue == true && notPropertyTruthValue == false) {
-				return TRUE;
-			}
-			if (propertyTruthValue == false && notPropertyTruthValue == true) {
-				return FALSE;
-			}
-			if (propertyTruthValue == true && notPropertyTruthValue == true) {
-				return MAYBE;
-			}
-			return ERROR;
-		}
-	}
 
 	public static String predicate(String predicateStart, String smtTerms) {
 
