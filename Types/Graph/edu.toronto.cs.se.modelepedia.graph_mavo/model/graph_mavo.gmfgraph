@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ASCII"?>
+<gmfgraph:Canvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="graph_mavo">
+  <figures name="Default">
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="EdgeFigureTargetDecoration"/>
+    <descriptors name="NodeFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="NodeFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="MAVONodeLabelFigure">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Label" name="NodeLabelFigure" text="Node"/>
+      </actualFigure>
+      <accessors accessor="getFigureNodeLabelFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
+      <accessors accessor="getFigureMAVONodeLabelFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="EdgeFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="EdgeFigure" targetDecoration="//@figures.0/@figures.0">
+        <children xsi:type="gmfgraph:Label" name="MAVOEdgeLabelFigure">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+      </actualFigure>
+      <accessors figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="EdgeLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="EdgeLabelLabel" text="Edge"/>
+    </descriptors>
+  </figures>
+  <nodes name="Node" figure="NodeFigure"/>
+  <connections name="Edge" figure="EdgeFigure"/>
+  <labels name="NodeLabel" figure="NodeFigure" elementIcon="false" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels name="EdgeLabel" figure="EdgeLabelFigure" elementIcon="false"/>
+  <labels name="MAVONodeLabel" figure="NodeFigure" accessor="//@figures.0/@descriptors.0/@accessors.1"/>
+  <labels name="MAVOEdgeLabel" figure="EdgeFigure" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+</gmfgraph:Canvas>
