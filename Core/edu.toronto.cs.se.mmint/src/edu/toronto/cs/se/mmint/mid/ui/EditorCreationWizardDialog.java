@@ -43,7 +43,10 @@ public class EditorCreationWizardDialog extends WizardDialog {
 	protected void finishPressed() {
 
 		IWizardPage page = getCurrentPage();
-		while (page.getPreviousPage() != null && !(page instanceof WizardNewFileCreationPage)) {
+		while (page.getPreviousPage() != null) { // first page or last WizardNewFileCreationPage
+			if (page instanceof WizardNewFileCreationPage) {
+				break;
+			}
 			page = page.getPreviousPage();
 		}
 		storeCreatedModelUri(page);
@@ -61,6 +64,7 @@ public class EditorCreationWizardDialog extends WizardDialog {
 	 */
 	public EditorCreationWizardDialog(Shell parentShell, IWizard newWizard) {
 
+		//TODO MMINT[EDITOR] Create interface, this as the base class is misleading, then maybe make finishPressed to be inherited too
 		super(parentShell, newWizard);
 	}
 
