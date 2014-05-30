@@ -1,0 +1,11 @@
+self.oclIsType(Class) or
+self.oclIsType(Attribute) or (
+	self.oclIsType(Class) and
+	not self.oclAsType(Class).parent.oclIsUndefined()
+) or(
+	self.oclIsType(Association) and
+	self.oclAsType(Association).upperBound = 1
+) or (
+	self.oclIsType(Association) and
+	self.oclAsType(Association).upperBound = -1
+)

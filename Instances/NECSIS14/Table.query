@@ -1,0 +1,4 @@
+self.oclIsType(Class) or (
+	self.oclIsType(Association) and
+	self.oclAsType(Association).upperBound = -1
+)
