@@ -1,4 +1,3 @@
-self.oclIsType(Class) or (
-	self.oclIsType(Association) and
-	self.oclAsType(Association).upperBound = -1
+Class.allInstances()->collect(oclAsType(OclAny))->union(
+	Association.allInstances()->select(upperBound = -1)
 )
