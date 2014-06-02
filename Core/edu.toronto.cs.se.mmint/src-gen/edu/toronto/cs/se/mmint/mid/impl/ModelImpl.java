@@ -973,11 +973,9 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		}
 
 		// copy model
-		String oldUri = MultiModelUtils.prependWorkspaceToUri(origModel.getUri());
 		String newModelUri = MultiModelUtils.replaceFileNameInUri(origModel.getUri(), newModelName);
-		String newUri = MultiModelUtils.prependWorkspaceToUri(newModelUri);
 		try {
-			MultiModelUtils.copyTextFileAndReplaceText(oldUri, newUri, origModel.getName(), newModelName);
+			MultiModelUtils.copyTextFileAndReplaceText(origModel.getUri(), newModelUri, origModel.getName(), newModelName, true);
 		} catch (Exception e) {
 			throw new MMINTException("Error copying model file");
 		}
@@ -988,10 +986,14 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				if (oldEditor.getUri().equals(origModel.getUri())) {
 					continue;
 				}
-				oldUri = MultiModelUtils.prependWorkspaceToUri(oldEditor.getUri());
-				newUri = MultiModelUtils.prependWorkspaceToUri(MultiModelUtils.replaceFileNameInUri(oldEditor.getUri(), newModelName));
 				try {
-					MultiModelUtils.copyTextFileAndReplaceText(oldUri, newUri, origModel.getName(), newModelName);
+					MultiModelUtils.copyTextFileAndReplaceText(
+						oldEditor.getUri(),
+						MultiModelUtils.replaceFileNameInUri(oldEditor.getUri(), newModelName),
+						origModel.getName(),
+						newModelName,
+						true
+					);
 				} catch (Exception e) {
 					MMINTException.print(Type.WARNING, "Error copying diagram file, skipping it", e);
 					continue;

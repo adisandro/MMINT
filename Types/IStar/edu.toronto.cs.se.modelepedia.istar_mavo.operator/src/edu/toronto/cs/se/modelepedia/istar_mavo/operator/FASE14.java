@@ -174,13 +174,12 @@ public class FASE14 extends RE13 {
 
 		try {
 			MultiModelUtils.createTextFile(
-				MultiModelUtils.prependWorkspaceToUri(
-					MultiModelUtils.replaceFileExtensionInUri(
-						MultiModelUtils.addFileNameSuffixInUri(istarModel.getUri(), RNF_OUTPUT_SUFFIX),
-						Z3SMTUtils.SMTLIB_FILE_EXTENSION
-					)
+				MultiModelUtils.replaceFileExtensionInUri(
+					MultiModelUtils.addFileNameSuffixInUri(istarModel.getUri(), RNF_OUTPUT_SUFFIX),
+					Z3SMTUtils.SMTLIB_FILE_EXTENSION
 				),
-				smtEncodingRNF
+				smtEncodingRNF,
+				true
 			);
 		}
 		catch (Exception e) {

@@ -445,10 +445,11 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				ModelEndpointReference kModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(kModelTypeEndpoint.getUri(), ((ModelRel) kModelTypeEndpoint.eContainer()).getModelEndpointRefs());
 				String kModelUri = kModelEndpoint.getExtendedTargetUri();
 				MultiModelUtils.copyTextFileAndReplaceText(
-					MultiModelUtils.prependWorkspaceToUri(kModelEndpoint.getTargetUri()),
-					MultiModelUtils.prependWorkspaceToUri(kModelUri),
+					kModelEndpoint.getTargetUri(),
+					kModelUri,
 					MultiModelUtils.getLastSegmentFromUri(kModelTypeEndpoint.getTargetUri() + "." + EcorePackage.eNAME),
-					kModelTypeEndpoint.getExtendedTargetUri()
+					kModelTypeEndpoint.getExtendedTargetUri(),
+					true
 				);
 				EObject kRootModelObj = kModelEndpoint.getExtendedTarget().getEMFInstanceRoot();
 				EMFInfo kModelElemTypeEInfo;

@@ -110,8 +110,11 @@ public class MultiModelUtils {
 		return MMINTActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + uri;
 	}
 
-	public static void createTextFile(String fileUri, String text) throws Exception {
+	public static void createTextFile(String fileUri, String text, boolean isWorkspaceRelative) throws Exception {
 
+		if (isWorkspaceRelative) {
+			fileUri = prependWorkspaceToUri(fileUri);
+		}
 		Path filePath = Paths.get(fileUri);
 		try (BufferedWriter writer = Files.newBufferedWriter(filePath, Charset.forName("UTF-8"))) {
 			writer.write(text);
@@ -120,11 +123,15 @@ public class MultiModelUtils {
 
 	public static void createTextFileInState(String text, String relativeFileUri) throws Exception {
 
-		createTextFile(prependStateToUri(relativeFileUri), text);
+		createTextFile(prependStateToUri(relativeFileUri), text, false);
 	}
 
-	public static void copyTextFileAndReplaceText(String origFileUri, String newFileUri, String origText, String newText) throws Exception {
+	public static void copyTextFileAndReplaceText(String origFileUri, String newFileUri, String origText, String newText, boolean isWorkspaceRelative) throws Exception {
 
+		if (isWorkspaceRelative) {
+			origFileUri = prependWorkspaceToUri(origFileUri);
+			newFileUri = prependWorkspaceToUri(newFileUri);
+		}
 		Path oldFilePath = Paths.get(origFileUri);
 		Path newFilePath = Paths.get(newFileUri);
 		try (BufferedReader oldBuffer = Files.newBufferedReader(oldFilePath, Charset.forName("UTF-8"))) {
@@ -136,6 +143,11 @@ public class MultiModelUtils {
 				}
 			}
 		}
+	}
+
+	public static void copyTextFileAndReplaceTextInState(String origRelativeFileUri, String newRelativeFileUri, String origText, String newText) throws Exception {
+
+		copyTextFileAndReplaceText(prependStateToUri(origRelativeFileUri), prependStateToUri(newRelativeFileUri), origText, newText, false);
 	}
 
 	public static String isFileOrDirectory(String uri, boolean isWorkspaceRelative) {
