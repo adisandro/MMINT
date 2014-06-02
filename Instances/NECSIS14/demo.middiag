@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_mINl8OXgEeO1DbqEAWqHsQ" type="Mid" name="demo.middiag" measurementUnit="Pixel">
-  <styles xmi:type="notation:DiagramStyle" xmi:id="_mINl8eXgEeO1DbqEAWqHsQ"/>
-  <element xmi:type="mid:MultiModel" href="demo.mid#/"/>
-</notation:Diagram>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
+  <notation:Diagram xmi:id="_mINl8OXgEeO1DbqEAWqHsQ" type="Mid" name="demo.middiag" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_LhQnMOqbEeONS-tob9uT7w" type="2011">
+      <children xmi:type="notation:DecorationNode" xmi:id="_LhQnNeqbEeONS-tob9uT7w" type="5011"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_LhQnNuqbEeONS-tob9uT7w" type="5016"/>
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_LhQnMeqbEeONS-tob9uT7w"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_LhQnMuqbEeONS-tob9uT7w" fontName="Cantarell" fontHeight="10"/>
+      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_LhQnM-qbEeONS-tob9uT7w" hint="Mid"/>
+      <element xmi:type="mid:Model" href="demo.mid#//@models.0"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LhQnNOqbEeONS-tob9uT7w" x="228" y="132"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_mINl8eXgEeO1DbqEAWqHsQ"/>
+    <element xmi:type="mid:MultiModel" href="demo.mid#/"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_bh6AUOqbEeONS-tob9uT7w" type="Relationship" measurementUnit="Pixel">
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_bh6AUeqbEeONS-tob9uT7w"/>
+  </notation:Diagram>
+</xmi:XMI>

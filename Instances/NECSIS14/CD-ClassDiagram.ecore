@@ -7,6 +7,8 @@
         eType="#//Class" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="associations" upperBound="-1"
         eType="#//Association" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="_exTables" upperBound="-1"
+        eType="#//_ExTable" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -27,4 +29,11 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="_ExTable" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="_exColumns" upperBound="-1"
+        eType="#//_ExColumn" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="_exPrimaryKey" lowerBound="1"
+        eType="#//_ExColumn"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="_ExColumn" eSuperTypes="#//NamedElement"/>
 </ecore:EPackage>

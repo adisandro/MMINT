@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
-<classdiagram:ClassDiagram
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:classdiagram="http://classdiagram/1.0"
-    xsi:schemaLocation="http://classdiagram/1.0 ClassDiagram.ecore">
+<classdiagram:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:classdiagram="http://se.cs.toronto.edu/mmint/ClassDiagram" xsi:schemaLocation="http://se.cs.toronto.edu/mmint/ClassDiagram file:/media/alessio/Dati/alessio/rworkspace-kepler/.metadata/.plugins/edu.toronto.cs.se.mmint/ClassDiagram.ecore">
   <classes name="A">
     <attributes
         name="a"/>
