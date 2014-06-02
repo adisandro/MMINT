@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.ocl.reasoning;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -119,7 +120,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 		}
 	}
 
-	public Object deriveUsingConstraint(EObject modelObj, String oclConstraint) {
+	public Object evaluateQuery(EObject modelObj, String oclConstraint) {
 
 		OCL ocl = OCL.newInstance();
 		OCLHelper helper = ocl.createOCLHelper();
@@ -127,7 +128,11 @@ public class OCLReasoningEngine implements IReasoningEngine {
 
 		try {
 			ExpressionInOCL expression = helper.createQuery(oclConstraint);
-			return ocl.evaluate(modelObj, expression);
+			Object evaluation = ocl.evaluate(modelObj, expression);
+			if (evaluation instanceof CollectionValue.Accumulator) {
+				evaluation = ((CollectionValue.Accumulator) evaluation).getElements();
+			}
+			return evaluation;
 		}
 		catch (Exception e) {
 			MMINTException.print(MMINTException.Type.ERROR, "OCL derivation error: " + oclConstraint, e);

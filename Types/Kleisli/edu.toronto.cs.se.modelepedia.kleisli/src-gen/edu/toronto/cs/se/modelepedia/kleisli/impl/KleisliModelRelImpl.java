@@ -11,10 +11,10 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -30,7 +30,6 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelOpenEditorCommand;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
@@ -466,20 +465,14 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					) {
 						continue;
 					}
+					Object modelObjs = oclReasoner.evaluateQuery(kRootModelObj, kConstraint.getImplementation());
+					if (!(modelObjs instanceof Collection<?>)) {
+						continue;
+					}
 					EClass kModelElemTypeClass = (EClass) kModelTypePackage.getEClassifier(kModelElemTypeEInfo.getClassName());
-					TreeIterator<EObject> modelObjIter = kRootModelObj.eAllContents();
-					while (modelObjIter.hasNext()) {
-						EObject modelObj = modelObjIter.next();
-						for (EClass kModelElemTypeClassSuper : kModelElemTypeClass.getESuperTypes()) {
-							if (!kModelElemTypeClassSuper.getName().equals(modelObj.eClass().getName())) {
-								continue;
-							}
-							if (oclReasoner.checkConstraint(modelObj, kConstraint.getImplementation()) != MAVOTruthValue.TRUE) {
-								continue;
-							}
-							EObject kModelObj = kModelTypeFactory.create(kModelElemTypeClass);
-							kModelObjs1.put(kModelObj, modelObj);
-						}
+					for (Object modelObj : (Collection<?>) modelObjs) {
+						EObject kModelObj = kModelTypeFactory.create(kModelElemTypeClass);
+						kModelObjs1.put(kModelObj, (EObject) modelObj);
 					}
 				}
 				for (Map.Entry<EObject, EObject> kModelObjEntry : kModelObjs1.entrySet()) {
@@ -527,7 +520,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 							}
 							EcoreUtil.replace(modelObj, kModelObj);
 						}
-						Object kModelObjAttr = oclReasoner.deriveUsingConstraint(kModelObj, kConstraint.getImplementation());
+						Object kModelObjAttr = oclReasoner.evaluateQuery(kModelObj, kConstraint.getImplementation());
 						EStructuralFeature kFeature = kModelObj.eClass().getEStructuralFeature(kModelElemTypeEInfo.getFeatureName());
 						kModelObj.eSet(kFeature, kModelObjAttr);
 					}
