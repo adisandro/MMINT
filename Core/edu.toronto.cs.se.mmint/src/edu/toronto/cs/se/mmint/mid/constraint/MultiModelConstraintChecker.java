@@ -486,7 +486,7 @@ public class MultiModelConstraintChecker {
 			}
 		}
 		// look for UML stereotypes
-		//TODO MMINT[MODELELEMENT] review
+		//TODO MMINT[UML] review
 		if (modelObj instanceof NamedElement) {
 			for (Stereotype stereotype : ((NamedElement) modelObj).getApplicableStereotypes()) {
 				if (
