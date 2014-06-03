@@ -1,0 +1,3 @@
+Class.allInstances()->collect(oclAsType(OclAny))->union(
+	Association.allInstances()->select(upperBound = -1)
+)

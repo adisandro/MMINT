@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint.mid.diagram.library;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -87,16 +88,17 @@ public class AddModifyConstraintListener extends SelectionAdapter {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
+				Set<String> languages = MMINT.getReasonerLanguages();
+				if (languages.isEmpty()) {
+					throw new MMINTException("No language installed to express constraints");
+				}
 				ExtendibleElementConstraint constraint = element.getConstraint();
 				if (constraint == null) {
 					constraint = MidFactory.eINSTANCE.createExtendibleElementConstraint();
-					element.setConstraint(constraint);
+					constraint.setLanguage(languages.iterator().next());
+					constraint.setImplementation("");
 				}
-				String implementation = constraint.getImplementation();
-				if (implementation == null) {
-					implementation = "";
-				}
-				String[] newConstraint = MultiModelDiagramUtils.getConstraintInput("Add/Modify Constraint", constraint.getLanguage() + MultiModelDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + implementation);
+				String[] newConstraint = MultiModelDiagramUtils.getConstraintInput("Add/Modify Constraint", constraint.getLanguage() + MultiModelDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + constraint.getImplementation());
 				if (!MultiModelConstraintChecker.isInstancesLevel(element)) {
 					if (!MultiModelConstraintChecker.checkConstraintConsistency(element, newConstraint[0], newConstraint[1])) {
 						throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");
@@ -104,6 +106,9 @@ public class AddModifyConstraintListener extends SelectionAdapter {
 				}
 				constraint.setLanguage(newConstraint[0]);
 				constraint.setImplementation(newConstraint[1]);
+				if (element.getConstraint() == null) {
+					element.setConstraint(constraint);
+				}
 
 				return CommandResult.newOKCommandResult(constraint);
 			}

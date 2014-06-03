@@ -80,7 +80,7 @@ public class KleisliTest {
 	private final static String[] SRC_METAMODELOBJ_NAMES = {"Company", "Student", "Businessman", "Company/clients", "Client/number"};
 	private final static String[] TGT_METAMODELOBJ_NAMES = {"Bank", "_StudentAccount", "_BusinessAccount", "Bank/accounts", "Account/_number"};
 	private final static String TGT_MODELELEM_QUERYLANGUAGE = "OCL";
-	private final static String[] TGT_MODELELEM_OCLQUERIES = {null, "id.startsWith('S')", "id.startsWith('B')", null, "id.substring(2,2)"};
+	private final static String[] TGT_MODELELEM_OCLQUERIES = {null, "accounts->select(id.startsWith('S'))", "accounts->select(id.startsWith('B'))", null, "id.substring(2,2)"};
 	private final static String TGT_MODELOBJ_METAMODELROOTCLASS = "Bank";
 	private final static String TGT_MODELOBJ_METAMODELCLASSTOCREATE = "Account";
 	private final static String TGT_MODELOBJ_METAMODELCONTAININGFEATURE = "accounts";
