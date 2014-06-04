@@ -1,0 +1,7 @@
+KLEISLI:
+Class.allInstances()
+Class.allInstances()->select(not parent.oclIsUndefined())
+Attribute.allInstances()
+Association.allInstances()->select(upperBound = -1)
+Association.allInstances()->select(upperBound = -1)
+Association.allInstances()->select(upperBound = 1)

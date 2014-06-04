@@ -23,7 +23,6 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.diagram.library.AddModifyConstraintListener;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReference2EditPart;
@@ -104,7 +103,7 @@ public class KleisliRelationshipDiagramContextMenu extends ContributionItem {
 			MenuItem derivationItem = new MenuItem(mmintMenu, SWT.NONE);
 			derivationItem.setText("Add/Modify Kleisli Query");
 			derivationItem.addSelectionListener(
-				new AddModifyConstraintListener(modelElemRef)
+				new KleisliAddModifyQueryListener(modelElemRef.getObject())
 			);
 		}
 	}

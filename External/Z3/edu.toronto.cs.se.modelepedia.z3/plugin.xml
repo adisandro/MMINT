@@ -14,6 +14,7 @@
 -->
 
 <plugin>
+
    <extension
          point="edu.toronto.cs.se.mmint.reasoners">
       <reasoner

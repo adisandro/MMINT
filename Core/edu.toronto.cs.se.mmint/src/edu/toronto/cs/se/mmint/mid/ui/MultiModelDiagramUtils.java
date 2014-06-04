@@ -262,6 +262,8 @@ public class MultiModelDiagramUtils {
 			constraint[0] = "OCL";
 			constraint[1] = constraintImplementation;
 		}
+		constraint[0] = constraint[0].trim();
+		constraint[1] = constraint[1].trim();
 
 		return constraint;
 	}
