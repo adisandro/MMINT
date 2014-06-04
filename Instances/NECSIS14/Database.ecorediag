@@ -107,7 +107,7 @@
     </children>
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_RI9m0eg7EeOF_aZl-PtANg" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_RI9m0ug7EeOF_aZl-PtANg" fontColor="4210752" fontName="Cantarell" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="Database.ecore#//Table/primaryKey"/>
+    <element xmi:type="ecore:EReference" href="Database.ecore#//Table/primaryKeys"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_RI9m0-g7EeOF_aZl-PtANg" points="[-50, 3, 142, 3]$[-193, 22, -1, 22]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_TOmdoOg7EeOF_aZl-PtANg" id="(0.11764705882352941,0.8)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_TsvLIOg7EeOF_aZl-PtANg" id="(0.8725490196078431,0.7777777777777778)"/>

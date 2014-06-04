@@ -26,8 +26,10 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTActivator;
@@ -277,6 +279,26 @@ public class MultiModelUtils {
 	public static void deleteDirectoryInState(String relativeDirectoryUri) {
 
 		deleteDirectory(prependStateToUri(relativeDirectoryUri), false);
+	}
+
+	@SuppressWarnings("unchecked")
+	public static void setModelObjFeature(EObject modelObj, String featureName, Object value) throws MMINTException {
+
+		EStructuralFeature feature = modelObj.eClass().getEStructuralFeature(featureName);
+		if (feature == null) {
+			throw new MMINTException("Feature " + featureName + " not found in " + modelObj);
+		}
+		if (feature.isMany()) {
+			if (value instanceof EList<?>) {
+				modelObj.eSet(feature, value);
+			}
+			else {
+				((EList<Object>) modelObj.eGet(feature)).add(value);
+			}
+		}
+		else {
+			modelObj.eSet(feature, value);
+		}
 	}
 
 }
