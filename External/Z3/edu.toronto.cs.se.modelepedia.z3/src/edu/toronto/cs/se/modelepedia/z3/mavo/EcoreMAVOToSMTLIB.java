@@ -75,7 +75,8 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 
 		List<Object> m2tArgs = new ArrayList<Object>();
 		m2tArgs.add(mavoModel.getName());
-		m2tArgs.add(mayOnly);
+		//TODO MMINT[MU-MMINT] input here should be mayOnly.
+		m2tArgs.add(true);
 		File folder = (new File(MultiModelUtils.prependWorkspaceToUri(mavoModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);

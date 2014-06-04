@@ -7,7 +7,8 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.acceleo.engine,
- edu.toronto.cs.se.mmint
+ edu.toronto.cs.se.mmint,
+ org.eclipse.gmf.runtime.notation
 Export-Package: com.microsoft.z3,
  edu.toronto.cs.se.modelepedia.z3,
  edu.toronto.cs.se.modelepedia.z3.mavo,

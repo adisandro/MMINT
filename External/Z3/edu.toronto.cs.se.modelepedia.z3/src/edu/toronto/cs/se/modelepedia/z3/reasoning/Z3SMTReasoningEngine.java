@@ -8,6 +8,7 @@
  * 
  * Contributors:
  *    Alessio Di Sandro - Implementation.
+ *    Naama Ben-David - Highlighting functionality
  */
 package edu.toronto.cs.se.modelepedia.z3.reasoning;
 
@@ -32,6 +33,7 @@ import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
 public class Z3SMTReasoningEngine implements IReasoningEngine {
 
 	private final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
+	private final static String GRAPH_MAVO_URI = "http://se.cs.toronto.edu/modelepedia/Graph_MAVO";
 
 	public static MAVOTruthValue checkMAVOProperty(String smtEncoding, String smtProperty) {
 
@@ -62,7 +64,23 @@ public class Z3SMTReasoningEngine implements IReasoningEngine {
 		}
 		ecore2smt.cleanup();
 
-		return checkMAVOProperty(ecore2smt.getListener().getSMTLIBEncoding(), smtConstraint);
+		MAVOTruthValue propertyTruthValue = checkMAVOProperty(ecore2smt.getListener().getSMTLIBEncoding(), smtConstraint);
+
+		if (propertyTruthValue == MAVOTruthValue.MAYBE){
+			//TODO MMINT[MU-MMINT] Generalize to any MAVO model.
+			if(model.getMetatypeUri().equals(GRAPH_MAVO_URI)){
+				MAVOConcretizationHighlighter highlight;
+				try {
+					highlight = new MAVOConcretizationHighlighter();
+					highlight.execute(actualParameters);
+				} catch (Exception e) {
+					e.printStackTrace();
+					MMINTException.print(MMINTException.Type.ERROR, "Can't highlight example", e);
+					return MAVOTruthValue.MAYBE;
+				}
+			}
+		}
+		return propertyTruthValue;
 	}
 
 	@Override
