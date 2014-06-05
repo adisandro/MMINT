@@ -11,7 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.z3.reasoning;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -39,6 +41,7 @@ import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIBListener;
 
 public class MAVOConcretizationHighlighter{
 	private static final int GREY_OUT_COLOR = 0xD9D9D9;
+	private static final int HIGHLIGHT_COLOR = 0x50CFED;
 	private static final String DIAGRAM_ID = "edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorID";
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
 	
@@ -94,13 +97,20 @@ public class MAVOConcretizationHighlighter{
 
 		Z3SMTModel resultModel = runZ3SMTSolver();
 		
-		//get FormulaIDs of elements to be grayed out
-		Set<String> notInExample = findUnusedElements(resultModel);
+		//get FormulaIDs of elements to be grayed out and highlighted
+		ArrayList<Set<String>> separatedDiagram = separateExampleElements(resultModel);
+		Set<String> notInExample = separatedDiagram.get(1);
+		Set<String> inExample = separatedDiagram.get(0);
 		
 		//grey out anything that's not in the example
 		for (String FID : notInExample){
 			View element = diagramElements.get(FID);
 			color(element, GREY_OUT_COLOR);
+		}
+		
+		for (String FID: inExample){
+			View element = diagramElements.get(FID);
+			color(element, HIGHLIGHT_COLOR);
 		}
 		
 		//Write diagram to file
@@ -121,27 +131,33 @@ public class MAVOConcretizationHighlighter{
 	}
 	
 	/**
-	 * Find and return the set of Formula IDs of the elements of the diagram
-	 * that are not in the resultModel.
+	 * Separate the diagram elements into the set of elements that appear in the 
+	 * resultModel concretization, and the remaining set.
 	 * @param resultModel - a concretization of the model
-	 * @return the set of Formula IDs of elements not included in the concretization
+	 * @return An array of size 2 in which the first element is the set of diagram FormulaIDs included in the diagram, 
+	 * and the second element is the set containing all of the remaining diagram FormulaIDs.
 	 */
-	private Set<String> findUnusedElements(Z3SMTModel resultModel){
+	private ArrayList<Set<String>> separateExampleElements(Z3SMTModel resultModel){
 		Map<String, Integer> resultModelEdges = resultModel.getZ3ModelEdges(smtEncodingEdges);
 		Map<String, Integer> resultModelNodes = resultModel.getZ3ModelNodes(smtEncodingNodes);
 		
-		Set<String> remainingElements = diagramElements.keySet();
+		Set<String> remainingElements = new HashSet<String>(diagramElements.keySet());
+		Set<String> exampleElements = new HashSet<String>();
 		//remove FormulaIDs of elements in example
 		for (Integer intID: resultModelEdges.values()){
 			String FID = smtEncodingEdges.get(intID);
+			exampleElements.add(FID);
 			remainingElements.remove(FID);
 		} 
 		for (Integer intID: resultModelNodes.values()){
 			String FID = smtEncodingNodes.get(intID);
+			exampleElements.add(FID);
 			remainingElements.remove(FID);
 		}
-		
-		return remainingElements;
+		ArrayList<Set<String>> separated = new ArrayList<Set<String>>();
+		separated.add(exampleElements);
+		separated.add(remainingElements);
+		return separated;
 	}
 	
 	private void color(View element, int color) {
@@ -151,7 +167,6 @@ public class MAVOConcretizationHighlighter{
 		else if (element instanceof Connector){
 			Connector line = (Connector) element;
 			line.setLineColor(color);
-			line.setLineWidth(0);
 		}
 		else{
 			System.err.println("View object not an instance of Shape or Connector");
