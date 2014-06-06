@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
@@ -57,9 +58,9 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 	}
 
 	private static final String PROPERTY_IN_MAYONLY = "mayOnly";
-	private static final boolean PROPERTY_IN_MAYONLY_DEFAULT = false;
+	private static final Boolean PROPERTY_IN_MAYONLY_DEFAULT = null;
 
-	private boolean mayOnly;
+	private Boolean mayOnly;
 
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
@@ -72,12 +73,14 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 
 		//TODO MMINT[REASONING] generalize for non-mavo too
 		Model mavoModel = actualParameters.get(0);
+		boolean mayOnly = MAVOUtils.createFormulaIds(mavoModel);
+		if (this.mayOnly == null) {
+			this.mayOnly = mayOnly;
+		}
 
 		List<Object> m2tArgs = new ArrayList<Object>();
 		m2tArgs.add(mavoModel.getName());
-		//TODO MMINT[MU-MMINT] input here should be mayOnly.
-		//m2tArgs.add(mayOnly);
-		m2tArgs.add(true);
+		m2tArgs.add(mayOnly);
 		File folder = (new File(MultiModelUtils.prependWorkspaceToUri(mavoModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);

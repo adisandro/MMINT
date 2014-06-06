@@ -35,10 +35,12 @@ import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIBListener;
 
-public class MAVOConcretizationHighlighter{
+public class MAVOConcretizationHighlighter {
+
 	private static final int GREY_OUT_COLOR = 0xD9D9D9;
 	private static final int HIGHLIGHT_COLOR = 0x50CFED;
 	private static final String DIAGRAM_ID = "edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorID";
+	private static final String EXAMPLE_SUFFIX = "_example";
 	
 	private MAVOTruthValue resultMAVO;
 	private String smtEncoding;
@@ -161,7 +163,7 @@ public class MAVOConcretizationHighlighter{
 			"graphdiag_mavo"
 		);
 
-		newDiagramURI = MultiModelUtils.addFileNameSuffixInUri(diagramURI, "_copy");
+		newDiagramURI = MultiModelUtils.addFileNameSuffixInUri(diagramURI, EXAMPLE_SUFFIX);
 
 		try {
 			MultiModelUtils.copyTextFileAndReplaceText(diagramURI, newDiagramURI, "", "", true);

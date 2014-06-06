@@ -191,7 +191,6 @@ public class FASE14 extends RE13 {
 	protected void collectAnalysisModelObjs(Model istarModel) throws MMINTException {
 
 		istar = (IStar) istarModel.getEMFInstanceRoot();
-		MAVOUtils.createIdsFromNames(istar);
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(istar, true);
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();

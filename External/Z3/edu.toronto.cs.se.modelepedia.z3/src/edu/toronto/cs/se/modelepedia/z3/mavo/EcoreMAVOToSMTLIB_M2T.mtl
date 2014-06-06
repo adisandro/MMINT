@@ -4,7 +4,6 @@
 
 [template public encodeMAVOModel(mavoModel : MAVOModel, mavoModelName : String, mayOnly : Boolean)]
 	[comment @main /]
-[createIdsFromNames(mavoModel)/]
 	[file (mavoModelName + '.smt2', false, 'UTF-8')]
 		[if (mayOnly)]
 [encodeModelMayOnly(mavoModel)/]

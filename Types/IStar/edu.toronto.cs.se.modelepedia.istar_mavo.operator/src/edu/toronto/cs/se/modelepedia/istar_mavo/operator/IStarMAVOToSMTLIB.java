@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -58,6 +59,7 @@ public class IStarMAVOToSMTLIB extends OperatorImpl {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		Model istarModel = actualParameters.get(0);
+		MAVOUtils.createFormulaIds(istarModel);
 
 		List<Object> m2tArgs = new ArrayList<Object>();
 		m2tArgs.add(istarModel.getName());

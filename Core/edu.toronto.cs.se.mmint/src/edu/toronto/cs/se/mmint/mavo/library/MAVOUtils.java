@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmint.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 
 public class MAVOUtils {
@@ -309,28 +310,36 @@ public class MAVOUtils {
 		newElement.setFormulaId(oldElement.getFormulaId());
 	}
 
-	/*TODO MMINT: make it more integrated with the environment
-	 * e.g. overwrite the model if at least one formulaId is set
-	 * e.g. a separate operator
-	 * e.g. run all times a mavo operator is invoked
-	 */
-	public static void createIdsFromNames(MAVOModel mavoModel) {
+	public static boolean createFormulaIds(Model mavoModel) throws Exception {
 
-		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(mavoModel, true);
+		boolean modified = false, mayOnly = true;
+		MAVOModel rootMavoModel = (MAVOModel) mavoModel.getEMFInstanceRoot();
+		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(rootMavoModel, true);
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();
 			if (!(modelObj instanceof MAVOElement)) {
 				continue;
 			}
 			MAVOElement mavoModelObj = (MAVOElement) modelObj;
+			if (mayOnly && (mavoModelObj.isSet() || mavoModelObj.isVar())) { // detect if model has only may annotations
+				mayOnly = false;
+			}
 			if (mavoModelObj.getFormulaId() != null && !mavoModelObj.getFormulaId().equals("")) {
 				continue;
 			}
 			EStructuralFeature nameFeature = mavoModelObj.eClass().getEStructuralFeature(NAME_FEATURE);
 			if (nameFeature != null) {
 				mavoModelObj.setFormulaId(((String) mavoModelObj.eGet(nameFeature)).replace(" ", ""));
+				modified = true;
 			}
 		}
+
+		// overwrite
+		if (modified) {
+			MultiModelUtils.createModelFile(rootMavoModel, mavoModel.getUri(), true);
+		}
+
+		return mayOnly;
 	}
 
 	private static List<String> getVarIds(MAVOModel mavoModel, MAVOElement mavoModelObj, boolean whichIds) {

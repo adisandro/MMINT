@@ -1036,7 +1036,6 @@
 [template public encodeIStarMAVO(istar : IStar, modelName : String)]
 [comment @main/]
 [file (modelName + '.smt2', false, 'UTF-8')]
-[createIdsFromNames(istar)/]
 [encodeModel(istar)/]
 [encodeMAVOConstraints(istar)/]
 [encodeModelIStar(istar)/]

@@ -57,14 +57,6 @@
 	)
 /]
 
-[query public createIdsFromNames(mavoModel : MAVOModel) : OclAny =
-	invoke(
-		'edu.toronto.cs.se.mmint.mavo.library.MAVOUtils',
-		'createIdsFromNames(edu.toronto.cs.se.mmint.mavo.MAVOModel)',
-		Sequence{mavoModel}
-	)
-/]
-
 [query public getMAVOClassName(eclass : EClass) : String =
 	if (eclass.name = 'Node' or eclass.name = 'Edge') then
 		eclass.name + '_'

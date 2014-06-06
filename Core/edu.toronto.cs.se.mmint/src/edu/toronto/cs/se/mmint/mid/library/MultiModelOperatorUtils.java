@@ -128,7 +128,7 @@ public class MultiModelOperatorUtils {
 		return property;
 	}
 
-	public static boolean getOptionalBoolProperty(Properties properties, String propertyName, boolean defaultValue) {
+	public static Boolean getOptionalBoolProperty(Properties properties, String propertyName, Boolean defaultValue) {
 
 		try {
 			return getBoolProperty(properties, propertyName);

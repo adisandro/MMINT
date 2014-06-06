@@ -66,22 +66,22 @@ public class Z3SMTReasoningEngine implements IReasoningEngine {
 		ecore2smt.cleanup();
 
 		MAVOTruthValue propertyTruthValue = checkMAVOProperty(ecore2smt.getListener().getSMTLIBEncoding(), smtConstraint);
-
 		if (propertyTruthValue == MAVOTruthValue.MAYBE){
 			//TODO MMINT[MU-MMINT] Generalize to any MAVO model.
 			if(model.getMetatypeUri().equals(GRAPH_MAVO_URI)){
-				if (MultiModelDiagramUtils.getBooleanInput("Example Highlighter", "Do you want to see a highlighter example?")){
+				if (MultiModelDiagramUtils.getBooleanInput("Example Highlighter", "Do you want to see a highlighted example?")) {
 					MAVOConcretizationHighlighter highlighter;
 					try {
 						highlighter = new MAVOConcretizationHighlighter(ecore2smt.getListener());
 						highlighter.highlightExample(model);
-					} catch (Exception e) {
-						e.printStackTrace();
+					}
+					catch (Exception e) {
 						MMINTException.print(MMINTException.Type.ERROR, "Can't highlight example", e);
-					}					
+					}
 				}
 			}
 		}
+
 		return propertyTruthValue;
 	}
 
