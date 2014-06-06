@@ -36,22 +36,16 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MidFactory;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
 public class AddModifyConstraintListener extends SelectionAdapter {
 
-	ExtendibleElement element;
+	protected ExtendibleElement element;
 
 	public AddModifyConstraintListener(ExtendibleElement element) {
 
 		this.element = element;
-	}
-
-	public AddModifyConstraintListener(ExtendibleElementReference elementRef) {
-
-		element = elementRef.getObject();
 	}
 
 	@Override
@@ -64,13 +58,13 @@ public class AddModifyConstraintListener extends SelectionAdapter {
 			files.add(diagramFile);
 			files.add(modelFile);
 		}
-		AbstractTransactionalCommand copyCommand = new AddModifyConstraintCommand(
+		AbstractTransactionalCommand command = new AddModifyConstraintCommand(
 			TransactionUtil.getEditingDomain(element),
 			"Constraint",
 			files
 		);
 		try {
-			OperationHistoryFactory.getOperationHistory().execute(copyCommand, null, null);
+			OperationHistoryFactory.getOperationHistory().execute(command, null, null);
 		}
 		catch (ExecutionException ex) {
 			MMINTException.print(Type.ERROR, "Add/modify constraint history execution error", ex);

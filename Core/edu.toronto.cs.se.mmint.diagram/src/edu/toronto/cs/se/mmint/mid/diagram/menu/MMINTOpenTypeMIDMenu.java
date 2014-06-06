@@ -40,7 +40,7 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 			createTypeMIDDiagram();
 		}
 		try {
-			GMFDiagramUtils.openGMFDiagram(midDiagramUri, MidDiagramEditor.ID);
+			GMFDiagramUtils.openGMFDiagram(midDiagramUri, MidDiagramEditor.ID, false);
 		}
 		catch (Exception e) {
 			MMINTException.print(Type.ERROR, "Error opening Type MID diagram", e);

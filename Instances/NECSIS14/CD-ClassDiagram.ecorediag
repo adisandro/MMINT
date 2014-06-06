@@ -276,7 +276,7 @@
     </children>
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_uukx4eqNEeOije0ypiJr7Q" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_uukx4uqNEeOije0ypiJr7Q" fontColor="4210752" fontName="Cantarell" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="CD-ClassDiagram.ecore#//_ExTable/_exPrimaryKey"/>
+    <element xmi:type="ecore:EReference" href="CD-ClassDiagram.ecore#//_ExTable/_exPrimaryKeys"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_uukx4-qNEeOije0ypiJr7Q" points="[24, 9, -99, 2]$[124, 15, 1, 8]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_uupDUOqNEeOije0ypiJr7Q" id="(0.7647058823529411,0.6222222222222222)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_uupDUeqNEeOije0ypiJr7Q" id="(0.4215686274509804,0.8222222222222222)"/>

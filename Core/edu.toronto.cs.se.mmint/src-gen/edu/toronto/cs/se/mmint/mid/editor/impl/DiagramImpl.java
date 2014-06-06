@@ -135,7 +135,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 				// create the diagram directly and do not open the wizard
 				try {
 					GMFDiagramUtils.createGMFDiagram(modelUri, diagramUri, diagramKind, diagramPluginId);
-					GMFDiagramUtils.openGMFDiagram(diagramUri, getId());
+					GMFDiagramUtils.openGMFDiagram(diagramUri, getId(), false);
 				}
 				catch (Exception e) {
 					throw new MMINTException("Error creating or opening the gmf diagram", e);

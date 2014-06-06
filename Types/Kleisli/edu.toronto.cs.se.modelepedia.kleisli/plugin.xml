@@ -106,4 +106,15 @@
       </operatorType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.reasoners">
+      <reasoner
+            class="edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine"
+            name="Kleisli Query Language">
+         <language
+               id="KLEISLI">
+         </language>
+      </reasoner>
+   </extension>
+
 </plugin>

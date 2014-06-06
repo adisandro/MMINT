@@ -11,10 +11,11 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -39,24 +40,23 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
+import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
 import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
 
 import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -432,6 +432,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 
 		// extend models (doing it at every open is robust against model change)
 		OCLReasoningEngine oclReasoner = new OCLReasoningEngine();
+		KleisliReasoningEngine kReasoner = new KleisliReasoningEngine();
 		for (ModelEndpoint modelEndpoint : getModelEndpoints()) {
 			ModelEndpoint modelTypeEndpoint = modelEndpoint.getMetatype();
 			if (!(modelTypeEndpoint instanceof KleisliModelEndpoint)) {
@@ -442,7 +443,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			try {
 				EPackage kModelTypePackage = kModelTypeEndpoint.getExtendedTarget().getEMFTypeRoot();
 				EFactory kModelTypeFactory = kModelTypePackage.getEFactoryInstance();
-				ModelEndpointReference kModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(kModelTypeEndpoint.getUri(), ((ModelRel) kModelTypeEndpoint.eContainer()).getModelEndpointRefs());
+				KleisliModelEndpointReference kModelTypeEndpointRef = (KleisliModelEndpointReference) MultiModelTypeHierarchy.getReference(kModelTypeEndpoint.getUri(), ((ModelRel) kModelTypeEndpoint.eContainer()).getModelEndpointRefs());
 				String kModelUri = kModelEndpoint.getExtendedTargetUri();
 				MultiModelUtils.copyTextFileAndReplaceText(
 					kModelEndpoint.getTargetUri(),
@@ -452,13 +453,11 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					true
 				);
 				EObject kRootModelObj = kModelEndpoint.getExtendedTarget().getEMFInstanceRoot();
-				EMFInfo kModelElemTypeEInfo;
-				ExtendibleElementConstraint kConstraint;
+				Map<String, List<Map<EObject, EObject>>> queryMap = new HashMap<String, List<Map<EObject, EObject>>>();
 				// first pass: EClasses
-				Map<EObject, EObject> kModelObjs1 = new HashMap<EObject, EObject>();
 				for (ModelElementReference kModelElemTypeRef : kModelTypeEndpointRef.getModelElemRefs()) {
-					kModelElemTypeEInfo = kModelElemTypeRef.getObject().getEInfo();
-					kConstraint = kModelElemTypeRef.getObject().getConstraint();
+					EMFInfo kModelElemTypeEInfo = kModelElemTypeRef.getObject().getEInfo();
+					ExtendibleElementConstraint kConstraint = kModelElemTypeRef.getObject().getConstraint();
 					if (
 						kModelElemTypeEInfo.getFeatureName() != null ||
 						kConstraint == null ||
@@ -466,29 +465,34 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					) {
 						continue;
 					}
-					Object modelObjs = oclReasoner.evaluateQuery(kRootModelObj, kConstraint.getImplementation());
-					if (!(modelObjs instanceof Collection<?>)) {
+					EClass kModelElemTypeClass = (EClass) kModelTypePackage.getEClassifier(kModelElemTypeEInfo.getClassName());
+					List<Map<EObject, EObject>> queryUnionList = new ArrayList<Map<EObject, EObject>>();
+					queryMap.put(kModelElemTypeClass.getName(), queryUnionList);
+					kReasoner.evaluateEClassQuery(kConstraint.getImplementation(), oclReasoner, kRootModelObj, kModelElemTypeClass, kModelTypeFactory, queryUnionList);
+				}
+				// second pass: EReferences
+				for (ModelElementReference kModelElemTypeRef : kModelTypeEndpointRef.getModelElemRefs()) {
+					EMFInfo kModelElemTypeEInfo = kModelElemTypeRef.getObject().getEInfo();
+					ExtendibleElementConstraint kConstraint = kModelElemTypeRef.getObject().getConstraint();
+					if (
+						kModelElemTypeEInfo.getFeatureName() == null ||
+						kModelElemTypeEInfo.isAttribute() ||
+						kConstraint == null ||
+						kConstraint.getImplementation().equals("")
+
+					) {
 						continue;
 					}
-					EClass kModelElemTypeClass = (EClass) kModelTypePackage.getEClassifier(kModelElemTypeEInfo.getClassName());
-					for (Object modelObj : (Collection<?>) modelObjs) {
-						EObject kModelObj = kModelTypeFactory.create(kModelElemTypeClass);
-						kModelObjs1.put(kModelObj, (EObject) modelObj);
+					List<Map<EObject, EObject>> queryUnionList = queryMap.get(kModelElemTypeEInfo.getRelatedClassName());
+					if (queryUnionList == null) {
+						continue;
 					}
+					kReasoner.evaluateEReferenceQuery(kConstraint.getImplementation(), oclReasoner, kModelElemTypeEInfo, queryUnionList, queryMap);
 				}
-				for (Map.Entry<EObject, EObject> kModelObjEntry : kModelObjs1.entrySet()) {
-					EObject modelObj = kModelObjEntry.getValue(), kModelObj = kModelObjEntry.getKey();
-					for (EStructuralFeature feature : modelObj.eClass().getEAllStructuralFeatures()) {
-						EStructuralFeature kFeature = kModelObj.eClass().getEStructuralFeature(feature.getName());
-						kModelObj.eSet(kFeature, modelObj.eGet(feature));
-					}
-					EcoreUtil.replace(modelObj, kModelObj);
-				}
-				// second pass: EAttributes
+				// third pass: EAttributes
 				for (ModelElementReference kModelElemTypeRef : kModelTypeEndpointRef.getModelElemRefs()) {
-					Map<EObject, EObject> kModelObjs2 = new HashMap<EObject, EObject>();
-					kModelElemTypeEInfo = kModelElemTypeRef.getObject().getEInfo();
-					kConstraint = kModelElemTypeRef.getObject().getConstraint();
+					EMFInfo kModelElemTypeEInfo = kModelElemTypeRef.getObject().getEInfo();
+					ExtendibleElementConstraint kConstraint = kModelElemTypeRef.getObject().getConstraint();
 					if (
 						!kModelElemTypeEInfo.isAttribute() ||
 						kConstraint == null ||
@@ -496,35 +500,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					) {
 						continue;
 					}
-					TreeIterator<EObject> modelObjIter = kRootModelObj.eAllContents();
-					while (modelObjIter.hasNext()) {
-						EObject modelObj = modelObjIter.next();
-						if (!modelObj.eClass().getName().equals(kModelElemTypeEInfo.getClassName()) && kModelObjs1.get(modelObj) == null) {
-							continue;
-						}
-						if (kModelObjs1.get(modelObj) == null) {
-							// need to make a copy from extended factory for the ocl derivation to work
-							EObject kModelObj = kModelTypeFactory.create((EClass) kModelTypePackage.getEClassifier(kModelElemTypeEInfo.getClassName()));
-							kModelObjs2.put(kModelObj, modelObj);
-						}
-						else {
-							// modelObj was already a kModelObj
-							kModelObjs2.put(modelObj, null);
-						}
-					}
-					for (Map.Entry<EObject, EObject> kModelObjEntry : kModelObjs2.entrySet()) {
-						EObject modelObj = kModelObjEntry.getValue(), kModelObj = kModelObjEntry.getKey();
-						if (modelObj != null) {
-							for (EStructuralFeature feature : modelObj.eClass().getEAllStructuralFeatures()) {
-								EStructuralFeature kFeature = kModelObj.eClass().getEStructuralFeature(feature.getName());
-								kModelObj.eSet(kFeature, modelObj.eGet(feature));
-							}
-							EcoreUtil.replace(modelObj, kModelObj);
-						}
-						Object kModelObjAttr = oclReasoner.evaluateQuery(kModelObj, kConstraint.getImplementation());
-						EStructuralFeature kFeature = kModelObj.eClass().getEStructuralFeature(kModelElemTypeEInfo.getFeatureName());
-						kModelObj.eSet(kFeature, kModelObjAttr);
-					}
+					kReasoner.evaluateEAttributeQuery(kConstraint.getImplementation(), oclReasoner, kRootModelObj, kModelElemTypeEInfo);
 				}
 				// save the derived model
 				MultiModelUtils.createModelFile(kRootModelObj, kModelUri, true);

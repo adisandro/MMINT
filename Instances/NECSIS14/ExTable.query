@@ -1,0 +1,3 @@
+KLEISLI:
+Class.allInstances()
+Association.allInstances()->select(upperBound = -1)

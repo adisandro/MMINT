@@ -32,8 +32,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="_ExTable" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="_exColumns" upperBound="-1"
         eType="#//_ExColumn" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="_exPrimaryKey" lowerBound="1"
-        eType="#//_ExColumn"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="_exPrimaryKeys" lowerBound="1"
+        upperBound="-1" eType="#//_ExColumn"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="_ExColumn" eSuperTypes="#//NamedElement"/>
 </ecore:EPackage>

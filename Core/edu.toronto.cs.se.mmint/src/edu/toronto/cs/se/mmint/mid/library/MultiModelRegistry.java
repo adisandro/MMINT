@@ -121,6 +121,7 @@ public class MultiModelRegistry {
 	}
 
 	//TODO MMINT[MODELELEMENT] some info here are redundant and/or misplaced, review EMFInfo
+	//TODO MMINT[MODELELEMENT] add support for non-containment EReferences
 	public static EMFInfo getModelElementEMFInfo(EObject modelObj, MidLevel level) {
 
 		EMFInfo eInfo = MidFactory.eINSTANCE.createEMFInfo();

@@ -26,8 +26,10 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTActivator;
@@ -35,6 +37,15 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 
 public class MultiModelUtils {
+
+	public static URI getEMFUri(String uri, boolean isWorkspaceRelative) {
+
+		URI emfUri = (isWorkspaceRelative) ?
+			URI.createPlatformResourceURI(uri, true) :
+			URI.createFileURI(uri);
+
+		return emfUri;
+	}
 
 	private static String getFirstSegmentFromUri(String uri) {
 
@@ -179,11 +190,8 @@ public class MultiModelUtils {
 	 *             If the ECore model file could not be created or overwritten.
 	 */
 	public static void createModelFile(EObject root, String fileUri, boolean isWorkspaceRelative) throws Exception {
-	
-		URI emfUri = (isWorkspaceRelative) ?
-			URI.createPlatformResourceURI(fileUri, true) :
-			URI.createFileURI(fileUri);
-		MultiModelTypeIntrospection.writeRoot(root, emfUri);
+
+		MultiModelTypeIntrospection.writeRoot(root, getEMFUri(fileUri, isWorkspaceRelative));
 	}
 
 	public static void createModelFileInState(EObject root, String relativeFileUri) throws Exception {
@@ -192,12 +200,8 @@ public class MultiModelUtils {
 	}
 
 	public static EObject getModelFile(String fileUri, boolean isWorkspaceRelative) throws Exception {
-	
-		URI emfUri = (isWorkspaceRelative) ?
-			URI.createPlatformResourceURI(fileUri, true) :
-			URI.createFileURI(fileUri);
-	
-		return MultiModelTypeIntrospection.getRoot(emfUri);
+
+		return MultiModelTypeIntrospection.getRoot(getEMFUri(fileUri, isWorkspaceRelative));
 	}
 
 	public static EObject getModelFileInState(String relativeFileUri) throws Exception {
@@ -277,6 +281,26 @@ public class MultiModelUtils {
 	public static void deleteDirectoryInState(String relativeDirectoryUri) {
 
 		deleteDirectory(prependStateToUri(relativeDirectoryUri), false);
+	}
+
+	@SuppressWarnings("unchecked")
+	public static void setModelObjFeature(EObject modelObj, String featureName, Object value) throws MMINTException {
+
+		EStructuralFeature feature = modelObj.eClass().getEStructuralFeature(featureName);
+		if (feature == null) {
+			throw new MMINTException("Feature " + featureName + " not found in " + modelObj);
+		}
+		if (feature.isMany()) {
+			if (value instanceof EList<?>) {
+				modelObj.eSet(feature, value);
+			}
+			else {
+				((EList<Object>) modelObj.eGet(feature)).add(value);
+			}
+		}
+		else {
+			modelObj.eSet(feature, value);
+		}
 	}
 
 }
