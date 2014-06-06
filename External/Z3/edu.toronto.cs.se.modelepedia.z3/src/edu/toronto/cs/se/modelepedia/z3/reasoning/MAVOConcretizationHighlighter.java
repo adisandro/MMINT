@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
+ * Rick Salay, Naama Ben-David.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,26 +24,21 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIBListener;
 
 public class MAVOConcretizationHighlighter{
 	private static final int GREY_OUT_COLOR = 0xD9D9D9;
 	private static final int HIGHLIGHT_COLOR = 0x50CFED;
 	private static final String DIAGRAM_ID = "edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorID";
-	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
 	
 	private MAVOTruthValue resultMAVO;
 	private String smtEncoding;
@@ -53,13 +48,9 @@ public class MAVOConcretizationHighlighter{
 	private String smtProperty;
 	private Map<String, View> diagramElements;
 
-	public MAVOConcretizationHighlighter() throws MMINTException {
-
-		EcoreMAVOToSMTLIB previousOperator = 
-			(EcoreMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI);
+	public MAVOConcretizationHighlighter(EcoreMAVOToSMTLIBListener smtListener) {
 		
 		resultMAVO = MAVOTruthValue.ERROR;
-		EcoreMAVOToSMTLIBListener smtListener = previousOperator.getListener();
 		smtEncoding = smtListener.getSMTLIBEncoding();
 		
 		smtEncodingEdges = smtListener.getSMTLIBEncodingEdges();
@@ -69,28 +60,22 @@ public class MAVOConcretizationHighlighter{
 
 	}
 
-	@SuppressWarnings("unchecked")
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public void highlightExample(Model model) throws Exception {
 
-		Model model = actualParameters.get(0);
 		smtProperty = model.getConstraint().getImplementation();
 		resultMAVO = Z3SMTReasoningEngine.checkMAVOProperty(smtEncoding, smtProperty);
 		
 		if (resultMAVO != MAVOTruthValue.MAYBE){
-			return null;
-		}
-		
-		boolean showExample = askUser();
-		
-		if (showExample == false){
-			return null;
+			return;
 		}
 		
 		//Load diagram
 		Diagram d = copyAndLoadDiagram(model);
-		
+
 		//Get view elements from diagram
+		@SuppressWarnings("unchecked")
 		Map<String, View> modelNodes = collectFormulaIDs((EList<View>) d.getChildren());
+		@SuppressWarnings("unchecked")
 		Map<String, View> modelEdges = collectFormulaIDs((EList<View>) d.getEdges());
 		diagramElements.putAll(modelNodes);
 		diagramElements.putAll(modelEdges);
@@ -114,20 +99,9 @@ public class MAVOConcretizationHighlighter{
 		}
 		
 		//Write diagram to file
-		MultiModelUtils.createModelFile(d, newDiagramURI, false);
-		GMFDiagramUtils.openGMFDiagram(newDiagramURI, DIAGRAM_ID);
+		MultiModelUtils.createModelFile(d, newDiagramURI, true);
+		GMFDiagramUtils.openGMFDiagram(newDiagramURI, DIAGRAM_ID, true);
 
-		return null;
-	}
-	
-	/**
-	 * Create a pop-up asking user whether or not to show the example
-	 * @return the user's answer
-	 */
-	private boolean askUser(){
-		String dialogTitle = "Example Viewer";
-		String dialogMessage = "Would you like to view an example?";
-		return MultiModelDiagramUtils.getBooleanInput(dialogTitle, dialogMessage);
 	}
 	
 	/**
@@ -169,7 +143,8 @@ public class MAVOConcretizationHighlighter{
 			line.setLineColor(color);
 		}
 		else{
-			System.err.println("View object not an instance of Shape or Connector");
+			MMINTException.print(MMINTException.Type.WARNING, "Can't color diagram element",
+					new MMINTException("View object not an instance of Shape or Connector"));
 		}
 	}
 
@@ -179,32 +154,28 @@ public class MAVOConcretizationHighlighter{
 	 * @return
 	 * @throws Exception 
 	 */
-	private Diagram copyAndLoadDiagram(Model model) throws Exception{
+	private Diagram copyAndLoadDiagram(Model model) throws MMINTException{
 
 		String diagramURI = MultiModelUtils.replaceFileExtensionInUri(
 			model.getUri(),
 			"graphdiag_mavo"
 		);
-		diagramURI = MultiModelUtils.prependWorkspaceToUri(diagramURI);
-		newDiagramURI = newFileName(diagramURI);
+
+		newDiagramURI = MultiModelUtils.addFileNameSuffixInUri(diagramURI, "_copy");
 
 		try {
-			MultiModelUtils.copyTextFileAndReplaceText(diagramURI, newDiagramURI, "", "", false);
+			MultiModelUtils.copyTextFileAndReplaceText(diagramURI, newDiagramURI, "", "", true);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 		
-		Diagram d = (Diagram) MultiModelUtils.getModelFile(newDiagramURI, false);
+		Diagram d = null;
+		try{
+			d = (Diagram) MultiModelUtils.getModelFile(newDiagramURI, true);
+		} catch (Exception e) {
+			throw new MMINTException("There is no diagram!", e);
+		}
 		return d;
-	}
-	
-	private String newFileName(String oldFileName){
-		int lastPathSeparator = oldFileName.lastIndexOf(System.getProperty("file.separator"));
-		String path = oldFileName.substring(0, lastPathSeparator+1);
-		String name = oldFileName.substring(lastPathSeparator+1);
-		String newName = "copy_".concat(name);
-		return path.concat(newName);
-		
 	}
 	
 	private Z3SMTModel runZ3SMTSolver(){
