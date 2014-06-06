@@ -37,6 +37,14 @@
 	)
 /]
 
+[query public alreadyEncodedMAVOElements(mavoModel : MAVOModel, currentMAVOClass : EClass) : Integer =
+	mavoModel.getMetamodelMAVOClasses()->
+	subSequence(1, mavoModel.getMetamodelMAVOClasses()->indexOf(currentMAVOClass))->
+	collect(eclass : EClass | mavoModel.getObjectsOfType(eclass))->
+	size()
+	- mavoModel.getObjectsOfType(currentMAVOClass)->size()
+/]
+
 [query private getEdgeFeatureName(eclass : EClass, annotation : String) : String =
 	eclass->union(eclass.eAllSuperTypes)->collect(eAnnotations)->any(source = 'gmf.link' and details->exists(key = annotation)).details->any(key = annotation).value
 /]
