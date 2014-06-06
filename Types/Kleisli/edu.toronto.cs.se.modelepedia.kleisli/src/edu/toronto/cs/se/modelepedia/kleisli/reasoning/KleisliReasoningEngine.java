@@ -78,14 +78,11 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 
 		//TODO MMINT[KLEISLI] what happens when the source or target of the derived ereference is not derived, it's not in queryMap
 		//TODO MMINT[KLEISLI] what happens when ereference is not derived but the target is? (source can't be)
-		String[] oclQueries = (kQuery == null) ? new String[queryUnion.size()] : kQuery.split(UNION_SEPARATOR);
+		String[] oclQueries = kQuery.split(UNION_SEPARATOR);
 		for (int i = 0; i < queryUnion.size(); i++) {
 			String oclQuery = oclQueries[i];
 			String mapIndex = null;
 			int unionIndex = -1;
-			if (kQuery == null) {
-				oclQuery = "oclContainer()";
-			}
 			if (oclQuery.equals(QUERY_NULL)) {
 				continue;
 			}

@@ -473,9 +473,13 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				// second pass: EReferences
 				for (ModelElementReference kModelElemTypeRef : kModelTypeEndpointRef.getModelElemRefs()) {
 					EMFInfo kModelElemTypeEInfo = kModelElemTypeRef.getObject().getEInfo();
+					ExtendibleElementConstraint kConstraint = kModelElemTypeRef.getObject().getConstraint();
 					if (
 						kModelElemTypeEInfo.getFeatureName() == null ||
-						kModelElemTypeEInfo.isAttribute()
+						kModelElemTypeEInfo.isAttribute() ||
+						kConstraint == null ||
+						kConstraint.getImplementation().equals("")
+
 					) {
 						continue;
 					}
@@ -483,10 +487,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					if (queryUnionList == null) {
 						continue;
 					}
-					//TODO THIS CONSTRAINT HERE IS BECAUSE I HOPE TO FIX THE KLEISLITEST, OTHERWISE SHOULD BE IN THE INITIAL IF CONDITION
-					ExtendibleElementConstraint kConstraint = kModelElemTypeRef.getObject().getConstraint();
-					String kQuery = (kConstraint == null || kConstraint.getImplementation().equals("")) ? null : kConstraint.getImplementation();
-					kReasoner.evaluateEReferenceQuery(kQuery, oclReasoner, kModelElemTypeEInfo, queryUnionList, queryMap);
+					kReasoner.evaluateEReferenceQuery(kConstraint.getImplementation(), oclReasoner, kModelElemTypeEInfo, queryUnionList, queryMap);
 				}
 				// third pass: EAttributes
 				for (ModelElementReference kModelElemTypeRef : kModelTypeEndpointRef.getModelElemRefs()) {
