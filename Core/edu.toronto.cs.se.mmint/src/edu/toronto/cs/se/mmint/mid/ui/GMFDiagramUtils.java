@@ -32,6 +32,7 @@ import org.eclipse.ui.PlatformUI;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 
 public class GMFDiagramUtils {
 
@@ -104,10 +105,10 @@ public class GMFDiagramUtils {
 		diagramResource.save(saveOptions);
 	}
 
-	public static void openGMFDiagram(String diagramUri, String diagramId) throws Exception {
+	public static void openGMFDiagram(String diagramUri, String diagramId, boolean isWorkspaceRelative) throws Exception {
 
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
-			new URIEditorInput(URI.createFileURI(diagramUri)),
+			new URIEditorInput(MultiModelUtils.getEMFUri(diagramUri, isWorkspaceRelative)),
 			diagramId
 		);
 	}

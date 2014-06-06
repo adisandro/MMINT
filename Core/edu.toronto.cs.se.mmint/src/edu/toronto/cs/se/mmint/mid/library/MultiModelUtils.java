@@ -38,6 +38,15 @@ import edu.toronto.cs.se.mmint.mid.Model;
 
 public class MultiModelUtils {
 
+	public static URI getEMFUri(String uri, boolean isWorkspaceRelative) {
+
+		URI emfUri = (isWorkspaceRelative) ?
+			URI.createPlatformResourceURI(uri, true) :
+			URI.createFileURI(uri);
+
+		return emfUri;
+	}
+
 	private static String getFirstSegmentFromUri(String uri) {
 
 		int firstSeparator = uri.indexOf(MMINT.URI_SEPARATOR, 1);
@@ -181,11 +190,8 @@ public class MultiModelUtils {
 	 *             If the ECore model file could not be created or overwritten.
 	 */
 	public static void createModelFile(EObject root, String fileUri, boolean isWorkspaceRelative) throws Exception {
-	
-		URI emfUri = (isWorkspaceRelative) ?
-			URI.createPlatformResourceURI(fileUri, true) :
-			URI.createFileURI(fileUri);
-		MultiModelTypeIntrospection.writeRoot(root, emfUri);
+
+		MultiModelTypeIntrospection.writeRoot(root, getEMFUri(fileUri, isWorkspaceRelative));
 	}
 
 	public static void createModelFileInState(EObject root, String relativeFileUri) throws Exception {
@@ -194,12 +200,8 @@ public class MultiModelUtils {
 	}
 
 	public static EObject getModelFile(String fileUri, boolean isWorkspaceRelative) throws Exception {
-	
-		URI emfUri = (isWorkspaceRelative) ?
-			URI.createPlatformResourceURI(fileUri, true) :
-			URI.createFileURI(fileUri);
-	
-		return MultiModelTypeIntrospection.getRoot(emfUri);
+
+		return MultiModelTypeIntrospection.getRoot(getEMFUri(fileUri, isWorkspaceRelative));
 	}
 
 	public static EObject getModelFileInState(String relativeFileUri) throws Exception {
