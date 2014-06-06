@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
+ * Rick Salay, Naama Ben-David.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  * 
  * Contributors:
  *    Alessio Di Sandro - Implementation.
+ *    Naama Ben-David - Highlighting functionality
  */
 package edu.toronto.cs.se.modelepedia.z3.reasoning;
 
@@ -21,6 +22,7 @@ import edu.toronto.cs.se.mmint.mid.MidLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
@@ -32,6 +34,7 @@ import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
 public class Z3SMTReasoningEngine implements IReasoningEngine {
 
 	private final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
+	private final static String GRAPH_MAVO_URI = "http://se.cs.toronto.edu/modelepedia/Graph_MAVO";
 
 	public static MAVOTruthValue checkMAVOProperty(String smtEncoding, String smtProperty) {
 
@@ -62,7 +65,24 @@ public class Z3SMTReasoningEngine implements IReasoningEngine {
 		}
 		ecore2smt.cleanup();
 
-		return checkMAVOProperty(ecore2smt.getListener().getSMTLIBEncoding(), smtConstraint);
+		MAVOTruthValue propertyTruthValue = checkMAVOProperty(ecore2smt.getListener().getSMTLIBEncoding(), smtConstraint);
+
+		if (propertyTruthValue == MAVOTruthValue.MAYBE){
+			//TODO MMINT[MU-MMINT] Generalize to any MAVO model.
+			if(model.getMetatypeUri().equals(GRAPH_MAVO_URI)){
+				if (MultiModelDiagramUtils.getBooleanInput("Example Highlighter", "Do you want to see a highlighter example?")){
+					MAVOConcretizationHighlighter highlighter;
+					try {
+						highlighter = new MAVOConcretizationHighlighter(ecore2smt.getListener());
+						highlighter.highlightExample(model);
+					} catch (Exception e) {
+						e.printStackTrace();
+						MMINTException.print(MMINTException.Type.ERROR, "Can't highlight example", e);
+					}					
+				}
+			}
+		}
+		return propertyTruthValue;
 	}
 
 	@Override

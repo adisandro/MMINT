@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
+ * Rick Salay, Naama Ben-David.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -75,7 +75,9 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 
 		List<Object> m2tArgs = new ArrayList<Object>();
 		m2tArgs.add(mavoModel.getName());
-		m2tArgs.add(mayOnly);
+		//TODO MMINT[MU-MMINT] input here should be mayOnly.
+		//m2tArgs.add(mayOnly);
+		m2tArgs.add(true);
 		File folder = (new File(MultiModelUtils.prependWorkspaceToUri(mavoModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);
