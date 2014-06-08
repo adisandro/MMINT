@@ -1,0 +1,7 @@
+KLEISLI:
+$_QTable[0][self]
+$_QTable[0][parent]
+$_QTable[0][oclContainer()]
+$_QTable[1][self]
+$_QTable[1][self]
+$_QTable[0][target]

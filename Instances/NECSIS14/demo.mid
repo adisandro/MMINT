@@ -1,8 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
-  <models uri="/NECSIS14/cd.xmi" name="cd" metatypeUri="http://se.cs.toronto.edu/mmint/ClassDiagram" dynamic="true" origin="CREATED" fileExtension="xmi" editors="//@editors.0"/>
-  <editors uri="/NECSIS14/cd.xmi" name="Ecore Reflective tree for model /NECSIS14/cd.xmi" metatypeUri="http://se.cs.toronto.edu/mmint/ClassDiagram/Ecore Reflective tree" dynamic="true" modelUri="/NECSIS14/cd.xmi" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID">
-    <fileExtensions>xmi</fileExtensions>
-  </editors>
-  <extendibleTable key="/NECSIS14/cd.xmi" value="//@models.0"/>
-</mid:MultiModel>
+<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID"/>

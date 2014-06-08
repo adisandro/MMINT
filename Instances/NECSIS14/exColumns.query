@@ -1,7 +1,0 @@
-KLEISLI:
-$_ExTable[0][self]
-$_ExTable[0][parent]
-$_ExTable[0][oclContainer()]
-$_ExTable[1][self]
-$_ExTable[1][self]
-$_ExTable[0][target]
