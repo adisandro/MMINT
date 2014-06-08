@@ -37,7 +37,7 @@
 	)
 /]
 
-[query public alreadyEncodedMAVOElements(mavoModel : MAVOModel, currentMAVOClass : EClass) : Integer =
+[query public getAlreadyEncodedMAVOElementsCounter(mavoModel : MAVOModel, currentMAVOClass : EClass) : Integer =
 	mavoModel.getMetamodelMAVOClasses()->
 	subSequence(1, mavoModel.getMetamodelMAVOClasses()->indexOf(currentMAVOClass))->
 	collect(eclass : EClass | mavoModel.getObjectsOfType(eclass))->
@@ -107,14 +107,18 @@
 	[/for]
 
 ;Model
-	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
-		[let numTypes : Integer = mavoModel.getMetamodelMAVOClasses()->size()]
-		[let function : String = mavoElement.eClass().getGraphFunction()]
+	[let numTypes : Integer = mavoModel.getMetamodelMAVOClasses()->size()]
+	[for (mavoClass : EClass | mavoModel.getMetamodelMAVOClasses())]
+		[let counter : Integer = mavoModel.getAlreadyEncodedMAVOElementsCounter(mavoClass)]
+		[for (mavoElement : MAVOElement | mavoModel.getObjectsOfType(mavoClass)->asMAVOElements())]
+			[let function : String = mavoElement.eClass().getGraphFunction()]
 (declare-const [mavoElement.formulaId/] Int)[';'+function.toUpperFirst()/]
-(assert (= [mavoElement.formulaId/] [numTypes+i/]))
-		[/let]
+(assert (= [mavoElement.formulaId/] [numTypes+counter+i/]))
+			[/let]
+		[/for]
 		[/let]
 	[/for]
+	[/let]
 ;End Model
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOEdges())]
 		[let srcMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeSrcFeatureName()).oclAsType(MAVOElement)]
@@ -134,22 +138,25 @@
 
 [template public encodeMAVOConstraintsMayOnly(mavoModel : MAVOModel)]
 ;Model is Complete
-	[for (eclass : EClass | mavoModel.getMetamodelMAVOClasses())]
-		[let eclassMavoElements : Sequence(MAVOElement) = mavoModel.getObjectsOfType(eclass)->asMAVOElements()]
-		[if (eclassMavoElements->size() > 0)]
-			[let function : String = eclass.getGraphFunction()]
-(assert	(forall ((c [eclass.getMAVOClassName()/])) (=>
+	[let numTypes : Integer = mavoModel.getMetamodelMAVOClasses()->size()]
+	[for (mavoClass : EClass | mavoModel.getMetamodelMAVOClasses())]
+		[let mavoClassMavoElements : Integer = mavoModel.getObjectsOfType(mavoClass)->size()]
+		[if (mavoClassMavoElements > 0)]
+			[let counter : Integer = mavoModel.getAlreadyEncodedMAVOElementsCounter(mavoClass)]
+			[let function : String = mavoClass.getGraphFunction()]
+(assert	(forall ((c [mavoClass.getMAVOClassName()/])) (=>
 	([function/] c)
-	(or
-			[for (mavoElement : MAVOElement | eclassMavoElements)]
-		(= [mavoElement.formulaId/] c)
-			[/for]
+	(and
+		(>= c [numTypes+counter+1/])
+		(<= c [numTypes+counter+mavoClassMavoElements/])
 	)
 )))
+			[/let]
 			[/let]
 		[/if]
 		[/let]
 	[/for]
+	[/let]
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
 		[let function : String = mavoElement.eClass().getGraphFunction()]
 		[if (not mavoElement.may)]
