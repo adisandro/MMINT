@@ -27,13 +27,14 @@ import java.util.Set;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.operator.patch.LiftingHenshinTransformation;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
 import splar.core.constraints.CNFClause;
 import splar.core.constraints.CNFFormula;
 import splar.core.constraints.CNFLiteral;
 import splar.core.fm.FeatureModel;
 import splar.core.fm.XMLFeatureModel;
 
-public class FeatureModelToSMTLIB implements edu.toronto.cs.se.mmint.reasoning.Z3SMTSolver {
+public class FeatureModelToSMTLIB {
 
 	private static final Set<String> Z3_KEYWORDS = new HashSet<String>();
 	static {
@@ -47,18 +48,18 @@ public class FeatureModelToSMTLIB implements edu.toronto.cs.se.mmint.reasoning.Z
 		FeatureModel featureModel = new XMLFeatureModel(featureModelPath, XMLFeatureModel.USE_VARIABLE_NAME_AS_ID);
 		featureModel.loadModel();
 		CNFFormula cnf = featureModel.FM2CNF();
-		StringBuilder cnfFormula = new StringBuilder(SMTLIB_AND);
+		StringBuilder cnfFormula = new StringBuilder(Z3SMTUtils.SMTLIB_AND);
 		Set<String> cnfVars = new HashSet<String>();
 		boolean needSpace = false;
 		String variable;
 		for (CNFClause cnfClause : cnf.getClauses()) {
 			if (cnfClause.countLiterals() > 1) {
-				cnfFormula.append(SMTLIB_OR);
+				cnfFormula.append(Z3SMTUtils.SMTLIB_OR);
 				needSpace = false;
 			}
 			for (CNFLiteral cnfLiteral : cnfClause.getLiterals()) {
 				if (!cnfLiteral.isPositive()) {
-					cnfFormula.append(SMTLIB_NOT);
+					cnfFormula.append(Z3SMTUtils.SMTLIB_NOT);
 					needSpace = false;
 				}
 				if (needSpace) {
@@ -74,14 +75,14 @@ public class FeatureModelToSMTLIB implements edu.toronto.cs.se.mmint.reasoning.Z
 					needSpace = true;
 				}
 				else {
-					cnfFormula.append(SMTLIB_PREDICATE_END);
+					cnfFormula.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 				}
 			}
 			if (cnfClause.countLiterals() > 1) {
-				cnfFormula.append(SMTLIB_PREDICATE_END);
+				cnfFormula.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 			}
 		}
-		cnfFormula.append(SMTLIB_PREDICATE_END);
+		cnfFormula.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
 
 		StringBuilder cnfVariables = new StringBuilder();
 		for (String cnfVariable : cnfVars) {

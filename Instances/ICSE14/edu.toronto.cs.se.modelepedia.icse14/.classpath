@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="lib/org.sat4j.core.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/edu.toronto.cs.se.modelepedia.operator"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/edu.toronto.cs.se.mmint"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/edu.toronto.cs.se.modelepedia.z3"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
