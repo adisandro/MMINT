@@ -12,7 +12,7 @@
 package edu.toronto.cs.se.modelepedia.necsis14_databaseschema.provider;
 
 
-import edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Database;
+import edu.toronto.cs.se.modelepedia.necsis14_databaseschema.DatabaseSchema;
 import edu.toronto.cs.se.modelepedia.necsis14_databaseschema.NECSIS14_DatabaseSchemaFactory;
 import edu.toronto.cs.se.modelepedia.necsis14_databaseschema.NECSIS14_DatabaseSchemaPackage;
 
@@ -36,12 +36,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Database} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.DatabaseSchema} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DatabaseItemProvider
+public class DatabaseSchemaItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -55,7 +55,7 @@ public class DatabaseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DatabaseItemProvider(AdapterFactory adapterFactory) {
+	public DatabaseSchemaItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -86,7 +86,7 @@ public class DatabaseItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(NECSIS14_DatabaseSchemaPackage.Literals.DATABASE__TABLES);
+			childrenFeatures.add(NECSIS14_DatabaseSchemaPackage.Literals.DATABASE_SCHEMA__TABLES);
 		}
 		return childrenFeatures;
 	}
@@ -105,14 +105,14 @@ public class DatabaseItemProvider
 	}
 
 	/**
-	 * This returns Database.gif.
+	 * This returns DatabaseSchema.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Database"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DatabaseSchema"));
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class DatabaseItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Database_type");
+		return getString("_UI_DatabaseSchema_type");
 	}
 
 	/**
@@ -137,8 +137,8 @@ public class DatabaseItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Database.class)) {
-			case NECSIS14_DatabaseSchemaPackage.DATABASE__TABLES:
+		switch (notification.getFeatureID(DatabaseSchema.class)) {
+			case NECSIS14_DatabaseSchemaPackage.DATABASE_SCHEMA__TABLES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -158,7 +158,7 @@ public class DatabaseItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(NECSIS14_DatabaseSchemaPackage.Literals.DATABASE__TABLES,
+				(NECSIS14_DatabaseSchemaPackage.Literals.DATABASE_SCHEMA__TABLES,
 				 NECSIS14_DatabaseSchemaFactory.eINSTANCE.createTable()));
 	}
 

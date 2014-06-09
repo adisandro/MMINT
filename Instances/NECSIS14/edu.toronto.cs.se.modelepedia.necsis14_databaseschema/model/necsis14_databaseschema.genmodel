@@ -10,8 +10,8 @@
   <foreignModel>necsis14_databaseschema.ecore</foreignModel>
   <genPackages prefix="NECSIS14_DatabaseSchema" basePackage="edu.toronto.cs.se.modelepedia"
       disposableProviderFactory="true" ecorePackage="necsis14_databaseschema.ecore#/">
-    <genClasses ecoreClass="necsis14_databaseschema.ecore#//Database">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference necsis14_databaseschema.ecore#//Database/tables"/>
+    <genClasses ecoreClass="necsis14_databaseschema.ecore#//DatabaseSchema">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference necsis14_databaseschema.ecore#//DatabaseSchema/tables"/>
     </genClasses>
     <genClasses image="false" ecoreClass="necsis14_databaseschema.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute necsis14_databaseschema.ecore#//NamedElement/name"/>

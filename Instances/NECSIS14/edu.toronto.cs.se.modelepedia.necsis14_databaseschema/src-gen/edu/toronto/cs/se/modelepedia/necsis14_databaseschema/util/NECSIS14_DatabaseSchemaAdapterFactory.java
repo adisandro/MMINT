@@ -77,8 +77,8 @@ public class NECSIS14_DatabaseSchemaAdapterFactory extends AdapterFactoryImpl {
 	protected NECSIS14_DatabaseSchemaSwitch<Adapter> modelSwitch =
 		new NECSIS14_DatabaseSchemaSwitch<Adapter>() {
 			@Override
-			public Adapter caseDatabase(Database object) {
-				return createDatabaseAdapter();
+			public Adapter caseDatabaseSchema(DatabaseSchema object) {
+				return createDatabaseSchemaAdapter();
 			}
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
@@ -113,16 +113,16 @@ public class NECSIS14_DatabaseSchemaAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Database <em>Database</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.DatabaseSchema <em>Database Schema</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Database
+	 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.DatabaseSchema
 	 * @generated
 	 */
-	public Adapter createDatabaseAdapter() {
+	public Adapter createDatabaseSchemaAdapter() {
 		return null;
 	}
 

@@ -65,7 +65,7 @@ public class NECSIS14_DatabaseSchemaFactoryImpl extends EFactoryImpl implements 
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case NECSIS14_DatabaseSchemaPackage.DATABASE: return createDatabase();
+			case NECSIS14_DatabaseSchemaPackage.DATABASE_SCHEMA: return createDatabaseSchema();
 			case NECSIS14_DatabaseSchemaPackage.TABLE: return createTable();
 			case NECSIS14_DatabaseSchemaPackage.COLUMN: return createColumn();
 			default:
@@ -78,9 +78,9 @@ public class NECSIS14_DatabaseSchemaFactoryImpl extends EFactoryImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Database createDatabase() {
-		DatabaseImpl database = new DatabaseImpl();
-		return database;
+	public DatabaseSchema createDatabaseSchema() {
+		DatabaseSchemaImpl databaseSchema = new DatabaseSchemaImpl();
+		return databaseSchema;
 	}
 
 	/**

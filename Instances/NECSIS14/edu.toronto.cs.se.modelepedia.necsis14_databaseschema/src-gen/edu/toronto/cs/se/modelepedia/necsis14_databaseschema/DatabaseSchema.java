@@ -17,21 +17,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Database</b></em>'.
+ * A representation of the model object '<em><b>Database Schema</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Database#getTables <em>Tables</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.DatabaseSchema#getTables <em>Tables</em>}</li>
  * </ul>
  * </p>
  *
- * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.NECSIS14_DatabaseSchemaPackage#getDatabase()
+ * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.NECSIS14_DatabaseSchemaPackage#getDatabaseSchema()
  * @model
  * @generated
  */
-public interface Database extends EObject {
+public interface DatabaseSchema extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Tables</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Table}.
@@ -42,10 +42,10 @@ public interface Database extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tables</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.NECSIS14_DatabaseSchemaPackage#getDatabase_Tables()
+	 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.NECSIS14_DatabaseSchemaPackage#getDatabaseSchema_Tables()
 	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Table> getTables();
 
-} // Database
+} // DatabaseSchema

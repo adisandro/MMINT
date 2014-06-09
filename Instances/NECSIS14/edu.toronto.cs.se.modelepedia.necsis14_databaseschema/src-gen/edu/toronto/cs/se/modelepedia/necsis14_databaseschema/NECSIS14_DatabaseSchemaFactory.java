@@ -31,13 +31,13 @@ public interface NECSIS14_DatabaseSchemaFactory extends EFactory {
 	NECSIS14_DatabaseSchemaFactory eINSTANCE = edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.NECSIS14_DatabaseSchemaFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Database</em>'.
+	 * Returns a new object of class '<em>Database Schema</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Database</em>'.
+	 * @return a new object of class '<em>Database Schema</em>'.
 	 * @generated
 	 */
-	Database createDatabase();
+	DatabaseSchema createDatabaseSchema();
 
 	/**
 	 * Returns a new object of class '<em>Table</em>'.

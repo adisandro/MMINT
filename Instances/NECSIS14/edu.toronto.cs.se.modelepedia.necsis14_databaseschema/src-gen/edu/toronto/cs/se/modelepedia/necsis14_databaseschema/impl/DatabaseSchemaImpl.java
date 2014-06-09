@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl;
 
-import edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Database;
+import edu.toronto.cs.se.modelepedia.necsis14_databaseschema.DatabaseSchema;
 import edu.toronto.cs.se.modelepedia.necsis14_databaseschema.NECSIS14_DatabaseSchemaPackage;
 import edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Table;
 
@@ -31,18 +31,18 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Database</b></em>'.
+ * An implementation of the model object '<em><b>Database Schema</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.DatabaseImpl#getTables <em>Tables</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.DatabaseSchemaImpl#getTables <em>Tables</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class DatabaseImpl extends MinimalEObjectImpl.Container implements Database {
+public class DatabaseSchemaImpl extends MinimalEObjectImpl.Container implements DatabaseSchema {
 	/**
 	 * The cached value of the '{@link #getTables() <em>Tables</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -58,7 +58,7 @@ public class DatabaseImpl extends MinimalEObjectImpl.Container implements Databa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DatabaseImpl() {
+	protected DatabaseSchemaImpl() {
 		super();
 	}
 
@@ -69,7 +69,7 @@ public class DatabaseImpl extends MinimalEObjectImpl.Container implements Databa
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return NECSIS14_DatabaseSchemaPackage.Literals.DATABASE;
+		return NECSIS14_DatabaseSchemaPackage.Literals.DATABASE_SCHEMA;
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class DatabaseImpl extends MinimalEObjectImpl.Container implements Databa
 	 */
 	public EList<Table> getTables() {
 		if (tables == null) {
-			tables = new EObjectContainmentEList<Table>(Table.class, this, NECSIS14_DatabaseSchemaPackage.DATABASE__TABLES);
+			tables = new EObjectContainmentEList<Table>(Table.class, this, NECSIS14_DatabaseSchemaPackage.DATABASE_SCHEMA__TABLES);
 		}
 		return tables;
 	}
@@ -92,7 +92,7 @@ public class DatabaseImpl extends MinimalEObjectImpl.Container implements Databa
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case NECSIS14_DatabaseSchemaPackage.DATABASE__TABLES:
+			case NECSIS14_DatabaseSchemaPackage.DATABASE_SCHEMA__TABLES:
 				return ((InternalEList<?>)getTables()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -106,7 +106,7 @@ public class DatabaseImpl extends MinimalEObjectImpl.Container implements Databa
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case NECSIS14_DatabaseSchemaPackage.DATABASE__TABLES:
+			case NECSIS14_DatabaseSchemaPackage.DATABASE_SCHEMA__TABLES:
 				return getTables();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -121,7 +121,7 @@ public class DatabaseImpl extends MinimalEObjectImpl.Container implements Databa
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case NECSIS14_DatabaseSchemaPackage.DATABASE__TABLES:
+			case NECSIS14_DatabaseSchemaPackage.DATABASE_SCHEMA__TABLES:
 				getTables().clear();
 				getTables().addAll((Collection<? extends Table>)newValue);
 				return;
@@ -137,7 +137,7 @@ public class DatabaseImpl extends MinimalEObjectImpl.Container implements Databa
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case NECSIS14_DatabaseSchemaPackage.DATABASE__TABLES:
+			case NECSIS14_DatabaseSchemaPackage.DATABASE_SCHEMA__TABLES:
 				getTables().clear();
 				return;
 		}
@@ -152,10 +152,10 @@ public class DatabaseImpl extends MinimalEObjectImpl.Container implements Databa
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case NECSIS14_DatabaseSchemaPackage.DATABASE__TABLES:
+			case NECSIS14_DatabaseSchemaPackage.DATABASE_SCHEMA__TABLES:
 				return tables != null && !tables.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //DatabaseImpl
+} //DatabaseSchemaImpl

@@ -65,7 +65,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_ZhLWJ-qEEeOn6-nAxxYrHA"/>
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_ZhKIAeqEEeOn6-nAxxYrHA" fontColor="4210752" fontName="Cantarell" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
-    <element xmi:type="ecore:EClass" href="necsis14_databaseschema.ecore#//Database"/>
+    <element xmi:type="ecore:EClass" href="necsis14_databaseschema.ecore#//DatabaseSchema"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZhKIAuqEEeOn6-nAxxYrHA" x="432" y="72"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_EuwI4eg7EeOF_aZl-PtANg"/>
@@ -121,7 +121,7 @@
     </children>
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_b-7yAeqEEeOn6-nAxxYrHA" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_b-7yAuqEEeOn6-nAxxYrHA" fontColor="4210752" fontName="Cantarell" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="necsis14_databaseschema.ecore#//Database/tables"/>
+    <element xmi:type="ecore:EReference" href="necsis14_databaseschema.ecore#//DatabaseSchema/tables"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_b-7yA-qEEeOn6-nAxxYrHA" points="[-7, 22, 53, -122]$[-10, 138, 50, -6]"/>
   </edges>
 </notation:Diagram>

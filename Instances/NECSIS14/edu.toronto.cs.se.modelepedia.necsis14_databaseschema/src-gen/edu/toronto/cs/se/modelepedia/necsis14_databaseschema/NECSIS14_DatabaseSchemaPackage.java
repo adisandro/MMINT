@@ -66,14 +66,14 @@ public interface NECSIS14_DatabaseSchemaPackage extends EPackage {
 	NECSIS14_DatabaseSchemaPackage eINSTANCE = edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.NECSIS14_DatabaseSchemaPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.DatabaseImpl <em>Database</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.DatabaseSchemaImpl <em>Database Schema</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.DatabaseImpl
-	 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.NECSIS14_DatabaseSchemaPackageImpl#getDatabase()
+	 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.DatabaseSchemaImpl
+	 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.NECSIS14_DatabaseSchemaPackageImpl#getDatabaseSchema()
 	 * @generated
 	 */
-	int DATABASE = 0;
+	int DATABASE_SCHEMA = 0;
 
 	/**
 	 * The feature id for the '<em><b>Tables</b></em>' containment reference list.
@@ -82,25 +82,25 @@ public interface NECSIS14_DatabaseSchemaPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE__TABLES = 0;
+	int DATABASE_SCHEMA__TABLES = 0;
 
 	/**
-	 * The number of structural features of the '<em>Database</em>' class.
+	 * The number of structural features of the '<em>Database Schema</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_FEATURE_COUNT = 1;
+	int DATABASE_SCHEMA_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Database</em>' class.
+	 * The number of operations of the '<em>Database Schema</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_OPERATION_COUNT = 0;
+	int DATABASE_SCHEMA_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -233,25 +233,25 @@ public interface NECSIS14_DatabaseSchemaPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Database <em>Database</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.DatabaseSchema <em>Database Schema</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Database</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Database
+	 * @return the meta object for class '<em>Database Schema</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.DatabaseSchema
 	 * @generated
 	 */
-	EClass getDatabase();
+	EClass getDatabaseSchema();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Database#getTables <em>Tables</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.DatabaseSchema#getTables <em>Tables</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Tables</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Database#getTables()
-	 * @see #getDatabase()
+	 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.DatabaseSchema#getTables()
+	 * @see #getDatabaseSchema()
 	 * @generated
 	 */
-	EReference getDatabase_Tables();
+	EReference getDatabaseSchema_Tables();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.NamedElement <em>Named Element</em>}'.
@@ -340,14 +340,14 @@ public interface NECSIS14_DatabaseSchemaPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.DatabaseImpl <em>Database</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.DatabaseSchemaImpl <em>Database Schema</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.DatabaseImpl
-		 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.NECSIS14_DatabaseSchemaPackageImpl#getDatabase()
+		 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.DatabaseSchemaImpl
+		 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.NECSIS14_DatabaseSchemaPackageImpl#getDatabaseSchema()
 		 * @generated
 		 */
-		EClass DATABASE = eINSTANCE.getDatabase();
+		EClass DATABASE_SCHEMA = eINSTANCE.getDatabaseSchema();
 
 		/**
 		 * The meta object literal for the '<em><b>Tables</b></em>' containment reference list feature.
@@ -355,7 +355,7 @@ public interface NECSIS14_DatabaseSchemaPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATABASE__TABLES = eINSTANCE.getDatabase_Tables();
+		EReference DATABASE_SCHEMA__TABLES = eINSTANCE.getDatabaseSchema_Tables();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl.NamedElementImpl <em>Named Element</em>}' class.

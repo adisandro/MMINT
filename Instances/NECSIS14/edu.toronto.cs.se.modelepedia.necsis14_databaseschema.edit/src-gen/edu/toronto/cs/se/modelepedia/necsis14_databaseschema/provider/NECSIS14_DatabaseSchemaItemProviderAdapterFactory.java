@@ -81,26 +81,26 @@ public class NECSIS14_DatabaseSchemaItemProviderAdapterFactory extends NECSIS14_
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Database} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.DatabaseSchema} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DatabaseItemProvider databaseItemProvider;
+	protected DatabaseSchemaItemProvider databaseSchemaItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Database}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.necsis14_databaseschema.DatabaseSchema}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createDatabaseAdapter() {
-		if (databaseItemProvider == null) {
-			databaseItemProvider = new DatabaseItemProvider(this);
+	public Adapter createDatabaseSchemaAdapter() {
+		if (databaseSchemaItemProvider == null) {
+			databaseSchemaItemProvider = new DatabaseSchemaItemProvider(this);
 		}
 
-		return databaseItemProvider;
+		return databaseSchemaItemProvider;
 	}
 
 	/**
@@ -248,7 +248,7 @@ public class NECSIS14_DatabaseSchemaItemProviderAdapterFactory extends NECSIS14_
 	 * @generated
 	 */
 	public void dispose() {
-		if (databaseItemProvider != null) databaseItemProvider.dispose();
+		if (databaseSchemaItemProvider != null) databaseSchemaItemProvider.dispose();
 		if (tableItemProvider != null) tableItemProvider.dispose();
 		if (columnItemProvider != null) columnItemProvider.dispose();
 	}

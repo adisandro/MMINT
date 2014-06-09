@@ -75,9 +75,9 @@ public class NECSIS14_DatabaseSchemaSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case NECSIS14_DatabaseSchemaPackage.DATABASE: {
-				Database database = (Database)theEObject;
-				T result = caseDatabase(database);
+			case NECSIS14_DatabaseSchemaPackage.DATABASE_SCHEMA: {
+				DatabaseSchema databaseSchema = (DatabaseSchema)theEObject;
+				T result = caseDatabaseSchema(databaseSchema);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -106,17 +106,17 @@ public class NECSIS14_DatabaseSchemaSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Database</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Database Schema</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Database</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Database Schema</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDatabase(Database object) {
+	public T caseDatabaseSchema(DatabaseSchema object) {
 		return null;
 	}
 

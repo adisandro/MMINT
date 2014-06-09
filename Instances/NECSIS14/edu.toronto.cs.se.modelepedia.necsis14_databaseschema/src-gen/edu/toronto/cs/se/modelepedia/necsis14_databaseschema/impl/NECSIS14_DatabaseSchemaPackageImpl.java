@@ -12,17 +12,15 @@
 package edu.toronto.cs.se.modelepedia.necsis14_databaseschema.impl;
 
 import edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Column;
-import edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Database;
+import edu.toronto.cs.se.modelepedia.necsis14_databaseschema.DatabaseSchema;
 import edu.toronto.cs.se.modelepedia.necsis14_databaseschema.NECSIS14_DatabaseSchemaFactory;
 import edu.toronto.cs.se.modelepedia.necsis14_databaseschema.NECSIS14_DatabaseSchemaPackage;
 import edu.toronto.cs.se.modelepedia.necsis14_databaseschema.NamedElement;
 import edu.toronto.cs.se.modelepedia.necsis14_databaseschema.Table;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -37,7 +35,7 @@ public class NECSIS14_DatabaseSchemaPackageImpl extends EPackageImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass databaseEClass = null;
+	private EClass databaseSchemaEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -126,8 +124,8 @@ public class NECSIS14_DatabaseSchemaPackageImpl extends EPackageImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDatabase() {
-		return databaseEClass;
+	public EClass getDatabaseSchema() {
+		return databaseSchemaEClass;
 	}
 
 	/**
@@ -135,8 +133,8 @@ public class NECSIS14_DatabaseSchemaPackageImpl extends EPackageImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDatabase_Tables() {
-		return (EReference)databaseEClass.getEStructuralFeatures().get(0);
+	public EReference getDatabaseSchema_Tables() {
+		return (EReference)databaseSchemaEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -221,8 +219,8 @@ public class NECSIS14_DatabaseSchemaPackageImpl extends EPackageImpl implements 
 		isCreated = true;
 
 		// Create classes and their features
-		databaseEClass = createEClass(DATABASE);
-		createEReference(databaseEClass, DATABASE__TABLES);
+		databaseSchemaEClass = createEClass(DATABASE_SCHEMA);
+		createEReference(databaseSchemaEClass, DATABASE_SCHEMA__TABLES);
 
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
@@ -266,8 +264,8 @@ public class NECSIS14_DatabaseSchemaPackageImpl extends EPackageImpl implements 
 		columnEClass.getESuperTypes().add(this.getNamedElement());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(databaseEClass, Database.class, "Database", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDatabase_Tables(), this.getTable(), null, "tables", null, 0, -1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(databaseSchemaEClass, DatabaseSchema.class, "DatabaseSchema", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDatabaseSchema_Tables(), this.getTable(), null, "tables", null, 0, -1, DatabaseSchema.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -280,6 +278,67 @@ public class NECSIS14_DatabaseSchemaPackageImpl extends EPackageImpl implements 
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// gmf.diagram
+		createGmfAnnotations();
+		// gmf.node
+		createGmf_1Annotations();
+		// gmf.compartment
+		createGmf_2Annotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.diagram</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmfAnnotations() {
+		String source = "gmf.diagram";		
+		addAnnotation
+		  (databaseSchemaEClass, 
+		   source, 
+		   new String[] {
+		   });			
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.node</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmf_1Annotations() {
+		String source = "gmf.node";			
+		addAnnotation
+		  (tableEClass, 
+		   source, 
+		   new String[] {
+			 "label", "name"
+		   });			
+		addAnnotation
+		  (columnEClass, 
+		   source, 
+		   new String[] {
+			 "label", "name"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.compartment</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmf_2Annotations() {
+		String source = "gmf.compartment";				
+		addAnnotation
+		  (getTable_Columns(), 
+		   source, 
+		   new String[] {
+			 "layout", "list"
+		   });	
 	}
 
 } //NECSIS14_DatabaseSchemaPackageImpl

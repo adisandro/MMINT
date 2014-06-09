@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.NECSIS14_DatabaseSchemaPackage#getTable()
- * @model
+ * @model annotation="gmf.node label='name'"
  * @generated
  */
 public interface Table extends NamedElement {
@@ -43,6 +43,7 @@ public interface Table extends NamedElement {
 	 * @return the value of the '<em>Columns</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.NECSIS14_DatabaseSchemaPackage#getTable_Columns()
 	 * @model containment="true" required="true"
+	 *        annotation="gmf.compartment layout='list'"
 	 * @generated
 	 */
 	EList<Column> getColumns();

@@ -19,7 +19,7 @@ package edu.toronto.cs.se.modelepedia.necsis14_databaseschema;
  *
  *
  * @see edu.toronto.cs.se.modelepedia.necsis14_databaseschema.NECSIS14_DatabaseSchemaPackage#getColumn()
- * @model
+ * @model annotation="gmf.node label='name'"
  * @generated
  */
 public interface Column extends NamedElement {
