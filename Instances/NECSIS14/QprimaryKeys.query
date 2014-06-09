@@ -1,7 +1,7 @@
 KLEISLI:
-$_QTable[0][self]
+_QTable.classes->get(origin)
 NULL
 NULL
-$_QTable[1][self]
-$_QTable[1][self]
+_QTable.associations->get(origin)
+_QTable.associations->get(origin)
 NULL

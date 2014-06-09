@@ -1,7 +1,7 @@
 KLEISLI:
-Class.allInstances()
-Class.allInstances()->select(not parent.oclIsUndefined())
-Attribute.allInstances()
-Association.allInstances()->select(upperBound = -1)
-Association.allInstances()->select(upperBound = -1)
-Association.allInstances()->select(upperBound = 1)
+union classes = Class.allInstances()
+union subclasses = Class.allInstances()->select(not parent.oclIsUndefined())
+union attributes = Attribute.allInstances()
+union multiAssociations1 = Association.allInstances()->select(upperBound > 1 or upperBound = -1)
+union multiAssociations2 = Association.allInstances()->select(upperBound > 1 or upperBound = -1)
+union singleAssociations = Association.allInstances()->select(upperBound = 1)
