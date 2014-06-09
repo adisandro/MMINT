@@ -34,7 +34,7 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 
 		String pluginPath = MMINTActivator.getDefault().getStateLocation().toOSString();
 		String midModelUri = pluginPath + IPath.SEPARATOR + MMINT.TYPEMID_FILENAME;
-		String midDiagramUri = midModelUri + MMINT.MID_DIAGRAM_SUFFIX;
+		String midDiagramUri = midModelUri + GMFDiagramUtils.DIAGRAM_SUFFIX;
 		File middiag = new File(midDiagramUri);
 		if (!middiag.exists()) {
 			createTypeMIDDiagram();
@@ -53,7 +53,7 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 
 		String pluginPath = MMINTActivator.getDefault().getStateLocation().toOSString();
 		String midModelUri = pluginPath + IPath.SEPARATOR + MMINT.TYPEMID_FILENAME;
-		String midDiagramUri = midModelUri + MMINT.MID_DIAGRAM_SUFFIX;
+		String midDiagramUri = midModelUri + GMFDiagramUtils.DIAGRAM_SUFFIX;
 		try {
 			GMFDiagramUtils.createGMFDiagram(midModelUri, midDiagramUri, MultiModelEditPart.MODEL_ID, MidDiagramEditorPlugin.ID);
 		}

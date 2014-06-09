@@ -37,6 +37,8 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 public class GMFDiagramUtils {
 
 	private final static String EXTELEM_NULLTYPE = "NOTYPE";
+	/** The suffix for GMF diagrams. */
+	public static final String DIAGRAM_SUFFIX = "diag";
 
 	public static String getElementLabel(ExtendibleElement element) {
 	

@@ -38,6 +38,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl;
+import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
@@ -411,9 +412,11 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			}
 			String kModelTypeUri = MultiModelUtils.isFileOrDirectoryInState(((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTargetUri());
 			if (kModelTypeUri != null) { // the root KleisliModelRel has no extended metamodel to open
-				URI kUri = URI.createFileURI(kModelTypeUri);
+				String kModelTypeDiagramUri = MultiModelUtils.isFileOrDirectoryInState(((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTargetUri() + GMFDiagramUtils.DIAGRAM_SUFFIX);
+				URI kUri = (kModelTypeDiagramUri == null) ? URI.createFileURI(kModelTypeUri) : URI.createFileURI(kModelTypeDiagramUri);
+				String editorId = (kModelTypeDiagramUri == null) ? ModelOpenEditorCommand.ECORE_EDITORID : ModelOpenEditorCommand.ECORE_DIAGRAMID;
 				try {
-					activePage.openEditor(new URIEditorInput(kUri), ModelOpenEditorCommand.ECORE_EDITORID);
+					activePage.openEditor(new URIEditorInput(kUri), editorId);
 				}
 				catch (PartInitException e) {
 					MMINTException.print(Type.ERROR, "Error opening extended metamodel file", e);

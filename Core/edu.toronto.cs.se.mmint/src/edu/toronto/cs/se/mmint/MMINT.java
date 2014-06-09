@@ -112,8 +112,6 @@ public class MMINT implements MMINTConstants {
 	static Map<String, Set<String>> multipleInheritanceTable;
 	/** The type MID filename. */
 	public static final String TYPEMID_FILENAME = "types" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MidPackage.eNAME;
-	/** The MID diagram suffix. */
-	public static final String MID_DIAGRAM_SUFFIX = "diag";
 
 	/**
 	 * Creates and adds a model type to the repository from a registered

@@ -39,6 +39,8 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.part.Messages;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 /**
  * The command to open a model editor.
@@ -48,7 +50,9 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
  */
 public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 
+	//TODO MMINT[ECORE] Move to ecore project
 	public static final String ECORE_EDITORID = "org.eclipse.emf.ecore.presentation.EcoreEditorID";
+	public static final String ECORE_DIAGRAMID = "org.eclipse.emf.ecoretools.diagram.part.EcoreDiagramEditorID";
 
 	/** The hint about the editor to open. */
 	private final HintedDiagramLinkStyle editorFacet;
@@ -103,7 +107,13 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 		// open editors
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		for (URI metamodelUri : metamodelUris) {
-			activePage.openEditor(new URIEditorInput(metamodelUri), ECORE_EDITORID);
+			String metamodelDiagramUri = metamodelUri.toFileString() + GMFDiagramUtils.DIAGRAM_SUFFIX;
+			if (MultiModelUtils.isFileOrDirectory(metamodelDiagramUri, false) != null) {
+				activePage.openEditor(new URIEditorInput(URI.createFileURI(metamodelDiagramUri)), ECORE_DIAGRAMID);
+			}
+			else {
+				activePage.openEditor(new URIEditorInput(metamodelUri), ECORE_EDITORID);
+			}
 		}
 	}
 
