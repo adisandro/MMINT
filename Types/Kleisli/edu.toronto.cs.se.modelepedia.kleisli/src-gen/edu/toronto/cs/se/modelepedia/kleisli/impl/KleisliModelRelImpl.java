@@ -11,8 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -456,7 +456,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					true
 				);
 				EObject kRootModelObj = kModelEndpoint.getExtendedTarget().getEMFInstanceRoot();
-				Map<String, List<Map<EObject, EObject>>> queryMap = new HashMap<String, List<Map<EObject, EObject>>>();
+				Map<String, Map<String, Map<EObject, EObject>>> queryMap = new HashMap<String, Map<String, Map<EObject, EObject>>>();
 				// first pass: EClasses
 				for (ModelElementReference kModelElemTypeRef : kModelTypeEndpointRef.getModelElemRefs()) {
 					EMFInfo kModelElemTypeEInfo = kModelElemTypeRef.getObject().getEInfo();
@@ -469,9 +469,9 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 						continue;
 					}
 					EClass kModelElemTypeClass = (EClass) kModelTypePackage.getEClassifier(kModelElemTypeEInfo.getClassName());
-					List<Map<EObject, EObject>> queryUnionList = new ArrayList<Map<EObject, EObject>>();
-					queryMap.put(kModelElemTypeClass.getName(), queryUnionList);
-					kReasoner.evaluateEClassQuery(kConstraint.getImplementation(), oclReasoner, kRootModelObj, kModelElemTypeClass, kModelTypeFactory, queryUnionList);
+					Map<String, Map<EObject, EObject>> queryUnion = new LinkedHashMap<String, Map<EObject, EObject>>();
+					queryMap.put(kModelElemTypeClass.getName(), queryUnion);
+					kReasoner.evaluateEClassQuery(kConstraint.getImplementation(), oclReasoner, kRootModelObj, kModelElemTypeClass, kModelTypeFactory, queryUnion);
 				}
 				// second pass: EReferences
 				for (ModelElementReference kModelElemTypeRef : kModelTypeEndpointRef.getModelElemRefs()) {
@@ -486,11 +486,11 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					) {
 						continue;
 					}
-					List<Map<EObject, EObject>> queryUnionList = queryMap.get(kModelElemTypeEInfo.getRelatedClassName());
-					if (queryUnionList == null) {
+					Map<String, Map<EObject, EObject>> queryUnion = queryMap.get(kModelElemTypeEInfo.getRelatedClassName());
+					if (queryUnion == null) {
 						continue;
 					}
-					kReasoner.evaluateEReferenceQuery(kConstraint.getImplementation(), oclReasoner, kModelElemTypeEInfo, queryUnionList, queryMap);
+					kReasoner.evaluateEReferenceQuery(kConstraint.getImplementation(), oclReasoner, kModelElemTypeEInfo, queryUnion, queryMap);
 				}
 				// third pass: EAttributes
 				for (ModelElementReference kModelElemTypeRef : kModelTypeEndpointRef.getModelElemRefs()) {

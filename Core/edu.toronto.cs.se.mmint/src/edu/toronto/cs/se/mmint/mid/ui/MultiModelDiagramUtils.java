@@ -240,7 +240,7 @@ public class MultiModelDiagramUtils {
 			@Override
 			protected Control createDialogArea(Composite parent) {
 				Control res = super.createDialogArea(parent);
-				((GridData) this.getText().getLayoutData()).heightHint = 100;
+				((GridData) this.getText().getLayoutData()).heightHint = 140;
 				return res;
 			}
 		};
@@ -255,12 +255,15 @@ public class MultiModelDiagramUtils {
 	public static String[] getConstraintInput(String dialogTitle, String dialogInitial) throws MultiModelDialogCancellation {
 
 		String text = getBigStringInput(dialogTitle, "Insert new constraint in the format \"language: constraint\"", dialogInitial);
-		String[] constraint = text.split(CONSTRAINT_LANGUAGE_SEPARATOR);
-		if (constraint.length == 1) {
-			String constraintImplementation = constraint[0];
-			constraint = new String[2];
+		String[] constraint = new String[2];
+		int separatorIndex = text.indexOf(CONSTRAINT_LANGUAGE_SEPARATOR);
+		if (separatorIndex == -1) {
 			constraint[0] = "OCL";
-			constraint[1] = constraintImplementation;
+			constraint[1] = text;
+		}
+		else {
+			constraint[0] = text.substring(0, separatorIndex);
+			constraint[1] = text.substring(separatorIndex + 1);
 		}
 		constraint[0] = constraint[0].trim();
 		constraint[1] = constraint[1].trim();

@@ -93,7 +93,7 @@ public class AddModifyConstraintListener extends SelectionAdapter {
 					constraint.setLanguage(languages.iterator().next());
 					constraint.setImplementation("");
 				}
-				String[] newConstraint = MultiModelDiagramUtils.getConstraintInput("Add/Modify Constraint", constraint.getLanguage() + MultiModelDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + constraint.getImplementation());
+				String[] newConstraint = MultiModelDiagramUtils.getConstraintInput("Add/Modify Constraint", constraint.getLanguage() + MultiModelDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + "\n" + constraint.getImplementation());
 				if (!MultiModelConstraintChecker.isInstancesLevel(element)) {
 					if (!MultiModelConstraintChecker.checkConstraintConsistency(element, newConstraint[0], newConstraint[1])) {
 						throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");

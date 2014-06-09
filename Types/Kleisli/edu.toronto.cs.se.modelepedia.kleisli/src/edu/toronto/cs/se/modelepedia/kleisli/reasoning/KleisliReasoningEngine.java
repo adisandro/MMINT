@@ -13,7 +13,6 @@ package edu.toronto.cs.se.modelepedia.kleisli.reasoning;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -40,18 +39,26 @@ import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
 public class KleisliReasoningEngine implements IReasoningEngine {
 
 	public static final String LANGUAGE_ID = "KLEISLI";
-	public static final String UNION_SEPARATOR = "\n";
+	public static final String ROW_SEPARATOR = "\n";
+	public static final String UNION_KEYWORD = "union";
+	public static final String UNION_ASSIGNMENT = "=";
+	public static final String ORIGIN_KEYWORD = "origin";
+	public static final String OCL_SELF = "self";
 	public static final String QUERY_NULL = "NULL";
-	public static final String MAP_VARIABLE = "$";
-	public static final String MAP_VARIABLE_START = "[";
-	public static final String MAP_VARIABLE_END = "]";
+	public static final String QUERY_MAP_VARIABLE = "_";
+	public static final String QUERY_MAP_VARIABLE_SEPARATOR1 = ".";
+	public static final String QUERY_MAP_VARIABLE_SEPARATOR2 = "->get(";
+	public static final String QUERY_MAP_VARIABLE_SEPARATOR3 = ")";
 
-	public void evaluateEClassQuery(String kQuery, OCLReasoningEngine oclReasoner, EObject kRootModelObj, EClass kModelElemTypeClass, EFactory kModelTypeFactory, List<Map<EObject, EObject>> queryUnion) {
+	public void evaluateEClassQuery(String kQuery, OCLReasoningEngine oclReasoner, EObject kRootModelObj, EClass kModelElemTypeClass, EFactory kModelTypeFactory, Map<String, Map<EObject, EObject>> queryUnion) {
 
 		//TODO MMINT[KLEISLI] will the different semantics creating/replacing be needed?
-		for (String oclQuery : kQuery.split(UNION_SEPARATOR)) {
+		for (String kQueryRow : kQuery.split(ROW_SEPARATOR)) {
+			String[] kQueryAssignment = kQueryRow.split(UNION_ASSIGNMENT);
+			String oclQuery = kQueryAssignment[1].trim();
+			String unionName = kQueryAssignment[0].substring(kQueryAssignment[0].indexOf(UNION_KEYWORD), kQueryAssignment[0].length()).trim();
 			Map<EObject, EObject> queryRow = new HashMap<EObject, EObject>();
-			queryUnion.add(queryRow);
+			queryUnion.put(unionName, queryRow);
 			Object queryObjs = oclReasoner.evaluateQuery(kRootModelObj, oclQuery);
 			if (queryObjs instanceof SetValue) {
 				queryObjs = ((SetValue) queryObjs).getElements();
@@ -74,28 +81,28 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 		}
 	}
 
-	public void evaluateEReferenceQuery(String kQuery, OCLReasoningEngine oclReasoner, EMFInfo kModelElemTypeEInfo, List<Map<EObject, EObject>> queryUnion, Map<String, List<Map<EObject, EObject>>> queryMap) {
+	public void evaluateEReferenceQuery(String kQuery, OCLReasoningEngine oclReasoner, EMFInfo kModelElemTypeEInfo, Map<String, Map<EObject, EObject>> queryUnion, Map<String, Map<String, Map<EObject, EObject>>> queryMap) {
 
 		//TODO MMINT[KLEISLI] what happens when the source or target of the derived ereference is not derived, it's not in queryMap
 		//TODO MMINT[KLEISLI] what happens when ereference is not derived but the target is? (source can't be)
-		String[] oclQueries = kQuery.split(UNION_SEPARATOR);
-		for (int i = 0; i < queryUnion.size(); i++) {
-			String oclQuery = oclQueries[i];
-			String mapIndex = null;
-			int unionIndex = -1;
+		String[] kQueryRows = kQuery.split(ROW_SEPARATOR);
+		Collection<Map<EObject, EObject>> queryRows = queryUnion.values();
+		for (int i = 0; i < queryRows.size(); i++) {
+			String oclQuery = kQueryRows[i].replace(ORIGIN_KEYWORD, OCL_SELF);
+			String mapIndex = null, unionIndex = null;
 			if (oclQuery.equals(QUERY_NULL)) {
 				continue;
 			}
-			if (oclQuery.startsWith(MAP_VARIABLE)) {
-				int s = oclQuery.indexOf(MAP_VARIABLE_START), e1 = oclQuery.indexOf(MAP_VARIABLE_END), e2 = oclQuery.indexOf(MAP_VARIABLE_END, e1+1);
-				mapIndex = oclQuery.substring(1, s);
-				unionIndex = Integer.valueOf(oclQuery.substring(s+1, e1));
+			if (oclQuery.startsWith(QUERY_MAP_VARIABLE)) {
+				int s = oclQuery.indexOf(QUERY_MAP_VARIABLE_SEPARATOR1), e1 = oclQuery.indexOf(QUERY_MAP_VARIABLE_SEPARATOR2), e2 = oclQuery.indexOf(QUERY_MAP_VARIABLE_SEPARATOR2, e1+1);
+				mapIndex = oclQuery.substring(0, s);
+				unionIndex = oclQuery.substring(s+1, e1);
 				oclQuery = oclQuery.substring(e1+2, e2);
 			}
 			for (Entry<EObject, EObject> queryRowEntry : queryUnion.get(i).entrySet()) {
 				EObject modelObj = queryRowEntry.getKey(), kModelObj = queryRowEntry.getValue();
 				EObject modelObjReferrer = (EObject) oclReasoner.evaluateQuery(modelObj, oclQuery);
-				if (mapIndex != null && unionIndex > -1) {
+				if (mapIndex != null && unionIndex != null) {
 					modelObjReferrer = queryMap.get(mapIndex).get(unionIndex).get(modelObjReferrer);
 				}
 				if (modelObjReferrer == null || !MultiModelConstraintChecker.instanceofEMFClass(modelObjReferrer, kModelElemTypeEInfo.getClassName())) {
