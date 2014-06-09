@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID"/>
+<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/NECSIS14/cd.necsis14_classdiagram" name="cd" metatypeUri="http://se.cs.toronto.edu/modelepedia/NECSIS14_ClassDiagram" dynamic="true" origin="CREATED" fileExtension="necsis14_classdiagram" editors="//@editors.0"/>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS14/cd.necsis14_classdiagramdiag" name="NECSIS14_ClassDiagram diagram for model /NECSIS14/cd.necsis14_classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_NECSIS14_ClassDiagram" dynamic="true" modelUri="/NECSIS14/cd.necsis14_classdiagram" id="edu.toronto.cs.se.modelepedia.necsis14_classdiagram.diagram.part.NECSIS14_ClassDiagramDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.necsis14_classdiagram.diagram.part.NECSIS14_ClassDiagramCreationWizardID">
+    <fileExtensions>necsis14_classdiagramdiag</fileExtensions>
+  </editors>
+  <extendibleTable key="/NECSIS14/cd.necsis14_classdiagram" value="//@models.0"/>
+</mid:MultiModel>
