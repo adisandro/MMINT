@@ -242,13 +242,13 @@
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_MVNwEe_zEeOK6ZS4x47HJA" routing="Rectilinear" lineColor="10011046"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_MVNwEu_zEeOK6ZS4x47HJA" fontName="Cantarell"/>
     <element xsi:nil="true"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_MVNwE-_zEeOK6ZS4x47HJA" points="[8, -21, -112, 263]$[63, -288, -57, -4]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_MVNwE-_zEeOK6ZS4x47HJA" points="[39, 22, -81, 306]$[39, 50, -81, 334]$[399, 50, 279, 334]$[399, -298, 279, -14]$[178, -298, 58, -14]"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_M9Kg4O_zEeOK6ZS4x47HJA" type="3003" source="_CuBMUO_zEeOK6ZS4x47HJA" target="_NLUiAOg6EeOF_aZl-PtANg">
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_M9Kg4e_zEeOK6ZS4x47HJA" routing="Rectilinear" lineColor="10011046"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_M9Kg4u_zEeOK6ZS4x47HJA" fontName="Cantarell"/>
     <element xsi:nil="true"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_M9Kg4-_zEeOK6ZS4x47HJA" points="[-7, -21, 106, 262]$[-55, -281, 58, 2]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_M9Kg4-_zEeOK6ZS4x47HJA" points="[50, 1, 163, 284]$[142, 1, 255, 284]$[142, -273, 255, 10]$[-55, -273, 58, 10]"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_NwUcIO_zEeOK6ZS4x47HJA" type="3002" source="__12sYO_yEeOK6ZS4x47HJA" target="_CuBMUO_zEeOK6ZS4x47HJA">
     <children xmi:type="notation:Node" xmi:id="_NwVDMO_zEeOK6ZS4x47HJA" type="4011">
