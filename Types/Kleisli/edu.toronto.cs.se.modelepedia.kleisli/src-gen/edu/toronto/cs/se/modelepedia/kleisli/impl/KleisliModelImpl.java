@@ -13,6 +13,7 @@ package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MidFactory;
 import edu.toronto.cs.se.mmint.mid.MidLevel;
@@ -26,6 +27,7 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
+import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -141,7 +143,11 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 		String kModelTypeUri = getModelTypeExtendedUri(containerModelTypeEndpoint);
 		if (MultiModelUtils.isFileOrDirectoryInState(kModelTypeUri) == null) {
 			try {
+				EPackage x = origModelType.getEMFTypeRoot();
+				String uri = x.getNsURI();
+				x.setNsURI(uri + KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX);
 				MultiModelUtils.createModelFileInState(origModelType.getEMFTypeRoot(), kModelTypeUri);
+				x.setNsURI(uri);
 			}
 			catch (Exception e) {
 				throw new MMINTException("Error creating extended metamodel file");
@@ -215,7 +221,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 			MMINT.URI_SEPARATOR +
 			modelEndpoint.getMetatype().getName() +
 			MMINT.ENDPOINT_SEPARATOR +
-			modelEndpoint.getTarget().getName() + "." + modelEndpoint.getTarget().getFileExtension();
+			modelEndpoint.getTarget().getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MultiModelTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION;
 	}
 
 	/**

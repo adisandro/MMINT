@@ -266,6 +266,20 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	Model createInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException;
 
 	/**
+	 * <!-- begin-user-doc --> Creates and adds an editor instance to this model
+	 * instance.
+	 * 
+	 * @throws MMINTException
+	 *             If this is a model type, or if there are no editor types
+	 *             registered for this model instance's type.
+	 *             <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	Editor createInstanceEditor() throws MMINTException;
+
+	/**
 	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
 	 * type to an Instance MID, together with an editor for it.
 	 * 
@@ -277,10 +291,14 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 *            An Instance MID.
 	 * @return The created model.
 	 * @throws MMINTException
-	 *             If this is a model instance, or if the uri of the new model
-	 *             instance is already registered in the Instance MID.
+	 *             If this is a model instance, if the uri of the new model
+	 *             instance is already registered in the Instance MID, or if
+	 *             there are no editor types registered for this model type.
 	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" originRequired="true" containerMultiModelRequired="true"
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 *        newModelUriRequired="true" originRequired="true"
+	 *        containerMultiModelRequired="true"
 	 * @generated
 	 */
 	Model createInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException;
@@ -319,10 +337,14 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 *            An Instance MID.
 	 * @return The created model.
 	 * @throws MMINTException
-	 *             If this is a model instance, or if the uri of the new model
-	 *             instance is already registered in the Instance MID.
+	 *             If this is a model instance, if the uri of the new model
+	 *             instance is already registered in the Instance MID, or if
+	 *             there are no editor types registered for this model type.
 	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" originRequired="true" containerMultiModelRequired="true"
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 *        newModelUriRequired="true" originRequired="true"
+	 *        containerMultiModelRequired="true"
 	 * @generated
 	 */
 	Model createMAVOInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException;
@@ -345,9 +367,13 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 * @return The created model.
 	 * @throws MMINTException
 	 *             If this is a model instance, if the model file can't be
-	 *             copied, or if the uri of the new model instance is already
-	 *             registered in the Instance MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" copyDiagramRequired="true" containerMultiModelRequired="true"
+	 *             copied, if the uri of the new model instance is already
+	 *             registered in the Instance MID, or if there are no editor
+	 *             types registered for this model type. <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 *        origModelRequired="true" newModelNameRequired="true"
+	 *        copyDiagramRequired="true" containerMultiModelRequired="true"
 	 * @generated
 	 */
 	Model copyMAVOInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MultiModel containerMultiModel) throws MMINTException;

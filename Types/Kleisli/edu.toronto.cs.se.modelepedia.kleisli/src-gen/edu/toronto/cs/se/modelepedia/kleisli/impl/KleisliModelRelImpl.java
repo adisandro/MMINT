@@ -53,7 +53,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -448,13 +447,29 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				EFactory kModelTypeFactory = kModelTypePackage.getEFactoryInstance();
 				KleisliModelEndpointReference kModelTypeEndpointRef = (KleisliModelEndpointReference) MultiModelTypeHierarchy.getReference(kModelTypeEndpoint.getUri(), ((ModelRel) kModelTypeEndpoint.eContainer()).getModelEndpointRefs());
 				String kModelUri = kModelEndpoint.getExtendedTargetUri();
+				String newText = kModelTypeEndpoint.getTargetUri() +
+					KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX +
+					"\" xsi:schemaLocation=\"" +
+					kModelTypeEndpoint.getTargetUri() +
+					KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX +
+					" file:" +
+					MultiModelUtils.prependStateToUri(kModelTypeEndpoint.getExtendedTargetUri()) +
+					"\"";
 				MultiModelUtils.copyTextFileAndReplaceText(
 					kModelEndpoint.getTargetUri(),
 					kModelUri,
-					MultiModelUtils.getLastSegmentFromUri(kModelTypeEndpoint.getTargetUri() + "." + EcorePackage.eNAME),
-					kModelTypeEndpoint.getExtendedTargetUri(),
+					kModelTypeEndpoint.getTargetUri() + "\"",
+					newText,
 					true
 				);
+				/*TODO MMINT[KLEISLI] check xmi to xmi copy
+				MultiModelUtils.copyTextFileAndReplaceText(
+					kModelEndpoint.getTargetUri(),
+					kModelUri,
+					MultiModelUtils.getLastSegmentFromUri(kModelTypeEndpoint.getTargetUri() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME),
+					kModelTypeEndpoint.getExtendedTargetUri(),
+					true
+				);*/
 				EObject kRootModelObj = kModelEndpoint.getExtendedTarget().getEMFInstanceRoot();
 				Map<String, Map<String, Map<EObject, EObject>>> queryMap = new HashMap<String, Map<String, Map<EObject, EObject>>>();
 				// first pass: EClasses

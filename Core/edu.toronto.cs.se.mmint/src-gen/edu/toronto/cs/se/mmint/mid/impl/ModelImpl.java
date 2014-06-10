@@ -558,6 +558,13 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MidPackage.MODEL___CREATE_INSTANCE_EDITOR:
+				try {
+					return createInstanceEditor();
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MidPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL:
 				try {
 					return createInstanceAndEditor((String)arguments.get(0), (ModelOrigin)arguments.get(1), (MultiModel)arguments.get(2));
@@ -910,33 +917,49 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model createInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
+	public Editor createInstanceEditor() throws MMINTException {
 
-		Model newModel = createInstance(newModelUri, origin, containerMultiModel);
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		MultiModel containerMultiModel = MultiModelRegistry.getMultiModel(this);
 		Editor newEditor = null;
 		//TODO MMINT[EDITOR] prioritize editors list instead of running twice?
 		// all diagrams are tried..
-		for (Editor diagramType : MultiModelTypeRegistry.getModelTypeEditors(getUri())) {
+		for (Editor diagramType : MultiModelTypeRegistry.getModelTypeEditors(getMetatypeUri())) {
 			if (!(diagramType instanceof Diagram)) {
 				continue;
 			}
 			try {
-				newEditor = diagramType.createInstance(newModel.getUri(), containerMultiModel);
+				newEditor = diagramType.createInstance(getUri(), containerMultiModel);
 			}
 			catch (MMINTException e) {
 				continue;
 			}
 		}
 		// ..or first editor is used
-		for (Editor editorType : MultiModelTypeRegistry.getModelTypeEditors(getUri())) {
+		for (Editor editorType : MultiModelTypeRegistry.getModelTypeEditors(getMetatypeUri())) {
 			if (editorType instanceof Diagram) {
 				continue;
 			}
-			newEditor = editorType.createInstance(newModel.getUri(), containerMultiModel);
+			newEditor = editorType.createInstance(getUri(), containerMultiModel);
 		}
-		if (newEditor != null) {
-			newModel.getEditors().add(newEditor);
+		if (newEditor == null) {
+			throw new MMINTException("No editor type found");
 		}
+		getEditors().add(newEditor);
+
+		return newEditor;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Model createInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
+
+		Model newModel = createInstance(newModelUri, origin, containerMultiModel);
+		newModel.createInstanceEditor();
 
 		return newModel;
 	}

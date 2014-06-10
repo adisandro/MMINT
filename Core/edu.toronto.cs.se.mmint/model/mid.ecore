@@ -210,6 +210,8 @@
       <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
       <eParameters name="containerMultiModel" eType="#//MultiModel"/>
     </eOperations>
+    <eOperations name="createInstanceEditor" lowerBound="1" eType="#//editor/Editor"
+        eExceptions="#//MMINTException"/>
     <eOperations name="createInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
       <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>

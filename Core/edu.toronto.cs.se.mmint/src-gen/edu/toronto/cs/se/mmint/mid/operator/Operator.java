@@ -207,10 +207,7 @@ public interface Operator extends ExtendibleElement {
 	 * @throws MMINTException
 	 *             If any required property is not available, or if a property
 	 *             is not in its intended format. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 *        inputPropertiesDataType
-	 *        ="edu.toronto.cs.se.mmint.mid.operator.Properties"
-	 *        inputPropertiesRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" inputPropertiesRequired="true"
 	 * @generated
 	 */
 	void readInputProperties(Properties inputProperties) throws MMINTException;
@@ -239,9 +236,7 @@ public interface Operator extends ExtendibleElement {
 	 * @throws Exception
 	 *             If something went wrong during the execution of the operator.
 	 *             <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
-	 *        actualParametersRequired="true" actualParametersMany="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" actualParametersRequired="true" actualParametersMany="true"
 	 * @generated
 	 */
 	EList<Model> execute(EList<Model> actualParameters) throws Exception;

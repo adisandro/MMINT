@@ -566,8 +566,15 @@ public class MultiModelTypeHierarchy {
 	public static boolean isSubtypeOf(String subtypeUri, String supertypeUri, MultiModel multiModel) {
 
 		Map<String, Set<String>> subtypeTable = getSubtypeTable(multiModel);
+		if (subtypeTable == null) {
+			return false;
+		}
+		Set<String> subtypes = subtypeTable.get(supertypeUri);
+		if (subtypes == null) {
+			return false;
+		}
 
-		return (subtypeTable == null) ? false : subtypeTable.get(supertypeUri).contains(subtypeUri);
+		return subtypes.contains(subtypeUri);
 	}
 
 	/**

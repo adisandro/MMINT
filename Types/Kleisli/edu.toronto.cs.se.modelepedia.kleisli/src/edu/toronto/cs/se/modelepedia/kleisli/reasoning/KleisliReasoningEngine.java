@@ -38,10 +38,11 @@ import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
 
 public class KleisliReasoningEngine implements IReasoningEngine {
 
+	public static final String KLEISLI_MODELTYPE_URI_SUFFIX = "_Kleisli";
 	public static final String LANGUAGE_ID = "KLEISLI";
 	public static final String ROW_SEPARATOR = "\n";
 	public static final String UNION_KEYWORD = "union";
-	public static final String UNION_ASSIGNMENT = "=";
+	public static final String UNION_ASSIGNMENT = ":=";
 	public static final String ORIGIN_KEYWORD = "origin";
 	public static final String OCL_SELF = "self";
 	public static final String QUERY_NULL = "NULL";
@@ -56,7 +57,7 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 		for (String kQueryRow : kQuery.split(ROW_SEPARATOR)) {
 			String[] kQueryAssignment = kQueryRow.split(UNION_ASSIGNMENT);
 			String oclQuery = kQueryAssignment[1].trim();
-			String unionName = kQueryAssignment[0].substring(kQueryAssignment[0].indexOf(UNION_KEYWORD), kQueryAssignment[0].length()).trim();
+			String unionName = kQueryAssignment[0].substring(kQueryAssignment[0].indexOf(UNION_KEYWORD)+UNION_KEYWORD.length(), kQueryAssignment[0].length()).trim();
 			Map<EObject, EObject> queryRow = new HashMap<EObject, EObject>();
 			queryUnion.put(unionName, queryRow);
 			Object queryObjs = oclReasoner.evaluateQuery(kRootModelObj, oclQuery);
@@ -86,20 +87,22 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 		//TODO MMINT[KLEISLI] what happens when the source or target of the derived ereference is not derived, it's not in queryMap
 		//TODO MMINT[KLEISLI] what happens when ereference is not derived but the target is? (source can't be)
 		String[] kQueryRows = kQuery.split(ROW_SEPARATOR);
-		Collection<Map<EObject, EObject>> queryRows = queryUnion.values();
-		for (int i = 0; i < queryRows.size(); i++) {
+		int i = 0;
+		for (Map<EObject, EObject> queryRow : queryUnion.values()) {
 			String oclQuery = kQueryRows[i].replace(ORIGIN_KEYWORD, OCL_SELF);
 			String mapIndex = null, unionIndex = null;
 			if (oclQuery.equals(QUERY_NULL)) {
 				continue;
 			}
 			if (oclQuery.startsWith(QUERY_MAP_VARIABLE)) {
-				int s = oclQuery.indexOf(QUERY_MAP_VARIABLE_SEPARATOR1), e1 = oclQuery.indexOf(QUERY_MAP_VARIABLE_SEPARATOR2), e2 = oclQuery.indexOf(QUERY_MAP_VARIABLE_SEPARATOR2, e1+1);
-				mapIndex = oclQuery.substring(0, s);
-				unionIndex = oclQuery.substring(s+1, e1);
-				oclQuery = oclQuery.substring(e1+2, e2);
+				int s1 = oclQuery.indexOf(QUERY_MAP_VARIABLE_SEPARATOR1);
+				int s2 = oclQuery.indexOf(QUERY_MAP_VARIABLE_SEPARATOR2, s1 + QUERY_MAP_VARIABLE_SEPARATOR1.length());
+				int s3 = oclQuery.lastIndexOf(QUERY_MAP_VARIABLE_SEPARATOR3);
+				mapIndex = oclQuery.substring(0, s1);
+				unionIndex = oclQuery.substring(s1 + QUERY_MAP_VARIABLE_SEPARATOR1.length(), s2);
+				oclQuery = oclQuery.substring(s2 + QUERY_MAP_VARIABLE_SEPARATOR2.length(), s3);
 			}
-			for (Entry<EObject, EObject> queryRowEntry : queryUnion.get(i).entrySet()) {
+			for (Entry<EObject, EObject> queryRowEntry : queryRow.entrySet()) {
 				EObject modelObj = queryRowEntry.getKey(), kModelObj = queryRowEntry.getValue();
 				EObject modelObjReferrer = (EObject) oclReasoner.evaluateQuery(modelObj, oclQuery);
 				if (mapIndex != null && unionIndex != null) {
@@ -115,6 +118,7 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 					MMINTException.print(Type.WARNING, "Error setting model object feature, skipping it", e);
 				}
 			}
+			i++;
 		}
 	}
 

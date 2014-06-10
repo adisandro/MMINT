@@ -72,6 +72,7 @@
         <genParameters ecoreParameter="mid.ecore#//Model/createInstance/origin"/>
         <genParameters ecoreParameter="mid.ecore#//Model/createInstance/containerMultiModel"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/createInstanceEditor"/>
       <genOperations ecoreOperation="mid.ecore#//Model/createInstanceAndEditor">
         <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/newModelUri"/>
         <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/origin"/>

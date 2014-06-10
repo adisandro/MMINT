@@ -372,6 +372,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MidPackage.MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
+	 * The operation id for the '<em>Create Instance Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___CREATE_INSTANCE_EDITOR = MidPackage.MODEL___CREATE_INSTANCE_EDITOR;
+
+	/**
 	 * The operation id for the '<em>Create Instance And Editor</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -811,6 +820,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Create Instance Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___CREATE_INSTANCE_EDITOR = MODEL_REL___CREATE_INSTANCE_EDITOR;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Editor</em>' operation.

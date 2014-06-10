@@ -550,7 +550,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__CreateInstanceAndEditor__String_ModelOrigin_MultiModel() {
+	public EOperation getModel__CreateInstanceEditor() {
 		return modelEClass.getEOperations().get(6);
 	}
 
@@ -559,7 +559,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__CreateMAVOInstance__String_ModelOrigin_MultiModel() {
+	public EOperation getModel__CreateInstanceAndEditor__String_ModelOrigin_MultiModel() {
 		return modelEClass.getEOperations().get(7);
 	}
 
@@ -568,7 +568,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__CreateMAVOInstanceAndEditor__String_ModelOrigin_MultiModel() {
+	public EOperation getModel__CreateMAVOInstance__String_ModelOrigin_MultiModel() {
 		return modelEClass.getEOperations().get(8);
 	}
 
@@ -577,7 +577,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__CopyMAVOInstanceAndEditor__Model_String_boolean_MultiModel() {
+	public EOperation getModel__CreateMAVOInstanceAndEditor__String_ModelOrigin_MultiModel() {
 		return modelEClass.getEOperations().get(9);
 	}
 
@@ -586,7 +586,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__DeleteInstance() {
+	public EOperation getModel__CopyMAVOInstanceAndEditor__Model_String_boolean_MultiModel() {
 		return modelEClass.getEOperations().get(10);
 	}
 
@@ -595,8 +595,17 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__GetEMFInstanceRoot() {
+	public EOperation getModel__DeleteInstance() {
 		return modelEClass.getEOperations().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__GetEMFInstanceRoot() {
+		return modelEClass.getEOperations().get(12);
 	}
 
 	/**
@@ -1030,6 +1039,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		createEOperation(modelEClass, MODEL___DELETE_TYPE);
 		createEOperation(modelEClass, MODEL___GET_EMF_TYPE_ROOT);
 		createEOperation(modelEClass, MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL);
+		createEOperation(modelEClass, MODEL___CREATE_INSTANCE_EDITOR);
 		createEOperation(modelEClass, MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL);
 		createEOperation(modelEClass, MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL);
 		createEOperation(modelEClass, MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL);
@@ -1195,6 +1205,9 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		addEParameter(op, ecorePackage.getEString(), "newModelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getMultiModel(), "containerMultiModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMINTException());
+
+		op = initEOperation(getModel__CreateInstanceEditor(), theEditorPackage.getEditor(), "createInstanceEditor", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
 		op = initEOperation(getModel__CreateInstanceAndEditor__String_ModelOrigin_MultiModel(), this.getModel(), "createInstanceAndEditor", 1, 1, IS_UNIQUE, IS_ORDERED);

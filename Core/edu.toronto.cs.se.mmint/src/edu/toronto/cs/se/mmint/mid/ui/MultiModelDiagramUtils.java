@@ -240,7 +240,8 @@ public class MultiModelDiagramUtils {
 			@Override
 			protected Control createDialogArea(Composite parent) {
 				Control res = super.createDialogArea(parent);
-				((GridData) this.getText().getLayoutData()).heightHint = 140;
+				((GridData) this.getText().getLayoutData()).heightHint = 150;
+				((GridData) this.getText().getLayoutData()).widthHint = 700;
 				return res;
 			}
 		};

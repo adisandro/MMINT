@@ -235,12 +235,13 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			MultiModelUtils.addFileNameSuffixInUri(srcModel.getUri(), TRANSFORMATION_SUFFIX),
 			tgtModelType.getFileExtension()
 		);
-		Model tgtModel = tgtModelType.createInstanceAndEditor(tgtModelUri, ModelOrigin.CREATED, multiModel);
+		Model tgtModel = tgtModelType.createInstance(tgtModelUri, ModelOrigin.CREATED, multiModel);
 		BinaryModelRel traceModelRel = (BinaryModelRel) traceModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
 		traceModelRel.setName(srcModel.getName() + MMINT.BINARY_MODELREL_LINK_SEPARATOR + tgtModel.getName());
 		traceModelRelType.getModelEndpointRefs().get(srcIndex).getObject().createInstanceAndReference(srcModel, traceModelRel);
 		traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().createInstanceAndReference(tgtModel, traceModelRel);
 		transform(traceModelRel, srcModel, srcIndex, tgtIndex);
+		tgtModel.createInstanceEditor();
 
 		EList<Model> result = new BasicEList<Model>();
 		result.add(tgtModel);
