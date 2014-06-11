@@ -260,17 +260,20 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(newModelRelType);
 		ExtendibleElementConstraint newConstraint, origConstraint;
 		ModelElement newModelElemType;
-		for (ModelEndpoint origModelTypeEndpoint : origModelRelType.getModelEndpoints()) {
-			if (!(origModelTypeEndpoint instanceof KleisliModelEndpoint)) {
+		for (ModelEndpointReference origModelTypeEndpointRef : origModelRelType.getModelEndpointRefs()) {
+			if (!(origModelTypeEndpointRef instanceof KleisliModelEndpointReference)) {
 				continue;
 			}
-			for (ModelElement origModelElemType : origModelTypeEndpoint.getTarget().getModelElems()) {
-				origConstraint = origModelElemType.getConstraint();
+			for (ModelElementReference origModelElemTypeRef : origModelTypeEndpointRef.getModelElemRefs()) {
+				if (!origModelElemTypeRef.isModifiable()) {
+					continue;
+				}
+				origConstraint = origModelElemTypeRef.getObject().getConstraint();
 				if (origConstraint != null) {
 					newConstraint = MidFactory.eINSTANCE.createExtendibleElementConstraint();
 					newConstraint.setLanguage(origConstraint.getLanguage());
 					newConstraint.setImplementation(origConstraint.getImplementation());
-					newModelElemType = MultiModelRegistry.getExtendibleElement(origModelElemType.getUri(), multiModel);
+					newModelElemType = MultiModelRegistry.getExtendibleElement(origModelElemTypeRef.getUri(), multiModel);
 					newModelElemType.setConstraint(newConstraint);
 				}
 			}
