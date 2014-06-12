@@ -129,6 +129,10 @@
 (assert (= (tgtType [mavoElement.formulaId/]) [tgtEclass.getMAVOClassName().toUpperCase()/]))
 (assert (= ((as src ([srcEclass.getMAVOClassName()/])) [mavoElement.formulaId/]) [srcMavoElement.formulaId/]))
 (assert (= ((as tgt ([tgtEclass.getMAVOClassName()/])) [mavoElement.formulaId/]) [tgtMavoElement.formulaId/]))
+(assert (=>
+	(edge [mavoElement.formulaId/])
+	(and (node [srcMavoElement.formulaId/]) (node [tgtMavoElement.formulaId/]))
+))
 		[/let]
 		[/let]
 		[/let]
