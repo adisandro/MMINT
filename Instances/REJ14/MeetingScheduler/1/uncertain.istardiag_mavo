@@ -155,7 +155,7 @@
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_SSgHcPMgEeOnyJNTF-KnrA" type="4005" source="_SRxHoPMgEeOnyJNTF-KnrA" target="_SSJiIPMgEeOnyJNTF-KnrA">
     <children xmi:type="notation:DecorationNode" xmi:id="_SSgugPMgEeOnyJNTF-KnrA" type="6005">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSgugfMgEeOnyJNTF-KnrA" y="40"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSgugfMgEeOnyJNTF-KnrA" x="-117" y="1"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_SSgHcfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
     <element xmi:type="istar_mavo:DependeeLink" href="uncertain.istar_mavo#//@dependums.0/@dependeeLinks.0"/>
