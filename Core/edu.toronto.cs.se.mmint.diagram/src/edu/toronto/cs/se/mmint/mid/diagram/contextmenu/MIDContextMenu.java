@@ -248,17 +248,17 @@ public class MIDContextMenu extends ContributionItem {
 		}
 		// coherence
 		if (doCoherence) {
-			Map<Model, Set<List<ConversionOperator>>> y = MultiModelTypeHierarchy.x(models.get(0).getMetatypeUri());
-			if (!y.isEmpty()) {
+			Map<Model, Set<List<ConversionOperator>>> multiplePathConversions = MultiModelTypeHierarchy.getMultiplePathConversions(models.get(0).getMetatypeUri());
+			if (!multiplePathConversions.isEmpty()) {
 				MenuItem coherenceItem = new MenuItem(mmintMenu, SWT.CASCADE);
 				coherenceItem.setText("Check Runtime Coherence");
 				Menu coherenceMenu = new Menu(menu);
 				coherenceItem.setMenu(coherenceMenu);
-				for (Map.Entry<Model, Set<List<ConversionOperator>>> yy : y.entrySet()) {
+				for (Map.Entry<Model, Set<List<ConversionOperator>>> conversionPathsEntry : multiplePathConversions.entrySet()) {
 					MenuItem coherenceSubitem = new MenuItem(coherenceMenu, SWT.NONE);
-					coherenceSubitem.setText("To " + yy.getKey().getName());
+					coherenceSubitem.setText("To " + conversionPathsEntry.getKey().getName());
 					coherenceSubitem.addSelectionListener(
-						new CheckCoherenceListener(models.get(0), yy.getValue())
+						new CheckCoherenceListener(models.get(0), conversionPathsEntry.getValue())
 					);
 				}
 			}

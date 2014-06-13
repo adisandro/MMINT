@@ -33,6 +33,7 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -529,26 +530,26 @@ public class MultiModelTypeHierarchy {
 			MMINT.conversionTableMID;
 	}
 
-	public static Map<Model, Set<List<ConversionOperator>>> x(String srcModelTypeUri) {
+	public static Map<Model, Set<List<ConversionOperator>>> getMultiplePathConversions(String srcModelTypeUri) {
 
-		Map<String, Set<List<String>>> a = getConversionTable(MMINT.repository).get(srcModelTypeUri);
-		Map<Model, Set<List<ConversionOperator>>> b = new HashMap<Model, Set<List<ConversionOperator>>>();
-		for (Map.Entry<String, Set<List<String>>> aEntry : a.entrySet()) {
-			if (aEntry.getValue().size() == 1) {
+		Map<String, Set<List<String>>> srcModelTypeConversionUris = getConversionTable(MMINT.repository).get(srcModelTypeUri);
+		Map<Model, Set<List<ConversionOperator>>> multiplePathConversions = new HashMap<Model, Set<List<ConversionOperator>>>();
+		for (Map.Entry<String, Set<List<String>>> srcModelTypeConversionUrisEntry : srcModelTypeConversionUris.entrySet()) {
+			if (srcModelTypeConversionUrisEntry.getValue().size() == 1) {
 				continue;
 			}
-			Set<List<ConversionOperator>> bb = new HashSet<List<ConversionOperator>>();
-			b.put(MultiModelTypeRegistry.<Model>getType(aEntry.getKey()), bb);
-			for (List<String> aa : aEntry.getValue()) {
-				List<ConversionOperator> bbb = new ArrayList<ConversionOperator>();
-				bb.add(bbb);
-				for (String aaa : aa) {
-					bbb.add(MultiModelTypeRegistry.<ConversionOperator>getType(aaa));
+			Set<List<ConversionOperator>> conversionPaths = new HashSet<List<ConversionOperator>>();
+			multiplePathConversions.put(MultiModelTypeRegistry.<Model>getType(srcModelTypeConversionUrisEntry.getKey()), conversionPaths);
+			for (List<String> conversionPathUris : srcModelTypeConversionUrisEntry.getValue()) {
+				List<ConversionOperator> conversionPath = new ArrayList<ConversionOperator>();
+				conversionPaths.add(conversionPath);
+				for (String conversionUri : conversionPathUris) {
+					conversionPath.add(MultiModelTypeRegistry.<ConversionOperator>getType(conversionUri));
 				}
 			}
 		}
 
-		return b;
+		return multiplePathConversions;
 	}
 
 	/**
@@ -591,6 +592,34 @@ public class MultiModelTypeHierarchy {
 	public static boolean isSubtypeOf(String subtypeUri, String supertypeUri) {
 
 		return isSubtypeOf(subtypeUri, supertypeUri, MMINT.repository);
+	}
+
+	/**
+	 * Determines if an element is an instance of a type.
+	 * 
+	 * @param element
+	 *            The element.
+	 * @param typeUri
+	 *            The uri of the type.
+	 * @return True if the element is an instance of the type or one of its
+	 *         subtypes.
+	 */
+	public static boolean instanceOf(ExtendibleElement element, String typeUri) {
+
+		//TODO MMINT[CONVERSION] Should I consider conversions too?
+		// static check
+		if (element.getMetatypeUri().equals(typeUri) || isSubtypeOf(element.getMetatypeUri(), typeUri)) {
+			return true;
+		}
+		// polymorphic check
+		List<ExtendibleElement> runtimeTypes = MultiModelTypeIntrospection.getRuntimeTypes(element);
+		for (ExtendibleElement runtimeType : runtimeTypes) {
+			if (runtimeType.getUri().equals(typeUri) || isSubtypeOf(runtimeType.getUri(), typeUri)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
