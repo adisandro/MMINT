@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:istar_mavo="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_4Myi0PMfEeOnyJNTF-KnrA" type="IStar_MAVO" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_SRxHoPMgEeOnyJNTF-KnrA" type="2004" fontName="Cantarell">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SRxHovMgEeOnyJNTF-KnrA" type="5007"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_SRxHo_MgEeOnyJNTF-KnrA" type="5008"/>
+    <element xmi:type="istar_mavo:Goal" href="uncertain.istar_mavo#//@dependums.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SRxHofMgEeOnyJNTF-KnrA" x="624" y="12"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_SRxusPMgEeOnyJNTF-KnrA" type="2004" fontName="Cantarell">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SRxusvMgEeOnyJNTF-KnrA" type="5007"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_SRxus_MgEeOnyJNTF-KnrA" type="5008"/>
+    <element xmi:type="istar_mavo:Goal" href="uncertain.istar_mavo#//@dependums.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SRxusfMgEeOnyJNTF-KnrA" x="300" y="648"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_SRxutPMgEeOnyJNTF-KnrA" type="2003" fontName="Cantarell">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SRxutvMgEeOnyJNTF-KnrA" type="5005"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_SRxut_MgEeOnyJNTF-KnrA" type="5006"/>
+    <element xmi:type="istar_mavo:Resource" href="uncertain.istar_mavo#//@dependums.2"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SRxutfMgEeOnyJNTF-KnrA" x="936" y="648"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_SRyVwPMgEeOnyJNTF-KnrA" type="2005" fontName="Cantarell">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SRyVw_MgEeOnyJNTF-KnrA" type="5017"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_SRyVxPMgEeOnyJNTF-KnrA" type="5018"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_SRyVxfMgEeOnyJNTF-KnrA" type="7001">
+      <children xmi:type="notation:Shape" xmi:id="_SR5qgPMgEeOnyJNTF-KnrA" type="3004" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_SR5qgvMgEeOnyJNTF-KnrA" type="5015"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_SR5qg_MgEeOnyJNTF-KnrA" type="5016"/>
+        <element xmi:type="istar_mavo:Goal" href="uncertain.istar_mavo#//@actors.0/@intentions.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SR5qgfMgEeOnyJNTF-KnrA" x="194" y="137"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_SR5qhPMgEeOnyJNTF-KnrA" type="3002" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_SR5qhvMgEeOnyJNTF-KnrA" type="5011"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_SR5qh_MgEeOnyJNTF-KnrA" type="5012"/>
+        <element xmi:type="istar_mavo:Task" href="uncertain.istar_mavo#//@actors.0/@intentions.1"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SR5qhfMgEeOnyJNTF-KnrA" x="98" y="257"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_SR6RkPMgEeOnyJNTF-KnrA" type="3002" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_SR6RkvMgEeOnyJNTF-KnrA" type="5011"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_SR6Rk_MgEeOnyJNTF-KnrA" type="5012"/>
+        <element xmi:type="istar_mavo:Task" href="uncertain.istar_mavo#//@actors.0/@intentions.2"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SR6RkfMgEeOnyJNTF-KnrA" x="290" y="257"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_SR6RlPMgEeOnyJNTF-KnrA" type="3002" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_SR6RlvMgEeOnyJNTF-KnrA" type="5011"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_SR6Rl_MgEeOnyJNTF-KnrA" type="5012"/>
+        <element xmi:type="istar_mavo:Task" href="uncertain.istar_mavo#//@actors.0/@intentions.3"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SR6RlfMgEeOnyJNTF-KnrA" x="218" y="17"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_SR6RmPMgEeOnyJNTF-KnrA" type="3001" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_SR6RmvMgEeOnyJNTF-KnrA" type="5009"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_SR6Rm_MgEeOnyJNTF-KnrA" type="5010"/>
+        <element xmi:type="istar_mavo:SoftGoal" href="uncertain.istar_mavo#//@actors.0/@intentions.4"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SR6RmfMgEeOnyJNTF-KnrA" x="50" y="137"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_SR64oPMgEeOnyJNTF-KnrA" type="3001" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_SR64ovMgEeOnyJNTF-KnrA" type="5009"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_SR64o_MgEeOnyJNTF-KnrA" type="5010"/>
+        <element xmi:type="istar_mavo:SoftGoal" href="uncertain.istar_mavo#//@actors.0/@intentions.5"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SR64ofMgEeOnyJNTF-KnrA" x="386" y="125"/>
+      </children>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_SRyVwfMgEeOnyJNTF-KnrA"/>
+    <element xmi:type="istar_mavo:Actor" href="uncertain.istar_mavo#//@actors.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SRyVwvMgEeOnyJNTF-KnrA" x="12" y="72" width="541" height="445"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_SRyVxvMgEeOnyJNTF-KnrA" type="2005" fontName="Cantarell">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SRy80PMgEeOnyJNTF-KnrA" type="5017"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_SRy80fMgEeOnyJNTF-KnrA" type="5018"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_SRy80vMgEeOnyJNTF-KnrA" type="7001">
+      <children xmi:type="notation:Shape" xmi:id="_SSGe0PMgEeOnyJNTF-KnrA" type="3002" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSHF4PMgEeOnyJNTF-KnrA" type="5011"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSHF4fMgEeOnyJNTF-KnrA" type="5012"/>
+        <element xmi:type="istar_mavo:Task" href="uncertain.istar_mavo#//@actors.1/@intentions.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SSGe0fMgEeOnyJNTF-KnrA"/>
+      </children>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_SRyVx_MgEeOnyJNTF-KnrA"/>
+    <element xmi:type="istar_mavo:Actor" href="uncertain.istar_mavo#//@actors.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SRyVyPMgEeOnyJNTF-KnrA" x="612" y="624"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_SRy80_MgEeOnyJNTF-KnrA" type="2005" fontName="Cantarell">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SRy81vMgEeOnyJNTF-KnrA" type="5017"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_SRy81_MgEeOnyJNTF-KnrA" type="5018"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_SRy82PMgEeOnyJNTF-KnrA" type="7001">
+      <children xmi:type="notation:Shape" xmi:id="_SSJiIPMgEeOnyJNTF-KnrA" type="3002" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSJiIvMgEeOnyJNTF-KnrA" type="5011"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSJiI_MgEeOnyJNTF-KnrA" type="5012"/>
+        <element xmi:type="istar_mavo:Task" href="uncertain.istar_mavo#//@actors.2/@intentions.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SSJiIfMgEeOnyJNTF-KnrA" x="230" y="17"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_SSJiJPMgEeOnyJNTF-KnrA" type="3002" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSKJMPMgEeOnyJNTF-KnrA" type="5011"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSKJMfMgEeOnyJNTF-KnrA" type="5012"/>
+        <element xmi:type="istar_mavo:Task" href="uncertain.istar_mavo#//@actors.2/@intentions.1"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SSJiJfMgEeOnyJNTF-KnrA" x="50" y="29"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_SSKJMvMgEeOnyJNTF-KnrA" type="3002" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSKJNPMgEeOnyJNTF-KnrA" type="5011"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSKJNfMgEeOnyJNTF-KnrA" type="5012"/>
+        <element xmi:type="istar_mavo:Task" href="uncertain.istar_mavo#//@actors.2/@intentions.2"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SSKJM_MgEeOnyJNTF-KnrA" x="14" y="149"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_SSKJNvMgEeOnyJNTF-KnrA" type="3004" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSKJOPMgEeOnyJNTF-KnrA" type="5015"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSKJOfMgEeOnyJNTF-KnrA" type="5016"/>
+        <element xmi:type="istar_mavo:Goal" href="uncertain.istar_mavo#//@actors.2/@intentions.3"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SSKJN_MgEeOnyJNTF-KnrA" x="242" y="149"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_SSKJOvMgEeOnyJNTF-KnrA" type="3004" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSKwQfMgEeOnyJNTF-KnrA" type="5015"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSKwQvMgEeOnyJNTF-KnrA" type="5016"/>
+        <element xmi:type="istar_mavo:Goal" href="uncertain.istar_mavo#//@actors.2/@intentions.4"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SSKwQPMgEeOnyJNTF-KnrA" x="380" y="149"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_SSKwQ_MgEeOnyJNTF-KnrA" type="3002" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSKwRfMgEeOnyJNTF-KnrA" type="5011"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSKwRvMgEeOnyJNTF-KnrA" type="5012"/>
+        <element xmi:type="istar_mavo:Task" href="uncertain.istar_mavo#//@actors.2/@intentions.5"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SSKwRPMgEeOnyJNTF-KnrA" x="380" y="269"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_SSKwR_MgEeOnyJNTF-KnrA" type="3001" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSKwSfMgEeOnyJNTF-KnrA" type="5009"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSKwSvMgEeOnyJNTF-KnrA" type="5010"/>
+        <element xmi:type="istar_mavo:SoftGoal" href="uncertain.istar_mavo#//@actors.2/@intentions.6"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SSKwSPMgEeOnyJNTF-KnrA" x="194" y="281"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_SSLXUPMgEeOnyJNTF-KnrA" type="3002" fontName="Cantarell">
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSLXUvMgEeOnyJNTF-KnrA" type="5011"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_SSLXU_MgEeOnyJNTF-KnrA" type="5012"/>
+        <element xmi:type="istar_mavo:Task" href="uncertain.istar_mavo#//@actors.2/@intentions.7"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SSLXUfMgEeOnyJNTF-KnrA" x="134" y="149"/>
+      </children>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_SRy81PMgEeOnyJNTF-KnrA"/>
+    <element xmi:type="istar_mavo:Actor" href="uncertain.istar_mavo#//@actors.2"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SRy81fMgEeOnyJNTF-KnrA" x="804" y="48" width="577" height="469"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_SRzj4PMgEeOnyJNTF-KnrA" type="2005" fontName="Cantarell">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SRzj4_MgEeOnyJNTF-KnrA" type="5017"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_SRzj5PMgEeOnyJNTF-KnrA" type="5018"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_SRzj5fMgEeOnyJNTF-KnrA" type="7001"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_SRzj4fMgEeOnyJNTF-KnrA"/>
+    <element xmi:type="istar_mavo:Actor" href="uncertain.istar_mavo#//@actors.3"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SRzj4vMgEeOnyJNTF-KnrA" x="588" y="384"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_4Myi0fMfEeOnyJNTF-KnrA"/>
+  <element xmi:type="istar_mavo:IStar" href="uncertain.istar_mavo#/"/>
+  <edges xmi:type="notation:Connector" xmi:id="_SSe5UPMgEeOnyJNTF-KnrA" type="4004" source="_SR6RlPMgEeOnyJNTF-KnrA" target="_SRxHoPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SSe5U_MgEeOnyJNTF-KnrA" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSe5VPMgEeOnyJNTF-KnrA" x="7" y="-8"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SSe5UfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:DependerLink" href="uncertain.istar_mavo#//@dependums.0/@dependerLinks.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSe5UvMgEeOnyJNTF-KnrA" points="[-27, -20, 49, 36]$[-76, -56, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SSgHcPMgEeOnyJNTF-KnrA" type="4005" source="_SRxHoPMgEeOnyJNTF-KnrA" target="_SSJiIPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SSgugPMgEeOnyJNTF-KnrA" type="6005">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSgugfMgEeOnyJNTF-KnrA" y="40"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SSgHcfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:DependeeLink" href="uncertain.istar_mavo#//@dependums.0/@dependeeLinks.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSgHcvMgEeOnyJNTF-KnrA" points="[0, 0, -57, -26]$[13, 6, -44, -20]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SSh8oPMgEeOnyJNTF-KnrA" type="4004" source="_SR6RkPMgEeOnyJNTF-KnrA" target="_SRxusPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SSh8o_MgEeOnyJNTF-KnrA" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSh8pPMgEeOnyJNTF-KnrA" x="26" y="15"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SSh8ofMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:DependerLink" href="uncertain.istar_mavo#//@dependums.1/@dependerLinks.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSh8ovMgEeOnyJNTF-KnrA" points="[-45, -20, 59, 26]$[-104, -46, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SSjKwPMgEeOnyJNTF-KnrA" type="4005" source="_SRxusPMgEeOnyJNTF-KnrA" target="_SSGe0PMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SSjKw_MgEeOnyJNTF-KnrA" type="6005">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSjKxPMgEeOnyJNTF-KnrA" x="-6" y="15"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SSjKwfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:DependeeLink" href="uncertain.istar_mavo#//@dependums.1/@dependeeLinks.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSjKwvMgEeOnyJNTF-KnrA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SSkY4PMgEeOnyJNTF-KnrA" type="4004" source="_SSGe0PMgEeOnyJNTF-KnrA" target="_SRxutPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SSkY4_MgEeOnyJNTF-KnrA" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSkY5PMgEeOnyJNTF-KnrA" x="4" y="20"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SSkY4fMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:DependerLink" href="uncertain.istar_mavo#//@dependums.2/@dependerLinks.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSkY4vMgEeOnyJNTF-KnrA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SSlnAPMgEeOnyJNTF-KnrA" type="4005" source="_SRxutPMgEeOnyJNTF-KnrA" target="_SSKJMvMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SSmOEPMgEeOnyJNTF-KnrA" type="6005">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSmOEfMgEeOnyJNTF-KnrA" x="-65" y="-19"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SSlnAfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:DependeeLink" href="uncertain.istar_mavo#//@dependums.2/@dependeeLinks.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSlnAvMgEeOnyJNTF-KnrA" points="[0, 0, -60, -46]$[34, 26, -26, -20]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SSncMPMgEeOnyJNTF-KnrA" type="4002" source="_SR5qgPMgEeOnyJNTF-KnrA" target="_SR6RlPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SSncM_MgEeOnyJNTF-KnrA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSncNPMgEeOnyJNTF-KnrA" y="11"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SSncMfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:Decomposition" href="uncertain.istar_mavo#//@actors.0/@intentions.0/@linksAsSrc.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSncMvMgEeOnyJNTF-KnrA" points="[9, 20, 0, -10]$[0, 10, -9, -20]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SSpRYPMgEeOnyJNTF-KnrA" type="4001" source="_SR5qhPMgEeOnyJNTF-KnrA" target="_SR5qgPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SSpRY_MgEeOnyJNTF-KnrA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSpRZPMgEeOnyJNTF-KnrA" x="-36" y="-5"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SSpRYfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:MeansEnd" href="uncertain.istar_mavo#//@actors.0/@intentions.1/@linksAsSrc.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSpRYvMgEeOnyJNTF-KnrA" points="[-29, -20, -15, -10]$[15, 10, 29, 20]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SSqfgPMgEeOnyJNTF-KnrA" type="4003" source="_SR5qhPMgEeOnyJNTF-KnrA" target="_SR6RmPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SSqfg_MgEeOnyJNTF-KnrA" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSqfhPMgEeOnyJNTF-KnrA" x="10" y="-12"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SSqfgfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:Contribution" href="uncertain.istar_mavo#//@actors.0/@intentions.1/@linksAsSrc.1"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSqfgvMgEeOnyJNTF-KnrA" points="[-14, 20, 7, -10]$[-7, 10, 14, -20]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SSrtoPMgEeOnyJNTF-KnrA" type="4003" source="_SR5qhPMgEeOnyJNTF-KnrA" target="_SR64oPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SSrto_MgEeOnyJNTF-KnrA" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSrtpPMgEeOnyJNTF-KnrA" x="59" y="11"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SSrtofMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:Contribution" href="uncertain.istar_mavo#//@actors.0/@intentions.1/@linksAsSrc.2"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSrtovMgEeOnyJNTF-KnrA" points="[5, 20, 0, -20]$[0, 20, -5, -20]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SSs7wPMgEeOnyJNTF-KnrA" type="4001" source="_SR6RkPMgEeOnyJNTF-KnrA" target="_SR5qgPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SSs7w_MgEeOnyJNTF-KnrA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSs7xPMgEeOnyJNTF-KnrA" x="-29" y="12"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SSs7wfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:MeansEnd" href="uncertain.istar_mavo#//@actors.0/@intentions.2/@linksAsSrc.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSs7wvMgEeOnyJNTF-KnrA" points="[-37, -20, 0, 0]$[0, 0, 37, 20]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SSuJ4PMgEeOnyJNTF-KnrA" type="4003" source="_SR6RkPMgEeOnyJNTF-KnrA" target="_SR6RmPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SSuw8PMgEeOnyJNTF-KnrA" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSuw8fMgEeOnyJNTF-KnrA" x="58" y="7"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SSuJ4fMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:Contribution" href="uncertain.istar_mavo#//@actors.0/@intentions.2/@linksAsSrc.1"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSuJ4vMgEeOnyJNTF-KnrA" points="[-44, 20, 0, 0]$[-24, 11, 20, -9]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SSvYAPMgEeOnyJNTF-KnrA" type="4003" source="_SR6RkPMgEeOnyJNTF-KnrA" target="_SR64oPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SSv_EPMgEeOnyJNTF-KnrA" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSv_EfMgEeOnyJNTF-KnrA" x="-2" y="10"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SSvYAfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:Contribution" href="uncertain.istar_mavo#//@actors.0/@intentions.2/@linksAsSrc.2"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSvYAvMgEeOnyJNTF-KnrA" points="[-12, 20, 6, -10]$[-6, 10, 12, -20]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SSxNMPMgEeOnyJNTF-KnrA" type="4002" source="_SR6RmPMgEeOnyJNTF-KnrA" target="_SR6RlPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SSxNM_MgEeOnyJNTF-KnrA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSxNNPMgEeOnyJNTF-KnrA" x="-5" y="-4"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SSxNMfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:Decomposition" href="uncertain.istar_mavo#//@actors.0/@intentions.4/@linksAsSrc.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSxNMvMgEeOnyJNTF-KnrA" points="[20, -13, 4, -3]$[-17, 10, -33, 20]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SSybUPMgEeOnyJNTF-KnrA" type="4002" source="_SR64oPMgEeOnyJNTF-KnrA" target="_SR6RlPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SSybU_MgEeOnyJNTF-KnrA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSybVPMgEeOnyJNTF-KnrA" x="-1" y="6"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SSybUfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:Decomposition" href="uncertain.istar_mavo#//@actors.0/@intentions.5/@linksAsSrc.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSybUvMgEeOnyJNTF-KnrA" points="[-10, -20, 0, 0]$[0, 0, 10, 20]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SSzpcPMgEeOnyJNTF-KnrA" type="4002" source="_SSJiJPMgEeOnyJNTF-KnrA" target="_SSJiIPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SSzpc_MgEeOnyJNTF-KnrA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SSzpdPMgEeOnyJNTF-KnrA" x="-14" y="3"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SSzpcfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:Decomposition" href="uncertain.istar_mavo#//@actors.2/@intentions.1/@linksAsSrc.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SSzpcvMgEeOnyJNTF-KnrA" points="[6, -20, 0, -10]$[0, 10, -6, 20]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SS03kPMgEeOnyJNTF-KnrA" type="4002" source="_SSKJMvMgEeOnyJNTF-KnrA" target="_SSJiIPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SS03k_MgEeOnyJNTF-KnrA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SS03lPMgEeOnyJNTF-KnrA" x="-25" y="-11"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SS03kfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:Decomposition" href="uncertain.istar_mavo#//@actors.2/@intentions.2/@linksAsSrc.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SS03kvMgEeOnyJNTF-KnrA" points="[-3, -20, 0, 0]$[0, 0, 3, 20]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SS2FsPMgEeOnyJNTF-KnrA" type="4002" source="_SSKJNvMgEeOnyJNTF-KnrA" target="_SSJiIPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SS2Fs_MgEeOnyJNTF-KnrA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SS2FtPMgEeOnyJNTF-KnrA" x="-8" y="16"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SS2FsfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:Decomposition" href="uncertain.istar_mavo#//@actors.2/@intentions.3/@linksAsSrc.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SS2FsvMgEeOnyJNTF-KnrA" points="[-24, -20, 12, 10]$[-12, -10, 24, 20]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SS3T0PMgEeOnyJNTF-KnrA" type="4002" source="_SSKJOvMgEeOnyJNTF-KnrA" target="_SSJiIPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SS3T0_MgEeOnyJNTF-KnrA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SS3T1PMgEeOnyJNTF-KnrA" x="-13" y="18"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SS3T0fMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:Decomposition" href="uncertain.istar_mavo#//@actors.2/@intentions.4/@linksAsSrc.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SS3T0vMgEeOnyJNTF-KnrA" points="[-25, -20, 25, 20]$[-25, -20, 25, 20]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SS4h8PMgEeOnyJNTF-KnrA" type="4001" source="_SSKwQ_MgEeOnyJNTF-KnrA" target="_SSKJOvMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SS4h8_MgEeOnyJNTF-KnrA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SS4h9PMgEeOnyJNTF-KnrA" y="11"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SS4h8fMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:MeansEnd" href="uncertain.istar_mavo#//@actors.2/@intentions.5/@linksAsSrc.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SS4h8vMgEeOnyJNTF-KnrA" points="[-9, -20, 0, -10]$[0, 10, 9, 20]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SS5wEPMgEeOnyJNTF-KnrA" type="4002" source="_SSKwR_MgEeOnyJNTF-KnrA" target="_SSKJMvMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SS5wE_MgEeOnyJNTF-KnrA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SS5wFPMgEeOnyJNTF-KnrA" x="-23" y="8"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SS5wEfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:Decomposition" href="uncertain.istar_mavo#//@actors.2/@intentions.6/@linksAsSrc.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SS5wEvMgEeOnyJNTF-KnrA" points="[-19, -20, 19, 20]$[-19, -20, 19, 20]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_SS6-MPMgEeOnyJNTF-KnrA" type="4002" source="_SSLXUPMgEeOnyJNTF-KnrA" target="_SSJiIPMgEeOnyJNTF-KnrA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SS7lQPMgEeOnyJNTF-KnrA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SS7lQfMgEeOnyJNTF-KnrA" x="-14" y="10"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SS6-MfMgEeOnyJNTF-KnrA" fontName="Cantarell"/>
+    <element xmi:type="istar_mavo:Decomposition" href="uncertain.istar_mavo#//@actors.2/@intentions.7/@linksAsSrc.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SS6-MvMgEeOnyJNTF-KnrA" points="[-13, -20, 31, 50]$[-32, -50, 12, 20]"/>
+  </edges>
+</notation:Diagram>
