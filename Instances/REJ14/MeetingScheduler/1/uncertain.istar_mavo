@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="ASCII"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <istar_mavo:IStar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:istar_mavo="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
   <actors formulaId="MeetingInitiator" name="Meeting Initiator">
     <intentions xsi:type="istar_mavo:Goal" formulaId="MeetingBeScheduledMI" name="Meeting Be Scheduled MI" linksAsTgt="//@actors.0/@intentions.1/@linksAsSrc.0 //@actors.0/@intentions.2/@linksAsSrc.0">
       <linksAsSrc xsi:type="istar_mavo:Decomposition" formulaId="MeetingBeScheduledMI2OrganizeMeeting" tgt="//@actors.0/@intentions.3"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Task" set="true" formulaId="WaysToOrganizeMeeting" name="Ways To Organize Meeting" fullySatisfied="true">
+    <intentions xsi:type="istar_mavo:Task" set="true" formulaId="WaysToOrganizeMeeting" name="Ways To Organize Meeting">
       <linksAsSrc xsi:type="istar_mavo:MeansEnd" set="true" formulaId="WaysToOrganizeMeeting2MeetingBeScheduledMI" tgt="//@actors.0/@intentions.0"/>
       <linksAsSrc xsi:type="istar_mavo:Contribution" set="true" formulaId="WaysToOrganizeMeeting2Quick" tgt="//@actors.0/@intentions.4" type="UNKNOWN"/>
       <linksAsSrc xsi:type="istar_mavo:Contribution" set="true" formulaId="WaysToOrganizeMeeting2LowEffortMI" tgt="//@actors.0/@intentions.5" type="UNKNOWN"/>
@@ -14,7 +14,7 @@
       <linksAsSrc xsi:type="istar_mavo:Contribution" formulaId="LetSchedulerScheduleMeeting2Quick" tgt="//@actors.0/@intentions.4" type="HELP"/>
       <linksAsSrc xsi:type="istar_mavo:Contribution" formulaId="LetSchedulerScheduleMeeting2LowEffortMI" tgt="//@actors.0/@intentions.5" type="HELP"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Task" formulaId="OrganizeMeeting" name="Organize Meeting" dependenciesAsDepender="//@dependums.0/@dependerLinks.0" linksAsTgt="//@actors.0/@intentions.4/@linksAsSrc.0 //@actors.0/@intentions.0/@linksAsSrc.0 //@actors.0/@intentions.5/@linksAsSrc.0"/>
+    <intentions xsi:type="istar_mavo:Task" formulaId="OrganizeMeeting" name="Organize Meeting" dependenciesAsDepender="//@dependums.0/@dependerLinks.0" unknown="true" linksAsTgt="//@actors.0/@intentions.4/@linksAsSrc.0 //@actors.0/@intentions.0/@linksAsSrc.0 //@actors.0/@intentions.5/@linksAsSrc.0"/>
     <intentions xsi:type="istar_mavo:SoftGoal" formulaId="Quick" name="Quick" linksAsTgt="//@actors.0/@intentions.1/@linksAsSrc.1 //@actors.0/@intentions.2/@linksAsSrc.1">
       <linksAsSrc xsi:type="istar_mavo:Decomposition" formulaId="Quick2OrganizeMeeting" tgt="//@actors.0/@intentions.3"/>
     </intentions>
@@ -26,26 +26,26 @@
     <intentions xsi:type="istar_mavo:Task" formulaId="ScheduleMeeting" name="Schedule Meeting" dependenciesAsDepender="//@dependums.2/@dependerLinks.0" dependenciesAsDependee="//@dependums.1/@dependeeLinks.0"/>
   </actors>
   <actors formulaId="MeetingParticipant" name="Meeting Participant">
-    <intentions xsi:type="istar_mavo:Task" formulaId="ParticipateInMeeting" name="Participate In Meeting" dependenciesAsDependee="//@dependums.0/@dependeeLinks.0" linksAsTgt="//@actors.2/@intentions.1/@linksAsSrc.0 //@actors.2/@intentions.2/@linksAsSrc.0 //@actors.2/@intentions.3/@linksAsSrc.0 //@actors.2/@intentions.4/@linksAsSrc.0 //@actors.2/@intentions.7/@linksAsSrc.0"/>
-    <intentions xsi:type="istar_mavo:Task" formulaId="AttendMeeting" name="Attend Meeting" fullySatisfied="true">
+    <intentions xsi:type="istar_mavo:Task" formulaId="ParticipateInMeeting" name="Participate In Meeting" dependenciesAsDependee="//@dependums.0/@dependeeLinks.0" fullySatisfied="true" linksAsTgt="//@actors.2/@intentions.1/@linksAsSrc.0 //@actors.2/@intentions.2/@linksAsSrc.0 //@actors.2/@intentions.3/@linksAsSrc.0 //@actors.2/@intentions.4/@linksAsSrc.0 //@actors.2/@intentions.7/@linksAsSrc.0"/>
+    <intentions xsi:type="istar_mavo:Task" formulaId="AttendMeeting" name="Attend Meeting">
       <linksAsSrc xsi:type="istar_mavo:Decomposition" formulaId="AttendMeeting2ParticipateInMeeting" tgt="//@actors.2/@intentions.0"/>
     </intentions>
     <intentions xsi:type="istar_mavo:Task" may="true" set="true" formulaId="ProvideDetails" name="Provide Details" dependenciesAsDependee="//@dependums.2/@dependeeLinks.0" linksAsTgt="//@actors.2/@intentions.6/@linksAsSrc.0">
       <linksAsSrc xsi:type="istar_mavo:Decomposition" may="true" set="true" formulaId="ProvideDetails2ParticipateInMeeting" tgt="//@actors.2/@intentions.0"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Goal" var="true" formulaId="AgreeableMeetingDate" name="Agreeable Meeting Date" fullySatisfied="true">
+    <intentions xsi:type="istar_mavo:Goal" var="true" formulaId="AgreeableMeetingDate" name="Agreeable Meeting Date">
       <linksAsSrc xsi:type="istar_mavo:Decomposition" var="true" formulaId="AgreeableMeetingDate2ParticipateInMeeting" tgt="//@actors.2/@intentions.0"/>
     </intentions>
     <intentions xsi:type="istar_mavo:Goal" may="true" var="true" formulaId="ConvenientMeetingDate" name="Convenient Meeting Date" linksAsTgt="//@actors.2/@intentions.5/@linksAsSrc.0">
       <linksAsSrc xsi:type="istar_mavo:Decomposition" may="true" var="true" formulaId="ConvenientMeetingDate2ParticipateInMeeting" tgt="//@actors.2/@intentions.0"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Task" may="true" formulaId="DecideConvenientDates" name="Decide Convenient Dates" fullySatisfied="true">
+    <intentions xsi:type="istar_mavo:Task" may="true" formulaId="DecideConvenientDates" name="Decide Convenient Dates">
       <linksAsSrc xsi:type="istar_mavo:MeansEnd" may="true" formulaId="DecideConvenientDates2ConvenientMeetingDate" tgt="//@actors.2/@intentions.4"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:SoftGoal" formulaId="LowEffortMP" name="Low Effort MP" fullyDenied="true">
+    <intentions xsi:type="istar_mavo:SoftGoal" formulaId="LowEffortMP" name="Low Effort MP">
       <linksAsSrc xsi:type="istar_mavo:Decomposition" may="true" set="true" formulaId="LowEffortMP2ProvideDetails" tgt="//@actors.2/@intentions.2"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Task" may="true" formulaId="UseProfiles" name="Use Profiles" fullySatisfied="true">
+    <intentions xsi:type="istar_mavo:Task" may="true" formulaId="UseProfiles" name="Use Profiles">
       <linksAsSrc xsi:type="istar_mavo:Decomposition" may="true" formulaId="UseProfiles2ParticipateInMeeting" tgt="//@actors.2/@intentions.0"/>
     </intentions>
   </actors>
