@@ -49,12 +49,12 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
 /**
- * This is the action bar contributor for the Mid model editor.
+ * This is the action bar contributor for the MID model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MidActionBarContributor
+public class MIDActionBarContributor
 	extends EditingDomainActionBarContributor
 	implements ISelectionChangedListener {
 	/**
@@ -80,14 +80,14 @@ public class MidActionBarContributor
 	 * @generated
 	 */
 	protected IAction showPropertiesViewAction =
-		new Action(MidEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
+		new Action(MIDEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
 			@Override
 			public void run() {
 				try {
 					getPage().showView("org.eclipse.ui.views.PropertySheet");
 				}
 				catch (PartInitException exception) {
-					MidEditorPlugin.INSTANCE.log(exception);
+					MIDEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 		};
@@ -100,7 +100,7 @@ public class MidActionBarContributor
 	 * @generated
 	 */
 	protected IAction refreshViewerAction =
-		new Action(MidEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
+		new Action(MIDEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
 			@Override
 			public boolean isEnabled() {
 				return activeEditorPart instanceof IViewerProvider;
@@ -157,7 +157,7 @@ public class MidActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MidActionBarContributor() {
+	public MIDActionBarContributor() {
 		super(ADDITIONS_LAST_STYLE);
 		loadResourceAction = new LoadResourceAction();
 		validateAction = new ValidateAction();
@@ -187,7 +187,7 @@ public class MidActionBarContributor
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(MidEditorPlugin.INSTANCE.getString("_UI_MidEditor_menu"), "edu.toronto.cs.se.mmint.midMenuID");
+		IMenuManager submenuManager = new MenuManager(MIDEditorPlugin.INSTANCE.getString("_UI_MIDEditor_menu"), "edu.toronto.cs.se.mmint.midMenuID");
 		menuManager.insertAfter("additions", submenuManager);
 		submenuManager.add(new Separator("settings"));
 		submenuManager.add(new Separator("actions"));
@@ -196,12 +196,12 @@ public class MidActionBarContributor
 
 		// Prepare for CreateChild item addition or removal.
 		//
-		createChildMenuManager = new MenuManager(MidEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+		createChildMenuManager = new MenuManager(MIDEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
 		submenuManager.insertBefore("additions", createChildMenuManager);
 
 		// Prepare for CreateSibling item addition or removal.
 		//
-		createSiblingMenuManager = new MenuManager(MidEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+		createSiblingMenuManager = new MenuManager(MIDEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		submenuManager.insertBefore("additions", createSiblingMenuManager);
 
 		// Force an update because Eclipse hides empty menus now.
@@ -392,11 +392,11 @@ public class MidActionBarContributor
 		super.menuAboutToShow(menuManager);
 		MenuManager submenuManager = null;
 
-		submenuManager = new MenuManager(MidEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+		submenuManager = new MenuManager(MIDEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
 		populateManager(submenuManager, createChildActions, null);
 		menuManager.insertBefore("edit", submenuManager);
 
-		submenuManager = new MenuManager(MidEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+		submenuManager = new MenuManager(MIDEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		populateManager(submenuManager, createSiblingActions, null);
 		menuManager.insertBefore("edit", submenuManager);
 	}

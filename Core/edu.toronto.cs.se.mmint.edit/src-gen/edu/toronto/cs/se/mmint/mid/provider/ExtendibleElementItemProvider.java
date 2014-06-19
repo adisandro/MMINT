@@ -12,26 +12,18 @@
 package edu.toronto.cs.se.mmint.mid.provider;
 
 
-import edu.toronto.cs.se.mmint.mavo.provider.MAVOElementItemProvider;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
-
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -42,13 +34,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ExtendibleElementItemProvider
-	extends MAVOElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends edu.toronto.cs.se.mavo.provider.MAVOElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -94,7 +80,7 @@ public class ExtendibleElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ExtendibleElement_uri_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_uri_feature", "_UI_ExtendibleElement_type"),
-				 MidPackage.Literals.EXTENDIBLE_ELEMENT__URI,
+				 MIDPackage.Literals.EXTENDIBLE_ELEMENT__URI,
 				 true,
 				 false,
 				 false,
@@ -116,7 +102,7 @@ public class ExtendibleElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ExtendibleElement_supertype_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_supertype_feature", "_UI_ExtendibleElement_type"),
-				 MidPackage.Literals.EXTENDIBLE_ELEMENT__SUPERTYPE,
+				 MIDPackage.Literals.EXTENDIBLE_ELEMENT__SUPERTYPE,
 				 true,
 				 false,
 				 true,
@@ -138,7 +124,7 @@ public class ExtendibleElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ExtendibleElement_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_name_feature", "_UI_ExtendibleElement_type"),
-				 MidPackage.Literals.EXTENDIBLE_ELEMENT__NAME,
+				 MIDPackage.Literals.EXTENDIBLE_ELEMENT__NAME,
 				 true,
 				 false,
 				 false,
@@ -160,7 +146,7 @@ public class ExtendibleElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ExtendibleElement_metatype_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_metatype_feature", "_UI_ExtendibleElement_type"),
-				 MidPackage.Literals.EXTENDIBLE_ELEMENT__METATYPE,
+				 MIDPackage.Literals.EXTENDIBLE_ELEMENT__METATYPE,
 				 false,
 				 false,
 				 false,
@@ -182,7 +168,7 @@ public class ExtendibleElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ExtendibleElement_level_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_level_feature", "_UI_ExtendibleElement_type"),
-				 MidPackage.Literals.EXTENDIBLE_ELEMENT__LEVEL,
+				 MIDPackage.Literals.EXTENDIBLE_ELEMENT__LEVEL,
 				 true,
 				 false,
 				 false,
@@ -204,7 +190,7 @@ public class ExtendibleElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ExtendibleElement_metatypeUri_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_metatypeUri_feature", "_UI_ExtendibleElement_type"),
-				 MidPackage.Literals.EXTENDIBLE_ELEMENT__METATYPE_URI,
+				 MIDPackage.Literals.EXTENDIBLE_ELEMENT__METATYPE_URI,
 				 true,
 				 false,
 				 false,
@@ -226,7 +212,7 @@ public class ExtendibleElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ExtendibleElement_dynamic_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_dynamic_feature", "_UI_ExtendibleElement_type"),
-				 MidPackage.Literals.EXTENDIBLE_ELEMENT__DYNAMIC,
+				 MIDPackage.Literals.EXTENDIBLE_ELEMENT__DYNAMIC,
 				 true,
 				 false,
 				 false,
@@ -247,7 +233,7 @@ public class ExtendibleElementItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MidPackage.Literals.EXTENDIBLE_ELEMENT__CONSTRAINT);
+			childrenFeatures.add(MIDPackage.Literals.EXTENDIBLE_ELEMENT__CONSTRAINT);
 		}
 		return childrenFeatures;
 	}
@@ -291,14 +277,14 @@ public class ExtendibleElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ExtendibleElement.class)) {
-			case MidPackage.EXTENDIBLE_ELEMENT__URI:
-			case MidPackage.EXTENDIBLE_ELEMENT__NAME:
-			case MidPackage.EXTENDIBLE_ELEMENT__LEVEL:
-			case MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
-			case MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
+			case MIDPackage.EXTENDIBLE_ELEMENT__URI:
+			case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
+			case MIDPackage.EXTENDIBLE_ELEMENT__LEVEL:
+			case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
+			case MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
+			case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -318,8 +304,8 @@ public class ExtendibleElementItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MidPackage.Literals.EXTENDIBLE_ELEMENT__CONSTRAINT,
-				 MidFactory.eINSTANCE.createExtendibleElementConstraint()));
+				(MIDPackage.Literals.EXTENDIBLE_ELEMENT__CONSTRAINT,
+				 MIDFactory.eINSTANCE.createExtendibleElementConstraint()));
 	}
 
 	/**

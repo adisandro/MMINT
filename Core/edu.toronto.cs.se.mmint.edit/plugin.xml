@@ -16,21 +16,10 @@
 <plugin>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <factory
-            uri="http://se.cs.toronto.edu/mmint/MAVO"
-            class="edu.toronto.cs.se.mmint.mavo.provider.MavoItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated mid -->
       <factory
             uri="http://se.cs.toronto.edu/mmint/MID"
-            class="edu.toronto.cs.se.mmint.mid.provider.MidItemProviderAdapterFactory"
+            class="edu.toronto.cs.se.mmint.mid.provider.MIDItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

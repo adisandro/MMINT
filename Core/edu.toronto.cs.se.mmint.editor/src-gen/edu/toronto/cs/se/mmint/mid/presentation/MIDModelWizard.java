@@ -23,48 +23,71 @@ import java.util.MissingResourceException;
 import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.CommonPlugin;
+
 import org.eclipse.emf.common.util.URI;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.ecore.xmi.XMLResource;
+
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+
 import org.eclipse.core.runtime.IProgressMonitor;
+
 import org.eclipse.jface.dialogs.MessageDialog;
+
 import org.eclipse.jface.viewers.IStructuredSelection;
+
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.ModifyEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
+
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
+
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
-import edu.toronto.cs.se.mmint.mid.provider.MidEditPlugin;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
+
 
 import org.eclipse.core.runtime.Path;
+
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -77,7 +100,7 @@ import org.eclipse.ui.PartInitException;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MidModelWizard extends Wizard implements INewWizard {
+public class MIDModelWizard extends Wizard implements INewWizard {
 	/**
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
@@ -85,7 +108,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(MidEditorPlugin.INSTANCE.getString("_UI_MidEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(MIDEditorPlugin.INSTANCE.getString("_UI_MIDEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -94,7 +117,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		MidEditorPlugin.INSTANCE.getString("_UI_MidEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		MIDEditorPlugin.INSTANCE.getString("_UI_MIDEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -102,7 +125,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MidPackage midPackage = MidPackage.eINSTANCE;
+	protected MIDPackage midPackage = MIDPackage.eINSTANCE;
 
 	/**
 	 * This caches an instance of the model factory.
@@ -110,7 +133,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MidFactory midFactory = midPackage.getMidFactory();
+	protected MIDFactory midFactory = midPackage.getMIDFactory();
 
 	/**
 	 * This is the file creation page.
@@ -118,7 +141,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MidModelWizardNewFileCreationPage newFileCreationPage;
+	protected MIDModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
 	 * This is the initial object creation page.
@@ -126,7 +149,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MidModelWizardInitialObjectCreationPage initialObjectCreationPage;
+	protected MIDModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
@@ -161,8 +184,8 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
-		setWindowTitle(MidEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(MidEditorPlugin.INSTANCE.getImage("full/wizban/NewMid")));
+		setWindowTitle(MIDEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(MIDEditorPlugin.INSTANCE.getImage("full/wizban/NewMID")));
 	}
 
 	/**
@@ -245,7 +268,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 							resource.save(options);
 						}
 						catch (Exception exception) {
-							MidEditorPlugin.INSTANCE.log(exception);
+							MIDEditorPlugin.INSTANCE.log(exception);
 						}
 						finally {
 							progressMonitor.done();
@@ -278,14 +301,14 @@ public class MidModelWizard extends Wizard implements INewWizard {
 					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
 			}
 			catch (PartInitException exception) {
-				MessageDialog.openError(workbenchWindow.getShell(), MidEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
+				MessageDialog.openError(workbenchWindow.getShell(), MIDEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
 				return false;
 			}
 
 			return true;
 		}
 		catch (Exception exception) {
-			MidEditorPlugin.INSTANCE.log(exception);
+			MIDEditorPlugin.INSTANCE.log(exception);
 			return false;
 		}
 	}
@@ -296,14 +319,14 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class MidModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+	public class MIDModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
 		/**
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public MidModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+		public MIDModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
 			super(pageId, selection);
 		}
 
@@ -319,7 +342,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 				String extension = new Path(getFileName()).getFileExtension();
 				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
 					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
-					setErrorMessage(MidEditorPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
+					setErrorMessage(MIDEditorPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
 				return true;
@@ -343,7 +366,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class MidModelWizardInitialObjectCreationPage extends WizardPage {
+	public class MIDModelWizardInitialObjectCreationPage extends WizardPage {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -371,7 +394,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public MidModelWizardInitialObjectCreationPage(String pageId) {
+		public MIDModelWizardInitialObjectCreationPage(String pageId) {
 			super(pageId);
 		}
 
@@ -381,7 +404,8 @@ public class MidModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE); {
+			Composite composite = new Composite(parent, SWT.NONE);
+			{
 				GridLayout layout = new GridLayout();
 				layout.numColumns = 1;
 				layout.verticalSpacing = 12;
@@ -396,7 +420,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 
 			Label containerLabel = new Label(composite, SWT.LEFT);
 			{
-				containerLabel.setText(MidEditorPlugin.INSTANCE.getString("_UI_ModelObject"));
+				containerLabel.setText(MIDEditorPlugin.INSTANCE.getString("_UI_ModelObject"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
@@ -422,7 +446,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 
 			Label encodingLabel = new Label(composite, SWT.LEFT);
 			{
-				encodingLabel.setText(MidEditorPlugin.INSTANCE.getString("_UI_XMLEncoding"));
+				encodingLabel.setText(MIDEditorPlugin.INSTANCE.getString("_UI_XMLEncoding"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
@@ -521,10 +545,10 @@ public class MidModelWizard extends Wizard implements INewWizard {
 		 */
 		protected String getLabel(String typeName) {
 			try {
-				return MidEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
+				return MIDEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
 			}
 			catch(MissingResourceException mre) {
-				MidEditorPlugin.INSTANCE.log(mre);
+				MIDEditorPlugin.INSTANCE.log(mre);
 			}
 			return typeName;
 		}
@@ -537,7 +561,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 		protected Collection<String> getEncodings() {
 			if (encodings == null) {
 				encodings = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(MidEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
+				for (StringTokenizer stringTokenizer = new StringTokenizer(MIDEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
 					encodings.add(stringTokenizer.nextToken());
 				}
 			}
@@ -555,10 +579,10 @@ public class MidModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new MidModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(MidEditorPlugin.INSTANCE.getString("_UI_MidModelWizard_label"));
-		newFileCreationPage.setDescription(MidEditorPlugin.INSTANCE.getString("_UI_MidModelWizard_description"));
-		newFileCreationPage.setFileName(MidEditorPlugin.INSTANCE.getString("_UI_MidEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage = new MIDModelWizardNewFileCreationPage("Whatever", selection);
+		newFileCreationPage.setTitle(MIDEditorPlugin.INSTANCE.getString("_UI_MIDModelWizard_label"));
+		newFileCreationPage.setDescription(MIDEditorPlugin.INSTANCE.getString("_UI_MIDModelWizard_description"));
+		newFileCreationPage.setFileName(MIDEditorPlugin.INSTANCE.getString("_UI_MIDEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -584,7 +608,7 @@ public class MidModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = MidEditorPlugin.INSTANCE.getString("_UI_MidEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = MIDEditorPlugin.INSTANCE.getString("_UI_MIDEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
@@ -594,9 +618,9 @@ public class MidModelWizard extends Wizard implements INewWizard {
 				}
 			}
 		}
-		initialObjectCreationPage = new MidModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage.setTitle(MidEditorPlugin.INSTANCE.getString("_UI_MidModelWizard_label"));
-		initialObjectCreationPage.setDescription(MidEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
+		initialObjectCreationPage = new MIDModelWizardInitialObjectCreationPage("Whatever2");
+		initialObjectCreationPage.setTitle(MIDEditorPlugin.INSTANCE.getString("_UI_MIDModelWizard_label"));
+		initialObjectCreationPage.setDescription(MIDEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}
 

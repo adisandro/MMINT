@@ -11,8 +11,9 @@
  */
 package edu.toronto.cs.se.mmint.mid.provider;
 
-import edu.toronto.cs.se.mmint.mid.MidPackage;
-import edu.toronto.cs.se.mmint.mid.util.MidAdapterFactory;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
+
+import edu.toronto.cs.se.mmint.mid.util.MIDAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,8 +22,11 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.domain.EditingDomain;
+
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -46,7 +50,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MidItemProviderAdapterFactory extends MidAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender {
+public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -69,7 +73,7 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(MidEditPlugin.INSTANCE, MidPackage.eNS_URI);
+	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(MIDEditPlugin.INSTANCE, MIDPackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -85,7 +89,7 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MidItemProviderAdapterFactory() {
+	public MIDItemProviderAdapterFactory() {
 		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
@@ -114,6 +118,29 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 		}
 
 		return multiModelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EStringToExtendibleElementMapItemProvider eStringToExtendibleElementMapItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link java.util.Map.Entry}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEStringToExtendibleElementMapAdapter() {
+		if (eStringToExtendibleElementMapItemProvider == null) {
+			eStringToExtendibleElementMapItemProvider = new EStringToExtendibleElementMapItemProvider(this);
+		}
+
+		return eStringToExtendibleElementMapItemProvider;
 	}
 
 	/**
@@ -160,29 +187,6 @@ public class MidItemProviderAdapterFactory extends MidAdapterFactory implements 
 		}
 
 		return extendibleElementConstraintItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EStringToExtendibleElementMapItemProvider eStringToExtendibleElementMapItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link java.util.Map.Entry}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createEStringToExtendibleElementMapAdapter() {
-		if (eStringToExtendibleElementMapItemProvider == null) {
-			eStringToExtendibleElementMapItemProvider = new EStringToExtendibleElementMapItemProvider(this);
-		}
-
-		return eStringToExtendibleElementMapItemProvider;
 	}
 
 	/**

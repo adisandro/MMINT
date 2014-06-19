@@ -14,11 +14,9 @@ package edu.toronto.cs.se.mmint.mid.operator.provider;
 
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.Parameter;
-import edu.toronto.cs.se.mmint.mid.provider.MidEditPlugin;
-
+import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -206,7 +204,7 @@ public class ParameterItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MidEditPlugin.INSTANCE;
+		return MIDEditPlugin.INSTANCE;
 	}
 
 }

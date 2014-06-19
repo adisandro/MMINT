@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.mid.presentation;
 
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -32,19 +33,24 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+
 import org.eclipse.jface.util.LocalSelectionTransfer;
+
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -58,21 +64,29 @@ import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.custom.CTabFolder;
+
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.Transfer;
+
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
+
 import org.eclipse.swt.graphics.Point;
+
 import org.eclipse.swt.layout.FillLayout;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
+
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -80,68 +94,95 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
+
 import org.eclipse.ui.dialogs.SaveAsDialog;
+
 import org.eclipse.ui.ide.IGotoMarker;
+
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
+
 import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
+
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
+
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.ui.MarkerHelper;
 import org.eclipse.emf.common.ui.ViewerPane;
+
 import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
+
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+
+
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
+
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
+
 import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
+
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
+
 import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
+
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
-import edu.toronto.cs.se.mmint.mavo.provider.MavoItemProviderAdapterFactory;
+import edu.toronto.cs.se.mmint.mid.provider.MIDItemProviderAdapterFactory;
+
+import edu.toronto.cs.se.mavo.provider.MAVOItemProviderAdapterFactory;
+
 import edu.toronto.cs.se.mmint.mid.editor.provider.EditorItemProviderAdapterFactory;
+
 import edu.toronto.cs.se.mmint.mid.operator.provider.OperatorItemProviderAdapterFactory;
-import edu.toronto.cs.se.mmint.mid.provider.MidItemProviderAdapterFactory;
+
 import edu.toronto.cs.se.mmint.mid.relationship.provider.RelationshipItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
 /**
- * This is an example of a Mid model editor.
+ * This is an example of a MID model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MidEditor
+public class MIDEditor
 	extends MultiPageEditorPart
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
@@ -303,18 +344,18 @@ public class MidEditor
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(MidEditor.this);
+						getActionBarContributor().setActiveEditor(MIDEditor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
-						getActionBarContributor().setActiveEditor(MidEditor.this);
+						getActionBarContributor().setActiveEditor(MIDEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == MidEditor.this) {
+				else if (p == MIDEditor.this) {
 					handleActivate();
 				}
 			}
@@ -378,7 +419,7 @@ public class MidEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EContentAdapter problemIndicationAdapter = 
+	protected EContentAdapter problemIndicationAdapter =
 		new EContentAdapter() {
 			@Override
 			public void notifyChanged(Notification notification) {
@@ -487,7 +528,7 @@ public class MidEditor
 								 public void run() {
 									 removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(MidEditor.this, false);
+										 getSite().getPage().closeEditor(MIDEditor.this, false);
 									 }
 								 }
 							 });
@@ -498,7 +539,7 @@ public class MidEditor
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == MidEditor.this) {
+									 if (getSite().getPage().getActiveEditor() == MIDEditor.this) {
 										 handleActivate();
 									 }
 								 }
@@ -506,7 +547,7 @@ public class MidEditor
 					}
 				}
 				catch (CoreException exception) {
-					MidEditorPlugin.INSTANCE.log(exception);
+					MIDEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 		};
@@ -530,7 +571,7 @@ public class MidEditor
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(MidEditor.this, false);
+				getSite().getPage().closeEditor(MIDEditor.this, false);
 			}
 			else {
 				removedResources.clear();
@@ -582,7 +623,7 @@ public class MidEditor
 			updateProblemIndication();
 		}
 	}
-  
+
 	/**
 	 * Updates the problems indication with the information described in the specified diagnostic.
 	 * <!-- begin-user-doc -->
@@ -622,7 +663,7 @@ public class MidEditor
 					showTabs();
 				}
 				catch (PartInitException exception) {
-					MidEditorPlugin.INSTANCE.log(exception);
+					MIDEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 
@@ -633,7 +674,7 @@ public class MidEditor
 						markerHelper.createMarkers(diagnostic);
 					}
 					catch (CoreException exception) {
-						MidEditorPlugin.INSTANCE.log(exception);
+						MIDEditorPlugin.INSTANCE.log(exception);
 					}
 				}
 			}
@@ -660,7 +701,7 @@ public class MidEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MidEditor() {
+	public MIDEditor() {
 		super();
 		initializeEditingDomain();
 	}
@@ -677,11 +718,11 @@ public class MidEditor
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new MidItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new MIDItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new RelationshipItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EditorItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new OperatorItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new MavoItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new MAVOItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
@@ -1001,7 +1042,7 @@ public class MidEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), MidEditor.this) {
+					new ViewerPane(getSite().getPage(), MIDEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1035,7 +1076,7 @@ public class MidEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), MidEditor.this) {
+					new ViewerPane(getSite().getPage(), MIDEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1064,7 +1105,7 @@ public class MidEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), MidEditor.this) {
+					new ViewerPane(getSite().getPage(), MIDEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new ListViewer(composite);
@@ -1089,7 +1130,7 @@ public class MidEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), MidEditor.this) {
+					new ViewerPane(getSite().getPage(), MIDEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1116,7 +1157,7 @@ public class MidEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), MidEditor.this) {
+					new ViewerPane(getSite().getPage(), MIDEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TableViewer(composite);
@@ -1159,7 +1200,7 @@ public class MidEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), MidEditor.this) {
+					new ViewerPane(getSite().getPage(), MIDEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1379,8 +1420,8 @@ public class MidEditor
 			new ExtendedPropertySheetPage(editingDomain) {
 				@Override
 				public void setSelectionToViewer(List<?> selection) {
-					MidEditor.this.setSelectionToViewer(selection);
-					MidEditor.this.setFocus();
+					MIDEditor.this.setSelectionToViewer(selection);
+					MIDEditor.this.setFocus();
 				}
 
 				@Override
@@ -1502,7 +1543,7 @@ public class MidEditor
 		catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			//
-			MidEditorPlugin.INSTANCE.log(exception);
+			MIDEditorPlugin.INSTANCE.log(exception);
 		}
 		updateProblemIndication = true;
 		updateProblemIndication();
@@ -1706,7 +1747,7 @@ public class MidEditor
 	 * @generated
 	 */
 	private static String getString(String key) {
-		return MidEditorPlugin.INSTANCE.getString(key);
+		return MIDEditorPlugin.INSTANCE.getString(key);
 	}
 
 	/**
@@ -1716,7 +1757,7 @@ public class MidEditor
 	 * @generated
 	 */
 	private static String getString(String key, Object s1) {
-		return MidEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
+		return MIDEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
 	}
 
 	/**
