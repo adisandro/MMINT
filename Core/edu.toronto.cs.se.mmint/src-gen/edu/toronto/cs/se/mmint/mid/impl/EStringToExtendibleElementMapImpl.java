@@ -12,8 +12,7 @@
 package edu.toronto.cs.se.mmint.mid.impl;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
-
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EMap;
@@ -21,7 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +36,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class EStringToExtendibleElementMapImpl extends EObjectImpl implements BasicEMap.Entry<String,ExtendibleElement> {
+public class EStringToExtendibleElementMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<String,ExtendibleElement> {
 	/**
 	 * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -84,7 +83,7 @@ public class EStringToExtendibleElementMapImpl extends EObjectImpl implements Ba
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MidPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP;
+		return MIDPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP;
 	}
 
 	/**
@@ -105,7 +104,7 @@ public class EStringToExtendibleElementMapImpl extends EObjectImpl implements Ba
 		String oldKey = key;
 		key = newKey;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY, oldKey, key));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY, oldKey, key));
 	}
 
 	/**
@@ -119,7 +118,7 @@ public class EStringToExtendibleElementMapImpl extends EObjectImpl implements Ba
 			value = (ExtendibleElement)eResolveProxy(oldValue);
 			if (value != oldValue) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE, oldValue, value));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE, oldValue, value));
 			}
 		}
 		return value;
@@ -143,7 +142,7 @@ public class EStringToExtendibleElementMapImpl extends EObjectImpl implements Ba
 		ExtendibleElement oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE, oldValue, value));
 	}
 
 	/**
@@ -154,9 +153,9 @@ public class EStringToExtendibleElementMapImpl extends EObjectImpl implements Ba
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
+			case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
 				return getTypedKey();
-			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
+			case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
 				if (resolve) return getTypedValue();
 				return basicGetTypedValue();
 		}
@@ -171,10 +170,10 @@ public class EStringToExtendibleElementMapImpl extends EObjectImpl implements Ba
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
+			case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
 				setTypedKey((String)newValue);
 				return;
-			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
+			case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
 				setTypedValue((ExtendibleElement)newValue);
 				return;
 		}
@@ -189,10 +188,10 @@ public class EStringToExtendibleElementMapImpl extends EObjectImpl implements Ba
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
+			case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
 				setTypedKey(KEY_EDEFAULT);
 				return;
-			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
+			case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
 				setTypedValue((ExtendibleElement)null);
 				return;
 		}
@@ -207,9 +206,9 @@ public class EStringToExtendibleElementMapImpl extends EObjectImpl implements Ba
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
+			case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
 				return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
-			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
+			case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
 				return value != null;
 		}
 		return super.eIsSet(featureID);

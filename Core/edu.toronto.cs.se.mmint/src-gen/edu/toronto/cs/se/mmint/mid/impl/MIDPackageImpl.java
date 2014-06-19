@@ -11,16 +11,15 @@
  */
 package edu.toronto.cs.se.mmint.mid.impl;
 
+import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mavo.MavoPackage;
-import edu.toronto.cs.se.mmint.mavo.impl.MavoPackageImpl;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -32,10 +31,8 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl;
-import edu.toronto.cs.se.mmint.mid.util.MidValidator;
-
+import edu.toronto.cs.se.mmint.mid.util.MIDValidator;
 import java.util.Map;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -52,7 +49,21 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MidPackageImpl extends EPackageImpl implements MidPackage {
+public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass multiModelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eStringToExtendibleElementMapEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,13 +83,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass multiModelEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass modelEClass = null;
 
 	/**
@@ -87,13 +91,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	private EClass extendibleElementConstraintEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass eStringToExtendibleElementMapEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -148,12 +145,12 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#eNS_URI
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private MidPackageImpl() {
-		super(eNS_URI, MidFactory.eINSTANCE);
+	private MIDPackageImpl() {
+		super(eNS_URI, MIDFactory.eINSTANCE);
 	}
 
 	/**
@@ -166,7 +163,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link MidPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link MIDPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -175,50 +172,131 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static MidPackage init() {
-		if (isInited) return (MidPackage)EPackage.Registry.INSTANCE.getEPackage(MidPackage.eNS_URI);
+	public static MIDPackage init() {
+		if (isInited) return (MIDPackage)EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI);
 
 		// Obtain or create and register package
-		MidPackageImpl theMidPackage = (MidPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MidPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MidPackageImpl());
+		MIDPackageImpl theMIDPackage = (MIDPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MIDPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MIDPackageImpl());
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		MAVOPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		RelationshipPackageImpl theRelationshipPackage = (RelationshipPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI) instanceof RelationshipPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI) : RelationshipPackage.eINSTANCE);
 		EditorPackageImpl theEditorPackage = (EditorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EditorPackage.eNS_URI) instanceof EditorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EditorPackage.eNS_URI) : EditorPackage.eINSTANCE);
 		OperatorPackageImpl theOperatorPackage = (OperatorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI) instanceof OperatorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI) : OperatorPackage.eINSTANCE);
-		MavoPackageImpl theMavoPackage = (MavoPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MavoPackage.eNS_URI) instanceof MavoPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MavoPackage.eNS_URI) : MavoPackage.eINSTANCE);
 
 		// Create package meta-data objects
-		theMidPackage.createPackageContents();
+		theMIDPackage.createPackageContents();
 		theRelationshipPackage.createPackageContents();
 		theEditorPackage.createPackageContents();
 		theOperatorPackage.createPackageContents();
-		theMavoPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theMidPackage.initializePackageContents();
+		theMIDPackage.initializePackageContents();
 		theRelationshipPackage.initializePackageContents();
 		theEditorPackage.initializePackageContents();
 		theOperatorPackage.initializePackageContents();
-		theMavoPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
-			(theMidPackage, 
+			(theMIDPackage, 
 			 new EValidator.Descriptor() {
 				 public EValidator getEValidator() {
-					 return MidValidator.INSTANCE;
+					 return MIDValidator.INSTANCE;
 				 }
 			 });
 
 		// Mark meta-data to indicate it can't be changed
-		theMidPackage.freeze();
+		theMIDPackage.freeze();
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(MidPackage.eNS_URI, theMidPackage);
-		return theMidPackage;
+		EPackage.Registry.INSTANCE.put(MIDPackage.eNS_URI, theMIDPackage);
+		return theMIDPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMultiModel() {
+		return multiModelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMultiModel_Models() {
+		return (EReference)multiModelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMultiModel_Editors() {
+		return (EReference)multiModelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMultiModel_Operators() {
+		return (EReference)multiModelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMultiModel_ExtendibleTable() {
+		return (EReference)multiModelEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMultiModel_Level() {
+		return (EAttribute)multiModelEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEStringToExtendibleElementMap() {
+		return eStringToExtendibleElementMapEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEStringToExtendibleElementMap_Key() {
+		return (EAttribute)eStringToExtendibleElementMapEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEStringToExtendibleElementMap_Value() {
+		return (EReference)eStringToExtendibleElementMapEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -235,15 +313,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExtendibleElement_Uri() {
-		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getExtendibleElement_Supertype() {
 		return (EReference)extendibleElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -253,8 +322,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExtendibleElement_Name() {
-		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(3);
+	public EReference getExtendibleElement_Metatype() {
+		return (EReference)extendibleElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -262,8 +331,17 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtendibleElement_Metatype() {
-		return (EReference)extendibleElementEClass.getEStructuralFeatures().get(1);
+	public EAttribute getExtendibleElement_Uri() {
+		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExtendibleElement_Name() {
+		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -372,60 +450,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 */
 	public EOperation getExtendibleElementEndpoint__GetSupertype() {
 		return extendibleElementEndpointEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getMultiModel() {
-		return multiModelEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMultiModel_Models() {
-		return (EReference)multiModelEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMultiModel_Editors() {
-		return (EReference)multiModelEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMultiModel_Operators() {
-		return (EReference)multiModelEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMultiModel_ExtendibleTable() {
-		return (EReference)multiModelEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMultiModel_Level() {
-		return (EAttribute)multiModelEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -640,33 +664,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEStringToExtendibleElementMap() {
-		return eStringToExtendibleElementMapEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getEStringToExtendibleElementMap_Key() {
-		return (EAttribute)eStringToExtendibleElementMapEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEStringToExtendibleElementMap_Value() {
-		return (EReference)eStringToExtendibleElementMapEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getModelElement() {
 		return modelElementEClass;
 	}
@@ -721,24 +718,6 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElement__DeleteInstance() {
-		return modelElementEClass.getEOperations().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getModelElement__GetEMFInstanceObject() {
-		return modelElementEClass.getEOperations().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getModelElement__DeleteType() {
 		return modelElementEClass.getEOperations().get(4);
 	}
@@ -768,6 +747,24 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 */
 	public EOperation getModelElement__CreateInstanceAndReference__String_String_EMFInfo_ModelEndpointReference() {
 		return modelElementEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelElement__DeleteInstance() {
+		return modelElementEClass.getEOperations().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelElement__GetEMFInstanceObject() {
+		return modelElementEClass.getEOperations().get(9);
 	}
 
 	/**
@@ -946,7 +943,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getMidLevel() {
+	public EEnum getMIDLevel() {
 		return midLevelEEnum;
 	}
 
@@ -973,8 +970,8 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MidFactory getMidFactory() {
-		return (MidFactory)getEFactoryInstance();
+	public MIDFactory getMIDFactory() {
+		return (MIDFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -1120,7 +1117,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		RelationshipPackage theRelationshipPackage = (RelationshipPackage)EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI);
 		EditorPackage theEditorPackage = (EditorPackage)EPackage.Registry.INSTANCE.getEPackage(EditorPackage.eNS_URI);
 		OperatorPackage theOperatorPackage = (OperatorPackage)EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI);
-		MavoPackage theMavoPackage = (MavoPackage)EPackage.Registry.INSTANCE.getEPackage(MavoPackage.eNS_URI);
+		MAVOPackage theMAVOPackage = (MAVOPackage)EPackage.Registry.INSTANCE.getEPackage(MAVOPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theRelationshipPackage);
@@ -1132,11 +1129,11 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		multiModelEClass.getESuperTypes().add(theMavoPackage.getMAVOModel());
-		extendibleElementEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
+		multiModelEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
+		extendibleElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 		extendibleElementEndpointEClass.getESuperTypes().add(this.getExtendibleElement());
 		modelEClass.getESuperTypes().add(this.getExtendibleElement());
-		modelEClass.getESuperTypes().add(theMavoPackage.getMAVOModel());
+		modelEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
 		modelElementEClass.getESuperTypes().add(this.getExtendibleElement());
 		modelEndpointEClass.getESuperTypes().add(this.getExtendibleElementEndpoint());
 
@@ -1146,7 +1143,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEReference(getMultiModel_Editors(), theEditorPackage.getEditor(), null, "editors", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMultiModel_Operators(), theOperatorPackage.getOperator(), null, "operators", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMultiModel_ExtendibleTable(), this.getEStringToExtendibleElementMap(), null, "extendibleTable", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMultiModel_Level(), this.getMidLevel(), "level", null, 1, 1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMultiModel_Level(), this.getMIDLevel(), "level", null, 1, 1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eStringToExtendibleElementMapEClass, Map.Entry.class, "EStringToExtendibleElementMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEStringToExtendibleElementMap_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1157,7 +1154,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEReference(getExtendibleElement_Metatype(), this.getExtendibleElement(), null, "metatype", null, 0, 1, ExtendibleElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElement_Uri(), ecorePackage.getEString(), "uri", null, 1, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getExtendibleElement_Level(), this.getMidLevel(), "level", null, 1, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExtendibleElement_Level(), this.getMIDLevel(), "level", null, 1, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElement_MetatypeUri(), ecorePackage.getEString(), "metatypeUri", null, 0, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElement_Dynamic(), ecorePackage.getEBoolean(), "dynamic", null, 1, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtendibleElement_Constraint(), this.getExtendibleElementConstraint(), null, "constraint", null, 0, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1348,9 +1345,9 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 		initEOperation(getEMFInfo__ToInstanceString(), ecorePackage.getEString(), "toInstanceString", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Initialize enums and add enum literals
-		initEEnum(midLevelEEnum, MidLevel.class, "MidLevel");
-		addEEnumLiteral(midLevelEEnum, MidLevel.INSTANCES);
-		addEEnumLiteral(midLevelEEnum, MidLevel.TYPES);
+		initEEnum(midLevelEEnum, MIDLevel.class, "MIDLevel");
+		addEEnumLiteral(midLevelEEnum, MIDLevel.INSTANCES);
+		addEEnumLiteral(midLevelEEnum, MIDLevel.TYPES);
 
 		initEEnum(modelOriginEEnum, ModelOrigin.class, "ModelOrigin");
 		addEEnumLiteral(modelOriginEEnum, ModelOrigin.IMPORTED);
@@ -1376,7 +1373,7 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";		
+		String source = "http://www.eclipse.org/emf/2002/Ecore";	
 		addAnnotation
 		  (this, 
 		   source, 
@@ -1384,19 +1381,19 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });											
+		   });	
 		addAnnotation
 		  (extendibleElementEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "typeLevel"
-		   });																
+		   });	
 		addAnnotation
 		  (extendibleElementEndpointEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "unboundedLevel"
-		   });																																					
+		   });
 	}
 
 	/**
@@ -1406,25 +1403,25 @@ public class MidPackageImpl extends EPackageImpl implements MidPackage {
 	 * @generated
 	 */
 	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";														
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
 		addAnnotation
 		  (extendibleElementEClass, 
 		   source, 
 		   new String[] {
 			 "typeLevel", "level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES"
-		   });															
+		   });	
 		addAnnotation
 		  (extendibleElementEndpointEClass, 
 		   source, 
 		   new String[] {
 			 "unboundedLevel", "target.level = MidLevel::INSTANCES implies (lowerBound = 1 and upperBound = 1)"
-		   });								
+		   });	
 		addAnnotation
 		  (getExtendibleElementEndpoint_TargetUri(), 
 		   source, 
 		   new String[] {
 			 "derivation", "target.uri"
-		   });																													
+		   });
 	}
 
-} //MidPackageImpl
+} //MIDPackageImpl

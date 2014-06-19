@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint.mid.util;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+
 import edu.toronto.cs.se.mmint.mid.*;
 
 import java.util.Map;
@@ -19,25 +20,27 @@ import java.util.Map;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.EObjectValidator;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.mmint.mid.MidPackage
+ * @see edu.toronto.cs.se.mmint.mid.MIDPackage
  * @generated
  */
-public class MidValidator extends EObjectValidator {
+public class MIDValidator extends EObjectValidator {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final MidValidator INSTANCE = new MidValidator();
+	public static final MIDValidator INSTANCE = new MIDValidator();
 
 	/**
 	 * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
@@ -71,7 +74,7 @@ public class MidValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MidValidator() {
+	public MIDValidator() {
 		super();
 	}
 
@@ -83,7 +86,7 @@ public class MidValidator extends EObjectValidator {
 	 */
 	@Override
 	protected EPackage getEPackage() {
-	  return MidPackage.eINSTANCE;
+	  return MIDPackage.eINSTANCE;
 	}
 
 	/**
@@ -95,33 +98,51 @@ public class MidValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
-			case MidPackage.MULTI_MODEL:
+			case MIDPackage.MULTI_MODEL:
 				return validateMultiModel((MultiModel)value, diagnostics, context);
-			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP:
+			case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP:
 				return validateEStringToExtendibleElementMap((Map.Entry<?, ?>)value, diagnostics, context);
-			case MidPackage.EXTENDIBLE_ELEMENT:
+			case MIDPackage.EXTENDIBLE_ELEMENT:
 				return validateExtendibleElement((ExtendibleElement)value, diagnostics, context);
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT:
 				return validateExtendibleElementEndpoint((ExtendibleElementEndpoint)value, diagnostics, context);
-			case MidPackage.MODEL:
+			case MIDPackage.MODEL:
 				return validateModel((Model)value, diagnostics, context);
-			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT:
+			case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT:
 				return validateExtendibleElementConstraint((ExtendibleElementConstraint)value, diagnostics, context);
-			case MidPackage.MODEL_ELEMENT:
+			case MIDPackage.MODEL_ELEMENT:
 				return validateModelElement((ModelElement)value, diagnostics, context);
-			case MidPackage.MODEL_ENDPOINT:
+			case MIDPackage.MODEL_ENDPOINT:
 				return validateModelEndpoint((ModelEndpoint)value, diagnostics, context);
-			case MidPackage.EMF_INFO:
+			case MIDPackage.EMF_INFO:
 				return validateEMFInfo((EMFInfo)value, diagnostics, context);
-			case MidPackage.MID_LEVEL:
-				return validateMidLevel((MidLevel)value, diagnostics, context);
-			case MidPackage.MODEL_ORIGIN:
+			case MIDPackage.MID_LEVEL:
+				return validateMIDLevel((MIDLevel)value, diagnostics, context);
+			case MIDPackage.MODEL_ORIGIN:
 				return validateModelOrigin((ModelOrigin)value, diagnostics, context);
-			case MidPackage.MMINT_EXCEPTION:
+			case MIDPackage.MMINT_EXCEPTION:
 				return validateMMINTException((MMINTException)value, diagnostics, context);
 			default:
 				return true;
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMultiModel(MultiModel multiModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(multiModel, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEStringToExtendibleElementMap(Map.Entry<?, ?> eStringToExtendibleElementMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)eStringToExtendibleElementMap, diagnostics, context);
 	}
 
 	/**
@@ -160,7 +181,7 @@ public class MidValidator extends EObjectValidator {
 	public boolean validateExtendibleElement_typeLevel(ExtendibleElement extendibleElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
-				(MidPackage.Literals.EXTENDIBLE_ELEMENT,
+				(MIDPackage.Literals.EXTENDIBLE_ELEMENT,
 				 extendibleElement,
 				 diagnostics,
 				 context,
@@ -209,7 +230,7 @@ public class MidValidator extends EObjectValidator {
 	public boolean validateExtendibleElementEndpoint_unboundedLevel(ExtendibleElementEndpoint extendibleElementEndpoint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
-				(MidPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT,
+				(MIDPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT,
 				 extendibleElementEndpoint,
 				 diagnostics,
 				 context,
@@ -219,15 +240,6 @@ public class MidValidator extends EObjectValidator {
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateMultiModel(MultiModel multiModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(multiModel, diagnostics, context);
 	}
 
 	/**
@@ -256,15 +268,6 @@ public class MidValidator extends EObjectValidator {
 	 */
 	public boolean validateExtendibleElementConstraint(ExtendibleElementConstraint extendibleElementConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(extendibleElementConstraint, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateEStringToExtendibleElementMap(Map.Entry<?, ?> eStringToExtendibleElementMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)eStringToExtendibleElementMap, diagnostics, context);
 	}
 
 	/**
@@ -320,7 +323,7 @@ public class MidValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMidLevel(MidLevel midLevel, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateMIDLevel(MIDLevel midLevel, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -356,4 +359,4 @@ public class MidValidator extends EObjectValidator {
 		return super.getResourceLocator();
 	}
 
-} //MidValidator
+} //MIDValidator

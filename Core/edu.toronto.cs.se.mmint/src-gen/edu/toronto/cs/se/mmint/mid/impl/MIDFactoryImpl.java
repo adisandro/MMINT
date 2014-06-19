@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint.mid.impl;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+
 import edu.toronto.cs.se.mmint.mid.*;
 
 import java.util.Map;
@@ -20,7 +21,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
@@ -29,24 +32,24 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
+public class MIDFactoryImpl extends EFactoryImpl implements MIDFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MidFactory init() {
+	public static MIDFactory init() {
 		try {
-			MidFactory theMidFactory = (MidFactory)EPackage.Registry.INSTANCE.getEFactory(MidPackage.eNS_URI);
-			if (theMidFactory != null) {
-				return theMidFactory;
+			MIDFactory theMIDFactory = (MIDFactory)EPackage.Registry.INSTANCE.getEFactory(MIDPackage.eNS_URI);
+			if (theMIDFactory != null) {
+				return theMIDFactory;
 			}
 		}
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new MidFactoryImpl();
+		return new MIDFactoryImpl();
 	}
 
 	/**
@@ -55,7 +58,7 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MidFactoryImpl() {
+	public MIDFactoryImpl() {
 		super();
 	}
 
@@ -67,13 +70,13 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case MidPackage.MULTI_MODEL: return createMultiModel();
-			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: return (EObject)createEStringToExtendibleElementMap();
-			case MidPackage.MODEL: return createModel();
-			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT: return createExtendibleElementConstraint();
-			case MidPackage.MODEL_ELEMENT: return createModelElement();
-			case MidPackage.MODEL_ENDPOINT: return createModelEndpoint();
-			case MidPackage.EMF_INFO: return createEMFInfo();
+			case MIDPackage.MULTI_MODEL: return createMultiModel();
+			case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: return (EObject)createEStringToExtendibleElementMap();
+			case MIDPackage.MODEL: return createModel();
+			case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT: return createExtendibleElementConstraint();
+			case MIDPackage.MODEL_ELEMENT: return createModelElement();
+			case MIDPackage.MODEL_ENDPOINT: return createModelEndpoint();
+			case MIDPackage.EMF_INFO: return createEMFInfo();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -87,11 +90,11 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case MidPackage.MID_LEVEL:
-				return createMidLevelFromString(eDataType, initialValue);
-			case MidPackage.MODEL_ORIGIN:
+			case MIDPackage.MID_LEVEL:
+				return createMIDLevelFromString(eDataType, initialValue);
+			case MIDPackage.MODEL_ORIGIN:
 				return createModelOriginFromString(eDataType, initialValue);
-			case MidPackage.MMINT_EXCEPTION:
+			case MIDPackage.MMINT_EXCEPTION:
 				return createMMINTExceptionFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
@@ -106,11 +109,11 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case MidPackage.MID_LEVEL:
-				return convertMidLevelToString(eDataType, instanceValue);
-			case MidPackage.MODEL_ORIGIN:
+			case MIDPackage.MID_LEVEL:
+				return convertMIDLevelToString(eDataType, instanceValue);
+			case MIDPackage.MODEL_ORIGIN:
 				return convertModelOriginToString(eDataType, instanceValue);
-			case MidPackage.MMINT_EXCEPTION:
+			case MIDPackage.MMINT_EXCEPTION:
 				return convertMMINTExceptionToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
@@ -132,6 +135,16 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Map.Entry<String, ExtendibleElement> createEStringToExtendibleElementMap() {
+		EStringToExtendibleElementMapImpl eStringToExtendibleElementMap = new EStringToExtendibleElementMapImpl();
+		return eStringToExtendibleElementMap;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Model createModel() {
 		ModelImpl model = new ModelImpl();
 		return model;
@@ -145,16 +158,6 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	public ExtendibleElementConstraint createExtendibleElementConstraint() {
 		ExtendibleElementConstraintImpl extendibleElementConstraint = new ExtendibleElementConstraintImpl();
 		return extendibleElementConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Map.Entry<String, ExtendibleElement> createEStringToExtendibleElementMap() {
-		EStringToExtendibleElementMapImpl eStringToExtendibleElementMap = new EStringToExtendibleElementMapImpl();
-		return eStringToExtendibleElementMap;
 	}
 
 	/**
@@ -192,8 +195,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MidLevel createMidLevelFromString(EDataType eDataType, String initialValue) {
-		MidLevel result = MidLevel.get(initialValue);
+	public MIDLevel createMIDLevelFromString(EDataType eDataType, String initialValue) {
+		MIDLevel result = MIDLevel.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -203,7 +206,7 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertMidLevelToString(EDataType eDataType, Object instanceValue) {
+	public String convertMIDLevelToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -250,8 +253,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MidPackage getMidPackage() {
-		return (MidPackage)getEPackage();
+	public MIDPackage getMIDPackage() {
+		return (MIDPackage)getEPackage();
 	}
 
 	/**
@@ -261,8 +264,8 @@ public class MidFactoryImpl extends EFactoryImpl implements MidFactory {
 	 * @generated
 	 */
 	@Deprecated
-	public static MidPackage getPackage() {
-		return MidPackage.eINSTANCE;
+	public static MIDPackage getPackage() {
+		return MIDPackage.eINSTANCE;
 	}
 
-} //MidFactoryImpl
+} //MIDFactoryImpl

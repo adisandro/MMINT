@@ -12,10 +12,8 @@
 package edu.toronto.cs.se.mmint.mid.relationship.util;
 
 import edu.toronto.cs.se.mmint.mid.relationship.*;
-import edu.toronto.cs.se.mmint.mid.util.MidValidator;
-
+import edu.toronto.cs.se.mmint.mid.util.MIDValidator;
 import java.util.Map;
-
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -70,7 +68,7 @@ public class RelationshipValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MidValidator midValidator;
+	protected MIDValidator midValidator;
 
 	/**
 	 * Creates an instance of the switch.
@@ -80,7 +78,7 @@ public class RelationshipValidator extends EObjectValidator {
 	 */
 	public RelationshipValidator() {
 		super();
-		midValidator = MidValidator.INSTANCE;
+		midValidator = MIDValidator.INSTANCE;
 	}
 
 	/**

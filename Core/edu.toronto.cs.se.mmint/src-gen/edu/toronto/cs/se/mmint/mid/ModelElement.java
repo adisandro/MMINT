@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see edu.toronto.cs.se.mmint.mid.MidPackage#getModelElement()
+ * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getModelElement()
  * @model
  * @generated
  */
@@ -48,7 +48,7 @@ public interface ModelElement extends ExtendibleElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>EInfo</em>' containment reference.
 	 * @see #setEInfo(EMFInfo)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getModelElement_EInfo()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getModelElement_EInfo()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */

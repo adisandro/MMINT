@@ -25,8 +25,8 @@ import org.eclipse.uml2.uml.Stereotype;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
-import edu.toronto.cs.se.mmint.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
@@ -181,7 +181,7 @@ public class MAVOUtils {
 		modelElem.setMay(modelObj.isMay());
 		modelElem.setSet(modelObj.isSet());
 		modelElem.setVar(modelObj.isVar());
-		modelElem.setFormulaId(modelObj.getFormulaId());
+		modelElem.setFormulaVariable(modelObj.getFormulaVariable());
 	}
 
 	private static void initializeMAVOModelElement(NamedElement umlModelObj, ModelElement modelElem) {
@@ -198,7 +198,7 @@ public class MAVOUtils {
 		if (stereotype != null) {
 			modelElem.setVar(true);
 		}
-		modelElem.setFormulaId(umlModelObj.getName().toLowerCase());
+		modelElem.setFormulaVariable(umlModelObj.getName().toLowerCase());
 	}
 
 	public static void initializeMAVOModelElement(EObject modelObj, ModelElement modelElem) {
@@ -307,7 +307,7 @@ public class MAVOUtils {
 		newElement.setMay(oldElement.isMay());
 		newElement.setSet(oldElement.isSet());
 		newElement.setVar(oldElement.isVar());
-		newElement.setFormulaId(oldElement.getFormulaId());
+		newElement.setFormulaVariable(oldElement.getFormulaVariable());
 	}
 
 	public static boolean createFormulaIds(Model mavoModel) throws Exception {
@@ -324,12 +324,12 @@ public class MAVOUtils {
 			if (mayOnly && (mavoModelObj.isSet() || mavoModelObj.isVar())) { // detect if model has only may annotations
 				mayOnly = false;
 			}
-			if (mavoModelObj.getFormulaId() != null && !mavoModelObj.getFormulaId().equals("")) {
+			if (mavoModelObj.getFormulaVariable() != null && !mavoModelObj.getFormulaVariable().equals("")) {
 				continue;
 			}
 			EStructuralFeature nameFeature = mavoModelObj.eClass().getEStructuralFeature(NAME_FEATURE);
 			if (nameFeature != null) {
-				mavoModelObj.setFormulaId(((String) mavoModelObj.eGet(nameFeature)).replace(" ", ""));
+				mavoModelObj.setFormulaVariable(((String) mavoModelObj.eGet(nameFeature)).replace(" ", ""));
 				modified = true;
 			}
 		}
@@ -352,7 +352,7 @@ public class MAVOUtils {
 			if (
 				!(otherModelObj instanceof MAVOElement) || // skip non-MAVO element
 				!(mavoModelObj.eClass().getName().equals(otherModelObj.eClass().getName())) || // skip different type
-				mavoModelObj.getFormulaId().equals(((MAVOElement) otherModelObj).getFormulaId()) // skip current element
+				mavoModelObj.getFormulaVariable().equals(((MAVOElement) otherModelObj).getFormulaVariable()) // skip current element
 			) {
 				continue;
 			}
@@ -361,13 +361,13 @@ public class MAVOUtils {
 				(modelObjContainer == otherModelObjContainer) || ( // ok same container (also recursion closure when containers are root)
 					modelObjContainer instanceof MAVOElement && // ok different container: MAVO element
 					modelObjContainer.eClass().getName().equals(otherModelObjContainer.eClass().getName()) && // ok different container: same type
-					getMergeableIds(mavoModel, (MAVOElement) modelObjContainer).contains(((MAVOElement) otherModelObjContainer).getFormulaId()) // ok different container: mergeable
+					getMergeableIds(mavoModel, (MAVOElement) modelObjContainer).contains(((MAVOElement) otherModelObjContainer).getFormulaVariable()) // ok different container: mergeable
 				)
 			);
 			if (whichIds != isMergeable) {
 				continue;
 			}
-			ids.add(((MAVOElement) otherModelObj).getFormulaId());
+			ids.add(((MAVOElement) otherModelObj).getFormulaVariable());
 		}
 
 		return ids;

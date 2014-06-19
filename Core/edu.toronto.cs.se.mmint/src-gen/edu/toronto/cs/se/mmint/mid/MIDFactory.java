@@ -18,17 +18,17 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.mmint.mid.MidPackage
+ * @see edu.toronto.cs.se.mmint.mid.MIDPackage
  * @generated
  */
-public interface MidFactory extends EFactory {
+public interface MIDFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	MidFactory eINSTANCE = edu.toronto.cs.se.mmint.mid.impl.MidFactoryImpl.init();
+	MIDFactory eINSTANCE = edu.toronto.cs.se.mmint.mid.impl.MIDFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Multi Model</em>'.
@@ -91,6 +91,6 @@ public interface MidFactory extends EFactory {
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-	MidPackage getMidPackage();
+	MIDPackage getMIDPackage();
 
-} //MidFactory
+} //MIDFactory

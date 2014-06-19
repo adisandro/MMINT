@@ -25,11 +25,11 @@ import org.eclipse.emf.common.util.Enumerator;
  * <!-- begin-model-doc -->
  * The metalevels for a MID element.
  * <!-- end-model-doc -->
- * @see edu.toronto.cs.se.mmint.mid.MidPackage#getMidLevel()
+ * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getMIDLevel()
  * @model
  * @generated
  */
-public enum MidLevel implements Enumerator {
+public enum MIDLevel implements Enumerator {
 	/**
 	 * The '<em><b>INSTANCES</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -84,8 +84,8 @@ public enum MidLevel implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final MidLevel[] VALUES_ARRAY =
-		new MidLevel[] {
+	private static final MIDLevel[] VALUES_ARRAY =
+		new MIDLevel[] {
 			INSTANCES,
 			TYPES,
 		};
@@ -96,7 +96,7 @@ public enum MidLevel implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<MidLevel> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<MIDLevel> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Level</b></em>' literal with the specified literal value.
@@ -104,9 +104,9 @@ public enum MidLevel implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MidLevel get(String literal) {
+	public static MIDLevel get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			MidLevel result = VALUES_ARRAY[i];
+			MIDLevel result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -120,9 +120,9 @@ public enum MidLevel implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MidLevel getByName(String name) {
+	public static MIDLevel getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			MidLevel result = VALUES_ARRAY[i];
+			MIDLevel result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -136,7 +136,7 @@ public enum MidLevel implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MidLevel get(int value) {
+	public static MIDLevel get(int value) {
 		switch (value) {
 			case INSTANCES_VALUE: return INSTANCES;
 			case TYPES_VALUE: return TYPES;
@@ -171,7 +171,7 @@ public enum MidLevel implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private MidLevel(int value, String name, String literal) {
+	private MIDLevel(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -215,4 +215,4 @@ public enum MidLevel implements Enumerator {
 		return literal;
 	}
 	
-} //MidLevel
+} //MIDLevel

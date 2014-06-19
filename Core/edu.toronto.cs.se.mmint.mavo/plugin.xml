@@ -21,7 +21,7 @@
             isAbstract="true">
          <type
                name="Model_MAVO"
-               uri="http://se.cs.toronto.edu/mmint/MAVO">
+               uri="http://se.cs.toronto.edu/MAVO">
             <superType
                   uri="http://se.cs.toronto.edu/mmint/Model">
             </superType>
@@ -57,12 +57,12 @@
             <typeEndpoint
                   lowerBound="2"
                   upperBound="2"
-                  targetTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
+                  targetTypeUri="http://se.cs.toronto.edu/MAVO">
             </typeEndpoint>
             <modelElemType>
                 <type
                      name="MAVOElement"
-                     uri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement">
+                     uri="http://se.cs.toronto.edu/MAVO#//MAVOElement">
                 </type>
             </modelElemType>
          </modelTypeEndpoint>
@@ -79,7 +79,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement">
+                     targetTypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>

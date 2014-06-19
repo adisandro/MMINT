@@ -13,15 +13,13 @@ package edu.toronto.cs.se.mmint.mid.impl;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
-
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +37,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
+public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo {
 	/**
 	 * The default value of the '{@link #getClassName() <em>Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -136,7 +134,7 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MidPackage.Literals.EMF_INFO;
+		return MIDPackage.Literals.EMF_INFO;
 	}
 
 	/**
@@ -157,7 +155,7 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 		String oldClassName = className;
 		className = newClassName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EMF_INFO__CLASS_NAME, oldClassName, className));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EMF_INFO__CLASS_NAME, oldClassName, className));
 	}
 
 	/**
@@ -178,7 +176,7 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 		String oldFeatureName = featureName;
 		featureName = newFeatureName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EMF_INFO__FEATURE_NAME, oldFeatureName, featureName));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EMF_INFO__FEATURE_NAME, oldFeatureName, featureName));
 	}
 
 	/**
@@ -199,7 +197,7 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 		boolean oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EMF_INFO__ATTRIBUTE, oldAttribute, attribute));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EMF_INFO__ATTRIBUTE, oldAttribute, attribute));
 	}
 
 	/**
@@ -220,7 +218,7 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 		String oldRelatedClassName = relatedClassName;
 		relatedClassName = newRelatedClassName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EMF_INFO__RELATED_CLASS_NAME, oldRelatedClassName, relatedClassName));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EMF_INFO__RELATED_CLASS_NAME, oldRelatedClassName, relatedClassName));
 	}
 
 	/**
@@ -231,13 +229,13 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.EMF_INFO__CLASS_NAME:
+			case MIDPackage.EMF_INFO__CLASS_NAME:
 				return getClassName();
-			case MidPackage.EMF_INFO__FEATURE_NAME:
+			case MIDPackage.EMF_INFO__FEATURE_NAME:
 				return getFeatureName();
-			case MidPackage.EMF_INFO__ATTRIBUTE:
+			case MIDPackage.EMF_INFO__ATTRIBUTE:
 				return isAttribute();
-			case MidPackage.EMF_INFO__RELATED_CLASS_NAME:
+			case MIDPackage.EMF_INFO__RELATED_CLASS_NAME:
 				return getRelatedClassName();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -251,16 +249,16 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.EMF_INFO__CLASS_NAME:
+			case MIDPackage.EMF_INFO__CLASS_NAME:
 				setClassName((String)newValue);
 				return;
-			case MidPackage.EMF_INFO__FEATURE_NAME:
+			case MIDPackage.EMF_INFO__FEATURE_NAME:
 				setFeatureName((String)newValue);
 				return;
-			case MidPackage.EMF_INFO__ATTRIBUTE:
+			case MIDPackage.EMF_INFO__ATTRIBUTE:
 				setAttribute((Boolean)newValue);
 				return;
-			case MidPackage.EMF_INFO__RELATED_CLASS_NAME:
+			case MIDPackage.EMF_INFO__RELATED_CLASS_NAME:
 				setRelatedClassName((String)newValue);
 				return;
 		}
@@ -275,16 +273,16 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.EMF_INFO__CLASS_NAME:
+			case MIDPackage.EMF_INFO__CLASS_NAME:
 				setClassName(CLASS_NAME_EDEFAULT);
 				return;
-			case MidPackage.EMF_INFO__FEATURE_NAME:
+			case MIDPackage.EMF_INFO__FEATURE_NAME:
 				setFeatureName(FEATURE_NAME_EDEFAULT);
 				return;
-			case MidPackage.EMF_INFO__ATTRIBUTE:
+			case MIDPackage.EMF_INFO__ATTRIBUTE:
 				setAttribute(ATTRIBUTE_EDEFAULT);
 				return;
-			case MidPackage.EMF_INFO__RELATED_CLASS_NAME:
+			case MIDPackage.EMF_INFO__RELATED_CLASS_NAME:
 				setRelatedClassName(RELATED_CLASS_NAME_EDEFAULT);
 				return;
 		}
@@ -299,13 +297,13 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.EMF_INFO__CLASS_NAME:
+			case MIDPackage.EMF_INFO__CLASS_NAME:
 				return CLASS_NAME_EDEFAULT == null ? className != null : !CLASS_NAME_EDEFAULT.equals(className);
-			case MidPackage.EMF_INFO__FEATURE_NAME:
+			case MIDPackage.EMF_INFO__FEATURE_NAME:
 				return FEATURE_NAME_EDEFAULT == null ? featureName != null : !FEATURE_NAME_EDEFAULT.equals(featureName);
-			case MidPackage.EMF_INFO__ATTRIBUTE:
+			case MIDPackage.EMF_INFO__ATTRIBUTE:
 				return attribute != ATTRIBUTE_EDEFAULT;
-			case MidPackage.EMF_INFO__RELATED_CLASS_NAME:
+			case MIDPackage.EMF_INFO__RELATED_CLASS_NAME:
 				return RELATED_CLASS_NAME_EDEFAULT == null ? relatedClassName != null : !RELATED_CLASS_NAME_EDEFAULT.equals(relatedClassName);
 		}
 		return super.eIsSet(featureID);
@@ -319,9 +317,9 @@ public class EMFInfoImpl extends EObjectImpl implements EMFInfo {
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MidPackage.EMF_INFO___TO_TYPE_STRING:
+			case MIDPackage.EMF_INFO___TO_TYPE_STRING:
 				return toTypeString();
-			case MidPackage.EMF_INFO___TO_INSTANCE_STRING:
+			case MIDPackage.EMF_INFO___TO_INSTANCE_STRING:
 				return toInstanceString();
 		}
 		return super.eInvoke(operationID, arguments);
