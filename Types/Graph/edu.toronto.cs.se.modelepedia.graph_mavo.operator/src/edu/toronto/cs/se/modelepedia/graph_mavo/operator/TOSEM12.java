@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
@@ -123,8 +123,8 @@ public class TOSEM12 extends RandomOperatorImpl {
 		Map<String, Boolean> wellFormedModelObjs = new HashMap<String, Boolean>();
 		for (MAVOElement mayModelObj : mayModelObjs) {
 			String mayModelObjSmtEncoding = (mayModelObj instanceof Node) ?
-				Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_NODE_FUNCTION, mayModelObj.getFormulaId()) :
-				Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_EDGE_FUNCTION, mayModelObj.getFormulaId());
+				Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_NODE_FUNCTION, mayModelObj.getFormulaVariable()) :
+				Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_EDGE_FUNCTION, mayModelObj.getFormulaVariable());
 			Boolean exists = wellFormedModelObjs.get(mayModelObjSmtEncoding);
 			if (exists == null) {
 				exists = state.nextBoolean();
@@ -132,13 +132,13 @@ public class TOSEM12 extends RandomOperatorImpl {
 					if (!exists) { // enforce future well-formedness
 						for (Edge edgeAsSrc : ((Node) mayModelObj).getEdgesAsSource()) {
 							wellFormedModelObjs.put(
-								Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_EDGE_FUNCTION, edgeAsSrc.getFormulaId()),
+								Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_EDGE_FUNCTION, edgeAsSrc.getFormulaVariable()),
 								new Boolean(false)
 							);
 						}
 						for (Edge edgeAsTgt : ((Node) mayModelObj).getEdgesAsTarget()) {
 							wellFormedModelObjs.put(
-								Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_EDGE_FUNCTION, edgeAsTgt.getFormulaId()),
+								Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_EDGE_FUNCTION, edgeAsTgt.getFormulaVariable()),
 								new Boolean(false)
 							);
 						}
@@ -147,11 +147,11 @@ public class TOSEM12 extends RandomOperatorImpl {
 				else {
 					if (exists) { // enforce future well-formedness
 						wellFormedModelObjs.put(
-							Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_NODE_FUNCTION, ((Edge) mayModelObj).getSource().getFormulaId()),
+							Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_NODE_FUNCTION, ((Edge) mayModelObj).getSource().getFormulaVariable()),
 							new Boolean(true)
 						);
 						wellFormedModelObjs.put(
-							Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_NODE_FUNCTION, ((Edge) mayModelObj).getTarget().getFormulaId()),
+							Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_NODE_FUNCTION, ((Edge) mayModelObj).getTarget().getFormulaVariable()),
 							new Boolean(true)
 						);
 					}
@@ -261,8 +261,8 @@ public class TOSEM12 extends RandomOperatorImpl {
 			}
 			String smtConcretizationConstraint = "";
 			for (MAVOElement mayModelObj : mayModelObjs) {
-				String smtConcretizationElem = Z3SMTUtils.predicate((mayModelObj instanceof Node) ? Z3SMTUtils.SMTLIB_NODE_FUNCTION : Z3SMTUtils.SMTLIB_EDGE_FUNCTION, mayModelObj.getFormulaId());
-				smtConcretizationConstraint += (formulaIds.contains(mayModelObj.getFormulaId())) ? 
+				String smtConcretizationElem = Z3SMTUtils.predicate((mayModelObj instanceof Node) ? Z3SMTUtils.SMTLIB_NODE_FUNCTION : Z3SMTUtils.SMTLIB_EDGE_FUNCTION, mayModelObj.getFormulaVariable());
+				smtConcretizationConstraint += (formulaIds.contains(mayModelObj.getFormulaVariable())) ? 
 					Z3SMTUtils.not(smtConcretizationElem) :
 					smtConcretizationElem;
 			}

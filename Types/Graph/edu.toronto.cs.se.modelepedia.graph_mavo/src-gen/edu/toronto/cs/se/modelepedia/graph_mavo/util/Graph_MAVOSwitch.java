@@ -11,14 +11,10 @@
  */
 package edu.toronto.cs.se.modelepedia.graph_mavo.util;
 
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
-import edu.toronto.cs.se.mmint.mavo.MAVOModel;
-
+import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.modelepedia.graph_mavo.*;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
 /**
@@ -89,6 +85,7 @@ public class Graph_MAVOSwitch<T> extends Switch<T> {
 				NamedElement namedElement = (NamedElement)theEObject;
 				T result = caseNamedElement(namedElement);
 				if (result == null) result = caseMAVOElement(namedElement);
+				if (result == null) result = caseLogicElement(namedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -97,6 +94,7 @@ public class Graph_MAVOSwitch<T> extends Switch<T> {
 				T result = caseNode(node);
 				if (result == null) result = caseNamedElement(node);
 				if (result == null) result = caseMAVOElement(node);
+				if (result == null) result = caseLogicElement(node);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -105,6 +103,7 @@ public class Graph_MAVOSwitch<T> extends Switch<T> {
 				T result = caseEdge(edge);
 				if (result == null) result = caseNamedElement(edge);
 				if (result == null) result = caseMAVOElement(edge);
+				if (result == null) result = caseLogicElement(edge);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -173,32 +172,47 @@ public class Graph_MAVOSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>MAVO Model</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>MAVO Model</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMAVOModel(MAVOModel object) {
+	public T caseMAVOModel(edu.toronto.cs.se.mavo.MAVOModel object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>MAVO Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Logic Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>MAVO Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Logic Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMAVOElement(MAVOElement object) {
+	public T caseLogicElement(LogicElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMAVOElement(edu.toronto.cs.se.mavo.MAVOElement object) {
 		return null;
 	}
 

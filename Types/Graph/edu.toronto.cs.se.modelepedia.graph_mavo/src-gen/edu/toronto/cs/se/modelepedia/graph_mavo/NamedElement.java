@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.graph_mavo;
 
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +28,7 @@ import edu.toronto.cs.se.mmint.mavo.MAVOElement;
  * @model
  * @generated
  */
-public interface NamedElement extends MAVOElement {
+public interface NamedElement extends edu.toronto.cs.se.mavo.MAVOElement {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
