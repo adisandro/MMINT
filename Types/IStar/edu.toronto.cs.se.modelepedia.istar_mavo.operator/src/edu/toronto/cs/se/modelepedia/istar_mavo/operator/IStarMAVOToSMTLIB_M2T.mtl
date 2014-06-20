@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module IStarMAVOToSMTLIB_M2T('http://www.eclipse.org/emf/2002/Ecore', 'http://se.cs.toronto.edu/mmint/MAVO', 'http://se.cs.toronto.edu/modelepedia/IStar_MAVO')]
+[module IStarMAVOToSMTLIB_M2T('http://www.eclipse.org/emf/2002/Ecore', 'http://se.cs.toronto.edu/MAVO', 'http://se.cs.toronto.edu/modelepedia/IStar_MAVO')]
 [import edu::toronto::cs::se::modelepedia::z3::mavo::EcoreMAVOToSMTLIBUtils_M2T /]
 
 [template private encodeModelIStar(istar : IStar)]
@@ -25,7 +25,7 @@
 	[let contributionEclass : EClass = istar.eClass().ePackage.eAllContents(EClass)->any(name = 'Contribution')]
 	[for (contribution : Contribution | istar.getObjectsOfType(contributionEclass)->collect(oclAsType(Contribution)))]
 (assert (forall ((c Contribution)) (=>
-	(edge [contribution.formulaId/] c)
+	(edge [contribution.formulaVariable/] c)
 	(= (type c) [contribution.type.toString()/])
 )))
 	[/for]
@@ -644,7 +644,7 @@
 	[let intentionEclass : EClass = istar.eClass().ePackage.eAllContents(EClass)->any(name = 'Intention')]
 	[for (intention : Intention | istar.getObjectsOfKind(intentionEclass)->collect(oclAsType(Intention)))]
 (assert (forall ((c [intention.eClass().name/])) (=>
-	(node [intention.formulaId/] c)
+	(node [intention.formulaVariable/] c)
 		[if (intention.fullySatisfied or intention.partiallySatisfied or intention.unknown or intention.conflict or intention.partiallyDenied or intention.fullyDenied or intention.noLabel)]
 	(and
 		(= (fs c) [if (intention.fullySatisfied)]true[else]false[/if])

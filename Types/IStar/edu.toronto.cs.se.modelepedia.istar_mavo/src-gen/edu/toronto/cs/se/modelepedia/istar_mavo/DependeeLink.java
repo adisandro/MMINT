@@ -11,8 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo;
 
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Dependee Link</b></em>'.
@@ -31,7 +29,7 @@ import edu.toronto.cs.se.mmint.mavo.MAVOElement;
  * @model annotation="gmf.link target.decoration='arrow' source='dependum' target='dependee'"
  * @generated
  */
-public interface DependeeLink extends MAVOElement {
+public interface DependeeLink extends edu.toronto.cs.se.mavo.MAVOElement {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

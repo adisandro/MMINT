@@ -11,8 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo;
 
-import edu.toronto.cs.se.mmint.mavo.MavoPackage;
-
+import edu.toronto.cs.se.mavo.MAVOPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -86,7 +85,16 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTAR__INC = MavoPackage.MAVO_MODEL__INC;
+	int ISTAR__INC = MAVOPackage.MAVO_MODEL__INC;
+
+	/**
+	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISTAR__DECISIONS = MAVOPackage.MAVO_MODEL__DECISIONS;
 
 	/**
 	 * The feature id for the '<em><b>Actors</b></em>' containment reference list.
@@ -95,7 +103,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTAR__ACTORS = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 0;
+	int ISTAR__ACTORS = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Dependums</b></em>' containment reference list.
@@ -104,7 +112,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTAR__DEPENDUMS = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 1;
+	int ISTAR__DEPENDUMS = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>IStar</em>' class.
@@ -113,7 +121,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTAR_FEATURE_COUNT = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 2;
+	int ISTAR_FEATURE_COUNT = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>IStar</em>' class.
@@ -122,7 +130,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTAR_OPERATION_COUNT = MavoPackage.MAVO_MODEL_OPERATION_COUNT + 0;
+	int ISTAR_OPERATION_COUNT = MAVOPackage.MAVO_MODEL_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependencyEndpointImpl <em>Dependency Endpoint</em>}' class.
@@ -135,13 +143,22 @@ public interface IStar_MAVOPackage extends EPackage {
 	int DEPENDENCY_ENDPOINT = 7;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY_ENDPOINT__FORMULA_VARIABLE = MAVOPackage.MAVO_ELEMENT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY_ENDPOINT__MAY = MavoPackage.MAVO_ELEMENT__MAY;
+	int DEPENDENCY_ENDPOINT__MAY = MAVOPackage.MAVO_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -150,7 +167,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY_ENDPOINT__SET = MavoPackage.MAVO_ELEMENT__SET;
+	int DEPENDENCY_ENDPOINT__SET = MAVOPackage.MAVO_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -159,7 +176,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY_ENDPOINT__VAR = MavoPackage.MAVO_ELEMENT__VAR;
+	int DEPENDENCY_ENDPOINT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -168,7 +185,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY_ENDPOINT__NAME = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
+	int DEPENDENCY_ENDPOINT__NAME = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
@@ -177,7 +194,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
+	int DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDER = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Dependee</b></em>' reference list.
@@ -186,7 +203,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
+	int DEPENDENCY_ENDPOINT__DEPENDENCIES_AS_DEPENDEE = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Dependency Endpoint</em>' class.
@@ -195,7 +212,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY_ENDPOINT_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
+	int DEPENDENCY_ENDPOINT_FEATURE_COUNT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Dependency Endpoint</em>' class.
@@ -204,7 +221,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY_ENDPOINT_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
+	int DEPENDENCY_ENDPOINT_OPERATION_COUNT = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.ActorImpl <em>Actor</em>}' class.
@@ -215,6 +232,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	int ACTOR = 1;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__FORMULA_VARIABLE = DEPENDENCY_ENDPOINT__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -306,6 +332,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	int INTENTION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION__FORMULA_VARIABLE = DEPENDENCY_ENDPOINT__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -489,6 +524,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	int TASK = 3;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__FORMULA_VARIABLE = INTENTION__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -668,6 +712,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	int RESOURCE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__FORMULA_VARIABLE = INTENTION__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -851,6 +904,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	int GOAL = 5;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__FORMULA_VARIABLE = INTENTION__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1030,6 +1092,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	int SOFT_GOAL = 6;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFT_GOAL__FORMULA_VARIABLE = GOAL__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -1213,13 +1284,22 @@ public interface IStar_MAVOPackage extends EPackage {
 	int INTENTION_LINK = 8;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION_LINK__FORMULA_VARIABLE = MAVOPackage.MAVO_ELEMENT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTION_LINK__MAY = MavoPackage.MAVO_ELEMENT__MAY;
+	int INTENTION_LINK__MAY = MAVOPackage.MAVO_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -1228,7 +1308,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTION_LINK__SET = MavoPackage.MAVO_ELEMENT__SET;
+	int INTENTION_LINK__SET = MAVOPackage.MAVO_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -1237,7 +1317,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTION_LINK__VAR = MavoPackage.MAVO_ELEMENT__VAR;
+	int INTENTION_LINK__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1246,7 +1326,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTION_LINK__NAME = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
+	int INTENTION_LINK__NAME = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Src</b></em>' container reference.
@@ -1255,7 +1335,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTION_LINK__SRC = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
+	int INTENTION_LINK__SRC = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Tgt</b></em>' reference.
@@ -1264,7 +1344,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTION_LINK__TGT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
+	int INTENTION_LINK__TGT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Intention Link</em>' class.
@@ -1273,7 +1353,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTION_LINK_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
+	int INTENTION_LINK_FEATURE_COUNT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Intention Link</em>' class.
@@ -1282,7 +1362,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTION_LINK_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
+	int INTENTION_LINK_OPERATION_COUNT = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.MeansEndImpl <em>Means End</em>}' class.
@@ -1293,6 +1373,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	int MEANS_END = 9;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEANS_END__FORMULA_VARIABLE = INTENTION_LINK__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -1377,6 +1466,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	int DECOMPOSITION = 10;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSITION__FORMULA_VARIABLE = INTENTION_LINK__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1457,6 +1555,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	int CONTRIBUTION = 11;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRIBUTION__FORMULA_VARIABLE = INTENTION_LINK__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -1550,13 +1657,22 @@ public interface IStar_MAVOPackage extends EPackage {
 	int DEPENDER_LINK = 12;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDER_LINK__FORMULA_VARIABLE = MAVOPackage.MAVO_ELEMENT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDER_LINK__MAY = MavoPackage.MAVO_ELEMENT__MAY;
+	int DEPENDER_LINK__MAY = MAVOPackage.MAVO_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -1565,7 +1681,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDER_LINK__SET = MavoPackage.MAVO_ELEMENT__SET;
+	int DEPENDER_LINK__SET = MAVOPackage.MAVO_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -1574,7 +1690,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDER_LINK__VAR = MavoPackage.MAVO_ELEMENT__VAR;
+	int DEPENDER_LINK__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1583,7 +1699,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDER_LINK__NAME = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
+	int DEPENDER_LINK__NAME = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Depender</b></em>' reference.
@@ -1592,7 +1708,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDER_LINK__DEPENDER = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
+	int DEPENDER_LINK__DEPENDER = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Dependum</b></em>' container reference.
@@ -1601,7 +1717,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDER_LINK__DEPENDUM = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
+	int DEPENDER_LINK__DEPENDUM = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Depender Link</em>' class.
@@ -1610,7 +1726,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDER_LINK_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
+	int DEPENDER_LINK_FEATURE_COUNT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Depender Link</em>' class.
@@ -1619,7 +1735,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDER_LINK_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
+	int DEPENDER_LINK_OPERATION_COUNT = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependeeLinkImpl <em>Dependee Link</em>}' class.
@@ -1632,13 +1748,22 @@ public interface IStar_MAVOPackage extends EPackage {
 	int DEPENDEE_LINK = 13;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDEE_LINK__FORMULA_VARIABLE = MAVOPackage.MAVO_ELEMENT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDEE_LINK__MAY = MavoPackage.MAVO_ELEMENT__MAY;
+	int DEPENDEE_LINK__MAY = MAVOPackage.MAVO_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -1647,7 +1772,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDEE_LINK__SET = MavoPackage.MAVO_ELEMENT__SET;
+	int DEPENDEE_LINK__SET = MAVOPackage.MAVO_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -1656,7 +1781,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDEE_LINK__VAR = MavoPackage.MAVO_ELEMENT__VAR;
+	int DEPENDEE_LINK__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1665,7 +1790,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDEE_LINK__NAME = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
+	int DEPENDEE_LINK__NAME = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Dependum</b></em>' container reference.
@@ -1674,7 +1799,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDEE_LINK__DEPENDUM = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
+	int DEPENDEE_LINK__DEPENDUM = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Dependee</b></em>' reference.
@@ -1683,7 +1808,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDEE_LINK__DEPENDEE = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
+	int DEPENDEE_LINK__DEPENDEE = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Dependee Link</em>' class.
@@ -1692,7 +1817,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDEE_LINK_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
+	int DEPENDEE_LINK_FEATURE_COUNT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Dependee Link</em>' class.
@@ -1701,7 +1826,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDEE_LINK_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
+	int DEPENDEE_LINK_OPERATION_COUNT = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.ContributionType <em>Contribution Type</em>}' enum.
