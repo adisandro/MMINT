@@ -11,8 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo;
 
-import edu.toronto.cs.se.mmint.mavo.MavoPackage;
-
+import edu.toronto.cs.se.mavo.MAVOPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -84,7 +83,16 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONAL_DATABASE__INC = MavoPackage.MAVO_MODEL__INC;
+	int RELATIONAL_DATABASE__INC = MAVOPackage.MAVO_MODEL__INC;
+
+	/**
+	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIONAL_DATABASE__DECISIONS = MAVOPackage.MAVO_MODEL__DECISIONS;
 
 	/**
 	 * The feature id for the '<em><b>Tables</b></em>' containment reference list.
@@ -93,7 +101,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONAL_DATABASE__TABLES = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 0;
+	int RELATIONAL_DATABASE__TABLES = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Relational Database</em>' class.
@@ -102,7 +110,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONAL_DATABASE_FEATURE_COUNT = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 1;
+	int RELATIONAL_DATABASE_FEATURE_COUNT = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Relational Database</em>' class.
@@ -111,7 +119,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONAL_DATABASE_OPERATION_COUNT = MavoPackage.MAVO_MODEL_OPERATION_COUNT + 0;
+	int RELATIONAL_DATABASE_OPERATION_COUNT = MAVOPackage.MAVO_MODEL_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -124,13 +132,22 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	int NAMED_ELEMENT = 1;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__FORMULA_VARIABLE = MAVOPackage.MAVO_ELEMENT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__MAY = MavoPackage.MAVO_ELEMENT__MAY;
+	int NAMED_ELEMENT__MAY = MAVOPackage.MAVO_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -139,7 +156,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__SET = MavoPackage.MAVO_ELEMENT__SET;
+	int NAMED_ELEMENT__SET = MAVOPackage.MAVO_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -148,7 +165,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__VAR = MavoPackage.MAVO_ELEMENT__VAR;
+	int NAMED_ELEMENT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -157,7 +174,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__NAME = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
+	int NAMED_ELEMENT__NAME = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Named Element</em>' class.
@@ -166,7 +183,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
+	int NAMED_ELEMENT_FEATURE_COUNT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Named Element</em>' class.
@@ -175,7 +192,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
+	int NAMED_ELEMENT_OPERATION_COUNT = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl.TableImpl <em>Table</em>}' class.
@@ -186,6 +203,15 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	int TABLE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__FORMULA_VARIABLE = NAMED_ELEMENT__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -277,6 +303,15 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	int COLUMN = 3;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN__FORMULA_VARIABLE = NAMED_ELEMENT__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -379,6 +414,15 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	int FOREIGN_KEY = 4;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREIGN_KEY__FORMULA_VARIABLE = NAMED_ELEMENT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -470,13 +514,22 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	int TABLE_COLUMN_REFERENCE = 5;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_COLUMN_REFERENCE__FORMULA_VARIABLE = MAVOPackage.MAVO_REFERENCE__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_COLUMN_REFERENCE__MAY = MavoPackage.MAVO_REFERENCE__MAY;
+	int TABLE_COLUMN_REFERENCE__MAY = MAVOPackage.MAVO_REFERENCE__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -485,7 +538,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_COLUMN_REFERENCE__SET = MavoPackage.MAVO_REFERENCE__SET;
+	int TABLE_COLUMN_REFERENCE__SET = MAVOPackage.MAVO_REFERENCE__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -494,7 +547,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_COLUMN_REFERENCE__VAR = MavoPackage.MAVO_REFERENCE__VAR;
+	int TABLE_COLUMN_REFERENCE__VAR = MAVOPackage.MAVO_REFERENCE__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' container reference.
@@ -503,7 +556,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_COLUMN_REFERENCE__SOURCE = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 0;
+	int TABLE_COLUMN_REFERENCE__SOURCE = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -512,7 +565,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_COLUMN_REFERENCE__TARGET = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 1;
+	int TABLE_COLUMN_REFERENCE__TARGET = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Table Column Reference</em>' class.
@@ -521,7 +574,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_COLUMN_REFERENCE_FEATURE_COUNT = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 2;
+	int TABLE_COLUMN_REFERENCE_FEATURE_COUNT = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Table Column Reference</em>' class.
@@ -530,7 +583,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_COLUMN_REFERENCE_OPERATION_COUNT = MavoPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
+	int TABLE_COLUMN_REFERENCE_OPERATION_COUNT = MAVOPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl.ForeignColumnReferenceImpl <em>Foreign Column Reference</em>}' class.
@@ -543,13 +596,22 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	int FOREIGN_COLUMN_REFERENCE = 6;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREIGN_COLUMN_REFERENCE__FORMULA_VARIABLE = MAVOPackage.MAVO_REFERENCE__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOREIGN_COLUMN_REFERENCE__MAY = MavoPackage.MAVO_REFERENCE__MAY;
+	int FOREIGN_COLUMN_REFERENCE__MAY = MAVOPackage.MAVO_REFERENCE__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -558,7 +620,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOREIGN_COLUMN_REFERENCE__SET = MavoPackage.MAVO_REFERENCE__SET;
+	int FOREIGN_COLUMN_REFERENCE__SET = MAVOPackage.MAVO_REFERENCE__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -567,7 +629,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOREIGN_COLUMN_REFERENCE__VAR = MavoPackage.MAVO_REFERENCE__VAR;
+	int FOREIGN_COLUMN_REFERENCE__VAR = MAVOPackage.MAVO_REFERENCE__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' container reference.
@@ -576,7 +638,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOREIGN_COLUMN_REFERENCE__SOURCE = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 0;
+	int FOREIGN_COLUMN_REFERENCE__SOURCE = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -585,7 +647,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOREIGN_COLUMN_REFERENCE__TARGET = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 1;
+	int FOREIGN_COLUMN_REFERENCE__TARGET = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Foreign Column Reference</em>' class.
@@ -594,7 +656,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOREIGN_COLUMN_REFERENCE_FEATURE_COUNT = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 2;
+	int FOREIGN_COLUMN_REFERENCE_FEATURE_COUNT = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Foreign Column Reference</em>' class.
@@ -603,7 +665,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOREIGN_COLUMN_REFERENCE_OPERATION_COUNT = MavoPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
+	int FOREIGN_COLUMN_REFERENCE_OPERATION_COUNT = MAVOPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
 
 
 	/**
