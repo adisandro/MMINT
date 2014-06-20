@@ -31,7 +31,7 @@ import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
@@ -83,12 +83,12 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 				tgtContainerModelObj = transformModelObj(srcModelTypeEndpointRef, srcContainerModelObj, srcModelObjs, tgtModelTypeEndpointRef, tgtModelObjs);
 			}
 			// find containment based on model element types first, then fallback to first one available
-			String srcModelElemTypeContainmentUri = MultiModelRegistry.getModelAndModelElementUris(srcModelObj.eContainingFeature(), MidLevel.TYPES)[1];
+			String srcModelElemTypeContainmentUri = MultiModelRegistry.getModelAndModelElementUris(srcModelObj.eContainingFeature(), MIDLevel.TYPES)[1];
 			ModelElementReference srcModelElemTypeContainment = MultiModelTypeHierarchy.getReference(srcModelElemTypeContainmentUri, srcModelTypeEndpointRef.getModelElemRefs());
 			EReference containmentReference = null, fallbackContainmentReference = null;
 			for (EReference containment : tgtContainerModelObj.eClass().getEAllContainments()) {
 				if (MultiModelConstraintChecker.instanceofEMFClass(tgtModelObj, containment.getEType().getName())) {
-					String tgtModelElemTypeContainmentUri = MultiModelRegistry.getModelAndModelElementUris(containment, MidLevel.TYPES)[1];
+					String tgtModelElemTypeContainmentUri = MultiModelRegistry.getModelAndModelElementUris(containment, MIDLevel.TYPES)[1];
 					ModelElementReference tgtModelElemTypeContainment = MultiModelTypeHierarchy.getReference(tgtModelElemTypeContainmentUri, tgtModelTypeEndpointRef.getModelElemRefs());
 					if (
 						tgtModelElemTypeContainment == null ||

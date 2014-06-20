@@ -23,8 +23,8 @@ import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -270,7 +270,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				}
 				origConstraint = origModelElemTypeRef.getObject().getConstraint();
 				if (origConstraint != null) {
-					newConstraint = MidFactory.eINSTANCE.createExtendibleElementConstraint();
+					newConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
 					newConstraint.setLanguage(origConstraint.getLanguage());
 					newConstraint.setImplementation(origConstraint.getImplementation());
 					newModelElemType = MultiModelRegistry.getExtendibleElement(origModelElemTypeRef.getUri(), multiModel);
@@ -329,7 +329,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 */
 	private String getModelRelExtendedUri(KleisliModelRel modelRel) {
 
-		String baseModelRelExtendedUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(modelRel, MidLevel.INSTANCES)[0], modelRel.getMetatype().getName());
+		String baseModelRelExtendedUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(modelRel, MIDLevel.INSTANCES)[0], modelRel.getMetatype().getName());
 		int iModelRelExtendedUri = -1;
 		do {
 			iModelRelExtendedUri++;

@@ -36,7 +36,7 @@ import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.eclipse.emf.henshin.trace.Trace;
 
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -63,17 +63,17 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 	@Override
 	protected void transformWhenNotLifted(MAVOElement modelObjA) {
 
-		modelObjA.setFormulaId(A_MODELOBJECT_SMTENCODING_PREFIX + modelObjACounter);
+		modelObjA.setFormulaVariable(A_MODELOBJECT_SMTENCODING_PREFIX + modelObjACounter);
 	}
 
 	private void createZ3ApplyFormulaConstant(Set<MAVOElement> mavoModelObjs) {
 
 		for (MAVOElement mavoModelObj : mavoModelObjs) {
-			if (smtEncodingVariables.contains(mavoModelObj.getFormulaId())) {
+			if (smtEncodingVariables.contains(mavoModelObj.getFormulaVariable())) {
 				continue;
 			}
 			smtEncoding.append(Z3SMTUtils.SMTLIB_CONST);
-			smtEncoding.append(mavoModelObj.getFormulaId());
+			smtEncoding.append(mavoModelObj.getFormulaVariable());
 			smtEncoding.append(" ");
 			smtEncoding.append(Z3SMTUtils.SMTLIB_TYPE_BOOL);
 			smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
@@ -228,17 +228,17 @@ matchesN:
 				// update set of constants
 				for (Set<MAVOElement> mayModelObjsN : modelObjsNBar) {
 					for (MAVOElement mayModelObjN : mayModelObjsN) {
-						smtEncodingVariables.add(mayModelObjN.getFormulaId());
+						smtEncodingVariables.add(mayModelObjN.getFormulaVariable());
 					}
 				}
 				for (MAVOElement mayModelObjC : modelObjsC) {
-					smtEncodingVariables.add(mayModelObjC.getFormulaId());
+					smtEncodingVariables.add(mayModelObjC.getFormulaVariable());
 				}
 				for (MAVOElement mayModelObjD : modelObjsD) {
-					smtEncodingVariables.add(mayModelObjD.getFormulaId());
+					smtEncodingVariables.add(mayModelObjD.getFormulaVariable());
 				}
 				for (MAVOElement mayModelObjA : modelObjsA) {
-					smtEncodingVariables.add(mayModelObjA.getFormulaId());
+					smtEncodingVariables.add(mayModelObjA.getFormulaVariable());
 				}
 			}
 			else {

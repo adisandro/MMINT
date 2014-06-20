@@ -36,7 +36,7 @@ import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.eclipse.emf.henshin.trace.Trace;
 
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -54,7 +54,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	@Override
 	protected void transformWhenLifted(MAVOElement modelObjA) {
 
-		modelObjA.setFormulaId(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + Z3SMTUtils.SMTLIB_PREDICATE_END);
+		modelObjA.setFormulaVariable(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + Z3SMTUtils.SMTLIB_PREDICATE_END);
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		for (MAVOElement modelObjCDN : modelObjsCDN) {
 			Integer modelObjCDNLiterals = modelObjsLiterals.get(modelObjCDN);
 			if (modelObjCDNLiterals == null) {
-				modelObjCDNLiterals = (modelObjCDN.getFormulaId().equals(Z3SMTUtils.SMTLIB_TRUE)) ? new Integer(0) : new Integer(1);
+				modelObjCDNLiterals = (modelObjCDN.getFormulaVariable().equals(Z3SMTUtils.SMTLIB_TRUE)) ? new Integer(0) : new Integer(1);
 				modelObjsLiterals.put(modelObjCDN, modelObjCDNLiterals);
 			}
 			countLiterals += modelObjCDNLiterals;
@@ -87,7 +87,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			EObject nodeTarget = match.getNodeTarget(node);
 			if (nodeTarget instanceof MAVOElement) {
 				allModelObjs.add((MAVOElement) nodeTarget);
-				if (((MAVOElement) nodeTarget).getFormulaId() != null) {
+				if (((MAVOElement) nodeTarget).getFormulaVariable() != null) {
 					modelObjs.add((MAVOElement) nodeTarget);
 				}
 			}

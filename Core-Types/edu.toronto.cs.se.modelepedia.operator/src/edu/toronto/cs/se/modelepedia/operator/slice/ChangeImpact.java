@@ -22,8 +22,8 @@ import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
@@ -108,17 +108,17 @@ public class ChangeImpact extends OperatorImpl {
 		for (List<EObject> unifiablesFromSameType : typeTable.values()) {
 			for (EObject modelEObject : unifiablesFromSameType) {
 				List<EObject> unifiables = new ArrayList<EObject>();
-				String modelEObjectUri = MultiModelRegistry.getModelAndModelElementUris(modelEObject, MidLevel.INSTANCES)[1];
+				String modelEObjectUri = MultiModelRegistry.getModelAndModelElementUris(modelEObject, MIDLevel.INSTANCES)[1];
 				unifyTable.put(modelEObjectUri, unifiables);
 				unifiables.add(modelEObject);
 			}
 			for (int i = 0; i < unifiablesFromSameType.size(); i++) {
 				EObject modelEObject = unifiablesFromSameType.get(i);
-				String modelEObjectUri = MultiModelRegistry.getModelAndModelElementUris(modelEObject, MidLevel.INSTANCES)[1];
+				String modelEObjectUri = MultiModelRegistry.getModelAndModelElementUris(modelEObject, MIDLevel.INSTANCES)[1];
 				List<EObject> unifiables = unifyTable.get(modelEObjectUri);
 				for (int j = i+1; j < unifiablesFromSameType.size(); j++) {
 					EObject modelEObject2 = unifiablesFromSameType.get(j);
-					String modelEObjectUri2 = MultiModelRegistry.getModelAndModelElementUris(modelEObject2, MidLevel.INSTANCES)[1];
+					String modelEObjectUri2 = MultiModelRegistry.getModelAndModelElementUris(modelEObject2, MIDLevel.INSTANCES)[1];
 					List<EObject> unifiables2 = unifyTable.get(modelEObjectUri2);
 					if ((((MAVOElement) modelEObject).isVar() || ((MAVOElement) modelEObject2).isVar())) {
 						unifiables.add(modelEObject2);
@@ -149,7 +149,7 @@ public class ChangeImpact extends OperatorImpl {
 				// navigate tgt mergeability
 				List<EObject> impactedUnifiables = impactedUnifyTable.get(impactedModelElemRef.getUri());
 				for (EObject impactedUnifiable : impactedUnifiables) {
-					String impactedModelElemUri = MultiModelRegistry.getModelAndModelElementUris(impactedUnifiable, MidLevel.INSTANCES)[1];
+					String impactedModelElemUri = MultiModelRegistry.getModelAndModelElementUris(impactedUnifiable, MIDLevel.INSTANCES)[1];
 					// create or get impacted model element ref
 					ModelElementReference newImpactedModelElemRef = MultiModelTypeHierarchy.getReference(impactedModelElemUri, impactedModelEndpointRef.getModelElemRefs());
 					if (newImpactedModelElemRef == null) {
