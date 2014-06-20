@@ -11,12 +11,11 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo;
 
+import edu.toronto.cs.se.mavo.MAVOPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
-import edu.toronto.cs.se.mmint.mavo.MavoPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -85,7 +84,16 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM__INC = MavoPackage.MAVO_MODEL__INC;
+	int CLASS_DIAGRAM__INC = MAVOPackage.MAVO_MODEL__INC;
+
+	/**
+	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DIAGRAM__DECISIONS = MAVOPackage.MAVO_MODEL__DECISIONS;
 
 	/**
 	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
@@ -94,7 +102,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM__CLASSES = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 0;
+	int CLASS_DIAGRAM__CLASSES = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
@@ -103,7 +111,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM__DEPENDENCIES = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 1;
+	int CLASS_DIAGRAM__DEPENDENCIES = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Associations</b></em>' containment reference list.
@@ -112,7 +120,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM__ASSOCIATIONS = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 2;
+	int CLASS_DIAGRAM__ASSOCIATIONS = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Class Diagram</em>' class.
@@ -121,7 +129,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM_FEATURE_COUNT = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 3;
+	int CLASS_DIAGRAM_FEATURE_COUNT = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Class Diagram</em>' class.
@@ -130,7 +138,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM_OPERATION_COUNT = MavoPackage.MAVO_MODEL_OPERATION_COUNT + 0;
+	int CLASS_DIAGRAM_OPERATION_COUNT = MAVOPackage.MAVO_MODEL_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -143,13 +151,22 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int NAMED_ELEMENT = 3;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__FORMULA_VARIABLE = MAVOPackage.MAVO_ELEMENT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__MAY = MavoPackage.MAVO_ELEMENT__MAY;
+	int NAMED_ELEMENT__MAY = MAVOPackage.MAVO_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -158,7 +175,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__SET = MavoPackage.MAVO_ELEMENT__SET;
+	int NAMED_ELEMENT__SET = MAVOPackage.MAVO_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -167,7 +184,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__VAR = MavoPackage.MAVO_ELEMENT__VAR;
+	int NAMED_ELEMENT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -176,7 +193,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__NAME = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
+	int NAMED_ELEMENT__NAME = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Named Element</em>' class.
@@ -185,7 +202,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
+	int NAMED_ELEMENT_FEATURE_COUNT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Named Element</em>' class.
@@ -194,7 +211,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
+	int NAMED_ELEMENT_OPERATION_COUNT = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.ClassImpl <em>Class</em>}' class.
@@ -205,6 +222,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	int CLASS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__FORMULA_VARIABLE = NAMED_ELEMENT__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -361,6 +387,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int TYPED_ELEMENT = 6;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT__FORMULA_VARIABLE = NAMED_ELEMENT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -441,6 +476,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	int ATTRIBUTE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__FORMULA_VARIABLE = TYPED_ELEMENT__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -534,6 +578,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int OPERATION = 4;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__FORMULA_VARIABLE = TYPED_ELEMENT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -625,13 +678,22 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int DEPENDENCY = 5;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__FORMULA_VARIABLE = MAVOPackage.MAVO_ELEMENT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY__MAY = MavoPackage.MAVO_ELEMENT__MAY;
+	int DEPENDENCY__MAY = MAVOPackage.MAVO_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -640,7 +702,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY__SET = MavoPackage.MAVO_ELEMENT__SET;
+	int DEPENDENCY__SET = MAVOPackage.MAVO_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -649,7 +711,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY__VAR = MavoPackage.MAVO_ELEMENT__VAR;
+	int DEPENDENCY__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -658,7 +720,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY__NAME = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
+	int DEPENDENCY__NAME = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Dependee</b></em>' reference.
@@ -667,7 +729,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY__DEPENDEE = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
+	int DEPENDENCY__DEPENDEE = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Depender</b></em>' reference.
@@ -676,7 +738,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY__DEPENDER = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
+	int DEPENDENCY__DEPENDER = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Dependency</em>' class.
@@ -685,7 +747,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
+	int DEPENDENCY_FEATURE_COUNT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Dependency</em>' class.
@@ -694,7 +756,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
+	int DEPENDENCY_OPERATION_COUNT = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.AssociationImpl <em>Association</em>}' class.
@@ -705,6 +767,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	int ASSOCIATION = 7;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__FORMULA_VARIABLE = NAMED_ELEMENT__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -789,13 +860,22 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int NESTED_IN_REFERENCE = 8;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_IN_REFERENCE__FORMULA_VARIABLE = MAVOPackage.MAVO_REFERENCE__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_IN_REFERENCE__MAY = MavoPackage.MAVO_REFERENCE__MAY;
+	int NESTED_IN_REFERENCE__MAY = MAVOPackage.MAVO_REFERENCE__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -804,7 +884,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_IN_REFERENCE__SET = MavoPackage.MAVO_REFERENCE__SET;
+	int NESTED_IN_REFERENCE__SET = MAVOPackage.MAVO_REFERENCE__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -813,7 +893,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_IN_REFERENCE__VAR = MavoPackage.MAVO_REFERENCE__VAR;
+	int NESTED_IN_REFERENCE__VAR = MAVOPackage.MAVO_REFERENCE__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' container reference.
@@ -822,7 +902,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_IN_REFERENCE__SOURCE = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 0;
+	int NESTED_IN_REFERENCE__SOURCE = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -831,7 +911,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_IN_REFERENCE__TARGET = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 1;
+	int NESTED_IN_REFERENCE__TARGET = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Nested In Reference</em>' class.
@@ -840,7 +920,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_IN_REFERENCE_FEATURE_COUNT = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 2;
+	int NESTED_IN_REFERENCE_FEATURE_COUNT = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Nested In Reference</em>' class.
@@ -849,7 +929,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_IN_REFERENCE_OPERATION_COUNT = MavoPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
+	int NESTED_IN_REFERENCE_OPERATION_COUNT = MAVOPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.SuperclassReferenceImpl <em>Superclass Reference</em>}' class.
@@ -862,13 +942,22 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int SUPERCLASS_REFERENCE = 9;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPERCLASS_REFERENCE__FORMULA_VARIABLE = MAVOPackage.MAVO_REFERENCE__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUPERCLASS_REFERENCE__MAY = MavoPackage.MAVO_REFERENCE__MAY;
+	int SUPERCLASS_REFERENCE__MAY = MAVOPackage.MAVO_REFERENCE__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -877,7 +966,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPERCLASS_REFERENCE__SET = MavoPackage.MAVO_REFERENCE__SET;
+	int SUPERCLASS_REFERENCE__SET = MAVOPackage.MAVO_REFERENCE__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -886,7 +975,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPERCLASS_REFERENCE__VAR = MavoPackage.MAVO_REFERENCE__VAR;
+	int SUPERCLASS_REFERENCE__VAR = MAVOPackage.MAVO_REFERENCE__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' container reference.
@@ -895,7 +984,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPERCLASS_REFERENCE__SOURCE = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 0;
+	int SUPERCLASS_REFERENCE__SOURCE = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -904,7 +993,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPERCLASS_REFERENCE__TARGET = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 1;
+	int SUPERCLASS_REFERENCE__TARGET = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Superclass Reference</em>' class.
@@ -913,7 +1002,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPERCLASS_REFERENCE_FEATURE_COUNT = MavoPackage.MAVO_REFERENCE_FEATURE_COUNT + 2;
+	int SUPERCLASS_REFERENCE_FEATURE_COUNT = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Superclass Reference</em>' class.
@@ -922,7 +1011,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPERCLASS_REFERENCE_OPERATION_COUNT = MavoPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
+	int SUPERCLASS_REFERENCE_OPERATION_COUNT = MAVOPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram <em>Class Diagram</em>}'.

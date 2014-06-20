@@ -11,9 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.util;
 
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
-import edu.toronto.cs.se.mmint.mavo.MAVOModel;
-import edu.toronto.cs.se.mmint.mavo.MAVOReference;
+import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram;
@@ -98,6 +96,7 @@ public class ClassDiagram_MAVOSwitch<T> extends Switch<T> {
 				T result = caseClass(class_);
 				if (result == null) result = caseNamedElement(class_);
 				if (result == null) result = caseMAVOElement(class_);
+				if (result == null) result = caseLogicElement(class_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -107,6 +106,7 @@ public class ClassDiagram_MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = caseTypedElement(attribute);
 				if (result == null) result = caseNamedElement(attribute);
 				if (result == null) result = caseMAVOElement(attribute);
+				if (result == null) result = caseLogicElement(attribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -114,6 +114,7 @@ public class ClassDiagram_MAVOSwitch<T> extends Switch<T> {
 				NamedElement namedElement = (NamedElement)theEObject;
 				T result = caseNamedElement(namedElement);
 				if (result == null) result = caseMAVOElement(namedElement);
+				if (result == null) result = caseLogicElement(namedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -123,6 +124,7 @@ public class ClassDiagram_MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = caseTypedElement(operation);
 				if (result == null) result = caseNamedElement(operation);
 				if (result == null) result = caseMAVOElement(operation);
+				if (result == null) result = caseLogicElement(operation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -130,6 +132,7 @@ public class ClassDiagram_MAVOSwitch<T> extends Switch<T> {
 				Dependency dependency = (Dependency)theEObject;
 				T result = caseDependency(dependency);
 				if (result == null) result = caseMAVOElement(dependency);
+				if (result == null) result = caseLogicElement(dependency);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -138,6 +141,7 @@ public class ClassDiagram_MAVOSwitch<T> extends Switch<T> {
 				T result = caseTypedElement(typedElement);
 				if (result == null) result = caseNamedElement(typedElement);
 				if (result == null) result = caseMAVOElement(typedElement);
+				if (result == null) result = caseLogicElement(typedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -146,6 +150,7 @@ public class ClassDiagram_MAVOSwitch<T> extends Switch<T> {
 				T result = caseAssociation(association);
 				if (result == null) result = caseNamedElement(association);
 				if (result == null) result = caseMAVOElement(association);
+				if (result == null) result = caseLogicElement(association);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -154,6 +159,7 @@ public class ClassDiagram_MAVOSwitch<T> extends Switch<T> {
 				T result = caseNestedInReference(nestedInReference);
 				if (result == null) result = caseMAVOReference(nestedInReference);
 				if (result == null) result = caseMAVOElement(nestedInReference);
+				if (result == null) result = caseLogicElement(nestedInReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -162,6 +168,7 @@ public class ClassDiagram_MAVOSwitch<T> extends Switch<T> {
 				T result = caseSuperclassReference(superclassReference);
 				if (result == null) result = caseMAVOReference(superclassReference);
 				if (result == null) result = caseMAVOElement(superclassReference);
+				if (result == null) result = caseLogicElement(superclassReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -320,47 +327,62 @@ public class ClassDiagram_MAVOSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>MAVO Model</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>MAVO Model</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMAVOModel(MAVOModel object) {
+	public T caseMAVOModel(edu.toronto.cs.se.mavo.MAVOModel object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>MAVO Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Logic Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>MAVO Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Logic Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMAVOElement(MAVOElement object) {
+	public T caseLogicElement(LogicElement object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>MAVO Reference</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>MAVO Reference</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMAVOReference(MAVOReference object) {
+	public T caseMAVOElement(edu.toronto.cs.se.mavo.MAVOElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMAVOReference(edu.toronto.cs.se.mavo.MAVOReference object) {
 		return null;
 	}
 

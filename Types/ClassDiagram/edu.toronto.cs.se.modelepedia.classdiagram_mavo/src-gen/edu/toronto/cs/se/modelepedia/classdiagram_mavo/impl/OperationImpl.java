@@ -62,7 +62,7 @@ public class OperationImpl extends TypedElementImpl implements Operation {
 	 */
 	public edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class getOwner() {
 		if (eContainerFeatureID() != ClassDiagram_MAVOPackage.OPERATION__OWNER) return null;
-		return (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class)eContainer();
+		return (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class)eInternalContainer();
 	}
 
 	/**

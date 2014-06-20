@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
@@ -127,7 +127,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		modelSize += numRuleElementsA;
 		for (int i = 0; i < numRuleElementsA; i++) {
 			MAVOElement modelObjA = ClassDiagram_MAVOFactory.eINSTANCE.createClass();
-			modelObjA.setFormulaId(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + Z3SMTUtils.SMTLIB_PREDICATE_END);
+			modelObjA.setFormulaVariable(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + Z3SMTUtils.SMTLIB_PREDICATE_END);
 			modelObjsBucketA.add(modelObjA);
 			modelObjsChainsA.add(new Integer(maxChains));
 		}
@@ -165,7 +165,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 				String formulaId = (state.nextDouble() < alwaysPresentPerc) ?
 					Z3SMTUtils.SMTLIB_TRUE :
 					constraintVariables[state.nextInt(constraintVariables.length)];
-				modelObj.setFormulaId(formulaId);
+				modelObj.setFormulaVariable(formulaId);
 			}
 			if (i < numRuleElementsC) { // (C)ontext element matched
 				modelObjsC.add(modelObj);

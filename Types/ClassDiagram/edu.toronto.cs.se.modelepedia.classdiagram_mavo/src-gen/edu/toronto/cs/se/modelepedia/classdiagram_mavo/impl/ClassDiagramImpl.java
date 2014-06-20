@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl;
 
-import edu.toronto.cs.se.mmint.mavo.impl.MAVOModelImpl;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
@@ -41,7 +40,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ClassDiagramImpl extends MAVOModelImpl implements ClassDiagram {
+public class ClassDiagramImpl extends edu.toronto.cs.se.mavo.impl.MAVOModelImpl implements ClassDiagram {
 	/**
 	 * The cached value of the '{@link #getClasses() <em>Classes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
