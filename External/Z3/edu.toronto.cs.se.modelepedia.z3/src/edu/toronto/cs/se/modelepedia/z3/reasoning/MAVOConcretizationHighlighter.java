@@ -20,6 +20,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 
@@ -37,7 +38,7 @@ import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIBListener;
 
 public class MAVOConcretizationHighlighter {
 
-	private static final int GREY_OUT_COLOR = 0xD9D9D9;
+	private static final int GREY_OUT_COLOR = 0xF4F4F4;
 	private static final int HIGHLIGHT_COLOR = 0x50CFED;
 	private static final String DIAGRAM_ID = "edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorID";
 	private static final String EXAMPLE_SUFFIX = "_example";
@@ -95,10 +96,10 @@ public class MAVOConcretizationHighlighter {
 			color(element, GREY_OUT_COLOR);
 		}
 		
-		for (String FID: inExample){
+		/*for (String FID: inExample){
 			View element = diagramElements.get(FID);
 			color(element, HIGHLIGHT_COLOR);
-		}
+		}*/
 		
 		//Write diagram to file
 		MultiModelUtils.createModelFile(d, newDiagramURI, true);
@@ -138,11 +139,16 @@ public class MAVOConcretizationHighlighter {
 	
 	private void color(View element, int color) {
 		if (element instanceof Shape) {
-			((Shape) element).setFillColor(color);
+			Shape node = (Shape) element;
+			node.setFillColor(color);
+			node.setLineColor(color);
+			node.setFontColor(color - 0x101010);
 		}
 		else if (element instanceof Connector){
 			Connector line = (Connector) element;
 			line.setLineColor(color);
+			FontStyle labelFont = (FontStyle) line.getStyles().get(0);
+			labelFont.setFontColor(color - 0x101010);
 		}
 		else{
 			MMINTException.print(MMINTException.Type.WARNING, "Can't color diagram element",
@@ -171,7 +177,7 @@ public class MAVOConcretizationHighlighter {
 			e1.printStackTrace();
 		}
 		
-		Diagram d = null;
+		Diagram d;
 		try{
 			d = (Diagram) MultiModelUtils.getModelFile(newDiagramURI, true);
 		} catch (Exception e) {
