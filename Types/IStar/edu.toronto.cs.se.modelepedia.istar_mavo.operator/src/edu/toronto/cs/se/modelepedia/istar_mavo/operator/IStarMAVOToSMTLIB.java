@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.eclipse.acceleo.common.preference.AcceleoPreferences;
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
@@ -22,8 +23,10 @@ import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIBListener;
@@ -55,6 +58,19 @@ public class IStarMAVOToSMTLIB extends OperatorImpl {
 		return smtListener;
 	}
 
+	public enum AnalysisDirection {FORWARD, BACKWARD};
+
+	private static final String PROPERTY_IN_ANALYSISDIRECTION = "analysisDirection";
+	private static final AnalysisDirection PROPERTY_IN_ANALYSISDIRECTION_DEFAULT = AnalysisDirection.FORWARD;
+
+	private AnalysisDirection analysisDirection;
+
+	@Override
+	public void readInputProperties(Properties inputProperties) throws MMINTException {
+
+		analysisDirection = MultiModelOperatorUtils.getOptionalEnumProperty(inputProperties, PROPERTY_IN_ANALYSISDIRECTION, PROPERTY_IN_ANALYSISDIRECTION_DEFAULT, AnalysisDirection.class);
+	}
+
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
@@ -63,6 +79,15 @@ public class IStarMAVOToSMTLIB extends OperatorImpl {
 
 		List<Object> m2tArgs = new ArrayList<Object>();
 		m2tArgs.add(istarModel.getName());
+		switch (analysisDirection) {
+		case BACKWARD:
+			m2tArgs.add(false);
+			break;
+		case FORWARD:
+		default:
+			m2tArgs.add(true);
+			break;
+		}
 		File folder = (new File(MultiModelUtils.prependWorkspaceToUri(istarModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);
