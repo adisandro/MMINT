@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface MAVODecision extends LogicElement {
+public interface MAVODecision extends DecisionElement {
 	/**
 	 * Returns the value of the '<em><b>Logic</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.se.mavo.MAVODecisionLogic}.

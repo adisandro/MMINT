@@ -104,6 +104,52 @@ public interface MAVOPackage extends EPackage {
 	int LOGIC_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mavo.impl.DecisionElementImpl <em>Decision Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mavo.impl.DecisionElementImpl
+	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getDecisionElement()
+	 * @generated
+	 */
+	int DECISION_ELEMENT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION_ELEMENT__FORMULA_VARIABLE = LOGIC_ELEMENT__FORMULA_VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION_ELEMENT__DESCRIPTION = LOGIC_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Decision Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION_ELEMENT_FEATURE_COUNT = LOGIC_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Decision Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION_ELEMENT_OPERATION_COUNT = LOGIC_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mavo.impl.MAVOModelImpl <em>Model</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -111,7 +157,7 @@ public interface MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMAVOModel()
 	 * @generated
 	 */
-	int MAVO_MODEL = 1;
+	int MAVO_MODEL = 2;
 
 	/**
 	 * The feature id for the '<em><b>Inc</b></em>' attribute.
@@ -157,7 +203,7 @@ public interface MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMAVOElement()
 	 * @generated
 	 */
-	int MAVO_ELEMENT = 2;
+	int MAVO_ELEMENT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -221,7 +267,7 @@ public interface MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMAVOReference()
 	 * @generated
 	 */
-	int MAVO_REFERENCE = 3;
+	int MAVO_REFERENCE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -286,7 +332,7 @@ public interface MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMAVODecision()
 	 * @generated
 	 */
-	int MAVO_DECISION = 4;
+	int MAVO_DECISION = 5;
 
 	/**
 	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -295,7 +341,16 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_DECISION__FORMULA_VARIABLE = LOGIC_ELEMENT__FORMULA_VARIABLE;
+	int MAVO_DECISION__FORMULA_VARIABLE = DECISION_ELEMENT__FORMULA_VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_DECISION__DESCRIPTION = DECISION_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Logic</b></em>' attribute.
@@ -304,7 +359,7 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_DECISION__LOGIC = LOGIC_ELEMENT_FEATURE_COUNT + 0;
+	int MAVO_DECISION__LOGIC = DECISION_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Required Decisions</b></em>' reference list.
@@ -313,7 +368,7 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_DECISION__REQUIRED_DECISIONS = LOGIC_ELEMENT_FEATURE_COUNT + 1;
+	int MAVO_DECISION__REQUIRED_DECISIONS = DECISION_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Alternatives</b></em>' containment reference list.
@@ -322,7 +377,7 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_DECISION__ALTERNATIVES = LOGIC_ELEMENT_FEATURE_COUNT + 2;
+	int MAVO_DECISION__ALTERNATIVES = DECISION_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Decision</em>' class.
@@ -331,7 +386,7 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_DECISION_FEATURE_COUNT = LOGIC_ELEMENT_FEATURE_COUNT + 3;
+	int MAVO_DECISION_FEATURE_COUNT = DECISION_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Decision</em>' class.
@@ -340,7 +395,7 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_DECISION_OPERATION_COUNT = LOGIC_ELEMENT_OPERATION_COUNT + 0;
+	int MAVO_DECISION_OPERATION_COUNT = DECISION_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mavo.impl.MAVOAlternativeImpl <em>Alternative</em>}' class.
@@ -350,7 +405,7 @@ public interface MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMAVOAlternative()
 	 * @generated
 	 */
-	int MAVO_ALTERNATIVE = 5;
+	int MAVO_ALTERNATIVE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -359,7 +414,16 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_ALTERNATIVE__FORMULA_VARIABLE = LOGIC_ELEMENT__FORMULA_VARIABLE;
+	int MAVO_ALTERNATIVE__FORMULA_VARIABLE = DECISION_ELEMENT__FORMULA_VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_ALTERNATIVE__DESCRIPTION = DECISION_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Mavo Elements</b></em>' reference list.
@@ -368,7 +432,7 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_ALTERNATIVE__MAVO_ELEMENTS = LOGIC_ELEMENT_FEATURE_COUNT + 0;
+	int MAVO_ALTERNATIVE__MAVO_ELEMENTS = DECISION_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Alternative</em>' class.
@@ -377,7 +441,7 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_ALTERNATIVE_FEATURE_COUNT = LOGIC_ELEMENT_FEATURE_COUNT + 1;
+	int MAVO_ALTERNATIVE_FEATURE_COUNT = DECISION_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Alternative</em>' class.
@@ -386,7 +450,7 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_ALTERNATIVE_OPERATION_COUNT = LOGIC_ELEMENT_OPERATION_COUNT + 0;
+	int MAVO_ALTERNATIVE_OPERATION_COUNT = DECISION_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mavo.MAVODecisionLogic <em>Decision Logic</em>}' enum.
@@ -396,7 +460,7 @@ public interface MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMAVODecisionLogic()
 	 * @generated
 	 */
-	int MAVO_DECISION_LOGIC = 6;
+	int MAVO_DECISION_LOGIC = 7;
 
 
 	/**
@@ -419,6 +483,27 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLogicElement_FormulaVariable();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mavo.DecisionElement <em>Decision Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Decision Element</em>'.
+	 * @see edu.toronto.cs.se.mavo.DecisionElement
+	 * @generated
+	 */
+	EClass getDecisionElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mavo.DecisionElement#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see edu.toronto.cs.se.mavo.DecisionElement#getDescription()
+	 * @see #getDecisionElement()
+	 * @generated
+	 */
+	EAttribute getDecisionElement_Description();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mavo.MAVOModel <em>Model</em>}'.
@@ -619,6 +704,24 @@ public interface MAVOPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LOGIC_ELEMENT__FORMULA_VARIABLE = eINSTANCE.getLogicElement_FormulaVariable();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.impl.DecisionElementImpl <em>Decision Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mavo.impl.DecisionElementImpl
+		 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getDecisionElement()
+		 * @generated
+		 */
+		EClass DECISION_ELEMENT = eINSTANCE.getDecisionElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DECISION_ELEMENT__DESCRIPTION = eINSTANCE.getDecisionElement_Description();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.impl.MAVOModelImpl <em>Model</em>}' class.

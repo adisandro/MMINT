@@ -33,18 +33,18 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface MAVOAlternative extends LogicElement {
+public interface MAVOAlternative extends DecisionElement {
 	/**
 	 * Returns the value of the '<em><b>Mavo Elements</b></em>' reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.mavo.MAVOElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The list of MAVO elements in this alternative.
+	 * The list of MAVO elements in this alternative, possibly empty.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Mavo Elements</em>' reference list.
 	 * @see edu.toronto.cs.se.mavo.MAVOPackage#getMAVOAlternative_MavoElements()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	EList<MAVOElement> getMavoElements();

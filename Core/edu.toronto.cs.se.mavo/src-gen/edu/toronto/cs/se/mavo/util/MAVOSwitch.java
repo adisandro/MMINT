@@ -81,6 +81,13 @@ public class MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MAVOPackage.DECISION_ELEMENT: {
+				DecisionElement decisionElement = (DecisionElement)theEObject;
+				T result = caseDecisionElement(decisionElement);
+				if (result == null) result = caseLogicElement(decisionElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MAVOPackage.MAVO_MODEL: {
 				MAVOModel mavoModel = (MAVOModel)theEObject;
 				T result = caseMAVOModel(mavoModel);
@@ -105,6 +112,7 @@ public class MAVOSwitch<T> extends Switch<T> {
 			case MAVOPackage.MAVO_DECISION: {
 				MAVODecision mavoDecision = (MAVODecision)theEObject;
 				T result = caseMAVODecision(mavoDecision);
+				if (result == null) result = caseDecisionElement(mavoDecision);
 				if (result == null) result = caseLogicElement(mavoDecision);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -112,6 +120,7 @@ public class MAVOSwitch<T> extends Switch<T> {
 			case MAVOPackage.MAVO_ALTERNATIVE: {
 				MAVOAlternative mavoAlternative = (MAVOAlternative)theEObject;
 				T result = caseMAVOAlternative(mavoAlternative);
+				if (result == null) result = caseDecisionElement(mavoAlternative);
 				if (result == null) result = caseLogicElement(mavoAlternative);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -132,6 +141,21 @@ public class MAVOSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLogicElement(LogicElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Decision Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Decision Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDecisionElement(DecisionElement object) {
 		return null;
 	}
 

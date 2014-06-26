@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *
  * @generated
  */
-public class MAVOAlternativeImpl extends LogicElementImpl implements MAVOAlternative {
+public class MAVOAlternativeImpl extends DecisionElementImpl implements MAVOAlternative {
 	/**
 	 * The cached value of the '{@link #getMavoElements() <em>Mavo Elements</em>}' reference list.
 	 * <!-- begin-user-doc -->

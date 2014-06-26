@@ -47,7 +47,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class MAVODecisionImpl extends LogicElementImpl implements MAVODecision {
+public class MAVODecisionImpl extends DecisionElementImpl implements MAVODecision {
 	/**
 	 * The default value of the '{@link #getLogic() <em>Logic</em>}' attribute.
 	 * <!-- begin-user-doc -->

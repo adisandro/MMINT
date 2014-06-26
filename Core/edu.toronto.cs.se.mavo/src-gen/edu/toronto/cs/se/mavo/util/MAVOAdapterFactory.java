@@ -81,6 +81,10 @@ public class MAVOAdapterFactory extends AdapterFactoryImpl {
 				return createLogicElementAdapter();
 			}
 			@Override
+			public Adapter caseDecisionElement(DecisionElement object) {
+				return createDecisionElementAdapter();
+			}
+			@Override
 			public Adapter caseMAVOModel(MAVOModel object) {
 				return createMAVOModelAdapter();
 			}
@@ -131,6 +135,20 @@ public class MAVOAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLogicElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.DecisionElement <em>Decision Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mavo.DecisionElement
+	 * @generated
+	 */
+	public Adapter createDecisionElementAdapter() {
 		return null;
 	}
 

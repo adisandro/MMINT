@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mavo.impl;
 
+import edu.toronto.cs.se.mavo.DecisionElement;
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOAlternative;
 import edu.toronto.cs.se.mavo.MAVODecision;
@@ -42,6 +43,13 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 	 * @generated
 	 */
 	private EClass logicElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass decisionElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -162,6 +170,24 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 	 */
 	public EAttribute getLogicElement_FormulaVariable() {
 		return (EAttribute)logicElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDecisionElement() {
+		return decisionElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDecisionElement_Description() {
+		return (EAttribute)decisionElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -330,6 +356,9 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 		logicElementEClass = createEClass(LOGIC_ELEMENT);
 		createEAttribute(logicElementEClass, LOGIC_ELEMENT__FORMULA_VARIABLE);
 
+		decisionElementEClass = createEClass(DECISION_ELEMENT);
+		createEAttribute(decisionElementEClass, DECISION_ELEMENT__DESCRIPTION);
+
 		mavoModelEClass = createEClass(MAVO_MODEL);
 		createEAttribute(mavoModelEClass, MAVO_MODEL__INC);
 		createEReference(mavoModelEClass, MAVO_MODEL__DECISIONS);
@@ -381,14 +410,18 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		decisionElementEClass.getESuperTypes().add(this.getLogicElement());
 		mavoElementEClass.getESuperTypes().add(this.getLogicElement());
 		mavoReferenceEClass.getESuperTypes().add(this.getMAVOElement());
-		mavoDecisionEClass.getESuperTypes().add(this.getLogicElement());
-		mavoAlternativeEClass.getESuperTypes().add(this.getLogicElement());
+		mavoDecisionEClass.getESuperTypes().add(this.getDecisionElement());
+		mavoAlternativeEClass.getESuperTypes().add(this.getDecisionElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(logicElementEClass, LogicElement.class, "LogicElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLogicElement_FormulaVariable(), ecorePackage.getEString(), "formulaVariable", null, 0, 1, LogicElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(decisionElementEClass, DecisionElement.class, "DecisionElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDecisionElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, DecisionElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mavoModelEClass, MAVOModel.class, "MAVOModel", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMAVOModel_Inc(), ecorePackage.getEBoolean(), "inc", null, 0, 1, MAVOModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -407,7 +440,7 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 		initEReference(getMAVODecision_Alternatives(), this.getMAVOAlternative(), null, "alternatives", null, 1, -1, MAVODecision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mavoAlternativeEClass, MAVOAlternative.class, "MAVOAlternative", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMAVOAlternative_MavoElements(), this.getMAVOElement(), null, "mavoElements", null, 1, -1, MAVOAlternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMAVOAlternative_MavoElements(), this.getMAVOElement(), null, "mavoElements", null, 0, -1, MAVOAlternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(mavoDecisionLogicEEnum, MAVODecisionLogic.class, "MAVODecisionLogic");

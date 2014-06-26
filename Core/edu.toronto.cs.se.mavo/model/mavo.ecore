@@ -11,6 +11,16 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DecisionElement" abstract="true" eSuperTypes="#//LogicElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The abstract element of a decision, i.e. an element that can have a description to specify the rationale for the decision."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The description of the rationale for this decision element."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MAVOModel" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The abstract MAVO model. It represents a model that can have MAVO open world annotations."/>
@@ -52,7 +62,7 @@
       <details key="documentation" value="A MAVO element that was originally implemented as an EReference."/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MAVODecision" eSuperTypes="#//LogicElement">
+  <eClassifiers xsi:type="ecore:EClass" name="MAVODecision" eSuperTypes="#//DecisionElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A decision to be made within a MAVO model."/>
     </eAnnotations>
@@ -74,14 +84,14 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MAVOAlternative" eSuperTypes="#//LogicElement">
+  <eClassifiers xsi:type="ecore:EClass" name="MAVOAlternative" eSuperTypes="#//DecisionElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An alternative for a MAVO decision."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mavoElements" lowerBound="1"
-        upperBound="-1" eType="#//MAVOElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mavoElements" upperBound="-1"
+        eType="#//MAVOElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The list of MAVO elements in this alternative."/>
+        <details key="documentation" value="The list of MAVO elements in this alternative, possibly empty."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
