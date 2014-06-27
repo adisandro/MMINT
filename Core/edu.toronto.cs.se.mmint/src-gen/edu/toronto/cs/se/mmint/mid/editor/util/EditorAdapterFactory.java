@@ -11,10 +11,10 @@
  */
 package edu.toronto.cs.se.mmint.mid.editor.util;
 
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.LogicElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.editor.*;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -85,6 +85,10 @@ public class EditorAdapterFactory extends AdapterFactoryImpl {
 				return createDiagramAdapter();
 			}
 			@Override
+			public Adapter caseLogicElement(LogicElement object) {
+				return createLogicElementAdapter();
+			}
+			@Override
 			public Adapter caseMAVOElement(MAVOElement object) {
 				return createMAVOElementAdapter();
 			}
@@ -141,13 +145,27 @@ public class EditorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.MAVOElement <em>MAVO Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.LogicElement <em>Logic Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmint.mavo.MAVOElement
+	 * @see edu.toronto.cs.se.mavo.LogicElement
+	 * @generated
+	 */
+	public Adapter createLogicElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.MAVOElement <em>Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mavo.MAVOElement
 	 * @generated
 	 */
 	public Adapter createMAVOElementAdapter() {

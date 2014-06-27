@@ -14,7 +14,7 @@ package edu.toronto.cs.se.modelepedia.kleisli.impl;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
@@ -118,7 +118,7 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 		}
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
-		String[] uris = MultiModelRegistry.getModelAndModelElementUris(metamodelObj, MidLevel.TYPES);
+		String[] uris = MultiModelRegistry.getModelAndModelElementUris(metamodelObj, MIDLevel.TYPES);
 		String modelTypeUri = uris[0].replace(KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX, ""); // remove uri suffix
 		String modelElemTypeUri = uris[1];
 		if (
@@ -146,7 +146,7 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
-		String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObj, MidLevel.INSTANCES);
+		String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES);
 		String modelUri = uris[0];
 		String modelElemUri = uris[1];
 		if (!modelUri.equals(getExtendedTargetUri())) { // different extended model

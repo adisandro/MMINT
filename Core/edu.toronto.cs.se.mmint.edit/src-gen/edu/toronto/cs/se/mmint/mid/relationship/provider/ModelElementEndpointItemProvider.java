@@ -13,21 +13,14 @@ package edu.toronto.cs.se.mmint.mid.relationship.provider;
 
 
 import edu.toronto.cs.se.mmint.mid.provider.ExtendibleElementEndpointItemProvider;
-import edu.toronto.cs.se.mmint.mid.provider.MidEditPlugin;
+import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
-
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint} object.
@@ -36,13 +29,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class ModelElementEndpointItemProvider
-	extends ExtendibleElementEndpointItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends ExtendibleElementEndpointItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -126,7 +113,7 @@ public class ModelElementEndpointItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MidEditPlugin.INSTANCE;
+		return MIDEditPlugin.INSTANCE;
 	}
 
 }

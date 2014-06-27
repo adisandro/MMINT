@@ -11,21 +11,19 @@
  */
 package edu.toronto.cs.se.mmint.mid.impl;
 
+import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
-import edu.toronto.cs.se.mmint.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
-
 import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -112,7 +110,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 * @generated
 	 * @ordered
 	 */
-	protected static final MidLevel LEVEL_EDEFAULT = MidLevel.INSTANCES;
+	protected static final MIDLevel LEVEL_EDEFAULT = MIDLevel.INSTANCES;
 
 	/**
 	 * The cached value of the '{@link #getLevel() <em>Level</em>}' attribute.
@@ -122,7 +120,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 * @generated
 	 * @ordered
 	 */
-	protected MidLevel level = LEVEL_EDEFAULT;
+	protected MIDLevel level = LEVEL_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMetatypeUri() <em>Metatype Uri</em>}' attribute.
@@ -190,7 +188,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MidPackage.Literals.EXTENDIBLE_ELEMENT;
+		return MIDPackage.Literals.EXTENDIBLE_ELEMENT;
 	}
 
 	/**
@@ -211,7 +209,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 		String oldUri = uri;
 		uri = newUri;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT__URI, oldUri, uri));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__URI, oldUri, uri));
 	}
 
 	/**
@@ -225,7 +223,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 			supertype = (ExtendibleElement)eResolveProxy(oldSupertype);
 			if (supertype != oldSupertype) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE, oldSupertype, supertype));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE, oldSupertype, supertype));
 			}
 		}
 		return supertype;
@@ -249,7 +247,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 		ExtendibleElement oldSupertype = supertype;
 		supertype = newSupertype;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE, oldSupertype, supertype));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE, oldSupertype, supertype));
 	}
 
 	/**
@@ -270,7 +268,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__NAME, oldName, name));
 	}
 
 	/**
@@ -298,7 +296,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MidLevel getLevel() {
+	public MIDLevel getLevel() {
 		return level;
 	}
 
@@ -307,11 +305,11 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLevel(MidLevel newLevel) {
-		MidLevel oldLevel = level;
+	public void setLevel(MIDLevel newLevel) {
+		MIDLevel oldLevel = level;
 		level = newLevel == null ? LEVEL_EDEFAULT : newLevel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT__LEVEL, oldLevel, level));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__LEVEL, oldLevel, level));
 	}
 
 	/**
@@ -332,7 +330,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 		String oldMetatypeUri = metatypeUri;
 		metatypeUri = newMetatypeUri;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI, oldMetatypeUri, metatypeUri));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI, oldMetatypeUri, metatypeUri));
 	}
 
 	/**
@@ -353,7 +351,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 		boolean oldDynamic = dynamic;
 		dynamic = newDynamic;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC, oldDynamic, dynamic));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC, oldDynamic, dynamic));
 	}
 
 	/**
@@ -374,7 +372,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 		ExtendibleElementConstraint oldConstraint = constraint;
 		constraint = newConstraint;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, oldConstraint, newConstraint);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, oldConstraint, newConstraint);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -389,14 +387,14 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 		if (newConstraint != constraint) {
 			NotificationChain msgs = null;
 			if (constraint != null)
-				msgs = ((InternalEObject)constraint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, null, msgs);
+				msgs = ((InternalEObject)constraint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, null, msgs);
 			if (newConstraint != null)
-				msgs = ((InternalEObject)newConstraint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, null, msgs);
+				msgs = ((InternalEObject)newConstraint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, null, msgs);
 			msgs = basicSetConstraint(newConstraint, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, newConstraint, newConstraint));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, newConstraint, newConstraint));
 	}
 
 	/**
@@ -407,7 +405,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
+			case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
 				return basicSetConstraint(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -421,23 +419,23 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
+			case MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
 				if (resolve) return getSupertype();
 				return basicGetSupertype();
-			case MidPackage.EXTENDIBLE_ELEMENT__METATYPE:
+			case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE:
 				if (resolve) return getMetatype();
 				return basicGetMetatype();
-			case MidPackage.EXTENDIBLE_ELEMENT__URI:
+			case MIDPackage.EXTENDIBLE_ELEMENT__URI:
 				return getUri();
-			case MidPackage.EXTENDIBLE_ELEMENT__NAME:
+			case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
 				return getName();
-			case MidPackage.EXTENDIBLE_ELEMENT__LEVEL:
+			case MIDPackage.EXTENDIBLE_ELEMENT__LEVEL:
 				return getLevel();
-			case MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
+			case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
 				return getMetatypeUri();
-			case MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
+			case MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
 				return isDynamic();
-			case MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
+			case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
 				return getConstraint();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -451,25 +449,25 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
+			case MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
 				setSupertype((ExtendibleElement)newValue);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__URI:
+			case MIDPackage.EXTENDIBLE_ELEMENT__URI:
 				setUri((String)newValue);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__NAME:
+			case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
 				setName((String)newValue);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__LEVEL:
-				setLevel((MidLevel)newValue);
+			case MIDPackage.EXTENDIBLE_ELEMENT__LEVEL:
+				setLevel((MIDLevel)newValue);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
+			case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
 				setMetatypeUri((String)newValue);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
+			case MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
 				setDynamic((Boolean)newValue);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
+			case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
 				setConstraint((ExtendibleElementConstraint)newValue);
 				return;
 		}
@@ -484,25 +482,25 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
+			case MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
 				setSupertype((ExtendibleElement)null);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__URI:
+			case MIDPackage.EXTENDIBLE_ELEMENT__URI:
 				setUri(URI_EDEFAULT);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__NAME:
+			case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__LEVEL:
+			case MIDPackage.EXTENDIBLE_ELEMENT__LEVEL:
 				setLevel(LEVEL_EDEFAULT);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
+			case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
 				setMetatypeUri(METATYPE_URI_EDEFAULT);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
+			case MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
 				setDynamic(DYNAMIC_EDEFAULT);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
+			case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
 				setConstraint((ExtendibleElementConstraint)null);
 				return;
 		}
@@ -517,21 +515,21 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
+			case MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
 				return supertype != null;
-			case MidPackage.EXTENDIBLE_ELEMENT__METATYPE:
+			case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE:
 				return basicGetMetatype() != null;
-			case MidPackage.EXTENDIBLE_ELEMENT__URI:
+			case MIDPackage.EXTENDIBLE_ELEMENT__URI:
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
-			case MidPackage.EXTENDIBLE_ELEMENT__NAME:
+			case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case MidPackage.EXTENDIBLE_ELEMENT__LEVEL:
+			case MIDPackage.EXTENDIBLE_ELEMENT__LEVEL:
 				return level != LEVEL_EDEFAULT;
-			case MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
+			case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI:
 				return METATYPE_URI_EDEFAULT == null ? metatypeUri != null : !METATYPE_URI_EDEFAULT.equals(metatypeUri);
-			case MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
+			case MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC:
 				return dynamic != DYNAMIC_EDEFAULT;
-			case MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
+			case MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT:
 				return constraint != null;
 		}
 		return super.eIsSet(featureID);
@@ -545,7 +543,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MidPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING:
+			case MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING:
 				return createSubtypeUri((String)arguments.get(0), (String)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
@@ -720,7 +718,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 			newInstanceName = MMINT.EMPTY_NAME;
 		}
 		newInstance.setName(newInstanceName);
-		newInstance.setLevel(MidLevel.INSTANCES);
+		newInstance.setLevel(MIDLevel.INSTANCES);
 		newInstance.setDynamic(true);
 		newInstance.setSupertype(null);
 		newInstance.setMetatypeUri(getUri());

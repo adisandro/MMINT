@@ -11,8 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.graph_mavo;
 
-import edu.toronto.cs.se.mmint.mavo.MavoPackage;
-
+import edu.toronto.cs.se.mavo.MAVOPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -84,7 +83,16 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH__INC = MavoPackage.MAVO_MODEL__INC;
+	int GRAPH__INC = MAVOPackage.MAVO_MODEL__INC;
+
+	/**
+	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH__DECISIONS = MAVOPackage.MAVO_MODEL__DECISIONS;
 
 	/**
 	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
@@ -93,7 +101,7 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH__NODES = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 0;
+	int GRAPH__NODES = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Edges</b></em>' containment reference list.
@@ -102,7 +110,7 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH__EDGES = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 1;
+	int GRAPH__EDGES = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Graph</em>' class.
@@ -111,7 +119,7 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_FEATURE_COUNT = MavoPackage.MAVO_MODEL_FEATURE_COUNT + 2;
+	int GRAPH_FEATURE_COUNT = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Graph</em>' class.
@@ -120,7 +128,7 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_OPERATION_COUNT = MavoPackage.MAVO_MODEL_OPERATION_COUNT + 0;
+	int GRAPH_OPERATION_COUNT = MAVOPackage.MAVO_MODEL_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.graph_mavo.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -133,13 +141,22 @@ public interface Graph_MAVOPackage extends EPackage {
 	int NAMED_ELEMENT = 1;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__FORMULA_VARIABLE = MAVOPackage.MAVO_ELEMENT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__MAY = MavoPackage.MAVO_ELEMENT__MAY;
+	int NAMED_ELEMENT__MAY = MAVOPackage.MAVO_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -148,7 +165,7 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__SET = MavoPackage.MAVO_ELEMENT__SET;
+	int NAMED_ELEMENT__SET = MAVOPackage.MAVO_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -157,16 +174,7 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__VAR = MavoPackage.MAVO_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT__FORMULA_ID = MavoPackage.MAVO_ELEMENT__FORMULA_ID;
+	int NAMED_ELEMENT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -175,7 +183,7 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__NAME = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
+	int NAMED_ELEMENT__NAME = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Named Element</em>' class.
@@ -184,7 +192,7 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_FEATURE_COUNT = MavoPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
+	int NAMED_ELEMENT_FEATURE_COUNT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Named Element</em>' class.
@@ -193,7 +201,7 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_OPERATION_COUNT = MavoPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
+	int NAMED_ELEMENT_OPERATION_COUNT = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.graph_mavo.impl.NodeImpl <em>Node</em>}' class.
@@ -204,6 +212,15 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	int NODE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__FORMULA_VARIABLE = NAMED_ELEMENT__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -231,15 +248,6 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int NODE__VAR = NAMED_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__FORMULA_ID = NAMED_ELEMENT__FORMULA_ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -297,6 +305,15 @@ public interface Graph_MAVOPackage extends EPackage {
 	int EDGE = 3;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE__FORMULA_VARIABLE = NAMED_ELEMENT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -322,15 +339,6 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int EDGE__VAR = NAMED_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDGE__FORMULA_ID = NAMED_ELEMENT__FORMULA_ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.

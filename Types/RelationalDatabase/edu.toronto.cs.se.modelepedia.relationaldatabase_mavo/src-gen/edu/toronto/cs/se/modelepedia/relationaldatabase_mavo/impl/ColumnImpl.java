@@ -106,7 +106,7 @@ public class ColumnImpl extends NamedElementImpl implements Column {
 	 */
 	public Table getTable() {
 		if (eContainerFeatureID() != RelationalDatabase_MAVOPackage.COLUMN__TABLE) return null;
-		return (Table)eContainer();
+		return (Table)eInternalContainer();
 	}
 
 	/**

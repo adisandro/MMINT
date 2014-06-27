@@ -2,12 +2,12 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="relationaldatabase_mavo" nsURI="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO"
     nsPrefix="relationaldatabase_mavo">
-  <eClassifiers xsi:type="ecore:EClass" name="RelationalDatabase" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mavo.ecore#//MAVOModel">
+  <eClassifiers xsi:type="ecore:EClass" name="RelationalDatabase" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOModel">
     <eAnnotations source="gmf.diagram"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tables" upperBound="-1"
         eType="#//Table" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mavo.ecore#//MAVOElement">
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="#//NamedElement">
@@ -53,7 +53,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="table" lowerBound="1" eType="#//Table"
         eOpposite="#//Table/foreignKeys"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TableColumnReference" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mavo.ecore#//MAVOReference">
+  <eClassifiers xsi:type="ecore:EClass" name="TableColumnReference" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOReference">
     <eAnnotations source="gmf.link">
       <details key="target.decoration" value="none"/>
       <details key="source" value="source"/>
@@ -64,7 +64,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//Column" eOpposite="#//Column/foreignKeysAsColumn"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ForeignColumnReference" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mavo.ecore#//MAVOReference">
+  <eClassifiers xsi:type="ecore:EClass" name="ForeignColumnReference" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOReference">
     <eAnnotations source="gmf.link">
       <details key="target.decoration" value="none"/>
       <details key="source" value="source"/>

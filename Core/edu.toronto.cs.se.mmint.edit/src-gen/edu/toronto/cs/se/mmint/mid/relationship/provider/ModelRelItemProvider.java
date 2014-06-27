@@ -12,26 +12,19 @@
 package edu.toronto.cs.se.mmint.mid.relationship.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.provider.MidEditPlugin;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
 import edu.toronto.cs.se.mmint.mid.provider.ModelItemProvider;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -41,13 +34,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ModelRelItemProvider
-	extends ModelItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends ModelItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -167,7 +154,7 @@ public class ModelRelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINTS,
-				 MidFactory.eINSTANCE.createModelEndpoint()));
+				 MIDFactory.eINSTANCE.createModelEndpoint()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -203,7 +190,7 @@ public class ModelRelItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MidEditPlugin.INSTANCE;
+		return MIDEditPlugin.INSTANCE;
 	}
 
 }

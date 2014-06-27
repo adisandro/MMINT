@@ -46,9 +46,9 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
+import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorUtil;
 import edu.toronto.cs.se.mmint.mid.diagram.part.Messages;
-import edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorPlugin;
-import edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorUtil;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -119,9 +119,8 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 		/**
 		 * @generated
 		 */
-		protected CommandResult doExecuteWithResult(
-				IProgressMonitor monitor, IAdaptable info)
-				throws ExecutionException {
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+				IAdaptable info) throws ExecutionException {
 			try {
 				Diagram diagram = getDiagramToOpen();
 				if (diagram == null) {
@@ -178,7 +177,7 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 								if (nextResource.isLoaded()
 										&& !getEditingDomain().isReadOnly(
 												nextResource)) {
-									nextResource.save(MidDiagramEditorUtil
+									nextResource.save(MIDDiagramEditorUtil
 											.getSaveOptions());
 								}
 							}
@@ -211,7 +210,7 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 		 */
 		protected PreferencesHint getPreferencesHint() {
 			// XXX prefhint from target diagram's editor?
-			return MidDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
+			return MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 		}
 
 		/**
@@ -245,7 +244,8 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 		/**
 		 * @generated NOT
 		 */
-		protected void doExecuteInstancesLevel(ModelRel modelRel) throws MMINTException {
+		protected void doExecuteInstancesLevel(ModelRel modelRel)
+				throws MMINTException {
 
 			modelRel.openInstance();
 		}
@@ -253,7 +253,8 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 		/**
 		 * @generated NOT
 		 */
-		protected void doExecuteTypesLevel(ModelRel modelRelType) throws MMINTException {
+		protected void doExecuteTypesLevel(ModelRel modelRelType)
+				throws MMINTException {
 
 			modelRelType.openType();
 		}
@@ -262,7 +263,8 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 		 * @generated NOT
 		 */
 		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+				IAdaptable info) throws ExecutionException {
 
 			try {
 				Diagram diagram = getDiagramToOpen();
@@ -272,8 +274,7 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 				ModelRel modelRel = (ModelRel) diagram.getElement();
 				if (MultiModelConstraintChecker.isInstancesLevel(modelRel)) {
 					doExecuteInstancesLevel(modelRel);
-				}
-				else {
+				} else {
 					doExecuteTypesLevel(modelRel);
 				}
 				URI uri = EcoreUtil.getURI(diagram);
@@ -284,8 +285,7 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 				page.openEditor(editorInput, getEditorID());
 
 				return CommandResult.newOKCommandResult();
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				throw new ExecutionException("No editor opened", e);
 			}
 		}

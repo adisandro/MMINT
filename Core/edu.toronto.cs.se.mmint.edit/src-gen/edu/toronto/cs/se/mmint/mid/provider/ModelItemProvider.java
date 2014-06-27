@@ -12,24 +12,18 @@
 package edu.toronto.cs.se.mmint.mid.provider;
 
 
-import edu.toronto.cs.se.mmint.mavo.MavoPackage;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
+import edu.toronto.cs.se.mavo.MAVOFactory;
+import edu.toronto.cs.se.mavo.MAVOPackage;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
-
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -40,13 +34,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ModelItemProvider
-	extends ExtendibleElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends ExtendibleElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -91,7 +79,7 @@ public class ModelItemProvider
 				 getResourceLocator(),
 				 getString("_UI_MAVOModel_inc_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_MAVOModel_inc_feature", "_UI_MAVOModel_type"),
-				 MavoPackage.Literals.MAVO_MODEL__INC,
+				 MAVOPackage.Literals.MAVO_MODEL__INC,
 				 true,
 				 false,
 				 false,
@@ -113,7 +101,7 @@ public class ModelItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Model_origin_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Model_origin_feature", "_UI_Model_type"),
-				 MidPackage.Literals.MODEL__ORIGIN,
+				 MIDPackage.Literals.MODEL__ORIGIN,
 				 true,
 				 false,
 				 false,
@@ -135,7 +123,7 @@ public class ModelItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Model_fileExtension_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Model_fileExtension_feature", "_UI_Model_type"),
-				 MidPackage.Literals.MODEL__FILE_EXTENSION,
+				 MIDPackage.Literals.MODEL__FILE_EXTENSION,
 				 true,
 				 false,
 				 false,
@@ -157,7 +145,7 @@ public class ModelItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Model_editors_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Model_editors_feature", "_UI_Model_type"),
-				 MidPackage.Literals.MODEL__EDITORS,
+				 MIDPackage.Literals.MODEL__EDITORS,
 				 true,
 				 false,
 				 true,
@@ -179,7 +167,7 @@ public class ModelItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Model_conversionOperators_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Model_conversionOperators_feature", "_UI_Model_type"),
-				 MidPackage.Literals.MODEL__CONVERSION_OPERATORS,
+				 MIDPackage.Literals.MODEL__CONVERSION_OPERATORS,
 				 true,
 				 false,
 				 true,
@@ -201,7 +189,7 @@ public class ModelItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Model_abstract_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Model_abstract_feature", "_UI_Model_type"),
-				 MidPackage.Literals.MODEL__ABSTRACT,
+				 MIDPackage.Literals.MODEL__ABSTRACT,
 				 true,
 				 false,
 				 false,
@@ -222,7 +210,8 @@ public class ModelItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MidPackage.Literals.MODEL__MODEL_ELEMS);
+			childrenFeatures.add(MAVOPackage.Literals.MAVO_MODEL__DECISIONS);
+			childrenFeatures.add(MIDPackage.Literals.MODEL__MODEL_ELEMS);
 		}
 		return childrenFeatures;
 	}
@@ -277,13 +266,14 @@ public class ModelItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Model.class)) {
-			case MidPackage.MODEL__INC:
-			case MidPackage.MODEL__ORIGIN:
-			case MidPackage.MODEL__FILE_EXTENSION:
-			case MidPackage.MODEL__ABSTRACT:
+			case MIDPackage.MODEL__INC:
+			case MIDPackage.MODEL__ORIGIN:
+			case MIDPackage.MODEL__FILE_EXTENSION:
+			case MIDPackage.MODEL__ABSTRACT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MidPackage.MODEL__MODEL_ELEMS:
+			case MIDPackage.MODEL__DECISIONS:
+			case MIDPackage.MODEL__MODEL_ELEMS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -303,8 +293,13 @@ public class ModelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MidPackage.Literals.MODEL__MODEL_ELEMS,
-				 MidFactory.eINSTANCE.createModelElement()));
+				(MAVOPackage.Literals.MAVO_MODEL__DECISIONS,
+				 MAVOFactory.eINSTANCE.createMAVODecision()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MIDPackage.Literals.MODEL__MODEL_ELEMS,
+				 MIDFactory.eINSTANCE.createModelElement()));
 	}
 
 }

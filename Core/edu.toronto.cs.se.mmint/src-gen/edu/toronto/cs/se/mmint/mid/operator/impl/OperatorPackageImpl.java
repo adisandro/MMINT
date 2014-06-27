@@ -11,12 +11,11 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
-import edu.toronto.cs.se.mmint.mavo.MavoPackage;
-import edu.toronto.cs.se.mmint.mavo.impl.MavoPackageImpl;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
+import edu.toronto.cs.se.mavo.MAVOPackage;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.editor.impl.EditorPackageImpl;
-import edu.toronto.cs.se.mmint.mid.impl.MidPackageImpl;
+import edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
@@ -26,10 +25,8 @@ import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.operator.util.OperatorValidator;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl;
-
 import java.util.Properties;
 import java.util.Random;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -142,25 +139,25 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		MAVOPackage.eINSTANCE.eClass();
+
 		// Obtain or create and register interdependencies
-		MidPackageImpl theMidPackage = (MidPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MidPackage.eNS_URI) instanceof MidPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MidPackage.eNS_URI) : MidPackage.eINSTANCE);
+		MIDPackageImpl theMIDPackage = (MIDPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI) instanceof MIDPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI) : MIDPackage.eINSTANCE);
 		RelationshipPackageImpl theRelationshipPackage = (RelationshipPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI) instanceof RelationshipPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI) : RelationshipPackage.eINSTANCE);
 		EditorPackageImpl theEditorPackage = (EditorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EditorPackage.eNS_URI) instanceof EditorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EditorPackage.eNS_URI) : EditorPackage.eINSTANCE);
-		MavoPackageImpl theMavoPackage = (MavoPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MavoPackage.eNS_URI) instanceof MavoPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MavoPackage.eNS_URI) : MavoPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theOperatorPackage.createPackageContents();
-		theMidPackage.createPackageContents();
+		theMIDPackage.createPackageContents();
 		theRelationshipPackage.createPackageContents();
 		theEditorPackage.createPackageContents();
-		theMavoPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theOperatorPackage.initializePackageContents();
-		theMidPackage.initializePackageContents();
+		theMIDPackage.initializePackageContents();
 		theRelationshipPackage.initializePackageContents();
 		theEditorPackage.initializePackageContents();
-		theMavoPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
@@ -489,14 +486,14 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		MidPackage theMidPackage = (MidPackage)EPackage.Registry.INSTANCE.getEPackage(MidPackage.eNS_URI);
+		MIDPackage theMIDPackage = (MIDPackage)EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		operatorEClass.getESuperTypes().add(theMidPackage.getExtendibleElement());
+		operatorEClass.getESuperTypes().add(theMIDPackage.getExtendibleElement());
 		conversionOperatorEClass.getESuperTypes().add(this.getOperator());
 		randomOperatorEClass.getESuperTypes().add(this.getOperator());
 
@@ -512,12 +509,12 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		initEOperation(getOperator__GetSupertype(), this.getOperator(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		EOperation op = initEOperation(getOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getOperator__GetExecutables__EList_EList_EList_EList(), this.getOperator(), "getExecutables", 0, -1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMidPackage.getModel(), "actualModels", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getModel(), "actualModels", 0, -1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
-		EGenericType g2 = createEGenericType(theMidPackage.getModel());
+		EGenericType g2 = createEGenericType(theMIDPackage.getModel());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "actualModelTypes", 0, -1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
@@ -529,28 +526,28 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		g2.getETypeArguments().add(g3);
 		addEParameter(op, g1, "conversions", 0, -1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEEList());
-		g2 = createEGenericType(theMidPackage.getModel());
+		g2 = createEGenericType(theMIDPackage.getModel());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "generics", 0, -1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		initEOperation(getOperator__GetInputProperties(), this.getProperties(), "getInputProperties", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getOperator__ReadInputProperties__Properties(), null, "readInputProperties", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getProperties(), "inputProperties", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getOperator__Init(), null, "init", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
-		op = initEOperation(getOperator__Execute__EList(), theMidPackage.getModel(), "execute", 1, -1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMidPackage.getModel(), "actualParameters", 1, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getOperator__Execute__EList(), theMIDPackage.getModel(), "execute", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getModel(), "actualParameters", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getException());
 
 		initEClass(conversionOperatorEClass, ConversionOperator.class, "ConversionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		op = initEOperation(getConversionOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getConversionOperator__Cleanup(), null, "cleanup", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getException());
@@ -561,7 +558,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getParameter_Name(), ecorePackage.getEString(), "name", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getParameter_Vararg(), ecorePackage.getEBoolean(), "vararg", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getParameter_Model(), theMidPackage.getModel(), null, "model", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getParameter_Model(), theMIDPackage.getModel(), null, "model", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(randomEDataType, Random.class, "Random", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
@@ -582,7 +579,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";		
+		String source = "http://www.eclipse.org/emf/2002/Ecore";	
 		addAnnotation
 		  (this, 
 		   source, 
@@ -590,13 +587,13 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });									
+		   });	
 		addAnnotation
 		  (conversionOperatorEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "conversion"
-		   });										
+		   });
 	}
 
 	/**
@@ -606,13 +603,13 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";												
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
 		addAnnotation
 		  (conversionOperatorEClass, 
 		   source, 
 		   new String[] {
 			 "conversion", "inputs->size() = 1 and outputs->size() = 1"
-		   });								
+		   });
 	}
 
 } //OperatorPackageImpl

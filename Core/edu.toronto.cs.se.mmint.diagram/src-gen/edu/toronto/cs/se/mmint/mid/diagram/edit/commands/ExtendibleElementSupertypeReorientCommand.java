@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 
 /**
  * @generated
@@ -84,7 +84,7 @@ public class ExtendibleElementSupertypeReorientCommand extends
 		if (!(oldEnd instanceof ExtendibleElement && newEnd instanceof ExtendibleElement)) {
 			return false;
 		}
-		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistExtendibleElementSupertype_4013(getNewSource(),
 						getOldTarget());
 	}
@@ -96,7 +96,7 @@ public class ExtendibleElementSupertypeReorientCommand extends
 		if (!(oldEnd instanceof ExtendibleElement && newEnd instanceof ExtendibleElement)) {
 			return false;
 		}
-		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistExtendibleElementSupertype_4013(getOldSource(),
 						getNewTarget());
 	}

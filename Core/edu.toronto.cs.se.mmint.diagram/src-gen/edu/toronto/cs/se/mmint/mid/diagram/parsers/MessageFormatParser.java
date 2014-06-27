@@ -24,8 +24,8 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.tooling.runtime.parsers.AbstractAttributeParser;
 import org.eclipse.osgi.util.NLS;
 
+import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 import edu.toronto.cs.se.mmint.mid.diagram.part.Messages;
-import edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorPlugin;
 
 /**
  * @generated
@@ -187,7 +187,7 @@ public class MessageFormatParser extends AbstractAttributeParser {
 		ParsePosition pos = new ParsePosition(0);
 		Object[] values = getEditProcessor().parse(editString, pos);
 		if (values == null) {
-			return new ParserEditStatus(MidDiagramEditorPlugin.ID,
+			return new ParserEditStatus(MIDDiagramEditorPlugin.ID,
 					IParserEditStatus.UNEDITABLE, NLS.bind(
 							Messages.MessageFormatParser_InvalidInputError,
 							new Integer(pos.getErrorIndex())));

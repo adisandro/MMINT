@@ -32,7 +32,7 @@
       <!-- @generated kleisli -->
       <extender
             uri="http://se.cs.toronto.edu/mmint/MID"
-            class="edu.toronto.cs.se.modelepedia.kleisli.provider.KleisliItemProviderAdapterFactory$MidChildCreationExtender"/>
+            class="edu.toronto.cs.se.modelepedia.kleisli.provider.KleisliItemProviderAdapterFactory$MIDChildCreationExtender"/>
       <extender
             uri="http://se.cs.toronto.edu/mmint/MID/Relationship"
             class="edu.toronto.cs.se.modelepedia.kleisli.provider.KleisliItemProviderAdapterFactory$RelationshipChildCreationExtender"/>

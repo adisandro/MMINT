@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -247,7 +247,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	public Model createHeavyModelType(ExtensionType extensionType, boolean isAbstract, String constraintLanguage, String constraintImplementation) throws MMINTException {
 
 		Model newModelType = (extensionType.getNewType() == null) ?
-			MidFactory.eINSTANCE.createModel() :
+			MIDFactory.eINSTANCE.createModel() :
 			(Model) extensionType.getNewType();
 		addHeavyModelType(newModelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), isAbstract, constraintLanguage, constraintImplementation);
 
@@ -271,7 +271,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	public ModelElement createHeavyModelElementType(ExtensionType extensionType, EMFInfo eInfo, Model modelType) throws MMINTException {
 
 		ModelElement newModelElemType = (extensionType.getNewType() == null) ?
-			MidFactory.eINSTANCE.createModelElement() :
+			MIDFactory.eINSTANCE.createModelElement() :
 			(ModelElement) extensionType.getNewType();
 		ModelElement modelElemType = getSupertype(newModelElemType, extensionType.getUri(), extensionType.getSupertypeUri());
 		addHeavyType(newModelElemType, modelElemType, extensionType.getUri(), extensionType.getName());
@@ -346,7 +346,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	public ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(ExtensionType extensionType, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
 
 		ModelEndpoint newModelTypeEndpoint = (extensionType.getNewType() == null) ?
-			MidFactory.eINSTANCE.createModelEndpoint() :
+			MIDFactory.eINSTANCE.createModelEndpoint() :
 			(ModelEndpoint) extensionType.getNewType();
 		ModelEndpointReference newModelTypeEndpointRef = addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, isBinarySrc, containerModelRelType);
 

@@ -4,7 +4,7 @@
     modelDirectory="/edu.toronto.cs.se.modelepedia.istar_mavo/src-gen" editDirectory="/edu.toronto.cs.se.modelepedia.istar_mavo.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.modelepedia.istar_mavo.editor/src-gen" modelPluginID="edu.toronto.cs.se.modelepedia.istar_mavo"
     modelName="IStar_MAVO" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
-    copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mavo"
+    copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.mavo/model/mavo.genmodel#//mavo"
     operationReflection="true">
   <foreignModel>istar_mavo.ecore</foreignModel>
   <genPackages prefix="IStar_MAVO" basePackage="edu.toronto.cs.se.modelepedia" disposableProviderFactory="true"

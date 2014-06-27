@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
@@ -202,7 +202,7 @@ public class MAVOConcretizationHighlighter {
 		Map<String, View> modelElements = new HashMap<String, View>();
 		for (View element: elementList){
 			MAVOElement modelElement = (MAVOElement) element.getElement();
-			modelElements.put(modelElement.getFormulaId(), element);
+			modelElements.put(modelElement.getFormulaVariable(), element);
 		}
 		return modelElements;
 	}

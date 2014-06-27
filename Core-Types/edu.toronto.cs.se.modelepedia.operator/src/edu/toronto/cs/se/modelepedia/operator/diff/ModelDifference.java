@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
@@ -62,7 +62,7 @@ public class ModelDifference extends OperatorImpl {
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(model.getEMFInstanceRoot(), true);
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();
-			String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, MidLevel.INSTANCES)[1];
+			String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1];
 			if (modelElemRefTable.get(modelElemUri) == null) {
 				diffModelEObjects.add(modelObj);
 			}

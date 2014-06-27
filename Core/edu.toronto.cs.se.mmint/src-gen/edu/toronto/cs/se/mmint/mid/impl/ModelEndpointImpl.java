@@ -17,8 +17,8 @@ import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -60,7 +60,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MidPackage.Literals.MODEL_ENDPOINT;
+		return MIDPackage.Literals.MODEL_ENDPOINT;
 	}
 
 	/**
@@ -102,8 +102,8 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ExtendibleElementEndpoint.class) {
 			switch (baseOperationID) {
-				case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE: return MidPackage.MODEL_ENDPOINT___GET_METATYPE;
-				case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE: return MidPackage.MODEL_ENDPOINT___GET_SUPERTYPE;
+				case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE: return MIDPackage.MODEL_ENDPOINT___GET_METATYPE;
+				case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE: return MIDPackage.MODEL_ENDPOINT___GET_SUPERTYPE;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -118,27 +118,27 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MidPackage.MODEL_ENDPOINT___GET_SUPERTYPE:
+			case MIDPackage.MODEL_ENDPOINT___GET_SUPERTYPE:
 				return getSupertype();
-			case MidPackage.MODEL_ENDPOINT___GET_TARGET:
+			case MIDPackage.MODEL_ENDPOINT___GET_TARGET:
 				return getTarget();
-			case MidPackage.MODEL_ENDPOINT___GET_METATYPE:
+			case MIDPackage.MODEL_ENDPOINT___GET_METATYPE:
 				return getMetatype();
-			case MidPackage.MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL:
+			case MIDPackage.MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL:
 				try {
 					return createTypeReference((Boolean)arguments.get(0), (ModelRel)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL:
+			case MIDPackage.MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL:
 				try {
 					return createSubtypeAndReference((String)arguments.get(0), (Model)arguments.get(1), (Boolean)arguments.get(2), (ModelRel)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL:
+			case MIDPackage.MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL:
 				try {
 					replaceSubtypeAndReference((ModelEndpoint)arguments.get(0), (String)arguments.get(1), (Model)arguments.get(2));
 					return null;
@@ -146,7 +146,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN:
+			case MIDPackage.MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN:
 				try {
 					deleteTypeAndReference((Boolean)arguments.get(0));
 					return null;
@@ -154,21 +154,21 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL:
+			case MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL:
 				try {
 					return createInstanceReference((ModelRel)arguments.get(0));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL:
+			case MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL:
 				try {
 					return createInstanceAndReference((Model)arguments.get(0), (ModelRel)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL:
+			case MIDPackage.MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL:
 				try {
 					replaceInstanceAndReference((ModelEndpoint)arguments.get(0), (Model)arguments.get(1));
 					return null;
@@ -176,7 +176,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN:
+			case MIDPackage.MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN:
 				try {
 					deleteInstanceAndReference((Boolean)arguments.get(0));
 					return null;
@@ -300,7 +300,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			}
 		}
 
-		ModelEndpoint newModelTypeEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
+		ModelEndpoint newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
 		ModelEndpointReference newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
 
 		return newModelTypeEndpointRef;
@@ -445,7 +445,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			throw new MMINTException("Can't add more than 2 model endpoints to a binary model relationship");
 		}
 
-		ModelEndpoint newModelEndpoint = MidFactory.eINSTANCE.createModelEndpoint();
+		ModelEndpoint newModelEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
 		ModelEndpointReference newModelEndpointRef = addInstanceAndReference(newModelEndpoint, targetModel, containerModelRel);
 
 		return newModelEndpointRef;

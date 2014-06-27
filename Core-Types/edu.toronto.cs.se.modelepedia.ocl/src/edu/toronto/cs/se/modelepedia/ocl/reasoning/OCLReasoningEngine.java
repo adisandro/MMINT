@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
@@ -49,7 +49,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 		helper.setContext(pivotType);
 	}
 
-	protected EObject getConstraintContext(Model model, String oclConstraint, MidLevel constraintLevel) throws MMINTException {
+	protected EObject getConstraintContext(Model model, String oclConstraint, MIDLevel constraintLevel) throws MMINTException {
 
 		//TODO MMINT[CONSTRAINT] find language to express more complex contraints on model rels
 		boolean isInstancesLevel = MultiModelConstraintChecker.isInstancesLevel(model);
@@ -58,7 +58,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 			String modelEndpointConstraintName = oclConstraint.substring(OCL_MODELENDPOINT_VARIABLE.length(), oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR));
 			for (ModelEndpointReference modelEndpointRef : ((ModelRel) model).getModelEndpointRefs()) {
 				//TODO MMINT[ENDPOINT] consider overridden endpoints here
-				String modelEndpointName = (isInstancesLevel && constraintLevel != MidLevel.INSTANCES) ?
+				String modelEndpointName = (isInstancesLevel && constraintLevel != MIDLevel.INSTANCES) ?
 					modelEndpointRef.getObject().getMetatype().getName() :
 					modelEndpointRef.getObject().getName();
 				if (modelEndpointConstraintName.equals(modelEndpointName)) {
@@ -82,7 +82,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public MAVOTruthValue checkConstraint(Model model, ExtendibleElementConstraint constraint, MidLevel constraintLevel) {
+	public MAVOTruthValue checkConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
 
 		String oclConstraint = constraint.getImplementation();
 		try {

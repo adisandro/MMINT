@@ -11,8 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo;
 
-import edu.toronto.cs.se.mmint.mavo.MAVOReference;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Foreign Column Reference</b></em>'.
@@ -30,7 +28,7 @@ import edu.toronto.cs.se.mmint.mavo.MAVOReference;
  * @model annotation="gmf.link target.decoration='none' source='source' target='target'"
  * @generated
  */
-public interface ForeignColumnReference extends MAVOReference {
+public interface ForeignColumnReference extends edu.toronto.cs.se.mavo.MAVOReference {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey#getForeignColumn <em>Foreign Column</em>}'.

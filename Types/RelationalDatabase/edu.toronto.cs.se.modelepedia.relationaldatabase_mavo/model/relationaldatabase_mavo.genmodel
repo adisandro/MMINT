@@ -6,7 +6,7 @@
     editorDirectory="/edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo" modelName="RelationalDatabase_MAVO"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
-    usedGenPackages="../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mavo" operationReflection="true">
+    usedGenPackages="../../edu.toronto.cs.se.mavo/model/mavo.genmodel#//mavo" operationReflection="true">
   <foreignModel>relationaldatabase_mavo.ecore</foreignModel>
   <genPackages prefix="RelationalDatabase_MAVO" basePackage="edu.toronto.cs.se.modelepedia"
       disposableProviderFactory="true" ecorePackage="relationaldatabase_mavo.ecore#/">

@@ -12,22 +12,15 @@
 package edu.toronto.cs.se.mmint.mid.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -37,13 +30,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ModelElementItemProvider
-	extends ExtendibleElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends ExtendibleElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -81,7 +68,7 @@ public class ModelElementItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MidPackage.Literals.MODEL_ELEMENT__EINFO);
+			childrenFeatures.add(MIDPackage.Literals.MODEL_ELEMENT__EINFO);
 		}
 		return childrenFeatures;
 	}
@@ -136,7 +123,7 @@ public class ModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ModelElement.class)) {
-			case MidPackage.MODEL_ELEMENT__EINFO:
+			case MIDPackage.MODEL_ELEMENT__EINFO:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -156,8 +143,8 @@ public class ModelElementItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MidPackage.Literals.MODEL_ELEMENT__EINFO,
-				 MidFactory.eINSTANCE.createEMFInfo()));
+				(MIDPackage.Literals.MODEL_ELEMENT__EINFO,
+				 MIDFactory.eINSTANCE.createEMFInfo()));
 	}
 
 }

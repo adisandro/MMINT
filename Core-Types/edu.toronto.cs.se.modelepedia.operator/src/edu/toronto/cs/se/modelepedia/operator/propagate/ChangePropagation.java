@@ -29,10 +29,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
@@ -450,7 +450,7 @@ traceLinks:
 		EFactory modelTypeFactory = model.getMetatype().getEMFTypeRoot().getEFactoryInstance();
 		ModelElementEndpointReference modelElemTypeEndpointRef = traceLinkRef.getObject().getMetatype().getModelElemEndpointRefs().get(indexB);
 		ModelElement modelElemType = modelElemTypeEndpointRef.getModelElemRef().getObject();
-		String modelElemTypeUri = MultiModelRegistry.getModelAndModelElementUris(modelElemType.getEMFTypeObject(), MidLevel.TYPES)[1];
+		String modelElemTypeUri = MultiModelRegistry.getModelAndModelElementUris(modelElemType.getEMFTypeObject(), MIDLevel.TYPES)[1];
 
 		EObject[] result = null;
 		for (EReference containment : modelRootB.eClass().getEAllContainments()) {

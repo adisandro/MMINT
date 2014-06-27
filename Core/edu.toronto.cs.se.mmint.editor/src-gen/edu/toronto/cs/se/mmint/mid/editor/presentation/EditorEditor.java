@@ -23,7 +23,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -125,14 +124,12 @@ import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
-
-import edu.toronto.cs.se.mmint.mavo.provider.MavoItemProviderAdapterFactory;
 import edu.toronto.cs.se.mmint.mid.editor.provider.EditorItemProviderAdapterFactory;
+import edu.toronto.cs.se.mavo.provider.MAVOItemProviderAdapterFactory;
 import edu.toronto.cs.se.mmint.mid.operator.provider.OperatorItemProviderAdapterFactory;
-import edu.toronto.cs.se.mmint.mid.presentation.MidEditorPlugin;
-import edu.toronto.cs.se.mmint.mid.provider.MidItemProviderAdapterFactory;
+import edu.toronto.cs.se.mmint.mid.presentation.MIDEditorPlugin;
+import edu.toronto.cs.se.mmint.mid.provider.MIDItemProviderAdapterFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.provider.RelationshipItemProviderAdapterFactory;
-
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
@@ -507,7 +504,7 @@ public class EditorEditor
 					}
 				}
 				catch (CoreException exception) {
-					MidEditorPlugin.INSTANCE.log(exception);
+					MIDEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 		};
@@ -623,7 +620,7 @@ public class EditorEditor
 					showTabs();
 				}
 				catch (PartInitException exception) {
-					MidEditorPlugin.INSTANCE.log(exception);
+					MIDEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 
@@ -634,7 +631,7 @@ public class EditorEditor
 						markerHelper.createMarkers(diagnostic);
 					}
 					catch (CoreException exception) {
-						MidEditorPlugin.INSTANCE.log(exception);
+						MIDEditorPlugin.INSTANCE.log(exception);
 					}
 				}
 			}
@@ -678,11 +675,11 @@ public class EditorEditor
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new MidItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new MIDItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new RelationshipItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EditorItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new OperatorItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new MavoItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new MAVOItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
@@ -1503,7 +1500,7 @@ public class EditorEditor
 		catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			//
-			MidEditorPlugin.INSTANCE.log(exception);
+			MIDEditorPlugin.INSTANCE.log(exception);
 		}
 		updateProblemIndication = true;
 		updateProblemIndication();
@@ -1707,7 +1704,7 @@ public class EditorEditor
 	 * @generated
 	 */
 	private static String getString(String key) {
-		return MidEditorPlugin.INSTANCE.getString(key);
+		return MIDEditorPlugin.INSTANCE.getString(key);
 	}
 
 	/**
@@ -1717,7 +1714,7 @@ public class EditorEditor
 	 * @generated
 	 */
 	private static String getString(String key, Object s1) {
-		return MidEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
+		return MIDEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
 	}
 
 	/**

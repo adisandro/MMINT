@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 
 /**
@@ -82,7 +82,7 @@ public class BinaryModelRelReorientCommand extends EditElementCommand {
 			return false;
 		}
 		MultiModel container = (MultiModel) getLink().eContainer();
-		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistBinaryModelRel_4015(container, getLink(),
 						getNewSource(), target);
 	}
@@ -99,7 +99,7 @@ public class BinaryModelRelReorientCommand extends EditElementCommand {
 			return false;
 		}
 		MultiModel container = (MultiModel) getLink().eContainer();
-		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistBinaryModelRel_4015(container, getLink(), source,
 						getNewTarget());
 	}

@@ -25,22 +25,14 @@
       <!-- @generated mid -->
       <package
             uri="http://se.cs.toronto.edu/mmint/MID"
-            class="edu.toronto.cs.se.mmint.mid.MidPackage"
-            genModel="model/mid.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated mid -->
-      <package
-            uri="http://se.cs.toronto.edu/mmint/MAVO"
-            class="edu.toronto.cs.se.mmint.mavo.MavoPackage"
+            class="edu.toronto.cs.se.mmint.mid.MIDPackage"
             genModel="model/mid.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://se.cs.toronto.edu/mmint/Model"
-            class="edu.toronto.cs.se.mmint.mid.MidPackage"/>
+            class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
    </extension>
 
    <extension
@@ -116,7 +108,7 @@
                name="MID"
                uri="http://se.cs.toronto.edu/mmint/MID">
             <superType
-                  uri="http://se.cs.toronto.edu/mmint/MAVO">
+                  uri="http://se.cs.toronto.edu/MAVO">
             </superType>
          </type>
       </modelType>

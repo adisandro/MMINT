@@ -37,7 +37,7 @@ public class IStar_MAVOFactoryImpl extends EFactoryImpl implements IStar_MAVOFac
 	 */
 	public static IStar_MAVOFactory init() {
 		try {
-			IStar_MAVOFactory theIStar_MAVOFactory = (IStar_MAVOFactory)EPackage.Registry.INSTANCE.getEFactory("http://se.cs.toronto.edu/modelepedia/IStar_MAVO"); 
+			IStar_MAVOFactory theIStar_MAVOFactory = (IStar_MAVOFactory)EPackage.Registry.INSTANCE.getEFactory(IStar_MAVOPackage.eNS_URI);
 			if (theIStar_MAVOFactory != null) {
 				return theIStar_MAVOFactory;
 			}

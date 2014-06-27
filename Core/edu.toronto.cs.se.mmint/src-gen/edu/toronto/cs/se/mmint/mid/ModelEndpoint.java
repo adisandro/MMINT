@@ -26,7 +26,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  * <!-- end-model-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.mid.MidPackage#getModelEndpoint()
+ * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getModelEndpoint()
  * @model
  * @generated
  */

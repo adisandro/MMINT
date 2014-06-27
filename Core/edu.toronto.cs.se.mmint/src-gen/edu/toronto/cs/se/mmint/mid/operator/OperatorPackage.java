@@ -11,8 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator;
 
-import edu.toronto.cs.se.mmint.mid.MidPackage;
-
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -81,13 +80,22 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR = 0;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__FORMULA_VARIABLE = MIDPackage.EXTENDIBLE_ELEMENT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__MAY = MidPackage.EXTENDIBLE_ELEMENT__MAY;
+	int OPERATOR__MAY = MIDPackage.EXTENDIBLE_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -96,7 +104,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__SET = MidPackage.EXTENDIBLE_ELEMENT__SET;
+	int OPERATOR__SET = MIDPackage.EXTENDIBLE_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -105,16 +113,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__VAR = MidPackage.EXTENDIBLE_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__FORMULA_ID = MidPackage.EXTENDIBLE_ELEMENT__FORMULA_ID;
+	int OPERATOR__VAR = MIDPackage.EXTENDIBLE_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -123,7 +122,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
+	int OPERATOR__SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Metatype</b></em>' reference.
@@ -132,7 +131,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__METATYPE = MidPackage.EXTENDIBLE_ELEMENT__METATYPE;
+	int OPERATOR__METATYPE = MIDPackage.EXTENDIBLE_ELEMENT__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -141,7 +140,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__URI = MidPackage.EXTENDIBLE_ELEMENT__URI;
+	int OPERATOR__URI = MIDPackage.EXTENDIBLE_ELEMENT__URI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -150,7 +149,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__NAME = MidPackage.EXTENDIBLE_ELEMENT__NAME;
+	int OPERATOR__NAME = MIDPackage.EXTENDIBLE_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -159,7 +158,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__LEVEL = MidPackage.EXTENDIBLE_ELEMENT__LEVEL;
+	int OPERATOR__LEVEL = MIDPackage.EXTENDIBLE_ELEMENT__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -168,7 +167,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__METATYPE_URI = MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
+	int OPERATOR__METATYPE_URI = MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -177,7 +176,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__DYNAMIC = MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC;
+	int OPERATOR__DYNAMIC = MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -186,7 +185,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__CONSTRAINT = MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT;
+	int OPERATOR__CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
@@ -195,7 +194,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__INPUTS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
+	int OPERATOR__INPUTS = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
@@ -204,7 +203,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__OUTPUTS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
+	int OPERATOR__OUTPUTS = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
@@ -213,7 +212,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__INPUT_SUBDIR = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
+	int OPERATOR__INPUT_SUBDIR = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Previous Operator</b></em>' reference.
@@ -222,7 +221,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__PREVIOUS_OPERATOR = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
+	int OPERATOR__PREVIOUS_OPERATOR = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Operator</em>' class.
@@ -231,7 +230,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
+	int OPERATOR_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -240,7 +239,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = MidPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+	int OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -249,7 +248,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_METATYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+	int OPERATOR___GET_METATYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -258,7 +257,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
+	int OPERATOR___GET_SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -267,7 +266,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___DELETE_TYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+	int OPERATOR___DELETE_TYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get Executables</em>' operation.
@@ -276,7 +275,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+	int OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -285,7 +284,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_INPUT_PROPERTIES = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+	int OPERATOR___GET_INPUT_PROPERTIES = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Read Input Properties</em>' operation.
@@ -294,7 +293,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+	int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Init</em>' operation.
@@ -303,7 +302,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___INIT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
+	int OPERATOR___INIT = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Execute</em>' operation.
@@ -312,7 +311,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___EXECUTE__ELIST = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+	int OPERATOR___EXECUTE__ELIST = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -321,7 +320,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
+	int OPERATOR_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -342,6 +341,15 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	int CONVERSION_OPERATOR = 1;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR__FORMULA_VARIABLE = OPERATOR__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -369,15 +377,6 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR__VAR = OPERATOR__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR__FORMULA_ID = OPERATOR__FORMULA_ID;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -606,6 +605,15 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR = 2;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__FORMULA_VARIABLE = OPERATOR__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -631,15 +639,6 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_OPERATOR__VAR = OPERATOR__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR__FORMULA_ID = OPERATOR__FORMULA_ID;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.

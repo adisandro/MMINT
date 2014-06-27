@@ -15,19 +15,19 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 
-import edu.toronto.cs.se.mmint.mid.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 
 /**
  * @generated
  */
 public class ExtendibleElementSupertypeItemSemanticEditPolicy extends
-		MidBaseItemSemanticEditPolicy {
+		MIDBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	public ExtendibleElementSupertypeItemSemanticEditPolicy() {
-		super(MidElementTypes.ExtendibleElementSupertype_4013);
+		super(MIDElementTypes.ExtendibleElementSupertype_4013);
 	}
 
 	/**

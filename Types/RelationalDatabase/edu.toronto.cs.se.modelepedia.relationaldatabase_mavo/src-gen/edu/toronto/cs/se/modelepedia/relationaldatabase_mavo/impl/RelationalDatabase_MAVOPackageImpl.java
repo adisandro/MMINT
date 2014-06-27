@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl;
 
-import edu.toronto.cs.se.mmint.mavo.MavoPackage;
+import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Column;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignColumnReference;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey;
@@ -131,7 +131,7 @@ public class RelationalDatabase_MAVOPackageImpl extends EPackageImpl implements 
 		isInited = true;
 
 		// Initialize simple dependencies
-		MavoPackage.eINSTANCE.eClass();
+		MAVOPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theRelationalDatabase_MAVOPackage.createPackageContents();
@@ -438,20 +438,20 @@ public class RelationalDatabase_MAVOPackageImpl extends EPackageImpl implements 
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		MavoPackage theMavoPackage = (MavoPackage)EPackage.Registry.INSTANCE.getEPackage(MavoPackage.eNS_URI);
+		MAVOPackage theMAVOPackage = (MAVOPackage)EPackage.Registry.INSTANCE.getEPackage(MAVOPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		relationalDatabaseEClass.getESuperTypes().add(theMavoPackage.getMAVOModel());
-		namedElementEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
+		relationalDatabaseEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
+		namedElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 		tableEClass.getESuperTypes().add(this.getNamedElement());
 		columnEClass.getESuperTypes().add(this.getNamedElement());
 		foreignKeyEClass.getESuperTypes().add(this.getNamedElement());
-		tableColumnReferenceEClass.getESuperTypes().add(theMavoPackage.getMAVOReference());
-		foreignColumnReferenceEClass.getESuperTypes().add(theMavoPackage.getMAVOReference());
+		tableColumnReferenceEClass.getESuperTypes().add(theMAVOPackage.getMAVOReference());
+		foreignColumnReferenceEClass.getESuperTypes().add(theMAVOPackage.getMAVOReference());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(relationalDatabaseEClass, RelationalDatabase.class, "RelationalDatabase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -505,12 +505,12 @@ public class RelationalDatabase_MAVOPackageImpl extends EPackageImpl implements 
 	 * @generated
 	 */
 	protected void createGmfAnnotations() {
-		String source = "gmf.diagram";		
+		String source = "gmf.diagram";	
 		addAnnotation
 		  (relationalDatabaseEClass, 
 		   source, 
 		   new String[] {
-		   });							
+		   });
 	}
 
 	/**
@@ -520,25 +520,25 @@ public class RelationalDatabase_MAVOPackageImpl extends EPackageImpl implements 
 	 * @generated
 	 */
 	protected void createGmf_1Annotations() {
-		String source = "gmf.node";			
+		String source = "gmf.node";	
 		addAnnotation
 		  (tableEClass, 
 		   source, 
 		   new String[] {
 			 "label", "name"
-		   });				
+		   });	
 		addAnnotation
 		  (columnEClass, 
 		   source, 
 		   new String[] {
 			 "label", "name"
-		   });		
+		   });	
 		addAnnotation
 		  (foreignKeyEClass, 
 		   source, 
 		   new String[] {
 			 "label", "name"
-		   });		
+		   });
 	}
 
 	/**
@@ -548,19 +548,19 @@ public class RelationalDatabase_MAVOPackageImpl extends EPackageImpl implements 
 	 * @generated
 	 */
 	protected void createGmf_2Annotations() {
-		String source = "gmf.compartment";				
+		String source = "gmf.compartment";	
 		addAnnotation
 		  (getTable_Columns(), 
 		   source, 
 		   new String[] {
 			 "layout", "list"
-		   });		
+		   });	
 		addAnnotation
 		  (getTable_ForeignKeys(), 
 		   source, 
 		   new String[] {
 			 "layout", "list"
-		   });				
+		   });
 	}
 
 	/**
@@ -570,7 +570,7 @@ public class RelationalDatabase_MAVOPackageImpl extends EPackageImpl implements 
 	 * @generated
 	 */
 	protected void createGmf_3Annotations() {
-		String source = "gmf.link";								
+		String source = "gmf.link";	
 		addAnnotation
 		  (tableColumnReferenceEClass, 
 		   source, 
@@ -578,7 +578,7 @@ public class RelationalDatabase_MAVOPackageImpl extends EPackageImpl implements 
 			 "target.decoration", "none",
 			 "source", "source",
 			 "target", "target"
-		   });		
+		   });	
 		addAnnotation
 		  (foreignColumnReferenceEClass, 
 		   source, 
