@@ -121,6 +121,23 @@ public class MultiModelOperatorUtils {
 		}
 	}
 
+	public static <E extends Enum<E>> E getEnumProperty(Properties properties, String propertyName, Class<E> enumClass) throws MMINTException {
+
+		E property = Enum.valueOf(enumClass, getStringProperty(properties, propertyName));
+
+		return property;
+	}
+
+	public static <E extends Enum<E>> E getOptionalEnumProperty(Properties properties, String propertyName, E defaultValue, Class<E> enumClass) {
+
+		try {
+			return getEnumProperty(properties, propertyName, enumClass);
+		}
+		catch (MMINTException e) {
+			return defaultValue;
+		}
+	}
+
 	public static boolean getBoolProperty(Properties properties, String propertyName) throws MMINTException {
 
 		boolean property = Boolean.parseBoolean(getStringProperty(properties, propertyName));
