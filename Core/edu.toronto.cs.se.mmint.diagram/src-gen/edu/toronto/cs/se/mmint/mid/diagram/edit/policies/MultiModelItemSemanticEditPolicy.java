@@ -23,38 +23,38 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelCreateCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRel2CreateCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRelCreateCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.OperatorCreateCommand;
-import edu.toronto.cs.se.mmint.mid.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 
 /**
  * @generated
  */
 public class MultiModelItemSemanticEditPolicy extends
-		MidBaseItemSemanticEditPolicy {
+		MIDBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	public MultiModelItemSemanticEditPolicy() {
-		super(MidElementTypes.MultiModel_1000);
+		super(MIDElementTypes.MultiModel_1000);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (MidElementTypes.Model_2011 == req.getElementType()) {
+		if (MIDElementTypes.Model_2011 == req.getElementType()) {
 			return getGEFWrapper(new ModelCreateCommand(req));
 		}
-		if (MidElementTypes.Model_2012 == req.getElementType()) {
+		if (MIDElementTypes.Model_2012 == req.getElementType()) {
 			return getGEFWrapper(new Model2CreateCommand(req));
 		}
-		if (MidElementTypes.ModelRel_2013 == req.getElementType()) {
+		if (MIDElementTypes.ModelRel_2013 == req.getElementType()) {
 			return getGEFWrapper(new ModelRelCreateCommand(req));
 		}
-		if (MidElementTypes.ModelRel_2014 == req.getElementType()) {
+		if (MIDElementTypes.ModelRel_2014 == req.getElementType()) {
 			return getGEFWrapper(new ModelRel2CreateCommand(req));
 		}
-		if (MidElementTypes.Operator_2015 == req.getElementType()) {
+		if (MIDElementTypes.Operator_2015 == req.getElementType()) {
 			return getGEFWrapper(new OperatorCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

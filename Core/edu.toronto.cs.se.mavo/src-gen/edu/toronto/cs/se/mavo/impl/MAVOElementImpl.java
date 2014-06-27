@@ -11,11 +11,18 @@
  */
 package edu.toronto.cs.se.mavo.impl;
 
+import edu.toronto.cs.se.mavo.MAVOAlternative;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOPackage;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,6 +34,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link edu.toronto.cs.se.mavo.impl.MAVOElementImpl#isMay <em>May</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mavo.impl.MAVOElementImpl#isSet <em>Set</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mavo.impl.MAVOElementImpl#isVar <em>Var</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mavo.impl.MAVOElementImpl#getAlternatives <em>Alternatives</em>}</li>
  * </ul>
  * </p>
  *
@@ -92,6 +100,16 @@ public abstract class MAVOElementImpl extends LogicElementImpl implements MAVOEl
 	 * @ordered
 	 */
 	protected boolean var = VAR_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getAlternatives() <em>Alternatives</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAlternatives()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<MAVOAlternative> alternatives;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -180,6 +198,47 @@ public abstract class MAVOElementImpl extends LogicElementImpl implements MAVOEl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<MAVOAlternative> getAlternatives() {
+		if (alternatives == null) {
+			alternatives = new EObjectWithInverseResolvingEList.ManyInverse<MAVOAlternative>(MAVOAlternative.class, this, MAVOPackage.MAVO_ELEMENT__ALTERNATIVES, MAVOPackage.MAVO_ALTERNATIVE__MAVO_ELEMENTS);
+		}
+		return alternatives;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MAVOPackage.MAVO_ELEMENT__ALTERNATIVES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAlternatives()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MAVOPackage.MAVO_ELEMENT__ALTERNATIVES:
+				return ((InternalEList<?>)getAlternatives()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -189,6 +248,8 @@ public abstract class MAVOElementImpl extends LogicElementImpl implements MAVOEl
 				return isSet();
 			case MAVOPackage.MAVO_ELEMENT__VAR:
 				return isVar();
+			case MAVOPackage.MAVO_ELEMENT__ALTERNATIVES:
+				return getAlternatives();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -198,6 +259,7 @@ public abstract class MAVOElementImpl extends LogicElementImpl implements MAVOEl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -209,6 +271,10 @@ public abstract class MAVOElementImpl extends LogicElementImpl implements MAVOEl
 				return;
 			case MAVOPackage.MAVO_ELEMENT__VAR:
 				setVar((Boolean)newValue);
+				return;
+			case MAVOPackage.MAVO_ELEMENT__ALTERNATIVES:
+				getAlternatives().clear();
+				getAlternatives().addAll((Collection<? extends MAVOAlternative>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -231,6 +297,9 @@ public abstract class MAVOElementImpl extends LogicElementImpl implements MAVOEl
 			case MAVOPackage.MAVO_ELEMENT__VAR:
 				setVar(VAR_EDEFAULT);
 				return;
+			case MAVOPackage.MAVO_ELEMENT__ALTERNATIVES:
+				getAlternatives().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -249,6 +318,8 @@ public abstract class MAVOElementImpl extends LogicElementImpl implements MAVOEl
 				return set != SET_EDEFAULT;
 			case MAVOPackage.MAVO_ELEMENT__VAR:
 				return var != VAR_EDEFAULT;
+			case MAVOPackage.MAVO_ELEMENT__ALTERNATIVES:
+				return alternatives != null && !alternatives.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

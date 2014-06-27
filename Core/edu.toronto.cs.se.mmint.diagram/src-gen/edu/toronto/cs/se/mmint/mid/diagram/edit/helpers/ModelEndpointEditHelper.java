@@ -14,5 +14,5 @@ package edu.toronto.cs.se.mmint.mid.diagram.edit.helpers;
 /**
  * @generated
  */
-public class ModelEndpointEditHelper extends MidBaseEditHelper {
+public class ModelEndpointEditHelper extends MIDBaseEditHelper {
 }

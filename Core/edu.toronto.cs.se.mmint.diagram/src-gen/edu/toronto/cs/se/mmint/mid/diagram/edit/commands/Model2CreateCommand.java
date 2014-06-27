@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmint.mid.MidFactory;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 
@@ -65,7 +65,7 @@ public class Model2CreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		Model newElement = MidFactory.eINSTANCE.createModel();
+		Model newElement = MIDFactory.eINSTANCE.createModel();
 
 		MultiModel owner = (MultiModel) getElementToEdit();
 		owner.getModels().add(newElement);

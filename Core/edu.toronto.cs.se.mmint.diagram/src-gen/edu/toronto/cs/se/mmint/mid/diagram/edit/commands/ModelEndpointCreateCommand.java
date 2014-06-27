@@ -24,9 +24,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -71,7 +71,7 @@ public class ModelEndpointCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canCreateModelEndpoint_4014(getSource(), getTarget());
 	}
 
@@ -85,7 +85,7 @@ public class ModelEndpointCreateCommand extends EditElementCommand {
 					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
-		ModelEndpoint newElement = MidFactory.eINSTANCE.createModelEndpoint();
+		ModelEndpoint newElement = MIDFactory.eINSTANCE.createModelEndpoint();
 		getSource().getModelEndpoints().add(newElement);
 		newElement.setTarget(getTarget());
 		doConfigure(newElement, monitor, info);

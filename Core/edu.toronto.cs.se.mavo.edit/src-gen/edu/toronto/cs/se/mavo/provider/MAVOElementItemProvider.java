@@ -55,6 +55,7 @@ public class MAVOElementItemProvider
 			addMayPropertyDescriptor(object);
 			addSetPropertyDescriptor(object);
 			addVarPropertyDescriptor(object);
+			addAlternativesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -121,6 +122,28 @@ public class MAVOElementItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Alternatives feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAlternativesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MAVOElement_alternatives_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MAVOElement_alternatives_feature", "_UI_MAVOElement_type"),
+				 MAVOPackage.Literals.MAVO_ELEMENT__ALTERNATIVES,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

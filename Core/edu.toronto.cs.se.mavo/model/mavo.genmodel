@@ -26,6 +26,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/may"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/set"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/var"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mavo.ecore#//MAVOElement/alternatives"/>
     </genClasses>
     <genClasses image="false" ecoreClass="mavo.ecore#//MAVOReference"/>
     <genClasses ecoreClass="mavo.ecore#//MAVODecision">

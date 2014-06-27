@@ -242,13 +242,22 @@ public interface MAVOPackage extends EPackage {
 	int MAVO_ELEMENT__VAR = LOGIC_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_ELEMENT__ALTERNATIVES = LOGIC_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_ELEMENT_FEATURE_COUNT = LOGIC_ELEMENT_FEATURE_COUNT + 3;
+	int MAVO_ELEMENT_FEATURE_COUNT = LOGIC_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Element</em>' class.
@@ -304,6 +313,15 @@ public interface MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_REFERENCE__VAR = MAVO_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_REFERENCE__ALTERNATIVES = MAVO_ELEMENT__ALTERNATIVES;
 
 	/**
 	 * The number of structural features of the '<em>Reference</em>' class.
@@ -581,6 +599,17 @@ public interface MAVOPackage extends EPackage {
 	EAttribute getMAVOElement_Var();
 
 	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mavo.MAVOElement#getAlternatives <em>Alternatives</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Alternatives</em>'.
+	 * @see edu.toronto.cs.se.mavo.MAVOElement#getAlternatives()
+	 * @see #getMAVOElement()
+	 * @generated
+	 */
+	EReference getMAVOElement_Alternatives();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mavo.MAVOReference <em>Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -782,6 +811,14 @@ public interface MAVOPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MAVO_ELEMENT__VAR = eINSTANCE.getMAVOElement_Var();
+
+		/**
+		 * The meta object literal for the '<em><b>Alternatives</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAVO_ELEMENT__ALTERNATIVES = eINSTANCE.getMAVOElement_Alternatives();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.impl.MAVOReferenceImpl <em>Reference</em>}' class.

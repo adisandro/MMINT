@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.diagram.providers;
 
-import edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorPlugin;
+import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 
 /**
  * @generated
@@ -26,10 +26,10 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	public static ElementInitializers getInstance() {
-		ElementInitializers cached = MidDiagramEditorPlugin.getInstance()
+		ElementInitializers cached = MIDDiagramEditorPlugin.getInstance()
 				.getElementInitializers();
 		if (cached == null) {
-			MidDiagramEditorPlugin.getInstance().setElementInitializers(
+			MIDDiagramEditorPlugin.getInstance().setElementInitializers(
 					cached = new ElementInitializers());
 		}
 		return cached;

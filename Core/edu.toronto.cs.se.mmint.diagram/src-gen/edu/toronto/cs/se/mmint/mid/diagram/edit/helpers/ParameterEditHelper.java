@@ -14,5 +14,5 @@ package edu.toronto.cs.se.mmint.mid.diagram.edit.helpers;
 /**
  * @generated
  */
-public class ParameterEditHelper extends MidBaseEditHelper {
+public class ParameterEditHelper extends MIDBaseEditHelper {
 }

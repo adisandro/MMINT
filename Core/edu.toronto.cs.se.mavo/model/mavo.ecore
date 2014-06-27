@@ -56,6 +56,12 @@
         <details key="documentation" value="True if this element is a variable (V), false if it a constant (C)."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="alternatives" upperBound="-1"
+        eType="#//MAVOAlternative" eOpposite="#//MAVOAlternative/mavoElements">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of alternatives this MAVO element is part of, possibly empty."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MAVOReference" abstract="true" eSuperTypes="#//MAVOElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -89,7 +95,7 @@
       <details key="documentation" value="An alternative for a MAVO decision."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mavoElements" upperBound="-1"
-        eType="#//MAVOElement">
+        eType="#//MAVOElement" eOpposite="#//MAVOElement/alternatives">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The list of MAVO elements in this alternative, possibly empty."/>
       </eAnnotations>

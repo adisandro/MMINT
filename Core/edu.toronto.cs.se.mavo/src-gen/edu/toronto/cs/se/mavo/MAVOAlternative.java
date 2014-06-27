@@ -37,6 +37,7 @@ public interface MAVOAlternative extends DecisionElement {
 	/**
 	 * Returns the value of the '<em><b>Mavo Elements</b></em>' reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.mavo.MAVOElement}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mavo.MAVOElement#getAlternatives <em>Alternatives</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -44,7 +45,8 @@ public interface MAVOAlternative extends DecisionElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Mavo Elements</em>' reference list.
 	 * @see edu.toronto.cs.se.mavo.MAVOPackage#getMAVOAlternative_MavoElements()
-	 * @model
+	 * @see edu.toronto.cs.se.mavo.MAVOElement#getAlternatives
+	 * @model opposite="alternatives"
 	 * @generated
 	 */
 	EList<MAVOElement> getMavoElements();

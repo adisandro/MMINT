@@ -19,7 +19,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelNewModelCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRelImportNaryRelCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRelNewNaryRelCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MultiModelItemSemanticEditPolicy;
-import edu.toronto.cs.se.mmint.mid.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 
 /**
  * The semantic edit policy for the Mid diagram (i.e. a multimodel).
@@ -39,16 +39,16 @@ public class MidDiagramSemanticEditPolicy extends MultiModelItemSemanticEditPoli
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 
-		if (MidElementTypes.Model_2011 == req.getElementType()) {
+		if (MIDElementTypes.Model_2011 == req.getElementType()) {
 			return getGEFWrapper(new ModelNewModelCommand(req));
 		}
-		if (MidElementTypes.Model_2012 == req.getElementType()) {
+		if (MIDElementTypes.Model_2012 == req.getElementType()) {
 			return getGEFWrapper(new ModelImportModelCommand(req));
 		}
-		if (MidElementTypes.ModelRel_2013 == req.getElementType()) {
+		if (MIDElementTypes.ModelRel_2013 == req.getElementType()) {
 			return getGEFWrapper(new ModelRelNewNaryRelCommand(req));
 		}
-		if (MidElementTypes.ModelRel_2014 == req.getElementType()) {
+		if (MIDElementTypes.ModelRel_2014 == req.getElementType()) {
 			return getGEFWrapper(new ModelRelImportNaryRelCommand(req));
 		}
 		return null;

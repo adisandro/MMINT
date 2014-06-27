@@ -14,14 +14,13 @@ package edu.toronto.cs.se.mavo.impl;
 import edu.toronto.cs.se.mavo.MAVOAlternative;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOPackage;
-
 import java.util.Collection;
-
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,9 +72,38 @@ public class MAVOAlternativeImpl extends DecisionElementImpl implements MAVOAlte
 	 */
 	public EList<MAVOElement> getMavoElements() {
 		if (mavoElements == null) {
-			mavoElements = new EObjectResolvingEList<MAVOElement>(MAVOElement.class, this, MAVOPackage.MAVO_ALTERNATIVE__MAVO_ELEMENTS);
+			mavoElements = new EObjectWithInverseResolvingEList.ManyInverse<MAVOElement>(MAVOElement.class, this, MAVOPackage.MAVO_ALTERNATIVE__MAVO_ELEMENTS, MAVOPackage.MAVO_ELEMENT__ALTERNATIVES);
 		}
 		return mavoElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MAVOPackage.MAVO_ALTERNATIVE__MAVO_ELEMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMavoElements()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MAVOPackage.MAVO_ALTERNATIVE__MAVO_ELEMENTS:
+				return ((InternalEList<?>)getMavoElements()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
