@@ -16,13 +16,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 
 public class RelationshipDiagramOutlineContentProvider extends AdapterFactoryContentProvider {
 
-	private MidLevel level;
+	private MIDLevel level;
 
-	public RelationshipDiagramOutlineContentProvider(AdapterFactory adapterFactory, MidLevel level) {
+	public RelationshipDiagramOutlineContentProvider(AdapterFactory adapterFactory, MIDLevel level) {
 
 		super(adapterFactory);
 		this.level = level;
@@ -32,11 +32,11 @@ public class RelationshipDiagramOutlineContentProvider extends AdapterFactoryCon
 	public boolean hasChildren(Object object) {
 
 		boolean hasChildren;
-		if (level == MidLevel.INSTANCES && object instanceof EObject) {
+		if (level == MIDLevel.INSTANCES && object instanceof EObject) {
 			RelationshipDiagramOutlineItemProvider alternativeProvider = new RelationshipDiagramOutlineItemProvider(adapterFactory);
 			hasChildren = alternativeProvider.hasChildren(object);
 		}
-		else if (level == MidLevel.TYPES && object instanceof EClass) {
+		else if (level == MIDLevel.TYPES && object instanceof EClass) {
 			RelationshipDiagramOutlineEClassItemProvider alternativeProvider = new RelationshipDiagramOutlineEClassItemProvider(adapterFactory);
 			hasChildren = alternativeProvider.hasChildren(object);
 		}
@@ -51,11 +51,11 @@ public class RelationshipDiagramOutlineContentProvider extends AdapterFactoryCon
 	public Object[] getChildren(Object object) {
 
 		Object[] children;
-		if (level == MidLevel.INSTANCES && object instanceof EObject) {
+		if (level == MIDLevel.INSTANCES && object instanceof EObject) {
 			RelationshipDiagramOutlineItemProvider alternativeProvider = new RelationshipDiagramOutlineItemProvider(adapterFactory);
 			children = alternativeProvider.getChildren(object).toArray();
 		}
-		else if (level == MidLevel.TYPES && object instanceof EClass) {
+		else if (level == MIDLevel.TYPES && object instanceof EClass) {
 			RelationshipDiagramOutlineEClassItemProvider alternativeProvider = new RelationshipDiagramOutlineEClassItemProvider(adapterFactory);
 			children = alternativeProvider.getChildren(object).toArray();
 		}

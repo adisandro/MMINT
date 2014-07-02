@@ -27,19 +27,19 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.ModelEleme
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ExtendibleElementReferenceSupertypeRefEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementEndpointReference2EditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementEndpointReferenceEditPart;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementTypes;
 
 /**
  * @generated
  */
 public class BinaryLinkReferenceItemSemanticEditPolicy extends
-		MidBaseItemSemanticEditPolicy {
+		MIDBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	public BinaryLinkReferenceItemSemanticEditPolicy() {
-		super(MidElementTypes.BinaryLinkReference_4012);
+		super(MIDElementTypes.BinaryLinkReference_4012);
 	}
 
 	/**
@@ -64,17 +64,17 @@ public class BinaryLinkReferenceItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010 == req
+		if (MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010 == req
 				.getElementType()) {
 			return getGEFWrapper(new ExtendibleElementReferenceSupertypeRefCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.ModelElementEndpointReference_4011 == req
+		if (MIDElementTypes.ModelElementEndpointReference_4011 == req
 				.getElementType()) {
 			return getGEFWrapper(new ModelElementEndpointReferenceCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.ModelElementEndpointReference_4014 == req
+		if (MIDElementTypes.ModelElementEndpointReference_4014 == req
 				.getElementType()) {
 			return getGEFWrapper(new ModelElementEndpointReference2CreateCommand(
 					req, req.getSource(), req.getTarget()));
@@ -87,16 +87,16 @@ public class BinaryLinkReferenceItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010 == req
+		if (MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010 == req
 				.getElementType()) {
 			return getGEFWrapper(new ExtendibleElementReferenceSupertypeRefCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.ModelElementEndpointReference_4011 == req
+		if (MIDElementTypes.ModelElementEndpointReference_4011 == req
 				.getElementType()) {
 			return null;
 		}
-		if (MidElementTypes.ModelElementEndpointReference_4014 == req
+		if (MIDElementTypes.ModelElementEndpointReference_4014 == req
 				.getElementType()) {
 			return null;
 		}

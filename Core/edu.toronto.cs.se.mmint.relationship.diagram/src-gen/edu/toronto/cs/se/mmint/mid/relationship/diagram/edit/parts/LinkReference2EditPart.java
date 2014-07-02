@@ -46,8 +46,7 @@ import org.eclipse.swt.graphics.Color;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.LinkReference2ItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.LinkReferenceSuperComponentEditPolicy;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.LinkReferenceSuperSemanticEditPolicy;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidVisualIDRegistry;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry;
 
 /**
  * @generated
@@ -277,118 +276,8 @@ public class LinkReference2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(MidVisualIDRegistry
+		return getChildBySemanticHint(MIDVisualIDRegistry
 				.getType(WrappingLabel3EditPart.VISUAL_ID));
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
-		types.add(MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
-		types.add(MidElementTypes.ModelElementEndpointReference_4011);
-		types.add(MidElementTypes.ModelElementEndpointReference_4014);
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof ModelEndpointReferenceEditPart) {
-			types.add(MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
-		}
-		if (targetEditPart instanceof LinkReferenceEditPart) {
-			types.add(MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
-		}
-		if (targetEditPart instanceof edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.LinkReference2EditPart) {
-			types.add(MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
-		}
-		if (targetEditPart instanceof ModelEndpointReference2EditPart) {
-			types.add(MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
-		}
-		if (targetEditPart instanceof ModelElementReferenceEditPart) {
-			types.add(MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
-		}
-		if (targetEditPart instanceof ModelElementReference2EditPart) {
-			types.add(MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
-		}
-		if (targetEditPart instanceof ModelElementReference3EditPart) {
-			types.add(MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
-		}
-		if (targetEditPart instanceof ModelElementReferenceEditPart) {
-			types.add(MidElementTypes.ModelElementEndpointReference_4011);
-		}
-		if (targetEditPart instanceof ModelElementReference2EditPart) {
-			types.add(MidElementTypes.ModelElementEndpointReference_4011);
-		}
-		if (targetEditPart instanceof ModelElementReference3EditPart) {
-			types.add(MidElementTypes.ModelElementEndpointReference_4011);
-		}
-		if (targetEditPart instanceof ModelElementReferenceEditPart) {
-			types.add(MidElementTypes.ModelElementEndpointReference_4014);
-		}
-		if (targetEditPart instanceof ModelElementReference2EditPart) {
-			types.add(MidElementTypes.ModelElementEndpointReference_4014);
-		}
-		if (targetEditPart instanceof ModelElementReference3EditPart) {
-			types.add(MidElementTypes.ModelElementEndpointReference_4014);
-		}
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010) {
-			types.add(MidElementTypes.ModelEndpointReference_2007);
-			types.add(MidElementTypes.LinkReference_2008);
-			types.add(MidElementTypes.LinkReference_2009);
-			types.add(MidElementTypes.ModelEndpointReference_2010);
-			types.add(MidElementTypes.ModelElementReference_3005);
-			types.add(MidElementTypes.ModelElementReference_3006);
-			types.add(MidElementTypes.ModelElementReference_3007);
-		} else if (relationshipType == MidElementTypes.ModelElementEndpointReference_4011) {
-			types.add(MidElementTypes.ModelElementReference_3005);
-			types.add(MidElementTypes.ModelElementReference_3006);
-			types.add(MidElementTypes.ModelElementReference_3007);
-		} else if (relationshipType == MidElementTypes.ModelElementEndpointReference_4014) {
-			types.add(MidElementTypes.ModelElementReference_3005);
-			types.add(MidElementTypes.ModelElementReference_3006);
-			types.add(MidElementTypes.ModelElementReference_3007);
-		}
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010) {
-			types.add(MidElementTypes.ModelEndpointReference_2007);
-			types.add(MidElementTypes.LinkReference_2008);
-			types.add(MidElementTypes.LinkReference_2009);
-			types.add(MidElementTypes.ModelEndpointReference_2010);
-			types.add(MidElementTypes.ModelElementReference_3005);
-			types.add(MidElementTypes.ModelElementReference_3006);
-			types.add(MidElementTypes.ModelElementReference_3007);
-		}
-		return types;
 	}
 
 	/**

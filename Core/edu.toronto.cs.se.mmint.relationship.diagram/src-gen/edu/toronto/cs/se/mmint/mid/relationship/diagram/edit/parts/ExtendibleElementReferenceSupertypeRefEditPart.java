@@ -86,7 +86,7 @@ public class ExtendibleElementReferenceSupertypeRefEditPart extends
 		 */
 		public ExtendibleElementReferenceSupertypeRefFigure() {
 			this.setLineWidth(2);
-			this.setForegroundColor(ColorConstants.lightGray);
+			this.setForegroundColor(ColorConstants.gray);
 
 			setTargetDecoration(createTargetDecoration());
 		}

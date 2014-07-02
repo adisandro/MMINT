@@ -14,5 +14,5 @@ package edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.helpers;
 /**
  * @generated
  */
-public class BinaryLinkReferenceEditHelper extends MidBaseEditHelper {
+public class BinaryLinkReferenceEditHelper extends MIDBaseEditHelper {
 }

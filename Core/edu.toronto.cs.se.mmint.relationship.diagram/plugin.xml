@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.4"?>
+<?eclipse version="3.0"?>
 <!--
 Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
 Rick Salay.
@@ -34,9 +34,9 @@ Contributors:
          icon="icons/obj16/RelationshipDiagramFile.gif"
          extensions="relationshipdiag"
          default="true"
-         class="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidDiagramEditor"
-         matchingStrategy="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidMatchingStrategy"
-         contributorClass="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidDiagramActionBarContributor">
+         class="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDDiagramEditor"
+         matchingStrategy="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDMatchingStrategy"
+         contributorClass="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDDiagramActionBarContributor">
       </editor>
    </extension>
    
@@ -56,8 +56,8 @@ Contributors:
   	     name="%newWizardName"
   	     icon="icons/obj16/RelationshipDiagramFile.gif"
   	     category="org.eclipse.ui.Examples"
-  	     class="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidCreationWizard"
-  	     id="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidCreationWizardID">
+  	     class="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDCreationWizard"
+  	     id="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDCreationWizardID">
   	  	 <description>%newWizardDesc</description>  
       </wizard>
    </extension>
@@ -70,7 +70,7 @@ Contributors:
             objectClass="org.eclipse.core.resources.IFile">
          <action
                label="%initDiagramActionLabel"
-               class="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidInitDiagramFileAction"
+               class="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDInitDiagramFileAction"
                menubarPath="additions"
                enablesFor="1"
                id="edu.toronto.cs.se.mmint.relationship.diagram.InitDiagramAction">
@@ -124,7 +124,7 @@ Contributors:
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
       <?gmfgen generated="true"?>
-      <MarkerNavigationProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidMarkerNavigationProvider">
+      <MarkerNavigationProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDMarkerNavigationProvider">
          <MarkerType name="edu.toronto.cs.se.mmint.relationship.diagram.diagnostic"/>
          <Priority name="Lowest"/>
       </MarkerNavigationProvider>
@@ -139,7 +139,7 @@ Contributors:
 
    <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
       <?gmfgen generated="true"?>
-      <decoratorProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidValidationDecoratorProvider">
+      <decoratorProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDValidationDecoratorProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
          <context decoratorTargets="PRIMARY_VIEW"/>
@@ -188,7 +188,7 @@ Contributors:
       <?gmfgen generated="true"?>
       <propertyContributor
             contributorId="edu.toronto.cs.se.mmint.relationship.diagram"
-            labelProvider="edu.toronto.cs.se.mmint.mid.relationship.diagram.sheet.MidSheetLabelProvider">
+            labelProvider="edu.toronto.cs.se.mmint.mid.relationship.diagram.sheet.MIDSheetLabelProvider">
          <propertyCategory category="domain"/>
          <propertyCategory category="visual"/>
          <propertyCategory category="extra"/>
@@ -239,17 +239,17 @@ Contributors:
          <propertySection
             id="property.section.domain" 
             tab="property.tab.domain"
-            class="edu.toronto.cs.se.mmint.mid.relationship.diagram.sheet.MidPropertySection">
+            class="edu.toronto.cs.se.mmint.mid.relationship.diagram.sheet.MIDPropertySection">
             <input type="org.eclipse.gmf.runtime.notation.View"/>
             <input type="org.eclipse.gef.EditPart"/>
-            <input type="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MidAbstractNavigatorItem"/>
+            <input type="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDAbstractNavigatorItem"/>
          </propertySection>
       </propertySections>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
       <?gmfgen generated="true"?>
-      <viewProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.RelationshipDiagramViewProvider">
+      <viewProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDViewProvider">
          <Priority name="Lowest"/>
          <object id="referencing-diagrams" class="org.eclipse.gmf.runtime.notation.Diagram">
             <method name="getType()" value="relationship"/>
@@ -263,7 +263,7 @@ Contributors:
 
    <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
       <?gmfgen generated="true"?>
-      <editpartProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidEditPartProvider">
+      <editpartProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDEditPartProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
             <method name="getType()" value="Relationship"/>
@@ -284,39 +284,70 @@ Contributors:
       </editpartProvider>
    </extension>
 
+   
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidModelingAssistantProvider">
+      <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfModelRelEditPart">
          <Priority name="Lowest"/>
          <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelRelEditPart" id="ModelRel_1000"/>
-         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelEndpointReferenceEditPart" id="ModelEndpointReference_2007"/>
-         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.LinkReferenceEditPart" id="LinkReference_2008"/>
-         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.LinkReference2EditPart" id="LinkReference_2009"/>
-         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelEndpointReference2EditPart" id="ModelEndpointReference_2010"/>
-         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart" id="ModelElementReference_3005"/>
-         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReference2EditPart" id="ModelElementReference_3006"/>
-         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReference3EditPart" id="ModelElementReference_3007"/>
-         <context elements="ModelRel_1000,ModelEndpointReference_2007,LinkReference_2008,LinkReference_2009,ModelEndpointReference_2010,ModelElementReference_3005,ModelElementReference_3006,ModelElementReference_3007"/>
+         <context elements="ModelRel_1000"/>
       </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfModelEndpointReferenceEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelEndpointReferenceEditPart" id="ModelEndpointReference_2007"/>
+         <context elements="ModelEndpointReference_2007"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfLinkReferenceEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.LinkReferenceEditPart" id="LinkReference_2008"/>
+         <context elements="LinkReference_2008"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfLinkReference2EditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.LinkReference2EditPart" id="LinkReference_2009"/>
+         <context elements="LinkReference_2009"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfModelEndpointReference2EditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelEndpointReference2EditPart" id="ModelEndpointReference_2010"/>
+         <context elements="ModelEndpointReference_2010"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfModelElementReferenceEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart" id="ModelElementReference_3005"/>
+         <context elements="ModelElementReference_3005"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfModelElementReference2EditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReference2EditPart" id="ModelElementReference_3006"/>
+         <context elements="ModelElementReference_3006"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfModelElementReference3EditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReference3EditPart" id="ModelElementReference_3007"/>
+         <context elements="ModelElementReference_3007"/>
+      </modelingAssistantProvider>
+      
    </extension>
+
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>
-      <IconProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidIconProvider">
+      <IconProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDIconProvider">
          <Priority name="Low"/>
       </IconProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
       <?gmfgen generated="true"?>
-      <ParserProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidParserProvider">
+      <ParserProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders" id="decorator-provider">
       <?gmfgen generated="true"?>
-      <decoratorProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidShortcutsDecoratorProvider">
+      <decoratorProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDShortcutsDecoratorProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
             <method name="getType()" value="2007,2008,2009,2010"/>
@@ -485,7 +516,7 @@ Contributors:
            type="org.eclipse.emf.common.ui.URIEditorInput"
            namespace="edu.toronto.cs.se.mmint.relationship.diagram"
            properties="isURIEditorInput"
-           class="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidUriEditorInputTester">
+           class="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDUriEditorInputTester">
        </propertyTester>
    </extension>
 
@@ -496,7 +527,7 @@ Contributors:
            type="org.eclipse.gmf.runtime.notation.View"
            namespace="edu.toronto.cs.se.mmint.relationship.diagram"
            properties="isShortcut"
-           class="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidShortcutPropertyTester">
+           class="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDShortcutPropertyTester">
        </propertyTester>
    </extension>
 
@@ -522,8 +553,8 @@ Contributors:
             id="edu.toronto.cs.se.mmint.relationship.diagram.resourceContent" 
             name="%navigatorContentName" 
             priority="normal" 
-            contentProvider="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MidNavigatorContentProvider" 
-            labelProvider="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MidNavigatorLabelProvider"
+            contentProvider="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDNavigatorContentProvider" 
+            labelProvider="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDNavigatorLabelProvider"
             icon="icons/obj16/RelationshipDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -532,7 +563,7 @@ Contributors:
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="relationshipdiag"/>
                </and>
-               <instanceof value="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MidAbstractNavigatorItem"/>
+               <instanceof value="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDAbstractNavigatorItem"/>
            	   <adapt type="org.eclipse.gmf.runtime.notation.View">
            	      <test property="edu.toronto.cs.se.mmint.relationship.diagram.isShortcut"/>
            	   </adapt>
@@ -540,7 +571,7 @@ Contributors:
          </triggerPoints>
          <possibleChildren>
             <or>
-         	   <instanceof value="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MidAbstractNavigatorItem"/>
+         	   <instanceof value="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDAbstractNavigatorItem"/>
            	   <adapt type="org.eclipse.gmf.runtime.notation.View">
            	      <test property="edu.toronto.cs.se.mmint.relationship.diagram.isShortcut"/>
            	   </adapt>
@@ -548,14 +579,14 @@ Contributors:
          </possibleChildren>
          <commonSorter 
                id="edu.toronto.cs.se.mmint.relationship.diagram.navigatorSorter" 
-               class="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MidNavigatorSorter">
+               class="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDNavigatorSorter">
             <parentExpression>
                <or>
 	              <and>
     	             <instanceof value="org.eclipse.core.resources.IFile"/>
         	         <test property="org.eclipse.core.resources.extension" value="relationshipdiag"/>
                   </and>
-                  <instanceof value="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MidAbstractNavigatorItem"/>
+                  <instanceof value="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDAbstractNavigatorItem"/>
                </or>
             </parentExpression>
          </commonSorter>
@@ -564,8 +595,8 @@ Contributors:
             id="edu.toronto.cs.se.mmint.relationship.diagram.domainResourceContent" 
             name="%domainNavigatorContentName" 
             priority="normal" 
-            contentProvider="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MidDomainNavigatorContentProvider" 
-            labelProvider="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MidDomainNavigatorLabelProvider"
+            contentProvider="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDDomainNavigatorContentProvider" 
+            labelProvider="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDDomainNavigatorLabelProvider"
             icon="icons/obj16/RelationshipDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -574,19 +605,19 @@ Contributors:
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="relationship"/>
                </and>
-               <instanceof value="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MidDomainNavigatorItem"/>
+               <instanceof value="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDDomainNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
-            <instanceof value="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MidDomainNavigatorItem"/>
+            <instanceof value="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDDomainNavigatorItem"/>
          </possibleChildren>
       </navigatorContent>
       <actionProvider
             id="edu.toronto.cs.se.mmint.relationship.diagram.navigatorActionProvider"
-            class="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MidNavigatorActionProvider">
+            class="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDNavigatorActionProvider">
          <enablement>
             <or>
-               <instanceof value="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MidAbstractNavigatorItem"/>
+               <instanceof value="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDAbstractNavigatorItem"/>
            	   <adapt type="org.eclipse.gmf.runtime.notation.View">
            	      <test property="edu.toronto.cs.se.mmint.relationship.diagram.isShortcut"/>
            	   </adapt>
@@ -599,7 +630,7 @@ Contributors:
       <?gmfgen generated="true"?>
       <linkHelper
             id="edu.toronto.cs.se.mmint.relationship.diagram.navigatorLinkHelper"
-            class="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MidNavigatorLinkHelper">
+            class="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDNavigatorLinkHelper">
          <editorInputEnablement>
             <and>
                <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
@@ -607,7 +638,7 @@ Contributors:
             </and>
          </editorInputEnablement>
          <selectionEnablement>
-            <instanceof value="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MidAbstractNavigatorItem"/>
+            <instanceof value="edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDAbstractNavigatorItem"/>
          </selectionEnablement>
       </linkHelper>
    </extension>
@@ -615,7 +646,7 @@ Contributors:
       <?gmfgen generated="true"?>
       <command
          categoryId="org.eclipse.ui.category.edit"
-         defaultHandler="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidDiagramUpdateCommand"
+         defaultHandler="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDDiagramUpdateCommand"
          description="%update.diagram.description"
          id="edu.toronto.cs.se.mmint.mid.relationship.diagram.updateDiagram"
          name="%update.diagram.name"/>
@@ -671,7 +702,7 @@ Contributors:
             modelTypeUri="http://se.cs.toronto.edu/mmint/MID/Relationship"
             id="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.RelationshipDiagramEditorID"
             isDiagram="true"
-            wizardId="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidCreationWizardID">
+            wizardId="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDCreationWizardID">
          <type
                name="Relationship diagram"
                uri="http://se.cs.toronto.edu/mmint/MID/Relationship_diagram">

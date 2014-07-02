@@ -34,107 +34,107 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String MidCreationWizardTitle;
+	public static String MIDCreationWizardTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String MidCreationWizard_DiagramModelFilePageTitle;
+	public static String MIDCreationWizard_DiagramModelFilePageTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String MidCreationWizard_DiagramModelFilePageDescription;
+	public static String MIDCreationWizard_DiagramModelFilePageDescription;
 
 	/**
 	 * @generated
 	 */
-	public static String MidCreationWizard_DomainModelFilePageTitle;
+	public static String MIDCreationWizard_DomainModelFilePageTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String MidCreationWizard_DomainModelFilePageDescription;
+	public static String MIDCreationWizard_DomainModelFilePageDescription;
 
 	/**
 	 * @generated
 	 */
-	public static String MidCreationWizardOpenEditorError;
+	public static String MIDCreationWizardOpenEditorError;
 
 	/**
 	 * @generated
 	 */
-	public static String MidCreationWizardCreationError;
+	public static String MIDCreationWizardCreationError;
 
 	/**
 	 * @generated
 	 */
-	public static String MidCreationWizardPageExtensionError;
+	public static String MIDCreationWizardPageExtensionError;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDiagramEditorUtil_OpenModelResourceErrorDialogTitle;
+	public static String MIDDiagramEditorUtil_OpenModelResourceErrorDialogTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDiagramEditorUtil_OpenModelResourceErrorDialogMessage;
+	public static String MIDDiagramEditorUtil_OpenModelResourceErrorDialogMessage;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDiagramEditorUtil_CreateDiagramProgressTask;
+	public static String MIDDiagramEditorUtil_CreateDiagramProgressTask;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDiagramEditorUtil_CreateDiagramCommandLabel;
+	public static String MIDDiagramEditorUtil_CreateDiagramCommandLabel;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDocumentProvider_isModifiable;
+	public static String MIDDocumentProvider_isModifiable;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDocumentProvider_handleElementContentChanged;
+	public static String MIDDocumentProvider_handleElementContentChanged;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDocumentProvider_IncorrectInputError;
+	public static String MIDDocumentProvider_IncorrectInputError;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDocumentProvider_NoDiagramInResourceError;
+	public static String MIDDocumentProvider_NoDiagramInResourceError;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDocumentProvider_DiagramLoadingError;
+	public static String MIDDocumentProvider_DiagramLoadingError;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDocumentProvider_UnsynchronizedFileSaveError;
+	public static String MIDDocumentProvider_UnsynchronizedFileSaveError;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDocumentProvider_SaveDiagramTask;
+	public static String MIDDocumentProvider_SaveDiagramTask;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDocumentProvider_SaveNextResourceTask;
+	public static String MIDDocumentProvider_SaveNextResourceTask;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDocumentProvider_SaveAsOperation;
+	public static String MIDDocumentProvider_SaveAsOperation;
 
 	/**
 	 * @generated
@@ -159,87 +159,87 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String MidNewDiagramFileWizard_CreationPageName;
+	public static String MIDNewDiagramFileWizard_CreationPageName;
 
 	/**
 	 * @generated
 	 */
-	public static String MidNewDiagramFileWizard_CreationPageTitle;
+	public static String MIDNewDiagramFileWizard_CreationPageTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String MidNewDiagramFileWizard_CreationPageDescription;
+	public static String MIDNewDiagramFileWizard_CreationPageDescription;
 
 	/**
 	 * @generated
 	 */
-	public static String MidNewDiagramFileWizard_RootSelectionPageName;
+	public static String MIDNewDiagramFileWizard_RootSelectionPageName;
 
 	/**
 	 * @generated
 	 */
-	public static String MidNewDiagramFileWizard_RootSelectionPageTitle;
+	public static String MIDNewDiagramFileWizard_RootSelectionPageTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String MidNewDiagramFileWizard_RootSelectionPageDescription;
+	public static String MIDNewDiagramFileWizard_RootSelectionPageDescription;
 
 	/**
 	 * @generated
 	 */
-	public static String MidNewDiagramFileWizard_RootSelectionPageSelectionTitle;
+	public static String MIDNewDiagramFileWizard_RootSelectionPageSelectionTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String MidNewDiagramFileWizard_RootSelectionPageNoSelectionMessage;
+	public static String MIDNewDiagramFileWizard_RootSelectionPageNoSelectionMessage;
 
 	/**
 	 * @generated
 	 */
-	public static String MidNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage;
+	public static String MIDNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage;
 
 	/**
 	 * @generated
 	 */
-	public static String MidNewDiagramFileWizard_InitDiagramCommand;
+	public static String MIDNewDiagramFileWizard_InitDiagramCommand;
 
 	/**
 	 * @generated
 	 */
-	public static String MidNewDiagramFileWizard_IncorrectRootError;
+	public static String MIDNewDiagramFileWizard_IncorrectRootError;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDiagramEditor_SavingDeletedFile;
+	public static String MIDDiagramEditor_SavingDeletedFile;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDiagramEditor_SaveAsErrorTitle;
+	public static String MIDDiagramEditor_SaveAsErrorTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDiagramEditor_SaveAsErrorMessage;
+	public static String MIDDiagramEditor_SaveAsErrorMessage;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDiagramEditor_SaveErrorTitle;
+	public static String MIDDiagramEditor_SaveErrorTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String MidDiagramEditor_SaveErrorMessage;
+	public static String MIDDiagramEditor_SaveErrorMessage;
 
 	/**
 	 * @generated
 	 */
-	public static String MidElementChooserDialog_SelectModelElementTitle;
+	public static String MIDElementChooserDialog_SelectModelElementTitle;
 
 	/**
 	 * @generated
@@ -464,12 +464,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String MidModelingAssistantProviderTitle;
+	public static String MIDModelingAssistantProviderTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String MidModelingAssistantProviderMessage;
+	public static String MIDModelingAssistantProviderMessage;
 
 	//TODO: put accessor fields manually	
 }
