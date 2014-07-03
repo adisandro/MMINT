@@ -12,6 +12,8 @@
 package edu.toronto.cs.se.modelepedia.istar_mavo.util;
 
 import edu.toronto.cs.se.mavo.LogicElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.modelepedia.istar_mavo.*;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -132,7 +134,7 @@ public class IStar_MAVOAdapterFactory extends AdapterFactoryImpl {
 				return createDependeeLinkAdapter();
 			}
 			@Override
-			public Adapter caseMAVOModel(edu.toronto.cs.se.mavo.MAVOModel object) {
+			public Adapter caseMAVOModel(MAVOModel object) {
 				return createMAVOModelAdapter();
 			}
 			@Override
@@ -140,7 +142,7 @@ public class IStar_MAVOAdapterFactory extends AdapterFactoryImpl {
 				return createLogicElementAdapter();
 			}
 			@Override
-			public Adapter caseMAVOElement(edu.toronto.cs.se.mavo.MAVOElement object) {
+			public Adapter caseMAVOElement(MAVOElement object) {
 				return createMAVOElementAdapter();
 			}
 			@Override

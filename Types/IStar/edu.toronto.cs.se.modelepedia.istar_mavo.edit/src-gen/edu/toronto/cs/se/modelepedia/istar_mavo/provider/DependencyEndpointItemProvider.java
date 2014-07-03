@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.istar_mavo.provider;
 
 
+import edu.toronto.cs.se.mavo.provider.MAVOElementItemProvider;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
 
@@ -33,7 +34,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class DependencyEndpointItemProvider
-	extends edu.toronto.cs.se.mavo.provider.MAVOElementItemProvider {
+	extends MAVOElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
