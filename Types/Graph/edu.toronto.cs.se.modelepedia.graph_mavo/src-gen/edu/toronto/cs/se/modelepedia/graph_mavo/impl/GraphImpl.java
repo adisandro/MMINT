@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.graph_mavo.impl;
 
+import edu.toronto.cs.se.mavo.impl.MAVOModelImpl;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Edge;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage;
@@ -37,7 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class GraphImpl extends edu.toronto.cs.se.mavo.impl.MAVOModelImpl implements Graph {
+public class GraphImpl extends MAVOModelImpl implements Graph {
 	/**
 	 * The cached value of the '{@link #getNodes() <em>Nodes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
