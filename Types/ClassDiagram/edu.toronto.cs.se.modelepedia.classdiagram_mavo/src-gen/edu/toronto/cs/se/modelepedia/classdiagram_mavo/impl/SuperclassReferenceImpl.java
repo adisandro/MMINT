@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl;
 
+import edu.toronto.cs.se.mavo.impl.MAVOReferenceImpl;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference;
 
@@ -35,7 +36,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *
  * @generated
  */
-public class SuperclassReferenceImpl extends edu.toronto.cs.se.mavo.impl.MAVOReferenceImpl implements SuperclassReference {
+public class SuperclassReferenceImpl extends MAVOReferenceImpl implements SuperclassReference {
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->

@@ -9,5 +9,13 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.parsers;
+package edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.assistants;
 
+/**
+ * @generated
+ */
+public class ClassDiagram_MAVOModelingAssistantProviderOfAttributeEditPart
+		extends
+		edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOModelingAssistantProvider {
+
+}

@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo;
 
+import edu.toronto.cs.se.mavo.MAVOElement;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Dependency</b></em>'.
@@ -29,7 +31,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram_mavo;
  * @model annotation="gmf.link source='dependee' target='depender' target.decoration='arrow' style='dash'"
  * @generated
  */
-public interface Dependency extends edu.toronto.cs.se.mavo.MAVOElement {
+public interface Dependency extends MAVOElement {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
