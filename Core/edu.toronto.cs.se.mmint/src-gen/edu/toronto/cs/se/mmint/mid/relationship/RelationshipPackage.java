@@ -11,8 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship;
 
-import edu.toronto.cs.se.mmint.mid.MidPackage;
-
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
@@ -80,6 +79,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL = 0;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL__FORMULA_VARIABLE = MIDPackage.MODEL__FORMULA_VARIABLE;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryModelRelImpl <em>Binary Model Rel</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -126,7 +134,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__MAY = MidPackage.MODEL__MAY;
+	int MODEL_REL__MAY = MIDPackage.MODEL__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -135,7 +143,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__SET = MidPackage.MODEL__SET;
+	int MODEL_REL__SET = MIDPackage.MODEL__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -144,16 +152,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__VAR = MidPackage.MODEL__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL__FORMULA_ID = MidPackage.MODEL__FORMULA_ID;
+	int MODEL_REL__VAR = MIDPackage.MODEL__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -162,7 +161,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__SUPERTYPE = MidPackage.MODEL__SUPERTYPE;
+	int MODEL_REL__SUPERTYPE = MIDPackage.MODEL__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Metatype</b></em>' reference.
@@ -171,7 +170,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__METATYPE = MidPackage.MODEL__METATYPE;
+	int MODEL_REL__METATYPE = MIDPackage.MODEL__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -180,7 +179,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__URI = MidPackage.MODEL__URI;
+	int MODEL_REL__URI = MIDPackage.MODEL__URI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -189,7 +188,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__NAME = MidPackage.MODEL__NAME;
+	int MODEL_REL__NAME = MIDPackage.MODEL__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -198,7 +197,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__LEVEL = MidPackage.MODEL__LEVEL;
+	int MODEL_REL__LEVEL = MIDPackage.MODEL__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -207,7 +206,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__METATYPE_URI = MidPackage.MODEL__METATYPE_URI;
+	int MODEL_REL__METATYPE_URI = MIDPackage.MODEL__METATYPE_URI;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -216,7 +215,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__DYNAMIC = MidPackage.MODEL__DYNAMIC;
+	int MODEL_REL__DYNAMIC = MIDPackage.MODEL__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -225,7 +224,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__CONSTRAINT = MidPackage.MODEL__CONSTRAINT;
+	int MODEL_REL__CONSTRAINT = MIDPackage.MODEL__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Inc</b></em>' attribute.
@@ -234,7 +233,16 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__INC = MidPackage.MODEL__INC;
+	int MODEL_REL__INC = MIDPackage.MODEL__INC;
+
+	/**
+	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL__DECISIONS = MIDPackage.MODEL__DECISIONS;
 
 	/**
 	 * The feature id for the '<em><b>Origin</b></em>' attribute.
@@ -243,7 +251,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__ORIGIN = MidPackage.MODEL__ORIGIN;
+	int MODEL_REL__ORIGIN = MIDPackage.MODEL__ORIGIN;
 
 	/**
 	 * The feature id for the '<em><b>File Extension</b></em>' attribute.
@@ -252,7 +260,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__FILE_EXTENSION = MidPackage.MODEL__FILE_EXTENSION;
+	int MODEL_REL__FILE_EXTENSION = MIDPackage.MODEL__FILE_EXTENSION;
 
 	/**
 	 * The feature id for the '<em><b>Editors</b></em>' reference list.
@@ -261,7 +269,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__EDITORS = MidPackage.MODEL__EDITORS;
+	int MODEL_REL__EDITORS = MIDPackage.MODEL__EDITORS;
 
 	/**
 	 * The feature id for the '<em><b>Model Elems</b></em>' containment reference list.
@@ -270,7 +278,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__MODEL_ELEMS = MidPackage.MODEL__MODEL_ELEMS;
+	int MODEL_REL__MODEL_ELEMS = MIDPackage.MODEL__MODEL_ELEMS;
 
 	/**
 	 * The feature id for the '<em><b>Conversion Operators</b></em>' reference list.
@@ -279,7 +287,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__CONVERSION_OPERATORS = MidPackage.MODEL__CONVERSION_OPERATORS;
+	int MODEL_REL__CONVERSION_OPERATORS = MIDPackage.MODEL__CONVERSION_OPERATORS;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -288,7 +296,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__ABSTRACT = MidPackage.MODEL__ABSTRACT;
+	int MODEL_REL__ABSTRACT = MIDPackage.MODEL__ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Model Endpoints</b></em>' containment reference list.
@@ -297,7 +305,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__MODEL_ENDPOINTS = MidPackage.MODEL_FEATURE_COUNT + 0;
+	int MODEL_REL__MODEL_ENDPOINTS = MIDPackage.MODEL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Links</b></em>' containment reference list.
@@ -306,7 +314,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__LINKS = MidPackage.MODEL_FEATURE_COUNT + 1;
+	int MODEL_REL__LINKS = MIDPackage.MODEL_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Model Endpoint Refs</b></em>' containment reference list.
@@ -315,7 +323,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__MODEL_ENDPOINT_REFS = MidPackage.MODEL_FEATURE_COUNT + 2;
+	int MODEL_REL__MODEL_ENDPOINT_REFS = MIDPackage.MODEL_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Link Refs</b></em>' containment reference list.
@@ -324,7 +332,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__LINK_REFS = MidPackage.MODEL_FEATURE_COUNT + 3;
+	int MODEL_REL__LINK_REFS = MIDPackage.MODEL_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Model Rel</em>' class.
@@ -333,7 +341,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL_FEATURE_COUNT = MidPackage.MODEL_FEATURE_COUNT + 4;
+	int MODEL_REL_FEATURE_COUNT = MIDPackage.MODEL_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -342,7 +350,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = MidPackage.MODEL___CREATE_SUBTYPE_URI__STRING_STRING;
+	int MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.MODEL___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
@@ -351,7 +359,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MidPackage.MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MIDPackage.MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
@@ -360,7 +368,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___GET_EMF_TYPE_ROOT = MidPackage.MODEL___GET_EMF_TYPE_ROOT;
+	int MODEL_REL___GET_EMF_TYPE_ROOT = MIDPackage.MODEL___GET_EMF_TYPE_ROOT;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -369,7 +377,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MidPackage.MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+	int MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Create Instance Editor</em>' operation.
@@ -378,7 +386,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_INSTANCE_EDITOR = MidPackage.MODEL___CREATE_INSTANCE_EDITOR;
+	int MODEL_REL___CREATE_INSTANCE_EDITOR = MIDPackage.MODEL___CREATE_INSTANCE_EDITOR;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Editor</em>' operation.
@@ -387,7 +395,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MidPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
+	int MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Create MAVO Instance</em>' operation.
@@ -396,7 +404,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MidPackage.MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+	int MODEL_REL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Create MAVO Instance And Editor</em>' operation.
@@ -405,7 +413,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MidPackage.MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
+	int MODEL_REL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Copy MAVO Instance And Editor</em>' operation.
@@ -414,7 +422,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = MidPackage.MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL;
+	int MODEL_REL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = MIDPackage.MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
@@ -423,7 +431,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___GET_EMF_INSTANCE_ROOT = MidPackage.MODEL___GET_EMF_INSTANCE_ROOT;
+	int MODEL_REL___GET_EMF_INSTANCE_ROOT = MIDPackage.MODEL___GET_EMF_INSTANCE_ROOT;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -432,7 +440,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___GET_METATYPE = MidPackage.MODEL_OPERATION_COUNT + 0;
+	int MODEL_REL___GET_METATYPE = MIDPackage.MODEL_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -441,7 +449,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___GET_SUPERTYPE = MidPackage.MODEL_OPERATION_COUNT + 1;
+	int MODEL_REL___GET_SUPERTYPE = MIDPackage.MODEL_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
@@ -450,7 +458,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING = MidPackage.MODEL_OPERATION_COUNT + 2;
+	int MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING = MIDPackage.MODEL_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Copy Subtype</em>' operation.
@@ -459,7 +467,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___COPY_SUBTYPE__MODELREL = MidPackage.MODEL_OPERATION_COUNT + 3;
+	int MODEL_REL___COPY_SUBTYPE__MODELREL = MIDPackage.MODEL_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Types</em>' operation.
@@ -468,7 +476,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = MidPackage.MODEL_OPERATION_COUNT + 4;
+	int MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = MIDPackage.MODEL_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -477,7 +485,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___DELETE_TYPE = MidPackage.MODEL_OPERATION_COUNT + 5;
+	int MODEL_REL___DELETE_TYPE = MIDPackage.MODEL_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -486,7 +494,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = MidPackage.MODEL_OPERATION_COUNT + 6;
+	int MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Endpoints And References</em>' operation.
@@ -495,7 +503,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODELORIGIN_ELIST = MidPackage.MODEL_OPERATION_COUNT + 7;
+	int MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODELORIGIN_ELIST = MIDPackage.MODEL_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.
@@ -504,7 +512,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL = MidPackage.MODEL_OPERATION_COUNT + 8;
+	int MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL = MIDPackage.MODEL_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -513,7 +521,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MidPackage.MODEL_OPERATION_COUNT + 9;
+	int MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MIDPackage.MODEL_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -522,7 +530,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___DELETE_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 10;
+	int MODEL_REL___DELETE_INSTANCE = MIDPackage.MODEL_OPERATION_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Open Type</em>' operation.
@@ -531,7 +539,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___OPEN_TYPE = MidPackage.MODEL_OPERATION_COUNT + 11;
+	int MODEL_REL___OPEN_TYPE = MIDPackage.MODEL_OPERATION_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -540,7 +548,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___OPEN_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 12;
+	int MODEL_REL___OPEN_INSTANCE = MIDPackage.MODEL_OPERATION_COUNT + 12;
 
 	/**
 	 * The number of operations of the '<em>Model Rel</em>' class.
@@ -549,7 +557,16 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 13;
+	int MODEL_REL_OPERATION_COUNT = MIDPackage.MODEL_OPERATION_COUNT + 13;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL__FORMULA_VARIABLE = MODEL_REL__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -577,15 +594,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL__VAR = MODEL_REL__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL__FORMULA_ID = MODEL_REL__FORMULA_ID;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -667,6 +675,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL__INC = MODEL_REL__INC;
+
+	/**
+	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL__DECISIONS = MODEL_REL__DECISIONS;
 
 	/**
 	 * The feature id for the '<em><b>Origin</b></em>' attribute.
@@ -1454,13 +1471,22 @@ public interface RelationshipPackage extends EPackage {
 	int LINK = 6;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK__FORMULA_VARIABLE = MIDPackage.EXTENDIBLE_ELEMENT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__MAY = MidPackage.EXTENDIBLE_ELEMENT__MAY;
+	int LINK__MAY = MIDPackage.EXTENDIBLE_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -1469,7 +1495,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__SET = MidPackage.EXTENDIBLE_ELEMENT__SET;
+	int LINK__SET = MIDPackage.EXTENDIBLE_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -1478,16 +1504,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__VAR = MidPackage.EXTENDIBLE_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK__FORMULA_ID = MidPackage.EXTENDIBLE_ELEMENT__FORMULA_ID;
+	int LINK__VAR = MIDPackage.EXTENDIBLE_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1496,7 +1513,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
+	int LINK__SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Metatype</b></em>' reference.
@@ -1505,7 +1522,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__METATYPE = MidPackage.EXTENDIBLE_ELEMENT__METATYPE;
+	int LINK__METATYPE = MIDPackage.EXTENDIBLE_ELEMENT__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -1514,7 +1531,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__URI = MidPackage.EXTENDIBLE_ELEMENT__URI;
+	int LINK__URI = MIDPackage.EXTENDIBLE_ELEMENT__URI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1523,7 +1540,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__NAME = MidPackage.EXTENDIBLE_ELEMENT__NAME;
+	int LINK__NAME = MIDPackage.EXTENDIBLE_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -1532,7 +1549,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__LEVEL = MidPackage.EXTENDIBLE_ELEMENT__LEVEL;
+	int LINK__LEVEL = MIDPackage.EXTENDIBLE_ELEMENT__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -1541,7 +1558,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__METATYPE_URI = MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
+	int LINK__METATYPE_URI = MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -1550,7 +1567,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__DYNAMIC = MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC;
+	int LINK__DYNAMIC = MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -1559,7 +1576,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__CONSTRAINT = MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT;
+	int LINK__CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Model Elem Endpoints</b></em>' containment reference list.
@@ -1568,7 +1585,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__MODEL_ELEM_ENDPOINTS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
+	int LINK__MODEL_ELEM_ENDPOINTS = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Model Elem Endpoint Refs</b></em>' reference list.
@@ -1577,7 +1594,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__MODEL_ELEM_ENDPOINT_REFS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
+	int LINK__MODEL_ELEM_ENDPOINT_REFS = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Link</em>' class.
@@ -1586,7 +1603,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
+	int LINK_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -1595,7 +1612,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK___CREATE_SUBTYPE_URI__STRING_STRING = MidPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+	int LINK___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1604,7 +1621,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK___GET_METATYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+	int LINK___GET_METATYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -1613,7 +1630,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK___GET_SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
+	int LINK___GET_SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Create Type Reference</em>' operation.
@@ -1622,7 +1639,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK___CREATE_TYPE_REFERENCE__LINKREFERENCE_BOOLEAN_MODELREL = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+	int LINK___CREATE_TYPE_REFERENCE__LINKREFERENCE_BOOLEAN_MODELREL = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Create Subtype And Reference</em>' operation.
@@ -1631,7 +1648,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK___CREATE_SUBTYPE_AND_REFERENCE__LINKREFERENCE_STRING_BOOLEAN_MODELREL = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+	int LINK___CREATE_SUBTYPE_AND_REFERENCE__LINKREFERENCE_STRING_BOOLEAN_MODELREL = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -1640,7 +1657,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK___DELETE_TYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+	int LINK___DELETE_TYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Create Instance Reference</em>' operation.
@@ -1649,7 +1666,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK___CREATE_INSTANCE_REFERENCE__MODELREL = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+	int LINK___CREATE_INSTANCE_REFERENCE__MODELREL = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
@@ -1658,7 +1675,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
+	int LINK___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Reference And Endpoints And References</em>' operation.
@@ -1667,7 +1684,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+	int LINK___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1676,7 +1693,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK___DELETE_INSTANCE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
+	int LINK___DELETE_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Link</em>' class.
@@ -1685,7 +1702,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 9;
+	int LINK_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryLinkImpl <em>Binary Link</em>}' class.
@@ -1696,6 +1713,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	int BINARY_LINK = 7;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK__FORMULA_VARIABLE = LINK__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -1723,15 +1749,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_LINK__VAR = LINK__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_LINK__FORMULA_ID = LINK__FORMULA_ID;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1942,13 +1959,22 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ELEMENT_ENDPOINT = 8;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT__FORMULA_VARIABLE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT__MAY = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__MAY;
+	int MODEL_ELEMENT_ENDPOINT__MAY = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -1957,7 +1983,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT__SET = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__SET;
+	int MODEL_ELEMENT_ENDPOINT__SET = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -1966,16 +1992,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT__VAR = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_ENDPOINT__FORMULA_ID = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__FORMULA_ID;
+	int MODEL_ELEMENT_ENDPOINT__VAR = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1984,7 +2001,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT__SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__SUPERTYPE;
+	int MODEL_ELEMENT_ENDPOINT__SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Metatype</b></em>' reference.
@@ -1993,7 +2010,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT__METATYPE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__METATYPE;
+	int MODEL_ELEMENT_ENDPOINT__METATYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -2002,7 +2019,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT__URI = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__URI;
+	int MODEL_ELEMENT_ENDPOINT__URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__URI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2011,7 +2028,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT__NAME = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__NAME;
+	int MODEL_ELEMENT_ENDPOINT__NAME = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -2020,7 +2037,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT__LEVEL = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LEVEL;
+	int MODEL_ELEMENT_ENDPOINT__LEVEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -2029,7 +2046,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT__METATYPE_URI = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__METATYPE_URI;
+	int MODEL_ELEMENT_ENDPOINT__METATYPE_URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__METATYPE_URI;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -2038,7 +2055,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT__DYNAMIC = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__DYNAMIC;
+	int MODEL_ELEMENT_ENDPOINT__DYNAMIC = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -2047,7 +2064,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT__CONSTRAINT = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__CONSTRAINT;
+	int MODEL_ELEMENT_ENDPOINT__CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
@@ -2056,7 +2073,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT__LOWER_BOUND = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND;
+	int MODEL_ELEMENT_ENDPOINT__LOWER_BOUND = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND;
 
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
@@ -2065,7 +2082,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT__UPPER_BOUND = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND;
+	int MODEL_ELEMENT_ENDPOINT__UPPER_BOUND = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -2074,7 +2091,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT__TARGET = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET;
+	int MODEL_ELEMENT_ENDPOINT__TARGET = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET;
 
 	/**
 	 * The feature id for the '<em><b>Target Uri</b></em>' attribute.
@@ -2083,7 +2100,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT__TARGET_URI = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI;
+	int MODEL_ELEMENT_ENDPOINT__TARGET_URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI;
 
 	/**
 	 * The number of structural features of the '<em>Model Element Endpoint</em>' class.
@@ -2092,7 +2109,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT + 0;
+	int MODEL_ELEMENT_ENDPOINT_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -2101,7 +2118,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
+	int MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -2110,7 +2127,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___GET_SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 0;
+	int MODEL_ELEMENT_ENDPOINT___GET_SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Target</em>' operation.
@@ -2119,7 +2136,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___GET_TARGET = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 1;
+	int MODEL_ELEMENT_ENDPOINT___GET_TARGET = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -2128,7 +2145,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___GET_METATYPE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 2;
+	int MODEL_ELEMENT_ENDPOINT___GET_METATYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Create Type Reference</em>' operation.
@@ -2137,7 +2154,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___CREATE_TYPE_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE_BOOLEAN_BOOLEAN_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 3;
+	int MODEL_ELEMENT_ENDPOINT___CREATE_TYPE_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE_BOOLEAN_BOOLEAN_LINKREFERENCE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Create Subtype And Reference</em>' operation.
@@ -2146,7 +2163,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 4;
+	int MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODELELEMENTREFERENCE_BOOLEAN_LINKREFERENCE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Replace Subtype And Reference</em>' operation.
@@ -2155,7 +2172,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
+	int MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -2164,7 +2181,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___DELETE_TYPE__BOOLEAN = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 6;
+	int MODEL_ELEMENT_ENDPOINT___DELETE_TYPE__BOOLEAN = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Create Instance Reference</em>' operation.
@@ -2173,7 +2190,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 7;
+	int MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_LINKREFERENCE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
@@ -2182,7 +2199,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODELELEMENTREFERENCE_LINKREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 8;
+	int MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODELELEMENTREFERENCE_LINKREFERENCE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Replace Instance And Reference</em>' operation.
@@ -2191,7 +2208,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 9;
+	int MODEL_ELEMENT_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>Model Element Endpoint</em>' class.
@@ -2200,7 +2217,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 10;
+	int MODEL_ELEMENT_ENDPOINT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 10;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.LinkReferenceImpl <em>Link Reference</em>}' class.

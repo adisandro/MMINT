@@ -28,11 +28,11 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicyWithCustomReparent;
 
-import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.MidCreateShortcutDecorationsCommand;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.MIDCreateShortcutDecorationsCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MidDiagramSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MultiModelCanonicalEditPolicy;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MultiModelItemSemanticEditPolicy;
-import edu.toronto.cs.se.mmint.mid.diagram.part.MidVisualIDRegistry;
+import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 
 /**
  * @generated
@@ -42,7 +42,7 @@ public class MultiModelEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public final static String MODEL_ID = "Mid"; //$NON-NLS-1$
+	public final static String MODEL_ID = "MID"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -67,7 +67,7 @@ public class MultiModelEditPart extends DiagramEditPart {
 				new MultiModelCanonicalEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicyWithCustomReparent(
-						MidVisualIDRegistry.TYPED_INSTANCE));
+						MIDVisualIDRegistry.TYPED_INSTANCE));
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
 				new DiagramDragDropEditPolicy() {
 					public Command getDropObjectsCommand(
@@ -98,7 +98,7 @@ public class MultiModelEditPart extends DiagramEditPart {
 						if (command != null) {
 							return command
 									.chain(new ICommandProxy(
-											new MidCreateShortcutDecorationsCommand(
+											new MIDCreateShortcutDecorationsCommand(
 													getEditingDomain(),
 													(View) getModel(),
 													viewDescriptors)));

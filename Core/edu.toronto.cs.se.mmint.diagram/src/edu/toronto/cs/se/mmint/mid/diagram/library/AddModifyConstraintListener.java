@@ -34,7 +34,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
@@ -89,7 +89,7 @@ public class AddModifyConstraintListener extends SelectionAdapter {
 				}
 				ExtendibleElementConstraint constraint = element.getConstraint();
 				if (constraint == null) {
-					constraint = MidFactory.eINSTANCE.createExtendibleElementConstraint();
+					constraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
 					constraint.setLanguage(languages.iterator().next());
 					constraint.setImplementation("");
 				}

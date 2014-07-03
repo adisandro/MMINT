@@ -14,8 +14,8 @@ package edu.toronto.cs.se.modelepedia.kleisli.library;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -49,13 +49,13 @@ public class KleisliMultiModelHeavyTypeFactory extends MultiModelHeavyTypeFactor
 		Model origModelType = containerModelTypeEndpoint.getTarget();
 		kModelType.setUri(origModelType.getUri());
 		kModelType.setName(origModelType.getName());
-		kModelType.setLevel(MidLevel.TYPES);
+		kModelType.setLevel(MIDLevel.TYPES);
 		kModelType.setSupertype(origModelType.getSupertype());
 		kModelType.setDynamic(false);
 		kModelType.setAbstract(origModelType.isAbstract());
 		ExtendibleElementConstraint origConstraint = origModelType.getConstraint();
 		if (origConstraint != null) {
-			ExtendibleElementConstraint kConstraint = MidFactory.eINSTANCE.createExtendibleElementConstraint();
+			ExtendibleElementConstraint kConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
 			kConstraint.setLanguage(origConstraint.getLanguage());
 			kConstraint.setImplementation(origConstraint.getImplementation());
 			kModelType.setConstraint(kConstraint);

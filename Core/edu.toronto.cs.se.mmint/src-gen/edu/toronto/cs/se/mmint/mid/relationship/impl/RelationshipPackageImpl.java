@@ -11,12 +11,11 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
 
-import edu.toronto.cs.se.mmint.mavo.MavoPackage;
-import edu.toronto.cs.se.mmint.mavo.impl.MavoPackageImpl;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
+import edu.toronto.cs.se.mavo.MAVOPackage;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.editor.impl.EditorPackageImpl;
-import edu.toronto.cs.se.mmint.mid.impl.MidPackageImpl;
+import edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLink;
@@ -34,7 +33,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.util.RelationshipValidator;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
@@ -180,25 +178,25 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		MAVOPackage.eINSTANCE.eClass();
+
 		// Obtain or create and register interdependencies
-		MidPackageImpl theMidPackage = (MidPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MidPackage.eNS_URI) instanceof MidPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MidPackage.eNS_URI) : MidPackage.eINSTANCE);
+		MIDPackageImpl theMIDPackage = (MIDPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI) instanceof MIDPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI) : MIDPackage.eINSTANCE);
 		EditorPackageImpl theEditorPackage = (EditorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EditorPackage.eNS_URI) instanceof EditorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EditorPackage.eNS_URI) : EditorPackage.eINSTANCE);
 		OperatorPackageImpl theOperatorPackage = (OperatorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI) instanceof OperatorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI) : OperatorPackage.eINSTANCE);
-		MavoPackageImpl theMavoPackage = (MavoPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MavoPackage.eNS_URI) instanceof MavoPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MavoPackage.eNS_URI) : MavoPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRelationshipPackage.createPackageContents();
-		theMidPackage.createPackageContents();
+		theMIDPackage.createPackageContents();
 		theEditorPackage.createPackageContents();
 		theOperatorPackage.createPackageContents();
-		theMavoPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRelationshipPackage.initializePackageContents();
-		theMidPackage.initializePackageContents();
+		theMIDPackage.initializePackageContents();
 		theEditorPackage.initializePackageContents();
 		theOperatorPackage.initializePackageContents();
-		theMavoPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
@@ -1203,96 +1201,96 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		MidPackage theMidPackage = (MidPackage)EPackage.Registry.INSTANCE.getEPackage(MidPackage.eNS_URI);
+		MIDPackage theMIDPackage = (MIDPackage)EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		modelRelEClass.getESuperTypes().add(theMidPackage.getModel());
+		modelRelEClass.getESuperTypes().add(theMIDPackage.getModel());
 		binaryModelRelEClass.getESuperTypes().add(this.getModelRel());
 		extendibleElementEndpointReferenceEClass.getESuperTypes().add(this.getExtendibleElementReference());
 		modelEndpointReferenceEClass.getESuperTypes().add(this.getExtendibleElementEndpointReference());
 		modelElementReferenceEClass.getESuperTypes().add(this.getExtendibleElementReference());
-		linkEClass.getESuperTypes().add(theMidPackage.getExtendibleElement());
+		linkEClass.getESuperTypes().add(theMIDPackage.getExtendibleElement());
 		binaryLinkEClass.getESuperTypes().add(this.getLink());
-		modelElementEndpointEClass.getESuperTypes().add(theMidPackage.getExtendibleElementEndpoint());
+		modelElementEndpointEClass.getESuperTypes().add(theMIDPackage.getExtendibleElementEndpoint());
 		linkReferenceEClass.getESuperTypes().add(this.getExtendibleElementReference());
 		binaryLinkReferenceEClass.getESuperTypes().add(this.getLinkReference());
 		modelElementEndpointReferenceEClass.getESuperTypes().add(this.getExtendibleElementEndpointReference());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(modelRelEClass, ModelRel.class, "ModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModelRel_ModelEndpoints(), theMidPackage.getModelEndpoint(), null, "modelEndpoints", null, 0, -1, ModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelRel_ModelEndpoints(), theMIDPackage.getModelEndpoint(), null, "modelEndpoints", null, 0, -1, ModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelRel_Links(), this.getLink(), null, "links", null, 0, -1, ModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelRel_ModelEndpointRefs(), this.getModelEndpointReference(), null, "modelEndpointRefs", null, 0, -1, ModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelRel_LinkRefs(), this.getLinkReference(), null, "linkRefs", null, 0, -1, ModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getModelRel__GetMetatype(), this.getModelRel(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getModelRel__GetSupertype(), theMidPackage.getModel(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getModelRel__GetSupertype(), theMIDPackage.getModel(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		EOperation op = initEOperation(getModelRel__CreateSubtype__String_boolean_String_String(), this.getModelRel(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelRelTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "constraintLanguage", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "constraintImplementation", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelRel__CopySubtype__ModelRel(), this.getModelRel(), "copySubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelRel(), "origModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelRel__GetOutlineResourceTypes(), ecorePackage.getEResourceSet(), "getOutlineResourceTypes", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelRel__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel(), this.getModelRel(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelRelUri", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMidPackage.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMidPackage.getMultiModel(), "containerMultiModel", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEParameter(op, theMIDPackage.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getMultiModel(), "containerMultiModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelRel__CreateInstanceAndEndpointsAndReferences__String_ModelOrigin_EList(), this.getModelRel(), "createInstanceAndEndpointsAndReferences", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelRelUri", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMidPackage.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMidPackage.getModel(), "targetModels", 1, -1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEParameter(op, theMIDPackage.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getModel(), "targetModels", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelRel__CopyMAVOInstance__ModelRel_MultiModel(), this.getModelRel(), "copyMAVOInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelRel(), "origModelRel", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMidPackage.getMultiModel(), "containerMultiModel", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEParameter(op, theMIDPackage.getMultiModel(), "containerMultiModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelRel__GetOutlineResourceInstances(), ecorePackage.getEResourceSet(), "getOutlineResourceInstances", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelRel__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelRel__OpenType(), null, "openType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelRel__OpenInstance(), null, "openInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(binaryModelRelEClass, BinaryModelRel.class, "BinaryModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBinaryModelRel_SourceModel(), theMidPackage.getModel(), null, "sourceModel", null, 1, 1, BinaryModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBinaryModelRel_TargetModel(), theMidPackage.getModel(), null, "targetModel", null, 1, 1, BinaryModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBinaryModelRel_SourceModel(), theMIDPackage.getModel(), null, "sourceModel", null, 1, 1, BinaryModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBinaryModelRel_TargetModel(), theMIDPackage.getModel(), null, "targetModel", null, 1, 1, BinaryModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getBinaryModelRel__AddModelType__Model_boolean(), null, "addModelType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMidPackage.getModel(), "modelType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getModel(), "modelType", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinarySrc", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(extendibleElementReferenceEClass, ExtendibleElementReference.class, "ExtendibleElementReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getExtendibleElementReference_ReferencedObject(), theMidPackage.getExtendibleElement(), null, "referencedObject", null, 0, 1, ExtendibleElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExtendibleElementReference_ContainedObject(), theMidPackage.getExtendibleElement(), null, "containedObject", null, 0, 1, ExtendibleElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExtendibleElementReference_Object(), theMidPackage.getExtendibleElement(), null, "object", null, 1, 1, ExtendibleElementReference.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getExtendibleElementReference_ReferencedObject(), theMIDPackage.getExtendibleElement(), null, "referencedObject", null, 0, 1, ExtendibleElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtendibleElementReference_ContainedObject(), theMIDPackage.getExtendibleElement(), null, "containedObject", null, 0, 1, ExtendibleElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtendibleElementReference_Object(), theMIDPackage.getExtendibleElement(), null, "object", null, 1, 1, ExtendibleElementReference.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getExtendibleElementReference_SupertypeRef(), this.getExtendibleElementReference(), null, "supertypeRef", null, 0, 1, ExtendibleElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElementReference_Modifiable(), ecorePackage.getEBoolean(), "modifiable", null, 1, 1, ExtendibleElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElementReference_Uri(), ecorePackage.getEString(), "uri", null, 1, 1, ExtendibleElementReference.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -1300,41 +1298,41 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		initEClass(extendibleElementEndpointReferenceEClass, ExtendibleElementEndpointReference.class, "ExtendibleElementEndpointReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExtendibleElementEndpointReference_TargetUri(), ecorePackage.getEString(), "targetUri", null, 1, 1, ExtendibleElementEndpointReference.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		initEOperation(getExtendibleElementEndpointReference__GetObject(), theMidPackage.getExtendibleElementEndpoint(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getExtendibleElementEndpointReference__GetObject(), theMIDPackage.getExtendibleElementEndpoint(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getExtendibleElementEndpointReference__GetSupertypeRef(), this.getExtendibleElementEndpointReference(), "getSupertypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(modelEndpointReferenceEClass, ModelEndpointReference.class, "ModelEndpointReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelEndpointReference_ModelElemRefs(), this.getModelElementReference(), null, "modelElemRefs", null, 0, -1, ModelEndpointReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEOperation(getModelEndpointReference__GetObject(), theMidPackage.getModelEndpoint(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getModelEndpointReference__GetObject(), theMIDPackage.getModelEndpoint(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getModelEndpointReference__GetSupertypeRef(), this.getModelEndpointReference(), "getSupertypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getModelEndpointReference__AcceptModelElementType__EObject(), ecorePackage.getEBoolean(), "acceptModelElementType", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEObject(), "metamodelObj", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelEndpointReference__DeleteTypeReference__boolean(), null, "deleteTypeReference", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
-		op = initEOperation(getModelEndpointReference__AcceptModelElementInstance__EObject(), theMidPackage.getModelElement(), "acceptModelElementInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelEndpointReference__AcceptModelElementInstance__EObject(), theMIDPackage.getModelElement(), "acceptModelElementInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEObject(), "modelObj", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(modelElementReferenceEClass, ModelElementReference.class, "ModelElementReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelElementReference_ModelElemEndpointRefs(), this.getModelElementEndpointReference(), this.getModelElementEndpointReference_ModelElemRef(), "modelElemEndpointRefs", null, 0, -1, ModelElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEOperation(getModelElementReference__GetObject(), theMidPackage.getModelElement(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getModelElementReference__GetObject(), theMIDPackage.getModelElement(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getModelElementReference__GetSupertypeRef(), this.getModelElementReference(), "getSupertypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getModelElementReference__DeleteTypeReference(), null, "deleteTypeReference", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelElementReference__DeleteInstanceReference(), null, "deleteInstanceReference", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(linkEClass, Link.class, "Link", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLink_ModelElemEndpoints(), this.getModelElementEndpoint(), null, "modelElemEndpoints", null, 0, -1, Link.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1348,34 +1346,34 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEParameter(op, this.getLinkReference(), "linkTypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isModifiable", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelRel(), "containerModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getLink__CreateSubtypeAndReference__LinkReference_String_boolean_ModelRel(), this.getLinkReference(), "createSubtypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getLinkReference(), "linkTypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newLinkTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelRel(), "containerModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getLink__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getLink__CreateInstanceReference__ModelRel(), this.getLinkReference(), "createInstanceReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelRel(), "containerModelRel", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getLink__CreateInstanceAndReference__boolean_ModelRel(), this.getLinkReference(), "createInstanceAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelRel(), "containerModelRel", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getLink__CreateInstanceAndReferenceAndEndpointsAndReferences__boolean_EList(), this.getLinkReference(), "createInstanceAndReferenceAndEndpointsAndReferences", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelElementReference(), "targetModelElemRefs", 1, -1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getLink__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(binaryLinkEClass, BinaryLink.class, "BinaryLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1383,17 +1381,17 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEParameter(op, this.getLinkReference(), "linkTypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isModifiable", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelRel(), "containerModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getBinaryLink__CreateInstanceReference__ModelRel(), this.getLinkReference(), "createInstanceReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelRel(), "containerModelRel", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(modelElementEndpointEClass, ModelElementEndpoint.class, "ModelElementEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEOperation(getModelElementEndpoint__GetSupertype(), this.getModelElementEndpoint(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getModelElementEndpoint__GetTarget(), theMidPackage.getModelElement(), "getTarget", 1, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getModelElementEndpoint__GetTarget(), theMIDPackage.getModelElement(), "getTarget", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getModelElementEndpoint__GetMetatype(), this.getModelElementEndpoint(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1403,39 +1401,39 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEParameter(op, ecorePackage.getEBoolean(), "isModifiable", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinarySrc", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getLinkReference(), "containerLinkTypeRef", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelElementEndpoint__CreateSubtypeAndReference__String_ModelElementReference_boolean_LinkReference(), this.getModelElementEndpointReference(), "createSubtypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelElemTypeEndpointName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelElementReference(), "targetModelElemTypeRef", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinarySrc", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getLinkReference(), "containerLinkTypeRef", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelElementEndpoint__ReplaceSubtypeAndReference__ModelElementEndpointReference_String_ModelElementReference(), null, "replaceSubtypeAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelElementEndpointReference(), "oldModelElemTypeEndpointRef", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelElemTypeEndpointName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelElementReference(), "targetModelElemTypeRef", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelElementEndpoint__DeleteType__boolean(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelElementEndpoint__CreateInstanceReference__ModelElementReference_LinkReference(), this.getModelElementEndpointReference(), "createInstanceReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelElementReference(), "targetModelElemRef", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getLinkReference(), "containerLinkRef", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelElementEndpoint__CreateInstanceAndReference__ModelElementReference_LinkReference(), this.getModelElementEndpointReference(), "createInstanceAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelElementReference(), "targetModelElemRef", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getLinkReference(), "containerLinkRef", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelElementEndpoint__ReplaceInstanceAndReference__ModelElementEndpointReference_ModelElementReference(), null, "replaceInstanceAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelElementEndpointReference(), "oldModelElemEndpointRef", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelElementReference(), "targetModelElemRef", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(linkReferenceEClass, LinkReference.class, "LinkReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLinkReference_ModelElemEndpointRefs(), this.getModelElementEndpointReference(), null, "modelElemEndpointRefs", null, 0, -1, LinkReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1445,16 +1443,16 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		initEOperation(getLinkReference__GetSupertypeRef(), this.getLinkReference(), "getSupertypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getLinkReference__DeleteTypeReference(), null, "deleteTypeReference", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getLinkReference__DeleteTypeAndReference(), null, "deleteTypeAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getLinkReference__DeleteInstanceReference(), null, "deleteInstanceReference", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getLinkReference__DeleteInstanceAndReference(), null, "deleteInstanceAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(binaryLinkReferenceEClass, BinaryLinkReference.class, "BinaryLinkReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBinaryLinkReference_SourceModelElemRef(), this.getModelElementReference(), null, "sourceModelElemRef", null, 1, 1, BinaryLinkReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1465,7 +1463,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		op = initEOperation(getBinaryLinkReference__AddModelElementTypeReference__ModelElementReference_boolean(), null, "addModelElementTypeReference", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelElementReference(), "modelElemTypeRef", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinarySrc", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(modelElementEndpointReferenceEClass, ModelElementEndpointReference.class, "ModelElementEndpointReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelElementEndpointReference_ModelElemRef(), this.getModelElementReference(), this.getModelElementReference_ModelElemEndpointRefs(), "modelElemRef", null, 1, 1, ModelElementEndpointReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1476,15 +1474,15 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 
 		op = initEOperation(getModelElementEndpointReference__DeleteTypeReference__boolean(), null, "deleteTypeReference", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelElementEndpointReference__DeleteTypeAndReference__boolean(), null, "deleteTypeAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelElementEndpointReference__DeleteInstanceAndReference__boolean(), null, "deleteInstanceAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
@@ -1500,7 +1498,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * @generated
 	 */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";		
+		String source = "http://www.eclipse.org/emf/2002/Ecore";	
 		addAnnotation
 		  (this, 
 		   source, 
@@ -1508,55 +1506,55 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });									
+		   });	
 		addAnnotation
 		  (binaryModelRelEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "isBinaryModelRel"
-		   });						
+		   });	
 		addAnnotation
 		  (extendibleElementReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "oneObject"
-		   });																	
+		   });	
 		addAnnotation
 		  (modelEndpointReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "modelEndpointType"
-		   });							
+		   });	
 		addAnnotation
 		  (modelElementReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "modelElementType"
-		   });													
+		   });	
 		addAnnotation
 		  (binaryLinkEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "isBinaryLink"
-		   });							
+		   });	
 		addAnnotation
 		  (linkReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "linkType"
-		   });							
+		   });	
 		addAnnotation
 		  (binaryLinkReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "isBinaryLinkRef binaryLinkType"
-		   });								
+		   });	
 		addAnnotation
 		  (modelElementEndpointReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "modelElemEndpointType"
-		   });				
+		   });
 	}
 
 	/**
@@ -1566,74 +1564,74 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * @generated
 	 */
 	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";												
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
 		addAnnotation
 		  (binaryModelRelEClass, 
 		   source, 
 		   new String[] {
 			 "isBinaryModelRel", "modelEndpoints->size() = 2"
-		   });						
+		   });	
 		addAnnotation
 		  (extendibleElementReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "oneObject", "referencedObject.oclIsUndefined() xor containedObject.oclIsUndefined()"
-		   });					
+		   });	
 		addAnnotation
 		  (getExtendibleElementReference_Object(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if containedObject.oclIsUndefined() then referencedObject else containedObject endif"
-		   });					
+		   });	
 		addAnnotation
 		  (getExtendibleElementReference_Uri(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if object.oclIsUndefined() then null else object.uri endif"
-		   });						
+		   });	
 		addAnnotation
 		  (getExtendibleElementEndpointReference_TargetUri(), 
 		   source, 
 		   new String[] {
 			 "derivation", "object.oclAsType(mid::ExtendibleElementEndpoint).targetUri"
-		   });				
+		   });	
 		addAnnotation
 		  (modelEndpointReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "modelEndpointType", "object.oclIsKindOf(mid::ModelEndpoint)"
-		   });							
+		   });	
 		addAnnotation
 		  (modelElementReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "modelElementType", "object.oclIsKindOf(mid::ModelElement)"
-		   });												
+		   });	
 		addAnnotation
 		  (binaryLinkEClass, 
 		   source, 
 		   new String[] {
 			 "isBinaryLink", "modelElemEndpoints->size() = 2"
-		   });								
+		   });	
 		addAnnotation
 		  (linkReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "linkType", "object.oclIsKindOf(Link)"
-		   });							
+		   });	
 		addAnnotation
 		  (binaryLinkReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "isBinaryLinkRef", "modelElemEndpointRefs->size() = 2",
 			 "binaryLinkType", "object.oclIsKindOf(BinaryLink)"
-		   });							
+		   });	
 		addAnnotation
 		  (modelElementEndpointReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "modelElemEndpointType", "object.oclIsKindOf(ModelElementEndpoint)"
-		   });			
+		   });
 	}
 
 } //RelationshipPackageImpl

@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl;
 
-import edu.toronto.cs.se.mmint.mavo.impl.MAVOReferenceImpl;
+import edu.toronto.cs.se.mavo.impl.MAVOReferenceImpl;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference;
 
@@ -73,7 +73,7 @@ public class NestedInReferenceImpl extends MAVOReferenceImpl implements NestedIn
 	 */
 	public edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class getSource() {
 		if (eContainerFeatureID() != ClassDiagram_MAVOPackage.NESTED_IN_REFERENCE__SOURCE) return null;
-		return (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class)eContainer();
+		return (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class)eInternalContainer();
 	}
 
 	/**

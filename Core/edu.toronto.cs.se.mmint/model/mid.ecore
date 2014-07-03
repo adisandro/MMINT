@@ -6,7 +6,7 @@
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EClass" name="MultiModel" eSuperTypes="mavo.ecore#//MAVOModel">
+  <eClassifiers xsi:type="ecore:EClass" name="MultiModel" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOModel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The model management root."/>
     </eAnnotations>
@@ -34,7 +34,7 @@
         <details key="documentation" value="The hash map for all element types or element instances in the MID, using the uri as key."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" lowerBound="1" eType="#//MidLevel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" lowerBound="1" eType="#//MIDLevel">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The metalevel (types: TYPES; instances: INSTANCES)."/>
       </eAnnotations>
@@ -55,7 +55,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExtendibleElement" abstract="true" eSuperTypes="mavo.ecore#//MAVOElement">
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendibleElement" abstract="true" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="typeLevel"/>
     </eAnnotations>
@@ -90,7 +90,7 @@
         <details key="documentation" value="The name."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" lowerBound="1" eType="#//MidLevel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" lowerBound="1" eType="#//MIDLevel">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The metalevel (types: TYPES; instances: INSTANCES)."/>
       </eAnnotations>
@@ -113,7 +113,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="MidLevel">
+  <eClassifiers xsi:type="ecore:EEnum" name="MIDLevel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The metalevels for a MID element."/>
     </eAnnotations>
@@ -180,7 +180,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//ExtendibleElement mavo.ecore#//MAVOModel">
+  <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//ExtendibleElement ../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOModel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A model type or a model instance."/>
     </eAnnotations>

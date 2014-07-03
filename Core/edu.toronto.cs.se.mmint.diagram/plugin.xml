@@ -29,14 +29,14 @@ Contributors:
    <extension point="org.eclipse.ui.editors" id="gmf-editor">
       <?gmfgen generated="true"?>
       <editor
-         id="edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorID"
+         id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/MidDiagramFile.gif"
+         icon="icons/obj16/MIDDiagramFile.gif"
          extensions="middiag"
          default="true"
-         class="edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditor"
-         matchingStrategy="edu.toronto.cs.se.mmint.mid.diagram.part.MidMatchingStrategy"
-         contributorClass="edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramActionBarContributor">
+         class="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditor"
+         matchingStrategy="edu.toronto.cs.se.mmint.mid.diagram.part.MIDMatchingStrategy"
+         contributorClass="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramActionBarContributor">
       </editor>
    </extension>
    
@@ -50,6 +50,18 @@ Contributors:
       </context>
    </extension>
 
+   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
+      <?gmfgen generated="true"?>
+  	  <wizard
+  	     name="%newWizardName"
+  	     icon="icons/obj16/MIDDiagramFile.gif"
+  	     category="org.eclipse.ui.Examples"
+  	     class="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizard"
+  	     id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
+  	  	 <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+
    <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
       <?gmfgen generated="true"?>
       <objectContribution
@@ -58,7 +70,7 @@ Contributors:
             objectClass="org.eclipse.core.resources.IFile">
          <action
                label="%initDiagramActionLabel"
-               class="edu.toronto.cs.se.mmint.mid.diagram.part.MidInitDiagramFileAction"
+               class="edu.toronto.cs.se.mmint.mid.diagram.part.MIDInitDiagramFileAction"
                menubarPath="additions"
                enablesFor="1"
                id="edu.toronto.cs.se.mmint.diagram.InitDiagramAction">
@@ -70,9 +82,9 @@ Contributors:
       <?gmfgen generated="true"?>
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
-         id="MidPresentation">
+         id="MIDPresentation">
          <Priority name="Lowest"/>
-         <ViewId id="edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorID">
+         <ViewId id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="delete"/>
             </ElementType>
@@ -87,9 +99,9 @@ Contributors:
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
-         id="MidPresentationIDE">
+         id="MIDPresentationIDE">
          <Priority name="Lowest"/>
-         <ViewId id="edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorID">
+         <ViewId id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="bookmark"/>
             </ElementType>
@@ -97,9 +109,9 @@ Contributors:
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
             class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
-            id="MidRender">
+            id="MIDRender">
          <Priority name="Lowest"/>
-         <ViewId id="edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorID">
+         <ViewId id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="cut"/>
                <GlobalActionId actionId="copy"/>
@@ -112,7 +124,7 @@ Contributors:
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
       <?gmfgen generated="true"?>
-      <MarkerNavigationProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.MidMarkerNavigationProvider">
+      <MarkerNavigationProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.MIDMarkerNavigationProvider">
          <MarkerType name="edu.toronto.cs.se.mmint.diagram.diagnostic"/>
          <Priority name="Lowest"/>
       </MarkerNavigationProvider>
@@ -127,7 +139,7 @@ Contributors:
 
    <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
       <?gmfgen generated="true"?>
-      <decoratorProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.MidValidationDecoratorProvider">
+      <decoratorProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.MIDValidationDecoratorProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
          <context decoratorTargets="PRIMARY_VIEW"/>
@@ -176,7 +188,7 @@ Contributors:
       <?gmfgen generated="true"?>
       <propertyContributor
             contributorId="edu.toronto.cs.se.mmint.diagram"
-            labelProvider="edu.toronto.cs.se.mmint.mid.diagram.sheet.MidSheetLabelProvider">
+            labelProvider="edu.toronto.cs.se.mmint.mid.diagram.sheet.MIDSheetLabelProvider">
          <propertyCategory category="domain"/>
          <propertyCategory category="visual"/>
          <propertyCategory category="extra"/>
@@ -227,23 +239,23 @@ Contributors:
          <propertySection
             id="property.section.domain" 
             tab="property.tab.domain"
-            class="edu.toronto.cs.se.mmint.mid.diagram.sheet.MidPropertySection">
+            class="edu.toronto.cs.se.mmint.mid.diagram.sheet.MIDPropertySection">
             <input type="org.eclipse.gmf.runtime.notation.View"/>
             <input type="org.eclipse.gef.EditPart"/>
-            <input type="edu.toronto.cs.se.mmint.mid.diagram.navigator.MidAbstractNavigatorItem"/>
+            <input type="edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDAbstractNavigatorItem"/>
          </propertySection>
       </propertySections>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
       <?gmfgen generated="true"?>
-      <viewProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.MidDiagramViewProvider">
+      <viewProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider">
          <Priority name="Lowest"/>
          <object id="referencing-diagrams" class="org.eclipse.gmf.runtime.notation.Diagram">
             <method name="getType()" value="mid"/>
          </object>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Mid"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="MID"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2012,2013,2014,2015"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4013,4014,4015,4016,4017"/>
       </viewProvider>
@@ -251,10 +263,10 @@ Contributors:
 
    <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
       <?gmfgen generated="true"?>
-      <editpartProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.MidEditPartProvider">
+      <editpartProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.MIDEditPartProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
-            <method name="getType()" value="Mid"/>
+            <method name="getType()" value="MID"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
             <method name="getType()" value="2011,2012,2013,2014,2015"/>
@@ -272,37 +284,60 @@ Contributors:
       </editpartProvider>
    </extension>
 
+   
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.MidModelingAssistantProvider">
+      <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.assistants.MIDModelingAssistantProviderOfMultiModelEditPart">
          <Priority name="Lowest"/>
          <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart" id="MultiModel_1000"/>
-         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart" id="Model_2011"/>
-         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart" id="Model_2012"/>
-         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart" id="ModelRel_2013"/>
-         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart" id="ModelRel_2014"/>
-         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.OperatorEditPart" id="Operator_2015"/>
-         <context elements="MultiModel_1000,Model_2011,Model_2012,ModelRel_2013,ModelRel_2014,Operator_2015,"/>
+         <context elements="MultiModel_1000"/>
       </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.assistants.MIDModelingAssistantProviderOfModelEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart" id="Model_2011"/>
+         <context elements="Model_2011"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.assistants.MIDModelingAssistantProviderOfModel2EditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart" id="Model_2012"/>
+         <context elements="Model_2012"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.assistants.MIDModelingAssistantProviderOfModelRelEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart" id="ModelRel_2013"/>
+         <context elements="ModelRel_2013"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.assistants.MIDModelingAssistantProviderOfModelRel2EditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart" id="ModelRel_2014"/>
+         <context elements="ModelRel_2014"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.assistants.MIDModelingAssistantProviderOfOperatorEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.OperatorEditPart" id="Operator_2015"/>
+         <context elements="Operator_2015"/>
+      </modelingAssistantProvider>
+      
    </extension>
+
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>
-      <IconProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.MidIconProvider">
+      <IconProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.MIDIconProvider">
          <Priority name="Low"/>
       </IconProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
       <?gmfgen generated="true"?>
-      <ParserProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.MidParserProvider">
+      <ParserProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.MIDParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders" id="decorator-provider">
       <?gmfgen generated="true"?>
-      <decoratorProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.MidShortcutsDecoratorProvider">
+      <decoratorProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.MIDShortcutsDecoratorProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
             <method name="getType()" value="2011,2012,2013,2014,2015"/>
@@ -452,7 +487,7 @@ Contributors:
            type="org.eclipse.emf.common.ui.URIEditorInput"
            namespace="edu.toronto.cs.se.mmint.diagram"
            properties="isURIEditorInput"
-           class="edu.toronto.cs.se.mmint.mid.diagram.part.MidUriEditorInputTester">
+           class="edu.toronto.cs.se.mmint.mid.diagram.part.MIDUriEditorInputTester">
        </propertyTester>
    </extension>
 
@@ -463,7 +498,7 @@ Contributors:
            type="org.eclipse.gmf.runtime.notation.View"
            namespace="edu.toronto.cs.se.mmint.diagram"
            properties="isShortcut"
-           class="edu.toronto.cs.se.mmint.mid.diagram.part.MidShortcutPropertyTester">
+           class="edu.toronto.cs.se.mmint.mid.diagram.part.MIDShortcutPropertyTester">
        </propertyTester>
    </extension>
 
@@ -489,9 +524,9 @@ Contributors:
             id="edu.toronto.cs.se.mmint.diagram.resourceContent" 
             name="%navigatorContentName" 
             priority="normal" 
-            contentProvider="edu.toronto.cs.se.mmint.mid.diagram.navigator.MidNavigatorContentProvider" 
-            labelProvider="edu.toronto.cs.se.mmint.mid.diagram.navigator.MidNavigatorLabelProvider"
-            icon="icons/obj16/MidDiagramFile.gif"
+            contentProvider="edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorContentProvider" 
+            labelProvider="edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorLabelProvider"
+            icon="icons/obj16/MIDDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -499,7 +534,7 @@ Contributors:
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="middiag"/>
                </and>
-               <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.navigator.MidAbstractNavigatorItem"/>
+               <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDAbstractNavigatorItem"/>
            	   <adapt type="org.eclipse.gmf.runtime.notation.View">
            	      <test property="edu.toronto.cs.se.mmint.diagram.isShortcut"/>
            	   </adapt>
@@ -507,7 +542,7 @@ Contributors:
          </triggerPoints>
          <possibleChildren>
             <or>
-         	   <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.navigator.MidAbstractNavigatorItem"/>
+         	   <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDAbstractNavigatorItem"/>
            	   <adapt type="org.eclipse.gmf.runtime.notation.View">
            	      <test property="edu.toronto.cs.se.mmint.diagram.isShortcut"/>
            	   </adapt>
@@ -515,14 +550,14 @@ Contributors:
          </possibleChildren>
          <commonSorter 
                id="edu.toronto.cs.se.mmint.diagram.navigatorSorter" 
-               class="edu.toronto.cs.se.mmint.mid.diagram.navigator.MidNavigatorSorter">
+               class="edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorSorter">
             <parentExpression>
                <or>
 	              <and>
     	             <instanceof value="org.eclipse.core.resources.IFile"/>
         	         <test property="org.eclipse.core.resources.extension" value="middiag"/>
                   </and>
-                  <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.navigator.MidAbstractNavigatorItem"/>
+                  <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDAbstractNavigatorItem"/>
                </or>
             </parentExpression>
          </commonSorter>
@@ -531,9 +566,9 @@ Contributors:
             id="edu.toronto.cs.se.mmint.diagram.domainResourceContent" 
             name="%domainNavigatorContentName" 
             priority="normal" 
-            contentProvider="edu.toronto.cs.se.mmint.mid.diagram.navigator.MidDomainNavigatorContentProvider" 
-            labelProvider="edu.toronto.cs.se.mmint.mid.diagram.navigator.MidDomainNavigatorLabelProvider"
-            icon="icons/obj16/MidDiagramFile.gif"
+            contentProvider="edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorContentProvider" 
+            labelProvider="edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorLabelProvider"
+            icon="icons/obj16/MIDDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -541,19 +576,19 @@ Contributors:
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="mid"/>
                </and>
-               <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.navigator.MidDomainNavigatorItem"/>
+               <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
-            <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.navigator.MidDomainNavigatorItem"/>
+            <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem"/>
          </possibleChildren>
       </navigatorContent>
       <actionProvider
             id="edu.toronto.cs.se.mmint.diagram.navigatorActionProvider"
-            class="edu.toronto.cs.se.mmint.mid.diagram.navigator.MidNavigatorActionProvider">
+            class="edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorActionProvider">
          <enablement>
             <or>
-               <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.navigator.MidAbstractNavigatorItem"/>
+               <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDAbstractNavigatorItem"/>
            	   <adapt type="org.eclipse.gmf.runtime.notation.View">
            	      <test property="edu.toronto.cs.se.mmint.diagram.isShortcut"/>
            	   </adapt>
@@ -566,7 +601,7 @@ Contributors:
       <?gmfgen generated="true"?>
       <linkHelper
             id="edu.toronto.cs.se.mmint.diagram.navigatorLinkHelper"
-            class="edu.toronto.cs.se.mmint.mid.diagram.navigator.MidNavigatorLinkHelper">
+            class="edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorLinkHelper">
          <editorInputEnablement>
             <and>
                <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
@@ -574,7 +609,7 @@ Contributors:
             </and>
          </editorInputEnablement>
          <selectionEnablement>
-            <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.navigator.MidAbstractNavigatorItem"/>
+            <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDAbstractNavigatorItem"/>
          </selectionEnablement>
       </linkHelper>
    </extension>
@@ -587,7 +622,7 @@ Contributors:
          <package namespaceUri="http://se.cs.toronto.edu/mmint/MID"/>
                <constraints categories="ModelValidationContainer">
                   <constraint id="ModelValidationRule"
-            lang="Java" class="edu.toronto.cs.se.mmint.mid.diagram.providers.MidValidationProvider$Adapter1"
+            lang="Java" class="edu.toronto.cs.se.mmint.mid.diagram.providers.MIDValidationProvider$Adapter1"
             name="ModelValidationRule"
             mode="Batch"
             severity="ERROR" statusCode="200">
@@ -603,7 +638,7 @@ Contributors:
    <extension point="org.eclipse.emf.validation.constraintBindings">
       <?gmfgen generated="true"?>
       <clientContext default="false" id="edu.toronto.cs.se.mmint.diagramDefaultCtx">
-         <selector class="edu.toronto.cs.se.mmint.mid.diagram.providers.MidValidationProvider$DefaultCtx"/>
+         <selector class="edu.toronto.cs.se.mmint.mid.diagram.providers.MIDValidationProvider$DefaultCtx"/>
       </clientContext>
       <binding context="edu.toronto.cs.se.mmint.diagramDefaultCtx">
                   <constraint ref="edu.toronto.cs.se.mmint.diagram.ModelValidationRule"/>
@@ -621,7 +656,7 @@ Contributors:
       <?gmfgen generated="true"?>
       <command
          categoryId="org.eclipse.ui.category.edit"
-         defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramUpdateCommand"
+         defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramUpdateCommand"
          description="%update.diagram.description"
          id="edu.toronto.cs.se.mmint.mid.diagram.updateDiagram"
          name="%update.diagram.name"/>
@@ -646,7 +681,7 @@ Contributors:
          <command commandId="edu.toronto.cs.se.mmint.diagram.LoadResourceAction">
             <visibleWhen>
                <and>
-                  <with variable="activePartId"><equals value="edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorID"/></with>
+                  <with variable="activePartId"><equals value="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"/></with>
                   <with variable="selection"><iterate ifEmpty="false"> 
                      <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart"/>
                   </iterate></with>
@@ -658,10 +693,10 @@ Contributors:
 
    <extension point="org.eclipse.ui.commands" id="menu-commands">
       <?gmfgen generated="true"?>
-      <category id="edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <category id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
       <command id="edu.toronto.cs.se.mmint.diagram.LoadResourceAction"
          name="Load Resource"
-         categoryId="edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorID"
+         categoryId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"
          defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.part.LoadResourceAction"/>
    </extension>
 
@@ -677,10 +712,10 @@ Contributors:
             name="%MMINT.newWizardCat"/>
   	  <wizard
   	     name="%MMINT.newWizardName"
-  	     icon="icons/obj16/MidDiagramFile.gif"
+  	     icon="icons/obj16/MIDDiagramFile.gif"
   	     category="edu.toronto.cs.se.mmint"
-  	     class="edu.toronto.cs.se.mmint.mid.diagram.part.MidCreationWizard"
-  	     id="edu.toronto.cs.se.mmint.mid.diagram.part.MidCreationWizardID">
+  	     class="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizard"
+  	     id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
   	  	 <description>%MMINT.newWizardDesc</description>  
       </wizard>
    </extension>
@@ -689,10 +724,10 @@ Contributors:
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <dynamic
                class="edu.toronto.cs.se.mmint.mid.diagram.contextmenu.MIDContextMenu"
-               id="edu.toronto.cs.se.mmint.mid.diagram.contextmenu.MidDiagramActions">
+               id="edu.toronto.cs.se.mmint.mid.diagram.contextmenu.MIDDiagramActions">
             <visibleWhen>
                <with variable="activePartId">
-                  <equals value="edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorID"/>
+                  <equals value="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"/>
                </with>
             </visibleWhen>
          </dynamic>
@@ -820,9 +855,9 @@ Contributors:
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
             modelTypeUri="http://se.cs.toronto.edu/mmint/MID"
-            id="edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorID"
+            id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"
             isDiagram="true"
-            wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MidCreationWizardID">
+            wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
          <type
                name="MID diagram"
                uri="http://se.cs.toronto.edu/mmint/MID_diagram">

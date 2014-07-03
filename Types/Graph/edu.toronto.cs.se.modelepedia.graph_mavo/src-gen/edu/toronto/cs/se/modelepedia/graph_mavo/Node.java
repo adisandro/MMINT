@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage#getNode()
- * @model
+ * @model annotation="gmf.node label='name'"
  * @generated
  */
 public interface Node extends NamedElement {

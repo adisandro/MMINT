@@ -11,20 +11,17 @@
  */
 package edu.toronto.cs.se.modelepedia.graph_mavo.impl;
 
-import edu.toronto.cs.se.mmint.mavo.MavoPackage;
-
+import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Edge;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.graph_mavo.NamedElement;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Node;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -109,7 +106,7 @@ public class Graph_MAVOPackageImpl extends EPackageImpl implements Graph_MAVOPac
 		isInited = true;
 
 		// Initialize simple dependencies
-		MavoPackage.eINSTANCE.eClass();
+		MAVOPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theGraph_MAVOPackage.createPackageContents();
@@ -293,15 +290,15 @@ public class Graph_MAVOPackageImpl extends EPackageImpl implements Graph_MAVOPac
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		MavoPackage theMavoPackage = (MavoPackage)EPackage.Registry.INSTANCE.getEPackage(MavoPackage.eNS_URI);
+		MAVOPackage theMAVOPackage = (MAVOPackage)EPackage.Registry.INSTANCE.getEPackage(MAVOPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		graphEClass.getESuperTypes().add(theMavoPackage.getMAVOModel());
-		namedElementEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
+		graphEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
+		namedElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 		nodeEClass.getESuperTypes().add(this.getNamedElement());
 		edgeEClass.getESuperTypes().add(this.getNamedElement());
 
@@ -325,10 +322,27 @@ public class Graph_MAVOPackageImpl extends EPackageImpl implements Graph_MAVOPac
 		createResource(eNS_URI);
 
 		// Create annotations
-		// gmf.node
+		// gmf.diagram
 		createGmfAnnotations();
-		// gmf.link
+		// gmf.node
 		createGmf_1Annotations();
+		// gmf.link
+		createGmf_2Annotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.diagram</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmfAnnotations() {
+		String source = "gmf.diagram";	
+		addAnnotation
+		  (graphEClass, 
+		   source, 
+		   new String[] {
+		   });
 	}
 
 	/**
@@ -337,13 +351,14 @@ public class Graph_MAVOPackageImpl extends EPackageImpl implements Graph_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createGmfAnnotations() {
-		String source = "gmf.node";		
+	protected void createGmf_1Annotations() {
+		String source = "gmf.node";	
 		addAnnotation
 		  (nodeEClass, 
 		   source, 
 		   new String[] {
-		   });	
+			 "label", "name"
+		   });
 	}
 
 	/**
@@ -352,14 +367,17 @@ public class Graph_MAVOPackageImpl extends EPackageImpl implements Graph_MAVOPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createGmf_1Annotations() {
-		String source = "gmf.link";			
+	protected void createGmf_2Annotations() {
+		String source = "gmf.link";	
 		addAnnotation
 		  (edgeEClass, 
 		   source, 
 		   new String[] {
+			 "label", "name",
+			 "label.icon", "true",
 			 "source", "source",
-			 "target", "target"
+			 "target", "target",
+			 "target.decoration", "arrow"
 		   });
 	}
 

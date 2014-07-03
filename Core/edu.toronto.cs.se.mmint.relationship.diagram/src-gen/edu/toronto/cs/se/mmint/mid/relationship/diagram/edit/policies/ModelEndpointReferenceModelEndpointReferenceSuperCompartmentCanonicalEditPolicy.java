@@ -45,9 +45,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReference2EditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReference3EditPart;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidDiagramUpdater;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidNodeDescriptor;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidVisualIDRegistry;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDDiagramUpdater;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDNodeDescriptor;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry;
 
 /**
  * @generated
@@ -82,9 +82,9 @@ public class ModelEndpointReferenceModelEndpointReferenceSuperCompartmentCanonic
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
-		List<MidNodeDescriptor> childDescriptors = MidDiagramUpdater
+		List<MIDNodeDescriptor> childDescriptors = MIDDiagramUpdater
 				.getModelEndpointReferenceModelEndpointReferenceSuperCompartment_7005SemanticChildren(viewObject);
-		for (MidNodeDescriptor d : childDescriptors) {
+		for (MIDNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
 		return result;
@@ -103,7 +103,7 @@ public class ModelEndpointReferenceModelEndpointReferenceSuperCompartmentCanonic
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		int visualID = MidVisualIDRegistry.getVisualID(view);
+		int visualID = MIDVisualIDRegistry.getVisualID(view);
 		return visualID == ModelElementReference2EditPart.VISUAL_ID
 				|| visualID == ModelElementReference3EditPart.VISUAL_ID;
 	}
@@ -116,7 +116,7 @@ public class ModelEndpointReferenceModelEndpointReferenceSuperCompartmentCanonic
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<MidNodeDescriptor> childDescriptors = MidDiagramUpdater
+		List<MIDNodeDescriptor> childDescriptors = MIDDiagramUpdater
 				.getModelEndpointReferenceModelEndpointReferenceSuperCompartment_7005SemanticChildren((View) getHost()
 						.getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
@@ -128,15 +128,15 @@ public class ModelEndpointReferenceModelEndpointReferenceSuperCompartmentCanonic
 			}
 		}
 		// alternative to #cleanCanonicalSemanticChildren(getViewChildren(), semanticChildren)
-		HashMap<MidNodeDescriptor, LinkedList<View>> potentialViews = new HashMap<MidNodeDescriptor, LinkedList<View>>();
+		HashMap<MIDNodeDescriptor, LinkedList<View>> potentialViews = new HashMap<MIDNodeDescriptor, LinkedList<View>>();
 		//
 		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
 		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
 		// to answer isOrphaned == true will be used for the domain element representation, see #cleanCanonicalSemanticChildren()
-		for (Iterator<MidNodeDescriptor> descriptorsIterator = childDescriptors
+		for (Iterator<MIDNodeDescriptor> descriptorsIterator = childDescriptors
 				.iterator(); descriptorsIterator.hasNext();) {
-			MidNodeDescriptor next = descriptorsIterator.next();
-			String hint = MidVisualIDRegistry.getType(next.getVisualID());
+			MIDNodeDescriptor next = descriptorsIterator.next();
+			String hint = MIDVisualIDRegistry.getType(next.getVisualID());
 			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
 			LinkedList<View> potentialMatch = new LinkedList<View>(); // semanticElement matches, hint does not
 			for (View childView : getViewChildren()) {
@@ -169,8 +169,8 @@ public class ModelEndpointReferenceModelEndpointReferenceSuperCompartmentCanonic
 				DiagramUIMessages.SetLocationCommand_Label_Resize);
 		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(
 				childDescriptors.size());
-		for (MidNodeDescriptor next : childDescriptors) {
-			String hint = MidVisualIDRegistry.getType(next.getVisualID());
+		for (MIDNodeDescriptor next : childDescriptors) {
+			String hint = MIDVisualIDRegistry.getType(next.getVisualID());
 			IAdaptable elementAdapter = new CanonicalElementAdapter(
 					next.getModelElement(), hint);
 			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(

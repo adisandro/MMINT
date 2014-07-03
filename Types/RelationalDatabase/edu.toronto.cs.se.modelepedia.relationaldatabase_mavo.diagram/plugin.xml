@@ -294,17 +294,32 @@ Contributors:
       </editpartProvider>
    </extension>
 
+   
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOModelingAssistantProvider">
+      <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.assistants.RelationalDatabase_MAVOModelingAssistantProviderOfRelationalDatabaseEditPart">
          <Priority name="Lowest"/>
          <object class="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.RelationalDatabaseEditPart" id="RelationalDatabase_1000"/>
-         <object class="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableEditPart" id="Table_2001"/>
-         <object class="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ColumnEditPart" id="Column_3001"/>
-         <object class="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignKeyEditPart" id="ForeignKey_3002"/>
-         <context elements="RelationalDatabase_1000,Table_2001,Column_3001,ForeignKey_3002"/>
+         <context elements="RelationalDatabase_1000"/>
       </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.assistants.RelationalDatabase_MAVOModelingAssistantProviderOfTableEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableEditPart" id="Table_2001"/>
+         <context elements="Table_2001"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.assistants.RelationalDatabase_MAVOModelingAssistantProviderOfColumnEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ColumnEditPart" id="Column_3001"/>
+         <context elements="Column_3001"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.assistants.RelationalDatabase_MAVOModelingAssistantProviderOfForeignKeyEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignKeyEditPart" id="ForeignKey_3002"/>
+         <context elements="ForeignKey_3002"/>
+      </modelingAssistantProvider>
+      
    </extension>
+
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>

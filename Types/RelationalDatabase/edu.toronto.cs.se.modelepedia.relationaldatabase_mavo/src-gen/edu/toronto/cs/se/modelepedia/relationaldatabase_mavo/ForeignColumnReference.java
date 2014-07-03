@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo;
 
-import edu.toronto.cs.se.mmint.mavo.MAVOReference;
+import edu.toronto.cs.se.mavo.MAVOReference;
 
 /**
  * <!-- begin-user-doc -->

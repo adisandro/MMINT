@@ -24,19 +24,19 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelEndpointCreateComm
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelEndpointReorientCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 
 /**
  * @generated
  */
 public class ModelEndpointItemSemanticEditPolicy extends
-		MidBaseItemSemanticEditPolicy {
+		MIDBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	public ModelEndpointItemSemanticEditPolicy() {
-		super(MidElementTypes.ModelEndpoint_4014);
+		super(MIDElementTypes.ModelEndpoint_4014);
 	}
 
 	/**
@@ -61,12 +61,12 @@ public class ModelEndpointItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (MidElementTypes.ExtendibleElementSupertype_4013 == req
+		if (MIDElementTypes.ExtendibleElementSupertype_4013 == req
 				.getElementType()) {
 			return getGEFWrapper(new ExtendibleElementSupertypeCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.ModelEndpoint_4014 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
 			return null;
 		}
 		return null;
@@ -77,12 +77,12 @@ public class ModelEndpointItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (MidElementTypes.ExtendibleElementSupertype_4013 == req
+		if (MIDElementTypes.ExtendibleElementSupertype_4013 == req
 				.getElementType()) {
 			return getGEFWrapper(new ExtendibleElementSupertypeCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.ModelEndpoint_4014 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
 			return getGEFWrapper(new ModelEndpointCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}

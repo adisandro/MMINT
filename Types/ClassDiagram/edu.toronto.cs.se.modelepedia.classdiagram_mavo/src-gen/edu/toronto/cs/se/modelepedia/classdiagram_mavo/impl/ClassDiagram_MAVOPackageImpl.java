@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl;
 
-import edu.toronto.cs.se.mmint.mavo.MavoPackage;
+import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram;
@@ -154,7 +154,7 @@ public class ClassDiagram_MAVOPackageImpl extends EPackageImpl implements ClassD
 		isInited = true;
 
 		// Initialize simple dependencies
-		MavoPackage.eINSTANCE.eClass();
+		MAVOPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theClassDiagram_MAVOPackage.createPackageContents();
@@ -604,23 +604,23 @@ public class ClassDiagram_MAVOPackageImpl extends EPackageImpl implements ClassD
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		MavoPackage theMavoPackage = (MavoPackage)EPackage.Registry.INSTANCE.getEPackage(MavoPackage.eNS_URI);
+		MAVOPackage theMAVOPackage = (MAVOPackage)EPackage.Registry.INSTANCE.getEPackage(MAVOPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		classDiagramEClass.getESuperTypes().add(theMavoPackage.getMAVOModel());
+		classDiagramEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
 		classEClass.getESuperTypes().add(this.getNamedElement());
 		attributeEClass.getESuperTypes().add(this.getTypedElement());
-		namedElementEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
+		namedElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 		operationEClass.getESuperTypes().add(this.getTypedElement());
-		dependencyEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
+		dependencyEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 		typedElementEClass.getESuperTypes().add(this.getNamedElement());
 		associationEClass.getESuperTypes().add(this.getNamedElement());
-		nestedInReferenceEClass.getESuperTypes().add(theMavoPackage.getMAVOReference());
-		superclassReferenceEClass.getESuperTypes().add(theMavoPackage.getMAVOReference());
+		nestedInReferenceEClass.getESuperTypes().add(theMAVOPackage.getMAVOReference());
+		superclassReferenceEClass.getESuperTypes().add(theMAVOPackage.getMAVOReference());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(classDiagramEClass, ClassDiagram.class, "ClassDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -695,7 +695,7 @@ public class ClassDiagram_MAVOPackageImpl extends EPackageImpl implements ClassD
 	 * @generated
 	 */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";		
+		String source = "http://www.eclipse.org/emf/2002/Ecore";	
 		addAnnotation
 		  (this, 
 		   source, 
@@ -703,7 +703,7 @@ public class ClassDiagram_MAVOPackageImpl extends EPackageImpl implements ClassD
 			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });											
+		   });
 	}
 
 	/**
@@ -713,12 +713,12 @@ public class ClassDiagram_MAVOPackageImpl extends EPackageImpl implements ClassD
 	 * @generated
 	 */
 	protected void createGmfAnnotations() {
-		String source = "gmf.diagram";			
+		String source = "gmf.diagram";	
 		addAnnotation
 		  (classDiagramEClass, 
 		   source, 
 		   new String[] {
-		   });										
+		   });
 	}
 
 	/**
@@ -728,25 +728,25 @@ public class ClassDiagram_MAVOPackageImpl extends EPackageImpl implements ClassD
 	 * @generated
 	 */
 	protected void createGmf_1Annotations() {
-		String source = "gmf.node";				
+		String source = "gmf.node";	
 		addAnnotation
 		  (classEClass, 
 		   source, 
 		   new String[] {
 			 "label", "name"
-		   });				
+		   });	
 		addAnnotation
 		  (attributeEClass, 
 		   source, 
 		   new String[] {
 			 "label", "name"
-		   });		
+		   });	
 		addAnnotation
 		  (operationEClass, 
 		   source, 
 		   new String[] {
 			 "label", "name"
-		   });					
+		   });
 	}
 
 	/**
@@ -756,19 +756,19 @@ public class ClassDiagram_MAVOPackageImpl extends EPackageImpl implements ClassD
 	 * @generated
 	 */
 	protected void createGmf_2Annotations() {
-		String source = "gmf.compartment";					
+		String source = "gmf.compartment";	
 		addAnnotation
 		  (getClass_OwnedAttributes(), 
 		   source, 
 		   new String[] {
 			 "layout", "list"
-		   });		
+		   });	
 		addAnnotation
 		  (getClass_OwnedOperations(), 
 		   source, 
 		   new String[] {
 			 "layout", "list"
-		   });							
+		   });
 	}
 
 	/**
@@ -778,7 +778,7 @@ public class ClassDiagram_MAVOPackageImpl extends EPackageImpl implements ClassD
 	 * @generated
 	 */
 	protected void createGmf_3Annotations() {
-		String source = "gmf.link";									
+		String source = "gmf.link";	
 		addAnnotation
 		  (dependencyEClass, 
 		   source, 
@@ -787,7 +787,7 @@ public class ClassDiagram_MAVOPackageImpl extends EPackageImpl implements ClassD
 			 "target", "depender",
 			 "target.decoration", "arrow",
 			 "style", "dash"
-		   });			
+		   });	
 		addAnnotation
 		  (associationEClass, 
 		   source, 
@@ -797,7 +797,7 @@ public class ClassDiagram_MAVOPackageImpl extends EPackageImpl implements ClassD
 			 "source", "source",
 			 "target", "target",
 			 "target.decoration", "arrow"
-		   });		
+		   });	
 		addAnnotation
 		  (nestedInReferenceEClass, 
 		   source, 
@@ -805,7 +805,7 @@ public class ClassDiagram_MAVOPackageImpl extends EPackageImpl implements ClassD
 			 "target.decoration", "square",
 			 "source", "source",
 			 "target", "target"
-		   });		
+		   });	
 		addAnnotation
 		  (superclassReferenceEClass, 
 		   source, 
@@ -823,13 +823,13 @@ public class ClassDiagram_MAVOPackageImpl extends EPackageImpl implements ClassD
 	 * @generated
 	 */
 	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";										
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
 		addAnnotation
 		  (getDependency_Name(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if depender.oclIsUndefined() or dependee.oclIsUndefined() then \'\' else depender.name.concat(\' 2 \').concat(dependee.name) endif"
-		   });			
+		   });
 	}
 
 } //ClassDiagram_MAVOPackageImpl

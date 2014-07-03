@@ -60,6 +60,7 @@ import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 
 /**
  * @generated
+ * TODO MMINT[GMF] Replace with new one
  */
 public class MidElementChooserDialog extends Dialog {
 
@@ -119,7 +120,7 @@ public class MidElementChooserDialog extends Dialog {
 	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite) super.createDialogArea(parent);
 		getShell().setText(
-				Messages.MidElementChooserDialog_SelectModelElementTitle);
+				Messages.MIDElementChooserDialog_SelectModelElementTitle);
 		createModelBrowser(composite);
 		return composite;
 	}
@@ -218,7 +219,7 @@ public class MidElementChooserDialog extends Dialog {
 		 * @generated
 		 */
 		private AdapterFactoryContentProvider myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(
-				MidDiagramEditorPlugin.getInstance()
+				MIDDiagramEditorPlugin.getInstance()
 						.getItemProvidersAdapterFactory());
 
 		/**
@@ -241,7 +242,7 @@ public class MidElementChooserDialog extends Dialog {
 					return myAdapterFctoryContentProvier
 							.getChildren(modelResource);
 				} catch (WrappedException e) {
-					MidDiagramEditorPlugin
+					MIDDiagramEditorPlugin
 							.getInstance()
 							.logError(
 									"Unable to load resource: " + resourcePath.toString(), e); //$NON-NLS-1$
@@ -325,7 +326,7 @@ public class MidElementChooserDialog extends Dialog {
 		 * @generated
 		 */
 		private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-				MidDiagramEditorPlugin.getInstance()
+				MIDDiagramEditorPlugin.getInstance()
 						.getItemProvidersAdapterFactory());
 
 		/**
@@ -436,7 +437,7 @@ public class MidElementChooserDialog extends Dialog {
 										null,
 										ViewUtil.APPEND,
 										true,
-										MidDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
+										MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 						mySelectedModelElementURI = EcoreUtil
 								.getURI(selectedModelElement);
 						return;

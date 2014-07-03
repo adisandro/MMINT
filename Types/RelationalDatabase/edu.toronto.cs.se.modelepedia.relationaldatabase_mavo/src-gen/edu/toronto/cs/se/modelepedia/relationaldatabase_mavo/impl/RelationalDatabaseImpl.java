@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl;
 
-import edu.toronto.cs.se.mmint.mavo.impl.MAVOModelImpl;
+import edu.toronto.cs.se.mavo.impl.MAVOModelImpl;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Table;

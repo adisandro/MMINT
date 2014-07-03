@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl;
 
-import edu.toronto.cs.se.mmint.mavo.impl.MAVOElementImpl;
+import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.NamedElement;
 

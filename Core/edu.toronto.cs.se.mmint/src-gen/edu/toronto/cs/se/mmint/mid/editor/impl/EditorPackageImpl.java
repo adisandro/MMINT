@@ -11,20 +11,18 @@
  */
 package edu.toronto.cs.se.mmint.mid.editor.impl;
 
-import edu.toronto.cs.se.mmint.mavo.MavoPackage;
-import edu.toronto.cs.se.mmint.mavo.impl.MavoPackageImpl;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
+import edu.toronto.cs.se.mavo.MAVOPackage;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
-import edu.toronto.cs.se.mmint.mid.impl.MidPackageImpl;
+import edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -114,25 +112,25 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		MAVOPackage.eINSTANCE.eClass();
+
 		// Obtain or create and register interdependencies
-		MidPackageImpl theMidPackage = (MidPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MidPackage.eNS_URI) instanceof MidPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MidPackage.eNS_URI) : MidPackage.eINSTANCE);
+		MIDPackageImpl theMIDPackage = (MIDPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI) instanceof MIDPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI) : MIDPackage.eINSTANCE);
 		RelationshipPackageImpl theRelationshipPackage = (RelationshipPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI) instanceof RelationshipPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI) : RelationshipPackage.eINSTANCE);
 		OperatorPackageImpl theOperatorPackage = (OperatorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI) instanceof OperatorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI) : OperatorPackage.eINSTANCE);
-		MavoPackageImpl theMavoPackage = (MavoPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MavoPackage.eNS_URI) instanceof MavoPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MavoPackage.eNS_URI) : MavoPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theEditorPackage.createPackageContents();
-		theMidPackage.createPackageContents();
+		theMIDPackage.createPackageContents();
 		theRelationshipPackage.createPackageContents();
 		theOperatorPackage.createPackageContents();
-		theMavoPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theEditorPackage.initializePackageContents();
-		theMidPackage.initializePackageContents();
+		theMIDPackage.initializePackageContents();
 		theRelationshipPackage.initializePackageContents();
 		theOperatorPackage.initializePackageContents();
-		theMavoPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theEditorPackage.freeze();
@@ -390,14 +388,14 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		MidPackage theMidPackage = (MidPackage)EPackage.Registry.INSTANCE.getEPackage(MidPackage.eNS_URI);
+		MIDPackage theMIDPackage = (MIDPackage)EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		editorEClass.getESuperTypes().add(theMidPackage.getExtendibleElement());
+		editorEClass.getESuperTypes().add(theMIDPackage.getExtendibleElement());
 		diagramEClass.getESuperTypes().add(this.getEditor());
 
 		// Initialize classes, features, and operations; add parameters
@@ -419,22 +417,22 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		addEParameter(op, ecorePackage.getEString(), "editorId", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "wizardId", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "wizardDialogClassName", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getEditor__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getEditor__CreateInstance__String_MultiModel(), this.getEditor(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "modelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMidPackage.getMultiModel(), "containerMultiModel", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEParameter(op, theMIDPackage.getMultiModel(), "containerMultiModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getEditor__InvokeInstanceWizard__IStructuredSelection(), this.getEditorCreationWizardDialog(), "invokeInstanceWizard", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getIStructuredSelection(), "initialSelection", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getEditor__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(diagramEClass, Diagram.class, "Diagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -445,16 +443,16 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		addEParameter(op, ecorePackage.getEString(), "editorId", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "wizardId", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "wizardDialogClassName", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getDiagram__CreateInstance__String_MultiModel(), this.getEditor(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "modelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMidPackage.getMultiModel(), "containerMultiModel", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEParameter(op, theMIDPackage.getMultiModel(), "containerMultiModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getDiagram__InvokeInstanceWizard__IStructuredSelection(), this.getEditorCreationWizardDialog(), "invokeInstanceWizard", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getIStructuredSelection(), "initialSelection", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMidPackage.getMMINTException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		// Initialize data types
 		initEDataType(iStructuredSelectionEDataType, IStructuredSelection.class, "IStructuredSelection", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

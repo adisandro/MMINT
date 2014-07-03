@@ -12,11 +12,9 @@
 package edu.toronto.cs.se.modelepedia.kleisli.util;
 
 import edu.toronto.cs.se.mmint.mid.relationship.util.RelationshipValidator;
-import edu.toronto.cs.se.mmint.mid.util.MidValidator;
+import edu.toronto.cs.se.mmint.mid.util.MIDValidator;
 import edu.toronto.cs.se.modelepedia.kleisli.*;
-
 import java.util.Map;
-
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -71,7 +69,7 @@ public class KleisliValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MidValidator midValidator;
+	protected MIDValidator midValidator;
 
 	/**
 	 * The cached base package validator.
@@ -89,7 +87,7 @@ public class KleisliValidator extends EObjectValidator {
 	 */
 	public KleisliValidator() {
 		super();
-		midValidator = MidValidator.INSTANCE;
+		midValidator = MIDValidator.INSTANCE;
 		relationshipValidator = RelationshipValidator.INSTANCE;
 	}
 

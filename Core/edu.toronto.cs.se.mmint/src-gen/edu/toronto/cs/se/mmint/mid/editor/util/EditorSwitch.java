@@ -11,10 +11,10 @@
  */
 package edu.toronto.cs.se.mmint.mid.editor.util;
 
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.LogicElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.editor.*;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
@@ -81,6 +81,7 @@ public class EditorSwitch<T> extends Switch<T> {
 				T result = caseEditor(editor);
 				if (result == null) result = caseExtendibleElement(editor);
 				if (result == null) result = caseMAVOElement(editor);
+				if (result == null) result = caseLogicElement(editor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -90,6 +91,7 @@ public class EditorSwitch<T> extends Switch<T> {
 				if (result == null) result = caseEditor(diagram);
 				if (result == null) result = caseExtendibleElement(diagram);
 				if (result == null) result = caseMAVOElement(diagram);
+				if (result == null) result = caseLogicElement(diagram);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -128,13 +130,28 @@ public class EditorSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>MAVO Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Logic Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>MAVO Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Logic Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLogicElement(LogicElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */

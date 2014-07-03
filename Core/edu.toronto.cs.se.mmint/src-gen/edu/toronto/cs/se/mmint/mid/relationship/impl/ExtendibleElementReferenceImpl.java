@@ -14,14 +14,13 @@ package edu.toronto.cs.se.mmint.mid.relationship.impl;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,7 +40,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public abstract class ExtendibleElementReferenceImpl extends EObjectImpl implements ExtendibleElementReference {
+public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.Container implements ExtendibleElementReference {
 	/**
 	 * The cached value of the '{@link #getReferencedObject() <em>Referenced Object</em>}' reference.
 	 * <!-- begin-user-doc -->

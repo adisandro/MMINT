@@ -22,8 +22,8 @@ import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -83,7 +83,7 @@ public class MultiModelTypeFactory {
 
 		newType.setUri(newTypeUri);
 		newType.setName(newTypeName);
-		newType.setLevel(MidLevel.TYPES);
+		newType.setLevel(MIDLevel.TYPES);
 		newType.setSupertype(type);
 		multiModel.getExtendibleTable().put(newTypeUri, newType);
 	}
@@ -168,7 +168,7 @@ public class MultiModelTypeFactory {
 		newModelType.setAbstract(newModelTypeAbstract);
 		ExtendibleElementConstraint modelConstraint = null;
 		if (constraintLanguage != null) {
-			modelConstraint = MidFactory.eINSTANCE.createExtendibleElementConstraint();
+			modelConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
 			modelConstraint.setLanguage(constraintLanguage);
 			modelConstraint.setImplementation(constraintImplementation);
 		}

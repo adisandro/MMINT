@@ -11,15 +11,11 @@
  */
 package edu.toronto.cs.se.modelepedia.graph_mavo.impl;
 
-import edu.toronto.cs.se.mmint.mavo.impl.MAVOElementImpl;
-
+import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.graph_mavo.NamedElement;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

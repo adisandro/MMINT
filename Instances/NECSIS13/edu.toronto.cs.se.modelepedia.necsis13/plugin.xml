@@ -18,7 +18,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://se.cs.toronto.edu/modelepedia/Java"
-            class="edu.toronto.cs.se.mmint.mid.MidPackage"/>
+            class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
    </extension>
 
    <extension

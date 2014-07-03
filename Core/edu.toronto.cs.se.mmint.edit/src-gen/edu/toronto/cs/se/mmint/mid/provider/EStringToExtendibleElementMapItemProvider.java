@@ -12,12 +12,10 @@
 package edu.toronto.cs.se.mmint.mid.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.MidPackage;
-
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -87,7 +85,7 @@ public class EStringToExtendibleElementMapItemProvider
 				 getResourceLocator(),
 				 getString("_UI_EStringToExtendibleElementMap_key_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_EStringToExtendibleElementMap_key_feature", "_UI_EStringToExtendibleElementMap_type"),
-				 MidPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY,
+				 MIDPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY,
 				 true,
 				 false,
 				 false,
@@ -109,7 +107,7 @@ public class EStringToExtendibleElementMapItemProvider
 				 getResourceLocator(),
 				 getString("_UI_EStringToExtendibleElementMap_value_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_EStringToExtendibleElementMap_value_feature", "_UI_EStringToExtendibleElementMap_type"),
-				 MidPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE,
+				 MIDPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE,
 				 true,
 				 false,
 				 true,
@@ -153,7 +151,7 @@ public class EStringToExtendibleElementMapItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Map.Entry.class)) {
-			case MidPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
+			case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.diagram; singleton:=true
 Bundle-Version: 1.3.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorPlugin
+Bundle-Activator: edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: edu.toronto.cs.se.mmint.mid.diagram.edit.commands,
@@ -40,6 +40,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.draw2d.ui,
  org.eclipse.gef,
  org.eclipse.emf.compare,
+ edu.toronto.cs.se.mavo,
+ edu.toronto.cs.se.mavo.edit,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.edit
 Bundle-ActivationPolicy: lazy

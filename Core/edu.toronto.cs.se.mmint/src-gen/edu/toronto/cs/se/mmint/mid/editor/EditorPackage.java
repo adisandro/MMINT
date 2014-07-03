@@ -11,8 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.editor;
 
-import edu.toronto.cs.se.mmint.mid.MidPackage;
-
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -79,13 +78,22 @@ public interface EditorPackage extends EPackage {
 	int EDITOR = 0;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR__FORMULA_VARIABLE = MIDPackage.EXTENDIBLE_ELEMENT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__MAY = MidPackage.EXTENDIBLE_ELEMENT__MAY;
+	int EDITOR__MAY = MIDPackage.EXTENDIBLE_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -94,7 +102,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__SET = MidPackage.EXTENDIBLE_ELEMENT__SET;
+	int EDITOR__SET = MIDPackage.EXTENDIBLE_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -103,16 +111,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__VAR = MidPackage.EXTENDIBLE_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__FORMULA_ID = MidPackage.EXTENDIBLE_ELEMENT__FORMULA_ID;
+	int EDITOR__VAR = MIDPackage.EXTENDIBLE_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -121,7 +120,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
+	int EDITOR__SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Metatype</b></em>' reference.
@@ -130,7 +129,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__METATYPE = MidPackage.EXTENDIBLE_ELEMENT__METATYPE;
+	int EDITOR__METATYPE = MIDPackage.EXTENDIBLE_ELEMENT__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -139,7 +138,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__URI = MidPackage.EXTENDIBLE_ELEMENT__URI;
+	int EDITOR__URI = MIDPackage.EXTENDIBLE_ELEMENT__URI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -148,7 +147,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__NAME = MidPackage.EXTENDIBLE_ELEMENT__NAME;
+	int EDITOR__NAME = MIDPackage.EXTENDIBLE_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -157,7 +156,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__LEVEL = MidPackage.EXTENDIBLE_ELEMENT__LEVEL;
+	int EDITOR__LEVEL = MIDPackage.EXTENDIBLE_ELEMENT__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -166,7 +165,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__METATYPE_URI = MidPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
+	int EDITOR__METATYPE_URI = MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -175,7 +174,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__DYNAMIC = MidPackage.EXTENDIBLE_ELEMENT__DYNAMIC;
+	int EDITOR__DYNAMIC = MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -184,7 +183,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__CONSTRAINT = MidPackage.EXTENDIBLE_ELEMENT__CONSTRAINT;
+	int EDITOR__CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Model Uri</b></em>' attribute.
@@ -193,7 +192,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__MODEL_URI = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
+	int EDITOR__MODEL_URI = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -202,7 +201,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__ID = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
+	int EDITOR__ID = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Wizard Id</b></em>' attribute.
@@ -211,7 +210,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__WIZARD_ID = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
+	int EDITOR__WIZARD_ID = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>File Extensions</b></em>' attribute list.
@@ -220,7 +219,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__FILE_EXTENSIONS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
+	int EDITOR__FILE_EXTENSIONS = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Wizard Dialog Class</b></em>' attribute.
@@ -229,7 +228,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR__WIZARD_DIALOG_CLASS = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
+	int EDITOR__WIZARD_DIALOG_CLASS = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Editor</em>' class.
@@ -238,7 +237,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR_FEATURE_COUNT = MidPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 5;
+	int EDITOR_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -247,7 +246,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___CREATE_SUBTYPE_URI__STRING_STRING = MidPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+	int EDITOR___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -256,7 +255,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___GET_METATYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+	int EDITOR___GET_METATYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -265,7 +264,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___GET_SUPERTYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
+	int EDITOR___GET_SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
@@ -274,7 +273,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+	int EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -283,7 +282,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___DELETE_TYPE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+	int EDITOR___DELETE_TYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -292,7 +291,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___CREATE_INSTANCE__STRING_MULTIMODEL = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+	int EDITOR___CREATE_INSTANCE__STRING_MULTIMODEL = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Invoke Instance Wizard</em>' operation.
@@ -301,7 +300,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+	int EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -310,7 +309,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___DELETE_INSTANCE = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
+	int EDITOR___DELETE_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Editor</em>' class.
@@ -319,7 +318,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR_OPERATION_COUNT = MidPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+	int EDITOR_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.editor.impl.DiagramImpl <em>Diagram</em>}' class.
@@ -330,6 +329,15 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 */
 	int DIAGRAM = 1;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM__FORMULA_VARIABLE = EDITOR__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -357,15 +365,6 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM__VAR = EDITOR__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__FORMULA_ID = EDITOR__FORMULA_ID;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.

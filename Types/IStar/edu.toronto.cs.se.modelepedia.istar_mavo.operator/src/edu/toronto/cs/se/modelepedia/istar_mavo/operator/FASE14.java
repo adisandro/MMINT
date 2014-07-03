@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
-import edu.toronto.cs.se.mmint.mavo.MavoPackage;
+import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
@@ -128,7 +128,7 @@ public class FASE14 extends RE13 {
 			//TODO MMINT: optimize search for other annotations in output model using the map mavoModelObjs
 		}
 		else {
-			if (mavoAnnotation == MavoPackage.eINSTANCE.getMAVOElement_May() && smtMavoConstraint.startsWith(Z3SMTUtils.SMTLIB_NOT)) { // M model object deletion
+			if (mavoAnnotation == MAVOPackage.eINSTANCE.getMAVOElement_May() && smtMavoConstraint.startsWith(Z3SMTUtils.SMTLIB_NOT)) { // M model object deletion
 				EcoreUtil.delete(mavoModelObj, true);
 			}
 			else { // M-S-V removal
@@ -151,18 +151,18 @@ public class FASE14 extends RE13 {
 			String function = encodeMAVConstraintFunction(mavoModelObj);
 			if (mavoModelObj.isMay()) {
 				String smtMConstraint = encodeMConstraint(sort, function, id);
-				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_May(), smtMConstraint, z3IncSolver);
-				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_May(), Z3SMTUtils.not(smtMConstraint), z3IncSolver);
+				checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_May(), smtMConstraint, z3IncSolver);
+				checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_May(), Z3SMTUtils.not(smtMConstraint), z3IncSolver);
 			}
 			if (mavoModelObj.isSet()) {
 				String smtSConstraint = encodeSConstraint(sort, function, id);
-				checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Set(), smtSConstraint, z3IncSolver);
+				checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_Set(), smtSConstraint, z3IncSolver);
 			}
 			if (mavoModelObj.isVar()) {
 				List<String> mergeableIds = MAVOUtils.getMergeableIds(istar, mavoModelObj);
 				if (!mergeableIds.isEmpty()) {
 					String smtVConstraint = encodeVConstraint(sort, function, id, mergeableIds);
-					checkMAVOAnnotation(mavoModelObj, MavoPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint, z3IncSolver);
+					checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint, z3IncSolver);
 				}
 			}
 		}
@@ -196,7 +196,7 @@ public class FASE14 extends RE13 {
 			EObject modelObj = iterator.next();
 			if (modelObj instanceof Intention) {
 				Intention intention = (Intention) modelObj;
-				intentions.put(intention.getFormulaId(), intention);
+				intentions.put(intention.getFormulaVariable(), intention);
 				if (
 					intention.isFullySatisfied() ||
 					intention.isPartiallySatisfied() ||
@@ -206,7 +206,7 @@ public class FASE14 extends RE13 {
 					intention.isFullyDenied() ||
 					intention.isNoLabel()
 				) {
-					initialIntentions.add(intention.getFormulaId());
+					initialIntentions.add(intention.getFormulaVariable());
 				}
 			}
 			if (
@@ -218,7 +218,7 @@ public class FASE14 extends RE13 {
 				!(modelObj instanceof DependerLink && ((DependerLink) modelObj).getDepender() instanceof Actor) &&
 				!(modelObj instanceof DependeeLink && ((DependeeLink) modelObj).getDependee() instanceof Actor)
 			) {
-				String id = ((MAVOElement) modelObj).getFormulaId();
+				String id = ((MAVOElement) modelObj).getFormulaVariable();
 				mavoModelObjs.put(id, (MAVOElement) modelObj);
 			}
 		}

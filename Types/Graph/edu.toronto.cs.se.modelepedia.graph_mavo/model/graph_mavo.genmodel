@@ -5,7 +5,7 @@
     editorDirectory="/edu.toronto.cs.se.modelepedia.graph_mavo.editor/src-gen" modelPluginID="edu.toronto.cs.se.modelepedia.graph_mavo"
     modelName="Graph_MAVO" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
-    usedGenPackages="../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mavo" operationReflection="true"
+    usedGenPackages="../../edu.toronto.cs.se.mavo/model/mavo.genmodel#//mavo" operationReflection="true"
     importOrganizing="true">
   <foreignModel>graph_mavo.ecore</foreignModel>
   <genPackages prefix="Graph_MAVO" basePackage="edu.toronto.cs.se.modelepedia" disposableProviderFactory="true"

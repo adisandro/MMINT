@@ -36,8 +36,8 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Parameter2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ParameterEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ModelRelItemSemanticEditPolicy;
-import edu.toronto.cs.se.mmint.mid.diagram.part.MidVisualIDRegistry;
-import edu.toronto.cs.se.mmint.mid.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
+import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 
 /**
  * The semantic edit policy for created model relationships.
@@ -63,38 +63,38 @@ public class ModelRelCreatedSemanticEditPolicy extends ModelRelItemSemanticEditP
 		cmd.setTransactionNestingEnabled(true);
 		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
-			if (MidVisualIDRegistry.getVisualID(incomingLink) == ExtendibleElementSupertypeEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(incomingLink) == ExtendibleElementSupertypeEditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (MidVisualIDRegistry.getVisualID(incomingLink) == ModelEndpointEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(incomingLink) == ModelEndpointEditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (MidVisualIDRegistry.getVisualID(incomingLink) == BinaryModelRelEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(incomingLink) == BinaryModelRelEditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (MidVisualIDRegistry.getVisualID(incomingLink) == ParameterEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(incomingLink) == ParameterEditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (MidVisualIDRegistry.getVisualID(incomingLink) == Parameter2EditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(incomingLink) == Parameter2EditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 		}
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
-			if (MidVisualIDRegistry.getVisualID(outgoingLink) == ExtendibleElementSupertypeEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == ExtendibleElementSupertypeEditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
-			if (MidVisualIDRegistry.getVisualID(outgoingLink) == ModelEndpointEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == ModelEndpointEditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
-			if (MidVisualIDRegistry.getVisualID(outgoingLink) == BinaryModelRelEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == BinaryModelRelEditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
@@ -122,11 +122,11 @@ public class ModelRelCreatedSemanticEditPolicy extends ModelRelItemSemanticEditP
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 
-		if (MidElementTypes.ModelEndpoint_4014 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
 			return getGEFWrapper(new ModelRelAddModelEndpointCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.BinaryModelRel_4015 == req.getElementType()) {
+		if (MIDElementTypes.BinaryModelRel_4015 == req.getElementType()) {
 			return getGEFWrapper(new BinaryModelRelNewBinaryRelCommand(req,
 					req.getSource(), req.getTarget()));
 		}
@@ -144,11 +144,11 @@ public class ModelRelCreatedSemanticEditPolicy extends ModelRelItemSemanticEditP
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 
-		if (MidElementTypes.ModelEndpoint_4014 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
 			return getGEFWrapper(new ModelRelAddModelEndpointCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.BinaryModelRel_4015 == req.getElementType()) {
+		if (MIDElementTypes.BinaryModelRel_4015 == req.getElementType()) {
 			return getGEFWrapper(new BinaryModelRelNewBinaryRelCommand(req,
 					req.getSource(), req.getTarget()));
 		}

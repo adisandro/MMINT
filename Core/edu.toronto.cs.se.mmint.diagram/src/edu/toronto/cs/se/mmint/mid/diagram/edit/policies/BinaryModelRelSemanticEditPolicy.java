@@ -26,7 +26,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRelChangeModelEndp
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.BinaryModelRelItemSemanticEditPolicy;
-import edu.toronto.cs.se.mmint.mid.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 
 /**
  * The semantic edit policy for binary model relationships.
@@ -53,11 +53,11 @@ public class BinaryModelRelSemanticEditPolicy extends BinaryModelRelItemSemantic
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 
-		if (MidElementTypes.ModelEndpoint_4014 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
 			return getGEFWrapper(new ModelRelAddModelEndpointCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.BinaryModelRel_4015 == req.getElementType()) {
+		if (MIDElementTypes.BinaryModelRel_4015 == req.getElementType()) {
 			return getGEFWrapper(new BinaryModelRelNewBinaryRelCommand(req,
 					req.getSource(), req.getTarget()));
 		}
@@ -75,11 +75,11 @@ public class BinaryModelRelSemanticEditPolicy extends BinaryModelRelItemSemantic
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 
-		if (MidElementTypes.ModelEndpoint_4014 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
 			return getGEFWrapper(new ModelRelAddModelEndpointCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.BinaryModelRel_4015 == req.getElementType()) {
+		if (MIDElementTypes.BinaryModelRel_4015 == req.getElementType()) {
 			return getGEFWrapper(new BinaryModelRelNewBinaryRelCommand(req,
 					req.getSource(), req.getTarget()));
 		}

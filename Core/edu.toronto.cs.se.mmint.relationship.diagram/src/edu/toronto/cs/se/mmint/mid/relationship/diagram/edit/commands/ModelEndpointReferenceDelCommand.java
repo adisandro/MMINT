@@ -21,7 +21,7 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidDiagramEditor;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDDiagramEditor;
 
 /**
  * The command to delete a model reference.
@@ -72,7 +72,7 @@ public class ModelEndpointReferenceDelCommand extends DestroyElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		// refresh outline
-		MidDiagramEditor editor = (MidDiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		MIDDiagramEditor editor = (MIDDiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		editor.getOutlinePage().loadOutlineModels();
 
 		return CommandResult.newOKCommandResult();

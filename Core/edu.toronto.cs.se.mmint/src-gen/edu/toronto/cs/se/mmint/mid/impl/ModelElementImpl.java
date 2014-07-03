@@ -18,9 +18,9 @@ import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -85,7 +85,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MidPackage.Literals.MODEL_ELEMENT;
+		return MIDPackage.Literals.MODEL_ELEMENT;
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		EMFInfo oldEInfo = eInfo;
 		eInfo = newEInfo;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MidPackage.MODEL_ELEMENT__EINFO, oldEInfo, newEInfo);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL_ELEMENT__EINFO, oldEInfo, newEInfo);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -121,14 +121,14 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		if (newEInfo != eInfo) {
 			NotificationChain msgs = null;
 			if (eInfo != null)
-				msgs = ((InternalEObject)eInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MidPackage.MODEL_ELEMENT__EINFO, null, msgs);
+				msgs = ((InternalEObject)eInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MIDPackage.MODEL_ELEMENT__EINFO, null, msgs);
 			if (newEInfo != null)
-				msgs = ((InternalEObject)newEInfo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MidPackage.MODEL_ELEMENT__EINFO, null, msgs);
+				msgs = ((InternalEObject)newEInfo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MIDPackage.MODEL_ELEMENT__EINFO, null, msgs);
 			msgs = basicSetEInfo(newEInfo, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL_ELEMENT__EINFO, newEInfo, newEInfo));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL_ELEMENT__EINFO, newEInfo, newEInfo));
 	}
 
 	/**
@@ -159,7 +159,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.MODEL_ELEMENT__EINFO:
+			case MIDPackage.MODEL_ELEMENT__EINFO:
 				return getEInfo();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -173,7 +173,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.MODEL_ELEMENT__EINFO:
+			case MIDPackage.MODEL_ELEMENT__EINFO:
 				setEInfo((EMFInfo)newValue);
 				return;
 		}
@@ -188,7 +188,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL_ELEMENT__EINFO:
+			case MIDPackage.MODEL_ELEMENT__EINFO:
 				setEInfo((EMFInfo)null);
 				return;
 		}
@@ -203,7 +203,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL_ELEMENT__EINFO:
+			case MIDPackage.MODEL_ELEMENT__EINFO:
 				return eInfo != null;
 		}
 		return super.eIsSet(featureID);
@@ -217,25 +217,25 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MidPackage.MODEL_ELEMENT___GET_METATYPE:
+			case MIDPackage.MODEL_ELEMENT___GET_METATYPE:
 				return getMetatype();
-			case MidPackage.MODEL_ELEMENT___GET_SUPERTYPE:
+			case MIDPackage.MODEL_ELEMENT___GET_SUPERTYPE:
 				return getSupertype();
-			case MidPackage.MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE:
+			case MIDPackage.MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE:
 				try {
 					return createTypeReference((ModelElementReference)arguments.get(0), (Boolean)arguments.get(1), (ModelEndpointReference)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE:
+			case MIDPackage.MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE:
 				try {
 					return createSubtypeAndReference((ModelElementReference)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (EMFInfo)arguments.get(3), (ModelEndpointReference)arguments.get(4));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ELEMENT___DELETE_TYPE:
+			case MIDPackage.MODEL_ELEMENT___DELETE_TYPE:
 				try {
 					deleteType();
 					return null;
@@ -243,28 +243,28 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ELEMENT___GET_EMF_TYPE_OBJECT:
+			case MIDPackage.MODEL_ELEMENT___GET_EMF_TYPE_OBJECT:
 				try {
 					return getEMFTypeObject();
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE:
+			case MIDPackage.MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE:
 				try {
 					return createInstanceReference((ModelEndpointReference)arguments.get(0));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE:
+			case MIDPackage.MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE:
 				try {
 					return createInstanceAndReference((String)arguments.get(0), (String)arguments.get(1), (EMFInfo)arguments.get(2), (ModelEndpointReference)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ELEMENT___DELETE_INSTANCE:
+			case MIDPackage.MODEL_ELEMENT___DELETE_INSTANCE:
 				try {
 					deleteInstance();
 					return null;
@@ -272,7 +272,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT:
+			case MIDPackage.MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT:
 				try {
 					return getEMFInstanceObject();
 				}
@@ -313,7 +313,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		ModelElement newModelElemType = MultiModelRegistry.getExtendibleElement(newModelElemTypeUri, multiModel);
 		if (newModelElemType == null) {
 			// create the "thing"
-			newModelElemType = MidFactory.eINSTANCE.createModelElement();
+			newModelElemType = MIDFactory.eINSTANCE.createModelElement();
 			super.addSubtype(newModelElemType, newModelElemTypeUri, newModelElemTypeName);
 			MultiModelTypeFactory.addModelElementType(newModelElemType, eInfo, containerModelTypeEndpointRef.getObject().getTarget());
 		}
@@ -395,7 +395,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		newModelElemUri += MMINT.ROLE_SEPARATOR + getUri();
 		ModelElement newModelElem = MultiModelRegistry.getExtendibleElement(newModelElemUri, multiModel);
 		if (newModelElem == null) {
-			newModelElem = MidFactory.eINSTANCE.createModelElement();
+			newModelElem = MIDFactory.eINSTANCE.createModelElement();
 			super.addInstance(newModelElem, newModelElemUri, newModelElemName, multiModel);
 			newModelElem.setEInfo(eInfo);
 			containerModelEndpointRef.getObject().getTarget().getModelElems().add(newModelElem);
@@ -426,10 +426,10 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	public static ModelElementReference createInstanceAndReference(EObject modelObj, String newModelElemName, ModelEndpointReference containerModelEndpointRef) throws MMINTException {
 
 		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(containerModelEndpointRef, modelObj);
-		String newModelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, MidLevel.INSTANCES)[1];
-		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, MidLevel.INSTANCES);
+		String newModelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1];
+		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, MIDLevel.INSTANCES);
 		if (newModelElemName == null) {
-			newModelElemName = MultiModelRegistry.getModelElementName(eInfo, modelObj, MidLevel.INSTANCES);
+			newModelElemName = MultiModelRegistry.getModelElementName(eInfo, modelObj, MIDLevel.INSTANCES);
 		}
 		ModelElementReference newModelElemRef = modelElemType.createInstanceAndReference(newModelElemUri, newModelElemName, eInfo, containerModelEndpointRef);
 
@@ -516,7 +516,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MidPackage.MODEL_ELEMENT__EINFO:
+			case MIDPackage.MODEL_ELEMENT__EINFO:
 				return basicSetEInfo(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);

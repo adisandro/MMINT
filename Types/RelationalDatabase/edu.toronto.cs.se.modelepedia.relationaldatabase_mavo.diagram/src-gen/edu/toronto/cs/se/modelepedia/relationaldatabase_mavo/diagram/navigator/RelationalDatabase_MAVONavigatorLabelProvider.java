@@ -97,24 +97,24 @@ public class RelationalDatabase_MAVONavigatorLabelProvider extends
 	public Image getImage(View view) {
 		switch (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
 				.getVisualID(view)) {
-		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableColumnReferenceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?TableColumnReference", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TableColumnReference_4001); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?Table", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Table_2001); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignKeyEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?ForeignKey", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignKey_3002); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ColumnEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?Column", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Column_3001); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignColumnReferenceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?ForeignColumnReference", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignColumnReference_4002); //$NON-NLS-1$
 		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.RelationalDatabaseEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?RelationalDatabase", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.RelationalDatabase_1000); //$NON-NLS-1$
+		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?Table", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Table_2001); //$NON-NLS-1$
+		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ColumnEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?Column", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Column_3001); //$NON-NLS-1$
+		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignKeyEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?ForeignKey", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignKey_3002); //$NON-NLS-1$
+		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableColumnReferenceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?TableColumnReference", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TableColumnReference_4001); //$NON-NLS-1$
+		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignColumnReferenceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?ForeignColumnReference", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignColumnReference_4002); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -179,18 +179,18 @@ public class RelationalDatabase_MAVONavigatorLabelProvider extends
 		}
 		switch (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
 				.getVisualID(view)) {
-		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableColumnReferenceEditPart.VISUAL_ID:
-			return getTableColumnReference_4001Text(view);
-		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableEditPart.VISUAL_ID:
-			return getTable_2001Text(view);
-		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignKeyEditPart.VISUAL_ID:
-			return getForeignKey_3002Text(view);
-		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ColumnEditPart.VISUAL_ID:
-			return getColumn_3001Text(view);
-		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignColumnReferenceEditPart.VISUAL_ID:
-			return getForeignColumnReference_4002Text(view);
 		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.RelationalDatabaseEditPart.VISUAL_ID:
 			return getRelationalDatabase_1000Text(view);
+		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableEditPart.VISUAL_ID:
+			return getTable_2001Text(view);
+		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ColumnEditPart.VISUAL_ID:
+			return getColumn_3001Text(view);
+		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignKeyEditPart.VISUAL_ID:
+			return getForeignKey_3002Text(view);
+		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableColumnReferenceEditPart.VISUAL_ID:
+			return getTableColumnReference_4001Text(view);
+		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignColumnReferenceEditPart.VISUAL_ID:
+			return getForeignColumnReference_4002Text(view);
 		}
 		return getUnknownElementText(view);
 	}

@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see edu.toronto.cs.se.mmint.mid.MidPackage#getEMFInfo()
+ * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getEMFInfo()
  * @model
  * @generated
  */
@@ -46,7 +46,7 @@ public interface EMFInfo extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Class Name</em>' attribute.
 	 * @see #setClassName(String)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getEMFInfo_ClassName()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getEMFInfo_ClassName()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -71,7 +71,7 @@ public interface EMFInfo extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature Name</em>' attribute.
 	 * @see #setFeatureName(String)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getEMFInfo_FeatureName()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getEMFInfo_FeatureName()
 	 * @model
 	 * @generated
 	 */
@@ -96,7 +96,7 @@ public interface EMFInfo extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Attribute</em>' attribute.
 	 * @see #setAttribute(boolean)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getEMFInfo_Attribute()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getEMFInfo_Attribute()
 	 * @model
 	 * @generated
 	 */
@@ -121,7 +121,7 @@ public interface EMFInfo extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Related Class Name</em>' attribute.
 	 * @see #setRelatedClassName(String)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getEMFInfo_RelatedClassName()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getEMFInfo_RelatedClassName()
 	 * @model
 	 * @generated
 	 */

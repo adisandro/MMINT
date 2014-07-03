@@ -262,7 +262,7 @@
             <parameter
                   isVararg="false"
                   name="original"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
             </parameter>
             <parameter
                   isVararg="false"
@@ -272,7 +272,7 @@
             <parameter
                   isVararg="false"
                   name="refined"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
             </parameter>
             <parameter
                   isVararg="false"
@@ -282,14 +282,14 @@
             <parameter
                   isVararg="false"
                   name="related"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="propagated"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
             </parameter>
             <parameter
                   isVararg="false"
@@ -342,19 +342,19 @@
             <parameter
                   isVararg="false"
                   name="mavoModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="transformedMavoModelInput"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
             </parameter>
             <parameter
                   isVararg="false"
                   name="transformedMavoModelOutput"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
             </parameter>
          </output>
       </operatorType>
@@ -372,19 +372,19 @@
             <parameter
                   isVararg="false"
                   name="model"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
                   name="transformedModelInput"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
             </parameter>
             <parameter
                   isVararg="false"
                   name="transformedModelOutput"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVO">
+                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
             </parameter>
          </output>
       </operatorType>

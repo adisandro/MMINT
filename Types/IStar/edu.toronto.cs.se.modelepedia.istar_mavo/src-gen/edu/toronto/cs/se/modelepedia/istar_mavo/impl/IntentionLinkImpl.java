@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 
-import edu.toronto.cs.se.mmint.mavo.impl.MAVOElementImpl;
+import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink;
@@ -95,7 +95,7 @@ public abstract class IntentionLinkImpl extends MAVOElementImpl implements Inten
 	 */
 	public Intention getSrc() {
 		if (eContainerFeatureID() != IStar_MAVOPackage.INTENTION_LINK__SRC) return null;
-		return (Intention)eContainer();
+		return (Intention)eInternalContainer();
 	}
 
 	/**

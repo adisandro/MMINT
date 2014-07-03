@@ -31,7 +31,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.tooling.runtime.parsers.ExpressionLabelParserBase;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 
-import edu.toronto.cs.se.mmint.mid.diagram.expressions.MidOCLFactory;
+import edu.toronto.cs.se.mmint.mid.diagram.expressions.MIDOCLFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 
 /**
@@ -50,7 +50,7 @@ public class OperatorLabelExpressionLabelParser extends
 	 */
 	@Override
 	protected String getExpressionBody() {
-		return MidOCLFactory.getExpression(4,
+		return MIDOCLFactory.getExpression(4,
 				OperatorPackage.eINSTANCE.getOperator(), null).body();
 	}
 

@@ -242,95 +242,42 @@ public class ClassDiagram_MAVONavigatorContentProvider implements
 		switch (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
 				.getVisualID(view)) {
 
-		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID: {
+		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassDiagramEditPart.VISUAL_ID: {
 			LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVOAbstractNavigatorItem> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVOAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup target = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup(
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NavigatorGroupName_SuperclassReference_4003_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup source = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup(
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NavigatorGroupName_SuperclassReference_4003_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			result.addAll(getForeignShortcuts((Diagram) view, parentElement));
+			Diagram sv = (Diagram) view;
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup links = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup(
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NavigatorGroupName_ClassDiagram_1000_links,
+					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(
+			connectedViews = getChildrenByType(
 					Collections.singleton(sv),
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
 							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getDiagramLinksByType(
 					Collections.singleton(sv),
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID: {
-			LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVOAbstractNavigatorItem> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVOAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup target = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup(
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NavigatorGroupName_Dependency_4004_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup source = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup(
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NavigatorGroupName_Dependency_4004_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(
+							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID));
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			connectedViews = getDiagramLinksByType(
 					Collections.singleton(sv),
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(
+							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID));
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			connectedViews = getDiagramLinksByType(
 					Collections.singleton(sv),
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID: {
-			LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVOAbstractNavigatorItem> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVOAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup target = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup(
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NavigatorGroupName_NestedInReference_4002_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup source = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup(
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NavigatorGroupName_NestedInReference_4002_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(
+							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID));
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			connectedViews = getDiagramLinksByType(
 					Collections.singleton(sv),
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(
-					Collections.singleton(sv),
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
+							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID));
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			if (!links.isEmpty()) {
+				result.add(links);
 			}
 			return result.toArray();
 		}
@@ -422,46 +369,6 @@ public class ClassDiagram_MAVONavigatorContentProvider implements
 			return result.toArray();
 		}
 
-		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassDiagramEditPart.VISUAL_ID: {
-			LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVOAbstractNavigatorItem> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVOAbstractNavigatorItem>();
-			result.addAll(getForeignShortcuts((Diagram) view, parentElement));
-			Diagram sv = (Diagram) view;
-			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup links = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup(
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NavigatorGroupName_ClassDiagram_1000_links,
-					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getDiagramLinksByType(
-					Collections.singleton(sv),
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(
-					Collections.singleton(sv),
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(
-					Collections.singleton(sv),
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(
-					Collections.singleton(sv),
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			if (!links.isEmpty()) {
-				result.add(links);
-			}
-			return result.toArray();
-		}
-
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID: {
 			LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVOAbstractNavigatorItem> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVOAbstractNavigatorItem>();
 			Edge sv = (Edge) view;
@@ -470,6 +377,99 @@ public class ClassDiagram_MAVONavigatorContentProvider implements
 					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup source = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup(
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NavigatorGroupName_Association_4001_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(
+					Collections.singleton(sv),
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
+							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(
+					Collections.singleton(sv),
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
+							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID: {
+			LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVOAbstractNavigatorItem> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVOAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup target = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup(
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NavigatorGroupName_NestedInReference_4002_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup source = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup(
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NavigatorGroupName_NestedInReference_4002_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(
+					Collections.singleton(sv),
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
+							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(
+					Collections.singleton(sv),
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
+							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID: {
+			LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVOAbstractNavigatorItem> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVOAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup target = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup(
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NavigatorGroupName_SuperclassReference_4003_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup source = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup(
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NavigatorGroupName_SuperclassReference_4003_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getLinksTargetByType(
+					Collections.singleton(sv),
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
+							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart.VISUAL_ID));
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(
+					Collections.singleton(sv),
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
+							.getType(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart.VISUAL_ID));
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID: {
+			LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVOAbstractNavigatorItem> result = new LinkedList<edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVOAbstractNavigatorItem>();
+			Edge sv = (Edge) view;
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup target = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup(
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NavigatorGroupName_Dependency_4004_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup source = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup(
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NavigatorGroupName_Dependency_4004_source,
 					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getLinksTargetByType(

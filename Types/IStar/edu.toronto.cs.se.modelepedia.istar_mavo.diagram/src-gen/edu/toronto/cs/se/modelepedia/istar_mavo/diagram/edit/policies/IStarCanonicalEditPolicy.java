@@ -19,7 +19,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -41,6 +40,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
 
 /**
  * @generated
@@ -128,7 +128,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	private boolean isShortcut(View view) {
+	protected static boolean isShortcut(View view) {
 		return view.getEAnnotation("Shortcut") != null; //$NON-NLS-1$
 	}
 
@@ -237,7 +237,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private Collection<IAdaptable> refreshConnections() {
-		Map<EObject, View> domain2NotationMap = new HashMap<EObject, View>();
+		Domain2Notation domain2NotationMap = new Domain2Notation();
 		Collection<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> linkDescriptors = collectAllLinks(
 				getDiagram(), domain2NotationMap);
 		Collection existingLinks = new LinkedList(getDiagram().getEdges());
@@ -280,7 +280,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private Collection<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> collectAllLinks(
-			View view, Map<EObject, View> domain2NotationMap) {
+			View view, Domain2Notation domain2NotationMap) {
 		if (!edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.IStarEditPart.MODEL_ID
 				.equals(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry
 						.getModelID(view))) {
@@ -294,10 +294,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdater
 						.getIStar_1000ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart.VISUAL_ID: {
@@ -305,10 +302,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdater
 						.getSoftGoal_2001ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.TaskEditPart.VISUAL_ID: {
@@ -316,10 +310,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdater
 						.getTask_2002ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ResourceEditPart.VISUAL_ID: {
@@ -327,10 +318,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdater
 						.getResource_2003ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.GoalEditPart.VISUAL_ID: {
@@ -338,10 +326,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdater
 						.getGoal_2004ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart.VISUAL_ID: {
@@ -349,10 +334,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdater
 						.getActor_2005ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoal2EditPart.VISUAL_ID: {
@@ -360,10 +342,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdater
 						.getSoftGoal_3001ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Task2EditPart.VISUAL_ID: {
@@ -371,10 +350,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdater
 						.getTask_3002ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Resource2EditPart.VISUAL_ID: {
@@ -382,10 +358,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdater
 						.getResource_3003ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Goal2EditPart.VISUAL_ID: {
@@ -393,10 +366,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdater
 						.getGoal_3004ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.MeansEndEditPart.VISUAL_ID: {
@@ -404,10 +374,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdater
 						.getMeansEnd_4001ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DecompositionEditPart.VISUAL_ID: {
@@ -415,10 +382,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdater
 						.getDecomposition_4002ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ContributionEditPart.VISUAL_ID: {
@@ -426,10 +390,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdater
 						.getContribution_4003ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DependerLinkEditPart.VISUAL_ID: {
@@ -437,10 +398,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdater
 						.getDependerLink_4004ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DependeeLinkEditPart.VISUAL_ID: {
@@ -448,10 +406,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 				result.addAll(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdater
 						.getDependeeLink_4005ContainedLinks(view));
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
+			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
 		}
@@ -472,13 +427,13 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	private Collection<IAdaptable> createConnections(
 			Collection<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> linkDescriptors,
-			Map<EObject, View> domain2NotationMap) {
+			Domain2Notation domain2NotationMap) {
 		LinkedList<IAdaptable> adapters = new LinkedList<IAdaptable>();
 		for (edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor nextLinkDescriptor : linkDescriptors) {
-			EditPart sourceEditPart = getEditPart(
-					nextLinkDescriptor.getSource(), domain2NotationMap);
-			EditPart targetEditPart = getEditPart(
-					nextLinkDescriptor.getDestination(), domain2NotationMap);
+			EditPart sourceEditPart = getSourceEditPart(nextLinkDescriptor,
+					domain2NotationMap);
+			EditPart targetEditPart = getTargetEditPart(nextLinkDescriptor,
+					domain2NotationMap);
 			if (sourceEditPart == null || targetEditPart == null) {
 				continue;
 			}
@@ -511,7 +466,7 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private EditPart getEditPart(EObject domainModelElement,
-			Map<EObject, View> domain2NotationMap) {
+			Domain2Notation domain2NotationMap) {
 		View view = (View) domain2NotationMap.get(domainModelElement);
 		if (view != null) {
 			return (EditPart) getHost().getViewer().getEditPartRegistry()
@@ -525,5 +480,68 @@ public class IStarCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	private Diagram getDiagram() {
 		return ((View) getHost().getModel()).getDiagram();
+	}
+
+	/**
+	 * @generated
+	 */
+	private EditPart getSourceEditPart(UpdaterLinkDescriptor descriptor,
+			Domain2Notation domain2NotationMap) {
+		return getEditPart(descriptor.getSource(), domain2NotationMap);
+	}
+
+	/**
+	 * @generated
+	 */
+	private EditPart getTargetEditPart(UpdaterLinkDescriptor descriptor,
+			Domain2Notation domain2NotationMap) {
+		return getEditPart(descriptor.getDestination(), domain2NotationMap);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected final EditPart getHintedEditPart(EObject domainModelElement,
+			Domain2Notation domain2NotationMap, int hintVisualId) {
+		View view = (View) domain2NotationMap
+				.getHinted(
+						domainModelElement,
+						edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry
+								.getType(hintVisualId));
+		if (view != null) {
+			return (EditPart) getHost().getViewer().getEditPartRegistry()
+					.get(view);
+		}
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	@SuppressWarnings("serial")
+	protected static class Domain2Notation extends HashMap<EObject, View> {
+		/**
+		 * @generated
+		 */
+		public boolean containsDomainElement(EObject domainElement) {
+			return this.containsKey(domainElement);
+		}
+
+		/**
+		 * @generated
+		 */
+		public View getHinted(EObject domainEObject, String hint) {
+			return this.get(domainEObject);
+		}
+
+		/**
+		 * @generated
+		 */
+		public void putView(EObject domainElement, View view) {
+			if (!containsKey(view.getElement()) || !isShortcut(view)) {
+				this.put(domainElement, view);
+			}
+		}
+
 	}
 }

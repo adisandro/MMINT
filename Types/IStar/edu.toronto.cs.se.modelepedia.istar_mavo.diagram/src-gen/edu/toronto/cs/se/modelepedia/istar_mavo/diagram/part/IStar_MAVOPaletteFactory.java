@@ -13,16 +13,14 @@ package edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
-import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
-import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
-import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.tooling.runtime.part.DefaultLinkToolEntry;
+import org.eclipse.gmf.tooling.runtime.part.DefaultNodeToolEntry;
 
 /**
  * @generated
@@ -73,7 +71,7 @@ public class IStar_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createActor1CreationTool() {
-		NodeToolEntry entry = new NodeToolEntry(
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.Actor1CreationTool_title,
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.Actor1CreationTool_desc,
 				Collections
@@ -92,7 +90,7 @@ public class IStar_MAVOPaletteFactory {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Goal_2004);
 		types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Goal_3004);
-		NodeToolEntry entry = new NodeToolEntry(
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.Goal2CreationTool_title,
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.Goal2CreationTool_desc,
 				types);
@@ -110,7 +108,7 @@ public class IStar_MAVOPaletteFactory {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Resource_2003);
 		types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Resource_3003);
-		NodeToolEntry entry = new NodeToolEntry(
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.Resource3CreationTool_title,
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.Resource3CreationTool_desc,
 				types);
@@ -128,7 +126,7 @@ public class IStar_MAVOPaletteFactory {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.SoftGoal_2001);
 		types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.SoftGoal_3001);
-		NodeToolEntry entry = new NodeToolEntry(
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.SoftGoal4CreationTool_title,
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.SoftGoal4CreationTool_desc,
 				types);
@@ -146,7 +144,7 @@ public class IStar_MAVOPaletteFactory {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Task_2002);
 		types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Task_3002);
-		NodeToolEntry entry = new NodeToolEntry(
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.Task5CreationTool_title,
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.Task5CreationTool_desc,
 				types);
@@ -161,7 +159,7 @@ public class IStar_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createContribution1CreationTool() {
-		LinkToolEntry entry = new LinkToolEntry(
+		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.Contribution1CreationTool_title,
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.Contribution1CreationTool_desc,
 				Collections
@@ -177,7 +175,7 @@ public class IStar_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createDecomposition2CreationTool() {
-		LinkToolEntry entry = new LinkToolEntry(
+		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.Decomposition2CreationTool_title,
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.Decomposition2CreationTool_desc,
 				Collections
@@ -193,7 +191,7 @@ public class IStar_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createDependeeLink3CreationTool() {
-		LinkToolEntry entry = new LinkToolEntry(
+		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.DependeeLink3CreationTool_title,
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.DependeeLink3CreationTool_desc,
 				Collections
@@ -209,7 +207,7 @@ public class IStar_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createDependerLink4CreationTool() {
-		LinkToolEntry entry = new LinkToolEntry(
+		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.DependerLink4CreationTool_title,
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.DependerLink4CreationTool_desc,
 				Collections
@@ -225,7 +223,7 @@ public class IStar_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createMeansEnd5CreationTool() {
-		LinkToolEntry entry = new LinkToolEntry(
+		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.MeansEnd5CreationTool_title,
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.MeansEnd5CreationTool_desc,
 				Collections
@@ -235,63 +233,5 @@ public class IStar_MAVOPaletteFactory {
 				.getImageDescriptor(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.MeansEnd_4001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private static class NodeToolEntry extends ToolEntry {
-
-		/**
-		 * @generated
-		 */
-		private final List<IElementType> elementTypes;
-
-		/**
-		 * @generated
-		 */
-		private NodeToolEntry(String title, String description,
-				List<IElementType> elementTypes) {
-			super(title, description, null, null);
-			this.elementTypes = elementTypes;
-		}
-
-		/**
-		 * @generated
-		 */
-		public Tool createTool() {
-			Tool tool = new UnspecifiedTypeCreationTool(elementTypes);
-			tool.setProperties(getToolProperties());
-			return tool;
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private static class LinkToolEntry extends ToolEntry {
-
-		/**
-		 * @generated
-		 */
-		private final List<IElementType> relationshipTypes;
-
-		/**
-		 * @generated
-		 */
-		private LinkToolEntry(String title, String description,
-				List<IElementType> relationshipTypes) {
-			super(title, description, null, null);
-			this.relationshipTypes = relationshipTypes;
-		}
-
-		/**
-		 * @generated
-		 */
-		public Tool createTool() {
-			Tool tool = new UnspecifiedTypeConnectionTool(relationshipTypes);
-			tool.setProperties(getToolProperties());
-			return tool;
-		}
 	}
 }

@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts, 
+Export-Package: edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts,
  edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part,
  edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers
 Require-Bundle: org.eclipse.core.runtime,
@@ -38,6 +38,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.draw2d.ui,
  org.eclipse.emf.validation,
  org.eclipse.gef,
+ edu.toronto.cs.se.mavo,
+ edu.toronto.cs.se.mavo.edit,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.edit,
  edu.toronto.cs.se.modelepedia.istar_mavo,

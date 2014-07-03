@@ -51,11 +51,11 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.WrappingLabel
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.WrappingLabel26EditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.WrappingLabel8EditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.WrappingLabel9EditPart;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidVisualIDRegistry;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidViewProvider;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDViewProvider;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
-public class RelationshipDiagramViewProvider extends MidViewProvider {
+public class RelationshipDiagramViewProvider extends MIDViewProvider {
 
 	private Node createLabel(View owner, String hint) {
 		DecorationNode rv = NotationFactory.eINSTANCE.createDecorationNode();
@@ -83,7 +83,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(MidVisualIDRegistry
+		edge.setType(MIDVisualIDRegistry
 				.getType(ModelElementEndpointReferenceEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
@@ -114,7 +114,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 			return edge;
 		}
 		Node label6007 = createLabel(edge,
-				MidVisualIDRegistry.getType(WrappingLabel8EditPart.VISUAL_ID));
+				MIDVisualIDRegistry.getType(WrappingLabel8EditPart.VISUAL_ID));
 		label6007.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6007 = (Location) label6007.getLayoutConstraint();
@@ -122,7 +122,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 		location6007.setY(40);
 		if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ICONS_ENABLED))) {
 			Node label6015 = createLabel(edge,
-					MidVisualIDRegistry.getType(WrappingLabel23EditPart.VISUAL_ID));
+					MIDVisualIDRegistry.getType(WrappingLabel23EditPart.VISUAL_ID));
 			label6015.setLayoutConstraint(NotationFactory.eINSTANCE
 					.createLocation());
 			Location location6015 = (Location) label6015.getLayoutConstraint();
@@ -151,7 +151,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(MidVisualIDRegistry
+		edge.setType(MIDVisualIDRegistry
 				.getType(BinaryLinkReferenceEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
@@ -182,7 +182,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 			return edge;
 		}
 		Node label6008 = createLabel(edge,
-				MidVisualIDRegistry.getType(WrappingLabel9EditPart.VISUAL_ID));
+				MIDVisualIDRegistry.getType(WrappingLabel9EditPart.VISUAL_ID));
 		label6008.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6008 = (Location) label6008.getLayoutConstraint();
@@ -190,7 +190,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 		location6008.setY(40);
 		if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ICONS_ENABLED))) {
 			Node label6009 = createLabel(edge,
-					MidVisualIDRegistry.getType(WrappingLabel10EditPart.VISUAL_ID));
+					MIDVisualIDRegistry.getType(WrappingLabel10EditPart.VISUAL_ID));
 			label6009.setLayoutConstraint(NotationFactory.eINSTANCE
 					.createLocation());
 			Location location6009 = (Location) label6009.getLayoutConstraint();
@@ -201,14 +201,14 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 			return edge;
 		}
 		Node label6010 = createLabel(edge,
-				MidVisualIDRegistry.getType(WrappingLabel11EditPart.VISUAL_ID));
+				MIDVisualIDRegistry.getType(WrappingLabel11EditPart.VISUAL_ID));
 		label6010.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6010 = (Location) label6010.getLayoutConstraint();
 		location6010.setX(0);
 		location6010.setY(80);
 		Node label6016 = createLabel(edge,
-				MidVisualIDRegistry.getType(WrappingLabel24EditPart.VISUAL_ID));
+				MIDVisualIDRegistry.getType(WrappingLabel24EditPart.VISUAL_ID));
 		label6016.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6016 = (Location) label6016.getLayoutConstraint();
@@ -236,7 +236,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(MidVisualIDRegistry
+		edge.setType(MIDVisualIDRegistry
 				.getType(BinaryLinkReference2EditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
@@ -267,7 +267,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 			return edge;
 		}
 		Node label6011 = createLabel(edge,
-				MidVisualIDRegistry.getType(WrappingLabel12EditPart.VISUAL_ID));
+				MIDVisualIDRegistry.getType(WrappingLabel12EditPart.VISUAL_ID));
 		label6011.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6011 = (Location) label6011.getLayoutConstraint();
@@ -275,7 +275,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 		location6011.setY(40);
 		if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ICONS_ENABLED))) {
 			Node label6012 = createLabel(edge,
-					MidVisualIDRegistry.getType(WrappingLabel13EditPart.VISUAL_ID));
+					MIDVisualIDRegistry.getType(WrappingLabel13EditPart.VISUAL_ID));
 			label6012.setLayoutConstraint(NotationFactory.eINSTANCE
 					.createLocation());
 			Location location6012 = (Location) label6012.getLayoutConstraint();
@@ -286,14 +286,14 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 			return edge;
 		}
 		Node label6013 = createLabel(edge,
-				MidVisualIDRegistry.getType(WrappingLabel14EditPart.VISUAL_ID));
+				MIDVisualIDRegistry.getType(WrappingLabel14EditPart.VISUAL_ID));
 		label6013.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6013 = (Location) label6013.getLayoutConstraint();
 		location6013.setX(0);
 		location6013.setY(80);
 		Node label6017 = createLabel(edge,
-				MidVisualIDRegistry.getType(WrappingLabel25EditPart.VISUAL_ID));
+				MIDVisualIDRegistry.getType(WrappingLabel25EditPart.VISUAL_ID));
 		label6017.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6017 = (Location) label6017.getLayoutConstraint();
@@ -321,7 +321,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(MidVisualIDRegistry
+		edge.setType(MIDVisualIDRegistry
 				.getType(ModelElementEndpointReference2EditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
@@ -352,7 +352,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 			return edge;
 		}
 		Node label6014 = createLabel(edge,
-				MidVisualIDRegistry.getType(WrappingLabel15EditPart.VISUAL_ID));
+				MIDVisualIDRegistry.getType(WrappingLabel15EditPart.VISUAL_ID));
 		label6014.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6014 = (Location) label6014.getLayoutConstraint();
@@ -360,7 +360,7 @@ public class RelationshipDiagramViewProvider extends MidViewProvider {
 		location6014.setY(40);
 		if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ICONS_ENABLED))) {
 			Node label6018 = createLabel(edge,
-					MidVisualIDRegistry.getType(WrappingLabel26EditPart.VISUAL_ID));
+					MIDVisualIDRegistry.getType(WrappingLabel26EditPart.VISUAL_ID));
 			label6018.setLayoutConstraint(NotationFactory.eINSTANCE
 					.createLocation());
 			Location location6018 = (Location) label6018.getLayoutConstraint();

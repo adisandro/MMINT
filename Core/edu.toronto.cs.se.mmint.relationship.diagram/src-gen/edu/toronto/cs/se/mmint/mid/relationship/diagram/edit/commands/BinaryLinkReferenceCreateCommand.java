@@ -27,7 +27,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 
 /**
  * @generated
@@ -80,7 +80,7 @@ public class BinaryLinkReferenceCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canCreateBinaryLinkReference_4012(getContainer(), getSource(),
 						getTarget());
 	}

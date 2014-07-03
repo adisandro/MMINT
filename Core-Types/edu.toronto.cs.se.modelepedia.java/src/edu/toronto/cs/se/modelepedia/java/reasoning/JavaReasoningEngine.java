@@ -14,7 +14,7 @@ package edu.toronto.cs.se.modelepedia.java.reasoning;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
@@ -22,10 +22,10 @@ import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 public class JavaReasoningEngine implements IReasoningEngine {
 
 	@Override
-	public MAVOTruthValue checkConstraint(Model model, ExtendibleElementConstraint constraint, MidLevel constraintLevel) {
+	public MAVOTruthValue checkConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
 
 		String javaClassName = constraint.getImplementation();
-		String modelTypeUri = (constraintLevel == MidLevel.INSTANCES) ?
+		String modelTypeUri = (constraintLevel == MIDLevel.INSTANCES) ?
 			((Model) constraint.eContainer()).getMetatypeUri() :
 			((Model) constraint.eContainer()).getUri();
 		try {

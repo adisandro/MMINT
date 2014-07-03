@@ -51,7 +51,7 @@ import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -151,7 +151,7 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 
 		EPackage modelTypeObj;
 		try {
-			modelTypeObj = (EPackage) getConstraintContext(modelType, oclConstraint, MidLevel.TYPES);
+			modelTypeObj = (EPackage) getConstraintContext(modelType, oclConstraint, MIDLevel.TYPES);
 		}
 		catch (MMINTException e) {
 			MMINTException.print(MMINTException.Type.ERROR, "Can't get context for OCL constraint, evaluating to false", e);

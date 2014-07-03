@@ -10,8 +10,10 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: edu.toronto.cs.se.modelepedia.kleisli.provider
 Require-Bundle: org.eclipse.core.runtime,
- edu.toronto.cs.se.modelepedia.kleisli,
  org.eclipse.emf.edit,
  edu.toronto.cs.se.mmint,
- edu.toronto.cs.se.mmint.edit
+ edu.toronto.cs.se.mmint.edit,
+ edu.toronto.cs.se.mavo,
+ edu.toronto.cs.se.mavo.edit,
+ edu.toronto.cs.se.modelepedia.kleisli
 Bundle-ActivationPolicy: lazy

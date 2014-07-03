@@ -13,7 +13,7 @@ package edu.toronto.cs.se.mmint.mid.diagram.preferences;
 
 import org.eclipse.gmf.runtime.diagram.ui.preferences.ConnectionsPreferencePage;
 
-import edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorPlugin;
+import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 
 /**
  * @generated
@@ -24,7 +24,7 @@ public class DiagramConnectionsPreferencePage extends ConnectionsPreferencePage 
 	 * @generated
 	 */
 	public DiagramConnectionsPreferencePage() {
-		setPreferenceStore(MidDiagramEditorPlugin.getInstance()
+		setPreferenceStore(MIDDiagramEditorPlugin.getInstance()
 				.getPreferenceStore());
 	}
 }

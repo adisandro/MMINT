@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.Parameter;
 
@@ -78,7 +78,7 @@ public class Parameter2ReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Model target = getLink().getModel();
-		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistParameter_4017(getLink(), getNewSource(), target);
 	}
 
@@ -93,7 +93,7 @@ public class Parameter2ReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Operator source = (Operator) getLink().eContainer();
-		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistParameter_4017(getLink(), source, getNewTarget());
 	}
 

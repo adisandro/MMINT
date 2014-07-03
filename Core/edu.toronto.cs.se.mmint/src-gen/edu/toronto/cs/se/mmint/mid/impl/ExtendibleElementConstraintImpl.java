@@ -12,12 +12,11 @@
 package edu.toronto.cs.se.mmint.mid.impl;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
-
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +32,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class ExtendibleElementConstraintImpl extends EObjectImpl implements ExtendibleElementConstraint {
+public class ExtendibleElementConstraintImpl extends MinimalEObjectImpl.Container implements ExtendibleElementConstraint {
 	/**
 	 * The default value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -90,7 +89,7 @@ public class ExtendibleElementConstraintImpl extends EObjectImpl implements Exte
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MidPackage.Literals.EXTENDIBLE_ELEMENT_CONSTRAINT;
+		return MIDPackage.Literals.EXTENDIBLE_ELEMENT_CONSTRAINT;
 	}
 
 	/**
@@ -111,7 +110,7 @@ public class ExtendibleElementConstraintImpl extends EObjectImpl implements Exte
 		String oldImplementation = implementation;
 		implementation = newImplementation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION, oldImplementation, implementation));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION, oldImplementation, implementation));
 	}
 
 	/**
@@ -132,7 +131,7 @@ public class ExtendibleElementConstraintImpl extends EObjectImpl implements Exte
 		String oldLanguage = language;
 		language = newLanguage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE, oldLanguage, language));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE, oldLanguage, language));
 	}
 
 	/**
@@ -143,9 +142,9 @@ public class ExtendibleElementConstraintImpl extends EObjectImpl implements Exte
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
+			case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
 				return getImplementation();
-			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
+			case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
 				return getLanguage();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -159,10 +158,10 @@ public class ExtendibleElementConstraintImpl extends EObjectImpl implements Exte
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
+			case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
 				setImplementation((String)newValue);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
+			case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
 				setLanguage((String)newValue);
 				return;
 		}
@@ -177,10 +176,10 @@ public class ExtendibleElementConstraintImpl extends EObjectImpl implements Exte
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
+			case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
 				setImplementation(IMPLEMENTATION_EDEFAULT);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
+			case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
 				setLanguage(LANGUAGE_EDEFAULT);
 				return;
 		}
@@ -195,9 +194,9 @@ public class ExtendibleElementConstraintImpl extends EObjectImpl implements Exte
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
+			case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
 				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
-			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
+			case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
 				return LANGUAGE_EDEFAULT == null ? language != null : !LANGUAGE_EDEFAULT.equals(language);
 		}
 		return super.eIsSet(featureID);

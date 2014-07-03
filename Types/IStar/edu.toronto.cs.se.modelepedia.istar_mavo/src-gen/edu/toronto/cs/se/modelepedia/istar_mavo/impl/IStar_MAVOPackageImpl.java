@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 
-import edu.toronto.cs.se.mmint.mavo.MavoPackage;
+import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Contribution;
 import edu.toronto.cs.se.modelepedia.istar_mavo.ContributionType;
@@ -198,7 +198,7 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 		isInited = true;
 
 		// Initialize simple dependencies
-		MavoPackage.eINSTANCE.eClass();
+		MAVOPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theIStar_MAVOPackage.createPackageContents();
@@ -713,27 +713,27 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		MavoPackage theMavoPackage = (MavoPackage)EPackage.Registry.INSTANCE.getEPackage(MavoPackage.eNS_URI);
+		MAVOPackage theMAVOPackage = (MAVOPackage)EPackage.Registry.INSTANCE.getEPackage(MAVOPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		iStarEClass.getESuperTypes().add(theMavoPackage.getMAVOModel());
+		iStarEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
 		actorEClass.getESuperTypes().add(this.getDependencyEndpoint());
 		intentionEClass.getESuperTypes().add(this.getDependencyEndpoint());
 		taskEClass.getESuperTypes().add(this.getIntention());
 		resourceEClass.getESuperTypes().add(this.getIntention());
 		goalEClass.getESuperTypes().add(this.getIntention());
 		softGoalEClass.getESuperTypes().add(this.getGoal());
-		dependencyEndpointEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
-		intentionLinkEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
+		dependencyEndpointEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
+		intentionLinkEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 		meansEndEClass.getESuperTypes().add(this.getIntentionLink());
 		decompositionEClass.getESuperTypes().add(this.getIntentionLink());
 		contributionEClass.getESuperTypes().add(this.getIntentionLink());
-		dependerLinkEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
-		dependeeLinkEClass.getESuperTypes().add(theMavoPackage.getMAVOElement());
+		dependerLinkEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
+		dependeeLinkEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(iStarEClass, IStar.class, "IStar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -826,7 +826,7 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * @generated
 	 */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";		
+		String source = "http://www.eclipse.org/emf/2002/Ecore";	
 		addAnnotation
 		  (this, 
 		   source, 
@@ -834,37 +834,37 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });			
+		   });	
 		addAnnotation
 		  (iStarEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "onlyDependums"
-		   });				
+		   });	
 		addAnnotation
 		  (actorEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "noDependums"
-		   });												
+		   });	
 		addAnnotation
 		  (meansEndEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "srcTask tgtGoal"
-		   });				
+		   });	
 		addAnnotation
 		  (decompositionEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "tgtTask"
-		   });				
+		   });	
 		addAnnotation
 		  (contributionEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "tgtSoftgoal"
-		   });					
+		   });
 	}
 
 	/**
@@ -874,12 +874,12 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * @generated
 	 */
 	protected void createGmfAnnotations() {
-		String source = "gmf.diagram";			
+		String source = "gmf.diagram";	
 		addAnnotation
 		  (iStarEClass, 
 		   source, 
 		   new String[] {
-		   });																										
+		   });
 	}
 
 	/**
@@ -889,50 +889,50 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * @generated
 	 */
 	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";					
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
 		addAnnotation
 		  (iStarEClass, 
 		   source, 
 		   new String[] {
 			 "onlyDependums", "dependums->forAll(linksAsSrc->isEmpty() and linksAsTgt->isEmpty())"
-		   });				
+		   });	
 		addAnnotation
 		  (actorEClass, 
 		   source, 
 		   new String[] {
 			 "noDependums", "intentions->forAll(dependerLinks->isEmpty() and dependeeLinks->isEmpty())"
-		   });									
+		   });	
 		addAnnotation
 		  (getIntentionLink_Name(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if src.oclIsUndefined() or tgt.oclIsUndefined() then \'\' else src.name.concat(\' 2 \').concat(tgt.name) endif"
-		   });				
+		   });	
 		addAnnotation
 		  (meansEndEClass, 
 		   source, 
 		   new String[] {
 			 "srcTask", "src.oclIsTypeOf(Task)",
 			 "tgtGoal", "tgt.oclIsTypeOf(Goal)"
-		   });				
+		   });	
 		addAnnotation
 		  (decompositionEClass, 
 		   source, 
 		   new String[] {
 			 "tgtTask", "tgt.oclIsTypeOf(Task)"
-		   });				
+		   });	
 		addAnnotation
 		  (contributionEClass, 
 		   source, 
 		   new String[] {
 			 "tgtSoftgoal", "tgt.oclIsTypeOf(SoftGoal)"
-		   });			
+		   });	
 		addAnnotation
 		  (getDependerLink_Name(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if depender.oclIsUndefined() or dependum.oclIsUndefined() then \'\' else depender.name.concat(\' 2 \').concat(dependum.name) endif"
-		   });			
+		   });	
 		addAnnotation
 		  (getDependeeLink_Name(), 
 		   source, 
@@ -948,7 +948,7 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * @generated
 	 */
 	protected void createGmf_1Annotations() {
-		String source = "gmf.node";						
+		String source = "gmf.node";	
 		addAnnotation
 		  (actorEClass, 
 		   source, 
@@ -956,39 +956,39 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 			 "figure", "ellipse",
 			 "border.style", "dash",
 			 "border.width", "2"
-		   });					
+		   });	
 		addAnnotation
 		  (taskEClass, 
 		   source, 
 		   new String[] {
 			 "figure", "edu.toronto.cs.se.modelepedia.istar.diagram.figures.TaskFigure"
-		   });		
+		   });	
 		addAnnotation
 		  (resourceEClass, 
 		   source, 
 		   new String[] {
 			 "figure", "rectangle",
 			 "border.width", "5"
-		   });		
+		   });	
 		addAnnotation
 		  (goalEClass, 
 		   source, 
 		   new String[] {
 			 "figure", "edu.toronto.cs.se.modelepedia.istar.diagram.figures.GoalFigure"
-		   });		
+		   });	
 		addAnnotation
 		  (softGoalEClass, 
 		   source, 
 		   new String[] {
 			 "figure", "edu.toronto.cs.se.modelepedia.istar.diagram.figures.SoftGoalFigure"
-		   });		
+		   });	
 		addAnnotation
 		  (dependencyEndpointEClass, 
 		   source, 
 		   new String[] {
 			 "label", "name",
 			 "label.icon", "false"
-		   });															
+		   });
 	}
 
 	/**
@@ -998,13 +998,13 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * @generated
 	 */
 	protected void createGmf_2Annotations() {
-		String source = "gmf.compartment";									
+		String source = "gmf.compartment";	
 		addAnnotation
 		  (getActor_Intentions(), 
 		   source, 
 		   new String[] {
 			 "layout", "free"
-		   });																				
+		   });
 	}
 
 	/**
@@ -1014,32 +1014,32 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 	 * @generated
 	 */
 	protected void createGmf_3Annotations() {
-		String source = "gmf.link";															
+		String source = "gmf.link";	
 		addAnnotation
 		  (intentionLinkEClass, 
 		   source, 
 		   new String[] {
 			 "source", "src",
 			 "target", "tgt"
-		   });			
+		   });	
 		addAnnotation
 		  (meansEndEClass, 
 		   source, 
 		   new String[] {
 			 "target.decoration", "closedarrow"
-		   });				
+		   });	
 		addAnnotation
 		  (decompositionEClass, 
 		   source, 
 		   new String[] {
 			 "target.decoration", "filledrhomb"
-		   });				
+		   });	
 		addAnnotation
 		  (contributionEClass, 
 		   source, 
 		   new String[] {
 			 "target.decoration", "arrow"
-		   });				
+		   });	
 		addAnnotation
 		  (dependerLinkEClass, 
 		   source, 
@@ -1047,7 +1047,7 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 			 "target.decoration", "arrow",
 			 "source", "depender",
 			 "target", "dependum"
-		   });			
+		   });	
 		addAnnotation
 		  (dependeeLinkEClass, 
 		   source, 
@@ -1055,7 +1055,7 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 			 "target.decoration", "arrow",
 			 "source", "dependum",
 			 "target", "dependee"
-		   });	
+		   });
 	}
 
 } //IStar_MAVOPackageImpl

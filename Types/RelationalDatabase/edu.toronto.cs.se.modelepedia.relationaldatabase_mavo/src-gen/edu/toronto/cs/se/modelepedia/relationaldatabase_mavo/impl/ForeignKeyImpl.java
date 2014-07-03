@@ -119,7 +119,7 @@ public class ForeignKeyImpl extends NamedElementImpl implements ForeignKey {
 	 */
 	public Table getTable() {
 		if (eContainerFeatureID() != RelationalDatabase_MAVOPackage.FOREIGN_KEY__TABLE) return null;
-		return (Table)eContainer();
+		return (Table)eInternalContainer();
 	}
 
 	/**

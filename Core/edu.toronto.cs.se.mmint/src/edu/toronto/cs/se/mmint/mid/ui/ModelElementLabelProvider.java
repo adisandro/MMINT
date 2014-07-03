@@ -18,15 +18,15 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
 
 public class ModelElementLabelProvider extends AdapterFactoryLabelProvider {
 
-	private MidLevel level;
+	private MIDLevel level;
 
-	public ModelElementLabelProvider(AdapterFactory adapterFactory, MidLevel level) {
+	public ModelElementLabelProvider(AdapterFactory adapterFactory, MIDLevel level) {
 
 		super(adapterFactory);
 		this.level = level;
@@ -36,11 +36,11 @@ public class ModelElementLabelProvider extends AdapterFactoryLabelProvider {
 	public String getText(Object object) {
 
 		String text;
-		if (level == MidLevel.INSTANCES && (object instanceof AttributeValueWrapperItemProvider || object instanceof EObject)) {
+		if (level == MIDLevel.INSTANCES && (object instanceof AttributeValueWrapperItemProvider || object instanceof EObject)) {
 			if (object instanceof AttributeValueWrapperItemProvider) {
 				object = new PrimitiveEObjectWrapper((AttributeValueWrapperItemProvider) object);
 			}
-			EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo((EObject) object, MidLevel.INSTANCES);
+			EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo((EObject) object, MIDLevel.INSTANCES);
 			text = eInfo.toInstanceString();
 			if (object instanceof PrimitiveEObjectWrapper) {
 				text = text.replace(MMINT.MODELELEMENT_PRIMITIVEVALUE_PLACEHOLDER, ((PrimitiveEObjectWrapper) object).getValue().toString());

@@ -11,8 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.util;
 
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
-import edu.toronto.cs.se.mmint.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -23,7 +22,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.*;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
@@ -92,6 +90,7 @@ public class KleisliSwitch<T> extends Switch<T> {
 				if (result == null) result = caseExtendibleElement(kleisliModel);
 				if (result == null) result = caseMAVOModel(kleisliModel);
 				if (result == null) result = caseMAVOElement(kleisliModel);
+				if (result == null) result = caseLogicElement(kleisliModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -102,6 +101,7 @@ public class KleisliSwitch<T> extends Switch<T> {
 				if (result == null) result = caseExtendibleElementEndpoint(kleisliModelEndpoint);
 				if (result == null) result = caseExtendibleElement(kleisliModelEndpoint);
 				if (result == null) result = caseMAVOElement(kleisliModelEndpoint);
+				if (result == null) result = caseLogicElement(kleisliModelEndpoint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -113,6 +113,7 @@ public class KleisliSwitch<T> extends Switch<T> {
 				if (result == null) result = caseExtendibleElement(kleisliModelRel);
 				if (result == null) result = caseMAVOModel(kleisliModelRel);
 				if (result == null) result = caseMAVOElement(kleisliModelRel);
+				if (result == null) result = caseLogicElement(kleisliModelRel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -126,6 +127,7 @@ public class KleisliSwitch<T> extends Switch<T> {
 				if (result == null) result = caseExtendibleElement(kleisliBinaryModelRel);
 				if (result == null) result = caseMAVOModel(kleisliBinaryModelRel);
 				if (result == null) result = caseMAVOElement(kleisliBinaryModelRel);
+				if (result == null) result = caseLogicElement(kleisliBinaryModelRel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -218,17 +220,32 @@ public class KleisliSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>MAVO Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Logic Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>MAVO Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Logic Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMAVOElement(MAVOElement object) {
+	public T caseLogicElement(LogicElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMAVOElement(edu.toronto.cs.se.mavo.MAVOElement object) {
 		return null;
 	}
 
@@ -248,17 +265,17 @@ public class KleisliSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>MAVO Model</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>MAVO Model</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMAVOModel(MAVOModel object) {
+	public T caseMAVOModel(edu.toronto.cs.se.mavo.MAVOModel object) {
 		return null;
 	}
 

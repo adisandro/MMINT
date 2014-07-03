@@ -12,29 +12,21 @@
 package edu.toronto.cs.se.mmint.mid.provider;
 
 
-import edu.toronto.cs.se.mmint.mavo.provider.MAVOModelItemProvider;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
-
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -45,13 +37,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class MultiModelItemProvider
-	extends MAVOModelItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends edu.toronto.cs.se.mavo.provider.MAVOModelItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -91,7 +77,7 @@ public class MultiModelItemProvider
 				 getResourceLocator(),
 				 getString("_UI_MultiModel_level_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_MultiModel_level_feature", "_UI_MultiModel_type"),
-				 MidPackage.Literals.MULTI_MODEL__LEVEL,
+				 MIDPackage.Literals.MULTI_MODEL__LEVEL,
 				 true,
 				 false,
 				 false,
@@ -112,10 +98,10 @@ public class MultiModelItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__MODELS);
-			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__EDITORS);
-			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__OPERATORS);
-			childrenFeatures.add(MidPackage.Literals.MULTI_MODEL__EXTENDIBLE_TABLE);
+			childrenFeatures.add(MIDPackage.Literals.MULTI_MODEL__MODELS);
+			childrenFeatures.add(MIDPackage.Literals.MULTI_MODEL__EDITORS);
+			childrenFeatures.add(MIDPackage.Literals.MULTI_MODEL__OPERATORS);
+			childrenFeatures.add(MIDPackage.Literals.MULTI_MODEL__EXTENDIBLE_TABLE);
 		}
 		return childrenFeatures;
 	}
@@ -168,13 +154,13 @@ public class MultiModelItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MultiModel.class)) {
-			case MidPackage.MULTI_MODEL__LEVEL:
+			case MIDPackage.MULTI_MODEL__LEVEL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MidPackage.MULTI_MODEL__MODELS:
-			case MidPackage.MULTI_MODEL__EDITORS:
-			case MidPackage.MULTI_MODEL__OPERATORS:
-			case MidPackage.MULTI_MODEL__EXTENDIBLE_TABLE:
+			case MIDPackage.MULTI_MODEL__MODELS:
+			case MIDPackage.MULTI_MODEL__EDITORS:
+			case MIDPackage.MULTI_MODEL__OPERATORS:
+			case MIDPackage.MULTI_MODEL__EXTENDIBLE_TABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -194,48 +180,48 @@ public class MultiModelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__MODELS,
-				 MidFactory.eINSTANCE.createModel()));
+				(MIDPackage.Literals.MULTI_MODEL__MODELS,
+				 MIDFactory.eINSTANCE.createModel()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__MODELS,
+				(MIDPackage.Literals.MULTI_MODEL__MODELS,
 				 RelationshipFactory.eINSTANCE.createModelRel()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__MODELS,
+				(MIDPackage.Literals.MULTI_MODEL__MODELS,
 				 RelationshipFactory.eINSTANCE.createBinaryModelRel()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__EDITORS,
+				(MIDPackage.Literals.MULTI_MODEL__EDITORS,
 				 EditorFactory.eINSTANCE.createEditor()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__EDITORS,
+				(MIDPackage.Literals.MULTI_MODEL__EDITORS,
 				 EditorFactory.eINSTANCE.createDiagram()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__OPERATORS,
+				(MIDPackage.Literals.MULTI_MODEL__OPERATORS,
 				 OperatorFactory.eINSTANCE.createOperator()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__OPERATORS,
+				(MIDPackage.Literals.MULTI_MODEL__OPERATORS,
 				 OperatorFactory.eINSTANCE.createConversionOperator()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__OPERATORS,
+				(MIDPackage.Literals.MULTI_MODEL__OPERATORS,
 				 OperatorFactory.eINSTANCE.createRandomOperator()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MidPackage.Literals.MULTI_MODEL__EXTENDIBLE_TABLE,
-				 MidFactory.eINSTANCE.create(MidPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP)));
+				(MIDPackage.Literals.MULTI_MODEL__EXTENDIBLE_TABLE,
+				 MIDFactory.eINSTANCE.create(MIDPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP)));
 	}
 
 	/**

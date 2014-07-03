@@ -11,12 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.graph_mavo.presentation;
 
-import edu.toronto.cs.se.mmint.mid.provider.MidEditPlugin;
-
+import edu.toronto.cs.se.mavo.provider.MAVOEditPlugin;
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
@@ -51,7 +48,7 @@ public final class Graph_MAVOEditorPlugin extends EMFPlugin {
 	public Graph_MAVOEditorPlugin() {
 		super
 			(new ResourceLocator [] {
-				MidEditPlugin.INSTANCE,
+				MAVOEditPlugin.INSTANCE,
 			});
 	}
 

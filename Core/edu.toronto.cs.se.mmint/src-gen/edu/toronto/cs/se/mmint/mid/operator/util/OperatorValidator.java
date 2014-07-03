@@ -12,12 +12,10 @@
 package edu.toronto.cs.se.mmint.mid.operator.util;
 
 import edu.toronto.cs.se.mmint.mid.operator.*;
-import edu.toronto.cs.se.mmint.mid.util.MidValidator;
-
+import edu.toronto.cs.se.mmint.mid.util.MIDValidator;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
-
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -72,7 +70,7 @@ public class OperatorValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MidValidator midValidator;
+	protected MIDValidator midValidator;
 
 	/**
 	 * Creates an instance of the switch.
@@ -82,7 +80,7 @@ public class OperatorValidator extends EObjectValidator {
 	 */
 	public OperatorValidator() {
 		super();
-		midValidator = MidValidator.INSTANCE;
+		midValidator = MIDValidator.INSTANCE;
 	}
 
 	/**

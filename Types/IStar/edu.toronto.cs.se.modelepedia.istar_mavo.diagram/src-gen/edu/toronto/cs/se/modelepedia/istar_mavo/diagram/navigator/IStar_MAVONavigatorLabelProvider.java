@@ -97,51 +97,51 @@ public class IStar_MAVONavigatorLabelProvider extends LabelProvider implements
 	public Image getImage(View view) {
 		switch (edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry
 				.getVisualID(view)) {
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DependeeLinkEditPart.VISUAL_ID:
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.IStarEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?DependeeLink", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.TaskEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?Task", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Task_2002); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?Actor", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Actor_2005); //$NON-NLS-1$
+					"Navigator?Diagram?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?IStar", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.IStar_1000); //$NON-NLS-1$
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?SoftGoal", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.SoftGoal_2001); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.GoalEditPart.VISUAL_ID:
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.TaskEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?Goal", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Goal_2004); //$NON-NLS-1$
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?Task", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Task_2002); //$NON-NLS-1$
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ResourceEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?Resource", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Resource_2003); //$NON-NLS-1$
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.GoalEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?Goal", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Goal_2004); //$NON-NLS-1$
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?Actor", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Actor_2005); //$NON-NLS-1$
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoal2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?SoftGoal", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.SoftGoal_3001); //$NON-NLS-1$
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Task2EditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?Task", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Task_3002); //$NON-NLS-1$
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Resource2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?Resource", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Resource_3003); //$NON-NLS-1$
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Goal2EditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?Goal", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Goal_3004); //$NON-NLS-1$
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.MeansEndEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?MeansEnd", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.MeansEnd_4001); //$NON-NLS-1$
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DecompositionEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?Decomposition", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002); //$NON-NLS-1$
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ContributionEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?Contribution", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003); //$NON-NLS-1$
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DependerLinkEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?DependerLink", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.MeansEndEditPart.VISUAL_ID:
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DependeeLinkEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?MeansEnd", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.MeansEnd_4001); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.IStarEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Diagram?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?IStar", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.IStar_1000); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Resource2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?Resource", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Resource_3003); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DecompositionEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?Decomposition", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoal2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?SoftGoal", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.SoftGoal_3001); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Goal2EditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?Goal", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Goal_3004); //$NON-NLS-1$
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/IStar_MAVO?DependeeLink", edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -206,36 +206,36 @@ public class IStar_MAVONavigatorLabelProvider extends LabelProvider implements
 		}
 		switch (edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry
 				.getVisualID(view)) {
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DependeeLinkEditPart.VISUAL_ID:
-			return getDependeeLink_4005Text(view);
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.TaskEditPart.VISUAL_ID:
-			return getTask_2002Text(view);
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart.VISUAL_ID:
-			return getActor_2005Text(view);
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.IStarEditPart.VISUAL_ID:
+			return getIStar_1000Text(view);
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart.VISUAL_ID:
 			return getSoftGoal_2001Text(view);
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.GoalEditPart.VISUAL_ID:
-			return getGoal_2004Text(view);
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.TaskEditPart.VISUAL_ID:
+			return getTask_2002Text(view);
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ResourceEditPart.VISUAL_ID:
 			return getResource_2003Text(view);
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.GoalEditPart.VISUAL_ID:
+			return getGoal_2004Text(view);
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart.VISUAL_ID:
+			return getActor_2005Text(view);
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoal2EditPart.VISUAL_ID:
+			return getSoftGoal_3001Text(view);
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Task2EditPart.VISUAL_ID:
 			return getTask_3002Text(view);
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Resource2EditPart.VISUAL_ID:
+			return getResource_3003Text(view);
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Goal2EditPart.VISUAL_ID:
+			return getGoal_3004Text(view);
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.MeansEndEditPart.VISUAL_ID:
+			return getMeansEnd_4001Text(view);
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DecompositionEditPart.VISUAL_ID:
+			return getDecomposition_4002Text(view);
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ContributionEditPart.VISUAL_ID:
 			return getContribution_4003Text(view);
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DependerLinkEditPart.VISUAL_ID:
 			return getDependerLink_4004Text(view);
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.MeansEndEditPart.VISUAL_ID:
-			return getMeansEnd_4001Text(view);
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.IStarEditPart.VISUAL_ID:
-			return getIStar_1000Text(view);
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Resource2EditPart.VISUAL_ID:
-			return getResource_3003Text(view);
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DecompositionEditPart.VISUAL_ID:
-			return getDecomposition_4002Text(view);
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoal2EditPart.VISUAL_ID:
-			return getSoftGoal_3001Text(view);
-		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Goal2EditPart.VISUAL_ID:
-			return getGoal_3004Text(view);
+		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DependeeLinkEditPart.VISUAL_ID:
+			return getDependeeLink_4005Text(view);
 		}
 		return getUnknownElementText(view);
 	}
