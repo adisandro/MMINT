@@ -203,7 +203,7 @@ public class RelationalDatabase_MAVONewDiagramFileWizard extends Wizard {
 		 * @generated
 		 */
 		protected boolean validatePage() {
-			if (selectedModelElement == null) {
+			if (getModelElement() == null) {
 				setErrorMessage(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.RelationalDatabase_MAVONewDiagramFileWizard_RootSelectionPageNoSelectionMessage);
 				return false;
 			}
@@ -211,7 +211,7 @@ public class RelationalDatabase_MAVONewDiagramFileWizard extends Wizard {
 					.getInstance()
 					.provides(
 							new CreateDiagramViewOperation(
-									new EObjectAdapter(selectedModelElement),
+									new EObjectAdapter(getModelElement()),
 									edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.RelationalDatabaseEditPart.MODEL_ID,
 									edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 			setErrorMessage(result ? null

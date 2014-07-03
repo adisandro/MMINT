@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl;
 
+import edu.toronto.cs.se.mavo.impl.MAVOReferenceImpl;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Column;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignColumnReference;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey;
@@ -37,7 +38,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *
  * @generated
  */
-public class ForeignColumnReferenceImpl extends edu.toronto.cs.se.mavo.impl.MAVOReferenceImpl implements ForeignColumnReference {
+public class ForeignColumnReferenceImpl extends MAVOReferenceImpl implements ForeignColumnReference {
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
