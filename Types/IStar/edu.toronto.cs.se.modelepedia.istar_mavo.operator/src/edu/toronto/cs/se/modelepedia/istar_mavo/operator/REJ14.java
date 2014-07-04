@@ -11,22 +11,36 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.operator;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
-
 import org.eclipse.emf.common.util.EList;
 
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
+import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
 
 public class REJ14 extends FASE14 {
 
 	private final static String PROPERTY_IN_GENERATETARGETSCONCRETIZATION = "generateTargetsConcretization";
 
+	// input
 	private boolean timeAnalysisEnabled;
 	private boolean generateTargetsConcretization;
+	// state
+	private Map<Integer, String> smtEdges;
 
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
@@ -37,7 +51,19 @@ public class REJ14 extends FASE14 {
 	}
 
 	@Override
-	protected void doTargets(Z3SMTIncrementalSolver z3IncSolver) {
+	public void init() throws MMINTException {
+
+		super.init();
+
+		// state
+		IStarMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
+			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
+			(IStarMAVOToSMTLIB) getPreviousOperator();
+		smtEdges = previousOperator.getListener().getSMTLIBEncodingEdges();
+	}
+
+	@Override
+	protected Z3SMTModel doTargets(Z3SMTIncrementalSolver z3IncSolver) {
 
 		long extraTime = 0;
 		if (!timeAnalysisEnabled) {
@@ -45,8 +71,86 @@ public class REJ14 extends FASE14 {
 			z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
 			extraTime = System.nanoTime() - startTime;
 		}
-		super.doTargets(z3IncSolver);
+		Z3SMTModel z3Model = super.doTargets(z3IncSolver);
 		timeTargets += extraTime;
+
+		return z3Model;
+	}
+
+	private String[] getConcretization(Z3SMTModel z3Model) {
+
+		String concretization = "", smtConcretizationConstraint = "";
+		//TODO MMINT[Z3] Change api names, make this process an api, make nodes+edges an api
+		/*TODO
+		 * mavoModelObjs = formulaVar->mavoModelObj
+		 * smtNodes/smtEdges = int->formulaVar
+		 * getZ3ModelNodes()/getZ3ModelEdges() = universe->int
+		 * S: x concretizationVar to same formulaVar
+		 * V: 1 concretizationVar to x formulaVar
+		 */
+		Map<String, Integer> z3ModelNodes = z3Model.getZ3ModelNodes(smtNodes);
+		Map<String, Integer> z3ModelEdges = z3Model.getZ3ModelEdges(smtEdges);
+		Map<String, List<String>> z3Elems = new HashMap<String, List<String>>();
+		for (Entry<String, Integer> z3ModelNode : z3ModelNodes.entrySet()) {
+			String concretizationVar = z3ModelNode.getKey();
+			List<String> formulaVars = z3Elems.get(concretizationVar);
+			if (formulaVars == null) {
+				formulaVars = new ArrayList<String>();
+				z3Elems.put(concretizationVar, formulaVars);
+			}
+			String formulaVar = smtNodes.get(z3ModelNode.getValue());
+			formulaVars.add(formulaVar);
+		}
+		for (Entry<String, Integer> z3ModelEdge : z3ModelEdges.entrySet()) {
+			String concretizationVar = z3ModelEdge.getKey();
+			List<String> formulaVars = z3Elems.get(concretizationVar);
+			if (formulaVars == null) {
+				formulaVars = new ArrayList<String>();
+				z3Elems.put(concretizationVar, formulaVars);
+			}
+			String formulaVar = smtNodes.get(z3ModelEdge.getValue());
+			formulaVars.add(formulaVar);
+		}
+		for (Entry<String, MAVOElement> mavoModelObjEntry : mavoModelObjs.entrySet()) {
+			MAVOElement mavoModelObj = mavoModelObjEntry.getValue();
+			String formulaVar = mavoModelObjEntry.getKey();
+			String sort = mavoModelObj.eClass().getName();
+			String function = encodeMAVConstraintFunction(mavoModelObj);
+			int counterMS = 0;
+			List<String> mergeV = null;
+			for (List<String> z3ElemFormulaVars : z3Elems.values()) {
+				if (z3ElemFormulaVars.contains(formulaVar)) {
+					counterMS++;
+					mergeV = z3ElemFormulaVars;
+				}
+			}
+			if (mavoModelObj.isMay()) {
+				String smtMConstraint = encodeMConstraint(sort, function, formulaVar);
+				if (counterMS == 0) {
+					concretization += formulaVar + " deleted (M)\n";
+				}
+				else {
+					smtMConstraint = Z3SMTUtils.not(smtMConstraint);
+				}
+				smtConcretizationConstraint += Z3SMTUtils.assertion(smtMConstraint);
+			}
+			if (mavoModelObj.isSet()) {
+				if (counterMS > 1) {
+					concretization += formulaVar + " split into " + counterMS + " (S)\n";
+					String smtSConstraint = encodeSConstraint(sort, function, formulaVar);
+					smtConcretizationConstraint += Z3SMTUtils.assertion(smtSConstraint);
+				}
+			}
+			if (mavoModelObj.isVar()) {
+				if (mergeV.size() > 1) {
+					concretization += formulaVar + " merged with " + mergeV + " (V)\n";
+					String smtVConstraint = encodeVConstraint(sort, function, formulaVar, mergeV);
+					smtConcretizationConstraint += Z3SMTUtils.assertion(smtVConstraint);
+				}
+			}
+		}
+
+		return new String[] {concretization, smtConcretizationConstraint};
 	}
 
 	@Override
@@ -61,23 +165,22 @@ public class REJ14 extends FASE14 {
 			doAnalysis(z3IncSolver);
 		}
 		if (timeTargetsEnabled) {
-			doTargets(z3IncSolver);
+			Z3SMTModel z3Model = doTargets(z3IncSolver);
 			if (targets == Z3SMTBool.SAT) {
-				doRNF(z3IncSolver);
+				doRNF(z3IncSolver, z3Model);
 				if (generateTargetsConcretization) {
-//					boolean nextConcretization = true;
-//					Z3SMTBool z3Bool = Z3SMTBool.SAT;
-//					Z3SMTModel z3Model;
-//					while (nextConcretization && z3Bool == Z3SMTBool.SAT) {
-						/*TODO
-						 * (first concretization should be the result of doTargets + doRNF)
-						 * copy model and diagram
-						 * read model nodes/edges, delete M nodes (Naama's work), create S nodes (useless), merge V nodes
-						 * doRNF-like algorithm to create the negation of the current concretization
-						 * ask the user if they want the next concretization
-						 * assert the negation of the current concretization and check sat
-						 */
-//					}
+					while (true) {
+						String[] concretization = getConcretization(z3Model);
+						//TODO MMINT[NAAMA] Integrate with mu-mmint code to show concretization model
+						if (!MultiModelDiagramUtils.getBooleanInput("Concretization", concretization[0] + "\n\nDo you want another concretization?")) {
+							break;
+						}
+						//TODO MMINT[TOSEM] Integrate with tosem allsat to negate current concretization
+						z3Model = z3IncSolver.checkSatAndGetModel(concretization[1], Z3IncrementalBehavior.NORMAL);
+						if (z3Model.getZ3Bool() != Z3SMTBool.SAT) {
+							break;
+						}
+					}
 				}
 			}
 		}

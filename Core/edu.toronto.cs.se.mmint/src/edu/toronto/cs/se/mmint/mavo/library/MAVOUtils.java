@@ -342,7 +342,7 @@ public class MAVOUtils {
 		return mayOnly;
 	}
 
-	private static List<String> getVarIds(MAVOModel mavoModel, MAVOElement mavoModelObj, boolean whichIds) {
+	private static List<String> getVFormulaVars(MAVOModel mavoModel, MAVOElement mavoModelObj, boolean whichIds) {
 
 		List<String> ids = new ArrayList<String>();
 		EObject modelObjContainer = mavoModelObj.eContainer();
@@ -361,7 +361,7 @@ public class MAVOUtils {
 				(modelObjContainer == otherModelObjContainer) || ( // ok same container (also recursion closure when containers are root)
 					modelObjContainer instanceof MAVOElement && // ok different container: MAVO element
 					modelObjContainer.eClass().getName().equals(otherModelObjContainer.eClass().getName()) && // ok different container: same type
-					getMergeableIds(mavoModel, (MAVOElement) modelObjContainer).contains(((MAVOElement) otherModelObjContainer).getFormulaVariable()) // ok different container: mergeable
+					getMergeableFormulaVars(mavoModel, (MAVOElement) modelObjContainer).contains(((MAVOElement) otherModelObjContainer).getFormulaVariable()) // ok different container: mergeable
 				)
 			);
 			if (whichIds != isMergeable) {
@@ -373,14 +373,14 @@ public class MAVOUtils {
 		return ids;
 	}
 
-	public static List<String> getMergeableIds(MAVOModel mavoModel, MAVOElement mavoModelObj) {
+	public static List<String> getMergeableFormulaVars(MAVOModel mavoModel, MAVOElement mavoModelObj) {
 
-		return getVarIds(mavoModel, mavoModelObj, true);
+		return getVFormulaVars(mavoModel, mavoModelObj, true);
 	}
 
-	public static List<String> getUnmergeableIds(MAVOModel mavoModel, MAVOElement mavoModelObj) {
+	public static List<String> getUnmergeableFormulaVars(MAVOModel mavoModel, MAVOElement mavoModelObj) {
 
-		return getVarIds(mavoModel, mavoModelObj, false);
+		return getVFormulaVars(mavoModel, mavoModelObj, false);
 	}
 
 }

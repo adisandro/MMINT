@@ -65,7 +65,7 @@ public class RE13 extends OperatorImpl {
 		}
 	}
 
-	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_IStarMAVOToSMTLIB";
+	protected static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_IStarMAVOToSMTLIB";
 	private static final String PROPERTY_IN_TARGETSPROPERTY = "targetsProperty";
 	private static final String PROPERTY_IN_TARGETSPROPERTY_DEFAULT = "";
 	private static final String PROPERTY_OUT_TIMEMODEL = "timeModel";
@@ -83,16 +83,17 @@ public class RE13 extends OperatorImpl {
 		Z3_MODEL_NODETYPES.add("Resource");
 	}
 
+	// input
 	private boolean timeModelEnabled;
 	protected boolean timeTargetsEnabled;
 	private String targetsProperty;
-
+	// state
 	protected IStar istar;
 	protected Map<String, Intention> intentions;
 	protected Set<String> initialIntentions;
 	protected String smtEncoding;
-	private Map<Integer, String> smtNodes;
-
+	protected Map<Integer, String> smtNodes;
+	// output
 	private long timeModel;
 	private long timeAnalysis;
 	protected long timeTargets;
@@ -117,7 +118,6 @@ public class RE13 extends OperatorImpl {
 			(IStarMAVOToSMTLIB) getPreviousOperator();
 		smtEncoding = previousOperator.getListener().getSMTLIBEncoding();
 		smtNodes = previousOperator.getListener().getSMTLIBEncodingNodes();
-
 		// output
 		timeModel = -1;
 		timeAnalysis = -1;
@@ -258,7 +258,7 @@ public class RE13 extends OperatorImpl {
 		timeAnalysis = System.nanoTime() - startTime;
 	}
 
-	protected void doTargets(Z3SMTIncrementalSolver z3IncSolver) {
+	protected Z3SMTModel doTargets(Z3SMTIncrementalSolver z3IncSolver) {
 
 		long startTime = System.nanoTime();
 
@@ -267,6 +267,8 @@ public class RE13 extends OperatorImpl {
 		targets = z3Model.getZ3Bool();
 
 		timeTargets = System.nanoTime() - startTime;
+
+		return z3Model;
 	}
 
 	protected void collectAnalysisModelObjs(Model istarModel) throws MMINTException {
