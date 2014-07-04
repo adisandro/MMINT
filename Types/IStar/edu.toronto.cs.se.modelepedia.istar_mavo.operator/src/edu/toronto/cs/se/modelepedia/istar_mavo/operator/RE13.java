@@ -69,7 +69,7 @@ public class RE13 extends OperatorImpl {
 	private static final String PROPERTY_IN_TARGETSPROPERTY = "targetsProperty";
 	private static final String PROPERTY_IN_TARGETSPROPERTY_DEFAULT = "";
 	private static final String PROPERTY_OUT_TIMEMODEL = "timeModel";
-	private static final String PROPERTY_OUT_TIMEANALYSIS = "timeAnalysis";
+	protected static final String PROPERTY_OUT_TIMEANALYSIS = "timeAnalysis";
 	private static final String PROPERTY_OUT_TIMETARGETS = "timeTargets";
 	private static final String PROPERTY_OUT_LABELS_SUFFIX = ".labels";
 	private static final String PROPERTY_OUT_TARGETS = "targets";
@@ -90,12 +90,12 @@ public class RE13 extends OperatorImpl {
 	protected IStar istar;
 	protected Map<String, Intention> intentions;
 	protected Set<String> initialIntentions;
-	private String smtEncoding;
+	protected String smtEncoding;
 	private Map<Integer, String> smtNodes;
 
 	private long timeModel;
 	private long timeAnalysis;
-	private long timeTargets;
+	protected long timeTargets;
 	protected Z3SMTBool targets;
 
 	@Override
