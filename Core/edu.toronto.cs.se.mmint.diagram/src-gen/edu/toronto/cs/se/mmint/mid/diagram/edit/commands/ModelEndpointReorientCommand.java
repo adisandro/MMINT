@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -78,7 +78,7 @@ public class ModelEndpointReorientCommand extends EditElementCommand {
 			return false;
 		}
 		ExtendibleElement target = getLink().getTarget();
-		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistModelEndpoint_4014(getLink(), getNewSource(), target);
 	}
 
@@ -93,7 +93,7 @@ public class ModelEndpointReorientCommand extends EditElementCommand {
 			return false;
 		}
 		ModelRel source = (ModelRel) getLink().eContainer();
-		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistModelEndpoint_4014(getLink(), source, getNewTarget());
 	}
 

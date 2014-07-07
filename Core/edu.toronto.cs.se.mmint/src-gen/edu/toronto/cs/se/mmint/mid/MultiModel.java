@@ -11,10 +11,9 @@
  */
 package edu.toronto.cs.se.mmint.mid;
 
-import edu.toronto.cs.se.mmint.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
@@ -38,7 +37,7 @@ import org.eclipse.emf.common.util.EMap;
  * </ul>
  * </p>
  *
- * @see edu.toronto.cs.se.mmint.mid.MidPackage#getMultiModel()
+ * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getMultiModel()
  * @model
  * @generated
  */
@@ -52,7 +51,7 @@ public interface MultiModel extends MAVOModel {
 	 * The list of managed model types or model instances.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Models</em>' containment reference list.
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getMultiModel_Models()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getMultiModel_Models()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -67,7 +66,7 @@ public interface MultiModel extends MAVOModel {
 	 * The list of managed editor types or editor instances.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Editors</em>' containment reference list.
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getMultiModel_Editors()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getMultiModel_Editors()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -82,7 +81,7 @@ public interface MultiModel extends MAVOModel {
 	 * The list of managed operator types or operator instances.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Operators</em>' containment reference list.
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getMultiModel_Operators()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getMultiModel_Operators()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -98,7 +97,7 @@ public interface MultiModel extends MAVOModel {
 	 * The hash map for all element types or element instances in the MID, using the uri as key.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Extendible Table</em>' map.
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getMultiModel_ExtendibleTable()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getMultiModel_ExtendibleTable()
 	 * @model mapType="edu.toronto.cs.se.mmint.mid.EStringToExtendibleElementMap<org.eclipse.emf.ecore.EString, edu.toronto.cs.se.mmint.mid.ExtendibleElement>"
 	 * @generated
 	 */
@@ -106,30 +105,30 @@ public interface MultiModel extends MAVOModel {
 
 	/**
 	 * Returns the value of the '<em><b>Level</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmint.mid.MidLevel}.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmint.mid.MIDLevel}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The metalevel (types: TYPES; instances: INSTANCES).
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Level</em>' attribute.
-	 * @see edu.toronto.cs.se.mmint.mid.MidLevel
-	 * @see #setLevel(MidLevel)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getMultiModel_Level()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDLevel
+	 * @see #setLevel(MIDLevel)
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getMultiModel_Level()
 	 * @model required="true"
 	 * @generated
 	 */
-	MidLevel getLevel();
+	MIDLevel getLevel();
 
 	/**
 	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.MultiModel#getLevel <em>Level</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Level</em>' attribute.
-	 * @see edu.toronto.cs.se.mmint.mid.MidLevel
+	 * @see edu.toronto.cs.se.mmint.mid.MIDLevel
 	 * @see #getLevel()
 	 * @generated
 	 */
-	void setLevel(MidLevel value);
+	void setLevel(MIDLevel value);
 
 } // MultiModel

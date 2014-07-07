@@ -11,8 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.util;
 
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
-import edu.toronto.cs.se.mmint.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.LogicElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.modelepedia.istar_mavo.*;
 
 import org.eclipse.emf.ecore.EObject;
@@ -88,6 +89,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 				T result = caseActor(actor);
 				if (result == null) result = caseDependencyEndpoint(actor);
 				if (result == null) result = caseMAVOElement(actor);
+				if (result == null) result = caseLogicElement(actor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -96,6 +98,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 				T result = caseIntention(intention);
 				if (result == null) result = caseDependencyEndpoint(intention);
 				if (result == null) result = caseMAVOElement(intention);
+				if (result == null) result = caseLogicElement(intention);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -105,6 +108,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIntention(task);
 				if (result == null) result = caseDependencyEndpoint(task);
 				if (result == null) result = caseMAVOElement(task);
+				if (result == null) result = caseLogicElement(task);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -114,6 +118,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIntention(resource);
 				if (result == null) result = caseDependencyEndpoint(resource);
 				if (result == null) result = caseMAVOElement(resource);
+				if (result == null) result = caseLogicElement(resource);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -123,6 +128,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIntention(goal);
 				if (result == null) result = caseDependencyEndpoint(goal);
 				if (result == null) result = caseMAVOElement(goal);
+				if (result == null) result = caseLogicElement(goal);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -133,6 +139,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIntention(softGoal);
 				if (result == null) result = caseDependencyEndpoint(softGoal);
 				if (result == null) result = caseMAVOElement(softGoal);
+				if (result == null) result = caseLogicElement(softGoal);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -140,6 +147,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 				DependencyEndpoint dependencyEndpoint = (DependencyEndpoint)theEObject;
 				T result = caseDependencyEndpoint(dependencyEndpoint);
 				if (result == null) result = caseMAVOElement(dependencyEndpoint);
+				if (result == null) result = caseLogicElement(dependencyEndpoint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -147,6 +155,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 				IntentionLink intentionLink = (IntentionLink)theEObject;
 				T result = caseIntentionLink(intentionLink);
 				if (result == null) result = caseMAVOElement(intentionLink);
+				if (result == null) result = caseLogicElement(intentionLink);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -155,6 +164,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 				T result = caseMeansEnd(meansEnd);
 				if (result == null) result = caseIntentionLink(meansEnd);
 				if (result == null) result = caseMAVOElement(meansEnd);
+				if (result == null) result = caseLogicElement(meansEnd);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -163,6 +173,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 				T result = caseDecomposition(decomposition);
 				if (result == null) result = caseIntentionLink(decomposition);
 				if (result == null) result = caseMAVOElement(decomposition);
+				if (result == null) result = caseLogicElement(decomposition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -171,6 +182,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 				T result = caseContribution(contribution);
 				if (result == null) result = caseIntentionLink(contribution);
 				if (result == null) result = caseMAVOElement(contribution);
+				if (result == null) result = caseLogicElement(contribution);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -178,6 +190,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 				DependerLink dependerLink = (DependerLink)theEObject;
 				T result = caseDependerLink(dependerLink);
 				if (result == null) result = caseMAVOElement(dependerLink);
+				if (result == null) result = caseLogicElement(dependerLink);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -185,6 +198,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 				DependeeLink dependeeLink = (DependeeLink)theEObject;
 				T result = caseDependeeLink(dependeeLink);
 				if (result == null) result = caseMAVOElement(dependeeLink);
+				if (result == null) result = caseLogicElement(dependeeLink);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -403,13 +417,13 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>MAVO Model</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>MAVO Model</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -418,13 +432,28 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>MAVO Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Logic Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>MAVO Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Logic Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLogicElement(LogicElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */

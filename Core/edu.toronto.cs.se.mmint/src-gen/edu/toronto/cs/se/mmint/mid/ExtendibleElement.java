@@ -11,7 +11,8 @@
  */
 package edu.toronto.cs.se.mmint.mid;
 
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +37,7 @@ import edu.toronto.cs.se.mmint.mavo.MAVOElement;
  * </ul>
  * </p>
  *
- * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElement()
+ * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElement()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='typeLevel'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot typeLevel='level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES'"
@@ -52,7 +53,7 @@ public interface ExtendibleElement extends MAVOElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Uri</em>' attribute.
 	 * @see #setUri(String)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElement_Uri()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElement_Uri()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -77,7 +78,7 @@ public interface ExtendibleElement extends MAVOElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Supertype</em>' reference.
 	 * @see #setSupertype(ExtendibleElement)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElement_Supertype()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElement_Supertype()
 	 * @model
 	 * @generated
 	 */
@@ -102,7 +103,7 @@ public interface ExtendibleElement extends MAVOElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElement_Name()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElement_Name()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -126,7 +127,7 @@ public interface ExtendibleElement extends MAVOElement {
 	 * The static metatype (types: always null; instances: an extendible element from the types).
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Metatype</em>' reference.
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElement_Metatype()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElement_Metatype()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
@@ -134,31 +135,31 @@ public interface ExtendibleElement extends MAVOElement {
 
 	/**
 	 * Returns the value of the '<em><b>Level</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmint.mid.MidLevel}.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmint.mid.MIDLevel}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The metalevel (types: TYPES; instances: INSTANCES).
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Level</em>' attribute.
-	 * @see edu.toronto.cs.se.mmint.mid.MidLevel
-	 * @see #setLevel(MidLevel)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElement_Level()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDLevel
+	 * @see #setLevel(MIDLevel)
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElement_Level()
 	 * @model required="true"
 	 * @generated
 	 */
-	MidLevel getLevel();
+	MIDLevel getLevel();
 
 	/**
 	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#getLevel <em>Level</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Level</em>' attribute.
-	 * @see edu.toronto.cs.se.mmint.mid.MidLevel
+	 * @see edu.toronto.cs.se.mmint.mid.MIDLevel
 	 * @see #getLevel()
 	 * @generated
 	 */
-	void setLevel(MidLevel value);
+	void setLevel(MIDLevel value);
 
 	/**
 	 * Returns the value of the '<em><b>Metatype Uri</b></em>' attribute.
@@ -169,7 +170,7 @@ public interface ExtendibleElement extends MAVOElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Metatype Uri</em>' attribute.
 	 * @see #setMetatypeUri(String)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElement_MetatypeUri()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElement_MetatypeUri()
 	 * @model
 	 * @generated
 	 */
@@ -194,7 +195,7 @@ public interface ExtendibleElement extends MAVOElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Dynamic</em>' attribute.
 	 * @see #setDynamic(boolean)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElement_Dynamic()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElement_Dynamic()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -219,7 +220,7 @@ public interface ExtendibleElement extends MAVOElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Constraint</em>' containment reference.
 	 * @see #setConstraint(ExtendibleElementConstraint)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElement_Constraint()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElement_Constraint()
 	 * @model containment="true"
 	 * @generated
 	 */

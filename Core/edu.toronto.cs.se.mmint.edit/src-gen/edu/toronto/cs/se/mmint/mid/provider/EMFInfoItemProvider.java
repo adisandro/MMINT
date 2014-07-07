@@ -13,11 +13,9 @@ package edu.toronto.cs.se.mmint.mid.provider;
 
 
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
-
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -89,7 +87,7 @@ public class EMFInfoItemProvider
 				 getResourceLocator(),
 				 getString("_UI_EMFInfo_className_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_EMFInfo_className_feature", "_UI_EMFInfo_type"),
-				 MidPackage.Literals.EMF_INFO__CLASS_NAME,
+				 MIDPackage.Literals.EMF_INFO__CLASS_NAME,
 				 true,
 				 false,
 				 false,
@@ -111,7 +109,7 @@ public class EMFInfoItemProvider
 				 getResourceLocator(),
 				 getString("_UI_EMFInfo_featureName_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_EMFInfo_featureName_feature", "_UI_EMFInfo_type"),
-				 MidPackage.Literals.EMF_INFO__FEATURE_NAME,
+				 MIDPackage.Literals.EMF_INFO__FEATURE_NAME,
 				 true,
 				 false,
 				 false,
@@ -133,7 +131,7 @@ public class EMFInfoItemProvider
 				 getResourceLocator(),
 				 getString("_UI_EMFInfo_attribute_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_EMFInfo_attribute_feature", "_UI_EMFInfo_type"),
-				 MidPackage.Literals.EMF_INFO__ATTRIBUTE,
+				 MIDPackage.Literals.EMF_INFO__ATTRIBUTE,
 				 true,
 				 false,
 				 false,
@@ -155,7 +153,7 @@ public class EMFInfoItemProvider
 				 getResourceLocator(),
 				 getString("_UI_EMFInfo_relatedClassName_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_EMFInfo_relatedClassName_feature", "_UI_EMFInfo_type"),
-				 MidPackage.Literals.EMF_INFO__RELATED_CLASS_NAME,
+				 MIDPackage.Literals.EMF_INFO__RELATED_CLASS_NAME,
 				 true,
 				 false,
 				 false,
@@ -201,10 +199,10 @@ public class EMFInfoItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(EMFInfo.class)) {
-			case MidPackage.EMF_INFO__CLASS_NAME:
-			case MidPackage.EMF_INFO__FEATURE_NAME:
-			case MidPackage.EMF_INFO__ATTRIBUTE:
-			case MidPackage.EMF_INFO__RELATED_CLASS_NAME:
+			case MIDPackage.EMF_INFO__CLASS_NAME:
+			case MIDPackage.EMF_INFO__FEATURE_NAME:
+			case MIDPackage.EMF_INFO__ATTRIBUTE:
+			case MIDPackage.EMF_INFO__RELATED_CLASS_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

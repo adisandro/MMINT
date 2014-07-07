@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * <!-- begin-model-doc -->
  * The origin for a model.
  * <!-- end-model-doc -->
- * @see edu.toronto.cs.se.mmint.mid.MidPackage#getModelOrigin()
+ * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getModelOrigin()
  * @model
  * @generated
  */

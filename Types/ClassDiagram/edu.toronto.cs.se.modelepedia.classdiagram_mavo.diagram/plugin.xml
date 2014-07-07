@@ -294,17 +294,32 @@ Contributors:
       </editpartProvider>
    </extension>
 
+   
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOModelingAssistantProvider">
+      <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.assistants.ClassDiagram_MAVOModelingAssistantProviderOfClassDiagramEditPart">
          <Priority name="Lowest"/>
          <object class="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassDiagramEditPart" id="ClassDiagram_1000"/>
-         <object class="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart" id="Class_2001"/>
-         <object class="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AttributeEditPart" id="Attribute_3001"/>
-         <object class="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.OperationEditPart" id="Operation_3002"/>
-         <context elements="ClassDiagram_1000,Class_2001,Attribute_3001,Operation_3002"/>
+         <context elements="ClassDiagram_1000"/>
       </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.assistants.ClassDiagram_MAVOModelingAssistantProviderOfClassEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart" id="Class_2001"/>
+         <context elements="Class_2001"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.assistants.ClassDiagram_MAVOModelingAssistantProviderOfAttributeEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AttributeEditPart" id="Attribute_3001"/>
+         <context elements="Attribute_3001"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.assistants.ClassDiagram_MAVOModelingAssistantProviderOfOperationEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.OperationEditPart" id="Operation_3002"/>
+         <context elements="Operation_3002"/>
+      </modelingAssistantProvider>
+      
    </extension>
+
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>

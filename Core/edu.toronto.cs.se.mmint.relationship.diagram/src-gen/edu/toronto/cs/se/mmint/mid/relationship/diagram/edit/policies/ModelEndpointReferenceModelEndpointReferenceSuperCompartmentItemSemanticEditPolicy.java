@@ -16,29 +16,29 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.ModelElementReference2CreateCommand;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.ModelElementReference3CreateCommand;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementTypes;
 
 /**
  * @generated
  */
 public class ModelEndpointReferenceModelEndpointReferenceSuperCompartmentItemSemanticEditPolicy
-		extends MidBaseItemSemanticEditPolicy {
+		extends MIDBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	public ModelEndpointReferenceModelEndpointReferenceSuperCompartmentItemSemanticEditPolicy() {
-		super(MidElementTypes.ModelEndpointReference_2010);
+		super(MIDElementTypes.ModelEndpointReference_2010);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (MidElementTypes.ModelElementReference_3006 == req.getElementType()) {
+		if (MIDElementTypes.ModelElementReference_3006 == req.getElementType()) {
 			return getGEFWrapper(new ModelElementReference2CreateCommand(req));
 		}
-		if (MidElementTypes.ModelElementReference_3007 == req.getElementType()) {
+		if (MIDElementTypes.ModelElementReference_3007 == req.getElementType()) {
 			return getGEFWrapper(new ModelElementReference3CreateCommand(req));
 		}
 		return super.getCreateCommand(req);

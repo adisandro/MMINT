@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElementConstraint()
+ * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElementConstraint()
  * @model
  * @generated
  */
@@ -44,7 +44,7 @@ public interface ExtendibleElementConstraint extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Implementation</em>' attribute.
 	 * @see #setImplementation(String)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElementConstraint_Implementation()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElementConstraint_Implementation()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -69,7 +69,7 @@ public interface ExtendibleElementConstraint extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Language</em>' attribute.
 	 * @see #setLanguage(String)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElementConstraint_Language()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElementConstraint_Language()
 	 * @model required="true"
 	 * @generated
 	 */

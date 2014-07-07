@@ -34,8 +34,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.BinaryLinkRef
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ExtendibleElementReferenceSupertypeRefEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementEndpointReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.ModelElementReferenceItemSemanticEditPolicy;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidVisualIDRegistry;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementTypes;
 
 /**
  * The semantic edit policy for model element references.
@@ -53,26 +53,26 @@ public class ModelElementReferenceSemanticEditPolicy extends ModelElementReferen
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
-			if (MidVisualIDRegistry.getVisualID(incomingLink) == ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(incomingLink) == ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (MidVisualIDRegistry.getVisualID(incomingLink) == ModelElementEndpointReferenceEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(incomingLink) == ModelElementEndpointReferenceEditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (MidVisualIDRegistry.getVisualID(incomingLink) == BinaryLinkReferenceEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(incomingLink) == BinaryLinkReferenceEditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 		}
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
-			if (MidVisualIDRegistry.getVisualID(outgoingLink) == ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
-			if (MidVisualIDRegistry.getVisualID(outgoingLink) == BinaryLinkReferenceEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == BinaryLinkReferenceEditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
@@ -100,7 +100,7 @@ public class ModelElementReferenceSemanticEditPolicy extends ModelElementReferen
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 
-		if (MidElementTypes.BinaryLinkReference_4012 == req.getElementType()) {
+		if (MIDElementTypes.BinaryLinkReference_4012 == req.getElementType()) {
 			return getGEFWrapper(new BinaryLinkReferenceNewBinaryLinkCommand(req,
 					req.getSource(), req.getTarget()));
 		}
@@ -118,12 +118,12 @@ public class ModelElementReferenceSemanticEditPolicy extends ModelElementReferen
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 
-		if (MidElementTypes.ModelElementEndpointReference_4011 == req
+		if (MIDElementTypes.ModelElementEndpointReference_4011 == req
 				.getElementType()) {
 			return getGEFWrapper(new LinkReferenceAddModelElementEndpointReferenceCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.BinaryLinkReference_4012 == req.getElementType()) {
+		if (MIDElementTypes.BinaryLinkReference_4012 == req.getElementType()) {
 			return getGEFWrapper(new BinaryLinkReferenceNewBinaryLinkCommand(req,
 					req.getSource(), req.getTarget()));
 		}

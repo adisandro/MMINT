@@ -33,9 +33,9 @@ import org.osgi.service.prefs.BackingStoreException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -111,7 +111,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	static Map<String, Set<String>> multipleInheritanceTable;
 	/** The type MID filename. */
-	public static final String TYPEMID_FILENAME = "types" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MidPackage.eNAME;
+	public static final String TYPEMID_FILENAME = "types" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
 
 	/**
 	 * Creates and adds a model type to the repository from a registered
@@ -221,7 +221,7 @@ public class MMINT implements MMINTConstants {
 				ModelElement newModelElemType = MultiModelTypeRegistry.getType(extensionType.getUri());
 				if (newModelElemType == null) { // create new model element type
 					EObject modelElemTypeObj = MultiModelTypeIntrospection.getPointer(rootModelTypeObj.eResource(), extensionType.getUri());
-					EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelElemTypeObj, MidLevel.TYPES);
+					EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelElemTypeObj, MIDLevel.TYPES);
 					try {
 						newModelElemType = extensionType.getFactory().createHeavyModelElementType(
 							extensionType,
@@ -623,8 +623,8 @@ public class MMINT implements MMINTConstants {
 	 */
 	private void initRepository(IExtensionRegistry registry) {
 
-		repository = MidFactory.eINSTANCE.createMultiModel();
-		repository.setLevel(MidLevel.TYPES);
+		repository = MIDFactory.eINSTANCE.createMultiModel();
+		repository.setLevel(MIDLevel.TYPES);
 		bundleTable = new HashMap<String, String>();
 		multipleInheritanceTable = new HashMap<String, Set<String>>();
 		typeFactory = new MultiModelHeavyTypeFactory();

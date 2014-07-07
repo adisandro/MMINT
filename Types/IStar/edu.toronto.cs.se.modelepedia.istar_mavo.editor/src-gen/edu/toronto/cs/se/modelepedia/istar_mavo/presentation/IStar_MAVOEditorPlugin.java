@@ -11,8 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.presentation;
 
-import edu.toronto.cs.se.mmint.mid.provider.MidEditPlugin;
-
+import edu.toronto.cs.se.mavo.provider.MAVOEditPlugin;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -49,7 +48,7 @@ public final class IStar_MAVOEditorPlugin extends EMFPlugin {
 	public IStar_MAVOEditorPlugin() {
 		super
 			(new ResourceLocator [] {
-				MidEditPlugin.INSTANCE,
+				MAVOEditPlugin.INSTANCE,
 			});
 	}
 

@@ -25,7 +25,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.LinkRefere
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.BinaryLinkReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementEndpointReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.ModelElementReference3ItemSemanticEditPolicy;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementTypes;
 
 /**
  * The semantic edit policy for model element references.
@@ -52,7 +52,7 @@ public class ModelElementReferenceSuperSemanticEditPolicy extends ModelElementRe
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 
-		if (MidElementTypes.BinaryLinkReference_4012 == req.getElementType()) {
+		if (MIDElementTypes.BinaryLinkReference_4012 == req.getElementType()) {
 			return getGEFWrapper(new BinaryLinkReferenceNewBinaryLinkCommand(req,
 					req.getSource(), req.getTarget()));
 		}
@@ -70,12 +70,12 @@ public class ModelElementReferenceSuperSemanticEditPolicy extends ModelElementRe
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 
-		if (MidElementTypes.ModelElementEndpointReference_4011 == req
+		if (MIDElementTypes.ModelElementEndpointReference_4011 == req
 				.getElementType()) {
 			return getGEFWrapper(new LinkReferenceAddModelElementEndpointReferenceCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.BinaryLinkReference_4012 == req.getElementType()) {
+		if (MIDElementTypes.BinaryLinkReference_4012 == req.getElementType()) {
 			return getGEFWrapper(new BinaryLinkReferenceNewBinaryLinkCommand(req,
 					req.getSource(), req.getTarget()));
 		}

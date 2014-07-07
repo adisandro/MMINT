@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.NamedElement;
@@ -30,7 +31,7 @@ import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -105,7 +106,7 @@ public class MultiModelConstraintChecker {
 	 */
 	public static boolean isInstancesLevel(ExtendibleElement element) {
 
-		if (element.getLevel() == MidLevel.TYPES) {
+		if (element.getLevel() == MIDLevel.TYPES) {
 			return false;
 		}
 		return true;
@@ -126,7 +127,7 @@ public class MultiModelConstraintChecker {
 	 */
 	public static boolean isInstancesLevel(MultiModel multiModel) {
 
-		if (multiModel.getLevel() == MidLevel.TYPES) {
+		if (multiModel.getLevel() == MIDLevel.TYPES) {
 			return false;
 		}
 		return true;
@@ -435,7 +436,7 @@ public class MultiModelConstraintChecker {
 			return true;
 		}
 		// check model element compliance
-		EMFInfo modelObjEInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, MidLevel.INSTANCES), modelElemTypeEInfo = modelElemType.getEInfo();
+		EMFInfo modelObjEInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, MIDLevel.INSTANCES), modelElemTypeEInfo = modelElemType.getEInfo();
 		if (modelObjEInfo.isAttribute()) {
 			// attribute compliance + class compliance
 			if (
@@ -558,7 +559,7 @@ linkTypes:
 			return MAVOTruthValue.TRUE;
 		}
 		String reasonerName = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_LANGUAGE_REASONER + constraint.getLanguage());
-		MidLevel constraintLevel = (element.getUri().equals(((Model) constraint.eContainer()).getUri())) ? MidLevel.INSTANCES : MidLevel.TYPES;
+		MIDLevel constraintLevel = (element.getUri().equals(((Model) constraint.eContainer()).getUri())) ? MIDLevel.INSTANCES : MIDLevel.TYPES;
 		IReasoningEngine reasoner = reasoners.get(reasonerName);
 
 		return reasoner.checkConstraint((Model) element, constraint, constraintLevel);

@@ -33,8 +33,8 @@ import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -95,17 +95,17 @@ public class MultiModelRegistry {
 		return false;
 	}
 
-	public static String[] getModelAndModelElementUris(EObject modelObj, MidLevel level) {
+	public static String[] getModelAndModelElementUris(EObject modelObj, MIDLevel level) {
 
 		String modelUri, modelElemUri;
 		String attributeFeatureName = null;
-		if (level == MidLevel.INSTANCES && modelObj instanceof PrimitiveEObjectWrapper) {
+		if (level == MIDLevel.INSTANCES && modelObj instanceof PrimitiveEObjectWrapper) {
 			attributeFeatureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
 			modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
 		}
 		URI emfUri = EcoreUtil.getURI(modelObj);
 		String uri = emfUri.toString();
-		if (level == MidLevel.INSTANCES) {
+		if (level == MIDLevel.INSTANCES) {
 			modelElemUri = uri.substring(RESOURCE_URI_PREFIX.length());
 			modelUri = modelElemUri.substring(0, modelElemUri.indexOf(MMINT.ECORE_MODEL_URI_SEPARATOR));
 			if (attributeFeatureName != null) {
@@ -122,12 +122,12 @@ public class MultiModelRegistry {
 
 	//TODO MMINT[MODELELEMENT] some info here are redundant and/or misplaced, review EMFInfo
 	//TODO MMINT[MODELELEMENT] add support for non-containment EReferences
-	public static EMFInfo getModelElementEMFInfo(EObject modelObj, MidLevel level) {
+	public static EMFInfo getModelElementEMFInfo(EObject modelObj, MIDLevel level) {
 
-		EMFInfo eInfo = MidFactory.eINSTANCE.createEMFInfo();
+		EMFInfo eInfo = MIDFactory.eINSTANCE.createEMFInfo();
 		String className, featureName = null, relatedClassName = null;
 		boolean isAttribute = false;
-		if (level == MidLevel.INSTANCES) {
+		if (level == MIDLevel.INSTANCES) {
 			if (modelObj instanceof PrimitiveEObjectWrapper) {
 				className = ((PrimitiveEObjectWrapper) modelObj).getOwner().eClass().getName();
 				featureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
@@ -165,10 +165,10 @@ public class MultiModelRegistry {
 		return eInfo;
 	}
 
-	public static String getModelElementName(EMFInfo eInfo, EObject modelObj, MidLevel level) {
+	public static String getModelElementName(EMFInfo eInfo, EObject modelObj, MIDLevel level) {
 
 		String name;
-		if (level == MidLevel.INSTANCES) {
+		if (level == MIDLevel.INSTANCES) {
 			ComposedAdapterFactory adapterFactory = GMFDiagramUtils.getAdapterFactory();
 			AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
 			name = eInfo.toInstanceString();
@@ -251,7 +251,7 @@ public class MultiModelRegistry {
 	public static ModelElementReference getModelElementReference(ModelEndpointReference modelEndpointRef, EObject modelObj) {
 
 		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelObj);
-		String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, MidLevel.INSTANCES)[1] + MMINT.ROLE_SEPARATOR + modelElemType.getUri();
+		String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1] + MMINT.ROLE_SEPARATOR + modelElemType.getUri();
 
 		return MultiModelTypeHierarchy.getReference(modelElemUri, modelEndpointRef.getModelElemRefs());
 	}

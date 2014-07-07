@@ -22,35 +22,35 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.LinkRefere
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.LinkReferenceCreateCommand;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.ModelEndpointReference2CreateCommand;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.ModelEndpointReferenceCreateCommand;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementTypes;
 
 /**
  * @generated
  */
 public class ModelRelItemSemanticEditPolicy extends
-		MidBaseItemSemanticEditPolicy {
+		MIDBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	public ModelRelItemSemanticEditPolicy() {
-		super(MidElementTypes.ModelRel_1000);
+		super(MIDElementTypes.ModelRel_1000);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (MidElementTypes.ModelEndpointReference_2007 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpointReference_2007 == req.getElementType()) {
 			return getGEFWrapper(new ModelEndpointReferenceCreateCommand(req));
 		}
-		if (MidElementTypes.LinkReference_2008 == req.getElementType()) {
+		if (MIDElementTypes.LinkReference_2008 == req.getElementType()) {
 			return getGEFWrapper(new LinkReferenceCreateCommand(req));
 		}
-		if (MidElementTypes.LinkReference_2009 == req.getElementType()) {
+		if (MIDElementTypes.LinkReference_2009 == req.getElementType()) {
 			return getGEFWrapper(new LinkReference2CreateCommand(req));
 		}
-		if (MidElementTypes.ModelEndpointReference_2010 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpointReference_2010 == req.getElementType()) {
 			return getGEFWrapper(new ModelEndpointReference2CreateCommand(req));
 		}
 		return super.getCreateCommand(req);

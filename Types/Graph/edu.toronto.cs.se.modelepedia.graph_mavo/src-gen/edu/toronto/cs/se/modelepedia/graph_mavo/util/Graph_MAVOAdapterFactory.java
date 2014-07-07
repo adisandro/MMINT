@@ -11,16 +11,13 @@
  */
 package edu.toronto.cs.se.modelepedia.graph_mavo.util;
 
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
-import edu.toronto.cs.se.mmint.mavo.MAVOModel;
-
+import edu.toronto.cs.se.mavo.LogicElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.modelepedia.graph_mavo.*;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -98,6 +95,10 @@ public class Graph_MAVOAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseMAVOModel(MAVOModel object) {
 				return createMAVOModelAdapter();
+			}
+			@Override
+			public Adapter caseLogicElement(LogicElement object) {
+				return createLogicElementAdapter();
 			}
 			@Override
 			public Adapter caseMAVOElement(MAVOElement object) {
@@ -180,13 +181,13 @@ public class Graph_MAVOAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.MAVOModel <em>MAVO Model</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.MAVOModel <em>Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmint.mavo.MAVOModel
+	 * @see edu.toronto.cs.se.mavo.MAVOModel
 	 * @generated
 	 */
 	public Adapter createMAVOModelAdapter() {
@@ -194,13 +195,27 @@ public class Graph_MAVOAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.MAVOElement <em>MAVO Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.LogicElement <em>Logic Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmint.mavo.MAVOElement
+	 * @see edu.toronto.cs.se.mavo.LogicElement
+	 * @generated
+	 */
+	public Adapter createLogicElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.MAVOElement <em>Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mavo.MAVOElement
 	 * @generated
 	 */
 	public Adapter createMAVOElementAdapter() {

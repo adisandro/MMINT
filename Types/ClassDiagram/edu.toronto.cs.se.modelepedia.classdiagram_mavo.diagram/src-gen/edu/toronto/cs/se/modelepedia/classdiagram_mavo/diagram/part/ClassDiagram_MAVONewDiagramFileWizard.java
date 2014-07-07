@@ -203,7 +203,7 @@ public class ClassDiagram_MAVONewDiagramFileWizard extends Wizard {
 		 * @generated
 		 */
 		protected boolean validatePage() {
-			if (selectedModelElement == null) {
+			if (getModelElement() == null) {
 				setErrorMessage(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.ClassDiagram_MAVONewDiagramFileWizard_RootSelectionPageNoSelectionMessage);
 				return false;
 			}
@@ -211,7 +211,7 @@ public class ClassDiagram_MAVONewDiagramFileWizard extends Wizard {
 					.getInstance()
 					.provides(
 							new CreateDiagramViewOperation(
-									new EObjectAdapter(selectedModelElement),
+									new EObjectAdapter(getModelElement()),
 									edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassDiagramEditPart.MODEL_ID,
 									edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVODiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 			setErrorMessage(result ? null

@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl;
 
-import edu.toronto.cs.se.mmint.mavo.impl.MAVOReferenceImpl;
+import edu.toronto.cs.se.mavo.impl.MAVOReferenceImpl;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Column;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignColumnReference;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey;
@@ -75,7 +75,7 @@ public class ForeignColumnReferenceImpl extends MAVOReferenceImpl implements For
 	 */
 	public ForeignKey getSource() {
 		if (eContainerFeatureID() != RelationalDatabase_MAVOPackage.FOREIGN_COLUMN_REFERENCE__SOURCE) return null;
-		return (ForeignKey)eContainer();
+		return (ForeignKey)eInternalContainer();
 	}
 
 	/**

@@ -3,14 +3,16 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation."
     modelDirectory="/edu.toronto.cs.se.mmint/src-gen" editDirectory="/edu.toronto.cs.se.mmint.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.mmint.editor/src-gen" modelPluginID="edu.toronto.cs.se.mmint"
-    modelName="Mid" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
-    copyrightFields="false" operationReflection="true">
+    modelName="MID" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    usedGenPackages="../../edu.toronto.cs.se.mavo/model/mavo.genmodel#//mavo" operationReflection="true"
+    importOrganizing="true">
   <foreignModel>mid.ecore</foreignModel>
-  <genPackages prefix="Mid" basePackage="edu.toronto.cs.se.mmint" disposableProviderFactory="true"
+  <genPackages prefix="MID" basePackage="edu.toronto.cs.se.mmint" disposableProviderFactory="true"
       extensibleProviderFactory="true" ecorePackage="mid.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//MidLevel">
-      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//MidLevel/INSTANCES"/>
-      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//MidLevel/TYPES"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//MIDLevel">
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//MIDLevel/INSTANCES"/>
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//MIDLevel/TYPES"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//ModelOrigin">
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelOrigin/IMPORTED"/>
@@ -469,17 +471,5 @@
             ecoreFeature="ecore:EReference mid.ecore#//operator/Parameter/model"/>
       </genClasses>
     </nestedGenPackages>
-  </genPackages>
-  <genPackages prefix="Mavo" basePackage="edu.toronto.cs.se.mmint" ecorePackage="mavo.ecore#/">
-    <genClasses ecoreClass="mavo.ecore#//MAVOModel">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOModel/inc"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="mavo.ecore#//MAVOElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/may"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/set"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/var"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/formulaId"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="mavo.ecore#//MAVOReference"/>
   </genPackages>
 </genmodel:GenModel>

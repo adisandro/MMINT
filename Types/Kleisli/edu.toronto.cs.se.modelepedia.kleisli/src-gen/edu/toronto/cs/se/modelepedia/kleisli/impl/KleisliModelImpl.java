@@ -15,8 +15,8 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
@@ -157,13 +157,13 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 		KleisliModel kModelType = KleisliFactory.eINSTANCE.createKleisliModel();
 		kModelType.setUri(kModelTypeUri);
 		kModelType.setName(origModelType.getName());
-		kModelType.setLevel(MidLevel.TYPES);
+		kModelType.setLevel(MIDLevel.TYPES);
 		kModelType.setSupertype(origModelType.getSupertype());
 		kModelType.setDynamic(true);
 		kModelType.setAbstract(origModelType.isAbstract());
 		ExtendibleElementConstraint origConstraint = origModelType.getConstraint();
 		if (origConstraint != null) {
-			ExtendibleElementConstraint kConstraint = MidFactory.eINSTANCE.createExtendibleElementConstraint();
+			ExtendibleElementConstraint kConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
 			kConstraint.setLanguage(origConstraint.getLanguage());
 			kConstraint.setImplementation(origConstraint.getImplementation());
 			kModelType.setConstraint(kConstraint);
@@ -237,7 +237,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 		KleisliModel kModel = KleisliFactory.eINSTANCE.createKleisliModel();
 		kModel.setUri(getModelExtendedUri(containerModelEndpoint));
 		kModel.setName(origModel.getName());
-		kModel.setLevel(MidLevel.INSTANCES);
+		kModel.setLevel(MIDLevel.INSTANCES);
 		kModel.setDynamic(true);
 		kModel.setSupertype(null);
 		kModel.setMetatypeUri(origModel.getMetatypeUri());

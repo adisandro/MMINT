@@ -11,20 +11,18 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.provider;
 
-import edu.toronto.cs.se.mmint.mid.MidPackage;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.util.RelationshipSwitch;
-import edu.toronto.cs.se.mmint.mid.util.MidSwitch;
+import edu.toronto.cs.se.mmint.mid.util.MIDSwitch;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.util.KleisliAdapterFactory;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -315,19 +313,19 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 	}
 
 	/**
-	 * A child creation extender for the {@link MidPackage}.
+	 * A child creation extender for the {@link MIDPackage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static class MidChildCreationExtender implements IChildCreationExtender {
+	public static class MIDChildCreationExtender implements IChildCreationExtender {
 		/**
 		 * The switch for creating child descriptors specific to each extended class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		protected static class CreationSwitch extends MidSwitch<Object> {
+		protected static class CreationSwitch extends MIDSwitch<Object> {
 			/**
 			 * The child descriptors being populated.
 			 * <!-- begin-user-doc -->
@@ -363,17 +361,17 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 			public Object caseMultiModel(MultiModel object) {
 				newChildDescriptors.add
 					(createChildParameter
-						(MidPackage.Literals.MULTI_MODEL__MODELS,
+						(MIDPackage.Literals.MULTI_MODEL__MODELS,
 						 KleisliFactory.eINSTANCE.createKleisliModel()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(MidPackage.Literals.MULTI_MODEL__MODELS,
+						(MIDPackage.Literals.MULTI_MODEL__MODELS,
 						 KleisliFactory.eINSTANCE.createKleisliModelRel()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(MidPackage.Literals.MULTI_MODEL__MODELS,
+						(MIDPackage.Literals.MULTI_MODEL__MODELS,
 						 KleisliFactory.eINSTANCE.createKleisliBinaryModelRel()));
 
 				return null;

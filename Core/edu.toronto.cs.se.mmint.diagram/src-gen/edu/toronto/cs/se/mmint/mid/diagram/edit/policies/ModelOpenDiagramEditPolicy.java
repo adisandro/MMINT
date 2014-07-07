@@ -44,9 +44,9 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
+import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
+import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorUtil;
 import edu.toronto.cs.se.mmint.mid.diagram.part.Messages;
-import edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorPlugin;
-import edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorUtil;
 
 /**
  * @generated
@@ -156,7 +156,7 @@ public class ModelOpenDiagramEditPolicy extends OpenEditPolicy {
 								if (nextResource.isLoaded()
 										&& !getEditingDomain().isReadOnly(
 												nextResource)) {
-									nextResource.save(MidDiagramEditorUtil
+									nextResource.save(MIDDiagramEditorUtil
 											.getSaveOptions());
 								}
 							}
@@ -189,7 +189,7 @@ public class ModelOpenDiagramEditPolicy extends OpenEditPolicy {
 		 */
 		protected PreferencesHint getPreferencesHint() {
 			// XXX prefhint from target diagram's editor?
-			return MidDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
+			return MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 		}
 
 		/**

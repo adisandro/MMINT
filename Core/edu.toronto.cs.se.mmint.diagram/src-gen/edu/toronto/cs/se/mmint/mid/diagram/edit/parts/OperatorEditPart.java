@@ -11,10 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.mid.diagram.edit.parts;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.FlowLayout;
@@ -35,7 +31,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.FlowLayoutEditPolicy;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -43,8 +38,7 @@ import org.eclipse.swt.graphics.Color;
 
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.OperatorItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.OperatorSemanticEditPolicy;
-import edu.toronto.cs.se.mmint.mid.diagram.part.MidVisualIDRegistry;
-import edu.toronto.cs.se.mmint.mid.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 
 /**
  * @generated
@@ -263,120 +257,8 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(MidVisualIDRegistry
+		return getChildBySemanticHint(MIDVisualIDRegistry
 				.getType(WrappingLabel5EditPart.VISUAL_ID));
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
-		types.add(MidElementTypes.ExtendibleElementSupertype_4013);
-		types.add(MidElementTypes.Parameter_4016);
-		types.add(MidElementTypes.Parameter_4017);
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof ModelEditPart) {
-			types.add(MidElementTypes.ExtendibleElementSupertype_4013);
-		}
-		if (targetEditPart instanceof Model2EditPart) {
-			types.add(MidElementTypes.ExtendibleElementSupertype_4013);
-		}
-		if (targetEditPart instanceof ModelRelEditPart) {
-			types.add(MidElementTypes.ExtendibleElementSupertype_4013);
-		}
-		if (targetEditPart instanceof ModelRel2EditPart) {
-			types.add(MidElementTypes.ExtendibleElementSupertype_4013);
-		}
-		if (targetEditPart instanceof edu.toronto.cs.se.mmint.mid.diagram.edit.parts.OperatorEditPart) {
-			types.add(MidElementTypes.ExtendibleElementSupertype_4013);
-		}
-		if (targetEditPart instanceof ModelEditPart) {
-			types.add(MidElementTypes.Parameter_4016);
-		}
-		if (targetEditPart instanceof Model2EditPart) {
-			types.add(MidElementTypes.Parameter_4016);
-		}
-		if (targetEditPart instanceof ModelRelEditPart) {
-			types.add(MidElementTypes.Parameter_4016);
-		}
-		if (targetEditPart instanceof ModelRel2EditPart) {
-			types.add(MidElementTypes.Parameter_4016);
-		}
-		if (targetEditPart instanceof ModelEditPart) {
-			types.add(MidElementTypes.Parameter_4017);
-		}
-		if (targetEditPart instanceof Model2EditPart) {
-			types.add(MidElementTypes.Parameter_4017);
-		}
-		if (targetEditPart instanceof ModelRelEditPart) {
-			types.add(MidElementTypes.Parameter_4017);
-		}
-		if (targetEditPart instanceof ModelRel2EditPart) {
-			types.add(MidElementTypes.Parameter_4017);
-		}
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == MidElementTypes.ExtendibleElementSupertype_4013) {
-			types.add(MidElementTypes.Model_2011);
-			types.add(MidElementTypes.Model_2012);
-			types.add(MidElementTypes.ModelRel_2013);
-			types.add(MidElementTypes.ModelRel_2014);
-			types.add(MidElementTypes.Operator_2015);
-		} else if (relationshipType == MidElementTypes.Parameter_4016) {
-			types.add(MidElementTypes.Model_2011);
-			types.add(MidElementTypes.Model_2012);
-			types.add(MidElementTypes.ModelRel_2013);
-			types.add(MidElementTypes.ModelRel_2014);
-		} else if (relationshipType == MidElementTypes.Parameter_4017) {
-			types.add(MidElementTypes.Model_2011);
-			types.add(MidElementTypes.Model_2012);
-			types.add(MidElementTypes.ModelRel_2013);
-			types.add(MidElementTypes.ModelRel_2014);
-		}
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(MidElementTypes.ExtendibleElementSupertype_4013);
-		types.add(MidElementTypes.ModelEndpoint_4014);
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == MidElementTypes.ExtendibleElementSupertype_4013) {
-			types.add(MidElementTypes.Model_2011);
-			types.add(MidElementTypes.Model_2012);
-			types.add(MidElementTypes.ModelRel_2013);
-			types.add(MidElementTypes.ModelRel_2014);
-			types.add(MidElementTypes.Operator_2015);
-		} else if (relationshipType == MidElementTypes.ModelEndpoint_4014) {
-			types.add(MidElementTypes.ModelRel_2013);
-			types.add(MidElementTypes.ModelRel_2014);
-		}
-		return types;
 	}
 
 	/**

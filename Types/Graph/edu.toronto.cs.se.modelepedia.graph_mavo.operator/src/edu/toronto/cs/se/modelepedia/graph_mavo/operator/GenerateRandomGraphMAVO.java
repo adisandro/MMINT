@@ -23,8 +23,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
-import edu.toronto.cs.se.mmint.mavo.MavoPackage;
+import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -118,7 +118,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		for (int i = 0; i < numMavo; i++) {
 			mavoModelObj = mavoAnnotatableModelObjs.remove(state.nextInt(mavoAnnotatableModelObjs.size()));
 			mavoModelObj.eSet(mavoFeature, true);
-			if (mavoFeature == MavoPackage.eINSTANCE.getMAVOElement_May() && mavoModelObj instanceof Node) {
+			if (mavoFeature == MAVOPackage.eINSTANCE.getMAVOElement_May() && mavoModelObj instanceof Node) {
 				i += addMayEdges((Node) mavoModelObj, mavoAnnotatableModelObjs);
 			}
 			mavoModelObjs.add(mavoModelObj);
@@ -145,7 +145,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 			node = Graph_MAVOFactory.eINSTANCE.createNode();
 			name = NODE_NAME_PREFIX + (i+1);
 			node.setName(name);
-			node.setFormulaId(name);
+			node.setFormulaVariable(name);
 			randomGraphNodes.add(node);
 			randomModelObjs.add(node);
 		}
@@ -155,7 +155,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 			edge = Graph_MAVOFactory.eINSTANCE.createEdge();
 			name = EDGE_NAME_PREFIX + (i+1);
 			edge.setName(name);
-			edge.setFormulaId(name);
+			edge.setFormulaVariable(name);
 			edge.setSource(randomGraphNodes.get(state.nextInt(numModelObjs[0])));
 			edge.setTarget(randomGraphNodes.get(state.nextInt(numModelObjs[0])));
 			randomGraphEdges.add(edge);
@@ -168,9 +168,9 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		for (int i = 0; i < numMavo; i++) {
 			mavoableModelObjs.add(randomModelObjs.remove(state.nextInt(randomModelObjs.size())));
 		}
-		addMAVOElements(mavoableModelObjs, MavoPackage.eINSTANCE.getMAVOElement_May(), percMay);
-		addMAVOElements(mavoableModelObjs, MavoPackage.eINSTANCE.getMAVOElement_Set(), percSet);
-		addMAVOElements(mavoableModelObjs, MavoPackage.eINSTANCE.getMAVOElement_Var(), percVar);
+		addMAVOElements(mavoableModelObjs, MAVOPackage.eINSTANCE.getMAVOElement_May(), percMay);
+		addMAVOElements(mavoableModelObjs, MAVOPackage.eINSTANCE.getMAVOElement_Set(), percSet);
+		addMAVOElements(mavoableModelObjs, MAVOPackage.eINSTANCE.getMAVOElement_Var(), percVar);
 
 		return randomGraph;
 	}

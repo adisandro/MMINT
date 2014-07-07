@@ -13,11 +13,9 @@ package edu.toronto.cs.se.mmint.mid.provider;
 
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
-
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -87,7 +85,7 @@ public class ExtendibleElementConstraintItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ExtendibleElementConstraint_implementation_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementConstraint_implementation_feature", "_UI_ExtendibleElementConstraint_type"),
-				 MidPackage.Literals.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION,
+				 MIDPackage.Literals.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION,
 				 true,
 				 false,
 				 false,
@@ -109,7 +107,7 @@ public class ExtendibleElementConstraintItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ExtendibleElementConstraint_language_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementConstraint_language_feature", "_UI_ExtendibleElementConstraint_type"),
-				 MidPackage.Literals.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE,
+				 MIDPackage.Literals.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE,
 				 true,
 				 false,
 				 false,
@@ -155,8 +153,8 @@ public class ExtendibleElementConstraintItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ExtendibleElementConstraint.class)) {
-			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
-			case MidPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
+			case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION:
+			case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

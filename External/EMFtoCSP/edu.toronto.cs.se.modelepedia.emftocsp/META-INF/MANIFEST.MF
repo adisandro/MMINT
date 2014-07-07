@@ -17,6 +17,7 @@ Require-Bundle: org.eclipse.core.runtime,
  fr.inria.atlanmod.emftocsp.emf,
  fr.inria.atlanmod.emftocsp.emftoecl,
  fr.inria.atlanmod.emftocsp.ui.main,
+ edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.ocl
 Export-Package: edu.toronto.cs.se.modelepedia.emftocsp.reasoning

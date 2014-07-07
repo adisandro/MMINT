@@ -23,7 +23,7 @@ Model>Operation Reflection -> true
 	
 	All>Base Package -> edu.toronto.cs.se.mmint/edu.toronto.cs.se.modelepedia
 	All>Prefix -> use the model type name
-	Edit>Child Creation Extenders/Extensible Provider Factory -> true for extended/base
+	Edit>Child Creation Extenders/Extensible Provider Factory -> true for extension/base
 
 ------
 GMFGen

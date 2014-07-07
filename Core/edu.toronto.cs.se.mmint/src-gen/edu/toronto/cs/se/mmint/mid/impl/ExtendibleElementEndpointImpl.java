@@ -13,10 +13,8 @@ package edu.toronto.cs.se.mmint.mid.impl;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
-
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -99,7 +97,7 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate TARGET_URI__ESETTING_DELEGATE = ((EStructuralFeature.Internal)MidPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI).getSettingDelegate();
+	protected EStructuralFeature.Internal.SettingDelegate TARGET_URI__ESETTING_DELEGATE = ((EStructuralFeature.Internal)MIDPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -117,7 +115,7 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MidPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT;
+		return MIDPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT;
 	}
 
 	/**
@@ -138,7 +136,7 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 		int oldLowerBound = lowerBound;
 		lowerBound = newLowerBound;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND, oldLowerBound, lowerBound));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND, oldLowerBound, lowerBound));
 	}
 
 	/**
@@ -159,7 +157,7 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 		int oldUpperBound = upperBound;
 		upperBound = newUpperBound;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND, oldUpperBound, upperBound));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND, oldUpperBound, upperBound));
 	}
 
 	/**
@@ -173,7 +171,7 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 			target = (ExtendibleElement)eResolveProxy(oldTarget);
 			if (target != oldTarget) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET, oldTarget, target));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET, oldTarget, target));
 			}
 		}
 		return target;
@@ -197,7 +195,7 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 		ExtendibleElement oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET, oldTarget, target));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET, oldTarget, target));
 	}
 
 	/**
@@ -237,14 +235,14 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND:
 				return getLowerBound();
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND:
 				return getUpperBound();
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI:
 				return getTargetUri();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -258,13 +256,13 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND:
 				setLowerBound((Integer)newValue);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND:
 				setUpperBound((Integer)newValue);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET:
 				setTarget((ExtendibleElement)newValue);
 				return;
 		}
@@ -279,13 +277,13 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND:
 				setLowerBound(LOWER_BOUND_EDEFAULT);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND:
 				setUpperBound(UPPER_BOUND_EDEFAULT);
 				return;
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET:
 				setTarget((ExtendibleElement)null);
 				return;
 		}
@@ -300,13 +298,13 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND:
 				return lowerBound != LOWER_BOUND_EDEFAULT;
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND:
 				return upperBound != UPPER_BOUND_EDEFAULT;
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET:
 				return target != null;
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI:
 				return TARGET_URI__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
@@ -320,9 +318,9 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE:
 				return getMetatype();
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE:
 				return getSupertype();
 		}
 		return super.eInvoke(operationID, arguments);

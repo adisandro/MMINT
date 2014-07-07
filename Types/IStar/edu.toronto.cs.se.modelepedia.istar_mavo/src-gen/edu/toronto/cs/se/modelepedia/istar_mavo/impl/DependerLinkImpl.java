@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 
-import edu.toronto.cs.se.mmint.mavo.impl.MAVOElementImpl;
+import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
@@ -156,7 +156,7 @@ public class DependerLinkImpl extends MAVOElementImpl implements DependerLink {
 	 */
 	public Intention getDependum() {
 		if (eContainerFeatureID() != IStar_MAVOPackage.DEPENDER_LINK__DEPENDUM) return null;
-		return (Intention)eContainer();
+		return (Intention)eInternalContainer();
 	}
 
 	/**

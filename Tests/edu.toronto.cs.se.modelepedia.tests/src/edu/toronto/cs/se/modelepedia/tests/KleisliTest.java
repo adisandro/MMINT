@@ -46,9 +46,9 @@ import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.MidLevel;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
@@ -87,7 +87,7 @@ public class KleisliTest {
 	private final static String TGT_MODELOBJ_METAMODELATTRIBUTETOCREATE = "id";
 	private final static String[] TGT_MODELOBJ_ATTRIBUTEVALUES = {"S1", "B2", "A3"};
 	private final static String TESTS_TEMPPROJECT = TESTS_BUNDLE_NAME;
-	private final static String TESTS_INSTANCEMID_FILENAME = "instances" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MidPackage.eNAME;
+	private final static String TESTS_INSTANCEMID_FILENAME = "instances" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
 
 	private ModelElementReference dropMetamodelObject(EPackage metamodelRootObj, String metamodelObjName, ModelEndpointReference containerModelTypeEndpointRef, ModelElement rootModelElemType) throws MMINTException {
 
@@ -101,9 +101,9 @@ public class KleisliTest {
 			metamodelObj = metamodelObjContainer.getEStructuralFeature(names[1]);
 		}
 		assertTrue(containerModelTypeEndpointRef.acceptModelElementType(metamodelObj));
-		String modelElemTypeUri = MultiModelRegistry.getModelAndModelElementUris(metamodelObj, MidLevel.TYPES)[1];
-		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(metamodelObj, MidLevel.TYPES);
-		String newModelElemTypeName = MultiModelRegistry.getModelElementName(eInfo, metamodelObj, MidLevel.TYPES);
+		String modelElemTypeUri = MultiModelRegistry.getModelAndModelElementUris(metamodelObj, MIDLevel.TYPES)[1];
+		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(metamodelObj, MIDLevel.TYPES);
+		String newModelElemTypeName = MultiModelRegistry.getModelElementName(eInfo, metamodelObj, MIDLevel.TYPES);
 		ModelElementReference newModelElemTypeRef = rootModelElemType.createSubtypeAndReference(null, modelElemTypeUri, newModelElemTypeName, eInfo, containerModelTypeEndpointRef);
 		MMINT.createTypeHierarchy();
 
@@ -150,7 +150,7 @@ public class KleisliTest {
 			ModelElementReference srcModelElemTypeRef = dropMetamodelObject(srcMetamodelRootObj, SRC_METAMODELOBJ_NAMES[i], srcModelTypeEndpointRef, rootModelElemType);
 			ModelElementReference tgtModelElemTypeRef = dropMetamodelObject(kTgtMetamodelRootObj, TGT_METAMODELOBJ_NAMES[i], kTgtModelTypeEndpointRef, rootModelElemType);
 			if (TGT_MODELELEM_OCLQUERIES[i] != null) {
-				ExtendibleElementConstraint constraint = MidFactory.eINSTANCE.createExtendibleElementConstraint();
+				ExtendibleElementConstraint constraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
 				constraint.setLanguage(TGT_MODELELEM_QUERYLANGUAGE);
 				constraint.setImplementation(TGT_MODELELEM_OCLQUERIES[i]);
 				tgtModelElemTypeRef.getObject().setConstraint(constraint);
@@ -168,7 +168,7 @@ public class KleisliTest {
 		tempProject.open(null);
 		String tempProjectUri = IPath.SEPARATOR + TESTS_TEMPPROJECT + IPath.SEPARATOR;
 		String instanceMIDUri = tempProjectUri + TESTS_INSTANCEMID_FILENAME;
-		MultiModel instanceMID = MidFactory.eINSTANCE.createMultiModel();
+		MultiModel instanceMID = MIDFactory.eINSTANCE.createMultiModel();
 		EPackage tgtMetamodelRootObj = (EPackage) MultiModelUtils.getModelFileInState(tgtMetamodelName);
 		EFactory tgtMetamodelFactory = tgtMetamodelRootObj.getEFactoryInstance();
 		EObject rootModelObj = tgtMetamodelFactory.create((EClass) tgtMetamodelRootObj.getEClassifiers().get(0));

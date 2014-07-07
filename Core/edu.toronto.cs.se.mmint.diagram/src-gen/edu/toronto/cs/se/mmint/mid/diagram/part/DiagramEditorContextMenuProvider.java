@@ -79,7 +79,7 @@ public class DiagramEditorContextMenuProvider extends
 						}
 					});
 		} catch (Exception e) {
-			MidDiagramEditorPlugin.getInstance().logError(
+			MIDDiagramEditorPlugin.getInstance().logError(
 					"Error building context menu", e);
 		}
 	}

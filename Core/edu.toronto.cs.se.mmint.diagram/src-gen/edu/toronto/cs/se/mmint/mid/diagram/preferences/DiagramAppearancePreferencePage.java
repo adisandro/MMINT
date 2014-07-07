@@ -13,7 +13,7 @@ package edu.toronto.cs.se.mmint.mid.diagram.preferences;
 
 import org.eclipse.gmf.runtime.diagram.ui.preferences.AppearancePreferencePage;
 
-import edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorPlugin;
+import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 
 /**
  * @generated
@@ -24,7 +24,7 @@ public class DiagramAppearancePreferencePage extends AppearancePreferencePage {
 	 * @generated
 	 */
 	public DiagramAppearancePreferencePage() {
-		setPreferenceStore(MidDiagramEditorPlugin.getInstance()
+		setPreferenceStore(MIDDiagramEditorPlugin.getInstance()
 				.getPreferenceStore());
 	}
 }

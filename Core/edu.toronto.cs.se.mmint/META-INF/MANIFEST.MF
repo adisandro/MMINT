@@ -8,10 +8,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: edu.toronto.cs.se.mmint,
- edu.toronto.cs.se.mmint.mavo,
- edu.toronto.cs.se.mmint.mavo.impl,
  edu.toronto.cs.se.mmint.mavo.library,
- edu.toronto.cs.se.mmint.mavo.util,
  edu.toronto.cs.se.mmint.mid,
  edu.toronto.cs.se.mmint.mid.constraint,
  edu.toronto.cs.se.mmint.mid.editor,
@@ -40,6 +37,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.diagram.core,
  org.eclipse.emf.common,
  org.eclipse.emf.ecore.editor,
- org.eclipse.uml2.uml
+ org.eclipse.uml2.uml,
+ edu.toronto.cs.se.mavo
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: edu.toronto.cs.se.mmint.MMINTActivator

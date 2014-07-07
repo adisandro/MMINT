@@ -45,7 +45,6 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.directedit.TextDirectEditManager2;
 import org.eclipse.gmf.tooling.runtime.draw2d.labels.SimpleLabelDelegate;
 import org.eclipse.gmf.tooling.runtime.edit.policies.DefaultLinkLabelDragPolicy;
 import org.eclipse.gmf.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy;
@@ -57,10 +56,10 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.MidTextSelectionEditPolicy;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidVisualIDRegistry;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidElementTypes;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidParserProvider;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.MIDTextSelectionEditPolicy;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementTypes;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDParserProvider;
 
 /**
  * @generated
@@ -103,7 +102,7 @@ public class WrappingLabel23EditPart extends LabelEditPart implements
 	 */
 	static {
 		registerSnapBackPosition(
-				MidVisualIDRegistry
+				MIDVisualIDRegistry
 						.getType(edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.WrappingLabel23EditPart.VISUAL_ID),
 				new Point(0, 60));
 	}
@@ -123,7 +122,7 @@ public class WrappingLabel23EditPart extends LabelEditPart implements
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE,
 				new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE,
-				new MidTextSelectionEditPolicy());
+				new MIDTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
 				new DefaultLinkLabelDragPolicy());
 	}
@@ -230,7 +229,7 @@ public class WrappingLabel23EditPart extends LabelEditPart implements
 		if (parserElement == null) {
 			return null;
 		}
-		return MidElementTypes.getImage(parserElement.eClass());
+		return MIDElementTypes.getImage(parserElement.eClass());
 	}
 
 	/**
@@ -336,11 +335,11 @@ public class WrappingLabel23EditPart extends LabelEditPart implements
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = MidParserProvider
+			parser = MIDParserProvider
 					.getParser(
-							MidElementTypes.ModelElementEndpointReference_4011,
+							MIDElementTypes.ModelElementEndpointReference_4011,
 							getParserElement(),
-							MidVisualIDRegistry
+							MIDVisualIDRegistry
 									.getType(edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.WrappingLabel23EditPart.VISUAL_ID));
 		}
 		return parser;
@@ -351,8 +350,8 @@ public class WrappingLabel23EditPart extends LabelEditPart implements
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new TextDirectEditManager2(this, null,
-					MidEditPartFactory.getTextCellEditorLocator(this)));
+			setManager(new TextDirectEditManager(this, null,
+					MIDEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
@@ -375,8 +374,8 @@ public class WrappingLabel23EditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		if (getManager().getClass() == TextDirectEditManager2.class) {
-			((TextDirectEditManager2) getManager()).show(eventLocation
+		if (getManager().getClass() == TextDirectEditManager.class) {
+			((TextDirectEditManager) getManager()).show(eventLocation
 					.getSWTPoint());
 		}
 	}
@@ -387,9 +386,6 @@ public class WrappingLabel23EditPart extends LabelEditPart implements
 	private void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
-		} else // 
-		if (getManager() instanceof TextDirectEditManager2) {
-			((TextDirectEditManager2) getManager()).show(initialCharacter);
 		} else //
 		{
 			performDirectEdit();

@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.MidBaseItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 
 /**
  * @generated
@@ -83,7 +83,7 @@ public class BinaryLinkReferenceReorientCommand extends EditElementCommand {
 			return false;
 		}
 		ModelRel container = (ModelRel) getLink().eContainer();
-		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistBinaryLinkReference_4012(container, getLink(),
 						getNewSource(), target);
 	}
@@ -100,7 +100,7 @@ public class BinaryLinkReferenceReorientCommand extends EditElementCommand {
 			return false;
 		}
 		ModelRel container = (ModelRel) getLink().eContainer();
-		return MidBaseItemSemanticEditPolicy.getLinkConstraints()
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistBinaryLinkReference_4012(container, getLink(), source,
 						getNewTarget());
 	}

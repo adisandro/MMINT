@@ -20,19 +20,19 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.ExtendibleElementReferenceSupertypeRefCreateCommand;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.ExtendibleElementReferenceSupertypeRefReorientCommand;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ExtendibleElementReferenceSupertypeRefEditPart;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementTypes;
 
 /**
  * @generated
  */
 public class ModelElementEndpointReference2ItemSemanticEditPolicy extends
-		MidBaseItemSemanticEditPolicy {
+		MIDBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	public ModelElementEndpointReference2ItemSemanticEditPolicy() {
-		super(MidElementTypes.ModelElementEndpointReference_4014);
+		super(MIDElementTypes.ModelElementEndpointReference_4014);
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class ModelElementEndpointReference2ItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010 == req
+		if (MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010 == req
 				.getElementType()) {
 			return getGEFWrapper(new ExtendibleElementReferenceSupertypeRefCreateCommand(
 					req, req.getSource(), req.getTarget()));
@@ -70,7 +70,7 @@ public class ModelElementEndpointReference2ItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010 == req
+		if (MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010 == req
 				.getElementType()) {
 			return getGEFWrapper(new ExtendibleElementReferenceSupertypeRefCreateCommand(
 					req, req.getSource(), req.getTarget()));

@@ -35,7 +35,7 @@ import org.eclipse.emf.henshin.model.Node;
 import org.eclipse.emf.henshin.model.Rule;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
@@ -241,7 +241,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 				smtEncoding.append(innerPredicate);
 			}
 			for (MAVOElement modelObj : modelObjs) {
-				smtEncoding.append(modelObj.getFormulaId());
+				smtEncoding.append(modelObj.getFormulaVariable());
 				smtEncoding.append(" ");
 			}
 			smtEncoding.deleteCharAt(smtEncoding.length()-1);

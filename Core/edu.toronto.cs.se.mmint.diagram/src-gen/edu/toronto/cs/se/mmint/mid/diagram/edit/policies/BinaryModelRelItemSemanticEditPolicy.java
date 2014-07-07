@@ -33,19 +33,19 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ExtendibleElementSupertype
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Parameter2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ParameterEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 
 /**
  * @generated
  */
 public class BinaryModelRelItemSemanticEditPolicy extends
-		MidBaseItemSemanticEditPolicy {
+		MIDBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	public BinaryModelRelItemSemanticEditPolicy() {
-		super(MidElementTypes.BinaryModelRel_4015);
+		super(MIDElementTypes.BinaryModelRel_4015);
 	}
 
 	/**
@@ -70,23 +70,23 @@ public class BinaryModelRelItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (MidElementTypes.ExtendibleElementSupertype_4013 == req
+		if (MIDElementTypes.ExtendibleElementSupertype_4013 == req
 				.getElementType()) {
 			return getGEFWrapper(new ExtendibleElementSupertypeCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.ModelEndpoint_4014 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
 			return getGEFWrapper(new ModelEndpointCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.BinaryModelRel_4015 == req.getElementType()) {
+		if (MIDElementTypes.BinaryModelRel_4015 == req.getElementType()) {
 			return getGEFWrapper(new BinaryModelRelCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.Parameter_4016 == req.getElementType()) {
+		if (MIDElementTypes.Parameter_4016 == req.getElementType()) {
 			return null;
 		}
-		if (MidElementTypes.Parameter_4017 == req.getElementType()) {
+		if (MIDElementTypes.Parameter_4017 == req.getElementType()) {
 			return null;
 		}
 		return null;
@@ -97,24 +97,24 @@ public class BinaryModelRelItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (MidElementTypes.ExtendibleElementSupertype_4013 == req
+		if (MIDElementTypes.ExtendibleElementSupertype_4013 == req
 				.getElementType()) {
 			return getGEFWrapper(new ExtendibleElementSupertypeCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.ModelEndpoint_4014 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
 			return getGEFWrapper(new ModelEndpointCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.BinaryModelRel_4015 == req.getElementType()) {
+		if (MIDElementTypes.BinaryModelRel_4015 == req.getElementType()) {
 			return getGEFWrapper(new BinaryModelRelCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.Parameter_4016 == req.getElementType()) {
+		if (MIDElementTypes.Parameter_4016 == req.getElementType()) {
 			return getGEFWrapper(new ParameterCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MidElementTypes.Parameter_4017 == req.getElementType()) {
+		if (MIDElementTypes.Parameter_4017 == req.getElementType()) {
 			return getGEFWrapper(new Parameter2CreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}

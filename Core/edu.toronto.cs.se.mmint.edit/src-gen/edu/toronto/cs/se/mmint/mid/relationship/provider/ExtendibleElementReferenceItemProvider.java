@@ -12,17 +12,15 @@
 package edu.toronto.cs.se.mmint.mid.relationship.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.MidFactory;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
-import edu.toronto.cs.se.mmint.mid.provider.MidEditPlugin;
+import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -296,17 +294,17 @@ public class ExtendibleElementReferenceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-				 MidFactory.eINSTANCE.createModel()));
+				 MIDFactory.eINSTANCE.createModel()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-				 MidFactory.eINSTANCE.createModelElement()));
+				 MIDFactory.eINSTANCE.createModelElement()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-				 MidFactory.eINSTANCE.createModelEndpoint()));
+				 MIDFactory.eINSTANCE.createModelEndpoint()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -342,7 +340,7 @@ public class ExtendibleElementReferenceItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MidEditPlugin.INSTANCE;
+		return MIDEditPlugin.INSTANCE;
 	}
 
 }

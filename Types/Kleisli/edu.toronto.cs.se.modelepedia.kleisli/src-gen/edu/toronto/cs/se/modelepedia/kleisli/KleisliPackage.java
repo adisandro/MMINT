@@ -11,9 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli;
 
-import edu.toronto.cs.se.mmint.mid.MidPackage;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
@@ -81,13 +80,22 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL = 0;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL__FORMULA_VARIABLE = MIDPackage.MODEL__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__MAY = MidPackage.MODEL__MAY;
+	int KLEISLI_MODEL__MAY = MIDPackage.MODEL__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -96,7 +104,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__SET = MidPackage.MODEL__SET;
+	int KLEISLI_MODEL__SET = MIDPackage.MODEL__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -105,16 +113,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__VAR = MidPackage.MODEL__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL__FORMULA_ID = MidPackage.MODEL__FORMULA_ID;
+	int KLEISLI_MODEL__VAR = MIDPackage.MODEL__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -123,7 +122,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__SUPERTYPE = MidPackage.MODEL__SUPERTYPE;
+	int KLEISLI_MODEL__SUPERTYPE = MIDPackage.MODEL__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Metatype</b></em>' reference.
@@ -132,7 +131,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__METATYPE = MidPackage.MODEL__METATYPE;
+	int KLEISLI_MODEL__METATYPE = MIDPackage.MODEL__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -141,7 +140,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__URI = MidPackage.MODEL__URI;
+	int KLEISLI_MODEL__URI = MIDPackage.MODEL__URI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -150,7 +149,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__NAME = MidPackage.MODEL__NAME;
+	int KLEISLI_MODEL__NAME = MIDPackage.MODEL__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -159,7 +158,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__LEVEL = MidPackage.MODEL__LEVEL;
+	int KLEISLI_MODEL__LEVEL = MIDPackage.MODEL__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -168,7 +167,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__METATYPE_URI = MidPackage.MODEL__METATYPE_URI;
+	int KLEISLI_MODEL__METATYPE_URI = MIDPackage.MODEL__METATYPE_URI;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -177,7 +176,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__DYNAMIC = MidPackage.MODEL__DYNAMIC;
+	int KLEISLI_MODEL__DYNAMIC = MIDPackage.MODEL__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -186,7 +185,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__CONSTRAINT = MidPackage.MODEL__CONSTRAINT;
+	int KLEISLI_MODEL__CONSTRAINT = MIDPackage.MODEL__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Inc</b></em>' attribute.
@@ -195,7 +194,16 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__INC = MidPackage.MODEL__INC;
+	int KLEISLI_MODEL__INC = MIDPackage.MODEL__INC;
+
+	/**
+	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL__DECISIONS = MIDPackage.MODEL__DECISIONS;
 
 	/**
 	 * The feature id for the '<em><b>Origin</b></em>' attribute.
@@ -204,7 +212,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__ORIGIN = MidPackage.MODEL__ORIGIN;
+	int KLEISLI_MODEL__ORIGIN = MIDPackage.MODEL__ORIGIN;
 
 	/**
 	 * The feature id for the '<em><b>File Extension</b></em>' attribute.
@@ -213,7 +221,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__FILE_EXTENSION = MidPackage.MODEL__FILE_EXTENSION;
+	int KLEISLI_MODEL__FILE_EXTENSION = MIDPackage.MODEL__FILE_EXTENSION;
 
 	/**
 	 * The feature id for the '<em><b>Editors</b></em>' reference list.
@@ -222,7 +230,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__EDITORS = MidPackage.MODEL__EDITORS;
+	int KLEISLI_MODEL__EDITORS = MIDPackage.MODEL__EDITORS;
 
 	/**
 	 * The feature id for the '<em><b>Model Elems</b></em>' containment reference list.
@@ -231,7 +239,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__MODEL_ELEMS = MidPackage.MODEL__MODEL_ELEMS;
+	int KLEISLI_MODEL__MODEL_ELEMS = MIDPackage.MODEL__MODEL_ELEMS;
 
 	/**
 	 * The feature id for the '<em><b>Conversion Operators</b></em>' reference list.
@@ -240,7 +248,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__CONVERSION_OPERATORS = MidPackage.MODEL__CONVERSION_OPERATORS;
+	int KLEISLI_MODEL__CONVERSION_OPERATORS = MIDPackage.MODEL__CONVERSION_OPERATORS;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -249,7 +257,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL__ABSTRACT = MidPackage.MODEL__ABSTRACT;
+	int KLEISLI_MODEL__ABSTRACT = MIDPackage.MODEL__ABSTRACT;
 
 	/**
 	 * The number of structural features of the '<em>Model</em>' class.
@@ -258,7 +266,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_FEATURE_COUNT = MidPackage.MODEL_FEATURE_COUNT + 0;
+	int KLEISLI_MODEL_FEATURE_COUNT = MIDPackage.MODEL_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -267,7 +275,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___CREATE_SUBTYPE_URI__STRING_STRING = MidPackage.MODEL___CREATE_SUBTYPE_URI__STRING_STRING;
+	int KLEISLI_MODEL___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.MODEL___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -276,7 +284,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___GET_METATYPE = MidPackage.MODEL___GET_METATYPE;
+	int KLEISLI_MODEL___GET_METATYPE = MIDPackage.MODEL___GET_METATYPE;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -285,7 +293,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___GET_SUPERTYPE = MidPackage.MODEL___GET_SUPERTYPE;
+	int KLEISLI_MODEL___GET_SUPERTYPE = MIDPackage.MODEL___GET_SUPERTYPE;
 
 	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
@@ -294,7 +302,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MidPackage.MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int KLEISLI_MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MIDPackage.MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -303,7 +311,16 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MidPackage.MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+	int KLEISLI_MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Create Instance Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL___CREATE_INSTANCE_EDITOR = MIDPackage.MODEL___CREATE_INSTANCE_EDITOR;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Editor</em>' operation.
@@ -312,7 +329,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MidPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
+	int KLEISLI_MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Create MAVO Instance</em>' operation.
@@ -321,7 +338,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MidPackage.MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+	int KLEISLI_MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Create MAVO Instance And Editor</em>' operation.
@@ -330,7 +347,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MidPackage.MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
+	int KLEISLI_MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Copy MAVO Instance And Editor</em>' operation.
@@ -339,7 +356,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = MidPackage.MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL;
+	int KLEISLI_MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = MIDPackage.MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Kleisli Create Type</em>' operation.
@@ -348,7 +365,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___KLEISLI_CREATE_TYPE__KLEISLIMODELENDPOINT = MidPackage.MODEL_OPERATION_COUNT + 0;
+	int KLEISLI_MODEL___KLEISLI_CREATE_TYPE__KLEISLIMODELENDPOINT = MIDPackage.MODEL_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -357,7 +374,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___DELETE_TYPE = MidPackage.MODEL_OPERATION_COUNT + 1;
+	int KLEISLI_MODEL___DELETE_TYPE = MIDPackage.MODEL_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
@@ -366,7 +383,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___GET_EMF_TYPE_ROOT = MidPackage.MODEL_OPERATION_COUNT + 2;
+	int KLEISLI_MODEL___GET_EMF_TYPE_ROOT = MIDPackage.MODEL_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Kleisli Create Instance</em>' operation.
@@ -375,7 +392,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___KLEISLI_CREATE_INSTANCE__KLEISLIMODELENDPOINT = MidPackage.MODEL_OPERATION_COUNT + 3;
+	int KLEISLI_MODEL___KLEISLI_CREATE_INSTANCE__KLEISLIMODELENDPOINT = MIDPackage.MODEL_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -384,7 +401,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___DELETE_INSTANCE = MidPackage.MODEL_OPERATION_COUNT + 4;
+	int KLEISLI_MODEL___DELETE_INSTANCE = MIDPackage.MODEL_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
@@ -393,7 +410,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___GET_EMF_INSTANCE_ROOT = MidPackage.MODEL_OPERATION_COUNT + 5;
+	int KLEISLI_MODEL___GET_EMF_INSTANCE_ROOT = MIDPackage.MODEL_OPERATION_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -402,7 +419,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_OPERATION_COUNT = MidPackage.MODEL_OPERATION_COUNT + 6;
+	int KLEISLI_MODEL_OPERATION_COUNT = MIDPackage.MODEL_OPERATION_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelRelImpl <em>Model Rel</em>}' class.
@@ -425,13 +442,22 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT = 1;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT__FORMULA_VARIABLE = MIDPackage.MODEL_ENDPOINT__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__MAY = MidPackage.MODEL_ENDPOINT__MAY;
+	int KLEISLI_MODEL_ENDPOINT__MAY = MIDPackage.MODEL_ENDPOINT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -440,7 +466,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__SET = MidPackage.MODEL_ENDPOINT__SET;
+	int KLEISLI_MODEL_ENDPOINT__SET = MIDPackage.MODEL_ENDPOINT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -449,16 +475,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__VAR = MidPackage.MODEL_ENDPOINT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_ENDPOINT__FORMULA_ID = MidPackage.MODEL_ENDPOINT__FORMULA_ID;
+	int KLEISLI_MODEL_ENDPOINT__VAR = MIDPackage.MODEL_ENDPOINT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -467,7 +484,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__SUPERTYPE = MidPackage.MODEL_ENDPOINT__SUPERTYPE;
+	int KLEISLI_MODEL_ENDPOINT__SUPERTYPE = MIDPackage.MODEL_ENDPOINT__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Metatype</b></em>' reference.
@@ -476,7 +493,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__METATYPE = MidPackage.MODEL_ENDPOINT__METATYPE;
+	int KLEISLI_MODEL_ENDPOINT__METATYPE = MIDPackage.MODEL_ENDPOINT__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -485,7 +502,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__URI = MidPackage.MODEL_ENDPOINT__URI;
+	int KLEISLI_MODEL_ENDPOINT__URI = MIDPackage.MODEL_ENDPOINT__URI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -494,7 +511,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__NAME = MidPackage.MODEL_ENDPOINT__NAME;
+	int KLEISLI_MODEL_ENDPOINT__NAME = MIDPackage.MODEL_ENDPOINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -503,7 +520,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__LEVEL = MidPackage.MODEL_ENDPOINT__LEVEL;
+	int KLEISLI_MODEL_ENDPOINT__LEVEL = MIDPackage.MODEL_ENDPOINT__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -512,7 +529,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__METATYPE_URI = MidPackage.MODEL_ENDPOINT__METATYPE_URI;
+	int KLEISLI_MODEL_ENDPOINT__METATYPE_URI = MIDPackage.MODEL_ENDPOINT__METATYPE_URI;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -521,7 +538,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__DYNAMIC = MidPackage.MODEL_ENDPOINT__DYNAMIC;
+	int KLEISLI_MODEL_ENDPOINT__DYNAMIC = MIDPackage.MODEL_ENDPOINT__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -530,7 +547,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__CONSTRAINT = MidPackage.MODEL_ENDPOINT__CONSTRAINT;
+	int KLEISLI_MODEL_ENDPOINT__CONSTRAINT = MIDPackage.MODEL_ENDPOINT__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
@@ -539,7 +556,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__LOWER_BOUND = MidPackage.MODEL_ENDPOINT__LOWER_BOUND;
+	int KLEISLI_MODEL_ENDPOINT__LOWER_BOUND = MIDPackage.MODEL_ENDPOINT__LOWER_BOUND;
 
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
@@ -548,7 +565,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__UPPER_BOUND = MidPackage.MODEL_ENDPOINT__UPPER_BOUND;
+	int KLEISLI_MODEL_ENDPOINT__UPPER_BOUND = MIDPackage.MODEL_ENDPOINT__UPPER_BOUND;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -557,7 +574,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__TARGET = MidPackage.MODEL_ENDPOINT__TARGET;
+	int KLEISLI_MODEL_ENDPOINT__TARGET = MIDPackage.MODEL_ENDPOINT__TARGET;
 
 	/**
 	 * The feature id for the '<em><b>Target Uri</b></em>' attribute.
@@ -566,7 +583,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__TARGET_URI = MidPackage.MODEL_ENDPOINT__TARGET_URI;
+	int KLEISLI_MODEL_ENDPOINT__TARGET_URI = MIDPackage.MODEL_ENDPOINT__TARGET_URI;
 
 	/**
 	 * The feature id for the '<em><b>Extended Target</b></em>' containment reference.
@@ -575,7 +592,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET = MidPackage.MODEL_ENDPOINT_FEATURE_COUNT + 0;
+	int KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET = MIDPackage.MODEL_ENDPOINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Extended Target Uri</b></em>' attribute.
@@ -584,7 +601,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET_URI = MidPackage.MODEL_ENDPOINT_FEATURE_COUNT + 1;
+	int KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET_URI = MIDPackage.MODEL_ENDPOINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Model Endpoint</em>' class.
@@ -593,7 +610,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT_FEATURE_COUNT = MidPackage.MODEL_ENDPOINT_FEATURE_COUNT + 2;
+	int KLEISLI_MODEL_ENDPOINT_FEATURE_COUNT = MIDPackage.MODEL_ENDPOINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -602,7 +619,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MidPackage.MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
+	int KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -611,7 +628,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___GET_SUPERTYPE = MidPackage.MODEL_ENDPOINT___GET_SUPERTYPE;
+	int KLEISLI_MODEL_ENDPOINT___GET_SUPERTYPE = MIDPackage.MODEL_ENDPOINT___GET_SUPERTYPE;
 
 	/**
 	 * The operation id for the '<em>Get Target</em>' operation.
@@ -620,7 +637,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___GET_TARGET = MidPackage.MODEL_ENDPOINT___GET_TARGET;
+	int KLEISLI_MODEL_ENDPOINT___GET_TARGET = MIDPackage.MODEL_ENDPOINT___GET_TARGET;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -629,7 +646,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___GET_METATYPE = MidPackage.MODEL_ENDPOINT___GET_METATYPE;
+	int KLEISLI_MODEL_ENDPOINT___GET_METATYPE = MIDPackage.MODEL_ENDPOINT___GET_METATYPE;
 
 	/**
 	 * The operation id for the '<em>Create Type Reference</em>' operation.
@@ -638,7 +655,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 0;
+	int KLEISLI_MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Create Subtype And Reference</em>' operation.
@@ -647,7 +664,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 1;
+	int KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Replace Subtype And Reference</em>' operation.
@@ -656,7 +673,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 2;
+	int KLEISLI_MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Delete Type And Reference</em>' operation.
@@ -665,7 +682,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 3;
+	int KLEISLI_MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Create Instance Reference</em>' operation.
@@ -674,7 +691,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 4;
+	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
@@ -683,7 +700,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 5;
+	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Replace Instance And Reference</em>' operation.
@@ -692,7 +709,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 6;
+	int KLEISLI_MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Delete Instance And Reference</em>' operation.
@@ -701,7 +718,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 7;
+	int KLEISLI_MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Model Endpoint</em>' class.
@@ -710,7 +727,16 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT_OPERATION_COUNT = MidPackage.MODEL_ENDPOINT_OPERATION_COUNT + 8;
+	int KLEISLI_MODEL_ENDPOINT_OPERATION_COUNT = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL__FORMULA_VARIABLE = RelationshipPackage.MODEL_REL__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -738,15 +764,6 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_REL__VAR = RelationshipPackage.MODEL_REL__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_REL__FORMULA_ID = RelationshipPackage.MODEL_REL__FORMULA_ID;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -828,6 +845,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_REL__INC = RelationshipPackage.MODEL_REL__INC;
+
+	/**
+	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL__DECISIONS = RelationshipPackage.MODEL_REL__DECISIONS;
 
 	/**
 	 * The feature id for the '<em><b>Origin</b></em>' attribute.
@@ -972,6 +998,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = RelationshipPackage.MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Create Instance Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___CREATE_INSTANCE_EDITOR = RelationshipPackage.MODEL_REL___CREATE_INSTANCE_EDITOR;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Editor</em>' operation.
@@ -1156,6 +1191,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_BINARY_MODEL_REL = 3;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__FORMULA_VARIABLE = KLEISLI_MODEL_REL__FORMULA_VARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1181,15 +1225,6 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_BINARY_MODEL_REL__VAR = KLEISLI_MODEL_REL__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Formula Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_BINARY_MODEL_REL__FORMULA_ID = KLEISLI_MODEL_REL__FORMULA_ID;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1271,6 +1306,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_BINARY_MODEL_REL__INC = KLEISLI_MODEL_REL__INC;
+
+	/**
+	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__DECISIONS = KLEISLI_MODEL_REL__DECISIONS;
 
 	/**
 	 * The feature id for the '<em><b>Origin</b></em>' attribute.
@@ -1433,6 +1477,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Create Instance Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE_EDITOR = KLEISLI_MODEL_REL___CREATE_INSTANCE_EDITOR;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Editor</em>' operation.

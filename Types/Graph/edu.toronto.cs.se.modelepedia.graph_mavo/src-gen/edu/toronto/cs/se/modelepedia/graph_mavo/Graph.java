@@ -11,8 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.graph_mavo;
 
-import edu.toronto.cs.se.mmint.mavo.MAVOModel;
-
+import edu.toronto.cs.se.mavo.MAVOModel;
 import org.eclipse.emf.common.util.EList;
 
 /**

@@ -31,7 +31,7 @@ package edu.toronto.cs.se.mmint.mid;
  * </ul>
  * </p>
  *
- * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElementEndpoint()
+ * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElementEndpoint()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='unboundedLevel'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot unboundedLevel='target.level = MidLevel::INSTANCES implies (lowerBound = 1 and upperBound = 1)'"
@@ -47,7 +47,7 @@ public interface ExtendibleElementEndpoint extends ExtendibleElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Lower Bound</em>' attribute.
 	 * @see #setLowerBound(int)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElementEndpoint_LowerBound()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElementEndpoint_LowerBound()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -72,7 +72,7 @@ public interface ExtendibleElementEndpoint extends ExtendibleElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Upper Bound</em>' attribute.
 	 * @see #setUpperBound(int)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElementEndpoint_UpperBound()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElementEndpoint_UpperBound()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -97,7 +97,7 @@ public interface ExtendibleElementEndpoint extends ExtendibleElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(ExtendibleElement)
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElementEndpoint_Target()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElementEndpoint_Target()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -121,7 +121,7 @@ public interface ExtendibleElementEndpoint extends ExtendibleElement {
 	 * The uri of the target element.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Uri</em>' attribute.
-	 * @see edu.toronto.cs.se.mmint.mid.MidPackage#getExtendibleElementEndpoint_TargetUri()
+	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElementEndpoint_TargetUri()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='target.uri'"
 	 * @generated

@@ -43,7 +43,7 @@ public class ClassDiagram_MAVOFactoryImpl extends EFactoryImpl implements ClassD
 	 */
 	public static ClassDiagram_MAVOFactory init() {
 		try {
-			ClassDiagram_MAVOFactory theClassDiagram_MAVOFactory = (ClassDiagram_MAVOFactory)EPackage.Registry.INSTANCE.getEFactory("http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO"); 
+			ClassDiagram_MAVOFactory theClassDiagram_MAVOFactory = (ClassDiagram_MAVOFactory)EPackage.Registry.INSTANCE.getEFactory(ClassDiagram_MAVOPackage.eNS_URI);
 			if (theClassDiagram_MAVOFactory != null) {
 				return theClassDiagram_MAVOFactory;
 			}

@@ -15,26 +15,26 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.ModelElementReferenceCreateCommand;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementTypes;
 
 /**
  * @generated
  */
 public class ModelEndpointReferenceModelEndpointReferenceCompartmentItemSemanticEditPolicy
-		extends MidBaseItemSemanticEditPolicy {
+		extends MIDBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	public ModelEndpointReferenceModelEndpointReferenceCompartmentItemSemanticEditPolicy() {
-		super(MidElementTypes.ModelEndpointReference_2007);
+		super(MIDElementTypes.ModelEndpointReference_2007);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (MidElementTypes.ModelElementReference_3005 == req.getElementType()) {
+		if (MIDElementTypes.ModelElementReference_3005 == req.getElementType()) {
 			return getGEFWrapper(new ModelElementReferenceCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

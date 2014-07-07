@@ -62,7 +62,7 @@ public class AttributeImpl extends TypedElementImpl implements Attribute {
 	 */
 	public edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class getOwner() {
 		if (eContainerFeatureID() != ClassDiagram_MAVOPackage.ATTRIBUTE__OWNER) return null;
-		return (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class)eContainer();
+		return (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class)eInternalContainer();
 	}
 
 	/**

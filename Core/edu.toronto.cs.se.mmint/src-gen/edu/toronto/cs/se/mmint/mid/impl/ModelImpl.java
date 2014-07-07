@@ -11,18 +11,19 @@
  */
 package edu.toronto.cs.se.mmint.mid.impl;
 
+import edu.toronto.cs.se.mavo.MAVODecision;
+import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
-import edu.toronto.cs.se.mmint.mavo.MAVOModel;
-import edu.toronto.cs.se.mmint.mavo.MavoPackage;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MidFactory;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -68,6 +69,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#isInc <em>Inc</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getDecisions <em>Decisions</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getOrigin <em>Origin</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getFileExtension <em>File Extension</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getEditors <em>Editors</em>}</li>
@@ -99,6 +101,16 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * @ordered
 	 */
 	protected boolean inc = INC_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getDecisions() <em>Decisions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDecisions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<MAVODecision> decisions;
 
 	/**
 	 * The default value of the '{@link #getOrigin() <em>Origin</em>}' attribute.
@@ -206,7 +218,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MidPackage.Literals.MODEL;
+		return MIDPackage.Literals.MODEL;
 	}
 
 	/**
@@ -227,7 +239,19 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		boolean oldInc = inc;
 		inc = newInc;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL__INC, oldInc, inc));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__INC, oldInc, inc));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<MAVODecision> getDecisions() {
+		if (decisions == null) {
+			decisions = new EObjectContainmentEList<MAVODecision>(MAVODecision.class, this, MIDPackage.MODEL__DECISIONS);
+		}
+		return decisions;
 	}
 
 	/**
@@ -248,7 +272,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		ModelOrigin oldOrigin = origin;
 		origin = newOrigin == null ? ORIGIN_EDEFAULT : newOrigin;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL__ORIGIN, oldOrigin, origin));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ORIGIN, oldOrigin, origin));
 	}
 
 	/**
@@ -269,7 +293,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		String oldFileExtension = fileExtension;
 		fileExtension = newFileExtension;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL__FILE_EXTENSION, oldFileExtension, fileExtension));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__FILE_EXTENSION, oldFileExtension, fileExtension));
 	}
 
 	/**
@@ -279,7 +303,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 */
 	public EList<Editor> getEditors() {
 		if (editors == null) {
-			editors = new EObjectResolvingEList<Editor>(Editor.class, this, MidPackage.MODEL__EDITORS);
+			editors = new EObjectResolvingEList<Editor>(Editor.class, this, MIDPackage.MODEL__EDITORS);
 		}
 		return editors;
 	}
@@ -291,7 +315,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 */
 	public EList<ModelElement> getModelElems() {
 		if (modelElems == null) {
-			modelElems = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, MidPackage.MODEL__MODEL_ELEMS);
+			modelElems = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, MIDPackage.MODEL__MODEL_ELEMS);
 		}
 		return modelElems;
 	}
@@ -303,7 +327,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 */
 	public EList<ConversionOperator> getConversionOperators() {
 		if (conversionOperators == null) {
-			conversionOperators = new EObjectResolvingEList<ConversionOperator>(ConversionOperator.class, this, MidPackage.MODEL__CONVERSION_OPERATORS);
+			conversionOperators = new EObjectResolvingEList<ConversionOperator>(ConversionOperator.class, this, MIDPackage.MODEL__CONVERSION_OPERATORS);
 		}
 		return conversionOperators;
 	}
@@ -326,7 +350,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		boolean oldAbstract = abstract_;
 		abstract_ = newAbstract;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MidPackage.MODEL__ABSTRACT, oldAbstract, abstract_));
+			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ABSTRACT, oldAbstract, abstract_));
 	}
 
 	/**
@@ -357,7 +381,9 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MidPackage.MODEL__MODEL_ELEMS:
+			case MIDPackage.MODEL__DECISIONS:
+				return ((InternalEList<?>)getDecisions()).basicRemove(otherEnd, msgs);
+			case MIDPackage.MODEL__MODEL_ELEMS:
 				return ((InternalEList<?>)getModelElems()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -371,19 +397,21 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MidPackage.MODEL__INC:
+			case MIDPackage.MODEL__INC:
 				return isInc();
-			case MidPackage.MODEL__ORIGIN:
+			case MIDPackage.MODEL__DECISIONS:
+				return getDecisions();
+			case MIDPackage.MODEL__ORIGIN:
 				return getOrigin();
-			case MidPackage.MODEL__FILE_EXTENSION:
+			case MIDPackage.MODEL__FILE_EXTENSION:
 				return getFileExtension();
-			case MidPackage.MODEL__EDITORS:
+			case MIDPackage.MODEL__EDITORS:
 				return getEditors();
-			case MidPackage.MODEL__MODEL_ELEMS:
+			case MIDPackage.MODEL__MODEL_ELEMS:
 				return getModelElems();
-			case MidPackage.MODEL__CONVERSION_OPERATORS:
+			case MIDPackage.MODEL__CONVERSION_OPERATORS:
 				return getConversionOperators();
-			case MidPackage.MODEL__ABSTRACT:
+			case MIDPackage.MODEL__ABSTRACT:
 				return isAbstract();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -398,28 +426,32 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MidPackage.MODEL__INC:
+			case MIDPackage.MODEL__INC:
 				setInc((Boolean)newValue);
 				return;
-			case MidPackage.MODEL__ORIGIN:
+			case MIDPackage.MODEL__DECISIONS:
+				getDecisions().clear();
+				getDecisions().addAll((Collection<? extends MAVODecision>)newValue);
+				return;
+			case MIDPackage.MODEL__ORIGIN:
 				setOrigin((ModelOrigin)newValue);
 				return;
-			case MidPackage.MODEL__FILE_EXTENSION:
+			case MIDPackage.MODEL__FILE_EXTENSION:
 				setFileExtension((String)newValue);
 				return;
-			case MidPackage.MODEL__EDITORS:
+			case MIDPackage.MODEL__EDITORS:
 				getEditors().clear();
 				getEditors().addAll((Collection<? extends Editor>)newValue);
 				return;
-			case MidPackage.MODEL__MODEL_ELEMS:
+			case MIDPackage.MODEL__MODEL_ELEMS:
 				getModelElems().clear();
 				getModelElems().addAll((Collection<? extends ModelElement>)newValue);
 				return;
-			case MidPackage.MODEL__CONVERSION_OPERATORS:
+			case MIDPackage.MODEL__CONVERSION_OPERATORS:
 				getConversionOperators().clear();
 				getConversionOperators().addAll((Collection<? extends ConversionOperator>)newValue);
 				return;
-			case MidPackage.MODEL__ABSTRACT:
+			case MIDPackage.MODEL__ABSTRACT:
 				setAbstract((Boolean)newValue);
 				return;
 		}
@@ -434,25 +466,28 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL__INC:
+			case MIDPackage.MODEL__INC:
 				setInc(INC_EDEFAULT);
 				return;
-			case MidPackage.MODEL__ORIGIN:
+			case MIDPackage.MODEL__DECISIONS:
+				getDecisions().clear();
+				return;
+			case MIDPackage.MODEL__ORIGIN:
 				setOrigin(ORIGIN_EDEFAULT);
 				return;
-			case MidPackage.MODEL__FILE_EXTENSION:
+			case MIDPackage.MODEL__FILE_EXTENSION:
 				setFileExtension(FILE_EXTENSION_EDEFAULT);
 				return;
-			case MidPackage.MODEL__EDITORS:
+			case MIDPackage.MODEL__EDITORS:
 				getEditors().clear();
 				return;
-			case MidPackage.MODEL__MODEL_ELEMS:
+			case MIDPackage.MODEL__MODEL_ELEMS:
 				getModelElems().clear();
 				return;
-			case MidPackage.MODEL__CONVERSION_OPERATORS:
+			case MIDPackage.MODEL__CONVERSION_OPERATORS:
 				getConversionOperators().clear();
 				return;
-			case MidPackage.MODEL__ABSTRACT:
+			case MIDPackage.MODEL__ABSTRACT:
 				setAbstract(ABSTRACT_EDEFAULT);
 				return;
 		}
@@ -467,19 +502,21 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MidPackage.MODEL__INC:
+			case MIDPackage.MODEL__INC:
 				return inc != INC_EDEFAULT;
-			case MidPackage.MODEL__ORIGIN:
+			case MIDPackage.MODEL__DECISIONS:
+				return decisions != null && !decisions.isEmpty();
+			case MIDPackage.MODEL__ORIGIN:
 				return origin != ORIGIN_EDEFAULT;
-			case MidPackage.MODEL__FILE_EXTENSION:
+			case MIDPackage.MODEL__FILE_EXTENSION:
 				return FILE_EXTENSION_EDEFAULT == null ? fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(fileExtension);
-			case MidPackage.MODEL__EDITORS:
+			case MIDPackage.MODEL__EDITORS:
 				return editors != null && !editors.isEmpty();
-			case MidPackage.MODEL__MODEL_ELEMS:
+			case MIDPackage.MODEL__MODEL_ELEMS:
 				return modelElems != null && !modelElems.isEmpty();
-			case MidPackage.MODEL__CONVERSION_OPERATORS:
+			case MIDPackage.MODEL__CONVERSION_OPERATORS:
 				return conversionOperators != null && !conversionOperators.isEmpty();
-			case MidPackage.MODEL__ABSTRACT:
+			case MIDPackage.MODEL__ABSTRACT:
 				return abstract_ != ABSTRACT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -494,7 +531,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == MAVOModel.class) {
 			switch (derivedFeatureID) {
-				case MidPackage.MODEL__INC: return MavoPackage.MAVO_MODEL__INC;
+				case MIDPackage.MODEL__INC: return MAVOPackage.MAVO_MODEL__INC;
+				case MIDPackage.MODEL__DECISIONS: return MAVOPackage.MAVO_MODEL__DECISIONS;
 				default: return -1;
 			}
 		}
@@ -510,7 +548,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == MAVOModel.class) {
 			switch (baseFeatureID) {
-				case MavoPackage.MAVO_MODEL__INC: return MidPackage.MODEL__INC;
+				case MAVOPackage.MAVO_MODEL__INC: return MIDPackage.MODEL__INC;
+				case MAVOPackage.MAVO_MODEL__DECISIONS: return MIDPackage.MODEL__DECISIONS;
 				default: return -1;
 			}
 		}
@@ -525,18 +564,18 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MidPackage.MODEL___GET_METATYPE:
+			case MIDPackage.MODEL___GET_METATYPE:
 				return getMetatype();
-			case MidPackage.MODEL___GET_SUPERTYPE:
+			case MIDPackage.MODEL___GET_SUPERTYPE:
 				return getSupertype();
-			case MidPackage.MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN:
+			case MIDPackage.MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN:
 				try {
 					return createSubtype((String)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (Boolean)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL___DELETE_TYPE:
+			case MIDPackage.MODEL___DELETE_TYPE:
 				try {
 					deleteType();
 					return null;
@@ -544,56 +583,56 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL___GET_EMF_TYPE_ROOT:
+			case MIDPackage.MODEL___GET_EMF_TYPE_ROOT:
 				try {
 					return getEMFTypeRoot();
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL:
+			case MIDPackage.MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL:
 				try {
 					return createInstance((String)arguments.get(0), (ModelOrigin)arguments.get(1), (MultiModel)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL___CREATE_INSTANCE_EDITOR:
+			case MIDPackage.MODEL___CREATE_INSTANCE_EDITOR:
 				try {
 					return createInstanceEditor();
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL:
+			case MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL:
 				try {
 					return createInstanceAndEditor((String)arguments.get(0), (ModelOrigin)arguments.get(1), (MultiModel)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL:
+			case MIDPackage.MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL:
 				try {
 					return createMAVOInstance((String)arguments.get(0), (ModelOrigin)arguments.get(1), (MultiModel)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL:
+			case MIDPackage.MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL:
 				try {
 					return createMAVOInstanceAndEditor((String)arguments.get(0), (ModelOrigin)arguments.get(1), (MultiModel)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL:
+			case MIDPackage.MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL:
 				try {
 					return copyMAVOInstanceAndEditor((Model)arguments.get(0), (String)arguments.get(1), (Boolean)arguments.get(2), (MultiModel)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL___DELETE_INSTANCE:
+			case MIDPackage.MODEL___DELETE_INSTANCE:
 				try {
 					deleteInstance();
 					return null;
@@ -601,7 +640,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MidPackage.MODEL___GET_EMF_INSTANCE_ROOT:
+			case MIDPackage.MODEL___GET_EMF_INSTANCE_ROOT:
 				try {
 					return getEMFInstanceRoot();
 				}
@@ -745,7 +784,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		Model newModelType = MidFactory.eINSTANCE.createModel();
+		Model newModelType = MIDFactory.eINSTANCE.createModel();
 		addSubtype(newModelType, newModelTypeName, constraintLanguage, constraintImplementation, isMetamodelExtension);
 
 		return newModelType;
@@ -908,7 +947,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		Model newModel = MidFactory.eINSTANCE.createModel();
+		Model newModel = MIDFactory.eINSTANCE.createModel();
 		addInstance(newModel, newModelUri, origin, containerMultiModel);
 
 		return newModel;

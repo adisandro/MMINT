@@ -13,20 +13,13 @@ package edu.toronto.cs.se.mmint.mid.provider;
 
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.MidPackage;
-
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -37,13 +30,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ExtendibleElementEndpointItemProvider
-	extends ExtendibleElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends ExtendibleElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -86,7 +73,7 @@ public class ExtendibleElementEndpointItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ExtendibleElementEndpoint_lowerBound_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementEndpoint_lowerBound_feature", "_UI_ExtendibleElementEndpoint_type"),
-				 MidPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND,
+				 MIDPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND,
 				 true,
 				 false,
 				 false,
@@ -108,7 +95,7 @@ public class ExtendibleElementEndpointItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ExtendibleElementEndpoint_upperBound_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementEndpoint_upperBound_feature", "_UI_ExtendibleElementEndpoint_type"),
-				 MidPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND,
+				 MIDPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND,
 				 true,
 				 false,
 				 false,
@@ -130,7 +117,7 @@ public class ExtendibleElementEndpointItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ExtendibleElementEndpoint_target_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementEndpoint_target_feature", "_UI_ExtendibleElementEndpoint_type"),
-				 MidPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET,
+				 MIDPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET,
 				 true,
 				 false,
 				 true,
@@ -152,7 +139,7 @@ public class ExtendibleElementEndpointItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ExtendibleElementEndpoint_targetUri_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementEndpoint_targetUri_feature", "_UI_ExtendibleElementEndpoint_type"),
-				 MidPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI,
+				 MIDPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI,
 				 false,
 				 false,
 				 false,
@@ -187,9 +174,9 @@ public class ExtendibleElementEndpointItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ExtendibleElementEndpoint.class)) {
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND:
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND:
-			case MidPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND:
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

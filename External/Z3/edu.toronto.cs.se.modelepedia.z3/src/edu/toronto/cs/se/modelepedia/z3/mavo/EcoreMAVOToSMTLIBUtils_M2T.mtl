@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module EcoreMAVOToSMTLIBUtils_M2T('http://www.eclipse.org/emf/2002/Ecore', 'http://se.cs.toronto.edu/mmint/MAVO')]
+[module EcoreMAVOToSMTLIBUtils_M2T('http://www.eclipse.org/emf/2002/Ecore', 'http://se.cs.toronto.edu/MAVO')]
 
 [query public getObjectsOfType(root : EObject, eclass : EClass) : Sequence(OclAny) =
 	root.eAllContents()->select(eClass().name = eclass.name)
@@ -57,10 +57,10 @@
 	getEdgeFeatureName(eclass, 'target')
 /]
 
-[query public getUnmergeableIds(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Sequence(String) =
+[query public getUnmergeableFormulaVars(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Sequence(String) =
 	invoke(
 		'edu.toronto.cs.se.mmint.mavo.library.MAVOUtils',
-		'getUnmergeableIds(edu.toronto.cs.se.mmint.mavo.MAVOModel, edu.toronto.cs.se.mmint.mavo.MAVOElement)',
+		'getUnmergeableFormulaVars(edu.toronto.cs.se.mmint.mavo.MAVOModel, edu.toronto.cs.se.mmint.mavo.MAVOElement)',
 		Sequence{mavoModel, mavoModelObj}
 	)
 /]
@@ -112,8 +112,8 @@
 		[let counter : Integer = mavoModel.getAlreadyEncodedMAVOElementsCounter(mavoClass)]
 		[for (mavoElement : MAVOElement | mavoModel.getObjectsOfType(mavoClass)->asMAVOElements())]
 			[let function : String = mavoElement.eClass().getGraphFunction()]
-(declare-const [mavoElement.formulaId/] Int)[';'+function.toUpperFirst()/]
-(assert (= [mavoElement.formulaId/] [numTypes+counter+i/]))
+(declare-const [mavoElement.formulaVariable/] Int)[';'+function.toUpperFirst()/]
+(assert (= [mavoElement.formulaVariable/] [numTypes+counter+i/]))
 			[/let]
 		[/for]
 		[/let]
@@ -125,13 +125,13 @@
 		[let tgtMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeTgtFeatureName()).oclAsType(MAVOElement)]
 		[let srcEclass : EClass = srcMavoElement.eClass()]
 		[let tgtEclass : EClass = tgtMavoElement.eClass()]
-(assert (= (srcType [mavoElement.formulaId/]) [srcEclass.getMAVOClassName().toUpperCase()/]))
-(assert (= (tgtType [mavoElement.formulaId/]) [tgtEclass.getMAVOClassName().toUpperCase()/]))
-(assert (= ((as src ([srcEclass.getMAVOClassName()/])) [mavoElement.formulaId/]) [srcMavoElement.formulaId/]))
-(assert (= ((as tgt ([tgtEclass.getMAVOClassName()/])) [mavoElement.formulaId/]) [tgtMavoElement.formulaId/]))
+(assert (= (srcType [mavoElement.formulaVariable/]) [srcEclass.getMAVOClassName().toUpperCase()/]))
+(assert (= (tgtType [mavoElement.formulaVariable/]) [tgtEclass.getMAVOClassName().toUpperCase()/]))
+(assert (= ((as src ([srcEclass.getMAVOClassName()/])) [mavoElement.formulaVariable/]) [srcMavoElement.formulaVariable/]))
+(assert (= ((as tgt ([tgtEclass.getMAVOClassName()/])) [mavoElement.formulaVariable/]) [tgtMavoElement.formulaVariable/]))
 (assert (=>
-	(edge [mavoElement.formulaId/])
-	(and (node [srcMavoElement.formulaId/]) (node [tgtMavoElement.formulaId/]))
+	(edge [mavoElement.formulaVariable/])
+	(and (node [srcMavoElement.formulaVariable/]) (node [tgtMavoElement.formulaVariable/]))
 ))
 		[/let]
 		[/let]
@@ -164,8 +164,8 @@
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
 		[let function : String = mavoElement.eClass().getGraphFunction()]
 		[if (not mavoElement.may)]
-;[mavoElement.formulaId/] Exists
-(assert ([function/] [mavoElement.formulaId/]))
+;[mavoElement.formulaVariable/] Exists
+(assert ([function/] [mavoElement.formulaVariable/]))
 		[/if]
 		[/let]
 	[/for]
@@ -210,8 +210,8 @@
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
 		[let numTypes : Integer = mavoModel.getMetamodelMAVOClasses()->size()]
 		[let function : String = mavoElement.eClass().getGraphFunction()]
-(declare-const [mavoElement.formulaId/] [function.toUpperFirst()/])[';'+function.toUpperFirst()/]
-(assert (= [mavoElement.formulaId/] [numTypes+i/]))
+(declare-const [mavoElement.formulaVariable/] [function.toUpperFirst()/])[';'+function.toUpperFirst()/]
+(assert (= [mavoElement.formulaVariable/] [numTypes+i/]))
 		[/let]
 		[/let]
 	[/for]
@@ -222,12 +222,12 @@
 		[let srcEclass : EClass = srcMavoElement.eClass()]
 		[let tgtEclass : EClass = tgtMavoElement.eClass()]
 (assert (forall ((c [mavoElement.eClass().getMAVOClassName()/])) (=>
-	(edge [mavoElement.formulaId/] c)
+	(edge [mavoElement.formulaVariable/] c)
 	(and
 		(= (srcType c) [srcEclass.getMAVOClassName().toUpperCase()/])
 		(= (tgtType c) [tgtEclass.getMAVOClassName().toUpperCase()/])
-		(node [srcMavoElement.formulaId/] ((as src ([srcEclass.getMAVOClassName()/])) c))
-		(node [tgtMavoElement.formulaId/] ((as tgt ([tgtEclass.getMAVOClassName()/])) c))
+		(node [srcMavoElement.formulaVariable/] ((as src ([srcEclass.getMAVOClassName()/])) c))
+		(node [tgtMavoElement.formulaVariable/] ((as tgt ([tgtEclass.getMAVOClassName()/])) c))
 	)
 )))
 		[/let]
@@ -245,7 +245,7 @@
 (assert	(forall ((c [eclass.getMAVOClassName()/])) (or
 			[for (mavoElement : MAVOElement | eclassMavoElements)]
 				[let function : String = eclass.getGraphFunction()]
-	([function/] [mavoElement.formulaId/] c)
+	([function/] [mavoElement.formulaVariable/] c)
 				[/let]
 			[/for]
 )))
@@ -256,21 +256,21 @@
 		[let function : String = mavoElement.eClass().getGraphFunction()]
 		[let sort : String = mavoElement.eClass().getMAVOClassName()]
 		[if (not mavoElement.may)]
-;[mavoElement.formulaId/] Exists
-(assert (exists ((c [sort/])) ([function/] [mavoElement.formulaId/] c)))
+;[mavoElement.formulaVariable/] Exists
+(assert (exists ((c [sort/])) ([function/] [mavoElement.formulaVariable/] c)))
 		[/if]
 		[if (not mavoElement.set)]
-;[mavoElement.formulaId/] is Unique
+;[mavoElement.formulaVariable/] is Unique
 (assert	(forall ((c1 [sort/]) (c2 [sort/])) (=>
-	(and ([function/] [mavoElement.formulaId/] c1) ([function/] [mavoElement.formulaId/] c2))
+	(and ([function/] [mavoElement.formulaVariable/] c1) ([function/] [mavoElement.formulaVariable/] c2))
 	(= c1 c2)
 )))
 		[/if]
-		[let unmergeableIds : Sequence(String) = mavoModel.getUnmergeableIds(mavoElement)]
+		[let unmergeableIds : Sequence(String) = mavoModel.getUnmergeableFormulaVars(mavoElement)]
 		[if (not unmergeableIds->isEmpty())]
-;[mavoElement.formulaId/] is Distinct
+;[mavoElement.formulaVariable/] is Distinct
 (assert	(forall ((c [sort/])) (=>
-	([function/] [mavoElement.formulaId/] c)
+	([function/] [mavoElement.formulaVariable/] c)
 	(not (or
 			[for (unmergeableId : String | unmergeableIds)]
 		([function/] [unmergeableId/] c)

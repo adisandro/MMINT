@@ -34,9 +34,9 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidDiagramUpdater;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidNodeDescriptor;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidVisualIDRegistry;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDDiagramUpdater;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDNodeDescriptor;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry;
 
 /**
  * @generated
@@ -71,9 +71,9 @@ public class ModelEndpointReferenceModelEndpointReferenceCompartmentCanonicalEdi
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
-		List<MidNodeDescriptor> childDescriptors = MidDiagramUpdater
+		List<MIDNodeDescriptor> childDescriptors = MIDDiagramUpdater
 				.getModelEndpointReferenceModelEndpointReferenceCompartment_7004SemanticChildren(viewObject);
-		for (MidNodeDescriptor d : childDescriptors) {
+		for (MIDNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
 		return result;
@@ -92,7 +92,7 @@ public class ModelEndpointReferenceModelEndpointReferenceCompartmentCanonicalEdi
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		return ModelElementReferenceEditPart.VISUAL_ID == MidVisualIDRegistry
+		return ModelElementReferenceEditPart.VISUAL_ID == MIDVisualIDRegistry
 				.getVisualID(view);
 	}
 
@@ -104,7 +104,7 @@ public class ModelEndpointReferenceModelEndpointReferenceCompartmentCanonicalEdi
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<MidNodeDescriptor> childDescriptors = MidDiagramUpdater
+		List<MIDNodeDescriptor> childDescriptors = MIDDiagramUpdater
 				.getModelEndpointReferenceModelEndpointReferenceCompartment_7004SemanticChildren((View) getHost()
 						.getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
@@ -120,10 +120,10 @@ public class ModelEndpointReferenceModelEndpointReferenceCompartmentCanonicalEdi
 		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
 		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
 		// to answer isOrphaned == true will be used for the domain element representation, see #cleanCanonicalSemanticChildren()
-		for (Iterator<MidNodeDescriptor> descriptorsIterator = childDescriptors
+		for (Iterator<MIDNodeDescriptor> descriptorsIterator = childDescriptors
 				.iterator(); descriptorsIterator.hasNext();) {
-			MidNodeDescriptor next = descriptorsIterator.next();
-			String hint = MidVisualIDRegistry.getType(next.getVisualID());
+			MIDNodeDescriptor next = descriptorsIterator.next();
+			String hint = MIDVisualIDRegistry.getType(next.getVisualID());
 			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
 			for (View childView : getViewChildren()) {
 				EObject semanticElement = childView.getElement();
@@ -148,8 +148,8 @@ public class ModelEndpointReferenceModelEndpointReferenceCompartmentCanonicalEdi
 		//
 		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(
 				childDescriptors.size());
-		for (MidNodeDescriptor next : childDescriptors) {
-			String hint = MidVisualIDRegistry.getType(next.getVisualID());
+		for (MIDNodeDescriptor next : childDescriptors) {
+			String hint = MIDVisualIDRegistry.getType(next.getVisualID());
 			IAdaptable elementAdapter = new CanonicalElementAdapter(
 					next.getModelElement(), hint);
 			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(

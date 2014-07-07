@@ -36,7 +36,7 @@ public class RelationalDatabase_MAVOFactoryImpl extends EFactoryImpl implements 
 	 */
 	public static RelationalDatabase_MAVOFactory init() {
 		try {
-			RelationalDatabase_MAVOFactory theRelationalDatabase_MAVOFactory = (RelationalDatabase_MAVOFactory)EPackage.Registry.INSTANCE.getEFactory("http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO"); 
+			RelationalDatabase_MAVOFactory theRelationalDatabase_MAVOFactory = (RelationalDatabase_MAVOFactory)EPackage.Registry.INSTANCE.getEFactory(RelationalDatabase_MAVOPackage.eNS_URI);
 			if (theRelationalDatabase_MAVOFactory != null) {
 				return theRelationalDatabase_MAVOFactory;
 			}
