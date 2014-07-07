@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship" xsi:schemaLocation="http://se.cs.toronto.edu/mmint/MID/Relationship http://se.cs.toronto.edu/mmint/MID#//relationship">
-  <notation:Diagram xmi:id="_WqragHrXEeKvbK2mG0FePA" type="Mid" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_WqragHrXEeKvbK2mG0FePA" type="MID" measurementUnit="Pixel">
     <children xmi:type="notation:Node" xmi:id="_yRmEMKxQEeKTjusz_49gvQ" type="2012">
       <children xmi:type="notation:DecorationNode" xmi:id="_yRmrQKxQEeKTjusz_49gvQ" type="5012"/>
       <children xmi:type="notation:DecorationNode" xmi:id="_yRmrQaxQEeKTjusz_49gvQ" type="5017"/>

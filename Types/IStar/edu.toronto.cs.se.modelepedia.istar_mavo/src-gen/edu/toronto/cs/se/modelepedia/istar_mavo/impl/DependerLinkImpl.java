@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 
+import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
@@ -39,7 +40,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *
  * @generated
  */
-public class DependerLinkImpl extends edu.toronto.cs.se.mavo.impl.MAVOElementImpl implements DependerLink {
+public class DependerLinkImpl extends MAVOElementImpl implements DependerLink {
 	/**
 	 * The cached setting delegate for the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

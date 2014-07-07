@@ -14,5 +14,5 @@ package edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.helpers;
 /**
  * @generated
  */
-public class ModelElementEndpointReferenceEditHelper extends MidBaseEditHelper {
+public class ModelElementEndpointReferenceEditHelper extends MIDBaseEditHelper {
 }

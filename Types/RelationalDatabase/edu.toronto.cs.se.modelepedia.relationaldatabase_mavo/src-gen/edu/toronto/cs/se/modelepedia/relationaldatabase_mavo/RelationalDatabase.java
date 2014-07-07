@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo;
 
+import edu.toronto.cs.se.mavo.MAVOModel;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -29,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface RelationalDatabase extends edu.toronto.cs.se.mavo.MAVOModel {
+public interface RelationalDatabase extends MAVOModel {
 	/**
 	 * Returns the value of the '<em><b>Tables</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Table}.

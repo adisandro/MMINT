@@ -202,7 +202,7 @@ public class IStar_MAVONewDiagramFileWizard extends Wizard {
 		 * @generated
 		 */
 		protected boolean validatePage() {
-			if (selectedModelElement == null) {
+			if (getModelElement() == null) {
 				setErrorMessage(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.IStar_MAVONewDiagramFileWizard_RootSelectionPageNoSelectionMessage);
 				return false;
 			}
@@ -210,7 +210,7 @@ public class IStar_MAVONewDiagramFileWizard extends Wizard {
 					.getInstance()
 					.provides(
 							new CreateDiagramViewOperation(
-									new EObjectAdapter(selectedModelElement),
+									new EObjectAdapter(getModelElement()),
 									edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.IStarEditPart.MODEL_ID,
 									edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 			setErrorMessage(result ? null

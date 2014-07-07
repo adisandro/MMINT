@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 
+import edu.toronto.cs.se.mavo.impl.MAVOModelImpl;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
@@ -39,7 +40,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class IStarImpl extends edu.toronto.cs.se.mavo.impl.MAVOModelImpl implements IStar {
+public class IStarImpl extends MAVOModelImpl implements IStar {
 	/**
 	 * The cached value of the '{@link #getActors() <em>Actors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

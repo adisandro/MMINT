@@ -28,7 +28,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.ModelEleme
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.RelationshipDiagramOutlineDropObject;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementTypes;
 
 /**
  * The drag and drop edit policy for the Mapping diagram (i.e. a mapping
@@ -50,7 +50,7 @@ public class RelationshipDiagramOutlineDragDropEditPolicy extends DiagramDragDro
 
 		ModelRelEditPart modelRelEditPart = (ModelRelEditPart) getHost();
 		CompoundCommand command = new CompoundCommand("Add model element references");
-		IElementType elementType = MidElementTypes.getElementType(ModelElementReferenceEditPart.VISUAL_ID);
+		IElementType elementType = MIDElementTypes.getElementType(ModelElementReferenceEditPart.VISUAL_ID);
 		EReference containment = RelationshipPackage.Literals.MODEL_ENDPOINT_REFERENCE__MODEL_ELEM_REFS;
 
 		Iterator<?> it = dropRequest.getObjects().iterator();

@@ -294,23 +294,62 @@ Contributors:
       </editpartProvider>
    </extension>
 
+   
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOModelingAssistantProvider">
+      <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfIStarEditPart">
          <Priority name="Lowest"/>
          <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.IStarEditPart" id="IStar_1000"/>
-         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart" id="SoftGoal_2001"/>
-         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.TaskEditPart" id="Task_2002"/>
-         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ResourceEditPart" id="Resource_2003"/>
-         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.GoalEditPart" id="Goal_2004"/>
-         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart" id="Actor_2005"/>
-         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoal2EditPart" id="SoftGoal_3001"/>
-         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Task2EditPart" id="Task_3002"/>
-         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Resource2EditPart" id="Resource_3003"/>
-         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Goal2EditPart" id="Goal_3004"/>
-         <context elements="IStar_1000,SoftGoal_2001,Task_2002,Resource_2003,Goal_2004,Actor_2005,SoftGoal_3001,Task_3002,Resource_3003,Goal_3004"/>
+         <context elements="IStar_1000"/>
       </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfSoftGoalEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart" id="SoftGoal_2001"/>
+         <context elements="SoftGoal_2001"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfTaskEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.TaskEditPart" id="Task_2002"/>
+         <context elements="Task_2002"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfResourceEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ResourceEditPart" id="Resource_2003"/>
+         <context elements="Resource_2003"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfGoalEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.GoalEditPart" id="Goal_2004"/>
+         <context elements="Goal_2004"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfActorEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart" id="Actor_2005"/>
+         <context elements="Actor_2005"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfSoftGoal2EditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoal2EditPart" id="SoftGoal_3001"/>
+         <context elements="SoftGoal_3001"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfTask2EditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Task2EditPart" id="Task_3002"/>
+         <context elements="Task_3002"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfResource2EditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Resource2EditPart" id="Resource_3003"/>
+         <context elements="Resource_3003"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.assistants.IStar_MAVOModelingAssistantProviderOfGoal2EditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Goal2EditPart" id="Goal_3004"/>
+         <context elements="Goal_3004"/>
+      </modelingAssistantProvider>
+      
    </extension>
+
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>

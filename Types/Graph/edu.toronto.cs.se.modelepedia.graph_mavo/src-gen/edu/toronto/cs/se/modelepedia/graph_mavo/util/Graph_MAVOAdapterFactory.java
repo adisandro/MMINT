@@ -12,6 +12,8 @@
 package edu.toronto.cs.se.modelepedia.graph_mavo.util;
 
 import edu.toronto.cs.se.mavo.LogicElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.modelepedia.graph_mavo.*;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -91,7 +93,7 @@ public class Graph_MAVOAdapterFactory extends AdapterFactoryImpl {
 				return createEdgeAdapter();
 			}
 			@Override
-			public Adapter caseMAVOModel(edu.toronto.cs.se.mavo.MAVOModel object) {
+			public Adapter caseMAVOModel(MAVOModel object) {
 				return createMAVOModelAdapter();
 			}
 			@Override
@@ -99,7 +101,7 @@ public class Graph_MAVOAdapterFactory extends AdapterFactoryImpl {
 				return createLogicElementAdapter();
 			}
 			@Override
-			public Adapter caseMAVOElement(edu.toronto.cs.se.mavo.MAVOElement object) {
+			public Adapter caseMAVOElement(MAVOElement object) {
 				return createMAVOElementAdapter();
 			}
 			@Override

@@ -14,7 +14,7 @@ package edu.toronto.cs.se.mmint.mid.relationship.diagram.preferences;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidDiagramEditorPlugin;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDDiagramEditorPlugin;
 
 /**
  * @generated
@@ -38,6 +38,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	 * @generated
 	 */
 	protected IPreferenceStore getPreferenceStore() {
-		return MidDiagramEditorPlugin.getInstance().getPreferenceStore();
+		return MIDDiagramEditorPlugin.getInstance().getPreferenceStore();
 	}
 }

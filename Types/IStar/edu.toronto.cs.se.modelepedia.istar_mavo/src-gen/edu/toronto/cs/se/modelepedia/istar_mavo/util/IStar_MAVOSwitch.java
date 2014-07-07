@@ -12,6 +12,8 @@
 package edu.toronto.cs.se.modelepedia.istar_mavo.util;
 
 import edu.toronto.cs.se.mavo.LogicElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.modelepedia.istar_mavo.*;
 
 import org.eclipse.emf.ecore.EObject;
@@ -425,7 +427,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMAVOModel(edu.toronto.cs.se.mavo.MAVOModel object) {
+	public T caseMAVOModel(MAVOModel object) {
 		return null;
 	}
 
@@ -455,7 +457,7 @@ public class IStar_MAVOSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMAVOElement(edu.toronto.cs.se.mavo.MAVOElement object) {
+	public T caseMAVOElement(MAVOElement object) {
 		return null;
 	}
 

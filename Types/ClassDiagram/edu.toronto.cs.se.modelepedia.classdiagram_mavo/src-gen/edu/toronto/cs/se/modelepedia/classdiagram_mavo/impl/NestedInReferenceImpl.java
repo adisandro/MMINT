@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl;
 
+import edu.toronto.cs.se.mavo.impl.MAVOReferenceImpl;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference;
 
@@ -35,7 +36,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *
  * @generated
  */
-public class NestedInReferenceImpl extends edu.toronto.cs.se.mavo.impl.MAVOReferenceImpl implements NestedInReference {
+public class NestedInReferenceImpl extends MAVOReferenceImpl implements NestedInReference {
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->

@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.provider;
 
 
+import edu.toronto.cs.se.mavo.provider.MAVOReferenceItemProvider;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference;
 
@@ -31,7 +32,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
  * @generated
  */
 public class SuperclassReferenceItemProvider
-	extends edu.toronto.cs.se.mavo.provider.MAVOReferenceItemProvider {
+	extends MAVOReferenceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

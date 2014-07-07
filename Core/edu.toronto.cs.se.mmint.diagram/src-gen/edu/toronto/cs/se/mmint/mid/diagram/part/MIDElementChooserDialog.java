@@ -19,8 +19,6 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-
 /**
  * @generated
  */

@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.provider;
 
 
+import edu.toronto.cs.se.mavo.provider.MAVOReferenceItemProvider;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignColumnReference;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage;
 
@@ -31,7 +32,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
  * @generated
  */
 public class ForeignColumnReferenceItemProvider
-	extends edu.toronto.cs.se.mavo.provider.MAVOReferenceItemProvider {
+	extends MAVOReferenceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

@@ -12,16 +12,13 @@
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part;
 
 import java.util.Collections;
-import java.util.List;
 
-import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
-import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
-import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.tooling.runtime.part.DefaultLinkToolEntry;
+import org.eclipse.gmf.tooling.runtime.part.DefaultNodeToolEntry;
 
 /**
  * @generated
@@ -69,7 +66,7 @@ public class ClassDiagram_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createAttribute1CreationTool() {
-		NodeToolEntry entry = new NodeToolEntry(
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Attribute1CreationTool_title,
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Attribute1CreationTool_desc,
 				Collections
@@ -85,7 +82,7 @@ public class ClassDiagram_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createClass2CreationTool() {
-		NodeToolEntry entry = new NodeToolEntry(
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Class2CreationTool_title,
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Class2CreationTool_desc,
 				Collections
@@ -101,7 +98,7 @@ public class ClassDiagram_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createOperation3CreationTool() {
-		NodeToolEntry entry = new NodeToolEntry(
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Operation3CreationTool_title,
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Operation3CreationTool_desc,
 				Collections
@@ -117,7 +114,7 @@ public class ClassDiagram_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createAssociation1CreationTool() {
-		LinkToolEntry entry = new LinkToolEntry(
+		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Association1CreationTool_title,
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Association1CreationTool_desc,
 				Collections
@@ -133,7 +130,7 @@ public class ClassDiagram_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createDependency2CreationTool() {
-		LinkToolEntry entry = new LinkToolEntry(
+		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Dependency2CreationTool_title,
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.Dependency2CreationTool_desc,
 				Collections
@@ -149,7 +146,7 @@ public class ClassDiagram_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createNestedInReference3CreationTool() {
-		LinkToolEntry entry = new LinkToolEntry(
+		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NestedInReference3CreationTool_title,
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.NestedInReference3CreationTool_desc,
 				Collections
@@ -165,7 +162,7 @@ public class ClassDiagram_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createSuperclassReference4CreationTool() {
-		LinkToolEntry entry = new LinkToolEntry(
+		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.SuperclassReference4CreationTool_title,
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.SuperclassReference4CreationTool_desc,
 				Collections
@@ -175,63 +172,5 @@ public class ClassDiagram_MAVOPaletteFactory {
 				.getImageDescriptor(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.SuperclassReference_4003));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private static class NodeToolEntry extends ToolEntry {
-
-		/**
-		 * @generated
-		 */
-		private final List<IElementType> elementTypes;
-
-		/**
-		 * @generated
-		 */
-		private NodeToolEntry(String title, String description,
-				List<IElementType> elementTypes) {
-			super(title, description, null, null);
-			this.elementTypes = elementTypes;
-		}
-
-		/**
-		 * @generated
-		 */
-		public Tool createTool() {
-			Tool tool = new UnspecifiedTypeCreationTool(elementTypes);
-			tool.setProperties(getToolProperties());
-			return tool;
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private static class LinkToolEntry extends ToolEntry {
-
-		/**
-		 * @generated
-		 */
-		private final List<IElementType> relationshipTypes;
-
-		/**
-		 * @generated
-		 */
-		private LinkToolEntry(String title, String description,
-				List<IElementType> relationshipTypes) {
-			super(title, description, null, null);
-			this.relationshipTypes = relationshipTypes;
-		}
-
-		/**
-		 * @generated
-		 */
-		public Tool createTool() {
-			Tool tool = new UnspecifiedTypeConnectionTool(relationshipTypes);
-			tool.setProperties(getToolProperties());
-			return tool;
-		}
 	}
 }

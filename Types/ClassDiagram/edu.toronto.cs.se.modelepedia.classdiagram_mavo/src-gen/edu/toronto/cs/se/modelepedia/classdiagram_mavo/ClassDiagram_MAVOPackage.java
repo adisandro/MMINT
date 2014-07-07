@@ -187,6 +187,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int NAMED_ELEMENT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -258,6 +267,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS__VAR = NAMED_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -423,6 +441,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int TYPED_ELEMENT__VAR = NAMED_ELEMENT__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -512,6 +539,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE__VAR = TYPED_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__ALTERNATIVES = TYPED_ELEMENT__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -614,6 +650,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int OPERATION__VAR = TYPED_ELEMENT__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__ALTERNATIVES = TYPED_ELEMENT__ALTERNATIVES;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -714,6 +759,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int DEPENDENCY__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -803,6 +857,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSOCIATION__VAR = NAMED_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -896,6 +959,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int NESTED_IN_REFERENCE__VAR = MAVOPackage.MAVO_REFERENCE__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTED_IN_REFERENCE__ALTERNATIVES = MAVOPackage.MAVO_REFERENCE__ALTERNATIVES;
+
+	/**
 	 * The feature id for the '<em><b>Source</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -976,6 +1048,15 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUPERCLASS_REFERENCE__VAR = MAVOPackage.MAVO_REFERENCE__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPERCLASS_REFERENCE__ALTERNATIVES = MAVOPackage.MAVO_REFERENCE__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' container reference.

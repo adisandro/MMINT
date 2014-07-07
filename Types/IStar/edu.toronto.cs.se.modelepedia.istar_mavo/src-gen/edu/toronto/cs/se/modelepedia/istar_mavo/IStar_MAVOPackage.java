@@ -179,6 +179,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	int DEPENDENCY_ENDPOINT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY_ENDPOINT__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -268,6 +277,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTOR__VAR = DEPENDENCY_ENDPOINT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__ALTERNATIVES = DEPENDENCY_ENDPOINT__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -368,6 +386,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTENTION__VAR = DEPENDENCY_ENDPOINT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION__ALTERNATIVES = DEPENDENCY_ENDPOINT__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -560,6 +587,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	int TASK__VAR = INTENTION__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__ALTERNATIVES = INTENTION__ALTERNATIVES;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -748,6 +784,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int RESOURCE__VAR = INTENTION__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE__ALTERNATIVES = INTENTION__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -940,6 +985,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	int GOAL__VAR = INTENTION__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__ALTERNATIVES = INTENTION__ALTERNATIVES;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1128,6 +1182,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOFT_GOAL__VAR = GOAL__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFT_GOAL__ALTERNATIVES = GOAL__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1320,6 +1383,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	int INTENTION_LINK__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENTION_LINK__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1409,6 +1481,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int MEANS_END__VAR = INTENTION_LINK__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEANS_END__ALTERNATIVES = INTENTION_LINK__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1502,6 +1583,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	int DECOMPOSITION__VAR = INTENTION_LINK__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSITION__ALTERNATIVES = INTENTION_LINK__ALTERNATIVES;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1591,6 +1681,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTRIBUTION__VAR = INTENTION_LINK__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRIBUTION__ALTERNATIVES = INTENTION_LINK__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1693,6 +1792,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	int DEPENDER_LINK__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDER_LINK__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1782,6 +1890,15 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEPENDEE_LINK__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDEE_LINK__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.

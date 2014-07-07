@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.provider;
 
 
+import edu.toronto.cs.se.mavo.provider.MAVOModelItemProvider;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage;
@@ -33,7 +34,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class RelationalDatabaseItemProvider
-	extends edu.toronto.cs.se.mavo.provider.MAVOModelItemProvider {
+	extends MAVOModelItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

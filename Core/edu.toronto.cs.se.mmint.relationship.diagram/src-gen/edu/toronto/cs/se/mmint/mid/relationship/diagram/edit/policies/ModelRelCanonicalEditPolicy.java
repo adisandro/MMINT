@@ -64,10 +64,10 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementR
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelEndpointReference2EditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelEndpointReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelRelEditPart;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidDiagramUpdater;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidLinkDescriptor;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidNodeDescriptor;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidVisualIDRegistry;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDDiagramUpdater;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDLinkDescriptor;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDNodeDescriptor;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry;
 
 /**
  * @generated
@@ -112,9 +112,9 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
-		List<MidNodeDescriptor> childDescriptors = MidDiagramUpdater
+		List<MIDNodeDescriptor> childDescriptors = MIDDiagramUpdater
 				.getModelRel_1000SemanticChildren(viewObject);
-		for (MidNodeDescriptor d : childDescriptors) {
+		for (MIDNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
 		return result;
@@ -126,7 +126,7 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected boolean isOrphaned(Collection<EObject> semanticChildren,
 			final View view) {
 		if (isShortcut(view)) {
-			return MidDiagramUpdater.isShortcutOrphaned(view);
+			return MIDDiagramUpdater.isShortcutOrphaned(view);
 		}
 		return isMyDiagramElement(view)
 				&& !semanticChildren.contains(view.getElement());
@@ -136,7 +136,7 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		int visualID = MidVisualIDRegistry.getVisualID(view);
+		int visualID = MIDVisualIDRegistry.getVisualID(view);
 		switch (visualID) {
 		case ModelEndpointReferenceEditPart.VISUAL_ID:
 		case LinkReferenceEditPart.VISUAL_ID:
@@ -162,14 +162,14 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<MidNodeDescriptor> childDescriptors = MidDiagramUpdater
+		List<MIDNodeDescriptor> childDescriptors = MIDDiagramUpdater
 				.getModelRel_1000SemanticChildren((View) getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours and not shortcuts
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
 		for (View v : getViewChildren()) {
 			if (isShortcut(v)) {
-				if (MidDiagramUpdater.isShortcutOrphaned(v)) {
+				if (MIDDiagramUpdater.isShortcutOrphaned(v)) {
 					orphaned.add(v);
 				}
 				continue;
@@ -179,15 +179,15 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 		}
 		// alternative to #cleanCanonicalSemanticChildren(getViewChildren(), semanticChildren)
-		HashMap<MidNodeDescriptor, LinkedList<View>> potentialViews = new HashMap<MidNodeDescriptor, LinkedList<View>>();
+		HashMap<MIDNodeDescriptor, LinkedList<View>> potentialViews = new HashMap<MIDNodeDescriptor, LinkedList<View>>();
 		//
 		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
 		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
 		// to answer isOrphaned == true will be used for the domain element representation, see #cleanCanonicalSemanticChildren()
-		for (Iterator<MidNodeDescriptor> descriptorsIterator = childDescriptors
+		for (Iterator<MIDNodeDescriptor> descriptorsIterator = childDescriptors
 				.iterator(); descriptorsIterator.hasNext();) {
-			MidNodeDescriptor next = descriptorsIterator.next();
-			String hint = MidVisualIDRegistry.getType(next.getVisualID());
+			MIDNodeDescriptor next = descriptorsIterator.next();
+			String hint = MIDVisualIDRegistry.getType(next.getVisualID());
 			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
 			LinkedList<View> potentialMatch = new LinkedList<View>(); // semanticElement matches, hint does not
 			for (View childView : getViewChildren()) {
@@ -220,8 +220,8 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 				DiagramUIMessages.SetLocationCommand_Label_Resize);
 		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(
 				childDescriptors.size());
-		for (MidNodeDescriptor next : childDescriptors) {
-			String hint = MidVisualIDRegistry.getType(next.getVisualID());
+		for (MIDNodeDescriptor next : childDescriptors) {
+			String hint = MIDVisualIDRegistry.getType(next.getVisualID());
 			IAdaptable elementAdapter = new CanonicalElementAdapter(
 					next.getModelElement(), hint);
 			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(
@@ -302,13 +302,13 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	private Collection<IAdaptable> refreshConnections() {
 		Domain2Notation domain2NotationMap = new Domain2Notation();
-		Collection<MidLinkDescriptor> linkDescriptors = collectAllLinks(
+		Collection<MIDLinkDescriptor> linkDescriptors = collectAllLinks(
 				getDiagram(), domain2NotationMap);
 		Collection existingLinks = new LinkedList(getDiagram().getEdges());
 		for (Iterator linksIterator = existingLinks.iterator(); linksIterator
 				.hasNext();) {
 			Edge nextDiagramLink = (Edge) linksIterator.next();
-			int diagramLinkVisualID = MidVisualIDRegistry
+			int diagramLinkVisualID = MIDVisualIDRegistry
 					.getVisualID(nextDiagramLink);
 			if (diagramLinkVisualID == -1) {
 				if (nextDiagramLink.getSource() != null
@@ -320,9 +320,9 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 			EObject diagramLinkObject = nextDiagramLink.getElement();
 			EObject diagramLinkSrc = nextDiagramLink.getSource().getElement();
 			EObject diagramLinkDst = nextDiagramLink.getTarget().getElement();
-			for (Iterator<MidLinkDescriptor> linkDescriptorsIterator = linkDescriptors
+			for (Iterator<MIDLinkDescriptor> linkDescriptorsIterator = linkDescriptors
 					.iterator(); linkDescriptorsIterator.hasNext();) {
-				MidLinkDescriptor nextLinkDescriptor = linkDescriptorsIterator
+				MIDLinkDescriptor nextLinkDescriptor = linkDescriptorsIterator
 						.next();
 				if (diagramLinkObject == nextLinkDescriptor.getModelElement()
 						&& diagramLinkSrc == nextLinkDescriptor.getSource()
@@ -343,17 +343,17 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	private Collection<MidLinkDescriptor> collectAllLinks(View view,
+	private Collection<MIDLinkDescriptor> collectAllLinks(View view,
 			Domain2Notation domain2NotationMap) {
-		if (!ModelRelEditPart.MODEL_ID.equals(MidVisualIDRegistry
+		if (!ModelRelEditPart.MODEL_ID.equals(MIDVisualIDRegistry
 				.getModelID(view))) {
 			return Collections.emptyList();
 		}
-		LinkedList<MidLinkDescriptor> result = new LinkedList<MidLinkDescriptor>();
-		switch (MidVisualIDRegistry.getVisualID(view)) {
+		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
+		switch (MIDVisualIDRegistry.getVisualID(view)) {
 		case ModelRelEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(MidDiagramUpdater
+				result.addAll(MIDDiagramUpdater
 						.getModelRel_1000ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -361,7 +361,7 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case ModelEndpointReferenceEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(MidDiagramUpdater
+				result.addAll(MIDDiagramUpdater
 						.getModelEndpointReference_2007ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -369,7 +369,7 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case LinkReferenceEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(MidDiagramUpdater
+				result.addAll(MIDDiagramUpdater
 						.getLinkReference_2008ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -377,7 +377,7 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case LinkReference2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(MidDiagramUpdater
+				result.addAll(MIDDiagramUpdater
 						.getLinkReference_2009ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -385,7 +385,7 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case ModelEndpointReference2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(MidDiagramUpdater
+				result.addAll(MIDDiagramUpdater
 						.getModelEndpointReference_2010ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -393,7 +393,7 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case ModelElementReferenceEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(MidDiagramUpdater
+				result.addAll(MIDDiagramUpdater
 						.getModelElementReference_3005ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -401,7 +401,7 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case ModelElementReference2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(MidDiagramUpdater
+				result.addAll(MIDDiagramUpdater
 						.getModelElementReference_3006ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -409,7 +409,7 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case ModelElementReference3EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(MidDiagramUpdater
+				result.addAll(MIDDiagramUpdater
 						.getModelElementReference_3007ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -417,7 +417,7 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case ModelElementEndpointReferenceEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(MidDiagramUpdater
+				result.addAll(MIDDiagramUpdater
 						.getModelElementEndpointReference_4011ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -425,7 +425,7 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case BinaryLinkReferenceEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(MidDiagramUpdater
+				result.addAll(MIDDiagramUpdater
 						.getBinaryLinkReference_4012ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -433,7 +433,7 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case BinaryLinkReference2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(MidDiagramUpdater
+				result.addAll(MIDDiagramUpdater
 						.getBinaryLinkReference_4013ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -441,7 +441,7 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case ModelElementEndpointReference2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(MidDiagramUpdater
+				result.addAll(MIDDiagramUpdater
 						.getModelElementEndpointReference_4014ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -464,10 +464,10 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private Collection<IAdaptable> createConnections(
-			Collection<MidLinkDescriptor> linkDescriptors,
+			Collection<MIDLinkDescriptor> linkDescriptors,
 			Domain2Notation domain2NotationMap) {
 		LinkedList<IAdaptable> adapters = new LinkedList<IAdaptable>();
-		for (MidLinkDescriptor nextLinkDescriptor : linkDescriptors) {
+		for (MIDLinkDescriptor nextLinkDescriptor : linkDescriptors) {
 			EditPart sourceEditPart = getSourceEditPart(nextLinkDescriptor,
 					domain2NotationMap);
 			EditPart targetEditPart = getTargetEditPart(nextLinkDescriptor,
@@ -477,7 +477,7 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(
 					nextLinkDescriptor.getSemanticAdapter(),
-					MidVisualIDRegistry.getType(nextLinkDescriptor
+					MIDVisualIDRegistry.getType(nextLinkDescriptor
 							.getVisualID()), ViewUtil.APPEND, false,
 					((IGraphicalEditPart) getHost())
 							.getDiagramPreferencesHint());
@@ -542,7 +542,7 @@ public class ModelRelCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected final EditPart getHintedEditPart(EObject domainModelElement,
 			Domain2Notation domain2NotationMap, int hintVisualId) {
 		View view = (View) domain2NotationMap.getHinted(domainModelElement,
-				MidVisualIDRegistry.getType(hintVisualId));
+				MIDVisualIDRegistry.getType(hintVisualId));
 		if (view != null) {
 			return (EditPart) getHost().getViewer().getEditPartRegistry()
 					.get(view);

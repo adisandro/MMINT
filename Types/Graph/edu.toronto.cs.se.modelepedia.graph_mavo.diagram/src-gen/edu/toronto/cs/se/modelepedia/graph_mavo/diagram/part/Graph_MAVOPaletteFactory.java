@@ -12,16 +12,13 @@
 package edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part;
 
 import java.util.Collections;
-import java.util.List;
 
-import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
-import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
-import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.tooling.runtime.part.DefaultLinkToolEntry;
+import org.eclipse.gmf.tooling.runtime.part.DefaultNodeToolEntry;
 
 /**
  * @generated
@@ -64,7 +61,7 @@ public class Graph_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createNode1CreationTool() {
-		NodeToolEntry entry = new NodeToolEntry(
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Node1CreationTool_title,
 				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Node1CreationTool_desc,
 				Collections
@@ -80,7 +77,7 @@ public class Graph_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createEdge1CreationTool() {
-		LinkToolEntry entry = new LinkToolEntry(
+		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Edge1CreationTool_title,
 				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Edge1CreationTool_desc,
 				Collections
@@ -90,63 +87,5 @@ public class Graph_MAVOPaletteFactory {
 				.getImageDescriptor(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes.Edge_4001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private static class NodeToolEntry extends ToolEntry {
-
-		/**
-		 * @generated
-		 */
-		private final List<IElementType> elementTypes;
-
-		/**
-		 * @generated
-		 */
-		private NodeToolEntry(String title, String description,
-				List<IElementType> elementTypes) {
-			super(title, description, null, null);
-			this.elementTypes = elementTypes;
-		}
-
-		/**
-		 * @generated
-		 */
-		public Tool createTool() {
-			Tool tool = new UnspecifiedTypeCreationTool(elementTypes);
-			tool.setProperties(getToolProperties());
-			return tool;
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private static class LinkToolEntry extends ToolEntry {
-
-		/**
-		 * @generated
-		 */
-		private final List<IElementType> relationshipTypes;
-
-		/**
-		 * @generated
-		 */
-		private LinkToolEntry(String title, String description,
-				List<IElementType> relationshipTypes) {
-			super(title, description, null, null);
-			this.relationshipTypes = relationshipTypes;
-		}
-
-		/**
-		 * @generated
-		 */
-		public Tool createTool() {
-			Tool tool = new UnspecifiedTypeConnectionTool(relationshipTypes);
-			tool.setProperties(getToolProperties());
-			return tool;
-		}
 	}
 }

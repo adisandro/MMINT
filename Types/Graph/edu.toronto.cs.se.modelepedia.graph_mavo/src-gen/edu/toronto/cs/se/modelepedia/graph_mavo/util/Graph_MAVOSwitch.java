@@ -12,6 +12,8 @@
 package edu.toronto.cs.se.modelepedia.graph_mavo.util;
 
 import edu.toronto.cs.se.mavo.LogicElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.modelepedia.graph_mavo.*;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -182,7 +184,7 @@ public class Graph_MAVOSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMAVOModel(edu.toronto.cs.se.mavo.MAVOModel object) {
+	public T caseMAVOModel(MAVOModel object) {
 		return null;
 	}
 
@@ -212,7 +214,7 @@ public class Graph_MAVOSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMAVOElement(edu.toronto.cs.se.mavo.MAVOElement object) {
+	public T caseMAVOElement(MAVOElement object) {
 		return null;
 	}
 

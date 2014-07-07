@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts, 
+Export-Package: edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts,
  edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part,
  edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers
 Require-Bundle: org.eclipse.core.runtime,
@@ -21,6 +21,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.edit.ui,
+ org.eclipse.emf.validation,
+ org.eclipse.gef,
  org.eclipse.gmf.runtime.emf.core,
  org.eclipse.gmf.runtime.emf.commands.core,
  org.eclipse.gmf.runtime.emf.ui.properties,
@@ -31,14 +33,14 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.diagram.ui.render,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
- org.eclipse.gmf.tooling.runtime;visibility:=reexport,
- org.eclipse.draw2d;visibility:=reexport,
- org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
- edu.toronto.cs.se.modelepedia.graph_mavo;visibility:=reexport,
- edu.toronto.cs.se.modelepedia.graph_mavo.edit;visibility:=reexport,
- edu.toronto.cs.se.mmint;visibility:=reexport,
- edu.toronto.cs.se.mmint.edit;visibility:=reexport,
- org.eclipse.emf.validation;visibility:=reexport,
- org.eclipse.gef;visibility:=reexport
+ org.eclipse.gmf.tooling.runtime,
+ org.eclipse.draw2d,
+ org.eclipse.gmf.runtime.draw2d.ui,
+ edu.toronto.cs.se.mavo,
+ edu.toronto.cs.se.mavo.edit,
+ edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.mmint.edit,
+ edu.toronto.cs.se.modelepedia.graph_mavo,
+ edu.toronto.cs.se.modelepedia.graph_mavo.edit
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

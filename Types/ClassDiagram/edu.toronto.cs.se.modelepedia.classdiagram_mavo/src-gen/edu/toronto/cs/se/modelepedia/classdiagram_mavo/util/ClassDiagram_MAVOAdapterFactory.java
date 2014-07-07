@@ -12,6 +12,9 @@
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.util;
 
 import edu.toronto.cs.se.mavo.LogicElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVOReference;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram;
@@ -125,7 +128,7 @@ public class ClassDiagram_MAVOAdapterFactory extends AdapterFactoryImpl {
 				return createSuperclassReferenceAdapter();
 			}
 			@Override
-			public Adapter caseMAVOModel(edu.toronto.cs.se.mavo.MAVOModel object) {
+			public Adapter caseMAVOModel(MAVOModel object) {
 				return createMAVOModelAdapter();
 			}
 			@Override
@@ -133,11 +136,11 @@ public class ClassDiagram_MAVOAdapterFactory extends AdapterFactoryImpl {
 				return createLogicElementAdapter();
 			}
 			@Override
-			public Adapter caseMAVOElement(edu.toronto.cs.se.mavo.MAVOElement object) {
+			public Adapter caseMAVOElement(MAVOElement object) {
 				return createMAVOElementAdapter();
 			}
 			@Override
-			public Adapter caseMAVOReference(edu.toronto.cs.se.mavo.MAVOReference object) {
+			public Adapter caseMAVOReference(MAVOReference object) {
 				return createMAVOReferenceAdapter();
 			}
 			@Override

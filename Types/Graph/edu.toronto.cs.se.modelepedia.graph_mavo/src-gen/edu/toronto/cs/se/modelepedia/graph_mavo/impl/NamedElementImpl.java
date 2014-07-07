@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.graph_mavo.impl;
 
+import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.graph_mavo.NamedElement;
 import org.eclipse.emf.common.notify.Notification;
@@ -30,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class NamedElementImpl extends edu.toronto.cs.se.mavo.impl.MAVOElementImpl implements NamedElement {
+public class NamedElementImpl extends MAVOElementImpl implements NamedElement {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

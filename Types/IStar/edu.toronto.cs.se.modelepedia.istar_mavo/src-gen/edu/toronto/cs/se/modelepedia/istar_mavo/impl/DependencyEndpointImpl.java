@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 
+import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink;
@@ -42,7 +43,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public abstract class DependencyEndpointImpl extends edu.toronto.cs.se.mavo.impl.MAVOElementImpl implements DependencyEndpoint {
+public abstract class DependencyEndpointImpl extends MAVOElementImpl implements DependencyEndpoint {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 
+import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink;
@@ -38,7 +39,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *
  * @generated
  */
-public abstract class IntentionLinkImpl extends edu.toronto.cs.se.mavo.impl.MAVOElementImpl implements IntentionLink {
+public abstract class IntentionLinkImpl extends MAVOElementImpl implements IntentionLink {
 	/**
 	 * The cached setting delegate for the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

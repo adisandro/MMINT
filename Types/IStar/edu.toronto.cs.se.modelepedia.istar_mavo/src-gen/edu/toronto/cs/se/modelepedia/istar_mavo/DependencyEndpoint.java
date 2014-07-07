@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo;
 
+import edu.toronto.cs.se.mavo.MAVOElement;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -32,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  *        annotation="gmf.node label='name' label.icon='false'"
  * @generated
  */
-public interface DependencyEndpoint extends edu.toronto.cs.se.mavo.MAVOElement {
+public interface DependencyEndpoint extends MAVOElement {
 	/**
 	 * Returns the value of the '<em><b>Dependencies As Depender</b></em>' reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink}.

@@ -13,19 +13,19 @@ package edu.toronto.cs.se.mmint.mid.relationship.diagram.part;
 
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.mmint.mid.MidLevel;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 
 public class RelationshipDiagramOutlineDropObject {
 
 	private EObject modelObj;
-	private MidLevel level;
+	private MIDLevel level;
 	private ModelEndpointReference modelEndpointRef;
 	private ModelElement modelElemType;
 	private String modelElemUri;
 
-	public RelationshipDiagramOutlineDropObject(EObject modelObj, MidLevel level, ModelEndpointReference modelEndpointRef, ModelElement modelElementType, String modelElemUri) {
+	public RelationshipDiagramOutlineDropObject(EObject modelObj, MIDLevel level, ModelEndpointReference modelEndpointRef, ModelElement modelElementType, String modelElemUri) {
 
 		this.modelObj = modelObj;
 		this.level = level;
@@ -41,7 +41,7 @@ public class RelationshipDiagramOutlineDropObject {
 
 	public boolean isInstancesLevel() {
 
-		return (level == MidLevel.INSTANCES);
+		return (level == MIDLevel.INSTANCES);
 	}
 
 	public ModelEndpointReference getModelEndpointReference() {

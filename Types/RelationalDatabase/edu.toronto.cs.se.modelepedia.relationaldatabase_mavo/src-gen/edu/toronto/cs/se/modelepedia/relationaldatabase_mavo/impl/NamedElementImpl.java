@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl;
 
+import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.NamedElement;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage;
 
@@ -31,7 +32,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public abstract class NamedElementImpl extends edu.toronto.cs.se.mavo.impl.MAVOElementImpl implements NamedElement {
+public abstract class NamedElementImpl extends MAVOElementImpl implements NamedElement {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

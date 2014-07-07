@@ -37,20 +37,20 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementE
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementEndpointReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelEndpointReferenceModelEndpointReferenceCompartmentEditPart;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MidVisualIDRegistry;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MidElementTypes;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementTypes;
 
 /**
  * @generated
  */
 public class ModelEndpointReferenceItemSemanticEditPolicy extends
-		MidBaseItemSemanticEditPolicy {
+		MIDBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	public ModelEndpointReferenceItemSemanticEditPolicy() {
-		super(MidElementTypes.ModelEndpointReference_2007);
+		super(MIDElementTypes.ModelEndpointReference_2007);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class ModelEndpointReferenceItemSemanticEditPolicy extends
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
-			if (MidVisualIDRegistry.getVisualID(incomingLink) == ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(incomingLink) == ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
@@ -74,7 +74,7 @@ public class ModelEndpointReferenceItemSemanticEditPolicy extends
 		}
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
-			if (MidVisualIDRegistry.getVisualID(outgoingLink) == ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						outgoingLink.getSource().getElement(), null,
 						outgoingLink.getTarget().getElement(), false);
@@ -103,17 +103,17 @@ public class ModelEndpointReferenceItemSemanticEditPolicy extends
 		View view = (View) getHost().getModel();
 		for (Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
 			Node node = (Node) nit.next();
-			switch (MidVisualIDRegistry.getVisualID(node)) {
+			switch (MIDVisualIDRegistry.getVisualID(node)) {
 			case ModelEndpointReferenceModelEndpointReferenceCompartmentEditPart.VISUAL_ID:
 				for (Iterator<?> cit = node.getChildren().iterator(); cit
 						.hasNext();) {
 					Node cnode = (Node) cit.next();
-					switch (MidVisualIDRegistry.getVisualID(cnode)) {
+					switch (MIDVisualIDRegistry.getVisualID(cnode)) {
 					case ModelElementReferenceEditPart.VISUAL_ID:
 						for (Iterator<?> it = cnode.getTargetEdges().iterator(); it
 								.hasNext();) {
 							Edge incomingLink = (Edge) it.next();
-							if (MidVisualIDRegistry.getVisualID(incomingLink) == ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID) {
+							if (MIDVisualIDRegistry.getVisualID(incomingLink) == ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										incomingLink.getSource().getElement(),
 										null, incomingLink.getTarget()
@@ -123,7 +123,7 @@ public class ModelEndpointReferenceItemSemanticEditPolicy extends
 										incomingLink));
 								continue;
 							}
-							if (MidVisualIDRegistry.getVisualID(incomingLink) == ModelElementEndpointReferenceEditPart.VISUAL_ID) {
+							if (MIDVisualIDRegistry.getVisualID(incomingLink) == ModelElementEndpointReferenceEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -131,7 +131,7 @@ public class ModelEndpointReferenceItemSemanticEditPolicy extends
 										incomingLink));
 								continue;
 							}
-							if (MidVisualIDRegistry.getVisualID(incomingLink) == BinaryLinkReferenceEditPart.VISUAL_ID) {
+							if (MIDVisualIDRegistry.getVisualID(incomingLink) == BinaryLinkReferenceEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -139,7 +139,7 @@ public class ModelEndpointReferenceItemSemanticEditPolicy extends
 										incomingLink));
 								continue;
 							}
-							if (MidVisualIDRegistry.getVisualID(incomingLink) == BinaryLinkReference2EditPart.VISUAL_ID) {
+							if (MIDVisualIDRegistry.getVisualID(incomingLink) == BinaryLinkReference2EditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -147,7 +147,7 @@ public class ModelEndpointReferenceItemSemanticEditPolicy extends
 										incomingLink));
 								continue;
 							}
-							if (MidVisualIDRegistry.getVisualID(incomingLink) == ModelElementEndpointReference2EditPart.VISUAL_ID) {
+							if (MIDVisualIDRegistry.getVisualID(incomingLink) == ModelElementEndpointReference2EditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -159,7 +159,7 @@ public class ModelEndpointReferenceItemSemanticEditPolicy extends
 						for (Iterator<?> it = cnode.getSourceEdges().iterator(); it
 								.hasNext();) {
 							Edge outgoingLink = (Edge) it.next();
-							if (MidVisualIDRegistry.getVisualID(outgoingLink) == ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID) {
+							if (MIDVisualIDRegistry.getVisualID(outgoingLink) == ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(
 										outgoingLink.getSource().getElement(),
 										null, outgoingLink.getTarget()
@@ -169,7 +169,7 @@ public class ModelEndpointReferenceItemSemanticEditPolicy extends
 										outgoingLink));
 								continue;
 							}
-							if (MidVisualIDRegistry.getVisualID(outgoingLink) == BinaryLinkReferenceEditPart.VISUAL_ID) {
+							if (MIDVisualIDRegistry.getVisualID(outgoingLink) == BinaryLinkReferenceEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -177,7 +177,7 @@ public class ModelEndpointReferenceItemSemanticEditPolicy extends
 										outgoingLink));
 								continue;
 							}
-							if (MidVisualIDRegistry.getVisualID(outgoingLink) == BinaryLinkReference2EditPart.VISUAL_ID) {
+							if (MIDVisualIDRegistry.getVisualID(outgoingLink) == BinaryLinkReference2EditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(
 										outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
@@ -214,7 +214,7 @@ public class ModelEndpointReferenceItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010 == req
+		if (MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010 == req
 				.getElementType()) {
 			return getGEFWrapper(new ExtendibleElementReferenceSupertypeRefCreateCommand(
 					req, req.getSource(), req.getTarget()));
@@ -227,7 +227,7 @@ public class ModelEndpointReferenceItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (MidElementTypes.ExtendibleElementReferenceSupertypeRef_4010 == req
+		if (MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010 == req
 				.getElementType()) {
 			return getGEFWrapper(new ExtendibleElementReferenceSupertypeRefCreateCommand(
 					req, req.getSource(), req.getTarget()));

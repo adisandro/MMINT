@@ -45,8 +45,8 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.directedit.TextDirectEditManager2;
 import org.eclipse.gmf.tooling.runtime.draw2d.labels.SimpleLabelDelegate;
+import org.eclipse.gmf.tooling.runtime.edit.policies.DefaultLinkLabelDragPolicy;
 import org.eclipse.gmf.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
@@ -119,9 +119,8 @@ public class AssociationNameEditPart extends LabelEditPart implements
 		installEditPolicy(
 				EditPolicy.SELECTION_FEEDBACK_ROLE,
 				new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.policies.ClassDiagram_MAVOTextSelectionEditPolicy());
-		installEditPolicy(
-				EditPolicy.PRIMARY_DRAG_ROLE,
-				new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassDiagramEditPart.LinkLabelDragPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
+				new DefaultLinkLabelDragPolicy());
 	}
 
 	/**
@@ -343,7 +342,7 @@ public class AssociationNameEditPart extends LabelEditPart implements
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new TextDirectEditManager2(
+			setManager(new TextDirectEditManager(
 					this,
 					null,
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassDiagram_MAVOEditPartFactory
@@ -370,8 +369,8 @@ public class AssociationNameEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		if (getManager().getClass() == TextDirectEditManager2.class) {
-			((TextDirectEditManager2) getManager()).show(eventLocation
+		if (getManager().getClass() == TextDirectEditManager.class) {
+			((TextDirectEditManager) getManager()).show(eventLocation
 					.getSWTPoint());
 		}
 	}
@@ -382,9 +381,6 @@ public class AssociationNameEditPart extends LabelEditPart implements
 	private void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
-		} else // 
-		if (getManager() instanceof TextDirectEditManager2) {
-			((TextDirectEditManager2) getManager()).show(initialCharacter);
 		} else //
 		{
 			performDirectEdit();

@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.graph_mavo.provider;
 
 
+import edu.toronto.cs.se.mavo.provider.MAVOElementItemProvider;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.graph_mavo.NamedElement;
 import java.util.Collection;
@@ -31,7 +32,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class NamedElementItemProvider
-	extends edu.toronto.cs.se.mavo.provider.MAVOElementItemProvider {
+	extends MAVOElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
