@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -25,6 +26,7 @@ import org.eclipse.uml2.uml.Stereotype;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
+import edu.toronto.cs.se.mavo.MAVOAlternative;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -53,20 +55,32 @@ public class MAVOUtils {
 
 		String label = "";
 		boolean mavo = mavoElement.isMay() | mavoElement.isSet() | mavoElement.isVar();
+		EList<MAVOAlternative> alternatives = mavoElement.getAlternatives();
+		
+		String altLabel = "";
+		int numAlternatives = alternatives.size();
+		if(numAlternatives > 0){
+			altLabel += " "+alternatives.get(0).getFormulaVariable();
+		}
+		for (int i=1; i<numAlternatives; i++){
+			altLabel += ", "+alternatives.get(i).getFormulaVariable();
+		}
+		
 		if (mavo) {
 			label =
 				(withParenthesis ? "(" : "") +
 				(mavoElement.isMay() ? "M" : "") +
 				(mavoElement.isSet() ? "S" : "") +
 				(mavoElement.isVar() ? "V" : "") +
-				(withParenthesis ? ")" : "");
+				(withParenthesis ? ")" : "")+
+				altLabel;
 		}
 
 		return label;
 	}
 
 	public static void setMAVOElementLabel(MAVOElement mavoElement, String newLabel) {
-
+		
 		boolean isMay = false, isSet = false, isVar = false;
 		for (char c : newLabel.replace(" ", "").toUpperCase().toCharArray()) {
 			switch (c) {
