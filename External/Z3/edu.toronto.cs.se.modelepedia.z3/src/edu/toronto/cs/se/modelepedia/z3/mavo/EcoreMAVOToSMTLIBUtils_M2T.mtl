@@ -57,10 +57,10 @@
 	getEdgeFeatureName(eclass, 'target')
 /]
 
-[query public getUnmergeableIds(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Sequence(String) =
+[query public getUnmergeableFormulaVars(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Sequence(String) =
 	invoke(
 		'edu.toronto.cs.se.mmint.mavo.library.MAVOUtils',
-		'getUnmergeableIds(edu.toronto.cs.se.mmint.mavo.MAVOModel, edu.toronto.cs.se.mmint.mavo.MAVOElement)',
+		'getUnmergeableFormulaVars(edu.toronto.cs.se.mmint.mavo.MAVOModel, edu.toronto.cs.se.mmint.mavo.MAVOElement)',
 		Sequence{mavoModel, mavoModelObj}
 	)
 /]
@@ -266,7 +266,7 @@
 	(= c1 c2)
 )))
 		[/if]
-		[let unmergeableIds : Sequence(String) = mavoModel.getUnmergeableIds(mavoElement)]
+		[let unmergeableIds : Sequence(String) = mavoModel.getUnmergeableFormulaVars(mavoElement)]
 		[if (not unmergeableIds->isEmpty())]
 ;[mavoElement.formulaVariable/] is Distinct
 (assert	(forall ((c [sort/])) (=>

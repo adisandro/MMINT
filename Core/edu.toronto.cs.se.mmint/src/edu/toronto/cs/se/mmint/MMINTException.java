@@ -59,6 +59,7 @@ public class MMINTException extends Exception {
 				new Status(IStatus.ERROR, MMINTActivator.PLUGIN_ID, "") :
 				new Status(IStatus.ERROR, MMINTActivator.PLUGIN_ID, e.toString());
 			ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "MMINT Error", message, status);
+			//TODO MMINT[EXCEPTION] Use Eclipse error logging
 		}
 	}
 

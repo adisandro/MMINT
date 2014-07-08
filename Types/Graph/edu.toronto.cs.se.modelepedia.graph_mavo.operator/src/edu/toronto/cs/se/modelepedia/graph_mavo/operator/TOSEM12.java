@@ -250,19 +250,19 @@ public class TOSEM12 extends RandomOperatorImpl {
 		String smtAllsatEncoding = smtEncoding + Z3SMTUtils.assertion(smtConcretizationsConstraint) + Z3SMTUtils.assertion(smtProperty);
 		Z3SMTModel z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding + Z3SMTUtils.assertion(smtConcretizationsConstraint) + Z3SMTUtils.assertion(smtProperty));
 		while (z3Model.getZ3Bool() == Z3SMTBool.SAT) {
-			Set<String> formulaIds = new HashSet<String>();
+			Set<String> formulaVars = new HashSet<String>();
 			Map<String, Integer> z3ModelNodes = z3Model.getZ3ModelNodes(smtNodes);
 			for (Integer z3ModelNode : z3ModelNodes.values()) {
-				formulaIds.add(smtNodes.get(z3ModelNode));
+				formulaVars.add(smtNodes.get(z3ModelNode));
 			}
 			Map<String, Integer> z3ModelEdges = z3Model.getZ3ModelEdges(smtEdges);
 			for (Integer z3ModelEdge : z3ModelEdges.values()) {
-				formulaIds.add(smtEdges.get(z3ModelEdge));
+				formulaVars.add(smtEdges.get(z3ModelEdge));
 			}
 			String smtConcretizationConstraint = "";
 			for (MAVOElement mayModelObj : mayModelObjs) {
 				String smtConcretizationElem = Z3SMTUtils.predicate((mayModelObj instanceof Node) ? Z3SMTUtils.SMTLIB_NODE_FUNCTION : Z3SMTUtils.SMTLIB_EDGE_FUNCTION, mayModelObj.getFormulaVariable());
-				smtConcretizationConstraint += (formulaIds.contains(mayModelObj.getFormulaVariable())) ? 
+				smtConcretizationConstraint += (formulaVars.contains(mayModelObj.getFormulaVariable())) ? 
 					Z3SMTUtils.not(smtConcretizationElem) :
 					smtConcretizationElem;
 			}
