@@ -29,7 +29,7 @@
                name="RelationalDatabase_MAVO"
                uri="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO">
             <superType
-                  uri="http://se.cs.toronto.edu/mmint/MAVO">
+                  uri="http://se.cs.toronto.edu/MAVO">
             </superType>
          </type>
       </modelType>
