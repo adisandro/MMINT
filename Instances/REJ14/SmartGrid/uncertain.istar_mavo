@@ -37,8 +37,8 @@
     <intentions xsi:type="istar_mavo:Task" name="Directly">
       <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.1/@intentions.7"/>
       <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.1/@intentions.5" type="HURT"/>
-      <linksAsSrc xsi:type="istar_mavo:Contribution" may="true" tgt="//@actors.1/@intentions.6" type="HURT"/>
-      <linksAsSrc xsi:type="istar_mavo:Contribution" may="true" tgt="//@actors.1/@intentions.6" type="HELP"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="Directly2HURTConserveEnergyEMS" may="true" tgt="//@actors.1/@intentions.6" type="HURT"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="Directly2HELPConserveEnergyEMS" may="true" tgt="//@actors.1/@intentions.6" type="HELP"/>
     </intentions>
     <intentions xsi:type="istar_mavo:Task" name="Indirectly" dependenciesAsDepender="//@dependums.12/@dependerLinks.0">
       <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.1/@intentions.7"/>
@@ -46,8 +46,8 @@
     </intentions>
     <intentions xsi:type="istar_mavo:Goal" name="Handle Security" linksAsTgt="//@actors.1/@intentions.11/@linksAsSrc.0 //@actors.1/@intentions.12/@linksAsSrc.1">
       <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.1/@intentions.3"/>
-      <linksAsSrc xsi:type="istar_mavo:Contribution" may="true" tgt="//@actors.1/@intentions.4" type="HELP"/>
-      <linksAsSrc xsi:type="istar_mavo:Contribution" may="true" tgt="//@actors.1/@intentions.4"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="HandleSecurity2HELPProtectPersonalInformationEMS" may="true" tgt="//@actors.1/@intentions.4" type="HELP"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="HandleSecurity2MAKEProtectPersonalInformationEMS" may="true" tgt="//@actors.1/@intentions.4"/>
     </intentions>
     <intentions xsi:type="istar_mavo:Task" name="Encrypt Data" linksAsTgt="//@actors.1/@intentions.13/@linksAsSrc.0">
       <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.1/@intentions.10"/>
