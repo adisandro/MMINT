@@ -29,7 +29,7 @@
                name="IStar_MAVO"
                uri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
             <superType
-                  uri="http://se.cs.toronto.edu/mmint/MAVO">
+                  uri="http://se.cs.toronto.edu/MAVO">
             </superType>
          </type>
       </modelType>

@@ -72,6 +72,8 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		//TODO MMINT[REASONING] generalize for non-mavo too
+		//TODO MMINT[REASONING] refactor common code/encoding for mayOnly and not
+		//TODO MMINT[REASONING] there's something wrong, at least one certain element per sort is required to get things right in full mavo
 		Model mavoModel = actualParameters.get(0);
 		boolean mayOnly = MAVOUtils.createFormulaIds(mavoModel);
 		if (this.mayOnly == null) {
@@ -80,7 +82,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 
 		List<Object> m2tArgs = new ArrayList<Object>();
 		m2tArgs.add(mavoModel.getName());
-		m2tArgs.add(mayOnly);
+		m2tArgs.add(this.mayOnly);
 		File folder = (new File(MultiModelUtils.prependWorkspaceToUri(mavoModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);
