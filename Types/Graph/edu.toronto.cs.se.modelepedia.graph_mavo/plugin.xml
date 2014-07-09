@@ -30,7 +30,7 @@
                name="Graph_MAVO"
                uri="http://se.cs.toronto.edu/modelepedia/Graph_MAVO">
             <superType
-                  uri="http://se.cs.toronto.edu/mmint/MAVO">
+                  uri="http://se.cs.toronto.edu/MAVO">
             </superType>
          </type>
       </modelType>

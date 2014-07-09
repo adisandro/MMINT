@@ -375,7 +375,7 @@
                name="UML_MAVO"
                uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
             <superType
-                  uri="http://se.cs.toronto.edu/mmint/MAVO">
+                  uri="http://se.cs.toronto.edu/MAVO">
             </superType>
             <superType
                   uri="http://www.eclipse.org/uml2/4.0.0/UML">
