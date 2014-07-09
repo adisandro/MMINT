@@ -54,11 +54,15 @@ public class MAVOUtils {
 	public static String getMAVOElementLabel(MAVOElement mavoElement, boolean withParenthesis) {
 
 		String label = "";
-		boolean mavo = mavoElement.isMay() | mavoElement.isSet() | mavoElement.isVar();
 		EList<MAVOAlternative> alternatives = mavoElement.getAlternatives();
-		
-		String altLabel = "";
 		int numAlternatives = alternatives.size();
+
+		boolean mavo = mavoElement.isMay() | mavoElement.isSet() | mavoElement.isVar();
+		if (numAlternatives > 0){
+			mavo = true;
+		}
+
+		String altLabel = "";
 		if(numAlternatives > 0){
 			altLabel += " "+alternatives.get(0).getFormulaVariable();
 		}
