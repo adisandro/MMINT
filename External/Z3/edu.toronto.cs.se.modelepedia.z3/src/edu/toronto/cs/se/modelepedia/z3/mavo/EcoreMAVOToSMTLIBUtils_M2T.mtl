@@ -169,6 +169,37 @@
 		[/if]
 		[/let]
 	[/for]
+	[for (mavoDecision : MAVODecision | mavoModel.decisions)]
+		[for (mavoAlternative : MAVOAlternative | mavoDecision.alternatives)]
+;[mavoDecision.formulaVariable/]-[mavoAlternative.formulaVariable/] Alternative Elements
+(declare-fun [mavoAlternative.formulaVariable/] () Bool)
+(assert (= [mavoAlternative.formulaVariable/][if (mavoAlternative.mavoElements->size() > 1)] (and[/if]
+			[for (mavoElement : MAVOElement | mavoAlternative.mavoElements)]
+	([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/])
+			[/for]
+))[if (mavoAlternative.mavoElements->size() > 1)])[/if]
+			[if (mavoAlternative.mavoElements->size() > 1)]
+(assert (=>
+	(not [mavoAlternative.formulaVariable/])
+	(not (or
+				[for (mavoElement : MAVOElement | mavoAlternative.mavoElements)]
+		([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/])
+				[/for]
+	))
+))
+			[/if]
+		[/for]
+;[mavoDecision.formulaVariable/] Decision
+		[if (mavoDecision.alternatives->size() > 1)]
+(assert ([mavoDecision.logic.toString().toLower()/]
+			[for (mavoAlternative : MAVOAlternative | mavoDecision.alternatives)]
+	[mavoAlternative.formulaVariable/]
+			[/for]
+))
+		[else]
+(assert [mavoDecision.alternatives->at(1).formulaVariable/])
+		[/if]
+	[/for]
 [/template]
 
 [template public encodeModel(mavoModel : MAVOModel)]
@@ -281,5 +312,36 @@
 		[/let]
 		[/let]
 		[/let]
+	[/for]
+	[for (mavoDecision : MAVODecision | mavoModel.decisions)]
+		[for (mavoAlternative : MAVOAlternative | mavoDecision.alternatives)]
+;[mavoDecision.formulaVariable/]-[mavoAlternative.formulaVariable/] Alternative Elements
+(declare-fun [mavoAlternative.formulaVariable/] () Bool)
+(assert (= [mavoAlternative.formulaVariable/][if (mavoAlternative.mavoElements->size() > 1)] (and[/if]
+			[for (mavoElement : MAVOElement | mavoAlternative.mavoElements)]
+	(exists ((c [mavoElement.eClass().getMAVOClassName()/])) ([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/] c))
+			[/for]
+))[if (mavoAlternative.mavoElements->size() > 1)])[/if]
+			[if (mavoAlternative.mavoElements->size() > 1)]
+(assert (=>
+	(not [mavoAlternative.formulaVariable/])
+	(not (or
+				[for (mavoElement : MAVOElement | mavoAlternative.mavoElements)]
+		(exists ((c [mavoElement.eClass().getMAVOClassName()/])) ([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/] c))
+				[/for]
+	))
+))
+			[/if]
+		[/for]
+;[mavoDecision.formulaVariable/] Decision
+		[if (mavoDecision.alternatives->size() > 1)]
+(assert ([mavoDecision.logic.toString().toLower()/]
+			[for (mavoAlternative : MAVOAlternative | mavoDecision.alternatives)]
+	[mavoAlternative.formulaVariable/]
+			[/for]
+))
+		[else]
+(assert [mavoDecision.alternatives->at(1).formulaVariable/])
+		[/if]
 	[/for]
 [/template]
