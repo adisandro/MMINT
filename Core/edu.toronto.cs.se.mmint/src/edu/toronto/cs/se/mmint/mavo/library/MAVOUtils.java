@@ -310,7 +310,7 @@ public class MAVOUtils {
 		newElement.setFormulaVariable(oldElement.getFormulaVariable());
 	}
 
-	public static boolean createFormulaIds(Model mavoModel) throws Exception {
+	public static boolean createFormulaVars(Model mavoModel) throws Exception {
 
 		boolean modified = false, mayOnly = true;
 		MAVOModel rootMavoModel = (MAVOModel) mavoModel.getEMFInstanceRoot();

@@ -75,7 +75,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 		//TODO MMINT[REASONING] refactor common code/encoding for mayOnly and not
 		//TODO MMINT[REASONING] there's something wrong, at least one certain element per sort is required to get things right in full mavo
 		Model mavoModel = actualParameters.get(0);
-		boolean mayOnly = MAVOUtils.createFormulaIds(mavoModel);
+		boolean mayOnly = MAVOUtils.createFormulaVars(mavoModel);
 		if (this.mayOnly == null) {
 			this.mayOnly = mayOnly;
 		}

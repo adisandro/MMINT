@@ -75,7 +75,7 @@ public class IStarMAVOToSMTLIB extends OperatorImpl {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		Model istarModel = actualParameters.get(0);
-		MAVOUtils.createFormulaIds(istarModel);
+		MAVOUtils.createFormulaVars(istarModel);
 
 		List<Object> m2tArgs = new ArrayList<Object>();
 		m2tArgs.add(istarModel.getName());
