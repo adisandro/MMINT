@@ -31,7 +31,7 @@
     <intentions xsi:type="istar_mavo:SoftGoal" name="Conserve Energy EMS" dependenciesAsDependee="//@dependums.2/@dependeeLinks.0" linksAsTgt="//@actors.1/@intentions.8/@linksAsSrc.2 //@actors.1/@intentions.8/@linksAsSrc.3">
       <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.1/@intentions.0" type="HELP"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Goal" name="Control Smart Appliances" linksAsTgt="//@actors.1/@intentions.8/@linksAsSrc.0 //@actors.1/@intentions.9/@linksAsSrc.0">
+    <intentions xsi:type="istar_mavo:Goal" name="Control Smart AppliancesEMS" linksAsTgt="//@actors.1/@intentions.8/@linksAsSrc.0 //@actors.1/@intentions.9/@linksAsSrc.0">
       <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.1/@intentions.1"/>
     </intentions>
     <intentions xsi:type="istar_mavo:Task" name="Directly">
