@@ -239,8 +239,7 @@ public class FASE14 extends RE13 {
 				!(modelObj instanceof DependerLink && ((DependerLink) modelObj).getDepender() instanceof Actor) &&
 				!(modelObj instanceof DependeeLink && ((DependeeLink) modelObj).getDependee() instanceof Actor)
 			) {
-				String formulaVar = ((MAVOElement) modelObj).getFormulaVariable();
-				mavoModelObjs.put(formulaVar, (MAVOElement) modelObj);
+				mavoModelObjs.put(((MAVOElement) modelObj).getFormulaVariable(), (MAVOElement) modelObj);
 			}
 		}
 	}
