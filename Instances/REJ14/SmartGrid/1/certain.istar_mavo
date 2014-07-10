@@ -1,115 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <istar_mavo:IStar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:istar_mavo="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
-  <actors name="Consumer">
-    <intentions xsi:type="istar_mavo:SoftGoal" name="Protect Personal Information C" dependenciesAsDepender="//@dependums.0/@dependerLinks.0" linksAsTgt="//@actors.0/@intentions.6/@linksAsSrc.0"/>
-    <intentions xsi:type="istar_mavo:SoftGoal" name="Conserve Energy C" dependenciesAsDepender="//@dependums.2/@dependerLinks.0" linksAsTgt="//@actors.0/@intentions.5/@linksAsSrc.0 //@actors.0/@intentions.4/@linksAsSrc.0"/>
-    <intentions xsi:type="istar_mavo:SoftGoal" name="Save Time C" dependenciesAsDepender="//@dependums.1/@dependerLinks.0" linksAsTgt="//@actors.0/@intentions.6/@linksAsSrc.1"/>
-    <intentions xsi:type="istar_mavo:Goal" name="Consume Energy C" linksAsTgt="//@actors.0/@intentions.4/@linksAsSrc.1 //@actors.0/@intentions.5/@linksAsSrc.1"/>
-    <intentions xsi:type="istar_mavo:Goal" name="Be Informed Of Usage" dependenciesAsDepender="//@dependums.3/@dependerLinks.0 //@dependums.4/@dependerLinks.0">
-      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.1" type="HELP"/>
-      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.0/@intentions.3"/>
+  <actors formulaVariable="Consumer" name="Consumer">
+    <intentions xsi:type="istar_mavo:SoftGoal" formulaVariable="ProtectPersonalInformationC" name="Protect Personal Information C" dependenciesAsDepender="//@dependums.0/@dependerLinks.0" linksAsTgt="//@actors.0/@intentions.6/@linksAsSrc.0"/>
+    <intentions xsi:type="istar_mavo:SoftGoal" formulaVariable="ConserveEnergyC" name="Conserve Energy C" dependenciesAsDepender="//@dependums.2/@dependerLinks.0" linksAsTgt="//@actors.0/@intentions.5/@linksAsSrc.0 //@actors.0/@intentions.4/@linksAsSrc.0"/>
+    <intentions xsi:type="istar_mavo:SoftGoal" formulaVariable="SaveTimeC" name="Save Time C" dependenciesAsDepender="//@dependums.1/@dependerLinks.0" linksAsTgt="//@actors.0/@intentions.6/@linksAsSrc.1"/>
+    <intentions xsi:type="istar_mavo:Goal" formulaVariable="ConsumeEnergyC" name="Consume Energy C" linksAsTgt="//@actors.0/@intentions.4/@linksAsSrc.1 //@actors.0/@intentions.5/@linksAsSrc.1"/>
+    <intentions xsi:type="istar_mavo:Goal" formulaVariable="BeInformedOfUsage" name="Be Informed Of Usage" dependenciesAsDepender="//@dependums.3/@dependerLinks.0 //@dependums.4/@dependerLinks.0">
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="BeInformedOfUsage2ConserveEnergyC" tgt="//@actors.0/@intentions.1" type="HELP"/>
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" formulaVariable="BeInformedOfUsage2ConsumeEnergyC" tgt="//@actors.0/@intentions.3"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Task" name="Define Policies" dependenciesAsDependee="//@dependums.5/@dependeeLinks.0">
-      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.1" type="HELP"/>
-      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.0/@intentions.3"/>
+    <intentions xsi:type="istar_mavo:Task" formulaVariable="DefinePolicies" name="Define Policies" dependenciesAsDependee="//@dependums.5/@dependeeLinks.0">
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="DefinePolicies2ConserveEnergyC" tgt="//@actors.0/@intentions.1" type="HELP"/>
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" formulaVariable="DefinePolicies2ConsumeEnergyC" tgt="//@actors.0/@intentions.3"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Task" name="Manage Encription Keys" dependenciesAsDependee="//@dependums.6/@dependeeLinks.0" fullySatisfied="true">
-      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.0" type="HELP"/>
-      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.2" type="HURT"/>
-    </intentions>
-  </actors>
-  <actors name="Energy Management System">
-    <intentions xsi:type="istar_mavo:SoftGoal" name="Reduce Costs" linksAsTgt="//@actors.1/@intentions.6/@linksAsSrc.0 //@actors.1/@intentions.12/@linksAsSrc.0"/>
-    <intentions xsi:type="istar_mavo:Goal" name="Store And Execute Policies" dependenciesAsDepender="//@dependums.5/@dependerLinks.0" linksAsTgt="//@actors.1/@intentions.7/@linksAsSrc.0 //@actors.1/@intentions.3/@linksAsSrc.1"/>
-    <intentions xsi:type="istar_mavo:Task" name="Display Data" dependenciesAsDepender="//@dependums.11/@dependerLinks.0" dependenciesAsDependee="//@dependums.3/@dependeeLinks.0 //@dependums.4/@dependeeLinks.0" linksAsTgt="//@actors.1/@intentions.3/@linksAsSrc.0"/>
-    <intentions xsi:type="istar_mavo:Goal" name="Communicate With The House" dependenciesAsDepender="//@dependums.7/@dependerLinks.0" linksAsTgt="//@actors.1/@intentions.10/@linksAsSrc.0 //@actors.1/@intentions.13/@linksAsSrc.0">
-      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.1/@intentions.2"/>
-      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.1/@intentions.1"/>
-    </intentions>
-    <intentions xsi:type="istar_mavo:SoftGoal" name="Protect Personal Information EMS" dependenciesAsDependee="//@dependums.0/@dependeeLinks.0" linksAsTgt="//@actors.1/@intentions.11/@linksAsSrc.1"/>
-    <intentions xsi:type="istar_mavo:SoftGoal" name="Save Time EMS" dependenciesAsDependee="//@dependums.1/@dependeeLinks.0" linksAsTgt="//@actors.1/@intentions.9/@linksAsSrc.1 //@actors.1/@intentions.8/@linksAsSrc.1"/>
-    <intentions xsi:type="istar_mavo:SoftGoal" name="Conserve Energy EMS" dependenciesAsDependee="//@dependums.2/@dependeeLinks.0" linksAsTgt="//@actors.1/@intentions.8/@linksAsSrc.2">
-      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.1/@intentions.0" type="HELP"/>
-    </intentions>
-    <intentions xsi:type="istar_mavo:Goal" name="Control Smart AppliancesEMS" linksAsTgt="//@actors.1/@intentions.8/@linksAsSrc.0 //@actors.1/@intentions.9/@linksAsSrc.0">
-      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.1/@intentions.1"/>
-    </intentions>
-    <intentions xsi:type="istar_mavo:Task" name="Directly" fullyDenied="true">
-      <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.1/@intentions.7"/>
-      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.1/@intentions.5" type="HURT"/>
-      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="" tgt="//@actors.1/@intentions.6" type="HELP"/>
-    </intentions>
-    <intentions xsi:type="istar_mavo:Task" name="Indirectly" dependenciesAsDepender="//@dependums.10/@dependerLinks.0">
-      <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.1/@intentions.7"/>
-      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.1/@intentions.5" type="HELP"/>
-    </intentions>
-    <intentions xsi:type="istar_mavo:Goal" name="Handle Security" linksAsTgt="//@actors.1/@intentions.11/@linksAsSrc.0 //@actors.1/@intentions.12/@linksAsSrc.1">
-      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.1/@intentions.3"/>
-    </intentions>
-    <intentions xsi:type="istar_mavo:Task" name="Encrypt Data" dependenciesAsDepender="//@dependums.6/@dependerLinks.0">
-      <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.1/@intentions.10"/>
-      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="" tgt="//@actors.1/@intentions.4" type="HELP"/>
-    </intentions>
-    <intentions xsi:type="istar_mavo:Task" name="No Encryption" fullyDenied="true">
-      <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.1/@intentions.0" type="HELP"/>
-      <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.1/@intentions.10"/>
-    </intentions>
-    <intentions xsi:type="istar_mavo:Resource" name="Home Area Network EMS" fullySatisfied="true">
-      <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.1/@intentions.3"/>
+    <intentions xsi:type="istar_mavo:Task" formulaVariable="ManageEncriptionKeys" name="Manage Encription Keys" dependenciesAsDependee="//@dependums.6/@dependeeLinks.0" fullySatisfied="true">
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="ManageEncriptionKeys2ProtectPersonalInformationC" tgt="//@actors.0/@intentions.0" type="HELP"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="ManageEncriptionKeys2SaveTimeC" tgt="//@actors.0/@intentions.2" type="HURT"/>
     </intentions>
   </actors>
-  <actors name="Home Gateway" dependenciesAsDependee="//@dependums.7/@dependeeLinks.0 //@dependums.8/@dependeeLinks.0"/>
-  <actors name="Smart Meter" dependenciesAsDependee="//@dependums.9/@dependeeLinks.0 //@dependums.10/@dependeeLinks.0 //@dependums.11/@dependeeLinks.0"/>
-  <actors name="Energy Supplier Server">
-    <intentions xsi:type="istar_mavo:Goal" name="Store Aggregated Billing Data ESS" dependenciesAsDepender="//@dependums.9/@dependerLinks.0"/>
-    <intentions xsi:type="istar_mavo:Goal" name="Provide Added Value Services" dependenciesAsDepender="//@dependums.8/@dependerLinks.0"/>
+  <actors formulaVariable="EnergyManagementSystem" name="Energy Management System">
+    <intentions xsi:type="istar_mavo:SoftGoal" formulaVariable="ReduceCosts" name="Reduce Costs" linksAsTgt="//@actors.1/@intentions.6/@linksAsSrc.0 //@actors.1/@intentions.12/@linksAsSrc.0"/>
+    <intentions xsi:type="istar_mavo:Goal" formulaVariable="StoreAndExecutePolicies" name="Store And Execute Policies" dependenciesAsDepender="//@dependums.5/@dependerLinks.0" linksAsTgt="//@actors.1/@intentions.7/@linksAsSrc.0 //@actors.1/@intentions.3/@linksAsSrc.1"/>
+    <intentions xsi:type="istar_mavo:Task" formulaVariable="DisplayData" name="Display Data" dependenciesAsDepender="//@dependums.11/@dependerLinks.0" dependenciesAsDependee="//@dependums.3/@dependeeLinks.0 //@dependums.4/@dependeeLinks.0" linksAsTgt="//@actors.1/@intentions.3/@linksAsSrc.0"/>
+    <intentions xsi:type="istar_mavo:Goal" formulaVariable="CommunicateWithTheHouse" name="Communicate With The House" dependenciesAsDepender="//@dependums.7/@dependerLinks.0" linksAsTgt="//@actors.1/@intentions.10/@linksAsSrc.0 //@actors.1/@intentions.13/@linksAsSrc.0">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" formulaVariable="CommunicateWithTheHouse2DisplayData" tgt="//@actors.1/@intentions.2"/>
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" formulaVariable="CommunicateWithTheHouse2StoreAndExecutePolicies" tgt="//@actors.1/@intentions.1"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:SoftGoal" formulaVariable="ProtectPersonalInformationEMS" name="Protect Personal Information EMS" dependenciesAsDependee="//@dependums.0/@dependeeLinks.0" linksAsTgt="//@actors.1/@intentions.11/@linksAsSrc.1"/>
+    <intentions xsi:type="istar_mavo:SoftGoal" formulaVariable="SaveTimeEMS" name="Save Time EMS" dependenciesAsDependee="//@dependums.1/@dependeeLinks.0" linksAsTgt="//@actors.1/@intentions.9/@linksAsSrc.1 //@actors.1/@intentions.8/@linksAsSrc.1"/>
+    <intentions xsi:type="istar_mavo:SoftGoal" formulaVariable="ConserveEnergyEMS" name="Conserve Energy EMS" dependenciesAsDependee="//@dependums.2/@dependeeLinks.0" linksAsTgt="//@actors.1/@intentions.8/@linksAsSrc.2">
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="ConserveEnergyEMS2ReduceCosts" tgt="//@actors.1/@intentions.0" type="HELP"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Goal" formulaVariable="ControlSmartAppliancesEMS" name="Control Smart AppliancesEMS" linksAsTgt="//@actors.1/@intentions.8/@linksAsSrc.0 //@actors.1/@intentions.9/@linksAsSrc.0">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" formulaVariable="ControlSmartAppliancesEMS2StoreAndExecutePolicies" tgt="//@actors.1/@intentions.1"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" formulaVariable="Directly" name="Directly" fullyDenied="true">
+      <linksAsSrc xsi:type="istar_mavo:MeansEnd" formulaVariable="Directly2ControlSmartAppliancesEMS" tgt="//@actors.1/@intentions.7"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="Directly2SaveTimeEMS" tgt="//@actors.1/@intentions.5" type="HURT"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="Directly2ConserveEnergyEMS" tgt="//@actors.1/@intentions.6" type="HELP"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" formulaVariable="Indirectly" name="Indirectly" dependenciesAsDepender="//@dependums.10/@dependerLinks.0">
+      <linksAsSrc xsi:type="istar_mavo:MeansEnd" formulaVariable="Indirectly2ControlSmartAppliancesEMS" tgt="//@actors.1/@intentions.7"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="Indirectly2SaveTimeEMS" tgt="//@actors.1/@intentions.5" type="HELP"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Goal" formulaVariable="HandleSecurity" name="Handle Security" linksAsTgt="//@actors.1/@intentions.11/@linksAsSrc.0 //@actors.1/@intentions.12/@linksAsSrc.1">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" formulaVariable="HandleSecurity2CommunicateWithTheHouse" tgt="//@actors.1/@intentions.3"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" formulaVariable="EncryptData" name="Encrypt Data" dependenciesAsDepender="//@dependums.6/@dependerLinks.0">
+      <linksAsSrc xsi:type="istar_mavo:MeansEnd" formulaVariable="EncryptData2HandleSecurity" tgt="//@actors.1/@intentions.10"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="EncryptData2ProtectPersonalInformationEMS" tgt="//@actors.1/@intentions.4" type="HELP"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Task" formulaVariable="NoEncryption" name="No Encryption" fullyDenied="true">
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="NoEncryption2ReduceCosts" tgt="//@actors.1/@intentions.0" type="HELP"/>
+      <linksAsSrc xsi:type="istar_mavo:MeansEnd" formulaVariable="NoEncryption2HandleSecurity" tgt="//@actors.1/@intentions.10"/>
+    </intentions>
+    <intentions xsi:type="istar_mavo:Resource" formulaVariable="HomeAreaNetworkEMS" name="Home Area Network EMS" fullySatisfied="true">
+      <linksAsSrc xsi:type="istar_mavo:Decomposition" formulaVariable="HomeAreaNetworkEMS2CommunicateWithTheHouse" tgt="//@actors.1/@intentions.3"/>
+    </intentions>
   </actors>
-  <dependums xsi:type="istar_mavo:SoftGoal" name="Protect Personal Information">
-    <dependerLinks depender="//@actors.0/@intentions.0"/>
-    <dependeeLinks dependee="//@actors.1/@intentions.4"/>
+  <actors formulaVariable="HomeGateway" name="Home Gateway" dependenciesAsDependee="//@dependums.7/@dependeeLinks.0 //@dependums.8/@dependeeLinks.0"/>
+  <actors formulaVariable="SmartMeter" name="Smart Meter" dependenciesAsDependee="//@dependums.9/@dependeeLinks.0 //@dependums.10/@dependeeLinks.0 //@dependums.11/@dependeeLinks.0"/>
+  <actors formulaVariable="EnergySupplierServer" name="Energy Supplier Server">
+    <intentions xsi:type="istar_mavo:Goal" formulaVariable="StoreAggregatedBillingDataESS" name="Store Aggregated Billing Data ESS" dependenciesAsDepender="//@dependums.9/@dependerLinks.0"/>
+    <intentions xsi:type="istar_mavo:Goal" formulaVariable="ProvideAddedValueServices" name="Provide Added Value Services" dependenciesAsDepender="//@dependums.8/@dependerLinks.0"/>
+  </actors>
+  <dependums xsi:type="istar_mavo:SoftGoal" formulaVariable="ProtectPersonalInformation" name="Protect Personal Information">
+    <dependerLinks formulaVariable="ProtectPersonalInformationC2ProtectPersonalInformation" depender="//@actors.0/@intentions.0"/>
+    <dependeeLinks formulaVariable="ProtectPersonalInformation2ProtectPersonalInformationEMS" dependee="//@actors.1/@intentions.4"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:SoftGoal" name="Save Time">
-    <dependerLinks depender="//@actors.0/@intentions.2"/>
-    <dependeeLinks dependee="//@actors.1/@intentions.5"/>
+  <dependums xsi:type="istar_mavo:SoftGoal" formulaVariable="SaveTime" name="Save Time">
+    <dependerLinks formulaVariable="SaveTimeC2SaveTime" depender="//@actors.0/@intentions.2"/>
+    <dependeeLinks formulaVariable="SaveTime2SaveTimeEMS" dependee="//@actors.1/@intentions.5"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:SoftGoal" name="Conserve Energy">
-    <dependerLinks depender="//@actors.0/@intentions.1"/>
-    <dependeeLinks dependee="//@actors.1/@intentions.6"/>
+  <dependums xsi:type="istar_mavo:SoftGoal" formulaVariable="ConserveEnergy" name="Conserve Energy">
+    <dependerLinks formulaVariable="ConserveEnergyC2ConserveEnergy" depender="//@actors.0/@intentions.1"/>
+    <dependeeLinks formulaVariable="ConserveEnergy2ConserveEnergyEMS" dependee="//@actors.1/@intentions.6"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Resource" name="Data">
-    <dependerLinks depender="//@actors.0/@intentions.4"/>
-    <dependeeLinks dependee="//@actors.1/@intentions.2"/>
+  <dependums xsi:type="istar_mavo:Resource" formulaVariable="Data" name="Data">
+    <dependerLinks formulaVariable="BeInformedOfUsage2Data" depender="//@actors.0/@intentions.4"/>
+    <dependeeLinks formulaVariable="Data2DisplayData" dependee="//@actors.1/@intentions.2"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Resource" name="Billing Data Feedback">
-    <dependerLinks depender="//@actors.0/@intentions.4"/>
-    <dependeeLinks dependee="//@actors.1/@intentions.2"/>
+  <dependums xsi:type="istar_mavo:Resource" formulaVariable="BillingDataFeedback" name="Billing Data Feedback">
+    <dependerLinks formulaVariable="BeInformedOfUsage2BillingDataFeedback" depender="//@actors.0/@intentions.4"/>
+    <dependeeLinks formulaVariable="BillingDataFeedback2DisplayData" dependee="//@actors.1/@intentions.2"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Resource" name="Policies">
-    <dependerLinks depender="//@actors.1/@intentions.1"/>
-    <dependeeLinks dependee="//@actors.0/@intentions.5"/>
+  <dependums xsi:type="istar_mavo:Resource" formulaVariable="Policies" name="Policies">
+    <dependerLinks formulaVariable="StoreAndExecutePolicies2Policies" depender="//@actors.1/@intentions.1"/>
+    <dependeeLinks formulaVariable="Policies2DefinePolicies" dependee="//@actors.0/@intentions.5"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Resource" name="Encryption Keys">
-    <dependerLinks depender="//@actors.1/@intentions.11"/>
-    <dependeeLinks dependee="//@actors.0/@intentions.6"/>
+  <dependums xsi:type="istar_mavo:Resource" formulaVariable="EncryptionKeys" name="Encryption Keys">
+    <dependerLinks formulaVariable="EncryptData2EncryptionKeys" depender="//@actors.1/@intentions.11"/>
+    <dependeeLinks formulaVariable="EncryptionKeys2ManageEncriptionKeys" dependee="//@actors.0/@intentions.6"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Goal" name="Use HG To Communicate" fullySatisfied="true">
-    <dependerLinks depender="//@actors.1/@intentions.3"/>
-    <dependeeLinks dependee="//@actors.2"/>
+  <dependums xsi:type="istar_mavo:Goal" formulaVariable="UseHGToCommunicate" name="Use HG To Communicate" fullySatisfied="true">
+    <dependerLinks formulaVariable="CommunicateWithTheHouse2UseHGToCommunicate" depender="//@actors.1/@intentions.3"/>
+    <dependeeLinks formulaVariable="UseHGToCommunicate2HomeGateway" dependee="//@actors.2"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Resource" name="Other Data">
-    <dependerLinks depender="//@actors.4/@intentions.1"/>
-    <dependeeLinks dependee="//@actors.2"/>
+  <dependums xsi:type="istar_mavo:Resource" formulaVariable="OtherData" name="Other Data" fullySatisfied="true">
+    <dependerLinks formulaVariable="ProvideAddedValueServices2OtherData" depender="//@actors.4/@intentions.1"/>
+    <dependeeLinks formulaVariable="OtherData2HomeGateway" dependee="//@actors.2"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Resource" name="Aggregated Billing Data" fullySatisfied="true">
-    <dependerLinks depender="//@actors.4/@intentions.0"/>
-    <dependeeLinks dependee="//@actors.3"/>
+  <dependums xsi:type="istar_mavo:Resource" formulaVariable="AggregatedBillingData" name="Aggregated Billing Data" fullySatisfied="true">
+    <dependerLinks formulaVariable="StoreAggregatedBillingDataESS2AggregatedBillingData" depender="//@actors.4/@intentions.0"/>
+    <dependeeLinks formulaVariable="AggregatedBillingData2SmartMeter" dependee="//@actors.3"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Goal" name="Control Smart Appliances" fullySatisfied="true">
-    <dependerLinks depender="//@actors.1/@intentions.9"/>
-    <dependeeLinks dependee="//@actors.3"/>
+  <dependums xsi:type="istar_mavo:Goal" formulaVariable="ControlSmartAppliances" name="Control Smart Appliances" fullySatisfied="true">
+    <dependerLinks formulaVariable="Indirectly2ControlSmartAppliances" depender="//@actors.1/@intentions.9"/>
+    <dependeeLinks formulaVariable="ControlSmartAppliances2SmartMeter" dependee="//@actors.3"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Resource" name="Billing Data" fullySatisfied="true">
-    <dependerLinks depender="//@actors.1/@intentions.2"/>
-    <dependeeLinks dependee="//@actors.3"/>
+  <dependums xsi:type="istar_mavo:Resource" formulaVariable="BillingData" name="Billing Data" fullySatisfied="true">
+    <dependerLinks formulaVariable="DisplayData2BillingData" depender="//@actors.1/@intentions.2"/>
+    <dependeeLinks formulaVariable="BillingData2SmartMeter" dependee="//@actors.3"/>
   </dependums>
 </istar_mavo:IStar>
