@@ -139,12 +139,6 @@
         <element xmi:type="istar_mavo:Resource" href="certain.istar_mavo#//@actors.1/@intentions.13"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rZysYQeiEeSIg5CbPubViQ" x="368" y="252"/>
       </children>
-      <children xmi:type="notation:Shape" xmi:id="_sYoTMAeiEeSIg5CbPubViQ" type="3003" fontName="Cantarell">
-        <children xmi:type="notation:DecorationNode" xmi:id="_sYoTMgeiEeSIg5CbPubViQ" type="5013"/>
-        <children xmi:type="notation:DecorationNode" xmi:id="_sYoTMweiEeSIg5CbPubViQ" type="5014"/>
-        <element xmi:type="istar_mavo:Resource" href="certain.istar_mavo#//@actors.1/@intentions.14"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sYoTMQeiEeSIg5CbPubViQ" x="527" y="252"/>
-      </children>
     </children>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_GHt9AQeiEeSIg5CbPubViQ"/>
     <element xmi:type="istar_mavo:Actor" href="certain.istar_mavo#//@actors.1"/>
@@ -192,46 +186,18 @@
     <element xmi:type="istar_mavo:Resource" href="certain.istar_mavo#//@dependums.6"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_R8o1MQelEeSIg5CbPubViQ" x="538" y="564"/>
   </children>
-  <children xmi:type="notation:Shape" xmi:id="_S4N3MAemEeSIg5CbPubViQ" type="2003" fontName="Cantarell">
-    <children xmi:type="notation:DecorationNode" xmi:id="_S4OeQAemEeSIg5CbPubViQ" type="5005"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_S4OeQQemEeSIg5CbPubViQ" type="5006"/>
-    <element xmi:type="istar_mavo:Resource" href="certain.istar_mavo#//@dependums.7"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_S4N3MQemEeSIg5CbPubViQ" x="766" y="630"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_Yb3tAAemEeSIg5CbPubViQ" type="2005" fontName="Cantarell">
-    <children xmi:type="notation:DecorationNode" xmi:id="_Yb4UEAemEeSIg5CbPubViQ" type="5017"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_Yb4UEQemEeSIg5CbPubViQ" type="5018"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_Yb4UEgemEeSIg5CbPubViQ" type="7001"/>
-    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_Yb3tAQemEeSIg5CbPubViQ"/>
-    <element xmi:type="istar_mavo:Actor" href="certain.istar_mavo#//@actors.2"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Yb3tAgemEeSIg5CbPubViQ" x="600" y="673"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_g07CoAemEeSIg5CbPubViQ" type="2005" fontName="Cantarell">
-    <children xmi:type="notation:DecorationNode" xmi:id="_g07psAemEeSIg5CbPubViQ" type="5017"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_g07psQemEeSIg5CbPubViQ" type="5018"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_g07psgemEeSIg5CbPubViQ" type="7001"/>
-    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_g07CoQemEeSIg5CbPubViQ"/>
-    <element xmi:type="istar_mavo:Actor" href="certain.istar_mavo#//@actors.3"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_g07CogemEeSIg5CbPubViQ" x="1047" y="699"/>
-  </children>
   <children xmi:type="notation:Shape" xmi:id="_hyF1gAemEeSIg5CbPubViQ" type="2005" fontName="Cantarell">
     <children xmi:type="notation:DecorationNode" xmi:id="_hyGckAemEeSIg5CbPubViQ" type="5017"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_hyGckQemEeSIg5CbPubViQ" type="5018"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_hyGckgemEeSIg5CbPubViQ" type="7001"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_hyF1gQemEeSIg5CbPubViQ"/>
-    <element xmi:type="istar_mavo:Actor" href="certain.istar_mavo#//@actors.4"/>
+    <element xmi:type="istar_mavo:Actor" href="certain.istar_mavo#//@actors.2"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hyF1ggemEeSIg5CbPubViQ" x="1211" y="700"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_k_UmgAemEeSIg5CbPubViQ" type="2004" fontName="Cantarell">
-    <children xmi:type="notation:DecorationNode" xmi:id="_k_VNkAemEeSIg5CbPubViQ" type="5007"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_k_VNkQemEeSIg5CbPubViQ" type="5008"/>
-    <element xmi:type="istar_mavo:Goal" href="certain.istar_mavo#//@dependums.8"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k_UmgQemEeSIg5CbPubViQ" x="1020" y="624"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_qmRn8AemEeSIg5CbPubViQ" type="2004" fontName="Cantarell">
     <children xmi:type="notation:DecorationNode" xmi:id="_qmSPAAemEeSIg5CbPubViQ" type="5007"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_qmSPAQemEeSIg5CbPubViQ" type="5008"/>
-    <element xmi:type="istar_mavo:Goal" href="certain.istar_mavo#//@dependums.9"/>
+    <element xmi:type="istar_mavo:Goal" href="certain.istar_mavo#//@dependums.7"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qmRn8QemEeSIg5CbPubViQ" x="1188" y="626"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_x6vUEAemEeSIg5CbPubViQ" type="2005" fontName="Cantarell">
@@ -239,7 +205,7 @@
     <children xmi:type="notation:DecorationNode" xmi:id="_x6v7IQemEeSIg5CbPubViQ" type="5018"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_x6v7IgemEeSIg5CbPubViQ" type="7001"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_x6vUEQemEeSIg5CbPubViQ"/>
-    <element xmi:type="istar_mavo:Actor" href="certain.istar_mavo#//@actors.5"/>
+    <element xmi:type="istar_mavo:Actor" href="certain.istar_mavo#//@actors.3"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_x6vUEgemEeSIg5CbPubViQ" x="1486" y="129"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_y4DQ4AemEeSIg5CbPubViQ" type="2005" fontName="Cantarell">
@@ -249,57 +215,42 @@
       <children xmi:type="notation:Shape" xmi:id="_7xq88AemEeSIg5CbPubViQ" type="3004" fontName="Cantarell">
         <children xmi:type="notation:DecorationNode" xmi:id="_7xrkAAemEeSIg5CbPubViQ" type="5015"/>
         <children xmi:type="notation:DecorationNode" xmi:id="_7xrkAQemEeSIg5CbPubViQ" type="5016"/>
-        <element xmi:type="istar_mavo:Goal" href="certain.istar_mavo#//@actors.6/@intentions.0"/>
+        <element xmi:type="istar_mavo:Goal" href="certain.istar_mavo#//@actors.4/@intentions.0"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7xq88QemEeSIg5CbPubViQ" x="27" y="3"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_C_bkIAenEeSIg5CbPubViQ" type="3004" fontName="Cantarell">
         <children xmi:type="notation:DecorationNode" xmi:id="_C_bkIgenEeSIg5CbPubViQ" type="5015"/>
         <children xmi:type="notation:DecorationNode" xmi:id="_C_bkIwenEeSIg5CbPubViQ" type="5016"/>
-        <element xmi:type="istar_mavo:Goal" href="certain.istar_mavo#//@actors.6/@intentions.1"/>
+        <element xmi:type="istar_mavo:Goal" href="certain.istar_mavo#//@actors.4/@intentions.1"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_C_bkIQenEeSIg5CbPubViQ" x="27" y="51"/>
       </children>
     </children>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_y4DQ4QemEeSIg5CbPubViQ"/>
-    <element xmi:type="istar_mavo:Actor" href="certain.istar_mavo#//@actors.6"/>
+    <element xmi:type="istar_mavo:Actor" href="certain.istar_mavo#//@actors.4"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_y4DQ4gemEeSIg5CbPubViQ" x="1404" y="338"/>
-  </children>
-  <children xmi:type="notation:Shape" xmi:id="_0XRn8AemEeSIg5CbPubViQ" type="2005" fontName="Cantarell">
-    <children xmi:type="notation:DecorationNode" xmi:id="_0XRn8wemEeSIg5CbPubViQ" type="5017"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_0XRn9AemEeSIg5CbPubViQ" type="5018"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_0XSPAAemEeSIg5CbPubViQ" type="7001">
-      <children xmi:type="notation:Shape" xmi:id="_5qIBoAemEeSIg5CbPubViQ" type="3004" fontName="Cantarell">
-        <children xmi:type="notation:DecorationNode" xmi:id="_5qIosAemEeSIg5CbPubViQ" type="5015"/>
-        <children xmi:type="notation:DecorationNode" xmi:id="_5qIosQemEeSIg5CbPubViQ" type="5016"/>
-        <element xmi:type="istar_mavo:Goal" href="certain.istar_mavo#//@actors.7/@intentions.0"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5qIBoQemEeSIg5CbPubViQ" x="26" y="5"/>
-      </children>
-    </children>
-    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_0XRn8QemEeSIg5CbPubViQ"/>
-    <element xmi:type="istar_mavo:Actor" href="certain.istar_mavo#//@actors.7"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0XRn8gemEeSIg5CbPubViQ" x="1488" y="516"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_ITNK4AenEeSIg5CbPubViQ" type="2003" fontName="Cantarell">
     <children xmi:type="notation:DecorationNode" xmi:id="_ITNK4genEeSIg5CbPubViQ" type="5005"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_ITNx8AenEeSIg5CbPubViQ" type="5006"/>
-    <element xmi:type="istar_mavo:Resource" href="certain.istar_mavo#//@dependums.10"/>
+    <element xmi:type="istar_mavo:Resource" href="certain.istar_mavo#//@dependums.8"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ITNK4QenEeSIg5CbPubViQ" x="1344" y="552"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_Ts5nAAenEeSIg5CbPubViQ" type="2003" fontName="Cantarell">
     <children xmi:type="notation:DecorationNode" xmi:id="_Ts6OEAenEeSIg5CbPubViQ" type="5005"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_Ts6OEQenEeSIg5CbPubViQ" type="5006"/>
-    <element xmi:type="istar_mavo:Resource" href="certain.istar_mavo#//@dependums.11"/>
+    <element xmi:type="istar_mavo:Resource" href="certain.istar_mavo#//@dependums.9"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Ts5nAQenEeSIg5CbPubViQ" x="1567" y="259"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_VNFAUAenEeSIg5CbPubViQ" type="2004" fontName="Cantarell">
     <children xmi:type="notation:DecorationNode" xmi:id="_VNFnYAenEeSIg5CbPubViQ" type="5007"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_VNFnYQenEeSIg5CbPubViQ" type="5008"/>
-    <element xmi:type="istar_mavo:Goal" href="certain.istar_mavo#//@dependums.12"/>
+    <element xmi:type="istar_mavo:Goal" href="certain.istar_mavo#//@dependums.10"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VNFAUQenEeSIg5CbPubViQ" x="1403" y="272"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_zLoCQAeoEeSIg5CbPubViQ" type="2003" fontName="Cantarell">
     <children xmi:type="notation:DecorationNode" xmi:id="_zLopUAeoEeSIg5CbPubViQ" type="5005"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_zLopUQeoEeSIg5CbPubViQ" type="5006"/>
-    <element xmi:type="istar_mavo:Resource" href="certain.istar_mavo#//@dependums.13"/>
+    <element xmi:type="istar_mavo:Resource" href="certain.istar_mavo#//@dependums.11"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zLoCQQeoEeSIg5CbPubViQ" x="1368" y="132"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_ARgEcQeKEeSIg5CbPubViQ"/>
@@ -414,15 +365,6 @@
     <element xmi:type="istar_mavo:Decomposition" href="certain.istar_mavo#//@actors.1/@intentions.13/@linksAsSrc.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_wzLWcgejEeSIg5CbPubViQ" points="[11, -24, -56, 100]$[58, -104, -9, 20]"/>
   </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_xmJEcAejEeSIg5CbPubViQ" type="4002" source="_sYoTMAeiEeSIg5CbPubViQ" target="_QXnfgAeiEeSIg5CbPubViQ">
-    <children xmi:type="notation:DecorationNode" xmi:id="_xmJEcwejEeSIg5CbPubViQ" type="6002">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_xmJEdAejEeSIg5CbPubViQ" x="2" y="-3"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_xmJEcQejEeSIg5CbPubViQ" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:Decomposition" href="certain.istar_mavo#//@actors.1/@intentions.14/@linksAsSrc.0"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_xmJEcgejEeSIg5CbPubViQ" points="[-5, -24, 20, 113]$[-11, -144, 14, -7]"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xmLgsAejEeSIg5CbPubViQ" id="(0.6646341463414634,0.175)"/>
-  </edges>
   <edges xmi:type="notation:Connector" xmi:id="_1gKqAAejEeSIg5CbPubViQ" type="4001" source="_lc4pEAeiEeSIg5CbPubViQ" target="_ji8E4AeiEeSIg5CbPubViQ">
     <children xmi:type="notation:DecorationNode" xmi:id="_1gLREAejEeSIg5CbPubViQ" type="6001">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_1gLREQejEeSIg5CbPubViQ" x="-5" y="-8"/>
@@ -474,20 +416,12 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_JaMIcgekEeSIg5CbPubViQ" points="[6, -20, -50, 171]$[36, -191, -20, 0]"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Jaax8AekEeSIg5CbPubViQ" id="(0.24691358024691357,0.525)"/>
   </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_MdhWkAekEeSIg5CbPubViQ" type="4003" source="_gHpCsAeiEeSIg5CbPubViQ" target="_aZvrwAeiEeSIg5CbPubViQ">
-    <children xmi:type="notation:DecorationNode" xmi:id="_Mdh9oAekEeSIg5CbPubViQ" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_Mdh9oQekEeSIg5CbPubViQ" x="48" y="-1"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_MdhWkQekEeSIg5CbPubViQ" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:Contribution" href="certain.istar_mavo#//@actors.1/@intentions.8/@linksAsSrc.2"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_MdhWkgekEeSIg5CbPubViQ" points="[-2, -20, 25, 172]$[-21, -212, 6, -20]"/>
-  </edges>
   <edges xmi:type="notation:Connector" xmi:id="_M-cSUAekEeSIg5CbPubViQ" type="4003" source="_gHpCsAeiEeSIg5CbPubViQ" target="_aZvrwAeiEeSIg5CbPubViQ">
     <children xmi:type="notation:DecorationNode" xmi:id="_M-cSUwekEeSIg5CbPubViQ" type="6003">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_M-cSVAekEeSIg5CbPubViQ" x="51" y="-8"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_M-cSUQekEeSIg5CbPubViQ" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:Contribution" href="certain.istar_mavo#//@actors.1/@intentions.8/@linksAsSrc.3"/>
+    <element xmi:type="istar_mavo:Contribution" href="certain.istar_mavo#//@actors.1/@intentions.8/@linksAsSrc.2"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_M-cSUgekEeSIg5CbPubViQ" points="[-5, -19, 42, 173]$[-70, -193, -23, -1]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_M-fVoAekEeSIg5CbPubViQ" id="(0.14634146341463414,0.475)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_M-fVoQekEeSIg5CbPubViQ" id="(0.2,0.475)"/>
@@ -602,29 +536,12 @@
     <element xmi:type="istar_mavo:DependeeLink" href="certain.istar_mavo#//@dependums.5/@dependeeLinks.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gQJ-IgelEeSIg5CbPubViQ" points="[-25, -3, 372, 41]$[-393, -24, 4, 20]"/>
   </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_Z-c6EAemEeSIg5CbPubViQ" type="4005" source="_S4N3MAemEeSIg5CbPubViQ" target="_Yb3tAAemEeSIg5CbPubViQ">
-    <children xmi:type="notation:DecorationNode" xmi:id="_Z-c6EwemEeSIg5CbPubViQ" type="6005">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_Z-c6FAemEeSIg5CbPubViQ" x="-2" y="14"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_Z-c6EQemEeSIg5CbPubViQ" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:DependeeLink" href="certain.istar_mavo#//@dependums.7/@dependeeLinks.0"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Z-c6EgemEeSIg5CbPubViQ" points="[-22, 9, 105, -44]$[-65, 48, 62, -5]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Z-hLgAemEeSIg5CbPubViQ" id="(0.20754716981132076,0.46938775510204084)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_unYs8AemEeSIg5CbPubViQ" type="4005" source="_k_UmgAemEeSIg5CbPubViQ" target="_g07CoAemEeSIg5CbPubViQ">
-    <children xmi:type="notation:DecorationNode" xmi:id="_unZUAAemEeSIg5CbPubViQ" type="6005">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_unZUAQemEeSIg5CbPubViQ" x="-2" y="32"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_unYs8QemEeSIg5CbPubViQ" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:DependeeLink" href="certain.istar_mavo#//@dependums.8/@dependeeLinks.0"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_unYs8gemEeSIg5CbPubViQ" points="[-6, 20, -2, -68]$[-6, 55, -2, -33]"/>
-  </edges>
   <edges xmi:type="notation:Connector" xmi:id="_vPhD8AemEeSIg5CbPubViQ" type="4005" source="_qmRn8AemEeSIg5CbPubViQ" target="_hyF1gAemEeSIg5CbPubViQ">
     <children xmi:type="notation:DecorationNode" xmi:id="_vPhD8wemEeSIg5CbPubViQ" type="6005">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_vPhD9AemEeSIg5CbPubViQ" x="-3" y="28"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_vPhD8QemEeSIg5CbPubViQ" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:DependeeLink" href="certain.istar_mavo#//@dependums.9/@dependeeLinks.0"/>
+    <element xmi:type="istar_mavo:DependeeLink" href="certain.istar_mavo#//@dependums.7/@dependeeLinks.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_vPhD8gemEeSIg5CbPubViQ" points="[-2, 20, 0, -50]$[-2, 54, 0, -16]"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vPkHQAemEeSIg5CbPubViQ" id="(0.5053763440860215,0.23880597014925373)"/>
   </edges>
@@ -633,7 +550,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_KmsQdAenEeSIg5CbPubViQ" x="45" y="21"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_KmsQcQenEeSIg5CbPubViQ" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:DependerLink" href="certain.istar_mavo#//@dependums.10/@dependerLinks.0"/>
+    <element xmi:type="istar_mavo:DependerLink" href="certain.istar_mavo#//@dependums.8/@dependerLinks.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_KmsQcgenEeSIg5CbPubViQ" points="[-10, 22, 91, -190]$[-92, 188, 9, -24]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_KmussAenEeSIg5CbPubViQ" id="(0.14193548387096774,0.45)"/>
   </edges>
@@ -642,7 +559,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_LMTe8QenEeSIg5CbPubViQ" x="-36" y="21"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_LMS34QenEeSIg5CbPubViQ" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:DependeeLink" href="certain.istar_mavo#//@dependums.10/@dependeeLinks.0"/>
+    <element xmi:type="istar_mavo:DependeeLink" href="certain.istar_mavo#//@dependums.8/@dependeeLinks.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_LMS34genEeSIg5CbPubViQ" points="[-35, 16, 93, -43]$[-81, 52, 47, -7]"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_aSL48AenEeSIg5CbPubViQ" type="4005" source="_Ts5nAAenEeSIg5CbPubViQ" target="_x6vUEAemEeSIg5CbPubViQ">
@@ -650,7 +567,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_aSL49AenEeSIg5CbPubViQ" x="-14" y="-14"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_aSL48QenEeSIg5CbPubViQ" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:DependeeLink" href="certain.istar_mavo#//@dependums.11/@dependeeLinks.0"/>
+    <element xmi:type="istar_mavo:DependeeLink" href="certain.istar_mavo#//@dependums.9/@dependeeLinks.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_aSL48genEeSIg5CbPubViQ" points="[-39, -24, 149, 83]$[-182, -140, 6, -33]"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_atFsQAenEeSIg5CbPubViQ" type="4005" source="_VNFAUAenEeSIg5CbPubViQ" target="_x6vUEAemEeSIg5CbPubViQ">
@@ -658,7 +575,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_atGTUAenEeSIg5CbPubViQ" x="-36" y="-19"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_atFsQQenEeSIg5CbPubViQ" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:DependeeLink" href="certain.istar_mavo#//@dependums.12/@dependeeLinks.0"/>
+    <element xmi:type="istar_mavo:DependeeLink" href="certain.istar_mavo#//@dependums.10/@dependeeLinks.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_atFsQgenEeSIg5CbPubViQ" points="[-3, -20, 20, 96]$[-14, -82, 9, 34]"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_dvqFYAenEeSIg5CbPubViQ" type="4004" source="_7xq88AemEeSIg5CbPubViQ" target="_Ts5nAAenEeSIg5CbPubViQ">
@@ -666,24 +583,16 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_dvqscQenEeSIg5CbPubViQ" x="27" y="-16"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_dvqFYQenEeSIg5CbPubViQ" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:DependerLink" href="certain.istar_mavo#//@dependums.11/@dependerLinks.0"/>
+    <element xmi:type="istar_mavo:DependerLink" href="certain.istar_mavo#//@dependums.9/@dependerLinks.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_dvqFYgenEeSIg5CbPubViQ" points="[8, -20, -49, 117]$[35, -140, -22, -3]"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_dvtIsAenEeSIg5CbPubViQ" id="(0.16058394160583941,0.40816326530612246)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_eVtYwAenEeSIg5CbPubViQ" type="4004" source="_5qIBoAemEeSIg5CbPubViQ" target="_Ts5nAAenEeSIg5CbPubViQ">
-    <children xmi:type="notation:DecorationNode" xmi:id="_eVtYwwenEeSIg5CbPubViQ" type="6004">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_eVtYxAenEeSIg5CbPubViQ" x="121" y="1"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_eVtYwQenEeSIg5CbPubViQ" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:DependerLink" href="certain.istar_mavo#//@dependums.11/@dependerLinks.1"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_eVtYwgenEeSIg5CbPubViQ" points="[2, -20, -21, 293]$[92, -317, 69, -4]"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_124uoAeoEeSIg5CbPubViQ" type="4004" source="_LbVywAeiEeSIg5CbPubViQ" target="_zLoCQAeoEeSIg5CbPubViQ">
     <children xmi:type="notation:DecorationNode" xmi:id="_125VsAeoEeSIg5CbPubViQ" type="6004">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_125VsQeoEeSIg5CbPubViQ" x="58" y="-16"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_124uoQeoEeSIg5CbPubViQ" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:DependerLink" href="certain.istar_mavo#//@dependums.13/@dependerLinks.0"/>
+    <element xmi:type="istar_mavo:DependerLink" href="certain.istar_mavo#//@dependums.11/@dependerLinks.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_124uogeoEeSIg5CbPubViQ" points="[35, 1, -183, -3]$[224, -20, 6, -24]"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_2o1wAAeoEeSIg5CbPubViQ" type="4005" source="_zLoCQAeoEeSIg5CbPubViQ" target="_x6vUEAemEeSIg5CbPubViQ">
@@ -691,7 +600,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_2o1wBAeoEeSIg5CbPubViQ" x="-14" y="-10"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_2o1wAQeoEeSIg5CbPubViQ" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:DependeeLink" href="certain.istar_mavo#//@dependums.13/@dependeeLinks.0"/>
+    <element xmi:type="istar_mavo:DependeeLink" href="certain.istar_mavo#//@dependums.11/@dependeeLinks.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2o1wAgeoEeSIg5CbPubViQ" points="[36, 5, -84, -1]$[82, 5, -38, -1]"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_58XWQAeoEeSIg5CbPubViQ" type="4004" source="_g6h4MAeiEeSIg5CbPubViQ" target="_VNFAUAenEeSIg5CbPubViQ">
@@ -699,7 +608,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_58X9UQeoEeSIg5CbPubViQ" x="235" y="-7"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_58XWQQeoEeSIg5CbPubViQ" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:DependerLink" href="certain.istar_mavo#//@dependums.12/@dependerLinks.0"/>
+    <element xmi:type="istar_mavo:DependerLink" href="certain.istar_mavo#//@dependums.10/@dependerLinks.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_58XWQgeoEeSIg5CbPubViQ" points="[24, -7, -570, 153]$[527, -160, -67, 0]"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_oxnOUAhUEeSv5sQZ08r9CA" type="4004" source="_lc4pEAeiEeSIg5CbPubViQ" target="_R8o1MAelEeSIg5CbPubViQ">
@@ -711,47 +620,20 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_oxnOUghUEeSv5sQZ08r9CA" points="[-34, 13, 306, -124]$[-314, 137, 26, 0]"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_oxq4sAhUEeSv5sQZ08r9CA" id="(0.7547169811320755,0.5102040816326531)"/>
   </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_vGfFsAhUEeSv5sQZ08r9CA" type="4004" source="_lc4pEAeiEeSIg5CbPubViQ" target="_S4N3MAemEeSIg5CbPubViQ">
-    <children xmi:type="notation:DecorationNode" xmi:id="_vGfFswhUEeSv5sQZ08r9CA" type="6004">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_vGfFtAhUEeSv5sQZ08r9CA" x="83" y="29"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_vGfFsQhUEeSv5sQZ08r9CA" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:DependerLink" href="certain.istar_mavo#//@dependums.7/@dependerLinks.0"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_vGfFsghUEeSv5sQZ08r9CA" points="[-11, 20, 101, -176]$[-86, 189, 26, -7]"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vGiwEAhUEeSv5sQZ08r9CA" id="(0.7547169811320755,0.3673469387755102)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_9vBm8AhVEeSv5sQZ08r9CA" type="4004" source="_QXnfgAeiEeSIg5CbPubViQ" target="_k_UmgAemEeSIg5CbPubViQ">
-    <children xmi:type="notation:DecorationNode" xmi:id="_9vBm8whVEeSv5sQZ08r9CA" type="6004">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_9vBm9AhVEeSv5sQZ08r9CA" x="168" y="23"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_9vBm8QhVEeSv5sQZ08r9CA" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:DependerLink" href="certain.istar_mavo#//@dependums.8/@dependerLinks.0"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_9vBm8ghVEeSv5sQZ08r9CA" points="[-5, 20, 99, -364]$[-33, 383, 71, -1]"/>
-  </edges>
   <edges xmi:type="notation:Connector" xmi:id="__Bn3QAhVEeSv5sQZ08r9CA" type="4004" source="_QXnfgAeiEeSIg5CbPubViQ" target="_qmRn8AemEeSIg5CbPubViQ">
     <children xmi:type="notation:DecorationNode" xmi:id="__Bn3QwhVEeSv5sQZ08r9CA" type="6004">
       <layoutConstraint xmi:type="notation:Location" xmi:id="__Bn3RAhVEeSv5sQZ08r9CA" x="152" y="28"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="__Bn3QQhVEeSv5sQZ08r9CA" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:DependerLink" href="certain.istar_mavo#//@dependums.9/@dependerLinks.0"/>
+    <element xmi:type="istar_mavo:DependerLink" href="certain.istar_mavo#//@dependums.7/@dependerLinks.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="__Bn3QghVEeSv5sQZ08r9CA" points="[2, 20, -59, -366]$[52, 366, -9, -20]"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_3ibIgAhaEeSv5sQZ08r9CA" type="4003" source="_lc4pEAeiEeSIg5CbPubViQ" target="_XcAIQAeiEeSIg5CbPubViQ">
-    <children xmi:type="notation:DecorationNode" xmi:id="_3ibIgwhaEeSv5sQZ08r9CA" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_3ibIhAhaEeSv5sQZ08r9CA" x="60" y="3"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_3ibIgQhaEeSv5sQZ08r9CA" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:Contribution" href="certain.istar_mavo#//@actors.1/@intentions.11/@linksAsSrc.1"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_3ibIgghaEeSv5sQZ08r9CA" points="[1, -13, -23, 171]$[-7, -184, -31, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3ic9sAhaEeSv5sQZ08r9CA" id="(0.21739130434782608,0.325)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3ic9sQhaEeSv5sQZ08r9CA" id="(0.17415730337078653,0.525)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_5MEm4AhaEeSv5sQZ08r9CA" type="4003" source="_lc4pEAeiEeSIg5CbPubViQ" target="_XcAIQAeiEeSIg5CbPubViQ">
     <children xmi:type="notation:DecorationNode" xmi:id="_5MFN8AhaEeSv5sQZ08r9CA" type="6003">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_5MFN8QhaEeSv5sQZ08r9CA" x="60" y="-5"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_5MEm4QhaEeSv5sQZ08r9CA" fontName="Cantarell"/>
-    <element xmi:type="istar_mavo:Contribution" href="certain.istar_mavo#//@actors.1/@intentions.11/@linksAsSrc.2"/>
+    <element xmi:type="istar_mavo:Contribution" href="certain.istar_mavo#//@actors.1/@intentions.11/@linksAsSrc.1"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_5MEm4ghaEeSv5sQZ08r9CA" points="[7, -20, -56, 172]$[152, -192, 89, 0]"/>
   </edges>
 </notation:Diagram>
