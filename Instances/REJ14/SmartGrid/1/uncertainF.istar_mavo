@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ASCII"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <istar_mavo:IStar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:istar_mavo="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
   <decisions formulaVariable="D1" description="Encription Keys">
     <alternatives formulaVariable="D1A1" description="Consumer" mavoElements="//@actors.0/@intentions.6 //@dependums.6 //@dependums.6/@dependerLinks.0 //@dependums.6/@dependeeLinks.0"/>
@@ -29,9 +29,9 @@
       <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="DefinePolicies2ConserveEnergyC" tgt="//@actors.0/@intentions.1" type="HELP"/>
       <linksAsSrc xsi:type="istar_mavo:Decomposition" formulaVariable="DefinePolicies2ConsumeEnergyC" tgt="//@actors.0/@intentions.3"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Task" formulaVariable="ManageEncriptionKeys" may="true" alternatives="//@decisions.0/@alternatives.0" name="Manage Encription Keys" dependenciesAsDependee="//@dependums.6/@dependeeLinks.0" fullySatisfied="true">
-      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="ManageEncriptionKeys2ProtectPersonalInformationC" may="true" tgt="//@actors.0/@intentions.0" type="HELP"/>
-      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="ManageEncriptionKeys2SaveTimeC" may="true" tgt="//@actors.0/@intentions.2" type="HURT"/>
+    <intentions xsi:type="istar_mavo:Task" formulaVariable="ManageEncryptionKeys" may="true" alternatives="//@decisions.0/@alternatives.0" name="Manage Encryption Keys" dependenciesAsDependee="//@dependums.6/@dependeeLinks.0" fullySatisfied="true">
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="ManageEncryptionKeys2ProtectPersonalInformationC" may="true" tgt="//@actors.0/@intentions.0" type="HELP"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="ManageEncryptionKeys2SaveTimeC" may="true" tgt="//@actors.0/@intentions.2" type="HURT"/>
     </intentions>
   </actors>
   <actors formulaVariable="EnergyManagementSystem" name="Energy Management System">
@@ -116,7 +116,7 @@
   </dependums>
   <dependums xsi:type="istar_mavo:Resource" formulaVariable="EncryptionKeys1" may="true" alternatives="//@decisions.0/@alternatives.0" name="Encryption Keys 1">
     <dependerLinks formulaVariable="EncryptData2EncryptionKeys1" may="true" alternatives="//@decisions.0/@alternatives.0" depender="//@actors.1/@intentions.11"/>
-    <dependeeLinks formulaVariable="EncryptionKeys12ManageEncriptionKeys" may="true" alternatives="//@decisions.0/@alternatives.0" dependee="//@actors.0/@intentions.6"/>
+    <dependeeLinks formulaVariable="EncryptionKeys12ManageEncryptionKeys" may="true" alternatives="//@decisions.0/@alternatives.0" dependee="//@actors.0/@intentions.6"/>
   </dependums>
   <dependums xsi:type="istar_mavo:Resource" formulaVariable="EncryptionKeys2" may="true" alternatives="//@decisions.0/@alternatives.1" name="Encryption Keys 2" fullySatisfied="true">
     <dependerLinks formulaVariable="EncryptData2EncryptionKeys2" may="true" alternatives="//@decisions.0/@alternatives.1" depender="//@actors.1/@intentions.11"/>

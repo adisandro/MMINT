@@ -13,7 +13,7 @@
       <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.1" type="HELP"/>
       <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.0/@intentions.3"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Task" name="Manage Encription Keys" dependenciesAsDependee="//@dependums.6/@dependeeLinks.0">
+    <intentions xsi:type="istar_mavo:Task" name="Manage Encryption Keys" dependenciesAsDependee="//@dependums.6/@dependeeLinks.0">
       <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.0" type="HELP"/>
       <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.2" type="HURT"/>
     </intentions>

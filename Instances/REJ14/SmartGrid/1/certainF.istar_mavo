@@ -13,9 +13,9 @@
       <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="DefinePolicies2ConserveEnergyC" tgt="//@actors.0/@intentions.1" type="HELP"/>
       <linksAsSrc xsi:type="istar_mavo:Decomposition" formulaVariable="DefinePolicies2ConsumeEnergyC" tgt="//@actors.0/@intentions.3"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Task" formulaVariable="ManageEncriptionKeys" name="Manage Encription Keys" dependenciesAsDependee="//@dependums.6/@dependeeLinks.0" fullySatisfied="true">
-      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="ManageEncriptionKeys2ProtectPersonalInformationC" tgt="//@actors.0/@intentions.0" type="HELP"/>
-      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="ManageEncriptionKeys2SaveTimeC" tgt="//@actors.0/@intentions.2" type="HURT"/>
+    <intentions xsi:type="istar_mavo:Task" formulaVariable="ManageEncryptionKeys" name="Manage Encryption Keys" dependenciesAsDependee="//@dependums.6/@dependeeLinks.0" fullySatisfied="true">
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="ManageEncryptionKeys2ProtectPersonalInformationC" tgt="//@actors.0/@intentions.0" type="HELP"/>
+      <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="ManageEncryptionKeys2SaveTimeC" tgt="//@actors.0/@intentions.2" type="HURT"/>
     </intentions>
   </actors>
   <actors formulaVariable="EnergyManagementSystem" name="Energy Management System">
@@ -90,7 +90,7 @@
   </dependums>
   <dependums xsi:type="istar_mavo:Resource" formulaVariable="EncryptionKeys" name="Encryption Keys">
     <dependerLinks formulaVariable="EncryptData2EncryptionKeys" depender="//@actors.1/@intentions.11"/>
-    <dependeeLinks formulaVariable="EncryptionKeys2ManageEncriptionKeys" dependee="//@actors.0/@intentions.6"/>
+    <dependeeLinks formulaVariable="EncryptionKeys2ManageEncryptionKeys" dependee="//@actors.0/@intentions.6"/>
   </dependums>
   <dependums xsi:type="istar_mavo:Goal" formulaVariable="UseHGToCommunicate" name="Use HG To Communicate" fullySatisfied="true">
     <dependerLinks formulaVariable="CommunicateWithTheHouse2UseHGToCommunicate" depender="//@actors.1/@intentions.3"/>
