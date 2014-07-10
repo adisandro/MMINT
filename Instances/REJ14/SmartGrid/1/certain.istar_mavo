@@ -13,7 +13,7 @@
       <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.1" type="HELP"/>
       <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.0/@intentions.3"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Task" name="Manage Encription Keys" dependenciesAsDependee="//@dependums.6/@dependeeLinks.0">
+    <intentions xsi:type="istar_mavo:Task" name="Manage Encription Keys" dependenciesAsDependee="//@dependums.6/@dependeeLinks.0" fullySatisfied="true">
       <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.0" type="HELP"/>
       <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.0/@intentions.2" type="HURT"/>
     </intentions>
@@ -34,7 +34,7 @@
     <intentions xsi:type="istar_mavo:Goal" name="Control Smart AppliancesEMS" linksAsTgt="//@actors.1/@intentions.8/@linksAsSrc.0 //@actors.1/@intentions.9/@linksAsSrc.0">
       <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.1/@intentions.1"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Task" name="Directly">
+    <intentions xsi:type="istar_mavo:Task" name="Directly" fullyDenied="true">
       <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.1/@intentions.7"/>
       <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.1/@intentions.5" type="HURT"/>
       <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="" tgt="//@actors.1/@intentions.6" type="HELP"/>
@@ -50,11 +50,11 @@
       <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.1/@intentions.10"/>
       <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="" tgt="//@actors.1/@intentions.4" type="HELP"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Task" name="No Encryption">
+    <intentions xsi:type="istar_mavo:Task" name="No Encryption" fullyDenied="true">
       <linksAsSrc xsi:type="istar_mavo:Contribution" tgt="//@actors.1/@intentions.0" type="HELP"/>
       <linksAsSrc xsi:type="istar_mavo:MeansEnd" tgt="//@actors.1/@intentions.10"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Resource" name="Home Area Network EMS">
+    <intentions xsi:type="istar_mavo:Resource" name="Home Area Network EMS" fullySatisfied="true">
       <linksAsSrc xsi:type="istar_mavo:Decomposition" tgt="//@actors.1/@intentions.3"/>
     </intentions>
   </actors>
@@ -92,7 +92,7 @@
     <dependerLinks depender="//@actors.1/@intentions.11"/>
     <dependeeLinks dependee="//@actors.0/@intentions.6"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Goal" name="Use HG To Communicate">
+  <dependums xsi:type="istar_mavo:Goal" name="Use HG To Communicate" fullySatisfied="true">
     <dependerLinks depender="//@actors.1/@intentions.3"/>
     <dependeeLinks dependee="//@actors.2"/>
   </dependums>
@@ -100,15 +100,15 @@
     <dependerLinks depender="//@actors.4/@intentions.1"/>
     <dependeeLinks dependee="//@actors.2"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Resource" name="Aggregated Billing Data">
+  <dependums xsi:type="istar_mavo:Resource" name="Aggregated Billing Data" fullySatisfied="true">
     <dependerLinks depender="//@actors.4/@intentions.0"/>
     <dependeeLinks dependee="//@actors.3"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Goal" name="Control Smart Appliances">
+  <dependums xsi:type="istar_mavo:Goal" name="Control Smart Appliances" fullySatisfied="true">
     <dependerLinks depender="//@actors.1/@intentions.9"/>
     <dependeeLinks dependee="//@actors.3"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Resource" name="Billing Data">
+  <dependums xsi:type="istar_mavo:Resource" name="Billing Data" fullySatisfied="true">
     <dependerLinks depender="//@actors.1/@intentions.2"/>
     <dependeeLinks dependee="//@actors.3"/>
   </dependums>
