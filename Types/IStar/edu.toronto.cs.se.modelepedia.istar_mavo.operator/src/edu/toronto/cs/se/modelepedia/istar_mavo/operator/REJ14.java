@@ -35,6 +35,7 @@ import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
 public class REJ14 extends FASE14 {
 
 	private final static String PROPERTY_IN_GENERATETARGETSCONCRETIZATION = "generateTargetsConcretization";
+	private final static Boolean PROPERTY_IN_GENERATETARGETSCONCRETIZATION_DEFAULT = false;
 
 	// input
 	private boolean timeAnalysisEnabled;
@@ -47,7 +48,7 @@ public class REJ14 extends FASE14 {
 
 		super.readInputProperties(inputProperties);
 		timeAnalysisEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEANALYSIS+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		generateTargetsConcretization = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_IN_GENERATETARGETSCONCRETIZATION);
+		generateTargetsConcretization = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_GENERATETARGETSCONCRETIZATION, PROPERTY_IN_GENERATETARGETSCONCRETIZATION_DEFAULT);
 	}
 
 	@Override
