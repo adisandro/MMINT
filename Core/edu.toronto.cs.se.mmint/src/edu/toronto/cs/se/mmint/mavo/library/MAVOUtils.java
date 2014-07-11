@@ -64,7 +64,7 @@ public class MAVOUtils {
 
 		String altLabel = "";
 		if(numAlternatives > 0){
-			altLabel += " "+alternatives.get(0).getFormulaVariable();
+			altLabel += alternatives.get(0).getFormulaVariable();
 		}
 		for (int i=1; i<numAlternatives; i++){
 			altLabel += ", "+alternatives.get(i).getFormulaVariable();
@@ -77,7 +77,7 @@ public class MAVOUtils {
 				(mavoElement.isSet() ? "S" : "") +
 				(mavoElement.isVar() ? "V" : "") +
 				(withParenthesis ? ")" : "")+
-				altLabel;
+				(altLabel.equals("") ? "" : " [" +altLabel+"]");
 		}
 
 		return label;

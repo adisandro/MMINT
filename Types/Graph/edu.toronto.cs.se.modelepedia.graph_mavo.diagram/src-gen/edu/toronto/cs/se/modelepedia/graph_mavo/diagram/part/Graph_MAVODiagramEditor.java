@@ -51,6 +51,9 @@ import org.eclipse.ui.navigator.resources.ProjectExplorer;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
+import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
+
+import edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.MAVODiagramDecisionTree;
 
 /**
  * @generated
@@ -107,16 +110,13 @@ public class Graph_MAVODiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	@SuppressWarnings("rawtypes")
 	public Object getAdapter(Class type) {
-		if (type == IShowInTargetList.class) {
-			return new IShowInTargetList() {
-				public String[] getShowInTargetIds() {
-					return new String[] { ProjectExplorer.VIEW_ID };
-				}
-			};
+		if (type == IContentOutlinePage.class) {
+			MAVODiagramDecisionTree decisionTree = new MAVODiagramDecisionTree(getDiagram());
+			return decisionTree;
 		}
 		return super.getAdapter(type);
 	}
