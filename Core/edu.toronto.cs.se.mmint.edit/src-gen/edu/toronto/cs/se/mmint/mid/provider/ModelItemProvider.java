@@ -294,7 +294,12 @@ public class ModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MAVOPackage.Literals.MAVO_MODEL__DECISIONS,
-				 MAVOFactory.eINSTANCE.createMAVODecision()));
+				 MAVOFactory.eINSTANCE.createMayDecision()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MAVOPackage.Literals.MAVO_MODEL__DECISIONS,
+				 MAVOFactory.eINSTANCE.createVarDecision()));
 
 		newChildDescriptors.add
 			(createChildParameter

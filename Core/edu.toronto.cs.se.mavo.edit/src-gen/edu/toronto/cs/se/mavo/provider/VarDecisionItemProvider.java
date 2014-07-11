@@ -12,30 +12,35 @@
 package edu.toronto.cs.se.mavo.provider;
 
 
-import edu.toronto.cs.se.mavo.MAVODecision;
+import edu.toronto.cs.se.mavo.MAVOFactory;
 import edu.toronto.cs.se.mavo.MAVOPackage;
+import edu.toronto.cs.se.mavo.VarDecision;
+
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mavo.MAVODecision} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mavo.VarDecision} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MAVODecisionItemProvider
-	extends DecisionElementItemProvider {
+public class VarDecisionItemProvider extends MAVODecisionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MAVODecisionItemProvider(AdapterFactory adapterFactory) {
+	public VarDecisionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -50,42 +55,49 @@ public class MAVODecisionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addRequiredDecisionsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Required Decisions feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRequiredDecisionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MAVODecision_requiredDecisions_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MAVODecision_requiredDecisions_feature", "_UI_MAVODecision_type"),
-				 MAVOPackage.Literals.MAVO_DECISION__REQUIRED_DECISIONS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(MAVOPackage.Literals.VAR_DECISION__DOMAIN);
+		}
+		return childrenFeatures;
 	}
 
 	/**
-	 * This returns MAVODecision.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
+	 * This returns VarDecision.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MAVODecision"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/VarDecision"));
 	}
 
 	/**
@@ -96,11 +108,12 @@ public class MAVODecisionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MAVODecision)object).getFormulaVariable();
+		String label = ((VarDecision)object).getFormulaVariable();
 		return label == null || label.length() == 0 ?
-			getString("_UI_MAVODecision_type") :
-			getString("_UI_MAVODecision_type") + " " + label;
+			getString("_UI_VarDecision_type") :
+			getString("_UI_VarDecision_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -112,6 +125,12 @@ public class MAVODecisionItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(VarDecision.class)) {
+			case MAVOPackage.VAR_DECISION__DOMAIN:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -125,6 +144,11 @@ public class MAVODecisionItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MAVOPackage.Literals.VAR_DECISION__DOMAIN,
+				 MAVOFactory.eINSTANCE.createMAVOAlternative()));
 	}
 
 }

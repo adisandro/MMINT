@@ -66,8 +66,9 @@ public class MAVOFactoryImpl extends EFactoryImpl implements MAVOFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case MAVOPackage.MAVO_DECISION: return createMAVODecision();
 			case MAVOPackage.MAVO_ALTERNATIVE: return createMAVOAlternative();
+			case MAVOPackage.MAY_DECISION: return createMayDecision();
+			case MAVOPackage.VAR_DECISION: return createVarDecision();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -81,8 +82,8 @@ public class MAVOFactoryImpl extends EFactoryImpl implements MAVOFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case MAVOPackage.MAVO_DECISION_LOGIC:
-				return createMAVODecisionLogicFromString(eDataType, initialValue);
+			case MAVOPackage.MAY_DECISION_LOGIC:
+				return createMayDecisionLogicFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -96,21 +97,11 @@ public class MAVOFactoryImpl extends EFactoryImpl implements MAVOFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case MAVOPackage.MAVO_DECISION_LOGIC:
-				return convertMAVODecisionLogicToString(eDataType, instanceValue);
+			case MAVOPackage.MAY_DECISION_LOGIC:
+				return convertMayDecisionLogicToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MAVODecision createMAVODecision() {
-		MAVODecisionImpl mavoDecision = new MAVODecisionImpl();
-		return mavoDecision;
 	}
 
 	/**
@@ -128,8 +119,28 @@ public class MAVOFactoryImpl extends EFactoryImpl implements MAVOFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MAVODecisionLogic createMAVODecisionLogicFromString(EDataType eDataType, String initialValue) {
-		MAVODecisionLogic result = MAVODecisionLogic.get(initialValue);
+	public MayDecision createMayDecision() {
+		MayDecisionImpl mayDecision = new MayDecisionImpl();
+		return mayDecision;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VarDecision createVarDecision() {
+		VarDecisionImpl varDecision = new VarDecisionImpl();
+		return varDecision;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MayDecisionLogic createMayDecisionLogicFromString(EDataType eDataType, String initialValue) {
+		MayDecisionLogic result = MayDecisionLogic.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -139,7 +150,7 @@ public class MAVOFactoryImpl extends EFactoryImpl implements MAVOFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertMAVODecisionLogicToString(EDataType eDataType, Object instanceValue) {
+	public String convertMayDecisionLogicToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

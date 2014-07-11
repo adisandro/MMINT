@@ -114,6 +114,15 @@ public interface EditorPackage extends EPackage {
 	int EDITOR__VAR = MIDPackage.EXTENDIBLE_ELEMENT__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR__ALTERNATIVES = MIDPackage.EXTENDIBLE_ELEMENT__ALTERNATIVES;
+
+	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -365,6 +374,15 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM__VAR = EDITOR__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM__ALTERNATIVES = EDITOR__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.

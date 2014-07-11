@@ -255,6 +255,15 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+
+	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -398,6 +407,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENDIBLE_ELEMENT_ENDPOINT__VAR = EXTENDIBLE_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT__ALTERNATIVES = EXTENDIBLE_ELEMENT__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -597,6 +615,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL__VAR = EXTENDIBLE_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__ALTERNATIVES = EXTENDIBLE_ELEMENT__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -979,6 +1006,15 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ELEMENT__VAR = EXTENDIBLE_ELEMENT__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__ALTERNATIVES = EXTENDIBLE_ELEMENT__ALTERNATIVES;
+
+	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1221,6 +1257,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ENDPOINT__VAR = EXTENDIBLE_ELEMENT_ENDPOINT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT__ALTERNATIVES = EXTENDIBLE_ELEMENT_ENDPOINT__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.

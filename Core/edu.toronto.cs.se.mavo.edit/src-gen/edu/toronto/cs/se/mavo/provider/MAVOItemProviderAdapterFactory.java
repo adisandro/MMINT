@@ -81,29 +81,6 @@ public class MAVOItemProviderAdapterFactory extends MAVOAdapterFactory implement
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mavo.MAVODecision} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected MAVODecisionItemProvider mavoDecisionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mavo.MAVODecision}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createMAVODecisionAdapter() {
-		if (mavoDecisionItemProvider == null) {
-			mavoDecisionItemProvider = new MAVODecisionItemProvider(this);
-		}
-
-		return mavoDecisionItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mavo.MAVOAlternative} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -124,6 +101,52 @@ public class MAVOItemProviderAdapterFactory extends MAVOAdapterFactory implement
 		}
 
 		return mavoAlternativeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mavo.MayDecision} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MayDecisionItemProvider mayDecisionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mavo.MayDecision}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMayDecisionAdapter() {
+		if (mayDecisionItemProvider == null) {
+			mayDecisionItemProvider = new MayDecisionItemProvider(this);
+		}
+
+		return mayDecisionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mavo.VarDecision} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VarDecisionItemProvider varDecisionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mavo.VarDecision}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVarDecisionAdapter() {
+		if (varDecisionItemProvider == null) {
+			varDecisionItemProvider = new VarDecisionItemProvider(this);
+		}
+
+		return varDecisionItemProvider;
 	}
 
 	/**
@@ -225,8 +248,9 @@ public class MAVOItemProviderAdapterFactory extends MAVOAdapterFactory implement
 	 * @generated
 	 */
 	public void dispose() {
-		if (mavoDecisionItemProvider != null) mavoDecisionItemProvider.dispose();
 		if (mavoAlternativeItemProvider != null) mavoAlternativeItemProvider.dispose();
+		if (mayDecisionItemProvider != null) mayDecisionItemProvider.dispose();
+		if (varDecisionItemProvider != null) varDecisionItemProvider.dispose();
 	}
 
 }

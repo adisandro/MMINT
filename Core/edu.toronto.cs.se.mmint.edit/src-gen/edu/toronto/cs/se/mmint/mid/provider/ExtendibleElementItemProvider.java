@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint.mid.provider;
 
 
+import edu.toronto.cs.se.mavo.provider.MAVOElementItemProvider;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
@@ -34,7 +35,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ExtendibleElementItemProvider
-	extends edu.toronto.cs.se.mavo.provider.MAVOElementItemProvider {
+	extends MAVOElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

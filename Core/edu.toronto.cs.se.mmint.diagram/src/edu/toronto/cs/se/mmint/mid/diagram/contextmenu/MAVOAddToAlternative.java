@@ -30,6 +30,7 @@ import edu.toronto.cs.se.mavo.MAVOAlternative;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MayDecision;
 
 /**
  * The handler for the dynamic construction of a context menu for all
@@ -87,12 +88,14 @@ public class MAVOAddToAlternative extends ContributionItem {
 		Menu mavoMenu = new Menu(menu);
 		mavoItem.setMenu(mavoMenu);
 		for (MAVODecision mavoDecision : mavoModel.getDecisions()) {
-			for (MAVOAlternative mavoAlternative : mavoDecision.getAlternatives()) {
-				MenuItem alternativeItem = new MenuItem(mavoMenu, SWT.NONE);
-				alternativeItem.setText("Add to Alternative " + mavoAlternative.getFormulaVariable());
-				alternativeItem.addSelectionListener(
-					new MAVOAddToAlternativeListener(mavoElements, mavoAlternative)
-				);
+			if (mavoDecision instanceof MayDecision) {
+				for (MAVOAlternative mavoAlternative : ((MayDecision) mavoDecision).getAlternatives()) {
+					MenuItem alternativeItem = new MenuItem(mavoMenu, SWT.NONE);
+					alternativeItem.setText("(M) Add to Alternative " + mavoAlternative.getFormulaVariable());
+					alternativeItem.addSelectionListener(
+						new MAVOAddToAlternativeListener(mavoElements, mavoAlternative)
+					);
+				}
 			}
 		}
 	}
