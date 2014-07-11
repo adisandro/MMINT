@@ -3995,11 +3995,29 @@
 )))
 (assert (forall ((c Goal)) (=>
 	(node UseHANToCommunicate c)
-	(= (inited c) false)
+	(and
+		(= (fs c) true)
+		(= (ps c) false)
+		(= (un c) false)
+		(= (co c) false)
+		(= (pd c) false)
+		(= (fd c) false)
+		(= (no c) false)
+		(= (inited c) true)
+	)
 )))
 (assert (forall ((c Goal)) (=>
 	(node UseHGToCommunicate c)
-	(= (inited c) false)
+	(and
+		(= (fs c) true)
+		(= (ps c) false)
+		(= (un c) false)
+		(= (co c) false)
+		(= (pd c) false)
+		(= (fd c) false)
+		(= (no c) false)
+		(= (inited c) true)
+	)
 )))
 (assert (forall ((c Resource)) (=>
 	(node OtherData c)

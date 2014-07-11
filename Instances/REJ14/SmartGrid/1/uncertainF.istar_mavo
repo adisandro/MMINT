@@ -131,11 +131,11 @@
     <dependerLinks formulaVariable="EncryptData2EncryptionKeys2" may="true" alternatives="//@decisions.0/@alternatives.1" depender="//@actors.1/@intentions.11"/>
     <dependeeLinks formulaVariable="EncryptionKeys22MeterPointOperator" may="true" alternatives="//@decisions.0/@alternatives.1" dependee="//@actors.2"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Goal" formulaVariable="UseHANToCommunicate" may="true" alternatives="//@decisions.1/@alternatives.0" name="Use HAN To Communicate">
+  <dependums xsi:type="istar_mavo:Goal" formulaVariable="UseHANToCommunicate" may="true" alternatives="//@decisions.1/@alternatives.0" name="Use HAN To Communicate" fullySatisfied="true">
     <dependerLinks formulaVariable="CommunicateWithTheHouse2UseHANToCommunicate" may="true" alternatives="//@decisions.1/@alternatives.0" depender="//@actors.1/@intentions.3"/>
     <dependeeLinks formulaVariable="UseHANToCommunicate2HomeAreaNetwork" may="true" alternatives="//@decisions.1/@alternatives.0" dependee="//@actors.3"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Goal" formulaVariable="UseHGToCommunicate" may="true" alternatives="//@decisions.1/@alternatives.1" name="Use HG To Communicate">
+  <dependums xsi:type="istar_mavo:Goal" formulaVariable="UseHGToCommunicate" may="true" alternatives="//@decisions.1/@alternatives.1" name="Use HG To Communicate" fullySatisfied="true">
     <dependerLinks formulaVariable="CommunicateWithTheHouse2UseHGToCommunicate" may="true" alternatives="//@decisions.1/@alternatives.1" depender="//@actors.1/@intentions.3"/>
     <dependeeLinks formulaVariable="UseHGToCommunicate2HomeGateway" may="true" alternatives="//@decisions.1/@alternatives.1" dependee="//@actors.4"/>
   </dependums>
