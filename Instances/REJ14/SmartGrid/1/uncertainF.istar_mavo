@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<istar_mavo:IStar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:istar_mavo="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
-  <decisions formulaVariable="D1" description="Encription Keys">
+<istar_mavo:IStar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:istar_mavo="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" xmlns:mavo="http://se.cs.toronto.edu/MAVO">
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="D1" description="Encription Keys">
     <alternatives formulaVariable="D1A1" description="Consumer" mavoElements="//@actors.0/@intentions.6 //@dependums.6 //@dependums.6/@dependerLinks.0 //@dependums.6/@dependeeLinks.0"/>
     <alternatives formulaVariable="D1A2" description="Meter Point Operator" mavoElements="//@actors.2 //@dependums.7 //@dependums.7/@dependerLinks.0 //@dependums.7/@dependeeLinks.0"/>
   </decisions>
-  <decisions formulaVariable="D2" description="Communicate">
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="D2" description="Communicate">
     <alternatives formulaVariable="D2A1" description="Home Area Network" mavoElements="//@actors.3 //@dependums.8 //@dependums.8/@dependerLinks.0 //@dependums.8/@dependeeLinks.0"/>
     <alternatives formulaVariable="D2A2" description="Home Gateway" mavoElements="//@actors.4 //@dependums.9 //@dependums.9/@dependerLinks.0 //@dependums.9/@dependeeLinks.0"/>
   </decisions>
-  <decisions formulaVariable="D3" description="Directly 2 Conserve Energy EMS">
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="D3" description="Directly 2 Conserve Energy EMS">
     <alternatives formulaVariable="D3A1" description="HELP" mavoElements="//@actors.1/@intentions.8/@linksAsSrc.3"/>
     <alternatives formulaVariable="D3A2" description="HURT" mavoElements="//@actors.1/@intentions.8/@linksAsSrc.2"/>
   </decisions>
-  <decisions formulaVariable="D4" description="Encrypt Data 2 Protect Personal Information EMS">
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="D4" description="Encrypt Data 2 Protect Personal Information EMS">
     <alternatives formulaVariable="D4A1" description="MAKE" mavoElements="//@actors.1/@intentions.11/@linksAsSrc.1"/>
     <alternatives formulaVariable="D4A2" description="HELP" mavoElements="//@actors.1/@intentions.11/@linksAsSrc.2"/>
+  </decisions>
+  <decisions xsi:type="mavo:VarDecision" formulaVariable="D5" description="Data - Billing Data Feedback">
+    <domain formulaVariable="D5A" description="Data - Billing Data Feedback" mavoElements="//@dependums.3 //@dependums.4"/>
+  </decisions>
+  <decisions xsi:type="mavo:VarDecision" formulaVariable="D6" description="Energy Supplier Server - Another Server">
+    <domain formulaVariable="D6A" description="Energy Supplier Server - Another Server" mavoElements="//@actors.6 //@actors.7"/>
+  </decisions>
+  <decisions xsi:type="mavo:VarDecision" formulaVariable="D7" description="Store Aggregated Billing Data ESS - Store Aggregated Billing Data AS">
+    <domain formulaVariable="D7A" description="Store Aggregated Billing Data ESS - Store Aggregated Billing Data AS" mavoElements="//@actors.6/@intentions.0 //@actors.7/@intentions.0"/>
   </decisions>
   <actors formulaVariable="Consumer" name="Consumer">
     <intentions xsi:type="istar_mavo:SoftGoal" formulaVariable="ProtectPersonalInformationC" name="Protect Personal Information C" dependenciesAsDepender="//@dependums.0/@dependerLinks.0" linksAsTgt="//@actors.0/@intentions.6/@linksAsSrc.0"/>
@@ -83,12 +92,12 @@
   <actors formulaVariable="HomeAreaNetwork" may="true" alternatives="//@decisions.1/@alternatives.0" name="Home Area Network" dependenciesAsDependee="//@dependums.8/@dependeeLinks.0"/>
   <actors formulaVariable="HomeGateway" may="true" alternatives="//@decisions.1/@alternatives.1" name="Home Gateway" dependenciesAsDependee="//@dependums.9/@dependeeLinks.0 //@dependums.10/@dependeeLinks.0"/>
   <actors formulaVariable="SmartMeter" name="Smart Meter" dependenciesAsDependee="//@dependums.11/@dependeeLinks.0 //@dependums.12/@dependeeLinks.0 //@dependums.13/@dependeeLinks.0"/>
-  <actors formulaVariable="EnergySupplierServer" var="true" name="Energy Supplier Server">
-    <intentions xsi:type="istar_mavo:Goal" formulaVariable="StoreAggregatedBillingDataESS" var="true" name="Store Aggregated Billing Data ESS" dependenciesAsDepender="//@dependums.11/@dependerLinks.0"/>
+  <actors formulaVariable="EnergySupplierServer" var="true" alternatives="//@decisions.5/@domain" name="Energy Supplier Server">
+    <intentions xsi:type="istar_mavo:Goal" formulaVariable="StoreAggregatedBillingDataESS" var="true" alternatives="//@decisions.6/@domain" name="Store Aggregated Billing Data ESS" dependenciesAsDepender="//@dependums.11/@dependerLinks.0"/>
     <intentions xsi:type="istar_mavo:Goal" formulaVariable="ProvideAddedValueServices" set="true" name="Provide Added Value Services" dependenciesAsDepender="//@dependums.10/@dependerLinks.0"/>
   </actors>
-  <actors formulaVariable="AnotherServer" may="true" var="true" name="Another Server">
-    <intentions xsi:type="istar_mavo:Goal" formulaVariable="StoreAggregatedBillingDataAS" may="true" var="true" name="Store Aggregated Billing Data AS" dependenciesAsDepender="//@dependums.11/@dependerLinks.1"/>
+  <actors formulaVariable="AnotherServer" may="true" var="true" alternatives="//@decisions.5/@domain" name="Another Server">
+    <intentions xsi:type="istar_mavo:Goal" formulaVariable="StoreAggregatedBillingDataAS" may="true" var="true" alternatives="//@decisions.6/@domain" name="Store Aggregated Billing Data AS" dependenciesAsDepender="//@dependums.11/@dependerLinks.1"/>
   </actors>
   <dependums xsi:type="istar_mavo:SoftGoal" formulaVariable="ProtectPersonalInformation" name="Protect Personal Information">
     <dependerLinks formulaVariable="ProtectPersonalInformationC2ProtectPersonalInformation" depender="//@actors.0/@intentions.0"/>
@@ -102,11 +111,11 @@
     <dependerLinks formulaVariable="ConserveEnergyC2ConserveEnergy" depender="//@actors.0/@intentions.1"/>
     <dependeeLinks formulaVariable="ConserveEnergy2ConserveEnergyEMS" dependee="//@actors.1/@intentions.6"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Resource" formulaVariable="Data" var="true" name="Data">
+  <dependums xsi:type="istar_mavo:Resource" formulaVariable="Data" var="true" alternatives="//@decisions.4/@domain" name="Data">
     <dependerLinks formulaVariable="BeInformedOfUsage2Data" var="true" depender="//@actors.0/@intentions.4"/>
     <dependeeLinks formulaVariable="Data2DisplayData" var="true" dependee="//@actors.1/@intentions.2"/>
   </dependums>
-  <dependums xsi:type="istar_mavo:Resource" formulaVariable="BillingDataFeedback" var="true" name="Billing Data Feedback">
+  <dependums xsi:type="istar_mavo:Resource" formulaVariable="BillingDataFeedback" var="true" alternatives="//@decisions.4/@domain" name="Billing Data Feedback">
     <dependerLinks formulaVariable="BeInformedOfUsage2BillingDataFeedback" var="true" depender="//@actors.0/@intentions.4"/>
     <dependeeLinks formulaVariable="BillingDataFeedback2DisplayData" may="true" var="true" dependee="//@actors.1/@intentions.2"/>
   </dependums>

@@ -1,5 +1,4 @@
 (assert (not (exists (( c Contribution))(edge Directly2HELPConserveEnergyEMS  c ))))
-(assert (not (exists (( c Contribution))(edge ManageEncriptionKeys2SaveTimeC  c ))))
 (assert (exists (( c Contribution))(edge EncryptData2MAKEProtectPersonalInformationEMS  c )))
 (assert (not (exists (( c DependerLink))(edge CommunicateWithTheHouse2UseHANToCommunicate  c ))))
 (assert (exists (( c Actor))(node HomeGateway  c )))
@@ -9,3 +8,4 @@
 (assert (not (exists (( c Actor))(node HomeAreaNetwork  c ))))
 (assert (exists (( c Goal))(node UseHGToCommunicate  c )))
 (assert (exists (( c Contribution))(edge Directly2HURTConserveEnergyEMS  c )))
+(assert (not (exists (( c Contribution))(edge ManageEncryptionKeys2SaveTimeC  c ))))
