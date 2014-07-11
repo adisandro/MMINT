@@ -108,12 +108,12 @@
 (assert (= DefinePolicies2ConserveEnergyC 20))
 (declare-const DefinePolicies2ConsumeEnergyC Edge);Edge
 (assert (= DefinePolicies2ConsumeEnergyC 21))
-(declare-const ManageEncriptionKeys Node);Node
-(assert (= ManageEncriptionKeys 22))
-(declare-const ManageEncriptionKeys2ProtectPersonalInformationC Edge);Edge
-(assert (= ManageEncriptionKeys2ProtectPersonalInformationC 23))
-(declare-const ManageEncriptionKeys2SaveTimeC Edge);Edge
-(assert (= ManageEncriptionKeys2SaveTimeC 24))
+(declare-const ManageEncryptionKeys Node);Node
+(assert (= ManageEncryptionKeys 22))
+(declare-const ManageEncryptionKeys2ProtectPersonalInformationC Edge);Edge
+(assert (= ManageEncryptionKeys2ProtectPersonalInformationC 23))
+(declare-const ManageEncryptionKeys2SaveTimeC Edge);Edge
+(assert (= ManageEncryptionKeys2SaveTimeC 24))
 (declare-const EnergyManagementSystem Node);Node
 (assert (= EnergyManagementSystem 25))
 (declare-const ReduceCosts Node);Node
@@ -224,8 +224,8 @@
 (assert (= EncryptionKeys 78))
 (declare-const EncryptData2EncryptionKeys Edge);Edge
 (assert (= EncryptData2EncryptionKeys 79))
-(declare-const EncryptionKeys2ManageEncriptionKeys Edge);Edge
-(assert (= EncryptionKeys2ManageEncriptionKeys 80))
+(declare-const EncryptionKeys2ManageEncryptionKeys Edge);Edge
+(assert (= EncryptionKeys2ManageEncryptionKeys 80))
 (declare-const UseHGToCommunicate Node);Node
 (assert (= UseHGToCommunicate 81))
 (declare-const CommunicateWithTheHouse2UseHGToCommunicate Edge);Edge
@@ -294,20 +294,20 @@
 	)
 )))
 (assert (forall ((c Contribution)) (=>
-	(edge ManageEncriptionKeys2ProtectPersonalInformationC c)
+	(edge ManageEncryptionKeys2ProtectPersonalInformationC c)
 	(and
 		(= (srcType c) TASK)
 		(= (tgtType c) SOFTGOAL)
-		(node ManageEncriptionKeys ((as src (Task)) c))
+		(node ManageEncryptionKeys ((as src (Task)) c))
 		(node ProtectPersonalInformationC ((as tgt (SoftGoal)) c))
 	)
 )))
 (assert (forall ((c Contribution)) (=>
-	(edge ManageEncriptionKeys2SaveTimeC c)
+	(edge ManageEncryptionKeys2SaveTimeC c)
 	(and
 		(= (srcType c) TASK)
 		(= (tgtType c) SOFTGOAL)
-		(node ManageEncriptionKeys ((as src (Task)) c))
+		(node ManageEncryptionKeys ((as src (Task)) c))
 		(node SaveTimeC ((as tgt (SoftGoal)) c))
 	)
 )))
@@ -564,12 +564,12 @@
 	)
 )))
 (assert (forall ((c DependeeLink)) (=>
-	(edge EncryptionKeys2ManageEncriptionKeys c)
+	(edge EncryptionKeys2ManageEncryptionKeys c)
 	(and
 		(= (srcType c) RESOURCE)
 		(= (tgtType c) TASK)
 		(node EncryptionKeys ((as src (Resource)) c))
-		(node ManageEncriptionKeys ((as tgt (Task)) c))
+		(node ManageEncryptionKeys ((as tgt (Task)) c))
 	)
 )))
 (assert (forall ((c DependerLink)) (=>
@@ -673,7 +673,7 @@
 )))
 (assert	(forall ((c Task)) (or
 	(node DefinePolicies c)
-	(node ManageEncriptionKeys c)
+	(node ManageEncryptionKeys c)
 	(node DisplayData c)
 	(node Directly c)
 	(node Indirectly c)
@@ -732,8 +732,8 @@
 (assert	(forall ((c Contribution)) (or
 	(edge BeInformedOfUsage2ConserveEnergyC c)
 	(edge DefinePolicies2ConserveEnergyC c)
-	(edge ManageEncriptionKeys2ProtectPersonalInformationC c)
-	(edge ManageEncriptionKeys2SaveTimeC c)
+	(edge ManageEncryptionKeys2ProtectPersonalInformationC c)
+	(edge ManageEncryptionKeys2SaveTimeC c)
 	(edge ConserveEnergyEMS2ReduceCosts c)
 	(edge Directly2SaveTimeEMS c)
 	(edge Directly2ConserveEnergyEMS c)
@@ -762,7 +762,7 @@
 	(edge Data2DisplayData c)
 	(edge BillingDataFeedback2DisplayData c)
 	(edge Policies2DefinePolicies c)
-	(edge EncryptionKeys2ManageEncriptionKeys c)
+	(edge EncryptionKeys2ManageEncryptionKeys c)
 	(edge UseHGToCommunicate2HomeGateway c)
 	(edge OtherData2HomeGateway c)
 	(edge AggregatedBillingData2SmartMeter c)
@@ -908,8 +908,8 @@
 	(edge BeInformedOfUsage2ConserveEnergyC c)
 	(not (or
 		(edge DefinePolicies2ConserveEnergyC c)
-		(edge ManageEncriptionKeys2ProtectPersonalInformationC c)
-		(edge ManageEncriptionKeys2SaveTimeC c)
+		(edge ManageEncryptionKeys2ProtectPersonalInformationC c)
+		(edge ManageEncryptionKeys2SaveTimeC c)
 		(edge ConserveEnergyEMS2ReduceCosts c)
 		(edge Directly2SaveTimeEMS c)
 		(edge Directly2ConserveEnergyEMS c)
@@ -948,7 +948,7 @@
 (assert	(forall ((c Task)) (=>
 	(node DefinePolicies c)
 	(not (or
-		(node ManageEncriptionKeys c)
+		(node ManageEncryptionKeys c)
 		(node DisplayData c)
 		(node Directly c)
 		(node Indirectly c)
@@ -968,8 +968,8 @@
 	(edge DefinePolicies2ConserveEnergyC c)
 	(not (or
 		(edge BeInformedOfUsage2ConserveEnergyC c)
-		(edge ManageEncriptionKeys2ProtectPersonalInformationC c)
-		(edge ManageEncriptionKeys2SaveTimeC c)
+		(edge ManageEncryptionKeys2ProtectPersonalInformationC c)
+		(edge ManageEncryptionKeys2SaveTimeC c)
 		(edge ConserveEnergyEMS2ReduceCosts c)
 		(edge Directly2SaveTimeEMS c)
 		(edge Directly2ConserveEnergyEMS c)
@@ -997,16 +997,16 @@
 		(edge HomeAreaNetworkEMS2CommunicateWithTheHouse c)
 	))
 )))
-;ManageEncriptionKeys Exists
-(assert (exists ((c Task)) (node ManageEncriptionKeys c)))
-;ManageEncriptionKeys is Unique
+;ManageEncryptionKeys Exists
+(assert (exists ((c Task)) (node ManageEncryptionKeys c)))
+;ManageEncryptionKeys is Unique
 (assert	(forall ((c1 Task) (c2 Task)) (=>
-	(and (node ManageEncriptionKeys c1) (node ManageEncriptionKeys c2))
+	(and (node ManageEncryptionKeys c1) (node ManageEncryptionKeys c2))
 	(= c1 c2)
 )))
-;ManageEncriptionKeys is Distinct
+;ManageEncryptionKeys is Distinct
 (assert	(forall ((c Task)) (=>
-	(node ManageEncriptionKeys c)
+	(node ManageEncryptionKeys c)
 	(not (or
 		(node DefinePolicies c)
 		(node DisplayData c)
@@ -1016,20 +1016,20 @@
 		(node NoEncryption c)
 	))
 )))
-;ManageEncriptionKeys2ProtectPersonalInformationC Exists
-(assert (exists ((c Contribution)) (edge ManageEncriptionKeys2ProtectPersonalInformationC c)))
-;ManageEncriptionKeys2ProtectPersonalInformationC is Unique
+;ManageEncryptionKeys2ProtectPersonalInformationC Exists
+(assert (exists ((c Contribution)) (edge ManageEncryptionKeys2ProtectPersonalInformationC c)))
+;ManageEncryptionKeys2ProtectPersonalInformationC is Unique
 (assert	(forall ((c1 Contribution) (c2 Contribution)) (=>
-	(and (edge ManageEncriptionKeys2ProtectPersonalInformationC c1) (edge ManageEncriptionKeys2ProtectPersonalInformationC c2))
+	(and (edge ManageEncryptionKeys2ProtectPersonalInformationC c1) (edge ManageEncryptionKeys2ProtectPersonalInformationC c2))
 	(= c1 c2)
 )))
-;ManageEncriptionKeys2ProtectPersonalInformationC is Distinct
+;ManageEncryptionKeys2ProtectPersonalInformationC is Distinct
 (assert	(forall ((c Contribution)) (=>
-	(edge ManageEncriptionKeys2ProtectPersonalInformationC c)
+	(edge ManageEncryptionKeys2ProtectPersonalInformationC c)
 	(not (or
 		(edge BeInformedOfUsage2ConserveEnergyC c)
 		(edge DefinePolicies2ConserveEnergyC c)
-		(edge ManageEncriptionKeys2SaveTimeC c)
+		(edge ManageEncryptionKeys2SaveTimeC c)
 		(edge ConserveEnergyEMS2ReduceCosts c)
 		(edge Directly2SaveTimeEMS c)
 		(edge Directly2ConserveEnergyEMS c)
@@ -1038,20 +1038,20 @@
 		(edge NoEncryption2ReduceCosts c)
 	))
 )))
-;ManageEncriptionKeys2SaveTimeC Exists
-(assert (exists ((c Contribution)) (edge ManageEncriptionKeys2SaveTimeC c)))
-;ManageEncriptionKeys2SaveTimeC is Unique
+;ManageEncryptionKeys2SaveTimeC Exists
+(assert (exists ((c Contribution)) (edge ManageEncryptionKeys2SaveTimeC c)))
+;ManageEncryptionKeys2SaveTimeC is Unique
 (assert	(forall ((c1 Contribution) (c2 Contribution)) (=>
-	(and (edge ManageEncriptionKeys2SaveTimeC c1) (edge ManageEncriptionKeys2SaveTimeC c2))
+	(and (edge ManageEncryptionKeys2SaveTimeC c1) (edge ManageEncryptionKeys2SaveTimeC c2))
 	(= c1 c2)
 )))
-;ManageEncriptionKeys2SaveTimeC is Distinct
+;ManageEncryptionKeys2SaveTimeC is Distinct
 (assert	(forall ((c Contribution)) (=>
-	(edge ManageEncriptionKeys2SaveTimeC c)
+	(edge ManageEncryptionKeys2SaveTimeC c)
 	(not (or
 		(edge BeInformedOfUsage2ConserveEnergyC c)
 		(edge DefinePolicies2ConserveEnergyC c)
-		(edge ManageEncriptionKeys2ProtectPersonalInformationC c)
+		(edge ManageEncryptionKeys2ProtectPersonalInformationC c)
 		(edge ConserveEnergyEMS2ReduceCosts c)
 		(edge Directly2SaveTimeEMS c)
 		(edge Directly2ConserveEnergyEMS c)
@@ -1133,7 +1133,7 @@
 	(node DisplayData c)
 	(not (or
 		(node DefinePolicies c)
-		(node ManageEncriptionKeys c)
+		(node ManageEncryptionKeys c)
 		(node Directly c)
 		(node Indirectly c)
 		(node EncryptData c)
@@ -1279,8 +1279,8 @@
 	(not (or
 		(edge BeInformedOfUsage2ConserveEnergyC c)
 		(edge DefinePolicies2ConserveEnergyC c)
-		(edge ManageEncriptionKeys2ProtectPersonalInformationC c)
-		(edge ManageEncriptionKeys2SaveTimeC c)
+		(edge ManageEncryptionKeys2ProtectPersonalInformationC c)
+		(edge ManageEncryptionKeys2SaveTimeC c)
 		(edge Directly2SaveTimeEMS c)
 		(edge Directly2ConserveEnergyEMS c)
 		(edge Indirectly2SaveTimeEMS c)
@@ -1341,7 +1341,7 @@
 	(node Directly c)
 	(not (or
 		(node DefinePolicies c)
-		(node ManageEncriptionKeys c)
+		(node ManageEncryptionKeys c)
 		(node DisplayData c)
 		(node Indirectly c)
 		(node EncryptData c)
@@ -1377,8 +1377,8 @@
 	(not (or
 		(edge BeInformedOfUsage2ConserveEnergyC c)
 		(edge DefinePolicies2ConserveEnergyC c)
-		(edge ManageEncriptionKeys2ProtectPersonalInformationC c)
-		(edge ManageEncriptionKeys2SaveTimeC c)
+		(edge ManageEncryptionKeys2ProtectPersonalInformationC c)
+		(edge ManageEncryptionKeys2SaveTimeC c)
 		(edge ConserveEnergyEMS2ReduceCosts c)
 		(edge Directly2ConserveEnergyEMS c)
 		(edge Indirectly2SaveTimeEMS c)
@@ -1399,8 +1399,8 @@
 	(not (or
 		(edge BeInformedOfUsage2ConserveEnergyC c)
 		(edge DefinePolicies2ConserveEnergyC c)
-		(edge ManageEncriptionKeys2ProtectPersonalInformationC c)
-		(edge ManageEncriptionKeys2SaveTimeC c)
+		(edge ManageEncryptionKeys2ProtectPersonalInformationC c)
+		(edge ManageEncryptionKeys2SaveTimeC c)
 		(edge ConserveEnergyEMS2ReduceCosts c)
 		(edge Directly2SaveTimeEMS c)
 		(edge Indirectly2SaveTimeEMS c)
@@ -1420,7 +1420,7 @@
 	(node Indirectly c)
 	(not (or
 		(node DefinePolicies c)
-		(node ManageEncriptionKeys c)
+		(node ManageEncryptionKeys c)
 		(node DisplayData c)
 		(node Directly c)
 		(node EncryptData c)
@@ -1456,8 +1456,8 @@
 	(not (or
 		(edge BeInformedOfUsage2ConserveEnergyC c)
 		(edge DefinePolicies2ConserveEnergyC c)
-		(edge ManageEncriptionKeys2ProtectPersonalInformationC c)
-		(edge ManageEncriptionKeys2SaveTimeC c)
+		(edge ManageEncryptionKeys2ProtectPersonalInformationC c)
+		(edge ManageEncryptionKeys2SaveTimeC c)
 		(edge ConserveEnergyEMS2ReduceCosts c)
 		(edge Directly2SaveTimeEMS c)
 		(edge Directly2ConserveEnergyEMS c)
@@ -1518,7 +1518,7 @@
 	(node EncryptData c)
 	(not (or
 		(node DefinePolicies c)
-		(node ManageEncriptionKeys c)
+		(node ManageEncryptionKeys c)
 		(node DisplayData c)
 		(node Directly c)
 		(node Indirectly c)
@@ -1554,8 +1554,8 @@
 	(not (or
 		(edge BeInformedOfUsage2ConserveEnergyC c)
 		(edge DefinePolicies2ConserveEnergyC c)
-		(edge ManageEncriptionKeys2ProtectPersonalInformationC c)
-		(edge ManageEncriptionKeys2SaveTimeC c)
+		(edge ManageEncryptionKeys2ProtectPersonalInformationC c)
+		(edge ManageEncryptionKeys2SaveTimeC c)
 		(edge ConserveEnergyEMS2ReduceCosts c)
 		(edge Directly2SaveTimeEMS c)
 		(edge Directly2ConserveEnergyEMS c)
@@ -1575,7 +1575,7 @@
 	(node NoEncryption c)
 	(not (or
 		(node DefinePolicies c)
-		(node ManageEncriptionKeys c)
+		(node ManageEncryptionKeys c)
 		(node DisplayData c)
 		(node Directly c)
 		(node Indirectly c)
@@ -1595,8 +1595,8 @@
 	(not (or
 		(edge BeInformedOfUsage2ConserveEnergyC c)
 		(edge DefinePolicies2ConserveEnergyC c)
-		(edge ManageEncriptionKeys2ProtectPersonalInformationC c)
-		(edge ManageEncriptionKeys2SaveTimeC c)
+		(edge ManageEncryptionKeys2ProtectPersonalInformationC c)
+		(edge ManageEncryptionKeys2SaveTimeC c)
 		(edge ConserveEnergyEMS2ReduceCosts c)
 		(edge Directly2SaveTimeEMS c)
 		(edge Directly2ConserveEnergyEMS c)
@@ -1816,7 +1816,7 @@
 		(edge Data2DisplayData c)
 		(edge BillingDataFeedback2DisplayData c)
 		(edge Policies2DefinePolicies c)
-		(edge EncryptionKeys2ManageEncriptionKeys c)
+		(edge EncryptionKeys2ManageEncryptionKeys c)
 		(edge UseHGToCommunicate2HomeGateway c)
 		(edge OtherData2HomeGateway c)
 		(edge AggregatedBillingData2SmartMeter c)
@@ -1886,7 +1886,7 @@
 		(edge Data2DisplayData c)
 		(edge BillingDataFeedback2DisplayData c)
 		(edge Policies2DefinePolicies c)
-		(edge EncryptionKeys2ManageEncriptionKeys c)
+		(edge EncryptionKeys2ManageEncryptionKeys c)
 		(edge UseHGToCommunicate2HomeGateway c)
 		(edge OtherData2HomeGateway c)
 		(edge AggregatedBillingData2SmartMeter c)
@@ -1956,7 +1956,7 @@
 		(edge Data2DisplayData c)
 		(edge BillingDataFeedback2DisplayData c)
 		(edge Policies2DefinePolicies c)
-		(edge EncryptionKeys2ManageEncriptionKeys c)
+		(edge EncryptionKeys2ManageEncryptionKeys c)
 		(edge UseHGToCommunicate2HomeGateway c)
 		(edge OtherData2HomeGateway c)
 		(edge AggregatedBillingData2SmartMeter c)
@@ -2024,7 +2024,7 @@
 		(edge ConserveEnergy2ConserveEnergyEMS c)
 		(edge BillingDataFeedback2DisplayData c)
 		(edge Policies2DefinePolicies c)
-		(edge EncryptionKeys2ManageEncriptionKeys c)
+		(edge EncryptionKeys2ManageEncryptionKeys c)
 		(edge UseHGToCommunicate2HomeGateway c)
 		(edge OtherData2HomeGateway c)
 		(edge AggregatedBillingData2SmartMeter c)
@@ -2092,7 +2092,7 @@
 		(edge ConserveEnergy2ConserveEnergyEMS c)
 		(edge Data2DisplayData c)
 		(edge Policies2DefinePolicies c)
-		(edge EncryptionKeys2ManageEncriptionKeys c)
+		(edge EncryptionKeys2ManageEncryptionKeys c)
 		(edge UseHGToCommunicate2HomeGateway c)
 		(edge OtherData2HomeGateway c)
 		(edge AggregatedBillingData2SmartMeter c)
@@ -2160,7 +2160,7 @@
 		(edge ConserveEnergy2ConserveEnergyEMS c)
 		(edge Data2DisplayData c)
 		(edge BillingDataFeedback2DisplayData c)
-		(edge EncryptionKeys2ManageEncriptionKeys c)
+		(edge EncryptionKeys2ManageEncryptionKeys c)
 		(edge UseHGToCommunicate2HomeGateway c)
 		(edge OtherData2HomeGateway c)
 		(edge AggregatedBillingData2SmartMeter c)
@@ -2212,16 +2212,16 @@
 		(edge DisplayData2BillingData c)
 	))
 )))
-;EncryptionKeys2ManageEncriptionKeys Exists
-(assert (exists ((c DependeeLink)) (edge EncryptionKeys2ManageEncriptionKeys c)))
-;EncryptionKeys2ManageEncriptionKeys is Unique
+;EncryptionKeys2ManageEncryptionKeys Exists
+(assert (exists ((c DependeeLink)) (edge EncryptionKeys2ManageEncryptionKeys c)))
+;EncryptionKeys2ManageEncryptionKeys is Unique
 (assert	(forall ((c1 DependeeLink) (c2 DependeeLink)) (=>
-	(and (edge EncryptionKeys2ManageEncriptionKeys c1) (edge EncryptionKeys2ManageEncriptionKeys c2))
+	(and (edge EncryptionKeys2ManageEncryptionKeys c1) (edge EncryptionKeys2ManageEncryptionKeys c2))
 	(= c1 c2)
 )))
-;EncryptionKeys2ManageEncriptionKeys is Distinct
+;EncryptionKeys2ManageEncryptionKeys is Distinct
 (assert	(forall ((c DependeeLink)) (=>
-	(edge EncryptionKeys2ManageEncriptionKeys c)
+	(edge EncryptionKeys2ManageEncryptionKeys c)
 	(not (or
 		(edge ProtectPersonalInformation2ProtectPersonalInformationEMS c)
 		(edge SaveTime2SaveTimeEMS c)
@@ -2299,7 +2299,7 @@
 		(edge Data2DisplayData c)
 		(edge BillingDataFeedback2DisplayData c)
 		(edge Policies2DefinePolicies c)
-		(edge EncryptionKeys2ManageEncriptionKeys c)
+		(edge EncryptionKeys2ManageEncryptionKeys c)
 		(edge OtherData2HomeGateway c)
 		(edge AggregatedBillingData2SmartMeter c)
 		(edge ControlSmartAppliances2SmartMeter c)
@@ -2367,7 +2367,7 @@
 		(edge Data2DisplayData c)
 		(edge BillingDataFeedback2DisplayData c)
 		(edge Policies2DefinePolicies c)
-		(edge EncryptionKeys2ManageEncriptionKeys c)
+		(edge EncryptionKeys2ManageEncryptionKeys c)
 		(edge UseHGToCommunicate2HomeGateway c)
 		(edge AggregatedBillingData2SmartMeter c)
 		(edge ControlSmartAppliances2SmartMeter c)
@@ -2435,7 +2435,7 @@
 		(edge Data2DisplayData c)
 		(edge BillingDataFeedback2DisplayData c)
 		(edge Policies2DefinePolicies c)
-		(edge EncryptionKeys2ManageEncriptionKeys c)
+		(edge EncryptionKeys2ManageEncryptionKeys c)
 		(edge UseHGToCommunicate2HomeGateway c)
 		(edge OtherData2HomeGateway c)
 		(edge ControlSmartAppliances2SmartMeter c)
@@ -2505,7 +2505,7 @@
 		(edge Data2DisplayData c)
 		(edge BillingDataFeedback2DisplayData c)
 		(edge Policies2DefinePolicies c)
-		(edge EncryptionKeys2ManageEncriptionKeys c)
+		(edge EncryptionKeys2ManageEncryptionKeys c)
 		(edge UseHGToCommunicate2HomeGateway c)
 		(edge OtherData2HomeGateway c)
 		(edge AggregatedBillingData2SmartMeter c)
@@ -2573,7 +2573,7 @@
 		(edge Data2DisplayData c)
 		(edge BillingDataFeedback2DisplayData c)
 		(edge Policies2DefinePolicies c)
-		(edge EncryptionKeys2ManageEncriptionKeys c)
+		(edge EncryptionKeys2ManageEncryptionKeys c)
 		(edge UseHGToCommunicate2HomeGateway c)
 		(edge OtherData2HomeGateway c)
 		(edge AggregatedBillingData2SmartMeter c)
@@ -2607,11 +2607,11 @@
 	(= (type c) HELP)
 )))
 (assert (forall ((c Contribution)) (=>
-	(edge ManageEncriptionKeys2ProtectPersonalInformationC c)
+	(edge ManageEncryptionKeys2ProtectPersonalInformationC c)
 	(= (type c) HELP)
 )))
 (assert (forall ((c Contribution)) (=>
-	(edge ManageEncriptionKeys2SaveTimeC c)
+	(edge ManageEncryptionKeys2SaveTimeC c)
 	(= (type c) HURT)
 )))
 (assert (forall ((c Contribution)) (=>
@@ -3269,7 +3269,7 @@
 	(= (inited c) false)
 )))
 (assert (forall ((c Task)) (=>
-	(node ManageEncriptionKeys c)
+	(node ManageEncryptionKeys c)
 	(and
 		(= (fs c) true)
 		(= (ps c) false)
