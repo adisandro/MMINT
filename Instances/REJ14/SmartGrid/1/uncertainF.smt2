@@ -2959,37 +2959,27 @@
 ;D1-D1A1 Alternative elements
 (declare-fun D1A1 () Bool)
 (assert (= D1A1 (and
-	(exists ((c Task)) (node ManageEncryptionKeys c))
-	(exists ((c Resource)) (node EncryptionKeys1 c))
+	(not (exists ((c Actor)) (node MeterPointOperator c)))
+	(not (exists ((c DependerLink)) (edge EncryptData2EncryptionKeys2 c)))
+	(not (exists ((c Resource)) (node EncryptionKeys2 c)))
 	(exists ((c DependerLink)) (edge EncryptData2EncryptionKeys1 c))
+	(exists ((c Task)) (node ManageEncryptionKeys c))
+	(not (exists ((c DependeeLink)) (edge EncryptionKeys22MeterPointOperator c)))
 	(exists ((c DependeeLink)) (edge EncryptionKeys12ManageEncryptionKeys c))
+	(exists ((c Resource)) (node EncryptionKeys1 c))
 )))
-(assert (=>
-	(not D1A1)
-	(not (or
-		(exists ((c Task)) (node ManageEncryptionKeys c))
-		(exists ((c Resource)) (node EncryptionKeys1 c))
-		(exists ((c DependerLink)) (edge EncryptData2EncryptionKeys1 c))
-		(exists ((c DependeeLink)) (edge EncryptionKeys12ManageEncryptionKeys c))
-	))
-))
 ;D1-D1A2 Alternative elements
 (declare-fun D1A2 () Bool)
 (assert (= D1A2 (and
 	(exists ((c Actor)) (node MeterPointOperator c))
-	(exists ((c Resource)) (node EncryptionKeys2 c))
 	(exists ((c DependerLink)) (edge EncryptData2EncryptionKeys2 c))
+	(exists ((c Resource)) (node EncryptionKeys2 c))
+	(not (exists ((c DependerLink)) (edge EncryptData2EncryptionKeys1 c)))
+	(not (exists ((c Task)) (node ManageEncryptionKeys c)))
 	(exists ((c DependeeLink)) (edge EncryptionKeys22MeterPointOperator c))
+	(not (exists ((c DependeeLink)) (edge EncryptionKeys12ManageEncryptionKeys c)))
+	(not (exists ((c Resource)) (node EncryptionKeys1 c)))
 )))
-(assert (=>
-	(not D1A2)
-	(not (or
-		(exists ((c Actor)) (node MeterPointOperator c))
-		(exists ((c Resource)) (node EncryptionKeys2 c))
-		(exists ((c DependerLink)) (edge EncryptData2EncryptionKeys2 c))
-		(exists ((c DependeeLink)) (edge EncryptionKeys22MeterPointOperator c))
-	))
-))
 ;D1 Decision
 (assert (xor
 	D1A1
@@ -2998,37 +2988,27 @@
 ;D2-D2A1 Alternative elements
 (declare-fun D2A1 () Bool)
 (assert (= D2A1 (and
-	(exists ((c Actor)) (node HomeAreaNetwork c))
+	(not (exists ((c DependerLink)) (edge CommunicateWithTheHouse2UseHGToCommunicate c)))
+	(not (exists ((c DependeeLink)) (edge UseHGToCommunicate2HomeGateway c)))
 	(exists ((c Goal)) (node UseHANToCommunicate c))
 	(exists ((c DependerLink)) (edge CommunicateWithTheHouse2UseHANToCommunicate c))
+	(exists ((c Actor)) (node HomeAreaNetwork c))
+	(not (exists ((c Goal)) (node UseHGToCommunicate c)))
 	(exists ((c DependeeLink)) (edge UseHANToCommunicate2HomeAreaNetwork c))
+	(not (exists ((c Actor)) (node HomeGateway c)))
 )))
-(assert (=>
-	(not D2A1)
-	(not (or
-		(exists ((c Actor)) (node HomeAreaNetwork c))
-		(exists ((c Goal)) (node UseHANToCommunicate c))
-		(exists ((c DependerLink)) (edge CommunicateWithTheHouse2UseHANToCommunicate c))
-		(exists ((c DependeeLink)) (edge UseHANToCommunicate2HomeAreaNetwork c))
-	))
-))
 ;D2-D2A2 Alternative elements
 (declare-fun D2A2 () Bool)
 (assert (= D2A2 (and
-	(exists ((c Actor)) (node HomeGateway c))
-	(exists ((c Goal)) (node UseHGToCommunicate c))
 	(exists ((c DependerLink)) (edge CommunicateWithTheHouse2UseHGToCommunicate c))
 	(exists ((c DependeeLink)) (edge UseHGToCommunicate2HomeGateway c))
+	(not (exists ((c Goal)) (node UseHANToCommunicate c)))
+	(not (exists ((c DependerLink)) (edge CommunicateWithTheHouse2UseHANToCommunicate c)))
+	(not (exists ((c Actor)) (node HomeAreaNetwork c)))
+	(exists ((c Goal)) (node UseHGToCommunicate c))
+	(not (exists ((c DependeeLink)) (edge UseHANToCommunicate2HomeAreaNetwork c)))
+	(exists ((c Actor)) (node HomeGateway c))
 )))
-(assert (=>
-	(not D2A2)
-	(not (or
-		(exists ((c Actor)) (node HomeGateway c))
-		(exists ((c Goal)) (node UseHGToCommunicate c))
-		(exists ((c DependerLink)) (edge CommunicateWithTheHouse2UseHGToCommunicate c))
-		(exists ((c DependeeLink)) (edge UseHGToCommunicate2HomeGateway c))
-	))
-))
 ;D2 Decision
 (assert (xor
 	D2A1
@@ -3036,14 +3016,16 @@
 ))
 ;D3-D3A1 Alternative elements
 (declare-fun D3A1 () Bool)
-(assert (= D3A1
+(assert (= D3A1 (and
 	(exists ((c Contribution)) (edge Directly2HELPConserveEnergyEMS c))
-))
+	(not (exists ((c Contribution)) (edge Directly2HURTConserveEnergyEMS c)))
+)))
 ;D3-D3A2 Alternative elements
 (declare-fun D3A2 () Bool)
-(assert (= D3A2
+(assert (= D3A2 (and
+	(not (exists ((c Contribution)) (edge Directly2HELPConserveEnergyEMS c)))
 	(exists ((c Contribution)) (edge Directly2HURTConserveEnergyEMS c))
-))
+)))
 ;D3 Decision
 (assert (xor
 	D3A1
@@ -3051,14 +3033,16 @@
 ))
 ;D4-D4A1 Alternative elements
 (declare-fun D4A1 () Bool)
-(assert (= D4A1
+(assert (= D4A1 (and
+	(not (exists ((c Contribution)) (edge EncryptData2HELPProtectPersonalInformationEMS c)))
 	(exists ((c Contribution)) (edge EncryptData2MAKEProtectPersonalInformationEMS c))
-))
+)))
 ;D4-D4A2 Alternative elements
 (declare-fun D4A2 () Bool)
-(assert (= D4A2
+(assert (= D4A2 (and
 	(exists ((c Contribution)) (edge EncryptData2HELPProtectPersonalInformationEMS c))
-))
+	(not (exists ((c Contribution)) (edge EncryptData2MAKEProtectPersonalInformationEMS c)))
+)))
 ;D4 Decision
 (assert (xor
 	D4A1
@@ -3135,6 +3119,25 @@
 		(node ProvideAddedValueServices c)
 	))
 )))
+;D8-D8A1 Alternative elements
+(declare-fun D8A1 () Bool)
+(assert (= D8A1 (and
+	(exists ((c DependerLink)) (edge StoreAggregatedBillingDataAS2AggregatedBillingData c))
+	(exists ((c Actor)) (node AnotherServer c))
+	(exists ((c Goal)) (node StoreAggregatedBillingDataAS c))
+)))
+;D8-D8A2 Alternative elements
+(declare-fun D8A2 () Bool)
+(assert (= D8A2 (and
+	(not (exists ((c DependerLink)) (edge StoreAggregatedBillingDataAS2AggregatedBillingData c)))
+	(not (exists ((c Actor)) (node AnotherServer c)))
+	(not (exists ((c Goal)) (node StoreAggregatedBillingDataAS c)))
+)))
+;D8 Decision
+(assert (xor
+	D8A1
+	D8A2
+))
 
 ;Contribution Types
 (define-sort ContributionType () Int)
@@ -3829,7 +3832,16 @@
 )))
 (assert (forall ((c Task)) (=>
 	(node DefinePolicies c)
-	(= (inited c) false)
+	(and
+		(= (fs c) true)
+		(= (ps c) false)
+		(= (un c) false)
+		(= (co c) false)
+		(= (pd c) false)
+		(= (fd c) false)
+		(= (no c) false)
+		(= (inited c) true)
+	)
 )))
 (assert (forall ((c Task)) (=>
 	(node ManageEncryptionKeys c)
