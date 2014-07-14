@@ -9,8 +9,8 @@
   <foreignModel>mavo.ecore</foreignModel>
   <genPackages prefix="MAVO" basePackage="edu.toronto.cs.se" disposableProviderFactory="true"
       ecorePackage="mavo.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mavo.ecore#//MAVODecisionLogic">
-      <genEnumLiterals ecoreEnumLiteral="mavo.ecore#//MAVODecisionLogic/XOR"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mavo.ecore#//MayDecisionLogic">
+      <genEnumLiterals ecoreEnumLiteral="mavo.ecore#//MayDecisionLogic/XOR"/>
     </genEnums>
     <genClasses image="false" ecoreClass="mavo.ecore#//LogicElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//LogicElement/formulaVariable"/>
@@ -30,12 +30,17 @@
     </genClasses>
     <genClasses image="false" ecoreClass="mavo.ecore#//MAVOReference"/>
     <genClasses ecoreClass="mavo.ecore#//MAVODecision">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVODecision/logic"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mavo.ecore#//MAVODecision/requiredDecisions"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mavo.ecore#//MAVODecision/alternatives"/>
     </genClasses>
     <genClasses ecoreClass="mavo.ecore#//MAVOAlternative">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mavo.ecore#//MAVOAlternative/mavoElements"/>
+    </genClasses>
+    <genClasses ecoreClass="mavo.ecore#//MayDecision">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MayDecision/logic"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mavo.ecore#//MayDecision/alternatives"/>
+    </genClasses>
+    <genClasses ecoreClass="mavo.ecore#//VarDecision">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mavo.ecore#//VarDecision/domain"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

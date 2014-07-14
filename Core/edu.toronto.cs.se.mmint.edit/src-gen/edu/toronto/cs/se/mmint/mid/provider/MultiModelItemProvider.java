@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint.mid.provider;
 
 
+import edu.toronto.cs.se.mavo.provider.MAVOModelItemProvider;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -37,7 +38,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class MultiModelItemProvider
-	extends edu.toronto.cs.se.mavo.provider.MAVOModelItemProvider {
+	extends MAVOModelItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

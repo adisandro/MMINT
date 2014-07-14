@@ -360,9 +360,9 @@ public class MAVOUtils {
 		return mayOnly;
 	}
 
-	private static List<String> getVFormulaVars(MAVOModel mavoModel, MAVOElement mavoModelObj, boolean whichIds) {
+	private static List<String> getVFormulaVars(MAVOModel mavoModel, MAVOElement mavoModelObj, boolean whichFormulaVars) {
 
-		List<String> ids = new ArrayList<String>();
+		List<String> formulaVars = new ArrayList<String>();
 		EObject modelObjContainer = mavoModelObj.eContainer();
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(mavoModel, true);
 		while (iterator.hasNext()) {
@@ -382,13 +382,13 @@ public class MAVOUtils {
 					getMergeableFormulaVars(mavoModel, (MAVOElement) modelObjContainer).contains(((MAVOElement) otherModelObjContainer).getFormulaVariable()) // ok different container: mergeable
 				)
 			);
-			if (whichIds != isMergeable) {
+			if (whichFormulaVars != isMergeable) {
 				continue;
 			}
-			ids.add(((MAVOElement) otherModelObj).getFormulaVariable());
+			formulaVars.add(((MAVOElement) otherModelObj).getFormulaVariable());
 		}
 
-		return ids;
+		return formulaVars;
 	}
 
 	public static List<String> getMergeableFormulaVars(MAVOModel mavoModel, MAVOElement mavoModelObj) {

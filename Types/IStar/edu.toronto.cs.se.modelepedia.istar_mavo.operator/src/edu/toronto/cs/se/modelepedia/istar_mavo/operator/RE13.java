@@ -215,18 +215,18 @@ public class RE13 extends OperatorImpl {
 		}
 		String intentionProperty, labelProperty;
 		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
-			String intentionName = entry.getKey();
+			String intentionFormulaVar = entry.getKey();
 			Intention intention = entry.getValue();
-			if (initialIntentions.contains(intentionName)) { // skip intentions with initial label
+			if (initialIntentions.contains(intentionFormulaVar)) { // skip intentions with initial label
 				continue;
 			}
 			intentionProperty = Z3SMTUtils.SMTLIB_ASSERT;
 			if (intention.isMay()) {
 				intentionProperty +=
-						Z3SMTUtils.SMTLIB_AND +
+					Z3SMTUtils.SMTLIB_AND +
 					Z3SMTUtils.exists(
 						Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION + intention.eClass().getName()),
-						Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_NODE_FUNCTION, intentionName + SMTLIB_CONCRETIZATION)
+						Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_NODE_FUNCTION, intentionFormulaVar + SMTLIB_CONCRETIZATION)
 					)
 				;
 			}
@@ -236,7 +236,7 @@ public class RE13 extends OperatorImpl {
 				Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION + intention.eClass().getName()) +
 				Z3SMTUtils.SMTLIB_PREDICATE_END +
 				Z3SMTUtils.SMTLIB_IMPLICATION +
-				Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_NODE_FUNCTION, intentionName + SMTLIB_CONCRETIZATION)
+				Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_NODE_FUNCTION, intentionFormulaVar + SMTLIB_CONCRETIZATION)
 			;
 			for (SMTLIBLabel label : SMTLIBLabel.values()) {
 				if ((boolean) intention.eGet(label.getModelFeature())) { // skip already checked
@@ -276,11 +276,11 @@ public class RE13 extends OperatorImpl {
 		istar = (IStar) istarModel.getEMFInstanceRoot();
 		for (Actor actor : istar.getActors()) {
 			for (Intention intention : actor.getIntentions()) {
-				intentions.put(intention.getName().replace(" ", ""), intention);
+				intentions.put(intention.getFormulaVariable(), intention);
 			}
 		}
 		for (Intention intention : istar.getDependums()) {
-			intentions.put(intention.getName().replace(" ", ""), intention);
+			intentions.put(intention.getFormulaVariable(), intention);
 		}
 		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
 			Intention intention = entry.getValue();

@@ -30,6 +30,7 @@ import edu.toronto.cs.se.mavo.MAVOAlternative;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MayDecision;
 
 /**
  * The handler for the dynamic construction of a context menu for all
@@ -89,30 +90,32 @@ public class MAVOAddToAlternative extends ContributionItem {
 		Menu mavoMenu = new Menu(menu);
 		mavoItem.setMenu(mavoMenu);
 		for (MAVODecision mavoDecision : mavoModel.getDecisions()) {
-			for (MAVOAlternative mavoAlternative : mavoDecision.getAlternatives()) {
-				boolean add = false;
-				boolean delete = false;
-				for (MAVOElement selectedElement : mavoElements){
-					if (selectedElement.getAlternatives().contains(mavoAlternative)){
-						delete = true;
+			if (mavoDecision instanceof MayDecision) {
+				for (MAVOAlternative mavoAlternative : ((MayDecision) mavoDecision).getAlternatives()) {
+					boolean add = false;
+					boolean delete = false;
+					for (MAVOElement selectedElement : mavoElements){
+						if (selectedElement.getAlternatives().contains(mavoAlternative)){
+							delete = true;
+						}
+						else{
+							add = true;
+						}
 					}
-					else{
-						add = true;
+					if (add){
+						MenuItem alternativeItem = new MenuItem(mavoMenu, SWT.NONE);
+						alternativeItem.setText("(M) Add to Alternative " + mavoAlternative.getFormulaVariable());
+						alternativeItem.addSelectionListener(
+								new MAVOAddToAlternativeListener(mavoElements, mavoAlternative, true)
+								);
 					}
-				}
-				if (add){
-					MenuItem alternativeItem = new MenuItem(mavoMenu, SWT.NONE);
-					alternativeItem.setText("Add to Alternative " + mavoAlternative.getFormulaVariable());
-					alternativeItem.addSelectionListener(
-							new MAVOAddToAlternativeListener(mavoElements, mavoAlternative, true)
-							);
-				}
-				if (delete){
-					MenuItem alternativeItem = new MenuItem(mavoMenu, SWT.NONE);
-					alternativeItem.setText("Remove from Alternative " + mavoAlternative.getFormulaVariable());
-					alternativeItem.addSelectionListener(
-							new MAVOAddToAlternativeListener(mavoElements, mavoAlternative, false)
-							);
+					if (delete){
+						MenuItem alternativeItem = new MenuItem(mavoMenu, SWT.NONE);
+						alternativeItem.setText("(M) Remove from Alternative " + mavoAlternative.getFormulaVariable());
+						alternativeItem.addSelectionListener(
+								new MAVOAddToAlternativeListener(mavoElements, mavoAlternative, false)
+								);
+					}
 				}
 			}
 		}

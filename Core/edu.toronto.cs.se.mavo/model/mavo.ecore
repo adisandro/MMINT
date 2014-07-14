@@ -68,25 +68,14 @@
       <details key="documentation" value="A MAVO element that was originally implemented as an EReference."/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MAVODecision" eSuperTypes="#//DecisionElement">
+  <eClassifiers xsi:type="ecore:EClass" name="MAVODecision" abstract="true" eSuperTypes="#//DecisionElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="A decision to be made within a MAVO model."/>
+      <details key="documentation" value="An abstract decision to be made within a MAVO model."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="logic" lowerBound="1" eType="#//MAVODecisionLogic">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The logic relationship between alternative options in this decision."/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="requiredDecisions" upperBound="-1"
         eType="#//MAVODecision">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The list of required decisions that must be resolved before resolving this decision."/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="alternatives" lowerBound="1"
-        upperBound="-1" eType="#//MAVOAlternative" containment="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The list of alternatives options for this decision."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -101,14 +90,41 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="MAVODecisionLogic">
+  <eClassifiers xsi:type="ecore:EEnum" name="MayDecisionLogic">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="The decision logic for MAVO alternatives."/>
+      <details key="documentation" value="The decision logic for May alternatives."/>
     </eAnnotations>
     <eLiterals name="XOR">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The XOR logic."/>
       </eAnnotations>
     </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MayDecision" eSuperTypes="#//MAVODecision">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A May decision to be made within a MAVO model."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="logic" lowerBound="1" eType="#//MayDecisionLogic">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The logic relationship between alternative options in this decision."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="alternatives" lowerBound="1"
+        upperBound="-1" eType="#//MAVOAlternative" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of alternatives options for this decision."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VarDecision" eSuperTypes="#//MAVODecision">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A Var decision to be made within a MAVO model."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
+        eType="#//MAVOAlternative" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The merge domain for this decision."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>

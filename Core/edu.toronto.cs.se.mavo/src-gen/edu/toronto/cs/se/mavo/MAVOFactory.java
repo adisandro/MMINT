@@ -31,15 +31,6 @@ public interface MAVOFactory extends EFactory {
 	MAVOFactory eINSTANCE = edu.toronto.cs.se.mavo.impl.MAVOFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Decision</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Decision</em>'.
-	 * @generated
-	 */
-	MAVODecision createMAVODecision();
-
-	/**
 	 * Returns a new object of class '<em>Alternative</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -47,6 +38,24 @@ public interface MAVOFactory extends EFactory {
 	 * @generated
 	 */
 	MAVOAlternative createMAVOAlternative();
+
+	/**
+	 * Returns a new object of class '<em>May Decision</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>May Decision</em>'.
+	 * @generated
+	 */
+	MayDecision createMayDecision();
+
+	/**
+	 * Returns a new object of class '<em>Var Decision</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Var Decision</em>'.
+	 * @generated
+	 */
+	VarDecision createVarDecision();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/REJ14/SmartGrid/1/uncertainF.istar_mavo" name="uncertainF" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" origin="CREATED" fileExtension="istar_mavo" editors="//@editors.0"/>
+  <models uri="/REJ14/SmartGrid/1/certainF.istar_mavo" name="certainF" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" origin="CREATED" fileExtension="istar_mavo" editors="//@editors.1"/>
+  <models uri="/REJ14/SmartGrid/1/uncertainB.istar_mavo" name="uncertainB" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" origin="CREATED" fileExtension="istar_mavo" editors="//@editors.2"/>
+  <editors xsi:type="editor:Diagram" uri="/REJ14/SmartGrid/1/uncertainF.istardiag_mavo" name="IStar_MAVO diagram for model /REJ14/SmartGrid/1/uncertainF.istar_mavo" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_IStar_MAVO" dynamic="true" modelUri="/REJ14/SmartGrid/1/uncertainF.istar_mavo" id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOCreationWizardID">
+    <fileExtensions>istardiag_mavo</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/REJ14/SmartGrid/1/certainF.istardiag_mavo" name="IStar_MAVO diagram for model /REJ14/SmartGrid/1/certainF.istar_mavo" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_IStar_MAVO" dynamic="true" modelUri="/REJ14/SmartGrid/1/certainF.istar_mavo" id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOCreationWizardID">
+    <fileExtensions>istardiag_mavo</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/REJ14/SmartGrid/1/uncertainB.istardiag_mavo" name="IStar_MAVO diagram for model /REJ14/SmartGrid/1/uncertainB.istar_mavo" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_IStar_MAVO" dynamic="true" modelUri="/REJ14/SmartGrid/1/uncertainB.istar_mavo" id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOCreationWizardID">
+    <fileExtensions>istardiag_mavo</fileExtensions>
+  </editors>
+  <extendibleTable key="/REJ14/SmartGrid/1/uncertainF.istar_mavo" value="//@models.0"/>
+  <extendibleTable key="/REJ14/SmartGrid/1/certainF.istar_mavo" value="//@models.1"/>
+  <extendibleTable key="/REJ14/SmartGrid/1/uncertainB.istar_mavo" value="//@models.2"/>
+</mid:MultiModel>

@@ -125,6 +125,24 @@ public class MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MAVOPackage.MAY_DECISION: {
+				MayDecision mayDecision = (MayDecision)theEObject;
+				T result = caseMayDecision(mayDecision);
+				if (result == null) result = caseMAVODecision(mayDecision);
+				if (result == null) result = caseDecisionElement(mayDecision);
+				if (result == null) result = caseLogicElement(mayDecision);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MAVOPackage.VAR_DECISION: {
+				VarDecision varDecision = (VarDecision)theEObject;
+				T result = caseVarDecision(varDecision);
+				if (result == null) result = caseMAVODecision(varDecision);
+				if (result == null) result = caseDecisionElement(varDecision);
+				if (result == null) result = caseLogicElement(varDecision);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -231,6 +249,36 @@ public class MAVOSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMAVOAlternative(MAVOAlternative object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>May Decision</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>May Decision</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMayDecision(MayDecision object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Var Decision</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Var Decision</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVarDecision(VarDecision object) {
 		return null;
 	}
 

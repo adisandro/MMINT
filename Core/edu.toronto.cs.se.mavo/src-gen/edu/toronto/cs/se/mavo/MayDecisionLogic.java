@@ -19,17 +19,17 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Decision Logic</b></em>',
+ * A representation of the literals of the enumeration '<em><b>May Decision Logic</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * The decision logic for MAVO alternatives.
+ * The decision logic for May alternatives.
  * <!-- end-model-doc -->
- * @see edu.toronto.cs.se.mavo.MAVOPackage#getMAVODecisionLogic()
+ * @see edu.toronto.cs.se.mavo.MAVOPackage#getMayDecisionLogic()
  * @model
  * @generated
  */
-public enum MAVODecisionLogic implements Enumerator {
+public enum MayDecisionLogic implements Enumerator {
 	/**
 	 * The '<em><b>XOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -55,33 +55,33 @@ public enum MAVODecisionLogic implements Enumerator {
 	public static final int XOR_VALUE = 0;
 
 	/**
-	 * An array of all the '<em><b>Decision Logic</b></em>' enumerators.
+	 * An array of all the '<em><b>May Decision Logic</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final MAVODecisionLogic[] VALUES_ARRAY =
-		new MAVODecisionLogic[] {
+	private static final MayDecisionLogic[] VALUES_ARRAY =
+		new MayDecisionLogic[] {
 			XOR,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Decision Logic</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>May Decision Logic</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<MAVODecisionLogic> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<MayDecisionLogic> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Decision Logic</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>May Decision Logic</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MAVODecisionLogic get(String literal) {
+	public static MayDecisionLogic get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			MAVODecisionLogic result = VALUES_ARRAY[i];
+			MayDecisionLogic result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -90,14 +90,14 @@ public enum MAVODecisionLogic implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Decision Logic</b></em>' literal with the specified name.
+	 * Returns the '<em><b>May Decision Logic</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MAVODecisionLogic getByName(String name) {
+	public static MayDecisionLogic getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			MAVODecisionLogic result = VALUES_ARRAY[i];
+			MayDecisionLogic result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -106,12 +106,12 @@ public enum MAVODecisionLogic implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Decision Logic</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>May Decision Logic</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MAVODecisionLogic get(int value) {
+	public static MayDecisionLogic get(int value) {
 		switch (value) {
 			case XOR_VALUE: return XOR;
 		}
@@ -145,7 +145,7 @@ public enum MAVODecisionLogic implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private MAVODecisionLogic(int value, String name, String literal) {
+	private MayDecisionLogic(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -189,4 +189,4 @@ public enum MAVODecisionLogic implements Enumerator {
 		return literal;
 	}
 	
-} //MAVODecisionLogic
+} //MayDecisionLogic

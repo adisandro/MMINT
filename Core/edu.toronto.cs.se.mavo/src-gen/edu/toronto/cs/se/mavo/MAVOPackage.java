@@ -371,31 +371,13 @@ public interface MAVOPackage extends EPackage {
 	int MAVO_DECISION__DESCRIPTION = DECISION_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Logic</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_DECISION__LOGIC = DECISION_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Required Decisions</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_DECISION__REQUIRED_DECISIONS = DECISION_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_DECISION__ALTERNATIVES = DECISION_ELEMENT_FEATURE_COUNT + 2;
+	int MAVO_DECISION__REQUIRED_DECISIONS = DECISION_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Decision</em>' class.
@@ -404,7 +386,7 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_DECISION_FEATURE_COUNT = DECISION_ELEMENT_FEATURE_COUNT + 3;
+	int MAVO_DECISION_FEATURE_COUNT = DECISION_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Decision</em>' class.
@@ -471,15 +453,151 @@ public interface MAVOPackage extends EPackage {
 	int MAVO_ALTERNATIVE_OPERATION_COUNT = DECISION_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mavo.MAVODecisionLogic <em>Decision Logic</em>}' enum.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mavo.impl.MayDecisionImpl <em>May Decision</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mavo.MAVODecisionLogic
-	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMAVODecisionLogic()
+	 * @see edu.toronto.cs.se.mavo.impl.MayDecisionImpl
+	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMayDecision()
 	 * @generated
 	 */
-	int MAVO_DECISION_LOGIC = 7;
+	int MAY_DECISION = 7;
 
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAY_DECISION__FORMULA_VARIABLE = MAVO_DECISION__FORMULA_VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAY_DECISION__DESCRIPTION = MAVO_DECISION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Required Decisions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAY_DECISION__REQUIRED_DECISIONS = MAVO_DECISION__REQUIRED_DECISIONS;
+
+	/**
+	 * The feature id for the '<em><b>Logic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAY_DECISION__LOGIC = MAVO_DECISION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAY_DECISION__ALTERNATIVES = MAVO_DECISION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>May Decision</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAY_DECISION_FEATURE_COUNT = MAVO_DECISION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>May Decision</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAY_DECISION_OPERATION_COUNT = MAVO_DECISION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mavo.impl.VarDecisionImpl <em>Var Decision</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mavo.impl.VarDecisionImpl
+	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getVarDecision()
+	 * @generated
+	 */
+	int VAR_DECISION = 8;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VAR_DECISION__FORMULA_VARIABLE = MAVO_DECISION__FORMULA_VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VAR_DECISION__DESCRIPTION = MAVO_DECISION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Required Decisions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VAR_DECISION__REQUIRED_DECISIONS = MAVO_DECISION__REQUIRED_DECISIONS;
+
+	/**
+	 * The feature id for the '<em><b>Domain</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VAR_DECISION__DOMAIN = MAVO_DECISION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Var Decision</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VAR_DECISION_FEATURE_COUNT = MAVO_DECISION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Var Decision</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VAR_DECISION_OPERATION_COUNT = MAVO_DECISION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mavo.MayDecisionLogic <em>May Decision Logic</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mavo.MayDecisionLogic
+	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMayDecisionLogic()
+	 * @generated
+	 */
+	int MAY_DECISION_LOGIC = 9;
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mavo.LogicElement <em>Logic Element</em>}'.
@@ -630,17 +748,6 @@ public interface MAVOPackage extends EPackage {
 	EClass getMAVODecision();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mavo.MAVODecision#getLogic <em>Logic</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Logic</em>'.
-	 * @see edu.toronto.cs.se.mavo.MAVODecision#getLogic()
-	 * @see #getMAVODecision()
-	 * @generated
-	 */
-	EAttribute getMAVODecision_Logic();
-
-	/**
 	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mavo.MAVODecision#getRequiredDecisions <em>Required Decisions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -650,17 +757,6 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMAVODecision_RequiredDecisions();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mavo.MAVODecision#getAlternatives <em>Alternatives</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Alternatives</em>'.
-	 * @see edu.toronto.cs.se.mavo.MAVODecision#getAlternatives()
-	 * @see #getMAVODecision()
-	 * @generated
-	 */
-	EReference getMAVODecision_Alternatives();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mavo.MAVOAlternative <em>Alternative</em>}'.
@@ -684,14 +780,67 @@ public interface MAVOPackage extends EPackage {
 	EReference getMAVOAlternative_MavoElements();
 
 	/**
-	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mavo.MAVODecisionLogic <em>Decision Logic</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mavo.MayDecision <em>May Decision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Decision Logic</em>'.
-	 * @see edu.toronto.cs.se.mavo.MAVODecisionLogic
+	 * @return the meta object for class '<em>May Decision</em>'.
+	 * @see edu.toronto.cs.se.mavo.MayDecision
 	 * @generated
 	 */
-	EEnum getMAVODecisionLogic();
+	EClass getMayDecision();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mavo.MayDecision#getLogic <em>Logic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Logic</em>'.
+	 * @see edu.toronto.cs.se.mavo.MayDecision#getLogic()
+	 * @see #getMayDecision()
+	 * @generated
+	 */
+	EAttribute getMayDecision_Logic();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mavo.MayDecision#getAlternatives <em>Alternatives</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Alternatives</em>'.
+	 * @see edu.toronto.cs.se.mavo.MayDecision#getAlternatives()
+	 * @see #getMayDecision()
+	 * @generated
+	 */
+	EReference getMayDecision_Alternatives();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mavo.VarDecision <em>Var Decision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Var Decision</em>'.
+	 * @see edu.toronto.cs.se.mavo.VarDecision
+	 * @generated
+	 */
+	EClass getVarDecision();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mavo.VarDecision#getDomain <em>Domain</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Domain</em>'.
+	 * @see edu.toronto.cs.se.mavo.VarDecision#getDomain()
+	 * @see #getVarDecision()
+	 * @generated
+	 */
+	EReference getVarDecision_Domain();
+
+	/**
+	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mavo.MayDecisionLogic <em>May Decision Logic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>May Decision Logic</em>'.
+	 * @see edu.toronto.cs.se.mavo.MayDecisionLogic
+	 * @generated
+	 */
+	EEnum getMayDecisionLogic();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -841,28 +990,12 @@ public interface MAVOPackage extends EPackage {
 		EClass MAVO_DECISION = eINSTANCE.getMAVODecision();
 
 		/**
-		 * The meta object literal for the '<em><b>Logic</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MAVO_DECISION__LOGIC = eINSTANCE.getMAVODecision_Logic();
-
-		/**
 		 * The meta object literal for the '<em><b>Required Decisions</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference MAVO_DECISION__REQUIRED_DECISIONS = eINSTANCE.getMAVODecision_RequiredDecisions();
-
-		/**
-		 * The meta object literal for the '<em><b>Alternatives</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MAVO_DECISION__ALTERNATIVES = eINSTANCE.getMAVODecision_Alternatives();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.impl.MAVOAlternativeImpl <em>Alternative</em>}' class.
@@ -883,14 +1016,58 @@ public interface MAVOPackage extends EPackage {
 		EReference MAVO_ALTERNATIVE__MAVO_ELEMENTS = eINSTANCE.getMAVOAlternative_MavoElements();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.MAVODecisionLogic <em>Decision Logic</em>}' enum.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.impl.MayDecisionImpl <em>May Decision</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mavo.MAVODecisionLogic
-		 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMAVODecisionLogic()
+		 * @see edu.toronto.cs.se.mavo.impl.MayDecisionImpl
+		 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMayDecision()
 		 * @generated
 		 */
-		EEnum MAVO_DECISION_LOGIC = eINSTANCE.getMAVODecisionLogic();
+		EClass MAY_DECISION = eINSTANCE.getMayDecision();
+
+		/**
+		 * The meta object literal for the '<em><b>Logic</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MAY_DECISION__LOGIC = eINSTANCE.getMayDecision_Logic();
+
+		/**
+		 * The meta object literal for the '<em><b>Alternatives</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAY_DECISION__ALTERNATIVES = eINSTANCE.getMayDecision_Alternatives();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.impl.VarDecisionImpl <em>Var Decision</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mavo.impl.VarDecisionImpl
+		 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getVarDecision()
+		 * @generated
+		 */
+		EClass VAR_DECISION = eINSTANCE.getVarDecision();
+
+		/**
+		 * The meta object literal for the '<em><b>Domain</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VAR_DECISION__DOMAIN = eINSTANCE.getVarDecision_Domain();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.MayDecisionLogic <em>May Decision Logic</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mavo.MayDecisionLogic
+		 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMayDecisionLogic()
+		 * @generated
+		 */
+		EEnum MAY_DECISION_LOGIC = eINSTANCE.getMayDecisionLogic();
 
 	}
 

@@ -57,6 +57,14 @@
 	getEdgeFeatureName(eclass, 'target')
 /]
 
+[query public getMergeableFormulaVars(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Sequence(String) =
+	invoke(
+		'edu.toronto.cs.se.mmint.mavo.library.MAVOUtils',
+		'getMergeableFormulaVars(edu.toronto.cs.se.mavo.MAVOModel, edu.toronto.cs.se.mavo.MAVOElement)',
+		Sequence{mavoModel, mavoModelObj}
+	)
+/]
+
 [query public getUnmergeableFormulaVars(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Sequence(String) =
 	invoke(
 		'edu.toronto.cs.se.mmint.mavo.library.MAVOUtils',
@@ -169,35 +177,35 @@
 		[/if]
 		[/let]
 	[/for]
-	[for (mavoDecision : MAVODecision | mavoModel.decisions)]
-		[for (mavoAlternative : MAVOAlternative | mavoDecision.alternatives)]
-;[mavoDecision.formulaVariable/]-[mavoAlternative.formulaVariable/] Alternative Elements
-(declare-fun [mavoAlternative.formulaVariable/] () Bool)
-(assert (= [mavoAlternative.formulaVariable/][if (mavoAlternative.mavoElements->size() > 1)] (and[/if]
-			[for (mavoElement : MAVOElement | mavoAlternative.mavoElements)]
+	[for (mayDecision : MayDecision | mavoModel.decisions->select(oclIsTypeOf(MayDecision))->collect(oclAsType(MayDecision)))]
+		[for (mayAlternative : MAVOAlternative | mayDecision.alternatives)]
+;[mayDecision.formulaVariable/]-[mayAlternative.formulaVariable/] Alternative elements
+(declare-fun [mayAlternative.formulaVariable/] () Bool)
+(assert (= [mayAlternative.formulaVariable/][if (mayAlternative.mavoElements->size() > 1)] (and[/if]
+			[for (mavoElement : MAVOElement | mayAlternative.mavoElements)]
 	([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/])
 			[/for]
-))[if (mavoAlternative.mavoElements->size() > 1)])[/if]
-			[if (mavoAlternative.mavoElements->size() > 1)]
+))[if (mayAlternative.mavoElements->size() > 1)])[/if]
+			[if (mayAlternative.mavoElements->size() > 1)]
 (assert (=>
-	(not [mavoAlternative.formulaVariable/])
+	(not [mayAlternative.formulaVariable/])
 	(not (or
-				[for (mavoElement : MAVOElement | mavoAlternative.mavoElements)]
+				[for (mavoElement : MAVOElement | mayAlternative.mavoElements)]
 		([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/])
 				[/for]
 	))
 ))
 			[/if]
 		[/for]
-;[mavoDecision.formulaVariable/] Decision
-		[if (mavoDecision.alternatives->size() > 1)]
-(assert ([mavoDecision.logic.toString().toLower()/]
-			[for (mavoAlternative : MAVOAlternative | mavoDecision.alternatives)]
+;[mayDecision.formulaVariable/] Decision
+		[if (mayDecision.alternatives->size() > 1)]
+(assert ([mayDecision.logic.toString().toLower()/]
+			[for (mavoAlternative : MAVOAlternative | mayDecision.alternatives)]
 	[mavoAlternative.formulaVariable/]
 			[/for]
 ))
 		[else]
-(assert [mavoDecision.alternatives->at(1).formulaVariable/])
+(assert [mayDecision.alternatives->at(1).formulaVariable/])
 		[/if]
 	[/for]
 [/template]
@@ -297,14 +305,14 @@
 	(= c1 c2)
 )))
 		[/if]
-		[let unmergeableIds : Sequence(String) = mavoModel.getUnmergeableFormulaVars(mavoElement)]
-		[if (not unmergeableIds->isEmpty())]
+		[let unmergeableFormulaVars : Sequence(String) = mavoModel.getUnmergeableFormulaVars(mavoElement)]
+		[if (not unmergeableFormulaVars->isEmpty())]
 ;[mavoElement.formulaVariable/] is Distinct
 (assert	(forall ((c [sort/])) (=>
 	([function/] [mavoElement.formulaVariable/] c)
 	(not (or
-			[for (unmergeableId : String | unmergeableIds)]
-		([function/] [unmergeableId/] c)
+			[for (unmergeableFormulaVar : String | unmergeableFormulaVars)]
+		([function/] [unmergeableFormulaVar/] c)
 			[/for]
 	))
 )))
@@ -314,34 +322,61 @@
 		[/let]
 	[/for]
 	[for (mavoDecision : MAVODecision | mavoModel.decisions)]
-		[for (mavoAlternative : MAVOAlternative | mavoDecision.alternatives)]
-;[mavoDecision.formulaVariable/]-[mavoAlternative.formulaVariable/] Alternative Elements
-(declare-fun [mavoAlternative.formulaVariable/] () Bool)
-(assert (= [mavoAlternative.formulaVariable/][if (mavoAlternative.mavoElements->size() > 1)] (and[/if]
-			[for (mavoElement : MAVOElement | mavoAlternative.mavoElements)]
+		[if (mavoDecision.oclIsTypeOf(MayDecision))]
+			[let mayDecision : MayDecision = mavoDecision.oclAsType(MayDecision)]
+			[for (mayAlternative : MAVOAlternative | mayDecision.alternatives)]
+;[mayDecision.formulaVariable/]-[mayAlternative.formulaVariable/] Alternative elements
+(declare-fun [mayAlternative.formulaVariable/] () Bool)
+(assert (= [mayAlternative.formulaVariable/][if (mayAlternative.mavoElements->size() > 1)] (and[/if]
+				[for (mavoElement : MAVOElement | mayAlternative.mavoElements)]
 	(exists ((c [mavoElement.eClass().getMAVOClassName()/])) ([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/] c))
-			[/for]
-))[if (mavoAlternative.mavoElements->size() > 1)])[/if]
-			[if (mavoAlternative.mavoElements->size() > 1)]
-(assert (=>
-	(not [mavoAlternative.formulaVariable/])
-	(not (or
-				[for (mavoElement : MAVOElement | mavoAlternative.mavoElements)]
-		(exists ((c [mavoElement.eClass().getMAVOClassName()/])) ([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/] c))
 				[/for]
+))[if (mayAlternative.mavoElements->size() > 1)])[/if]
+				[if (mayAlternative.mavoElements->size() > 1)]
+(assert (=>
+	(not [mayAlternative.formulaVariable/])
+	(not (or
+					[for (mavoElement : MAVOElement | mayAlternative.mavoElements)]
+		(exists ((c [mavoElement.eClass().getMAVOClassName()/])) ([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/] c))
+					[/for]
 	))
 ))
-			[/if]
-		[/for]
-;[mavoDecision.formulaVariable/] Decision
-		[if (mavoDecision.alternatives->size() > 1)]
-(assert ([mavoDecision.logic.toString().toLower()/]
-			[for (mavoAlternative : MAVOAlternative | mavoDecision.alternatives)]
-	[mavoAlternative.formulaVariable/]
+				[/if]
 			[/for]
+;[mayDecision.formulaVariable/] Decision
+			[if (mayDecision.alternatives->size() > 1)]
+(assert ([mayDecision.logic.toString().toLower()/]
+				[for (mayAlternative : MAVOAlternative | mayDecision.alternatives)]
+	[mayAlternative.formulaVariable/]
+				[/for]
 ))
-		[else]
-(assert [mavoDecision.alternatives->at(1).formulaVariable/])
+			[else]
+(assert [mayDecision.alternatives->at(1).formulaVariable/])
+			[/if]
+			[/let]
+		[/if]
+		[if (mavoDecision.oclIsTypeOf(VarDecision))]
+			[let varDecision : VarDecision = mavoDecision.oclAsType(VarDecision)]
+			[let varDomain : MAVOAlternative = varDecision.domain]
+			[let domainFormulaVars : Sequence(String) = varDomain.mavoElements->collect(formulaVariable)]
+;[varDecision.formulaVariable/]-[varDomain.formulaVariable/] merge Domain
+			[for (mavoElement : MAVOElement | varDomain.mavoElements)]
+				[let mergeableFormulaVars : Sequence(String) = mavoModel.getMergeableFormulaVars(mavoElement)]
+(assert	(forall ((c [mavoElement.eClass().getMAVOClassName()/])) (=>
+	([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/] c)
+	(not (or
+				[for (mergeableFormulaVar : String | mergeableFormulaVars)]
+					[if (not domainFormulaVars->includes(mergeableFormulaVar))]
+		([mavoElement.eClass().getGraphFunction()/] [mergeableFormulaVar/] c)
+					[/if]
+				[/for]
+	))
+)))
+				[/let]
+			[/for]
+			[/let]
+			[/let]
+			[/let]
 		[/if]
 	[/for]
 [/template]
