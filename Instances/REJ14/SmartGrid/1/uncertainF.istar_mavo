@@ -25,6 +25,10 @@
   <decisions xsi:type="mavo:VarDecision" formulaVariable="D7" description="Store Aggregated Billing Data ESS - Store Aggregated Billing Data AS">
     <domain formulaVariable="D7A" description="Store Aggregated Billing Data ESS - Store Aggregated Billing Data AS" mavoElements="//@actors.6/@intentions.0 //@actors.7/@intentions.0"/>
   </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="D8" description="Another Server">
+    <alternatives formulaVariable="D8A1" description="Another Server certain" mavoElements="//@actors.7 //@actors.7/@intentions.0 //@dependums.11/@dependerLinks.1"/>
+    <alternatives formulaVariable="D8A2" description="Another Server deleted"/>
+  </decisions>
   <actors formulaVariable="Consumer" name="Consumer">
     <intentions xsi:type="istar_mavo:SoftGoal" formulaVariable="ProtectPersonalInformationC" name="Protect Personal Information C" dependenciesAsDepender="//@dependums.0/@dependerLinks.0" linksAsTgt="//@actors.0/@intentions.6/@linksAsSrc.0"/>
     <intentions xsi:type="istar_mavo:SoftGoal" formulaVariable="ConserveEnergyC" name="Conserve Energy C" dependenciesAsDepender="//@dependums.2/@dependerLinks.0" linksAsTgt="//@actors.0/@intentions.5/@linksAsSrc.0 //@actors.0/@intentions.4/@linksAsSrc.0"/>
@@ -34,7 +38,7 @@
       <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="BeInformedOfUsage2ConserveEnergyC" tgt="//@actors.0/@intentions.1" type="HELP"/>
       <linksAsSrc xsi:type="istar_mavo:Decomposition" formulaVariable="BeInformedOfUsage2ConsumeEnergyC" tgt="//@actors.0/@intentions.3"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Task" formulaVariable="DefinePolicies" name="Define Policies" dependenciesAsDependee="//@dependums.5/@dependeeLinks.0">
+    <intentions xsi:type="istar_mavo:Task" formulaVariable="DefinePolicies" name="Define Policies" dependenciesAsDependee="//@dependums.5/@dependeeLinks.0" fullySatisfied="true">
       <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="DefinePolicies2ConserveEnergyC" tgt="//@actors.0/@intentions.1" type="HELP"/>
       <linksAsSrc xsi:type="istar_mavo:Decomposition" formulaVariable="DefinePolicies2ConsumeEnergyC" tgt="//@actors.0/@intentions.3"/>
     </intentions>
@@ -96,8 +100,8 @@
     <intentions xsi:type="istar_mavo:Goal" formulaVariable="StoreAggregatedBillingDataESS" var="true" alternatives="//@decisions.6/@domain" name="Store Aggregated Billing Data ESS" dependenciesAsDepender="//@dependums.11/@dependerLinks.0"/>
     <intentions xsi:type="istar_mavo:Goal" formulaVariable="ProvideAddedValueServices" set="true" name="Provide Added Value Services" dependenciesAsDepender="//@dependums.10/@dependerLinks.0"/>
   </actors>
-  <actors formulaVariable="AnotherServer" may="true" var="true" alternatives="//@decisions.5/@domain" name="Another Server">
-    <intentions xsi:type="istar_mavo:Goal" formulaVariable="StoreAggregatedBillingDataAS" may="true" var="true" alternatives="//@decisions.6/@domain" name="Store Aggregated Billing Data AS" dependenciesAsDepender="//@dependums.11/@dependerLinks.1"/>
+  <actors formulaVariable="AnotherServer" may="true" var="true" alternatives="//@decisions.5/@domain //@decisions.7/@alternatives.0" name="Another Server">
+    <intentions xsi:type="istar_mavo:Goal" formulaVariable="StoreAggregatedBillingDataAS" may="true" var="true" alternatives="//@decisions.6/@domain //@decisions.7/@alternatives.0" name="Store Aggregated Billing Data AS" dependenciesAsDepender="//@dependums.11/@dependerLinks.1"/>
   </actors>
   <dependums xsi:type="istar_mavo:SoftGoal" formulaVariable="ProtectPersonalInformation" name="Protect Personal Information">
     <dependerLinks formulaVariable="ProtectPersonalInformationC2ProtectPersonalInformation" depender="//@actors.0/@intentions.0"/>
@@ -145,7 +149,7 @@
   </dependums>
   <dependums xsi:type="istar_mavo:Resource" formulaVariable="AggregatedBillingData" name="Aggregated Billing Data" fullySatisfied="true">
     <dependerLinks formulaVariable="StoreAggregatedBillingDataESS2AggregatedBillingData" var="true" depender="//@actors.6/@intentions.0"/>
-    <dependerLinks formulaVariable="StoreAggregatedBillingDataAS2AggregatedBillingData" may="true" var="true" depender="//@actors.7/@intentions.0"/>
+    <dependerLinks formulaVariable="StoreAggregatedBillingDataAS2AggregatedBillingData" may="true" var="true" alternatives="//@decisions.7/@alternatives.0" depender="//@actors.7/@intentions.0"/>
     <dependeeLinks formulaVariable="AggregatedBillingData2SmartMeter" dependee="//@actors.5"/>
   </dependums>
   <dependums xsi:type="istar_mavo:Goal" formulaVariable="ControlSmartAppliances" name="Control Smart Appliances" fullySatisfied="true">
