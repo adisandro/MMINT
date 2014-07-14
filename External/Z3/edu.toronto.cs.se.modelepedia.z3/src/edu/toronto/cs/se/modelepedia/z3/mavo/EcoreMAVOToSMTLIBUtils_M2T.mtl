@@ -81,6 +81,10 @@
 	endif
 /]
 
+[query public getMayDecisionElements(mayDecision : MayDecision) : Set(MAVOElement) =
+	mayDecision.alternatives->collect(mavoElements)->asSet()
+/]
+
 [template public encodeModelMayOnly(mavoModel : MAVOModel)]
 ;Concretizations
 (define-sort NodeType () Int)
@@ -181,21 +185,11 @@
 		[for (mayAlternative : MAVOAlternative | mayDecision.alternatives)]
 ;[mayDecision.formulaVariable/]-[mayAlternative.formulaVariable/] Alternative elements
 (declare-fun [mayAlternative.formulaVariable/] () Bool)
-(assert (= [mayAlternative.formulaVariable/][if (mayAlternative.mavoElements->size() > 1)] (and[/if]
-			[for (mavoElement : MAVOElement | mayAlternative.mavoElements)]
-	([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/])
-			[/for]
-))[if (mayAlternative.mavoElements->size() > 1)])[/if]
-			[if (mayAlternative.mavoElements->size() > 1)]
-(assert (=>
-	(not [mayAlternative.formulaVariable/])
-	(not (or
-				[for (mavoElement : MAVOElement | mayAlternative.mavoElements)]
-		([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/])
+(assert (= [mayAlternative.formulaVariable/][if (mayDecision.getMayDecisionElements()->size() > 1)] (and[/if]
+				[for (mavoElement : MAVOElement | mayDecision.getMayDecisionElements())]
+	[if (not mayAlternative.mavoElements->includes(mavoElement))](not [/if]([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/])[if (not mayAlternative.mavoElements->includes(mavoElement))])[/if]
 				[/for]
-	))
-))
-			[/if]
+))[if (mayDecision.getMayDecisionElements()->size() > 1)])[/if]
 		[/for]
 ;[mayDecision.formulaVariable/] Decision
 		[if (mayDecision.alternatives->size() > 1)]
@@ -327,21 +321,11 @@
 			[for (mayAlternative : MAVOAlternative | mayDecision.alternatives)]
 ;[mayDecision.formulaVariable/]-[mayAlternative.formulaVariable/] Alternative elements
 (declare-fun [mayAlternative.formulaVariable/] () Bool)
-(assert (= [mayAlternative.formulaVariable/][if (mayAlternative.mavoElements->size() > 1)] (and[/if]
-				[for (mavoElement : MAVOElement | mayAlternative.mavoElements)]
-	(exists ((c [mavoElement.eClass().getMAVOClassName()/])) ([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/] c))
+(assert (= [mayAlternative.formulaVariable/][if (mayDecision.getMayDecisionElements()->size() > 1)] (and[/if]
+				[for (mavoElement : MAVOElement | mayDecision.getMayDecisionElements())]
+	[if (not mayAlternative.mavoElements->includes(mavoElement))](not [/if](exists ((c [mavoElement.eClass().getMAVOClassName()/])) ([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/] c))[if (not mayAlternative.mavoElements->includes(mavoElement))])[/if]
 				[/for]
-))[if (mayAlternative.mavoElements->size() > 1)])[/if]
-				[if (mayAlternative.mavoElements->size() > 1)]
-(assert (=>
-	(not [mayAlternative.formulaVariable/])
-	(not (or
-					[for (mavoElement : MAVOElement | mayAlternative.mavoElements)]
-		(exists ((c [mavoElement.eClass().getMAVOClassName()/])) ([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/] c))
-					[/for]
-	))
-))
-				[/if]
+))[if (mayDecision.getMayDecisionElements()->size() > 1)])[/if]
 			[/for]
 ;[mayDecision.formulaVariable/] Decision
 			[if (mayDecision.alternatives->size() > 1)]
