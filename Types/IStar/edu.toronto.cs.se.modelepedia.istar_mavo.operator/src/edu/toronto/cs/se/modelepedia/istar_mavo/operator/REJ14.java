@@ -34,11 +34,14 @@ import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
 
 public class REJ14 extends FASE14 {
 
+	private final static String PROPERTY_IN_MODELCONSTRAINT = "modelConstraint";
+	private final static String PROPERTY_IN_MODELCONSTRAINT_DEFAULT = null;
 	private final static String PROPERTY_IN_GENERATETARGETSCONCRETIZATION = "generateTargetsConcretization";
 	private final static Boolean PROPERTY_IN_GENERATETARGETSCONCRETIZATION_DEFAULT = false;
 
 	// input
 	private boolean timeAnalysisEnabled;
+	private String modelConstraint;
 	private boolean generateTargetsConcretization;
 	// state
 	private Map<Integer, String> smtEdges;
@@ -48,6 +51,7 @@ public class REJ14 extends FASE14 {
 
 		super.readInputProperties(inputProperties);
 		timeAnalysisEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEANALYSIS+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		modelConstraint = MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MODELCONSTRAINT, PROPERTY_IN_MODELCONSTRAINT_DEFAULT);
 		generateTargetsConcretization = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_GENERATETARGETSCONCRETIZATION, PROPERTY_IN_GENERATETARGETSCONCRETIZATION_DEFAULT);
 	}
 
@@ -57,6 +61,9 @@ public class REJ14 extends FASE14 {
 		super.init();
 
 		// state
+		if (modelConstraint != null) {
+			smtEncoding += Z3SMTUtils.assertion(modelConstraint);
+		}
 		IStarMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
 			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
 			(IStarMAVOToSMTLIB) getPreviousOperator();

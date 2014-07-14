@@ -262,8 +262,7 @@ public class RE13 extends OperatorImpl {
 
 		long startTime = System.nanoTime();
 
-		String property = Z3SMTUtils.SMTLIB_ASSERT + targetsProperty + Z3SMTUtils.SMTLIB_PREDICATE_END;
-		Z3SMTModel z3Model = z3IncSolver.checkSatAndGetModel(property, Z3IncrementalBehavior.NORMAL);
+		Z3SMTModel z3Model = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(targetsProperty), Z3IncrementalBehavior.NORMAL);
 		targets = z3Model.getZ3Bool();
 
 		timeTargets = System.nanoTime() - startTime;
