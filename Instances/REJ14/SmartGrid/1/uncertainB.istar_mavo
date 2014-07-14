@@ -27,7 +27,7 @@
   </decisions>
   <decisions xsi:type="mavo:MayDecision" formulaVariable="D8" description="Another Server">
     <alternatives formulaVariable="D8A1" description="Another Server certain" mavoElements="//@actors.7 //@actors.7/@intentions.0 //@dependums.11/@dependerLinks.1"/>
-    <alternatives formulaVariable="D8A1" description="Another Server deleted"/>
+    <alternatives formulaVariable="D8A2" description="Another Server deleted"/>
   </decisions>
   <actors formulaVariable="Consumer" name="Consumer">
     <intentions xsi:type="istar_mavo:SoftGoal" formulaVariable="ProtectPersonalInformationC" name="Protect Personal Information C" dependenciesAsDepender="//@dependums.0/@dependerLinks.0" partiallySatisfied="true" linksAsTgt="//@actors.0/@intentions.6/@linksAsSrc.0"/>
