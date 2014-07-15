@@ -116,7 +116,7 @@ public class REJ14 extends FASE14 {
 				formulaVars = new ArrayList<String>();
 				z3Elems.put(concretizationVar, formulaVars);
 			}
-			String formulaVar = smtNodes.get(z3ModelEdge.getValue());
+			String formulaVar = smtEdges.get(z3ModelEdge.getValue());
 			formulaVars.add(formulaVar);
 		}
 		for (Entry<String, MAVOElement> mavoModelObjEntry : mavoModelObjs.entrySet()) {
@@ -150,7 +150,7 @@ public class REJ14 extends FASE14 {
 				}
 			}
 			if (mavoModelObj.isVar()) {
-				if (mergeV.size() > 1) {
+				if (counterMS > 0 && mergeV.size() > 1) {
 					concretization += formulaVar + " merged with " + mergeV + " (V)\n";
 					String smtVConstraint = encodeVConstraint(sort, function, formulaVar, mergeV);
 					smtConcretizationConstraint += Z3SMTUtils.assertion(smtVConstraint);
