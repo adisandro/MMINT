@@ -82,7 +82,7 @@
 /]
 
 [query public getMayDecisionElements(mayDecision : MayDecision) : Set(MAVOElement) =
-	mayDecision.alternatives->collect(mavoElements)->asSet()
+	mayDecision.alternatives->collect(mavoElements)->asOrderedSet()
 /]
 
 [template public encodeModelMayOnly(mavoModel : MAVOModel)]
