@@ -32,10 +32,7 @@ import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
-import edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint;
-import edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
@@ -235,9 +232,7 @@ public class FASE14 extends RE13 {
 					((MAVOElement) modelObj).isMay() ||
 					((MAVOElement) modelObj).isSet() ||
 					((MAVOElement) modelObj).isVar()
-				) &&
-				!(modelObj instanceof DependerLink && ((DependerLink) modelObj).getDepender() instanceof Actor) &&
-				!(modelObj instanceof DependeeLink && ((DependeeLink) modelObj).getDependee() instanceof Actor)
+				)
 			) {
 				mavoModelObjs.put(((MAVOElement) modelObj).getFormulaVariable(), (MAVOElement) modelObj);
 			}
