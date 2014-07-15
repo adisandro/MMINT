@@ -40,7 +40,6 @@ public class Z3SMTUtils {
 	public static final String Z3_MODEL_ELSE = "else";
 	public static final String Z3_MODEL_FUNCTION_START = "{";
 	public static final String Z3_MODEL_FUNCTION_END = "}";
-	public static final String Z3_MODEL_NEWLINE = "\n";
 
 	public static String predicate(String predicateStart, String smtTerms) {
 

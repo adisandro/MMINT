@@ -33,8 +33,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint;
-import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
-import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
@@ -208,25 +206,10 @@ public class FASE14 extends RE13 {
 	@Override
 	protected void collectAnalysisModelObjs(Model istarModel) throws MMINTException {
 
-		istar = (IStar) istarModel.getEMFInstanceRoot();
+		super.collectAnalysisModelObjs(istarModel);
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(istar, true);
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();
-			if (modelObj instanceof Intention) {
-				Intention intention = (Intention) modelObj;
-				intentions.put(intention.getFormulaVariable(), intention);
-				if (
-					intention.isFullySatisfied() ||
-					intention.isPartiallySatisfied() ||
-					intention.isUnknown() ||
-					intention.isConflict() ||
-					intention.isPartiallyDenied() ||
-					intention.isFullyDenied() ||
-					intention.isNoLabel()
-				) {
-					initialIntentions.add(intention.getFormulaVariable());
-				}
-			}
 			if (
 				modelObj instanceof MAVOElement && (
 					((MAVOElement) modelObj).isMay() ||
@@ -244,7 +227,7 @@ public class FASE14 extends RE13 {
 
 		Model istarModel = actualParameters.get(0);
 
-		// run solver
+		// run
 		collectAnalysisModelObjs(istarModel);
 		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
 		doAnalysis(z3IncSolver);
@@ -255,7 +238,7 @@ public class FASE14 extends RE13 {
 			}
 		}
 
-		// save output
+		// output
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
 		MultiModelOperatorUtils.writePropertiesFile(
