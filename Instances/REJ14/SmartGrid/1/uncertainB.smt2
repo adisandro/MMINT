@@ -1955,7 +1955,7 @@
 	(and (node StoreAggregatedBillingDataESS c1) (node StoreAggregatedBillingDataESS c2))
 	(= c1 c2)
 )))
-;StoreAggregatedBillingDataESS is Distinct
+;StoreAggregatedBillingDataESS is Distinct only from unmergeables
 (assert	(forall ((c Goal)) (=>
 	(node StoreAggregatedBillingDataESS c)
 	(not (or
@@ -1991,7 +1991,7 @@
 	(and (node StoreAggregatedBillingDataAS c1) (node StoreAggregatedBillingDataAS c2))
 	(= c1 c2)
 )))
-;StoreAggregatedBillingDataAS is Distinct
+;StoreAggregatedBillingDataAS is Distinct only from unmergeables
 (assert	(forall ((c Goal)) (=>
 	(node StoreAggregatedBillingDataAS c)
 	(not (or
@@ -2232,7 +2232,7 @@
 	(and (node Data c1) (node Data c2))
 	(= c1 c2)
 )))
-;Data is Distinct
+;Data is Distinct only from unmergeables
 (assert	(forall ((c Resource)) (=>
 	(node Data c)
 	(not (or
@@ -2247,7 +2247,7 @@
 	(and (edge BeInformedOfUsage2Data c1) (edge BeInformedOfUsage2Data c2))
 	(= c1 c2)
 )))
-;BeInformedOfUsage2Data is Distinct
+;BeInformedOfUsage2Data is Distinct only from unmergeables
 (assert	(forall ((c DependerLink)) (=>
 	(edge BeInformedOfUsage2Data c)
 	(not (or
@@ -2266,7 +2266,7 @@
 	(and (edge Data2DisplayData c1) (edge Data2DisplayData c2))
 	(= c1 c2)
 )))
-;Data2DisplayData is Distinct
+;Data2DisplayData is Distinct only from unmergeables
 (assert	(forall ((c DependeeLink)) (=>
 	(edge Data2DisplayData c)
 	(not (or
@@ -2285,7 +2285,7 @@
 	(and (node BillingDataFeedback c1) (node BillingDataFeedback c2))
 	(= c1 c2)
 )))
-;BillingDataFeedback is Distinct
+;BillingDataFeedback is Distinct only from unmergeables
 (assert	(forall ((c Resource)) (=>
 	(node BillingDataFeedback c)
 	(not (or
@@ -2300,7 +2300,7 @@
 	(and (edge BeInformedOfUsage2BillingDataFeedback c1) (edge BeInformedOfUsage2BillingDataFeedback c2))
 	(= c1 c2)
 )))
-;BeInformedOfUsage2BillingDataFeedback is Distinct
+;BeInformedOfUsage2BillingDataFeedback is Distinct only from unmergeables
 (assert	(forall ((c DependerLink)) (=>
 	(edge BeInformedOfUsage2BillingDataFeedback c)
 	(not (or
@@ -2317,7 +2317,7 @@
 	(and (edge BillingDataFeedback2DisplayData c1) (edge BillingDataFeedback2DisplayData c2))
 	(= c1 c2)
 )))
-;BillingDataFeedback2DisplayData is Distinct
+;BillingDataFeedback2DisplayData is Distinct only from unmergeables
 (assert	(forall ((c DependeeLink)) (=>
 	(edge BillingDataFeedback2DisplayData c)
 	(not (or
@@ -2747,7 +2747,7 @@
 	(and (edge StoreAggregatedBillingDataESS2AggregatedBillingData c1) (edge StoreAggregatedBillingDataESS2AggregatedBillingData c2))
 	(= c1 c2)
 )))
-;StoreAggregatedBillingDataESS2AggregatedBillingData is Distinct
+;StoreAggregatedBillingDataESS2AggregatedBillingData is Distinct only from unmergeables
 (assert	(forall ((c DependerLink)) (=>
 	(edge StoreAggregatedBillingDataESS2AggregatedBillingData c)
 	(not (or
@@ -2769,7 +2769,7 @@
 	(and (edge StoreAggregatedBillingDataAS2AggregatedBillingData c1) (edge StoreAggregatedBillingDataAS2AggregatedBillingData c2))
 	(= c1 c2)
 )))
-;StoreAggregatedBillingDataAS2AggregatedBillingData is Distinct
+;StoreAggregatedBillingDataAS2AggregatedBillingData is Distinct only from unmergeables
 (assert	(forall ((c DependerLink)) (=>
 	(edge StoreAggregatedBillingDataAS2AggregatedBillingData c)
 	(not (or

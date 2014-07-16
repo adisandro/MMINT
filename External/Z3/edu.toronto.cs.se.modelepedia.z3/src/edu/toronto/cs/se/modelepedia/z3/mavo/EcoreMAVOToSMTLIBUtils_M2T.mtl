@@ -301,7 +301,7 @@
 		[/if]
 		[let unmergeableFormulaVars : Sequence(String) = mavoModel.getUnmergeableFormulaVars(mavoElement)]
 		[if (not unmergeableFormulaVars->isEmpty())]
-;[mavoElement.formulaVariable/] is Distinct
+;[mavoElement.formulaVariable/] is Distinct[if (mavoElement.var)] only from unmergeables[/if]
 (assert	(forall ((c [sort/])) (=>
 	([function/] [mavoElement.formulaVariable/] c)
 	(not (or
