@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -130,37 +131,43 @@ public class REJ14 extends FASE14 {
 			String sort = mavoModelObj.eClass().getName();
 			String function = encodeMAVConstraintFunction(mavoModelObj);
 			int counterMS = 0;
-			List<String> mergeV = null;
+			List<String> mergedV = null;
 			for (List<String> z3ElemFormulaVars : z3Elems.values()) {
 				if (z3ElemFormulaVars.contains(formulaVar)) {
 					counterMS++;
-					mergeV = z3ElemFormulaVars;
+					mergedV = z3ElemFormulaVars;
 				}
 			}
+			boolean isNegation;
+			String smtConstraint = "";
 			if (mavoModelObj.isMay()) {
-				String smtMConstraint = encodeMConstraint(sort, function, formulaVar);
-				if (counterMS == 0) {
+				isNegation = (counterMS == 0);
+				if (isNegation) {
 					concretization += formulaVar + " deleted (M)\n";
 				}
-				else {
-					smtMConstraint = Z3SMTUtils.not(smtMConstraint);
-				}
-				smtConcretizationConstraint += smtMConstraint;
+				smtConstraint = encodeMConstraint(sort, function, formulaVar, isNegation);
 			}
-			if (mavoModelObj.isSet()) {
-				if (counterMS > 1) {
+			if (mavoModelObj.isSet() && counterMS > 0) {
+				isNegation = (counterMS > 1);
+				if (isNegation) {
 					concretization += formulaVar + " split into " + counterMS + " (S)\n";
-					String smtSConstraint = encodeSConstraint(sort, function, formulaVar);
-					smtConcretizationConstraint += smtSConstraint;
 				}
+				smtConstraint = encodeSConstraint(sort, function, formulaVar, isNegation);
 			}
-			if (mavoModelObj.isVar()) {
-				if (counterMS > 0 && mergeV.size() > 1) {
-					concretization += formulaVar + " merged with " + mergeV + " (V)\n";
-					String smtVConstraint = encodeVConstraint(sort, function, formulaVar, mergeV);
-					smtConcretizationConstraint += smtVConstraint;
+			if (mavoModelObj.isVar() && counterMS > 0) {
+				isNegation = (mergedV.size() > 1);
+				if (isNegation) {
+					concretization += formulaVar + " merged with " + mergedV + " (V)\n";
 				}
+				else {
+					mergedV = MAVOUtils.getMergeableFormulaVars(istar, mavoModelObj);
+					if (mergedV.size() == 0) {
+						continue;
+					}
+				}
+				smtConstraint = encodeVConstraint(sort, function, formulaVar, mergedV, isNegation);
 			}
+			smtConcretizationConstraint += smtConstraint;
 		}
 		concretization += "\n";
 		Map<String, Intention> intentions = new HashMap<String, Intention>();

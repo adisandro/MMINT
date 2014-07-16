@@ -80,15 +80,22 @@ public class FASE14 extends RE13 {
 			Z3SMTUtils.SMTLIB_EDGE_FUNCTION;
 	}
 
-	protected String encodeMConstraint(String sort, String function, String formulaVar) {
+	protected String encodeMConstraint(String sort, String function, String formulaVar, boolean isNegation) {
 
-		return Z3SMTUtils.exists(
+		String constraint = Z3SMTUtils.exists(
 			Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION + sort),
 			Z3SMTUtils.predicate(function, formulaVar + " " + SMTLIB_CONCRETIZATION)
 		);
+
+		return (isNegation) ? Z3SMTUtils.not(constraint) : constraint;
 	}
 
-	protected String encodeSConstraint(String sort, String function, String formulaVar) {
+	protected String encodeSConstraint(String sort, String function, String formulaVar, boolean isNegation) {
+
+		String smtThenTerms = Z3SMTUtils.equality(SMTLIB_CONCRETIZATION1 + SMTLIB_CONCRETIZATION2);
+		if (isNegation) {
+			smtThenTerms = Z3SMTUtils.not(smtThenTerms);
+		}
 
 		return Z3SMTUtils.forall(
 			Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION1 + sort) + Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION2 + sort),
@@ -96,24 +103,24 @@ public class FASE14 extends RE13 {
 				Z3SMTUtils.and(
 					Z3SMTUtils.predicate(function, formulaVar + SMTLIB_CONCRETIZATION1) + Z3SMTUtils.predicate(function, formulaVar + SMTLIB_CONCRETIZATION2)
 				),
-				Z3SMTUtils.equality(SMTLIB_CONCRETIZATION1 + SMTLIB_CONCRETIZATION2)
+				smtThenTerms
 			)
 		);
 	}
 
-	protected String encodeVConstraint(String sort, String function, String formulaVar, List<String> mergeableFormulaVars) {
+	protected String encodeVConstraint(String sort, String function, String formulaVar, List<String> unmergeableFormulaVars, boolean isNegation) {
 
-		String smtOrTerms = "";
-		for (String unmergeableFormulaVar : mergeableFormulaVars) {
-			smtOrTerms += Z3SMTUtils.predicate(function, unmergeableFormulaVar + SMTLIB_CONCRETIZATION);
+		String smtThenTerms = "";
+		for (String unmergeableFormulaVar : unmergeableFormulaVars) {
+			smtThenTerms += Z3SMTUtils.predicate(function, unmergeableFormulaVar + SMTLIB_CONCRETIZATION);
 		}
+		smtThenTerms = (isNegation) ? Z3SMTUtils.and(smtThenTerms) : Z3SMTUtils.not(Z3SMTUtils.or(smtThenTerms));
+
 		return Z3SMTUtils.forall(
 			Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION + sort),
 			Z3SMTUtils.implication(
 				Z3SMTUtils.predicate(function, formulaVar + SMTLIB_CONCRETIZATION),
-				Z3SMTUtils.not(
-					Z3SMTUtils.or(smtOrTerms)
-				)
+				smtThenTerms
 			)
 		);
 	}
@@ -153,7 +160,7 @@ public class FASE14 extends RE13 {
 			String sort = mavoModelObj.eClass().getName();
 			String function = encodeMAVConstraintFunction(mavoModelObj);
 			if (mavoModelObj.isMay()) {
-				String smtMConstraint = encodeMConstraint(sort, function, formulaVar);
+				String smtMConstraint = encodeMConstraint(sort, function, formulaVar, false);
 				z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_May(), smtMConstraint, z3IncSolver, mayModelObjsToRemove);
 				if (z3TempModel != null) {
 					z3Model = z3TempModel;
@@ -164,7 +171,7 @@ public class FASE14 extends RE13 {
 				}
 			}
 			if (mavoModelObj.isSet()) {
-				String smtSConstraint = encodeSConstraint(sort, function, formulaVar);
+				String smtSConstraint = encodeSConstraint(sort, function, formulaVar, false);
 				z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_Set(), smtSConstraint, z3IncSolver, mayModelObjsToRemove);
 				if (z3TempModel != null) {
 					z3Model = z3TempModel;
@@ -173,7 +180,7 @@ public class FASE14 extends RE13 {
 			if (mavoModelObj.isVar()) {
 				List<String> mergeableFormulaVars = MAVOUtils.getMergeableFormulaVars(istar, mavoModelObj);
 				if (!mergeableFormulaVars.isEmpty()) {
-					String smtVConstraint = encodeVConstraint(sort, function, formulaVar, mergeableFormulaVars);
+					String smtVConstraint = encodeVConstraint(sort, function, formulaVar, mergeableFormulaVars, false);
 					z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint, z3IncSolver, mayModelObjsToRemove);
 					if (z3TempModel != null) {
 						z3Model = z3TempModel;
