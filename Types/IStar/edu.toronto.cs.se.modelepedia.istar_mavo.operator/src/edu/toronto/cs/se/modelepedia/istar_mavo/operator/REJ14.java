@@ -189,7 +189,7 @@ public class REJ14 extends FASE14 {
 		if (timeTargetsEnabled) {
 			Z3SMTModel z3Model = doTargets(z3IncSolver);
 			if (targets == Z3SMTBool.SAT) {
-				//doRNF(z3IncSolver, z3Model);
+				doRNF(z3IncSolver, z3Model);
 				if (generateTargetsConcretization) {
 					while (true) {
 						String[] concretization = getConcretization(EcoreUtil.copy(istarCopy), z3Model);
