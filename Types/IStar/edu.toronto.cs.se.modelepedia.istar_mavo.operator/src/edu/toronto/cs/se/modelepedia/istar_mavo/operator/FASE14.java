@@ -44,7 +44,7 @@ public class FASE14 extends RE13 {
 	private static final String SMTLIB_CONCRETIZATION1 = " c1 ";
 	private static final String SMTLIB_CONCRETIZATION2 = " c2 ";
 
-	private static final String PROPERTY_OUT_TIMERNF = "timeRNF";
+	protected static final String PROPERTY_OUT_TIMERNF = "timeRNF";
 	private static final String RNF_OUTPUT_SUFFIX = "_rnf";
 
 	// state
@@ -125,7 +125,7 @@ public class FASE14 extends RE13 {
 		);
 	}
 
-	private Z3SMTModel checkMAVOAnnotation(MAVOElement mavoModelObj, EStructuralFeature mavoAnnotation, String smtMavoConstraint, Z3SMTIncrementalSolver z3IncSolver, List<MAVOElement> mayModelObjsToRemove) {
+	private Z3SMTModel checkMAVOAnnotation(MAVOElement mavoModelObj, EStructuralFeature mavoAnnotation, String smtMavoConstraint, Z3SMTIncrementalSolver z3IncSolver, List<MAVOElement> mavoModelObjsToRemove) {
 
 		Z3SMTModel z3ModelResult = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)), Z3IncrementalBehavior.POP);
 		if (z3ModelResult.getZ3Bool() == Z3SMTBool.SAT) {
@@ -136,11 +136,11 @@ public class FASE14 extends RE13 {
 		else {
 			if (mavoAnnotation == MAVOPackage.eINSTANCE.getMAVOElement_May() && smtMavoConstraint.startsWith(Z3SMTUtils.SMTLIB_NOT)) { // M model object deletion
 				EcoreUtil.delete(mavoModelObj, true);
-				mayModelObjsToRemove.add(mavoModelObj);
 			}
 			else { // M-S-V removal
 				mavoModelObj.eSet(mavoAnnotation, false);
 			}
+			mavoModelObjsToRemove.add(mavoModelObj);
 			String smtMavoAssertion = Z3SMTUtils.assertion(smtMavoConstraint);
 			smtEncodingRNF += smtMavoAssertion + "\n";
 
@@ -153,7 +153,7 @@ public class FASE14 extends RE13 {
 		long startTime = System.nanoTime();
 
 		Z3SMTModel z3TempModel;
-		List<MAVOElement> mayModelObjsToRemove = new ArrayList<MAVOElement>();
+		List<MAVOElement> mavoModelObjsToRemove = new ArrayList<MAVOElement>();
 		for (Entry<String, MAVOElement> mavoModelObjEntry : mavoModelObjs.entrySet()) {
 			MAVOElement mavoModelObj = mavoModelObjEntry.getValue();
 			String formulaVar = mavoModelObjEntry.getKey();
@@ -161,18 +161,18 @@ public class FASE14 extends RE13 {
 			String function = encodeMAVConstraintFunction(mavoModelObj);
 			if (mavoModelObj.isMay()) {
 				String smtMConstraint = encodeMConstraint(sort, function, formulaVar, false);
-				z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_May(), smtMConstraint, z3IncSolver, mayModelObjsToRemove);
+				z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_May(), smtMConstraint, z3IncSolver, mavoModelObjsToRemove);
 				if (z3TempModel != null) {
 					z3Model = z3TempModel;
 				}
-				z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_May(), Z3SMTUtils.not(smtMConstraint), z3IncSolver, mayModelObjsToRemove);
+				z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_May(), Z3SMTUtils.not(smtMConstraint), z3IncSolver, mavoModelObjsToRemove);
 				if (z3TempModel != null) {
 					z3Model = z3TempModel;
 				}
 			}
 			if (mavoModelObj.isSet()) {
 				String smtSConstraint = encodeSConstraint(sort, function, formulaVar, false);
-				z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_Set(), smtSConstraint, z3IncSolver, mayModelObjsToRemove);
+				z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_Set(), smtSConstraint, z3IncSolver, mavoModelObjsToRemove);
 				if (z3TempModel != null) {
 					z3Model = z3TempModel;
 				}
@@ -181,14 +181,14 @@ public class FASE14 extends RE13 {
 				List<String> mergeableFormulaVars = MAVOUtils.getMergeableFormulaVars(istar, mavoModelObj);
 				if (!mergeableFormulaVars.isEmpty()) {
 					String smtVConstraint = encodeVConstraint(sort, function, formulaVar, mergeableFormulaVars, false);
-					z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint, z3IncSolver, mayModelObjsToRemove);
+					z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint, z3IncSolver, mavoModelObjsToRemove);
 					if (z3TempModel != null) {
 						z3Model = z3TempModel;
 					}
 				}
 			}
 		}
-		mavoModelObjs.values().removeAll(mayModelObjsToRemove);
+		mavoModelObjs.values().removeAll(mavoModelObjsToRemove);
 
 		timeRNF = System.nanoTime() - startTime;
 	}

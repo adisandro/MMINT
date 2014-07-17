@@ -46,6 +46,7 @@ public class REJ14 extends FASE14 {
 
 	// input
 	private boolean timeAnalysisEnabled;
+	private boolean timeRNFEnabled;
 	private String modelConstraint;
 	private boolean generateTargetsConcretization;
 	// state
@@ -56,6 +57,7 @@ public class REJ14 extends FASE14 {
 
 		super.readInputProperties(inputProperties);
 		timeAnalysisEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEANALYSIS+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeRNFEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMERNF+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 		modelConstraint = MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MODELCONSTRAINT, PROPERTY_IN_MODELCONSTRAINT_DEFAULT);
 		generateTargetsConcretization = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_GENERATETARGETSCONCRETIZATION, PROPERTY_IN_GENERATETARGETSCONCRETIZATION_DEFAULT);
 	}
@@ -143,21 +145,21 @@ public class REJ14 extends FASE14 {
 			if (mavoModelObj.isMay()) {
 				isNegation = (counterMS == 0);
 				if (isNegation) {
-					concretization += formulaVar + " deleted (M)\n";
+					concretization += formulaVar + " deleted (M)" + System.lineSeparator();
 				}
 				smtConstraint = encodeMConstraint(sort, function, formulaVar, isNegation);
 			}
 			if (mavoModelObj.isSet() && counterMS > 0) {
 				isNegation = (counterMS > 1);
 				if (isNegation) {
-					concretization += formulaVar + " split into " + counterMS + " (S)\n";
+					concretization += formulaVar + " split into " + counterMS + " (S)" + System.lineSeparator();
 				}
 				smtConstraint = encodeSConstraint(sort, function, formulaVar, isNegation);
 			}
 			if (mavoModelObj.isVar() && counterMS > 0) {
 				isNegation = (mergedV.size() > 1);
 				if (isNegation) {
-					concretization += formulaVar + " merged with " + mergedV + " (V)\n";
+					concretization += formulaVar + " merged with " + mergedV + " (V)" + System.lineSeparator();
 				}
 				else {
 					mergedV = MAVOUtils.getMergeableFormulaVars(istar, mavoModelObj);
@@ -169,7 +171,7 @@ public class REJ14 extends FASE14 {
 			}
 			smtConcretizationConstraint += smtConstraint;
 		}
-		concretization += "\n";
+		concretization += System.lineSeparator();
 		Map<String, Intention> intentions = new HashMap<String, Intention>();
 		super.collectIntentions(istar, intentions);
 		getConcretizationAnalysisLabels(intentions, z3Model);
@@ -196,12 +198,14 @@ public class REJ14 extends FASE14 {
 		if (timeTargetsEnabled) {
 			Z3SMTModel z3Model = doTargets(z3IncSolver);
 			if (targets == Z3SMTBool.SAT) {
-				doRNF(z3IncSolver, z3Model);
+				if (timeRNFEnabled) {
+					doRNF(z3IncSolver, z3Model);//TODO MMINT[RNF] istar is modified by the rnf algorithm, I should copy it afterwards but clean the assigned labels
+				}
 				if (generateTargetsConcretization) {
 					while (true) {
 						String[] concretization = getConcretization(EcoreUtil.copy(istarCopy), z3Model);
 						//TODO MMINT[MAVO] Integrate with mu-mmint code to show concretization model
-						if (!MultiModelDiagramUtils.getBooleanInput("Concretization", concretization[0] + "\n\nDo you want another concretization?")) {
+						if (!MultiModelDiagramUtils.getBooleanInput("Concretization", concretization[0] + System.lineSeparator() + System.lineSeparator() + "Do you want another concretization?")) {
 							break;
 						}
 						//TODO MMINT[TOSEM] Integrate with tosem allsat to negate current concretization
