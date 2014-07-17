@@ -36,6 +36,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getInputSubdir <em>Input Subdir</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getPreviousOperator <em>Previous Operator</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#isUpdateMID <em>Update MID</em>}</li>
  * </ul>
  * </p>
  *
@@ -123,6 +124,32 @@ public interface Operator extends ExtendibleElement {
 	 * @generated
 	 */
 	void setPreviousOperator(Operator value);
+
+	/**
+	 * Returns the value of the '<em><b>Update MID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Update MID</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Update MID</em>' attribute.
+	 * @see #setUpdateMID(boolean)
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperator_UpdateMID()
+	 * @model
+	 * @generated
+	 */
+	boolean isUpdateMID();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#isUpdateMID <em>Update MID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Update MID</em>' attribute.
+	 * @see #isUpdateMID()
+	 * @generated
+	 */
+	void setUpdateMID(boolean value);
 
 	/**
 	 * <!-- begin-user-doc -->

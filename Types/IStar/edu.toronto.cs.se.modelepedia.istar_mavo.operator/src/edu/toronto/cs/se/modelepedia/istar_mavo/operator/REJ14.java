@@ -17,15 +17,20 @@ import java.util.Map.Entry;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
+import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
@@ -34,11 +39,15 @@ import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
 
 public class REJ14 extends FASE14 {
 
+	private final static String PROPERTY_IN_MODELCONSTRAINT = "modelConstraint";
+	private final static String PROPERTY_IN_MODELCONSTRAINT_DEFAULT = null;
 	private final static String PROPERTY_IN_GENERATETARGETSCONCRETIZATION = "generateTargetsConcretization";
 	private final static Boolean PROPERTY_IN_GENERATETARGETSCONCRETIZATION_DEFAULT = false;
 
 	// input
 	private boolean timeAnalysisEnabled;
+	private boolean timeRNFEnabled;
+	private String modelConstraint;
 	private boolean generateTargetsConcretization;
 	// state
 	private Map<Integer, String> smtEdges;
@@ -48,6 +57,8 @@ public class REJ14 extends FASE14 {
 
 		super.readInputProperties(inputProperties);
 		timeAnalysisEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEANALYSIS+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeRNFEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMERNF+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		modelConstraint = MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MODELCONSTRAINT, PROPERTY_IN_MODELCONSTRAINT_DEFAULT);
 		generateTargetsConcretization = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_GENERATETARGETSCONCRETIZATION, PROPERTY_IN_GENERATETARGETSCONCRETIZATION_DEFAULT);
 	}
 
@@ -57,6 +68,9 @@ public class REJ14 extends FASE14 {
 		super.init();
 
 		// state
+		if (modelConstraint != null) {
+			smtEncoding += Z3SMTUtils.assertion(modelConstraint);
+		}
 		IStarMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
 			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
 			(IStarMAVOToSMTLIB) getPreviousOperator();
@@ -78,10 +92,10 @@ public class REJ14 extends FASE14 {
 		return z3Model;
 	}
 
-	private String[] getConcretization(Z3SMTModel z3Model) {
+	private String[] getConcretization(IStar istar, Z3SMTModel z3Model) {
 
-		String concretization = "", smtConcretizationConstraint = "";
 		//TODO MMINT[Z3] Change api names, make this process an api, make nodes+edges an api
+		//TODO MMINT[MAVO] Rethink mavo apis to include all of this
 		/*TODO
 		 * mavoModelObjs = formulaVar->mavoModelObj
 		 * smtNodes/smtEdges = int->formulaVar
@@ -89,6 +103,7 @@ public class REJ14 extends FASE14 {
 		 * S: x concretizationVar to same formulaVar
 		 * V: 1 concretizationVar to x formulaVar
 		 */
+		String concretization = "", smtConcretizationConstraint = "";
 		Map<String, Integer> z3ModelNodes = z3Model.getZ3ModelNodes(smtNodes);
 		Map<String, Integer> z3ModelEdges = z3Model.getZ3ModelEdges(smtEdges);
 		Map<String, List<String>> z3Elems = new HashMap<String, List<String>>();
@@ -109,7 +124,7 @@ public class REJ14 extends FASE14 {
 				formulaVars = new ArrayList<String>();
 				z3Elems.put(concretizationVar, formulaVars);
 			}
-			String formulaVar = smtNodes.get(z3ModelEdge.getValue());
+			String formulaVar = smtEdges.get(z3ModelEdge.getValue());
 			formulaVars.add(formulaVar);
 		}
 		for (Entry<String, MAVOElement> mavoModelObjEntry : mavoModelObjs.entrySet()) {
@@ -118,38 +133,52 @@ public class REJ14 extends FASE14 {
 			String sort = mavoModelObj.eClass().getName();
 			String function = encodeMAVConstraintFunction(mavoModelObj);
 			int counterMS = 0;
-			List<String> mergeV = null;
+			List<String> mergedV = null;
 			for (List<String> z3ElemFormulaVars : z3Elems.values()) {
 				if (z3ElemFormulaVars.contains(formulaVar)) {
 					counterMS++;
-					mergeV = z3ElemFormulaVars;
+					mergedV = z3ElemFormulaVars;
 				}
 			}
+			boolean isNegation;
+			String smtConstraint = "";
 			if (mavoModelObj.isMay()) {
-				String smtMConstraint = encodeMConstraint(sort, function, formulaVar);
-				if (counterMS == 0) {
-					concretization += formulaVar + " deleted (M)\n";
+				isNegation = (counterMS == 0);
+				if (isNegation) {
+					concretization += formulaVar + " deleted (M)" + System.lineSeparator();
+				}
+				smtConstraint = encodeMConstraint(sort, function, formulaVar, isNegation);
+			}
+			if (mavoModelObj.isSet() && counterMS > 0) {
+				isNegation = (counterMS > 1);
+				if (isNegation) {
+					concretization += formulaVar + " split into " + counterMS + " (S)" + System.lineSeparator();
+				}
+				smtConstraint = encodeSConstraint(sort, function, formulaVar, isNegation);
+			}
+			if (mavoModelObj.isVar() && counterMS > 0) {
+				isNegation = (mergedV.size() > 1);
+				if (isNegation) {
+					concretization += formulaVar + " merged with " + mergedV + " (V)" + System.lineSeparator();
 				}
 				else {
-					smtMConstraint = Z3SMTUtils.not(smtMConstraint);
+					mergedV = MAVOUtils.getMergeableFormulaVars(istar, mavoModelObj);
+					if (mergedV.size() == 0) {
+						continue;
+					}
 				}
-				smtConcretizationConstraint += Z3SMTUtils.assertion(smtMConstraint);
+				smtConstraint = encodeVConstraint(sort, function, formulaVar, mergedV, isNegation);
 			}
-			if (mavoModelObj.isSet()) {
-				if (counterMS > 1) {
-					concretization += formulaVar + " split into " + counterMS + " (S)\n";
-					String smtSConstraint = encodeSConstraint(sort, function, formulaVar);
-					smtConcretizationConstraint += Z3SMTUtils.assertion(smtSConstraint);
-				}
-			}
-			if (mavoModelObj.isVar()) {
-				if (mergeV.size() > 1) {
-					concretization += formulaVar + " merged with " + mergeV + " (V)\n";
-					String smtVConstraint = encodeVConstraint(sort, function, formulaVar, mergeV);
-					smtConcretizationConstraint += Z3SMTUtils.assertion(smtVConstraint);
-				}
-			}
+			smtConcretizationConstraint += smtConstraint;
 		}
+		concretization += System.lineSeparator();
+		Map<String, Intention> intentions = new HashMap<String, Intention>();
+		super.collectIntentions(istar, intentions);
+		getConcretizationAnalysisLabels(intentions, z3Model);
+		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
+			concretization += entry.getKey() + "(" + writeIntentionLabels(entry.getValue()) + ") ";
+		}
+		smtConcretizationConstraint = Z3SMTUtils.assertion(Z3SMTUtils.not(Z3SMTUtils.and(smtConcretizationConstraint)));
 
 		return new String[] {concretization, smtConcretizationConstraint};
 	}
@@ -159,8 +188,9 @@ public class REJ14 extends FASE14 {
 
 		Model istarModel = actualParameters.get(0);
 
-		// run solver
+		// run
 		collectAnalysisModelObjs(istarModel);
+		IStar istarCopy = EcoreUtil.copy(istar);
 		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
 		if (timeAnalysisEnabled) {
 			doAnalysis(z3IncSolver);
@@ -168,12 +198,14 @@ public class REJ14 extends FASE14 {
 		if (timeTargetsEnabled) {
 			Z3SMTModel z3Model = doTargets(z3IncSolver);
 			if (targets == Z3SMTBool.SAT) {
-				doRNF(z3IncSolver, z3Model);
+				if (timeRNFEnabled) {
+					doRNF(z3IncSolver, z3Model);//TODO MMINT[RNF] istar is modified by the rnf algorithm, I should copy it afterwards but clean the assigned labels
+				}
 				if (generateTargetsConcretization) {
 					while (true) {
-						String[] concretization = getConcretization(z3Model);
-						//TODO MMINT[NAAMA] Integrate with mu-mmint code to show concretization model
-						if (!MultiModelDiagramUtils.getBooleanInput("Concretization", concretization[0] + "\n\nDo you want another concretization?")) {
+						String[] concretization = getConcretization(EcoreUtil.copy(istarCopy), z3Model);
+						//TODO MMINT[MAVO] Integrate with mu-mmint code to show concretization model
+						if (!MultiModelDiagramUtils.getBooleanInput("Concretization", concretization[0] + System.lineSeparator() + System.lineSeparator() + "Do you want another concretization?")) {
 							break;
 						}
 						//TODO MMINT[TOSEM] Integrate with tosem allsat to negate current concretization
@@ -186,7 +218,7 @@ public class REJ14 extends FASE14 {
 			}
 		}
 
-		// save output
+		// output
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
 		MultiModelOperatorUtils.writePropertiesFile(

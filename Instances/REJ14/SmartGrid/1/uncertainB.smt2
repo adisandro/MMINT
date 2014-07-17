@@ -1955,7 +1955,7 @@
 	(and (node StoreAggregatedBillingDataESS c1) (node StoreAggregatedBillingDataESS c2))
 	(= c1 c2)
 )))
-;StoreAggregatedBillingDataESS is Distinct
+;StoreAggregatedBillingDataESS is Distinct only from unmergeables
 (assert	(forall ((c Goal)) (=>
 	(node StoreAggregatedBillingDataESS c)
 	(not (or
@@ -1991,7 +1991,7 @@
 	(and (node StoreAggregatedBillingDataAS c1) (node StoreAggregatedBillingDataAS c2))
 	(= c1 c2)
 )))
-;StoreAggregatedBillingDataAS is Distinct
+;StoreAggregatedBillingDataAS is Distinct only from unmergeables
 (assert	(forall ((c Goal)) (=>
 	(node StoreAggregatedBillingDataAS c)
 	(not (or
@@ -2232,7 +2232,7 @@
 	(and (node Data c1) (node Data c2))
 	(= c1 c2)
 )))
-;Data is Distinct
+;Data is Distinct only from unmergeables
 (assert	(forall ((c Resource)) (=>
 	(node Data c)
 	(not (or
@@ -2247,7 +2247,7 @@
 	(and (edge BeInformedOfUsage2Data c1) (edge BeInformedOfUsage2Data c2))
 	(= c1 c2)
 )))
-;BeInformedOfUsage2Data is Distinct
+;BeInformedOfUsage2Data is Distinct only from unmergeables
 (assert	(forall ((c DependerLink)) (=>
 	(edge BeInformedOfUsage2Data c)
 	(not (or
@@ -2266,7 +2266,7 @@
 	(and (edge Data2DisplayData c1) (edge Data2DisplayData c2))
 	(= c1 c2)
 )))
-;Data2DisplayData is Distinct
+;Data2DisplayData is Distinct only from unmergeables
 (assert	(forall ((c DependeeLink)) (=>
 	(edge Data2DisplayData c)
 	(not (or
@@ -2285,7 +2285,7 @@
 	(and (node BillingDataFeedback c1) (node BillingDataFeedback c2))
 	(= c1 c2)
 )))
-;BillingDataFeedback is Distinct
+;BillingDataFeedback is Distinct only from unmergeables
 (assert	(forall ((c Resource)) (=>
 	(node BillingDataFeedback c)
 	(not (or
@@ -2300,7 +2300,7 @@
 	(and (edge BeInformedOfUsage2BillingDataFeedback c1) (edge BeInformedOfUsage2BillingDataFeedback c2))
 	(= c1 c2)
 )))
-;BeInformedOfUsage2BillingDataFeedback is Distinct
+;BeInformedOfUsage2BillingDataFeedback is Distinct only from unmergeables
 (assert	(forall ((c DependerLink)) (=>
 	(edge BeInformedOfUsage2BillingDataFeedback c)
 	(not (or
@@ -2317,7 +2317,7 @@
 	(and (edge BillingDataFeedback2DisplayData c1) (edge BillingDataFeedback2DisplayData c2))
 	(= c1 c2)
 )))
-;BillingDataFeedback2DisplayData is Distinct
+;BillingDataFeedback2DisplayData is Distinct only from unmergeables
 (assert	(forall ((c DependeeLink)) (=>
 	(edge BillingDataFeedback2DisplayData c)
 	(not (or
@@ -2747,7 +2747,7 @@
 	(and (edge StoreAggregatedBillingDataESS2AggregatedBillingData c1) (edge StoreAggregatedBillingDataESS2AggregatedBillingData c2))
 	(= c1 c2)
 )))
-;StoreAggregatedBillingDataESS2AggregatedBillingData is Distinct
+;StoreAggregatedBillingDataESS2AggregatedBillingData is Distinct only from unmergeables
 (assert	(forall ((c DependerLink)) (=>
 	(edge StoreAggregatedBillingDataESS2AggregatedBillingData c)
 	(not (or
@@ -2769,7 +2769,7 @@
 	(and (edge StoreAggregatedBillingDataAS2AggregatedBillingData c1) (edge StoreAggregatedBillingDataAS2AggregatedBillingData c2))
 	(= c1 c2)
 )))
-;StoreAggregatedBillingDataAS2AggregatedBillingData is Distinct
+;StoreAggregatedBillingDataAS2AggregatedBillingData is Distinct only from unmergeables
 (assert	(forall ((c DependerLink)) (=>
 	(edge StoreAggregatedBillingDataAS2AggregatedBillingData c)
 	(not (or
@@ -2963,33 +2963,23 @@
 	(exists ((c Resource)) (node EncryptionKeys1 c))
 	(exists ((c DependerLink)) (edge EncryptData2EncryptionKeys1 c))
 	(exists ((c DependeeLink)) (edge EncryptionKeys12ManageEncryptionKeys c))
+	(not (exists ((c Actor)) (node MeterPointOperator c)))
+	(not (exists ((c Resource)) (node EncryptionKeys2 c)))
+	(not (exists ((c DependerLink)) (edge EncryptData2EncryptionKeys2 c)))
+	(not (exists ((c DependeeLink)) (edge EncryptionKeys22MeterPointOperator c)))
 )))
-(assert (=>
-	(not D1A1)
-	(not (or
-		(exists ((c Task)) (node ManageEncryptionKeys c))
-		(exists ((c Resource)) (node EncryptionKeys1 c))
-		(exists ((c DependerLink)) (edge EncryptData2EncryptionKeys1 c))
-		(exists ((c DependeeLink)) (edge EncryptionKeys12ManageEncryptionKeys c))
-	))
-))
 ;D1-D1A2 Alternative elements
 (declare-fun D1A2 () Bool)
 (assert (= D1A2 (and
+	(not (exists ((c Task)) (node ManageEncryptionKeys c)))
+	(not (exists ((c Resource)) (node EncryptionKeys1 c)))
+	(not (exists ((c DependerLink)) (edge EncryptData2EncryptionKeys1 c)))
+	(not (exists ((c DependeeLink)) (edge EncryptionKeys12ManageEncryptionKeys c)))
 	(exists ((c Actor)) (node MeterPointOperator c))
 	(exists ((c Resource)) (node EncryptionKeys2 c))
 	(exists ((c DependerLink)) (edge EncryptData2EncryptionKeys2 c))
 	(exists ((c DependeeLink)) (edge EncryptionKeys22MeterPointOperator c))
 )))
-(assert (=>
-	(not D1A2)
-	(not (or
-		(exists ((c Actor)) (node MeterPointOperator c))
-		(exists ((c Resource)) (node EncryptionKeys2 c))
-		(exists ((c DependerLink)) (edge EncryptData2EncryptionKeys2 c))
-		(exists ((c DependeeLink)) (edge EncryptionKeys22MeterPointOperator c))
-	))
-))
 ;D1 Decision
 (assert (xor
 	D1A1
@@ -3002,33 +2992,23 @@
 	(exists ((c Goal)) (node UseHANToCommunicate c))
 	(exists ((c DependerLink)) (edge CommunicateWithTheHouse2UseHANToCommunicate c))
 	(exists ((c DependeeLink)) (edge UseHANToCommunicate2HomeAreaNetwork c))
+	(not (exists ((c Actor)) (node HomeGateway c)))
+	(not (exists ((c Goal)) (node UseHGToCommunicate c)))
+	(not (exists ((c DependerLink)) (edge CommunicateWithTheHouse2UseHGToCommunicate c)))
+	(not (exists ((c DependeeLink)) (edge UseHGToCommunicate2HomeGateway c)))
 )))
-(assert (=>
-	(not D2A1)
-	(not (or
-		(exists ((c Actor)) (node HomeAreaNetwork c))
-		(exists ((c Goal)) (node UseHANToCommunicate c))
-		(exists ((c DependerLink)) (edge CommunicateWithTheHouse2UseHANToCommunicate c))
-		(exists ((c DependeeLink)) (edge UseHANToCommunicate2HomeAreaNetwork c))
-	))
-))
 ;D2-D2A2 Alternative elements
 (declare-fun D2A2 () Bool)
 (assert (= D2A2 (and
+	(not (exists ((c Actor)) (node HomeAreaNetwork c)))
+	(not (exists ((c Goal)) (node UseHANToCommunicate c)))
+	(not (exists ((c DependerLink)) (edge CommunicateWithTheHouse2UseHANToCommunicate c)))
+	(not (exists ((c DependeeLink)) (edge UseHANToCommunicate2HomeAreaNetwork c)))
 	(exists ((c Actor)) (node HomeGateway c))
 	(exists ((c Goal)) (node UseHGToCommunicate c))
 	(exists ((c DependerLink)) (edge CommunicateWithTheHouse2UseHGToCommunicate c))
 	(exists ((c DependeeLink)) (edge UseHGToCommunicate2HomeGateway c))
 )))
-(assert (=>
-	(not D2A2)
-	(not (or
-		(exists ((c Actor)) (node HomeGateway c))
-		(exists ((c Goal)) (node UseHGToCommunicate c))
-		(exists ((c DependerLink)) (edge CommunicateWithTheHouse2UseHGToCommunicate c))
-		(exists ((c DependeeLink)) (edge UseHGToCommunicate2HomeGateway c))
-	))
-))
 ;D2 Decision
 (assert (xor
 	D2A1
@@ -3036,14 +3016,16 @@
 ))
 ;D3-D3A1 Alternative elements
 (declare-fun D3A1 () Bool)
-(assert (= D3A1
+(assert (= D3A1 (and
 	(exists ((c Contribution)) (edge Directly2HELPConserveEnergyEMS c))
-))
+	(not (exists ((c Contribution)) (edge Directly2HURTConserveEnergyEMS c)))
+)))
 ;D3-D3A2 Alternative elements
 (declare-fun D3A2 () Bool)
-(assert (= D3A2
+(assert (= D3A2 (and
+	(not (exists ((c Contribution)) (edge Directly2HELPConserveEnergyEMS c)))
 	(exists ((c Contribution)) (edge Directly2HURTConserveEnergyEMS c))
-))
+)))
 ;D3 Decision
 (assert (xor
 	D3A1
@@ -3051,14 +3033,16 @@
 ))
 ;D4-D4A1 Alternative elements
 (declare-fun D4A1 () Bool)
-(assert (= D4A1
+(assert (= D4A1 (and
 	(exists ((c Contribution)) (edge EncryptData2MAKEProtectPersonalInformationEMS c))
-))
+	(not (exists ((c Contribution)) (edge EncryptData2HELPProtectPersonalInformationEMS c)))
+)))
 ;D4-D4A2 Alternative elements
 (declare-fun D4A2 () Bool)
-(assert (= D4A2
+(assert (= D4A2 (and
+	(not (exists ((c Contribution)) (edge EncryptData2MAKEProtectPersonalInformationEMS c)))
 	(exists ((c Contribution)) (edge EncryptData2HELPProtectPersonalInformationEMS c))
-))
+)))
 ;D4 Decision
 (assert (xor
 	D4A1
@@ -3135,6 +3119,25 @@
 		(node ProvideAddedValueServices c)
 	))
 )))
+;D8-D8A1 Alternative elements
+(declare-fun D8A1 () Bool)
+(assert (= D8A1 (and
+	(exists ((c Actor)) (node AnotherServer c))
+	(exists ((c Goal)) (node StoreAggregatedBillingDataAS c))
+	(exists ((c DependerLink)) (edge StoreAggregatedBillingDataAS2AggregatedBillingData c))
+)))
+;D8-D8A2 Alternative elements
+(declare-fun D8A2 () Bool)
+(assert (= D8A2 (and
+	(not (exists ((c Actor)) (node AnotherServer c)))
+	(not (exists ((c Goal)) (node StoreAggregatedBillingDataAS c)))
+	(not (exists ((c DependerLink)) (edge StoreAggregatedBillingDataAS2AggregatedBillingData c)))
+)))
+;D8 Decision
+(assert (xor
+	D8A1
+	D8A2
+))
 
 ;Contribution Types
 (define-sort ContributionType () Int)

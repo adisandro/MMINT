@@ -9,7 +9,7 @@
       <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="BeInformedOfUsage2ConserveEnergyC" tgt="//@actors.0/@intentions.1" type="HELP"/>
       <linksAsSrc xsi:type="istar_mavo:Decomposition" formulaVariable="BeInformedOfUsage2ConsumeEnergyC" tgt="//@actors.0/@intentions.3"/>
     </intentions>
-    <intentions xsi:type="istar_mavo:Task" formulaVariable="DefinePolicies" name="Define Policies" dependenciesAsDependee="//@dependums.5/@dependeeLinks.0">
+    <intentions xsi:type="istar_mavo:Task" formulaVariable="DefinePolicies" name="Define Policies" dependenciesAsDependee="//@dependums.5/@dependeeLinks.0" fullySatisfied="true">
       <linksAsSrc xsi:type="istar_mavo:Contribution" formulaVariable="DefinePolicies2ConserveEnergyC" tgt="//@actors.0/@intentions.1" type="HELP"/>
       <linksAsSrc xsi:type="istar_mavo:Decomposition" formulaVariable="DefinePolicies2ConsumeEnergyC" tgt="//@actors.0/@intentions.3"/>
     </intentions>

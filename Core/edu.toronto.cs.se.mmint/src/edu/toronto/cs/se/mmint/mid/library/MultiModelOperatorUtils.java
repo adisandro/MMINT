@@ -210,16 +210,6 @@ public class MultiModelOperatorUtils {
 		}
 	}
 
-	public static boolean isUpdatingMID(Properties properties) {
-
-		return getOptionalBoolProperty(properties, PROPERTY_IN_UPDATEMID, true);
-	}
-
-	public static String getSubdir(Properties properties) {
-
-		return getOptionalStringProperty(properties, PROPERTY_IN_SUBDIR, null);
-	}
-
 	public static MultiModel getInstanceMIDFromOperatorWithNoParameters() {
 
 		//TODO MMINT[OPERATOR] make it better integrated with Operator

@@ -273,8 +273,7 @@ matchesN:
 
 		// save transformed model(s) and update mid
 		EList<Model> result = new BasicEList<Model>();
-		boolean updateMid = MultiModelOperatorUtils.isUpdatingMID(getInputProperties());
-		MultiModel multiModel = (updateMid) ?
+		MultiModel multiModel = (isUpdateMID()) ?
 			MultiModelRegistry.getMultiModel(model) :
 			null;
 		EObject rootInput = null, rootOutput = null;
@@ -294,7 +293,7 @@ matchesN:
 		String transformedModelInputUri = MultiModelUtils.addFileNameSuffixInUri(model.getUri(), TRANSFORMED_MODELINPUT_SUFFIX);
 		String transformedModelInputName = MultiModelUtils.getLastSegmentFromUri(transformedModelInputUri);
 		resourceSet.saveEObject(rootInput, transformedModelInputName);
-		Model transformedModelInput = (updateMid) ?
+		Model transformedModelInput = (isUpdateMID()) ?
 			modelInputType.createInstanceAndEditor(transformedModelInputUri, ModelOrigin.CREATED, multiModel) :
 			modelInputType.createInstance(transformedModelInputUri, ModelOrigin.CREATED, null);
 		result.add(transformedModelInput);
@@ -306,7 +305,7 @@ matchesN:
 			);
 			String transformedModelOutputName = MultiModelUtils.getLastSegmentFromUri(transformedModelOutputUri);
 			resourceSet.saveEObject(rootOutput, transformedModelOutputName);
-			Model transformedModelOutput = (updateMid) ?
+			Model transformedModelOutput = (isUpdateMID()) ?
 				modelOutputType.createInstanceAndEditor(transformedModelOutputUri, ModelOrigin.CREATED, multiModel) :
 				modelOutputType.createInstance(transformedModelOutputUri, ModelOrigin.CREATED, null);
 			result.add(transformedModelOutput);
@@ -319,7 +318,7 @@ matchesN:
 			outputProperties,
 			this,
 			model,
-			MultiModelOperatorUtils.getSubdir(getInputProperties()),
+			getInputSubdir(),
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 

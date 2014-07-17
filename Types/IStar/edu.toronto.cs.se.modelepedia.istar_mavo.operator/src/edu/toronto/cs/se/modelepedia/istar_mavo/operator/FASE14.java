@@ -32,12 +32,7 @@ import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
-import edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink;
 import edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint;
-import edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink;
-import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
-import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
@@ -49,7 +44,7 @@ public class FASE14 extends RE13 {
 	private static final String SMTLIB_CONCRETIZATION1 = " c1 ";
 	private static final String SMTLIB_CONCRETIZATION2 = " c2 ";
 
-	private static final String PROPERTY_OUT_TIMERNF = "timeRNF";
+	protected static final String PROPERTY_OUT_TIMERNF = "timeRNF";
 	private static final String RNF_OUTPUT_SUFFIX = "_rnf";
 
 	// state
@@ -85,15 +80,22 @@ public class FASE14 extends RE13 {
 			Z3SMTUtils.SMTLIB_EDGE_FUNCTION;
 	}
 
-	protected String encodeMConstraint(String sort, String function, String formulaVar) {
+	protected String encodeMConstraint(String sort, String function, String formulaVar, boolean isNegation) {
 
-		return Z3SMTUtils.exists(
+		String constraint = Z3SMTUtils.exists(
 			Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION + sort),
 			Z3SMTUtils.predicate(function, formulaVar + " " + SMTLIB_CONCRETIZATION)
 		);
+
+		return (isNegation) ? Z3SMTUtils.not(constraint) : constraint;
 	}
 
-	protected String encodeSConstraint(String sort, String function, String formulaVar) {
+	protected String encodeSConstraint(String sort, String function, String formulaVar, boolean isNegation) {
+
+		String smtThenTerms = Z3SMTUtils.equality(SMTLIB_CONCRETIZATION1 + SMTLIB_CONCRETIZATION2);
+		if (isNegation) {
+			smtThenTerms = Z3SMTUtils.not(smtThenTerms);
+		}
 
 		return Z3SMTUtils.forall(
 			Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION1 + sort) + Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION2 + sort),
@@ -101,29 +103,29 @@ public class FASE14 extends RE13 {
 				Z3SMTUtils.and(
 					Z3SMTUtils.predicate(function, formulaVar + SMTLIB_CONCRETIZATION1) + Z3SMTUtils.predicate(function, formulaVar + SMTLIB_CONCRETIZATION2)
 				),
-				Z3SMTUtils.equality(SMTLIB_CONCRETIZATION1 + SMTLIB_CONCRETIZATION2)
+				smtThenTerms
 			)
 		);
 	}
 
-	protected String encodeVConstraint(String sort, String function, String formulaVar, List<String> mergeableFormulaVars) {
+	protected String encodeVConstraint(String sort, String function, String formulaVar, List<String> unmergeableFormulaVars, boolean isNegation) {
 
-		String smtOrTerms = "";
-		for (String unmergeableFormulaVar : mergeableFormulaVars) {
-			smtOrTerms += Z3SMTUtils.predicate(function, unmergeableFormulaVar + SMTLIB_CONCRETIZATION);
+		String smtThenTerms = "";
+		for (String unmergeableFormulaVar : unmergeableFormulaVars) {
+			smtThenTerms += Z3SMTUtils.predicate(function, unmergeableFormulaVar + SMTLIB_CONCRETIZATION);
 		}
+		smtThenTerms = (isNegation) ? Z3SMTUtils.and(smtThenTerms) : Z3SMTUtils.not(Z3SMTUtils.or(smtThenTerms));
+
 		return Z3SMTUtils.forall(
 			Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION + sort),
 			Z3SMTUtils.implication(
 				Z3SMTUtils.predicate(function, formulaVar + SMTLIB_CONCRETIZATION),
-				Z3SMTUtils.not(
-					Z3SMTUtils.or(smtOrTerms)
-				)
+				smtThenTerms
 			)
 		);
 	}
 
-	private Z3SMTModel checkMAVOAnnotation(MAVOElement mavoModelObj, EStructuralFeature mavoAnnotation, String smtMavoConstraint, Z3SMTIncrementalSolver z3IncSolver, List<MAVOElement> mayModelObjsToRemove) {
+	private Z3SMTModel checkMAVOAnnotation(MAVOElement mavoModelObj, EStructuralFeature mavoAnnotation, String smtMavoConstraint, Z3SMTIncrementalSolver z3IncSolver, List<MAVOElement> mavoModelObjsToRemove) {
 
 		Z3SMTModel z3ModelResult = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(Z3SMTUtils.not(smtMavoConstraint)), Z3IncrementalBehavior.POP);
 		if (z3ModelResult.getZ3Bool() == Z3SMTBool.SAT) {
@@ -134,11 +136,11 @@ public class FASE14 extends RE13 {
 		else {
 			if (mavoAnnotation == MAVOPackage.eINSTANCE.getMAVOElement_May() && smtMavoConstraint.startsWith(Z3SMTUtils.SMTLIB_NOT)) { // M model object deletion
 				EcoreUtil.delete(mavoModelObj, true);
-				mayModelObjsToRemove.add(mavoModelObj);
 			}
 			else { // M-S-V removal
 				mavoModelObj.eSet(mavoAnnotation, false);
 			}
+			mavoModelObjsToRemove.add(mavoModelObj);
 			String smtMavoAssertion = Z3SMTUtils.assertion(smtMavoConstraint);
 			smtEncodingRNF += smtMavoAssertion + "\n";
 
@@ -151,26 +153,26 @@ public class FASE14 extends RE13 {
 		long startTime = System.nanoTime();
 
 		Z3SMTModel z3TempModel;
-		List<MAVOElement> mayModelObjsToRemove = new ArrayList<MAVOElement>();
+		List<MAVOElement> mavoModelObjsToRemove = new ArrayList<MAVOElement>();
 		for (Entry<String, MAVOElement> mavoModelObjEntry : mavoModelObjs.entrySet()) {
 			MAVOElement mavoModelObj = mavoModelObjEntry.getValue();
 			String formulaVar = mavoModelObjEntry.getKey();
 			String sort = mavoModelObj.eClass().getName();
 			String function = encodeMAVConstraintFunction(mavoModelObj);
 			if (mavoModelObj.isMay()) {
-				String smtMConstraint = encodeMConstraint(sort, function, formulaVar);
-				z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_May(), smtMConstraint, z3IncSolver, mayModelObjsToRemove);
+				String smtMConstraint = encodeMConstraint(sort, function, formulaVar, false);
+				z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_May(), smtMConstraint, z3IncSolver, mavoModelObjsToRemove);
 				if (z3TempModel != null) {
 					z3Model = z3TempModel;
 				}
-				z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_May(), Z3SMTUtils.not(smtMConstraint), z3IncSolver, mayModelObjsToRemove);
+				z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_May(), Z3SMTUtils.not(smtMConstraint), z3IncSolver, mavoModelObjsToRemove);
 				if (z3TempModel != null) {
 					z3Model = z3TempModel;
 				}
 			}
 			if (mavoModelObj.isSet()) {
-				String smtSConstraint = encodeSConstraint(sort, function, formulaVar);
-				z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_Set(), smtSConstraint, z3IncSolver, mayModelObjsToRemove);
+				String smtSConstraint = encodeSConstraint(sort, function, formulaVar, false);
+				z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_Set(), smtSConstraint, z3IncSolver, mavoModelObjsToRemove);
 				if (z3TempModel != null) {
 					z3Model = z3TempModel;
 				}
@@ -178,15 +180,15 @@ public class FASE14 extends RE13 {
 			if (mavoModelObj.isVar()) {
 				List<String> mergeableFormulaVars = MAVOUtils.getMergeableFormulaVars(istar, mavoModelObj);
 				if (!mergeableFormulaVars.isEmpty()) {
-					String smtVConstraint = encodeVConstraint(sort, function, formulaVar, mergeableFormulaVars);
-					z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint, z3IncSolver, mayModelObjsToRemove);
+					String smtVConstraint = encodeVConstraint(sort, function, formulaVar, mergeableFormulaVars, false);
+					z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint, z3IncSolver, mavoModelObjsToRemove);
 					if (z3TempModel != null) {
 						z3Model = z3TempModel;
 					}
 				}
 			}
 		}
-		mavoModelObjs.values().removeAll(mayModelObjsToRemove);
+		mavoModelObjs.values().removeAll(mavoModelObjsToRemove);
 
 		timeRNF = System.nanoTime() - startTime;
 	}
@@ -211,33 +213,16 @@ public class FASE14 extends RE13 {
 	@Override
 	protected void collectAnalysisModelObjs(Model istarModel) throws MMINTException {
 
-		istar = (IStar) istarModel.getEMFInstanceRoot();
+		super.collectAnalysisModelObjs(istarModel);
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(istar, true);
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();
-			if (modelObj instanceof Intention) {
-				Intention intention = (Intention) modelObj;
-				intentions.put(intention.getFormulaVariable(), intention);
-				if (
-					intention.isFullySatisfied() ||
-					intention.isPartiallySatisfied() ||
-					intention.isUnknown() ||
-					intention.isConflict() ||
-					intention.isPartiallyDenied() ||
-					intention.isFullyDenied() ||
-					intention.isNoLabel()
-				) {
-					initialIntentions.add(intention.getFormulaVariable());
-				}
-			}
 			if (
 				modelObj instanceof MAVOElement && (
 					((MAVOElement) modelObj).isMay() ||
 					((MAVOElement) modelObj).isSet() ||
 					((MAVOElement) modelObj).isVar()
-				) &&
-				!(modelObj instanceof DependerLink && ((DependerLink) modelObj).getDepender() instanceof Actor) &&
-				!(modelObj instanceof DependeeLink && ((DependeeLink) modelObj).getDependee() instanceof Actor)
+				)
 			) {
 				mavoModelObjs.put(((MAVOElement) modelObj).getFormulaVariable(), (MAVOElement) modelObj);
 			}
@@ -249,7 +234,7 @@ public class FASE14 extends RE13 {
 
 		Model istarModel = actualParameters.get(0);
 
-		// run solver
+		// run
 		collectAnalysisModelObjs(istarModel);
 		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
 		doAnalysis(z3IncSolver);
@@ -260,7 +245,7 @@ public class FASE14 extends RE13 {
 			}
 		}
 
-		// save output
+		// output
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
 		MultiModelOperatorUtils.writePropertiesFile(

@@ -68,6 +68,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
+		super.readInputProperties(inputProperties);
 		maxModelObjs = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXMODELOBJS);
 		minModelObjs = MultiModelOperatorUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_MINMODELOBJS, maxModelObjs);
 		if (minModelObjs > maxModelObjs) {
@@ -185,7 +186,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 
 		Graph randomGraph = generateRandomGraph();
 		String lastSegmentUri = RANDOM_MODEL_NAME + (new Date()).getTime() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + Graph_MAVOPackage.eNAME;
-		String subdir = MultiModelOperatorUtils.getSubdir(getInputProperties());
+		String subdir = getInputSubdir();
 		if (subdir != null) {
 			lastSegmentUri = subdir + MMINT.URI_SEPARATOR + lastSegmentUri;
 		}
@@ -194,7 +195,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		MultiModelUtils.createModelFile(randomGraph, randomGraphModelUri, true);
 		Model graphModelType = MultiModelTypeRegistry.getType(Graph_MAVOPackage.eINSTANCE.getNsURI());
 		Model randomGraphModel;
-		randomGraphModel = (MultiModelOperatorUtils.isUpdatingMID(getInputProperties())) ?
+		randomGraphModel = (isUpdateMID()) ?
 			graphModelType.createInstanceAndEditor(randomGraphModelUri, ModelOrigin.CREATED, instanceMid) :
 			graphModelType.createInstance(randomGraphModelUri, ModelOrigin.CREATED, null);
 

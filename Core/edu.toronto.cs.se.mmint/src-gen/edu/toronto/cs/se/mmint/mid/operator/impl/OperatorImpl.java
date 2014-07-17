@@ -57,6 +57,7 @@ import org.eclipse.ui.PlatformUI;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getInputSubdir <em>Input Subdir</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getPreviousOperator <em>Previous Operator</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#isUpdateMID <em>Update MID</em>}</li>
  * </ul>
  * </p>
  *
@@ -112,6 +113,26 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	 * @ordered
 	 */
 	protected Operator previousOperator;
+
+	/**
+	 * The default value of the '{@link #isUpdateMID() <em>Update MID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUpdateMID()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean UPDATE_MID_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isUpdateMID() <em>Update MID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUpdateMID()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean updateMID = UPDATE_MID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -220,6 +241,27 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isUpdateMID() {
+		return updateMID;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUpdateMID(boolean newUpdateMID) {
+		boolean oldUpdateMID = updateMID;
+		updateMID = newUpdateMID;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__UPDATE_MID, oldUpdateMID, updateMID));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Operator getMetatype() {
 		ExtendibleElement metatype = super.getMetatype();
 		return (metatype == null) ? null : (Operator) metatype;
@@ -268,6 +310,8 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 			case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
 				if (resolve) return getPreviousOperator();
 				return basicGetPreviousOperator();
+			case OperatorPackage.OPERATOR__UPDATE_MID:
+				return isUpdateMID();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -295,6 +339,9 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 			case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
 				setPreviousOperator((Operator)newValue);
 				return;
+			case OperatorPackage.OPERATOR__UPDATE_MID:
+				setUpdateMID((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -319,6 +366,9 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 			case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
 				setPreviousOperator((Operator)null);
 				return;
+			case OperatorPackage.OPERATOR__UPDATE_MID:
+				setUpdateMID(UPDATE_MID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -339,6 +389,8 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 				return INPUT_SUBDIR_EDEFAULT == null ? inputSubdir != null : !INPUT_SUBDIR_EDEFAULT.equals(inputSubdir);
 			case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
 				return previousOperator != null;
+			case OperatorPackage.OPERATOR__UPDATE_MID:
+				return updateMID != UPDATE_MID_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -412,6 +464,8 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (inputSubdir: ");
 		result.append(inputSubdir);
+		result.append(", updateMID: ");
+		result.append(updateMID);
 		result.append(')');
 		return result.toString();
 	}
@@ -524,7 +578,12 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	 */
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-		// do nothing
+		setUpdateMID(
+			MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, MultiModelOperatorUtils.PROPERTY_IN_UPDATEMID, true)
+		);
+		setInputSubdir(
+			MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, MultiModelOperatorUtils.PROPERTY_IN_SUBDIR, null)
+		);
 	}
 
 	/**

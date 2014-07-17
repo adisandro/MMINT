@@ -102,6 +102,7 @@ public class RE13 extends OperatorImpl {
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
+		super.readInputProperties(inputProperties);
 		timeModelEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEMODEL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 		timeTargetsEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMETARGETS+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 		targetsProperty = MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_TARGETSPROPERTY, PROPERTY_IN_TARGETSPROPERTY_DEFAULT);
@@ -111,6 +112,7 @@ public class RE13 extends OperatorImpl {
 	public void init() throws MMINTException {
 
 		// state
+		istar = null;
 		intentions = new HashMap<String, Intention>();
 		initialIntentions = new HashSet<String>();
 		IStarMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
@@ -125,29 +127,33 @@ public class RE13 extends OperatorImpl {
 		targets = Z3SMTBool.UNKNOWN;
 	}
 
+	protected String writeIntentionLabels(Intention intention) {
+
+		String labels = "";
+		for (SMTLIBLabel label : SMTLIBLabel.values()) {
+			if ((boolean) intention.eGet(label.getModelFeature())) {
+				labels += label.name() + ",";
+			}
+		}
+		if (!labels.equals("")) {
+			labels = labels.substring(0, labels.length()-1);
+		}
+
+		return labels;
+	}
+
 	protected void writeProperties(Properties properties) {
 
 		properties.setProperty(PROPERTY_OUT_TIMEMODEL, String.valueOf(timeModel));
 		properties.setProperty(PROPERTY_OUT_TIMEANALYSIS, String.valueOf(timeAnalysis));
 		properties.setProperty(PROPERTY_OUT_TIMETARGETS, String.valueOf(timeTargets));
 		properties.setProperty(PROPERTY_OUT_TARGETS, targets.toString());
-		String labels;
 		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
-			Intention intention = entry.getValue();
-			labels = "";
-			for (SMTLIBLabel label : SMTLIBLabel.values()) {
-				if ((boolean) intention.eGet(label.getModelFeature())) {
-					labels += label.name() + ",";
-				}
-			}
-			if (!labels.equals("")) {
-				labels = labels.substring(0, labels.length()-1);
-			}
-			properties.setProperty(entry.getKey()+PROPERTY_OUT_LABELS_SUFFIX, labels);
+			properties.setProperty(entry.getKey()+PROPERTY_OUT_LABELS_SUFFIX, writeIntentionLabels(entry.getValue()));
 		}
 	}
 
-	private void optimizeLabelNodes(Map<String, Integer> z3ModelNodes, Set<String> z3LabelNodes, SMTLIBLabel label, String nodeType, boolean elseValue) {
+	private void getConcretizationAnalysisLabel(Map<String, Intention> intentions, Map<String, Integer> z3ModelNodes, Set<String> z3LabelNodes, SMTLIBLabel label, String nodeType, boolean elseValue) {
 
 		EStructuralFeature labelFeature = label.getModelFeature();
 		if (elseValue) {
@@ -174,7 +180,7 @@ public class RE13 extends OperatorImpl {
 		}
 	}
 
-	private void optimizeAnalysis(Z3SMTModel z3Model) {
+	protected void getConcretizationAnalysisLabels(Map<String, Intention> intentions, Z3SMTModel z3Model) {
 
 		try {
 			com.microsoft.z3.Model z3InternalModel = z3Model.getZ3InternalModel();
@@ -196,7 +202,7 @@ public class RE13 extends OperatorImpl {
 					for (Entry entry : interp.getEntries()) {
 						z3LabelNodes.add(entry.getArgs()[0].toString());
 					}
-					optimizeLabelNodes(z3ModelNodes, z3LabelNodes, label, nodeType, Boolean.parseBoolean(interp.getElse().toString()));
+					getConcretizationAnalysisLabel(intentions, z3ModelNodes, z3LabelNodes, label, nodeType, Boolean.parseBoolean(interp.getElse().toString()));
 				}
 			}
 		}
@@ -250,7 +256,7 @@ public class RE13 extends OperatorImpl {
 				Z3SMTModel z3Model = z3IncSolver.checkSatAndGetModel(labelProperty, Z3IncrementalBehavior.POP);
 				if (z3Model.getZ3Bool() == Z3SMTBool.SAT) {
 					intention.eSet(label.getModelFeature(), true);
-					optimizeAnalysis(z3Model);
+					getConcretizationAnalysisLabels(intentions, z3Model);
 				}
 			}
 		}
@@ -262,8 +268,7 @@ public class RE13 extends OperatorImpl {
 
 		long startTime = System.nanoTime();
 
-		String property = Z3SMTUtils.SMTLIB_ASSERT + targetsProperty + Z3SMTUtils.SMTLIB_PREDICATE_END;
-		Z3SMTModel z3Model = z3IncSolver.checkSatAndGetModel(property, Z3IncrementalBehavior.NORMAL);
+		Z3SMTModel z3Model = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(targetsProperty), Z3IncrementalBehavior.NORMAL);
 		targets = z3Model.getZ3Bool();
 
 		timeTargets = System.nanoTime() - startTime;
@@ -271,9 +276,8 @@ public class RE13 extends OperatorImpl {
 		return z3Model;
 	}
 
-	protected void collectAnalysisModelObjs(Model istarModel) throws MMINTException {
+	protected void collectIntentions(IStar istar, Map<String, Intention> intentions) {
 
-		istar = (IStar) istarModel.getEMFInstanceRoot();
 		for (Actor actor : istar.getActors()) {
 			for (Intention intention : actor.getIntentions()) {
 				intentions.put(intention.getFormulaVariable(), intention);
@@ -282,6 +286,12 @@ public class RE13 extends OperatorImpl {
 		for (Intention intention : istar.getDependums()) {
 			intentions.put(intention.getFormulaVariable(), intention);
 		}
+	}
+
+	protected void collectAnalysisModelObjs(Model istarModel) throws MMINTException {
+
+		istar = (IStar) istarModel.getEMFInstanceRoot();
+		collectIntentions(istar, intentions);
 		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
 			Intention intention = entry.getValue();
 			if (
