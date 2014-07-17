@@ -68,6 +68,7 @@ public class IStarMAVOToSMTLIB extends OperatorImpl {
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
+		super.readInputProperties(inputProperties);
 		analysisDirection = MultiModelOperatorUtils.getOptionalEnumProperty(inputProperties, PROPERTY_IN_ANALYSISDIRECTION, PROPERTY_IN_ANALYSISDIRECTION_DEFAULT, AnalysisDirection.class);
 	}
 

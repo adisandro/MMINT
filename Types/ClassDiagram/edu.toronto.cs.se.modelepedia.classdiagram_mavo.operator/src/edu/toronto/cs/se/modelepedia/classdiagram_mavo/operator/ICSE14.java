@@ -213,7 +213,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 			outputProperties,
 			this,
 			inputModel,
-			MultiModelOperatorUtils.getSubdir(getInputProperties()),
+			getInputSubdir(),
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 

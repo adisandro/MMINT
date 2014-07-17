@@ -1126,6 +1126,7 @@
           <details key="documentation" value="The previous operator, when used in an operator chain."/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="updateMID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConversionOperator" eSuperTypes="#//operator/Operator">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

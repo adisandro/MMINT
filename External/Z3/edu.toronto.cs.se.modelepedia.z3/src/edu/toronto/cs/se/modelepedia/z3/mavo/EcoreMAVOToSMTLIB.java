@@ -65,6 +65,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
+		super.readInputProperties(inputProperties);
 		mayOnly = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_MAYONLY, PROPERTY_IN_MAYONLY_DEFAULT);
 	}
 

@@ -134,6 +134,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
+		super.readInputProperties(inputProperties);
 		constraint = MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_CONSTRAINT, PROPERTY_IN_CONSTRAINT_DEFAULT);
 		constraintVariables = MultiModelOperatorUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_CONSTRAINTVARIABLES, PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT);
 		transformationModule = MultiModelOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_TRANSFORMATIONMODULE);

@@ -233,13 +233,22 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR__PREVIOUS_OPERATOR = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Update MID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__UPDATE_MID = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
+	int OPERATOR_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -503,6 +512,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR__PREVIOUS_OPERATOR = OPERATOR__PREVIOUS_OPERATOR;
+
+	/**
+	 * The feature id for the '<em><b>Update MID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR__UPDATE_MID = OPERATOR__UPDATE_MID;
 
 	/**
 	 * The number of structural features of the '<em>Conversion Operator</em>' class.
@@ -776,6 +794,15 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR__PREVIOUS_OPERATOR = OPERATOR__PREVIOUS_OPERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Update MID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__UPDATE_MID = OPERATOR__UPDATE_MID;
+
+	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1014,6 +1041,17 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOperator_PreviousOperator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#isUpdateMID <em>Update MID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Update MID</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#isUpdateMID()
+	 * @see #getOperator()
+	 * @generated
+	 */
+	EAttribute getOperator_UpdateMID();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getMetatype() <em>Get Metatype</em>}' operation.
@@ -1286,6 +1324,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATOR__PREVIOUS_OPERATOR = eINSTANCE.getOperator_PreviousOperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Update MID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATOR__UPDATE_MID = eINSTANCE.getOperator_UpdateMID();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
