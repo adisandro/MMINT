@@ -35,7 +35,7 @@ import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-//TODO: change name to reflect removal from alternative as well.
+//TODO MMINT[MU-MMINT] change name to reflect removal from alternative as well.
 public class MAVOAddToAlternativeListener extends SelectionAdapter {
 
 	List<MAVOElement> mavoElements;
@@ -60,20 +60,18 @@ public class MAVOAddToAlternativeListener extends SelectionAdapter {
 			files.add(modelFile);
 		}
 		AbstractTransactionalCommand operatorCommand;
+		String label;
 		if (add){
-			operatorCommand = new AddToAlternativeCommand(
-					TransactionUtil.getEditingDomain(mavoElements.get(0)),
-					"Add to Alternative",
-					files
-				);
+			label = "Add to Alternative";
 		}
 		else{
-			operatorCommand = new AddToAlternativeCommand(
-					TransactionUtil.getEditingDomain(mavoElements.get(0)),
-					"Remove from Alternative",
-					files
-				);
+			label = "Remove from Alternative";
 		}
+		operatorCommand = new AddToAlternativeCommand(
+				TransactionUtil.getEditingDomain(mavoElements.get(0)),
+				label,
+				files
+			);
 		try {
 			OperationHistoryFactory.getOperationHistory().execute(operatorCommand, null, null);
 		}
@@ -82,7 +80,7 @@ public class MAVOAddToAlternativeListener extends SelectionAdapter {
 		}
 	}
 
-	//TODO: change name to reflect removal from alternative as well.
+	//TODO MMINT[MU-MMINT] change name to reflect removal from alternative as well.
 	protected class AddToAlternativeCommand extends AbstractTransactionalCommand {
 
 		public AddToAlternativeCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
