@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
@@ -92,7 +93,7 @@ public class MAVOConcretizationHighlighter {
 		//grey out anything that's not in the example
 		for (String FID : notInExample){
 			View element = diagramElements.get(FID);
-			color(element);
+			MAVOUtils.colorElement(element, GREYOUT_COLOR, FONT_GREYOUT_COLOR);
 		}
 		
 		//Write diagram to file
@@ -129,25 +130,6 @@ public class MAVOConcretizationHighlighter {
 		separated.add(exampleElements);
 		separated.add(remainingElements);
 		return separated;
-	}
-	
-	private void color(View element) {
-		if (element instanceof Shape) {
-			Shape node = (Shape) element;
-			node.setFillColor(GREYOUT_COLOR);
-			node.setLineColor(GREYOUT_COLOR);
-			node.setFontColor(FONT_GREYOUT_COLOR);
-		}
-		else if (element instanceof Connector){
-			Connector line = (Connector) element;
-			line.setLineColor(GREYOUT_COLOR);
-			FontStyle labelFont = (FontStyle) line.getStyles().get(0);
-			labelFont.setFontColor(FONT_GREYOUT_COLOR);
-		}
-		else{
-			MMINTException.print(MMINTException.Type.WARNING, "Can't color diagram element",
-					new MMINTException("View object not an instance of Shape or Connector"));
-		}
 	}
 
 	/**

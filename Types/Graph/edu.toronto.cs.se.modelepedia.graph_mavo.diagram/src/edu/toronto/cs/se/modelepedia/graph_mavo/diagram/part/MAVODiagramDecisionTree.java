@@ -62,6 +62,7 @@ public class MAVODiagramDecisionTree extends ContentOutlinePage {
 			public void menuAboutToShow(IMenuManager manager) {
 				manager.add(new MAVODecisionTreeContributionItem(
 						contentOutlineViewer));
+				manager.add(new MAVOAlternativeHighlightContributionItem(contentOutlineViewer));
 			}
 		});
 

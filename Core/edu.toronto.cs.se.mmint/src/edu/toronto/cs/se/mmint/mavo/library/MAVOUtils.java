@@ -21,6 +21,10 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gmf.runtime.notation.Connector;
+import org.eclipse.gmf.runtime.notation.FontStyle;
+import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -399,6 +403,29 @@ public class MAVOUtils {
 	public static List<String> getUnmergeableFormulaVars(MAVOModel mavoModel, MAVOElement mavoModelObj) {
 
 		return getVFormulaVars(mavoModel, mavoModelObj, false);
+	}
+	
+	public static void colorElement(View element, int color, int fontColor){
+		if (element instanceof Shape) {
+			Shape node = (Shape) element;
+			node.setFillColor(color);
+			node.setLineColor(color);
+			if (fontColor >= 0){
+				node.setFontColor(fontColor);
+			}
+		}
+		else if (element instanceof Connector){
+			Connector line = (Connector) element;
+			line.setLineColor(color);
+			FontStyle labelFont = (FontStyle) line.getStyles().get(0);
+			if (fontColor >= 0){
+				labelFont.setFontColor(fontColor);
+			}
+		}
+		else{
+			MMINTException.print(MMINTException.Type.WARNING, "Can't color diagram element",
+					new MMINTException("View object not an instance of Shape or Connector"));
+		}
 	}
 
 }

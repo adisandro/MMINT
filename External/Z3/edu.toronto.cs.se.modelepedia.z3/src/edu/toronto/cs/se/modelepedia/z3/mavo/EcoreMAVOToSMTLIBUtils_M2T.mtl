@@ -239,7 +239,7 @@
 		[/let]
 	[/for]
 
-;Model
+;Model I CHANGED STUFF HERE!!!!!!
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
 		[let numTypes : Integer = mavoModel.getMetamodelMAVOClasses()->size()]
 		[let function : String = mavoElement.eClass().getGraphFunction()]
@@ -321,11 +321,14 @@
 			[for (mayAlternative : MAVOAlternative | mayDecision.alternatives)]
 ;[mayDecision.formulaVariable/]-[mayAlternative.formulaVariable/] Alternative elements
 (declare-fun [mayAlternative.formulaVariable/] () Bool)
-(assert (= [mayAlternative.formulaVariable/][if (mayDecision.getMayDecisionElements()->size() > 1)] (and[/if]
+[if (mayAlternative.mavoElements->size() > 0)]
+(assert SOMETHING CHANGED (= [mayAlternative.formulaVariable/][if (mayDecision.getMayDecisionElements()->size() > 1)] (and[/if]
 				[for (mavoElement : MAVOElement | mayDecision.getMayDecisionElements())]
 	[if (not mayAlternative.mavoElements->includes(mavoElement))](not [/if](exists ((c [mavoElement.eClass().getMAVOClassName()/])) ([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/] c))[if (not mayAlternative.mavoElements->includes(mavoElement))])[/if]
 				[/for]
-))[if (mayDecision.getMayDecisionElements()->size() > 1)])[/if]
+))
+[/if]
+[if (mayDecision.getMayDecisionElements()->size() > 1)])[/if]
 			[/for]
 ;[mayDecision.formulaVariable/] Decision
 			[if (mayDecision.alternatives->size() > 1)]
