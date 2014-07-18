@@ -44,7 +44,7 @@ import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
 
 public class RE13 extends OperatorImpl {
 
-	private enum SMTLIBLabel {
+	protected enum SMTLIBLabel {
 
 		fs(IStar_MAVOPackage.eINSTANCE.getIntention_FullySatisfied()),
 		ps(IStar_MAVOPackage.eINSTANCE.getIntention_PartiallySatisfied()),
@@ -276,8 +276,9 @@ public class RE13 extends OperatorImpl {
 		return z3Model;
 	}
 
-	protected void collectIntentions(IStar istar, Map<String, Intention> intentions) {
+	protected Map<String, Intention> collectIntentions(IStar istar) {
 
+		Map<String, Intention> intentions = new HashMap<String, Intention>();
 		for (Actor actor : istar.getActors()) {
 			for (Intention intention : actor.getIntentions()) {
 				intentions.put(intention.getFormulaVariable(), intention);
@@ -286,12 +287,14 @@ public class RE13 extends OperatorImpl {
 		for (Intention intention : istar.getDependums()) {
 			intentions.put(intention.getFormulaVariable(), intention);
 		}
+
+		return intentions;
 	}
 
 	protected void collectAnalysisModelObjs(Model istarModel) throws MMINTException {
 
 		istar = (IStar) istarModel.getEMFInstanceRoot();
-		collectIntentions(istar, intentions);
+		intentions = collectIntentions(istar);
 		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
 			Intention intention = entry.getValue();
 			if (

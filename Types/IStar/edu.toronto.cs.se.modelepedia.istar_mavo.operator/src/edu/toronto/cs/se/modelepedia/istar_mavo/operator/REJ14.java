@@ -172,8 +172,7 @@ public class REJ14 extends FASE14 {
 			smtConcretizationConstraint += smtConstraint;
 		}
 		concretization += System.lineSeparator();
-		Map<String, Intention> intentions = new HashMap<String, Intention>();
-		super.collectIntentions(istar, intentions);
+		Map<String, Intention> intentions = super.collectIntentions(istar);
 		getConcretizationAnalysisLabels(intentions, z3Model);
 		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
 			concretization += entry.getKey() + "(" + writeIntentionLabels(entry.getValue()) + ") ";
@@ -183,6 +182,19 @@ public class REJ14 extends FASE14 {
 		return new String[] {concretization, smtConcretizationConstraint};
 	}
 
+	private IStar copyIStarRootModelObj() {
+
+		IStar istarCopy = EcoreUtil.copy(istar);
+		Map<String, Intention> intentions = super.collectIntentions(istarCopy);
+		for (Intention intention : intentions.values()) {
+			for (SMTLIBLabel label : SMTLIBLabel.values()) {
+				intention.eSet(label.getModelFeature(), false);
+			}
+		}
+
+		return istarCopy;
+	}
+
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
@@ -190,7 +202,6 @@ public class REJ14 extends FASE14 {
 
 		// run
 		collectAnalysisModelObjs(istarModel);
-		IStar istarCopy = EcoreUtil.copy(istar);
 		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
 		if (timeAnalysisEnabled) {
 			doAnalysis(z3IncSolver);
@@ -199,11 +210,11 @@ public class REJ14 extends FASE14 {
 			Z3SMTModel z3Model = doTargets(z3IncSolver);
 			if (targets == Z3SMTBool.SAT) {
 				if (timeRNFEnabled) {
-					doRNF(z3IncSolver, z3Model);//TODO MMINT[RNF] istar is modified by the rnf algorithm, I should copy it afterwards but clean the assigned labels
+					doRNF(z3IncSolver, z3Model);
 				}
 				if (generateTargetsConcretization) {
 					while (true) {
-						String[] concretization = getConcretization(EcoreUtil.copy(istarCopy), z3Model);
+						String[] concretization = getConcretization(copyIStarRootModelObj(), z3Model);
 						//TODO MMINT[MAVO] Integrate with mu-mmint code to show concretization model
 						if (!MultiModelDiagramUtils.getBooleanInput("Concretization", concretization[0] + System.lineSeparator() + System.lineSeparator() + "Do you want another concretization?")) {
 							break;
