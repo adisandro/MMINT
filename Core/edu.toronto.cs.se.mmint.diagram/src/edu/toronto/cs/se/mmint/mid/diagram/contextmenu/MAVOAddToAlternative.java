@@ -39,6 +39,8 @@ import edu.toronto.cs.se.mavo.MayDecision;
  * @author Alessio Di Sandro
  * 
  */
+
+//TODO: change name to reflect removal from alternative as well.
 public class MAVOAddToAlternative extends ContributionItem {
 
 	private static final int INVALID_MENU_ITEM_LIMIT = 20;
@@ -90,11 +92,30 @@ public class MAVOAddToAlternative extends ContributionItem {
 		for (MAVODecision mavoDecision : mavoModel.getDecisions()) {
 			if (mavoDecision instanceof MayDecision) {
 				for (MAVOAlternative mavoAlternative : ((MayDecision) mavoDecision).getAlternatives()) {
-					MenuItem alternativeItem = new MenuItem(mavoMenu, SWT.NONE);
-					alternativeItem.setText("(M) Add to Alternative " + mavoAlternative.getFormulaVariable());
-					alternativeItem.addSelectionListener(
-						new MAVOAddToAlternativeListener(mavoElements, mavoAlternative)
-					);
+					boolean add = false;
+					boolean delete = false;
+					for (MAVOElement selectedElement : mavoElements){
+						if (selectedElement.getAlternatives().contains(mavoAlternative)){
+							delete = true;
+						}
+						else{
+							add = true;
+						}
+					}
+					if (add){
+						MenuItem alternativeItem = new MenuItem(mavoMenu, SWT.NONE);
+						alternativeItem.setText("(M) Add to Alternative " + mavoAlternative.getFormulaVariable());
+						alternativeItem.addSelectionListener(
+								new MAVOAddToAlternativeListener(mavoElements, mavoAlternative, true)
+								);
+					}
+					if (delete){
+						MenuItem alternativeItem = new MenuItem(mavoMenu, SWT.NONE);
+						alternativeItem.setText("(M) Remove from Alternative " + mavoAlternative.getFormulaVariable());
+						alternativeItem.addSelectionListener(
+								new MAVOAddToAlternativeListener(mavoElements, mavoAlternative, false)
+								);
+					}
 				}
 			}
 		}

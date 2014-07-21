@@ -20,6 +20,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 
@@ -37,8 +38,8 @@ import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIBListener;
 
 public class MAVOConcretizationHighlighter {
 
-	private static final int GREY_OUT_COLOR = 0xD9D9D9;
-	private static final int HIGHLIGHT_COLOR = 0x50CFED;
+	private static final int GREYOUT_COLOR = 0xF4F4F4;
+	private static final int FONT_GREYOUT_COLOR = 0xD0D0D0;
 	private static final String DIAGRAM_ID = "edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorID";
 	private static final String EXAMPLE_SUFFIX = "_example";
 	
@@ -87,17 +88,11 @@ public class MAVOConcretizationHighlighter {
 		//get FormulaIDs of elements to be grayed out and highlighted
 		ArrayList<Set<String>> separatedDiagram = separateExampleElements(resultModel);
 		Set<String> notInExample = separatedDiagram.get(1);
-		Set<String> inExample = separatedDiagram.get(0);
 		
 		//grey out anything that's not in the example
 		for (String FID : notInExample){
 			View element = diagramElements.get(FID);
-			color(element, GREY_OUT_COLOR);
-		}
-		
-		for (String FID: inExample){
-			View element = diagramElements.get(FID);
-			color(element, HIGHLIGHT_COLOR);
+			color(element);
 		}
 		
 		//Write diagram to file
@@ -136,13 +131,18 @@ public class MAVOConcretizationHighlighter {
 		return separated;
 	}
 	
-	private void color(View element, int color) {
+	private void color(View element) {
 		if (element instanceof Shape) {
-			((Shape) element).setFillColor(color);
+			Shape node = (Shape) element;
+			node.setFillColor(GREYOUT_COLOR);
+			node.setLineColor(GREYOUT_COLOR);
+			node.setFontColor(FONT_GREYOUT_COLOR);
 		}
 		else if (element instanceof Connector){
 			Connector line = (Connector) element;
-			line.setLineColor(color);
+			line.setLineColor(GREYOUT_COLOR);
+			FontStyle labelFont = (FontStyle) line.getStyles().get(0);
+			labelFont.setFontColor(FONT_GREYOUT_COLOR);
 		}
 		else{
 			MMINTException.print(MMINTException.Type.WARNING, "Can't color diagram element",
@@ -171,7 +171,7 @@ public class MAVOConcretizationHighlighter {
 			e1.printStackTrace();
 		}
 		
-		Diagram d = null;
+		Diagram d;
 		try{
 			d = (Diagram) MultiModelUtils.getModelFile(newDiagramURI, true);
 		} catch (Exception e) {

@@ -26,6 +26,7 @@ import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
+import org.eclipse.gmf.runtime.common.ui.services.internal.CommonUIServicesPlugin;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
@@ -53,6 +54,12 @@ public class MAVOElementLabelParser implements IParser {
 
 	@Override
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
+
+		MAVOElement mavoElement = (MAVOElement) element.getAdapter(edu.toronto.cs.se.mavo.MAVOElement.class);
+		if (mavoElement.getAlternatives().size() > 0){
+			return new ParserEditStatus(
+					CommonUIServicesPlugin.getPluginId(), ParserEditStatus.UNEDITABLE, "Cannot Modify Element in Alternative.");
+		}
 
 		return ParserEditStatus.EDITABLE_STATUS;
 	}
