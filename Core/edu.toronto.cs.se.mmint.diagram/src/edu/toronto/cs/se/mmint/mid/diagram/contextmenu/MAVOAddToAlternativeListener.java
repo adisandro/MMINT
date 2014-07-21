@@ -32,17 +32,21 @@ import edu.toronto.cs.se.mavo.MAVOAlternative;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
+import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
+//TODO MMINT[MU-MMINT] change name to reflect removal from alternative as well.
 public class MAVOAddToAlternativeListener extends SelectionAdapter {
 
 	List<MAVOElement> mavoElements;
 	MAVOAlternative mavoAlternative;
+	boolean add;
 
-	public MAVOAddToAlternativeListener(List<MAVOElement> mavoElements, MAVOAlternative mavoAlternative) {
+	public MAVOAddToAlternativeListener(List<MAVOElement> mavoElements, MAVOAlternative mavoAlternative, boolean add) {
 
 		this.mavoElements = mavoElements;
 		this.mavoAlternative = mavoAlternative;
+		this.add = add;
 	}
 
 	@Override
@@ -55,11 +59,19 @@ public class MAVOAddToAlternativeListener extends SelectionAdapter {
 			files.add(diagramFile);
 			files.add(modelFile);
 		}
-		AbstractTransactionalCommand operatorCommand = new AddToAlternativeCommand(
-			TransactionUtil.getEditingDomain(mavoElements.get(0)),
-			"Add to Alternative",
-			files
-		);
+		AbstractTransactionalCommand operatorCommand;
+		String label;
+		if (add){
+			label = "Add to Alternative";
+		}
+		else{
+			label = "Remove from Alternative";
+		}
+		operatorCommand = new AddToAlternativeCommand(
+				TransactionUtil.getEditingDomain(mavoElements.get(0)),
+				label,
+				files
+			);
 		try {
 			OperationHistoryFactory.getOperationHistory().execute(operatorCommand, null, null);
 		}
@@ -68,6 +80,7 @@ public class MAVOAddToAlternativeListener extends SelectionAdapter {
 		}
 	}
 
+	//TODO MMINT[MU-MMINT] change name to reflect removal from alternative as well.
 	protected class AddToAlternativeCommand extends AbstractTransactionalCommand {
 
 		public AddToAlternativeCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
@@ -78,7 +91,20 @@ public class MAVOAddToAlternativeListener extends SelectionAdapter {
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			mavoAlternative.getMavoElements().addAll(mavoElements);
+			if (add){
+				mavoAlternative.getMavoElements().addAll(mavoElements);
+				for (MAVOElement mavoElement : mavoElements) {
+					MAVOUtils.setMay(mavoElement, true);
+				}
+			}
+			else{
+				mavoAlternative.getMavoElements().removeAll(mavoElements);
+				for (MAVOElement mavoElement : mavoElements) {
+					if (mavoElement.getAlternatives().isEmpty()) {
+						MAVOUtils.setMay(mavoElement, false);
+					}
+				}
+			}
 
 			return CommandResult.newOKCommandResult();
 		}
