@@ -46,13 +46,28 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
 
+/**
+ * Implementation of the algorithm in Fig. 6 of the paper:
+ * 
+ * Rick Salay, Michalis Famelis, Julia Rubin, Alessio Di Sandro, Marsha Chechik:
+ * Lifting model transformations to product lines. ICSE 2014: 117-128
+ * 
+ * @author Alessio Di Sandro
+ */
 public class ProductLineHenshinTransformation extends LiftingHenshinTransformation {
 
 	protected static final String SMTLIB_APPLICABILITY_PREAMBLE = "(declare-fun fN (Int) Bool) (declare-fun fC (Int) Bool) (declare-fun fD (Int) Bool) (declare-fun fY (Int) Bool) (assert (forall ((i Int)) (= (fY i) (and (not (fN i)) (fC i) (fD i))))) (declare-fun fX (Int) Bool) (assert (forall ((i Int)) (= (fX i)";
 	protected static final String SMTLIB_APPLICABILITY_POSTAMBLE = ")))";
 
+	/**
+	 * Updates the presence condition of the (A)dded model object to be phi
+	 * apply at step ruleApplicationsLifting+1 (algorithm line 6).
+	 * 
+	 * @param modelObjA
+	 *            The (A)dded model object.
+	 */
 	@Override
-	protected void transformWhenLifted(MAVOElement modelObjA) {
+	protected void transformModelObjAWhenLifted(MAVOElement modelObjA) {
 
 		modelObjA.setFormulaVariable(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + Z3SMTUtils.SMTLIB_PREDICATE_END);
 	}
@@ -100,10 +115,11 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		Set<Node> nodesC = new HashSet<Node>();
 		Set<Node> nodesD = new HashSet<Node>();
 		//TODO MMINT: loop through all nacs
+		// try to match (N)ac
+		// access nodes of the transformation rule, detect N,C,D nodes, transform N nodes into C
 		Rule ruleCopyN = EcoreUtil.copy(rule);
 //		NestedCondition conditionN = ruleCopyN.getLhs().getNestedConditions().get(0);
 		NestedCondition conditionN = ruleCopyN.getLhs().getNAC(ANAC_NAME);
-		// (N)ac
 		getCDNodes(ruleCopyN, nodesC, nodesD);
 		getNNodesAndChangeToC(conditionN, ruleCopyN, nodesN);
 		List<Match> matchesN = InterpreterUtil.findAllMatches(engine, ruleCopyN, graph, null);
@@ -132,13 +148,14 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 				getMatchedModelObjs(matchNj, nodesC, modelObjsC, modelObjsCDN);
 				getMatchedModelObjs(matchNj, nodesD, modelObjsD, modelObjsCDN);
 			}
-			// check apply formula
+			// check phi apply
 			if (checkZ3ApplicabilityFormula(z3IncSolver)) {
 				return new TransformationApplicabilityCondition(ruleCopyN, matchNi, true); // <NBar,C,D> lifted match
 			}
 		}
 
 		// no (N)ac matched
+		// access nodes of the transformation rule, detect C,D nodes
 		Rule ruleCopy = EcoreUtil.copy(rule);
 		nodesN = new HashSet<Node>();
 		nodesC = new HashSet<Node>();
@@ -153,6 +170,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			Match match = matches.get(i);
 			getMatchedModelObjs(match, nodesC, modelObjsC, modelObjsCDN);
 			getMatchedModelObjs(match, nodesD, modelObjsD, modelObjsCDN);
+			// check phi apply
 			if (checkZ3ApplicabilityFormula(z3IncSolver)) {
 				return new TransformationApplicabilityCondition(ruleCopy, match, true); // <C,D> lifted match
 			}
@@ -166,10 +184,12 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 
 		RuleApplication application = new RuleApplicationImpl(engine);
 		TransformationApplicabilityCondition condition;
+		// check applicability condition involves defining fN,fC,fD at step ruleApplicationsLifting +
+		// invoking the solver (algorithm line 3)
 		while ((condition = checkApplicabilityConditions(rule, engine, graph, z3IncSolver)) != null) {
 			application.setRule(condition.getMatchedRule());
 			application.setEGraph(graph);
-			// transform
+			// transform and detect (A)dded model objects
 			modelObjsA.clear();
 			transformLifting(application, condition.getMatch(), condition.isLiftedMatch());
 			if (condition.isLiftedMatch()) {
@@ -187,20 +207,25 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		// Using MAVO elements in this operator is a "trick" to reuse the
-		// formulaId field as the container of presence conditions. It works as
-		// long as all elements in the Henshin rules are MAVO elements, the only
+		// formulaVariable field as the container of presence conditions. It works
+		// as long as all elements in the Henshin rules are MAVO elements, the only
 		// exception being the root which is always present.
+
 		Model model = actualParameters.get(0);
+		// function declarations at step 0 for fN-fC-fD (phis) +
+		// function definition at every step for fY (phi apply, algorithm line 2) +
+		// function definition at every step for fX (phi P, external constraint)
 		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
-		// do transformations
 		//TODO MMINT: implement D support and OR-ed N support
+		// henshin initialization
 		String fullUri = MultiModelUtils.prependWorkspaceToUri(MultiModelUtils.replaceLastSegmentInUri(model.getUri(), ""));
 		HenshinResourceSet resourceSet = new HenshinResourceSet(fullUri);
 		Module module = resourceSet.getModule(transformationModule, false);
 		Engine engine = new EngineImpl();
 		engine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
 		EGraph graph = new EGraphImpl(resourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(model.getUri())));
+		// if enabled, run the classical transformation and reinitialize henshin
 		if (timeClassicalEnabled) {
 			doTransformationClassical(module, engine, graph);
 			resourceSet = new HenshinResourceSet(fullUri);
@@ -209,6 +234,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			engine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
 			graph = new EGraphImpl(resourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(model.getUri())));
 		}
+		// run the lifted transformation
 		doTransformationLifting(module, engine, graph);
 
 		// save transformed model(s) and update mid
@@ -251,7 +277,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			result.add(transformedModelOutput);
 		}
 
-		// save output
+		// save output properties
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
 		MultiModelOperatorUtils.writePropertiesFile(

@@ -71,6 +71,11 @@ public class Z3SMTUtils {
 		return predicate(SMTLIB_OR, smtTerms);
 	}
 
+	public static String constant(String smtConstantName, String smtConstantType) {
+
+		return predicate(SMTLIB_CONST, smtConstantName + " " + smtConstantType);
+	}
+
 	public static String equality(String smtTerms) {
 
 		return predicate(SMTLIB_EQUALITY, smtTerms);

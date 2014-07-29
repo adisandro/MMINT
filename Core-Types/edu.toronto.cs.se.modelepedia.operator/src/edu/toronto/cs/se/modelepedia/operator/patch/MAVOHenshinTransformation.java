@@ -55,13 +55,13 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 	private static final String SMTLIB_APPLICABILITY_FUN_A_OR = SMTLIB_APPLICABILITY_FUN + "Ao ";
 
 	@Override
-	protected void transformWhenLifted(MAVOElement modelObjA) {
+	protected void transformModelObjAWhenLifted(MAVOElement modelObjA) {
 
 		modelObjA.setMay(true);
 	}
 
 	@Override
-	protected void transformWhenNotLifted(MAVOElement modelObjA) {
+	protected void transformModelObjA(MAVOElement modelObjA) {
 
 		modelObjA.setFormulaVariable(A_MODELOBJECT_SMTENCODING_PREFIX + modelObjACounter);
 	}
