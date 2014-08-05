@@ -69,8 +69,9 @@ public class MAVODecisionTreeMenuListener extends SelectionAdapter {
 		} else {
 			operatorCommand = new RemoveOldObjectCommand(
 					TransactionUtil.getEditingDomain(container),
-					"Remove object from container", files);
+					"Remove object from contrainer", files);
 		}
+
 		try {
 			OperationHistoryFactory.getOperationHistory().execute(
 					operatorCommand, null, null);
@@ -91,6 +92,7 @@ public class MAVODecisionTreeMenuListener extends SelectionAdapter {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 				IAdaptable info) throws ExecutionException {
 
+			//TODO MMINT[MU-MMINT] should use more reliable way of generating FormulaVarialbes
 			if (container instanceof MAVOModel) {
 				MAVOModel model = (MAVOModel) container;
 				int decisionNum = model.getDecisions().size() + 1;

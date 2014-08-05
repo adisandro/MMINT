@@ -108,6 +108,20 @@ public class Graph_MAVODiagramEditor extends DiagramDocumentEditor implements
 	public String getContributorId() {
 		return edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin.ID;
 	}
+	
+	/**
+	 * @generated
+	 */
+	public Object getAdapterGen(Class type){
+		if (type == IShowInTargetList.class) {
+			return new IShowInTargetList() {
+				public String[] getShowInTargetIds() {
+					return new String[] { ProjectExplorer.VIEW_ID };
+				}
+			};
+		}
+		return super.getAdapter(type);
+	}
 
 	/**
 	 * @generated NOT
@@ -115,10 +129,11 @@ public class Graph_MAVODiagramEditor extends DiagramDocumentEditor implements
 	@SuppressWarnings("rawtypes")
 	public Object getAdapter(Class type) {
 		if (type == IContentOutlinePage.class) {
-			MAVODiagramDecisionTree decisionTree = new MAVODiagramDecisionTree(getDiagram());
+			MAVODiagramDecisionTree decisionTree = new MAVODiagramDecisionTree(
+					getDiagram());
 			return decisionTree;
 		}
-		return super.getAdapter(type);
+		return getAdapterGen(type);
 	}
 
 	/**
