@@ -29,7 +29,7 @@ public class MAVOAlternativeHighlightContributionItem extends ContributionItem{
 		}
 		Object[] objects = ((StructuredSelection) selection).toArray();
 
-		// TODO: for now, do not show menu if more than one element is selected
+		// TODO MMINT[MU-MMINT] for now, do not show menu if more than one element is selected
 		if (objects.length > 1) {
 			return;
 		}

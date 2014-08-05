@@ -185,11 +185,14 @@
 		[for (mayAlternative : MAVOAlternative | mayDecision.alternatives)]
 ;[mayDecision.formulaVariable/]-[mayAlternative.formulaVariable/] Alternative elements
 (declare-fun [mayAlternative.formulaVariable/] () Bool)
+[if (mayAlternative.mavoElements->size() > 0)]
 (assert (= [mayAlternative.formulaVariable/][if (mayDecision.getMayDecisionElements()->size() > 1)] (and[/if]
 				[for (mavoElement : MAVOElement | mayDecision.getMayDecisionElements())]
 	[if (not mayAlternative.mavoElements->includes(mavoElement))](not [/if]([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/])[if (not mayAlternative.mavoElements->includes(mavoElement))])[/if]
 				[/for]
-))[if (mayDecision.getMayDecisionElements()->size() > 1)])[/if]
+))
+[/if]
+[if (mayDecision.getMayDecisionElements()->size() > 1)])[/if]
 		[/for]
 ;[mayDecision.formulaVariable/] Decision
 		[if (mayDecision.alternatives->size() > 1)]
@@ -239,7 +242,7 @@
 		[/let]
 	[/for]
 
-;Model I CHANGED STUFF HERE!!!!!!
+;Model
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
 		[let numTypes : Integer = mavoModel.getMetamodelMAVOClasses()->size()]
 		[let function : String = mavoElement.eClass().getGraphFunction()]
@@ -321,13 +324,11 @@
 			[for (mayAlternative : MAVOAlternative | mayDecision.alternatives)]
 ;[mayDecision.formulaVariable/]-[mayAlternative.formulaVariable/] Alternative elements
 (declare-fun [mayAlternative.formulaVariable/] () Bool)
-[if (mayAlternative.mavoElements->size() > 0)]
-(assert SOMETHING CHANGED (= [mayAlternative.formulaVariable/][if (mayDecision.getMayDecisionElements()->size() > 1)] (and[/if]
+(assert (= [mayAlternative.formulaVariable/][if (mayDecision.getMayDecisionElements()->size() > 1)] (and[/if]
 				[for (mavoElement : MAVOElement | mayDecision.getMayDecisionElements())]
 	[if (not mayAlternative.mavoElements->includes(mavoElement))](not [/if](exists ((c [mavoElement.eClass().getMAVOClassName()/])) ([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/] c))[if (not mayAlternative.mavoElements->includes(mavoElement))])[/if]
 				[/for]
 ))
-[/if]
 [if (mayDecision.getMayDecisionElements()->size() > 1)])[/if]
 			[/for]
 ;[mayDecision.formulaVariable/] Decision
