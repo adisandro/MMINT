@@ -43,8 +43,8 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
+import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 /**
  * Implementation of the algorithm in Fig. 6 of the paper:
@@ -69,15 +69,15 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	@Override
 	protected void transformModelObjAWhenLifted(MAVOElement modelObjA) {
 
-		modelObjA.setFormulaVariable(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + Z3SMTUtils.SMTLIB_PREDICATE_END);
+		modelObjA.setFormulaVariable(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + Z3Utils.SMTLIB_PREDICATE_END);
 	}
 
 	@Override
 	protected void createZ3ApplyFormula() {
 
 		createZ3ApplyFormulaMatchSetNIteration();
-		createZ3ApplyFormulaMatchSetIteration(modelObjsC, SMTLIB_APPLICABILITY_FUN_C, Z3SMTUtils.SMTLIB_AND, Z3SMTUtils.SMTLIB_TRUE);
-		createZ3ApplyFormulaMatchSetIteration(modelObjsD, SMTLIB_APPLICABILITY_FUN_D, Z3SMTUtils.SMTLIB_AND, Z3SMTUtils.SMTLIB_TRUE);
+		createZ3ApplyFormulaMatchSetIteration(modelObjsC, SMTLIB_APPLICABILITY_FUN_C, Z3Utils.SMTLIB_AND, Z3Utils.SMTLIB_TRUE);
+		createZ3ApplyFormulaMatchSetIteration(modelObjsD, SMTLIB_APPLICABILITY_FUN_D, Z3Utils.SMTLIB_AND, Z3Utils.SMTLIB_TRUE);
 	}
 
 	protected void updateLiterals() {
@@ -86,7 +86,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		for (MAVOElement modelObjCDN : modelObjsCDN) {
 			Integer modelObjCDNLiterals = modelObjsLiterals.get(modelObjCDN);
 			if (modelObjCDNLiterals == null) {
-				modelObjCDNLiterals = (modelObjCDN.getFormulaVariable().equals(Z3SMTUtils.SMTLIB_TRUE)) ? new Integer(0) : new Integer(1);
+				modelObjCDNLiterals = (modelObjCDN.getFormulaVariable().equals(Z3Utils.SMTLIB_TRUE)) ? new Integer(0) : new Integer(1);
 				modelObjsLiterals.put(modelObjCDN, modelObjCDNLiterals);
 			}
 			countLiterals += modelObjCDNLiterals;
@@ -109,7 +109,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		}
 	}
 
-	private TransformationApplicabilityCondition checkApplicabilityConditions(Rule rule, Engine engine, EGraph graph, Z3SMTIncrementalSolver z3IncSolver) {
+	private TransformationApplicabilityCondition checkApplicabilityConditions(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver) {
 
 		Set<Node> nodesN = new HashSet<Node>();
 		Set<Node> nodesC = new HashSet<Node>();
@@ -180,7 +180,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	}
 
 	@Override
-	protected void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3SMTIncrementalSolver z3IncSolver) {
+	protected void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver) {
 
 		RuleApplication application = new RuleApplicationImpl(engine);
 		TransformationApplicabilityCondition condition;

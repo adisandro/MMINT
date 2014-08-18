@@ -36,11 +36,11 @@ import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model;
+import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
+import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 
 public class RE13 extends OperatorImpl {
 
@@ -97,7 +97,7 @@ public class RE13 extends OperatorImpl {
 	private long timeModel;
 	private long timeAnalysis;
 	protected long timeTargets;
-	protected Z3SMTBool targets;
+	protected Z3Bool targets;
 
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
@@ -124,7 +124,7 @@ public class RE13 extends OperatorImpl {
 		timeModel = -1;
 		timeAnalysis = -1;
 		timeTargets = -1;
-		targets = Z3SMTBool.UNKNOWN;
+		targets = Z3Bool.UNKNOWN;
 	}
 
 	protected String writeIntentionLabels(Intention intention) {
@@ -180,14 +180,14 @@ public class RE13 extends OperatorImpl {
 		}
 	}
 
-	protected void getConcretizationAnalysisLabels(Map<String, Intention> intentions, Z3SMTModel z3Model) {
+	protected void getConcretizationAnalysisLabels(Map<String, Intention> intentions, Z3Model z3Model) {
 
 		try {
 			com.microsoft.z3.Model z3InternalModel = z3Model.getZ3InternalModel();
-			Map<String, Integer> z3ModelNodes = z3Model.getZ3ModelNodes(smtNodes);
+			Map<String, Integer> z3ModelNodes = z3Model.getZ3MAVOModelNodes(smtNodes);
 			for (SMTLIBLabel label : SMTLIBLabel.values()) {
 				for (FuncDecl decl : z3InternalModel.getFuncDecls()) {
-					if (!(decl.getName().toString().equals(label.name()) || decl.getName().toString().contains(label.name()+Z3SMTUtils.Z3_MODEL_SEPARATOR))) {
+					if (!(decl.getName().toString().equals(label.name()) || decl.getName().toString().contains(label.name()+Z3Utils.Z3_MODEL_SEPARATOR))) {
 						continue;
 					}
 					String nodeType = decl.getDomain()[0].getName().toString();
@@ -211,7 +211,7 @@ public class RE13 extends OperatorImpl {
 		}
 	}
 
-	protected void doAnalysis(Z3SMTIncrementalSolver z3IncSolver) {
+	protected void doAnalysis(Z3IncrementalSolver z3IncSolver) {
 
 		long startTime = System.nanoTime();
 
@@ -226,35 +226,35 @@ public class RE13 extends OperatorImpl {
 			if (initialIntentions.contains(intentionFormulaVar)) { // skip intentions with initial label
 				continue;
 			}
-			intentionProperty = Z3SMTUtils.SMTLIB_ASSERT;
+			intentionProperty = Z3Utils.SMTLIB_ASSERT;
 			if (intention.isMay()) {
 				intentionProperty +=
-					Z3SMTUtils.SMTLIB_AND +
-					Z3SMTUtils.exists(
-						Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION + intention.eClass().getName()),
-						Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_NODE_FUNCTION, intentionFormulaVar + SMTLIB_CONCRETIZATION)
+					Z3Utils.SMTLIB_AND +
+					Z3Utils.exists(
+						Z3Utils.emptyPredicate(SMTLIB_CONCRETIZATION + intention.eClass().getName()),
+						Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, intentionFormulaVar + SMTLIB_CONCRETIZATION)
 					)
 				;
 			}
 			intentionProperty +=
-				Z3SMTUtils.SMTLIB_FORALL +
-				Z3SMTUtils.SMTLIB_PREDICATE_START +
-				Z3SMTUtils.emptyPredicate(SMTLIB_CONCRETIZATION + intention.eClass().getName()) +
-				Z3SMTUtils.SMTLIB_PREDICATE_END +
-				Z3SMTUtils.SMTLIB_IMPLICATION +
-				Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_NODE_FUNCTION, intentionFormulaVar + SMTLIB_CONCRETIZATION)
+				Z3Utils.SMTLIB_FORALL +
+				Z3Utils.SMTLIB_PREDICATE_START +
+				Z3Utils.emptyPredicate(SMTLIB_CONCRETIZATION + intention.eClass().getName()) +
+				Z3Utils.SMTLIB_PREDICATE_END +
+				Z3Utils.SMTLIB_IMPLICATION +
+				Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, intentionFormulaVar + SMTLIB_CONCRETIZATION)
 			;
 			for (SMTLIBLabel label : SMTLIBLabel.values()) {
 				if ((boolean) intention.eGet(label.getModelFeature())) { // skip already checked
 					continue;
 				}
-				labelProperty = intentionProperty + Z3SMTUtils.predicate(Z3SMTUtils.SMTLIB_PREDICATE_START + label.name(), SMTLIB_CONCRETIZATION) + Z3SMTUtils.SMTLIB_PREDICATE_END + Z3SMTUtils.SMTLIB_PREDICATE_END;
+				labelProperty = intentionProperty + Z3Utils.predicate(Z3Utils.SMTLIB_PREDICATE_START + label.name(), SMTLIB_CONCRETIZATION) + Z3Utils.SMTLIB_PREDICATE_END + Z3Utils.SMTLIB_PREDICATE_END;
 				if (intention.isMay()) {
-					labelProperty += Z3SMTUtils.SMTLIB_PREDICATE_END;
+					labelProperty += Z3Utils.SMTLIB_PREDICATE_END;
 				}
-				labelProperty += Z3SMTUtils.SMTLIB_PREDICATE_END;
-				Z3SMTModel z3Model = z3IncSolver.checkSatAndGetModel(labelProperty, Z3IncrementalBehavior.POP);
-				if (z3Model.getZ3Bool() == Z3SMTBool.SAT) {
+				labelProperty += Z3Utils.SMTLIB_PREDICATE_END;
+				Z3Model z3Model = z3IncSolver.checkSatAndGetModel(labelProperty, Z3IncrementalBehavior.POP);
+				if (z3Model.getZ3Bool() == Z3Bool.SAT) {
 					intention.eSet(label.getModelFeature(), true);
 					getConcretizationAnalysisLabels(intentions, z3Model);
 				}
@@ -264,11 +264,11 @@ public class RE13 extends OperatorImpl {
 		timeAnalysis = System.nanoTime() - startTime;
 	}
 
-	protected Z3SMTModel doTargets(Z3SMTIncrementalSolver z3IncSolver) {
+	protected Z3Model doTargets(Z3IncrementalSolver z3IncSolver) {
 
 		long startTime = System.nanoTime();
 
-		Z3SMTModel z3Model = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(targetsProperty), Z3IncrementalBehavior.NORMAL);
+		Z3Model z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(targetsProperty), Z3IncrementalBehavior.NORMAL);
 		targets = z3Model.getZ3Bool();
 
 		timeTargets = System.nanoTime() - startTime;
@@ -318,7 +318,7 @@ public class RE13 extends OperatorImpl {
 
 		// run solver
 		collectAnalysisModelObjs(istarModel);
-		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
+		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		doAnalysis(z3IncSolver);
 		if (timeTargetsEnabled) {
 			doTargets(z3IncSolver);

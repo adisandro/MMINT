@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.z3;
 
-public class Z3SMTUtils {
+public class Z3Utils {
 
 	public static final String SMTLIB_FILE_EXTENSION = "smt2";
 	public static final String SMTLIB_PREDICATE_START = "(";

@@ -31,11 +31,11 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
+import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
+import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 
 public class REJ14 extends FASE14 {
 
@@ -69,7 +69,7 @@ public class REJ14 extends FASE14 {
 
 		// state
 		if (modelConstraint != null) {
-			smtEncoding += Z3SMTUtils.assertion(modelConstraint);
+			smtEncoding += Z3Utils.assertion(modelConstraint);
 		}
 		IStarMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
 			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
@@ -78,7 +78,7 @@ public class REJ14 extends FASE14 {
 	}
 
 	@Override
-	protected Z3SMTModel doTargets(Z3SMTIncrementalSolver z3IncSolver) {
+	protected Z3Model doTargets(Z3IncrementalSolver z3IncSolver) {
 
 		long extraTime = 0;
 		if (!timeAnalysisEnabled) {
@@ -86,13 +86,13 @@ public class REJ14 extends FASE14 {
 			z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
 			extraTime = System.nanoTime() - startTime;
 		}
-		Z3SMTModel z3Model = super.doTargets(z3IncSolver);
+		Z3Model z3Model = super.doTargets(z3IncSolver);
 		timeTargets += extraTime;
 
 		return z3Model;
 	}
 
-	private String[] getConcretization(IStar istar, Z3SMTModel z3Model) {
+	private String[] getConcretization(IStar istar, Z3Model z3Model) {
 
 		//TODO MMINT[Z3] Change api names, make this process an api, make nodes+edges an api
 		//TODO MMINT[MAVO] Rethink mavo apis to include all of this
@@ -104,8 +104,8 @@ public class REJ14 extends FASE14 {
 		 * V: 1 concretizationVar to x formulaVar
 		 */
 		String concretization = "", smtConcretizationConstraint = "";
-		Map<String, Integer> z3ModelNodes = z3Model.getZ3ModelNodes(smtNodes);
-		Map<String, Integer> z3ModelEdges = z3Model.getZ3ModelEdges(smtEdges);
+		Map<String, Integer> z3ModelNodes = z3Model.getZ3MAVOModelNodes(smtNodes);
+		Map<String, Integer> z3ModelEdges = z3Model.getZ3MAVOModelEdges(smtEdges);
 		Map<String, List<String>> z3Elems = new HashMap<String, List<String>>();
 		for (Entry<String, Integer> z3ModelNode : z3ModelNodes.entrySet()) {
 			String concretizationVar = z3ModelNode.getKey();
@@ -177,7 +177,7 @@ public class REJ14 extends FASE14 {
 		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
 			concretization += entry.getKey() + "(" + writeIntentionLabels(entry.getValue()) + ") ";
 		}
-		smtConcretizationConstraint = Z3SMTUtils.assertion(Z3SMTUtils.not(Z3SMTUtils.and(smtConcretizationConstraint)));
+		smtConcretizationConstraint = Z3Utils.assertion(Z3Utils.not(Z3Utils.and(smtConcretizationConstraint)));
 
 		return new String[] {concretization, smtConcretizationConstraint};
 	}
@@ -202,13 +202,13 @@ public class REJ14 extends FASE14 {
 
 		// run
 		collectAnalysisModelObjs(istarModel);
-		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
+		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		if (timeAnalysisEnabled) {
 			doAnalysis(z3IncSolver);
 		}
 		if (timeTargetsEnabled) {
-			Z3SMTModel z3Model = doTargets(z3IncSolver);
-			if (targets == Z3SMTBool.SAT) {
+			Z3Model z3Model = doTargets(z3IncSolver);
+			if (targets == Z3Bool.SAT) {
 				if (timeRNFEnabled) {
 					doRNF(z3IncSolver, z3Model);
 				}
@@ -221,7 +221,7 @@ public class REJ14 extends FASE14 {
 						}
 						//TODO MMINT[TOSEM] Integrate with tosem allsat to negate current concretization
 						z3Model = z3IncSolver.checkSatAndGetModel(concretization[1], Z3IncrementalBehavior.NORMAL);
-						if (z3Model.getZ3Bool() != Z3SMTBool.SAT) {
+						if (z3Model.getZ3Bool() != Z3Bool.SAT) {
 							break;
 						}
 					}

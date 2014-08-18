@@ -24,14 +24,14 @@ import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTr
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model;
+import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
+import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
 
-public class Z3SMTReasoningEngine implements IReasoningEngine {
+public class Z3ReasoningEngine implements IReasoningEngine {
 
 	private final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
 	private final static String GRAPH_MAVO_URI = "http://se.cs.toronto.edu/modelepedia/Graph_MAVO";
@@ -39,12 +39,12 @@ public class Z3SMTReasoningEngine implements IReasoningEngine {
 	public static MAVOTruthValue checkMAVOProperty(String smtEncoding, String smtProperty) {
 
 		// tri-state MAVO logic
-		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
+		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
-		Z3SMTModel z3Model = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(smtProperty), Z3IncrementalBehavior.POP);
-		boolean propertyTruthValue = z3Model.getZ3Bool() == Z3SMTBool.SAT;
-		z3Model = z3IncSolver.checkSatAndGetModel(Z3SMTUtils.assertion(Z3SMTUtils.not(smtProperty)), Z3IncrementalBehavior.POP);
-		boolean notPropertyTruthValue = z3Model.getZ3Bool() == Z3SMTBool.SAT;
+		Z3Model z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(smtProperty), Z3IncrementalBehavior.POP);
+		boolean propertyTruthValue = z3Model.getZ3Bool() == Z3Bool.SAT;
+		z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(smtProperty)), Z3IncrementalBehavior.POP);
+		boolean notPropertyTruthValue = z3Model.getZ3Bool() == Z3Bool.SAT;
 
 		return MAVOTruthValue.toMAVOTruthValue(propertyTruthValue, notPropertyTruthValue);
 	}

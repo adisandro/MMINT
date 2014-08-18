@@ -27,7 +27,7 @@ import java.util.Set;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.operator.patch.LiftingHenshinTransformation;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
+import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import splar.core.constraints.CNFClause;
 import splar.core.constraints.CNFFormula;
 import splar.core.constraints.CNFLiteral;
@@ -48,18 +48,18 @@ public class FeatureModelToSMTLIB {
 		FeatureModel featureModel = new XMLFeatureModel(featureModelPath, XMLFeatureModel.USE_VARIABLE_NAME_AS_ID);
 		featureModel.loadModel();
 		CNFFormula cnf = featureModel.FM2CNF();
-		StringBuilder cnfFormula = new StringBuilder(Z3SMTUtils.SMTLIB_AND);
+		StringBuilder cnfFormula = new StringBuilder(Z3Utils.SMTLIB_AND);
 		Set<String> cnfVars = new HashSet<String>();
 		boolean needSpace = false;
 		String variable;
 		for (CNFClause cnfClause : cnf.getClauses()) {
 			if (cnfClause.countLiterals() > 1) {
-				cnfFormula.append(Z3SMTUtils.SMTLIB_OR);
+				cnfFormula.append(Z3Utils.SMTLIB_OR);
 				needSpace = false;
 			}
 			for (CNFLiteral cnfLiteral : cnfClause.getLiterals()) {
 				if (!cnfLiteral.isPositive()) {
-					cnfFormula.append(Z3SMTUtils.SMTLIB_NOT);
+					cnfFormula.append(Z3Utils.SMTLIB_NOT);
 					needSpace = false;
 				}
 				if (needSpace) {
@@ -75,14 +75,14 @@ public class FeatureModelToSMTLIB {
 					needSpace = true;
 				}
 				else {
-					cnfFormula.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
+					cnfFormula.append(Z3Utils.SMTLIB_PREDICATE_END);
 				}
 			}
 			if (cnfClause.countLiterals() > 1) {
-				cnfFormula.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
+				cnfFormula.append(Z3Utils.SMTLIB_PREDICATE_END);
 			}
 		}
-		cnfFormula.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
+		cnfFormula.append(Z3Utils.SMTLIB_PREDICATE_END);
 
 		StringBuilder cnfVariables = new StringBuilder();
 		for (String cnfVariable : cnfVars) {

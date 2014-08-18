@@ -26,9 +26,9 @@ import com.microsoft.z3.Z3Exception;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 
-public class Z3SMTIncrementalSolver {
+public class Z3IncrementalSolver {
 
 	public enum Z3IncrementalBehavior {NORMAL, POP, POP_IF_UNSAT};
 
@@ -43,7 +43,7 @@ public class Z3SMTIncrementalSolver {
 		model = null;
 	}
 
-	private Z3SMTModel runCheckSatAndGetModel(String smtEncoding, Z3IncrementalBehavior incBehavior) throws Z3Exception {
+	private Z3Model runCheckSatAndGetModel(String smtEncoding, Z3IncrementalBehavior incBehavior) throws Z3Exception {
 
 		BoolExpr expr;
 		if (model != null) {
@@ -77,11 +77,11 @@ public class Z3SMTIncrementalSolver {
 			}
 		}
 
-		return new Z3SMTModel(status, returnModel);
+		return new Z3Model(status, returnModel);
 	}
 
 	// first check sat and get model as baseline
-	public Z3SMTModel firstCheckSatAndGetModel(String smtEncoding) {
+	public Z3Model firstCheckSatAndGetModel(String smtEncoding) {
 
 		Map<String, String> config = new HashMap<String, String>();
 		config.put("model", "true");
@@ -95,12 +95,12 @@ public class Z3SMTIncrementalSolver {
 		catch (Z3Exception e) {
 			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result", e);
 			reset();
-			return new Z3SMTModel(Status.UNKNOWN, null);
+			return new Z3Model(Status.UNKNOWN, null);
 		}
 	}
 
 	// incremental check sat and get model
-	public Z3SMTModel checkSatAndGetModel(String smtEncoding, Z3IncrementalBehavior incBehavior) {
+	public Z3Model checkSatAndGetModel(String smtEncoding, Z3IncrementalBehavior incBehavior) {
 
 		if (model == null) {
 			MMINTException.print(Type.WARNING, "No incremental model found, invoking firstCheckSatAndGetModel() instead", null);
@@ -111,10 +111,10 @@ public class Z3SMTIncrementalSolver {
 			if (incBehavior != Z3IncrementalBehavior.NORMAL) {
 				solver.push();
 			}
-			Z3SMTModel z3ModelResult = runCheckSatAndGetModel(smtEncoding, incBehavior);
+			Z3Model z3ModelResult = runCheckSatAndGetModel(smtEncoding, incBehavior);
 			if (
 				incBehavior == Z3IncrementalBehavior.POP ||
-				(incBehavior == Z3IncrementalBehavior.POP_IF_UNSAT && z3ModelResult.getZ3Bool() != Z3SMTBool.SAT)
+				(incBehavior == Z3IncrementalBehavior.POP_IF_UNSAT && z3ModelResult.getZ3Bool() != Z3Bool.SAT)
 			) {
 				solver.pop();
 			}
@@ -124,7 +124,7 @@ public class Z3SMTIncrementalSolver {
 		catch (Z3Exception e) {
 			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result", e);
 			reset();
-			return new Z3SMTModel(Status.UNKNOWN, null);
+			return new Z3Model(Status.UNKNOWN, null);
 		}
 	}
 

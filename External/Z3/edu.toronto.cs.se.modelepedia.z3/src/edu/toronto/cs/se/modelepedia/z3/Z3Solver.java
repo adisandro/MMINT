@@ -23,11 +23,11 @@ import com.microsoft.z3.Z3Exception;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 
-public class Z3SMTSolver {
+public class Z3Solver {
 
-	private Solver loadSMTEncoding(Map<String, String> config, String smtEncoding) throws Z3Exception {
+	private Solver loadSMTLIBEncoding(Map<String, String> config, String smtEncoding) throws Z3Exception {
 
 		Context context = new Context(config);
 		Solver solver = context.mkSolver();
@@ -38,39 +38,39 @@ public class Z3SMTSolver {
 	}
 
 	// check sat, no incremental
-	public Z3SMTBool checkSat(String smtEncoding) {
+	public Z3Bool checkSat(String smtEncoding) {
 
 		Map<String, String> config = new HashMap<String, String>();
 		try {
-			Solver solver = loadSMTEncoding(config, smtEncoding);
+			Solver solver = loadSMTLIBEncoding(config, smtEncoding);
 			Status status = solver.check();
 
-			return Z3SMTBool.toZ3Bool(status);
+			return Z3Bool.toZ3Bool(status);
 		}
 		catch (Z3Exception e) {
 			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result", e);
-			return Z3SMTBool.UNKNOWN;
+			return Z3Bool.UNKNOWN;
 		}
 	}
 
 	// check sat and get model, no incremental
-	public Z3SMTModel checkSatAndGetModel(String smtEncoding) {
+	public Z3Model checkSatAndGetModel(String smtEncoding) {
 
 		Map<String, String> config = new HashMap<String, String>();
 		config.put("model", "true");
 		try {
-			Solver solver = loadSMTEncoding(config, smtEncoding);
+			Solver solver = loadSMTLIBEncoding(config, smtEncoding);
 			Status status = solver.check();
 			Model model = null;
 			if (status == Status.SATISFIABLE) {
 				model = solver.getModel();
 			}
 
-			return new Z3SMTModel(status, model);
+			return new Z3Model(status, model);
 		}
 		catch (Z3Exception e) {
 			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result", e);
-			return new Z3SMTModel(Status.UNKNOWN, null);
+			return new Z3Model(Status.UNKNOWN, null);
 		}
 	}
 
