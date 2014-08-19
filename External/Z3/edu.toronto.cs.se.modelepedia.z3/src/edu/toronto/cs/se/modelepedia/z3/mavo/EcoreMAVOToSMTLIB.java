@@ -50,16 +50,10 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 		}
 	}
 
-	private EcoreMAVOToSMTLIBListener smtListener;
-
-	public EcoreMAVOToSMTLIBListener getListener() {
-
-		return smtListener;
-	}
-
 	private static final String PROPERTY_IN_MAYONLY = "mayOnly";
 	private static final Boolean PROPERTY_IN_MAYONLY_DEFAULT = null;
 
+	private EcoreMAVOToSMTLIBListener smtListener;
 	private Boolean mayOnly;
 
 	@Override
@@ -95,7 +89,12 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 
 	public void cleanup() {
 
-		MultiModelUtils.deleteFile(smtListener.getSMTLIBEncodingUri(), false);
+		MultiModelUtils.deleteFile(smtListener.getZ3MAVOModelParser().getSMTLIBEncodingUri(), false);
+	}
+
+	public Z3MAVOModelParser getZ3MAVOModelParser() {
+
+		return smtListener.getZ3MAVOModelParser();
 	}
 
 }

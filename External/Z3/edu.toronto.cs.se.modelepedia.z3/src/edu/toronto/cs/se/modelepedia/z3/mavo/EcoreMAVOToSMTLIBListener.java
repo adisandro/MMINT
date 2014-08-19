@@ -26,14 +26,15 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 	private static final int NUM_TOKENS = 4;
 
 	private StringBuilder textGeneration;
-	private String smtEncoding;
-	private String smtEncodingUri;
 	private Map<Integer, String> smtNodes;
 	private Map<Integer, String> smtEdges;
 	private Map<Integer, String> smtCurrentElems;
 	private boolean checkTokens;
 	private String[] smtTokens;
-	int smtTokenCounter;
+	private int smtTokenCounter;
+	private String smtEncoding;
+	private String smtEncodingUri;
+	private Z3MAVOModelParser z3ModelParser;
 
 	public EcoreMAVOToSMTLIBListener() {
 
@@ -86,6 +87,7 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 	public void fileGenerated(AcceleoTextGenerationEvent event) {
 
 		smtEncoding = textGeneration.toString();
+		z3ModelParser = new Z3MAVOModelParser(smtEncoding, smtEncodingUri, smtNodes, smtEdges);
 	}
 
 	@Override
@@ -100,24 +102,9 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 		return false;
 	}
 
-	public String getSMTLIBEncoding() {
+	public Z3MAVOModelParser getZ3MAVOModelParser() {
 
-		return smtEncoding;
-	}
-
-	public String getSMTLIBEncodingUri() {
-
-		return smtEncodingUri;
-	}
-
-	public Map<Integer, String> getSMTLIBEncodingNodes() {
-
-		return smtNodes;
-	}
-
-	public Map<Integer, String> getSMTLIBEncodingEdges() {
-
-		return smtEdges;
+		return z3ModelParser;
 	}
 
 }

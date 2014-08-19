@@ -34,7 +34,7 @@ import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIBListener;
+import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 
 public class MAVOConcretizationHighlighter {
 
@@ -44,23 +44,18 @@ public class MAVOConcretizationHighlighter {
 	private static final String EXAMPLE_SUFFIX = "_example";
 	
 	private MAVOTruthValue resultMAVO;
+	private Z3MAVOModelParser z3ModelParser;
 	private String smtEncoding;
-	private Map<Integer, String> smtEncodingEdges;
-	private Map<Integer, String> smtEncodingNodes;
 	private String newDiagramURI;
 	private String smtProperty;
 	private Map<String, View> diagramElements;
 
-	public MAVOConcretizationHighlighter(EcoreMAVOToSMTLIBListener smtListener) {
+	public MAVOConcretizationHighlighter(Z3MAVOModelParser z3ModelParser) {
 		
 		resultMAVO = MAVOTruthValue.ERROR;
-		smtEncoding = smtListener.getSMTLIBEncoding();
-		
-		smtEncodingEdges = smtListener.getSMTLIBEncodingEdges();
-		smtEncodingNodes = smtListener.getSMTLIBEncodingNodes();
-		
+		this.z3ModelParser = z3ModelParser;
+		smtEncoding = z3ModelParser.getSMTLIBEncoding();		
 		diagramElements = new HashMap<String, View>();
-
 	}
 
 	public void highlightExample(Model model) throws Exception {
@@ -109,22 +104,16 @@ public class MAVOConcretizationHighlighter {
 	 * and the second element is the set containing all of the remaining diagram FormulaIDs.
 	 */
 	private ArrayList<Set<String>> separateExampleElements(Z3Model resultModel){
-		Map<String, Integer> resultModelEdges = resultModel.getZ3MAVOModelEdges(smtEncodingEdges);
-		Map<String, Integer> resultModelNodes = resultModel.getZ3MAVOModelNodes(smtEncodingNodes);
-		
+
+		Map<String, Integer> resultModelElems = z3ModelParser.getZ3MAVOModelNodeEdgeConcretizations(resultModel);
 		Set<String> remainingElements = new HashSet<String>(diagramElements.keySet());
 		Set<String> exampleElements = new HashSet<String>();
 		//remove FormulaIDs of elements in example
-		for (Integer intID: resultModelEdges.values()){
-			String FID = smtEncodingEdges.get(intID);
+		for (Integer intID: resultModelElems.values()){
+			String FID = z3ModelParser.getZ3MAVOElementFormulaVar(intID);
 			exampleElements.add(FID);
 			remainingElements.remove(FID);
 		} 
-		for (Integer intID: resultModelNodes.values()){
-			String FID = smtEncodingNodes.get(intID);
-			exampleElements.add(FID);
-			remainingElements.remove(FID);
-		}
 		ArrayList<Set<String>> separated = new ArrayList<Set<String>>();
 		separated.add(exampleElements);
 		separated.add(remainingElements);

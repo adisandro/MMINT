@@ -36,6 +36,7 @@ import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavio
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
+import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
 public class TOSEM12 extends RandomOperatorImpl {
@@ -51,19 +52,21 @@ public class TOSEM12 extends RandomOperatorImpl {
 	private static final String PROPERTY_OUT_SPEEDUPCLASSICALMAVO = "speedupClassicalMAVO";
 	private static final String PROPERTY_OUT_SPEEDUPMAVOALLSATMAVOBACKBONE = "speedupMAVOAllsatMAVOBackbone";
 
+	// input
 	private int numConcretizations;
 	private int propertyId;
 	private boolean timeClassicalEnabled;
 	private boolean timeMAVOBackboneEnabled;
 	private boolean timeMAVOAllsatEnabled;
+	// state
 	private MAVOTruthValue resultMAVO;
 	private List<MAVOElement> mayModelObjs;
 	private String smtEncoding;
-	private Map<Integer, String> smtNodes;
-	private Map<Integer, String> smtEdges;
 	private String smtConcretizationsConstraint;
 	private Set<String> smtConcretizations;
 	private String smtProperty;
+	Z3MAVOModelParser z3ModelParser;
+	// output
 	private long timeMAVO;
 	private long timeClassical;
 	private long timeMAVOBackbone;
@@ -92,9 +95,8 @@ public class TOSEM12 extends RandomOperatorImpl {
 		GenerateRandomGraphMAVO previousOperator2 = (GenerateRandomGraphMAVO) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR2_URI);
 		resultMAVO = MAVOTruthValue.ERROR;
 		mayModelObjs = previousOperator2.getMAVOModelObjects();
-		smtEncoding = previousOperator.getListener().getSMTLIBEncoding();
-		smtNodes = previousOperator.getListener().getSMTLIBEncodingNodes();
-		smtEdges = previousOperator.getListener().getSMTLIBEncodingEdges();
+		z3ModelParser = previousOperator.getZ3MAVOModelParser();
+		smtEncoding = z3ModelParser.getSMTLIBEncoding();
 		smtConcretizationsConstraint = "";
 		smtConcretizations = new HashSet<String>();
 		smtProperty = "";
@@ -237,8 +239,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		if (z3Model.getZ3Bool() != Z3Bool.SAT) {
 			throw new MMINTException("MAVO Property checking was SAT but now backbone baseline is not.");
 		}
-		Map<String, Integer> initialZ3ModelElems = z3Model.getZ3MAVOModelNodes(smtNodes);
-		initialZ3ModelElems.putAll(z3Model.getZ3MAVOModelEdges(smtEdges));
+		Map<String, Integer> initialZ3ModelElems = z3ModelParser.getZ3MAVOModelNodeEdgeConcretizations(z3Model);
 		long endTime = System.nanoTime();
 
 		timeMAVOBackbone = endTime - startTime;
@@ -252,13 +253,8 @@ public class TOSEM12 extends RandomOperatorImpl {
 		Z3Model z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding + Z3Utils.assertion(smtConcretizationsConstraint) + Z3Utils.assertion(smtProperty));
 		while (z3Model.getZ3Bool() == Z3Bool.SAT) {
 			Set<String> formulaVars = new HashSet<String>();
-			Map<String, Integer> z3ModelNodes = z3Model.getZ3MAVOModelNodes(smtNodes);
-			for (Integer z3ModelNode : z3ModelNodes.values()) {
-				formulaVars.add(smtNodes.get(z3ModelNode));
-			}
-			Map<String, Integer> z3ModelEdges = z3Model.getZ3MAVOModelEdges(smtEdges);
-			for (Integer z3ModelEdge : z3ModelEdges.values()) {
-				formulaVars.add(smtEdges.get(z3ModelEdge));
+			for (Integer z3ModelElemConcretizationId : z3ModelParser.getZ3MAVOModelNodeEdgeConcretizations(z3Model).values()) {
+				formulaVars.add(z3ModelParser.getZ3MAVOElementFormulaVar(z3ModelElemConcretizationId));
 			}
 			String smtConcretizationConstraint = "";
 			for (MAVOElement mayModelObj : mayModelObjs) {

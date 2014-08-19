@@ -23,11 +23,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
@@ -49,8 +47,6 @@ public class REJ14 extends FASE14 {
 	private boolean timeRNFEnabled;
 	private String modelConstraint;
 	private boolean generateTargetsConcretization;
-	// state
-	private Map<Integer, String> smtEdges;
 
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
@@ -71,10 +67,6 @@ public class REJ14 extends FASE14 {
 		if (modelConstraint != null) {
 			smtEncoding += Z3Utils.assertion(modelConstraint);
 		}
-		IStarMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
-			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
-			(IStarMAVOToSMTLIB) getPreviousOperator();
-		smtEdges = previousOperator.getListener().getSMTLIBEncodingEdges();
 	}
 
 	@Override
@@ -104,28 +96,17 @@ public class REJ14 extends FASE14 {
 		 * V: 1 concretizationVar to x formulaVar
 		 */
 		String concretization = "", smtConcretizationConstraint = "";
-		Map<String, Integer> z3ModelNodes = z3Model.getZ3MAVOModelNodes(smtNodes);
-		Map<String, Integer> z3ModelEdges = z3Model.getZ3MAVOModelEdges(smtEdges);
-		Map<String, List<String>> z3Elems = new HashMap<String, List<String>>();
-		for (Entry<String, Integer> z3ModelNode : z3ModelNodes.entrySet()) {
-			String concretizationVar = z3ModelNode.getKey();
-			List<String> formulaVars = z3Elems.get(concretizationVar);
-			if (formulaVars == null) {
-				formulaVars = new ArrayList<String>();
-				z3Elems.put(concretizationVar, formulaVars);
+		Map<String, List<String>> z3ModelElems = new HashMap<String, List<String>>();
+		Map<String, Integer> z3ModelElemConcretizations = z3ModelParser.getZ3MAVOModelNodeEdgeConcretizations(z3Model);
+		for (Entry<String, Integer> z3ModelElemConcretization : z3ModelElemConcretizations.entrySet()) {
+			String z3ModelElemUniverse = z3ModelElemConcretization.getKey();
+			List<String> z3ModelElemFormulaVars = z3ModelElems.get(z3ModelElemUniverse);
+			if (z3ModelElemFormulaVars == null) {
+				z3ModelElemFormulaVars = new ArrayList<String>();
+				z3ModelElems.put(z3ModelElemUniverse, z3ModelElemFormulaVars);
 			}
-			String formulaVar = smtNodes.get(z3ModelNode.getValue());
-			formulaVars.add(formulaVar);
-		}
-		for (Entry<String, Integer> z3ModelEdge : z3ModelEdges.entrySet()) {
-			String concretizationVar = z3ModelEdge.getKey();
-			List<String> formulaVars = z3Elems.get(concretizationVar);
-			if (formulaVars == null) {
-				formulaVars = new ArrayList<String>();
-				z3Elems.put(concretizationVar, formulaVars);
-			}
-			String formulaVar = smtEdges.get(z3ModelEdge.getValue());
-			formulaVars.add(formulaVar);
+			String z3ModelElemFormulaVar = z3ModelParser.getZ3MAVOElementFormulaVar(z3ModelElemConcretization.getValue());
+			z3ModelElemFormulaVars.add(z3ModelElemFormulaVar);
 		}
 		for (Entry<String, MAVOElement> mavoModelObjEntry : mavoModelObjs.entrySet()) {
 			MAVOElement mavoModelObj = mavoModelObjEntry.getValue();
@@ -134,7 +115,7 @@ public class REJ14 extends FASE14 {
 			String function = encodeMAVConstraintFunction(mavoModelObj);
 			int counterMS = 0;
 			List<String> mergedV = null;
-			for (List<String> z3ElemFormulaVars : z3Elems.values()) {
+			for (List<String> z3ElemFormulaVars : z3ModelElems.values()) {
 				if (z3ElemFormulaVars.contains(formulaVar)) {
 					counterMS++;
 					mergedV = z3ElemFormulaVars;

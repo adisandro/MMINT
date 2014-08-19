@@ -30,6 +30,7 @@ import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
+import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 
 public class Z3ReasoningEngine implements IReasoningEngine {
 
@@ -65,14 +66,15 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 		}
 		ecore2smt.cleanup();
 
-		MAVOTruthValue propertyTruthValue = checkMAVOProperty(ecore2smt.getListener().getSMTLIBEncoding(), smtConstraint);
+		Z3MAVOModelParser z3ModelParser = ecore2smt.getZ3MAVOModelParser();
+		MAVOTruthValue propertyTruthValue = checkMAVOProperty(z3ModelParser.getSMTLIBEncoding(), smtConstraint);
 		if (propertyTruthValue == MAVOTruthValue.MAYBE){
 			//TODO MMINT[MU-MMINT] Generalize to any MAVO model.
 			if(model.getMetatypeUri().equals(GRAPH_MAVO_URI)){
 				if (MultiModelDiagramUtils.getBooleanInput("Example Highlighter", "Do you want to see a highlighted example?")) {
 					MAVOConcretizationHighlighter highlighter;
 					try {
-						highlighter = new MAVOConcretizationHighlighter(ecore2smt.getListener());
+						highlighter = new MAVOConcretizationHighlighter(z3ModelParser);
 						highlighter.highlightExample(model);
 					}
 					catch (Exception e) {

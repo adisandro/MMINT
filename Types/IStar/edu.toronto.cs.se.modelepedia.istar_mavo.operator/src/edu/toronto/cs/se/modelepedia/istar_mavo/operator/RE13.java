@@ -41,6 +41,7 @@ import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
+import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 
 public class RE13 extends OperatorImpl {
 
@@ -91,8 +92,8 @@ public class RE13 extends OperatorImpl {
 	protected IStar istar;
 	protected Map<String, Intention> intentions;
 	protected Set<String> initialIntentions;
+	protected Z3MAVOModelParser z3ModelParser;
 	protected String smtEncoding;
-	protected Map<Integer, String> smtNodes;
 	// output
 	private long timeModel;
 	private long timeAnalysis;
@@ -118,8 +119,8 @@ public class RE13 extends OperatorImpl {
 		IStarMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
 			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
 			(IStarMAVOToSMTLIB) getPreviousOperator();
-		smtEncoding = previousOperator.getListener().getSMTLIBEncoding();
-		smtNodes = previousOperator.getListener().getSMTLIBEncodingNodes();
+		z3ModelParser = previousOperator.getZ3MAVOModelParser();
+		smtEncoding = z3ModelParser.getSMTLIBEncoding();
 		// output
 		timeModel = -1;
 		timeAnalysis = -1;
@@ -153,29 +154,29 @@ public class RE13 extends OperatorImpl {
 		}
 	}
 
-	private void getConcretizationAnalysisLabel(Map<String, Intention> intentions, Map<String, Integer> z3ModelNodes, Set<String> z3LabelNodes, SMTLIBLabel label, String nodeType, boolean elseValue) {
+	private void getConcretizationAnalysisLabel(Map<String, Intention> intentions, Map<String, Integer> z3ModelNodeConcretizations, Set<String> z3LabelNodes, SMTLIBLabel label, String nodeType, boolean elseValue) {
 
 		EStructuralFeature labelFeature = label.getModelFeature();
 		if (elseValue) {
-			for (Map.Entry<String, Integer> z3ModelNode : z3ModelNodes.entrySet()) {
-				String z3ModelNodeName = z3ModelNode.getKey();
-				if (!z3ModelNodeName.startsWith(nodeType)) {
+			for (Map.Entry<String, Integer> z3ModelNodeConcretization : z3ModelNodeConcretizations.entrySet()) {
+				String z3ModelNodeUniverse = z3ModelNodeConcretization.getKey();
+				if (!z3ModelNodeUniverse.startsWith(nodeType)) {
 					continue;
 				}
-				if (z3LabelNodes.contains(z3ModelNodeName)) {
+				if (z3LabelNodes.contains(z3ModelNodeUniverse)) {
 					continue;
 				}
-				Integer z3ModelNodeNumber = z3ModelNode.getValue();
-				intentions.get(smtNodes.get(z3ModelNodeNumber)).eSet(labelFeature, true);
+				Integer z3ModelNodeId = z3ModelNodeConcretization.getValue();
+				intentions.get(z3ModelParser.getZ3MAVOElementFormulaVar(z3ModelNodeId)).eSet(labelFeature, true);
 			}
 		}
 		else {
 			for (String z3LabelNodeName : z3LabelNodes) {
-				Integer z3LabelNodeNumber = z3ModelNodes.get(z3LabelNodeName);
+				Integer z3LabelNodeNumber = z3ModelNodeConcretizations.get(z3LabelNodeName);
 				if (z3LabelNodeNumber == null) { // result of a node all true function
 					continue;
 				}
-				intentions.get(smtNodes.get(z3LabelNodeNumber)).eSet(labelFeature, true);
+				intentions.get(z3ModelParser.getZ3MAVOElementFormulaVar(z3LabelNodeNumber)).eSet(labelFeature, true);
 			}
 		}
 	}
@@ -183,8 +184,8 @@ public class RE13 extends OperatorImpl {
 	protected void getConcretizationAnalysisLabels(Map<String, Intention> intentions, Z3Model z3Model) {
 
 		try {
+			Map<String, Integer> z3ModelNodeConcretizations = z3ModelParser.getZ3MAVOModelNodeConcretizations(z3Model);
 			com.microsoft.z3.Model z3InternalModel = z3Model.getZ3InternalModel();
-			Map<String, Integer> z3ModelNodes = z3Model.getZ3MAVOModelNodes(smtNodes);
 			for (SMTLIBLabel label : SMTLIBLabel.values()) {
 				for (FuncDecl decl : z3InternalModel.getFuncDecls()) {
 					if (!(decl.getName().toString().equals(label.name()) || decl.getName().toString().contains(label.name()+Z3Utils.Z3_MODEL_SEPARATOR))) {
@@ -202,7 +203,7 @@ public class RE13 extends OperatorImpl {
 					for (Entry entry : interp.getEntries()) {
 						z3LabelNodes.add(entry.getArgs()[0].toString());
 					}
-					getConcretizationAnalysisLabel(intentions, z3ModelNodes, z3LabelNodes, label, nodeType, Boolean.parseBoolean(interp.getElse().toString()));
+					getConcretizationAnalysisLabel(intentions, z3ModelNodeConcretizations, z3LabelNodes, label, nodeType, Boolean.parseBoolean(interp.getElse().toString()));
 				}
 			}
 		}
