@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.z3;
 
-public class Z3SMTUtils {
+public class Z3Utils {
 
 	public static final String SMTLIB_FILE_EXTENSION = "smt2";
 	public static final String SMTLIB_PREDICATE_START = "(";
@@ -69,6 +69,11 @@ public class Z3SMTUtils {
 	public static String or(String smtTerms) {
 
 		return predicate(SMTLIB_OR, smtTerms);
+	}
+
+	public static String constant(String smtConstantName, String smtConstantType) {
+
+		return predicate(SMTLIB_CONST, smtConstantName + " " + smtConstantType);
 	}
 
 	public static String equality(String smtTerms) {

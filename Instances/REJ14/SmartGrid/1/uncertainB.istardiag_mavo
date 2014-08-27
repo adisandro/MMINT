@@ -476,7 +476,7 @@
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_MdhWkAekEeSIg5CbPubViQ" type="4003" source="_gHpCsAeiEeSIg5CbPubViQ" target="_aZvrwAeiEeSIg5CbPubViQ">
     <children xmi:type="notation:DecorationNode" xmi:id="_Mdh9oAekEeSIg5CbPubViQ" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_Mdh9oQekEeSIg5CbPubViQ" x="48" y="-1"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Mdh9oQekEeSIg5CbPubViQ" x="59" y="6"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_MdhWkQekEeSIg5CbPubViQ" fontName="Cantarell"/>
     <element xmi:type="istar_mavo:Contribution" href="uncertainB.istar_mavo#//@actors.1/@intentions.8/@linksAsSrc.2"/>
@@ -604,7 +604,7 @@
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_Z-c6EAemEeSIg5CbPubViQ" type="4005" source="_S4N3MAemEeSIg5CbPubViQ" target="_Yb3tAAemEeSIg5CbPubViQ">
     <children xmi:type="notation:DecorationNode" xmi:id="_Z-c6EwemEeSIg5CbPubViQ" type="6005">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_Z-c6FAemEeSIg5CbPubViQ" x="-2" y="14"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Z-c6FAemEeSIg5CbPubViQ" x="12" y="19"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_Z-c6EQemEeSIg5CbPubViQ" fontName="Cantarell"/>
     <element xmi:type="istar_mavo:DependeeLink" href="uncertainB.istar_mavo#//@dependums.7/@dependeeLinks.0"/>
@@ -738,7 +738,7 @@
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_3ibIgAhaEeSv5sQZ08r9CA" type="4003" source="_lc4pEAeiEeSIg5CbPubViQ" target="_XcAIQAeiEeSIg5CbPubViQ">
     <children xmi:type="notation:DecorationNode" xmi:id="_3ibIgwhaEeSv5sQZ08r9CA" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_3ibIhAhaEeSv5sQZ08r9CA" x="60" y="3"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_3ibIhAhaEeSv5sQZ08r9CA" x="49" y="8"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_3ibIgQhaEeSv5sQZ08r9CA" fontName="Cantarell"/>
     <element xmi:type="istar_mavo:Contribution" href="uncertainB.istar_mavo#//@actors.1/@intentions.11/@linksAsSrc.1"/>
@@ -748,7 +748,7 @@
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_5MEm4AhaEeSv5sQZ08r9CA" type="4003" source="_lc4pEAeiEeSIg5CbPubViQ" target="_XcAIQAeiEeSIg5CbPubViQ">
     <children xmi:type="notation:DecorationNode" xmi:id="_5MFN8AhaEeSv5sQZ08r9CA" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_5MFN8QhaEeSv5sQZ08r9CA" x="60" y="-5"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_5MFN8QhaEeSv5sQZ08r9CA" x="63" y="3"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_5MEm4QhaEeSv5sQZ08r9CA" fontName="Cantarell"/>
     <element xmi:type="istar_mavo:Contribution" href="uncertainB.istar_mavo#//@actors.1/@intentions.11/@linksAsSrc.2"/>

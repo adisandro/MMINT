@@ -42,8 +42,8 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentDriver;
 import edu.toronto.cs.se.modelepedia.operator.patch.ProductLineHenshinTransformation;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
+import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 public class ICSE14 extends ProductLineHenshinTransformation {
 
@@ -127,13 +127,13 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		modelSize += numRuleElementsA;
 		for (int i = 0; i < numRuleElementsA; i++) {
 			MAVOElement modelObjA = ClassDiagram_MAVOFactory.eINSTANCE.createClass();
-			modelObjA.setFormulaVariable(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + Z3SMTUtils.SMTLIB_PREDICATE_END);
+			modelObjA.setFormulaVariable(SMTLIB_APPLICABILITY_FUN_APPLY + (ruleApplicationsLifting+1) + Z3Utils.SMTLIB_PREDICATE_END);
 			modelObjsBucketA.add(modelObjA);
 			modelObjsChainsA.add(new Integer(maxChains));
 		}
 	}
 
-	private boolean checkApplicabilityConditions(Z3SMTIncrementalSolver z3IncSolver) {
+	private boolean checkApplicabilityConditions(Z3IncrementalSolver z3IncSolver) {
 
 		modelObjsNBar.clear();
 		modelObjsC.clear();
@@ -163,7 +163,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 			else {
 				modelObj = ClassDiagram_MAVOFactory.eINSTANCE.createClass();
 				String formulaId = (state.nextDouble() < alwaysPresentPerc) ?
-					Z3SMTUtils.SMTLIB_TRUE :
+					Z3Utils.SMTLIB_TRUE :
 					constraintVariables[state.nextInt(constraintVariables.length)];
 				modelObj.setFormulaVariable(formulaId);
 			}
@@ -183,7 +183,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		return checkZ3ApplicabilityFormula(z3IncSolver);
 	}
 
-	private void doSimulatedLifting(Z3SMTIncrementalSolver z3IncSolver) throws MMINTException {
+	private void doSimulatedLifting(Z3IncrementalSolver z3IncSolver) throws MMINTException {
 
 		long startTime = System.nanoTime();
 		while (ruleApplicationsLifting < numIterations) {
@@ -202,7 +202,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		inputModel = actualParameters.get(0);
 		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
-		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
+		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		z3IncSolver.firstCheckSatAndGetModel(smtEncoding.toString());
 		doSimulatedLifting(z3IncSolver);
 

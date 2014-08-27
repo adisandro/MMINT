@@ -30,6 +30,7 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIBListener;
+import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 
 public class IStarMAVOToSMTLIB extends OperatorImpl {
 
@@ -51,18 +52,12 @@ public class IStarMAVOToSMTLIB extends OperatorImpl {
 		}
 	}
 
-	private EcoreMAVOToSMTLIBListener smtListener;
-
-	public EcoreMAVOToSMTLIBListener getListener() {
-
-		return smtListener;
-	}
-
 	public enum AnalysisDirection {FORWARD, BACKWARD};
 
 	private static final String PROPERTY_IN_ANALYSISDIRECTION = "analysisDirection";
 	private static final AnalysisDirection PROPERTY_IN_ANALYSISDIRECTION_DEFAULT = AnalysisDirection.FORWARD;
 
+	private EcoreMAVOToSMTLIBListener smtListener;
 	private AnalysisDirection analysisDirection;
 
 	@Override
@@ -96,6 +91,11 @@ public class IStarMAVOToSMTLIB extends OperatorImpl {
 		m2t.doGenerate(new BasicMonitor());
 
 		return actualParameters;
+	}
+
+	public Z3MAVOModelParser getZ3MAVOModelParser() {
+
+		return smtListener.getZ3MAVOModelParser();
 	}
 
 }

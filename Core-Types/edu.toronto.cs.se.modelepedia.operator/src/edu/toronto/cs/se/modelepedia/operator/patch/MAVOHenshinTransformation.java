@@ -43,8 +43,8 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
+import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 
@@ -55,13 +55,13 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 	private static final String SMTLIB_APPLICABILITY_FUN_A_OR = SMTLIB_APPLICABILITY_FUN + "Ao ";
 
 	@Override
-	protected void transformWhenLifted(MAVOElement modelObjA) {
+	protected void transformModelObjAWhenLifted(MAVOElement modelObjA) {
 
 		modelObjA.setMay(true);
 	}
 
 	@Override
-	protected void transformWhenNotLifted(MAVOElement modelObjA) {
+	protected void transformModelObjA(MAVOElement modelObjA) {
 
 		modelObjA.setFormulaVariable(A_MODELOBJECT_SMTENCODING_PREFIX + modelObjACounter);
 	}
@@ -72,11 +72,11 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 			if (smtEncodingVariables.contains(mavoModelObj.getFormulaVariable())) {
 				continue;
 			}
-			smtEncoding.append(Z3SMTUtils.SMTLIB_CONST);
+			smtEncoding.append(Z3Utils.SMTLIB_CONST);
 			smtEncoding.append(mavoModelObj.getFormulaVariable());
 			smtEncoding.append(" ");
-			smtEncoding.append(Z3SMTUtils.SMTLIB_TYPE_BOOL);
-			smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
+			smtEncoding.append(Z3Utils.SMTLIB_TYPE_BOOL);
+			smtEncoding.append(Z3Utils.SMTLIB_PREDICATE_END);
 		}
 	}
 
@@ -96,9 +96,9 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 
 		createZ3ApplyFormulaConstants();
 		createZ3ApplyFormulaMatchSetNIteration();
-		createZ3ApplyFormulaMatchSetIteration(modelObjsC, SMTLIB_APPLICABILITY_FUN_C, Z3SMTUtils.SMTLIB_AND, Z3SMTUtils.SMTLIB_TRUE);
-		createZ3ApplyFormulaMatchSetIteration(modelObjsD, SMTLIB_APPLICABILITY_FUN_D, Z3SMTUtils.SMTLIB_AND, Z3SMTUtils.SMTLIB_TRUE);
-		createZ3ApplyFormulaMatchSetIteration(modelObjsD, SMTLIB_APPLICABILITY_FUN_D_OR, Z3SMTUtils.SMTLIB_OR, Z3SMTUtils.SMTLIB_FALSE);
+		createZ3ApplyFormulaMatchSetIteration(modelObjsC, SMTLIB_APPLICABILITY_FUN_C, Z3Utils.SMTLIB_AND, Z3Utils.SMTLIB_TRUE);
+		createZ3ApplyFormulaMatchSetIteration(modelObjsD, SMTLIB_APPLICABILITY_FUN_D, Z3Utils.SMTLIB_AND, Z3Utils.SMTLIB_TRUE);
+		createZ3ApplyFormulaMatchSetIteration(modelObjsD, SMTLIB_APPLICABILITY_FUN_D_OR, Z3Utils.SMTLIB_OR, Z3Utils.SMTLIB_FALSE);
 	}
 
 	@Override
@@ -119,7 +119,7 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 		}
 	}
 
-	private TransformationApplicabilityCondition checkApplicabilityConditions(Rule rule, Engine engine, EGraph graph, Z3SMTIncrementalSolver z3IncSolver) {
+	private TransformationApplicabilityCondition checkApplicabilityConditions(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver) {
 
 		Set<Node> nodesN = new HashSet<Node>();
 		Set<Node> nodesC = new HashSet<Node>();
@@ -208,7 +208,7 @@ matchesN:
 	}
 
 	@Override
-	protected void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3SMTIncrementalSolver z3IncSolver) {
+	protected void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver) {
 
 		RuleApplication application = new RuleApplicationImpl(engine);
 		TransformationApplicabilityCondition condition;
@@ -221,8 +221,8 @@ matchesN:
 			if (condition.isLiftedMatch()) {
 				// update encoding
 				createZ3ApplyFormulaConstant(modelObjsA);
-				createZ3ApplyFormulaMatchSetIteration(modelObjsA, SMTLIB_APPLICABILITY_FUN_A, Z3SMTUtils.SMTLIB_AND, Z3SMTUtils.SMTLIB_TRUE);
-				createZ3ApplyFormulaMatchSetIteration(modelObjsA, SMTLIB_APPLICABILITY_FUN_A_OR, Z3SMTUtils.SMTLIB_OR, Z3SMTUtils.SMTLIB_FALSE);
+				createZ3ApplyFormulaMatchSetIteration(modelObjsA, SMTLIB_APPLICABILITY_FUN_A, Z3Utils.SMTLIB_AND, Z3Utils.SMTLIB_TRUE);
+				createZ3ApplyFormulaMatchSetIteration(modelObjsA, SMTLIB_APPLICABILITY_FUN_A_OR, Z3Utils.SMTLIB_OR, Z3Utils.SMTLIB_FALSE);
 				ruleApplicationsLifting++;
 				updateChains();
 				// update set of constants

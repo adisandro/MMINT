@@ -31,11 +31,11 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIBListener;
+import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model;
+import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
+import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
+import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 
 public class MAVOConcretizationHighlighter {
 
@@ -45,29 +45,24 @@ public class MAVOConcretizationHighlighter {
 	private static final String EXAMPLE_SUFFIX = "_example";
 	
 	private MAVOTruthValue resultMAVO;
+	private Z3MAVOModelParser z3ModelParser;
 	private String smtEncoding;
-	private Map<Integer, String> smtEncodingEdges;
-	private Map<Integer, String> smtEncodingNodes;
 	private String newDiagramURI;
 	private String smtProperty;
 	private Map<String, View> diagramElements;
 
-	public MAVOConcretizationHighlighter(EcoreMAVOToSMTLIBListener smtListener) {
+	public MAVOConcretizationHighlighter(Z3MAVOModelParser z3ModelParser) {
 		
 		resultMAVO = MAVOTruthValue.ERROR;
-		smtEncoding = smtListener.getSMTLIBEncoding();
-		
-		smtEncodingEdges = smtListener.getSMTLIBEncodingEdges();
-		smtEncodingNodes = smtListener.getSMTLIBEncodingNodes();
-		
+		this.z3ModelParser = z3ModelParser;
+		smtEncoding = z3ModelParser.getSMTLIBEncoding();		
 		diagramElements = new HashMap<String, View>();
-
 	}
 
 	public void highlightCounterExample(Model model) throws Exception {
 
 		smtProperty = model.getConstraint().getImplementation();
-		resultMAVO = Z3SMTReasoningEngine.checkMAVOProperty(smtEncoding, smtProperty);
+		resultMAVO = Z3ReasoningEngine.checkMAVOProperty(smtEncoding, smtProperty);
 		
 		if (resultMAVO != MAVOTruthValue.MAYBE){
 			return;
@@ -84,7 +79,7 @@ public class MAVOConcretizationHighlighter {
 		diagramElements.putAll(modelNodes);
 		diagramElements.putAll(modelEdges);
 
-		Z3SMTModel resultModel = runZ3SMTSolver();
+		Z3Model resultModel = runZ3SMTSolver();
 		
 		//get FormulaIDs of elements to be grayed out and highlighted
 		ArrayList<Set<String>> separatedDiagram = separateExampleElements(resultModel);
@@ -109,23 +104,17 @@ public class MAVOConcretizationHighlighter {
 	 * @return An array of size 2 in which the first element is the set of diagram FormulaIDs included in the diagram, 
 	 * and the second element is the set containing all of the remaining diagram FormulaIDs.
 	 */
-	private ArrayList<Set<String>> separateExampleElements(Z3SMTModel resultModel){
-		Map<String, Integer> resultModelEdges = resultModel.getZ3ModelEdges(smtEncodingEdges);
-		Map<String, Integer> resultModelNodes = resultModel.getZ3ModelNodes(smtEncodingNodes);
-		
+	private ArrayList<Set<String>> separateExampleElements(Z3Model resultModel){
+
+		Map<String, Integer> resultModelElems = z3ModelParser.getZ3MAVOModelNodeEdgeConcretizations(resultModel);
 		Set<String> remainingElements = new HashSet<String>(diagramElements.keySet());
 		Set<String> exampleElements = new HashSet<String>();
 		//remove FormulaIDs of elements in example
-		for (Integer intID: resultModelEdges.values()){
-			String FID = smtEncodingEdges.get(intID);
+		for (Integer intID: resultModelElems.values()){
+			String FID = z3ModelParser.getZ3MAVOElementFormulaVar(intID);
 			exampleElements.add(FID);
 			remainingElements.remove(FID);
 		} 
-		for (Integer intID: resultModelNodes.values()){
-			String FID = smtEncodingNodes.get(intID);
-			exampleElements.add(FID);
-			remainingElements.remove(FID);
-		}
 		ArrayList<Set<String>> separated = new ArrayList<Set<String>>();
 		separated.add(exampleElements);
 		separated.add(remainingElements);
@@ -162,10 +151,10 @@ public class MAVOConcretizationHighlighter {
 		return d;
 	}
 	
-	private Z3SMTModel runZ3SMTSolver(){
-		Z3SMTIncrementalSolver z3Solver = new Z3SMTIncrementalSolver();
+	private Z3Model runZ3SMTSolver(){
+		Z3IncrementalSolver z3Solver = new Z3IncrementalSolver();
 		z3Solver.firstCheckSatAndGetModel(smtEncoding);
-		Z3SMTModel resultModel = z3Solver.checkSatAndGetModel(Z3SMTUtils.assertion(Z3SMTUtils.not(smtProperty)), Z3IncrementalBehavior.POP);
+		Z3Model resultModel = z3Solver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(smtProperty)), Z3IncrementalBehavior.POP);
 		return resultModel;
 	}
 	

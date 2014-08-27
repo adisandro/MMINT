@@ -38,11 +38,11 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTUtils;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTIncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.modelepedia.z3.Z3SMTModel.Z3SMTBool;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model;
+import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
+import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 
 public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 
@@ -72,7 +72,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	}
 
 	public static final String PROPERTY_IN_CONSTRAINT = "constraint";
-	private static final String PROPERTY_IN_CONSTRAINT_DEFAULT = Z3SMTUtils.SMTLIB_TRUE;
+	private static final String PROPERTY_IN_CONSTRAINT_DEFAULT = Z3Utils.SMTLIB_TRUE;
 	public static final String PROPERTY_IN_CONSTRAINTVARIABLES = "constraintVariables";
 	private static final String[] PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT = {};
 	private static final String PROPERTY_IN_TRANSFORMATIONMODULE = "transformationModule";
@@ -214,71 +214,64 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		for (String constraintVariable : constraintVariables) {
 			smtEncodingVariables.add(constraintVariable);
 		}
-		createZ3ApplyFormulaConstant();
+		for (String smtConstant: smtEncodingVariables) {
+			smtEncoding.append(Z3Utils.constant(smtConstant, Z3Utils.SMTLIB_TYPE_BOOL));
+		}
 		smtEncoding.append(preamble);
 		smtEncoding.append(constraint);
 		smtEncoding.append(postamble);
 	}
 
-	protected void createZ3ApplyFormulaConstant() {
+	protected String createZ3ApplyFormulaMatchSet(Set<MAVOElement> modelObjs, String innerPredicate, String functionEmpty) {
 
-		for (String smtEncodingConstant : smtEncodingVariables) {
-			smtEncoding.append(Z3SMTUtils.SMTLIB_CONST);
-			smtEncoding.append(smtEncodingConstant);
-			smtEncoding.append(" ");
-			smtEncoding.append(Z3SMTUtils.SMTLIB_TYPE_BOOL);
-			smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
-		}
-	}
-
-	protected void createZ3ApplyFormulaMatchSet(Set<MAVOElement> modelObjs, String innerPredicate, String functionEmpty) {
-
+		String smtEncoding = "";
 		if (modelObjs.isEmpty()) {
-			smtEncoding.append(functionEmpty);
+			smtEncoding += functionEmpty;
 		}
 		else {
 			boolean simplify = (modelObjs.size() == 1) ? true : false;
 			if (!simplify) {
-				smtEncoding.append(innerPredicate);
+				smtEncoding += innerPredicate;
 			}
 			for (MAVOElement modelObj : modelObjs) {
-				smtEncoding.append(modelObj.getFormulaVariable());
-				smtEncoding.append(" ");
+				smtEncoding += modelObj.getFormulaVariable() + " ";
 			}
-			smtEncoding.deleteCharAt(smtEncoding.length()-1);
+			smtEncoding = smtEncoding.substring(0, smtEncoding.length()-1);
 			if (!simplify) {
-				smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
+				smtEncoding += Z3Utils.SMTLIB_PREDICATE_END;
 			}
 		}
+
+		return smtEncoding;
 	}
 
 	protected void createZ3ApplyFormulaMatchSetIteration(Set<MAVOElement> modelObjs, String functionName, String innerPredicate, String functionEmpty) {
 
-		smtEncoding.append(Z3SMTUtils.SMTLIB_ASSERT);
-		smtEncoding.append(Z3SMTUtils.SMTLIB_EQUALITY);
-		smtEncoding.append(functionName);
-		smtEncoding.append(ruleApplicationsLifting + 1);
-		smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
-		createZ3ApplyFormulaMatchSet(modelObjs, innerPredicate, functionEmpty);
-		smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
-		smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
+		smtEncoding.append(
+			Z3Utils.assertion(
+				Z3Utils.equality(
+					Z3Utils.predicate(functionName, Integer.toString(ruleApplicationsLifting + 1)) +
+					createZ3ApplyFormulaMatchSet(modelObjs, innerPredicate, functionEmpty)
+				)
+			)
+		);
 	}
 
 	protected void createZ3ApplyFormulaMatchSetNIteration() {
 
-		smtEncoding.append(Z3SMTUtils.SMTLIB_ASSERT);
-		smtEncoding.append(Z3SMTUtils.SMTLIB_EQUALITY);
-		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_N);
-		smtEncoding.append(ruleApplicationsLifting + 1);
-		smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
+		smtEncoding.append(Z3Utils.SMTLIB_ASSERT);
+		smtEncoding.append(Z3Utils.SMTLIB_EQUALITY);
+		smtEncoding.append(
+			Z3Utils.predicate(SMTLIB_APPLICABILITY_FUN_N, Integer.toString(ruleApplicationsLifting + 1))
+		);
 
 		if (modelObjsNBar.isEmpty()) {
-			smtEncoding.append(Z3SMTUtils.SMTLIB_FALSE);
+			smtEncoding.append(Z3Utils.SMTLIB_FALSE);
 		}
 		else {
 			boolean simplify = (modelObjsNBar.size() == 1) ? true : false;
 			if (!simplify) {
-				smtEncoding.append(Z3SMTUtils.SMTLIB_OR);
+				smtEncoding.append(Z3Utils.SMTLIB_OR);
 			}
 			boolean previousNSimplified = false;
 			for (Set<MAVOElement> modelObjsN : modelObjsNBar) {
@@ -286,39 +279,39 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 					smtEncoding.append(" ");
 				}
 				//TODO MMINT: review if true or false here when simplifying
-				createZ3ApplyFormulaMatchSet(modelObjsN, Z3SMTUtils.SMTLIB_AND, Z3SMTUtils.SMTLIB_FALSE);
+				smtEncoding.append(
+					createZ3ApplyFormulaMatchSet(modelObjsN, Z3Utils.SMTLIB_AND, Z3Utils.SMTLIB_FALSE)
+				);
 				previousNSimplified = (modelObjsN.size() == 1) ? true : false;
 			}
 			if (!simplify) {
-				smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
+				smtEncoding.append(Z3Utils.SMTLIB_PREDICATE_END);
 			}
 		}
-		smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
-		smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
+		smtEncoding.append(Z3Utils.SMTLIB_PREDICATE_END);
+		smtEncoding.append(Z3Utils.SMTLIB_PREDICATE_END);
 	}
 
 	protected abstract void createZ3ApplyFormula();
 
-	protected boolean checkZ3ApplicabilityFormula(Z3SMTIncrementalSolver z3IncSolver) {
+	protected boolean checkZ3ApplicabilityFormula(Z3IncrementalSolver z3IncSolver) {
 
 		int checkpointUnsat = smtEncoding.length();
 		createZ3ApplyFormula();
-		smtEncoding.append(Z3SMTUtils.SMTLIB_ASSERT);
-		smtEncoding.append(Z3SMTUtils.SMTLIB_EQUALITY);
-		smtEncoding.append(Z3SMTUtils.SMTLIB_AND);
-		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_CONSTRAINTS);
-		smtEncoding.append(ruleApplicationsLifting);
-		smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
-		smtEncoding.append(SMTLIB_APPLICABILITY_FUN_APPLY);
-		smtEncoding.append(ruleApplicationsLifting + 1);
-		smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
-		smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
-		smtEncoding.append(Z3SMTUtils.SMTLIB_TRUE);
-		smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
-		smtEncoding.append(Z3SMTUtils.SMTLIB_PREDICATE_END);
+		smtEncoding.append(
+			Z3Utils.assertion(
+				Z3Utils.equality(
+					Z3Utils.and(
+						Z3Utils.predicate(SMTLIB_APPLICABILITY_FUN_CONSTRAINTS, Integer.toString(ruleApplicationsLifting)) +
+						Z3Utils.predicate(SMTLIB_APPLICABILITY_FUN_APPLY, Integer.toString(ruleApplicationsLifting + 1))
+					) +
+					Z3Utils.SMTLIB_TRUE
+				)
+			)
+		);
 
-		Z3SMTModel z3ModelResult = z3IncSolver.checkSatAndGetModel(smtEncoding.substring(checkpointUnsat), Z3IncrementalBehavior.POP_IF_UNSAT);
-		if (z3ModelResult.getZ3Bool() == Z3SMTBool.SAT) {
+		Z3Model z3ModelResult = z3IncSolver.checkSatAndGetModel(smtEncoding.substring(checkpointUnsat), Z3IncrementalBehavior.POP_IF_UNSAT);
+		if (z3ModelResult.getZ3Bool() == Z3Bool.SAT) {
 			satCountLifting++;
 			return true;
 		}
@@ -461,11 +454,11 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		timeClassical = System.nanoTime() - startTime;
 	}
 
-	protected void transformWhenLifted(MAVOElement modelObjA) {
+	protected void transformModelObjAWhenLifted(MAVOElement modelObjA) {
 		// do nothing
 	}
 
-	protected void transformWhenNotLifted(MAVOElement modelObjA) {
+	protected void transformModelObjA(MAVOElement modelObjA) {
 		// do nothing
 	}
 
@@ -488,25 +481,27 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 			// (A)dded elements
 			if (isLiftedMatch) {
 				modelObjsA.add((MAVOElement) resultNodeTarget);
-				transformWhenLifted((MAVOElement) resultNodeTarget);
+				transformModelObjAWhenLifted((MAVOElement) resultNodeTarget);
 			}
-			transformWhenNotLifted((MAVOElement) resultNodeTarget);
+			transformModelObjA((MAVOElement) resultNodeTarget);
 			modelObjACounter++;
 		}
 	}
 
-	protected abstract void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3SMTIncrementalSolver z3IncSolver);
+	protected abstract void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver);
 
 	protected void doTransformationLifting(Module module, Engine engine, EGraph graph) {
 
 		long startTime = System.nanoTime();
 
-		Z3SMTIncrementalSolver z3IncSolver = new Z3SMTIncrementalSolver();
+		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		z3IncSolver.firstCheckSatAndGetModel(smtEncoding.toString());
+		// run transformation rules marked as classical (e.g. root creation)
 		for (String transformationRule : transformationRules) {
 			Rule rule = (Rule) module.getUnit(transformationRule);
 			matchAndTransformClassical(rule, engine, graph, true);
 		}
+		// run transformation rules marked as lifted
 		for (String transformationRuleLifted : transformationRulesLifting) {
 			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
 			matchAndTransformLifting(rule, engine, graph, z3IncSolver);
