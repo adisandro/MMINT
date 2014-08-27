@@ -73,7 +73,7 @@ public class Z3SMTReasoningEngine implements IReasoningEngine {
 					MAVOConcretizationHighlighter highlighter;
 					try {
 						highlighter = new MAVOConcretizationHighlighter(ecore2smt.getListener());
-						highlighter.highlightExample(model);
+						highlighter.highlightCounterExample(model);
 					}
 					catch (Exception e) {
 						MMINTException.print(MMINTException.Type.ERROR, "Can't highlight example", e);

@@ -16,3 +16,5 @@ Export-Package: com.microsoft.z3,
  edu.toronto.cs.se.modelepedia.z3.reasoning
 Bundle-ClassPath: lib/com.microsoft.z3.jar,
  .
+Import-Package: edu.toronto.cs.se.modelepedia.graph_mavo,
+ edu.toronto.cs.se.modelepedia.graph_mavo.impl

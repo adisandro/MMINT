@@ -43,10 +43,12 @@ import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 public class AddModifyConstraintListener extends SelectionAdapter {
 
 	protected ExtendibleElement element;
+	private boolean isDecision;
 
-	public AddModifyConstraintListener(ExtendibleElement element) {
+	public AddModifyConstraintListener(ExtendibleElement element, boolean isDecision) {
 
 		this.element = element;
+		this.isDecision = isDecision;
 	}
 
 	@Override
@@ -93,7 +95,8 @@ public class AddModifyConstraintListener extends SelectionAdapter {
 					constraint.setLanguage(languages.iterator().next());
 					constraint.setImplementation("");
 				}
-				String[] newConstraint = MultiModelDiagramUtils.getConstraintInput("Add/Modify Constraint", constraint.getLanguage() + MultiModelDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + "\n" + constraint.getImplementation());
+				//TODO: MMINT[MU-MMINT] if isDecision flag is set, check whether the constraint is in the 'decision' format. If not, show empty constraint?
+				String[] newConstraint = MultiModelDiagramUtils.getConstraintInput("Add/Modify Constraint", constraint.getLanguage() + MultiModelDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + "\n" + constraint.getImplementation(), isDecision);
 				if (!MultiModelConstraintChecker.isInstancesLevel(element)) {
 					if (!MultiModelConstraintChecker.checkConstraintConsistency(element, newConstraint[0], newConstraint[1])) {
 						throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");

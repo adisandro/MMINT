@@ -81,7 +81,7 @@ public class MIDContextMenu extends ContributionItem {
 			return;
 		}
 		Object[] objects = ((StructuredSelection) selection).toArray();
-		boolean doOperator = true, doCast = true, doValidate = true, doCopy = true, doProperty = true, doModelepedia = true, doCoherence = true;
+		boolean doOperator = true, doCast = true, doValidate = true, doCopy = true, doProperty = true, doModelepedia = true, doCoherence = true, doMay = true;
 		if (objects.length > 1) { // actions that don't work on multiple objects
 			doCast = false;
 			doValidate = false;
@@ -284,7 +284,7 @@ public class MIDContextMenu extends ContributionItem {
 			MenuItem propertyItem = new MenuItem(mmintMenu, SWT.NONE);
 			propertyItem.setText("Add/Modify Constraint");
 			propertyItem.addSelectionListener(
-				new AddModifyConstraintListener(models.get(0))
+				new AddModifyConstraintListener(models.get(0), false)
 			);
 		}
 		// modelepedia
@@ -307,6 +307,55 @@ public class MIDContextMenu extends ContributionItem {
 			editModelepediaItem.addSelectionListener(
 				new EditModelepediaListener(model)
 			);
+		}
+		if (doMay) {
+			MenuItem mayItem = new MenuItem(mmintMenu, SWT.CASCADE);
+			mayItem.setText("May Models");
+			Menu mayMenu = new Menu(menu);
+			mayItem.setMenu(mayMenu);
+			
+			MenuItem normalizeItem = new MenuItem(mayMenu, SWT.NONE);
+			normalizeItem.setText("Normalize");
+			
+			MenuItem propertyCheckItem = new MenuItem(mayMenu, SWT.CASCADE);
+			propertyCheckItem.setText("Property Check");
+			Menu propertyCheckMenu = new Menu(mayMenu);
+			propertyCheckItem.setMenu(propertyCheckMenu);
+			
+			MenuItem constraintItem = new MenuItem(propertyCheckMenu, SWT.NONE);
+			constraintItem.setText("Add/Modify Constraint");
+			constraintItem.addSelectionListener(new AddModifyConstraintListener(models.get(0), false));
+			
+			MenuItem showExampleItem = new MenuItem(propertyCheckMenu, SWT.NONE);
+			showExampleItem.setText("Show Counter-Example");
+			showExampleItem.addSelectionListener(
+					new ValidateListener(models.get(0), editParts.get(0))
+				);
+			
+			
+			
+			MenuItem refinementItem = new MenuItem(mayMenu, SWT.CASCADE);
+			refinementItem.setText("Refinement");
+			Menu refinementMenu = new Menu(mayMenu);
+			refinementItem.setMenu(refinementMenu);
+			
+			MenuItem addDecisionItem = new MenuItem(refinementMenu, SWT.NONE);
+			addDecisionItem.setText("Add Decision");
+			addDecisionItem.addSelectionListener(new AddModifyConstraintListener(models.get(0), true));
+			
+			MenuItem previewItem = new MenuItem(refinementMenu, SWT.NONE);
+			previewItem.setText("Preview");
+			/*TODO MMINT[MU-MMINT] create a listener for preview that greys out elements that will be removed. 
+			 * Possibly have it similar/related to RefinementListener, since functionality for finding elements 
+			 * to grey out should be the same, and the calculation should only have to be made once if preview is 
+			 * called, and then make refinement follows.
+			 */
+			//previewItem.addSelectionListener(new RefinementListener(models.get(0), editParts.get(0), false));
+			
+			MenuItem refineItem = new MenuItem(refinementMenu, SWT.NONE);
+			refineItem.setText("Apply Refinement");
+			refineItem.addSelectionListener(new RefinementListener(models.get(0), editParts.get(0), true));
+			
 		}
 	}
 

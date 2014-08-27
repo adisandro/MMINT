@@ -64,7 +64,7 @@ public class MAVOConcretizationHighlighter {
 
 	}
 
-	public void highlightExample(Model model) throws Exception {
+	public void highlightCounterExample(Model model) throws Exception {
 
 		smtProperty = model.getConstraint().getImplementation();
 		resultMAVO = Z3SMTReasoningEngine.checkMAVOProperty(smtEncoding, smtProperty);
@@ -165,7 +165,7 @@ public class MAVOConcretizationHighlighter {
 	private Z3SMTModel runZ3SMTSolver(){
 		Z3SMTIncrementalSolver z3Solver = new Z3SMTIncrementalSolver();
 		z3Solver.firstCheckSatAndGetModel(smtEncoding);
-		Z3SMTModel resultModel = z3Solver.checkSatAndGetModel(Z3SMTUtils.assertion(smtProperty), Z3IncrementalBehavior.POP);
+		Z3SMTModel resultModel = z3Solver.checkSatAndGetModel(Z3SMTUtils.assertion(Z3SMTUtils.not(smtProperty)), Z3IncrementalBehavior.POP);
 		return resultModel;
 	}
 	
