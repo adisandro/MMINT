@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.modelepedia.z3.mavo;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -56,7 +55,7 @@ public class Z3MAVOModelParser {
 		return smtEncodingUri;
 	}
 
-	private Map<String, Integer> getZ3MAVOModelConcretizations(Model z3InternalModel, Set<String> functionNames, Map<Integer, String> smtEncodingCurrentElems) {
+	private Map<String, Integer> getZ3MAVOModelConcretizations(Model z3InternalModel, String functionName, Map<Integer, String> smtEncodingCurrentElems) {
 
 		Map<String, Integer> z3ModelElems = new HashMap<String, Integer>();
 		try {
@@ -67,7 +66,7 @@ public class Z3MAVOModelParser {
 				if (subfuncIndex != -1) {
 					declName = declName.substring(0, subfuncIndex);
 				}
-				if (!functionNames.contains(declName)) {
+				if (!functionName.equals(declName)) {
 					continue;
 				}
 				FuncInterp interp = z3InternalModel.getFuncInterp(decl);
@@ -79,6 +78,7 @@ public class Z3MAVOModelParser {
 				boolean elseValue = Boolean.parseBoolean(interp.getElse().toString());
 				if (elseValue) { // entries are false
 					if (mayOnly) {
+						//TODO MMINT[Z3] fix if mayOnly switches to sorts
 						Set<Integer> smtElems = smtEncodingCurrentElems.keySet();
 						Map<String, Integer> funcZ3ModelElems = new HashMap<String, Integer>();
 						for (Integer smtElem : smtElems) { // add all
@@ -117,27 +117,21 @@ public class Z3MAVOModelParser {
 
 	public Map<String, Integer> getZ3MAVOModelNodeConcretizations(Z3Model z3Model) {
 
-		Set<String> nodeFunction = new HashSet<String>();
-		nodeFunction.add(Z3Utils.SMTLIB_NODE);
-
-		return getZ3MAVOModelConcretizations(z3Model.getZ3InternalModel(), nodeFunction, smtEncodingNodes);
+		return getZ3MAVOModelConcretizations(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_NODE, smtEncodingNodes);
 	}
 
 	public Map<String, Integer> getZ3MAVOModelEdgeConcretizations(Z3Model z3Model) {
 
-		Set<String> edgeFunction = new HashSet<String>();
-		edgeFunction.add(Z3Utils.SMTLIB_EDGE);
-
-		return getZ3MAVOModelConcretizations(z3Model.getZ3InternalModel(), edgeFunction, smtEncodingEdges);
+		return getZ3MAVOModelConcretizations(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_EDGE, smtEncodingEdges);
 	}
 
 	public Map<String, Integer> getZ3MAVOModelNodeEdgeConcretizations(Z3Model z3Model) {
 
-		Set<String> functions = new HashSet<String>();
-		functions.add(Z3Utils.SMTLIB_NODE);
-		functions.add(Z3Utils.SMTLIB_EDGE);
+		Map<String, Integer> z3ModelElems = new HashMap<String, Integer>();
+		z3ModelElems.putAll(getZ3MAVOModelConcretizations(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_NODE, smtEncodingNodes));
+		z3ModelElems.putAll(getZ3MAVOModelConcretizations(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_EDGE, smtEncodingEdges));
 
-		return getZ3MAVOModelConcretizations(z3Model.getZ3InternalModel(), functions, smtEncodingElems);
+		return z3ModelElems;
 	}
 
 	public String getZ3MAVOElementFormulaVar(Integer z3ModelElementId) {
@@ -145,6 +139,4 @@ public class Z3MAVOModelParser {
 		return smtEncodingElems.get(z3ModelElementId);
 	}
 
-	//TODO create other parser apis (i.e. all the things that directly access the three levels of the encoding/model)
-	//TODO migrate from Z3Model to this
 }

@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.graph_mavo.operator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -29,6 +30,7 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Edge;
+import edu.toronto.cs.se.modelepedia.graph_mavo.Graph;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Node;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
@@ -195,10 +197,149 @@ public class TOSEM12 extends RandomOperatorImpl {
 		smtConcretizationsConstraint = Z3Utils.or(smtConcretizationsConstraint);
 	}
 
-	private void generateSMTLIBGroundedProperty() {
+	private void groundProperty5(Node node) {
 
-		//TODO generate smtProperty (not asserted)
-		smtProperty = "(edge e1)";
+		// property 5: at most one outgoing edge per node
+		// true by construction
+		if (node.getEdgesAsSource().size() <= 1) {
+			smtProperty += Z3Utils.SMTLIB_TRUE;
+			return;
+		}
+		smtProperty += Z3Utils.SMTLIB_OR;
+		// no edges
+		smtProperty += Z3Utils.SMTLIB_AND;
+		for (Edge outEdge : node.getEdgesAsSource()) {
+			smtProperty += Z3Utils.not(Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdge.getFormulaVariable()));
+		}
+		smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
+		// one edge only
+		for (Edge outEdgeI : node.getEdgesAsSource()) {
+			smtProperty += Z3Utils.SMTLIB_AND + Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdgeI.getFormulaVariable());
+			for (Edge outEdgeJ : node.getEdgesAsSource()) {
+				if (outEdgeI == outEdgeJ) {
+					continue;
+				}
+				smtProperty += Z3Utils.not(Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdgeJ.getFormulaVariable()));
+			}
+			smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
+		}
+		smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
+	}
+
+	private void groundProperty6(Node node) {
+
+		// property 6: not more than one edge from a node to another
+		// true by construction
+		if (node.getEdgesAsSource().size() <= 1) {
+			smtProperty += Z3Utils.SMTLIB_TRUE;
+			return;
+		}
+		smtProperty += Z3Utils.SMTLIB_AND;
+		// construct map of target nodes
+		Map<Node, List<Edge>> tgtNode2EdgesMap = new HashMap<Node, List<Edge>>();
+		for (Edge outEdge : node.getEdgesAsSource()) {
+			List<Edge> tgtNode2Edges = tgtNode2EdgesMap.get(outEdge.getTarget());
+			if (tgtNode2Edges == null) {
+				tgtNode2Edges = new ArrayList<Edge>();
+				tgtNode2Edges.add(outEdge);
+				tgtNode2EdgesMap.put(outEdge.getTarget(), tgtNode2Edges);
+			}
+			else {
+				tgtNode2Edges.add(outEdge);
+			}
+		}
+		// use map of target nodes
+		for (List<Edge> tgtNode2Edges : tgtNode2EdgesMap.values()) {
+			// true by construction
+			if (tgtNode2Edges.size() <= 1) {
+				smtProperty += Z3Utils.SMTLIB_TRUE;
+				continue;
+			}
+			smtProperty += Z3Utils.SMTLIB_OR;
+			// no edges
+			smtProperty += Z3Utils.SMTLIB_AND;
+			for (Edge outEdge : tgtNode2Edges) {
+				smtProperty += Z3Utils.not(Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdge.getFormulaVariable()));
+			}
+			smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
+			// one edge only
+			for (Edge outEdgeI : tgtNode2Edges) {
+				smtProperty += Z3Utils.SMTLIB_AND + Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdgeI.getFormulaVariable());
+				for (Edge outEdgeJ : tgtNode2Edges) {
+					if (outEdgeI == outEdgeJ) {
+						continue;
+					}
+					smtProperty += Z3Utils.not(Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdgeJ.getFormulaVariable()));
+				}
+				smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
+			}
+			smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
+		}
+		smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
+	}
+
+	private void groundProperty8(Node node) {
+
+		// property 8: no edges from a node to the same node
+		boolean noSelfLoops = true;
+		for (Edge outEdge : node.getEdgesAsSource()) {
+			// same src and tgt
+			if (outEdge.getTarget() == node) {
+				smtProperty += Z3Utils.not(Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdge.getFormulaVariable()));
+				noSelfLoops = false;
+			}
+		}
+		// true by construction
+		if (noSelfLoops) {
+			smtProperty += Z3Utils.SMTLIB_TRUE;
+		}
+	}
+
+	private void groundProperty10(Node node) {
+
+		// property 10: at least one incoming or outgoing edge per node
+		// false by construction
+		if ((node.getEdgesAsSource().size() + node.getEdgesAsTarget().size()) < 1) {
+			smtProperty += Z3Utils.SMTLIB_FALSE;
+			return;
+		}
+		// at least one edge
+		smtProperty += Z3Utils.SMTLIB_OR;
+		for (Edge outEdge : node.getEdgesAsSource()) {
+			smtProperty += Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdge.getFormulaVariable());
+		}
+		for (Edge inEdge : node.getEdgesAsTarget()) {
+			smtProperty += Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, inEdge.getFormulaVariable());
+		}
+		smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
+	}
+
+	private void generateSMTLIBGroundedProperty(Graph graph) {
+
+		EList<Node> nodes = graph.getNodes();
+		if (nodes.isEmpty()) {
+			return;
+		}
+
+		smtProperty += Z3Utils.SMTLIB_AND;
+		for (Node node : nodes) {
+			smtProperty += '\n';
+			switch (propertyId) {
+				case 5:
+					groundProperty5(node);
+					break;
+				case 6:
+					groundProperty6(node);
+					break;
+				case 8:
+					groundProperty8(node);
+					break;
+				case 10:
+					groundProperty10(node);
+					break;
+			}
+		}
+		smtProperty += '\n' + Z3Utils.SMTLIB_PREDICATE_END;
 	}
 
 	private void doMAVOPropertyCheck() {
@@ -240,6 +381,19 @@ public class TOSEM12 extends RandomOperatorImpl {
 			throw new MMINTException("MAVO Property checking was SAT but now backbone baseline is not.");
 		}
 		Map<String, Integer> initialZ3ModelElems = z3ModelParser.getZ3MAVOModelNodeEdgeConcretizations(z3Model);
+		Map<String, Integer> currentZ3ModelElems;
+		Set<String> outOfBackbone = new HashSet<String>();
+		for (MAVOElement mayModelObj : mayModelObjs) {
+			String mayModelObjFormula = Z3Utils.predicate((mayModelObj instanceof Node) ? Z3Utils.SMTLIB_NODE_FUNCTION : Z3Utils.SMTLIB_EDGE_FUNCTION, mayModelObj.getFormulaVariable());
+			if (outOfBackbone.contains(mayModelObjFormula)) { // optimization
+				continue;
+			}
+			z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(mayModelObjFormula), Z3IncrementalBehavior.POP);
+			if (z3Model.getZ3Bool() != Z3Bool.SAT) { // UNSAT (here x value should be == to its value in the initial model)
+				continue;
+			}
+			currentZ3ModelElems = z3ModelParser.getZ3MAVOModelNodeEdgeConcretizations(z3Model);
+		}
 		long endTime = System.nanoTime();
 
 		timeMAVOBackbone = endTime - startTime;
@@ -276,7 +430,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 
 		Model randomGraphModel = actualParameters.get(0);
 		generateSMTLIBConcretizations();
-		generateSMTLIBGroundedProperty();
+		generateSMTLIBGroundedProperty((Graph) randomGraphModel.getEMFInstanceRoot());
 
 		doMAVOPropertyCheck();
 		if (timeClassicalEnabled) {
