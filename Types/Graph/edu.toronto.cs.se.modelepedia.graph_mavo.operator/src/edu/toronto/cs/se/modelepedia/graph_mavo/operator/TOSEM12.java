@@ -385,14 +385,19 @@ public class TOSEM12 extends RandomOperatorImpl {
 		Set<String> outOfBackbone = new HashSet<String>();
 		for (MAVOElement mayModelObj : mayModelObjs) {
 			String mayModelObjFormula = Z3Utils.predicate((mayModelObj instanceof Node) ? Z3Utils.SMTLIB_NODE_FUNCTION : Z3Utils.SMTLIB_EDGE_FUNCTION, mayModelObj.getFormulaVariable());
-			if (outOfBackbone.contains(mayModelObjFormula)) { // optimization
-				continue;
-			}
+			//if (outOfBackbone.contains(mayModelObjFormula)) { // optimization
+			//	continue;
+			//}
 			z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(mayModelObjFormula), Z3IncrementalBehavior.POP);
-			if (z3Model.getZ3Bool() != Z3Bool.SAT) { // UNSAT (here x value should be == to its value in the initial model)
+			if (z3Model.getZ3Bool() != Z3Bool.SAT) { // UNSAT (here mayModelObjFormula value should be == to its value in the initial model)
 				continue;
 			}
-			currentZ3ModelElems = z3ModelParser.getZ3MAVOModelNodeEdgeConcretizations(z3Model);
+			//currentZ3ModelElems = z3ModelParser.getZ3MAVOModelNodeEdgeConcretizations(z3Model);
+			z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(mayModelObjFormula)), Z3IncrementalBehavior.POP);
+			if (z3Model.getZ3Bool() != Z3Bool.SAT) { // UNSAT
+				continue;
+			}
+			//currentZ3ModelElems = z3ModelParser.getZ3MAVOModelNodeEdgeConcretizations(z3Model);
 		}
 		long endTime = System.nanoTime();
 
