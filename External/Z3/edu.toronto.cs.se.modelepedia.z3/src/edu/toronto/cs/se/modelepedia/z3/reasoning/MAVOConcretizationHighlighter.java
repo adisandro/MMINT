@@ -105,12 +105,11 @@ public class MAVOConcretizationHighlighter {
 	 */
 	private ArrayList<Set<String>> separateExampleElements(Z3Model resultModel){
 
-		Map<String, Integer> resultModelElems = z3ModelParser.getZ3MAVOModelNodeEdgeConcretizations(resultModel);
+		Map<String, String> resultModelElems = z3ModelParser.getZ3MAVOModelElements(resultModel);
 		Set<String> remainingElements = new HashSet<String>(diagramElements.keySet());
 		Set<String> exampleElements = new HashSet<String>();
 		//remove FormulaIDs of elements in example
-		for (Integer intID: resultModelElems.values()){
-			String FID = z3ModelParser.getZ3MAVOElementFormulaVar(intID);
+		for (String FID: resultModelElems.values()) {
 			exampleElements.add(FID);
 			remainingElements.remove(FID);
 		} 

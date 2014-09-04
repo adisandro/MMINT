@@ -13,8 +13,6 @@ package edu.toronto.cs.se.modelepedia.z3.mavo;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-
 import com.microsoft.z3.FuncDecl;
 import com.microsoft.z3.FuncInterp;
 import com.microsoft.z3.Model;
@@ -55,9 +53,9 @@ public class Z3MAVOModelParser {
 		return smtEncodingUri;
 	}
 
-	private Map<String, Integer> getZ3MAVOModelConcretizations(Model z3InternalModel, String functionName, Map<Integer, String> smtEncodingCurrentElems) {
+	private Map<String, String> getZ3MAVOModelElems(Model z3InternalModel, String functionName, Map<Integer, String> smtEncodingCurrentElems) {
 
-		Map<String, Integer> z3ModelElems = new HashMap<String, Integer>();
+		Map<String, String> z3ModelElems = new HashMap<String, String>();
 		try {
 			for (FuncDecl decl : z3InternalModel.getFuncDecls()) {
 				// filter function
@@ -79,10 +77,9 @@ public class Z3MAVOModelParser {
 				if (elseValue) { // entries are false
 					if (mayOnly) {
 						//TODO MMINT[Z3] fix if mayOnly switches to sorts
-						Set<Integer> smtElems = smtEncodingCurrentElems.keySet();
-						Map<String, Integer> funcZ3ModelElems = new HashMap<String, Integer>();
-						for (Integer smtElem : smtElems) { // add all
-							funcZ3ModelElems.put(smtElem.toString(), new Integer(smtElem));
+						Map<String, String> funcZ3ModelElems = new HashMap<String, String>();
+						for (Map.Entry<Integer, String> smtEncodingElemEntry : smtEncodingCurrentElems.entrySet()) {
+							funcZ3ModelElems.put(smtEncodingElemEntry.getKey().toString(), smtEncodingElemEntry.getValue());
 						}
 						for (Entry entry : interp.getEntries()) { // remove false entries
 							funcZ3ModelElems.remove(entry.getArgs()[0].toString());
@@ -98,11 +95,13 @@ public class Z3MAVOModelParser {
 				}
 				else { // entries are true
 					for (Entry entry : interp.getEntries()) {
+						Integer z3ModelElemId = new Integer(entry.getArgs()[0].toString());
+						String z3ModelElemFormulaVar = smtEncodingCurrentElems.get(z3ModelElemId);
 						if (mayOnly) {
-							z3ModelElems.put(entry.getArgs()[0].toString(), new Integer(entry.getArgs()[0].toString()));
+							z3ModelElems.put(entry.getArgs()[0].toString(), z3ModelElemFormulaVar);
 						}
 						else {
-							z3ModelElems.put(entry.getArgs()[1].toString(), new Integer(entry.getArgs()[0].toString()));
+							z3ModelElems.put(entry.getArgs()[1].toString(), z3ModelElemFormulaVar);
 						}
 					}
 				}
@@ -115,28 +114,23 @@ public class Z3MAVOModelParser {
 		return z3ModelElems;
 	}
 
-	public Map<String, Integer> getZ3MAVOModelNodeConcretizations(Z3Model z3Model) {
+	public Map<String, String> getZ3MAVOModelNodes(Z3Model z3Model) {
 
-		return getZ3MAVOModelConcretizations(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_NODE, smtEncodingNodes);
+		return getZ3MAVOModelElems(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_NODE, smtEncodingNodes);
 	}
 
-	public Map<String, Integer> getZ3MAVOModelEdgeConcretizations(Z3Model z3Model) {
+	public Map<String, String> getZ3MAVOModelEdges(Z3Model z3Model) {
 
-		return getZ3MAVOModelConcretizations(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_EDGE, smtEncodingEdges);
+		return getZ3MAVOModelElems(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_EDGE, smtEncodingEdges);
 	}
 
-	public Map<String, Integer> getZ3MAVOModelNodeEdgeConcretizations(Z3Model z3Model) {
+	public Map<String, String> getZ3MAVOModelElements(Z3Model z3Model) {
 
-		Map<String, Integer> z3ModelElems = new HashMap<String, Integer>();
-		z3ModelElems.putAll(getZ3MAVOModelConcretizations(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_NODE, smtEncodingNodes));
-		z3ModelElems.putAll(getZ3MAVOModelConcretizations(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_EDGE, smtEncodingEdges));
+		Map<String, String> z3ModelElems = new HashMap<String, String>();
+		z3ModelElems.putAll(getZ3MAVOModelElems(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_NODE, smtEncodingNodes));
+		z3ModelElems.putAll(getZ3MAVOModelElems(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_EDGE, smtEncodingEdges));
 
 		return z3ModelElems;
-	}
-
-	public String getZ3MAVOElementFormulaVar(Integer z3ModelElementId) {
-
-		return smtEncodingElems.get(z3ModelElementId);
 	}
 
 }

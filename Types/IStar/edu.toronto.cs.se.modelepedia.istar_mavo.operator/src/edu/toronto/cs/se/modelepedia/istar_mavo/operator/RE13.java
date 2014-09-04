@@ -154,29 +154,29 @@ public class RE13 extends OperatorImpl {
 		}
 	}
 
-	private void getConcretizationAnalysisLabel(Map<String, Intention> intentions, Map<String, Integer> z3ModelNodeConcretizations, Set<String> z3LabelNodes, SMTLIBLabel label, String nodeType, boolean elseValue) {
+	private void getConcretizationAnalysisLabel(Map<String, Intention> intentions, Map<String, String> z3ModelNodes, Set<String> z3LabelNodeUniverses, SMTLIBLabel label, String nodeType, boolean elseValue) {
 
 		EStructuralFeature labelFeature = label.getModelFeature();
 		if (elseValue) {
-			for (Map.Entry<String, Integer> z3ModelNodeConcretization : z3ModelNodeConcretizations.entrySet()) {
-				String z3ModelNodeUniverse = z3ModelNodeConcretization.getKey();
+			for (Map.Entry<String, String> z3ModelNode : z3ModelNodes.entrySet()) {
+				String z3ModelNodeUniverse = z3ModelNode.getKey();
 				if (!z3ModelNodeUniverse.startsWith(nodeType)) {
 					continue;
 				}
-				if (z3LabelNodes.contains(z3ModelNodeUniverse)) {
+				if (z3LabelNodeUniverses.contains(z3ModelNodeUniverse)) {
 					continue;
 				}
-				Integer z3ModelNodeId = z3ModelNodeConcretization.getValue();
-				intentions.get(z3ModelParser.getZ3MAVOElementFormulaVar(z3ModelNodeId)).eSet(labelFeature, true);
+				String z3ModelNodeFormulaVar = z3ModelNode.getValue();
+				intentions.get(z3ModelNodeFormulaVar).eSet(labelFeature, true);
 			}
 		}
 		else {
-			for (String z3LabelNodeName : z3LabelNodes) {
-				Integer z3LabelNodeNumber = z3ModelNodeConcretizations.get(z3LabelNodeName);
-				if (z3LabelNodeNumber == null) { // result of a node all true function
+			for (String z3LabelNodeUniverse : z3LabelNodeUniverses) {
+				String z3LabelNodeFormulaVar = z3ModelNodes.get(z3LabelNodeUniverse);
+				if (z3LabelNodeFormulaVar == null) { // result of a node all true function
 					continue;
 				}
-				intentions.get(z3ModelParser.getZ3MAVOElementFormulaVar(z3LabelNodeNumber)).eSet(labelFeature, true);
+				intentions.get(z3LabelNodeFormulaVar).eSet(labelFeature, true);
 			}
 		}
 	}
@@ -184,7 +184,7 @@ public class RE13 extends OperatorImpl {
 	protected void getConcretizationAnalysisLabels(Map<String, Intention> intentions, Z3Model z3Model) {
 
 		try {
-			Map<String, Integer> z3ModelNodeConcretizations = z3ModelParser.getZ3MAVOModelNodeConcretizations(z3Model);
+			Map<String, String> z3ModelNodes = z3ModelParser.getZ3MAVOModelNodes(z3Model);
 			com.microsoft.z3.Model z3InternalModel = z3Model.getZ3InternalModel();
 			for (SMTLIBLabel label : SMTLIBLabel.values()) {
 				for (FuncDecl decl : z3InternalModel.getFuncDecls()) {
@@ -199,11 +199,11 @@ public class RE13 extends OperatorImpl {
 					if (interp.getEntries().length == 0) {// function that calls another function
 						continue;
 					}
-					Set<String> z3LabelNodes = new HashSet<String>();
+					Set<String> z3LabelNodeUniverses = new HashSet<String>();
 					for (Entry entry : interp.getEntries()) {
-						z3LabelNodes.add(entry.getArgs()[0].toString());
+						z3LabelNodeUniverses.add(entry.getArgs()[0].toString());
 					}
-					getConcretizationAnalysisLabel(intentions, z3ModelNodeConcretizations, z3LabelNodes, label, nodeType, Boolean.parseBoolean(interp.getElse().toString()));
+					getConcretizationAnalysisLabel(intentions, z3ModelNodes, z3LabelNodeUniverses, label, nodeType, Boolean.parseBoolean(interp.getElse().toString()));
 				}
 			}
 		}

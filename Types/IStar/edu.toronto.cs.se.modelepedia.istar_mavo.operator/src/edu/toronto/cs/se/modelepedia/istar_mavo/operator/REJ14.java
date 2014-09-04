@@ -97,15 +97,15 @@ public class REJ14 extends FASE14 {
 		 */
 		String concretization = "", smtConcretizationConstraint = "";
 		Map<String, List<String>> z3ModelElems = new HashMap<String, List<String>>();
-		Map<String, Integer> z3ModelElemConcretizations = z3ModelParser.getZ3MAVOModelNodeEdgeConcretizations(z3Model);
-		for (Entry<String, Integer> z3ModelElemConcretization : z3ModelElemConcretizations.entrySet()) {
-			String z3ModelElemUniverse = z3ModelElemConcretization.getKey();
+		Map<String, String> z3ModelElemsTemp = z3ModelParser.getZ3MAVOModelElements(z3Model);
+		for (Entry<String, String> z3ModelElem : z3ModelElemsTemp.entrySet()) {
+			String z3ModelElemUniverse = z3ModelElem.getKey();
+			String z3ModelElemFormulaVar = z3ModelElem.getValue();
 			List<String> z3ModelElemFormulaVars = z3ModelElems.get(z3ModelElemUniverse);
 			if (z3ModelElemFormulaVars == null) {
 				z3ModelElemFormulaVars = new ArrayList<String>();
 				z3ModelElems.put(z3ModelElemUniverse, z3ModelElemFormulaVars);
 			}
-			String z3ModelElemFormulaVar = z3ModelParser.getZ3MAVOElementFormulaVar(z3ModelElemConcretization.getValue());
 			z3ModelElemFormulaVars.add(z3ModelElemFormulaVar);
 		}
 		for (Entry<String, MAVOElement> mavoModelObjEntry : mavoModelObjs.entrySet()) {
@@ -115,10 +115,10 @@ public class REJ14 extends FASE14 {
 			String function = encodeMAVConstraintFunction(mavoModelObj);
 			int counterMS = 0;
 			List<String> mergedV = null;
-			for (List<String> z3ElemFormulaVars : z3ModelElems.values()) {
-				if (z3ElemFormulaVars.contains(formulaVar)) {
+			for (List<String> z3ModelElemFormulaVars : z3ModelElems.values()) {
+				if (z3ModelElemFormulaVars.contains(formulaVar)) {
 					counterMS++;
-					mergedV = z3ElemFormulaVars;
+					mergedV = z3ModelElemFormulaVars;
 				}
 			}
 			boolean isNegation;
