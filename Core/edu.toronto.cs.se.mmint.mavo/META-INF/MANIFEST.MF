@@ -9,4 +9,4 @@ Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
- edu.toronto.cs.se.modelepedia.java
+ edu.toronto.cs.se.mmint.java

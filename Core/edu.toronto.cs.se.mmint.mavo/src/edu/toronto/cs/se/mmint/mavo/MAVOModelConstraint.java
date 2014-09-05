@@ -14,9 +14,8 @@ package edu.toronto.cs.se.mmint.mavo;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
-import edu.toronto.cs.se.modelepedia.java.reasoning.IJavaModelConstraint;
 
-public class MAVOModelConstraint implements IJavaModelConstraint {
+public class MAVOModelConstraint implements edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint {
 
 	@Override
 	public MAVOTruthValue validate(Model model) {

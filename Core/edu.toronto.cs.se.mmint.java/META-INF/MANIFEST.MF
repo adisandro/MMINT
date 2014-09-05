@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.java;singleton:=true
+Bundle-SymbolicName: edu.toronto.cs.se.mmint.java;singleton:=true
 Bundle-Version: 1.3.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: %providerName
@@ -9,5 +9,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint
-Export-Package: edu.toronto.cs.se.modelepedia.java.reasoning
+Export-Package: edu.toronto.cs.se.mmint.java.reasoning
 Bundle-ActivationPolicy: lazy
