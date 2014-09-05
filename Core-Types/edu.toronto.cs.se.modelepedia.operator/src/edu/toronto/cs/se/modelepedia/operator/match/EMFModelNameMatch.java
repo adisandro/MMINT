@@ -19,6 +19,7 @@ import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.compare.EMFCompare;
 import org.eclipse.emf.compare.Match;
 import org.eclipse.emf.compare.ReferenceChange;
+import org.eclipse.emf.compare.scope.DefaultComparisonScope;
 import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -54,7 +55,7 @@ public class EMFModelNameMatch extends OperatorImpl {
 		srcResourceSet.getResource(URI.createPlatformResourceURI(srcModel.getUri(), true), true);
 		ResourceSet tgtResourceSet = new ResourceSetImpl();
 		tgtResourceSet.getResource(URI.createPlatformResourceURI(tgtModel.getUri(), true), true);
-		scope = EMFCompare.createDefaultScope(srcResourceSet, tgtResourceSet);
+		scope = new DefaultComparisonScope(srcResourceSet, tgtResourceSet, null);
 		comparison = EMFCompare.builder().build().compare(scope);
 	}
 

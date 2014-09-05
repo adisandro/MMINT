@@ -26,8 +26,8 @@ import java.util.Set;
 
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.modelepedia.operator.patch.LiftingHenshinTransformation;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
+import edu.toronto.cs.se.modelepedia.z3.operator.henshin.LiftingHenshinTransformation;
 import splar.core.constraints.CNFClause;
 import splar.core.constraints.CNFFormula;
 import splar.core.constraints.CNFLiteral;

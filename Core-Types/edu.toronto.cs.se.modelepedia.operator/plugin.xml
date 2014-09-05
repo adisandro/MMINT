@@ -334,66 +334,6 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="MAVOHenshinTransformation"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_MAVOHenshinTransformation"
-               class="edu.toronto.cs.se.modelepedia.operator.patch.MAVOHenshinTransformation">
-         </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="mavoModel"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
-            </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="transformedMavoModelInput"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
-            </parameter>
-            <parameter
-                  isVararg="false"
-                  name="transformedMavoModelOutput"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
-            </parameter>
-         </output>
-      </operatorType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmint.operators">
-      <operatorType>
-         <type
-               name="ProductLineHenshinTransformation"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_ProductLineHenshinTransformation"
-               class="edu.toronto.cs.se.modelepedia.operator.patch.ProductLineHenshinTransformation">
-         </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="model"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
-            </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="transformedModelInput"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
-            </parameter>
-            <parameter
-                  isVararg="false"
-                  name="transformedModelOutput"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
-            </parameter>
-         </output>
-      </operatorType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmint.operators">
-      <operatorType>
-         <type
                name="ModelRelTypeTransformation"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelRelTypeTransformation"
                class="edu.toronto.cs.se.modelepedia.operator.patch.ModelRelTypeTransformation">

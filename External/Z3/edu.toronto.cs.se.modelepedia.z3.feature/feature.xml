@@ -21,10 +21,21 @@ Famelis, Rick Salay. All rights reserved.
    <requires>
       <import plugin="org.eclipse.acceleo.engine"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
+      <import plugin="org.eclipse.gmf.runtime.notation"/>
+      <import plugin="edu.toronto.cs.se.mavo"/>
+      <import plugin="org.eclipse.emf.henshin.interpreter"/>
+      <import plugin="org.eclipse.emf.henshin.trace"/>
    </requires>
 
    <plugin
          id="edu.toronto.cs.se.modelepedia.z3"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.z3.operator"
          download-size="0"
          install-size="0"
          version="0.0.0"

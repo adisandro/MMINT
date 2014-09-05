@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.operator.patch;
+package edu.toronto.cs.se.modelepedia.z3.operator.henshin;
 
 import java.util.ArrayList;
 import java.util.HashMap;

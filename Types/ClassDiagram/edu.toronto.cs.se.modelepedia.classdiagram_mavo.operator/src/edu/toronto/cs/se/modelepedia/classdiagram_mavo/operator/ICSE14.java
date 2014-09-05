@@ -41,9 +41,9 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentDriver;
-import edu.toronto.cs.se.modelepedia.operator.patch.ProductLineHenshinTransformation;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
+import edu.toronto.cs.se.modelepedia.z3.operator.henshin.ProductLineHenshinTransformation;
 
 public class ICSE14 extends ProductLineHenshinTransformation {
 

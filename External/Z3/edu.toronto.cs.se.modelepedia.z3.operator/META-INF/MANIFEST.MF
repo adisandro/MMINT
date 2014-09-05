@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.z3.operator;singleton:=true
+Bundle-Version: 1.3.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.emf.henshin.interpreter,
+ org.eclipse.emf.henshin.trace,
+ edu.toronto.cs.se.mavo,
+ edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.modelepedia.z3
+Export-Package: edu.toronto.cs.se.modelepedia.z3.operator.henshin
