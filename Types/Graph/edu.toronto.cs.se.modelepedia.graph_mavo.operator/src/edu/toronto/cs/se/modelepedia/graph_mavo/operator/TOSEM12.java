@@ -372,19 +372,19 @@ public class TOSEM12 extends RandomOperatorImpl {
 		timeClassical = endTime - startTime;
 	}
 
-	private boolean optimizeBackboneCondition(Map<String, String> initialZ3ModelElems, Map<String, String> currentZ3ModelElems, String mayModelObjFormulaVar) {
+	private boolean optimizeBackboneCondition(Set<String> initialZ3ModelElemFormulaVars, Set<String> currentZ3ModelElemFormulaVars, String mayModelObjFormulaVar) {
 
-		if (initialZ3ModelElems.containsValue(mayModelObjFormulaVar) != currentZ3ModelElems.containsValue(mayModelObjFormulaVar)) {
+		if (initialZ3ModelElemFormulaVars.contains(mayModelObjFormulaVar) != currentZ3ModelElemFormulaVars.contains(mayModelObjFormulaVar)) {
 			return true;
 		}
 		return false;
 	}
 
-	private void optimizeBackbone(Map<String, String> initialZ3ModelElems, Map<String, String> currentZ3ModelElems, Set<String> outOfBackboneFormulaVars) {
+	private void optimizeBackbone(Set<String> initialZ3ModelElemFormulaVars, Set<String> currentZ3ModelElemFormulaVars, Set<String> outOfBackboneFormulaVars) {
 
 		for (MAVOElement mayModelObj : mayModelObjs) {
 			String mayModelObjFormulaVar = mayModelObj.getFormulaVariable();
-			if (optimizeBackboneCondition(initialZ3ModelElems, currentZ3ModelElems, mayModelObjFormulaVar)) {
+			if (optimizeBackboneCondition(initialZ3ModelElemFormulaVars, currentZ3ModelElemFormulaVars, mayModelObjFormulaVar)) {
 				outOfBackboneFormulaVars.add(mayModelObjFormulaVar);
 			}
 		}
@@ -398,8 +398,8 @@ public class TOSEM12 extends RandomOperatorImpl {
 		if (z3Model.getZ3Bool() != Z3Bool.SAT) {
 			throw new MMINTException("MAVO Property checking was SAT but now backbone baseline is not.");
 		}
-		Map<String, String> initialZ3ModelElems = z3ModelParser.getZ3MAVOModelElements(z3Model);
-		Map<String, String> currentZ3ModelElems;
+		Set<String> initialZ3ModelElemFormulaVars = new HashSet<String>(z3ModelParser.getZ3MAVOModelElements(z3Model).values());
+		Set<String> currentZ3ModelElemFormulaVars;
 		Set<String> outOfBackboneFormulaVars = new HashSet<String>();
 		for (MAVOElement mayModelObj : mayModelObjs) {
 			String mayModelObjFormulaVar = mayModelObj.getFormulaVariable();
@@ -411,17 +411,17 @@ public class TOSEM12 extends RandomOperatorImpl {
 			if (z3Model.getZ3Bool() != Z3Bool.SAT) {
 				continue;
 			}
-			currentZ3ModelElems = z3ModelParser.getZ3MAVOModelElements(z3Model);
-			optimizeBackbone(initialZ3ModelElems, currentZ3ModelElems, outOfBackboneFormulaVars);
-			if (optimizeBackboneCondition(initialZ3ModelElems, currentZ3ModelElems, mayModelObjFormulaVar)) {
+			currentZ3ModelElemFormulaVars = new HashSet<String>(z3ModelParser.getZ3MAVOModelElements(z3Model).values());
+			optimizeBackbone(initialZ3ModelElemFormulaVars, currentZ3ModelElemFormulaVars, outOfBackboneFormulaVars);
+			if (optimizeBackboneCondition(initialZ3ModelElemFormulaVars, currentZ3ModelElemFormulaVars, mayModelObjFormulaVar)) {
 				continue;
 			}
 			z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(mayModelObjFormula)), Z3IncrementalBehavior.POP);
 			if (z3Model.getZ3Bool() != Z3Bool.SAT) {
 				continue;
 			}
-			currentZ3ModelElems = z3ModelParser.getZ3MAVOModelElements(z3Model);
-			optimizeBackbone(initialZ3ModelElems, currentZ3ModelElems, outOfBackboneFormulaVars);
+			currentZ3ModelElemFormulaVars = new HashSet<String>(z3ModelParser.getZ3MAVOModelElements(z3Model).values());
+			optimizeBackbone(initialZ3ModelElemFormulaVars, currentZ3ModelElemFormulaVars, outOfBackboneFormulaVars);
 		}
 		long endTime = System.nanoTime();
 
