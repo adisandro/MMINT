@@ -50,5 +50,23 @@
   	<module>
   		../../Core-Types/edu.toronto.cs.se.modelepedia.operator
   	</module>
+  	<module>
+  		../../External/Z3/edu.toronto.cs.se.modelepedia.z3
+  	</module>
+  	<module>
+  		../../External/Z3/edu.toronto.cs.se.modelepedia.z3.feature
+  	</module>
+  	<module>
+  		../../External/Z3/edu.toronto.cs.se.modelepedia.z3.operator
+  	</module>
+  	<module>
+  		../../Types/Kleisli/edu.toronto.cs.se.modelepedia.kleisli
+  	</module>
+  	<module>
+  		../../Types/Kleisli/edu.toronto.cs.se.modelepedia.kleisli.edit
+  	</module>
+  	<module>
+  		../../Types/Kleisli/edu.toronto.cs.se.modelepedia.kleisli.feature
+  	</module>
   </modules>
 </project>
