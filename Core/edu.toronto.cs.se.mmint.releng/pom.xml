@@ -13,6 +13,11 @@
   	  <layout>p2</layout>
   	  <url>http://download.eclipse.org/releases/luna</url>
     </repository>
+    <repository>
+  	  <id>Henshin</id>
+  	  <layout>p2</layout>
+  	  <url>http://download.eclipse.org/modeling/emft/henshin/updates/release</url>
+    </repository>
   </repositories>
   <build>
     <plugins>
@@ -25,8 +30,25 @@
     </plugins>
   </build>
   <modules>
+  	<module>../edu.toronto.cs.se.mavo</module>
+  	<module>../edu.toronto.cs.se.mavo.edit</module>
+  	<module>../edu.toronto.cs.se.mmint</module>
+  	<module>../edu.toronto.cs.se.mmint.edit</module>
+  	<module>../edu.toronto.cs.se.mmint.editor</module>
+  	<module>../edu.toronto.cs.se.mmint.diagram</module>
+  	<module>../edu.toronto.cs.se.mmint.relationship.diagram</module>
+  	<module>../edu.toronto.cs.se.mmint.java</module>
+  	<module>../edu.toronto.cs.se.mmint.mavo</module>
+  	<module>../edu.toronto.cs.se.mmint.feature</module>
+  	<module>../edu.toronto.cs.se.mmint.install</module>
   	<module>
-  		../edu.toronto.cs.se.mavo
+  		../../Core-Types/edu.toronto.cs.se.modelepedia.ocl
+  	</module>
+  	<module>
+  		../../Core-Types/edu.toronto.cs.se.modelepedia.uml
+  	</module>
+  	<module>
+  		../../Core-Types/edu.toronto.cs.se.modelepedia.operator
   	</module>
   </modules>
 </project>
