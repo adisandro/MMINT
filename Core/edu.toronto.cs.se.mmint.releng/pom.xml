@@ -6,6 +6,7 @@
   <packaging>pom</packaging>
   <properties>
     <tycho-version>0.21.0</tycho-version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <repositories>
     <repository>
@@ -26,6 +27,20 @@
         <artifactId>tycho-maven-plugin</artifactId>
         <version>${tycho-version}</version>
         <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>target-platform-configuration</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <environments>
+            <environment>
+              <os>linux</os>
+              <ws>gtk</ws>
+              <arch>x86_64</arch>
+            </environment>
+          </environments>
+        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -67,6 +82,84 @@
   	</module>
   	<module>
   		../../Types/Kleisli/edu.toronto.cs.se.modelepedia.kleisli.feature
+  	</module>
+  	<module>
+  		../../Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram
+  	</module>
+  	<module>
+  		../../Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram.diagram
+  	</module>
+  	<module>
+  		../../Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram.edit
+  	</module>
+  	<module>
+  		../../Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram.editor
+  	</module>
+  	<module>
+  		../../Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram.feature
+  	</module>
+  	<module>
+  		../../Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo
+  	</module>
+  	<module>
+  		../../Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram
+  	</module>
+  	<module>
+  		../../Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo.edit
+  	</module>
+  	<module>
+  		../../Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo.editor
+  	</module>
+  	<module>
+  		../../Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator
+  	</module>
+  	<module>
+  		../../Types/Graph/edu.toronto.cs.se.modelepedia.graph.feature
+  	</module>
+  	<module>
+  		../../Types/Graph/edu.toronto.cs.se.modelepedia.graph_mavo
+  	</module>
+  	<module>
+  		../../Types/Graph/edu.toronto.cs.se.modelepedia.graph_mavo.diagram
+  	</module>
+  	<module>
+  		../../Types/Graph/edu.toronto.cs.se.modelepedia.graph_mavo.edit
+  	</module>
+  	<module>
+  		../../Types/Graph/edu.toronto.cs.se.modelepedia.graph_mavo.editor
+  	</module>
+  	<module>
+  		../../Types/Graph/edu.toronto.cs.se.modelepedia.graph_mavo.operator
+  	</module>
+  	<module>
+  		../../Types/IStar/edu.toronto.cs.se.modelepedia.istar
+  	</module>
+  	<module>
+  		../../Types/IStar/edu.toronto.cs.se.modelepedia.istar.diagram
+  	</module>
+  	<module>
+  		../../Types/IStar/edu.toronto.cs.se.modelepedia.istar.edit
+  	</module>
+  	<module>
+  		../../Types/IStar/edu.toronto.cs.se.modelepedia.istar.editor
+  	</module>
+  	<module>
+  		../../Types/IStar/edu.toronto.cs.se.modelepedia.istar.feature
+  	</module>
+  	<module>
+  		../../Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo
+  	</module>
+  	<module>
+  		../../Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.diagram
+  	</module>
+  	<module>
+  		../../Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.edit
+  	</module>
+  	<module>
+  		../../Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.editor
+  	</module>
+  	<module>
+  		../../Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.operator
   	</module>
   </modules>
 </project>

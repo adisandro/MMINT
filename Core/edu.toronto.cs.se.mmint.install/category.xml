@@ -9,6 +9,15 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.kleisli.feature_1.3.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.kleisli.feature" version="1.3.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.classdiagram.feature_1.3.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.classdiagram.feature" version="1.3.0.qualifier">
+      <category name="Modelepedia"/>
+   </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.graph.feature_1.3.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.graph.feature" version="1.3.0.qualifier">
+      <category name="Modelepedia"/>
+   </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.istar.feature_1.3.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.istar.feature" version="1.3.0.qualifier">
+      <category name="Modelepedia"/>
+   </feature>
    <category-def name="Modeling" label="Modeling"/>
    <category-def name="Modelepedia" label="Modelepedia"/>
 </site>
