@@ -1,4 +1,1 @@
-/bin
-/src/edu/toronto/cs/se/modelepedia/tutorial/operator/StateToArmy_M2M.asm
-/src/edu/toronto/cs/se/modelepedia/tutorial/operator/StateToEconomy_M2M.asm
-/src/edu/toronto/cs/se/modelepedia/tutorial/operator/EconomyToArmy_M2M.asm
+/target

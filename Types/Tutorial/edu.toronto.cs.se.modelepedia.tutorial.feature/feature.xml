@@ -23,15 +23,14 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
       <import plugin="org.eclipse.core.resources"/>
-      <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="org.eclipse.emf.ecore.xmi"/>
-      <import plugin="org.eclipse.emf.edit.ui"/>
-      <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.jface"/>
+      <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.ui.views"/>
       <import plugin="org.eclipse.ui.navigator"/>
       <import plugin="org.eclipse.ui.navigator.resources"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.gmf.runtime.emf.core"/>
       <import plugin="org.eclipse.gmf.runtime.emf.commands.core"/>
       <import plugin="org.eclipse.gmf.runtime.emf.ui.properties"/>
@@ -46,8 +45,10 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.draw2d"/>
       <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.gef"/>
-      <import plugin="org.eclipse.gmf.runtime.lite.svg"/>
+      <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.m2m.atl.engine.emfvm"/>
+      <import plugin="org.eclipse.gmf.runtime.lite.svg"/>
+      <import plugin="edu.toronto.cs.se.mavo"/>
    </requires>
 
    <plugin
