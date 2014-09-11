@@ -28,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.EMFCompare;
+import org.eclipse.emf.compare.scope.DefaultComparisonScope;
 import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
@@ -198,7 +199,7 @@ public class KleisliTest {
 		oracleResourceSet.getResource(oracleResourceUri, true);
 		ResourceSet testedResourceSet = new ResourceSetImpl();
 		testedResourceSet.getResource(URI.createPlatformResourceURI(instanceMIDUri, true), true);
-		IComparisonScope scope = EMFCompare.createDefaultScope(oracleResourceSet, testedResourceSet);
+		IComparisonScope scope = new DefaultComparisonScope(oracleResourceSet, testedResourceSet, null);
 		Comparison comparison = EMFCompare.builder().build().compare(scope);
 		assertTrue(comparison.getDifferences().isEmpty());
 		oracleResourceSet = new ResourceSetImpl();
@@ -206,7 +207,7 @@ public class KleisliTest {
 		oracleResourceSet.getResource(oracleResourceUri, true);
 		testedResourceSet = new ResourceSetImpl();
 		testedResourceSet.getResource(URI.createPlatformResourceURI(transformationResult.get(0).getUri(), true), true);
-		scope = EMFCompare.createDefaultScope(oracleResourceSet, testedResourceSet);
+		scope = new DefaultComparisonScope(oracleResourceSet, testedResourceSet, null);
 		comparison = EMFCompare.builder().build().compare(scope);
 		assertTrue(comparison.getDifferences().isEmpty());
 	}
