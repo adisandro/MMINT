@@ -19,6 +19,11 @@
   	  <layout>p2</layout>
   	  <url>http://download.eclipse.org/modeling/emft/henshin/updates/release</url>
     </repository>
+    <repository>
+  	  <id>EMFtoCSP</id>
+  	  <layout>p2</layout>
+  	  <url>jar:file:///tmp/fr.inria.atlanmod.emftocsp.03-09-13.zip!/</url>
+    </repository>
   </repositories>
   <build>
     <plugins>
@@ -92,6 +97,7 @@
   	<module>../../plugins/Core-Types/edu.toronto.cs.se.modelepedia.operator</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3.operator</module>
+  	<module>../../plugins/External/EMFtoCSP/edu.toronto.cs.se.modelepedia.emftocsp</module>
   	<module>../../plugins/Types/Kleisli/edu.toronto.cs.se.modelepedia.kleisli</module>
   	<module>../../plugins/Types/Kleisli/edu.toronto.cs.se.modelepedia.kleisli.edit</module>
   	<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram</module>
@@ -149,6 +155,7 @@
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.state.editor</module>
   	<module>../../features/edu.toronto.cs.se.mmint.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.z3.feature</module>
+  	<module>../../features/edu.toronto.cs.se.modelepedia.emftocsp.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.kleisli.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.classdiagram.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.graph.feature</module>
