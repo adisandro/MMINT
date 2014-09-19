@@ -8,4 +8,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: %providerName
 Eclipse-PlatformFilter: (osgi.os=linux)
 Bundle-ClassPath: .,
- lib/com.microsoft.z3.jar
+ lib/linux/com.microsoft.z3.jar

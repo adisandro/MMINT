@@ -50,6 +50,8 @@ Famelis, Rick Salay. All rights reserved.
    <plugin
          id="edu.toronto.cs.se.modelepedia.libz3java.linux"
          os="linux"
+         ws="gtk"
+         arch="x86,x86_64"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -58,6 +60,8 @@ Famelis, Rick Salay. All rights reserved.
    <plugin
          id="edu.toronto.cs.se.modelepedia.libz3java.win"
          os="win32"
+         ws="win32"
+         arch="x86,x86_64"
          download-size="0"
          install-size="0"
          version="0.0.0"
