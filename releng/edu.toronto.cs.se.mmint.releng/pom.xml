@@ -97,7 +97,7 @@
   	<module>../../plugins/Core-Types/edu.toronto.cs.se.modelepedia.operator</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.libz3java</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.libz3java.linux</module>
-  	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.libz3java.win32</module>
+  	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.libz3java.win</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3.operator</module>
   	<module>../../plugins/External/EMFtoCSP/edu.toronto.cs.se.modelepedia.emftocsp</module>
