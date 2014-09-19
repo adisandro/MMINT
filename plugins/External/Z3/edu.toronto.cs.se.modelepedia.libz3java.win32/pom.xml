@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>edu.toronto.cs.se.modelepedia.libz3java.win32</artifactId>
+  <artifactId>edu.toronto.cs.se.modelepedia.libz3java.win</artifactId>
   <packaging>eclipse-plugin</packaging>
   <parent>
   	<groupId>MMINT</groupId>
