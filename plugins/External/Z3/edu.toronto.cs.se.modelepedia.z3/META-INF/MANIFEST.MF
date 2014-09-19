@@ -9,10 +9,9 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.acceleo.engine,
  org.eclipse.gmf.runtime.notation,
  edu.toronto.cs.se.mavo,
- edu.toronto.cs.se.mmint
-Export-Package: com.microsoft.z3,
- edu.toronto.cs.se.modelepedia.z3,
+ edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.modelepedia.libz3java
+Export-Package: edu.toronto.cs.se.modelepedia.z3,
  edu.toronto.cs.se.modelepedia.z3.mavo,
  edu.toronto.cs.se.modelepedia.z3.reasoning
-Bundle-ClassPath: lib/com.microsoft.z3.jar,
- .
+Bundle-ClassPath: .

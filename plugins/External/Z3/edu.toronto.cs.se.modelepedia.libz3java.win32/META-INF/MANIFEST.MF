@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %fragmentName
+Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.libz3java.win;singleton:=true
+Bundle-Version: 1.3.0.qualifier
+Fragment-Host: edu.toronto.cs.se.modelepedia.libz3java
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-Vendor: %providerName
+Eclipse-PlatformFilter: (osgi.os=win32)
+Bundle-ClassPath: .,
+ lib/com.microsoft.z3.jar

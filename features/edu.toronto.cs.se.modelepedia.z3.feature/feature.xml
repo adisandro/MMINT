@@ -41,4 +41,26 @@ Famelis, Rick Salay. All rights reserved.
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.libz3java"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.libz3java.linux"
+         os="linux"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.libz3java.win"
+         os="win32"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"/>
+
 </feature>

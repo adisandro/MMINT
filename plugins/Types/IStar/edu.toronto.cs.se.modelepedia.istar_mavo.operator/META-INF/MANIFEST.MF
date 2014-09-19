@@ -9,6 +9,7 @@ Require-Bundle: org.eclipse.acceleo.engine,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.istar_mavo,
+ edu.toronto.cs.se.modelepedia.libz3java,
  edu.toronto.cs.se.modelepedia.z3
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
