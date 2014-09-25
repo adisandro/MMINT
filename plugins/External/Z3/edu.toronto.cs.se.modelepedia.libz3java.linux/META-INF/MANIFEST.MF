@@ -9,3 +9,4 @@ Bundle-Vendor: %providerName
 Eclipse-PlatformFilter: (osgi.os=linux)
 Bundle-ClassPath: .,
  lib/linux/com.microsoft.z3.jar
+Export-Package: com.microsoft.z3

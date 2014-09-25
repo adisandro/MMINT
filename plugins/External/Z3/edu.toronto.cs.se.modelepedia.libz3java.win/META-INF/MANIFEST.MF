@@ -9,3 +9,4 @@ Bundle-Vendor: %providerName
 Eclipse-PlatformFilter: (osgi.os=win32)
 Bundle-ClassPath: .,
  lib/win/com.microsoft.z3.jar
+Export-Package: com.microsoft.z3
