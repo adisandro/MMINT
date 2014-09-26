@@ -11,16 +11,19 @@
  */
 package edu.toronto.cs.se.mmint.mid.diagram.library;
 
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
-import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.model.BaseWorkbenchContentProvider;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
 
-import edu.toronto.cs.se.mmint.mid.diagram.part.MidElementChooserDialog;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelTreeSelectionDialog;
 
-public class MidDiagramUtils {
+public class MIDDiagramUtils {
 
 	/**
 	 * Shows a dialog to choose one among existing models and imports it.
@@ -35,15 +38,28 @@ public class MidDiagramUtils {
 	public static String selectModelToImport(boolean relOnly) throws MultiModelDialogCancellation {
 	
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		DiagramDocumentEditor editor = (DiagramDocumentEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		View view = (View) editor.getDiagramEditPart().getModel();
-	
-		MidElementChooserDialog dialog = new MidElementChooserDialog(shell, view, relOnly);
+		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
+			shell,
+			new WorkbenchLabelProvider(),
+			new BaseWorkbenchContentProvider(),
+			ResourcesPlugin.getWorkspace().getRoot()
+		);
+		//dialog.addFilter(filter);
+		dialog.setValidator(new ImportModelDialogSelectionValidator());
+		dialog.setTitle("Import model");
+		dialog.setMessage("Choose model to import");
+		dialog.setAllowMultiple(false);
+
 		if (dialog.open() == Window.CANCEL) {
 			throw new MultiModelDialogCancellation();
 		}
+		Object selection = dialog.getFirstResult();
+		if (selection == null) {
+			throw new MultiModelDialogCancellation();
+		}
 	
-		return dialog.getSelectedModelElementURI().toPlatformString(true);
+//		return dialog.getSelectedModelElementURI().toPlatformString(true);
+		return URI.createPlatformResourceURI(((IFile) dialog.getOnlyResult()).getFullPath().toString(), true).toPlatformString(true);
 	}
 
 }

@@ -57,7 +57,7 @@ public class MultiModelDiagramUtils {
 		dialog.setAllowMultiple(false);
 
 		Object selection = dialog.getOnlyResult();
-		if (selection == null) { // more than one choice
+		if (selection == null) { // more than one choice possible, open the dialog
 			if (dialog.open() == Window.CANCEL) {
 				throw new MultiModelDialogCancellation();
 			}

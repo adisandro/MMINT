@@ -25,7 +25,7 @@ import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.Model2CreateCommand;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 
 /**
@@ -63,7 +63,7 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 	protected Model doExecuteInstancesLevel() throws Exception {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		String newModelUri = MidDiagramUtils.selectModelToImport(false);
+		String newModelUri = MIDDiagramUtils.selectModelToImport(false);
 		Model modelType = MultiModelTypeRegistry.getType(MultiModelUtils.getModelFile(newModelUri, true).eClass().getEPackage().getNsURI());
 		Model newModel = modelType.createMAVOInstanceAndEditor(newModelUri, ModelOrigin.IMPORTED, multiModel);
 

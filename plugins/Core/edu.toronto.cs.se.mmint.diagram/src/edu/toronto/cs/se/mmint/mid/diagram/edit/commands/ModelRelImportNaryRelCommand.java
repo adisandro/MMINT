@@ -22,7 +22,7 @@ import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRel2CreateCommand;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MidDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -60,7 +60,7 @@ public class ModelRelImportNaryRelCommand extends ModelRel2CreateCommand {
 	protected ModelRel doExecuteInstancesLevel() throws Exception {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		String newModelRelUri = MidDiagramUtils.selectModelToImport(true);
+		String newModelRelUri = MIDDiagramUtils.selectModelToImport(true);
 		ModelRel newModelRel = null;
 		//TODO MMINT[MODELREL] MultiModelInstanceFactory.copyModelRel(multiModel, newModelRelUri);
 
