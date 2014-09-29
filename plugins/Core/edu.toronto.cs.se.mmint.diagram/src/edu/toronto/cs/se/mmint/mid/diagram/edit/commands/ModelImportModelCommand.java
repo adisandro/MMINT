@@ -25,8 +25,9 @@ import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.Model2CreateCommand;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
 /**
  * The command to import an existing model.
@@ -60,10 +61,10 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 			MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToEdit());
 	}
 
-	protected Model doExecuteInstancesLevel() throws Exception {
+	protected Model doExecuteInstancesLevel() throws Exception, MultiModelDialogCancellation {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
-		String newModelUri = MIDDiagramUtils.selectModelToImport(false);
+		String newModelUri = MultiModelDiagramUtils.selectModelToImport(false);
 		Model modelType = MultiModelTypeRegistry.getType(MultiModelUtils.getModelFile(newModelUri, true).eClass().getEPackage().getNsURI());
 		Model newModel = modelType.createMAVOInstanceAndEditor(newModelUri, ModelOrigin.IMPORTED, multiModel);
 
@@ -94,6 +95,9 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 		}
 		catch (ExecutionException ee) {
 			throw ee;
+		}
+		catch (MultiModelDialogCancellation e) {
+			return CommandResult.newCancelledCommandResult();
 		}
 		catch (Exception e) {
 			MMINTException.print(Type.ERROR, "No model imported", e);

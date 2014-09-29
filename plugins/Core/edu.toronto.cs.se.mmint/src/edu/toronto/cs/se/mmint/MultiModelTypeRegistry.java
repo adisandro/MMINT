@@ -14,12 +14,15 @@ package edu.toronto.cs.se.mmint;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.model.BaseWorkbenchContentProvider;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -39,6 +42,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.ui.ImportModelDialogFilter;
+import edu.toronto.cs.se.mmint.mid.ui.ImportModelDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogLabelProvider;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.mid.ui.NewLinkReferenceDialogContentProvider;
@@ -200,6 +205,27 @@ public class MultiModelTypeRegistry {
 			MMINT.repository
 		);
 		dialog.setValidator(new NewModelDialogSelectionValidator());
+
+		return dialog;
+	}
+
+	/**
+	 * Gets a tree dialog that shows all model files in the workspace, in order
+	 * to import an existing model.
+	 * 
+	 * @return The tree dialog to import an existing model.
+	 */
+	public static MultiModelTreeSelectionDialog getModelImportDialog() {
+
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
+			shell,
+			new WorkbenchLabelProvider(),
+			new BaseWorkbenchContentProvider(),
+			ResourcesPlugin.getWorkspace().getRoot()
+		);
+		dialog.addFilter(new ImportModelDialogFilter());
+		dialog.setValidator(new ImportModelDialogSelectionValidator());
 
 		return dialog;
 	}

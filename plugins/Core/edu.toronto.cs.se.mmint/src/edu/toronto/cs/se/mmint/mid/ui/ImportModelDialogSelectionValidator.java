@@ -9,8 +9,10 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.diagram.library;
+package edu.toronto.cs.se.mmint.mid.ui;
 
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.dialogs.ISelectionStatusValidator;
@@ -18,14 +20,19 @@ import org.eclipse.ui.dialogs.ISelectionStatusValidator;
 public class ImportModelDialogSelectionValidator implements ISelectionStatusValidator {
 
 	/**
-	 * {@inheritDoc}
-	 * The selection of a folder is not allowed, only files.
+	 * {@inheritDoc} The selection of a project or folder is not allowed, only
+	 * files.
 	 */
 	@Override
 	public IStatus validate(Object[] selection) {
 
-		return new Status(IStatus.ERROR, "edu.toronto.cs.se.mmint", "Please select a file");
-		//return new Status(IStatus.OK, "edu.toronto.cs.se.mmint", "");
+		for (Object object : selection) {
+			if (object instanceof IFolder || object instanceof IProject) {
+				return new Status(IStatus.ERROR, "edu.toronto.cs.se.mmint", "Please select a file");
+			}
+		}
+
+		return new Status(IStatus.OK, "edu.toronto.cs.se.mmint", "");
 	}
 
 }
