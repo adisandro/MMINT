@@ -116,20 +116,6 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 	}
 
 	/**
-	 * Gets the uri of a Kleisli model type extension.
-	 * 
-	 * @param modelTypeEndpoint
-	 *            The Kleisli model type endpoint whose target is to be
-	 *            extended.
-	 * @return The uri of the Kleisli model type extension.
-	 * @generated NOT
-	 */
-	private String getModelTypeExtendedUri(KleisliModelEndpoint modelTypeEndpoint) {
-
-		return getModelTypeExtendedUri((KleisliModelRel) modelTypeEndpoint.eContainer(), modelTypeEndpoint.getTarget(), modelTypeEndpoint.getName());
-	}
-
-	/**
 	 * @generated NOT
 	 */
 	public KleisliModel kleisliCreateType(KleisliModelEndpoint containerModelTypeEndpoint) throws MMINTException {
@@ -140,14 +126,14 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 		}
 
 		Model origModelType = containerModelTypeEndpoint.getTarget();
-		String kModelTypeUri = getModelTypeExtendedUri(containerModelTypeEndpoint);
+		String kModelTypeUri = getModelTypeExtendedUri((KleisliModelRel) containerModelTypeEndpoint.eContainer(), origModelType, containerModelTypeEndpoint.getName());
 		if (MultiModelUtils.isFileOrDirectoryInState(kModelTypeUri) == null) {
 			try {
-				EPackage x = origModelType.getEMFTypeRoot();
-				String uri = x.getNsURI();
-				x.setNsURI(uri + KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX);
-				MultiModelUtils.createModelFileInState(origModelType.getEMFTypeRoot(), kModelTypeUri);
-				x.setNsURI(uri);
+				EPackage origRootModelTypeObj = origModelType.getEMFTypeRoot();
+				String origModelTypeUri = origRootModelTypeObj.getNsURI();
+				origRootModelTypeObj.setNsURI(origModelTypeUri + KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX);
+				MultiModelUtils.createModelFileInState(origRootModelTypeObj, kModelTypeUri);
+				origRootModelTypeObj.setNsURI(origModelTypeUri); // restore original for packages coming from the registry
 			}
 			catch (Exception e) {
 				throw new MMINTException("Error creating extended metamodel file");
