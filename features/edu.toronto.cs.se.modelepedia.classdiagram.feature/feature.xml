@@ -60,6 +60,7 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="edu.toronto.cs.se.mavo"/>
       <import plugin="edu.toronto.cs.se.mavo.edit"/>
       <import plugin="edu.toronto.cs.se.modelepedia.z3.operator"/>
+      <import feature="org.eclipse.m2m.atl.sdk"/>
    </requires>
 
    <plugin

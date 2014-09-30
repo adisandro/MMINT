@@ -16,11 +16,7 @@
    <license url="http://www.eclipse.org/legal/epl-v10.html">
       This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
    </license>
-<!--
-   <includes
-         id="edu.toronto.cs.se.mmint.feature.source"
-         version="0.0.0"/>
--->
+
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore"/>
@@ -62,6 +58,11 @@
       <import plugin="org.eclipse.papyrus.uml.diagram.wizards"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.gmf.runtime.notation"/>
+      <import feature="org.eclipse.gmf.sdk"/>
+      <import feature="org.eclipse.ocl.examples"/>
+      <import feature="org.eclipse.papyrus.sdk.feature"/>
+      <import feature="org.eclipse.xtend.sdk"/>
+      <import feature="org.eclipse.acceleo"/>
    </requires>
 
    <plugin
@@ -112,14 +113,7 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-<!--
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.ecore"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
--->
+
    <plugin
          id="edu.toronto.cs.se.modelepedia.ocl"
          download-size="0"

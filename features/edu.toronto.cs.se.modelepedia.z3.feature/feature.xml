@@ -27,6 +27,7 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.emf.henshin.interpreter"/>
       <import plugin="org.eclipse.emf.henshin.trace"/>
       <import feature="edu.toronto.cs.se.modelepedia.libz3java.feature"/>
+      <import feature="org.eclipse.emf.henshin.sdk"/>
    </requires>
 
    <plugin
