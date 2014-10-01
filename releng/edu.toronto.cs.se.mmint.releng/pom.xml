@@ -22,7 +22,7 @@
     <repository>
   	  <id>EMFtoCSP</id>
   	  <layout>p2</layout>
-  	  <url>jar:file:///tmp/fr.inria.atlanmod.emftocsp.03-09-13.zip!/</url>
+  	  <url>jar:https://raw.githubusercontent.com/atlanmod/EMFtoCSP/master/updateSite/fr.inria.atlanmod.emftocsp.03-09-13.zip!/</url>
     </repository>
   </repositories>
   <build>
