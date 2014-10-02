@@ -21,6 +21,7 @@ import org.eclipse.emf.common.notify.Notification;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
+import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
@@ -449,8 +450,28 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				EPackage kModelTypePackage = kModelTypeEndpoint.getExtendedTarget().getEMFTypeRoot();
 				EFactory kModelTypeFactory = kModelTypePackage.getEFactoryInstance();
 				KleisliModelEndpointReference kModelTypeEndpointRef = (KleisliModelEndpointReference) MultiModelTypeHierarchy.getReference(kModelTypeEndpoint.getUri(), ((ModelRel) kModelTypeEndpoint.eContainer()).getModelEndpointRefs());
+				String modelUri = kModelEndpoint.getTargetUri();
 				String kModelUri = kModelEndpoint.getExtendedTargetUri();
-				String newText = kModelTypeEndpoint.getTargetUri() +
+				String extendedMetamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(kModelTypeEndpoint.getTarget());
+				if (extendedMetamodelUri != null) { // xmi file
+					String kModelUriTemp = kModelUri + "temp";
+					String deleteText =
+						"xsi:schemaLocation=\"" +
+						kModelTypeEndpoint.getTargetUri() +
+						" file:" +
+						extendedMetamodelUri +
+						"\"";
+					MultiModelUtils.copyTextFileAndReplaceText(
+						modelUri,
+						kModelUriTemp,
+						deleteText,
+						"",
+						true
+					);
+					modelUri = kModelUriTemp;
+				}
+				String newText =
+					kModelTypeEndpoint.getTargetUri() +
 					KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX +
 					"\" xsi:schemaLocation=\"" +
 					kModelTypeEndpoint.getTargetUri() +
@@ -459,20 +480,12 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					MultiModelUtils.prependStateToUri(kModelTypeEndpoint.getExtendedTargetUri()) +
 					"\"";
 				MultiModelUtils.copyTextFileAndReplaceText(
-					kModelEndpoint.getTargetUri(),
+					modelUri,
 					kModelUri,
 					kModelTypeEndpoint.getTargetUri() + "\"",
 					newText,
 					true
 				);
-				/*TODO MMINT[KLEISLI] check xmi to xmi copy
-				MultiModelUtils.copyTextFileAndReplaceText(
-					kModelEndpoint.getTargetUri(),
-					kModelUri,
-					MultiModelUtils.getLastSegmentFromUri(kModelTypeEndpoint.getTargetUri() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME),
-					kModelTypeEndpoint.getExtendedTargetUri(),
-					true
-				);*/
 				EObject kRootModelObj = kModelEndpoint.getExtendedTarget().getEMFInstanceRoot();
 				Map<String, Map<String, Map<EObject, EObject>>> queryMap = new HashMap<String, Map<String, Map<EObject, EObject>>>();
 				// first pass: EClasses
