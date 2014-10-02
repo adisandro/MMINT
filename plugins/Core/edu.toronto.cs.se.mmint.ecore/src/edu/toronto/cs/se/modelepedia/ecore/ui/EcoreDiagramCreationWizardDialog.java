@@ -11,21 +11,19 @@
  */
 package edu.toronto.cs.se.modelepedia.ecore.ui;
 
-import org.eclipse.emf.ecoretools.diagram.part.EcoreCreationWizardPage;
 import org.eclipse.jface.wizard.IWizard;
-import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.widgets.Shell;
 
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 
 public class EcoreDiagramCreationWizardDialog extends EditorCreationWizardDialog {
 
-	@Override
-	protected void storeCreatedModelUri(IWizardPage page) {
-
-		EcoreCreationWizardPage filePage = (EcoreCreationWizardPage) page;
-		createdModelUri = filePage.getDomainModelURI().toPlatformString(true);
-	}
+//	@Override
+//	protected void storeCreatedModelUri(IWizardPage page) {
+//
+//		EcoreCreationWizardPage filePage = (EcoreCreationWizardPage) page;
+//		createdModelUri = filePage.getDomainModelURI().toPlatformString(true);
+//	}
 
 	/**
 	 * Constructor: initialises the superclass.

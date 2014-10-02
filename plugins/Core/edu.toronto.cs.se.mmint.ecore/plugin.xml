@@ -51,7 +51,7 @@
          </type>
       </editorType>
    </extension>
-
+<!--
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
@@ -66,5 +66,5 @@
          </type>
       </editorType>
    </extension>
-
+-->
 </plugin>
