@@ -31,10 +31,8 @@ import org.eclipse.emf.compare.EMFCompare;
 import org.eclipse.emf.compare.scope.DefaultComparisonScope;
 import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -71,28 +69,56 @@ public class KleisliTest {
 
 	private final static String TESTS_BUNDLE_NAME = "edu.toronto.cs.se.modelepedia.tests";
 	private final static String TESTS_BUNDLE_MODEL_DIR= "model/kleisli";
+	private final static String SRC_MODELTYPE_NAME = "NECSIS14_DatabaseSchema";
+	private final static String SRC_METAMODEL_NAME = SRC_MODELTYPE_NAME + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
+	private final static String SRC_MODELTYPEENDPOINT_NAME = "DB";
+	private final static String TGT_MODELTYPE_NAME = "NECSIS14_ClassDiagram";
+	private final static String TGT_METAMODEL_NAME = TGT_MODELTYPE_NAME + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
+	private final static String TGT_MODELTYPEENDPOINT_NAME = "CD";
 	private final static String KLEISLI_MODELRELTYPE_URI = "http://se.cs.toronto.edu/modelepedia/KleisliModelRel";
-	private final static String KLEISLI_TRANSFORMATIONOPERATORTYPE_URI = "http://se.cs.toronto.edu/modelepedia/Operator_KleisliModelRelTypeTransformation";
-	private final static String SRC_MODELTYPE_NAME = "Company";
-	private final static String SRC_MODELTYPEENDPOINT_NAME = SRC_MODELTYPE_NAME;
-	private final static String TGT_MODELTYPE_NAME = "Bank";
-	private final static String TGT_MODELTYPEENDPOINT_NAME = TGT_MODELTYPE_NAME;
-	private final static String MODELRELTYPE_NAME = SRC_MODELTYPE_NAME + MMINT.BINARY_MODELREL_LINK_SEPARATOR + TGT_MODELTYPE_NAME;
-	private final static String[] SRC_METAMODELOBJ_NAMES = {"Company", "Student", "Businessman", "Company/clients", "Client/number"};
-	private final static String[] TGT_METAMODELOBJ_NAMES = {"Bank", "_StudentAccount", "_BusinessAccount", "Bank/accounts", "Account/_number"};
-	private final static String TGT_MODELELEM_QUERYLANGUAGE = "OCL";
-	private final static String[] TGT_MODELELEM_OCLQUERIES = {null, "accounts->select(id.startsWith('S'))", "accounts->select(id.startsWith('B'))", null, "id.substring(2,2)"};
-	private final static String TGT_MODELOBJ_METAMODELROOTCLASS = "Bank";
-	private final static String TGT_MODELOBJ_METAMODELCLASSTOCREATE = "Account";
-	private final static String TGT_MODELOBJ_METAMODELCONTAININGFEATURE = "accounts";
-	private final static String TGT_MODELOBJ_METAMODELATTRIBUTETOCREATE = "id";
-	private final static String[] TGT_MODELOBJ_ATTRIBUTEVALUES = {"S1", "B2", "A3"};
+	private final static String MODELRELTYPE_NAME = TGT_MODELTYPEENDPOINT_NAME + MMINT.BINARY_MODELREL_LINK_SEPARATOR + SRC_MODELTYPEENDPOINT_NAME;
+	private final static String KLEISLI_TGT_METAMODEL_NAME = TGT_MODELTYPEENDPOINT_NAME + MMINT.ENDPOINT_SEPARATOR + TGT_MODELTYPE_NAME + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
+	private final static String[] SRC_METAMODELOBJ_NAMES = {
+		"DatabaseSchema",
+		"NamedElement/name",
+		"Table",
+		"DatabaseSchema/tables",
+		"Column",
+		"Table/columns",
+		"Table/primaryKeys"
+	};
+	private final static String[] TGT_METAMODELOBJ_NAMES = {
+		"ClassDiagram",
+		"NamedElement/name",
+		"_QTable",
+		"ClassDiagram/_Qtables",
+		"_QColumn",
+		"_QTable/_Qcolumns",
+		"_QTable/_QprimaryKeys"
+	};
+	private final static String TGT_MODELELEM_QUERYLANGUAGE = "KLEISLI";
+	private final static String[] TGT_MODELELEM_OCLQUERIES = {
+		null,
+		null,
+		"union classes := Class.allInstances()\nunion associations := Association.allInstances()->select(upperBound > 1 or upperBound = -1)",
+		"origin.oclContainer()\norigin.oclContainer()",
+		"union classes := Class.allInstances()\nunion subclasses := Class.allInstances()->select(not parent.oclIsUndefined())\nunion attributes := Attribute.allInstances()\nunion multiAssociations1 := Association.allInstances()->select(upperBound > 1 or upperBound = -1)\nunion multiAssociations2 := Association.allInstances()->select(upperBound > 1 or upperBound = -1)\nunion singleAssociations := Association.allInstances()->select(upperBound = 1)",
+		"_QTable.classes->get(origin)\n_QTable.classes->get(origin.parent)\n_QTable.classes->get(origin.oclContainer())\n_QTable.associations->get(origin)\n_QTable.associations->get(origin)\n_QTable.classes->get(origin.target)",
+		"_QTable.classes->get(origin)\nNULL\nNULL\n_QTable.associations->get(origin)\n_QTable.associations->get(origin)\nNULL"
+	};
 	private final static String TESTS_TEMPPROJECT = TESTS_BUNDLE_NAME;
-	private final static String TESTS_INSTANCEMID_FILENAME = "instances" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
+	private final static String TESTS_TEMP_PROJECT_URI = IPath.SEPARATOR + TESTS_TEMPPROJECT + IPath.SEPARATOR;
+	private final static String TESTS_INSTANCEMID_URI = TESTS_TEMP_PROJECT_URI + "instances" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
+	private final static String INPUT_MODEL_FILENAME = "cd" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MultiModelTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION;
+	private final static String INPUT_MODEL_URI = TESTS_TEMP_PROJECT_URI + INPUT_MODEL_FILENAME;
+	private final static String OUTPUT_ORACLE_FILENAME = "cd_transformed" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MultiModelTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION;
+	private final static String OUTPUT_ORACLE_URI = TESTS_TEMP_PROJECT_URI + "oracle_" + OUTPUT_ORACLE_FILENAME;
+	private final static String SCHEMALOCATION_PLACEHOLDER = "SCHEMALOCATION";
+	private final static String KLEISLI_TRANSFORMATIONOPERATORTYPE_URI = "http://se.cs.toronto.edu/modelepedia/Operator_KleisliModelRelTypeTransformation";
 
 	private ModelElementReference dropMetamodelObject(EPackage metamodelRootObj, String metamodelObjName, ModelEndpointReference containerModelTypeEndpointRef, ModelElement rootModelElemType) throws MMINTException {
 
-		String[] names = metamodelObjName.split("/");
+		String[] names = metamodelObjName.split(MMINT.URI_SEPARATOR);
 		EObject metamodelObj;
 		if (names.length == 1) {
 			metamodelObj = metamodelRootObj.getEClassifier(names[0]);
@@ -115,35 +141,30 @@ public class KleisliTest {
 	public void test() throws Exception {
 
 		MMINT.setPreference(MMINTConstants.PREFERENCE_TESTS_ENABLED, "true");
-		Bundle bundle = Platform.getBundle(TESTS_BUNDLE_NAME);
+		Bundle testsBundle = Platform.getBundle(TESTS_BUNDLE_NAME);
 		// model types
 		Model rootModelType = MultiModelTypeRegistry.getType(MMINT.ROOT_MODEL_URI);
 		Model srcModelType = rootModelType.createSubtype(SRC_MODELTYPE_NAME, null, null, true);
 		MMINT.createTypeHierarchy();
-		String srcMetamodelName = SRC_MODELTYPE_NAME + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
-		URL srcMetamodelUrl = bundle.findEntries(TESTS_BUNDLE_MODEL_DIR, srcMetamodelName, false).nextElement();
-		Files.copy(Paths.get(FileLocator.toFileURL(srcMetamodelUrl).getFile()), Paths.get(MultiModelUtils.prependStateToUri(srcMetamodelName)), StandardCopyOption.REPLACE_EXISTING);
+		URL srcMetamodelUrl = testsBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, SRC_METAMODEL_NAME, false).nextElement();
+		Files.copy(Paths.get(FileLocator.toFileURL(srcMetamodelUrl).getFile()), Paths.get(MultiModelUtils.prependStateToUri(SRC_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
 		Model tgtModelType = rootModelType.createSubtype(TGT_MODELTYPE_NAME, null, null, true);
 		MMINT.createTypeHierarchy();
-		String tgtMetamodelName = TGT_MODELTYPE_NAME + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
-		URL tgtMetamodelUrl = bundle.findEntries(TESTS_BUNDLE_MODEL_DIR, tgtMetamodelName, false).nextElement();
-		Files.copy(Paths.get(FileLocator.toFileURL(tgtMetamodelUrl).getFile()), Paths.get(MultiModelUtils.prependStateToUri(tgtMetamodelName)), StandardCopyOption.REPLACE_EXISTING);
+		URL tgtMetamodelUrl = testsBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, TGT_METAMODEL_NAME, false).nextElement();
+		Files.copy(Paths.get(FileLocator.toFileURL(tgtMetamodelUrl).getFile()), Paths.get(MultiModelUtils.prependStateToUri(TGT_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
 
 		// model rel type
 		KleisliModelRel kRootModelRelType = MultiModelTypeRegistry.getType(KLEISLI_MODELRELTYPE_URI);
 		KleisliModelRel kModelRelType = (KleisliModelRel) kRootModelRelType.createSubtype(MODELRELTYPE_NAME, false, null, null);
 		MMINT.createTypeHierarchy();
 		KleisliModelEndpoint kRootModelTypeEndpoint = (KleisliModelEndpoint) kRootModelRelType.getModelEndpoints().get(0);
-		kRootModelTypeEndpoint.createSubtypeAndReference(SRC_MODELTYPEENDPOINT_NAME, srcModelType, false, kModelRelType);
-		String kTgtMetamodelName = TGT_MODELTYPEENDPOINT_NAME + MMINT.ENDPOINT_SEPARATOR + TGT_MODELTYPE_NAME + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
-		URL kTgtMetamodelUrl = bundle.findEntries(TESTS_BUNDLE_MODEL_DIR, kTgtMetamodelName, false).nextElement();
-		Files.copy(Paths.get(FileLocator.toFileURL(kTgtMetamodelUrl).getFile()), Paths.get(MultiModelUtils.prependStateToUri(MODELRELTYPE_NAME + MMINT.URI_SEPARATOR + kTgtMetamodelName)), StandardCopyOption.REPLACE_EXISTING);
-		kRootModelTypeEndpoint.createSubtypeAndReference(TGT_MODELTYPEENDPOINT_NAME, tgtModelType, false, kModelRelType);
+		ModelEndpointReference srcModelTypeEndpointRef = kRootModelTypeEndpoint.createSubtypeAndReference(SRC_MODELTYPEENDPOINT_NAME, srcModelType, false, kModelRelType);
+		URL kTgtMetamodelUrl = testsBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, KLEISLI_TGT_METAMODEL_NAME, false).nextElement();
+		Files.copy(Paths.get(FileLocator.toFileURL(kTgtMetamodelUrl).getFile()), Paths.get(MultiModelUtils.prependStateToUri(MODELRELTYPE_NAME + MMINT.URI_SEPARATOR + KLEISLI_TGT_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
+		KleisliModelEndpointReference kTgtModelTypeEndpointRef = (KleisliModelEndpointReference) kRootModelTypeEndpoint.createSubtypeAndReference(TGT_MODELTYPEENDPOINT_NAME, tgtModelType, false, kModelRelType);
 		// model element types and link types
-		ModelEndpointReference srcModelTypeEndpointRef = kModelRelType.getModelEndpointRefs().get(0);
-		EPackage srcMetamodelRootObj = (EPackage) MultiModelUtils.getModelFileInState(srcMetamodelName);
-		KleisliModelEndpointReference kTgtModelTypeEndpointRef = (KleisliModelEndpointReference) kModelRelType.getModelEndpointRefs().get(1);
-		EPackage kTgtMetamodelRootObj = (EPackage) MultiModelUtils.getModelFileInState(MODELRELTYPE_NAME + MMINT.URI_SEPARATOR + kTgtMetamodelName);
+		EPackage srcMetamodelRootObj = srcModelType.getEMFTypeRoot();
+		EPackage kTgtMetamodelRootObj = ((KleisliModelEndpoint) kTgtModelTypeEndpointRef.getObject()).getExtendedTarget().getEMFTypeRoot();
 		ModelElement rootModelElemType = MultiModelTypeRegistry.getType(MMINT.ROOT_MODELELEM_URI);
 		Link rootLinkType = MultiModelTypeRegistry.getType(MMINT.ROOT_LINK_URI);
 		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeRegistry.getType(MMINT.ROOT_MODELELEMENDPOINT_URI);
@@ -159,55 +180,59 @@ public class KleisliTest {
 			String newLinkTypeName = srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_LINK_SEPARATOR + tgtModelElemTypeRef.getObject().getName();
 			LinkReference linkTypeRef = rootLinkType.createSubtypeAndReference(null, newLinkTypeName, true, kModelRelType);
 			MMINT.createTypeHierarchy();
-			rootModelElemTypeEndpoint.createSubtypeAndReference(srcModelElemTypeRef.getObject().getName(), srcModelElemTypeRef, false, linkTypeRef);
-			rootModelElemTypeEndpoint.createSubtypeAndReference(tgtModelElemTypeRef.getObject().getName(), tgtModelElemTypeRef, false, linkTypeRef);
+			String srcModelElemTypeEndpointName = srcModelElemTypeRef.getObject().getName(), tgtModelElemTypeEndpointName = tgtModelElemTypeRef.getObject().getName();
+			if (srcModelElemTypeEndpointName.equals(tgtModelElemTypeEndpointName)) {
+				srcModelElemTypeEndpointName += srcModelTypeEndpointRef.getObject().getName();
+				tgtModelElemTypeEndpointName += kTgtModelTypeEndpointRef.getObject().getName();
+			}
+			rootModelElemTypeEndpoint.createSubtypeAndReference(srcModelElemTypeEndpointName, srcModelElemTypeRef, false, linkTypeRef);
+			rootModelElemTypeEndpoint.createSubtypeAndReference(tgtModelElemTypeEndpointName, tgtModelElemTypeRef, false, linkTypeRef);
 		}
 
 		// instances
 		IProject tempProject = ResourcesPlugin.getWorkspace().getRoot().getProject(TESTS_TEMPPROJECT);
 		tempProject.create(null);
 		tempProject.open(null);
-		String tempProjectUri = IPath.SEPARATOR + TESTS_TEMPPROJECT + IPath.SEPARATOR;
-		String instanceMIDUri = tempProjectUri + TESTS_INSTANCEMID_FILENAME;
 		MultiModel instanceMID = MIDFactory.eINSTANCE.createMultiModel();
-		EPackage tgtMetamodelRootObj = (EPackage) MultiModelUtils.getModelFileInState(tgtMetamodelName);
-		EFactory tgtMetamodelFactory = tgtMetamodelRootObj.getEFactoryInstance();
-		EObject rootModelObj = tgtMetamodelFactory.create((EClass) tgtMetamodelRootObj.getEClassifiers().get(0));
-		String bankModelUri = tempProjectUri + TGT_MODELTYPE_NAME.toLowerCase() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MultiModelTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION;
-		Model bankModel = tgtModelType.createInstanceAndEditor(bankModelUri, ModelOrigin.CREATED, instanceMID);
-		EStructuralFeature tgtMetamodelContainingFeature = ((EClass) tgtMetamodelRootObj.getEClassifier(TGT_MODELOBJ_METAMODELROOTCLASS)).getEStructuralFeature(TGT_MODELOBJ_METAMODELCONTAININGFEATURE);
-		EClass tgtMetamodelClassToCreate = (EClass) tgtMetamodelRootObj.getEClassifier(TGT_MODELOBJ_METAMODELCLASSTOCREATE);
-		EStructuralFeature tgtMetamodelAttributeToCreate = tgtMetamodelClassToCreate.getEStructuralFeature(TGT_MODELOBJ_METAMODELATTRIBUTETOCREATE);
-		@SuppressWarnings("unchecked")
-		EList<EObject> rootModelObjContainment = (EList<EObject>) rootModelObj.eGet(tgtMetamodelContainingFeature);
-		for (String attributeValue : TGT_MODELOBJ_ATTRIBUTEVALUES) {
-			EObject classValue = tgtMetamodelFactory.create(tgtMetamodelClassToCreate);
-			classValue.eSet(tgtMetamodelAttributeToCreate, attributeValue);
-			rootModelObjContainment.add(classValue);
-		}
-		MultiModelUtils.createModelFile(rootModelObj, bankModelUri, true);
-		MultiModelUtils.createModelFile(instanceMID, instanceMIDUri, true); // this is needed for correct uris in the operator
+		URL inputModelUrl = testsBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, INPUT_MODEL_FILENAME, false).nextElement();
+		MultiModelUtils.copyTextFileAndReplaceText(
+			FileLocator.toFileURL(inputModelUrl).getFile().toString(),
+			MultiModelUtils.prependWorkspaceToUri(INPUT_MODEL_URI),
+			SCHEMALOCATION_PLACEHOLDER,
+			"file:" + MultiModelUtils.prependStateToUri(TGT_METAMODEL_NAME),
+			false
+		);
+		Model inputModel =  tgtModelType.createInstanceAndEditor(INPUT_MODEL_URI, ModelOrigin.CREATED, instanceMID);
+		MultiModelUtils.createModelFile(instanceMID, TESTS_INSTANCEMID_URI, true); // this is needed for correct uris in the operator
 		EList<Model> transformationParameters = new BasicEList<Model>();
 		transformationParameters.add(kModelRelType);
-		transformationParameters.add(bankModel);
-		EList<Model> transformationResult = MultiModelTypeRegistry.<Operator>getType(KLEISLI_TRANSFORMATIONOPERATORTYPE_URI).execute(transformationParameters);
-		MultiModelUtils.createModelFile(instanceMID, instanceMIDUri, true);
+		transformationParameters.add(inputModel);
+		EList<Model> transformationOutput = MultiModelTypeRegistry.<Operator>getType(KLEISLI_TRANSFORMATIONOPERATORTYPE_URI).execute(transformationParameters);
+		MultiModelUtils.createModelFile(instanceMID, TESTS_INSTANCEMID_URI, true);
 
 		// test equivalence with oracle
 		ResourceSet oracleResourceSet = new ResourceSetImpl();
-		URI oracleResourceUri = URI.createPlatformPluginURI(TESTS_BUNDLE_NAME + IPath.SEPARATOR + TESTS_BUNDLE_MODEL_DIR + IPath.SEPARATOR + MultiModelUtils.getLastSegmentFromUri(instanceMIDUri), true);
+		URI oracleResourceUri = URI.createPlatformPluginURI(TESTS_BUNDLE_NAME + IPath.SEPARATOR + TESTS_BUNDLE_MODEL_DIR + IPath.SEPARATOR + MultiModelUtils.getLastSegmentFromUri(TESTS_INSTANCEMID_URI), true);
 		oracleResourceSet.getResource(oracleResourceUri, true);
-		ResourceSet testedResourceSet = new ResourceSetImpl();
-		testedResourceSet.getResource(URI.createPlatformResourceURI(instanceMIDUri, true), true);
-		IComparisonScope scope = new DefaultComparisonScope(oracleResourceSet, testedResourceSet, null);
+		ResourceSet outputResourceSet = new ResourceSetImpl();
+		outputResourceSet.getResource(URI.createPlatformResourceURI(TESTS_INSTANCEMID_URI, true), true);
+		IComparisonScope scope = new DefaultComparisonScope(oracleResourceSet, outputResourceSet, null);
 		Comparison comparison = EMFCompare.builder().build().compare(scope);
 		assertTrue(comparison.getDifferences().isEmpty());
+		URL outputModelUrl = testsBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, OUTPUT_ORACLE_FILENAME, false).nextElement();
+		MultiModelUtils.copyTextFileAndReplaceText(
+			FileLocator.toFileURL(outputModelUrl).getFile().toString(),
+			MultiModelUtils.prependWorkspaceToUri(OUTPUT_ORACLE_URI),
+			SCHEMALOCATION_PLACEHOLDER,
+			"file:" + MultiModelUtils.prependStateToUri(SRC_METAMODEL_NAME),
+			false
+		);
 		oracleResourceSet = new ResourceSetImpl();
-		oracleResourceUri = URI.createPlatformPluginURI(TESTS_BUNDLE_NAME + IPath.SEPARATOR + TESTS_BUNDLE_MODEL_DIR + IPath.SEPARATOR + MultiModelUtils.getLastSegmentFromUri(transformationResult.get(0).getUri()), true);
+		oracleResourceUri = URI.createPlatformResourceURI(OUTPUT_ORACLE_URI, true);
 		oracleResourceSet.getResource(oracleResourceUri, true);
-		testedResourceSet = new ResourceSetImpl();
-		testedResourceSet.getResource(URI.createPlatformResourceURI(transformationResult.get(0).getUri(), true), true);
-		scope = new DefaultComparisonScope(oracleResourceSet, testedResourceSet, null);
+		outputResourceSet = new ResourceSetImpl();
+		outputResourceSet.getResource(URI.createPlatformResourceURI(transformationOutput.get(0).getUri(), true), true);
+		scope = new DefaultComparisonScope(oracleResourceSet, outputResourceSet, null);
 		comparison = EMFCompare.builder().build().compare(scope);
 		assertTrue(comparison.getDifferences().isEmpty());
 	}
