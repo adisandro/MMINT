@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
+import org.eclipse.ocl.examples.domain.values.OrderedSetValue;
+import org.eclipse.ocl.examples.domain.values.SetValue;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -131,6 +133,12 @@ public class OCLReasoningEngine implements IReasoningEngine {
 			Object evaluation = ocl.evaluate(modelObj, expression);
 			if (evaluation instanceof CollectionValue.Accumulator) {
 				evaluation = ((CollectionValue.Accumulator) evaluation).getElements();
+			}
+			if (evaluation instanceof SetValue) {
+				evaluation = ((SetValue) evaluation).getElements();
+			}
+			if (evaluation instanceof OrderedSetValue) {
+				evaluation = ((OrderedSetValue) evaluation).getElements();
 			}
 			return evaluation;
 		}

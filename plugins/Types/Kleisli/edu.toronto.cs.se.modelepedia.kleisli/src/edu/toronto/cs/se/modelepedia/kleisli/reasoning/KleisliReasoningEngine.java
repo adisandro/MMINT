@@ -22,8 +22,6 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.domain.values.SetValue;
-
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
@@ -61,9 +59,6 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 			Map<EObject, EObject> queryRow = new LinkedHashMap<EObject, EObject>();
 			queryUnion.put(unionName, queryRow);
 			Object queryObjs = oclReasoner.evaluateQuery(kRootModelObj, oclQuery);
-			if (queryObjs instanceof SetValue) {
-				queryObjs = ((SetValue) queryObjs).getElements();
-			}
 			if (!(queryObjs instanceof Collection<?>)) {
 				continue;
 			}

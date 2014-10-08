@@ -100,9 +100,9 @@ public class KleisliTest {
 	private final static String[] TGT_MODELELEM_OCLQUERIES = {
 		null,
 		null,
-		"union classes := Class.allInstances()\nunion associations := Association.allInstances()->select(upperBound > 1 or upperBound = -1)",
+		"union classes := classes\nunion associations := associations->select(upperBound > 1 or upperBound = -1)",
 		"origin.oclContainer()\norigin.oclContainer()",
-		"union classes := Class.allInstances()\nunion subclasses := Class.allInstances()->select(not parent.oclIsUndefined())\nunion attributes := Attribute.allInstances()\nunion multiAssociations1 := Association.allInstances()->select(upperBound > 1 or upperBound = -1)\nunion multiAssociations2 := Association.allInstances()->select(upperBound > 1 or upperBound = -1)\nunion singleAssociations := Association.allInstances()->select(upperBound = 1)",
+		"union classes := classes\nunion subclasses := classes->select(not parent.oclIsUndefined())\nunion attributes := classes->collect(attributes)\nunion multiAssociations1 := associations->select(upperBound > 1 or upperBound = -1)\nunion multiAssociations2 := associations->select(upperBound > 1 or upperBound = -1)\nunion singleAssociations := associations->select(upperBound = 1)",
 		"_QTable.classes->get(origin)\n_QTable.classes->get(origin.parent)\n_QTable.classes->get(origin.oclContainer())\n_QTable.associations->get(origin)\n_QTable.associations->get(origin)\n_QTable.classes->get(origin.target)",
 		"_QTable.classes->get(origin)\nNULL\nNULL\n_QTable.associations->get(origin)\n_QTable.associations->get(origin)\nNULL"
 	};

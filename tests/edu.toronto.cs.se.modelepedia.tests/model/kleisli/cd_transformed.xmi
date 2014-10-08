@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="ASCII"?>
 <necsis14_databaseschema:DatabaseSchema xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:necsis14_databaseschema="http://se.cs.toronto.edu/mmint/NECSIS14_DatabaseSchema" xsi:schemaLocation="http://se.cs.toronto.edu/mmint/NECSIS14_DatabaseSchema SCHEMALOCATION">
-  <tables xsi:type="necsis14_databaseschema:Table" name="Course" primaryKeys="//@tables.0/@columns.0">
-    <columns xsi:type="necsis14_databaseschema:Column" name="Course"/>
+  <tables xsi:type="necsis14_databaseschema:Table" name="Person" primaryKeys="//@tables.0/@columns.0">
+    <columns xsi:type="necsis14_databaseschema:Column" name="Person"/>
+    <columns xsi:type="necsis14_databaseschema:Column" name="Prof"/>
+    <columns xsi:type="necsis14_databaseschema:Column" name="Student"/>
     <columns xsi:type="necsis14_databaseschema:Column" name="name"/>
-    <columns xsi:type="necsis14_databaseschema:Column" name="units"/>
+    <columns xsi:type="necsis14_databaseschema:Column" name="surname"/>
+    <columns xsi:type="necsis14_databaseschema:Column" name="telephone"/>
   </tables>
   <tables xsi:type="necsis14_databaseschema:Table" name="Prof" primaryKeys="//@tables.1/@columns.0">
     <columns xsi:type="necsis14_databaseschema:Column" name="Prof"/>
     <columns xsi:type="necsis14_databaseschema:Column" name="rank"/>
   </tables>
-  <tables xsi:type="necsis14_databaseschema:Table" name="Department" primaryKeys="//@tables.2/@columns.0">
+  <tables xsi:type="necsis14_databaseschema:Table" name="Student" primaryKeys="//@tables.2/@columns.0">
+    <columns xsi:type="necsis14_databaseschema:Column" name="Student"/>
+    <columns xsi:type="necsis14_databaseschema:Column" name="SID"/>
+  </tables>
+  <tables xsi:type="necsis14_databaseschema:Table" name="Department" primaryKeys="//@tables.3/@columns.0">
     <columns xsi:type="necsis14_databaseschema:Column" name="Department"/>
     <columns xsi:type="necsis14_databaseschema:Column" name="name"/>
     <columns xsi:type="necsis14_databaseschema:Column" name="isFacultyIn [1]"/>
   </tables>
-  <tables xsi:type="necsis14_databaseschema:Table" name="Person" primaryKeys="//@tables.3/@columns.0">
-    <columns xsi:type="necsis14_databaseschema:Column" name="Person"/>
-    <columns xsi:type="necsis14_databaseschema:Column" name="Prof"/>
-    <columns xsi:type="necsis14_databaseschema:Column" name="Student"/>
-    <columns xsi:type="necsis14_databaseschema:Column" name="telephone"/>
+  <tables xsi:type="necsis14_databaseschema:Table" name="Course" primaryKeys="//@tables.4/@columns.0">
+    <columns xsi:type="necsis14_databaseschema:Column" name="Course"/>
     <columns xsi:type="necsis14_databaseschema:Column" name="name"/>
-    <columns xsi:type="necsis14_databaseschema:Column" name="surname"/>
-  </tables>
-  <tables xsi:type="necsis14_databaseschema:Table" name="Student" primaryKeys="//@tables.4/@columns.0">
-    <columns xsi:type="necsis14_databaseschema:Column" name="Student"/>
-    <columns xsi:type="necsis14_databaseschema:Column" name="SID"/>
-  </tables>
-  <tables xsi:type="necsis14_databaseschema:Table" name="teaches [*]">
-    <columns xsi:type="necsis14_databaseschema:Column" name="teaches [*]"/>
-    <columns xsi:type="necsis14_databaseschema:Column" name="teaches [*]"/>
+    <columns xsi:type="necsis14_databaseschema:Column" name="units"/>
   </tables>
   <tables xsi:type="necsis14_databaseschema:Table" name="takes [*]">
     <columns xsi:type="necsis14_databaseschema:Column" name="takes [*]"/>
     <columns xsi:type="necsis14_databaseschema:Column" name="takes [*]"/>
+  </tables>
+  <tables xsi:type="necsis14_databaseschema:Table" name="teaches [*]">
+    <columns xsi:type="necsis14_databaseschema:Column" name="teaches [*]"/>
+    <columns xsi:type="necsis14_databaseschema:Column" name="teaches [*]"/>
   </tables>
 </necsis14_databaseschema:DatabaseSchema>
