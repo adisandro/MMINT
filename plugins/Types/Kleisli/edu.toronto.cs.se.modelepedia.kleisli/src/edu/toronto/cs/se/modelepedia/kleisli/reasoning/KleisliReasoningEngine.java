@@ -12,7 +12,7 @@
 package edu.toronto.cs.se.modelepedia.kleisli.reasoning;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -58,7 +58,7 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 			String[] kQueryAssignment = kQueryRow.split(UNION_ASSIGNMENT);
 			String oclQuery = kQueryAssignment[1].trim();
 			String unionName = kQueryAssignment[0].substring(kQueryAssignment[0].indexOf(UNION_KEYWORD)+UNION_KEYWORD.length(), kQueryAssignment[0].length()).trim();
-			Map<EObject, EObject> queryRow = new HashMap<EObject, EObject>();
+			Map<EObject, EObject> queryRow = new LinkedHashMap<EObject, EObject>();
 			queryUnion.put(unionName, queryRow);
 			Object queryObjs = oclReasoner.evaluateQuery(kRootModelObj, oclQuery);
 			if (queryObjs instanceof SetValue) {
@@ -84,7 +84,7 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 
 	public void evaluateEReferenceQuery(String kQuery, OCLReasoningEngine oclReasoner, EMFInfo kModelElemTypeEInfo, Map<String, Map<EObject, EObject>> queryUnion, Map<String, Map<String, Map<EObject, EObject>>> queryMap) {
 
-		//TODO MMINT[KLEISLI] what happens when the source or target of the derived ereference is not derived, it's not in queryMap
+		//TODO MMINT[KLEISLI] what happens when the source or target of the derived ereference is not derived (it's not in queryMap)
 		//TODO MMINT[KLEISLI] what happens when ereference is not derived but the target is? (source can't be)
 		String[] kQueryRows = kQuery.split(ROW_SEPARATOR);
 		int i = 0;

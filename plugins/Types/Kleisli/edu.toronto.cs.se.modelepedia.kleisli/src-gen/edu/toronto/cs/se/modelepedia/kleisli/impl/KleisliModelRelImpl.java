@@ -453,7 +453,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				String modelUri = kModelEndpoint.getTargetUri();
 				String kModelUri = kModelEndpoint.getExtendedTargetUri();
 				String extendedMetamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(kModelTypeEndpoint.getTarget());
-				if (extendedMetamodelUri != null) { // xmi file
+				if (extendedMetamodelUri != null) { // xmi model file
 					String kModelUriTemp = kModelUri + "temp";
 					String deleteText =
 						"xsi:schemaLocation=\"" +
@@ -499,9 +499,9 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					) {
 						continue;
 					}
-					EClass kModelElemTypeClass = (EClass) kModelTypePackage.getEClassifier(kModelElemTypeEInfo.getClassName());
 					Map<String, Map<EObject, EObject>> queryUnion = new LinkedHashMap<String, Map<EObject, EObject>>();
-					queryMap.put(kModelElemTypeClass.getName(), queryUnion);
+					queryMap.put(kModelElemTypeEInfo.getClassName(), queryUnion);
+					EClass kModelElemTypeClass = (EClass) kModelTypePackage.getEClassifier(kModelElemTypeEInfo.getClassName());
 					kReasoner.evaluateEClassQuery(kConstraint.getImplementation(), oclReasoner, kRootModelObj, kModelElemTypeClass, kModelTypeFactory, queryUnion);
 				}
 				// second pass: EReferences
