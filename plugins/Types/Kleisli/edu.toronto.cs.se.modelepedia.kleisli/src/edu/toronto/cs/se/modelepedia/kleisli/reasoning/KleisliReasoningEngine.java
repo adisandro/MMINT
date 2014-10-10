@@ -51,7 +51,6 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 
 	public void evaluateEClassQuery(String kQuery, OCLReasoningEngine oclReasoner, EObject kRootModelObj, EClass kModelElemTypeClass, EFactory kModelTypeFactory, Map<String, Map<EObject, EObject>> queryUnion) {
 
-		//TODO MMINT[KLEISLI] will the different semantics creating/replacing be needed?
 		for (String kQueryRow : kQuery.split(ROW_SEPARATOR)) {
 			String[] kQueryAssignment = kQueryRow.split(UNION_ASSIGNMENT);
 			String oclQuery = kQueryAssignment[1].trim();
