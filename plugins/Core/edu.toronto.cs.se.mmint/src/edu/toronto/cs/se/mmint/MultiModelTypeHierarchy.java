@@ -54,7 +54,7 @@ import edu.toronto.cs.se.mmint.repository.ExtensionType;
  * 
  */
 public class MultiModelTypeHierarchy {
-	//TODO MMINT: are type and type ref iterators really needed, or are the lists already ordered by construction?
+	//TODO MMINT[MISC] are type and type ref iterators really needed, or are the lists already ordered by construction?
 
 	/**
 	 * The comparator for a hierarchy of types from registered extensions.
@@ -783,7 +783,7 @@ public class MultiModelTypeHierarchy {
 		else if (type instanceof Editor) {
 			rootUri = MMINT.ROOT_EDITOR_URI;
 		}
-		//TODO MMINT: root operator?
+		//TODO MMINT[OO] root operator?
 	
 		return rootUri;
 	}

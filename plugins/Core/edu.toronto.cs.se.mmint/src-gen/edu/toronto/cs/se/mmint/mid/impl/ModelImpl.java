@@ -758,8 +758,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				wizardDialogClassName = editorType.getWizardDialogClass();
 			}
 			try {
-				//TODO MMINT: a new editor is created instead of attaching existing ones
-				//TODO MMINT: because I couldn't find a way then from an editor to understand which model was being created
+				//TODO MMINT[EDITOR] a new editor is created instead of attaching existing ones
+				//TODO MMINT[EDITOR] because I couldn't find a way then from an editor to understand which model was being created
 				Editor newEditorType = editorType.createSubtype(newEditorTypeFragmentUri, newEditorTypeName, newModelTypeUri, editorId, wizardId, wizardDialogClassName);
 				MultiModelTypeFactory.addModelTypeEditor(newEditorType, newModelType);
 				if (isMetamodelExtension) { // reflective editor only

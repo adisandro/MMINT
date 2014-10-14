@@ -49,7 +49,7 @@ public class MultiModelTypeIntrospection {
 		boolean validates;
 		MAVOTruthValue mavoValidates;
 
-		//TODO MMINT: other extendible elements
+		//TODO MMINT[INTROSPECTION] other extendible elements
 
 		if (element instanceof ModelRel) {
 			validates = MultiModelConstraintChecker.areAllowedModelEndpoints((ModelRel) element, (ModelRel) elementType);
@@ -68,7 +68,7 @@ public class MultiModelTypeIntrospection {
 					return MAVOTruthValue.FALSE;
 				}
 			}
-			//TODO MMINT: do additional structure checks
+			//TODO MMINT[INTROSPECTION] do additional structure checks
 		}
 
 		// model rels go here too
@@ -127,7 +127,7 @@ public class MultiModelTypeIntrospection {
 					metamodelSubtypes.add(filteredElementSubtype);
 				}
 				else { // try multiple inheritance
-					//TODO MMINT: this is too tailored for UML_MAVO
+					//TODO MMINT[MID] this is too tailored for UML_MAVO
 					for (String multipleInheritanceUri : MultiModelTypeHierarchy.getMultipleInheritanceUris(metamodelUri)) {
 						if (
 							multipleInheritanceUri.equals(filteredElementSubtype.getUri()) ||
@@ -158,7 +158,7 @@ public class MultiModelTypeIntrospection {
 				return;
 			}
 			// second stop condition: endpoints
-			//TODO MMINT: needs container type + to be refined with override semantics
+			//TODO MMINT[OVERRIDE] needs container type + to be refined with override semantics
 			if (element instanceof ModelEndpoint || element instanceof ModelElementEndpoint) {
 				return;
 			}

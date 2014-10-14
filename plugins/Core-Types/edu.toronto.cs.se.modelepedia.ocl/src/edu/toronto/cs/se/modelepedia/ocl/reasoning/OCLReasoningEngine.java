@@ -41,7 +41,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 
 	private void initOCL(OCLHelper helper, EObject modelObj) {
 
-		//TODO MMINT: workaround for bug #375485
+		//TODO MMINT[OCL] workaround for bug #375485
 //		helper.setInstanceContext(modelObj);
 		MetaModelManager metaModelManager = helper.getOCL().getMetaModelManager();
 		EClass modelObjClass = modelObj.eClass();

@@ -278,7 +278,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 				if (previousNSimplified && modelObjsN.size() == 1) {
 					smtEncoding.append(" ");
 				}
-				//TODO MMINT: review if true or false here when simplifying
+				//TODO MMINT[LIFTING] review if true or false here when simplifying
 				smtEncoding.append(
 					createZ3ApplyFormulaMatchSet(modelObjsN, Z3Utils.SMTLIB_AND, Z3Utils.SMTLIB_FALSE)
 				);

@@ -72,7 +72,7 @@ public class FASE14 extends RE13 {
 		properties.setProperty(PROPERTY_OUT_TIMERNF, String.valueOf(timeRNF));
 	}
 
-	//TODO MMINT: unify/refactor these functions when simplifying the i* metamodel
+	//TODO MMINT[ISTAR] unify/refactor these functions when simplifying the i* metamodel
 	protected String encodeMAVConstraintFunction(MAVOElement mavoModelObj) {
 
 		return (mavoModelObj instanceof DependencyEndpoint) ?

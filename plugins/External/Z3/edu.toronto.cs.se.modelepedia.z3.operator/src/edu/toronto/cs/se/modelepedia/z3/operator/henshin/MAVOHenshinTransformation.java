@@ -124,7 +124,7 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 		Set<Node> nodesN = new HashSet<Node>();
 		Set<Node> nodesC = new HashSet<Node>();
 		Set<Node> nodesD = new HashSet<Node>();
-		//TODO MMINT: loop through all nacs
+		//TODO MMINT[LIFTING] loop through all nacs
 		Rule ruleCopyN = EcoreUtil.copy(rule);
 //		NestedCondition conditionN = ruleCopyN.getLhs().getNestedConditions().get(0);
 		NestedCondition conditionN = ruleCopyN.getLhs().getNAC(ANAC_NAME);
@@ -254,7 +254,7 @@ matchesN:
 		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		// do transformations
-		//TODO MMINT: implement D support and OR-ed N support
+		//TODO MMINT[LIFTING] implement D support and OR-ed N support
 		String fullUri = MultiModelUtils.prependWorkspaceToUri(MultiModelUtils.replaceLastSegmentInUri(model.getUri(), ""));
 		HenshinResourceSet resourceSet = new HenshinResourceSet(fullUri);
 		Module module = resourceSet.getModule(transformationModule, false);

@@ -67,7 +67,7 @@ public class ModelEndpointReferenceSemanticEditPolicy extends ModelEndpointRefer
 			);
 
 			return ccommand;
-			//TODO MMINT: add outline support for modelrelremovemodelcommand and undo operations (always refresh is the solution?)
+			//TODO MMINT[MID] add outline support for modelrelremovemodelcommand and undo operations (always refresh is the solution?)
 		}
 	}
 

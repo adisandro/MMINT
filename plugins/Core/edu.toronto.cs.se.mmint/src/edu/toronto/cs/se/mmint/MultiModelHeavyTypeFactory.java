@@ -476,7 +476,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		addHeavyType(newEditorType, editorType, extensionType.getUri(), extensionType.getName());
 		addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, MMINT.repository);
 
-		//TODO MMINT: this can be optimized to run once instead of for each editor, if needed
+		//TODO MMINT[MISC] this can be optimized to run once instead of for each editor, if needed
 		IExtensionRegistry registry = RegistryFactory.getRegistry();
 		if (registry != null) {
 			IConfigurationElement[] config = registry.getConfigurationElementsFor(MMINT.ECLIPSE_EDITORS_EXT_POINT);

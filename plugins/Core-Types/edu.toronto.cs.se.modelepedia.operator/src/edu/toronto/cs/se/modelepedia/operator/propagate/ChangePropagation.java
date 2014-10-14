@@ -76,7 +76,7 @@ public class ChangePropagation extends OperatorImpl {
 		modelElemRef.deleteInstanceReference();
 		ModelElement modelElem = modelElemRef.getObject();
 		((Model) modelElem.eContainer()).getModelElems().remove(modelElem);
-		//TODO MMINT should remove from all model rels too?
+		//TODO MMINT[OO] should remove from all model rels too?
 	}
 
 	private String getModelEObjectUri(String modelElemUri) {
@@ -217,8 +217,8 @@ public class ChangePropagation extends OperatorImpl {
 			newTraceLinkRef.getObject().setName(PROPTRACE_RULE4_LINK_NAME);
 			traceLinkTypeRef.getModelElemEndpointRefs().get(indexA).getObject().createInstanceAndReference(newTraceModelElemRefA, newTraceLinkRef);
 			// if more than one link type with same model element type A exist, they all get created (the user will merge unnecessary ones)
-			//TODO MMINT: should I also mark them as M, because I want them to be mutually exclusive?
-			//TODO MMINT: (prop rule that forces the removal of M if the endpoints are E sounds wrong in this case, mostly because mutual exclusion has not been formalized)
+			//TODO MMINT[MAVO] should I also mark them as M, because I want them to be mutually exclusive?
+			//TODO MMINT[MAVO] (prop rule that forces the removal of M if the endpoints are E sounds wrong in this case, mostly because mutual exclusion has not been formalized)
 		}
 
 		return newTraceLinkRef;
@@ -394,7 +394,7 @@ traceLinks:
 
 		// remove var object
 		 EcoreUtil.delete(varModelObj);
-		//TODO MMINT: should we try to preserve references to it, maybe using EcoreUtil.CrossReferencer?
+		//TODO MMINT[MISC] should we try to preserve references to it, maybe using EcoreUtil.CrossReferencer?
 		// remove unified links and model elements
 		removeModelElementAndModelElementReference(varModelElemRef);
 		// update uris due to model element unification
@@ -573,7 +573,7 @@ traceLinks:
 				propagateRefinementLinks(propTraceLinkRef, refinementRel, relatedModel, traceRel, newPropRefinementRel);
 			}
 		}
-		//TODO MMINT: reason about how to concretely use indexA and indexB, when the refineUncertainty becomes an independent operator
+		//TODO MMINT[MAVO] reason about how to concretely use indexA and indexB, when the refineUncertainty becomes an independent operator
 
 		EList<Model> result = new BasicEList<Model>();
 		result.add(newPropModel);

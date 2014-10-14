@@ -88,7 +88,7 @@ public class RunOperatorListener extends SelectionAdapter {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
-				//TODO MMINT: is conversionMap ordered?? I don't think so
+				//TODO MMINT[OPERATOR] is conversionMap ordered?? I don't think so
 				// run all conversion operators
 				if (!conversionMap.isEmpty()) {
 					for (Entry<Integer, EList<ConversionOperator>> entry : conversionMap.entrySet()) {

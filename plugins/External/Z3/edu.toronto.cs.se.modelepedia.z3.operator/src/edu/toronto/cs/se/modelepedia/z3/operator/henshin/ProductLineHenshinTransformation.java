@@ -114,7 +114,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		Set<Node> nodesN = new HashSet<Node>();
 		Set<Node> nodesC = new HashSet<Node>();
 		Set<Node> nodesD = new HashSet<Node>();
-		//TODO MMINT: loop through all nacs
+		//TODO MMINT[LIFTING] loop through all nacs
 		// try to match (N)ac
 		// access nodes of the transformation rule, detect N,C,D nodes, transform N nodes into C
 		Rule ruleCopyN = EcoreUtil.copy(rule);
@@ -217,7 +217,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		// function definition at every step for fX (phi P, external constraint)
 		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
-		//TODO MMINT: implement D support and OR-ed N support
+		//TODO MMINT[LIFTING] implement D support and OR-ed N support
 		// henshin initialization
 		String fullUri = MultiModelUtils.prependWorkspaceToUri(MultiModelUtils.replaceLastSegmentInUri(model.getUri(), ""));
 		HenshinResourceSet resourceSet = new HenshinResourceSet(fullUri);

@@ -72,7 +72,7 @@ public class ModelEndpointReferenceImportModelCommand extends ModelEndpointRefer
 
 	protected ModelEndpointReference doExecuteInstancesLevel() throws Exception{
 
-		//TODO MMINT: completely review this whole class, now we don't just import a model, we can also add an endpoint to the same model
+		//TODO MMINT[MID] completely review this whole class, now we don't just import a model, we can also add an endpoint to the same model
 //		String modelUri = MultiModelDiagramUtils.selectModelToImport(false);
 //		ModelRel owner = (ModelRel) getElementToEdit();
 //		Model newModel;

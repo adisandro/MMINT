@@ -176,7 +176,7 @@ public class ChangeImpact extends OperatorImpl {
 		HashMap<String, List<ModelElementReference>> origTypeTable = new HashMap<String, List<ModelElementReference>>();
 		HashMap<String, List<EObject>> impactedUnifyTable = new HashMap<String, List<EObject>>();
 		HashMap<String, List<EObject>> impactedTypeTable = new HashMap<String, List<EObject>>();
-		//TODO MMINT: be careful when overriding is implemented
+		//TODO MMINT[OVERRIDE] be careful when overriding is implemented
 		createOrigVarTables(traceRel.getModelEndpointRefs().get(0), origUnifyTable, origTypeTable); // O(n log n)
 		createImpactedVarTables(traceRel.getModelEndpointRefs().get(1), impactedUnifyTable, impactedTypeTable); // O(n log n)
 

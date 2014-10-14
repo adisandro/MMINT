@@ -107,7 +107,7 @@ public class MMINT implements MMINTConstants {
 	/**
 	 * The table to have some very poor sort of multiple inheritance,
 	 * i.e. to have UML_MAVO properly recognized.
-	 * TODO MMINT: redo when needed!
+	 * TODO MMINT[MID] redo when needed!
 	 */
 	static Map<String, Set<String>> multipleInheritanceTable;
 	/** The type MID filename. */
@@ -575,7 +575,7 @@ public class MMINT implements MMINTConstants {
 		}
 
 		// do model types first
-		//TODO MMINT: this probably explains the todo in type hierarchy (are type and type ref iterators really needed, or are the lists already ordered by construction?)
+		//TODO MMINT[MISC] this probably explains the todo in type hierarchy (are type and type ref iterators really needed, or are the lists already ordered by construction?)
 		for (Model dynamicModelType : MultiModelRegistry.getModels(multiModel)) {
 			if (
 				!(dynamicModelType instanceof ModelRel) &&

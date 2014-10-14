@@ -205,7 +205,7 @@ public class MultiModelConstraintChecker {
 		for (ModelRel modelRelType : MultiModelTypeRegistry.getModelRelTypes()) {
 			boolean isAllowed = true, isAllowedSrc = false, isAllowedTgt = false;
 			HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
-			//TODO MMINT: consider direction for binary?
+			//TODO MMINT[INTROSPECTION] consider direction for binary?
 			if (targetSrcModel != null) {
 				for (ModelEndpointReference modelTypeEndpointRef : modelRelType.getModelEndpointRefs()) {
 					if (MultiModelConstraintChecker.isAllowedModelEndpoint(modelTypeEndpointRef, targetSrcModel, cardinalityTable)) {
@@ -244,7 +244,7 @@ public class MultiModelConstraintChecker {
 		for (LinkReference linkTypeRef : modelRelType.getLinkRefs()) {
 			boolean isAllowed = true, isAllowedSrc = false, isAllowedTgt = false;
 			HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
-			//TODO MMINT: consider direction for binary?
+			//TODO MMINT[INTROSPECTION] consider direction for binary?
 			if (targetSrcModelElemRef != null) {
 				for (ModelElementEndpointReference modelElemTypeEndpointRef : linkTypeRef.getObject().getModelElemEndpointRefs()) {
 					if (MultiModelConstraintChecker.isAllowedModelElementEndpointReference(modelElemTypeEndpointRef.getObject(), targetSrcModelElemRef, cardinalityTable)) {
@@ -331,7 +331,7 @@ public class MultiModelConstraintChecker {
 		HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
 		for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
 			boolean isAllowed = false;
-			//TODO MMINT: order of visit might affect the result, should be from the most specific to the less
+			//TODO MMINT[INTROSPECTION] order of visit might affect the result, should be from the most specific to the less
 			for (ModelEndpointReference modelTypeEndpointRef : newModelRelType.getModelEndpointRefs()) {
 				if (isAllowed = isAllowedModelEndpoint(modelTypeEndpointRef, modelEndpoint.getTarget(), cardinalityTable)) {
 					MultiModelRegistry.addEndpointCardinality(modelTypeEndpointRef.getUri(), cardinalityTable);
@@ -348,7 +348,7 @@ public class MultiModelConstraintChecker {
 
 	public static boolean isAllowedModelElementEndpointReference(ModelElementEndpoint modelElemTypeEndpoint, ModelElementReference newModelElemRef, HashMap<String, Integer> cardinalityTable) {
 
-		//TODO MMINT: consider static (like now) or runtime types?
+		//TODO MMINT[INTROSPECTION] consider static (like now) or runtime types?
 		String newModelElemTypeUri = newModelElemRef.getObject().getMetatypeUri();
 		// check if the type is allowed
 		if (modelElemTypeEndpoint.getTargetUri().equals(newModelElemTypeUri) || MultiModelTypeHierarchy.isSubtypeOf(newModelElemTypeUri, modelElemTypeEndpoint.getTargetUri())) {
@@ -400,7 +400,7 @@ public class MultiModelConstraintChecker {
 		HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
 		for (ModelElementEndpointReference modelElemEndpointRef : link.getModelElemEndpointRefs()) {
 			boolean isAllowed = false;
-			//TODO MMINT: order of visit might affect the result, should be from the most specific to the less
+			//TODO MMINT[INTROSPECTION] order of visit might affect the result, should be from the most specific to the less
 			for (ModelElementEndpointReference modelElemTypeEndpointRef : newLinkType.getModelElemEndpointRefs()) {
 				if (isAllowed = isAllowedModelElementEndpointReference(modelElemTypeEndpointRef.getObject(), modelElemEndpointRef.getModelElemRef(), cardinalityTable)) {
 					MultiModelRegistry.addEndpointCardinality(modelElemTypeEndpointRef.getUri(), cardinalityTable);
