@@ -19,8 +19,8 @@ import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
 
 public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener {
 
-	private static final String NODE_MARKER = ";Node";
-	private static final String EDGE_MARKER = ";Edge";
+	private static final String NODE_MARKER = "Node";
+	private static final String EDGE_MARKER = "Edge";
 	private static final String MODEL_START_MARKER = ";Model" + System.lineSeparator();
 	private static final String MODEL_END_MARKER = ";End Model" + System.lineSeparator();
 	private static final int NUM_TOKENS = 4;
@@ -71,9 +71,9 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 				smtCurrentElems.put(new Integer(smtTokens[NUM_TOKENS-1]), smtTokens[NUM_TOKENS-3]);
 			}
 		}
-		else if (text.endsWith(NODE_MARKER) || text.endsWith(EDGE_MARKER)) {
+		else if (text.equals(NODE_MARKER) || text.equals(EDGE_MARKER)) {
 			smtTokenCounter = 0;
-			smtCurrentElems = (text.endsWith(NODE_MARKER)) ? smtNodes : smtEdges;
+			smtCurrentElems = (text.equals(NODE_MARKER)) ? smtNodes : smtEdges;
 		}
 	}
 
