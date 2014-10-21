@@ -49,4 +49,10 @@ public class JavaReasoningEngine implements IReasoningEngine {
 		return true;
 	}
 
+	@Override
+	public void refineWithConstraint(Model model) {
+
+		return;
+	}
+
 }

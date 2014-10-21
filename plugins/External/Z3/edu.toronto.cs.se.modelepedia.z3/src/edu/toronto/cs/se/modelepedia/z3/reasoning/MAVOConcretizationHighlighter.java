@@ -18,10 +18,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.FontStyle;
-import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -58,7 +55,7 @@ public class MAVOConcretizationHighlighter {
 		diagramElements = new HashMap<String, View>();
 	}
 
-	public void highlightExample(Model model) throws Exception {
+	public void highlightCounterExample(Model model) throws Exception {
 
 		smtProperty = model.getConstraint().getImplementation();
 		resultMAVO = Z3ReasoningEngine.checkMAVOProperty(smtEncoding, smtProperty);
@@ -87,7 +84,7 @@ public class MAVOConcretizationHighlighter {
 		//grey out anything that's not in the example
 		for (String FID : notInExample){
 			View element = diagramElements.get(FID);
-			color(element);
+			GMFDiagramUtils.colorDiagramElement(element, GREYOUT_COLOR, FONT_GREYOUT_COLOR);
 		}
 		
 		//Write diagram to file
@@ -117,25 +114,6 @@ public class MAVOConcretizationHighlighter {
 		separated.add(exampleElements);
 		separated.add(remainingElements);
 		return separated;
-	}
-	
-	private void color(View element) {
-		if (element instanceof Shape) {
-			Shape node = (Shape) element;
-			node.setFillColor(GREYOUT_COLOR);
-			node.setLineColor(GREYOUT_COLOR);
-			node.setFontColor(FONT_GREYOUT_COLOR);
-		}
-		else if (element instanceof Connector){
-			Connector line = (Connector) element;
-			line.setLineColor(GREYOUT_COLOR);
-			FontStyle labelFont = (FontStyle) line.getStyles().get(0);
-			labelFont.setFontColor(FONT_GREYOUT_COLOR);
-		}
-		else{
-			MMINTException.print(MMINTException.Type.WARNING, "Can't color diagram element",
-					new MMINTException("View object not an instance of Shape or Connector"));
-		}
 	}
 
 	/**
@@ -171,7 +149,7 @@ public class MAVOConcretizationHighlighter {
 	private Z3Model runZ3SMTSolver(){
 		Z3IncrementalSolver z3Solver = new Z3IncrementalSolver();
 		z3Solver.firstCheckSatAndGetModel(smtEncoding);
-		Z3Model resultModel = z3Solver.checkSatAndGetModel(Z3Utils.assertion(smtProperty), Z3IncrementalBehavior.POP);
+		Z3Model resultModel = z3Solver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(smtProperty)), Z3IncrementalBehavior.POP);
 		return resultModel;
 	}
 	

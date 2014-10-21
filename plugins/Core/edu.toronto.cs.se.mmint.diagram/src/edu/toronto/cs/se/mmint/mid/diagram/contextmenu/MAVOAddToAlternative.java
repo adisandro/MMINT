@@ -8,6 +8,7 @@
  * 
  * Contributors:
  *    Alessio Di Sandro - Implementation.
+ *    Naama Ben-David - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.diagram.contextmenu;
 

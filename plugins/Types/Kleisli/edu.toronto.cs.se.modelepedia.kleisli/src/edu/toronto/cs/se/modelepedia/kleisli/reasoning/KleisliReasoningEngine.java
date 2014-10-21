@@ -147,4 +147,10 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 		return true;
 	}
 
+	@Override
+	public void refineWithConstraint(Model model) {
+
+		return;
+	}
+
 }

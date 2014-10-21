@@ -1,5 +1,18 @@
+/**
+ * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay, Naama Ben-David.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Naama Ben-David - Implementation.
+ */
 package edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part;
 
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -46,19 +59,55 @@ public class MAVODecisionTreeContributionItem extends ContributionItem {
 				createDecisionMenuItems(decision, parent);
 			} else if (object instanceof MAVOAlternative) {
 				MAVOAlternative alternative = (MAVOAlternative) object;
-				// Remove element from alternative
-				for (MAVOElement element : alternative.getMavoElements()) {
-					MenuItem removeElementItem = new MenuItem(parent, SWT.NONE);
-					removeElementItem.setText("Remove element "
-							+ element.getFormulaVariable());
-					removeElementItem
-							.addSelectionListener(new MAVODecisionTreeMenuListener(
-									alternative, element));
-
+				// Add to alternative
+				EObject model = alternative.eContainer().eContainer();
+				TreeIterator<EObject> allElements = model.eAllContents();
+				while (allElements.hasNext()){
+					boolean inAlternative = false;
+					EObject content = allElements.next();
+					if (!(content instanceof MAVOElement)){
+						continue;
+					}
+					MAVOElement element = (MAVOElement) content;
+					for (MAVOAlternative alt: element.getAlternatives()){
+						if (alt.getFormulaVariable().equals(alternative.getFormulaVariable())){
+							inAlternative = true;
+							break;
+						}
+					}
+					if (inAlternative){
+						createRemoveElementMenuItem(element, alternative, parent);
+					}
+					else {
+						createAddElementMenuItem(element, alternative, parent);
+					}
 				}
+
 			}
 
 		}
+	}
+	
+	private void createAddElementMenuItem(MAVOElement element,
+			MAVOAlternative alternative, Menu parent) {
+		MenuItem addElementItem = new MenuItem(parent, SWT.NONE);
+		addElementItem.setText("Add element "
+				+ element.getFormulaVariable());
+		addElementItem
+		.addSelectionListener(new MAVODecisionTreeMenuListener(
+				alternative, element, true));
+		
+	}
+
+	private void createRemoveElementMenuItem(MAVOElement element, MAVOAlternative alternative, Menu parent){
+		// Remove element from alternative
+		MenuItem removeElementItem = new MenuItem(parent, SWT.NONE);
+		removeElementItem.setText("Remove element "
+				+ element.getFormulaVariable());
+		removeElementItem
+		.addSelectionListener(new MAVODecisionTreeMenuListener(
+				alternative, element, false));
+
 	}
 
 	private void createModelMenuItems(MAVOModel model, Menu parent) {
@@ -75,7 +124,7 @@ public class MAVODecisionTreeContributionItem extends ContributionItem {
 					+ decision.getFormulaVariable());
 			removeDecisionItem
 					.addSelectionListener(new MAVODecisionTreeMenuListener(
-							model, decision));
+							model, decision, false));
 		}
 	}
 
@@ -93,7 +142,7 @@ public class MAVODecisionTreeContributionItem extends ContributionItem {
 					+ alternative.getFormulaVariable());
 			removeAlternativeItem
 					.addSelectionListener(new MAVODecisionTreeMenuListener(
-							decision, alternative));
+							decision, alternative, false));
 		}
 	}
 }

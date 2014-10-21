@@ -8,7 +8,7 @@
  * 
  * Contributors:
  *    Alessio Di Sandro - Implementation.
- *    Naama Ben-David - Highlighting functionality
+ *    Naama Ben-David - Concretization highlighting.
  */
 package edu.toronto.cs.se.modelepedia.z3.reasoning;
 
@@ -75,7 +75,7 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 					MAVOConcretizationHighlighter highlighter;
 					try {
 						highlighter = new MAVOConcretizationHighlighter(z3ModelParser);
-						highlighter.highlightExample(model);
+						highlighter.highlightCounterExample(model);
 					}
 					catch (Exception e) {
 						MMINTException.print(MMINTException.Type.ERROR, "Can't highlight example", e);
@@ -91,6 +91,16 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 	public boolean checkConstraintConsistency(Model modelType, String constraint) {
 
 		return true;
+	}
+
+	@Override
+	public void refineWithConstraint(Model model) {
+
+		MAVORefinement refiner = new MAVORefinement(model);
+		try {
+			refiner.refine();
+		} catch (Exception e) {
+		}
 	}
 
 }

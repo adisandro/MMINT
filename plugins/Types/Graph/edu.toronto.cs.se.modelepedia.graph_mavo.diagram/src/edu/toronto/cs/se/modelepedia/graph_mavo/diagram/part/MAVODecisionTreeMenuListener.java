@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay, Naama Ben-David.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Naama Ben-David - Implementation.
+ */
 package edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part;
 
 import java.util.ArrayList;
@@ -31,16 +42,19 @@ public class MAVODecisionTreeMenuListener extends SelectionAdapter {
 	Object container;
 	Object element;
 	Boolean createNew;
+	Boolean addExisting;
 
 	public MAVODecisionTreeMenuListener(Object container) {
 		this.container = container;
 		this.createNew = true;
+		this.addExisting = false;
 	}
 
-	public MAVODecisionTreeMenuListener(Object container, Object element) {
+	public MAVODecisionTreeMenuListener(Object container, Object element, boolean addExisting) {
 		this.container = container;
 		this.createNew = false;
 		this.element = element;
+		this.addExisting = addExisting;
 	}
 
 	@Override
@@ -66,7 +80,10 @@ public class MAVODecisionTreeMenuListener extends SelectionAdapter {
 			operatorCommand = new CreateNewObjectCommand(
 					TransactionUtil.getEditingDomain(container),
 					"Add new object to container", files);
-		} else {
+		} else if (addExisting){
+			operatorCommand = new AddExistingObjectCommand(TransactionUtil.getEditingDomain(container), "Add existing object to container", files);
+		}
+		else {
 			operatorCommand = new RemoveOldObjectCommand(
 					TransactionUtil.getEditingDomain(container),
 					"Remove object from contrainer", files);
@@ -108,6 +125,31 @@ public class MAVODecisionTreeMenuListener extends SelectionAdapter {
 				alternative.setFormulaVariable(decision.getFormulaVariable()
 						+ "A" + alternativeNum);
 				decision.getAlternatives().add(alternative);
+			}
+			return CommandResult.newOKCommandResult();
+		}
+
+	}
+	
+	protected class AddExistingObjectCommand extends AbstractTransactionalCommand {
+
+		public AddExistingObjectCommand(TransactionalEditingDomain domain,
+				String label, List affectedFiles) {
+			super(domain, label, affectedFiles);
+		}
+
+		@Override
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+				IAdaptable info) throws ExecutionException {
+
+			if (element == null) {
+				return CommandResult.newCancelledCommandResult();
+			}
+			if (container instanceof MAVOAlternative && element instanceof MAVOElement){
+				MAVOAlternative alternative = (MAVOAlternative) container;
+				MAVOElement addElement = (MAVOElement) element;
+				alternative.getMavoElements().add(addElement);
+				addElement.setMay(true);
 			}
 			return CommandResult.newOKCommandResult();
 		}

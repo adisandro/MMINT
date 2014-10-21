@@ -106,6 +106,12 @@ public class OCLReasoningEngine implements IReasoningEngine {
 		return true;
 	}
 
+	@Override
+	public void refineWithConstraint(Model model) {
+
+		return;
+	}
+
 	public MAVOTruthValue checkConstraint(EObject modelObj, String oclConstraint) {
 
 		OCL ocl = OCL.newInstance();

@@ -22,4 +22,6 @@ public interface IReasoningEngine {
 
 	public boolean checkConstraintConsistency(Model modelType, String constraint);
 
+	public void refineWithConstraint(Model model);
+
 }

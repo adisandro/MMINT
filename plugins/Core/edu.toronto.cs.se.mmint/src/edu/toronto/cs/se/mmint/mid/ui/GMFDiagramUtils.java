@@ -26,9 +26,14 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
+import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.FontStyle;
+import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
@@ -122,6 +127,30 @@ public class GMFDiagramUtils {
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		return adapterFactory;
+	}
+
+	public static void colorDiagramElement(View diagramElement, int color, int fontColor) throws MMINTException {
+
+		if (!(diagramElement instanceof Shape) && !(diagramElement instanceof Connector)) {
+			throw new MMINTException("Diagram element not supported: " + diagramElement.getClass().getName());
+		}
+
+		if (diagramElement instanceof Shape) {
+			Shape node = (Shape) diagramElement;
+			node.setFillColor(color);
+			node.setLineColor(color);
+			if (fontColor >= 0) {
+				node.setFontColor(fontColor);
+			}
+		}
+		else if (diagramElement instanceof Connector){
+			Connector line = (Connector) diagramElement;
+			line.setLineColor(color);
+			FontStyle labelFont = (FontStyle) line.getStyles().get(0);
+			if (fontColor >= 0) {
+				labelFont.setFontColor(fontColor);
+			}
+		}
 	}
 
 }

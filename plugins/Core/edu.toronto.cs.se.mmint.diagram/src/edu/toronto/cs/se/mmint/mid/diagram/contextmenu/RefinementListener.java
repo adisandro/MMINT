@@ -8,39 +8,50 @@
  * 
  * Contributors:
  *    Alessio Di Sandro - Implementation.
+ *    Naama Ben-David - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.kleisli.contextmenu;
+package edu.toronto.cs.se.mmint.mid.diagram.contextmenu;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.diagram.library.AddModifyConstraintListener;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
-import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
 
-public class KleisliAddModifyQueryListener extends AddModifyConstraintListener {
+public class RefinementListener extends SelectionAdapter{
 
-	public KleisliAddModifyQueryListener(ExtendibleElement element) {
-
-		super(element, false);
+	Model model;
+	GraphicalEditPart editPart;
+	boolean makeRefinement;
+	
+	public RefinementListener(Model model, GraphicalEditPart graphicalEditPart,
+			boolean makeRefinement) {
+		this.model = model;
+		this.editPart = graphicalEditPart;
+		/*TODO MMINT[MU-MMINT] makeRefinement originally intended to differentiate between a call to "preview" 
+		 * and a call to "make refinement". However, I think "preview" should get its own listener that just
+		 * highlights, possibly keeping a list of elements to be removed if a call to "make refinement" follows.
+		 */
+		this.makeRefinement = makeRefinement;
 	}
-
+	
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
@@ -51,40 +62,34 @@ public class KleisliAddModifyQueryListener extends AddModifyConstraintListener {
 			files.add(diagramFile);
 			files.add(modelFile);
 		}
-		KleisliAddModifyQueryCommand command = new KleisliAddModifyQueryCommand(
-			TransactionUtil.getEditingDomain(element),
-			"Constraint",
+		AbstractTransactionalCommand operatorCommand = new RefinementCommand(
+			TransactionUtil.getEditingDomain(model),
+			"Refine",
 			files
 		);
 		try {
-			OperationHistoryFactory.getOperationHistory().execute(command, null, null);
+			OperationHistoryFactory.getOperationHistory().execute(operatorCommand, null, null);
 		}
 		catch (ExecutionException ex) {
-			MMINTException.print(Type.ERROR, "Add/modify kleisli query history execution error", ex);
+			MMINTException.print(Type.ERROR, "Refine history execution error", ex);
 		}
 	}
+	
+	protected class RefinementCommand extends AbstractTransactionalCommand {
 
-	protected class KleisliAddModifyQueryCommand extends AddModifyConstraintCommand {
-
-		public KleisliAddModifyQueryCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
-
+		public RefinementCommand(TransactionalEditingDomain domain,
+				String label, List<IFile> affectedFiles) {
 			super(domain, label, affectedFiles);
 		}
 
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			CommandResult result = super.doExecuteWithResult(monitor, info);
-			if (result.getStatus().getSeverity() == IStatus.OK) {
-				if (!element.getConstraint().getLanguage().equals(KleisliReasoningEngine.LANGUAGE_ID)) {
-					MMINTException.print(Type.ERROR, "The query language is not " + KleisliReasoningEngine.LANGUAGE_ID, null);
-					result = CommandResult.newErrorCommandResult("No kleisli query added");
-				}
-			}
+			MultiModelConstraintChecker.refineWithConstraint(model, model.getConstraint());
 
-			return result;
+			return CommandResult.newOKCommandResult();
 		}
-
+		
 	}
 
 }
