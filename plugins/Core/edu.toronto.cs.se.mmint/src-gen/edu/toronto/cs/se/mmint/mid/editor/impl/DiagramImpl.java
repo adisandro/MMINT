@@ -126,16 +126,14 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 		if (getWizardDialogClass() == null) {
 			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 			if (initialSelection.getFirstElement() instanceof IFile) {
-				String modelUri = MultiModelUtils.prependWorkspaceToUri(
-					((IFile) initialSelection.getFirstElement()).getFullPath().toOSString()
-				);
+				String modelUri = ((IFile) initialSelection.getFirstElement()).getFullPath().toOSString();
 				String diagramUri = MultiModelUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
 				String diagramKind = MultiModelTypeRegistry.getType(getModelUri()).getName();
 				String diagramPluginId = MultiModelTypeRegistry.getTypeBundle(getUri()).getSymbolicName();
 				// create the diagram directly and do not open the wizard
 				try {
-					GMFDiagramUtils.createGMFDiagram(modelUri, diagramUri, diagramKind, diagramPluginId);
-					GMFDiagramUtils.openGMFDiagram(diagramUri, getId(), false);
+					GMFDiagramUtils.createGMFDiagram(modelUri, diagramUri, diagramKind, diagramPluginId, true);
+					GMFDiagramUtils.openGMFDiagram(diagramUri, getId(), true);
 				}
 				catch (Exception e) {
 					throw new MMINTException("Error creating or opening the gmf diagram", e);

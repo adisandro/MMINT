@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -93,12 +92,12 @@ public class GMFDiagramUtils {
 		return name;
 	}
 
-	public static void createGMFDiagram(String modelUri, String diagramUri, String diagramKind, String diagramPluginId) throws Exception {
+	public static void createGMFDiagram(String modelUri, String diagramUri, String diagramKind, String diagramPluginId, boolean isWorkspaceRelative) throws Exception {
 
 		ResourceSet domainResourceSet = new ResourceSetImpl();
-		Resource modelResource = domainResourceSet.getResource(URI.createFileURI(modelUri), true);
+		Resource modelResource = domainResourceSet.getResource(MultiModelUtils.getEMFUri(modelUri, isWorkspaceRelative), true);
 		ResourceSet diagramResourceSet = new ResourceSetImpl();
-		Resource diagramResource =	diagramResourceSet.createResource(URI.createFileURI(diagramUri));
+		Resource diagramResource =	diagramResourceSet.createResource(MultiModelUtils.getEMFUri(diagramUri, isWorkspaceRelative));
 		EObject rootModelObj = (EObject) modelResource.getContents().get(0);
 		Diagram diagram = ViewService.createDiagram(
 			rootModelObj,

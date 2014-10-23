@@ -55,7 +55,7 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 		String midModelUri = pluginPath + IPath.SEPARATOR + MMINT.TYPEMID_FILENAME;
 		String midDiagramUri = midModelUri + GMFDiagramUtils.DIAGRAM_SUFFIX;
 		try {
-			GMFDiagramUtils.createGMFDiagram(midModelUri, midDiagramUri, MultiModelEditPart.MODEL_ID, MIDDiagramEditorPlugin.ID);
+			GMFDiagramUtils.createGMFDiagram(midModelUri, midDiagramUri, MultiModelEditPart.MODEL_ID, MIDDiagramEditorPlugin.ID, false);
 		}
 		catch (Exception e) {
 			MMINTException.print(Type.ERROR, "Error creating Type MID diagram", e);
