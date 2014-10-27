@@ -53,7 +53,7 @@ import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
-import edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.MAVODiagramDecisionTree;
+import edu.toronto.cs.se.mmint.mavo.MAVODiagramDecisionTree;
 
 /**
  * @generated
