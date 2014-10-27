@@ -111,10 +111,10 @@ public class StateToEconomy_M2M {
 	public void loadModels(String inModelPath) throws ATLCoreException {
 		ModelFactory factory = new EMFModelFactory();
 		IInjector injector = new EMFInjector();
-	 	IReferenceModel stateMetamodel = factory.newReferenceModel();
-		injector.inject(stateMetamodel, getMetamodelUri("State"));
 	 	IReferenceModel economyMetamodel = factory.newReferenceModel();
 		injector.inject(economyMetamodel, getMetamodelUri("Economy"));
+	 	IReferenceModel stateMetamodel = factory.newReferenceModel();
+		injector.inject(stateMetamodel, getMetamodelUri("State"));
 		this.inModel = factory.newModel(stateMetamodel);
 		injector.inject(inModel, inModelPath);
 		this.outModel = factory.newModel(economyMetamodel);
