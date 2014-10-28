@@ -58,7 +58,6 @@ public class EdgeEditPart extends ConnectionNodeEditPart implements
 		if (childEditPart instanceof edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.WrappingLabel2EditPart) {
 			((edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.WrappingLabel2EditPart) childEditPart)
 					.setLabel(getPrimaryShape().getFigureMAVOEdgeLabelFigure());
-			return true;
 		}
 		return false;
 	}

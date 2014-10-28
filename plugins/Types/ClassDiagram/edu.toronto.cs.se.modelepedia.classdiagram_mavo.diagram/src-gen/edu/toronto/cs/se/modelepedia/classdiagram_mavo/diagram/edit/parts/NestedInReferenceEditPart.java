@@ -61,7 +61,6 @@ public class NestedInReferenceEditPart extends ConnectionNodeEditPart implements
 			((edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.WrappingLabel5EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureMAVONestedInReferenceLabelFigure());
-			return true;
 		}
 		return false;
 	}

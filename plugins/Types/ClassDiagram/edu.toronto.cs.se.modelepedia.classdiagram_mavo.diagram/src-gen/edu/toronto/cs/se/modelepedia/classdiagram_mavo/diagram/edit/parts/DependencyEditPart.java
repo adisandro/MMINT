@@ -60,7 +60,6 @@ public class DependencyEditPart extends ConnectionNodeEditPart implements
 			((edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.WrappingLabel7EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureMAVODependencyLabelFigure());
-			return true;
 		}
 		return false;
 	}

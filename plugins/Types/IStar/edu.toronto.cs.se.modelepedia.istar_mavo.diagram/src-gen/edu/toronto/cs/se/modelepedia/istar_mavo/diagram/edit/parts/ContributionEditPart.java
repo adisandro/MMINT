@@ -59,7 +59,6 @@ public class ContributionEditPart extends ConnectionNodeEditPart implements
 			((edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.WrappingLabel12EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureMAVOContributionLabelFigure());
-			return true;
 		}
 		return false;
 	}

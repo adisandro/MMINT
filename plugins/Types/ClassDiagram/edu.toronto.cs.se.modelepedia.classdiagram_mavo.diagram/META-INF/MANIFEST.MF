@@ -42,6 +42,7 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mavo.edit,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.edit,
+ edu.toronto.cs.se.mmint.mavo,
  edu.toronto.cs.se.modelepedia.classdiagram_mavo,
  edu.toronto.cs.se.modelepedia.classdiagram_mavo.edit
 Bundle-ActivationPolicy: lazy

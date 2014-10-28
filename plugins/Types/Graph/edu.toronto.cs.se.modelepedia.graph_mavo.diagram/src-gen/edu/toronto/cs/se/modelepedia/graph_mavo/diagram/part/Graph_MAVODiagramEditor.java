@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IMessageProvider;
@@ -51,14 +50,12 @@ import org.eclipse.ui.navigator.resources.ProjectExplorer;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
-import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
-
-import edu.toronto.cs.se.mmint.mavo.MAVODiagramDecisionTree;
+import edu.toronto.cs.se.mmint.mavo.MAVODiagramEditor;
 
 /**
  * @generated
  */
-public class Graph_MAVODiagramEditor extends DiagramDocumentEditor implements
+public class Graph_MAVODiagramEditor extends MAVODiagramEditor implements
 		IGotoMarker {
 
 	/**
@@ -108,11 +105,12 @@ public class Graph_MAVODiagramEditor extends DiagramDocumentEditor implements
 	public String getContributorId() {
 		return edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin.ID;
 	}
-	
+
 	/**
 	 * @generated
 	 */
-	public Object getAdapterGen(Class type){
+	@SuppressWarnings("rawtypes")
+	public Object getAdapter(Class type) {
 		if (type == IShowInTargetList.class) {
 			return new IShowInTargetList() {
 				public String[] getShowInTargetIds() {
@@ -121,19 +119,6 @@ public class Graph_MAVODiagramEditor extends DiagramDocumentEditor implements
 			};
 		}
 		return super.getAdapter(type);
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@SuppressWarnings("rawtypes")
-	public Object getAdapter(Class type) {
-		if (type == IContentOutlinePage.class) {
-			MAVODiagramDecisionTree decisionTree = new MAVODiagramDecisionTree(
-					getDiagram());
-			return decisionTree;
-		}
-		return getAdapterGen(type);
 	}
 
 	/**

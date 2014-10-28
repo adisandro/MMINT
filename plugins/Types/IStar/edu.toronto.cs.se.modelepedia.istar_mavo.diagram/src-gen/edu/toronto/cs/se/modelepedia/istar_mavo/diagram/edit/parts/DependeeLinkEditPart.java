@@ -59,7 +59,6 @@ public class DependeeLinkEditPart extends ConnectionNodeEditPart implements
 			((edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.WrappingLabel14EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureMAVODependeeLinkLabelFigure());
-			return true;
 		}
 		return false;
 	}

@@ -57,7 +57,6 @@ public class TableColumnReferenceEditPart extends ConnectionNodeEditPart
 			((edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.WrappingLabel4EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureMAVOTableColumnReferenceLabelFigure());
-			return true;
 		}
 		return false;
 	}

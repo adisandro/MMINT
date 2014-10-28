@@ -42,7 +42,6 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.part.LastClickPositionProvider;
@@ -69,11 +68,12 @@ import org.eclipse.ui.navigator.resources.ProjectExplorer;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
+import edu.toronto.cs.se.mmint.mavo.MAVODiagramEditor;
 
 /**
  * @generated
  */
-public class RelationalDatabase_MAVODiagramEditor extends DiagramDocumentEditor
+public class RelationalDatabase_MAVODiagramEditor extends MAVODiagramEditor
 		implements IGotoMarker {
 
 	/**
