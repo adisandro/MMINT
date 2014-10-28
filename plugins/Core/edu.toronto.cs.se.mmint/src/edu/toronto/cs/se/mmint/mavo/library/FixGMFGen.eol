@@ -13,7 +13,8 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
    Alessio Di Sandro - Implementation.";
-   
+genEditor.dynamicTemplates = true;
+genEditor.templateDirectory = "/edu.toronto.cs.se.mmint.mavo/xtend/";
 genEditor.diagramFileExtension = genEditor.diagramFileExtension.replace("_mavo_diagram", "diag_mavo");
 genEditor.PluginDirectory = genEditor.PluginDirectory.concat("-gen");
 
