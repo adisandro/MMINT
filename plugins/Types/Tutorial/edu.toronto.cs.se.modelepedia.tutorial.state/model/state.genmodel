@@ -5,7 +5,7 @@
     editorDirectory="/edu.toronto.cs.se.modelepedia.tutorial.state.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.modelepedia.tutorial.state" modelName="State"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="7.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>state.ecore</foreignModel>
   <genPackages prefix="State" basePackage="edu.toronto.cs.se.modelepedia.tutorial"
       disposableProviderFactory="true" extensibleProviderFactory="true" ecorePackage="state.ecore#/">

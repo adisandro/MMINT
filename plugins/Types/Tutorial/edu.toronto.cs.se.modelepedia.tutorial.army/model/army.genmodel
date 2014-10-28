@@ -4,7 +4,7 @@
     modelDirectory="/edu.toronto.cs.se.modelepedia.tutorial.army/src-gen" editDirectory="/edu.toronto.cs.se.modelepedia.tutorial.army.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.modelepedia.tutorial.army.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.modelepedia.tutorial.army" modelName="Army" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>army.ecore</foreignModel>
   <genPackages prefix="Army" basePackage="edu.toronto.cs.se.modelepedia.tutorial"

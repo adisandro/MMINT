@@ -8,6 +8,6 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.petrinet,
  edu.toronto.cs.se.modelepedia.powerwindow
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName

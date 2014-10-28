@@ -4,7 +4,7 @@
     modelDirectory="/edu.toronto.cs.se.mavo/src-gen" editDirectory="/edu.toronto.cs.se.mavo.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.mavo.editor/src-gen" modelPluginID="edu.toronto.cs.se.mavo"
     modelName="MAVO" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>mavo.ecore</foreignModel>
   <genPackages prefix="MAVO" basePackage="edu.toronto.cs.se" disposableProviderFactory="true"
