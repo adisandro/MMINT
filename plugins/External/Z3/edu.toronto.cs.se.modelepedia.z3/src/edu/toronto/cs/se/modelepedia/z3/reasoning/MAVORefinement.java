@@ -19,8 +19,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.gmf.runtime.notation.Diagram;
-
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.impl.MAVOModelImpl;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -67,7 +65,7 @@ public class MAVORefinement {
 
 	public void refine() throws Exception {
 		smtProperty = model.getConstraint().getImplementation();
-		MAVOTruthValue resultMAVO = Z3ReasoningEngine.checkMAVOProperty(
+		MAVOTruthValue resultMAVO = Z3ReasoningEngine.checkMAVOConstraint(
 				smtEncoding, smtProperty);
 
 		if (resultMAVO != MAVOTruthValue.MAYBE) {
@@ -187,7 +185,7 @@ public class MAVORefinement {
 				continue;
 			}
 			MAVOTruthValue newTruthValue = Z3ReasoningEngine
-					.checkMAVOProperty(encodingWithProperty, elementFormula);
+					.checkMAVOConstraint(encodingWithProperty, elementFormula);
 			refinedModel.put(formulaID, newTruthValue);
 		}
 		return refinedModel;

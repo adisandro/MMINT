@@ -17,11 +17,11 @@ import com.microsoft.z3.Status;
 public class Z3Model {
 
 	public enum Z3Bool {
-	
+
 		SAT, UNSAT, UNKNOWN;
-	
+
 		public static Z3Bool toZ3Bool(Status z3Status) {
-	
+
 			switch (z3Status) {
 				case UNSATISFIABLE:
 					return UNSAT;
@@ -31,7 +31,7 @@ public class Z3Model {
 					return UNKNOWN;
 			}
 		}
-	
+
 	}
 
 	private Z3Bool z3Bool;

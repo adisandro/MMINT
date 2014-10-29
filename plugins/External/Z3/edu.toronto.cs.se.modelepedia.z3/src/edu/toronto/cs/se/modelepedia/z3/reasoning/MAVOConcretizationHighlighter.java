@@ -58,7 +58,7 @@ public class MAVOConcretizationHighlighter {
 	public void highlightCounterExample(Model model) throws Exception {
 
 		smtProperty = model.getConstraint().getImplementation();
-		resultMAVO = Z3ReasoningEngine.checkMAVOProperty(smtEncoding, smtProperty);
+		resultMAVO = Z3ReasoningEngine.checkMAVOConstraint(smtEncoding, smtProperty);
 		
 		if (resultMAVO != MAVOTruthValue.MAYBE){
 			return;

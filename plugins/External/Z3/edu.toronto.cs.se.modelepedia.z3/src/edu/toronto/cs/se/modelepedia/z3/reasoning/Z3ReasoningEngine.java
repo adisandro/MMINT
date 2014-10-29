@@ -26,6 +26,7 @@ import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3Solver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
@@ -35,9 +36,16 @@ import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 public class Z3ReasoningEngine implements IReasoningEngine {
 
 	private final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
-	private final static String GRAPH_MAVO_URI = "http://se.cs.toronto.edu/modelepedia/Graph_MAVO";
 
-	public static MAVOTruthValue checkMAVOProperty(String smtEncoding, String smtProperty) {
+	private static MAVOTruthValue temp(String smtEncoding, String smtProperty) {
+
+		Z3Solver z3Solver = new Z3Solver();
+		boolean propertyTruthValue = z3Solver.checkSat(smtEncoding + Z3Utils.assertion(smtProperty)) == Z3Bool.SAT;
+
+		return MAVOTruthValue.toMAVOTruthValue(propertyTruthValue);
+	}
+
+	public static MAVOTruthValue checkMAVOConstraint(String smtEncoding, String smtProperty) {
 
 		// tri-state MAVO logic
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
@@ -65,21 +73,19 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 			return MAVOTruthValue.FALSE;
 		}
 		ecore2smt.cleanup();
-
 		Z3MAVOModelParser z3ModelParser = ecore2smt.getZ3MAVOModelParser();
-		MAVOTruthValue propertyTruthValue = checkMAVOProperty(z3ModelParser.getSMTLIBEncoding(), smtConstraint);
-		if (propertyTruthValue == MAVOTruthValue.MAYBE){
-			//TODO MMINT[MU-MMINT] Generalize to any MAVO model.
-			if(model.getMetatypeUri().equals(GRAPH_MAVO_URI)){
-				if (MultiModelDiagramUtils.getBooleanInput("Example Highlighter", "Do you want to see a highlighted example?")) {
-					MAVOConcretizationHighlighter highlighter;
-					try {
-						highlighter = new MAVOConcretizationHighlighter(z3ModelParser);
-						highlighter.highlightCounterExample(model);
-					}
-					catch (Exception e) {
-						MMINTException.print(MMINTException.Type.ERROR, "Can't highlight example", e);
-					}
+		MAVOTruthValue propertyTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), smtConstraint);
+
+		// counterexample
+		if (propertyTruthValue == MAVOTruthValue.MAYBE) {
+			if (MultiModelDiagramUtils.getBooleanInput("Example Highlighter", "Do you want to see a highlighted example?")) {
+				MAVOConcretizationHighlighter highlighter;
+				try {
+					highlighter = new MAVOConcretizationHighlighter(z3ModelParser);
+					highlighter.highlightCounterExample(model);
+				}
+				catch (Exception e) {
+					MMINTException.print(MMINTException.Type.ERROR, "Can't highlight example", e);
 				}
 			}
 		}
