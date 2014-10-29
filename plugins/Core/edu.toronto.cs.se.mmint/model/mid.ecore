@@ -63,7 +63,7 @@
       <details key="documentation" value="The abstract basic element. It represents a unique typed element, able to extend or be extended by other elements."/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="typeLevel" value="level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES"/>
+      <details key="typeLevel" value="level = MIDLevel::INSTANCES implies metatype.level = MIDLevel::TYPES"/>
     </eAnnotations>
     <eOperations name="createSubtypeUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eParameters name="newTypeFragmentUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

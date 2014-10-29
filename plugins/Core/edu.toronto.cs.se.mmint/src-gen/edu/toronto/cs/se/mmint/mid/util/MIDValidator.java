@@ -170,7 +170,7 @@ public class MIDValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String EXTENDIBLE_ELEMENT__TYPE_LEVEL__EEXPRESSION = "level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES";
+	protected static final String EXTENDIBLE_ELEMENT__TYPE_LEVEL__EEXPRESSION = "level = MIDLevel::INSTANCES implies metatype.level = MIDLevel::TYPES";
 
 	/**
 	 * Validates the typeLevel constraint of '<em>Extendible Element</em>'.
