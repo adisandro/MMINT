@@ -15,6 +15,6 @@ Require-Bundle: org.eclipse.uml2.uml,
  edu.toronto.cs.se.modelepedia.z3,
  edu.toronto.cs.se.modelepedia.z3.operator,
  edu.toronto.cs.se.modelepedia.classdiagram_mavo
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true

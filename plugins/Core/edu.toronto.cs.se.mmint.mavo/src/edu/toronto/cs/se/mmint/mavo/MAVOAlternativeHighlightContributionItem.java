@@ -9,7 +9,7 @@
  * Contributors:
  *    Naama Ben-David - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part;
+package edu.toronto.cs.se.mmint.mavo;
 
 import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.MenuItem;
 
 import edu.toronto.cs.se.mavo.MAVOAlternative;
 
-public class MAVOAlternativeHighlightContributionItem extends ContributionItem{
+public class MAVOAlternativeHighlightContributionItem extends ContributionItem {
 
 	private Viewer viewer;
 	

@@ -40,7 +40,7 @@ import edu.toronto.cs.se.mavo.MAVOElement;
  * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElement()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='typeLevel'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot typeLevel='level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot typeLevel='level = MIDLevel::INSTANCES implies metatype.level = MIDLevel::TYPES'"
  * @generated
  */
 public interface ExtendibleElement extends MAVOElement {

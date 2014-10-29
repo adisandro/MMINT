@@ -4,7 +4,7 @@
     modelDirectory="/edu.toronto.cs.se.modelepedia.kleisli/src-gen" editDirectory="/edu.toronto.cs.se.modelepedia.kleisli.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.modelepedia.kleisli.editor/src-gen" modelPluginID="edu.toronto.cs.se.modelepedia.kleisli"
     modelName="Kleisli" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     usedGenPackages="../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mid ../../edu.toronto.cs.se.mavo/model/mavo.genmodel#//mavo"
     operationReflection="true" importOrganizing="true">
   <foreignModel>kleisli.ecore</foreignModel>

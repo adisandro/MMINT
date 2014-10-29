@@ -9,7 +9,7 @@
  * Contributors:
  *    Naama Ben-David - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part;
+package edu.toronto.cs.se.mmint.mavo;
 
 import java.util.ArrayList;
 import java.util.List;

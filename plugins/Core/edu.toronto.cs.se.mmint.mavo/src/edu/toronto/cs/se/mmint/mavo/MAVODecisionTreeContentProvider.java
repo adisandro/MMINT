@@ -9,7 +9,7 @@
  * Contributors:
  *    Naama Ben-David - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part;
+package edu.toronto.cs.se.mmint.mavo;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;

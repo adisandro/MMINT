@@ -61,7 +61,6 @@ public class MeansEndEditPart extends ConnectionNodeEditPart implements
 			((edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.WrappingLabel10EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureMAVOMeansEndLabelFigure());
-			return true;
 		}
 		return false;
 	}

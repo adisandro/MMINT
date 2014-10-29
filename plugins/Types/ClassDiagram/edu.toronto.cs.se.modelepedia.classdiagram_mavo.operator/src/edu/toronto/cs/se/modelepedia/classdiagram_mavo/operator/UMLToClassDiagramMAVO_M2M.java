@@ -113,10 +113,10 @@ public class UMLToClassDiagramMAVO_M2M {
 	public void loadModels(String inModelPath) throws ATLCoreException {
 		ModelFactory factory = new EMFModelFactory();
 		IInjector injector = new EMFInjector();
-	 	IReferenceModel classdiagram_mavoMetamodel = factory.newReferenceModel();
-		injector.inject(classdiagram_mavoMetamodel, getMetamodelUri("ClassDiagram_MAVO"));
 	 	IReferenceModel umlMetamodel = factory.newReferenceModel();
 		injector.inject(umlMetamodel, getMetamodelUri("UML"));
+	 	IReferenceModel classdiagram_mavoMetamodel = factory.newReferenceModel();
+		injector.inject(classdiagram_mavoMetamodel, getMetamodelUri("ClassDiagram_MAVO"));
 		this.inModel = factory.newModel(umlMetamodel);
 		injector.inject(inModel, inModelPath);
 		this.outModel = factory.newModel(classdiagram_mavoMetamodel);

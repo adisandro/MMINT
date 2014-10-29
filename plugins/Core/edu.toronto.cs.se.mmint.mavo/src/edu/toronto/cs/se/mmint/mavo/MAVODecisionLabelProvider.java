@@ -9,7 +9,7 @@
  * Contributors:
  *    Naama Ben-David - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part;
+package edu.toronto.cs.se.mmint.mavo;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -17,7 +17,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 
-public class MAVODecisionLabelProvider extends AdapterFactoryLabelProvider{
+public class MAVODecisionLabelProvider extends AdapterFactoryLabelProvider {
 
 	public MAVODecisionLabelProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);

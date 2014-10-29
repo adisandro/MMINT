@@ -59,7 +59,6 @@ public class AssociationEditPart extends ConnectionNodeEditPart implements
 			((edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.WrappingLabel4EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureMAVOAssociationLabelFigure());
-			return true;
 		}
 		return false;
 	}

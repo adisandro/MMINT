@@ -61,7 +61,6 @@ public class SuperclassReferenceEditPart extends ConnectionNodeEditPart
 			((edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.WrappingLabel6EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureMAVOSuperclassReferenceLabelFigure());
-			return true;
 		}
 		return false;
 	}

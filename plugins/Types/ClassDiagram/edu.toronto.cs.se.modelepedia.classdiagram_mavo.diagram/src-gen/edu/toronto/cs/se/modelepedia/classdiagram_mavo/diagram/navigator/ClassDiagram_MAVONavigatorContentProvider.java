@@ -231,7 +231,6 @@ public class ClassDiagram_MAVONavigatorContentProvider implements
 				return getViewChildren(view, parentElement);
 			}
 		}
-
 		return EMPTY_ARRAY;
 	}
 

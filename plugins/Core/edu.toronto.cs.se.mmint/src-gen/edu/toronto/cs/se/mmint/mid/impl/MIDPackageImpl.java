@@ -1408,7 +1408,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		  (extendibleElementEClass, 
 		   source, 
 		   new String[] {
-			 "typeLevel", "level = MidLevel::INSTANCES implies metatype.level = MidLevel::TYPES"
+			 "typeLevel", "level = MIDLevel::INSTANCES implies metatype.level = MIDLevel::TYPES"
 		   });	
 		addAnnotation
 		  (extendibleElementEndpointEClass, 

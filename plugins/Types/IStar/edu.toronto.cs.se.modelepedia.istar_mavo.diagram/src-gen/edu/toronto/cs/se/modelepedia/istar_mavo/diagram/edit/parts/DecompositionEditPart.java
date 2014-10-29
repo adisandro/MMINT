@@ -60,7 +60,6 @@ public class DecompositionEditPart extends ConnectionNodeEditPart implements
 			((edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.WrappingLabel11EditPart) childEditPart)
 					.setLabel(getPrimaryShape()
 							.getFigureMAVODecompositionLabelFigure());
-			return true;
 		}
 		return false;
 	}

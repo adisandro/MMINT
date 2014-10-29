@@ -40,7 +40,8 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mavo.edit,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.edit,
+ edu.toronto.cs.se.mmint.mavo,
  edu.toronto.cs.se.modelepedia.graph_mavo,
  edu.toronto.cs.se.modelepedia.graph_mavo.edit
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

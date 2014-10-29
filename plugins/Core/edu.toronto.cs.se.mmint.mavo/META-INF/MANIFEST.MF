@@ -3,10 +3,19 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.mavo;singleton:=true
 Bundle-Version: 1.3.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
-Require-Bundle: org.eclipse.emf.ecore,
+Require-Bundle: org.eclipse.jface,
+ org.eclipse.emf.edit.ui,
+ org.eclipse.gmf.runtime.emf.commands.core,
+ org.eclipse.gmf.runtime.notation.edit,
+ org.eclipse.gmf.runtime.diagram.ui,
+ org.eclipse.gmf.runtime.diagram.ui.resources.editor,
+ org.eclipse.gmf.codegen,
+ org.eclipse.gmf.codegen.xtend,
+ org.eclipse.xtext.xbase.lib,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.java
+Export-Package: edu.toronto.cs.se.mmint.mavo
