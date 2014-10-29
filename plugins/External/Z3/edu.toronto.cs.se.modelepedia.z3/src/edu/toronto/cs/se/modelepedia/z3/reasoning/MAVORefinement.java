@@ -11,19 +11,24 @@
  */
 package edu.toronto.cs.se.modelepedia.z3.reasoning;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gmf.runtime.notation.Diagram;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.impl.MAVOModelImpl;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
+import edu.toronto.cs.se.mmint.mid.editor.Editor;
+import edu.toronto.cs.se.mmint.mid.editor.impl.DiagramImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
@@ -61,23 +66,45 @@ public class MAVORefinement {
 	}
 
 	public void refine() throws Exception {
-//		smtProperty = model.getConstraint().getImplementation();
-//		MAVOTruthValue resultMAVO = Z3ReasoningEngine.checkMAVOProperty(
-//				smtEncoding, smtProperty);
-//
-//		if (resultMAVO != MAVOTruthValue.MAYBE) {
-//			return;
-//		}
-//		
-//		GraphImpl graph = copyAndLoadModel(model);
-//
-//		Map<String, MAVOTruthValue> refinedElements = runZ3SMTSolver(graph);
-//		refineModel(graph, refinedElements);
-//
-//		// Write diagram to file
-//		MultiModelUtils.createModelFile(graph, newModelURI, true);
-//		GMFDiagramUtils.createGMFDiagram(newModelURI, newDiagramURI, model.getName(), DIAGRAM_ID);
-//		GMFDiagramUtils.openGMFDiagram(newDiagramURI, DIAGRAM_ID, true);
+		smtProperty = model.getConstraint().getImplementation();
+		MAVOTruthValue resultMAVO = Z3ReasoningEngine.checkMAVOProperty(
+				smtEncoding, smtProperty);
+
+		if (resultMAVO != MAVOTruthValue.MAYBE) {
+			return;
+		}
+		
+		MAVOModelImpl graph = copyAndLoadModel(model);
+		HashMap<String, MAVOElement> allElements = getAllElements(graph);
+
+		HashMap<String, MAVOTruthValue> refinedElements = runZ3SMTSolver(allElements);
+		refineModel(allElements, refinedElements);
+
+		// Write diagram to file
+		MultiModelUtils.createModelFile(graph, newModelURI, true);
+		String diagramKind = MultiModelTypeRegistry.getType(model.getMetatypeUri()).getName();
+		String diagramTypeURI = null;
+		for (Editor editor: model.getEditors()){
+			if (editor instanceof DiagramImpl){
+				diagramTypeURI = editor.getMetatypeUri();
+				break;
+			}
+		}
+		String diagramPluginId = MultiModelTypeRegistry.getTypeBundle(diagramTypeURI).getSymbolicName();
+		GMFDiagramUtils.createGMFDiagram(newModelURI, newDiagramURI, diagramKind, diagramPluginId, true);
+		GMFDiagramUtils.openGMFDiagram(newDiagramURI,DIAGRAM_ID, true);
+	}
+
+	private HashMap<String, MAVOElement> getAllElements(MAVOModelImpl graph) {
+		TreeIterator<EObject> iter = graph.eAllContents();
+		HashMap<String, MAVOElement> allElements = new HashMap<String, MAVOElement>();
+		while (iter.hasNext()){
+			EObject element = iter.next();
+			if (element instanceof MAVOElement){
+				allElements.put(((MAVOElement) element).getFormulaVariable(), (MAVOElement) element);
+			}
+		}
+		return allElements;
 	}
 
 	/**
@@ -85,94 +112,85 @@ public class MAVORefinement {
 	 * @param graph
 	 * @param refinedModel
 	 */
-//	private void refineModel(GraphImpl graph, Map<String, MAVOTruthValue> refinedModel) {
-//		List<MAVOElement> nodes = new ArrayList<MAVOElement>(graph.getNodes());
-//		for (MAVOElement node : nodes) {
-//			MAVOTruthValue truthValue = refinedModel.get(node.getFormulaVariable());
-//			if (truthValue == MAVOTruthValue.MAYBE) {
-//				node.setMay(true);
-//			} else if (truthValue == MAVOTruthValue.TRUE) {
-//				node.setMay(false);
-//			} else if (truthValue == MAVOTruthValue.FALSE) {
-//				//TODO MMINT[MU-MMINT] this is problematic. Should change model in a different way.
-//				graph.getNodes().remove(node);
-//			}
-//		}
-//		List<MAVOElement> edges = new ArrayList<MAVOElement>(graph.getEdges());
-//		for (MAVOElement edge : edges) {
-//			MAVOTruthValue truthValue = refinedModel.get(edge.getFormulaVariable());
-//			if (truthValue == MAVOTruthValue.MAYBE) {
-//				edge.setMay(true);
-//			} else if (truthValue == MAVOTruthValue.TRUE) {
-//				edge.setMay(false);
-//			} else if (truthValue == MAVOTruthValue.FALSE) {
-//				graph.getEdges().remove(edge);
-//			}
-//		}
-//
-//	}
-//
-//	/**
-//	 * Makes a copy of the model file and returns the copied model.
-//	 * @param model
-//	 * @return a copy of the model
-//	 * @throws MMINTException
-//	 */
-//	private GraphImpl copyAndLoadModel(Model model)
-//			throws MMINTException {
-//
-//		String diagramURI = MultiModelUtils.replaceFileExtensionInUri(
-//				model.getUri(), "graphdiag_mavo");
-//
-//		String modelURI = MultiModelUtils.replaceFileExtensionInUri(
-//				model.getUri(), "graph_mavo");
-//
-//		String suffix = "_refined";
-//
-//		newModelURI = MultiModelUtils.addFileNameSuffixInUri(modelURI, suffix);
-//		newDiagramURI = MultiModelUtils.addFileNameSuffixInUri(diagramURI,
-//				suffix);
-//
-//		try {
-//			MultiModelUtils.copyTextFileAndReplaceText(modelURI, newModelURI, "", "", true);
-//		} catch (Exception e1) {
-//			e1.printStackTrace();
-//		}
-//
-//		GraphImpl graph;
-//		try {
-//			graph = (GraphImpl) MultiModelUtils.getModelFile(newModelURI, true);
-//		} catch (Exception e) {
-//			throw new MMINTException("There is no model!", e);
-//		}
-//		return graph;
-//	}
-//
-//	/**
-//	 * Calculates the refinement. 
-//	 * @param graph
-//	 * @return
-//	 */
-//	private Map<String, MAVOTruthValue> runZ3SMTSolver(GraphImpl graph) {
-//		//For each element, checks its MAVOTruthValue in the model with the new property.
-//		Map<String, MAVOTruthValue> refinedModel = new HashMap<String, MAVOTruthValue>();
-//		String encodingWithProperty = smtEncoding
-//				+ Z3Utils.assertion(smtProperty);
-//		for (MAVOElement node : graph.getNodes()) {
-//			String elementFormula = Z3Utils.predicate(
-//					Z3Utils.SMTLIB_NODE_FUNCTION, node.getFormulaVariable());
-//			MAVOTruthValue newTruthValue = Z3ReasoningEngine
-//					.checkMAVOProperty(encodingWithProperty, elementFormula);
-//			refinedModel.put(node.getFormulaVariable(), newTruthValue);
-//		}
-//		for (MAVOElement edge : graph.getEdges()) {
-//			String elementFormula = Z3Utils.predicate(
-//					Z3Utils.SMTLIB_EDGE_FUNCTION, edge.getFormulaVariable());
-//			MAVOTruthValue newTruthValue = Z3ReasoningEngine
-//					.checkMAVOProperty(encodingWithProperty, elementFormula);
-//			refinedModel.put(edge.getFormulaVariable(), newTruthValue);
-//		}
-//		return refinedModel;
-//	}
+	private void refineModel(HashMap<String, MAVOElement> originalModel, HashMap<String, MAVOTruthValue> refinement) {
+		for (String formulaID: refinement.keySet()){
+			MAVOTruthValue truthValue = refinement.get(formulaID);
+			if (truthValue == MAVOTruthValue.TRUE){
+				originalModel.get(formulaID).setMay(false);
+			} else if (truthValue == MAVOTruthValue.MAYBE){
+				originalModel.get(formulaID).setMay(true);
+			} else if (truthValue == MAVOTruthValue.FALSE){
+				MAVOElement element = originalModel.get(formulaID);
+				EcoreUtil.delete(element);
+			}
+		}
+	}
+
+	/**
+	 * Makes a copy of the model file and returns the copied model.
+	 * @param model
+	 * @return a copy of the model
+	 * @throws MMINTException
+	 */
+	private MAVOModelImpl copyAndLoadModel(Model model)
+			throws MMINTException {
+
+		String diagramURI = MultiModelUtils.replaceFileExtensionInUri(
+				model.getUri(), "graphdiag_mavo");
+
+		String modelURI = MultiModelUtils.replaceFileExtensionInUri(
+				model.getUri(), "graph_mavo");
+
+		String suffix = "_refined";
+
+		newModelURI = MultiModelUtils.addFileNameSuffixInUri(modelURI, suffix);
+		newDiagramURI = MultiModelUtils.addFileNameSuffixInUri(diagramURI,
+				suffix);
+
+		try {
+			MultiModelUtils.copyTextFileAndReplaceText(modelURI, newModelURI, "", "", true);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+
+		MAVOModelImpl graph;
+		try {
+			graph = (MAVOModelImpl) MultiModelUtils.getModelFile(newModelURI, true);
+		} catch (Exception e) {
+			throw new MMINTException("There is no model!", e);
+		}
+		return graph;
+	}
+
+	/**
+	 * Calculates the refinement. 
+	 * @param graph
+	 * @return
+	 */
+	private HashMap<String, MAVOTruthValue> runZ3SMTSolver(HashMap<String, MAVOElement> originalModel) {
+		//For each element, checks its MAVOTruthValue in the model with the new property.
+		HashMap<String, MAVOTruthValue> refinedModel = new HashMap<String, MAVOTruthValue>();
+		String encodingWithProperty = smtEncoding
+				+ Z3Utils.assertion(smtProperty);
+		for (String formulaID: originalModel.keySet()) {
+			MAVOElement element = originalModel.get(formulaID);
+			String elementFormula = null;
+			if (element.eClass().getEAnnotation("gmf.node") != null){
+				elementFormula = Z3Utils.predicate(
+					Z3Utils.SMTLIB_NODE_FUNCTION, formulaID);
+			}
+			else if (element.eClass().getEAnnotation("gmf.link") != null){
+				elementFormula = Z3Utils.predicate(
+						Z3Utils.SMTLIB_EDGE_FUNCTION, formulaID);
+			}
+			else {
+				continue;
+			}
+			MAVOTruthValue newTruthValue = Z3ReasoningEngine
+					.checkMAVOProperty(encodingWithProperty, elementFormula);
+			refinedModel.put(formulaID, newTruthValue);
+		}
+		return refinedModel;
+	}
 
 }

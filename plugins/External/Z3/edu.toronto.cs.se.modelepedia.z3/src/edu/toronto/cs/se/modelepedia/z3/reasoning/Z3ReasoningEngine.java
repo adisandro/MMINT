@@ -100,6 +100,7 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 		try {
 			refiner.refine();
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
