@@ -8,14 +8,12 @@
  * 
  * Contributors:
  *    Naama Ben-David - Implementation.
+ *    Alessio Di Sandro - Generalization to all metamodels.
  */
 package edu.toronto.cs.se.modelepedia.z3.reasoning;
 
-
 import java.util.HashMap;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -28,16 +26,12 @@ import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTr
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.impl.DiagramImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
-import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
-import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 
 public class MAVORefinement {
 
 	private static final String DIAGRAM_ID = "edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorID";
-	private final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
 
 	private String smtProperty;
 	private String smtEncoding;
@@ -46,31 +40,11 @@ public class MAVORefinement {
 	private String newModelURI;
 
 	public MAVORefinement(Model model) {
-		EcoreMAVOToSMTLIB ecore2smt = (EcoreMAVOToSMTLIB) MultiModelTypeRegistry
-				.<Operator> getType(ECOREMAVOTOSMTLIB_OPERATOR_URI);
-		EList<Model> actualParameters = new BasicEList<Model>();
-		actualParameters.add(model);
-		try {
-			ecore2smt.execute(actualParameters);
-		} catch (Exception e) {
-			MMINTException.print(MMINTException.Type.ERROR,
-					"Can't generate SMTLIB encoding, evaluating to false", e);
-		}
-		ecore2smt.cleanup();
 
-		Z3MAVOModelParser z3ModelParser = ecore2smt.getZ3MAVOModelParser();
-		this.smtEncoding = z3ModelParser.getSMTLIBEncoding();;
 		this.model = model;
 	}
 
 	public void refine() throws Exception {
-		smtProperty = model.getConstraint().getImplementation();
-		MAVOTruthValue resultMAVO = Z3ReasoningEngine.checkMAVOConstraint(
-				smtEncoding, smtProperty);
-
-		if (resultMAVO != MAVOTruthValue.MAYBE) {
-			return;
-		}
 		
 		MAVOModelImpl graph = copyAndLoadModel(model);
 		HashMap<String, MAVOElement> allElements = getAllElements(graph);
@@ -184,8 +158,7 @@ public class MAVORefinement {
 			else {
 				continue;
 			}
-			MAVOTruthValue newTruthValue = Z3ReasoningEngine
-					.checkMAVOConstraint(encodingWithProperty, elementFormula);
+			MAVOTruthValue newTruthValue = (new Z3ReasoningEngine()).checkMAVOConstraint(encodingWithProperty, elementFormula);
 			refinedModel.put(formulaID, newTruthValue);
 		}
 		return refinedModel;

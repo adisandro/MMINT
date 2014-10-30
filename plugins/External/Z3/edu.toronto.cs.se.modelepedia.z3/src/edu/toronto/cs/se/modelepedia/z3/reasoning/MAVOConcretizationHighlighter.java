@@ -8,6 +8,7 @@
  * 
  * Contributors:
  *    Naama Ben-David - Implementation.
+ *    Alessio Di Sandro - Generalization to all metamodels.
  */
 package edu.toronto.cs.se.modelepedia.z3.reasoning;
 
@@ -24,13 +25,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
-import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
-import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
-import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 
 public class MAVOConcretizationHighlighter {
@@ -39,31 +36,19 @@ public class MAVOConcretizationHighlighter {
 	private static final int FONT_GREYOUT_COLOR = 0xD0D0D0;
 	private static final String DIAGRAM_ID = "edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorID";
 	private static final String EXAMPLE_SUFFIX = "_example";
-	
-	private MAVOTruthValue resultMAVO;
+
 	private Z3MAVOModelParser z3ModelParser;
-	private String smtEncoding;
 	private String newDiagramURI;
-	private String smtProperty;
 	private Map<String, View> diagramElements;
 
 	public MAVOConcretizationHighlighter(Z3MAVOModelParser z3ModelParser) {
-		
-		resultMAVO = MAVOTruthValue.ERROR;
+
 		this.z3ModelParser = z3ModelParser;
-		smtEncoding = z3ModelParser.getSMTLIBEncoding();		
 		diagramElements = new HashMap<String, View>();
 	}
 
-	public void highlightCounterExample(Model model) throws Exception {
+	public void highlightCounterExample(Model model, Z3Model resultModel) throws Exception {
 
-		smtProperty = model.getConstraint().getImplementation();
-		resultMAVO = Z3ReasoningEngine.checkMAVOConstraint(smtEncoding, smtProperty);
-		
-		if (resultMAVO != MAVOTruthValue.MAYBE){
-			return;
-		}
-		
 		//Load diagram
 		Diagram d = copyAndLoadDiagram(model);
 
@@ -75,24 +60,21 @@ public class MAVOConcretizationHighlighter {
 		diagramElements.putAll(modelNodes);
 		diagramElements.putAll(modelEdges);
 
-		Z3Model resultModel = runZ3SMTSolver();
-		
 		//get FormulaIDs of elements to be grayed out and highlighted
 		ArrayList<Set<String>> separatedDiagram = separateExampleElements(resultModel);
 		Set<String> notInExample = separatedDiagram.get(1);
-		
+
 		//grey out anything that's not in the example
 		for (String FID : notInExample){
 			View element = diagramElements.get(FID);
 			GMFDiagramUtils.colorDiagramElement(element, GREYOUT_COLOR, FONT_GREYOUT_COLOR);
 		}
-		
+
 		//Write diagram to file
 		MultiModelUtils.createModelFile(d, newDiagramURI, true);
 		GMFDiagramUtils.openGMFDiagram(newDiagramURI, DIAGRAM_ID, true);
-
 	}
-	
+
 	/**
 	 * Separate the diagram elements into the set of elements that appear in the 
 	 * resultModel concretization, and the remaining set.
@@ -136,7 +118,7 @@ public class MAVOConcretizationHighlighter {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
+
 		Diagram d;
 		try{
 			d = (Diagram) MultiModelUtils.getModelFile(newDiagramURI, true);
@@ -145,14 +127,7 @@ public class MAVOConcretizationHighlighter {
 		}
 		return d;
 	}
-	
-	private Z3Model runZ3SMTSolver(){
-		Z3IncrementalSolver z3Solver = new Z3IncrementalSolver();
-		z3Solver.firstCheckSatAndGetModel(smtEncoding);
-		Z3Model resultModel = z3Solver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(smtProperty)), Z3IncrementalBehavior.POP);
-		return resultModel;
-	}
-	
+
 	/**
 	 * Map diagram view elements to the formula IDs of the model elements they represent.
 	 * @param elementList - List of View elements from the diagram.
@@ -166,5 +141,5 @@ public class MAVOConcretizationHighlighter {
 		}
 		return modelElements;
 	}
-	
+
 }

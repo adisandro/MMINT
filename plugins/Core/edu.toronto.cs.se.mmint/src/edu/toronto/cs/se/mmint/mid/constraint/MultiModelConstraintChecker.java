@@ -81,15 +81,15 @@ public class MultiModelConstraintChecker {
 			return (truthValue) ? TRUE : FALSE;
 		}
 
-		public static MAVOTruthValue toMAVOTruthValue(boolean propertyTruthValue, boolean notPropertyTruthValue) {
+		public static MAVOTruthValue toMAVOTruthValue(boolean constraintTruthValue, boolean notConstraintTruthValue) {
 	
-			if (propertyTruthValue == true && notPropertyTruthValue == false) {
+			if (constraintTruthValue == true && notConstraintTruthValue == false) {
 				return TRUE;
 			}
-			if (propertyTruthValue == false && notPropertyTruthValue == true) {
+			if (constraintTruthValue == false && notConstraintTruthValue == true) {
 				return FALSE;
 			}
-			if (propertyTruthValue == true && notPropertyTruthValue == true) {
+			if (constraintTruthValue == true && notConstraintTruthValue == true) {
 				return MAYBE;
 			}
 			return ERROR;

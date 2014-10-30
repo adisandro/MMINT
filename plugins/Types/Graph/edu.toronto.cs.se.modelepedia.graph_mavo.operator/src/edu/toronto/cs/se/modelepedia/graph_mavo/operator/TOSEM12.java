@@ -21,6 +21,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mavo.MAVOElement;
@@ -43,6 +44,8 @@ import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
 public class TOSEM12 extends RandomOperatorImpl {
 
+	private static final String Z3_LANGUAGE = "SMTLIB";
+	private static final String Z3_NAME = "Z3 Solver";
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
 	private static final String PREVIOUS_OPERATOR2_URI = "http://se.cs.toronto.edu/modelepedia/Operator_GenerateRandomGraphMAVO";
 	private static final String PROPERTY_IN_NUMCONCRETIZATIONS = "numConcretizations";
@@ -345,7 +348,8 @@ public class TOSEM12 extends RandomOperatorImpl {
 	private void doMAVOPropertyCheck() {
 
 		long startTime = System.nanoTime();
-		resultMAVO = Z3ReasoningEngine.checkMAVOConstraint(smtEncoding + Z3Utils.assertion(smtConcretizationsConstraint), smtProperty);
+		Z3ReasoningEngine z3 = (Z3ReasoningEngine) MMINT.getLanguageReasoners(Z3_LANGUAGE).get(Z3_NAME);
+		resultMAVO = z3.checkMAVOConstraint(smtEncoding + Z3Utils.assertion(smtConcretizationsConstraint), smtProperty);
 		long endTime = System.nanoTime();
 
 		timeMAVO = endTime - startTime;
