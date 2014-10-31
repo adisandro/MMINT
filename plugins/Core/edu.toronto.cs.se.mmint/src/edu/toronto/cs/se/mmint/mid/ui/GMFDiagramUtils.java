@@ -128,22 +128,22 @@ public class GMFDiagramUtils {
 		return adapterFactory;
 	}
 
-	public static void colorDiagramElement(View diagramElement, int color, int fontColor) throws MMINTException {
+	public static void colorDiagramElement(View diagramView, int color, int fontColor) throws MMINTException {
 
-		if (!(diagramElement instanceof Shape) && !(diagramElement instanceof Connector)) {
-			throw new MMINTException("Diagram element not supported: " + diagramElement.getClass().getName());
+		if (!(diagramView instanceof Shape) && !(diagramView instanceof Connector)) {
+			throw new MMINTException("Diagram element not supported: " + diagramView.getClass().getName());
 		}
 
-		if (diagramElement instanceof Shape) {
-			Shape node = (Shape) diagramElement;
+		if (diagramView instanceof Shape) {
+			Shape node = (Shape) diagramView;
 			node.setFillColor(color);
 			node.setLineColor(color);
 			if (fontColor >= 0) {
 				node.setFontColor(fontColor);
 			}
 		}
-		else if (diagramElement instanceof Connector){
-			Connector line = (Connector) diagramElement;
+		else if (diagramView instanceof Connector){
+			Connector line = (Connector) diagramView;
 			line.setLineColor(color);
 			FontStyle labelFont = (FontStyle) line.getStyles().get(0);
 			if (fontColor >= 0) {

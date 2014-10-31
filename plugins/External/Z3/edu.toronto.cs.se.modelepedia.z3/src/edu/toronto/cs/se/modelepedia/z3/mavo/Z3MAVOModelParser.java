@@ -124,6 +124,14 @@ public class Z3MAVOModelParser {
 		return getZ3MAVOModelElems(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_EDGE, smtEncodingEdges);
 	}
 
+	/**
+	 * Gets a Z3 model element to formula variable map for elements of a Z3
+	 * model that represents a MAVO model concretization.
+	 * 
+	 * @param z3Model
+	 *            The Z3 model that represents a MAVO model concretization.
+	 * @return The Z3 model element to formula variable map.
+	 */
 	public Map<String, String> getZ3MAVOModelElements(Z3Model z3Model) {
 
 		Map<String, String> z3ModelElems = new HashMap<String, String>();

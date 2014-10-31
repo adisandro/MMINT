@@ -22,6 +22,8 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
+import edu.toronto.cs.se.mmint.mid.editor.Diagram;
+import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
@@ -37,7 +39,7 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 
 	private final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
 
-	private Z3Model notConstraintModel;
+	private Z3Model z3NotConstraintModel;
 
 	public MAVOTruthValue checkMAVOConstraint(String smtEncoding, String smtConstraint) {
 
@@ -48,7 +50,7 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 		boolean constraintTruthValue = z3Model.getZ3Bool() == Z3Bool.SAT;
 		z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(smtConstraint)), Z3IncrementalBehavior.POP);
 		boolean notConstraintTruthValue = z3Model.getZ3Bool() == Z3Bool.SAT;
-		notConstraintModel = (notConstraintTruthValue) ? z3Model : null;
+		z3NotConstraintModel = (notConstraintTruthValue) ? z3Model : null;
 
 		return MAVOTruthValue.toMAVOTruthValue(constraintTruthValue, notConstraintTruthValue);
 	}
@@ -82,19 +84,35 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 		}
 		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), constraint.getImplementation());
 
-		// show example
-		if (constraintTruthValue == MAVOTruthValue.MAYBE) {
-			//TODO MMINT[MU-MMINT] Detect if a diagram for the model exists
-			if (MultiModelDiagramUtils.getBooleanInput("Concretization highlighter", "The result is maybe, do you want to see a concretization that violates the constraint?")) {
-				MAVOConcretizationHighlighter highlighter;
-				try {
-					highlighter = new MAVOConcretizationHighlighter(z3ModelParser);
-					highlighter.highlightCounterExample(model, notConstraintModel);
-				}
-				catch (Exception e) {
-					MMINTException.print(MMINTException.Type.ERROR, "Can't highlight example", e);
-				}
+		// show example if: maybe, has a diagram, user accepts
+		if (constraintTruthValue != MAVOTruthValue.MAYBE) {
+			return constraintTruthValue;
+		}
+		Diagram modelDiagram = null;
+		for (Editor modelEditor : model.getEditors()) {
+			if (modelEditor instanceof Diagram) {
+				modelDiagram = (Diagram) modelEditor;
+				break;
 			}
+		}
+		if (modelDiagram == null) {
+			return constraintTruthValue;
+		}
+		if (!MultiModelDiagramUtils.getBooleanInput(
+			"Concretization highlighter",
+			"The result is MAYBE, do you want to see a concretization that violates the constraint?"
+		)) {
+			return constraintTruthValue;
+		}
+
+		// show example
+		MAVOConcretizationHighlighter highlighter;
+		try {
+			highlighter = new MAVOConcretizationHighlighter();
+			highlighter.highlightCounterExample(modelDiagram, z3ModelParser.getZ3MAVOModelElements(z3NotConstraintModel));
+		}
+		catch (Exception e) {
+			MMINTException.print(MMINTException.Type.ERROR, "Can't highlight example", e);
 		}
 
 		return constraintTruthValue;
