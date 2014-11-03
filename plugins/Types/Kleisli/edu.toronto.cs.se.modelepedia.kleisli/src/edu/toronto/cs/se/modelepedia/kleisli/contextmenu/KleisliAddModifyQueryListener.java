@@ -33,7 +33,7 @@ public class KleisliAddModifyQueryListener extends AddModifyConstraintListener {
 
 	public KleisliAddModifyQueryListener(String menuLabel, ExtendibleElement element) {
 
-		super(menuLabel, element, false);
+		super(menuLabel, element);
 	}
 
 	@Override

@@ -288,7 +288,7 @@ public class MIDContextMenu extends ContributionItem {
 			MenuItem constraintItem = new MenuItem(mmintMenu, SWT.NONE);
 			constraintItem.setText(MMINT_MENU_ADDCONSTRAINT_LABEL);
 			constraintItem.addSelectionListener(
-				new AddModifyConstraintListener(MMINT_MENU_ADDCONSTRAINT_LABEL, models.get(0), false)
+				new AddModifyConstraintListener(MMINT_MENU_ADDCONSTRAINT_LABEL, models.get(0))
 			);
 		}
 		// check constraint
@@ -328,40 +328,18 @@ public class MIDContextMenu extends ContributionItem {
 				new EditModelepediaListener(model)
 			);
 		}
-		// mummint menu
+		// mu-mmint
 		if (doMay) {
 			MenuItem mayItem = new MenuItem(mmintMenu, SWT.CASCADE);
 			mayItem.setText("May Models");
 			Menu mayMenu = new Menu(menu);
 			mayItem.setMenu(mayMenu);
-			
-			MenuItem normalizeItem = new MenuItem(mayMenu, SWT.NONE);
-			normalizeItem.setText("Normalize");
-			
-			MenuItem propertyCheckItem = new MenuItem(mayMenu, SWT.CASCADE);
-			propertyCheckItem.setText("Property Check");
-			Menu propertyCheckMenu = new Menu(mayMenu);
-			propertyCheckItem.setMenu(propertyCheckMenu);
-			
-			MenuItem constraintItem = new MenuItem(propertyCheckMenu, SWT.NONE);
-			constraintItem.setText("Add/Modify Constraint");
-			constraintItem.addSelectionListener(new AddModifyConstraintListener(MMINT_MENU_ADDCONSTRAINT_LABEL, models.get(0), false));
-			
-			MenuItem showExampleItem = new MenuItem(propertyCheckMenu, SWT.NONE);
-			showExampleItem.setText("Show Counter-Example");
-			showExampleItem.addSelectionListener(
-				new CheckConstraintListener(MMINT_MENU_CHECKCONSTRAINT_LABEL, models.get(0), editParts.get(0))
-			);
-			
+
 			MenuItem refinementItem = new MenuItem(mayMenu, SWT.CASCADE);
 			refinementItem.setText("Refinement");
 			Menu refinementMenu = new Menu(mayMenu);
 			refinementItem.setMenu(refinementMenu);
-			
-			MenuItem addDecisionItem = new MenuItem(refinementMenu, SWT.NONE);
-			addDecisionItem.setText("Add Decision");
-			addDecisionItem.addSelectionListener(new AddModifyConstraintListener(MMINT_MENU_ADDCONSTRAINT_LABEL, models.get(0), true));
-			
+
 			MenuItem previewItem = new MenuItem(refinementMenu, SWT.NONE);
 			previewItem.setText("Preview");
 			/*TODO MMINT[MU-MMINT] create a listener for preview that greys out elements that will be removed. 
