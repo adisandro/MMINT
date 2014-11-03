@@ -11,9 +11,13 @@
  */
 package edu.toronto.cs.se.mmint.mid.ui;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -150,6 +154,19 @@ public class GMFDiagramUtils {
 				labelFont.setFontColor(fontColor);
 			}
 		}
+	}
+
+	public static List<IFile> getTransactionalCommandAffectedFiles() {
+
+		List<IFile> files = new ArrayList<IFile>();
+		IFile diagramFile = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
+		if (diagramFile != null) {
+			IFile modelFile = diagramFile.getParent().getFile(new Path(diagramFile.getName().substring(0, diagramFile.getName().length() - DIAGRAM_SUFFIX.length())));
+			files.add(diagramFile);
+			files.add(modelFile);
+		}
+
+		return files;
 	}
 
 }

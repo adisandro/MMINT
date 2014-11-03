@@ -11,38 +11,33 @@
  */
 package edu.toronto.cs.se.mmint.mid.diagram.contextmenu;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.ui.PlatformUI;
 
-import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.part.ValidateAction;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-public class ValidateListener extends SelectionAdapter {
+public class CheckConstraintListener extends MIDContextMenuListener {
 
-	Model model;
-	GraphicalEditPart editPart;
+	private Model model;
+	private GraphicalEditPart editPart;
 
-	public ValidateListener(Model model, GraphicalEditPart editPart) {
+	public CheckConstraintListener(String menuLabel, Model model, GraphicalEditPart editPart) {
 
+		super(menuLabel);
 		this.model = model;
 		this.editPart = editPart;
 	}
@@ -50,29 +45,17 @@ public class ValidateListener extends SelectionAdapter {
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		List<IFile> files = new ArrayList<IFile>();
-		IFile diagramFile = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
-		if (diagramFile != null) {
-			IFile modelFile = diagramFile.getParent().getFile(new Path(diagramFile.getName().substring(0, diagramFile.getName().length() - GMFDiagramUtils.DIAGRAM_SUFFIX.length())));
-			files.add(diagramFile);
-			files.add(modelFile);
-		}
-		AbstractTransactionalCommand operatorCommand = new ValidateCommand(
+		AbstractTransactionalCommand command = new CheckConstraintCommand(
 			TransactionUtil.getEditingDomain(model),
-			"Validate",
-			files
+			menuLabel,
+			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
-		try {
-			OperationHistoryFactory.getOperationHistory().execute(operatorCommand, null, null);
-		}
-		catch (ExecutionException ex) {
-			MMINTException.print(Type.ERROR, "Validate history execution error", ex);
-		}
+		runListenerCommand(command);
 	}
 
-	protected class ValidateCommand extends AbstractTransactionalCommand {
+	protected class CheckConstraintCommand extends AbstractTransactionalCommand {
 
-		public ValidateCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public CheckConstraintCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}

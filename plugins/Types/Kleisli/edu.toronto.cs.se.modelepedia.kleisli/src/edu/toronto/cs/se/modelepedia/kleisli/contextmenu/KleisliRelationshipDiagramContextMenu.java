@@ -23,6 +23,7 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenu;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReference2EditPart;
@@ -31,7 +32,7 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 
 public class KleisliRelationshipDiagramContextMenu extends ContributionItem {
 
-	private static final int INVALID_MENU_ITEM_LIMIT = 20;
+	private static final String MMINT_MENU_KLEISLI_LABEL = "Add/Modify Kleisli Query";
 
 	@Override
 	public boolean isDynamic() {
@@ -43,7 +44,7 @@ public class KleisliRelationshipDiagramContextMenu extends ContributionItem {
 	public void fill(Menu menu, int index) {
 
 		// this is a hack to prevent this menu from being created twice
-		if (menu.getItemCount() > INVALID_MENU_ITEM_LIMIT) {
+		if (menu.getItemCount() > MIDContextMenu.INVALID_MENU_ITEM_LIMIT) {
 			return;
 		}
 
@@ -95,15 +96,15 @@ public class KleisliRelationshipDiagramContextMenu extends ContributionItem {
 
 		// create dynamic menus
 		MenuItem mmintItem = new MenuItem(menu, SWT.CASCADE, index);
-		mmintItem.setText("MMINT");
+		mmintItem.setText(MIDContextMenu.MMINT_MENU_LABEL);
 		Menu mmintMenu = new Menu(menu);
 		mmintItem.setMenu(mmintMenu);
 		// derivation
 		if (doDerivation) {
 			MenuItem derivationItem = new MenuItem(mmintMenu, SWT.NONE);
-			derivationItem.setText("Add/Modify Kleisli Query");
+			derivationItem.setText(MMINT_MENU_KLEISLI_LABEL);
 			derivationItem.addSelectionListener(
-				new KleisliAddModifyQueryListener(modelElemRef.getObject())
+				new KleisliAddModifyQueryListener(MMINT_MENU_KLEISLI_LABEL, modelElemRef.getObject())
 			);
 		}
 	}

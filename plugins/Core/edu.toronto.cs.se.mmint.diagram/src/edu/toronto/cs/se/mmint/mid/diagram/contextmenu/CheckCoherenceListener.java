@@ -17,16 +17,15 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.EMFCompare;
+import org.eclipse.emf.compare.scope.DefaultComparisonScope;
 import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -34,23 +33,23 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-public class CheckCoherenceListener extends SelectionAdapter {
+public class CheckCoherenceListener extends MIDContextMenuListener {
 
-	Model model;
-	Set<List<ConversionOperator>> conversionPaths;
+	private Model model;
+	private Set<List<ConversionOperator>> conversionPaths;
 
-	public CheckCoherenceListener(Model model, Set<List<ConversionOperator>> conversionPaths) {
+	public CheckCoherenceListener(String menuLabel, Model model, Set<List<ConversionOperator>> conversionPaths) {
 
+		super(menuLabel);
 		this.model = model;
 		this.conversionPaths = conversionPaths;
 	}
@@ -58,24 +57,12 @@ public class CheckCoherenceListener extends SelectionAdapter {
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		List<IFile> files = new ArrayList<IFile>();
-		IFile diagramFile = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
-		if (diagramFile != null) {
-			IFile modelFile = diagramFile.getParent().getFile(new Path(diagramFile.getName().substring(0, diagramFile.getName().length() - GMFDiagramUtils.DIAGRAM_SUFFIX.length())));
-			files.add(diagramFile);
-			files.add(modelFile);
-		}
-		AbstractTransactionalCommand operatorCommand = new CheckCoherenceCommand(
+		AbstractTransactionalCommand command = new CheckCoherenceCommand(
 			TransactionUtil.getEditingDomain(model),
-			"Check Coherence",
-			files
+			menuLabel,
+			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
-		try {
-			OperationHistoryFactory.getOperationHistory().execute(operatorCommand, null, null);
-		}
-		catch (ExecutionException ex) {
-			MMINTException.print(Type.ERROR, "Check coherence history execution error", ex);
-		}
+		runListenerCommand(command);
 	}
 
 	protected class CheckCoherenceCommand extends AbstractTransactionalCommand {
@@ -111,7 +98,7 @@ coherence:
 						resourceSet.getResource(URI.createPlatformResourceURI(coherentModels.get(i).getUri(), true), true);
 						ResourceSet resourceSet2 = new ResourceSetImpl();
 						resourceSet2.getResource(URI.createPlatformResourceURI(coherentModels2.get(j).getUri(), true), true);
-						IComparisonScope scope = EMFCompare.createDefaultScope(resourceSet, resourceSet2);
+						IComparisonScope scope = new DefaultComparisonScope(resourceSet, resourceSet2, null);
 						Comparison comparison = EMFCompare.builder().build().compare(scope);
 						if (!comparison.getDifferences().isEmpty()) {
 							MMINTException.print(Type.ERROR, "The type system is not coherent", new MMINTException("The following conversion paths yield different results: " + conversionPaths));
