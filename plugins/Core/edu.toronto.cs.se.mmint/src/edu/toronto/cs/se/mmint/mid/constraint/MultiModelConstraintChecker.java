@@ -595,7 +595,7 @@ linkTypes:
 		return reasoner.checkConstraintConsistency((Model) type, constraintImplementation);
 	}
 
-	public static void refineWithConstraint(ExtendibleElement element, ExtendibleElementConstraint constraint) {
+	public static void refineByConstraint(ExtendibleElement element, ExtendibleElementConstraint constraint) {
 
 		if (!(element instanceof Model) || constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return;
@@ -609,7 +609,7 @@ linkTypes:
 			return;
 		}
 
-		reasoner.refineWithConstraint((Model) element);
+		reasoner.refineByConstraint((Model) element);
 	}
 
 }

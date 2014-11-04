@@ -50,7 +50,7 @@ public class JavaReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public void refineWithConstraint(Model model) {
+	public void refineByConstraint(Model model) {
 
 		return;
 	}

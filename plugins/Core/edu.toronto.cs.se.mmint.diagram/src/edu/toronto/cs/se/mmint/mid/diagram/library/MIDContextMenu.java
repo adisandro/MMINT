@@ -76,6 +76,7 @@ public class MIDContextMenu extends ContributionItem {
 	private static final String MMINT_MENU_MODELEPEDIA_SUBMENU_LABEL = "Wiki";
 	private static final String MMINT_MENU_MODELEPEDIA_SUBMENU_OPEN_LABEL = "Open Wiki Page";
 	private static final String MMINT_MENU_MODELEPEDIA_SUBMENU_EDIT_LABEL = "Edit Wiki Page";
+	private static final String MMINT_MENU_REFINE_LABEL = "Apply Refinement";
 	private static final String DOWNCAST_LABEL = " (downcast)";
 
 	@Override
@@ -349,8 +350,10 @@ public class MIDContextMenu extends ContributionItem {
 			 */
 			//previewItem.addSelectionListener(new RefinementListener(models.get(0), editParts.get(0), false));
 			MenuItem refineItem = new MenuItem(refinementMenu, SWT.NONE);
-			refineItem.setText("Apply Refinement");
-			refineItem.addSelectionListener(new RefinementListener(models.get(0), editParts.get(0), true));
+			refineItem.setText(MMINT_MENU_REFINE_LABEL);
+			refineItem.addSelectionListener(
+				new RefinementListener(MMINT_MENU_REFINE_LABEL, models.get(0))
+			);
 		}
 	}
 

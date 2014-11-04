@@ -125,7 +125,7 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public void refineWithConstraint(Model model) {
+	public void refineByConstraint(Model model) {
 
 		Z3MAVOModelParser z3ModelParser;
 		try {

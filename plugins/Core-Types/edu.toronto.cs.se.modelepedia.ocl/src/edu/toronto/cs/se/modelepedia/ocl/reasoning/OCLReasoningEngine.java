@@ -107,7 +107,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public void refineWithConstraint(Model model) {
+	public void refineByConstraint(Model model) {
 
 		return;
 	}
