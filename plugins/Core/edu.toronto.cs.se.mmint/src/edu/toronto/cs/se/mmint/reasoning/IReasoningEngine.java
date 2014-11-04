@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmint.reasoning;
 
+import org.eclipse.jdt.annotation.NonNull;
+
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -22,6 +24,6 @@ public interface IReasoningEngine {
 
 	public boolean checkConstraintConsistency(Model modelType, String constraint);
 
-	public void refineByConstraint(Model model);
+	public void refineByConstraint(@NonNull Model model);
 
 }

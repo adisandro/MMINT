@@ -798,6 +798,11 @@ public class MultiModelTypeHierarchy {
 		return MultiModelTypeRegistry.getType(MMINT.ROOT_MODELENDPOINT_URI);
 	}
 
+	public static ModelElement getRootModelElementType() {
+
+		return MultiModelTypeRegistry.getType(MMINT.ROOT_MODELELEM_URI);
+	}
+
 	public static Link getRootLinkType() {
 
 		return MultiModelTypeRegistry.getType(MMINT.ROOT_LINK_URI);

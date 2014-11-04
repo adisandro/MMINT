@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTActivator;
@@ -38,7 +39,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 
 public class MultiModelUtils {
 
-	public static URI getEMFUri(String uri, boolean isWorkspaceRelative) {
+	public static @NonNull URI getEMFUri(@NonNull String uri, boolean isWorkspaceRelative) {
 
 		URI emfUri = (isWorkspaceRelative) ?
 			URI.createPlatformResourceURI(uri, true) :
@@ -199,7 +200,7 @@ public class MultiModelUtils {
 		createModelFile(root, prependStateToUri(relativeFileUri), false);
 	}
 
-	public static EObject getModelFile(String fileUri, boolean isWorkspaceRelative) throws Exception {
+	public static @NonNull EObject getModelFile(@NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
 
 		return MultiModelTypeIntrospection.getRoot(getEMFUri(fileUri, isWorkspaceRelative));
 	}

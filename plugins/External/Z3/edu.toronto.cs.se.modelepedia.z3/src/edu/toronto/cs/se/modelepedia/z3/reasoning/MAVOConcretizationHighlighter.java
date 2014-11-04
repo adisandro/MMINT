@@ -64,21 +64,21 @@ public class MAVOConcretizationHighlighter {
 	@SuppressWarnings("unchecked")
 	public void highlightCounterExample(Diagram modelDiagram, Map<String, String> z3ModelElems) throws Exception {
 
-		// copy diagram
-		String exampleDiagramUri = MultiModelUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_SUFFIX);
-		MultiModelUtils.copyTextFileAndReplaceText(modelDiagram.getUri(), exampleDiagramUri, "", "", true);
-		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(exampleDiagramUri, true);
 		// get view elements from diagram
+		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
 		Map<String, View> diagramViews = new HashMap<String, View>();
 		diagramViews.putAll(collectFormulaVars((EList<View>) exampleDiagram.getChildren()));
 		diagramViews.putAll(collectFormulaVars((EList<View>) exampleDiagram.getEdges()));
+
 		// grey out anything that's not in the example
 		Set<String> notInExampleFormulaVars = separateExampleElements(z3ModelElems, diagramViews);
 		for (String notInExampleFormulaVar : notInExampleFormulaVars) {
 			View diagramView = diagramViews.get(notInExampleFormulaVar);
 			GMFDiagramUtils.colorDiagramElement(diagramView, GREYOUT_COLOR, FONT_GREYOUT_COLOR);
 		}
+
 		// write diagram to file
+		String exampleDiagramUri = MultiModelUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_SUFFIX);
 		MultiModelUtils.createModelFile(exampleDiagram, exampleDiagramUri, true);
 		GMFDiagramUtils.openGMFDiagram(exampleDiagramUri, modelDiagram.getId(), true);
 	}

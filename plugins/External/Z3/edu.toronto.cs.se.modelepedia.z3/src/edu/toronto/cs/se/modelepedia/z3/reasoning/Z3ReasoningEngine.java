@@ -14,6 +14,8 @@ package edu.toronto.cs.se.modelepedia.z3.reasoning;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -41,20 +43,6 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 
 	private Z3Model z3NotConstraintModel;
 
-	public MAVOTruthValue checkMAVOConstraint(String smtEncoding, String smtConstraint) {
-
-		// tri-state MAVO logic
-		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
-		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
-		Z3Model z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(smtConstraint), Z3IncrementalBehavior.POP);
-		boolean constraintTruthValue = z3Model.getZ3Bool() == Z3Bool.SAT;
-		z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(smtConstraint)), Z3IncrementalBehavior.POP);
-		boolean notConstraintTruthValue = z3Model.getZ3Bool() == Z3Bool.SAT;
-		z3NotConstraintModel = (notConstraintTruthValue) ? z3Model : null;
-
-		return MAVOTruthValue.toMAVOTruthValue(constraintTruthValue, notConstraintTruthValue);
-	}
-
 	private Z3MAVOModelParser generateSMTLIBEncoding(Model model) throws Exception {
 
 		if (!(model.getEMFInstanceRoot() instanceof MAVOModel)) {
@@ -69,6 +57,33 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 		ecore2smt.cleanup();
 
 		return ecore2smt.getZ3MAVOModelParser();
+	}
+
+	public MAVOTruthValue checkMAVOConstraint(String smtEncoding, String smtConstraint) {
+
+		// tri-state MAVO logic
+		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
+		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
+		Z3Model z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(smtConstraint), Z3IncrementalBehavior.POP);
+		boolean constraintTruthValue = z3Model.getZ3Bool() == Z3Bool.SAT;
+		z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(smtConstraint)), Z3IncrementalBehavior.POP);
+		boolean notConstraintTruthValue = z3Model.getZ3Bool() == Z3Bool.SAT;
+		z3NotConstraintModel = (notConstraintTruthValue) ? z3Model : null;
+
+		return MAVOTruthValue.toMAVOTruthValue(constraintTruthValue, notConstraintTruthValue);
+	}
+
+	private @Nullable Diagram getModelDiagram(@NonNull Model model) {
+
+		Diagram modelDiagram = null;
+		for (Editor modelEditor : model.getEditors()) {
+			if (modelEditor instanceof Diagram) {
+				modelDiagram = (Diagram) modelEditor;
+				break;
+			}
+		}
+
+		return modelDiagram;
 	}
 
 	@Override
@@ -88,13 +103,7 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 		if (constraintTruthValue != MAVOTruthValue.MAYBE) {
 			return constraintTruthValue;
 		}
-		Diagram modelDiagram = null;
-		for (Editor modelEditor : model.getEditors()) {
-			if (modelEditor instanceof Diagram) {
-				modelDiagram = (Diagram) modelEditor;
-				break;
-			}
-		}
+		Diagram modelDiagram = getModelDiagram(model);
 		if (modelDiagram == null) {
 			return constraintTruthValue;
 		}
@@ -125,7 +134,7 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public void refineByConstraint(Model model) {
+	public void refineByConstraint(@NonNull Model model) {
 
 		Z3MAVOModelParser z3ModelParser;
 		try {
@@ -136,13 +145,17 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 			return;
 		}
 		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), model.getConstraint().getImplementation());
+
+		// refine if: maybe
 		if (constraintTruthValue != MAVOTruthValue.MAYBE) {
 			return;
 		}
 
+		// refine
+		Diagram modelDiagram = getModelDiagram(model);
 		try {
-			MAVORefinement refiner = new MAVORefinement(model);
-			refiner.refine();
+			MAVORefinement refiner = new MAVORefinement();
+			refiner.refine(model, modelDiagram, z3ModelParser.getSMTLIBEncoding());
 		}
 		catch (Exception e) {
 			e.printStackTrace();

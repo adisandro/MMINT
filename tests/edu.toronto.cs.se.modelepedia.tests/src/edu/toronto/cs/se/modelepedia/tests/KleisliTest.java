@@ -42,6 +42,7 @@ import org.osgi.framework.Bundle;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
@@ -165,9 +166,9 @@ public class KleisliTest {
 		// model element types and link types
 		EPackage srcMetamodelRootObj = srcModelType.getEMFTypeRoot();
 		EPackage kTgtMetamodelRootObj = ((KleisliModelEndpoint) kTgtModelTypeEndpointRef.getObject()).getExtendedTarget().getEMFTypeRoot();
-		ModelElement rootModelElemType = MultiModelTypeRegistry.getType(MMINT.ROOT_MODELELEM_URI);
-		Link rootLinkType = MultiModelTypeRegistry.getType(MMINT.ROOT_LINK_URI);
-		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeRegistry.getType(MMINT.ROOT_MODELELEMENDPOINT_URI);
+		ModelElement rootModelElemType = MultiModelTypeHierarchy.getRootModelElementType();
+		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
+		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
 		for (int i = 0; i < SRC_METAMODELOBJ_NAMES.length; i++) {
 			ModelElementReference srcModelElemTypeRef = dropMetamodelObject(srcMetamodelRootObj, SRC_METAMODELOBJ_NAMES[i], srcModelTypeEndpointRef, rootModelElemType);
 			ModelElementReference tgtModelElemTypeRef = dropMetamodelObject(kTgtMetamodelRootObj, TGT_METAMODELOBJ_NAMES[i], kTgtModelTypeEndpointRef, rootModelElemType);

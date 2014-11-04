@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
@@ -218,7 +219,7 @@ public class MultiModelTypeIntrospection {
 	 *             If the uri is invalid or not corresponding to an ECore model
 	 *             file.
 	 */
-	public static EObject getRoot(URI uri) throws Exception {
+	public static @NonNull EObject getRoot(@NonNull URI uri) throws Exception {
 
 		ResourceSet set = new ResourceSetImpl();
 		Resource resource = set.getResource(uri, true);

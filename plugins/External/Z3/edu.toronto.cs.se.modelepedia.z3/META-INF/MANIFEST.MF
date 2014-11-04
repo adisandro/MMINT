@@ -8,10 +8,11 @@ Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.acceleo.engine,
  org.eclipse.gmf.runtime.notation,
+ org.eclipse.osgi,
+ org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
- edu.toronto.cs.se.modelepedia.libz3java,
- org.eclipse.osgi
+ edu.toronto.cs.se.modelepedia.libz3java
 Export-Package: edu.toronto.cs.se.modelepedia.z3,
  edu.toronto.cs.se.modelepedia.z3.mavo,
  edu.toronto.cs.se.modelepedia.z3.reasoning
