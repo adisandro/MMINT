@@ -22,25 +22,25 @@
     <modelElems formulaVariable="bus3" uri="/NECSIS13/uncertainty/architecture.uml#_1CsssM7oEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Node" name="&lt;Node> Bus3" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Node" dynamic="true">
       <eInfo className="Node" featureName="packagedElement" relatedClassName="Model"/>
     </modelElems>
-    <modelElems may="true" formulaVariable="bus2" uri="/NECSIS13/uncertainty/architecture.uml#_0RX9cM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="&lt;&lt;may>> &lt;Node> Bus2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
+    <modelElems may="true" formulaVariable="bus2" uri="/NECSIS13/uncertainty/architecture.uml#_0RX9cM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" name="&lt;&lt;may>> &lt;Node> Bus2" metatypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Node" featureName="packagedElement" relatedClassName="Model"/>
     </modelElems>
-    <modelElems formulaVariable="ui" uri="/NECSIS13/uncertainty/architecture.uml#_sILowM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="&lt;Device> UI" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
+    <modelElems formulaVariable="ui" uri="/NECSIS13/uncertainty/architecture.uml#_sILowM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" name="&lt;Device> UI" metatypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Device" featureName="packagedElement" relatedClassName="Model"/>
     </modelElems>
-    <modelElems formulaVariable="ecu1" uri="/NECSIS13/uncertainty/architecture.uml#_uXq_IM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="&lt;Device> ECU1" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
+    <modelElems formulaVariable="ecu1" uri="/NECSIS13/uncertainty/architecture.uml#_uXq_IM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" name="&lt;Device> ECU1" metatypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Device" featureName="packagedElement" relatedClassName="Model"/>
     </modelElems>
-    <modelElems formulaVariable="ecu2" uri="/NECSIS13/uncertainty/architecture.uml#_vFIiEM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="&lt;Device> ECU2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
+    <modelElems formulaVariable="ecu2" uri="/NECSIS13/uncertainty/architecture.uml#_vFIiEM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" name="&lt;Device> ECU2" metatypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Device" featureName="packagedElement" relatedClassName="Model"/>
     </modelElems>
-    <modelElems formulaVariable="ecu3" uri="/NECSIS13/uncertainty/architecture.uml#_v2zPkM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="&lt;Device> ECU3" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
+    <modelElems formulaVariable="ecu3" uri="/NECSIS13/uncertainty/architecture.uml#_v2zPkM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" name="&lt;Device> ECU3" metatypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Device" featureName="packagedElement" relatedClassName="Model"/>
     </modelElems>
-    <modelElems formulaVariable="bus1" uri="/NECSIS13/uncertainty/architecture.uml#_w4QskM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="&lt;Node> Bus1" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
+    <modelElems formulaVariable="bus1" uri="/NECSIS13/uncertainty/architecture.uml#_w4QskM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" name="&lt;Node> Bus1" metatypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Node" featureName="packagedElement" relatedClassName="Model"/>
     </modelElems>
-    <modelElems formulaVariable="bus3" uri="/NECSIS13/uncertainty/architecture.uml#_1CsssM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="&lt;Node> Bus3" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
+    <modelElems formulaVariable="bus3" uri="/NECSIS13/uncertainty/architecture.uml#_1CsssM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" name="&lt;Node> Bus3" metatypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Node" featureName="packagedElement" relatedClassName="Model"/>
     </modelElems>
   </models>
@@ -311,22 +311,22 @@
     <modelEndpointRefs referencedObject="//@models.3/@modelEndpoints.0" modifiable="true"/>
   </models>
   <models uri="/NECSIS13/uncertainty/architecture2.uml" name="architecture2" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO" dynamic="true" origin="CREATED" fileExtension="uml" editors="//@editors.2">
-    <modelElems formulaVariable="ui" uri="/NECSIS13/uncertainty/architecture2.uml#_sILowM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="&lt;Device> UI" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
+    <modelElems formulaVariable="ui" uri="/NECSIS13/uncertainty/architecture2.uml#_sILowM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" name="&lt;Device> UI" metatypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Device" featureName="packagedElement" relatedClassName="Model"/>
     </modelElems>
-    <modelElems formulaVariable="ecu1" uri="/NECSIS13/uncertainty/architecture2.uml#_uXq_IM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="&lt;Device> ECU1" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
+    <modelElems formulaVariable="ecu1" uri="/NECSIS13/uncertainty/architecture2.uml#_uXq_IM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" name="&lt;Device> ECU1" metatypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Device" featureName="packagedElement" relatedClassName="Model"/>
     </modelElems>
-    <modelElems formulaVariable="ecu2" uri="/NECSIS13/uncertainty/architecture2.uml#_vFIiEM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="&lt;Device> ECU2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
+    <modelElems formulaVariable="ecu2" uri="/NECSIS13/uncertainty/architecture2.uml#_vFIiEM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" name="&lt;Device> ECU2" metatypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Device" featureName="packagedElement" relatedClassName="Model"/>
     </modelElems>
-    <modelElems formulaVariable="ecu3" uri="/NECSIS13/uncertainty/architecture2.uml#_v2zPkM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="&lt;Device> ECU3" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
+    <modelElems formulaVariable="ecu3" uri="/NECSIS13/uncertainty/architecture2.uml#_v2zPkM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" name="&lt;Device> ECU3" metatypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Device" featureName="packagedElement" relatedClassName="Model"/>
     </modelElems>
-    <modelElems formulaVariable="bus1" uri="/NECSIS13/uncertainty/architecture2.uml#_w4QskM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="&lt;Node> Bus1" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
+    <modelElems formulaVariable="bus1" uri="/NECSIS13/uncertainty/architecture2.uml#_w4QskM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" name="&lt;Node> Bus1" metatypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Node" featureName="packagedElement" relatedClassName="Model"/>
     </modelElems>
-    <modelElems formulaVariable="bus3" uri="/NECSIS13/uncertainty/architecture2.uml#_1CsssM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" name="&lt;Node> Bus3" metatypeUri="http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" dynamic="true">
+    <modelElems formulaVariable="bus3" uri="/NECSIS13/uncertainty/architecture2.uml#_1CsssM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" name="&lt;Node> Bus3" metatypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement" dynamic="true">
       <eInfo className="Node" featureName="packagedElement" relatedClassName="Model"/>
     </modelElems>
   </models>
@@ -445,18 +445,18 @@
   <extendibleTable key="/NECSIS13/uncertainty/components.uml#_tXdxQM7mEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Usage" value="//@models.1/@modelElems.14"/>
   <extendibleTable key="/NECSIS13/uncertainty/components.uml#_s0N6QM7mEeKKq4cKovaOgw_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Usage" value="//@models.1/@modelElems.15"/>
   <extendibleTable key="/NECSIS13/uncertainty/architecture2.uml" value="//@models.4"/>
-  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_0RX9cM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.7"/>
-  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_sILowM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.8"/>
-  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_uXq_IM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.9"/>
-  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_vFIiEM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.10"/>
-  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_v2zPkM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.11"/>
-  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_w4QskM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.12"/>
-  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_1CsssM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.0/@modelElems.13"/>
-  <extendibleTable key="/NECSIS13/uncertainty/architecture2.uml#_sILowM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.4/@modelElems.0"/>
-  <extendibleTable key="/NECSIS13/uncertainty/architecture2.uml#_uXq_IM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.4/@modelElems.1"/>
-  <extendibleTable key="/NECSIS13/uncertainty/architecture2.uml#_vFIiEM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.4/@modelElems.2"/>
-  <extendibleTable key="/NECSIS13/uncertainty/architecture2.uml#_v2zPkM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.4/@modelElems.3"/>
-  <extendibleTable key="/NECSIS13/uncertainty/architecture2.uml#_w4QskM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.4/@modelElems.4"/>
-  <extendibleTable key="/NECSIS13/uncertainty/architecture2.uml#_1CsssM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/mmint/MAVO#//MAVOElement" value="//@models.4/@modelElems.5"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_0RX9cM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" value="//@models.0/@modelElems.7"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_sILowM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" value="//@models.0/@modelElems.8"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_uXq_IM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" value="//@models.0/@modelElems.9"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_vFIiEM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" value="//@models.0/@modelElems.10"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_v2zPkM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" value="//@models.0/@modelElems.11"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_w4QskM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" value="//@models.0/@modelElems.12"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture.uml#_1CsssM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" value="//@models.0/@modelElems.13"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture2.uml#_sILowM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" value="//@models.4/@modelElems.0"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture2.uml#_uXq_IM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" value="//@models.4/@modelElems.1"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture2.uml#_vFIiEM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" value="//@models.4/@modelElems.2"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture2.uml#_v2zPkM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" value="//@models.4/@modelElems.3"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture2.uml#_w4QskM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" value="//@models.4/@modelElems.4"/>
+  <extendibleTable key="/NECSIS13/uncertainty/architecture2.uml#_1CsssM7oEeKKq4cKovaOgw_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" value="//@models.4/@modelElems.5"/>
   <extendibleTable key="/NECSIS13/uncertainty/components.uml#_Xy3BMNLUEeK5q4VTho87oQ_AS_http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Usage" value="//@models.1/@modelElems.16"/>
 </mid:MultiModel>
