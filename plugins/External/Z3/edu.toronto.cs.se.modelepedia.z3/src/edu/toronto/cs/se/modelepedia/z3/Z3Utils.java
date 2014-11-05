@@ -11,82 +11,84 @@
  */
 package edu.toronto.cs.se.modelepedia.z3;
 
+import org.eclipse.jdt.annotation.NonNull;
+
 public class Z3Utils {
 
-	public static final String SMTLIB_FILE_EXTENSION = "smt2";
-	public static final String SMTLIB_PREDICATE_START = "(";
-	public static final String SMTLIB_PREDICATE_END = ")";
-	public static final String SMTLIB_TRUE = " true ";
-	public static final String SMTLIB_FALSE = " false ";
-	public static final String SMTLIB_ASSERT = SMTLIB_PREDICATE_START + "assert ";
-	public static final String SMTLIB_EXISTS = SMTLIB_PREDICATE_START + "exists ";
-	public static final String SMTLIB_FORALL = SMTLIB_PREDICATE_START + "forall ";
-	public static final String SMTLIB_AND = SMTLIB_PREDICATE_START + "and ";
-	public static final String SMTLIB_OR = SMTLIB_PREDICATE_START + "or ";
-	public static final String SMTLIB_NOT = SMTLIB_PREDICATE_START + "not ";
-	public static final String SMTLIB_EQUALITY = SMTLIB_PREDICATE_START + "= ";
-	public static final String SMTLIB_IMPLICATION = SMTLIB_PREDICATE_START + "=> ";
-	public static final String SMTLIB_CONST = SMTLIB_PREDICATE_START + "declare-const ";
-	public static final String SMTLIB_TYPE_BOOL = "Bool";
-	public static final String SMTLIB_TYPE_INT = "Int";
+	public static final @NonNull String SMTLIB_FILE_EXTENSION = "smt2";
+	public static final @NonNull String SMTLIB_PREDICATE_START = "(";
+	public static final @NonNull String SMTLIB_PREDICATE_END = ")";
+	public static final @NonNull String SMTLIB_TRUE = " true ";
+	public static final @NonNull String SMTLIB_FALSE = " false ";
+	public static final @NonNull String SMTLIB_ASSERT = SMTLIB_PREDICATE_START + "assert ";
+	public static final @NonNull String SMTLIB_EXISTS = SMTLIB_PREDICATE_START + "exists ";
+	public static final @NonNull String SMTLIB_FORALL = SMTLIB_PREDICATE_START + "forall ";
+	public static final @NonNull String SMTLIB_AND = SMTLIB_PREDICATE_START + "and ";
+	public static final @NonNull String SMTLIB_OR = SMTLIB_PREDICATE_START + "or ";
+	public static final @NonNull String SMTLIB_NOT = SMTLIB_PREDICATE_START + "not ";
+	public static final @NonNull String SMTLIB_EQUALITY = SMTLIB_PREDICATE_START + "= ";
+	public static final @NonNull String SMTLIB_IMPLICATION = SMTLIB_PREDICATE_START + "=> ";
+	public static final @NonNull String SMTLIB_CONST = SMTLIB_PREDICATE_START + "declare-const ";
+	public static final @NonNull String SMTLIB_TYPE_BOOL = "Bool";
+	public static final @NonNull String SMTLIB_TYPE_INT = "Int";
 
-	public static final String SMTLIB_NODE = "node";
-	public static final String SMTLIB_EDGE = "edge";
-	public static final String SMTLIB_NODE_FUNCTION = SMTLIB_PREDICATE_START + SMTLIB_NODE + " ";
-	public static final String SMTLIB_EDGE_FUNCTION = SMTLIB_PREDICATE_START + SMTLIB_EDGE + " ";
+	public static final @NonNull String SMTLIB_NODE = "node";
+	public static final @NonNull String SMTLIB_EDGE = "edge";
+	public static final @NonNull String SMTLIB_NODE_FUNCTION = SMTLIB_PREDICATE_START + SMTLIB_NODE + " ";
+	public static final @NonNull String SMTLIB_EDGE_FUNCTION = SMTLIB_PREDICATE_START + SMTLIB_EDGE + " ";
 
-	public static final String Z3_MODEL_SEPARATOR = "!";
-	public static final String Z3_MODEL_DEFINITION = " -> ";
-	public static final String Z3_MODEL_ELSE = "else";
-	public static final String Z3_MODEL_FUNCTION_START = "{";
-	public static final String Z3_MODEL_FUNCTION_END = "}";
+	public static final @NonNull String Z3_MODEL_SEPARATOR = "!";
+	public static final @NonNull String Z3_MODEL_DEFINITION = " -> ";
+	public static final @NonNull String Z3_MODEL_ELSE = "else";
+	public static final @NonNull String Z3_MODEL_FUNCTION_START = "{";
+	public static final @NonNull String Z3_MODEL_FUNCTION_END = "}";
 
-	public static String predicate(String predicateStart, String smtTerms) {
+	public static @NonNull String predicate(@NonNull String predicateStart, @NonNull String smtTerms) {
 
 		return predicateStart + smtTerms + SMTLIB_PREDICATE_END;
 	}
 
-	public static String emptyPredicate(String smtTerms) {
+	public static @NonNull String emptyPredicate(@NonNull String smtTerms) {
 
 		return predicate(SMTLIB_PREDICATE_START, smtTerms);
 	}
 
-	public static String assertion(String smtTerms) {
+	public static @NonNull String assertion(@NonNull String smtTerms) {
 
 		return predicate(SMTLIB_ASSERT, smtTerms);
 	}
 
-	public static String not(String smtTerms) {
+	public static @NonNull String not(@NonNull String smtTerms) {
 
 		return predicate(SMTLIB_NOT, smtTerms);
 	}
 
-	public static String and(String smtTerms) {
+	public static @NonNull String and(@NonNull String smtTerms) {
 
 		return predicate(SMTLIB_AND, smtTerms);
 	}
 
-	public static String or(String smtTerms) {
+	public static @NonNull String or(@NonNull String smtTerms) {
 
 		return predicate(SMTLIB_OR, smtTerms);
 	}
 
-	public static String constant(String smtConstantName, String smtConstantType) {
+	public static @NonNull String constant(@NonNull String smtConstantName, @NonNull String smtConstantType) {
 
 		return predicate(SMTLIB_CONST, smtConstantName + " " + smtConstantType);
 	}
 
-	public static String equality(String smtTerms) {
+	public static @NonNull String equality(@NonNull String smtTerms) {
 
 		return predicate(SMTLIB_EQUALITY, smtTerms);
 	}
 
-	public static String implication(String smtIfTerms, String smtThenTerms) {
+	public static @NonNull String implication(@NonNull String smtIfTerms, @NonNull String smtThenTerms) {
 
 		return predicate(SMTLIB_IMPLICATION, smtIfTerms + smtThenTerms);
 	}
 
-	public static String exists(String smtQuantification, String smtTerms) {
+	public static @NonNull String exists(@NonNull String smtQuantification, @NonNull String smtTerms) {
 
 		return predicate(
 			SMTLIB_EXISTS,
@@ -94,7 +96,7 @@ public class Z3Utils {
 		);
 	}
 
-	public static String forall(String smtQuantification, String smtTerms) {
+	public static @NonNull String forall(@NonNull String smtQuantification, @NonNull String smtTerms) {
 
 		return predicate(
 			SMTLIB_FORALL,

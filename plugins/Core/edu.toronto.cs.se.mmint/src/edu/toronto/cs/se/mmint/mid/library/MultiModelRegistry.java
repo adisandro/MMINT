@@ -26,6 +26,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -194,7 +196,7 @@ public class MultiModelRegistry {
 	 *            The element contained in the multimodel.
 	 * @return The multimodel that contains the element.
 	 */
-	public static MultiModel getMultiModel(ExtendibleElement element) {
+	public static MultiModel getMultiModel(@NonNull ExtendibleElement element) {
 
 		MultiModel multiModel = null;
 		if (element instanceof Model || element instanceof ModelRel || element instanceof Editor || element instanceof Operator) {
@@ -233,7 +235,7 @@ public class MultiModelRegistry {
 	 *         the desired class of elements.
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends ExtendibleElement> T getExtendibleElement(String uri, MultiModel multiModel) {
+	public static <T extends ExtendibleElement> @Nullable T getExtendibleElement(@NonNull String uri, @NonNull MultiModel multiModel) {
 
 		ExtendibleElement element = multiModel.getExtendibleTable().get(uri);
 		if (element == null) {

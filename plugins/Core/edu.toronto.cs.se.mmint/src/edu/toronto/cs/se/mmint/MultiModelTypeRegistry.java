@@ -19,6 +19,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
@@ -72,7 +74,7 @@ public class MultiModelTypeRegistry {
 	 * @return The type, null if the uri is not found or found not to be of the
 	 *         desired class of types.
 	 */
-	public static <T extends ExtendibleElement> T getType(String typeUri) {
+	public static <T extends ExtendibleElement> @Nullable T getType(@NonNull String typeUri) {
 
 		return MultiModelRegistry.getExtendibleElement(typeUri, MMINT.repository);
 	}
@@ -536,7 +538,7 @@ public class MultiModelTypeRegistry {
 	 *            The uri of the type.
 	 * @return The bundle that declares a type, null if it can't be found.
 	 */
-	public static Bundle getTypeBundle(String typeUri) {
+	public static @Nullable Bundle getTypeBundle(@NonNull String typeUri) {
 
 		Bundle bundle = null;
 		String bundleName = MMINT.bundleTable.get(typeUri);

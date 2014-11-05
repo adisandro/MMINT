@@ -238,7 +238,7 @@ public class MultiModelTypeIntrospection {
 	 * @throws Exception
 	 *             If the ECore model file could not be created or overwritten.
 	 */
-	public static void writeRoot(EObject root, URI uri) throws Exception {
+	public static void writeRoot(@NonNull EObject root, @NonNull URI uri) throws Exception {
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(uri);

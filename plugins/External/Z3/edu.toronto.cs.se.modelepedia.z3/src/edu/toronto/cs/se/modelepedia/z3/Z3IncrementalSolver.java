@@ -14,6 +14,8 @@ package edu.toronto.cs.se.modelepedia.z3;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.jdt.annotation.NonNull;
+
 import com.microsoft.z3.BoolExpr;
 import com.microsoft.z3.Context;
 import com.microsoft.z3.FuncDecl;
@@ -43,7 +45,7 @@ public class Z3IncrementalSolver {
 		model = null;
 	}
 
-	private Z3Model runCheckSatAndGetModel(String smtEncoding, Z3IncrementalBehavior incBehavior) throws Z3Exception {
+	private @NonNull Z3Model runCheckSatAndGetModel(@NonNull String smtEncoding, @NonNull Z3IncrementalBehavior incBehavior) throws Z3Exception {
 
 		BoolExpr expr;
 		if (model != null) {
@@ -81,7 +83,7 @@ public class Z3IncrementalSolver {
 	}
 
 	// first check sat and get model as baseline
-	public Z3Model firstCheckSatAndGetModel(String smtEncoding) {
+	public @NonNull Z3Model firstCheckSatAndGetModel(@NonNull String smtEncoding) {
 
 		Map<String, String> config = new HashMap<String, String>();
 		config.put("model", "true");
@@ -100,7 +102,7 @@ public class Z3IncrementalSolver {
 	}
 
 	// incremental check sat and get model
-	public Z3Model checkSatAndGetModel(String smtEncoding, Z3IncrementalBehavior incBehavior) {
+	public @NonNull Z3Model checkSatAndGetModel(@NonNull String smtEncoding, @NonNull Z3IncrementalBehavior incBehavior) {
 
 		if (model == null) {
 			MMINTException.print(Type.WARNING, "No incremental model found, invoking firstCheckSatAndGetModel() instead", null);

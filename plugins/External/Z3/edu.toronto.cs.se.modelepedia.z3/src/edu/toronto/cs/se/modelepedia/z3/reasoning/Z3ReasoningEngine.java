@@ -41,6 +41,7 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 
 	private final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
 
+	private Z3Model z3ConstraintModel;
 	private Z3Model z3NotConstraintModel;
 
 	private Z3MAVOModelParser generateSMTLIBEncoding(Model model) throws Exception {
@@ -59,18 +60,24 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 		return ecore2smt.getZ3MAVOModelParser();
 	}
 
-	public MAVOTruthValue checkMAVOConstraint(String smtEncoding, String smtConstraint) {
+	public @NonNull MAVOTruthValue checkMAVOConstraintEncodingLoaded(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull String smtConstraint) {
 
-		// tri-state MAVO logic
-		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
-		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
 		Z3Model z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(smtConstraint), Z3IncrementalBehavior.POP);
 		boolean constraintTruthValue = z3Model.getZ3Bool() == Z3Bool.SAT;
+		z3ConstraintModel = (constraintTruthValue) ? z3Model : null;
 		z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(smtConstraint)), Z3IncrementalBehavior.POP);
 		boolean notConstraintTruthValue = z3Model.getZ3Bool() == Z3Bool.SAT;
 		z3NotConstraintModel = (notConstraintTruthValue) ? z3Model : null;
 
 		return MAVOTruthValue.toMAVOTruthValue(constraintTruthValue, notConstraintTruthValue);
+	}
+
+	public @NonNull MAVOTruthValue checkMAVOConstraint(@NonNull String smtEncoding, @NonNull String smtConstraint) {
+
+		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
+		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
+
+		return checkMAVOConstraintEncodingLoaded(z3IncSolver, smtConstraint);
 	}
 
 	private @Nullable Diagram getModelDiagram(@NonNull Model model) {
@@ -87,7 +94,7 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public MAVOTruthValue checkConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
+	public @NonNull MAVOTruthValue checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
 		Z3MAVOModelParser z3ModelParser;
 		try {
@@ -128,7 +135,7 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkConstraintConsistency(Model modelType, String constraint) {
+	public boolean checkConstraintConsistency(@NonNull Model modelType, String constraint) {
 
 		return true;
 	}
@@ -154,7 +161,7 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 		// refine
 		Diagram modelDiagram = getModelDiagram(model);
 		try {
-			MAVORefinement refiner = new MAVORefinement();
+			MAVORefinement refiner = new MAVORefinement(this);
 			refiner.refine(model, modelDiagram, z3ModelParser.getSMTLIBEncoding());
 		}
 		catch (Exception e) {

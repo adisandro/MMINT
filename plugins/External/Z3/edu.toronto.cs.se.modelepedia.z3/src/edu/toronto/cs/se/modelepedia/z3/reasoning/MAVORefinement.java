@@ -26,6 +26,8 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -37,11 +39,20 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 public class MAVORefinement {
 
 	private static final String REFINEMENT_SUFFIX = "_refined";
+	private static final @NonNull String REFINEMENT_MODELRELTYPE_URI = "http://se.cs.toronto.edu/mmint/MAVORefinementRel";
+
+	private Z3ReasoningEngine reasoner;
+
+	public MAVORefinement(@NonNull Z3ReasoningEngine reasoner) {
+
+		this.reasoner = reasoner;
+	}
 
 	private @NonNull Map<String, MAVOElement> getModelObjects(@NonNull MAVOModel rootModelObj) {
 
@@ -64,22 +75,24 @@ public class MAVORefinement {
 	 */
 	private @NonNull Map<String, MAVOTruthValue> runZ3SMTSolver(@NonNull Map<String, MAVOElement> modelObjs, @NonNull String smtEncoding) {
 
-		// for each element, checks its MAVOTruthValue in the model with the new property.
+		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
+		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
 		Map<String, MAVOTruthValue> refinedObjs = new HashMap<String, MAVOTruthValue>();
+		// for each element, assert it and check
 		for (Entry<String, MAVOElement> entry : modelObjs.entrySet()) {
 			String formulaVar = entry.getKey();
 			MAVOElement modelObj = entry.getValue();
-			String elementFormula = null;
+			String smtConstraint = null;
 			if (modelObj.eClass().getEAnnotation("gmf.node") != null) {
-				elementFormula = Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, formulaVar);
+				smtConstraint = Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, formulaVar);
 			}
 			else if (modelObj.eClass().getEAnnotation("gmf.link") != null) {
-				elementFormula = Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, formulaVar);
+				smtConstraint = Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, formulaVar);
 			}
 			else {
 				continue;
 			}
-			MAVOTruthValue refinedTruthValue = (new Z3ReasoningEngine()).checkMAVOConstraint(smtEncoding, elementFormula);
+			MAVOTruthValue refinedTruthValue = reasoner.checkMAVOConstraintEncodingLoaded(z3IncSolver, smtConstraint);
 			refinedObjs.put(formulaVar, refinedTruthValue);
 		}
 
@@ -94,23 +107,25 @@ public class MAVORefinement {
 	private void refineModel(@NonNull Map<String, MAVOElement> modelObjs, @NonNull Map<String, MAVOTruthValue> refinedObjs) {
 
 		for (Entry<String, MAVOTruthValue> entry : refinedObjs.entrySet()) {
-			String formulaVar = entry.getKey();
-			MAVOTruthValue refinedTruthValue = entry.getValue();
-			if (refinedTruthValue == MAVOTruthValue.TRUE) {
-				modelObjs.get(formulaVar).setMay(false);
-			}
-			else if (refinedTruthValue == MAVOTruthValue.MAYBE) {
-				modelObjs.get(formulaVar).setMay(true);
-			}
-			else if (refinedTruthValue == MAVOTruthValue.FALSE) {
-				EcoreUtil.delete(modelObjs.get(formulaVar));
+			MAVOElement modelObj = modelObjs.get(entry.getKey());
+			switch (entry.getValue()) {
+				case TRUE:
+					modelObj.setMay(false);
+					modelObj.getAlternatives().clear();
+					break;
+				case MAYBE:
+					modelObj.setMay(true);
+					break;
+				case FALSE:
+				default:
+					EcoreUtil.delete(modelObj);
 			}
 		}
 	}
 
 	public void refine(@NonNull Model model, @Nullable Diagram modelDiagram, @NonNull String smtEncoding) throws Exception {
 
-		//TODO: optimize calls to z3, populate model rel, check exceptions thrown
+		//TODO: populate model rel, check exceptions thrown
 		// refine
 		smtEncoding += Z3Utils.assertion(model.getConstraint().getImplementation());
 		MAVOModel rootModelObj = (MAVOModel) MultiModelUtils.getModelFile(model.getUri(), true);
@@ -132,7 +147,11 @@ public class MAVORefinement {
 		// create mid artifacts
 		MultiModel instanceMID = MultiModelRegistry.getMultiModel(model);
 		Model refinedModel = model.getMetatype().createMAVOInstanceAndEditor(refinedModelUri, ModelOrigin.CREATED, instanceMID);
-		ModelRel modelRelType = MultiModelTypeHierarchy.getRootModelRelType();
+		ModelRel modelRelType = MultiModelTypeRegistry.getType(REFINEMENT_MODELRELTYPE_URI);
+		if (modelRelType == null) {
+			MMINTException.print(Type.WARNING, "Can't find MAVORefinementRel type, fallback to ModelRel type", null);
+			modelRelType = MultiModelTypeHierarchy.getRootModelRelType();
+		}
 		EList<Model> modelEndpoints = new BasicEList<Model>();
 		modelEndpoints.add(model);
 		modelEndpoints.add(refinedModel);

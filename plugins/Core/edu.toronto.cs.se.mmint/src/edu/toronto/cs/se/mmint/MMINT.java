@@ -28,6 +28,7 @@ import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.jdt.annotation.NonNull;
 import org.osgi.service.prefs.BackingStoreException;
 
 import edu.toronto.cs.se.mmint.MMINTException.Type;

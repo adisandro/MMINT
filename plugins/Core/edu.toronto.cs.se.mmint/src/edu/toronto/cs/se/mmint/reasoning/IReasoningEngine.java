@@ -20,9 +20,9 @@ import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTr
 
 public interface IReasoningEngine {
 
-	public MAVOTruthValue checkConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel);
+	public @NonNull MAVOTruthValue checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel);
 
-	public boolean checkConstraintConsistency(Model modelType, String constraint);
+	public boolean checkConstraintConsistency(@NonNull Model modelType, String constraint);
 
 	public void refineByConstraint(@NonNull Model model);
 

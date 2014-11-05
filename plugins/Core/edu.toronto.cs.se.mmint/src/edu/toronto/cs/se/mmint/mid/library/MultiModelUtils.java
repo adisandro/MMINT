@@ -190,7 +190,7 @@ public class MultiModelUtils {
 	 * @throws Exception
 	 *             If the ECore model file could not be created or overwritten.
 	 */
-	public static void createModelFile(EObject root, String fileUri, boolean isWorkspaceRelative) throws Exception {
+	public static void createModelFile(@NonNull EObject root, @NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
 
 		MultiModelTypeIntrospection.writeRoot(root, getEMFUri(fileUri, isWorkspaceRelative));
 	}

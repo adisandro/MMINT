@@ -20,6 +20,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -61,6 +62,7 @@ public class MultiModelConstraintChecker {
 
 	public enum MAVOTruthValue {
 
+		// tri-state MAVO logic
 		TRUE, FALSE, MAYBE, ERROR;
 
 		public boolean toBoolean() {
@@ -81,7 +83,7 @@ public class MultiModelConstraintChecker {
 			return (truthValue) ? TRUE : FALSE;
 		}
 
-		public static MAVOTruthValue toMAVOTruthValue(boolean constraintTruthValue, boolean notConstraintTruthValue) {
+		public static @NonNull MAVOTruthValue toMAVOTruthValue(boolean constraintTruthValue, boolean notConstraintTruthValue) {
 	
 			if (constraintTruthValue == true && notConstraintTruthValue == false) {
 				return TRUE;
@@ -538,7 +540,7 @@ linkTypes:
 		return null;
 	}
 
-	private static IReasoningEngine getReasoner(String constraintLanguage) throws MMINTException {
+	private static @NonNull IReasoningEngine getReasoner(@NonNull String constraintLanguage) throws MMINTException {
 
 		Map<String, IReasoningEngine> reasoners = MMINT.getLanguageReasoners(constraintLanguage);
 		if (reasoners == null || reasoners.isEmpty()) {
@@ -546,6 +548,9 @@ linkTypes:
 		}
 		String reasonerName = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_LANGUAGE_REASONER + constraintLanguage);
 		IReasoningEngine reasoner = reasoners.get(reasonerName);
+		if (reasoner == null) {
+			throw new MMINTException("Can't find reasoner " + reasonerName);
+		}
 
 		return reasoner;
 	}
