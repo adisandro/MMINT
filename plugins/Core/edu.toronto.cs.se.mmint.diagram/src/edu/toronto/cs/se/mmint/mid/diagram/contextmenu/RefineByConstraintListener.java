@@ -28,11 +28,11 @@ import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-public class RefinementListener extends MIDContextMenuListener {
+public class RefineByConstraintListener extends MIDContextMenuListener {
 
 	private Model model;
 
-	public RefinementListener(String menuLabel, Model model) {
+	public RefineByConstraintListener(String menuLabel, Model model) {
 
 		super(menuLabel);
 		this.model = model;

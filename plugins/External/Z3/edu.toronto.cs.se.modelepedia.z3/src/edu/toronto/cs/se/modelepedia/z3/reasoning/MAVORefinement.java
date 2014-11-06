@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -28,15 +29,23 @@ import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
+import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.relationship.Link;
+import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
@@ -44,8 +53,11 @@ import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 public class MAVORefinement {
 
-	private static final @NonNull String REFINEMENT_SUFFIX = "_refined";
-	private static final @NonNull String REFINEMENT_MODELRELTYPE_URI = "http://se.cs.toronto.edu/mmint/MAVORefinementRel";
+	private static final @NonNull String MODEL_SUFFIX = "_refined";
+	private static final @NonNull String MODELRELTYPE_URI = "http://se.cs.toronto.edu/mmint/MAVORefinementRel";
+	private static final @NonNull String MODELREL_NAME = "refinement";
+	private static final @NonNull String REFINED_LINK_NAME = "refined";
+	private static final @NonNull String DELETED_LINK_NAME = "deleted";
 
 	private Z3ReasoningEngine reasoner;
 
@@ -54,18 +66,32 @@ public class MAVORefinement {
 		this.reasoner = reasoner;
 	}
 
-	private @NonNull Map<String, MAVOElement> getModelObjects(@NonNull MAVOModel rootModelObj) {
+	private @NonNull Map<String, MAVOElement> getModelObjectsToRefine(@NonNull MAVOModel rootModelObj, @NonNull MAVOModel refinedRootModelObj, @NonNull String refinedModelUri, @NonNull Map<MAVOElement, MAVOElement> refinementMap) {
 
+		Map<String, MAVOElement> modelObjsToRefine = new HashMap<String, MAVOElement>();
+		Resource refinedResource = refinedRootModelObj.eResource();
 		TreeIterator<EObject> iter = rootModelObj.eAllContents();
-		Map<String, MAVOElement> modelObjs = new HashMap<String, MAVOElement>();
 		while (iter.hasNext()){
-			EObject element = iter.next();
-			if (element instanceof MAVOElement){
-				modelObjs.put(((MAVOElement) element).getFormulaVariable(), (MAVOElement) element);
+			EObject modelObj = iter.next();
+			// skip non-may elements
+			if (!(modelObj instanceof MAVOElement) || !((MAVOElement) modelObj).isMay()) {
+				continue;
 			}
+			String modelObjUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1];
+			String refinedModelObjUri = refinedModelUri + modelObjUri.substring(modelObjUri.lastIndexOf(MMINT.ECORE_MODEL_URI_SEPARATOR));
+			MAVOElement refinedModelObj;
+			try {
+				refinedModelObj = (MAVOElement) MultiModelTypeIntrospection.getPointer(refinedResource, refinedModelObjUri);
+			}
+			catch (Exception e) {
+				MMINTException.print(Type.WARNING, "Can't get model object " + refinedModelObjUri + ", skipping it", e);
+				continue;
+			}
+			modelObjsToRefine.put(refinedModelObj.getFormulaVariable(), refinedModelObj);
+			refinementMap.put(refinedModelObj, (MAVOElement) modelObj);
 		}
 
-		return modelObjs;
+		return modelObjsToRefine;
 	}
 
 	/**
@@ -73,13 +99,13 @@ public class MAVORefinement {
 	 * @param graph
 	 * @return
 	 */
-	private @NonNull Map<String, MAVOTruthValue> runZ3SMTSolver(@NonNull Map<String, MAVOElement> modelObjs, @NonNull String smtEncoding) {
+	private @NonNull Map<String, MAVOTruthValue> runZ3SMTSolver(@NonNull Map<String, MAVOElement> modelObjsToRefine, @NonNull String smtEncoding) {
 
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
-		Map<String, MAVOTruthValue> refinedObjs = new HashMap<String, MAVOTruthValue>();
+		Map<String, MAVOTruthValue> refinedTruthValues = new HashMap<String, MAVOTruthValue>();
 		// for each element, assert it and check
-		for (Entry<String, MAVOElement> entry : modelObjs.entrySet()) {
+		for (Entry<String, MAVOElement> entry : modelObjsToRefine.entrySet()) {
 			String formulaVar = entry.getKey();
 			MAVOElement modelObj = entry.getValue();
 			String smtConstraint = null;
@@ -93,10 +119,10 @@ public class MAVORefinement {
 				continue;
 			}
 			MAVOTruthValue refinedTruthValue = reasoner.checkMAVOConstraintEncodingLoaded(z3IncSolver, smtConstraint);
-			refinedObjs.put(formulaVar, refinedTruthValue);
+			refinedTruthValues.put(formulaVar, refinedTruthValue);
 		}
 
-		return refinedObjs;
+		return refinedTruthValues;
 	}
 
 	/**
@@ -104,51 +130,67 @@ public class MAVORefinement {
 	 * @param graph
 	 * @param refinedModel
 	 */
-	private void refineModel(@NonNull Map<String, MAVOElement> modelObjs, @NonNull Map<String, MAVOTruthValue> refinedObjs) {
+	private void refineModel(@NonNull Map<String, MAVOElement> modelObjsToRefine, @NonNull Map<String, MAVOTruthValue> refinedTruthValues, @NonNull Map<MAVOElement, MAVOElement> refinementMap) {
 
-		for (Entry<String, MAVOTruthValue> entry : refinedObjs.entrySet()) {
-			MAVOElement modelObj = modelObjs.get(entry.getKey());
+		for (Entry<String, MAVOTruthValue> entry : refinedTruthValues.entrySet()) {
+			MAVOElement refinedModelObj = modelObjsToRefine.get(entry.getKey());
 			switch (entry.getValue()) {
 				case TRUE:
-					modelObj.setMay(false);
-					modelObj.getAlternatives().clear();
-					break;
-				case MAYBE:
-					modelObj.setMay(true);
+					refinedModelObj.setMay(false);
+					refinedModelObj.getAlternatives().clear();
 					break;
 				case FALSE:
+					EcoreUtil.delete(refinedModelObj);
+					refinementMap.put(refinementMap.remove(refinedModelObj), null);
+					break;
+				case MAYBE:
 				default:
-					EcoreUtil.delete(modelObj);
+					// no refinement
+					refinementMap.remove(refinedModelObj);
+			}
+		}
+	}
+
+	private void populateRefinementRel(@NonNull ModelRel refinementRel, @NonNull Map<MAVOElement, MAVOElement> refinementMap) {
+
+		ModelEndpointReference modelEndpointRef = refinementRel.getModelEndpointRefs().get(0);
+		ModelEndpointReference refinedModelEndpointRef = refinementRel.getModelEndpointRefs().get(1);
+		Link refinementLinkType = refinementRel.getMetatype().getLinks().get(0);
+		for (Entry<MAVOElement, MAVOElement> refinementEntry : refinementMap.entrySet()) {
+			MAVOElement refinedModelObj = refinementEntry.getKey();
+			MAVOElement modelObj = refinementEntry.getValue();
+			if (modelObj == null) {
+				modelObj = refinedModelObj;
+				refinedModelObj = null;
+			}
+			boolean isBinary = false;
+			String linkName = DELETED_LINK_NAME;
+			EList<ModelElementReference> modelElemRefs = new BasicEList<ModelElementReference>();
+			try {
+				modelElemRefs.add(ModelElementImpl.createMAVOInstanceAndReference(modelObj, null, modelEndpointRef));
+				if (refinedModelObj != null) {
+					isBinary = true;
+					linkName = REFINED_LINK_NAME;
+					modelElemRefs.add(ModelElementImpl.createMAVOInstanceAndReference(refinedModelObj, null, refinedModelEndpointRef));
+				}
+				LinkReference refinementLinkRef = refinementLinkType.createInstanceAndReferenceAndEndpointsAndReferences(isBinary, modelElemRefs);
+				refinementLinkRef.getObject().setName(linkName);
+			}
+			catch (MMINTException e) {
+				MMINTException.print(Type.WARNING, "Can't create refinement link", e);
 			}
 		}
 	}
 
 	public void refine(@NonNull Model model, @Nullable Diagram modelDiagram, @NonNull String smtEncoding) throws Exception {
 
-		//TODO: populate model rel, check exceptions thrown
-		// refine
-		smtEncoding += Z3Utils.assertion(model.getConstraint().getImplementation());
-		MAVOModel rootModelObj = (MAVOModel) MultiModelUtils.getModelFile(model.getUri(), true);
-		Map<String, MAVOElement> modelObjs = getModelObjects(rootModelObj);
-		Map<String, MAVOTruthValue> refinedObjs = runZ3SMTSolver(modelObjs, smtEncoding);
-		refineModel(modelObjs, refinedObjs);
-
-		// write refinement to file
-		String refinedModelBaseUri = MultiModelUtils.addFileNameSuffixInUri(model.getUri(), REFINEMENT_SUFFIX);
-		String refinedModelUri = MultiModelUtils.getUniqueUri(refinedModelBaseUri, true, false);
-		MultiModelUtils.createModelFile(rootModelObj, refinedModelUri, true);
-		if (modelDiagram != null) {
-			String refinedModelDiagramUri = MultiModelUtils.replaceFileExtensionInUri(refinedModelUri, modelDiagram.getFileExtensions().get(0));
-			String diagramKind = model.getMetatype().getName();
-			String diagramPluginId = MultiModelTypeRegistry.getTypeBundle(modelDiagram.getMetatypeUri()).getSymbolicName();
-			GMFDiagramUtils.createGMFDiagram(refinedModelUri, refinedModelDiagramUri, diagramKind, diagramPluginId, true);
-			GMFDiagramUtils.openGMFDiagram(refinedModelDiagramUri, modelDiagram.getId(), true);
-		}
-
+		//TODO check exceptions thrown, check to arrive here with an actual constraint
 		// create mid artifacts
+		String refinedModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(model.getUri(), MODEL_SUFFIX), true, false);
+		MultiModelUtils.copyTextFileAndReplaceText(model.getUri(), refinedModelUri, "", "", true);
 		MultiModel instanceMID = MultiModelRegistry.getMultiModel(model);
-		Model refinedModel = model.getMetatype().createMAVOInstanceAndEditor(refinedModelUri, ModelOrigin.CREATED, instanceMID);
-		ModelRel modelRelType = MultiModelTypeRegistry.getType(REFINEMENT_MODELRELTYPE_URI);
+		Model refinedModel = model.getMetatype().createMAVOInstance(refinedModelUri, ModelOrigin.CREATED, instanceMID);
+		ModelRel modelRelType = MultiModelTypeRegistry.getType(MODELRELTYPE_URI);
 		if (modelRelType == null) {
 			MMINTException.print(Type.WARNING, "Can't find MAVORefinementRel type, fallback to ModelRel type", null);
 			modelRelType = MultiModelTypeHierarchy.getRootModelRelType();
@@ -156,7 +198,28 @@ public class MAVORefinement {
 		EList<Model> modelEndpoints = new BasicEList<Model>();
 		modelEndpoints.add(model);
 		modelEndpoints.add(refinedModel);
-		modelRelType.createInstanceAndEndpointsAndReferences(null, ModelOrigin.CREATED, modelEndpoints);
+		ModelRel refinementRel = modelRelType.createInstanceAndEndpointsAndReferences(null, ModelOrigin.CREATED, modelEndpoints);
+		refinementRel.setName(MODELREL_NAME);
+
+		// refine
+		MAVOModel rootModelObj = (MAVOModel) MultiModelUtils.getModelFile(model.getUri(), true);
+		MAVOModel refinedRootModelObj = (MAVOModel) MultiModelUtils.getModelFile(refinedModelUri, true);
+		Map<MAVOElement, MAVOElement> refinementMap = new HashMap<MAVOElement, MAVOElement>();
+		Map<String, MAVOElement> modelObjsToRefine = getModelObjectsToRefine(rootModelObj, refinedRootModelObj, refinedModelUri, refinementMap);
+		Map<String, MAVOTruthValue> refinedTruthValues = runZ3SMTSolver(modelObjsToRefine, smtEncoding + Z3Utils.assertion(model.getConstraint().getImplementation()));
+		refineModel(modelObjsToRefine, refinedTruthValues, refinementMap);
+		populateRefinementRel(refinementRel, refinementMap);
+
+		// write refinement to file
+		MultiModelUtils.createModelFile(refinedRootModelObj, refinedModelUri, true);
+		if (modelDiagram != null) {
+			String refinedModelDiagramUri = MultiModelUtils.replaceFileExtensionInUri(refinedModelUri, modelDiagram.getFileExtensions().get(0));
+			String diagramKind = model.getMetatype().getName();
+			String diagramPluginId = MultiModelTypeRegistry.getTypeBundle(modelDiagram.getMetatypeUri()).getSymbolicName();
+			GMFDiagramUtils.createGMFDiagram(refinedModelUri, refinedModelDiagramUri, diagramKind, diagramPluginId, true);
+			GMFDiagramUtils.openGMFDiagram(refinedModelDiagramUri, modelDiagram.getId(), true);
+		}
+		refinedModel.createInstanceEditor();
 	}
 
 }

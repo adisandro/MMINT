@@ -42,7 +42,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.contextmenu.CheckConstraintListener;
 import edu.toronto.cs.se.mmint.mid.diagram.contextmenu.CopyModelListener;
 import edu.toronto.cs.se.mmint.mid.diagram.contextmenu.EditModelepediaListener;
 import edu.toronto.cs.se.mmint.mid.diagram.contextmenu.OpenModelepediaListener;
-import edu.toronto.cs.se.mmint.mid.diagram.contextmenu.RefinementListener;
+import edu.toronto.cs.se.mmint.mid.diagram.contextmenu.RefineByConstraintListener;
 import edu.toronto.cs.se.mmint.mid.diagram.contextmenu.RunOperatorListener;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart;
@@ -72,11 +72,11 @@ public class MIDContextMenu extends ContributionItem {
 	private static final String MMINT_MENU_COHERENCE_LABEL = "Check Runtime Coherence";
 	private static final String MMINT_MENU_ADDCONSTRAINT_LABEL = "Add/Modify Constraint";
 	private static final String MMINT_MENU_CHECKCONSTRAINT_LABEL = "Check Constraint";
+	private static final String MMINT_MENU_REFINEBYCONSTRAINT_LABEL = "Refine by Constraint";
 	private static final String MMINT_MENU_COPY_LABEL = "Copy Model";
 	private static final String MMINT_MENU_MODELEPEDIA_SUBMENU_LABEL = "Wiki";
 	private static final String MMINT_MENU_MODELEPEDIA_SUBMENU_OPEN_LABEL = "Open Wiki Page";
 	private static final String MMINT_MENU_MODELEPEDIA_SUBMENU_EDIT_LABEL = "Edit Wiki Page";
-	private static final String MMINT_MENU_REFINE_LABEL = "Apply Refinement";
 	private static final String DOWNCAST_LABEL = " (downcast)";
 
 	@Override
@@ -99,7 +99,7 @@ public class MIDContextMenu extends ContributionItem {
 			return;
 		}
 		Object[] objects = ((StructuredSelection) selection).toArray();
-		boolean doOperator = true, doCast = true, doCheckConstraint = true, doCopy = true, doAddConstraint = true, doModelepedia = true, doCoherence = true, doMay = true;
+		boolean doOperator = true, doCast = true, doAddConstraint = true, doCheckConstraint = true, doRefineByConstraint = true, doCopy = true, doModelepedia = true, doCoherence = true;
 		if (objects.length > 1) { // actions that don't work on multiple objects
 			doCast = false;
 			doCheckConstraint = false;
@@ -107,7 +107,7 @@ public class MIDContextMenu extends ContributionItem {
 			doAddConstraint = false;
 			doModelepedia = false;
 			doCoherence = false;
-			doMay = false;
+			doRefineByConstraint = false;
 		}
 
 		// get model selection
@@ -135,7 +135,7 @@ public class MIDContextMenu extends ContributionItem {
 				doAddConstraint = false;
 				doModelepedia = false;
 				doCoherence = false;
-				doMay = false;
+				doRefineByConstraint = false;
 				if (MultiModelConstraintChecker.isInstancesLevel((MultiModel) editPartElement)) { // instances only
 					instanceMID = (MultiModel) editPartElement;
 				}
@@ -148,12 +148,12 @@ public class MIDContextMenu extends ContributionItem {
 					doCheckConstraint = false;
 					doCopy = false;
 					doCoherence = false;
-					doMay = false;
+					doRefineByConstraint = false;
 				}
 				if (model instanceof ModelRel) { // actions that don't work on model relationships
 					doCopy = false;
 				}
-				if (doOperator || doCast || doCheckConstraint || doCopy || doAddConstraint || doModelepedia || doCoherence || doMay) {
+				if (doOperator || doCast || doCheckConstraint || doCopy || doAddConstraint || doModelepedia || doCoherence || doRefineByConstraint) {
 					models.add(model);
 				}
 				if (doCast) {
@@ -168,7 +168,7 @@ public class MIDContextMenu extends ContributionItem {
 					editParts.add(editPart);
 				}
 			}
-			if (!doOperator && !doCast && !doCheckConstraint && !doCopy && !doAddConstraint && !doModelepedia && !doCoherence && !doMay) { // no action available
+			if (!doOperator && !doCast && !doCheckConstraint && !doCopy && !doAddConstraint && !doModelepedia && !doCoherence && !doRefineByConstraint) { // no action available
 				return;
 			}
 		}
@@ -300,6 +300,37 @@ public class MIDContextMenu extends ContributionItem {
 				new CheckConstraintListener(MMINT_MENU_CHECKCONSTRAINT_LABEL, models.get(0), editParts.get(0))
 			);
 		}
+		// refine
+		if (doRefineByConstraint) {
+			MenuItem refineItem = new MenuItem(mmintMenu, SWT.NONE);
+			refineItem.setText(MMINT_MENU_REFINEBYCONSTRAINT_LABEL);
+			refineItem.addSelectionListener(
+				new RefineByConstraintListener(MMINT_MENU_REFINEBYCONSTRAINT_LABEL, models.get(0))
+			);
+//			MenuItem mayItem = new MenuItem(mmintMenu, SWT.CASCADE);
+//			mayItem.setText("May Models");
+//			Menu mayMenu = new Menu(menu);
+//			mayItem.setMenu(mayMenu);
+//
+//			MenuItem refinementItem = new MenuItem(mayMenu, SWT.CASCADE);
+//			refinementItem.setText("Refinement");
+//			Menu refinementMenu = new Menu(mayMenu);
+//			refinementItem.setMenu(refinementMenu);
+//
+//			MenuItem previewItem = new MenuItem(refinementMenu, SWT.NONE);
+//			previewItem.setText("Preview");
+//			/*TODO MMINT[MU-MMINT] create a listener for preview that greys out elements that will be removed. 
+//			 * Possibly have it similar/related to RefinementListener, since functionality for finding elements 
+//			 * to grey out should be the same, and the calculation should only have to be made once if preview is 
+//			 * called, and then make refinement follows.
+//			 */
+//			//previewItem.addSelectionListener(new RefinementListener(models.get(0), editParts.get(0), false));
+//			MenuItem refineItem = new MenuItem(refinementMenu, SWT.NONE);
+//			refineItem.setText(MMINT_MENU_REFINE_LABEL);
+//			refineItem.addSelectionListener(
+//				new RefinementListener(MMINT_MENU_REFINE_LABEL, models.get(0))
+//			);
+		}
 		// copy
 		if (doCopy) {
 			MenuItem copyItem = new MenuItem(mmintMenu, SWT.NONE);
@@ -327,32 +358,6 @@ public class MIDContextMenu extends ContributionItem {
 			editModelepediaItem.setText(MMINT_MENU_MODELEPEDIA_SUBMENU_EDIT_LABEL);
 			editModelepediaItem.addSelectionListener(
 				new EditModelepediaListener(model)
-			);
-		}
-		// mu-mmint
-		if (doMay) {
-			MenuItem mayItem = new MenuItem(mmintMenu, SWT.CASCADE);
-			mayItem.setText("May Models");
-			Menu mayMenu = new Menu(menu);
-			mayItem.setMenu(mayMenu);
-
-			MenuItem refinementItem = new MenuItem(mayMenu, SWT.CASCADE);
-			refinementItem.setText("Refinement");
-			Menu refinementMenu = new Menu(mayMenu);
-			refinementItem.setMenu(refinementMenu);
-
-			MenuItem previewItem = new MenuItem(refinementMenu, SWT.NONE);
-			previewItem.setText("Preview");
-			/*TODO MMINT[MU-MMINT] create a listener for preview that greys out elements that will be removed. 
-			 * Possibly have it similar/related to RefinementListener, since functionality for finding elements 
-			 * to grey out should be the same, and the calculation should only have to be made once if preview is 
-			 * called, and then make refinement follows.
-			 */
-			//previewItem.addSelectionListener(new RefinementListener(models.get(0), editParts.get(0), false));
-			MenuItem refineItem = new MenuItem(refinementMenu, SWT.NONE);
-			refineItem.setText(MMINT_MENU_REFINE_LABEL);
-			refineItem.addSelectionListener(
-				new RefinementListener(MMINT_MENU_REFINE_LABEL, models.get(0))
 			);
 		}
 	}
