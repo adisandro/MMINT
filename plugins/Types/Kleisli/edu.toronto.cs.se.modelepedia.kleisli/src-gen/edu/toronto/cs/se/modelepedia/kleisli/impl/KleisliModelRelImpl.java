@@ -238,7 +238,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 		super.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
 		String newModelRelTypeExtendedUri = getModelRelTypeExtendedUri(newModelRelType);
 		newModelRelType.setExtendedUri(newModelRelTypeExtendedUri);
-		if (MultiModelUtils.isFileOrDirectoryInState(newModelRelTypeExtendedUri) == null) {
+		if (!MultiModelUtils.isFileOrDirectoryInState(newModelRelTypeExtendedUri)) {
 			try {
 				MultiModelUtils.createDirectoryInState(newModelRelTypeExtendedUri);
 			}
@@ -321,26 +321,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	}
 
 	/**
-	 * Gets the uri of a Kleisli model relationship instance extension.
-	 * 
-	 * @param modelRel
-	 *            The Kleisli model relationship.
-	 * @return The uri of the Kleisli model relationship extension.
-	 * @generated NOT
-	 */
-	private String getModelRelExtendedUri(KleisliModelRel modelRel) {
-
-		String baseModelRelExtendedUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(modelRel, MIDLevel.INSTANCES)[0], modelRel.getMetatype().getName());
-		int iModelRelExtendedUri = -1;
-		do {
-			iModelRelExtendedUri++;
-		}
-		while (MultiModelUtils.isFileOrDirectory(baseModelRelExtendedUri + iModelRelExtendedUri, true) != null);
-
-		return baseModelRelExtendedUri + iModelRelExtendedUri;
-	}
-
-	/**
 	 * @generated NOT
 	 */
 	@Override
@@ -354,7 +334,8 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			KleisliFactory.eINSTANCE.createKleisliBinaryModelRel() :
 			KleisliFactory.eINSTANCE.createKleisliModelRel();
 		super.addInstance(newModelRel, newModelRelUri, origin, containerMultiModel);
-		String modelRelExtendedUri = getModelRelExtendedUri(newModelRel);
+		String baseModelRelExtendedUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(newModelRel, MIDLevel.INSTANCES)[0], getName());
+		String modelRelExtendedUri = MultiModelUtils.getUniqueUri(baseModelRelExtendedUri, true, true);
 		newModelRel.setExtendedUri(modelRelExtendedUri);
 		try {
 			MultiModelUtils.createDirectory(modelRelExtendedUri, true);
@@ -413,9 +394,14 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			if (!(modelTypeEndpoint instanceof KleisliModelEndpoint)) {
 				continue;
 			}
-			String kModelTypeUri = MultiModelUtils.isFileOrDirectoryInState(((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTargetUri());
+			String kModelTypeUriRelative = ((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTargetUri();
+			String kModelTypeUri = (MultiModelUtils.isFileOrDirectoryInState(kModelTypeUriRelative)) ?
+				MultiModelUtils.prependStateToUri(kModelTypeUriRelative):
+				null;
 			if (kModelTypeUri != null) { // the root KleisliModelRel has no extended metamodel to open
-				String kModelTypeDiagramUri = MultiModelUtils.isFileOrDirectoryInState(((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTargetUri() + GMFDiagramUtils.DIAGRAM_SUFFIX);
+				String kModelTypeDiagramUri = (MultiModelUtils.isFileOrDirectoryInState(kModelTypeUriRelative + GMFDiagramUtils.DIAGRAM_SUFFIX)) ?
+					MultiModelUtils.prependStateToUri(kModelTypeUriRelative + GMFDiagramUtils.DIAGRAM_SUFFIX):
+					null;
 				URI kUri = (kModelTypeDiagramUri == null) ? URI.createFileURI(kModelTypeUri) : URI.createFileURI(kModelTypeDiagramUri);
 				String editorId = (kModelTypeDiagramUri == null) ? ModelOpenEditorCommand.ECORE_EDITORID : ModelOpenEditorCommand.ECORE_DIAGRAMID;
 				try {

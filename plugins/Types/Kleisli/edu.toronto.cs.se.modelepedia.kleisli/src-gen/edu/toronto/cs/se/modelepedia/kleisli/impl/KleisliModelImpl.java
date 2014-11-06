@@ -127,7 +127,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 
 		Model origModelType = containerModelTypeEndpoint.getTarget();
 		String kModelTypeUri = getModelTypeExtendedUri((KleisliModelRel) containerModelTypeEndpoint.eContainer(), origModelType, containerModelTypeEndpoint.getName());
-		if (MultiModelUtils.isFileOrDirectoryInState(kModelTypeUri) == null) {
+		if (!MultiModelUtils.isFileOrDirectoryInState(kModelTypeUri)) {
 			try {
 				EPackage origRootModelTypeObj = origModelType.getEMFTypeRoot();
 				String origModelTypeUri = origRootModelTypeObj.getNsURI();

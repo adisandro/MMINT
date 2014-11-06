@@ -44,7 +44,7 @@ import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 public class MAVORefinement {
 
-	private static final String REFINEMENT_SUFFIX = "_refined";
+	private static final @NonNull String REFINEMENT_SUFFIX = "_refined";
 	private static final @NonNull String REFINEMENT_MODELRELTYPE_URI = "http://se.cs.toronto.edu/mmint/MAVORefinementRel";
 
 	private Z3ReasoningEngine reasoner;
@@ -134,10 +134,11 @@ public class MAVORefinement {
 		refineModel(modelObjs, refinedObjs);
 
 		// write refinement to file
-		String refinedModelUri = MultiModelUtils.addFileNameSuffixInUri(model.getUri(), REFINEMENT_SUFFIX);
+		String refinedModelBaseUri = MultiModelUtils.addFileNameSuffixInUri(model.getUri(), REFINEMENT_SUFFIX);
+		String refinedModelUri = MultiModelUtils.getUniqueUri(refinedModelBaseUri, true, false);
 		MultiModelUtils.createModelFile(rootModelObj, refinedModelUri, true);
 		if (modelDiagram != null) {
-			String refinedModelDiagramUri = MultiModelUtils.addFileNameSuffixInUri(modelDiagram.getUri(), REFINEMENT_SUFFIX);
+			String refinedModelDiagramUri = MultiModelUtils.replaceFileExtensionInUri(refinedModelUri, modelDiagram.getFileExtensions().get(0));
 			String diagramKind = model.getMetatype().getName();
 			String diagramPluginId = MultiModelTypeRegistry.getTypeBundle(modelDiagram.getMetatypeUri()).getSymbolicName();
 			GMFDiagramUtils.createGMFDiagram(refinedModelUri, refinedModelDiagramUri, diagramKind, diagramPluginId, true);

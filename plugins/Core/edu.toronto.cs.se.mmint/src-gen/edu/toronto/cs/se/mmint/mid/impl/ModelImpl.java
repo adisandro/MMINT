@@ -972,17 +972,21 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			}
 			try {
 				newEditor = diagramType.createInstance(getUri(), containerMultiModel);
+				break;
 			}
 			catch (MMINTException e) {
 				continue;
 			}
 		}
 		// ..or first editor is used
-		for (Editor editorType : MultiModelTypeRegistry.getModelTypeEditors(getMetatypeUri())) {
-			if (editorType instanceof Diagram) {
-				continue;
+		if (newEditor == null) {
+			for (Editor editorType : MultiModelTypeRegistry.getModelTypeEditors(getMetatypeUri())) {
+				if (editorType instanceof Diagram) {
+					continue;
+				}
+				newEditor = editorType.createInstance(getUri(), containerMultiModel);
+				break;
 			}
-			newEditor = editorType.createInstance(getUri(), containerMultiModel);
 		}
 		if (newEditor == null) {
 			throw new MMINTException("No editor type found");

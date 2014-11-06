@@ -104,6 +104,21 @@ public class MultiModelUtils {
 		return uri.replace(MMINT.MODEL_FILEEXTENSION_SEPARATOR + fileExtension, newFileNameSuffix + MMINT.MODEL_FILEEXTENSION_SEPARATOR + fileExtension);
 	}
 
+	public static @NonNull String getUniqueUri(@NonNull String baseUri, boolean isWorkspaceRelative, boolean isDirectory) {
+
+		int i = -1;
+		String x;
+		do {
+			i++;
+			x = (isDirectory) ?
+				baseUri + i :
+				replaceFileNameInUri(baseUri, getFileNameFromUri(baseUri) + i);
+		}
+		while (isFileOrDirectory(x, isWorkspaceRelative));
+
+		return x;
+	}
+
 	public static String prependWorkspaceToUri(String uri) {
 
 		String absoluteUri;
@@ -117,7 +132,7 @@ public class MultiModelUtils {
 		return absoluteUri;
 	}
 
-	public static String prependStateToUri(String uri) {
+	public static @NonNull String prependStateToUri(@NonNull String uri) {
 
 		return MMINTActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + uri;
 	}
@@ -162,17 +177,48 @@ public class MultiModelUtils {
 		copyTextFileAndReplaceText(prependStateToUri(origRelativeFileUri), prependStateToUri(newRelativeFileUri), origText, newText, false);
 	}
 
-	public static String isFileOrDirectory(String uri, boolean isWorkspaceRelative) {
+	private static @NonNull Path getPath(@NonNull String uri, boolean isWorkspaceRelative) {
 
 		if (isWorkspaceRelative) {
 			uri = prependWorkspaceToUri(uri);
 		}
-		Path filePath = Paths.get(uri);
+		Path path = Paths.get(uri);
 
-		return (Files.exists(filePath)) ? uri : null;
+		return path;
 	}
 
-	public static String isFileOrDirectoryInState(String relativeUri) {
+	public static boolean isFile(@NonNull String uri, boolean isWorkspaceRelative) {
+
+		Path filePath = getPath(uri, isWorkspaceRelative);
+
+		return Files.exists(filePath) && !Files.isDirectory(filePath);
+	}
+
+	public static boolean isDirectory(@NonNull String uri, boolean isWorkspaceRelative) {
+
+		Path dirPath = getPath(uri, isWorkspaceRelative);
+
+		return Files.exists(dirPath) && Files.isDirectory(dirPath);
+	}
+
+	public static boolean isFileOrDirectory(@NonNull String uri, boolean isWorkspaceRelative) {
+
+		Path path = getPath(uri, isWorkspaceRelative);
+
+		return Files.exists(path);
+	}
+
+	public static boolean isFileInState(@NonNull String relativeUri) {
+
+		return isFile(prependStateToUri(relativeUri), false);
+	}
+
+	public static boolean isDirectoryInState(@NonNull String relativeUri) {
+
+		return isDirectory(prependStateToUri(relativeUri), false);
+	}
+
+	public static boolean isFileOrDirectoryInState(@NonNull String relativeUri) {
 
 		return isFileOrDirectory(prependStateToUri(relativeUri), false);
 	}

@@ -108,7 +108,7 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		for (URI metamodelUri : metamodelUris) {
 			String metamodelDiagramUri = metamodelUri.toFileString() + GMFDiagramUtils.DIAGRAM_SUFFIX;
-			if (MultiModelUtils.isFileOrDirectory(metamodelDiagramUri, false) != null) {
+			if (MultiModelUtils.isFileOrDirectory(metamodelDiagramUri, false)) {
 				activePage.openEditor(new URIEditorInput(URI.createFileURI(metamodelDiagramUri)), ECORE_DIAGRAMID);
 			}
 			else {

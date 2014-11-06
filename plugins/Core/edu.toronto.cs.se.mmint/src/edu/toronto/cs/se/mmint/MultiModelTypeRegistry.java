@@ -563,7 +563,10 @@ public class MultiModelTypeRegistry {
 			return null;
 		}
 		String metamodelUri = modelType.getName() + "." + EcorePackage.eNAME;
-		return MultiModelUtils.isFileOrDirectoryInState(metamodelUri);
+
+		return (MultiModelUtils.isFileOrDirectoryInState(metamodelUri)) ?
+			MultiModelUtils.prependStateToUri(metamodelUri) :
+			null;
 	}
 
 }

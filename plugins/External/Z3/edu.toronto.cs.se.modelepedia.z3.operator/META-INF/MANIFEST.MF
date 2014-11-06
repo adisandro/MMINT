@@ -8,6 +8,7 @@ Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.henshin.interpreter,
  org.eclipse.emf.henshin.trace,
+ org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.z3
