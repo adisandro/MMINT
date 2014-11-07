@@ -10,7 +10,7 @@
  *    Naama Ben-David - Implementation.
  *    Alessio Di Sandro - Generalization to all metamodels.
  */
-package edu.toronto.cs.se.modelepedia.z3.reasoning;
+package edu.toronto.cs.se.modelepedia.z3.mavo;
 
 import java.util.HashMap;
 import java.util.HashSet;

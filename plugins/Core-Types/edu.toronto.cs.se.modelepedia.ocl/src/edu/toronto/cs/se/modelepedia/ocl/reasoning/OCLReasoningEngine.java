@@ -14,6 +14,8 @@ package edu.toronto.cs.se.modelepedia.ocl.reasoning;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.OrderedSetValue;
 import org.eclipse.ocl.examples.domain.values.SetValue;
@@ -84,7 +86,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public MAVOTruthValue checkConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
+	public @NonNull MAVOTruthValue checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
 		String oclConstraint = constraint.getImplementation();
 		try {
@@ -101,15 +103,15 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkConstraintConsistency(Model modelType, String constraint) {
+	public boolean checkConstraintConsistency(@NonNull Model modelType, String constraint) {
 
 		return true;
 	}
 
 	@Override
-	public void refineByConstraint(Model model) {
+	public @Nullable Model refineByConstraint(@NonNull Model model) {
 
-		return;
+		return null;
 	}
 
 	public MAVOTruthValue checkConstraint(EObject modelObj, String oclConstraint) {

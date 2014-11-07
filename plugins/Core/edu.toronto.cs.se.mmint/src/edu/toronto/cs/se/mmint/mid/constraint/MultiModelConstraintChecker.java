@@ -21,6 +21,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -600,21 +601,22 @@ linkTypes:
 		return reasoner.checkConstraintConsistency((Model) type, constraintImplementation);
 	}
 
-	public static void refineByConstraint(ExtendibleElement element, ExtendibleElementConstraint constraint) {
+	public static @Nullable Model refineByConstraint(@NonNull Model model) {
 
-		if (!(element instanceof Model) || constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
-			return;
+		if (model.getConstraint() == null) {
+			return null;
 		}
+
 		IReasoningEngine reasoner;
 		try {
-			reasoner = getReasoner(constraint.getLanguage());
+			reasoner = getReasoner(model.getConstraint().getLanguage());
 		}
 		catch (MMINTException e) {
 			MMINTException.print(MMINTException.Type.WARNING, "Skipping constraint refinement", e);
-			return;
+			return null;
 		}
 
-		reasoner.refineByConstraint((Model) element);
+		return reasoner.refineByConstraint((Model) model);
 	}
 
 }

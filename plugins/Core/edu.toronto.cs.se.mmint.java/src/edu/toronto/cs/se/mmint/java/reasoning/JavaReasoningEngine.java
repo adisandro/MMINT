@@ -11,6 +11,9 @@
  */
 package edu.toronto.cs.se.mmint.java.reasoning;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
@@ -22,7 +25,7 @@ import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 public class JavaReasoningEngine implements IReasoningEngine {
 
 	@Override
-	public MAVOTruthValue checkConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
+	public @NonNull MAVOTruthValue checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
 		String javaClassName = constraint.getImplementation();
 		String modelTypeUri = (constraintLevel == MIDLevel.INSTANCES) ?
@@ -44,15 +47,15 @@ public class JavaReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkConstraintConsistency(Model modelType, String constraint) {
+	public boolean checkConstraintConsistency(@NonNull Model modelType, String constraint) {
 
 		return true;
 	}
 
 	@Override
-	public void refineByConstraint(Model model) {
+	public @Nullable Model refineByConstraint(@NonNull Model model) {
 
-		return;
+		return null;
 	}
 
 }

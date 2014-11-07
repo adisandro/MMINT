@@ -59,7 +59,7 @@ public class RefineByConstraintListener extends MIDContextMenuListener {
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			MultiModelConstraintChecker.refineByConstraint(model, model.getConstraint());
+			MultiModelConstraintChecker.refineByConstraint(model);
 
 			return CommandResult.newOKCommandResult();
 		}

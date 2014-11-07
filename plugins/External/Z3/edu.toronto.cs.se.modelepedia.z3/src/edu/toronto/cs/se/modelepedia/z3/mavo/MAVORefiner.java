@@ -10,7 +10,7 @@
  *    Naama Ben-David - Implementation.
  *    Alessio Di Sandro - Generalization to all metamodels.
  */
-package edu.toronto.cs.se.modelepedia.z3.reasoning;
+package edu.toronto.cs.se.modelepedia.z3.mavo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,8 +50,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
+import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
-public class MAVORefinement {
+public class MAVORefiner {
 
 	private static final @NonNull String MODEL_SUFFIX = "_refined";
 	private static final @NonNull String MODELRELTYPE_URI = "http://se.cs.toronto.edu/mmint/MAVORefinementRel";
@@ -61,7 +62,7 @@ public class MAVORefinement {
 
 	private Z3ReasoningEngine reasoner;
 
-	public MAVORefinement(@NonNull Z3ReasoningEngine reasoner) {
+	public MAVORefiner(@NonNull Z3ReasoningEngine reasoner) {
 
 		this.reasoner = reasoner;
 	}
@@ -182,9 +183,8 @@ public class MAVORefinement {
 		}
 	}
 
-	public void refine(@NonNull Model model, @Nullable Diagram modelDiagram, @NonNull String smtEncoding) throws Exception {
+	public @NonNull Model refine(@NonNull Model model, @Nullable Diagram modelDiagram, @NonNull String smtEncoding) throws Exception {
 
-		//TODO check exceptions thrown, check to arrive here with an actual constraint
 		// create mid artifacts
 		String refinedModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(model.getUri(), MODEL_SUFFIX), true, false);
 		MultiModelUtils.copyTextFileAndReplaceText(model.getUri(), refinedModelUri, "", "", true);
@@ -220,6 +220,8 @@ public class MAVORefinement {
 			GMFDiagramUtils.openGMFDiagram(refinedModelDiagramUri, modelDiagram.getId(), true);
 		}
 		refinedModel.createInstanceEditor();
+
+		return refinedModel;
 	}
 
 }

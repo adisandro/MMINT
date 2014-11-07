@@ -35,11 +35,13 @@ import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
+import edu.toronto.cs.se.modelepedia.z3.mavo.MAVOConcretizationHighlighter;
+import edu.toronto.cs.se.modelepedia.z3.mavo.MAVORefiner;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 
 public class Z3ReasoningEngine implements IReasoningEngine {
 
-	private final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
+	private final static @NonNull String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
 
 	private Z3Model z3ConstraintModel;
 	private Z3Model z3NotConstraintModel;
@@ -128,7 +130,7 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 			highlighter.highlightCounterExample(modelDiagram, z3ModelParser.getZ3MAVOModelElements(z3NotConstraintModel));
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.ERROR, "Can't highlight example", e);
+			MMINTException.print(MMINTException.Type.WARNING, "Can't highlight concretization, skipping it", e);
 		}
 
 		return constraintTruthValue;
@@ -141,31 +143,32 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public void refineByConstraint(@NonNull Model model) {
+	public @Nullable Model refineByConstraint(@NonNull Model model) {
 
 		Z3MAVOModelParser z3ModelParser;
 		try {
 			z3ModelParser = generateSMTLIBEncoding(model);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.ERROR, "Can't generate SMTLIB encoding, refinement aborted", e);
-			return;
+			MMINTException.print(MMINTException.Type.ERROR, "Can't generate SMTLIB encoding, aborting refinement", e);
+			return null;
 		}
 		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), model.getConstraint().getImplementation());
 
 		// refine if: maybe
 		if (constraintTruthValue != MAVOTruthValue.MAYBE) {
-			return;
+			return null;
 		}
 
 		// refine
 		Diagram modelDiagram = getModelDiagram(model);
 		try {
-			MAVORefinement refiner = new MAVORefinement(this);
-			refiner.refine(model, modelDiagram, z3ModelParser.getSMTLIBEncoding());
+			MAVORefiner refiner = new MAVORefiner(this);
+			return refiner.refine(model, modelDiagram, z3ModelParser.getSMTLIBEncoding());
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			MMINTException.print(MMINTException.Type.ERROR, "Can't refine the model, aborting (some incomplete result could appear in your instance MID)", e);
+			return null;
 		}
 	}
 
