@@ -117,7 +117,7 @@ public class InitialState2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(1, 1);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(20, 20);
 		return result;
 	}
 
@@ -204,8 +204,8 @@ public class InitialState2EditPart extends ShapeNodeEditPart {
 		 */
 		public InitialStateFigure() {
 			this.setBackgroundColor(THIS_BACK);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(1),
-					getMapMode().DPtoLP(1)));
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(20),
+					getMapMode().DPtoLP(20)));
 			this.setBorder(new MarginBorder(getMapMode().DPtoLP(5),
 					getMapMode().DPtoLP(5), getMapMode().DPtoLP(5),
 					getMapMode().DPtoLP(5)));

@@ -12,6 +12,8 @@
 package edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.PolylineDecoration;
+import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -56,14 +58,37 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new PolylineConnectionEx();
+		return new TransitionFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public PolylineConnectionEx getPrimaryShape() {
-		return (PolylineConnectionEx) getFigure();
+	public TransitionFigure getPrimaryShape() {
+		return (TransitionFigure) getFigure();
+	}
+
+	/**
+	 * @generated
+	 */
+	public class TransitionFigure extends PolylineConnectionEx {
+
+		/**
+		 * @generated
+		 */
+		public TransitionFigure() {
+
+			setTargetDecoration(createTargetDecoration());
+		}
+
+		/**
+		 * @generated
+		 */
+		private RotatableDecoration createTargetDecoration() {
+			PolylineDecoration df = new PolylineDecoration();
+			return df;
+		}
+
 	}
 
 }

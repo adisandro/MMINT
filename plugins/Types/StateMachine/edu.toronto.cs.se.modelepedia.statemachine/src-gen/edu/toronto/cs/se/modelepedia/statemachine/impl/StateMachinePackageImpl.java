@@ -420,7 +420,8 @@ public class StateMachinePackageImpl extends EPackageImpl implements StateMachin
 		   new String[] {
 			 "label", "name",
 			 "source", "source",
-			 "target", "target"
+			 "target", "target",
+			 "target.decoration", "arrow"
 		   });
 	}
 
@@ -438,7 +439,7 @@ public class StateMachinePackageImpl extends EPackageImpl implements StateMachin
 		   new String[] {
 			 "label.placement", "none",
 			 "figure", "ellipse",
-			 "size", "1,1",
+			 "size", "20,20",
 			 "color", "0,0,0"
 		   });	
 		addAnnotation
@@ -447,7 +448,7 @@ public class StateMachinePackageImpl extends EPackageImpl implements StateMachin
 		   new String[] {
 			 "label.placement", "none",
 			 "figure", "rectangle",
-			 "size", "1,1",
+			 "size", "20,20",
 			 "color", "0,0,0"
 		   });	
 		addAnnotation

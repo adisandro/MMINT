@@ -2,10 +2,11 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition">
   <gmfgraph:Canvas name="statemachine">
     <figures name="Default">
+      <figures xsi:type="gmfgraph:PolylineDecoration" name="TransitionFigureTargetDecoration"/>
       <descriptors name="InitialStateFigure">
         <actualFigure xsi:type="gmfgraph:Ellipse" name="InitialStateFigure">
           <backgroundColor xsi:type="gmfgraph:RGBColor"/>
-          <preferredSize dx="1" dy="1"/>
+          <preferredSize dx="20" dy="20"/>
           <border xsi:type="gmfgraph:MarginBorder">
             <insets top="5" left="5" bottom="5" right="5"/>
           </border>
@@ -14,7 +15,7 @@
       <descriptors name="FinalStateFigure">
         <actualFigure xsi:type="gmfgraph:Rectangle" name="FinalStateFigure">
           <backgroundColor xsi:type="gmfgraph:RGBColor"/>
-          <preferredSize dx="1" dy="1"/>
+          <preferredSize dx="20" dy="20"/>
           <border xsi:type="gmfgraph:MarginBorder">
             <insets top="5" left="5" bottom="5" right="5"/>
           </border>
@@ -34,7 +35,7 @@
         <accessors accessor="getStateNestedStatesCompartmentFigure" figure="/0/@figures.0/@descriptors.2/@actualFigure/@children.1"/>
       </descriptors>
       <descriptors name="TransitionFigure">
-        <actualFigure xsi:type="gmfgraph:PolylineConnection" name="TransitionFigure"/>
+        <actualFigure xsi:type="gmfgraph:PolylineConnection" name="TransitionFigure" targetDecoration="/0/@figures.0/@figures.0"/>
       </descriptors>
       <descriptors name="TransitionLabelFigure">
         <actualFigure xsi:type="gmfgraph:Label" name="TransitionLabelLabel" text="Transition"/>
@@ -42,12 +43,12 @@
     </figures>
     <nodes name="InitialState" figure="InitialStateFigure">
       <facets xsi:type="gmfgraph:DefaultSizeFacet">
-        <defaultSize dx="1" dy="1"/>
+        <defaultSize dx="20" dy="20"/>
       </facets>
     </nodes>
     <nodes name="FinalState" figure="FinalStateFigure">
       <facets xsi:type="gmfgraph:DefaultSizeFacet">
-        <defaultSize dx="1" dy="1"/>
+        <defaultSize dx="20" dy="20"/>
       </facets>
     </nodes>
     <nodes name="State" figure="StateFigure"/>

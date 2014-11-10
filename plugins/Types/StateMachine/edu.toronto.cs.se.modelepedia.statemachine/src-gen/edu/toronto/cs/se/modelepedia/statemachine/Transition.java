@@ -26,7 +26,7 @@ package edu.toronto.cs.se.modelepedia.statemachine;
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage#getTransition()
- * @model annotation="gmf.link label='name' source='source' target='target'"
+ * @model annotation="gmf.link label='name' source='source' target='target' target.decoration='arrow'"
  * @generated
  */
 public interface Transition extends NamedElement {

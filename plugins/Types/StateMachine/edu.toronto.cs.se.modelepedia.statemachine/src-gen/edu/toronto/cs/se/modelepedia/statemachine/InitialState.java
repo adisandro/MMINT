@@ -19,7 +19,7 @@ package edu.toronto.cs.se.modelepedia.statemachine;
  *
  *
  * @see edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage#getInitialState()
- * @model annotation="gmf.node label.placement='none' figure='ellipse' size='1,1' color='0,0,0'"
+ * @model annotation="gmf.node label.placement='none' figure='ellipse' size='20,20' color='0,0,0'"
  * @generated
  */
 public interface InitialState extends AbstractState {
