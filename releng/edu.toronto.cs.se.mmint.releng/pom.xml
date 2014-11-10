@@ -145,6 +145,9 @@
   	<module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram</module>
   	<module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.edit</module>
   	<module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.editor</module>
+  	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine</module>
+  	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine.edit</module>
+  	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine.editor</module>
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.army</module>
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.army.diagram</module>
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.army.edit</module>
