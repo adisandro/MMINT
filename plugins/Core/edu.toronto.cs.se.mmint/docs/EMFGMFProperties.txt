@@ -33,7 +33,7 @@ GMFGen
 	----------
 	
 	Copyrigth Text -> same as GenModel
-	Diagram File Extension -> shorten diagram to diag
+	Diagram File Extension -> shorten _diagram to diag
 	Editor Plug-in Directory -> modify to src-gen
 	
 		Gen Diagram
@@ -48,7 +48,7 @@ GMFGen
 			Metamodel Type
 			--------------
 			
-			Display Name -> change to something meaningful
+			Display Name -> use the model type name
 		
 		Gen Plugin
 		----------

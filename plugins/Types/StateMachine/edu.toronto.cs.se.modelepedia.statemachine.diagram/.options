@@ -1,0 +1,7 @@
+# Tracing options for the edu.toronto.cs.se.modelepedia.statemachine.diagram plug-in
+
+# Common issues
+edu.toronto.cs.se.modelepedia.statemachine.diagram/debug=false
+
+# Visual IDs
+edu.toronto.cs.se.modelepedia.statemachine.diagram/debug/visualID=false
