@@ -436,6 +436,7 @@ public class StateMachinePackageImpl extends EPackageImpl implements StateMachin
 		  (initialStateEClass, 
 		   source, 
 		   new String[] {
+			 "label.placement", "none",
 			 "figure", "ellipse",
 			 "size", "1,1",
 			 "color", "0,0,0"
@@ -444,6 +445,7 @@ public class StateMachinePackageImpl extends EPackageImpl implements StateMachin
 		  (finalStateEClass, 
 		   source, 
 		   new String[] {
+			 "label.placement", "none",
 			 "figure", "rectangle",
 			 "size", "1,1",
 			 "color", "0,0,0"

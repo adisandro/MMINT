@@ -19,7 +19,7 @@ package edu.toronto.cs.se.modelepedia.statemachine;
  *
  *
  * @see edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage#getFinalState()
- * @model annotation="gmf.node figure='rectangle' size='1,1' color='0,0,0'"
+ * @model annotation="gmf.node label.placement='none' figure='rectangle' size='1,1' color='0,0,0'"
  * @generated
  */
 public interface FinalState extends AbstractState {
