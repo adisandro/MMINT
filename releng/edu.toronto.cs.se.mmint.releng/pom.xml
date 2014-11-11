@@ -150,6 +150,7 @@
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine.edit</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine.editor</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo</module>
+  	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.edit</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.editor</module>
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.army</module>
