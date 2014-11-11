@@ -4,7 +4,7 @@ addCustomParser();
 
 var genEditor = GmfGen!GenEditorGenerator.all.first;
 
-genEditor.CopyrightText = "Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+genEditor.copyrightText = "Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
 Rick Salay.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -16,14 +16,14 @@ Contributors:
 genEditor.dynamicTemplates = true;
 genEditor.templateDirectory = "platform:/plugin/edu.toronto.cs.se.mmint.mavo/xtend/";
 genEditor.diagramFileExtension = genEditor.diagramFileExtension.replace("_mavo_diagram", "diag_mavo");
-genEditor.PluginDirectory = genEditor.PluginDirectory.concat("-gen");
+genEditor.pluginDirectory = genEditor.pluginDirectory.concat("-gen");
 
 var genDiagram = GmfGen!GenDiagram.all.first;
 
-genDiagram.ValidationDecorators = true;
-genDiagram.ValidationEnabled = true;
-genDiagram.LiveValidationUIFeedback = true;
+genDiagram.validationDecorators = true;
+genDiagram.validationEnabled = true;
+genDiagram.liveValidationUIFeedback = true;
 
 var genPlugin = GmfGen!GenPlugin.all.first;
 
-genPlugin.Provider = "Software Engineering Group, University of Toronto";
+genPlugin.provider = "Software Engineering Group, University of Toronto";
