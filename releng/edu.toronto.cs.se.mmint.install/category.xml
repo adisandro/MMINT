@@ -6,6 +6,9 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.z3.feature_1.3.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.z3.feature" version="1.3.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.emftocsp.feature_1.3.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.emftocsp.feature" version="1.3.0.qualifier">
+      <category name="Modelepedia"/>
+   </feature>
    <feature url="features/edu.toronto.cs.se.modelepedia.kleisli.feature_1.3.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.kleisli.feature" version="1.3.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
@@ -27,10 +30,10 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.relationaldatabase.feature_1.3.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.relationaldatabase.feature" version="1.3.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.tutorial.feature_1.3.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.tutorial.feature" version="1.3.0.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.statemachine.feature_1.3.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.statemachine.feature" version="1.3.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.emftocsp.feature_1.3.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.emftocsp.feature" version="1.3.0.qualifier">
+   <feature url="features/edu.toronto.cs.se.modelepedia.tutorial.feature_1.3.0.qualifier.jar" id="edu.toronto.cs.se.modelepedia.tutorial.feature" version="1.3.0.qualifier">
       <category name="Modelepedia"/>
    </feature>
    <category-def name="Modeling" label="Modeling"/>
