@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenu;
 
 /**
  * The handler for the dynamic construction of a context menu for all
@@ -44,7 +45,8 @@ import edu.toronto.cs.se.mavo.MayDecision;
 //TODO: change name to reflect removal from alternative as well.
 public class MAVOAddToAlternative extends ContributionItem {
 
-	private static final int INVALID_MENU_ITEM_LIMIT = 20;
+	private static final String LABEL1 = "(M) Add to Alternative ";
+	private static final String LABEL2 = "(M) Remove from Alternative ";
 
 	@Override
 	public boolean isDynamic() {
@@ -56,7 +58,7 @@ public class MAVOAddToAlternative extends ContributionItem {
 	public void fill(Menu menu, int index) {
 
 		// this is a hack to prevent this menu from being created twice
-		if (menu.getItemCount() > INVALID_MENU_ITEM_LIMIT) {
+		if (menu.getItemCount() > MIDContextMenu.INVALID_MENU_ITEM_LIMIT) {
 			return;
 		}
 
@@ -96,26 +98,26 @@ public class MAVOAddToAlternative extends ContributionItem {
 					boolean add = false;
 					boolean delete = false;
 					for (MAVOElement selectedElement : mavoElements){
-						if (selectedElement.getAlternatives().contains(mavoAlternative)){
+						if (selectedElement.getAlternatives().contains(mavoAlternative)) {
 							delete = true;
 						}
 						else{
 							add = true;
 						}
 					}
-					if (add){
+					if (add) {
 						MenuItem alternativeItem = new MenuItem(mavoMenu, SWT.NONE);
-						alternativeItem.setText("(M) Add to Alternative " + mavoAlternative.getFormulaVariable());
+						alternativeItem.setText(LABEL1 + mavoAlternative.getFormulaVariable());
 						alternativeItem.addSelectionListener(
-								new MAVOAddToAlternativeListener(mavoElements, mavoAlternative, true)
-								);
+							new MAVOAddToAlternativeListener(LABEL1, mavoElements, mavoAlternative, true)
+						);
 					}
-					if (delete){
+					if (delete) {
 						MenuItem alternativeItem = new MenuItem(mavoMenu, SWT.NONE);
-						alternativeItem.setText("(M) Remove from Alternative " + mavoAlternative.getFormulaVariable());
+						alternativeItem.setText(LABEL2 + mavoAlternative.getFormulaVariable());
 						alternativeItem.addSelectionListener(
-								new MAVOAddToAlternativeListener(mavoElements, mavoAlternative, false)
-								);
+							new MAVOAddToAlternativeListener(LABEL2, mavoElements, mavoAlternative, false)
+						);
 					}
 				}
 			}

@@ -34,6 +34,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -156,14 +157,20 @@ public class GMFDiagramUtils {
 		}
 	}
 
+	public static @NonNull IFile getModelIFile(@NonNull IFile diagramFile) {
+
+		IFile modelFile = diagramFile.getParent().getFile(new Path(diagramFile.getName().substring(0, diagramFile.getName().length() - DIAGRAM_SUFFIX.length())));
+
+		return modelFile;
+	}
+
 	public static List<IFile> getTransactionalCommandAffectedFiles() {
 
 		List<IFile> files = new ArrayList<IFile>();
 		IFile diagramFile = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
 		if (diagramFile != null) {
-			IFile modelFile = diagramFile.getParent().getFile(new Path(diagramFile.getName().substring(0, diagramFile.getName().length() - DIAGRAM_SUFFIX.length())));
 			files.add(diagramFile);
-			files.add(modelFile);
+			files.add(getModelIFile(diagramFile));
 		}
 
 		return files;
