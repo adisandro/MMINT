@@ -22,33 +22,22 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IEditorReference;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
-
 import edu.toronto.cs.se.mavo.MAVOAlternative;
 import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
-import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditor;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-//TODO MMINT[MU-MMINT] change name to reflect removal from alternative as well.
-public class MAVOAddToAlternativeListener extends MIDContextMenuListener {
+public class MAVOAlternativeAddRemoveListener extends MIDContextMenuListener {
 
-	List<MAVOElement> mavoElements;
+	List<MAVOElement> mavoModelObjs;
 	MAVOAlternative mavoAlternative;
 	boolean add;
 
-	public MAVOAddToAlternativeListener(String menuLabel, List<MAVOElement> mavoElements, MAVOAlternative mavoAlternative, boolean add) {
+	public MAVOAlternativeAddRemoveListener(String menuLabel, List<MAVOElement> mavoElements, MAVOAlternative mavoAlternative, boolean add) {
 
 		super(menuLabel);
-		this.mavoElements = mavoElements;
+		this.mavoModelObjs = mavoElements;
 		this.mavoAlternative = mavoAlternative;
 		this.add = add;
 	}
@@ -56,18 +45,17 @@ public class MAVOAddToAlternativeListener extends MIDContextMenuListener {
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		AbstractTransactionalCommand command = new AddToAlternativeCommand(
-			TransactionUtil.getEditingDomain(mavoElements.get(0)),
+		AbstractTransactionalCommand command = new MAVOAlternativeAddRemoveCommand(
+			TransactionUtil.getEditingDomain(mavoModelObjs.get(0)),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
 		runListenerCommand(command);
 	}
 
-	//TODO MMINT[MU-MMINT] change name to reflect removal from alternative as well.
-	protected class AddToAlternativeCommand extends AbstractTransactionalCommand {
+	protected class MAVOAlternativeAddRemoveCommand extends AbstractTransactionalCommand {
 
-		public AddToAlternativeCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MAVOAlternativeAddRemoveCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}
@@ -76,14 +64,14 @@ public class MAVOAddToAlternativeListener extends MIDContextMenuListener {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			if (add) {
-				mavoAlternative.getMavoElements().addAll(mavoElements);
-				for (MAVOElement mavoElement : mavoElements) {
+				mavoAlternative.getMavoElements().addAll(mavoModelObjs);
+				for (MAVOElement mavoElement : mavoModelObjs) {
 					MAVOUtils.setMay(mavoElement, true);
 				}
 			}
 			else {
-				mavoAlternative.getMavoElements().removeAll(mavoElements);
-				for (MAVOElement mavoElement : mavoElements) {
+				mavoAlternative.getMavoElements().removeAll(mavoModelObjs);
+				for (MAVOElement mavoElement : mavoModelObjs) {
 					if (mavoElement.getAlternatives().isEmpty()) {
 						MAVOUtils.setMay(mavoElement, false);
 					}

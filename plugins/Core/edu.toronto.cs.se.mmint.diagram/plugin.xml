@@ -792,7 +792,7 @@ Contributors:
       </menuContribution>
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <dynamic
-               class="edu.toronto.cs.se.mmint.mid.diagram.contextmenu.MAVOAddToAlternative"
+               class="edu.toronto.cs.se.mmint.mid.diagram.contextmenu.MAVOAlternativeAddRemove"
                id="edu.toronto.cs.se.mmint.mid.diagram.contextmenu.MAVOAddToAlternative">
          </dynamic>
       </menuContribution>
