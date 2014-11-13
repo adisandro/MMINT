@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -43,7 +45,7 @@ public class InitialStateEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2001;
+	public static final int VISUAL_ID = 2002;
 
 	/**
 	 * @generated
@@ -108,7 +110,6 @@ public class InitialStateEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * InitialStateFigure
 	 * @generated
 	 */
 	public InitialStateFigure getPrimaryShape() {

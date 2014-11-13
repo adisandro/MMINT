@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -28,18 +30,16 @@ import edu.toronto.cs.se.modelepedia.statemachine.AbstractState;
 import edu.toronto.cs.se.modelepedia.statemachine.FinalState;
 import edu.toronto.cs.se.modelepedia.statemachine.InitialState;
 import edu.toronto.cs.se.modelepedia.statemachine.State;
+import edu.toronto.cs.se.modelepedia.statemachine.StateAction;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachine;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
 import edu.toronto.cs.se.modelepedia.statemachine.Transition;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalState2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalStateEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialState2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialStateEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.State2EditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateActionEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateMachineEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateStateNestedStatesCompartment2EditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateStateNestedStatesCompartmentEditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateStateInternalActionsCompartmentEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.TransitionEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.StateMachineElementTypes;
 
@@ -47,6 +47,7 @@ import edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.StateMachine
  * @generated
  */
 public class StateMachineDiagramUpdater {
+
 	/**
 	 * @generated
 	 */
@@ -62,10 +63,8 @@ public class StateMachineDiagramUpdater {
 		switch (StateMachineVisualIDRegistry.getVisualID(view)) {
 		case StateMachineEditPart.VISUAL_ID:
 			return getStateMachine_1000SemanticChildren(view);
-		case StateStateNestedStatesCompartmentEditPart.VISUAL_ID:
-			return getStateStateNestedStatesCompartment_7001SemanticChildren(view);
-		case StateStateNestedStatesCompartment2EditPart.VISUAL_ID:
-			return getStateStateNestedStatesCompartment_7002SemanticChildren(view);
+		case StateStateInternalActionsCompartmentEditPart.VISUAL_ID:
+			return getStateStateInternalActionsCompartment_7001SemanticChildren(view);
 		}
 		return Collections.emptyList();
 	}
@@ -84,6 +83,11 @@ public class StateMachineDiagramUpdater {
 			AbstractState childElement = (AbstractState) it.next();
 			int visualID = StateMachineVisualIDRegistry.getNodeVisualID(view,
 					childElement);
+			if (visualID == StateEditPart.VISUAL_ID) {
+				result.add(new StateMachineNodeDescriptor(childElement,
+						visualID));
+				continue;
+			}
 			if (visualID == InitialStateEditPart.VISUAL_ID) {
 				result.add(new StateMachineNodeDescriptor(childElement,
 						visualID));
@@ -94,11 +98,6 @@ public class StateMachineDiagramUpdater {
 						visualID));
 				continue;
 			}
-			if (visualID == StateEditPart.VISUAL_ID) {
-				result.add(new StateMachineNodeDescriptor(childElement,
-						visualID));
-				continue;
-			}
 		}
 		return result;
 	}
@@ -106,7 +105,7 @@ public class StateMachineDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<StateMachineNodeDescriptor> getStateStateNestedStatesCompartment_7001SemanticChildren(
+	public static List<StateMachineNodeDescriptor> getStateStateInternalActionsCompartment_7001SemanticChildren(
 			View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
@@ -117,60 +116,12 @@ public class StateMachineDiagramUpdater {
 		}
 		State modelElement = (State) containerView.getElement();
 		LinkedList<StateMachineNodeDescriptor> result = new LinkedList<StateMachineNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getNestedStates().iterator(); it
+		for (Iterator<?> it = modelElement.getInternalActions().iterator(); it
 				.hasNext();) {
-			AbstractState childElement = (AbstractState) it.next();
+			StateAction childElement = (StateAction) it.next();
 			int visualID = StateMachineVisualIDRegistry.getNodeVisualID(view,
 					childElement);
-			if (visualID == InitialState2EditPart.VISUAL_ID) {
-				result.add(new StateMachineNodeDescriptor(childElement,
-						visualID));
-				continue;
-			}
-			if (visualID == FinalState2EditPart.VISUAL_ID) {
-				result.add(new StateMachineNodeDescriptor(childElement,
-						visualID));
-				continue;
-			}
-			if (visualID == State2EditPart.VISUAL_ID) {
-				result.add(new StateMachineNodeDescriptor(childElement,
-						visualID));
-				continue;
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<StateMachineNodeDescriptor> getStateStateNestedStatesCompartment_7002SemanticChildren(
-			View view) {
-		if (false == view.eContainer() instanceof View) {
-			return Collections.emptyList();
-		}
-		View containerView = (View) view.eContainer();
-		if (!containerView.isSetElement()) {
-			return Collections.emptyList();
-		}
-		State modelElement = (State) containerView.getElement();
-		LinkedList<StateMachineNodeDescriptor> result = new LinkedList<StateMachineNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getNestedStates().iterator(); it
-				.hasNext();) {
-			AbstractState childElement = (AbstractState) it.next();
-			int visualID = StateMachineVisualIDRegistry.getNodeVisualID(view,
-					childElement);
-			if (visualID == InitialState2EditPart.VISUAL_ID) {
-				result.add(new StateMachineNodeDescriptor(childElement,
-						visualID));
-				continue;
-			}
-			if (visualID == FinalState2EditPart.VISUAL_ID) {
-				result.add(new StateMachineNodeDescriptor(childElement,
-						visualID));
-				continue;
-			}
-			if (visualID == State2EditPart.VISUAL_ID) {
+			if (visualID == StateActionEditPart.VISUAL_ID) {
 				result.add(new StateMachineNodeDescriptor(childElement,
 						visualID));
 				continue;
@@ -186,18 +137,14 @@ public class StateMachineDiagramUpdater {
 		switch (StateMachineVisualIDRegistry.getVisualID(view)) {
 		case StateMachineEditPart.VISUAL_ID:
 			return getStateMachine_1000ContainedLinks(view);
-		case InitialStateEditPart.VISUAL_ID:
-			return getInitialState_2001ContainedLinks(view);
-		case FinalStateEditPart.VISUAL_ID:
-			return getFinalState_2002ContainedLinks(view);
 		case StateEditPart.VISUAL_ID:
-			return getState_2003ContainedLinks(view);
-		case InitialState2EditPart.VISUAL_ID:
-			return getInitialState_3001ContainedLinks(view);
-		case FinalState2EditPart.VISUAL_ID:
-			return getFinalState_3002ContainedLinks(view);
-		case State2EditPart.VISUAL_ID:
-			return getState_3003ContainedLinks(view);
+			return getState_2001ContainedLinks(view);
+		case InitialStateEditPart.VISUAL_ID:
+			return getInitialState_2002ContainedLinks(view);
+		case FinalStateEditPart.VISUAL_ID:
+			return getFinalState_2003ContainedLinks(view);
+		case StateActionEditPart.VISUAL_ID:
+			return getStateAction_3001ContainedLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_4001ContainedLinks(view);
 		}
@@ -209,18 +156,14 @@ public class StateMachineDiagramUpdater {
 	 */
 	public static List<StateMachineLinkDescriptor> getIncomingLinks(View view) {
 		switch (StateMachineVisualIDRegistry.getVisualID(view)) {
-		case InitialStateEditPart.VISUAL_ID:
-			return getInitialState_2001IncomingLinks(view);
-		case FinalStateEditPart.VISUAL_ID:
-			return getFinalState_2002IncomingLinks(view);
 		case StateEditPart.VISUAL_ID:
-			return getState_2003IncomingLinks(view);
-		case InitialState2EditPart.VISUAL_ID:
-			return getInitialState_3001IncomingLinks(view);
-		case FinalState2EditPart.VISUAL_ID:
-			return getFinalState_3002IncomingLinks(view);
-		case State2EditPart.VISUAL_ID:
-			return getState_3003IncomingLinks(view);
+			return getState_2001IncomingLinks(view);
+		case InitialStateEditPart.VISUAL_ID:
+			return getInitialState_2002IncomingLinks(view);
+		case FinalStateEditPart.VISUAL_ID:
+			return getFinalState_2003IncomingLinks(view);
+		case StateActionEditPart.VISUAL_ID:
+			return getStateAction_3001IncomingLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_4001IncomingLinks(view);
 		}
@@ -232,18 +175,14 @@ public class StateMachineDiagramUpdater {
 	 */
 	public static List<StateMachineLinkDescriptor> getOutgoingLinks(View view) {
 		switch (StateMachineVisualIDRegistry.getVisualID(view)) {
-		case InitialStateEditPart.VISUAL_ID:
-			return getInitialState_2001OutgoingLinks(view);
-		case FinalStateEditPart.VISUAL_ID:
-			return getFinalState_2002OutgoingLinks(view);
 		case StateEditPart.VISUAL_ID:
-			return getState_2003OutgoingLinks(view);
-		case InitialState2EditPart.VISUAL_ID:
-			return getInitialState_3001OutgoingLinks(view);
-		case FinalState2EditPart.VISUAL_ID:
-			return getFinalState_3002OutgoingLinks(view);
-		case State2EditPart.VISUAL_ID:
-			return getState_3003OutgoingLinks(view);
+			return getState_2001OutgoingLinks(view);
+		case InitialStateEditPart.VISUAL_ID:
+			return getInitialState_2002OutgoingLinks(view);
+		case FinalStateEditPart.VISUAL_ID:
+			return getFinalState_2003OutgoingLinks(view);
+		case StateActionEditPart.VISUAL_ID:
+			return getStateAction_3001OutgoingLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_4001OutgoingLinks(view);
 		}
@@ -264,7 +203,7 @@ public class StateMachineDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<StateMachineLinkDescriptor> getInitialState_2001ContainedLinks(
+	public static List<StateMachineLinkDescriptor> getState_2001ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -272,7 +211,7 @@ public class StateMachineDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<StateMachineLinkDescriptor> getFinalState_2002ContainedLinks(
+	public static List<StateMachineLinkDescriptor> getInitialState_2002ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -280,7 +219,7 @@ public class StateMachineDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<StateMachineLinkDescriptor> getState_2003ContainedLinks(
+	public static List<StateMachineLinkDescriptor> getFinalState_2003ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -288,23 +227,7 @@ public class StateMachineDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<StateMachineLinkDescriptor> getInitialState_3001ContainedLinks(
-			View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<StateMachineLinkDescriptor> getFinalState_3002ContainedLinks(
-			View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<StateMachineLinkDescriptor> getState_3003ContainedLinks(
+	public static List<StateMachineLinkDescriptor> getStateAction_3001ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -320,35 +243,7 @@ public class StateMachineDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<StateMachineLinkDescriptor> getInitialState_2001IncomingLinks(
-			View view) {
-		InitialState modelElement = (InitialState) view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
-				.find(view.eResource().getResourceSet().getResources());
-		LinkedList<StateMachineLinkDescriptor> result = new LinkedList<StateMachineLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_4001(
-				modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<StateMachineLinkDescriptor> getFinalState_2002IncomingLinks(
-			View view) {
-		FinalState modelElement = (FinalState) view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
-				.find(view.eResource().getResourceSet().getResources());
-		LinkedList<StateMachineLinkDescriptor> result = new LinkedList<StateMachineLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_4001(
-				modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<StateMachineLinkDescriptor> getState_2003IncomingLinks(
+	public static List<StateMachineLinkDescriptor> getState_2001IncomingLinks(
 			View view) {
 		State modelElement = (State) view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
@@ -362,7 +257,7 @@ public class StateMachineDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<StateMachineLinkDescriptor> getInitialState_3001IncomingLinks(
+	public static List<StateMachineLinkDescriptor> getInitialState_2002IncomingLinks(
 			View view) {
 		InitialState modelElement = (InitialState) view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
@@ -376,7 +271,7 @@ public class StateMachineDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<StateMachineLinkDescriptor> getFinalState_3002IncomingLinks(
+	public static List<StateMachineLinkDescriptor> getFinalState_2003IncomingLinks(
 			View view) {
 		FinalState modelElement = (FinalState) view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
@@ -390,15 +285,9 @@ public class StateMachineDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<StateMachineLinkDescriptor> getState_3003IncomingLinks(
+	public static List<StateMachineLinkDescriptor> getStateAction_3001IncomingLinks(
 			View view) {
-		State modelElement = (State) view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
-				.find(view.eResource().getResourceSet().getResources());
-		LinkedList<StateMachineLinkDescriptor> result = new LinkedList<StateMachineLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_4001(
-				modelElement, crossReferences));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -412,29 +301,7 @@ public class StateMachineDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<StateMachineLinkDescriptor> getInitialState_2001OutgoingLinks(
-			View view) {
-		InitialState modelElement = (InitialState) view.getElement();
-		LinkedList<StateMachineLinkDescriptor> result = new LinkedList<StateMachineLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_4001(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<StateMachineLinkDescriptor> getFinalState_2002OutgoingLinks(
-			View view) {
-		FinalState modelElement = (FinalState) view.getElement();
-		LinkedList<StateMachineLinkDescriptor> result = new LinkedList<StateMachineLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_4001(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<StateMachineLinkDescriptor> getState_2003OutgoingLinks(
+	public static List<StateMachineLinkDescriptor> getState_2001OutgoingLinks(
 			View view) {
 		State modelElement = (State) view.getElement();
 		LinkedList<StateMachineLinkDescriptor> result = new LinkedList<StateMachineLinkDescriptor>();
@@ -445,7 +312,7 @@ public class StateMachineDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<StateMachineLinkDescriptor> getInitialState_3001OutgoingLinks(
+	public static List<StateMachineLinkDescriptor> getInitialState_2002OutgoingLinks(
 			View view) {
 		InitialState modelElement = (InitialState) view.getElement();
 		LinkedList<StateMachineLinkDescriptor> result = new LinkedList<StateMachineLinkDescriptor>();
@@ -456,7 +323,7 @@ public class StateMachineDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<StateMachineLinkDescriptor> getFinalState_3002OutgoingLinks(
+	public static List<StateMachineLinkDescriptor> getFinalState_2003OutgoingLinks(
 			View view) {
 		FinalState modelElement = (FinalState) view.getElement();
 		LinkedList<StateMachineLinkDescriptor> result = new LinkedList<StateMachineLinkDescriptor>();
@@ -467,12 +334,9 @@ public class StateMachineDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<StateMachineLinkDescriptor> getState_3003OutgoingLinks(
+	public static List<StateMachineLinkDescriptor> getStateAction_3001OutgoingLinks(
 			View view) {
-		State modelElement = (State) view.getElement();
-		LinkedList<StateMachineLinkDescriptor> result = new LinkedList<StateMachineLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_4001(modelElement));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**

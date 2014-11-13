@@ -9,6 +9,58 @@
   <nodes>
     <containmentFeature
         href="statemachine.ecore#//StateMachine/states"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="statemachine.ecore#//State"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="statemachine.gmfgraph#StateLabel"/>
+        <features
+            href="statemachine.ecore#//AbstractState/name"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="statemachine.gmftool#//@palette/@tools.0/@tools.2"/>
+      <diagramNode
+          href="statemachine.gmfgraph#State"/>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0">
+        <containmentFeature
+            href="statemachine.ecore#//State/internalActions"/>
+        <ownedChild>
+          <domainMetaElement
+              href="statemachine.ecore#//StateAction"/>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping"
+              viewPattern="{0}/{1}"
+              editorPattern="{0}/{1}"
+              editPattern="{0}/{1}">
+            <diagramLabel
+                href="statemachine.gmfgraph#StateActionLabel"/>
+            <features
+                href="statemachine.ecore#//FiringElement/trigger"/>
+            <features
+                href="statemachine.ecore#//FiringElement/action"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="statemachine.gmftool#//@palette/@tools.0/@tools.3"/>
+          <diagramNode
+              href="statemachine.gmfgraph#StateAction"/>
+        </ownedChild>
+      </children>
+      <compartments
+          children="//@nodes.0/@ownedChild/@children.0">
+        <compartment
+            href="statemachine.gmfgraph#StateInternalActionsCompartment"/>
+      </compartments>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="statemachine.ecore#//StateMachine/states"/>
     <ownedChild>
       <domainMetaElement
           href="statemachine.ecore#//InitialState"/>
@@ -32,59 +84,20 @@
           href="statemachine.gmfgraph#FinalState"/>
     </ownedChild>
   </nodes>
-  <nodes>
-    <containmentFeature
-        href="statemachine.ecore#//StateMachine/states"/>
-    <ownedChild
-        relatedDiagrams="//@diagram">
-      <domainMetaElement
-          href="statemachine.ecore#//State"/>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping">
-        <diagramLabel
-            href="statemachine.gmfgraph#StateLabel"/>
-        <features
-            href="statemachine.ecore#//NamedElement/name"/>
-      </labelMappings>
-      <tool
-          xsi:type="gmftool:CreationTool"
-          href="statemachine.gmftool#//@palette/@tools.0/@tools.2"/>
-      <diagramNode
-          href="statemachine.gmfgraph#State"/>
-      <children
-          compartment="//@nodes.2/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.0/@ownedChild">
-        <containmentFeature
-            href="statemachine.ecore#//State/nestedStates"/>
-      </children>
-      <children
-          compartment="//@nodes.2/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.1/@ownedChild">
-        <containmentFeature
-            href="statemachine.ecore#//State/nestedStates"/>
-      </children>
-      <children
-          compartment="//@nodes.2/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.2/@ownedChild">
-        <containmentFeature
-            href="statemachine.ecore#//State/nestedStates"/>
-      </children>
-      <compartments
-          children="//@nodes.2/@ownedChild/@children.0 //@nodes.2/@ownedChild/@children.1 //@nodes.2/@ownedChild/@children.2">
-        <compartment
-            href="statemachine.gmfgraph#StateNestedStatesCompartment"/>
-      </compartments>
-    </ownedChild>
-  </nodes>
   <links>
     <domainMetaElement
         href="statemachine.ecore#//Transition"/>
     <labelMappings
-        xsi:type="gmfmap:FeatureLabelMapping">
+        xsi:type="gmfmap:FeatureLabelMapping"
+        viewPattern="{0}/{1}"
+        editorPattern="{0}/{1}"
+        editPattern="{0}/{1}">
       <diagramLabel
           href="statemachine.gmfgraph#TransitionLabel"/>
       <features
-          href="statemachine.ecore#//NamedElement/name"/>
+          href="statemachine.ecore#//FiringElement/trigger"/>
+      <features
+          href="statemachine.ecore#//FiringElement/action"/>
     </labelMappings>
     <containmentFeature
         href="statemachine.ecore#//StateMachine/transitions"/>

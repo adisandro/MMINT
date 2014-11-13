@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine.State#getNestedStates <em>Nested States</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine.State#getInternalActions <em>Internal Actions</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,21 +31,20 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface State extends AbstractState {
 	/**
-	 * Returns the value of the '<em><b>Nested States</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.statemachine.AbstractState}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.statemachine.AbstractState#getParentState <em>Parent State</em>}'.
+	 * Returns the value of the '<em><b>Internal Actions</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.statemachine.StateAction}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Nested States</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Internal Actions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Nested States</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage#getState_NestedStates()
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.AbstractState#getParentState
-	 * @model opposite="parentState" containment="true"
+	 * @return the value of the '<em>Internal Actions</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage#getState_InternalActions()
+	 * @model containment="true"
+	 *        annotation="gmf.compartment layout='list'"
 	 * @generated
 	 */
-	EList<AbstractState> getNestedStates();
+	EList<StateAction> getInternalActions();
 
 } // State

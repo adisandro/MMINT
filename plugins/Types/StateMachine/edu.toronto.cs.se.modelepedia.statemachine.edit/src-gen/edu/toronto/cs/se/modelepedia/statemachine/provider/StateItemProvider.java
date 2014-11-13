@@ -71,7 +71,7 @@ public class StateItemProvider extends AbstractStateItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(StateMachinePackage.Literals.STATE__NESTED_STATES);
+			childrenFeatures.add(StateMachinePackage.Literals.STATE__INTERNAL_ACTIONS);
 		}
 		return childrenFeatures;
 	}
@@ -127,7 +127,7 @@ public class StateItemProvider extends AbstractStateItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(State.class)) {
-			case StateMachinePackage.STATE__NESTED_STATES:
+			case StateMachinePackage.STATE__INTERNAL_ACTIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -147,18 +147,8 @@ public class StateItemProvider extends AbstractStateItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(StateMachinePackage.Literals.STATE__NESTED_STATES,
-				 StateMachineFactory.eINSTANCE.createInitialState()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StateMachinePackage.Literals.STATE__NESTED_STATES,
-				 StateMachineFactory.eINSTANCE.createFinalState()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StateMachinePackage.Literals.STATE__NESTED_STATES,
-				 StateMachineFactory.eINSTANCE.createState()));
+				(StateMachinePackage.Literals.STATE__INTERNAL_ACTIONS,
+				 StateMachineFactory.eINSTANCE.createStateAction()));
 	}
 
 }

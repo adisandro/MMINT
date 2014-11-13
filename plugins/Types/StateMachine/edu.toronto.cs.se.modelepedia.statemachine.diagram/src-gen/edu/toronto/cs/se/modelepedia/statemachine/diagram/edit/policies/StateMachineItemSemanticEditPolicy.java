@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -40,14 +42,14 @@ public class StateMachineItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (StateMachineElementTypes.InitialState_2001 == req.getElementType()) {
+		if (StateMachineElementTypes.State_2001 == req.getElementType()) {
+			return getGEFWrapper(new StateCreateCommand(req));
+		}
+		if (StateMachineElementTypes.InitialState_2002 == req.getElementType()) {
 			return getGEFWrapper(new InitialStateCreateCommand(req));
 		}
-		if (StateMachineElementTypes.FinalState_2002 == req.getElementType()) {
+		if (StateMachineElementTypes.FinalState_2003 == req.getElementType()) {
 			return getGEFWrapper(new FinalStateCreateCommand(req));
-		}
-		if (StateMachineElementTypes.State_2003 == req.getElementType()) {
-			return getGEFWrapper(new StateCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

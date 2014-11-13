@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts, 
+Export-Package: edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts,
  edu.toronto.cs.se.modelepedia.statemachine.diagram.part,
  edu.toronto.cs.se.modelepedia.statemachine.diagram.providers
 Require-Bundle: org.eclipse.core.runtime,

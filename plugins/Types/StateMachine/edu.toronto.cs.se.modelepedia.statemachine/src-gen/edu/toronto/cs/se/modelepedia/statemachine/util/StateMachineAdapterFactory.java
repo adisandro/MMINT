@@ -81,16 +81,16 @@ public class StateMachineAdapterFactory extends AdapterFactoryImpl {
 				return createStateMachineAdapter();
 			}
 			@Override
-			public Adapter caseNamedElement(NamedElement object) {
-				return createNamedElementAdapter();
+			public Adapter caseFiringElement(FiringElement object) {
+				return createFiringElementAdapter();
 			}
 			@Override
 			public Adapter caseAbstractState(AbstractState object) {
 				return createAbstractStateAdapter();
 			}
 			@Override
-			public Adapter caseTransition(Transition object) {
-				return createTransitionAdapter();
+			public Adapter caseState(State object) {
+				return createStateAdapter();
 			}
 			@Override
 			public Adapter caseInitialState(InitialState object) {
@@ -101,8 +101,12 @@ public class StateMachineAdapterFactory extends AdapterFactoryImpl {
 				return createFinalStateAdapter();
 			}
 			@Override
-			public Adapter caseState(State object) {
-				return createStateAdapter();
+			public Adapter caseTransition(Transition object) {
+				return createTransitionAdapter();
+			}
+			@Override
+			public Adapter caseStateAction(StateAction object) {
+				return createStateActionAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -139,16 +143,16 @@ public class StateMachineAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.statemachine.NamedElement <em>Named Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.statemachine.FiringElement <em>Firing Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.NamedElement
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.FiringElement
 	 * @generated
 	 */
-	public Adapter createNamedElementAdapter() {
+	public Adapter createFiringElementAdapter() {
 		return null;
 	}
 
@@ -167,16 +171,16 @@ public class StateMachineAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.statemachine.Transition <em>Transition</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.statemachine.State <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.Transition
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.State
 	 * @generated
 	 */
-	public Adapter createTransitionAdapter() {
+	public Adapter createStateAdapter() {
 		return null;
 	}
 
@@ -209,16 +213,30 @@ public class StateMachineAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.statemachine.State <em>State</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.statemachine.Transition <em>Transition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.State
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.Transition
 	 * @generated
 	 */
-	public Adapter createStateAdapter() {
+	public Adapter createTransitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.statemachine.StateAction <em>State Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.StateAction
+	 * @generated
+	 */
+	public Adapter createStateActionAdapter() {
 		return null;
 	}
 

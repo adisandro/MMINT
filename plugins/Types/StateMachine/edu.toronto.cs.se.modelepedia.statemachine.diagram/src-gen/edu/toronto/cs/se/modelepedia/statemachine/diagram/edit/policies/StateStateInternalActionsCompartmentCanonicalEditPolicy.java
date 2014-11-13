@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -33,9 +35,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalState2EditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialState2EditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.State2EditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateActionEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineDiagramUpdater;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineNodeDescriptor;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineVisualIDRegistry;
@@ -43,7 +43,7 @@ import edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineVisua
 /**
  * @generated
  */
-public class StateStateNestedStatesCompartment2CanonicalEditPolicy extends
+public class StateStateInternalActionsCompartmentCanonicalEditPolicy extends
 		CanonicalEditPolicy {
 
 	/**
@@ -62,7 +62,7 @@ public class StateStateNestedStatesCompartment2CanonicalEditPolicy extends
 	 * @generated
 	 */
 	protected EStructuralFeature getFeatureToSynchronize() {
-		return StateMachinePackage.eINSTANCE.getState_NestedStates();
+		return StateMachinePackage.eINSTANCE.getState_InternalActions();
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class StateStateNestedStatesCompartment2CanonicalEditPolicy extends
 		View viewObject = (View) getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
 		List<StateMachineNodeDescriptor> childDescriptors = StateMachineDiagramUpdater
-				.getStateStateNestedStatesCompartment_7002SemanticChildren(viewObject);
+				.getStateStateInternalActionsCompartment_7001SemanticChildren(viewObject);
 		for (StateMachineNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -93,10 +93,8 @@ public class StateStateNestedStatesCompartment2CanonicalEditPolicy extends
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		int visualID = StateMachineVisualIDRegistry.getVisualID(view);
-		return visualID == InitialState2EditPart.VISUAL_ID
-				|| visualID == FinalState2EditPart.VISUAL_ID
-				|| visualID == State2EditPart.VISUAL_ID;
+		return StateActionEditPart.VISUAL_ID == StateMachineVisualIDRegistry
+				.getVisualID(view);
 	}
 
 	/**
@@ -108,7 +106,7 @@ public class StateStateNestedStatesCompartment2CanonicalEditPolicy extends
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
 		List<StateMachineNodeDescriptor> childDescriptors = StateMachineDiagramUpdater
-				.getStateStateNestedStatesCompartment_7002SemanticChildren((View) getHost()
+				.getStateStateInternalActionsCompartment_7001SemanticChildren((View) getHost()
 						.getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours

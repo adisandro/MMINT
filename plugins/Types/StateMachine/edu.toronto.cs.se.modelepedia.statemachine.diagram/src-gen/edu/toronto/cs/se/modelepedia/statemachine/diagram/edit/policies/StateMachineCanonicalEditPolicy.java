@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -41,11 +43,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
 
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalState2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalStateEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialState2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialStateEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.State2EditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateActionEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateMachineEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.TransitionEditPart;
@@ -110,9 +110,9 @@ public class StateMachineCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	private boolean isMyDiagramElement(View view) {
 		int visualID = StateMachineVisualIDRegistry.getVisualID(view);
-		return visualID == InitialStateEditPart.VISUAL_ID
-				|| visualID == FinalStateEditPart.VISUAL_ID
-				|| visualID == StateEditPart.VISUAL_ID;
+		return visualID == StateEditPart.VISUAL_ID
+				|| visualID == InitialStateEditPart.VISUAL_ID
+				|| visualID == FinalStateEditPart.VISUAL_ID;
 	}
 
 	/**
@@ -284,10 +284,18 @@ public class StateMachineCanonicalEditPolicy extends CanonicalEditPolicy {
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
+		case StateEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(StateMachineDiagramUpdater
+						.getState_2001ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
 		case InitialStateEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(StateMachineDiagramUpdater
-						.getInitialState_2001ContainedLinks(view));
+						.getInitialState_2002ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
@@ -295,39 +303,15 @@ public class StateMachineCanonicalEditPolicy extends CanonicalEditPolicy {
 		case FinalStateEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(StateMachineDiagramUpdater
-						.getFinalState_2002ContainedLinks(view));
+						.getFinalState_2003ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
-		case StateEditPart.VISUAL_ID: {
+		case StateActionEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(StateMachineDiagramUpdater
-						.getState_2003ContainedLinks(view));
-			}
-			domain2NotationMap.putView(view.getElement(), view);
-			break;
-		}
-		case InitialState2EditPart.VISUAL_ID: {
-			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(StateMachineDiagramUpdater
-						.getInitialState_3001ContainedLinks(view));
-			}
-			domain2NotationMap.putView(view.getElement(), view);
-			break;
-		}
-		case FinalState2EditPart.VISUAL_ID: {
-			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(StateMachineDiagramUpdater
-						.getFinalState_3002ContainedLinks(view));
-			}
-			domain2NotationMap.putView(view.getElement(), view);
-			break;
-		}
-		case State2EditPart.VISUAL_ID: {
-			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(StateMachineDiagramUpdater
-						.getState_3003ContainedLinks(view));
+						.getStateAction_3001ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;

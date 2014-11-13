@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -30,17 +32,15 @@ import org.eclipse.ui.navigator.ICommonLabelProvider;
 
 import edu.toronto.cs.se.modelepedia.statemachine.FinalState;
 import edu.toronto.cs.se.modelepedia.statemachine.InitialState;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalState2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalStateEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialState2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialStateEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.State2EditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateActionEditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateActionTriggerActionEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateMachineEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateName2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateNameEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.TransitionEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.TransitionNameEditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.TransitionTriggerActionEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineDiagramEditorPlugin;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineVisualIDRegistry;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.StateMachineElementTypes;
@@ -116,24 +116,18 @@ public class StateMachineNavigatorLabelProvider extends LabelProvider implements
 		case StateMachineEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http://se.cs.toronto.edu/modelepedia/StateMachine?StateMachine", StateMachineElementTypes.StateMachine_1000); //$NON-NLS-1$
-		case InitialStateEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/StateMachine?InitialState", StateMachineElementTypes.InitialState_2001); //$NON-NLS-1$
-		case FinalStateEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/StateMachine?FinalState", StateMachineElementTypes.FinalState_2002); //$NON-NLS-1$
 		case StateEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/StateMachine?State", StateMachineElementTypes.State_2003); //$NON-NLS-1$
-		case InitialState2EditPart.VISUAL_ID:
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/StateMachine?State", StateMachineElementTypes.State_2001); //$NON-NLS-1$
+		case InitialStateEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/StateMachine?InitialState", StateMachineElementTypes.InitialState_3001); //$NON-NLS-1$
-		case FinalState2EditPart.VISUAL_ID:
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/StateMachine?InitialState", StateMachineElementTypes.InitialState_2002); //$NON-NLS-1$
+		case FinalStateEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/StateMachine?FinalState", StateMachineElementTypes.FinalState_3002); //$NON-NLS-1$
-		case State2EditPart.VISUAL_ID:
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/StateMachine?FinalState", StateMachineElementTypes.FinalState_2003); //$NON-NLS-1$
+		case StateActionEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/StateMachine?State", StateMachineElementTypes.State_3003); //$NON-NLS-1$
+					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/StateMachine?StateAction", StateMachineElementTypes.StateAction_3001); //$NON-NLS-1$
 		case TransitionEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/StateMachine?Transition", StateMachineElementTypes.Transition_4001); //$NON-NLS-1$
@@ -199,18 +193,14 @@ public class StateMachineNavigatorLabelProvider extends LabelProvider implements
 		switch (StateMachineVisualIDRegistry.getVisualID(view)) {
 		case StateMachineEditPart.VISUAL_ID:
 			return getStateMachine_1000Text(view);
-		case InitialStateEditPart.VISUAL_ID:
-			return getInitialState_2001Text(view);
-		case FinalStateEditPart.VISUAL_ID:
-			return getFinalState_2002Text(view);
 		case StateEditPart.VISUAL_ID:
-			return getState_2003Text(view);
-		case InitialState2EditPart.VISUAL_ID:
-			return getInitialState_3001Text(view);
-		case FinalState2EditPart.VISUAL_ID:
-			return getFinalState_3002Text(view);
-		case State2EditPart.VISUAL_ID:
-			return getState_3003Text(view);
+			return getState_2001Text(view);
+		case InitialStateEditPart.VISUAL_ID:
+			return getInitialState_2002Text(view);
+		case FinalStateEditPart.VISUAL_ID:
+			return getFinalState_2003Text(view);
+		case StateActionEditPart.VISUAL_ID:
+			return getStateAction_3001Text(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_4001Text(view);
 		}
@@ -227,37 +217,9 @@ public class StateMachineNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getInitialState_2001Text(View view) {
-		InitialState domainModelElement = (InitialState) view.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
-		} else {
-			StateMachineDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 2001); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getFinalState_2002Text(View view) {
-		FinalState domainModelElement = (FinalState) view.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
-		} else {
-			StateMachineDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 2002); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getState_2003Text(View view) {
+	private String getState_2001Text(View view) {
 		IParser parser = StateMachineParserProvider.getParser(
-				StateMachineElementTypes.State_2003,
+				StateMachineElementTypes.State_2001,
 				view.getElement() != null ? view.getElement() : view,
 				StateMachineVisualIDRegistry
 						.getType(StateNameEditPart.VISUAL_ID));
@@ -275,13 +237,13 @@ public class StateMachineNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getInitialState_3001Text(View view) {
+	private String getInitialState_2002Text(View view) {
 		InitialState domainModelElement = (InitialState) view.getElement();
 		if (domainModelElement != null) {
 			return domainModelElement.getName();
 		} else {
 			StateMachineDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 3001); //$NON-NLS-1$
+					"No domain element for view with visualID = " + 2002); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -289,13 +251,13 @@ public class StateMachineNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getFinalState_3002Text(View view) {
+	private String getFinalState_2003Text(View view) {
 		FinalState domainModelElement = (FinalState) view.getElement();
 		if (domainModelElement != null) {
 			return domainModelElement.getName();
 		} else {
 			StateMachineDiagramEditorPlugin.getInstance().logError(
-					"No domain element for view with visualID = " + 3002); //$NON-NLS-1$
+					"No domain element for view with visualID = " + 2003); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -303,12 +265,12 @@ public class StateMachineNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getState_3003Text(View view) {
+	private String getStateAction_3001Text(View view) {
 		IParser parser = StateMachineParserProvider.getParser(
-				StateMachineElementTypes.State_3003,
+				StateMachineElementTypes.StateAction_3001,
 				view.getElement() != null ? view.getElement() : view,
 				StateMachineVisualIDRegistry
-						.getType(StateName2EditPart.VISUAL_ID));
+						.getType(StateActionTriggerActionEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -328,7 +290,7 @@ public class StateMachineNavigatorLabelProvider extends LabelProvider implements
 				StateMachineElementTypes.Transition_4001,
 				view.getElement() != null ? view.getElement() : view,
 				StateMachineVisualIDRegistry
-						.getType(TransitionNameEditPart.VISUAL_ID));
+						.getType(TransitionTriggerActionEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),

@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -53,6 +55,7 @@ import edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.StateMachine
  * @generated
  */
 public class ValidateAction extends Action {
+
 	/**
 	 * @generated
 	 */

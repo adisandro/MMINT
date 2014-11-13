@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -14,7 +16,6 @@ package edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
@@ -30,9 +31,9 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.label.ILabelDelegate;
@@ -46,7 +47,7 @@ import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.draw2d.labels.SimpleLabelDelegate;
-import org.eclipse.gmf.tooling.runtime.edit.policies.DefaultLinkLabelDragPolicy;
+import org.eclipse.gmf.tooling.runtime.edit.policies.DefaultNodeLabelDragPolicy;
 import org.eclipse.gmf.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
@@ -64,13 +65,13 @@ import edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.StateMachine
 /**
  * @generated
  */
-public class TransitionNameEditPart extends LabelEditPart implements
-		ITextAwareEditPart {
+public class StateActionTriggerActionEditPart extends CompartmentEditPart
+		implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6001;
+	public static final int VISUAL_ID = 5001;
 
 	/**
 	 * @generated
@@ -100,17 +101,7 @@ public class TransitionNameEditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
-	static {
-		registerSnapBackPosition(
-				StateMachineVisualIDRegistry
-						.getType(edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.TransitionNameEditPart.VISUAL_ID),
-				new Point(0, 40));
-	}
-
-	/**
-	 * @generated
-	 */
-	public TransitionNameEditPart(View view) {
+	public StateActionTriggerActionEditPart(View view) {
 		super(view);
 	}
 
@@ -119,19 +110,12 @@ public class TransitionNameEditPart extends LabelEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE,
-				new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE,
 				new StateMachineTextSelectionEditPolicy());
+		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE,
+				new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
-				new DefaultLinkLabelDragPolicy());
-	}
-
-	/**
-	 * @generated
-	 */
-	public int getKeyPoint() {
-		return ConnectionLocator.MIDDLE;
+				new DefaultNodeLabelDragPolicy());
 	}
 
 	/**
@@ -191,7 +175,7 @@ public class TransitionNameEditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
-	public void setLabel(IFigure figure) {
+	public void setLabel(WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -225,7 +209,11 @@ public class TransitionNameEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		return null;
+		EObject parserElement = getParserElement();
+		if (parserElement == null) {
+			return null;
+		}
+		return StateMachineElementTypes.getImage(parserElement.eClass());
 	}
 
 	/**
@@ -333,10 +321,10 @@ public class TransitionNameEditPart extends LabelEditPart implements
 		if (parser == null) {
 			parser = StateMachineParserProvider
 					.getParser(
-							StateMachineElementTypes.Transition_4001,
+							StateMachineElementTypes.StateAction_3001,
 							getParserElement(),
 							StateMachineVisualIDRegistry
-									.getType(edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.TransitionNameEditPart.VISUAL_ID));
+									.getType(edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateActionTriggerActionEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -585,6 +573,22 @@ public class TransitionNameEditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
+	protected void addNotationalListeners() {
+		super.addNotationalListeners();
+		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeNotationalListeners() {
+		super.removeNotationalListeners();
+		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -629,30 +633,8 @@ public class TransitionNameEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected IFigure createFigure() {
-		IFigure label = createFigurePrim();
-		defaultText = getLabelTextHelper(label);
-		return label;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IFigure createFigurePrim() {
-		return new TransitionLabelFigure();
-	}
-
-	/**
-	 * @generated
-	 */
-	public class TransitionLabelFigure extends WrappingLabel {
-
-		/**
-		 * @generated
-		 */
-		public TransitionLabelFigure() {
-			this.setText("Transition");
-		}
-
+		// Parent should assign one using setLabel() method
+		return null;
 	}
 
 }

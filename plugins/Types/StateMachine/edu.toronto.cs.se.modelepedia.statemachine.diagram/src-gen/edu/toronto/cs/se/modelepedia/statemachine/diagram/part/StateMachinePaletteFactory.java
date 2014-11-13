@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -11,14 +13,12 @@
  */
 package edu.toronto.cs.se.modelepedia.statemachine.diagram.part;
 
-import java.util.ArrayList;
 import java.util.Collections;
 
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.tooling.runtime.part.DefaultLinkToolEntry;
 import org.eclipse.gmf.tooling.runtime.part.DefaultNodeToolEntry;
 
@@ -48,6 +48,7 @@ public class StateMachinePaletteFactory {
 		paletteContainer.add(createFinalState1CreationTool());
 		paletteContainer.add(createInitialState2CreationTool());
 		paletteContainer.add(createState3CreationTool());
+		paletteContainer.add(createStateAction4CreationTool());
 		return paletteContainer;
 	}
 
@@ -67,15 +68,14 @@ public class StateMachinePaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createFinalState1CreationTool() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(StateMachineElementTypes.FinalState_2002);
-		types.add(StateMachineElementTypes.FinalState_3002);
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				Messages.FinalState1CreationTool_title,
-				Messages.FinalState1CreationTool_desc, types);
+				Messages.FinalState1CreationTool_desc,
+				Collections
+						.singletonList(StateMachineElementTypes.FinalState_2003));
 		entry.setId("createFinalState1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(StateMachineElementTypes
-				.getImageDescriptor(StateMachineElementTypes.FinalState_2002));
+				.getImageDescriptor(StateMachineElementTypes.FinalState_2003));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -84,15 +84,14 @@ public class StateMachinePaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createInitialState2CreationTool() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(StateMachineElementTypes.InitialState_2001);
-		types.add(StateMachineElementTypes.InitialState_3001);
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				Messages.InitialState2CreationTool_title,
-				Messages.InitialState2CreationTool_desc, types);
+				Messages.InitialState2CreationTool_desc,
+				Collections
+						.singletonList(StateMachineElementTypes.InitialState_2002));
 		entry.setId("createInitialState2CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(StateMachineElementTypes
-				.getImageDescriptor(StateMachineElementTypes.InitialState_2001));
+				.getImageDescriptor(StateMachineElementTypes.InitialState_2002));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -101,15 +100,29 @@ public class StateMachinePaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createState3CreationTool() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(StateMachineElementTypes.State_2003);
-		types.add(StateMachineElementTypes.State_3003);
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				Messages.State3CreationTool_title,
-				Messages.State3CreationTool_desc, types);
+				Messages.State3CreationTool_desc,
+				Collections.singletonList(StateMachineElementTypes.State_2001));
 		entry.setId("createState3CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(StateMachineElementTypes
-				.getImageDescriptor(StateMachineElementTypes.State_2003));
+				.getImageDescriptor(StateMachineElementTypes.State_2001));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createStateAction4CreationTool() {
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
+				Messages.StateAction4CreationTool_title,
+				Messages.StateAction4CreationTool_desc,
+				Collections
+						.singletonList(StateMachineElementTypes.StateAction_3001));
+		entry.setId("createStateAction4CreationTool"); //$NON-NLS-1$
+		entry.setSmallIcon(StateMachineElementTypes
+				.getImageDescriptor(StateMachineElementTypes.StateAction_3001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

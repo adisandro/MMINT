@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <!--
+Copyright Text ->
+
 Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
 Rick Salay.
 All rights reserved. This program and the accompanying materials
@@ -39,7 +41,7 @@ Contributors:
          contributorClass="edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineDiagramActionBarContributor">
       </editor>
    </extension>
-
+   
    <extension point="org.eclipse.ui.contexts" id="ui-context">
       <?gmfgen generated="true"?>
       <context
@@ -77,7 +79,7 @@ Contributors:
          </action>
       </objectContribution>
    </extension>
-
+	
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
       <?gmfgen generated="true"?>
       <GlobalActionHandlerProvider
@@ -256,7 +258,7 @@ Contributors:
          </object>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="StateMachine"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,3001,3002,3003"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,3001"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001"/>
       </viewProvider>
    </extension>
@@ -269,7 +271,7 @@ Contributors:
             <method name="getType()" value="StateMachine"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,2002,2003,3001,3002,3003"/>
+            <method name="getType()" value="2001,2002,2003,3001"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4001"/>
@@ -278,51 +280,43 @@ Contributors:
             <method name="getType()" value="5002,5001"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7001,7002"/>
+            <method name="getType()" value="7001"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
    </extension>
 
-<extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
+   
+   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
       <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.assistants.StateMachineModelingAssistantProviderOfStateMachineEditPart">
          <Priority name="Lowest"/>
          <object class="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateMachineEditPart" id="StateMachine_1000"/>
          <context elements="StateMachine_1000"/>
       </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.assistants.StateMachineModelingAssistantProviderOfStateEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateEditPart" id="State_2001"/>
+         <context elements="State_2001"/>
+      </modelingAssistantProvider>
             <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.assistants.StateMachineModelingAssistantProviderOfInitialStateEditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialStateEditPart" id="InitialState_2001"/>
-         <context elements="InitialState_2001"/>
+         <object class="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialStateEditPart" id="InitialState_2002"/>
+         <context elements="InitialState_2002"/>
       </modelingAssistantProvider>
             <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.assistants.StateMachineModelingAssistantProviderOfFinalStateEditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalStateEditPart" id="FinalState_2002"/>
-         <context elements="FinalState_2002"/>
+         <object class="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalStateEditPart" id="FinalState_2003"/>
+         <context elements="FinalState_2003"/>
       </modelingAssistantProvider>
-            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.assistants.StateMachineModelingAssistantProviderOfStateEditPart">
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.assistants.StateMachineModelingAssistantProviderOfStateActionEditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateEditPart" id="State_2003"/>
-         <context elements="State_2003"/>
-      </modelingAssistantProvider>
-            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.assistants.StateMachineModelingAssistantProviderOfInitialState2EditPart">
-         <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialState2EditPart" id="InitialState_3001"/>
-         <context elements="InitialState_3001"/>
-      </modelingAssistantProvider>
-            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.assistants.StateMachineModelingAssistantProviderOfFinalState2EditPart">
-         <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalState2EditPart" id="FinalState_3002"/>
-         <context elements="FinalState_3002"/>
-      </modelingAssistantProvider>
-            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.assistants.StateMachineModelingAssistantProviderOfState2EditPart">
-         <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.State2EditPart" id="State_3003"/>
-         <context elements="State_3003"/>
+         <object class="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateActionEditPart" id="StateAction_3001"/>
+         <context elements="StateAction_3001"/>
       </modelingAssistantProvider>
       
    </extension>
+
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>
@@ -363,60 +357,43 @@ Contributors:
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/StateMachine">
          <metamodelType
-               id="edu.toronto.cs.se.modelepedia.statemachine.diagram.InitialState_2001"
-               name="%metatype.name.InitialState_2001"
+               id="edu.toronto.cs.se.modelepedia.statemachine.diagram.State_2001"
+               name="%metatype.name.State_2001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="InitialState"
-               edithelper="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.helpers.InitialStateEditHelper">
+               eclass="State"
+               edithelper="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.helpers.StateEditHelper">
             <param name="semanticHint" value="2001"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/StateMachine">
          <metamodelType
-               id="edu.toronto.cs.se.modelepedia.statemachine.diagram.FinalState_2002"
-               name="%metatype.name.FinalState_2002"
+               id="edu.toronto.cs.se.modelepedia.statemachine.diagram.InitialState_2002"
+               name="%metatype.name.InitialState_2002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="FinalState"
-               edithelper="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.helpers.FinalStateEditHelper">
+               eclass="InitialState"
+               edithelper="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.helpers.InitialStateEditHelper">
             <param name="semanticHint" value="2002"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/StateMachine">
          <metamodelType
-               id="edu.toronto.cs.se.modelepedia.statemachine.diagram.State_2003"
-               name="%metatype.name.State_2003"
+               id="edu.toronto.cs.se.modelepedia.statemachine.diagram.FinalState_2003"
+               name="%metatype.name.FinalState_2003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="State"
-               edithelper="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.helpers.StateEditHelper">
+               eclass="FinalState"
+               edithelper="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.helpers.FinalStateEditHelper">
             <param name="semanticHint" value="2003"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/StateMachine">
-         <specializationType
-               id="edu.toronto.cs.se.modelepedia.statemachine.diagram.InitialState_3001"
-               name="%metatype.name.InitialState_3001"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.modelepedia.statemachine.diagram.InitialState_2001"/>
+         <metamodelType
+               id="edu.toronto.cs.se.modelepedia.statemachine.diagram.StateAction_3001"
+               name="%metatype.name.StateAction_3001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="StateAction"
+               edithelper="edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.helpers.StateActionEditHelper">
             <param name="semanticHint" value="3001"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/StateMachine">
-         <specializationType
-               id="edu.toronto.cs.se.modelepedia.statemachine.diagram.FinalState_3002"
-               name="%metatype.name.FinalState_3002"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.modelepedia.statemachine.diagram.FinalState_2002"/>
-            <param name="semanticHint" value="3002"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/StateMachine">
-         <specializationType
-               id="edu.toronto.cs.se.modelepedia.statemachine.diagram.State_3003"
-               name="%metatype.name.State_3003"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.modelepedia.statemachine.diagram.State_2003"/>
-            <param name="semanticHint" value="3003"/>
-         </specializationType>
+         </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/StateMachine">
          <metamodelType
@@ -441,12 +418,10 @@ Contributors:
       </clientContext> 
       <binding context="edu.toronto.cs.se.modelepedia.statemachine.diagram.TypeContext">
          <elementType ref="edu.toronto.cs.se.modelepedia.statemachine.diagram.StateMachine_1000"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine.diagram.InitialState_2001"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine.diagram.FinalState_2002"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine.diagram.State_2003"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine.diagram.InitialState_3001"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine.diagram.FinalState_3002"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine.diagram.State_3003"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine.diagram.State_2001"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine.diagram.InitialState_2002"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine.diagram.FinalState_2003"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine.diagram.StateAction_3001"/>
          <elementType ref="edu.toronto.cs.se.modelepedia.statemachine.diagram.Transition_4001"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
@@ -473,7 +448,7 @@ Contributors:
        </propertyTester>
    </extension>
 
-   <extension point="org.eclipse.ui.navigator.viewer" id="navigator-viewbinding">
+	   <extension point="org.eclipse.ui.navigator.viewer" id="navigator-viewbinding">
       <?gmfgen generated="true"?>
       <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
          <includes>
@@ -567,7 +542,7 @@ Contributors:
          </enablement>
       </actionProvider>
    </extension>
-	
+   
 	   <extension point="org.eclipse.ui.navigator.linkHelper" id="navigator-linkhelper">
       <?gmfgen generated="true"?>
       <linkHelper
@@ -584,8 +559,6 @@ Contributors:
          </selectionEnablement>
       </linkHelper>
    </extension>
-
-
    <extension point="org.eclipse.ui.commands" id="update-cmd">
       <?gmfgen generated="true"?>
       <command
@@ -595,7 +568,7 @@ Contributors:
          id="edu.toronto.cs.se.modelepedia.statemachine.diagram.updateDiagram"
          name="%update.diagram.name"/>
    </extension>
-
+   
    <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
       <?gmfgen generated="true"?>
       <key 

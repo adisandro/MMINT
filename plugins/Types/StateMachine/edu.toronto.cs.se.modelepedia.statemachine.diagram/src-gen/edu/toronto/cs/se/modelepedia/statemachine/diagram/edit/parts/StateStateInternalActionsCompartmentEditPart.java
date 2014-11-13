@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -12,25 +14,25 @@
 package edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicyWithCustomReparent;
 
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.policies.StateStateNestedStatesCompartment2CanonicalEditPolicy;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.policies.StateStateNestedStatesCompartment2ItemSemanticEditPolicy;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.policies.StateStateInternalActionsCompartmentCanonicalEditPolicy;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.policies.StateStateInternalActionsCompartmentItemSemanticEditPolicy;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.part.Messages;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineVisualIDRegistry;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.StateMachineElementTypes;
@@ -38,26 +40,33 @@ import edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.StateMachine
 /**
  * @generated
  */
-public class StateStateNestedStatesCompartment2EditPart extends
-		ShapeCompartmentEditPart {
+public class StateStateInternalActionsCompartmentEditPart extends
+		ListCompartmentEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 7002;
+	public static final int VISUAL_ID = 7001;
 
 	/**
 	 * @generated
 	 */
-	public StateStateNestedStatesCompartment2EditPart(View view) {
+	public StateStateInternalActionsCompartmentEditPart(View view) {
 		super(view);
 	}
 
 	/**
 	 * @generated
 	 */
+	protected boolean hasModelChildrenChanged(Notification evt) {
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
 	public String getCompartmentName() {
-		return Messages.StateStateNestedStatesCompartment2EditPart_title;
+		return Messages.StateStateInternalActionsCompartmentEditPart_title;
 	}
 
 	/**
@@ -77,15 +86,16 @@ public class StateStateNestedStatesCompartment2EditPart extends
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
 				new ResizableCompartmentEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new StateStateNestedStatesCompartment2ItemSemanticEditPolicy());
+		installEditPolicy(
+				EditPolicyRoles.SEMANTIC_ROLE,
+				new StateStateInternalActionsCompartmentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicyWithCustomReparent(
 						StateMachineVisualIDRegistry.TYPED_INSTANCE));
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
 				new DragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
-				new StateStateNestedStatesCompartment2CanonicalEditPolicy());
+				new StateStateInternalActionsCompartmentCanonicalEditPolicy());
 	}
 
 	/**
@@ -107,29 +117,12 @@ public class StateStateNestedStatesCompartment2EditPart extends
 					.getCreateElementRequestAdapter();
 			IElementType type = (IElementType) adapter
 					.getAdapter(IElementType.class);
-			if (type == StateMachineElementTypes.InitialState_3001) {
-				return this;
-			}
-			if (type == StateMachineElementTypes.FinalState_3002) {
-				return this;
-			}
-			if (type == StateMachineElementTypes.State_3003) {
+			if (type == StateMachineElementTypes.StateAction_3001) {
 				return this;
 			}
 			return getParent().getTargetEditPart(request);
 		}
 		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
-			if (RequestConstants.REQ_CONNECTION_END.equals(request.getType())) {
-				for (Object type : ((CreateUnspecifiedTypeConnectionRequest) request)
-						.getElementTypes()) {
-					if (type instanceof IElementType) {
-						IElementType elementType = (IElementType) type;
-						if (elementType
-								.equals(StateMachineElementTypes.Transition_4001))
-							return super.getTargetEditPart(request);
-					}
-				}
-			}
 			return getParent().getTargetEditPart(request);
 		}
 		return super.getTargetEditPart(request);

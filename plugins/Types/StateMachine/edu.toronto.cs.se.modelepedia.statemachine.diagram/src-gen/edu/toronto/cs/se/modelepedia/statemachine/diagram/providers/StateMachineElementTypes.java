@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -26,11 +28,9 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalState2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalStateEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialState2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialStateEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.State2EditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateActionEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateMachineEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.TransitionEditPart;
@@ -71,27 +71,19 @@ public class StateMachineElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType InitialState_2001 = getElementType("edu.toronto.cs.se.modelepedia.statemachine.diagram.InitialState_2001"); //$NON-NLS-1$
+	public static final IElementType State_2001 = getElementType("edu.toronto.cs.se.modelepedia.statemachine.diagram.State_2001"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType FinalState_2002 = getElementType("edu.toronto.cs.se.modelepedia.statemachine.diagram.FinalState_2002"); //$NON-NLS-1$
+	public static final IElementType InitialState_2002 = getElementType("edu.toronto.cs.se.modelepedia.statemachine.diagram.InitialState_2002"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType State_2003 = getElementType("edu.toronto.cs.se.modelepedia.statemachine.diagram.State_2003"); //$NON-NLS-1$
+	public static final IElementType FinalState_2003 = getElementType("edu.toronto.cs.se.modelepedia.statemachine.diagram.FinalState_2003"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InitialState_3001 = getElementType("edu.toronto.cs.se.modelepedia.statemachine.diagram.InitialState_3001"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
-	public static final IElementType FinalState_3002 = getElementType("edu.toronto.cs.se.modelepedia.statemachine.diagram.FinalState_3002"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
-	public static final IElementType State_3003 = getElementType("edu.toronto.cs.se.modelepedia.statemachine.diagram.State_3003"); //$NON-NLS-1$
+	public static final IElementType StateAction_3001 = getElementType("edu.toronto.cs.se.modelepedia.statemachine.diagram.StateAction_3001"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -138,21 +130,16 @@ public class StateMachineElementTypes {
 			elements.put(StateMachine_1000,
 					StateMachinePackage.eINSTANCE.getStateMachine());
 
-			elements.put(InitialState_2001,
+			elements.put(State_2001, StateMachinePackage.eINSTANCE.getState());
+
+			elements.put(InitialState_2002,
 					StateMachinePackage.eINSTANCE.getInitialState());
 
-			elements.put(FinalState_2002,
+			elements.put(FinalState_2003,
 					StateMachinePackage.eINSTANCE.getFinalState());
 
-			elements.put(State_2003, StateMachinePackage.eINSTANCE.getState());
-
-			elements.put(InitialState_3001,
-					StateMachinePackage.eINSTANCE.getInitialState());
-
-			elements.put(FinalState_3002,
-					StateMachinePackage.eINSTANCE.getFinalState());
-
-			elements.put(State_3003, StateMachinePackage.eINSTANCE.getState());
+			elements.put(StateAction_3001,
+					StateMachinePackage.eINSTANCE.getStateAction());
 
 			elements.put(Transition_4001,
 					StateMachinePackage.eINSTANCE.getTransition());
@@ -174,12 +161,10 @@ public class StateMachineElementTypes {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(StateMachine_1000);
-			KNOWN_ELEMENT_TYPES.add(InitialState_2001);
-			KNOWN_ELEMENT_TYPES.add(FinalState_2002);
-			KNOWN_ELEMENT_TYPES.add(State_2003);
-			KNOWN_ELEMENT_TYPES.add(InitialState_3001);
-			KNOWN_ELEMENT_TYPES.add(FinalState_3002);
-			KNOWN_ELEMENT_TYPES.add(State_3003);
+			KNOWN_ELEMENT_TYPES.add(State_2001);
+			KNOWN_ELEMENT_TYPES.add(InitialState_2002);
+			KNOWN_ELEMENT_TYPES.add(FinalState_2003);
+			KNOWN_ELEMENT_TYPES.add(StateAction_3001);
 			KNOWN_ELEMENT_TYPES.add(Transition_4001);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
@@ -192,18 +177,14 @@ public class StateMachineElementTypes {
 		switch (visualID) {
 		case StateMachineEditPart.VISUAL_ID:
 			return StateMachine_1000;
-		case InitialStateEditPart.VISUAL_ID:
-			return InitialState_2001;
-		case FinalStateEditPart.VISUAL_ID:
-			return FinalState_2002;
 		case StateEditPart.VISUAL_ID:
-			return State_2003;
-		case InitialState2EditPart.VISUAL_ID:
-			return InitialState_3001;
-		case FinalState2EditPart.VISUAL_ID:
-			return FinalState_3002;
-		case State2EditPart.VISUAL_ID:
-			return State_3003;
+			return State_2001;
+		case InitialStateEditPart.VISUAL_ID:
+			return InitialState_2002;
+		case FinalStateEditPart.VISUAL_ID:
+			return FinalState_2003;
+		case StateActionEditPart.VISUAL_ID:
+			return StateAction_3001;
 		case TransitionEditPart.VISUAL_ID:
 			return Transition_4001;
 		}

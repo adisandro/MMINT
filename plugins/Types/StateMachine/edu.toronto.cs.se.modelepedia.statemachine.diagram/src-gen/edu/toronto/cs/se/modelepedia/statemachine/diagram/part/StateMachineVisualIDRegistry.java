@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -20,19 +22,16 @@ import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
 
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachine;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalState2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalStateEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialState2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialStateEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.State2EditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateActionEditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateActionTriggerActionEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateMachineEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateName2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateNameEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateStateNestedStatesCompartment2EditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateStateNestedStatesCompartmentEditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateStateInternalActionsCompartmentEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.TransitionEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.TransitionNameEditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.TransitionTriggerActionEditPart;
 
 /**
  * This registry is used to determine which type of visual object should be
@@ -143,6 +142,10 @@ public class StateMachineVisualIDRegistry {
 		}
 		switch (containerVisualID) {
 		case StateMachineEditPart.VISUAL_ID:
+			if (StateMachinePackage.eINSTANCE.getState().isSuperTypeOf(
+					domainElement.eClass())) {
+				return StateEditPart.VISUAL_ID;
+			}
 			if (StateMachinePackage.eINSTANCE.getInitialState().isSuperTypeOf(
 					domainElement.eClass())) {
 				return InitialStateEditPart.VISUAL_ID;
@@ -151,37 +154,11 @@ public class StateMachineVisualIDRegistry {
 					domainElement.eClass())) {
 				return FinalStateEditPart.VISUAL_ID;
 			}
-			if (StateMachinePackage.eINSTANCE.getState().isSuperTypeOf(
-					domainElement.eClass())) {
-				return StateEditPart.VISUAL_ID;
-			}
 			break;
-		case StateStateNestedStatesCompartmentEditPart.VISUAL_ID:
-			if (StateMachinePackage.eINSTANCE.getInitialState().isSuperTypeOf(
+		case StateStateInternalActionsCompartmentEditPart.VISUAL_ID:
+			if (StateMachinePackage.eINSTANCE.getStateAction().isSuperTypeOf(
 					domainElement.eClass())) {
-				return InitialState2EditPart.VISUAL_ID;
-			}
-			if (StateMachinePackage.eINSTANCE.getFinalState().isSuperTypeOf(
-					domainElement.eClass())) {
-				return FinalState2EditPart.VISUAL_ID;
-			}
-			if (StateMachinePackage.eINSTANCE.getState().isSuperTypeOf(
-					domainElement.eClass())) {
-				return State2EditPart.VISUAL_ID;
-			}
-			break;
-		case StateStateNestedStatesCompartment2EditPart.VISUAL_ID:
-			if (StateMachinePackage.eINSTANCE.getInitialState().isSuperTypeOf(
-					domainElement.eClass())) {
-				return InitialState2EditPart.VISUAL_ID;
-			}
-			if (StateMachinePackage.eINSTANCE.getFinalState().isSuperTypeOf(
-					domainElement.eClass())) {
-				return FinalState2EditPart.VISUAL_ID;
-			}
-			if (StateMachinePackage.eINSTANCE.getState().isSuperTypeOf(
-					domainElement.eClass())) {
-				return State2EditPart.VISUAL_ID;
+				return StateActionEditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -211,13 +188,13 @@ public class StateMachineVisualIDRegistry {
 		}
 		switch (containerVisualID) {
 		case StateMachineEditPart.VISUAL_ID:
+			if (StateEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if (InitialStateEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (FinalStateEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (StateEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -225,42 +202,22 @@ public class StateMachineVisualIDRegistry {
 			if (StateNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (StateStateNestedStatesCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+			if (StateStateInternalActionsCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case State2EditPart.VISUAL_ID:
-			if (StateName2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (StateStateNestedStatesCompartment2EditPart.VISUAL_ID == nodeVisualID) {
+		case StateActionEditPart.VISUAL_ID:
+			if (StateActionTriggerActionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case StateStateNestedStatesCompartmentEditPart.VISUAL_ID:
-			if (InitialState2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (FinalState2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (State2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case StateStateNestedStatesCompartment2EditPart.VISUAL_ID:
-			if (InitialState2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (FinalState2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (State2EditPart.VISUAL_ID == nodeVisualID) {
+		case StateStateInternalActionsCompartmentEditPart.VISUAL_ID:
+			if (StateActionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case TransitionEditPart.VISUAL_ID:
-			if (TransitionNameEditPart.VISUAL_ID == nodeVisualID) {
+			if (TransitionTriggerActionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -310,8 +267,7 @@ public class StateMachineVisualIDRegistry {
 	 */
 	public static boolean isCompartmentVisualID(int visualID) {
 		switch (visualID) {
-		case StateStateNestedStatesCompartmentEditPart.VISUAL_ID:
-		case StateStateNestedStatesCompartment2EditPart.VISUAL_ID:
+		case StateStateInternalActionsCompartmentEditPart.VISUAL_ID:
 			return true;
 		default:
 			break;
@@ -328,8 +284,7 @@ public class StateMachineVisualIDRegistry {
 			return false;
 		case InitialStateEditPart.VISUAL_ID:
 		case FinalStateEditPart.VISUAL_ID:
-		case InitialState2EditPart.VISUAL_ID:
-		case FinalState2EditPart.VISUAL_ID:
+		case StateActionEditPart.VISUAL_ID:
 			return true;
 		default:
 			break;

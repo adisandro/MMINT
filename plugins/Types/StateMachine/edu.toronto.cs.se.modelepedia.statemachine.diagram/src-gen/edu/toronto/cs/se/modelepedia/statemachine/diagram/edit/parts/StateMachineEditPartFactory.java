@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -36,41 +38,32 @@ public class StateMachineEditPartFactory implements EditPartFactory {
 			case StateMachineEditPart.VISUAL_ID:
 				return new StateMachineEditPart(view);
 
-			case InitialStateEditPart.VISUAL_ID:
-				return new InitialStateEditPart(view);
-
-			case FinalStateEditPart.VISUAL_ID:
-				return new FinalStateEditPart(view);
-
 			case StateEditPart.VISUAL_ID:
 				return new StateEditPart(view);
 
 			case StateNameEditPart.VISUAL_ID:
 				return new StateNameEditPart(view);
 
-			case InitialState2EditPart.VISUAL_ID:
-				return new InitialState2EditPart(view);
+			case InitialStateEditPart.VISUAL_ID:
+				return new InitialStateEditPart(view);
 
-			case FinalState2EditPart.VISUAL_ID:
-				return new FinalState2EditPart(view);
+			case FinalStateEditPart.VISUAL_ID:
+				return new FinalStateEditPart(view);
 
-			case State2EditPart.VISUAL_ID:
-				return new State2EditPart(view);
+			case StateActionEditPart.VISUAL_ID:
+				return new StateActionEditPart(view);
 
-			case StateName2EditPart.VISUAL_ID:
-				return new StateName2EditPart(view);
+			case StateActionTriggerActionEditPart.VISUAL_ID:
+				return new StateActionTriggerActionEditPart(view);
 
-			case StateStateNestedStatesCompartmentEditPart.VISUAL_ID:
-				return new StateStateNestedStatesCompartmentEditPart(view);
-
-			case StateStateNestedStatesCompartment2EditPart.VISUAL_ID:
-				return new StateStateNestedStatesCompartment2EditPart(view);
+			case StateStateInternalActionsCompartmentEditPart.VISUAL_ID:
+				return new StateStateInternalActionsCompartmentEditPart(view);
 
 			case TransitionEditPart.VISUAL_ID:
 				return new TransitionEditPart(view);
 
-			case TransitionNameEditPart.VISUAL_ID:
-				return new TransitionNameEditPart(view);
+			case TransitionTriggerActionEditPart.VISUAL_ID:
+				return new TransitionTriggerActionEditPart(view);
 
 			}
 		}

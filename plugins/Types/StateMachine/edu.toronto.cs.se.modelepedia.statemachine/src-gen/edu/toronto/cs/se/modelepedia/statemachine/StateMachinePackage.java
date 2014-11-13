@@ -112,41 +112,50 @@ public interface StateMachinePackage extends EPackage {
 	int STATE_MACHINE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.NamedElementImpl <em>Named Element</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.FiringElementImpl <em>Firing Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.NamedElementImpl
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateMachinePackageImpl#getNamedElement()
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.FiringElementImpl
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateMachinePackageImpl#getFiringElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 1;
+	int FIRING_ELEMENT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__NAME = 0;
+	int FIRING_ELEMENT__TRIGGER = 0;
 
 	/**
-	 * The number of structural features of the '<em>Named Element</em>' class.
+	 * The feature id for the '<em><b>Action</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_FEATURE_COUNT = 1;
+	int FIRING_ELEMENT__ACTION = 1;
 
 	/**
-	 * The number of operations of the '<em>Named Element</em>' class.
+	 * The number of structural features of the '<em>Firing Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_OPERATION_COUNT = 0;
+	int FIRING_ELEMENT_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Firing Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIRING_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.AbstractStateImpl <em>Abstract State</em>}' class.
@@ -165,16 +174,7 @@ public interface StateMachinePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_STATE__NAME = NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Parent State</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_STATE__PARENT_STATE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int ABSTRACT_STATE__NAME = 0;
 
 	/**
 	 * The number of structural features of the '<em>Abstract State</em>' class.
@@ -183,7 +183,7 @@ public interface StateMachinePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_STATE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int ABSTRACT_STATE_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Abstract State</em>' class.
@@ -192,17 +192,17 @@ public interface StateMachinePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_STATE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int ABSTRACT_STATE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.TransitionImpl <em>Transition</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.StateImpl <em>State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.TransitionImpl
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateMachinePackageImpl#getTransition()
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateImpl
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateMachinePackageImpl#getState()
 	 * @generated
 	 */
-	int TRANSITION = 3;
+	int STATE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -211,43 +211,34 @@ public interface StateMachinePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__NAME = NAMED_ELEMENT__NAME;
+	int STATE__NAME = ABSTRACT_STATE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * The feature id for the '<em><b>Internal Actions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__SOURCE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int STATE__INTERNAL_ACTIONS = ABSTRACT_STATE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * The number of structural features of the '<em>State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__TARGET = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int STATE_FEATURE_COUNT = ABSTRACT_STATE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Transition</em>' class.
+	 * The number of operations of the '<em>State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Transition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int STATE_OPERATION_COUNT = ABSTRACT_STATE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.InitialStateImpl <em>Initial State</em>}' class.
@@ -267,15 +258,6 @@ public interface StateMachinePackage extends EPackage {
 	 * @ordered
 	 */
 	int INITIAL_STATE__NAME = ABSTRACT_STATE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Parent State</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INITIAL_STATE__PARENT_STATE = ABSTRACT_STATE__PARENT_STATE;
 
 	/**
 	 * The number of structural features of the '<em>Initial State</em>' class.
@@ -315,15 +297,6 @@ public interface StateMachinePackage extends EPackage {
 	int FINAL_STATE__NAME = ABSTRACT_STATE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Parent State</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FINAL_STATE__PARENT_STATE = ABSTRACT_STATE__PARENT_STATE;
-
-	/**
 	 * The number of structural features of the '<em>Final State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -342,59 +315,114 @@ public interface StateMachinePackage extends EPackage {
 	int FINAL_STATE_OPERATION_COUNT = ABSTRACT_STATE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.StateImpl <em>State</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.TransitionImpl <em>Transition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateImpl
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateMachinePackageImpl#getState()
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.TransitionImpl
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateMachinePackageImpl#getTransition()
 	 * @generated
 	 */
-	int STATE = 6;
+	int TRANSITION = 6;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__NAME = ABSTRACT_STATE__NAME;
+	int TRANSITION__TRIGGER = FIRING_ELEMENT__TRIGGER;
 
 	/**
-	 * The feature id for the '<em><b>Parent State</b></em>' container reference.
+	 * The feature id for the '<em><b>Action</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__PARENT_STATE = ABSTRACT_STATE__PARENT_STATE;
+	int TRANSITION__ACTION = FIRING_ELEMENT__ACTION;
 
 	/**
-	 * The feature id for the '<em><b>Nested States</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__NESTED_STATES = ABSTRACT_STATE_FEATURE_COUNT + 0;
+	int TRANSITION__SOURCE = FIRING_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>State</em>' class.
+	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_FEATURE_COUNT = ABSTRACT_STATE_FEATURE_COUNT + 1;
+	int TRANSITION__TARGET = FIRING_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>State</em>' class.
+	 * The number of structural features of the '<em>Transition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_OPERATION_COUNT = ABSTRACT_STATE_OPERATION_COUNT + 0;
+	int TRANSITION_FEATURE_COUNT = FIRING_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Transition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION_OPERATION_COUNT = FIRING_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.StateActionImpl <em>State Action</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateActionImpl
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateMachinePackageImpl#getStateAction()
+	 * @generated
+	 */
+	int STATE_ACTION = 7;
+
+	/**
+	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ACTION__TRIGGER = FIRING_ELEMENT__TRIGGER;
+
+	/**
+	 * The feature id for the '<em><b>Action</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ACTION__ACTION = FIRING_ELEMENT__ACTION;
+
+	/**
+	 * The number of structural features of the '<em>State Action</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ACTION_FEATURE_COUNT = FIRING_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>State Action</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ACTION_OPERATION_COUNT = FIRING_ELEMENT_OPERATION_COUNT + 0;
 
 
 	/**
@@ -430,25 +458,36 @@ public interface StateMachinePackage extends EPackage {
 	EReference getStateMachine_Transitions();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine.NamedElement <em>Named Element</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine.FiringElement <em>Firing Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Named Element</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.NamedElement
+	 * @return the meta object for class '<em>Firing Element</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.FiringElement
 	 * @generated
 	 */
-	EClass getNamedElement();
+	EClass getFiringElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.statemachine.NamedElement#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.statemachine.FiringElement#getTrigger <em>Trigger</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.NamedElement#getName()
-	 * @see #getNamedElement()
+	 * @return the meta object for the attribute '<em>Trigger</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.FiringElement#getTrigger()
+	 * @see #getFiringElement()
 	 * @generated
 	 */
-	EAttribute getNamedElement_Name();
+	EAttribute getFiringElement_Trigger();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.statemachine.FiringElement#getAction <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Action</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.FiringElement#getAction()
+	 * @see #getFiringElement()
+	 * @generated
+	 */
+	EAttribute getFiringElement_Action();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine.AbstractState <em>Abstract State</em>}'.
@@ -461,15 +500,56 @@ public interface StateMachinePackage extends EPackage {
 	EClass getAbstractState();
 
 	/**
-	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.statemachine.AbstractState#getParentState <em>Parent State</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.statemachine.AbstractState#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Parent State</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.AbstractState#getParentState()
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.AbstractState#getName()
 	 * @see #getAbstractState()
 	 * @generated
 	 */
-	EReference getAbstractState_ParentState();
+	EAttribute getAbstractState_Name();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine.State <em>State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>State</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.State
+	 * @generated
+	 */
+	EClass getState();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.statemachine.State#getInternalActions <em>Internal Actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Internal Actions</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.State#getInternalActions()
+	 * @see #getState()
+	 * @generated
+	 */
+	EReference getState_InternalActions();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine.InitialState <em>Initial State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Initial State</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.InitialState
+	 * @generated
+	 */
+	EClass getInitialState();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine.FinalState <em>Final State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Final State</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.FinalState
+	 * @generated
+	 */
+	EClass getFinalState();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine.Transition <em>Transition</em>}'.
@@ -504,45 +584,14 @@ public interface StateMachinePackage extends EPackage {
 	EReference getTransition_Target();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine.InitialState <em>Initial State</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine.StateAction <em>State Action</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Initial State</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.InitialState
+	 * @return the meta object for class '<em>State Action</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.StateAction
 	 * @generated
 	 */
-	EClass getInitialState();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine.FinalState <em>Final State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Final State</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.FinalState
-	 * @generated
-	 */
-	EClass getFinalState();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine.State <em>State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>State</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.State
-	 * @generated
-	 */
-	EClass getState();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.statemachine.State#getNestedStates <em>Nested States</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Nested States</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.State#getNestedStates()
-	 * @see #getState()
-	 * @generated
-	 */
-	EReference getState_NestedStates();
+	EClass getStateAction();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -594,22 +643,30 @@ public interface StateMachinePackage extends EPackage {
 		EReference STATE_MACHINE__TRANSITIONS = eINSTANCE.getStateMachine_Transitions();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.NamedElementImpl <em>Named Element</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.FiringElementImpl <em>Firing Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.NamedElementImpl
-		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateMachinePackageImpl#getNamedElement()
+		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.FiringElementImpl
+		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateMachinePackageImpl#getFiringElement()
 		 * @generated
 		 */
-		EClass NAMED_ELEMENT = eINSTANCE.getNamedElement();
+		EClass FIRING_ELEMENT = eINSTANCE.getFiringElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Trigger</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
+		EAttribute FIRING_ELEMENT__TRIGGER = eINSTANCE.getFiringElement_Trigger();
+
+		/**
+		 * The meta object literal for the '<em><b>Action</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIRING_ELEMENT__ACTION = eINSTANCE.getFiringElement_Action();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.AbstractStateImpl <em>Abstract State</em>}' class.
@@ -622,12 +679,50 @@ public interface StateMachinePackage extends EPackage {
 		EClass ABSTRACT_STATE = eINSTANCE.getAbstractState();
 
 		/**
-		 * The meta object literal for the '<em><b>Parent State</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_STATE__PARENT_STATE = eINSTANCE.getAbstractState_ParentState();
+		EAttribute ABSTRACT_STATE__NAME = eINSTANCE.getAbstractState_Name();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.StateImpl <em>State</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateImpl
+		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateMachinePackageImpl#getState()
+		 * @generated
+		 */
+		EClass STATE = eINSTANCE.getState();
+
+		/**
+		 * The meta object literal for the '<em><b>Internal Actions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE__INTERNAL_ACTIONS = eINSTANCE.getState_InternalActions();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.InitialStateImpl <em>Initial State</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.InitialStateImpl
+		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateMachinePackageImpl#getInitialState()
+		 * @generated
+		 */
+		EClass INITIAL_STATE = eINSTANCE.getInitialState();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.FinalStateImpl <em>Final State</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.FinalStateImpl
+		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateMachinePackageImpl#getFinalState()
+		 * @generated
+		 */
+		EClass FINAL_STATE = eINSTANCE.getFinalState();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.TransitionImpl <em>Transition</em>}' class.
@@ -656,42 +751,14 @@ public interface StateMachinePackage extends EPackage {
 		EReference TRANSITION__TARGET = eINSTANCE.getTransition_Target();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.InitialStateImpl <em>Initial State</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.StateActionImpl <em>State Action</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.InitialStateImpl
-		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateMachinePackageImpl#getInitialState()
+		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateActionImpl
+		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateMachinePackageImpl#getStateAction()
 		 * @generated
 		 */
-		EClass INITIAL_STATE = eINSTANCE.getInitialState();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.FinalStateImpl <em>Final State</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.FinalStateImpl
-		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateMachinePackageImpl#getFinalState()
-		 * @generated
-		 */
-		EClass FINAL_STATE = eINSTANCE.getFinalState();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.StateImpl <em>State</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateImpl
-		 * @see edu.toronto.cs.se.modelepedia.statemachine.impl.StateMachinePackageImpl#getState()
-		 * @generated
-		 */
-		EClass STATE = eINSTANCE.getState();
-
-		/**
-		 * The meta object literal for the '<em><b>Nested States</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STATE__NESTED_STATES = eINSTANCE.getState_NestedStates();
+		EClass STATE_ACTION = eINSTANCE.getStateAction();
 
 	}
 

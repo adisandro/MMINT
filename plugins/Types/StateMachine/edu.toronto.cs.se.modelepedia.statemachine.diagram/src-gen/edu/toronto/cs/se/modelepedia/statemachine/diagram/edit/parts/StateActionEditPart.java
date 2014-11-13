@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -13,7 +15,6 @@ package edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
@@ -35,19 +36,18 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
 
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.policies.OpenDiagramEditPolicy;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.policies.State2ItemSemanticEditPolicy;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.policies.StateActionItemSemanticEditPolicy;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineVisualIDRegistry;
 
 /**
  * @generated
  */
-public class State2EditPart extends ShapeNodeEditPart {
+public class StateActionEditPart extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3003;
+	public static final int VISUAL_ID = 3001;
 
 	/**
 	 * @generated
@@ -62,7 +62,7 @@ public class State2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public State2EditPart(View view) {
+	public StateActionEditPart(View view) {
 		super(view);
 	}
 
@@ -72,10 +72,9 @@ public class State2EditPart extends ShapeNodeEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new State2ItemSemanticEditPolicy());
+				new StateActionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new OpenDiagramEditPolicy()); // XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -109,32 +108,24 @@ public class State2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new StateFigure();
+		return primaryShape = new StateActionFigure();
 	}
 
 	/**
-	 * StateFigure
 	 * @generated
 	 */
-	public StateFigure getPrimaryShape() {
-		return (StateFigure) primaryShape;
+	public StateActionFigure getPrimaryShape() {
+		return (StateActionFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof StateName2EditPart) {
-			((StateName2EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureStateLabelFigure());
-			return true;
-		}
-		if (childEditPart instanceof StateStateNestedStatesCompartment2EditPart) {
-			IFigure pane = getPrimaryShape()
-					.getStateNestedStatesCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((StateStateNestedStatesCompartment2EditPart) childEditPart)
-					.getFigure());
+		if (childEditPart instanceof StateActionTriggerActionEditPart) {
+			((StateActionTriggerActionEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureStateActionLabelFigure());
 			return true;
 		}
 		return false;
@@ -144,14 +135,7 @@ public class State2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof StateName2EditPart) {
-			return true;
-		}
-		if (childEditPart instanceof StateStateNestedStatesCompartment2EditPart) {
-			IFigure pane = getPrimaryShape()
-					.getStateNestedStatesCompartmentFigure();
-			pane.remove(((StateStateNestedStatesCompartment2EditPart) childEditPart)
-					.getFigure());
+		if (childEditPart instanceof StateActionTriggerActionEditPart) {
 			return true;
 		}
 		return false;
@@ -181,9 +165,6 @@ public class State2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof StateStateNestedStatesCompartment2EditPart) {
-			return getPrimaryShape().getStateNestedStatesCompartmentFigure();
-		}
 		return getContentPane();
 	}
 
@@ -278,27 +259,23 @@ public class State2EditPart extends ShapeNodeEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(StateMachineVisualIDRegistry
-				.getType(StateName2EditPart.VISUAL_ID));
+				.getType(StateActionTriggerActionEditPart.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
-	public class StateFigure extends RoundedRectangle {
+	public class StateActionFigure extends RoundedRectangle {
 
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureStateLabelFigure;
-		/**
-		 * @generated
-		 */
-		private RectangleFigure fStateNestedStatesCompartmentFigure;
+		private WrappingLabel fFigureStateActionLabelFigure;
 
 		/**
 		 * @generated
 		 */
-		public StateFigure() {
+		public StateActionFigure() {
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8),
 					getMapMode().DPtoLP(8)));
 			this.setBorder(new MarginBorder(getMapMode().DPtoLP(5),
@@ -312,34 +289,19 @@ public class State2EditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			fFigureStateLabelFigure = new WrappingLabel();
+			fFigureStateActionLabelFigure = new WrappingLabel();
 
-			fFigureStateLabelFigure.setText("State");
-			fFigureStateLabelFigure.setMaximumSize(new Dimension(getMapMode()
-					.DPtoLP(10000), getMapMode().DPtoLP(50)));
+			fFigureStateActionLabelFigure.setText("StateAction");
 
-			this.add(fFigureStateLabelFigure);
-
-			fStateNestedStatesCompartmentFigure = new RectangleFigure();
-
-			fStateNestedStatesCompartmentFigure.setOutline(false);
-
-			this.add(fStateNestedStatesCompartmentFigure);
+			this.add(fFigureStateActionLabelFigure);
 
 		}
 
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureStateLabelFigure() {
-			return fFigureStateLabelFigure;
-		}
-
-		/**
-		 * @generated
-		 */
-		public RectangleFigure getStateNestedStatesCompartmentFigure() {
-			return fStateNestedStatesCompartmentFigure;
+		public WrappingLabel getFigureStateActionLabelFigure() {
+			return fFigureStateActionLabelFigure;
 		}
 
 	}

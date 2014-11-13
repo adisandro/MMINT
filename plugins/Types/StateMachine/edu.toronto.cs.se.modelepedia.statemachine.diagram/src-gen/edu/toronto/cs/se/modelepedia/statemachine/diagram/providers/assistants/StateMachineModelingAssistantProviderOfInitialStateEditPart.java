@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -19,11 +21,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalState2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalStateEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialState2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialStateEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.State2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.StateMachineElementTypes;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.StateMachineModelingAssistantProvider;
@@ -73,22 +72,13 @@ public class StateMachineModelingAssistantProviderOfInitialStateEditPart extends
 	public List<IElementType> doGetRelTypesOnSourceAndTarget(
 			InitialStateEditPart source, IGraphicalEditPart targetEditPart) {
 		List<IElementType> types = new LinkedList<IElementType>();
+		if (targetEditPart instanceof StateEditPart) {
+			types.add(StateMachineElementTypes.Transition_4001);
+		}
 		if (targetEditPart instanceof InitialStateEditPart) {
 			types.add(StateMachineElementTypes.Transition_4001);
 		}
 		if (targetEditPart instanceof FinalStateEditPart) {
-			types.add(StateMachineElementTypes.Transition_4001);
-		}
-		if (targetEditPart instanceof StateEditPart) {
-			types.add(StateMachineElementTypes.Transition_4001);
-		}
-		if (targetEditPart instanceof InitialState2EditPart) {
-			types.add(StateMachineElementTypes.Transition_4001);
-		}
-		if (targetEditPart instanceof FinalState2EditPart) {
-			types.add(StateMachineElementTypes.Transition_4001);
-		}
-		if (targetEditPart instanceof State2EditPart) {
 			types.add(StateMachineElementTypes.Transition_4001);
 		}
 		return types;
@@ -113,12 +103,9 @@ public class StateMachineModelingAssistantProviderOfInitialStateEditPart extends
 			IElementType relationshipType) {
 		List<IElementType> types = new ArrayList<IElementType>();
 		if (relationshipType == StateMachineElementTypes.Transition_4001) {
-			types.add(StateMachineElementTypes.InitialState_2001);
-			types.add(StateMachineElementTypes.FinalState_2002);
-			types.add(StateMachineElementTypes.State_2003);
-			types.add(StateMachineElementTypes.InitialState_3001);
-			types.add(StateMachineElementTypes.FinalState_3002);
-			types.add(StateMachineElementTypes.State_3003);
+			types.add(StateMachineElementTypes.State_2001);
+			types.add(StateMachineElementTypes.InitialState_2002);
+			types.add(StateMachineElementTypes.FinalState_2003);
 		}
 		return types;
 	}
@@ -161,12 +148,9 @@ public class StateMachineModelingAssistantProviderOfInitialStateEditPart extends
 			IElementType relationshipType) {
 		List<IElementType> types = new ArrayList<IElementType>();
 		if (relationshipType == StateMachineElementTypes.Transition_4001) {
-			types.add(StateMachineElementTypes.InitialState_2001);
-			types.add(StateMachineElementTypes.FinalState_2002);
-			types.add(StateMachineElementTypes.State_2003);
-			types.add(StateMachineElementTypes.InitialState_3001);
-			types.add(StateMachineElementTypes.FinalState_3002);
-			types.add(StateMachineElementTypes.State_3003);
+			types.add(StateMachineElementTypes.State_2001);
+			types.add(StateMachineElementTypes.InitialState_2002);
+			types.add(StateMachineElementTypes.FinalState_2003);
 		}
 		return types;
 	}

@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.statemachine;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ package edu.toronto.cs.se.modelepedia.statemachine;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine.AbstractState#getParentState <em>Parent State</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine.AbstractState#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,33 +29,31 @@ package edu.toronto.cs.se.modelepedia.statemachine;
  * @model abstract="true"
  * @generated
  */
-public interface AbstractState extends NamedElement {
+public interface AbstractState extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Parent State</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.statemachine.State#getNestedStates <em>Nested States</em>}'.
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Parent State</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parent State</em>' container reference.
-	 * @see #setParentState(State)
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage#getAbstractState_ParentState()
-	 * @see edu.toronto.cs.se.modelepedia.statemachine.State#getNestedStates
-	 * @model opposite="nestedStates" transient="false"
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage#getAbstractState_Name()
+	 * @model required="true"
 	 * @generated
 	 */
-	State getParentState();
+	String getName();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.statemachine.AbstractState#getParentState <em>Parent State</em>}' container reference.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.statemachine.AbstractState#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parent State</em>' container reference.
-	 * @see #getParentState()
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
 	 * @generated
 	 */
-	void setParentState(State value);
+	void setName(String value);
 
 } // AbstractState

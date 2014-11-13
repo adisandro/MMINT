@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -32,9 +34,9 @@ public class StateMachineModelingAssistantProviderOfStateMachineEditPart extends
 	@Override
 	public List<IElementType> getTypesForPopupBar(IAdaptable host) {
 		List<IElementType> types = new ArrayList<IElementType>(3);
-		types.add(StateMachineElementTypes.InitialState_2001);
-		types.add(StateMachineElementTypes.FinalState_2002);
-		types.add(StateMachineElementTypes.State_2003);
+		types.add(StateMachineElementTypes.State_2001);
+		types.add(StateMachineElementTypes.InitialState_2002);
+		types.add(StateMachineElementTypes.FinalState_2003);
 		return types;
 	}
 

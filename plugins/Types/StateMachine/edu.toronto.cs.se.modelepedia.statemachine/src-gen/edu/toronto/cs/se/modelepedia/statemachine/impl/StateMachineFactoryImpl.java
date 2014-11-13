@@ -66,10 +66,11 @@ public class StateMachineFactoryImpl extends EFactoryImpl implements StateMachin
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case StateMachinePackage.STATE_MACHINE: return createStateMachine();
-			case StateMachinePackage.TRANSITION: return createTransition();
+			case StateMachinePackage.STATE: return createState();
 			case StateMachinePackage.INITIAL_STATE: return createInitialState();
 			case StateMachinePackage.FINAL_STATE: return createFinalState();
-			case StateMachinePackage.STATE: return createState();
+			case StateMachinePackage.TRANSITION: return createTransition();
+			case StateMachinePackage.STATE_ACTION: return createStateAction();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -90,9 +91,9 @@ public class StateMachineFactoryImpl extends EFactoryImpl implements StateMachin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Transition createTransition() {
-		TransitionImpl transition = new TransitionImpl();
-		return transition;
+	public State createState() {
+		StateImpl state = new StateImpl();
+		return state;
 	}
 
 	/**
@@ -120,9 +121,19 @@ public class StateMachineFactoryImpl extends EFactoryImpl implements StateMachin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public State createState() {
-		StateImpl state = new StateImpl();
-		return state;
+	public Transition createTransition() {
+		TransitionImpl transition = new TransitionImpl();
+		return transition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StateAction createStateAction() {
+		StateActionImpl stateAction = new StateActionImpl();
+		return stateAction;
 	}
 
 	/**

@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -24,17 +26,18 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.modelepedia.statemachine.State;
+import edu.toronto.cs.se.modelepedia.statemachine.StateAction;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachineFactory;
 
 /**
  * @generated
  */
-public class State2CreateCommand extends EditElementCommand {
+public class StateActionCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
 	 */
-	public State2CreateCommand(CreateElementRequest req) {
+	public StateActionCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -64,10 +67,11 @@ public class State2CreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		State newElement = StateMachineFactory.eINSTANCE.createState();
+		StateAction newElement = StateMachineFactory.eINSTANCE
+				.createStateAction();
 
 		State owner = (State) getElementToEdit();
-		owner.getNestedStates().add(newElement);
+		owner.getInternalActions().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 
@@ -78,8 +82,9 @@ public class State2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(State newElement, IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected void doConfigure(StateAction newElement,
+			IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest())
 				.getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(

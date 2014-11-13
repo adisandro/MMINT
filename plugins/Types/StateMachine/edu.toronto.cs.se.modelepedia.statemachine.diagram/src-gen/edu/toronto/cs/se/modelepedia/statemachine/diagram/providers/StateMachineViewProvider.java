@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -54,19 +56,16 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalState2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.FinalStateEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialState2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.InitialStateEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.State2EditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateActionEditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateActionTriggerActionEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateMachineEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateName2EditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateNameEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateStateNestedStatesCompartment2EditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateStateNestedStatesCompartmentEditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateStateInternalActionsCompartmentEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.TransitionEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.TransitionNameEditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.TransitionTriggerActionEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineVisualIDRegistry;
 
 /**
@@ -162,12 +161,10 @@ public class StateMachineViewProvider extends AbstractProvider implements
 					return false; // foreign diagram
 				}
 				switch (visualID) {
+				case StateEditPart.VISUAL_ID:
 				case InitialStateEditPart.VISUAL_ID:
 				case FinalStateEditPart.VISUAL_ID:
-				case StateEditPart.VISUAL_ID:
-				case InitialState2EditPart.VISUAL_ID:
-				case FinalState2EditPart.VISUAL_ID:
-				case State2EditPart.VISUAL_ID:
+				case StateActionEditPart.VISUAL_ID:
 					if (domainElement == null
 							|| visualID != StateMachineVisualIDRegistry
 									.getNodeVisualID(op.getContainerView(),
@@ -180,12 +177,10 @@ public class StateMachineViewProvider extends AbstractProvider implements
 				}
 			}
 		}
-		return InitialStateEditPart.VISUAL_ID == visualID
+		return StateEditPart.VISUAL_ID == visualID
+				|| InitialStateEditPart.VISUAL_ID == visualID
 				|| FinalStateEditPart.VISUAL_ID == visualID
-				|| StateEditPart.VISUAL_ID == visualID
-				|| InitialState2EditPart.VISUAL_ID == visualID
-				|| FinalState2EditPart.VISUAL_ID == visualID
-				|| State2EditPart.VISUAL_ID == visualID;
+				|| StateActionEditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -243,23 +238,17 @@ public class StateMachineViewProvider extends AbstractProvider implements
 			visualID = StateMachineVisualIDRegistry.getVisualID(semanticHint);
 		}
 		switch (visualID) {
+		case StateEditPart.VISUAL_ID:
+			return createState_2001(domainElement, containerView, index,
+					persisted, preferencesHint);
 		case InitialStateEditPart.VISUAL_ID:
-			return createInitialState_2001(domainElement, containerView, index,
+			return createInitialState_2002(domainElement, containerView, index,
 					persisted, preferencesHint);
 		case FinalStateEditPart.VISUAL_ID:
-			return createFinalState_2002(domainElement, containerView, index,
+			return createFinalState_2003(domainElement, containerView, index,
 					persisted, preferencesHint);
-		case StateEditPart.VISUAL_ID:
-			return createState_2003(domainElement, containerView, index,
-					persisted, preferencesHint);
-		case InitialState2EditPart.VISUAL_ID:
-			return createInitialState_3001(domainElement, containerView, index,
-					persisted, preferencesHint);
-		case FinalState2EditPart.VISUAL_ID:
-			return createFinalState_3002(domainElement, containerView, index,
-					persisted, preferencesHint);
-		case State2EditPart.VISUAL_ID:
-			return createState_3003(domainElement, containerView, index,
+		case StateActionEditPart.VISUAL_ID:
+			return createStateAction_3001(domainElement, containerView, index,
 					persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
@@ -286,93 +275,7 @@ public class StateMachineViewProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	public Node createInitialState_2001(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles()
-				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(StateMachineVisualIDRegistry
-				.getType(InitialStateEditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		stampShortcut(containerView, node);
-		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-
-		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
-				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node,
-				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
-				FigureUtilities.RGBToInteger(lineRGB));
-		FontStyle nodeFontStyle = (FontStyle) node
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (nodeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
-			nodeFontStyle.setFontName(fontData.getName());
-			nodeFontStyle.setFontHeight(fontData.getHeight());
-			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
-			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
-		}
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Node createFinalState_2002(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles()
-				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(StateMachineVisualIDRegistry
-				.getType(FinalStateEditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		stampShortcut(containerView, node);
-		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-
-		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
-				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node,
-				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
-				FigureUtilities.RGBToInteger(lineRGB));
-		FontStyle nodeFontStyle = (FontStyle) node
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (nodeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
-			nodeFontStyle.setFontName(fontData.getName());
-			nodeFontStyle.setFontHeight(fontData.getHeight());
-			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
-			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
-		}
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Node createState_2003(EObject domainElement, View containerView,
+	public Node createState_2001(EObject domainElement, View containerView,
 			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.getStyles().add(
@@ -417,15 +320,15 @@ public class StateMachineViewProvider extends AbstractProvider implements
 		createCompartment(
 				node,
 				StateMachineVisualIDRegistry
-						.getType(StateStateNestedStatesCompartmentEditPart.VISUAL_ID),
-				true, false, false, false);
+						.getType(StateStateInternalActionsCompartmentEditPart.VISUAL_ID),
+				true, false, true, true);
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createInitialState_3001(EObject domainElement,
+	public Node createInitialState_2002(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
@@ -435,9 +338,10 @@ public class StateMachineViewProvider extends AbstractProvider implements
 		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(StateMachineVisualIDRegistry
-				.getType(InitialState2EditPart.VISUAL_ID));
+				.getType(InitialStateEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
+		stampShortcut(containerView, node);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
@@ -467,7 +371,7 @@ public class StateMachineViewProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	public Node createFinalState_3002(EObject domainElement,
+	public Node createFinalState_2003(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
@@ -477,9 +381,10 @@ public class StateMachineViewProvider extends AbstractProvider implements
 		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(StateMachineVisualIDRegistry
-				.getType(FinalState2EditPart.VISUAL_ID));
+				.getType(FinalStateEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
+		stampShortcut(containerView, node);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
@@ -509,14 +414,13 @@ public class StateMachineViewProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	public Node createState_3003(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createStateAction_3001(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.getStyles().add(
-				NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(StateMachineVisualIDRegistry
-				.getType(State2EditPart.VISUAL_ID));
+				.getType(StateActionEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// initializeFromPreferences 
@@ -549,12 +453,7 @@ public class StateMachineViewProvider extends AbstractProvider implements
 				FigureUtilities.RGBToInteger(fillRGB));
 		Node label5001 = createLabel(node,
 				StateMachineVisualIDRegistry
-						.getType(StateName2EditPart.VISUAL_ID));
-		createCompartment(
-				node,
-				StateMachineVisualIDRegistry
-						.getType(StateStateNestedStatesCompartment2EditPart.VISUAL_ID),
-				true, false, false, false);
+						.getType(StateActionTriggerActionEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -610,7 +509,7 @@ public class StateMachineViewProvider extends AbstractProvider implements
 		}
 		Node label6001 = createLabel(edge,
 				StateMachineVisualIDRegistry
-						.getType(TransitionNameEditPart.VISUAL_ID));
+						.getType(TransitionTriggerActionEditPart.VISUAL_ID));
 		label6001.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6001 = (Location) label6001.getLayoutConstraint();

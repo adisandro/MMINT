@@ -162,17 +162,17 @@ public class StateMachineItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(StateMachinePackage.Literals.STATE_MACHINE__STATES,
+				 StateMachineFactory.eINSTANCE.createState()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StateMachinePackage.Literals.STATE_MACHINE__STATES,
 				 StateMachineFactory.eINSTANCE.createInitialState()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(StateMachinePackage.Literals.STATE_MACHINE__STATES,
 				 StateMachineFactory.eINSTANCE.createFinalState()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StateMachinePackage.Literals.STATE_MACHINE__STATES,
-				 StateMachineFactory.eINSTANCE.createState()));
 
 		newChildDescriptors.add
 			(createChildParameter

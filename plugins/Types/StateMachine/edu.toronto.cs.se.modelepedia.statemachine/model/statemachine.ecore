@@ -9,24 +9,23 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" upperBound="-1"
         eType="#//Transition" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="FiringElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="trigger" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractState" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractState" abstract="true" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parentState" eType="#//State"
-        eOpposite="#//State/nestedStates"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Transition" eSuperTypes="#//NamedElement">
-    <eAnnotations source="gmf.link">
+  <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//AbstractState">
+    <eAnnotations source="gmf.node">
       <details key="label" value="name"/>
-      <details key="source" value="source"/>
-      <details key="target" value="target"/>
-      <details key="target.decoration" value="arrow"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-        eType="#//AbstractState"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-        eType="#//AbstractState"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="internalActions" upperBound="-1"
+        eType="#//StateAction" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InitialState" eSuperTypes="#//AbstractState">
     <eAnnotations source="gmf.node">
@@ -44,13 +43,24 @@
       <details key="color" value="0,0,0"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//AbstractState">
-    <eAnnotations source="gmf.node">
-      <details key="label" value="name"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Transition" eSuperTypes="#//FiringElement">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="trigger,action"/>
+      <details key="label.pattern" value="{0}/{1}"/>
+      <details key="label.icon" value="true"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="target.decoration" value="arrow"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedStates" upperBound="-1"
-        eType="#//AbstractState" containment="true" eOpposite="#//AbstractState/parentState">
-      <eAnnotations source="gmf.compartment"/>
-    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//AbstractState"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//AbstractState"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StateAction" eSuperTypes="#//FiringElement">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="trigger,action"/>
+      <details key="label.pattern" value="{0}/{1}"/>
+    </eAnnotations>
   </eClassifiers>
 </ecore:EPackage>

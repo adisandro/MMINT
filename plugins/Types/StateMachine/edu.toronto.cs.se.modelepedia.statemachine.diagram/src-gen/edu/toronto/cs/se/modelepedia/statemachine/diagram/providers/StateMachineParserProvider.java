@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -25,9 +27,9 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateName2EditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateActionTriggerActionEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateNameEditPart;
-import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.TransitionNameEditPart;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.TransitionTriggerActionEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.parsers.MessageFormatParser;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineVisualIDRegistry;
 
@@ -48,7 +50,7 @@ public class StateMachineParserProvider extends AbstractProvider implements
 	private IParser getStateName_5002Parser() {
 		if (stateName_5002Parser == null) {
 			EAttribute[] features = new EAttribute[] { StateMachinePackage.eINSTANCE
-					.getNamedElement_Name() };
+					.getAbstractState_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			stateName_5002Parser = parser;
 		}
@@ -58,37 +60,45 @@ public class StateMachineParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser stateName_5001Parser;
+	private IParser stateActionTriggerAction_5001Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getStateName_5001Parser() {
-		if (stateName_5001Parser == null) {
-			EAttribute[] features = new EAttribute[] { StateMachinePackage.eINSTANCE
-					.getNamedElement_Name() };
+	private IParser getStateActionTriggerAction_5001Parser() {
+		if (stateActionTriggerAction_5001Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					StateMachinePackage.eINSTANCE.getFiringElement_Trigger(),
+					StateMachinePackage.eINSTANCE.getFiringElement_Action() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			stateName_5001Parser = parser;
+			parser.setViewPattern("{0}/{1}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}/{1}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}/{1}"); //$NON-NLS-1$
+			stateActionTriggerAction_5001Parser = parser;
 		}
-		return stateName_5001Parser;
+		return stateActionTriggerAction_5001Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser transitionName_6001Parser;
+	private IParser transitionTriggerAction_6001Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getTransitionName_6001Parser() {
-		if (transitionName_6001Parser == null) {
-			EAttribute[] features = new EAttribute[] { StateMachinePackage.eINSTANCE
-					.getNamedElement_Name() };
+	private IParser getTransitionTriggerAction_6001Parser() {
+		if (transitionTriggerAction_6001Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					StateMachinePackage.eINSTANCE.getFiringElement_Trigger(),
+					StateMachinePackage.eINSTANCE.getFiringElement_Action() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			transitionName_6001Parser = parser;
+			parser.setViewPattern("{0}/{1}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}/{1}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}/{1}"); //$NON-NLS-1$
+			transitionTriggerAction_6001Parser = parser;
 		}
-		return transitionName_6001Parser;
+		return transitionTriggerAction_6001Parser;
 	}
 
 	/**
@@ -98,10 +108,10 @@ public class StateMachineParserProvider extends AbstractProvider implements
 		switch (visualID) {
 		case StateNameEditPart.VISUAL_ID:
 			return getStateName_5002Parser();
-		case StateName2EditPart.VISUAL_ID:
-			return getStateName_5001Parser();
-		case TransitionNameEditPart.VISUAL_ID:
-			return getTransitionName_6001Parser();
+		case StateActionTriggerActionEditPart.VISUAL_ID:
+			return getStateActionTriggerAction_5001Parser();
+		case TransitionTriggerActionEditPart.VISUAL_ID:
+			return getTransitionTriggerAction_6001Parser();
 		}
 		return null;
 	}

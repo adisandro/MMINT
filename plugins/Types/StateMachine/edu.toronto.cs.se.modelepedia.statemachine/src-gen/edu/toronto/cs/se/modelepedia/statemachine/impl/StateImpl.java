@@ -11,8 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.statemachine.impl;
 
-import edu.toronto.cs.se.modelepedia.statemachine.AbstractState;
 import edu.toronto.cs.se.modelepedia.statemachine.State;
+import edu.toronto.cs.se.modelepedia.statemachine.StateAction;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
 
 import java.util.Collection;
@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine.impl.StateImpl#getNestedStates <em>Nested States</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine.impl.StateImpl#getInternalActions <em>Internal Actions</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,14 +42,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class StateImpl extends AbstractStateImpl implements State {
 	/**
-	 * The cached value of the '{@link #getNestedStates() <em>Nested States</em>}' containment reference list.
+	 * The cached value of the '{@link #getInternalActions() <em>Internal Actions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNestedStates()
+	 * @see #getInternalActions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AbstractState> nestedStates;
+	protected EList<StateAction> internalActions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,26 +75,11 @@ public class StateImpl extends AbstractStateImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AbstractState> getNestedStates() {
-		if (nestedStates == null) {
-			nestedStates = new EObjectContainmentWithInverseEList<AbstractState>(AbstractState.class, this, StateMachinePackage.STATE__NESTED_STATES, StateMachinePackage.ABSTRACT_STATE__PARENT_STATE);
+	public EList<StateAction> getInternalActions() {
+		if (internalActions == null) {
+			internalActions = new EObjectContainmentEList<StateAction>(StateAction.class, this, StateMachinePackage.STATE__INTERNAL_ACTIONS);
 		}
-		return nestedStates;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case StateMachinePackage.STATE__NESTED_STATES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNestedStates()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
+		return internalActions;
 	}
 
 	/**
@@ -105,8 +90,8 @@ public class StateImpl extends AbstractStateImpl implements State {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StateMachinePackage.STATE__NESTED_STATES:
-				return ((InternalEList<?>)getNestedStates()).basicRemove(otherEnd, msgs);
+			case StateMachinePackage.STATE__INTERNAL_ACTIONS:
+				return ((InternalEList<?>)getInternalActions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -119,8 +104,8 @@ public class StateImpl extends AbstractStateImpl implements State {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StateMachinePackage.STATE__NESTED_STATES:
-				return getNestedStates();
+			case StateMachinePackage.STATE__INTERNAL_ACTIONS:
+				return getInternalActions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -134,9 +119,9 @@ public class StateImpl extends AbstractStateImpl implements State {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StateMachinePackage.STATE__NESTED_STATES:
-				getNestedStates().clear();
-				getNestedStates().addAll((Collection<? extends AbstractState>)newValue);
+			case StateMachinePackage.STATE__INTERNAL_ACTIONS:
+				getInternalActions().clear();
+				getInternalActions().addAll((Collection<? extends StateAction>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -150,8 +135,8 @@ public class StateImpl extends AbstractStateImpl implements State {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StateMachinePackage.STATE__NESTED_STATES:
-				getNestedStates().clear();
+			case StateMachinePackage.STATE__INTERNAL_ACTIONS:
+				getInternalActions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -165,8 +150,8 @@ public class StateImpl extends AbstractStateImpl implements State {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StateMachinePackage.STATE__NESTED_STATES:
-				return nestedStates != null && !nestedStates.isEmpty();
+			case StateMachinePackage.STATE__INTERNAL_ACTIONS:
+				return internalActions != null && !internalActions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

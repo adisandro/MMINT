@@ -1,4 +1,6 @@
 /*
+ * Copyright Text ->
+ * 
  * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -27,19 +29,24 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicyWithCustomReparent;
 import org.eclipse.swt.graphics.Color;
 
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.policies.OpenDiagramEditPolicy;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.policies.StateItemSemanticEditPolicy;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineVisualIDRegistry;
+import edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.StateMachineElementTypes;
 
 /**
  * @generated
@@ -49,7 +56,7 @@ public class StateEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2003;
+	public static final int VISUAL_ID = 2001;
 
 	/**
 	 * @generated
@@ -72,6 +79,9 @@ public class StateEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicyWithCustomReparent(
+						StateMachineVisualIDRegistry.TYPED_INSTANCE));
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new StateItemSemanticEditPolicy());
@@ -115,7 +125,6 @@ public class StateEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * StateFigure
 	 * @generated
 	 */
 	public StateFigure getPrimaryShape() {
@@ -131,11 +140,11 @@ public class StateEditPart extends ShapeNodeEditPart {
 					.getFigureStateLabelFigure());
 			return true;
 		}
-		if (childEditPart instanceof StateStateNestedStatesCompartmentEditPart) {
+		if (childEditPart instanceof StateStateInternalActionsCompartmentEditPart) {
 			IFigure pane = getPrimaryShape()
-					.getStateNestedStatesCompartmentFigure();
+					.getStateInternalActionsCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((StateStateNestedStatesCompartmentEditPart) childEditPart)
+			pane.add(((StateStateInternalActionsCompartmentEditPart) childEditPart)
 					.getFigure());
 			return true;
 		}
@@ -149,10 +158,10 @@ public class StateEditPart extends ShapeNodeEditPart {
 		if (childEditPart instanceof StateNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof StateStateNestedStatesCompartmentEditPart) {
+		if (childEditPart instanceof StateStateInternalActionsCompartmentEditPart) {
 			IFigure pane = getPrimaryShape()
-					.getStateNestedStatesCompartmentFigure();
-			pane.remove(((StateStateNestedStatesCompartmentEditPart) childEditPart)
+					.getStateInternalActionsCompartmentFigure();
+			pane.remove(((StateStateInternalActionsCompartmentEditPart) childEditPart)
 					.getFigure());
 			return true;
 		}
@@ -183,8 +192,8 @@ public class StateEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof StateStateNestedStatesCompartmentEditPart) {
-			return getPrimaryShape().getStateNestedStatesCompartmentFigure();
+		if (editPart instanceof StateStateInternalActionsCompartmentEditPart) {
+			return getPrimaryShape().getStateInternalActionsCompartmentFigure();
 		}
 		return getContentPane();
 	}
@@ -286,6 +295,24 @@ public class StateEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	public EditPart getTargetEditPart(Request request) {
+		if (request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request)
+					.getViewAndElementDescriptor()
+					.getCreateElementRequestAdapter();
+			IElementType type = (IElementType) adapter
+					.getAdapter(IElementType.class);
+			if (type == StateMachineElementTypes.StateAction_3001) {
+				return getChildBySemanticHint(StateMachineVisualIDRegistry
+						.getType(StateStateInternalActionsCompartmentEditPart.VISUAL_ID));
+			}
+		}
+		return super.getTargetEditPart(request);
+	}
+
+	/**
+	 * @generated
+	 */
 	protected void handleNotificationEvent(Notification event) {
 		if (event.getNotifier() == getModel()
 				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations()
@@ -308,7 +335,7 @@ public class StateEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private RectangleFigure fStateNestedStatesCompartmentFigure;
+		private RectangleFigure fStateInternalActionsCompartmentFigure;
 
 		/**
 		 * @generated
@@ -335,11 +362,11 @@ public class StateEditPart extends ShapeNodeEditPart {
 
 			this.add(fFigureStateLabelFigure);
 
-			fStateNestedStatesCompartmentFigure = new RectangleFigure();
+			fStateInternalActionsCompartmentFigure = new RectangleFigure();
 
-			fStateNestedStatesCompartmentFigure.setOutline(false);
+			fStateInternalActionsCompartmentFigure.setOutline(false);
 
-			this.add(fStateNestedStatesCompartmentFigure);
+			this.add(fStateInternalActionsCompartmentFigure);
 
 		}
 
@@ -353,8 +380,8 @@ public class StateEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public RectangleFigure getStateNestedStatesCompartmentFigure() {
-			return fStateNestedStatesCompartmentFigure;
+		public RectangleFigure getStateInternalActionsCompartmentFigure() {
+			return fStateInternalActionsCompartmentFigure;
 		}
 
 	}
