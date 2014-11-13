@@ -46,10 +46,8 @@ public class StateMachine_MAVODiagramUpdater {
 				.getVisualID(view)) {
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateMachineEditPart.VISUAL_ID:
 			return getStateMachine_1000SemanticChildren(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateStateNestedStatesCompartmentEditPart.VISUAL_ID:
-			return getStateStateNestedStatesCompartment_7001SemanticChildren(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateStateNestedStatesCompartment2EditPart.VISUAL_ID:
-			return getStateStateNestedStatesCompartment_7002SemanticChildren(view);
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateStateInternalActionsCompartmentEditPart.VISUAL_ID:
+			return getStateStateInternalActionsCompartment_7001SemanticChildren(view);
 		}
 		return Collections.emptyList();
 	}
@@ -70,6 +68,11 @@ public class StateMachine_MAVODiagramUpdater {
 					.next();
 			int visualID = edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
 					.getNodeVisualID(view, childElement);
+			if (visualID == edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateEditPart.VISUAL_ID) {
+				result.add(new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor(
+						childElement, visualID));
+				continue;
+			}
 			if (visualID == edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart.VISUAL_ID) {
 				result.add(new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor(
 						childElement, visualID));
@@ -80,11 +83,6 @@ public class StateMachine_MAVODiagramUpdater {
 						childElement, visualID));
 				continue;
 			}
-			if (visualID == edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateEditPart.VISUAL_ID) {
-				result.add(new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor(
-						childElement, visualID));
-				continue;
-			}
 		}
 		return result;
 	}
@@ -92,7 +90,7 @@ public class StateMachine_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor> getStateStateNestedStatesCompartment_7001SemanticChildren(
+	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor> getStateStateInternalActionsCompartment_7001SemanticChildren(
 			View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
@@ -104,63 +102,13 @@ public class StateMachine_MAVODiagramUpdater {
 		edu.toronto.cs.se.modelepedia.statemachine_mavo.State modelElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.State) containerView
 				.getElement();
 		LinkedList<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor>();
-		for (Iterator<?> it = modelElement.getNestedStates().iterator(); it
+		for (Iterator<?> it = modelElement.getInternalActions().iterator(); it
 				.hasNext();) {
-			edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState childElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState) it
+			edu.toronto.cs.se.modelepedia.statemachine_mavo.StateAction childElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.StateAction) it
 					.next();
 			int visualID = edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
 					.getNodeVisualID(view, childElement);
-			if (visualID == edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialState2EditPart.VISUAL_ID) {
-				result.add(new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor(
-						childElement, visualID));
-				continue;
-			}
-			if (visualID == edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalState2EditPart.VISUAL_ID) {
-				result.add(new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor(
-						childElement, visualID));
-				continue;
-			}
-			if (visualID == edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.State2EditPart.VISUAL_ID) {
-				result.add(new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor(
-						childElement, visualID));
-				continue;
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor> getStateStateNestedStatesCompartment_7002SemanticChildren(
-			View view) {
-		if (false == view.eContainer() instanceof View) {
-			return Collections.emptyList();
-		}
-		View containerView = (View) view.eContainer();
-		if (!containerView.isSetElement()) {
-			return Collections.emptyList();
-		}
-		edu.toronto.cs.se.modelepedia.statemachine_mavo.State modelElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.State) containerView
-				.getElement();
-		LinkedList<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor>();
-		for (Iterator<?> it = modelElement.getNestedStates().iterator(); it
-				.hasNext();) {
-			edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState childElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState) it
-					.next();
-			int visualID = edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
-					.getNodeVisualID(view, childElement);
-			if (visualID == edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialState2EditPart.VISUAL_ID) {
-				result.add(new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor(
-						childElement, visualID));
-				continue;
-			}
-			if (visualID == edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalState2EditPart.VISUAL_ID) {
-				result.add(new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor(
-						childElement, visualID));
-				continue;
-			}
-			if (visualID == edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.State2EditPart.VISUAL_ID) {
+			if (visualID == edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionEditPart.VISUAL_ID) {
 				result.add(new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor(
 						childElement, visualID));
 				continue;
@@ -178,18 +126,14 @@ public class StateMachine_MAVODiagramUpdater {
 				.getVisualID(view)) {
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateMachineEditPart.VISUAL_ID:
 			return getStateMachine_1000ContainedLinks(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart.VISUAL_ID:
-			return getInitialState_2001ContainedLinks(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart.VISUAL_ID:
-			return getFinalState_2002ContainedLinks(view);
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateEditPart.VISUAL_ID:
-			return getState_2003ContainedLinks(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialState2EditPart.VISUAL_ID:
-			return getInitialState_3001ContainedLinks(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalState2EditPart.VISUAL_ID:
-			return getFinalState_3002ContainedLinks(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.State2EditPart.VISUAL_ID:
-			return getState_3003ContainedLinks(view);
+			return getState_2001ContainedLinks(view);
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart.VISUAL_ID:
+			return getInitialState_2002ContainedLinks(view);
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart.VISUAL_ID:
+			return getFinalState_2003ContainedLinks(view);
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionEditPart.VISUAL_ID:
+			return getStateAction_3001ContainedLinks(view);
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionEditPart.VISUAL_ID:
 			return getTransition_4001ContainedLinks(view);
 		}
@@ -203,18 +147,14 @@ public class StateMachine_MAVODiagramUpdater {
 			View view) {
 		switch (edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
 				.getVisualID(view)) {
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart.VISUAL_ID:
-			return getInitialState_2001IncomingLinks(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart.VISUAL_ID:
-			return getFinalState_2002IncomingLinks(view);
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateEditPart.VISUAL_ID:
-			return getState_2003IncomingLinks(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialState2EditPart.VISUAL_ID:
-			return getInitialState_3001IncomingLinks(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalState2EditPart.VISUAL_ID:
-			return getFinalState_3002IncomingLinks(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.State2EditPart.VISUAL_ID:
-			return getState_3003IncomingLinks(view);
+			return getState_2001IncomingLinks(view);
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart.VISUAL_ID:
+			return getInitialState_2002IncomingLinks(view);
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart.VISUAL_ID:
+			return getFinalState_2003IncomingLinks(view);
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionEditPart.VISUAL_ID:
+			return getStateAction_3001IncomingLinks(view);
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionEditPart.VISUAL_ID:
 			return getTransition_4001IncomingLinks(view);
 		}
@@ -228,18 +168,14 @@ public class StateMachine_MAVODiagramUpdater {
 			View view) {
 		switch (edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
 				.getVisualID(view)) {
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart.VISUAL_ID:
-			return getInitialState_2001OutgoingLinks(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart.VISUAL_ID:
-			return getFinalState_2002OutgoingLinks(view);
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateEditPart.VISUAL_ID:
-			return getState_2003OutgoingLinks(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialState2EditPart.VISUAL_ID:
-			return getInitialState_3001OutgoingLinks(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalState2EditPart.VISUAL_ID:
-			return getFinalState_3002OutgoingLinks(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.State2EditPart.VISUAL_ID:
-			return getState_3003OutgoingLinks(view);
+			return getState_2001OutgoingLinks(view);
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart.VISUAL_ID:
+			return getInitialState_2002OutgoingLinks(view);
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart.VISUAL_ID:
+			return getFinalState_2003OutgoingLinks(view);
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionEditPart.VISUAL_ID:
+			return getStateAction_3001OutgoingLinks(view);
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionEditPart.VISUAL_ID:
 			return getTransition_4001OutgoingLinks(view);
 		}
@@ -261,7 +197,7 @@ public class StateMachine_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getInitialState_2001ContainedLinks(
+	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getState_2001ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -269,7 +205,7 @@ public class StateMachine_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getFinalState_2002ContainedLinks(
+	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getInitialState_2002ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -277,7 +213,7 @@ public class StateMachine_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getState_2003ContainedLinks(
+	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getFinalState_2003ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -285,23 +221,7 @@ public class StateMachine_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getInitialState_3001ContainedLinks(
-			View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getFinalState_3002ContainedLinks(
-			View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getState_3003ContainedLinks(
+	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getStateAction_3001ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -317,37 +237,7 @@ public class StateMachine_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getInitialState_2001IncomingLinks(
-			View view) {
-		edu.toronto.cs.se.modelepedia.statemachine_mavo.InitialState modelElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.InitialState) view
-				.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
-				.find(view.eResource().getResourceSet().getResources());
-		LinkedList<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_4001(
-				modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getFinalState_2002IncomingLinks(
-			View view) {
-		edu.toronto.cs.se.modelepedia.statemachine_mavo.FinalState modelElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.FinalState) view
-				.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
-				.find(view.eResource().getResourceSet().getResources());
-		LinkedList<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_4001(
-				modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getState_2003IncomingLinks(
+	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getState_2001IncomingLinks(
 			View view) {
 		edu.toronto.cs.se.modelepedia.statemachine_mavo.State modelElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.State) view
 				.getElement();
@@ -362,7 +252,7 @@ public class StateMachine_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getInitialState_3001IncomingLinks(
+	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getInitialState_2002IncomingLinks(
 			View view) {
 		edu.toronto.cs.se.modelepedia.statemachine_mavo.InitialState modelElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.InitialState) view
 				.getElement();
@@ -377,7 +267,7 @@ public class StateMachine_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getFinalState_3002IncomingLinks(
+	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getFinalState_2003IncomingLinks(
 			View view) {
 		edu.toronto.cs.se.modelepedia.statemachine_mavo.FinalState modelElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.FinalState) view
 				.getElement();
@@ -392,16 +282,9 @@ public class StateMachine_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getState_3003IncomingLinks(
+	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getStateAction_3001IncomingLinks(
 			View view) {
-		edu.toronto.cs.se.modelepedia.statemachine_mavo.State modelElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.State) view
-				.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
-				.find(view.eResource().getResourceSet().getResources());
-		LinkedList<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_4001(
-				modelElement, crossReferences));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -415,31 +298,7 @@ public class StateMachine_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getInitialState_2001OutgoingLinks(
-			View view) {
-		edu.toronto.cs.se.modelepedia.statemachine_mavo.InitialState modelElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.InitialState) view
-				.getElement();
-		LinkedList<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_4001(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getFinalState_2002OutgoingLinks(
-			View view) {
-		edu.toronto.cs.se.modelepedia.statemachine_mavo.FinalState modelElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.FinalState) view
-				.getElement();
-		LinkedList<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_4001(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getState_2003OutgoingLinks(
+	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getState_2001OutgoingLinks(
 			View view) {
 		edu.toronto.cs.se.modelepedia.statemachine_mavo.State modelElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.State) view
 				.getElement();
@@ -451,7 +310,7 @@ public class StateMachine_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getInitialState_3001OutgoingLinks(
+	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getInitialState_2002OutgoingLinks(
 			View view) {
 		edu.toronto.cs.se.modelepedia.statemachine_mavo.InitialState modelElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.InitialState) view
 				.getElement();
@@ -463,7 +322,7 @@ public class StateMachine_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getFinalState_3002OutgoingLinks(
+	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getFinalState_2003OutgoingLinks(
 			View view) {
 		edu.toronto.cs.se.modelepedia.statemachine_mavo.FinalState modelElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.FinalState) view
 				.getElement();
@@ -475,13 +334,9 @@ public class StateMachine_MAVODiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getState_3003OutgoingLinks(
+	public static List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> getStateAction_3001OutgoingLinks(
 			View view) {
-		edu.toronto.cs.se.modelepedia.statemachine_mavo.State modelElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.State) view
-				.getElement();
-		LinkedList<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_4001(modelElement));
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**

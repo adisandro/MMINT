@@ -13,7 +13,7 @@ package edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
-import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -37,12 +37,12 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class FinalState2EditPart extends ShapeNodeEditPart {
+public class StateActionEditPart extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3002;
+	public static final int VISUAL_ID = 3001;
 
 	/**
 	 * @generated
@@ -57,7 +57,7 @@ public class FinalState2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public FinalState2EditPart(View view) {
+	public StateActionEditPart(View view) {
 		super(view);
 	}
 
@@ -68,7 +68,7 @@ public class FinalState2EditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(
 				EditPolicyRoles.SEMANTIC_ROLE,
-				new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.policies.FinalState2ItemSemanticEditPolicy());
+				new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.policies.StateActionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -104,24 +104,30 @@ public class FinalState2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new FinalStateFigure();
+		return primaryShape = new StateActionFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public FinalStateFigure getPrimaryShape() {
-		return (FinalStateFigure) primaryShape;
+	public StateActionFigure getPrimaryShape() {
+		return (StateActionFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel5EditPart) {
-			((edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel5EditPart) childEditPart)
+		if (childEditPart instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionTriggerActionEditPart) {
+			((edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionTriggerActionEditPart) childEditPart)
 					.setLabel(getPrimaryShape()
-							.getFigureMAVOFinalStateLabelFigure());
+							.getFigureStateActionLabelFigure());
+			return true;
+		}
+		if (childEditPart instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel2EditPart) {
+			((edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel2EditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureMAVOStateActionLabelFigure());
 			return true;
 		}
 		return false;
@@ -131,7 +137,10 @@ public class FinalState2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel5EditPart) {
+		if (childEditPart instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionTriggerActionEditPart) {
+			return true;
+		}
+		if (childEditPart instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel2EditPart) {
 			return true;
 		}
 		return false;
@@ -168,7 +177,7 @@ public class FinalState2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(20, 20);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 		return result;
 	}
 
@@ -255,26 +264,29 @@ public class FinalState2EditPart extends ShapeNodeEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
-				.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel5EditPart.VISUAL_ID));
+				.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionTriggerActionEditPart.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
-	public class FinalStateFigure extends RectangleFigure {
+	public class StateActionFigure extends RoundedRectangle {
 
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureMAVOFinalStateLabelFigure;
+		private WrappingLabel fFigureStateActionLabelFigure;
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fFigureMAVOStateActionLabelFigure;
 
 		/**
 		 * @generated
 		 */
-		public FinalStateFigure() {
-			this.setBackgroundColor(THIS_BACK);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(20),
-					getMapMode().DPtoLP(20)));
+		public StateActionFigure() {
+			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8),
+					getMapMode().DPtoLP(8)));
 			this.setBorder(new MarginBorder(getMapMode().DPtoLP(5),
 					getMapMode().DPtoLP(5), getMapMode().DPtoLP(5),
 					getMapMode().DPtoLP(5)));
@@ -286,28 +298,36 @@ public class FinalState2EditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			fFigureMAVOFinalStateLabelFigure = new WrappingLabel();
+			fFigureMAVOStateActionLabelFigure = new WrappingLabel();
 
-			fFigureMAVOFinalStateLabelFigure.setText("");
-			fFigureMAVOFinalStateLabelFigure.setMaximumSize(new Dimension(
+			fFigureMAVOStateActionLabelFigure.setText("");
+			fFigureMAVOStateActionLabelFigure.setMaximumSize(new Dimension(
 					getMapMode().DPtoLP(10000), getMapMode().DPtoLP(50)));
 
-			this.add(fFigureMAVOFinalStateLabelFigure);
+			this.add(fFigureMAVOStateActionLabelFigure);
+
+			fFigureStateActionLabelFigure = new WrappingLabel();
+
+			fFigureStateActionLabelFigure.setText("StateAction");
+
+			this.add(fFigureStateActionLabelFigure);
 
 		}
 
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureMAVOFinalStateLabelFigure() {
-			return fFigureMAVOFinalStateLabelFigure;
+		public WrappingLabel getFigureStateActionLabelFigure() {
+			return fFigureStateActionLabelFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureMAVOStateActionLabelFigure() {
+			return fFigureMAVOStateActionLabelFigure;
 		}
 
 	}
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_BACK = new Color(null, 0, 0, 0);
 
 }

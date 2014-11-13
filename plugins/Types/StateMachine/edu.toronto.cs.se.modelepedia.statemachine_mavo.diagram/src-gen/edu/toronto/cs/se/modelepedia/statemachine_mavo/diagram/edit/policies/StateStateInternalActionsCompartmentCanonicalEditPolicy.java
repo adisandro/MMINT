@@ -35,7 +35,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class StateStateNestedStatesCompartmentCanonicalEditPolicy extends
+public class StateStateInternalActionsCompartmentCanonicalEditPolicy extends
 		CanonicalEditPolicy {
 
 	/**
@@ -55,7 +55,7 @@ public class StateStateNestedStatesCompartmentCanonicalEditPolicy extends
 	 */
 	protected EStructuralFeature getFeatureToSynchronize() {
 		return edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
-				.getState_NestedStates();
+				.getState_InternalActions();
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class StateStateNestedStatesCompartmentCanonicalEditPolicy extends
 		View viewObject = (View) getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
 		List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor> childDescriptors = edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVODiagramUpdater
-				.getStateStateNestedStatesCompartment_7001SemanticChildren(viewObject);
+				.getStateStateInternalActionsCompartment_7001SemanticChildren(viewObject);
 		for (edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -86,11 +86,8 @@ public class StateStateNestedStatesCompartmentCanonicalEditPolicy extends
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		int visualID = edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
+		return edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionEditPart.VISUAL_ID == edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
 				.getVisualID(view);
-		return visualID == edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialState2EditPart.VISUAL_ID
-				|| visualID == edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalState2EditPart.VISUAL_ID
-				|| visualID == edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.State2EditPart.VISUAL_ID;
 	}
 
 	/**
@@ -102,7 +99,7 @@ public class StateStateNestedStatesCompartmentCanonicalEditPolicy extends
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
 		List<edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVONodeDescriptor> childDescriptors = edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVODiagramUpdater
-				.getStateStateNestedStatesCompartment_7001SemanticChildren((View) getHost()
+				.getStateStateInternalActionsCompartment_7001SemanticChildren((View) getHost()
 						.getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours

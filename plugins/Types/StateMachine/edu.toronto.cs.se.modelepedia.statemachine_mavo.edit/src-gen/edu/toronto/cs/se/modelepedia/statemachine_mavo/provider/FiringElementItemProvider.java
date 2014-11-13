@@ -12,10 +12,9 @@
 package edu.toronto.cs.se.modelepedia.statemachine_mavo.provider;
 
 
-import edu.toronto.cs.se.mavo.provider.MAVOModelItemProvider;
+import edu.toronto.cs.se.mavo.provider.MAVOElementItemProvider;
 
-import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine;
-import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOFactory;
+import edu.toronto.cs.se.modelepedia.statemachine_mavo.FiringElement;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage;
 
 import java.util.Collection;
@@ -26,25 +25,25 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.statemachine_mavo.FiringElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class StateMachineItemProvider extends MAVOModelItemProvider {
+public class FiringElementItemProvider extends MAVOElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachineItemProvider(AdapterFactory adapterFactory) {
+	public FiringElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -59,50 +58,54 @@ public class StateMachineItemProvider extends MAVOModelItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addTriggerPropertyDescriptor(object);
+			addActionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Trigger feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(StateMachine_MAVOPackage.Literals.STATE_MACHINE__STATES);
-			childrenFeatures.add(StateMachine_MAVOPackage.Literals.STATE_MACHINE__TRANSITIONS);
-		}
-		return childrenFeatures;
+	protected void addTriggerPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FiringElement_trigger_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FiringElement_trigger_feature", "_UI_FiringElement_type"),
+				 StateMachine_MAVOPackage.Literals.FIRING_ELEMENT__TRIGGER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
+	 * This adds a property descriptor for the Action feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns StateMachine.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/StateMachine"));
+	protected void addActionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FiringElement_action_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FiringElement_action_feature", "_UI_FiringElement_type"),
+				 StateMachine_MAVOPackage.Literals.FIRING_ELEMENT__ACTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -113,8 +116,10 @@ public class StateMachineItemProvider extends MAVOModelItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		StateMachine stateMachine = (StateMachine)object;
-		return getString("_UI_StateMachine_type") + " " + stateMachine.isInc();
+		String label = ((FiringElement)object).getFormulaVariable();
+		return label == null || label.length() == 0 ?
+			getString("_UI_FiringElement_type") :
+			getString("_UI_FiringElement_type") + " " + label;
 	}
 	
 
@@ -129,10 +134,10 @@ public class StateMachineItemProvider extends MAVOModelItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(StateMachine.class)) {
-			case StateMachine_MAVOPackage.STATE_MACHINE__STATES:
-			case StateMachine_MAVOPackage.STATE_MACHINE__TRANSITIONS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+		switch (notification.getFeatureID(FiringElement.class)) {
+			case StateMachine_MAVOPackage.FIRING_ELEMENT__TRIGGER:
+			case StateMachine_MAVOPackage.FIRING_ELEMENT__ACTION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -148,26 +153,6 @@ public class StateMachineItemProvider extends MAVOModelItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StateMachine_MAVOPackage.Literals.STATE_MACHINE__STATES,
-				 StateMachine_MAVOFactory.eINSTANCE.createState()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StateMachine_MAVOPackage.Literals.STATE_MACHINE__STATES,
-				 StateMachine_MAVOFactory.eINSTANCE.createInitialState()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StateMachine_MAVOPackage.Literals.STATE_MACHINE__STATES,
-				 StateMachine_MAVOFactory.eINSTANCE.createFinalState()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StateMachine_MAVOPackage.Literals.STATE_MACHINE__TRANSITIONS,
-				 StateMachine_MAVOFactory.eINSTANCE.createTransition()));
 	}
 
 	/**

@@ -60,27 +60,19 @@ public class StateMachine_MAVOElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType InitialState_2001 = getElementType("edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.InitialState_2001"); //$NON-NLS-1$
+	public static final IElementType State_2001 = getElementType("edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.State_2001"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType FinalState_2002 = getElementType("edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.FinalState_2002"); //$NON-NLS-1$
+	public static final IElementType InitialState_2002 = getElementType("edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.InitialState_2002"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType State_2003 = getElementType("edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.State_2003"); //$NON-NLS-1$
+	public static final IElementType FinalState_2003 = getElementType("edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.FinalState_2003"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InitialState_3001 = getElementType("edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.InitialState_3001"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
-	public static final IElementType FinalState_3002 = getElementType("edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.FinalState_3002"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
-	public static final IElementType State_3003 = getElementType("edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.State_3003"); //$NON-NLS-1$
+	public static final IElementType StateAction_3001 = getElementType("edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.StateAction_3001"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -130,34 +122,24 @@ public class StateMachine_MAVOElementTypes {
 							.getStateMachine());
 
 			elements.put(
-					InitialState_2001,
-					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
-							.getInitialState());
-
-			elements.put(
-					FinalState_2002,
-					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
-							.getFinalState());
-
-			elements.put(
-					State_2003,
+					State_2001,
 					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
 							.getState());
 
 			elements.put(
-					InitialState_3001,
+					InitialState_2002,
 					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
 							.getInitialState());
 
 			elements.put(
-					FinalState_3002,
+					FinalState_2003,
 					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
 							.getFinalState());
 
 			elements.put(
-					State_3003,
+					StateAction_3001,
 					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
-							.getState());
+							.getStateAction());
 
 			elements.put(
 					Transition_4001,
@@ -181,12 +163,10 @@ public class StateMachine_MAVOElementTypes {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(StateMachine_1000);
-			KNOWN_ELEMENT_TYPES.add(InitialState_2001);
-			KNOWN_ELEMENT_TYPES.add(FinalState_2002);
-			KNOWN_ELEMENT_TYPES.add(State_2003);
-			KNOWN_ELEMENT_TYPES.add(InitialState_3001);
-			KNOWN_ELEMENT_TYPES.add(FinalState_3002);
-			KNOWN_ELEMENT_TYPES.add(State_3003);
+			KNOWN_ELEMENT_TYPES.add(State_2001);
+			KNOWN_ELEMENT_TYPES.add(InitialState_2002);
+			KNOWN_ELEMENT_TYPES.add(FinalState_2003);
+			KNOWN_ELEMENT_TYPES.add(StateAction_3001);
 			KNOWN_ELEMENT_TYPES.add(Transition_4001);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
@@ -199,18 +179,14 @@ public class StateMachine_MAVOElementTypes {
 		switch (visualID) {
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateMachineEditPart.VISUAL_ID:
 			return StateMachine_1000;
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart.VISUAL_ID:
-			return InitialState_2001;
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart.VISUAL_ID:
-			return FinalState_2002;
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateEditPart.VISUAL_ID:
-			return State_2003;
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialState2EditPart.VISUAL_ID:
-			return InitialState_3001;
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalState2EditPart.VISUAL_ID:
-			return FinalState_3002;
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.State2EditPart.VISUAL_ID:
-			return State_3003;
+			return State_2001;
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart.VISUAL_ID:
+			return InitialState_2002;
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart.VISUAL_ID:
+			return FinalState_2003;
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionEditPart.VISUAL_ID:
+			return StateAction_3001;
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionEditPart.VISUAL_ID:
 			return Transition_4001;
 		}

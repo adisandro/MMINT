@@ -36,22 +36,6 @@ public class StateMachine_MAVOEditPartFactory implements EditPartFactory {
 				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateMachineEditPart(
 						view);
 
-			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart(
-						view);
-
-			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabelEditPart(
-						view);
-
-			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart(
-						view);
-
-			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel2EditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel2EditPart(
-						view);
-
 			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateEditPart.VISUAL_ID:
 				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateEditPart(
 						view);
@@ -60,56 +44,44 @@ public class StateMachine_MAVOEditPartFactory implements EditPartFactory {
 				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateNameEditPart(
 						view);
 
-			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel3EditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel3EditPart(
+			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID:
+				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabelEditPart(
 						view);
 
-			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialState2EditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialState2EditPart(
+			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart.VISUAL_ID:
+				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart(
 						view);
 
-			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel4EditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel4EditPart(
+			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart.VISUAL_ID:
+				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart(
 						view);
 
-			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalState2EditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalState2EditPart(
+			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionEditPart.VISUAL_ID:
+				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionEditPart(
 						view);
 
-			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel5EditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel5EditPart(
+			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionTriggerActionEditPart.VISUAL_ID:
+				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionTriggerActionEditPart(
 						view);
 
-			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.State2EditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.State2EditPart(
+			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel2EditPart.VISUAL_ID:
+				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel2EditPart(
 						view);
 
-			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateName2EditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateName2EditPart(
-						view);
-
-			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel6EditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel6EditPart(
-						view);
-
-			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateStateNestedStatesCompartmentEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateStateNestedStatesCompartmentEditPart(
-						view);
-
-			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateStateNestedStatesCompartment2EditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateStateNestedStatesCompartment2EditPart(
+			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateStateInternalActionsCompartmentEditPart.VISUAL_ID:
+				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateStateInternalActionsCompartmentEditPart(
 						view);
 
 			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionEditPart.VISUAL_ID:
 				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionEditPart(
 						view);
 
-			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionNameEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionNameEditPart(
+			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionTriggerActionEditPart.VISUAL_ID:
+				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionTriggerActionEditPart(
 						view);
 
-			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel7EditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel7EditPart(
+			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel3EditPart.VISUAL_ID:
+				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel3EditPart(
 						view);
 
 			}

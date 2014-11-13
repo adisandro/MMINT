@@ -15,9 +15,10 @@ import edu.toronto.cs.se.mavo.MAVOPackage;
 
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.FinalState;
+import edu.toronto.cs.se.modelepedia.statemachine_mavo.FiringElement;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.InitialState;
-import edu.toronto.cs.se.modelepedia.statemachine_mavo.NamedElement;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.State;
+import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateAction;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage;
@@ -49,7 +50,7 @@ public class StateMachine_MAVOPackageImpl extends EPackageImpl implements StateM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass namedElementEClass = null;
+	private EClass firingElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -63,7 +64,7 @@ public class StateMachine_MAVOPackageImpl extends EPackageImpl implements StateM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass transitionEClass = null;
+	private EClass stateEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -84,7 +85,14 @@ public class StateMachine_MAVOPackageImpl extends EPackageImpl implements StateM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass stateEClass = null;
+	private EClass transitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stateActionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -182,8 +190,8 @@ public class StateMachine_MAVOPackageImpl extends EPackageImpl implements StateM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNamedElement() {
-		return namedElementEClass;
+	public EClass getFiringElement() {
+		return firingElementEClass;
 	}
 
 	/**
@@ -191,8 +199,17 @@ public class StateMachine_MAVOPackageImpl extends EPackageImpl implements StateM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNamedElement_Name() {
-		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(0);
+	public EAttribute getFiringElement_Trigger() {
+		return (EAttribute)firingElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFiringElement_Action() {
+		return (EAttribute)firingElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -209,8 +226,44 @@ public class StateMachine_MAVOPackageImpl extends EPackageImpl implements StateM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAbstractState_ParentState() {
-		return (EReference)abstractStateEClass.getEStructuralFeatures().get(0);
+	public EAttribute getAbstractState_Name() {
+		return (EAttribute)abstractStateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getState() {
+		return stateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getState_InternalActions() {
+		return (EReference)stateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInitialState() {
+		return initialStateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFinalState() {
+		return finalStateEClass;
 	}
 
 	/**
@@ -245,35 +298,8 @@ public class StateMachine_MAVOPackageImpl extends EPackageImpl implements StateM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInitialState() {
-		return initialStateEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getFinalState() {
-		return finalStateEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getState() {
-		return stateEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getState_NestedStates() {
-		return (EReference)stateEClass.getEStructuralFeatures().get(0);
+	public EClass getStateAction() {
+		return stateActionEClass;
 	}
 
 	/**
@@ -308,22 +334,25 @@ public class StateMachine_MAVOPackageImpl extends EPackageImpl implements StateM
 		createEReference(stateMachineEClass, STATE_MACHINE__STATES);
 		createEReference(stateMachineEClass, STATE_MACHINE__TRANSITIONS);
 
-		namedElementEClass = createEClass(NAMED_ELEMENT);
-		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
+		firingElementEClass = createEClass(FIRING_ELEMENT);
+		createEAttribute(firingElementEClass, FIRING_ELEMENT__TRIGGER);
+		createEAttribute(firingElementEClass, FIRING_ELEMENT__ACTION);
 
 		abstractStateEClass = createEClass(ABSTRACT_STATE);
-		createEReference(abstractStateEClass, ABSTRACT_STATE__PARENT_STATE);
+		createEAttribute(abstractStateEClass, ABSTRACT_STATE__NAME);
 
-		transitionEClass = createEClass(TRANSITION);
-		createEReference(transitionEClass, TRANSITION__SOURCE);
-		createEReference(transitionEClass, TRANSITION__TARGET);
+		stateEClass = createEClass(STATE);
+		createEReference(stateEClass, STATE__INTERNAL_ACTIONS);
 
 		initialStateEClass = createEClass(INITIAL_STATE);
 
 		finalStateEClass = createEClass(FINAL_STATE);
 
-		stateEClass = createEClass(STATE);
-		createEReference(stateEClass, STATE__NESTED_STATES);
+		transitionEClass = createEClass(TRANSITION);
+		createEReference(transitionEClass, TRANSITION__SOURCE);
+		createEReference(transitionEClass, TRANSITION__TARGET);
+
+		stateActionEClass = createEClass(STATE_ACTION);
 	}
 
 	/**
@@ -358,34 +387,38 @@ public class StateMachine_MAVOPackageImpl extends EPackageImpl implements StateM
 
 		// Add supertypes to classes
 		stateMachineEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
-		namedElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
-		abstractStateEClass.getESuperTypes().add(this.getNamedElement());
-		transitionEClass.getESuperTypes().add(this.getNamedElement());
+		firingElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
+		stateEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
+		stateEClass.getESuperTypes().add(this.getAbstractState());
 		initialStateEClass.getESuperTypes().add(this.getAbstractState());
 		finalStateEClass.getESuperTypes().add(this.getAbstractState());
-		stateEClass.getESuperTypes().add(this.getAbstractState());
+		transitionEClass.getESuperTypes().add(this.getFiringElement());
+		stateActionEClass.getESuperTypes().add(this.getFiringElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(stateMachineEClass, StateMachine.class, "StateMachine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStateMachine_States(), this.getAbstractState(), null, "states", null, 0, -1, StateMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStateMachine_Transitions(), this.getTransition(), null, "transitions", null, 0, -1, StateMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(firingElementEClass, FiringElement.class, "FiringElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFiringElement_Trigger(), ecorePackage.getEString(), "trigger", null, 0, 1, FiringElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFiringElement_Action(), ecorePackage.getEString(), "action", null, 0, 1, FiringElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractStateEClass, AbstractState.class, "AbstractState", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractState_ParentState(), this.getState(), this.getState_NestedStates(), "parentState", null, 0, 1, AbstractState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractState_Name(), ecorePackage.getEString(), "name", null, 1, 1, AbstractState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTransition_Source(), this.getAbstractState(), null, "source", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransition_Target(), this.getAbstractState(), null, "target", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getState_InternalActions(), this.getStateAction(), null, "internalActions", null, 0, -1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(initialStateEClass, InitialState.class, "InitialState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(finalStateEClass, FinalState.class, "FinalState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getState_NestedStates(), this.getAbstractState(), this.getAbstractState_ParentState(), "nestedStates", null, 0, -1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTransition_Source(), this.getAbstractState(), null, "source", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransition_Target(), this.getAbstractState(), null, "target", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stateActionEClass, StateAction.class, "StateAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -393,11 +426,11 @@ public class StateMachine_MAVOPackageImpl extends EPackageImpl implements StateM
 		// Create annotations
 		// gmf.diagram
 		createGmfAnnotations();
-		// gmf.link
-		createGmf_1Annotations();
 		// gmf.node
-		createGmf_2Annotations();
+		createGmf_1Annotations();
 		// gmf.compartment
+		createGmf_2Annotations();
+		// gmf.link
 		createGmf_3Annotations();
 	}
 
@@ -417,32 +450,19 @@ public class StateMachine_MAVOPackageImpl extends EPackageImpl implements StateM
 	}
 
 	/**
-	 * Initializes the annotations for <b>gmf.link</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createGmf_1Annotations() {
-		String source = "gmf.link";	
-		addAnnotation
-		  (transitionEClass, 
-		   source, 
-		   new String[] {
-			 "label", "name",
-			 "source", "source",
-			 "target", "target",
-			 "target.decoration", "arrow"
-		   });
-	}
-
-	/**
 	 * Initializes the annotations for <b>gmf.node</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createGmf_2Annotations() {
+	protected void createGmf_1Annotations() {
 		String source = "gmf.node";	
+		addAnnotation
+		  (stateEClass, 
+		   source, 
+		   new String[] {
+			 "label", "name"
+		   });	
 		addAnnotation
 		  (initialStateEClass, 
 		   source, 
@@ -462,10 +482,11 @@ public class StateMachine_MAVOPackageImpl extends EPackageImpl implements StateM
 			 "color", "0,0,0"
 		   });	
 		addAnnotation
-		  (stateEClass, 
+		  (stateActionEClass, 
 		   source, 
 		   new String[] {
-			 "label", "name"
+			 "label", "trigger,action",
+			 "label.pattern", "{0}/{1}"
 		   });
 	}
 
@@ -475,12 +496,34 @@ public class StateMachine_MAVOPackageImpl extends EPackageImpl implements StateM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createGmf_3Annotations() {
+	protected void createGmf_2Annotations() {
 		String source = "gmf.compartment";	
 		addAnnotation
-		  (getState_NestedStates(), 
+		  (getState_InternalActions(), 
 		   source, 
 		   new String[] {
+			 "layout", "list"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.link</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmf_3Annotations() {
+		String source = "gmf.link";	
+		addAnnotation
+		  (transitionEClass, 
+		   source, 
+		   new String[] {
+			 "label", "trigger,action",
+			 "label.pattern", "{0}/{1}",
+			 "label.icon", "true",
+			 "source", "source",
+			 "target", "target",
+			 "target.decoration", "arrow"
 		   });
 	}
 

@@ -11,12 +11,15 @@
  */
 package edu.toronto.cs.se.modelepedia.statemachine_mavo.impl;
 
+import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.State;
+import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateAction;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -24,7 +27,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -34,22 +38,41 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateImpl#getNestedStates <em>Nested States</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateImpl#getName <em>Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateImpl#getInternalActions <em>Internal Actions</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class StateImpl extends AbstractStateImpl implements State {
+public class StateImpl extends MAVOElementImpl implements State {
 	/**
-	 * The cached value of the '{@link #getNestedStates() <em>Nested States</em>}' containment reference list.
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNestedStates()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AbstractState> nestedStates;
+	protected static final String NAME_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getInternalActions() <em>Internal Actions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInternalActions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<StateAction> internalActions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,11 +98,8 @@ public class StateImpl extends AbstractStateImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AbstractState> getNestedStates() {
-		if (nestedStates == null) {
-			nestedStates = new EObjectContainmentWithInverseEList<AbstractState>(AbstractState.class, this, StateMachine_MAVOPackage.STATE__NESTED_STATES, StateMachine_MAVOPackage.ABSTRACT_STATE__PARENT_STATE);
-		}
-		return nestedStates;
+	public String getName() {
+		return name;
 	}
 
 	/**
@@ -87,14 +107,23 @@ public class StateImpl extends AbstractStateImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case StateMachine_MAVOPackage.STATE__NESTED_STATES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNestedStates()).basicAdd(otherEnd, msgs);
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StateMachine_MAVOPackage.STATE__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<StateAction> getInternalActions() {
+		if (internalActions == null) {
+			internalActions = new EObjectContainmentEList<StateAction>(StateAction.class, this, StateMachine_MAVOPackage.STATE__INTERNAL_ACTIONS);
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
+		return internalActions;
 	}
 
 	/**
@@ -105,8 +134,8 @@ public class StateImpl extends AbstractStateImpl implements State {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StateMachine_MAVOPackage.STATE__NESTED_STATES:
-				return ((InternalEList<?>)getNestedStates()).basicRemove(otherEnd, msgs);
+			case StateMachine_MAVOPackage.STATE__INTERNAL_ACTIONS:
+				return ((InternalEList<?>)getInternalActions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -119,8 +148,10 @@ public class StateImpl extends AbstractStateImpl implements State {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StateMachine_MAVOPackage.STATE__NESTED_STATES:
-				return getNestedStates();
+			case StateMachine_MAVOPackage.STATE__NAME:
+				return getName();
+			case StateMachine_MAVOPackage.STATE__INTERNAL_ACTIONS:
+				return getInternalActions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -134,9 +165,12 @@ public class StateImpl extends AbstractStateImpl implements State {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StateMachine_MAVOPackage.STATE__NESTED_STATES:
-				getNestedStates().clear();
-				getNestedStates().addAll((Collection<? extends AbstractState>)newValue);
+			case StateMachine_MAVOPackage.STATE__NAME:
+				setName((String)newValue);
+				return;
+			case StateMachine_MAVOPackage.STATE__INTERNAL_ACTIONS:
+				getInternalActions().clear();
+				getInternalActions().addAll((Collection<? extends StateAction>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -150,8 +184,11 @@ public class StateImpl extends AbstractStateImpl implements State {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StateMachine_MAVOPackage.STATE__NESTED_STATES:
-				getNestedStates().clear();
+			case StateMachine_MAVOPackage.STATE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case StateMachine_MAVOPackage.STATE__INTERNAL_ACTIONS:
+				getInternalActions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -165,10 +202,60 @@ public class StateImpl extends AbstractStateImpl implements State {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StateMachine_MAVOPackage.STATE__NESTED_STATES:
-				return nestedStates != null && !nestedStates.isEmpty();
+			case StateMachine_MAVOPackage.STATE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case StateMachine_MAVOPackage.STATE__INTERNAL_ACTIONS:
+				return internalActions != null && !internalActions.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == AbstractState.class) {
+			switch (derivedFeatureID) {
+				case StateMachine_MAVOPackage.STATE__NAME: return StateMachine_MAVOPackage.ABSTRACT_STATE__NAME;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == AbstractState.class) {
+			switch (baseFeatureID) {
+				case StateMachine_MAVOPackage.ABSTRACT_STATE__NAME: return StateMachine_MAVOPackage.STATE__NAME;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //StateImpl

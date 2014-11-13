@@ -100,24 +100,18 @@ public class StateMachine_MAVONavigatorLabelProvider extends LabelProvider
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateMachineEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO?StateMachine", edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.StateMachine_1000); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO?InitialState", edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.InitialState_2001); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO?FinalState", edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.FinalState_2002); //$NON-NLS-1$
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO?State", edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.State_2003); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialState2EditPart.VISUAL_ID:
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO?State", edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.State_2001); //$NON-NLS-1$
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO?InitialState", edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.InitialState_3001); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalState2EditPart.VISUAL_ID:
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO?InitialState", edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.InitialState_2002); //$NON-NLS-1$
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO?FinalState", edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.FinalState_3002); //$NON-NLS-1$
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.State2EditPart.VISUAL_ID:
+					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO?FinalState", edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.FinalState_2003); //$NON-NLS-1$
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO?State", edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.State_3003); //$NON-NLS-1$
+					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO?StateAction", edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.StateAction_3001); //$NON-NLS-1$
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO?Transition", edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.Transition_4001); //$NON-NLS-1$
@@ -187,18 +181,14 @@ public class StateMachine_MAVONavigatorLabelProvider extends LabelProvider
 				.getVisualID(view)) {
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateMachineEditPart.VISUAL_ID:
 			return getStateMachine_1000Text(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart.VISUAL_ID:
-			return getInitialState_2001Text(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart.VISUAL_ID:
-			return getFinalState_2002Text(view);
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateEditPart.VISUAL_ID:
-			return getState_2003Text(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialState2EditPart.VISUAL_ID:
-			return getInitialState_3001Text(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalState2EditPart.VISUAL_ID:
-			return getFinalState_3002Text(view);
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.State2EditPart.VISUAL_ID:
-			return getState_3003Text(view);
+			return getState_2001Text(view);
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart.VISUAL_ID:
+			return getInitialState_2002Text(view);
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart.VISUAL_ID:
+			return getFinalState_2003Text(view);
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionEditPart.VISUAL_ID:
+			return getStateAction_3001Text(view);
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionEditPart.VISUAL_ID:
 			return getTransition_4001Text(view);
 		}
@@ -225,79 +215,13 @@ public class StateMachine_MAVONavigatorLabelProvider extends LabelProvider
 	/**
 	 * @generated
 	 */
-	private String getInitialState_2001Text(View view) {
+	private String getState_2001Text(View view) {
 		IParser parser = edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOParserProvider
 				.getParser(
-						edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.InitialState_2001,
-						view.getElement() != null ? view.getElement() : view,
-						edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
-								.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVODiagramEditorPlugin
-					.getInstance().logError(
-							"Parser was not found for label " + 5001); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getFinalState_2002Text(View view) {
-		IParser parser = edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOParserProvider
-				.getParser(
-						edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.FinalState_2002,
-						view.getElement() != null ? view.getElement() : view,
-						edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
-								.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel2EditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVODiagramEditorPlugin
-					.getInstance().logError(
-							"Parser was not found for label " + 5002); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getState_2003Text(View view) {
-		IParser parser = edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOParserProvider
-				.getParser(
-						edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.State_2003,
+						edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.State_2001,
 						view.getElement() != null ? view.getElement() : view,
 						edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
 								.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateNameEditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVODiagramEditorPlugin
-					.getInstance().logError(
-							"Parser was not found for label " + 5007); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getInitialState_3001Text(View view) {
-		IParser parser = edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOParserProvider
-				.getParser(
-						edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.InitialState_3001,
-						view.getElement() != null ? view.getElement() : view,
-						edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
-								.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel4EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -313,21 +237,16 @@ public class StateMachine_MAVONavigatorLabelProvider extends LabelProvider
 	/**
 	 * @generated
 	 */
-	private String getFinalState_3002Text(View view) {
-		IParser parser = edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOParserProvider
-				.getParser(
-						edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.FinalState_3002,
-						view.getElement() != null ? view.getElement() : view,
-						edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
-								.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel5EditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
+	private String getInitialState_2002Text(View view) {
+		edu.toronto.cs.se.modelepedia.statemachine_mavo.InitialState domainModelElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.InitialState) view
+				.getElement();
+		if (domainModelElement != null) {
+			return domainModelElement.getName();
 		} else {
 			edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVODiagramEditorPlugin
-					.getInstance().logError(
-							"Parser was not found for label " + 5004); //$NON-NLS-1$
+					.getInstance()
+					.logError(
+							"No domain element for view with visualID = " + 2002); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -335,13 +254,30 @@ public class StateMachine_MAVONavigatorLabelProvider extends LabelProvider
 	/**
 	 * @generated
 	 */
-	private String getState_3003Text(View view) {
+	private String getFinalState_2003Text(View view) {
+		edu.toronto.cs.se.modelepedia.statemachine_mavo.FinalState domainModelElement = (edu.toronto.cs.se.modelepedia.statemachine_mavo.FinalState) view
+				.getElement();
+		if (domainModelElement != null) {
+			return domainModelElement.getName();
+		} else {
+			edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVODiagramEditorPlugin
+					.getInstance()
+					.logError(
+							"No domain element for view with visualID = " + 2003); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getStateAction_3001Text(View view) {
 		IParser parser = edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOParserProvider
 				.getParser(
-						edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.State_3003,
+						edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.StateAction_3001,
 						view.getElement() != null ? view.getElement() : view,
 						edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
-								.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateName2EditPart.VISUAL_ID));
+								.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionTriggerActionEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
@@ -349,7 +285,7 @@ public class StateMachine_MAVONavigatorLabelProvider extends LabelProvider
 		} else {
 			edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVODiagramEditorPlugin
 					.getInstance().logError(
-							"Parser was not found for label " + 5005); //$NON-NLS-1$
+							"Parser was not found for label " + 5001); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -363,7 +299,7 @@ public class StateMachine_MAVONavigatorLabelProvider extends LabelProvider
 						edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.Transition_4001,
 						view.getElement() != null ? view.getElement() : view,
 						edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
-								.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionNameEditPart.VISUAL_ID));
+								.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionTriggerActionEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),

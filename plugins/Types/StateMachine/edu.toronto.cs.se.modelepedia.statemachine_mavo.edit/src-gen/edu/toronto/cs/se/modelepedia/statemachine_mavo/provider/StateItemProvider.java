@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.statemachine_mavo.provider;
 
 
+import edu.toronto.cs.se.mavo.provider.MAVOElementItemProvider;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.State;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage;
@@ -22,9 +23,12 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -33,7 +37,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StateItemProvider extends AbstractStateItemProvider {
+public class StateItemProvider extends MAVOElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -55,8 +59,31 @@ public class StateItemProvider extends AbstractStateItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractState_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractState_name_feature", "_UI_AbstractState_type"),
+				 StateMachine_MAVOPackage.Literals.ABSTRACT_STATE__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -71,7 +98,7 @@ public class StateItemProvider extends AbstractStateItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(StateMachine_MAVOPackage.Literals.STATE__NESTED_STATES);
+			childrenFeatures.add(StateMachine_MAVOPackage.Literals.STATE__INTERNAL_ACTIONS);
 		}
 		return childrenFeatures;
 	}
@@ -127,7 +154,10 @@ public class StateItemProvider extends AbstractStateItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(State.class)) {
-			case StateMachine_MAVOPackage.STATE__NESTED_STATES:
+			case StateMachine_MAVOPackage.STATE__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case StateMachine_MAVOPackage.STATE__INTERNAL_ACTIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -147,18 +177,19 @@ public class StateItemProvider extends AbstractStateItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(StateMachine_MAVOPackage.Literals.STATE__NESTED_STATES,
-				 StateMachine_MAVOFactory.eINSTANCE.createInitialState()));
+				(StateMachine_MAVOPackage.Literals.STATE__INTERNAL_ACTIONS,
+				 StateMachine_MAVOFactory.eINSTANCE.createStateAction()));
+	}
 
-		newChildDescriptors.add
-			(createChildParameter
-				(StateMachine_MAVOPackage.Literals.STATE__NESTED_STATES,
-				 StateMachine_MAVOFactory.eINSTANCE.createFinalState()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StateMachine_MAVOPackage.Literals.STATE__NESTED_STATES,
-				 StateMachine_MAVOFactory.eINSTANCE.createState()));
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return StateMachine_MAVOEditPlugin.INSTANCE;
 	}
 
 }

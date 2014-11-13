@@ -26,12 +26,12 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class State2CreateCommand extends EditElementCommand {
+public class StateActionCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
 	 */
-	public State2CreateCommand(CreateElementRequest req) {
+	public StateActionCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -61,11 +61,11 @@ public class State2CreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		edu.toronto.cs.se.modelepedia.statemachine_mavo.State newElement = edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOFactory.eINSTANCE
-				.createState();
+		edu.toronto.cs.se.modelepedia.statemachine_mavo.StateAction newElement = edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOFactory.eINSTANCE
+				.createStateAction();
 
 		edu.toronto.cs.se.modelepedia.statemachine_mavo.State owner = (edu.toronto.cs.se.modelepedia.statemachine_mavo.State) getElementToEdit();
-		owner.getNestedStates().add(newElement);
+		owner.getInternalActions().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 
@@ -77,7 +77,7 @@ public class State2CreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected void doConfigure(
-			edu.toronto.cs.se.modelepedia.statemachine_mavo.State newElement,
+			edu.toronto.cs.se.modelepedia.statemachine_mavo.StateAction newElement,
 			IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest())

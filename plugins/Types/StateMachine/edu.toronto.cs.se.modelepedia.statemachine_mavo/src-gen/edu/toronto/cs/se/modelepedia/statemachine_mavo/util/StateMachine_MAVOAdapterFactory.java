@@ -85,16 +85,16 @@ public class StateMachine_MAVOAdapterFactory extends AdapterFactoryImpl {
 				return createStateMachineAdapter();
 			}
 			@Override
-			public Adapter caseNamedElement(NamedElement object) {
-				return createNamedElementAdapter();
+			public Adapter caseFiringElement(FiringElement object) {
+				return createFiringElementAdapter();
 			}
 			@Override
 			public Adapter caseAbstractState(AbstractState object) {
 				return createAbstractStateAdapter();
 			}
 			@Override
-			public Adapter caseTransition(Transition object) {
-				return createTransitionAdapter();
+			public Adapter caseState(State object) {
+				return createStateAdapter();
 			}
 			@Override
 			public Adapter caseInitialState(InitialState object) {
@@ -105,8 +105,12 @@ public class StateMachine_MAVOAdapterFactory extends AdapterFactoryImpl {
 				return createFinalStateAdapter();
 			}
 			@Override
-			public Adapter caseState(State object) {
-				return createStateAdapter();
+			public Adapter caseTransition(Transition object) {
+				return createTransitionAdapter();
+			}
+			@Override
+			public Adapter caseStateAction(StateAction object) {
+				return createStateActionAdapter();
 			}
 			@Override
 			public Adapter caseMAVOModel(MAVOModel object) {
@@ -155,16 +159,16 @@ public class StateMachine_MAVOAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.NamedElement <em>Named Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.FiringElement <em>Firing Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.NamedElement
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.FiringElement
 	 * @generated
 	 */
-	public Adapter createNamedElementAdapter() {
+	public Adapter createFiringElementAdapter() {
 		return null;
 	}
 
@@ -183,16 +187,16 @@ public class StateMachine_MAVOAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition <em>Transition</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.State <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.State
 	 * @generated
 	 */
-	public Adapter createTransitionAdapter() {
+	public Adapter createStateAdapter() {
 		return null;
 	}
 
@@ -225,16 +229,30 @@ public class StateMachine_MAVOAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.State <em>State</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition <em>Transition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.State
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition
 	 * @generated
 	 */
-	public Adapter createStateAdapter() {
+	public Adapter createTransitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.StateAction <em>State Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.StateAction
+	 * @generated
+	 */
+	public Adapter createStateActionAdapter() {
 		return null;
 	}
 

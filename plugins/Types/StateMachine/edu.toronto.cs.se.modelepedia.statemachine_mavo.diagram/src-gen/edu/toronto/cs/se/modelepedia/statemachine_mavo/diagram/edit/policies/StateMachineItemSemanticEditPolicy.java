@@ -37,19 +37,19 @@ public class StateMachineItemSemanticEditPolicy
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.InitialState_2001 == req
+		if (edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.State_2001 == req
+				.getElementType()) {
+			return getGEFWrapper(new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.commands.StateCreateCommand(
+					req));
+		}
+		if (edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.InitialState_2002 == req
 				.getElementType()) {
 			return getGEFWrapper(new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.commands.InitialStateCreateCommand(
 					req));
 		}
-		if (edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.FinalState_2002 == req
+		if (edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.FinalState_2003 == req
 				.getElementType()) {
 			return getGEFWrapper(new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.commands.FinalStateCreateCommand(
-					req));
-		}
-		if (edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.State_2003 == req
-				.getElementType()) {
-			return getGEFWrapper(new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.commands.StateCreateCommand(
 					req));
 		}
 		return super.getCreateCommand(req);

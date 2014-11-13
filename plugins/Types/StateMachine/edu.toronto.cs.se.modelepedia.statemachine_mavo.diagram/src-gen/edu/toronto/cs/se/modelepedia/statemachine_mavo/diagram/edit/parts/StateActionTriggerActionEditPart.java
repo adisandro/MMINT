@@ -58,13 +58,13 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class WrappingLabel5EditPart extends CompartmentEditPart implements
-		ITextAwareEditPart {
+public class StateActionTriggerActionEditPart extends CompartmentEditPart
+		implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5004;
+	public static final int VISUAL_ID = 5001;
 
 	/**
 	 * @generated
@@ -94,7 +94,7 @@ public class WrappingLabel5EditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public WrappingLabel5EditPart(View view) {
+	public StateActionTriggerActionEditPart(View view) {
 		super(view);
 	}
 
@@ -203,12 +203,7 @@ public class WrappingLabel5EditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		EObject parserElement = getParserElement();
-		if (parserElement == null) {
-			return null;
-		}
-		return edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes
-				.getImage(parserElement.eClass());
+		return null;
 	}
 
 	/**
@@ -316,10 +311,10 @@ public class WrappingLabel5EditPart extends CompartmentEditPart implements
 		if (parser == null) {
 			parser = edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOParserProvider
 					.getParser(
-							edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.FinalState_3002,
+							edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.StateAction_3001,
 							getParserElement(),
 							edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
-									.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel5EditPart.VISUAL_ID));
+									.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionTriggerActionEditPart.VISUAL_ID));
 		}
 		return parser;
 	}

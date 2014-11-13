@@ -40,13 +40,13 @@ public interface StateMachine_MAVOFactory extends EFactory {
 	StateMachine createStateMachine();
 
 	/**
-	 * Returns a new object of class '<em>Transition</em>'.
+	 * Returns a new object of class '<em>State</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Transition</em>'.
+	 * @return a new object of class '<em>State</em>'.
 	 * @generated
 	 */
-	Transition createTransition();
+	State createState();
 
 	/**
 	 * Returns a new object of class '<em>Initial State</em>'.
@@ -67,13 +67,22 @@ public interface StateMachine_MAVOFactory extends EFactory {
 	FinalState createFinalState();
 
 	/**
-	 * Returns a new object of class '<em>State</em>'.
+	 * Returns a new object of class '<em>Transition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>State</em>'.
+	 * @return a new object of class '<em>Transition</em>'.
 	 * @generated
 	 */
-	State createState();
+	Transition createTransition();
+
+	/**
+	 * Returns a new object of class '<em>State Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Action</em>'.
+	 * @generated
+	 */
+	StateAction createStateAction();
 
 	/**
 	 * Returns the package supported by this factory.

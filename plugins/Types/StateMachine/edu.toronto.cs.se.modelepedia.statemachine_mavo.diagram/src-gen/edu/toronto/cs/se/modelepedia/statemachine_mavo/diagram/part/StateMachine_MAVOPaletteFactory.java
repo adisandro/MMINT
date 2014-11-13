@@ -11,14 +11,12 @@
  */
 package edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part;
 
-import java.util.ArrayList;
 import java.util.Collections;
 
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.tooling.runtime.part.DefaultLinkToolEntry;
 import org.eclipse.gmf.tooling.runtime.part.DefaultNodeToolEntry;
 
@@ -46,6 +44,7 @@ public class StateMachine_MAVOPaletteFactory {
 		paletteContainer.add(createFinalState1CreationTool());
 		paletteContainer.add(createInitialState2CreationTool());
 		paletteContainer.add(createState3CreationTool());
+		paletteContainer.add(createStateAction4CreationTool());
 		return paletteContainer;
 	}
 
@@ -65,16 +64,14 @@ public class StateMachine_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createFinalState1CreationTool() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.FinalState_2002);
-		types.add(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.FinalState_3002);
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.Messages.FinalState1CreationTool_title,
 				edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.Messages.FinalState1CreationTool_desc,
-				types);
+				Collections
+						.singletonList(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.FinalState_2003));
 		entry.setId("createFinalState1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.FinalState_2002));
+				.getImageDescriptor(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.FinalState_2003));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -83,16 +80,14 @@ public class StateMachine_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createInitialState2CreationTool() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.InitialState_2001);
-		types.add(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.InitialState_3001);
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.Messages.InitialState2CreationTool_title,
 				edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.Messages.InitialState2CreationTool_desc,
-				types);
+				Collections
+						.singletonList(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.InitialState_2002));
 		entry.setId("createInitialState2CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.InitialState_2001));
+				.getImageDescriptor(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.InitialState_2002));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -101,16 +96,30 @@ public class StateMachine_MAVOPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createState3CreationTool() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.State_2003);
-		types.add(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.State_3003);
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.Messages.State3CreationTool_title,
 				edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.Messages.State3CreationTool_desc,
-				types);
+				Collections
+						.singletonList(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.State_2001));
 		entry.setId("createState3CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.State_2003));
+				.getImageDescriptor(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.State_2001));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createStateAction4CreationTool() {
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
+				edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.Messages.StateAction4CreationTool_title,
+				edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.Messages.StateAction4CreationTool_desc,
+				Collections
+						.singletonList(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.StateAction_3001));
+		entry.setId("createStateAction4CreationTool"); //$NON-NLS-1$
+		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes
+				.getImageDescriptor(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.StateAction_3001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

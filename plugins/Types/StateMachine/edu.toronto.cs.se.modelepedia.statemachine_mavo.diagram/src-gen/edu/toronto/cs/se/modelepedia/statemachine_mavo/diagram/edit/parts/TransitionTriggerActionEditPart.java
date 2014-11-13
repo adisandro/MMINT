@@ -59,7 +59,7 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class TransitionNameEditPart extends LabelEditPart implements
+public class TransitionTriggerActionEditPart extends LabelEditPart implements
 		ITextAwareEditPart {
 
 	/**
@@ -98,14 +98,14 @@ public class TransitionNameEditPart extends LabelEditPart implements
 	static {
 		registerSnapBackPosition(
 				edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
-						.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionNameEditPart.VISUAL_ID),
+						.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionTriggerActionEditPart.VISUAL_ID),
 				new Point(0, 40));
 	}
 
 	/**
 	 * @generated
 	 */
-	public TransitionNameEditPart(View view) {
+	public TransitionTriggerActionEditPart(View view) {
 		super(view);
 	}
 
@@ -332,7 +332,7 @@ public class TransitionNameEditPart extends LabelEditPart implements
 							edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.Transition_4001,
 							getParserElement(),
 							edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
-									.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionNameEditPart.VISUAL_ID));
+									.getType(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionTriggerActionEditPart.VISUAL_ID));
 		}
 		return parser;
 	}

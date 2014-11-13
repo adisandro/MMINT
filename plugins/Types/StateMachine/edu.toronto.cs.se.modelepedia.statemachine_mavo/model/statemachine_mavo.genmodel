@@ -14,20 +14,22 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statemachine_mavo.ecore#//StateMachine/states"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statemachine_mavo.ecore#//StateMachine/transitions"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="statemachine_mavo.ecore#//NamedElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine_mavo.ecore#//NamedElement/name"/>
+    <genClasses image="false" ecoreClass="statemachine_mavo.ecore#//FiringElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine_mavo.ecore#//FiringElement/trigger"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine_mavo.ecore#//FiringElement/action"/>
     </genClasses>
     <genClasses image="false" ecoreClass="statemachine_mavo.ecore#//AbstractState">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference statemachine_mavo.ecore#//AbstractState/parentState"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine_mavo.ecore#//AbstractState/name"/>
     </genClasses>
+    <genClasses ecoreClass="statemachine_mavo.ecore#//State">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statemachine_mavo.ecore#//State/internalActions"/>
+    </genClasses>
+    <genClasses ecoreClass="statemachine_mavo.ecore#//InitialState"/>
+    <genClasses ecoreClass="statemachine_mavo.ecore#//FinalState"/>
     <genClasses ecoreClass="statemachine_mavo.ecore#//Transition">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference statemachine_mavo.ecore#//Transition/source"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference statemachine_mavo.ecore#//Transition/target"/>
     </genClasses>
-    <genClasses ecoreClass="statemachine_mavo.ecore#//InitialState"/>
-    <genClasses ecoreClass="statemachine_mavo.ecore#//FinalState"/>
-    <genClasses ecoreClass="statemachine_mavo.ecore#//State">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statemachine_mavo.ecore#//State/nestedStates"/>
-    </genClasses>
+    <genClasses ecoreClass="statemachine_mavo.ecore#//StateAction"/>
   </genPackages>
 </genmodel:GenModel>

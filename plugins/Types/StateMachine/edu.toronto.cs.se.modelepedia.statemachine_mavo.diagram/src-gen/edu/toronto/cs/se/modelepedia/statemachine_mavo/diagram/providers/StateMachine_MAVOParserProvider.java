@@ -35,148 +35,100 @@ public class StateMachine_MAVOParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private MAVOElementLabelParser initialStateLabel_5001Parser;
+	private IParser stateName_5003Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getInitialStateLabel_5001Parser() {
-		if (initialStateLabel_5001Parser == null) {
-			initialStateLabel_5001Parser = new MAVOElementLabelParser();
-		}
-		return initialStateLabel_5001Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private MAVOElementLabelParser finalStateLabel_5002Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getFinalStateLabel_5002Parser() {
-		if (finalStateLabel_5002Parser == null) {
-			finalStateLabel_5002Parser = new MAVOElementLabelParser();
-		}
-		return finalStateLabel_5002Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser stateName_5007Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getStateName_5007Parser() {
-		if (stateName_5007Parser == null) {
+	private IParser getStateName_5003Parser() {
+		if (stateName_5003Parser == null) {
 			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
-					.getNamedElement_Name() };
+					.getAbstractState_Name() };
 			edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.parsers.MessageFormatParser(
 					features);
-			stateName_5007Parser = parser;
+			stateName_5003Parser = parser;
 		}
-		return stateName_5007Parser;
+		return stateName_5003Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private MAVOElementLabelParser stateLabel_5008Parser;
+	private MAVOElementLabelParser stateLabel_5004Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getStateLabel_5008Parser() {
-		if (stateLabel_5008Parser == null) {
-			stateLabel_5008Parser = new MAVOElementLabelParser();
+	private IParser getStateLabel_5004Parser() {
+		if (stateLabel_5004Parser == null) {
+			stateLabel_5004Parser = new MAVOElementLabelParser();
 		}
-		return stateLabel_5008Parser;
+		return stateLabel_5004Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private MAVOElementLabelParser initialStateLabel_5003Parser;
+	private IParser stateActionTriggerAction_5001Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getInitialStateLabel_5003Parser() {
-		if (initialStateLabel_5003Parser == null) {
-			initialStateLabel_5003Parser = new MAVOElementLabelParser();
-		}
-		return initialStateLabel_5003Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private MAVOElementLabelParser finalStateLabel_5004Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getFinalStateLabel_5004Parser() {
-		if (finalStateLabel_5004Parser == null) {
-			finalStateLabel_5004Parser = new MAVOElementLabelParser();
-		}
-		return finalStateLabel_5004Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser stateName_5005Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getStateName_5005Parser() {
-		if (stateName_5005Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
-					.getNamedElement_Name() };
+	private IParser getStateActionTriggerAction_5001Parser() {
+		if (stateActionTriggerAction_5001Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
+							.getFiringElement_Trigger(),
+					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
+							.getFiringElement_Action() };
 			edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.parsers.MessageFormatParser(
 					features);
-			stateName_5005Parser = parser;
+			parser.setViewPattern("{0}/{1}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}/{1}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}/{1}"); //$NON-NLS-1$
+			stateActionTriggerAction_5001Parser = parser;
 		}
-		return stateName_5005Parser;
+		return stateActionTriggerAction_5001Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private MAVOElementLabelParser stateLabel_5006Parser;
+	private MAVOElementLabelParser stateActionLabel_5002Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getStateLabel_5006Parser() {
-		if (stateLabel_5006Parser == null) {
-			stateLabel_5006Parser = new MAVOElementLabelParser();
+	private IParser getStateActionLabel_5002Parser() {
+		if (stateActionLabel_5002Parser == null) {
+			stateActionLabel_5002Parser = new MAVOElementLabelParser();
 		}
-		return stateLabel_5006Parser;
+		return stateActionLabel_5002Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser transitionName_6001Parser;
+	private IParser transitionTriggerAction_6001Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getTransitionName_6001Parser() {
-		if (transitionName_6001Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
-					.getNamedElement_Name() };
+	private IParser getTransitionTriggerAction_6001Parser() {
+		if (transitionTriggerAction_6001Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
+							.getFiringElement_Trigger(),
+					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
+							.getFiringElement_Action() };
 			edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.parsers.MessageFormatParser(
 					features);
-			transitionName_6001Parser = parser;
+			parser.setViewPattern("{0}/{1}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}/{1}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}/{1}"); //$NON-NLS-1$
+			transitionTriggerAction_6001Parser = parser;
 		}
-		return transitionName_6001Parser;
+		return transitionTriggerAction_6001Parser;
 	}
 
 	/**
@@ -199,25 +151,17 @@ public class StateMachine_MAVOParserProvider extends AbstractProvider implements
 	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID:
-			return getInitialStateLabel_5001Parser();
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel2EditPart.VISUAL_ID:
-			return getFinalStateLabel_5002Parser();
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateNameEditPart.VISUAL_ID:
-			return getStateName_5007Parser();
+			return getStateName_5003Parser();
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID:
+			return getStateLabel_5004Parser();
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionTriggerActionEditPart.VISUAL_ID:
+			return getStateActionTriggerAction_5001Parser();
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel2EditPart.VISUAL_ID:
+			return getStateActionLabel_5002Parser();
+		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionTriggerActionEditPart.VISUAL_ID:
+			return getTransitionTriggerAction_6001Parser();
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel3EditPart.VISUAL_ID:
-			return getStateLabel_5008Parser();
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel4EditPart.VISUAL_ID:
-			return getInitialStateLabel_5003Parser();
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel5EditPart.VISUAL_ID:
-			return getFinalStateLabel_5004Parser();
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateName2EditPart.VISUAL_ID:
-			return getStateName_5005Parser();
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel6EditPart.VISUAL_ID:
-			return getStateLabel_5006Parser();
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionNameEditPart.VISUAL_ID:
-			return getTransitionName_6001Parser();
-		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel7EditPart.VISUAL_ID:
 			return getTransitionLabel_6002Parser();
 		}
 		return null;

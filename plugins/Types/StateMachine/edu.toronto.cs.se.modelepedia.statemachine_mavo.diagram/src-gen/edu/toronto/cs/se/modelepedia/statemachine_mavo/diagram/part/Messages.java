@@ -294,6 +294,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String StateAction4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String StateAction4CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String Transition1CreationTool_title;
 
 	/**
@@ -304,12 +314,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String StateStateNestedStatesCompartmentEditPart_title;
-
-	/**
-	 * @generated
-	 */
-	public static String StateStateNestedStatesCompartment2EditPart_title;
+	public static String StateStateInternalActionsCompartmentEditPart_title;
 
 	/**
 	 * @generated
@@ -324,62 +329,32 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_InitialState_2001_incominglinks;
+	public static String NavigatorGroupName_State_2001_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_InitialState_2001_outgoinglinks;
+	public static String NavigatorGroupName_State_2001_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_FinalState_2002_incominglinks;
+	public static String NavigatorGroupName_InitialState_2002_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_FinalState_2002_outgoinglinks;
+	public static String NavigatorGroupName_InitialState_2002_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_State_2003_incominglinks;
+	public static String NavigatorGroupName_FinalState_2003_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_State_2003_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_InitialState_3001_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_InitialState_3001_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_FinalState_3002_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_FinalState_3002_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_State_3003_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_State_3003_outgoinglinks;
+	public static String NavigatorGroupName_FinalState_2003_outgoinglinks;
 
 	/**
 	 * @generated

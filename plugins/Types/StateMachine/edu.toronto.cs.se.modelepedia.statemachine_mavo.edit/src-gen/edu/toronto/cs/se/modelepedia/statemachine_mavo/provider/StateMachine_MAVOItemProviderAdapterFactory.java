@@ -104,26 +104,26 @@ public class StateMachine_MAVOItemProviderAdapterFactory extends StateMachine_MA
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.statemachine_mavo.State} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TransitionItemProvider transitionItemProvider;
+	protected StateItemProvider stateItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.statemachine_mavo.State}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createTransitionAdapter() {
-		if (transitionItemProvider == null) {
-			transitionItemProvider = new TransitionItemProvider(this);
+	public Adapter createStateAdapter() {
+		if (stateItemProvider == null) {
+			stateItemProvider = new StateItemProvider(this);
 		}
 
-		return transitionItemProvider;
+		return stateItemProvider;
 	}
 
 	/**
@@ -173,26 +173,49 @@ public class StateMachine_MAVOItemProviderAdapterFactory extends StateMachine_MA
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.statemachine_mavo.State} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StateItemProvider stateItemProvider;
+	protected TransitionItemProvider transitionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.statemachine_mavo.State}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createStateAdapter() {
-		if (stateItemProvider == null) {
-			stateItemProvider = new StateItemProvider(this);
+	public Adapter createTransitionAdapter() {
+		if (transitionItemProvider == null) {
+			transitionItemProvider = new TransitionItemProvider(this);
 		}
 
-		return stateItemProvider;
+		return transitionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.statemachine_mavo.StateAction} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StateActionItemProvider stateActionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.statemachine_mavo.StateAction}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateActionAdapter() {
+		if (stateActionItemProvider == null) {
+			stateActionItemProvider = new StateActionItemProvider(this);
+		}
+
+		return stateActionItemProvider;
 	}
 
 	/**
@@ -295,10 +318,11 @@ public class StateMachine_MAVOItemProviderAdapterFactory extends StateMachine_MA
 	 */
 	public void dispose() {
 		if (stateMachineItemProvider != null) stateMachineItemProvider.dispose();
-		if (transitionItemProvider != null) transitionItemProvider.dispose();
+		if (stateItemProvider != null) stateItemProvider.dispose();
 		if (initialStateItemProvider != null) initialStateItemProvider.dispose();
 		if (finalStateItemProvider != null) finalStateItemProvider.dispose();
-		if (stateItemProvider != null) stateItemProvider.dispose();
+		if (transitionItemProvider != null) transitionItemProvider.dispose();
+		if (stateActionItemProvider != null) stateActionItemProvider.dispose();
 	}
 
 }

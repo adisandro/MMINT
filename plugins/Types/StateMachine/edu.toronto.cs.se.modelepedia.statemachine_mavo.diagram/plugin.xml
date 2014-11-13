@@ -266,7 +266,7 @@ Contributors:
          </object>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="StateMachine_MAVO"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,3001,3002,3003"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,3001"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001"/>
       </viewProvider>
    </extension>
@@ -279,16 +279,16 @@ Contributors:
             <method name="getType()" value="StateMachine_MAVO"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,2002,2003,3001,3002,3003"/>
+            <method name="getType()" value="2001,2002,2003,3001"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4001"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,5007,5008,5003,5004,5005,5006"/>
+            <method name="getType()" value="5003,5004,5001,5002"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7001,7002"/>
+            <method name="getType()" value="7001"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -302,35 +302,25 @@ Contributors:
          <object class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateMachineEditPart" id="StateMachine_1000"/>
          <context elements="StateMachine_1000"/>
       </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.assistants.StateMachine_MAVOModelingAssistantProviderOfStateEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateEditPart" id="State_2001"/>
+         <context elements="State_2001"/>
+      </modelingAssistantProvider>
             <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.assistants.StateMachine_MAVOModelingAssistantProviderOfInitialStateEditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart" id="InitialState_2001"/>
-         <context elements="InitialState_2001"/>
+         <object class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialStateEditPart" id="InitialState_2002"/>
+         <context elements="InitialState_2002"/>
       </modelingAssistantProvider>
             <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.assistants.StateMachine_MAVOModelingAssistantProviderOfFinalStateEditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart" id="FinalState_2002"/>
-         <context elements="FinalState_2002"/>
+         <object class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart" id="FinalState_2003"/>
+         <context elements="FinalState_2003"/>
       </modelingAssistantProvider>
-            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.assistants.StateMachine_MAVOModelingAssistantProviderOfStateEditPart">
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.assistants.StateMachine_MAVOModelingAssistantProviderOfStateActionEditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateEditPart" id="State_2003"/>
-         <context elements="State_2003"/>
-      </modelingAssistantProvider>
-            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.assistants.StateMachine_MAVOModelingAssistantProviderOfInitialState2EditPart">
-         <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.InitialState2EditPart" id="InitialState_3001"/>
-         <context elements="InitialState_3001"/>
-      </modelingAssistantProvider>
-            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.assistants.StateMachine_MAVOModelingAssistantProviderOfFinalState2EditPart">
-         <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalState2EditPart" id="FinalState_3002"/>
-         <context elements="FinalState_3002"/>
-      </modelingAssistantProvider>
-            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.assistants.StateMachine_MAVOModelingAssistantProviderOfState2EditPart">
-         <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.State2EditPart" id="State_3003"/>
-         <context elements="State_3003"/>
+         <object class="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionEditPart" id="StateAction_3001"/>
+         <context elements="StateAction_3001"/>
       </modelingAssistantProvider>
       
    </extension>
@@ -375,60 +365,43 @@ Contributors:
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
          <metamodelType
-               id="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.InitialState_2001"
-               name="%metatype.name.InitialState_2001"
+               id="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.State_2001"
+               name="%metatype.name.State_2001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="InitialState"
-               edithelper="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.helpers.InitialStateEditHelper">
+               eclass="State"
+               edithelper="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.helpers.StateEditHelper">
             <param name="semanticHint" value="2001"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
          <metamodelType
-               id="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.FinalState_2002"
-               name="%metatype.name.FinalState_2002"
+               id="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.InitialState_2002"
+               name="%metatype.name.InitialState_2002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="FinalState"
-               edithelper="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.helpers.FinalStateEditHelper">
+               eclass="InitialState"
+               edithelper="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.helpers.InitialStateEditHelper">
             <param name="semanticHint" value="2002"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
          <metamodelType
-               id="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.State_2003"
-               name="%metatype.name.State_2003"
+               id="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.FinalState_2003"
+               name="%metatype.name.FinalState_2003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="State"
-               edithelper="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.helpers.StateEditHelper">
+               eclass="FinalState"
+               edithelper="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.helpers.FinalStateEditHelper">
             <param name="semanticHint" value="2003"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
-         <specializationType
-               id="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.InitialState_3001"
-               name="%metatype.name.InitialState_3001"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.InitialState_2001"/>
+         <metamodelType
+               id="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.StateAction_3001"
+               name="%metatype.name.StateAction_3001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="StateAction"
+               edithelper="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.helpers.StateActionEditHelper">
             <param name="semanticHint" value="3001"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
-         <specializationType
-               id="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.FinalState_3002"
-               name="%metatype.name.FinalState_3002"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.FinalState_2002"/>
-            <param name="semanticHint" value="3002"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
-         <specializationType
-               id="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.State_3003"
-               name="%metatype.name.State_3003"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.State_2003"/>
-            <param name="semanticHint" value="3003"/>
-         </specializationType>
+         </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
          <metamodelType
@@ -453,12 +426,10 @@ Contributors:
       </clientContext> 
       <binding context="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.TypeContext">
          <elementType ref="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.StateMachine_1000"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.InitialState_2001"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.FinalState_2002"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.State_2003"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.InitialState_3001"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.FinalState_3002"/>
-         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.State_3003"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.State_2001"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.InitialState_2002"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.FinalState_2003"/>
+         <elementType ref="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.StateAction_3001"/>
          <elementType ref="edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.Transition_4001"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>

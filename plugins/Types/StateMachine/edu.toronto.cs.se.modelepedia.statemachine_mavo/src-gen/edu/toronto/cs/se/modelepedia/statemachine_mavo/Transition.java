@@ -26,10 +26,10 @@ package edu.toronto.cs.se.modelepedia.statemachine_mavo;
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage#getTransition()
- * @model annotation="gmf.link label='name' source='source' target='target' target.decoration='arrow'"
+ * @model annotation="gmf.link label='trigger,action' label.pattern='{0}/{1}' label.icon='true' source='source' target='target' target.decoration='arrow'"
  * @generated
  */
-public interface Transition extends NamedElement {
+public interface Transition extends FiringElement {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->

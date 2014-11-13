@@ -36,7 +36,7 @@ public class FinalStateItemSemanticEditPolicy
 	 */
 	public FinalStateItemSemanticEditPolicy() {
 		super(
-				edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.FinalState_2002);
+				edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.FinalState_2003);
 	}
 
 	/**

@@ -132,14 +132,14 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	int STATE_MACHINE_OPERATION_COUNT = MAVOPackage.MAVO_MODEL_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.NamedElementImpl <em>Named Element</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.FiringElementImpl <em>Firing Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.NamedElementImpl
-	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachine_MAVOPackageImpl#getNamedElement()
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.FiringElementImpl
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachine_MAVOPackageImpl#getFiringElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 1;
+	int FIRING_ELEMENT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -148,7 +148,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__FORMULA_VARIABLE = MAVOPackage.MAVO_ELEMENT__FORMULA_VARIABLE;
+	int FIRING_ELEMENT__FORMULA_VARIABLE = MAVOPackage.MAVO_ELEMENT__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -157,7 +157,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__MAY = MAVOPackage.MAVO_ELEMENT__MAY;
+	int FIRING_ELEMENT__MAY = MAVOPackage.MAVO_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -166,7 +166,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__SET = MAVOPackage.MAVO_ELEMENT__SET;
+	int FIRING_ELEMENT__SET = MAVOPackage.MAVO_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -175,7 +175,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
+	int FIRING_ELEMENT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
@@ -184,34 +184,43 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+	int FIRING_ELEMENT__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__NAME = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
+	int FIRING_ELEMENT__TRIGGER = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Named Element</em>' class.
+	 * The feature id for the '<em><b>Action</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_FEATURE_COUNT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
+	int FIRING_ELEMENT__ACTION = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Named Element</em>' class.
+	 * The number of structural features of the '<em>Firing Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_OPERATION_COUNT = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
+	int FIRING_ELEMENT_FEATURE_COUNT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Firing Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIRING_ELEMENT_OPERATION_COUNT = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.AbstractStateImpl <em>Abstract State</em>}' class.
@@ -224,67 +233,13 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	int ABSTRACT_STATE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_STATE__FORMULA_VARIABLE = NAMED_ELEMENT__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_STATE__MAY = NAMED_ELEMENT__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_STATE__SET = NAMED_ELEMENT__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_STATE__VAR = NAMED_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_STATE__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_STATE__NAME = NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Parent State</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_STATE__PARENT_STATE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int ABSTRACT_STATE__NAME = 0;
 
 	/**
 	 * The number of structural features of the '<em>Abstract State</em>' class.
@@ -293,7 +248,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_STATE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int ABSTRACT_STATE_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Abstract State</em>' class.
@@ -302,17 +257,17 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_STATE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int ABSTRACT_STATE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.TransitionImpl <em>Transition</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateImpl <em>State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.TransitionImpl
-	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachine_MAVOPackageImpl#getTransition()
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateImpl
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachine_MAVOPackageImpl#getState()
 	 * @generated
 	 */
-	int TRANSITION = 3;
+	int STATE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -321,7 +276,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__FORMULA_VARIABLE = NAMED_ELEMENT__FORMULA_VARIABLE;
+	int STATE__FORMULA_VARIABLE = MAVOPackage.MAVO_ELEMENT__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -330,7 +285,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__MAY = NAMED_ELEMENT__MAY;
+	int STATE__MAY = MAVOPackage.MAVO_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -339,7 +294,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__SET = NAMED_ELEMENT__SET;
+	int STATE__SET = MAVOPackage.MAVO_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -348,7 +303,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__VAR = NAMED_ELEMENT__VAR;
+	int STATE__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
@@ -357,7 +312,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
+	int STATE__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -366,43 +321,34 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__NAME = NAMED_ELEMENT__NAME;
+	int STATE__NAME = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * The feature id for the '<em><b>Internal Actions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__SOURCE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int STATE__INTERNAL_ACTIONS = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * The number of structural features of the '<em>State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__TARGET = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int STATE_FEATURE_COUNT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Transition</em>' class.
+	 * The number of operations of the '<em>State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Transition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int STATE_OPERATION_COUNT = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.InitialStateImpl <em>Initial State</em>}' class.
@@ -415,51 +361,6 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	int INITIAL_STATE = 4;
 
 	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INITIAL_STATE__FORMULA_VARIABLE = ABSTRACT_STATE__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INITIAL_STATE__MAY = ABSTRACT_STATE__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INITIAL_STATE__SET = ABSTRACT_STATE__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INITIAL_STATE__VAR = ABSTRACT_STATE__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INITIAL_STATE__ALTERNATIVES = ABSTRACT_STATE__ALTERNATIVES;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -467,15 +368,6 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int INITIAL_STATE__NAME = ABSTRACT_STATE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Parent State</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INITIAL_STATE__PARENT_STATE = ABSTRACT_STATE__PARENT_STATE;
 
 	/**
 	 * The number of structural features of the '<em>Initial State</em>' class.
@@ -506,51 +398,6 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	int FINAL_STATE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FINAL_STATE__FORMULA_VARIABLE = ABSTRACT_STATE__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FINAL_STATE__MAY = ABSTRACT_STATE__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FINAL_STATE__SET = ABSTRACT_STATE__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FINAL_STATE__VAR = ABSTRACT_STATE__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FINAL_STATE__ALTERNATIVES = ABSTRACT_STATE__ALTERNATIVES;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -558,15 +405,6 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @ordered
 	 */
 	int FINAL_STATE__NAME = ABSTRACT_STATE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Parent State</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FINAL_STATE__PARENT_STATE = ABSTRACT_STATE__PARENT_STATE;
 
 	/**
 	 * The number of structural features of the '<em>Final State</em>' class.
@@ -587,14 +425,14 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	int FINAL_STATE_OPERATION_COUNT = ABSTRACT_STATE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateImpl <em>State</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.TransitionImpl <em>Transition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateImpl
-	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachine_MAVOPackageImpl#getState()
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.TransitionImpl
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachine_MAVOPackageImpl#getTransition()
 	 * @generated
 	 */
-	int STATE = 6;
+	int TRANSITION = 6;
 
 	/**
 	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -603,7 +441,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__FORMULA_VARIABLE = ABSTRACT_STATE__FORMULA_VARIABLE;
+	int TRANSITION__FORMULA_VARIABLE = FIRING_ELEMENT__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -612,7 +450,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__MAY = ABSTRACT_STATE__MAY;
+	int TRANSITION__MAY = FIRING_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -621,7 +459,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__SET = ABSTRACT_STATE__SET;
+	int TRANSITION__SET = FIRING_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -630,7 +468,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__VAR = ABSTRACT_STATE__VAR;
+	int TRANSITION__VAR = FIRING_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
@@ -639,52 +477,152 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__ALTERNATIVES = ABSTRACT_STATE__ALTERNATIVES;
+	int TRANSITION__ALTERNATIVES = FIRING_ELEMENT__ALTERNATIVES;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__NAME = ABSTRACT_STATE__NAME;
+	int TRANSITION__TRIGGER = FIRING_ELEMENT__TRIGGER;
 
 	/**
-	 * The feature id for the '<em><b>Parent State</b></em>' container reference.
+	 * The feature id for the '<em><b>Action</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__PARENT_STATE = ABSTRACT_STATE__PARENT_STATE;
+	int TRANSITION__ACTION = FIRING_ELEMENT__ACTION;
 
 	/**
-	 * The feature id for the '<em><b>Nested States</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__NESTED_STATES = ABSTRACT_STATE_FEATURE_COUNT + 0;
+	int TRANSITION__SOURCE = FIRING_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>State</em>' class.
+	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_FEATURE_COUNT = ABSTRACT_STATE_FEATURE_COUNT + 1;
+	int TRANSITION__TARGET = FIRING_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>State</em>' class.
+	 * The number of structural features of the '<em>Transition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_OPERATION_COUNT = ABSTRACT_STATE_OPERATION_COUNT + 0;
+	int TRANSITION_FEATURE_COUNT = FIRING_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Transition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION_OPERATION_COUNT = FIRING_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateActionImpl <em>State Action</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateActionImpl
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachine_MAVOPackageImpl#getStateAction()
+	 * @generated
+	 */
+	int STATE_ACTION = 7;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ACTION__FORMULA_VARIABLE = FIRING_ELEMENT__FORMULA_VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>May</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ACTION__MAY = FIRING_ELEMENT__MAY;
+
+	/**
+	 * The feature id for the '<em><b>Set</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ACTION__SET = FIRING_ELEMENT__SET;
+
+	/**
+	 * The feature id for the '<em><b>Var</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ACTION__VAR = FIRING_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ACTION__ALTERNATIVES = FIRING_ELEMENT__ALTERNATIVES;
+
+	/**
+	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ACTION__TRIGGER = FIRING_ELEMENT__TRIGGER;
+
+	/**
+	 * The feature id for the '<em><b>Action</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ACTION__ACTION = FIRING_ELEMENT__ACTION;
+
+	/**
+	 * The number of structural features of the '<em>State Action</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ACTION_FEATURE_COUNT = FIRING_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>State Action</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ACTION_OPERATION_COUNT = FIRING_ELEMENT_OPERATION_COUNT + 0;
 
 
 	/**
@@ -720,25 +658,36 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	EReference getStateMachine_Transitions();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.NamedElement <em>Named Element</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.FiringElement <em>Firing Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Named Element</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.NamedElement
+	 * @return the meta object for class '<em>Firing Element</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.FiringElement
 	 * @generated
 	 */
-	EClass getNamedElement();
+	EClass getFiringElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.NamedElement#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.FiringElement#getTrigger <em>Trigger</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.NamedElement#getName()
-	 * @see #getNamedElement()
+	 * @return the meta object for the attribute '<em>Trigger</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.FiringElement#getTrigger()
+	 * @see #getFiringElement()
 	 * @generated
 	 */
-	EAttribute getNamedElement_Name();
+	EAttribute getFiringElement_Trigger();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.FiringElement#getAction <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Action</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.FiringElement#getAction()
+	 * @see #getFiringElement()
+	 * @generated
+	 */
+	EAttribute getFiringElement_Action();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState <em>Abstract State</em>}'.
@@ -751,15 +700,56 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	EClass getAbstractState();
 
 	/**
-	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState#getParentState <em>Parent State</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Parent State</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState#getParentState()
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState#getName()
 	 * @see #getAbstractState()
 	 * @generated
 	 */
-	EReference getAbstractState_ParentState();
+	EAttribute getAbstractState_Name();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.State <em>State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>State</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.State
+	 * @generated
+	 */
+	EClass getState();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.State#getInternalActions <em>Internal Actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Internal Actions</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.State#getInternalActions()
+	 * @see #getState()
+	 * @generated
+	 */
+	EReference getState_InternalActions();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.InitialState <em>Initial State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Initial State</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.InitialState
+	 * @generated
+	 */
+	EClass getInitialState();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.FinalState <em>Final State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Final State</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.FinalState
+	 * @generated
+	 */
+	EClass getFinalState();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition <em>Transition</em>}'.
@@ -794,45 +784,14 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	EReference getTransition_Target();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.InitialState <em>Initial State</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.StateAction <em>State Action</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Initial State</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.InitialState
+	 * @return the meta object for class '<em>State Action</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.StateAction
 	 * @generated
 	 */
-	EClass getInitialState();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.FinalState <em>Final State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Final State</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.FinalState
-	 * @generated
-	 */
-	EClass getFinalState();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.State <em>State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>State</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.State
-	 * @generated
-	 */
-	EClass getState();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.State#getNestedStates <em>Nested States</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Nested States</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.State#getNestedStates()
-	 * @see #getState()
-	 * @generated
-	 */
-	EReference getState_NestedStates();
+	EClass getStateAction();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -884,22 +843,30 @@ public interface StateMachine_MAVOPackage extends EPackage {
 		EReference STATE_MACHINE__TRANSITIONS = eINSTANCE.getStateMachine_Transitions();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.NamedElementImpl <em>Named Element</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.FiringElementImpl <em>Firing Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.NamedElementImpl
-		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachine_MAVOPackageImpl#getNamedElement()
+		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.FiringElementImpl
+		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachine_MAVOPackageImpl#getFiringElement()
 		 * @generated
 		 */
-		EClass NAMED_ELEMENT = eINSTANCE.getNamedElement();
+		EClass FIRING_ELEMENT = eINSTANCE.getFiringElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Trigger</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
+		EAttribute FIRING_ELEMENT__TRIGGER = eINSTANCE.getFiringElement_Trigger();
+
+		/**
+		 * The meta object literal for the '<em><b>Action</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIRING_ELEMENT__ACTION = eINSTANCE.getFiringElement_Action();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.AbstractStateImpl <em>Abstract State</em>}' class.
@@ -912,12 +879,50 @@ public interface StateMachine_MAVOPackage extends EPackage {
 		EClass ABSTRACT_STATE = eINSTANCE.getAbstractState();
 
 		/**
-		 * The meta object literal for the '<em><b>Parent State</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ABSTRACT_STATE__PARENT_STATE = eINSTANCE.getAbstractState_ParentState();
+		EAttribute ABSTRACT_STATE__NAME = eINSTANCE.getAbstractState_Name();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateImpl <em>State</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateImpl
+		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachine_MAVOPackageImpl#getState()
+		 * @generated
+		 */
+		EClass STATE = eINSTANCE.getState();
+
+		/**
+		 * The meta object literal for the '<em><b>Internal Actions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE__INTERNAL_ACTIONS = eINSTANCE.getState_InternalActions();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.InitialStateImpl <em>Initial State</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.InitialStateImpl
+		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachine_MAVOPackageImpl#getInitialState()
+		 * @generated
+		 */
+		EClass INITIAL_STATE = eINSTANCE.getInitialState();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.FinalStateImpl <em>Final State</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.FinalStateImpl
+		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachine_MAVOPackageImpl#getFinalState()
+		 * @generated
+		 */
+		EClass FINAL_STATE = eINSTANCE.getFinalState();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.TransitionImpl <em>Transition</em>}' class.
@@ -946,42 +951,14 @@ public interface StateMachine_MAVOPackage extends EPackage {
 		EReference TRANSITION__TARGET = eINSTANCE.getTransition_Target();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.InitialStateImpl <em>Initial State</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateActionImpl <em>State Action</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.InitialStateImpl
-		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachine_MAVOPackageImpl#getInitialState()
+		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateActionImpl
+		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachine_MAVOPackageImpl#getStateAction()
 		 * @generated
 		 */
-		EClass INITIAL_STATE = eINSTANCE.getInitialState();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.FinalStateImpl <em>Final State</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.FinalStateImpl
-		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachine_MAVOPackageImpl#getFinalState()
-		 * @generated
-		 */
-		EClass FINAL_STATE = eINSTANCE.getFinalState();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateImpl <em>State</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateImpl
-		 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachine_MAVOPackageImpl#getState()
-		 * @generated
-		 */
-		EClass STATE = eINSTANCE.getState();
-
-		/**
-		 * The meta object literal for the '<em><b>Nested States</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STATE__NESTED_STATES = eINSTANCE.getState_NestedStates();
+		EClass STATE_ACTION = eINSTANCE.getStateAction();
 
 	}
 
