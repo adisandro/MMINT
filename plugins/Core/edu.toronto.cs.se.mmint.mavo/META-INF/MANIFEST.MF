@@ -19,3 +19,4 @@ Require-Bundle: org.eclipse.jface,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.java
 Export-Package: edu.toronto.cs.se.mmint.mavo
+Import-Package: edu.toronto.cs.se.mmint.mid.diagram.library

@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmint.mavo;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.ContributionItem;
@@ -45,49 +47,57 @@ public class MAVODecisionTreeContributionItem extends ContributionItem {
 		}
 		Object[] objects = ((StructuredSelection) selection).toArray();
 
-		// TODO MMINT[MU-MMINT] for now, do not show menu if more than one element is selected
-		if (objects.length > 1) {
-			return;
-		}
 
-		for (Object object : objects) {
-			if (object instanceof MAVOModel) {
-				MAVOModel model = (MAVOModel) object;
-				createModelMenuItems(model, parent);
-			} else if (object instanceof MayDecision) {
-				MayDecision decision = (MayDecision) object;
-				createDecisionMenuItems(decision, parent);
-			} else if (object instanceof MAVOAlternative) {
-				MAVOAlternative alternative = (MAVOAlternative) object;
-				// Add to alternative
-				EObject model = alternative.eContainer().eContainer();
-				TreeIterator<EObject> allElements = model.eAllContents();
-				while (allElements.hasNext()){
-					boolean inAlternative = false;
-					EObject content = allElements.next();
-					if (!(content instanceof MAVOElement)){
-						continue;
-					}
-					MAVOElement element = (MAVOElement) content;
-					for (MAVOAlternative alt: element.getAlternatives()){
-						if (alt.getFormulaVariable().equals(alternative.getFormulaVariable())){
-							inAlternative = true;
-							break;
+		if (objects.length > 1) {
+			createRefinementMenuItems(objects, parent);
+		}
+		else{
+			for (Object object : objects) {
+				if (object instanceof MAVOModel) {
+					MAVOModel model = (MAVOModel) object;
+					createModelMenuItems(model, parent);
+				} else if (object instanceof MayDecision) {
+					MayDecision decision = (MayDecision) object;
+					createDecisionMenuItems(decision, parent);
+				} else if (object instanceof MAVOAlternative) {
+					MAVOAlternative alternative = (MAVOAlternative) object;
+					// Add to alternative
+					EObject model = alternative.eContainer().eContainer();
+					TreeIterator<EObject> allElements = model.eAllContents();
+					while (allElements.hasNext()){
+						boolean inAlternative = false;
+						EObject content = allElements.next();
+						if (!(content instanceof MAVOElement)){
+							continue;
+						}
+						MAVOElement element = (MAVOElement) content;
+						for (MAVOAlternative alt: element.getAlternatives()){
+							if (alt.getFormulaVariable().equals(alternative.getFormulaVariable())){
+								inAlternative = true;
+								break;
+							}
+						}
+						if (inAlternative){
+							createRemoveElementMenuItem(element, alternative, parent);
+						}
+						else {
+							createAddElementMenuItem(element, alternative, parent);
 						}
 					}
-					if (inAlternative){
-						createRemoveElementMenuItem(element, alternative, parent);
-					}
-					else {
-						createAddElementMenuItem(element, alternative, parent);
-					}
+
 				}
-
 			}
-
 		}
 	}
 	
+	private void createRefinementMenuItems(Object[] objects, Menu parent) {
+		MenuItem makeRefinementItem = new MenuItem(parent, SWT.NONE);
+		makeRefinementItem.setText("Refine based on selected items");
+		makeRefinementItem.addSelectionListener(new MAVODecisionTreeRefinementMenuListener(
+				objects));
+		
+	}
+
 	private void createAddElementMenuItem(MAVOElement element,
 			MAVOAlternative alternative, Menu parent) {
 		MenuItem addElementItem = new MenuItem(parent, SWT.NONE);
