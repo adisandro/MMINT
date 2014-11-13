@@ -11,8 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.mavo;
 
-import java.util.ArrayList;
-
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.ContributionItem;
@@ -94,7 +92,7 @@ public class MAVODecisionTreeContributionItem extends ContributionItem {
 		MenuItem makeRefinementItem = new MenuItem(parent, SWT.NONE);
 		makeRefinementItem.setText("Refine based on selected items");
 		makeRefinementItem.addSelectionListener(new MAVODecisionTreeRefinementMenuListener(
-				objects));
+				"Refine model from decision tree", objects));
 		
 	}
 

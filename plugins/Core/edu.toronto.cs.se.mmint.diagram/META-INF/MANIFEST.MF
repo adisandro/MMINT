@@ -7,8 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: edu.toronto.cs.se.mmint.mid.diagram.contextmenu,
- edu.toronto.cs.se.mmint.mid.diagram.edit.commands,
+Export-Package: edu.toronto.cs.se.mmint.mid.diagram.edit.commands,
  edu.toronto.cs.se.mmint.mid.diagram.edit.parts,
  edu.toronto.cs.se.mmint.mid.diagram.library,
  edu.toronto.cs.se.mmint.mid.diagram.part,

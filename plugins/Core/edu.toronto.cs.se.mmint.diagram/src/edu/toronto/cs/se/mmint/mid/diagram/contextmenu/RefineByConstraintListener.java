@@ -42,20 +42,17 @@ public class RefineByConstraintListener extends MIDContextMenuListener {
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		AbstractTransactionalCommand command = new RefinementCommand(
+		AbstractTransactionalCommand command = new RefineByConstraintCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
 		runListenerCommand(command);
 	}
-	
 
+	protected class RefineByConstraintCommand extends AbstractTransactionalCommand {
 
-	protected class RefinementCommand extends AbstractTransactionalCommand {
-
-		
-		public RefinementCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public RefineByConstraintCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}
@@ -70,4 +67,3 @@ public class RefineByConstraintListener extends MIDContextMenuListener {
 
 	}
 }
-
