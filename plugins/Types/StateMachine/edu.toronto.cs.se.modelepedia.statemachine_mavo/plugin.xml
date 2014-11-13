@@ -29,6 +29,9 @@
          <type
                name="StateMachine_MAVO"
                uri="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
+            <superType
+                  uri="http://se.cs.toronto.edu/MAVO">
+            </superType>
          </type>
       </modelType>
    </extension>
