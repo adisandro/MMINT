@@ -23,6 +23,7 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.swt.events.SelectionEvent;
+
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
@@ -41,7 +42,7 @@ public class RefineByConstraintListener extends MIDContextMenuListener {
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		AbstractTransactionalCommand command = new RefinementCommand(
+		AbstractTransactionalCommand command = new RefineByConstraintCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
@@ -49,9 +50,9 @@ public class RefineByConstraintListener extends MIDContextMenuListener {
 		runListenerCommand(command);
 	}
 
-	protected class RefinementCommand extends AbstractTransactionalCommand {
+	protected class RefineByConstraintCommand extends AbstractTransactionalCommand {
 
-		public RefinementCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public RefineByConstraintCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}
@@ -65,5 +66,4 @@ public class RefineByConstraintListener extends MIDContextMenuListener {
 		}
 
 	}
-
 }
