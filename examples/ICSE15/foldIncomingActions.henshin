@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_fC3D8GwTEeSgadSYjTe_FQ">
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_fC3D8GwTEeSgadSYjTe_FQ">
   <imports href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#/"/>
   <units xsi:type="henshin:Rule" xmi:id="_nAqykGwUEeSgadSYjTe_FQ" name="foldAction">
+    <parameters xmi:id="_8z-UkGwZEeSgadSYjTe_FQ" name="triggerName">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <parameters xmi:id="_6vBaQGwZEeSgadSYjTe_FQ" name="actionName">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
     <lhs xmi:id="_nBMXAGwUEeSgadSYjTe_FQ" name="Lhs">
       <nodes xmi:id="_I7QBsGwVEeSgadSYjTe_FQ" incoming="_rBu-0GwVEeSgadSYjTe_FQ">
         <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//State"/>

@@ -128,7 +128,7 @@
       <children xmi:type="notation:Shape" xmi:id="_9QgxgGwXEeSgadSYjTe_FQ" type="3003" fontName="Cantarell" fontHeight="10" italic="true" lineColor="0">
         <children xmi:type="notation:DecorationNode" xmi:id="_9QgxgmwXEeSgadSYjTe_FQ" type="5005"/>
         <element xmi:type="henshin:Rule" href="foldIncomingActions.henshin#_nAqykGwUEeSgadSYjTe_FQ"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9QgxgWwXEeSgadSYjTe_FQ" x="77" y="10"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9QgxgWwXEeSgadSYjTe_FQ" x="70" y="9"/>
       </children>
     </children>
     <element xmi:type="henshin:LoopUnit" href="foldIncomingActions.henshin#_9QQS0GwXEeSgadSYjTe_FQ"/>
