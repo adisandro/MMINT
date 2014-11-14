@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_fC3D8GwTEeSgadSYjTe_FQ">
+  <imports href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#/"/>
+  <units xsi:type="henshin:Rule" xmi:id="_nAqykGwUEeSgadSYjTe_FQ" name="foldAction">
+    <lhs xmi:id="_nBMXAGwUEeSgadSYjTe_FQ" name="Lhs">
+      <nodes xmi:id="_I7QBsGwVEeSgadSYjTe_FQ" incoming="_rBu-0GwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//State"/>
+      </nodes>
+      <nodes xmi:id="_hjaDMGwVEeSgadSYjTe_FQ" incoming="_yuZIgGwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//State"/>
+      </nodes>
+      <nodes xmi:id="_jLhQgGwVEeSgadSYjTe_FQ" incoming="_r1qWIGwVEeSgadSYjTe_FQ _zPcnIGwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//State"/>
+      </nodes>
+      <nodes xmi:id="_oXbUsGwVEeSgadSYjTe_FQ" outgoing="_rBu-0GwVEeSgadSYjTe_FQ _r1qWIGwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition"/>
+        <attributes xmi:id="_oGRBUGwXEeSgadSYjTe_FQ" value="triggerName">
+          <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//FiringElement/trigger"/>
+        </attributes>
+        <attributes xmi:id="_tfrWAGwXEeSgadSYjTe_FQ" value="actionName">
+          <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//FiringElement/action"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_x9xj4GwVEeSgadSYjTe_FQ" outgoing="_yuZIgGwVEeSgadSYjTe_FQ _zPcnIGwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition"/>
+        <attributes xmi:id="_rwpoYGwXEeSgadSYjTe_FQ" value="triggerName">
+          <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//FiringElement/trigger"/>
+        </attributes>
+        <attributes xmi:id="_u6wz8GwXEeSgadSYjTe_FQ" value="actionName">
+          <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//FiringElement/action"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_rBu-0GwVEeSgadSYjTe_FQ" source="_oXbUsGwVEeSgadSYjTe_FQ" target="_I7QBsGwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition/source"/>
+      </edges>
+      <edges xmi:id="_r1qWIGwVEeSgadSYjTe_FQ" source="_oXbUsGwVEeSgadSYjTe_FQ" target="_jLhQgGwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition/target"/>
+      </edges>
+      <edges xmi:id="_yuZIgGwVEeSgadSYjTe_FQ" source="_x9xj4GwVEeSgadSYjTe_FQ" target="_hjaDMGwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition/source"/>
+      </edges>
+      <edges xmi:id="_zPcnIGwVEeSgadSYjTe_FQ" source="_x9xj4GwVEeSgadSYjTe_FQ" target="_jLhQgGwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition/target"/>
+      </edges>
+      <formula xsi:type="henshin:Not" xmi:id="_4uOHgWwWEeSgadSYjTe_FQ">
+        <child xsi:type="henshin:NestedCondition" xmi:id="_4uOukGwWEeSgadSYjTe_FQ">
+          <conclusion xmi:id="_4uOukWwWEeSgadSYjTe_FQ" name="A_NAC">
+            <nodes xmi:id="_4uOukmwWEeSgadSYjTe_FQ" incoming="_4uPVoGwWEeSgadSYjTe_FQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//State"/>
+            </nodes>
+            <nodes xmi:id="_4uOulGwWEeSgadSYjTe_FQ" outgoing="_4uPVoGwWEeSgadSYjTe_FQ _4uP8s2wWEeSgadSYjTe_FQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition"/>
+              <attributes xmi:id="_oGTdkGwXEeSgadSYjTe_FQ" value="triggerName">
+                <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//FiringElement/trigger"/>
+              </attributes>
+              <attributes xmi:id="_tfr9EWwXEeSgadSYjTe_FQ" value="actionName">
+                <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//FiringElement/action"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_4uPVoWwWEeSgadSYjTe_FQ" incoming="_4uP8sGwWEeSgadSYjTe_FQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//State"/>
+            </nodes>
+            <nodes xmi:id="_4uPVo2wWEeSgadSYjTe_FQ" outgoing="_4uP8sGwWEeSgadSYjTe_FQ _4uP8tGwWEeSgadSYjTe_FQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition"/>
+              <attributes xmi:id="_rwqPcGwXEeSgadSYjTe_FQ" value="triggerName">
+                <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//FiringElement/trigger"/>
+              </attributes>
+              <attributes xmi:id="_u6wz8mwXEeSgadSYjTe_FQ" value="actionName">
+                <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//FiringElement/action"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_4uP8sWwWEeSgadSYjTe_FQ" incoming="_4uP8s2wWEeSgadSYjTe_FQ _4uP8tGwWEeSgadSYjTe_FQ" outgoing="_EMA18GwWEeSgadSYjTe_FQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//State"/>
+            </nodes>
+            <nodes xmi:id="_CpM_YGwWEeSgadSYjTe_FQ" incoming="_EMA18GwWEeSgadSYjTe_FQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//StateAction"/>
+            </nodes>
+            <edges xmi:id="_4uPVoGwWEeSgadSYjTe_FQ" source="_4uOulGwWEeSgadSYjTe_FQ" target="_4uOukmwWEeSgadSYjTe_FQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition/source"/>
+            </edges>
+            <edges xmi:id="_4uP8sGwWEeSgadSYjTe_FQ" source="_4uPVo2wWEeSgadSYjTe_FQ" target="_4uPVoWwWEeSgadSYjTe_FQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition/source"/>
+            </edges>
+            <edges xmi:id="_4uP8s2wWEeSgadSYjTe_FQ" source="_4uOulGwWEeSgadSYjTe_FQ" target="_4uP8sWwWEeSgadSYjTe_FQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition/target"/>
+            </edges>
+            <edges xmi:id="_4uP8tGwWEeSgadSYjTe_FQ" source="_4uPVo2wWEeSgadSYjTe_FQ" target="_4uP8sWwWEeSgadSYjTe_FQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition/target"/>
+            </edges>
+            <edges xmi:id="_EMA18GwWEeSgadSYjTe_FQ" source="_4uP8sWwWEeSgadSYjTe_FQ" target="_CpM_YGwWEeSgadSYjTe_FQ">
+              <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//State/internalActions"/>
+            </edges>
+          </conclusion>
+          <mappings xmi:id="_4uOuk2wWEeSgadSYjTe_FQ" origin="_I7QBsGwVEeSgadSYjTe_FQ" image="_4uOukmwWEeSgadSYjTe_FQ"/>
+          <mappings xmi:id="_4uOulmwWEeSgadSYjTe_FQ" origin="_oXbUsGwVEeSgadSYjTe_FQ" image="_4uOulGwWEeSgadSYjTe_FQ"/>
+          <mappings xmi:id="_4uPVomwWEeSgadSYjTe_FQ" origin="_hjaDMGwVEeSgadSYjTe_FQ" image="_4uPVoWwWEeSgadSYjTe_FQ"/>
+          <mappings xmi:id="_4uPVpWwWEeSgadSYjTe_FQ" origin="_x9xj4GwVEeSgadSYjTe_FQ" image="_4uPVo2wWEeSgadSYjTe_FQ"/>
+          <mappings xmi:id="_4uP8smwWEeSgadSYjTe_FQ" origin="_jLhQgGwVEeSgadSYjTe_FQ" image="_4uP8sWwWEeSgadSYjTe_FQ"/>
+        </child>
+      </formula>
+    </lhs>
+    <rhs xmi:id="_nBMXAWwUEeSgadSYjTe_FQ" name="Rhs">
+      <nodes xmi:id="_I7R24GwVEeSgadSYjTe_FQ" incoming="_rBvl4GwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//State"/>
+      </nodes>
+      <nodes xmi:id="_hjaqQGwVEeSgadSYjTe_FQ" incoming="_yuZvkGwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//State"/>
+      </nodes>
+      <nodes xmi:id="_jLhQgWwVEeSgadSYjTe_FQ" incoming="_r1q9MGwVEeSgadSYjTe_FQ _zPdOMGwVEeSgadSYjTe_FQ" outgoing="_E9CDMGwWEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//State"/>
+      </nodes>
+      <nodes xmi:id="_oXdJ4GwVEeSgadSYjTe_FQ" outgoing="_rBvl4GwVEeSgadSYjTe_FQ _r1q9MGwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition"/>
+        <attributes xmi:id="_oGS2gGwXEeSgadSYjTe_FQ" value="&quot;&quot;">
+          <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//FiringElement/trigger"/>
+        </attributes>
+        <attributes xmi:id="_tfr9EGwXEeSgadSYjTe_FQ" value="&quot;&quot;">
+          <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//FiringElement/action"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_x9xj4WwVEeSgadSYjTe_FQ" outgoing="_yuZvkGwVEeSgadSYjTe_FQ _zPdOMGwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition"/>
+        <attributes xmi:id="_rwpoYWwXEeSgadSYjTe_FQ" value="&quot;&quot;">
+          <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//FiringElement/trigger"/>
+        </attributes>
+        <attributes xmi:id="_u6wz8WwXEeSgadSYjTe_FQ" value="&quot;&quot;">
+          <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//FiringElement/action"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_Dl6fQGwWEeSgadSYjTe_FQ" incoming="_E9CDMGwWEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//StateAction"/>
+        <attributes xmi:id="_hNN7UGwWEeSgadSYjTe_FQ" value="&quot;entry&quot;">
+          <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//FiringElement/trigger"/>
+        </attributes>
+        <attributes xmi:id="_iJQFwGwWEeSgadSYjTe_FQ" value="actionName">
+          <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//FiringElement/action"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_rBvl4GwVEeSgadSYjTe_FQ" source="_oXdJ4GwVEeSgadSYjTe_FQ" target="_I7R24GwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition/source"/>
+      </edges>
+      <edges xmi:id="_r1q9MGwVEeSgadSYjTe_FQ" source="_oXdJ4GwVEeSgadSYjTe_FQ" target="_jLhQgWwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition/target"/>
+      </edges>
+      <edges xmi:id="_yuZvkGwVEeSgadSYjTe_FQ" source="_x9xj4WwVEeSgadSYjTe_FQ" target="_hjaqQGwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition/source"/>
+      </edges>
+      <edges xmi:id="_zPdOMGwVEeSgadSYjTe_FQ" source="_x9xj4WwVEeSgadSYjTe_FQ" target="_jLhQgWwVEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//Transition/target"/>
+      </edges>
+      <edges xmi:id="_E9CDMGwWEeSgadSYjTe_FQ" source="_jLhQgWwVEeSgadSYjTe_FQ" target="_Dl6fQGwWEeSgadSYjTe_FQ">
+        <type href="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO#//State/internalActions"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_I7R24WwVEeSgadSYjTe_FQ" origin="_I7QBsGwVEeSgadSYjTe_FQ" image="_I7R24GwVEeSgadSYjTe_FQ"/>
+    <mappings xmi:id="_hjaqQWwVEeSgadSYjTe_FQ" origin="_hjaDMGwVEeSgadSYjTe_FQ" image="_hjaqQGwVEeSgadSYjTe_FQ"/>
+    <mappings xmi:id="_jLhQgmwVEeSgadSYjTe_FQ" origin="_jLhQgGwVEeSgadSYjTe_FQ" image="_jLhQgWwVEeSgadSYjTe_FQ"/>
+    <mappings xmi:id="_oXdJ4WwVEeSgadSYjTe_FQ" origin="_oXbUsGwVEeSgadSYjTe_FQ" image="_oXdJ4GwVEeSgadSYjTe_FQ"/>
+    <mappings xmi:id="_x9xj4mwVEeSgadSYjTe_FQ" origin="_x9xj4GwVEeSgadSYjTe_FQ" image="_x9xj4WwVEeSgadSYjTe_FQ"/>
+  </units>
+  <units xsi:type="henshin:LoopUnit" xmi:id="_9QQS0GwXEeSgadSYjTe_FQ" name="foldActions" subUnit="_nAqykGwUEeSgadSYjTe_FQ"/>
+</henshin:Module>
