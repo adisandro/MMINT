@@ -19,7 +19,9 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
@@ -32,6 +34,14 @@ public class MAVOConcretizationHighlighter {
 	private static final int FONT_GREYOUT_COLOR = 0xD0D0D0;
 	private static final String EXAMPLE_SUFFIX = "_example";
 
+	private void collectFormulaVar(@NonNull Map<String, View> diagramViews, @NonNull View diagramView) {
+
+		EObject modelObj = diagramView.getElement();
+		if (modelObj instanceof MAVOElement) {
+			diagramViews.put(((MAVOElement) modelObj).getFormulaVariable(), diagramView);
+		}
+	}
+
 	/**
 	 * Map diagram view elements to the formula IDs of the model elements they represent.
 	 * @param diagramViewList - List of View elements from the diagram.
@@ -41,11 +51,14 @@ public class MAVOConcretizationHighlighter {
 
 		Map<String, View> diagramViews = new HashMap<String, View>();
 		for (View diagramView : diagramViewList) {
-			EObject modelObj = diagramView.getElement();
-			if (!(modelObj instanceof MAVOElement)) {
-				continue;
+			for (Object compartment : diagramView.getChildren()) {
+				if (compartment instanceof BasicCompartment) {
+					for (Object diagramSubview : ((BasicCompartment) compartment).getChildren()) {
+						collectFormulaVar(diagramViews, (View) diagramSubview);
+					}
+				}
 			}
-			diagramViews.put(((MAVOElement) modelObj).getFormulaVariable(), diagramView);
+			collectFormulaVar(diagramViews, diagramView);
 		}
 
 		return diagramViews;
