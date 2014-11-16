@@ -12,57 +12,27 @@
  */
 package edu.toronto.cs.se.modelepedia.z3.mavo;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mavo.MAVOAlternative;
 import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MayDecision;
+import edu.toronto.cs.se.mavo.MayDecisionLogic;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class MAVOConcretizationHighlighter {
 
+	private static final int HIGHLIGHT_COLOR = 0x1ACA1A;
+	private static final int FONT_HIGHLIGHT_COLOR = 0x005600;
 	private static final int GREYOUT_COLOR = 0xF4F4F4;
 	private static final int FONT_GREYOUT_COLOR = 0xD0D0D0;
-	private static final String EXAMPLE_SUFFIX = "_example";
-
-	private void collectFormulaVar(@NonNull Map<String, View> diagramViews, @NonNull View diagramView) {
-
-		EObject modelObj = diagramView.getElement();
-		if (modelObj instanceof MAVOElement) {
-			diagramViews.put(((MAVOElement) modelObj).getFormulaVariable(), diagramView);
-		}
-	}
-
-	/**
-	 * Map diagram view elements to the formula IDs of the model elements they represent.
-	 * @param diagramViewList - List of View elements from the diagram.
-	 * @return a Map whose keys are formula IDs, and the values are the view elements representing those elements of the model.
-	 */
-	private Map<String, View> collectFormulaVars(EList<View> diagramViewList) {
-
-		Map<String, View> diagramViews = new HashMap<String, View>();
-		for (View diagramView : diagramViewList) {
-			for (Object compartment : diagramView.getChildren()) {
-				if (compartment instanceof BasicCompartment) {
-					for (Object diagramSubview : ((BasicCompartment) compartment).getChildren()) {
-						collectFormulaVar(diagramViews, (View) diagramSubview);
-					}
-				}
-			}
-			collectFormulaVar(diagramViews, diagramView);
-		}
-
-		return diagramViews;
-	}
+	private static final String EXAMPLE_MODEL_SUFFIX = "_example";
 
 	private Set<String> separateExampleElements(Map<String, String> z3ModelElems, Map<String, View> diagramViews) {
 
@@ -74,16 +44,13 @@ public class MAVOConcretizationHighlighter {
 		return notInExampleFormulaVars;
 	}
 
-	@SuppressWarnings("unchecked")
 	public void highlightCounterExample(Diagram modelDiagram, Map<String, String> z3ModelElems) throws Exception {
 
 		// get view elements from diagram
 		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
-		Map<String, View> diagramViews = new HashMap<String, View>();
-		diagramViews.putAll(collectFormulaVars((EList<View>) exampleDiagram.getChildren()));
-		diagramViews.putAll(collectFormulaVars((EList<View>) exampleDiagram.getEdges()));
+		Map<String, View> diagramViews = GMFDiagramUtils.getDiagramFormulaVariables(exampleDiagram);
 
-		// grey out anything that's not in the example
+		// grey out model objects that are not in the example
 		Set<String> notInExampleFormulaVars = separateExampleElements(z3ModelElems, diagramViews);
 		for (String notInExampleFormulaVar : notInExampleFormulaVars) {
 			View diagramView = diagramViews.get(notInExampleFormulaVar);
@@ -91,7 +58,37 @@ public class MAVOConcretizationHighlighter {
 		}
 
 		// write diagram to file
-		String exampleDiagramUri = MultiModelUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_SUFFIX);
+		String exampleDiagramUri = MultiModelUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
+		MultiModelUtils.createModelFile(exampleDiagram, exampleDiagramUri, true);
+		GMFDiagramUtils.openGMFDiagram(exampleDiagramUri, modelDiagram.getId(), true);
+	}
+
+	public void highlightAlternative(Diagram modelDiagram, MAVOAlternative mayAlternative) throws Exception {
+
+		// get view elements from diagram
+		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
+		Map<String, View> diagramViews = GMFDiagramUtils.getDiagramFormulaVariables(exampleDiagram);
+
+		// grey out may model objects in other alternatives for the same decision, highlight may model objects in the alternative
+		MayDecision mayDecision = (MayDecision) mayAlternative.eContainer();
+		if (mayDecision.getLogic() == MayDecisionLogic.XOR) {
+			for (MAVOAlternative otherMayAlternative : mayDecision.getAlternatives()) {
+				if (otherMayAlternative == mayAlternative) {
+					continue;
+				}
+				for (MAVOElement otherMayModelObj : otherMayAlternative.getMavoElements()) {
+					View diagramView = diagramViews.get(otherMayModelObj.getFormulaVariable());
+					GMFDiagramUtils.colorDiagramElement(diagramView, GREYOUT_COLOR, FONT_GREYOUT_COLOR);
+				}
+			}
+		}
+		for (MAVOElement mayModelObj : mayAlternative.getMavoElements()) {
+			View diagramView = diagramViews.get(mayModelObj.getFormulaVariable());
+			GMFDiagramUtils.colorDiagramElement(diagramView, HIGHLIGHT_COLOR, FONT_HIGHLIGHT_COLOR);
+		}
+
+		// write diagram to file
+		String exampleDiagramUri = MultiModelUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
 		MultiModelUtils.createModelFile(exampleDiagram, exampleDiagramUri, true);
 		GMFDiagramUtils.openGMFDiagram(exampleDiagramUri, modelDiagram.getId(), true);
 	}

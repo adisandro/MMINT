@@ -1,3 +1,15 @@
+/**
+ * Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay, Naama Ben-David.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Naama Ben-David - Implementation.
+ *    Alessio Di Sandro - Generalization to all metamodels.
+ */
 package edu.toronto.cs.se.mmint.mavo;
 
 import java.util.ArrayList;
@@ -18,6 +30,8 @@ import org.eclipse.swt.events.SelectionEvent;
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -43,6 +57,7 @@ public class MAVODecisionTreeRefinementMenuListener extends MIDContextMenuListen
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
+		//TODO MMINT[MU-MMINT] Unify with highlighting
 		String modelUri = MultiModelRegistry.getModelAndModelElementUris((LogicElement) objects[0], MIDLevel.INSTANCES)[0];
 		Map<MultiModel, List<IFile>> midDiagrams = MIDDiagramUtils.getMIDsInWorkspace();
 		Model model = null;
@@ -53,6 +68,10 @@ public class MAVODecisionTreeRefinementMenuListener extends MIDContextMenuListen
 				files = entry.getValue();
 				break;
 			}
+		}
+		if (model == null) {
+			MMINTException.print(Type.ERROR, "The instance MID that contains this model must be open for the refinement to work", null);
+			return;
 		}
 
 		this.model = model;
@@ -74,10 +93,6 @@ public class MAVODecisionTreeRefinementMenuListener extends MIDContextMenuListen
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 				IAdaptable info) throws ExecutionException {
-
-			if (model == null) {
-				return CommandResult.newErrorCommandResult("");
-			}
 
 			ArrayList<LogicElement> selectedElements = new ArrayList<LogicElement>();
 			for (Object object: objects) {

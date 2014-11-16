@@ -25,7 +25,7 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.editor.Editor;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
@@ -82,19 +82,6 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 		return checkMAVOConstraintEncodingLoaded(z3IncSolver, smtConstraint);
 	}
 
-	private @Nullable Diagram getModelDiagram(@NonNull Model model) {
-
-		Diagram modelDiagram = null;
-		for (Editor modelEditor : model.getEditors()) {
-			if (modelEditor instanceof Diagram) {
-				modelDiagram = (Diagram) modelEditor;
-				break;
-			}
-		}
-
-		return modelDiagram;
-	}
-
 	@Override
 	public @NonNull MAVOTruthValue checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
@@ -112,7 +99,7 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 		if (constraintTruthValue != MAVOTruthValue.MAYBE) {
 			return constraintTruthValue;
 		}
-		Diagram modelDiagram = getModelDiagram(model);
+		Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
 		if (modelDiagram == null) {
 			return constraintTruthValue;
 		}
@@ -161,7 +148,7 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 		}
 
 		// refine
-		Diagram modelDiagram = getModelDiagram(model);
+		Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
 		try {
 			MAVORefiner refiner = new MAVORefiner(this);
 			return refiner.refine(model, modelDiagram, z3ModelParser.getSMTLIBEncoding());

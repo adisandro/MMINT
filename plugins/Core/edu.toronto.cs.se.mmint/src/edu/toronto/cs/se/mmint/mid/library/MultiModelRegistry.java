@@ -42,6 +42,7 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
@@ -313,6 +314,19 @@ public class MultiModelRegistry {
 	public static EList<Editor> getEditors(MultiModel multiModel) {
 	
 		return multiModel.getEditors();
+	}
+
+	public static @Nullable Diagram getModelDiagram(@NonNull Model model) {
+
+		Diagram modelDiagram = null;
+		for (Editor modelEditor : model.getEditors()) {
+			if (modelEditor instanceof Diagram) {
+				modelDiagram = (Diagram) modelEditor;
+				break;
+			}
+		}
+
+		return modelDiagram;
 	}
 
 }

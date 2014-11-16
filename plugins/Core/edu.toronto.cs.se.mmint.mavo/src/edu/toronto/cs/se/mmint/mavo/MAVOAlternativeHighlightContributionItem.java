@@ -8,6 +8,7 @@
  * 
  * Contributors:
  *    Naama Ben-David - Implementation.
+ *    Alessio Di Sandro - Generalization to all metamodels.
  */
 package edu.toronto.cs.se.mmint.mavo;
 
@@ -50,9 +51,9 @@ public class MAVOAlternativeHighlightContributionItem extends ContributionItem {
 				MAVOAlternative alternative = (MAVOAlternative) object;
 					MenuItem removeElementItem = new MenuItem(parent, SWT.NONE);
 					removeElementItem.setText("Highlight alternative in diagram");
-					removeElementItem
-							.addSelectionListener(new MAVOAlternativeHighlightMenuListener(
-									alternative));
+					removeElementItem.addSelectionListener(
+						new MAVOAlternativeHighlightMenuListener("Highlight alternative in diagram", alternative)
+					);
 
 			}
 
