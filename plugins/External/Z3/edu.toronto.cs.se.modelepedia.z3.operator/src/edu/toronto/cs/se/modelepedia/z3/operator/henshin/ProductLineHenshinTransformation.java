@@ -256,7 +256,11 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			}
 		}
 		Model modelInputType = MultiModelTypeRegistry.getType(rootInput.eClass().getEPackage().getNsURI());
-		String transformedModelInputUri = MultiModelUtils.addFileNameSuffixInUri(model.getUri(), TRANSFORMED_MODELINPUT_SUFFIX);
+		String transformedModelInputUri = MultiModelUtils.getUniqueUri(
+			MultiModelUtils.addFileNameSuffixInUri(model.getUri(), TRANSFORMED_MODEL_SUFFIX),
+			true,
+			false
+		);
 		String transformedModelInputName = MultiModelUtils.getLastSegmentFromUri(transformedModelInputUri);
 		resourceSet.saveEObject(rootInput, transformedModelInputName);
 		Model transformedModelInput = (isUpdateMID()) ?
@@ -265,9 +269,13 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		result.add(transformedModelInput);
 		if (rootOutput != null) {
 			Model modelOutputType = MultiModelTypeRegistry.getType(rootOutput.eClass().getEPackage().getNsURI());
-			String transformedModelOutputUri = MultiModelUtils.replaceFileExtensionInUri(
-				MultiModelUtils.addFileNameSuffixInUri(model.getUri(), TRANSFORMED_MODELOUTPUT_SUFFIX),
-				modelOutputType.getFileExtension()
+			String transformedModelOutputUri = MultiModelUtils.getUniqueUri(
+				MultiModelUtils.replaceFileExtensionInUri(
+					MultiModelUtils.addFileNameSuffixInUri(model.getUri(), TRANSFORMED_MODEL_SUFFIX),
+					modelOutputType.getFileExtension()
+				),
+				true,
+				false
 			);
 			String transformedModelOutputName = MultiModelUtils.getLastSegmentFromUri(transformedModelOutputUri);
 			resourceSet.saveEObject(rootOutput, transformedModelOutputName);

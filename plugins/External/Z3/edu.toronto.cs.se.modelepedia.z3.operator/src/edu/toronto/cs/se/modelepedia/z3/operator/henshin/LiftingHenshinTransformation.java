@@ -81,8 +81,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	private static final String PROPERTY_IN_TRANSFORMATIONRULESLIFTING = "transformationRulesLifting";
 
 	protected static final String ANAC_NAME = "A_NAC";
-	protected static final String TRANSFORMED_MODELINPUT_SUFFIX = "_transformedInput";
-	protected static final String TRANSFORMED_MODELOUTPUT_SUFFIX = "_transformedOutput";
+	protected static final String TRANSFORMED_MODEL_SUFFIX = "_transformed";
 	protected static final String SMTLIB_APPLICABILITY_FUN = "(f";
 	protected static final String SMTLIB_APPLICABILITY_FUN_CONSTRAINTS = SMTLIB_APPLICABILITY_FUN + "X ";
 	protected static final String SMTLIB_APPLICABILITY_FUN_APPLY = SMTLIB_APPLICABILITY_FUN + "Y ";
