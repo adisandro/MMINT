@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -54,7 +55,7 @@ import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
 public class MAVORefiner {
 
-	private static final @NonNull String MODEL_SUFFIX = "_refined";
+	private static final @NonNull String REFINED_MODEL_SUFFIX = "_refined";
 	private static final @NonNull String MODELRELTYPE_URI = "http://se.cs.toronto.edu/mmint/MAVORefinementRel";
 	private static final @NonNull String MODELREL_NAME = "refinement";
 	private static final @NonNull String REFINED_LINK_NAME = "refined";
@@ -72,7 +73,7 @@ public class MAVORefiner {
 		Map<String, MAVOElement> modelObjsToRefine = new HashMap<String, MAVOElement>();
 		Resource refinedResource = refinedRootModelObj.eResource();
 		TreeIterator<EObject> iter = rootModelObj.eAllContents();
-		while (iter.hasNext()){
+		while (iter.hasNext()) {
 			EObject modelObj = iter.next();
 			// skip non-may elements
 			if (!(modelObj instanceof MAVOElement) || !((MAVOElement) modelObj).isMay()) {
@@ -183,10 +184,37 @@ public class MAVORefiner {
 		}
 	}
 
+	private void refineDiagram(org.eclipse.gmf.runtime.notation.Diagram refinedDiagram, @NonNull MAVOModel refinedRootModelObj, Map<MAVOElement, MAVOElement> refinementMap) {
+
+		Map<String, View> refinedDiagramViews = GMFDiagramUtils.getDiagramViews(refinedDiagram);
+		// remove views that are no longer in the diagram
+		for (Entry<MAVOElement, MAVOElement> refinementEntry : refinementMap.entrySet()) {
+			if (refinementEntry.getValue() != null) { // need only removal refinements
+				continue;
+			}
+			String formulaVar = refinementEntry.getKey().getFormulaVariable();
+			View diagramViewToRemove = refinedDiagramViews.get(formulaVar);
+			EcoreUtil.remove(diagramViewToRemove);
+		}
+		// assign views to refined model objects
+		TreeIterator<EObject> iter = refinedRootModelObj.eAllContents();
+		while (iter.hasNext()) {
+			EObject refinedModelObj = iter.next();
+			//TODO MMINT[MAVO] What if the diagram has some non-mavo elements?
+			if (!(refinedModelObj instanceof MAVOElement)) {
+				continue;
+			}
+			String formulaVar = ((MAVOElement) refinedModelObj).getFormulaVariable();
+			View diagramView = refinedDiagramViews.get(formulaVar);
+			diagramView.setElement(refinedModelObj);
+		}
+		refinedDiagram.setElement(refinedRootModelObj);
+	}
+
 	public @NonNull Model refine(@NonNull Model model, @Nullable Diagram modelDiagram, @NonNull String smtEncoding) throws Exception {
 
 		// create mid artifacts
-		String refinedModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(model.getUri(), MODEL_SUFFIX), true, false);
+		String refinedModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(model.getUri(), REFINED_MODEL_SUFFIX), true, false);
 		MultiModelUtils.copyTextFileAndReplaceText(model.getUri(), refinedModelUri, "", "", true);
 		MultiModel instanceMID = MultiModelRegistry.getMultiModel(model);
 		Model refinedModel = model.getMetatype().createMAVOInstance(refinedModelUri, ModelOrigin.CREATED, instanceMID);
@@ -213,10 +241,10 @@ public class MAVORefiner {
 		// write refinement to file
 		MultiModelUtils.createModelFile(refinedRootModelObj, refinedModelUri, true);
 		if (modelDiagram != null) {
+			org.eclipse.gmf.runtime.notation.Diagram refinedDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
+			refineDiagram(refinedDiagram, refinedRootModelObj, refinementMap);
 			String refinedModelDiagramUri = MultiModelUtils.replaceFileExtensionInUri(refinedModelUri, modelDiagram.getFileExtensions().get(0));
-			String diagramKind = model.getMetatype().getName();
-			String diagramPluginId = MultiModelTypeRegistry.getTypeBundle(modelDiagram.getMetatypeUri()).getSymbolicName();
-			GMFDiagramUtils.createGMFDiagram(refinedModelUri, refinedModelDiagramUri, diagramKind, diagramPluginId, true);
+			MultiModelUtils.createModelFile(refinedDiagram, refinedModelDiagramUri, true);
 			GMFDiagramUtils.openGMFDiagram(refinedModelDiagramUri, modelDiagram.getId(), true);
 		}
 		refinedModel.createInstanceEditor();

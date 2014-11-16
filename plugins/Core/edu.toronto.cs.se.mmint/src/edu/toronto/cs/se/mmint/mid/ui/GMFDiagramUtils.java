@@ -165,7 +165,7 @@ public class GMFDiagramUtils {
 		}
 	}
 
-	public static @NonNull Map<String, View> getDiagramFormulaVariables(@NonNull Diagram diagram) {
+	public static @NonNull Map<String, View> getDiagramViews(@NonNull Diagram diagram) {
 
 		Map<String, View> diagramViews = new HashMap<String, View>();
 		getDiagramFormulaVariables((EList<View>) diagram.getChildren(), diagramViews);
@@ -191,35 +191,6 @@ public class GMFDiagramUtils {
 			edge.setLineColor(color);
 			FontStyle labelFont = (FontStyle) edge.getStyles().get(0);
 			labelFont.setFontColor(fontColor);
-		}
-	}
-
-	public static void copyDiagramElementPosition(@NonNull View oldDiagramView, @NonNull View newDiagramView) throws MMINTException {
-
-		boolean
-			oldShape = oldDiagramView instanceof Shape,
-			newShape = newDiagramView instanceof Shape,
-			oldConnector = oldDiagramView instanceof Connector,
-			newConnector = newDiagramView instanceof Connector;
-		if (!oldShape && !oldConnector) {
-			throw new MMINTException("Old diagram element not supported: " + newDiagramView.getClass().getName());
-		}
-		if (!newShape && !newConnector) {
-			throw new MMINTException("New diagram element not supported: " + newDiagramView.getClass().getName());
-		}
-		if (!((oldShape && newShape) || (oldConnector && newConnector))) {
-			throw new MMINTException("Old and new diagram elements don't match");
-		}
-
-		if (newDiagramView instanceof Shape) {
-			Shape oldNode = (Shape) oldDiagramView, newNode = (Shape) newDiagramView;
-			newNode.setLayoutConstraint(oldNode.getLayoutConstraint());
-		}
-		else if (newDiagramView instanceof Connector) {
-			Connector oldEdge = (Connector) oldDiagramView, newEdge = (Connector) newDiagramView;
-			newEdge.setBendpoints(oldEdge.getBendpoints());
-			newEdge.setSourceAnchor(oldEdge.getSourceAnchor());
-			newEdge.setTargetAnchor(oldEdge.getTargetAnchor());
 		}
 	}
 

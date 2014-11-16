@@ -48,7 +48,7 @@ public class MAVOConcretizationHighlighter {
 
 		// get view elements from diagram
 		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
-		Map<String, View> diagramViews = GMFDiagramUtils.getDiagramFormulaVariables(exampleDiagram);
+		Map<String, View> diagramViews = GMFDiagramUtils.getDiagramViews(exampleDiagram);
 
 		// grey out model objects that are not in the example
 		Set<String> notInExampleFormulaVars = separateExampleElements(z3ModelElems, diagramViews);
@@ -67,7 +67,7 @@ public class MAVOConcretizationHighlighter {
 
 		// get view elements from diagram
 		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
-		Map<String, View> diagramViews = GMFDiagramUtils.getDiagramFormulaVariables(exampleDiagram);
+		Map<String, View> diagramViews = GMFDiagramUtils.getDiagramViews(exampleDiagram);
 
 		// grey out may model objects in other alternatives for the same decision, highlight may model objects in the alternative
 		MayDecision mayDecision = (MayDecision) mayAlternative.eContainer();
