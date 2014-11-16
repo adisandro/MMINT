@@ -11,8 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.mavo;
 
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -23,7 +21,6 @@ import org.eclipse.swt.widgets.MenuItem;
 
 import edu.toronto.cs.se.mavo.MAVOAlternative;
 import edu.toronto.cs.se.mavo.MAVODecision;
-import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
 
@@ -47,9 +44,9 @@ public class MAVODecisionTreeContributionItem extends ContributionItem {
 
 
 		if (objects.length > 1) {
-			createRefinementMenuItems(objects, parent);
+			return;
 		}
-		else{
+		else {
 			for (Object object : objects) {
 				if (object instanceof MAVOModel) {
 					MAVOModel model = (MAVOModel) object;
@@ -58,31 +55,7 @@ public class MAVODecisionTreeContributionItem extends ContributionItem {
 					MayDecision decision = (MayDecision) object;
 					createDecisionMenuItems(decision, parent);
 				} else if (object instanceof MAVOAlternative) {
-					MAVOAlternative alternative = (MAVOAlternative) object;
-					// Add to alternative
-					EObject model = alternative.eContainer().eContainer();
-					TreeIterator<EObject> allElements = model.eAllContents();
-					while (allElements.hasNext()){
-						boolean inAlternative = false;
-						EObject content = allElements.next();
-						if (!(content instanceof MAVOElement)){
-							continue;
-						}
-						MAVOElement element = (MAVOElement) content;
-						for (MAVOAlternative alt: element.getAlternatives()){
-							if (alt.getFormulaVariable().equals(alternative.getFormulaVariable())){
-								inAlternative = true;
-								break;
-							}
-						}
-						if (inAlternative){
-							createRemoveElementMenuItem(element, alternative, parent);
-						}
-						else {
-							createAddElementMenuItem(element, alternative, parent);
-						}
-					}
-
+					createRefinementMenuItems(objects, parent);
 				}
 			}
 		}
@@ -90,32 +63,10 @@ public class MAVODecisionTreeContributionItem extends ContributionItem {
 	
 	private void createRefinementMenuItems(Object[] objects, Menu parent) {
 		MenuItem makeRefinementItem = new MenuItem(parent, SWT.NONE);
-		makeRefinementItem.setText("Refine based on selected items");
+		makeRefinementItem.setText("Refine based on alternative");
 		makeRefinementItem.addSelectionListener(new MAVODecisionTreeRefinementMenuListener(
 				"Refine model from decision tree", objects));
 		
-	}
-
-	private void createAddElementMenuItem(MAVOElement element,
-			MAVOAlternative alternative, Menu parent) {
-		MenuItem addElementItem = new MenuItem(parent, SWT.NONE);
-		addElementItem.setText("Add element "
-				+ element.getFormulaVariable());
-		addElementItem
-		.addSelectionListener(new MAVODecisionTreeMenuListener(
-				alternative, element, true));
-		
-	}
-
-	private void createRemoveElementMenuItem(MAVOElement element, MAVOAlternative alternative, Menu parent){
-		// Remove element from alternative
-		MenuItem removeElementItem = new MenuItem(parent, SWT.NONE);
-		removeElementItem.setText("Remove element "
-				+ element.getFormulaVariable());
-		removeElementItem
-		.addSelectionListener(new MAVODecisionTreeMenuListener(
-				alternative, element, false));
-
 	}
 
 	private void createModelMenuItems(MAVOModel model, Menu parent) {
