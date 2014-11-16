@@ -22,6 +22,8 @@ import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditor;
@@ -43,7 +45,12 @@ public class MIDDiagramUtils {
 					continue;
 				}
 				midFiles.add(diagramFile);
-				midFiles.add(GMFDiagramUtils.getModelIFile(diagramFile));
+				try {
+					midFiles.add(GMFDiagramUtils.getModelIFile(diagramFile));
+				}
+				catch (Exception e) {
+					MMINTException.print(Type.WARNING, "Can't add model file of MID " + diagramFile.getName(), e);
+				}
 				mids.put(mid, midFiles);
 			}
 		}
