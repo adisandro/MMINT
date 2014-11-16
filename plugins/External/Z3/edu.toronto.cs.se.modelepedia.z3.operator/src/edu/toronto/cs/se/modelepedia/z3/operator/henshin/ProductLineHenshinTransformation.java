@@ -149,7 +149,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 				getMatchedModelObjs(matchNj, nodesD, modelObjsD, modelObjsCDN);
 			}
 			// check phi apply
-			if (checkZ3ApplicabilityFormula(z3IncSolver)) {
+			if (checkZ3ApplicabilityFormula(z3IncSolver, smtEncoding.length())) {
 				return new TransformationApplicabilityCondition(ruleCopyN, matchNi, true); // <NBar,C,D> lifted match
 			}
 		}
@@ -171,7 +171,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			getMatchedModelObjs(match, nodesC, modelObjsC, modelObjsCDN);
 			getMatchedModelObjs(match, nodesD, modelObjsD, modelObjsCDN);
 			// check phi apply
-			if (checkZ3ApplicabilityFormula(z3IncSolver)) {
+			if (checkZ3ApplicabilityFormula(z3IncSolver, smtEncoding.length())) {
 				return new TransformationApplicabilityCondition(ruleCopy, match, true); // <C,D> lifted match
 			}
 		}

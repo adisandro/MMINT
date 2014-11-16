@@ -44,7 +44,9 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
+import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 
 public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 
@@ -119,7 +121,7 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 		}
 	}
 
-	private TransformationApplicabilityCondition checkApplicabilityConditions(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver) {
+	private TransformationApplicabilityCondition checkApplicabilityConditions(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver, int checkpointA) {
 
 		Set<Node> nodesN = new HashSet<Node>();
 		Set<Node> nodesC = new HashSet<Node>();
@@ -170,7 +172,7 @@ matchesN:
 				getMatchedModelObjs(matchNj, nodesD, modelObjsD, modelObjsCDN);
 			}
 			// check apply formula
-			if (checkZ3ApplicabilityFormula(z3IncSolver)) {
+			if (checkZ3ApplicabilityFormula(z3IncSolver, checkpointA)) {
 				return new TransformationApplicabilityCondition(ruleCopyN, matchNi, true); // <NBar,C,D> may match
 			}
 		}
@@ -195,7 +197,7 @@ matchesN:
 			isLiftedMatch |= (modelObjsD.size() > 0);
 			if (isLiftedMatch) {
 				// check apply formula
-				if (checkZ3ApplicabilityFormula(z3IncSolver)) {
+				if (checkZ3ApplicabilityFormula(z3IncSolver, checkpointA)) {
 					return new TransformationApplicabilityCondition(ruleCopy, match, true); // <C,D> may match
 				}
 			}
@@ -211,8 +213,9 @@ matchesN:
 	protected void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver) {
 
 		RuleApplication application = new RuleApplicationImpl(engine);
+		int checkpointA = smtEncoding.length();
 		TransformationApplicabilityCondition condition;
-		while ((condition = checkApplicabilityConditions(rule, engine, graph, z3IncSolver)) != null) {
+		while ((condition = checkApplicabilityConditions(rule, engine, graph, z3IncSolver, checkpointA)) != null) {
 			application.setRule(condition.getMatchedRule());
 			application.setEGraph(graph);
 			// transform
@@ -220,6 +223,7 @@ matchesN:
 			transformLifting(application, condition.getMatch(), condition.isLiftedMatch());
 			if (condition.isLiftedMatch()) {
 				// update encoding
+				checkpointA = smtEncoding.length();
 				createZ3ApplyFormulaConstant(modelObjsA);
 				createZ3ApplyFormulaMatchSetIteration(modelObjsA, SMTLIB_APPLICABILITY_FUN_A, Z3Utils.SMTLIB_AND, Z3Utils.SMTLIB_TRUE);
 				createZ3ApplyFormulaMatchSetIteration(modelObjsA, SMTLIB_APPLICABILITY_FUN_A_OR, Z3Utils.SMTLIB_OR, Z3Utils.SMTLIB_FALSE);

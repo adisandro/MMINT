@@ -180,7 +180,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 			}
 		}
 
-		return checkZ3ApplicabilityFormula(z3IncSolver);
+		return checkZ3ApplicabilityFormula(z3IncSolver, smtEncoding.length());
 	}
 
 	private void doSimulatedLifting(Z3IncrementalSolver z3IncSolver) throws MMINTException {
