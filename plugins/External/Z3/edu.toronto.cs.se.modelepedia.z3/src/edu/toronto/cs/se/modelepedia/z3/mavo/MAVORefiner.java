@@ -220,6 +220,9 @@ public class MAVORefiner {
 			}
 			String formulaVar = ((MAVOElement) refinedModelObj).getFormulaVariable();
 			View diagramView = refinedDiagramViews.get(formulaVar);
+			if (diagramView == null) { // can happen when some diagram views are in their default position
+				continue;
+			}
 			diagramView.setElement(refinedModelObj);
 		}
 		refinedDiagram.setElement(refinedRootModelObj);
