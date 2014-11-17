@@ -63,9 +63,9 @@ public class MAVODecisionTreeContributionItem extends ContributionItem {
 	
 	private void createRefinementMenuItems(Object[] objects, Menu parent) {
 		MenuItem makeRefinementItem = new MenuItem(parent, SWT.NONE);
-		makeRefinementItem.setText("Refine based on alternative");
+		makeRefinementItem.setText("Choose this and refine");
 		makeRefinementItem.addSelectionListener(new MAVODecisionTreeRefinementMenuListener(
-				"Refine model from decision tree", objects));
+				"Choose this and refine", objects));
 		
 	}
 

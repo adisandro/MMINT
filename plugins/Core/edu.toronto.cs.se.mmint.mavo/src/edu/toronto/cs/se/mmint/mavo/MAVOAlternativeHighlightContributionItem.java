@@ -50,9 +50,9 @@ public class MAVOAlternativeHighlightContributionItem extends ContributionItem {
 			if (object instanceof MAVOAlternative) {
 				MAVOAlternative alternative = (MAVOAlternative) object;
 					MenuItem removeElementItem = new MenuItem(parent, SWT.NONE);
-					removeElementItem.setText("Highlight alternative in diagram");
+					removeElementItem.setText("Highlight in diagram");
 					removeElementItem.addSelectionListener(
-						new MAVOAlternativeHighlightMenuListener("Highlight alternative in diagram", alternative)
+						new MAVOAlternativeHighlightMenuListener("Highlight in diagram", alternative)
 					);
 
 			}
