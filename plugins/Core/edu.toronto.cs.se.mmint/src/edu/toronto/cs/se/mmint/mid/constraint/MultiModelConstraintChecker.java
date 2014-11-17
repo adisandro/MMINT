@@ -25,10 +25,12 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
+import edu.toronto.cs.se.mavo.MAVOAlternative;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mavo.library.IMAVOReasoningEngine;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -556,6 +558,11 @@ linkTypes:
 		return reasoner;
 	}
 
+	private static @NonNull IMAVOReasoningEngine getMAVOReasoner(@NonNull String constraintLanguage) throws MMINTException {
+
+		return (IMAVOReasoningEngine) getReasoner(constraintLanguage);
+	}
+
 	/**
 	 * Checks if a constraint is satisfied on an extendible element (only models
 	 * are currently evaluated).
@@ -612,12 +619,27 @@ linkTypes:
 			reasoner = getReasoner(model.getConstraint().getLanguage());
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Skipping constraint refinement", e);
+			MMINTException.print(MMINTException.Type.WARNING, "Skipping constraint-based refinement", e);
 			return null;
 		}
 
 		//TODO MMINT[MU-MMINT] should copy the model constraint to the new model? option to do it or not?
-		return reasoner.refineByConstraint((Model) model);
+		return reasoner.refineByConstraint(model);
+	}
+
+	public static @Nullable Model refineByDecision(@NonNull Model model, @NonNull MAVOAlternative mavoAlternative) {
+
+		IMAVOReasoningEngine reasoner;
+		try {
+			//TODO MMINT[REASONER] Fix IMAVOReasoner vs IReasoner logic
+			reasoner = getMAVOReasoner("SMTLIB");
+		}
+		catch (MMINTException e) {
+			MMINTException.print(MMINTException.Type.WARNING, "Skipping decision-based refinement", e);
+			return null;
+		}
+
+		return reasoner.refineByDecision(model, mavoAlternative);
 	}
 
 }

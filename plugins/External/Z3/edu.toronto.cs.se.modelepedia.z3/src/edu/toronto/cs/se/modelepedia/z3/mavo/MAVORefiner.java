@@ -26,6 +26,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
+import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -153,6 +155,18 @@ public class MAVORefiner {
 		}
 	}
 
+	private void refineDecision(MAVOModel refinedRootModelObj, MAVOAlternative mavoAlternative) {
+
+		MAVODecision mavoDecision = (MAVODecision) mavoAlternative.eContainer();
+		String decisionFormulaVar = mavoDecision.getFormulaVariable();
+		for (MAVODecision mavoDecisionToDelete : refinedRootModelObj.getDecisions()) {
+			if (decisionFormulaVar.equals(mavoDecisionToDelete.getFormulaVariable())) {
+				EcoreUtil.remove(mavoDecisionToDelete);
+				break;
+			}
+		}
+	}
+
 	private void populateRefinementRel(@NonNull ModelRel refinementRel, @NonNull Map<MAVOElement, MAVOElement> refinementMap) {
 
 		ModelEndpointReference modelEndpointRef = refinementRel.getModelEndpointRefs().get(0);
@@ -211,7 +225,7 @@ public class MAVORefiner {
 		refinedDiagram.setElement(refinedRootModelObj);
 	}
 
-	public @NonNull Model refine(@NonNull Model model, @Nullable Diagram modelDiagram, @NonNull String smtEncoding) throws Exception {
+	public @NonNull Model refine(@NonNull Model model, @Nullable Diagram modelDiagram, @Nullable MAVOAlternative mavoAlternative, @NonNull String smtEncoding) throws Exception {
 
 		// create mid artifacts
 		String refinedModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(model.getUri(), REFINED_MODEL_SUFFIX), true, false);
@@ -234,8 +248,11 @@ public class MAVORefiner {
 		MAVOModel refinedRootModelObj = (MAVOModel) MultiModelUtils.getModelFile(refinedModelUri, true);
 		Map<MAVOElement, MAVOElement> refinementMap = new HashMap<MAVOElement, MAVOElement>();
 		Map<String, MAVOElement> modelObjsToRefine = getModelObjectsToRefine(rootModelObj, refinedRootModelObj, refinedModelUri, refinementMap);
-		Map<String, MAVOTruthValue> refinedTruthValues = runZ3SMTSolver(modelObjsToRefine, smtEncoding + Z3Utils.assertion(model.getConstraint().getImplementation()));
+		Map<String, MAVOTruthValue> refinedTruthValues = runZ3SMTSolver(modelObjsToRefine, smtEncoding);
 		refineModel(modelObjsToRefine, refinedTruthValues, refinementMap);
+		if (mavoAlternative != null) {
+			refineDecision(refinedRootModelObj, mavoAlternative);
+		}
 		populateRefinementRel(refinementRel, refinementMap);
 
 		// write refinement to file

@@ -21,7 +21,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -30,13 +29,10 @@ import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOAlternative;
-import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -44,13 +40,11 @@ import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 
 public class MAVODecisionTreeRefinementMenuListener extends MIDContextMenuListener {
 
-	Object[] objects;
-	MultiModel instanceMid;
-	Model model;
+	private Object[] objects;
+	private Model model;
 
 	public MAVODecisionTreeRefinementMenuListener(String menuLabel, Object[] objects){
 
@@ -89,14 +83,13 @@ public class MAVODecisionTreeRefinementMenuListener extends MIDContextMenuListen
 
 	protected class RefineModelCommand extends AbstractTransactionalCommand {
 
-		public RefineModelCommand(TransactionalEditingDomain domain,
-				String label, List affectedFiles) {
+		public RefineModelCommand(TransactionalEditingDomain domain, String label, List affectedFiles) {
+
 			super(domain, label, affectedFiles);
 		}
 
 		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-				IAdaptable info) throws ExecutionException {
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			ArrayList<LogicElement> selectedElements = new ArrayList<LogicElement>();
 			for (Object object: objects) {
@@ -109,61 +102,10 @@ public class MAVODecisionTreeRefinementMenuListener extends MIDContextMenuListen
 					selectedElements.add((LogicElement) object);
 				}
 			}
-			String property = calculateProperty(selectedElements);
 
-			ExtendibleElementConstraint constraint = model.getConstraint();
-			String newConstraint;
-			if (constraint != null && !constraint.getImplementation().equals("")) {
-				String current = constraint.getImplementation();
-				newConstraint = "(and "+current+" "+property+")";
-			}
-			else {
-				constraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
-				constraint.setLanguage("SMTLIB");
-				model.setConstraint(constraint);
-				newConstraint = property;
-			}
-			constraint.setImplementation(newConstraint);
-
-			//TODO MMINT[MU-MMINT] add constraint as parameter in the api, because we want it in the refined model, not the original one
-			//TODO MMINT[MU-MMINT] add decision as parameter in the api, open diagram should be done after deletion
-			Model refinedModel = MultiModelConstraintChecker.refineByConstraint(model);
-			if (!(objects[0] instanceof MAVOAlternative)) {
-				return CommandResult.newOKCommandResult();
-			}
-			MAVODecision decision = (MAVODecision) ((MAVOAlternative) objects[0]).eContainer();
-			String decisionFormulaVar = decision.getFormulaVariable();
-			try {
-				MAVOModel refinedRootModelObj = (MAVOModel) refinedModel.getEMFInstanceRoot();
-				for (MAVODecision decisionToDelete : refinedRootModelObj.getDecisions()) {
-					if (decisionFormulaVar.equals(decisionToDelete.getFormulaVariable())) {
-						EcoreUtil.remove(decisionToDelete);
-						break;
-					}
-				}
-				MultiModelUtils.createModelFile(refinedRootModelObj, refinedModel.getUri(), true);
-			}
-			catch (Exception e) {
-				String message = "Can't delete decision " + decisionFormulaVar + ", please delete it manually from the refined model";
-				MMINTException.print(Type.WARNING, message, e);
-				return CommandResult.newErrorCommandResult(message);
-			}
+			MultiModelConstraintChecker.refineByDecision(model, (MAVOAlternative) selectedElements.get(0));
 
 			return CommandResult.newOKCommandResult();
-		}
-
-		private String calculateProperty(
-				ArrayList<LogicElement> selectedElements) {
-
-			if (selectedElements.size() == 1) {
-				return selectedElements.get(0).getFormulaVariable();
-			}
-			String property = "(and ";
-			for (LogicElement element: selectedElements){
-				property += element.getFormulaVariable()+" ";
-			}
-			property += ")";
-			return property;
 		}
 
 	}

@@ -17,9 +17,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
+import edu.toronto.cs.se.mavo.MAVOAlternative;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mavo.library.IMAVOReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -39,7 +41,7 @@ import edu.toronto.cs.se.modelepedia.z3.mavo.MAVOConcretizationHighlighter;
 import edu.toronto.cs.se.modelepedia.z3.mavo.MAVORefiner;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 
-public class Z3ReasoningEngine implements IReasoningEngine {
+public class Z3ReasoningEngine implements IReasoningEngine, IMAVOReasoningEngine {
 
 	private final static @NonNull String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
 
@@ -149,12 +151,46 @@ public class Z3ReasoningEngine implements IReasoningEngine {
 
 		// refine
 		Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
+		String smtEncoding = z3ModelParser.getSMTLIBEncoding() + Z3Utils.assertion(model.getConstraint().getImplementation());
+		MAVORefiner refiner = new MAVORefiner(this);
 		try {
-			MAVORefiner refiner = new MAVORefiner(this);
-			return refiner.refine(model, modelDiagram, z3ModelParser.getSMTLIBEncoding());
+			return refiner.refine(model, modelDiagram, null, smtEncoding);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.ERROR, "Can't refine the model, aborting (some incomplete result could appear in your instance MID)", e);
+			MMINTException.print(MMINTException.Type.ERROR, "Can't refine the model by constraint, aborting (some incomplete result could appear in your instance MID)", e);
+			return null;
+		}
+	}
+
+	@Override
+	public @Nullable Model refineByDecision(@NonNull Model model, @NonNull MAVOAlternative mavoAlternative) {
+
+		Z3MAVOModelParser z3ModelParser;
+		try {
+			z3ModelParser = generateSMTLIBEncoding(model);
+		}
+		catch (Exception e) {
+			MMINTException.print(MMINTException.Type.ERROR, "Can't generate SMTLIB encoding, aborting refinement", e);
+			return null;
+		}
+
+		// refine
+		Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
+		String smtEncoding = z3ModelParser.getSMTLIBEncoding();
+		if (model.getConstraint() == null) {
+			smtEncoding += Z3Utils.assertion(mavoAlternative.getFormulaVariable());
+		}
+		else {
+			smtEncoding += Z3Utils.assertion(
+				Z3Utils.and(model.getConstraint().getImplementation() + " " + mavoAlternative.getFormulaVariable())
+			);
+		}
+		MAVORefiner refiner = new MAVORefiner(this);
+		try {
+			return refiner.refine(model, modelDiagram, mavoAlternative, smtEncoding);
+		}
+		catch (Exception e) {
+			MMINTException.print(MMINTException.Type.ERROR, "Can't refine the model by decision, aborting (some incomplete result could appear in your instance MID)", e);
 			return null;
 		}
 	}
