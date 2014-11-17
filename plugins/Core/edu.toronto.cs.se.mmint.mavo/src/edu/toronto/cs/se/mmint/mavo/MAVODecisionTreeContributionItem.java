@@ -73,8 +73,7 @@ public class MAVODecisionTreeContributionItem extends ContributionItem {
 		// Add new decision
 		MenuItem addDecisionItem = new MenuItem(parent, SWT.NONE);
 		addDecisionItem.setText("Add a new decision");
-		addDecisionItem.addSelectionListener(new MAVODecisionTreeMenuListener(
-				model));
+		addDecisionItem.addSelectionListener(new MAVODecisionTreeMenuListener("Add a new decision", model));
 
 		// Remove existing decisions
 		for (MAVODecision decision : model.getDecisions()) {
@@ -82,8 +81,7 @@ public class MAVODecisionTreeContributionItem extends ContributionItem {
 			removeDecisionItem.setText("Remove decision "
 					+ decision.getFormulaVariable());
 			removeDecisionItem
-					.addSelectionListener(new MAVODecisionTreeMenuListener(
-							model, decision, false));
+					.addSelectionListener(new MAVODecisionTreeMenuListener("Remove decision ", model, decision, false));
 		}
 	}
 
@@ -92,7 +90,7 @@ public class MAVODecisionTreeContributionItem extends ContributionItem {
 		MenuItem addAlternativeItem = new MenuItem(parent, SWT.NONE);
 		addAlternativeItem.setText("Add new alternative");
 		addAlternativeItem
-				.addSelectionListener(new MAVODecisionTreeMenuListener(decision));
+				.addSelectionListener(new MAVODecisionTreeMenuListener("Add new alternative", decision));
 
 		// Remove existing alternatives
 		for (MAVOAlternative alternative : decision.getAlternatives()) {
@@ -100,8 +98,7 @@ public class MAVODecisionTreeContributionItem extends ContributionItem {
 			removeAlternativeItem.setText("Remove alternative "
 					+ alternative.getFormulaVariable());
 			removeAlternativeItem
-					.addSelectionListener(new MAVODecisionTreeMenuListener(
-							decision, alternative, false));
+					.addSelectionListener(new MAVODecisionTreeMenuListener("Remove alternative ", decision, alternative, false));
 		}
 	}
 }
