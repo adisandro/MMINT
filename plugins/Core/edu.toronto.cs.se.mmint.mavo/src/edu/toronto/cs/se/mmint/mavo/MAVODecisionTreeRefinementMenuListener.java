@@ -21,6 +21,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -28,6 +29,8 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mavo.LogicElement;
+import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -41,6 +44,7 @@ import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 
 public class MAVODecisionTreeRefinementMenuListener extends MIDContextMenuListener {
 
@@ -97,14 +101,13 @@ public class MAVODecisionTreeRefinementMenuListener extends MIDContextMenuListen
 			ArrayList<LogicElement> selectedElements = new ArrayList<LogicElement>();
 			for (Object object: objects) {
 				//skip useless elements
-				if (object instanceof MAVOModel || object instanceof MayDecision){
+				if (object instanceof MAVOModel || object instanceof MayDecision) {
 					continue;
 				}
 				//TODO MMINT[MU-MMINT] use for mavo elements too with command from diagram MAVO context menu
 				if (object instanceof LogicElement){
 					selectedElements.add((LogicElement) object);
 				}
-					
 			}
 			String property = calculateProperty(selectedElements);
 
@@ -123,7 +126,28 @@ public class MAVODecisionTreeRefinementMenuListener extends MIDContextMenuListen
 			constraint.setImplementation(newConstraint);
 
 			//TODO MMINT[MU-MMINT] add constraint as parameter in the api, because we want it in the refined model, not the original one
-			MultiModelConstraintChecker.refineByConstraint(model);
+			//TODO MMINT[MU-MMINT] add decision as parameter in the api, open diagram should be done after deletion
+			Model refinedModel = MultiModelConstraintChecker.refineByConstraint(model);
+			if (!(objects[0] instanceof MAVOAlternative)) {
+				return CommandResult.newOKCommandResult();
+			}
+			MAVODecision decision = (MAVODecision) ((MAVOAlternative) objects[0]).eContainer();
+			String decisionFormulaVar = decision.getFormulaVariable();
+			try {
+				MAVOModel refinedRootModelObj = (MAVOModel) refinedModel.getEMFInstanceRoot();
+				for (MAVODecision decisionToDelete : refinedRootModelObj.getDecisions()) {
+					if (decisionFormulaVar.equals(decisionToDelete.getFormulaVariable())) {
+						EcoreUtil.remove(decisionToDelete);
+						break;
+					}
+				}
+				MultiModelUtils.createModelFile(refinedRootModelObj, refinedModel.getUri(), true);
+			}
+			catch (Exception e) {
+				String message = "Can't delete decision " + decisionFormulaVar + ", please delete it manually from the refined model";
+				MMINTException.print(Type.WARNING, message, e);
+				return CommandResult.newErrorCommandResult(message);
+			}
 
 			return CommandResult.newOKCommandResult();
 		}
@@ -131,10 +155,10 @@ public class MAVODecisionTreeRefinementMenuListener extends MIDContextMenuListen
 		private String calculateProperty(
 				ArrayList<LogicElement> selectedElements) {
 
-			String property = "(and ";
 			if (selectedElements.size() == 1) {
 				return selectedElements.get(0).getFormulaVariable();
 			}
+			String property = "(and ";
 			for (LogicElement element: selectedElements){
 				property += element.getFormulaVariable()+" ";
 			}

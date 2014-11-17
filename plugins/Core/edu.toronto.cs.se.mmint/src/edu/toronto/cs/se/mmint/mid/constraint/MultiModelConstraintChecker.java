@@ -616,6 +616,7 @@ linkTypes:
 			return null;
 		}
 
+		//TODO MMINT[MU-MMINT] should copy the model constraint to the new model? option to do it or not?
 		return reasoner.refineByConstraint((Model) model);
 	}
 
