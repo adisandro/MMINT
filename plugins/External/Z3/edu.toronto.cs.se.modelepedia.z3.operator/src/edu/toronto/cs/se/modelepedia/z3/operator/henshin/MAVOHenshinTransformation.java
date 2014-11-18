@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.z3.operator.henshin;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
@@ -28,6 +29,7 @@ import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
 import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
 import org.eclipse.emf.henshin.interpreter.util.InterpreterUtil;
+import org.eclipse.emf.henshin.model.Formula;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.NestedCondition;
 import org.eclipse.emf.henshin.model.Node;
@@ -121,61 +123,87 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 
 	private TransformationApplicabilityCondition checkApplicabilityConditions(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver, int checkpointA) {
 
-		Set<Node> nodesN = new HashSet<Node>();
-		Set<Node> nodesC = new HashSet<Node>();
-		Set<Node> nodesD = new HashSet<Node>();
-		//TODO MMINT[LIFTING] loop through all nacs
-		Rule ruleCopyN = EcoreUtil.copy(rule);
-//		NestedCondition conditionN = ruleCopyN.getLhs().getNestedConditions().get(0);
-		NestedCondition conditionN = ruleCopyN.getLhs().getNAC(ANAC_NAME);
-		// (N)ac
-		getCDNodes(ruleCopyN, nodesC, nodesD);
-		getNNodesAndChangeToC(conditionN, ruleCopyN, nodesN);
-		List<Match> matchesN = InterpreterUtil.findAllMatches(engine, ruleCopyN, graph, null);
+		Set<Node> nodesN, nodesC, nodesD;
+
+		for (int i = 0; i < rule.getLhs().getNACs().size(); i++) { // one Nac at a time
+			Rule ruleCopyN = EcoreUtil.copy(rule);
+			NestedCondition conditionN = ruleCopyN.getLhs().getNACs().get(i);
+			ruleCopyN.getLhs().setFormula((Formula) conditionN.eContainer()); // remove other Nacs
+			nodesN = new LinkedHashSet<Node>();
+			nodesC = new LinkedHashSet<Node>();
+			nodesD = new LinkedHashSet<Node>();
+			getCDNodes(ruleCopyN, nodesC, nodesD);
+			getNNodesAndChangeToC(conditionN, ruleCopyN, nodesN);
+			List<Match> matchesN = InterpreterUtil.findAllMatches(engine, ruleCopyN, graph, null);
 matchesN:
-		for (int i = 0; i < matchesN.size(); i++) {
-			boolean isLiftedMatchNBar = true;
-			modelObjsNBar.clear();
-			Set<MAVOElement> modelObjsNi = new HashSet<MAVOElement>();
-			modelObjsC.clear();
-			modelObjsD.clear();
-			modelObjsCDN.clear();
-			Match matchNi = matchesN.get(i);
-			getMatchedModelObjs(matchNi, nodesN, modelObjsNi, modelObjsCDN);
-			isLiftedMatchNBar &= (modelObjsNi.size() > 0);
-			// check forall NBar condition
-			if (!isLiftedMatchNBar) {
-				continue;
-			}
-			modelObjsNBar.add(modelObjsNi);
-			getMatchedModelObjs(matchNi, nodesC, modelObjsC, modelObjsCDN);
-			getMatchedModelObjs(matchNi, nodesD, modelObjsD, modelObjsCDN);
 			for (int j = 0; j < matchesN.size(); j++) {
-				if (i == j) {
-					continue;
-				}
-				Match matchNj = matchesN.get(j);
-				if (!areMatchesOverlapping(matchNi, matchNj, nodesC, nodesD)) {
-					continue;
-				}
+				boolean isLiftedMatchNBar = true;
+				modelObjsNBar.clear();
 				Set<MAVOElement> modelObjsNj = new HashSet<MAVOElement>();
+				modelObjsC.clear();
+				modelObjsD.clear();
+				modelObjsCDN.clear();
+				Match matchNj = matchesN.get(j);
 				getMatchedModelObjs(matchNj, nodesN, modelObjsNj, modelObjsCDN);
 				isLiftedMatchNBar &= (modelObjsNj.size() > 0);
 				// check forall NBar condition
 				if (!isLiftedMatchNBar) {
-					continue matchesN;
+					continue;
 				}
 				modelObjsNBar.add(modelObjsNj);
 				getMatchedModelObjs(matchNj, nodesC, modelObjsC, modelObjsCDN);
 				getMatchedModelObjs(matchNj, nodesD, modelObjsD, modelObjsCDN);
-			}
-			// check apply formula
-			if (checkZ3ApplicabilityFormula(z3IncSolver, checkpointA)) {
-				return new TransformationApplicabilityCondition(ruleCopyN, matchNi, true); // <NBar,C,D> may match
+				for (int k = 0; k < matchesN.size(); k++) { // same Nac for NBar
+					if (j == k) {
+						continue;
+					}
+					Match matchNk = matchesN.get(k);
+					if (!areMatchesOverlapping(matchNj, matchNk, nodesC, nodesC, nodesD, nodesD)) {
+						continue;
+					}
+					Set<MAVOElement> modelObjsNk = new HashSet<MAVOElement>();
+					getMatchedModelObjs(matchNk, nodesN, modelObjsNk, modelObjsCDN);
+					isLiftedMatchNBar &= (modelObjsNk.size() > 0);
+					// check forall NBar condition
+					if (!isLiftedMatchNBar) {
+						continue matchesN;
+					}
+					modelObjsNBar.add(modelObjsNk);
+				}
+				for (int l = 0; l < rule.getLhs().getNACs().size(); l++) { // other Nacs for NBar
+					if (l == i) {
+						continue;
+					}
+					Rule ruleCopyNl = EcoreUtil.copy(rule);
+					NestedCondition conditionNl = ruleCopyNl.getLhs().getNACs().get(l);
+					ruleCopyNl.getLhs().setFormula((Formula) conditionNl.eContainer()); // remove other Nacs
+					Set<Node> nodesNl = new LinkedHashSet<Node>(), nodesCl = new LinkedHashSet<Node>(), nodesDl = new LinkedHashSet<Node>();
+					getCDNodes(ruleCopyNl, nodesCl, nodesDl);
+					getNNodesAndChangeToC(conditionNl, ruleCopyNl, nodesNl);
+					List<Match> matchesNl = InterpreterUtil.findAllMatches(engine, ruleCopyNl, graph, null);
+					for (int m = 0; m < matchesNl.size(); m++) {
+						Match matchNm = matchesNl.get(m);
+						if (!areMatchesOverlapping(matchNj, matchNm, nodesC, nodesCl, nodesD, nodesDl)) {
+							continue;
+						}
+						Set<MAVOElement> modelObjsNm = new HashSet<MAVOElement>();
+						getMatchedModelObjs(matchNm, nodesNl, modelObjsNm, modelObjsCDN);
+						isLiftedMatchNBar &= (modelObjsNm.size() > 0);
+						// check forall NBar condition
+						if (!isLiftedMatchNBar) {
+							continue matchesN;
+						}
+						modelObjsNBar.add(modelObjsNm);
+					}
+				}
+				// check apply formula
+				if (checkZ3ApplicabilityFormula(z3IncSolver, checkpointA)) {
+					return new TransformationApplicabilityCondition(ruleCopyN, matchNj, true); // <NBar,C,D> may match
+				}
 			}
 		}
 
-		// no (N)ac matched
+		// no Nac matched
 		Rule ruleCopy = EcoreUtil.copy(rule);
 		nodesN = new HashSet<Node>();
 		nodesC = new HashSet<Node>();

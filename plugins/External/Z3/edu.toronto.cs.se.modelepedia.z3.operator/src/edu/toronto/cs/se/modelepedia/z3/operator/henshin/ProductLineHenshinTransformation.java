@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.z3.operator.henshin;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
@@ -111,9 +112,9 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 
 	private TransformationApplicabilityCondition checkApplicabilityConditions(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver) {
 
-		Set<Node> nodesN = new HashSet<Node>();
-		Set<Node> nodesC = new HashSet<Node>();
-		Set<Node> nodesD = new HashSet<Node>();
+		Set<Node> nodesN = new LinkedHashSet<Node>();
+		Set<Node> nodesC = new LinkedHashSet<Node>();
+		Set<Node> nodesD = new LinkedHashSet<Node>();
 		//TODO MMINT[LIFTING] loop through all nacs
 		// try to match (N)ac
 		// access nodes of the transformation rule, detect N,C,D nodes, transform N nodes into C
@@ -139,7 +140,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 					continue;
 				}
 				Match matchNj = matchesN.get(j);
-				if (!areMatchesOverlapping(matchNi, matchNj, nodesC, nodesD)) {
+				if (!areMatchesOverlapping(matchNi, matchNj, nodesC, nodesC, nodesD, nodesD)) {
 					continue;
 				}
 				Set<MAVOElement> modelObjsNj = new HashSet<MAVOElement>();

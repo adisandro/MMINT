@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.z3.operator.henshin;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -398,18 +399,33 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		}
 	}
 
-	protected boolean areMatchesOverlapping(Match match1, Match match2, Set<Node> nodesC, Set<Node> nodesD) {
+	protected boolean areMatchesOverlapping(Match match1, Match match2, Set<Node> nodesC1, Set<Node> nodesC2, Set<Node> nodesD1, Set<Node> nodesD2) {
 
-		for (Node nodeC : nodesC) {
-			EObject nodeTargetC1 = match1.getNodeTarget(nodeC);
-			EObject nodeTargetC2 = match2.getNodeTarget(nodeC);
+		// nodesC1 and nodesC2 are the same set of nodes by construction, but they could be from different copies of the same rule (same for nodesD1 and nodesD2)
+		// the underlying model element instead is the same
+		boolean same = (nodesC1 == nodesC2);
+		Iterator<Node> iter1 = nodesC1.iterator(), iter2 = null;
+		if (!same) {
+			iter2 = nodesC2.iterator();
+		}
+		while (iter1.hasNext()) {
+			Node nodeC1 = iter1.next();
+			Node nodeC2 = (same) ? nodeC1 : iter2.next();
+			EObject nodeTargetC1 = match1.getNodeTarget(nodeC1);
+			EObject nodeTargetC2 = match2.getNodeTarget(nodeC2);
 			if (nodeTargetC1 != nodeTargetC2) {
 				return false;
 			}
 		}
-		for (Node nodeD : nodesD) {
-			EObject nodeTargetD1 = match1.getNodeTarget(nodeD);
-			EObject nodeTargetD2 = match2.getNodeTarget(nodeD);
+		iter1 = nodesD1.iterator();
+		if (!same) {
+			iter2 = nodesD2.iterator();
+		}
+		while (iter1.hasNext()) {
+			Node nodeD1 = iter1.next();
+			Node nodeD2 = (same) ? nodeD1 : iter2.next();
+			EObject nodeTargetD1 = match1.getNodeTarget(nodeD1);
+			EObject nodeTargetD2 = match2.getNodeTarget(nodeD2);
 			if (nodeTargetD1 != nodeTargetD2) {
 				return false;
 			}
