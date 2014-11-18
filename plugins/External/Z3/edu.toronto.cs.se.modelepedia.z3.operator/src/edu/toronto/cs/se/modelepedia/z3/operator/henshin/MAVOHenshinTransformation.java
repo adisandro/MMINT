@@ -131,10 +131,10 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 		// (N)ac
 		getCDNodes(ruleCopyN, nodesC, nodesD);
 		getNNodesAndChangeToC(conditionN, ruleCopyN, nodesN);
-		boolean isLiftedMatchNBar = true;
 		List<Match> matchesN = InterpreterUtil.findAllMatches(engine, ruleCopyN, graph, null);
 matchesN:
 		for (int i = 0; i < matchesN.size(); i++) {
+			boolean isLiftedMatchNBar = true;
 			modelObjsNBar.clear();
 			Set<MAVOElement> modelObjsNi = new HashSet<MAVOElement>();
 			modelObjsC.clear();

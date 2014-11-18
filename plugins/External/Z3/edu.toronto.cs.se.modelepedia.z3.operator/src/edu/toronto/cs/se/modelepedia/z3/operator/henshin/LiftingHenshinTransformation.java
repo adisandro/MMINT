@@ -339,49 +339,49 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 
 	protected abstract void updateLiterals();
 
-	protected void getNNodesAndChangeToC(NestedCondition conditionNac, Rule ruleNac, Set<Node> nodesN) {
+	protected void getNNodesAndChangeToC(NestedCondition conditionN, Rule ruleN, Set<Node> nodesN) {
 
 		// (N)ac nodes
 		Map<Node, Node> forbid2preserve = new HashMap<Node, Node>();
-		for (Node nodeNac : conditionNac.getConclusion().getNodes()) {
-			if (nodeNac.getAction() != null && nodeNac.getAction().getType() == Action.Type.FORBID) {
-				Node newNodeNac = HenshinFactory.eINSTANCE.createNode();
-				ruleNac.getLhs().getNodes().add(newNodeNac);
-				nodesN.add(newNodeNac);
-				forbid2preserve.put(nodeNac, newNodeNac);
-				newNodeNac.setType(nodeNac.getType());
+		for (Node nodeN : conditionN.getConclusion().getNodes()) {
+			if (nodeN.getAction() != null && nodeN.getAction().getType() == Action.Type.FORBID) {
+				Node newNodeN = HenshinFactory.eINSTANCE.createNode();
+				ruleN.getLhs().getNodes().add(newNodeN);
+				nodesN.add(newNodeN);
+				forbid2preserve.put(nodeN, newNodeN);
+				newNodeN.setType(nodeN.getType());
 				// Action.Type.PRESERVE has to be set at last
-				newNodeNac.setAction(new Action(Action.Type.PRESERVE));
+				newNodeN.setAction(new Action(Action.Type.PRESERVE));
 				// copy attributes
-				for (Attribute attributeNac : nodeNac.getAttributes()) {
-					Attribute newAttributeNac = HenshinFactory.eINSTANCE.createAttribute();
-					newNodeNac.getAttributes().add(newAttributeNac);
-					newAttributeNac.setType(attributeNac.getType());
-					newAttributeNac.setValue(attributeNac.getValue());
-					newAttributeNac.setAction(new Action(Action.Type.PRESERVE));
+				for (Attribute attributeN : nodeN.getAttributes()) {
+					Attribute newAttributeN = HenshinFactory.eINSTANCE.createAttribute();
+					newNodeN.getAttributes().add(newAttributeN);
+					newAttributeN.setType(attributeN.getType());
+					newAttributeN.setValue(attributeN.getValue());
+					newAttributeN.setAction(new Action(Action.Type.PRESERVE));
 				}
 			}
 		}
-		for (Edge edgeNac : conditionNac.getConclusion().getEdges()) {
-			if (edgeNac.getAction() != null && edgeNac.getAction().getType() == Action.Type.FORBID) {
-				Edge newEdgeNac = HenshinFactory.eINSTANCE.createEdge();
-				ruleNac.getLhs().getEdges().add(newEdgeNac);
-				newEdgeNac.setType(edgeNac.getType());
-				Node newSrcNodeNac = forbid2preserve.get(edgeNac.getSource());
-				if (newSrcNodeNac == null) {
-					newSrcNodeNac = conditionNac.getMappings().getOrigin(edgeNac.getSource());
+		for (Edge edgeN : conditionN.getConclusion().getEdges()) {
+			if (edgeN.getAction() != null && edgeN.getAction().getType() == Action.Type.FORBID) {
+				Edge newEdgeN = HenshinFactory.eINSTANCE.createEdge();
+				ruleN.getLhs().getEdges().add(newEdgeN);
+				newEdgeN.setType(edgeN.getType());
+				Node newSrcNodeN = forbid2preserve.get(edgeN.getSource());
+				if (newSrcNodeN == null) {
+					newSrcNodeN = conditionN.getMappings().getOrigin(edgeN.getSource());
 				}
-				newEdgeNac.setSource(newSrcNodeNac);
-				Node newTgtNodeNac = forbid2preserve.get(edgeNac.getTarget());
-				if (newTgtNodeNac == null) {
-					newTgtNodeNac = conditionNac.getMappings().getOrigin(edgeNac.getTarget());
+				newEdgeN.setSource(newSrcNodeN);
+				Node newTgtNodeN = forbid2preserve.get(edgeN.getTarget());
+				if (newTgtNodeN == null) {
+					newTgtNodeN = conditionN.getMappings().getOrigin(edgeN.getTarget());
 				}
-				newEdgeNac.setTarget(newTgtNodeNac);
+				newEdgeN.setTarget(newTgtNodeN);
 				// Action.Type.PRESERVE has to be set at last
-				newEdgeNac.setAction(new Action(Action.Type.PRESERVE));
+				newEdgeN.setAction(new Action(Action.Type.PRESERVE));
 			}
 		}
-		ruleNac.getLhs().setFormula(null);
+		ruleN.getLhs().setFormula(null);
 	}
 
 	protected void getCDNodes(Rule rule, Set<Node> nodesC, Set<Node> nodesD) {
