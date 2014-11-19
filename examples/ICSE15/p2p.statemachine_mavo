@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <statemachine_mavo:StateMachine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mavo="http://se.cs.toronto.edu/MAVO" xmlns:statemachine_mavo="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
-  <decisions xsi:type="mavo:MayDecision" formulaVariable="PU1" description="What happens when a download finishes?">
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision1" description="What happens when a download finishes?">
     <alternatives formulaVariable="Benevolent" description="When done download, automatically start seeding" mavoElements="//@transitions.5"/>
     <alternatives formulaVariable="Selfish" description="When done download, become idle" mavoElements="//@transitions.2"/>
     <alternatives formulaVariable="Compromise" description="When done download, only seed to connected peers" mavoElements="//@transitions.4 //@states.3 //@transitions.3"/>
   </decisions>
-  <decisions xsi:type="mavo:MayDecision" formulaVariable="PU2" description="Can users initiate seeding?">
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision2" description="Can users initiate seeding?">
     <alternatives formulaVariable="CanShare" description="Yes they can" mavoElements="//@transitions.7"/>
     <alternatives formulaVariable="CannotShare" description="No they can't"/>
   </decisions>
-  <decisions xsi:type="mavo:MayDecision" formulaVariable="PU3" description="Can users restart completed downloads?">
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision3" description="Can users restart completed downloads?">
     <alternatives formulaVariable="CanRestart" description="Yes they can" mavoElements="//@transitions.6"/>
     <alternatives formulaVariable="CannotRestart" description="No they can't"/>
   </decisions>
