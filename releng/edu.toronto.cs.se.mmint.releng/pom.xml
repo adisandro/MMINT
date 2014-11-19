@@ -167,6 +167,7 @@
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.state.edit</module>
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.state.editor</module>
   	<module>../../features/edu.toronto.cs.se.mmint.feature</module>
+  	<module>../../features/edu.toronto.cs.se.mummint.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.z3.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.emftocsp.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.kleisli.feature</module>
