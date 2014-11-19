@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statemachine_mavo:StateMachine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mavo="http://se.cs.toronto.edu/MAVO" xmlns:statemachine_mavo="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision1" description="What happens when a download finishes?">
+    <alternatives formulaVariable="Benevolent" description="When done download, automatically start seeding" mavoElements="//@transitions.4"/>
+    <alternatives formulaVariable="Selfish" description="When done download, become idle"/>
+    <alternatives formulaVariable="Compromise" description="When done download, only seed to connected peers" mavoElements="//@transitions.3 //@states.3 //@transitions.2"/>
+  </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision2" description="Can users initiate seeding?">
+    <alternatives formulaVariable="CanShare" description="Yes they can" mavoElements="//@transitions.6"/>
+    <alternatives formulaVariable="CannotShare" description="No they can't"/>
+  </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision3" description="Can users restart completed downloads?">
+    <alternatives formulaVariable="CanRestart" description="Yes they can" mavoElements="//@transitions.5"/>
+    <alternatives formulaVariable="CannotRestart" description="No they can't"/>
+  </decisions>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Idle" name="Idle"/>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Seeding" name="Seeding">
+    <internalActions formulaVariable="a1" may="true" trigger="entry" action="share()"/>
+    <internalActions formulaVariable="a3" may="true" trigger="entry" action="completed()"/>
+  </states>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Leeching" name="Leeching">
+    <internalActions formulaVariable="a0" may="true" trigger="entry" action="start()"/>
+  </states>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Finishing" may="true" alternatives="//@decisions.0/@alternatives.2" name="Finishing">
+    <internalActions formulaVariable="a2" may="true" trigger="entry" action="completed()"/>
+  </states>
+  <transitions formulaVariable="start" trigger="" action="" source="//@states.0" target="//@states.2"/>
+  <transitions formulaVariable="cancelLI" trigger="" action="cancel()" source="//@states.2" target="//@states.0"/>
+  <transitions formulaVariable="completedLF" may="true" alternatives="//@decisions.0/@alternatives.2" trigger="" action="" source="//@states.2" target="//@states.3"/>
+  <transitions formulaVariable="peersDone" may="true" alternatives="//@decisions.0/@alternatives.2" trigger="" action="peersDone()" source="//@states.3" target="//@states.0"/>
+  <transitions formulaVariable="completedLS" may="true" alternatives="//@decisions.0/@alternatives.0" trigger="" action="" source="//@states.2" target="//@states.1"/>
+  <transitions formulaVariable="restart" may="true" alternatives="//@decisions.2/@alternatives.0" trigger="" action="restart()" source="//@states.1" target="//@states.2"/>
+  <transitions formulaVariable="share" may="true" alternatives="//@decisions.1/@alternatives.0" trigger="" action="" source="//@states.0" target="//@states.1"/>
+  <transitions formulaVariable="cancelSI" trigger="" action="cancel()" source="//@states.1" target="//@states.0"/>
+</statemachine_mavo:StateMachine>
