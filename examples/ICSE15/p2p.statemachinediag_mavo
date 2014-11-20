@@ -9,7 +9,7 @@
     </children>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_1PmVsWuAEeS0XrwwRdF7LQ"/>
     <element xmi:type="statemachine_mavo:State" href="p2p.statemachine_mavo#//@states.0"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1PmVsmuAEeS0XrwwRdF7LQ" x="132" y="193" width="61"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1PmVsmuAEeS0XrwwRdF7LQ" x="132" y="288" width="61"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_38YsEGuAEeS0XrwwRdF7LQ" type="2001" fontName="Cantarell" fontHeight="12">
     <children xmi:type="notation:DecorationNode" xmi:id="_38ZTIGuAEeS0XrwwRdF7LQ" type="5003"/>
@@ -20,7 +20,7 @@
     </children>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_38YsEWuAEeS0XrwwRdF7LQ"/>
     <element xmi:type="statemachine_mavo:State" href="p2p.statemachine_mavo#//@states.1"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_38YsEmuAEeS0XrwwRdF7LQ" x="372" y="24" width="85"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_38YsEmuAEeS0XrwwRdF7LQ" x="372" y="119" width="85"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_4qsjkGuAEeS0XrwwRdF7LQ" type="2001" fontName="Cantarell" fontHeight="12">
     <children xmi:type="notation:DecorationNode" xmi:id="_4qtKoGuAEeS0XrwwRdF7LQ" type="5003"/>
@@ -31,7 +31,7 @@
     </children>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_4qsjkWuAEeS0XrwwRdF7LQ"/>
     <element xmi:type="statemachine_mavo:State" href="p2p.statemachine_mavo#//@states.2"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4qsjkmuAEeS0XrwwRdF7LQ" x="612" y="203"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4qsjkmuAEeS0XrwwRdF7LQ" x="612" y="298"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_5kwYEGuAEeS0XrwwRdF7LQ" type="2001" fontName="Cantarell" fontHeight="12">
     <children xmi:type="notation:DecorationNode" xmi:id="_5kwYE2uAEeS0XrwwRdF7LQ" type="5003"/>
@@ -42,7 +42,7 @@
     </children>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_5kwYEWuAEeS0XrwwRdF7LQ"/>
     <element xmi:type="statemachine_mavo:State" href="p2p.statemachine_mavo#//@states.3"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5kwYEmuAEeS0XrwwRdF7LQ" x="336" y="372"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5kwYEmuAEeS0XrwwRdF7LQ" x="336" y="467"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_tnqT8WuAEeS0XrwwRdF7LQ"/>
   <element xmi:type="statemachine_mavo:StateMachine" href="p2p.statemachine_mavo#/"/>
