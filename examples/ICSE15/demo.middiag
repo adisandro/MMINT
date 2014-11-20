@@ -4,10 +4,10 @@
     <children xmi:type="notation:DecorationNode" xmi:id="_tv-icGuAEeS0XrwwRdF7LQ" type="5011"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_tv-icWuAEeS0XrwwRdF7LQ" type="5016"/>
     <styles xmi:type="notation:DescriptionStyle" xmi:id="_tv9UUWuAEeS0XrwwRdF7LQ"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_tv9UUmuAEeS0XrwwRdF7LQ" fontName="Cantarell" fontHeight="10"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_tv9UUmuAEeS0XrwwRdF7LQ" fontName="Cantarell" fontHeight="12"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_tv9UU2uAEeS0XrwwRdF7LQ" hint="Mid"/>
     <element xmi:type="mid:Model" href="demo.mid#//@models.0"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tv9UVGuAEeS0XrwwRdF7LQ" x="220" y="135"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tv9UVGuAEeS0XrwwRdF7LQ" x="72" y="36" height="73"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_jQj9QGuAEeS0XrwwRdF7LQ"/>
   <element xmi:type="mid:MultiModel" href="demo.mid#/"/>
