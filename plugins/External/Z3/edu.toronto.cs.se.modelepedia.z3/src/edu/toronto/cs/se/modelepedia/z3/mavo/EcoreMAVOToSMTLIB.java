@@ -69,6 +69,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 		//TODO MMINT[REASONING] generalize for non-mavo too
 		//TODO MMINT[REASONING] refactor common code/encoding for mayOnly and not
 		//TODO MMINT[REASONING] there's something wrong, at least one certain element per sort is required to get things right in full mavo
+		//TODO MMINT[REASONING] improve create formula vars 1) use other strings if name not present 2) check uniqueness 3) use names of src/tgt for edges
 		Model mavoModel = actualParameters.get(0);
 		boolean mayOnly = MAVOUtils.createFormulaVars(mavoModel);
 		if (this.mayOnly == null) {

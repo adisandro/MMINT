@@ -144,7 +144,7 @@ public class MAVORefiner {
 					refinedModelObj.getAlternatives().clear();
 					break;
 				case FALSE:
-					EcoreUtil.delete(refinedModelObj);
+					EcoreUtil.delete(refinedModelObj, true);
 					refinementMap.put(refinementMap.remove(refinedModelObj), null);
 					break;
 				case MAYBE:
@@ -161,7 +161,7 @@ public class MAVORefiner {
 		String decisionFormulaVar = mavoDecision.getFormulaVariable();
 		for (MAVODecision mavoDecisionToDelete : refinedRootModelObj.getDecisions()) {
 			if (decisionFormulaVar.equals(mavoDecisionToDelete.getFormulaVariable())) {
-				EcoreUtil.remove(mavoDecisionToDelete);
+				EcoreUtil.delete(mavoDecisionToDelete, true);
 				break;
 			}
 		}
@@ -208,7 +208,7 @@ public class MAVORefiner {
 			}
 			String formulaVar = refinementEntry.getKey().getFormulaVariable();
 			View diagramViewToRemove = refinedDiagramViews.get(formulaVar);
-			EcoreUtil.remove(diagramViewToRemove);
+			EcoreUtil.delete(diagramViewToRemove, true);
 		}
 		// assign views to refined model objects
 		TreeIterator<EObject> iter = refinedRootModelObj.eAllContents();
