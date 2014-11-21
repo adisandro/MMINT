@@ -136,7 +136,7 @@
   <classes formulaVariable="EBoolean" name="EBoolean"/>
   <classes formulaVariable="EInt" name="EInt"/>
   <associations formulaVariable="details" name="details" source="//@classes.2" target="//@classes.1"/>
-  <associations name="eModelElement" source="//@classes.2" target="//@classes.0"/>
+  <associations formulaVariable="eModelElement" name="eModelElement" source="//@classes.2" target="//@classes.0"/>
   <associations formulaVariable="eType" name="eType" source="//@classes.5" target="//@classes.6"/>
   <associations formulaVariable="eClassifiers" name="eClassifiers" source="//@classes.7" target="//@classes.6"/>
   <associations formulaVariable="eSuperPackage" may="true" alternatives="//@decisions.4/@alternatives.0" name="eSuperPackage" source="//@classes.7" target="//@classes.7"/>

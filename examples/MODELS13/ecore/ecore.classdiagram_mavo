@@ -3,7 +3,7 @@
   <classes formulaVariable="EModelElement" name="EModelElement" subclasses="//@classes.2/@superclass.0 //@classes.3/@superclass.0 //@classes.4/@superclass.0" associationsAsTarget="//@associations.1"/>
   <classes formulaVariable="EStringToStringMapEntry" name="EStringToStringMapEntry" associationsAsTarget="//@associations.0">
     <ownedAttributes formulaVariable="ekey" name="ekey" type="//@classes.17"/>
-    <ownedAttributes formulaVariable="value" name="value" type="//@classes.17"/>
+    <ownedAttributes formulaVariable="value-EStringToStringMapEntry" name="value" type="//@classes.17"/>
   </classes>
   <classes formulaVariable="EAnnotation" name="EAnnotation" associationsAsSource="//@associations.0 //@associations.1">
     <ownedAttributes formulaVariable="source" name="source" type="//@classes.17"/>
@@ -28,7 +28,7 @@
   <classes formulaVariable="EClassifier" name="EClassifier" subclasses="//@classes.11/@superclass.0 //@classes.12/@superclass.0" associationsAsTarget="//@associations.2 //@associations.3 //@associations.6">
     <ownedAttributes formulaVariable="instanceClassName" name="instanceClassName" type="//@classes.17"/>
     <ownedAttributes formulaVariable="instanceClass" name="InstanceClass" type="//@classes.17"/>
-    <ownedAttributes formulaVariable="defaultValue" name="defaultValue" type="//@classes.17"/>
+    <ownedAttributes formulaVariable="defaultValue-EClassifier" name="defaultValue" type="//@classes.17"/>
     <superclass formulaVariable="supEClassifier" target="//@classes.3"/>
   </classes>
   <classes formulaVariable="EPackage" name="EPackage" associationsAsSource="//@associations.3 //@associations.4 //@associations.16" associationsAsTarget="//@associations.4">
@@ -37,7 +37,7 @@
     <superclass formulaVariable="supEPackage" target="//@classes.3"/>
   </classes>
   <classes formulaVariable="EEnumLiteral" name="EEnumLiteral" associationsAsTarget="//@associations.10">
-    <ownedAttributes formulaVariable="value" name="value" type="//@classes.19"/>
+    <ownedAttributes formulaVariable="value-EEnumLiteral" name="value" type="//@classes.19"/>
     <ownedAttributes formulaVariable="instance" name="instance" type="//@classes.17"/>
     <ownedAttributes formulaVariable="literal" name="literal" type="//@classes.17"/>
     <superclass formulaVariable="supEEnumLiteral" target="//@classes.3"/>
@@ -65,7 +65,7 @@
     <ownedAttributes formulaVariable="volatile" name="volatile" type="//@classes.18"/>
     <ownedAttributes formulaVariable="transient" name="transient" type="//@classes.18"/>
     <ownedAttributes formulaVariable="defaultValueLiteral" name="defaultValueLiteral" type="//@classes.17"/>
-    <ownedAttributes formulaVariable="defaultValue" name="defaultValue" type="//@classes.17"/>
+    <ownedAttributes formulaVariable="defaultValue-EStructuralFeature" name="defaultValue" type="//@classes.17"/>
     <ownedAttributes formulaVariable="unsettable" name="unsettable" type="//@classes.18"/>
     <ownedAttributes formulaVariable="derived" name="derived" type="//@classes.18"/>
     <superclass formulaVariable="supEStructuralFeature" target="//@classes.5"/>
@@ -84,7 +84,7 @@
   <classes formulaVariable="EBoolean" name="EBoolean"/>
   <classes formulaVariable="EInt" name="EInt"/>
   <associations formulaVariable="details" name="details" source="//@classes.2" target="//@classes.1"/>
-  <associations name="eModelElement" source="//@classes.2" target="//@classes.0"/>
+  <associations formulaVariable="eModelElement" name="eModelElement" source="//@classes.2" target="//@classes.0"/>
   <associations formulaVariable="eType" name="eType" source="//@classes.5" target="//@classes.6"/>
   <associations formulaVariable="eClassifiers" name="eClassifiers" source="//@classes.7" target="//@classes.6"/>
   <associations formulaVariable="eSuperPackage" name="eSuperPackage" source="//@classes.7" target="//@classes.7"/>
