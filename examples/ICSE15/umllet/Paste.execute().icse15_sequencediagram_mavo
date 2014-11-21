@@ -2,85 +2,89 @@
 <icse15_sequencediagram_mavo:SequenceDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:icse15_sequencediagram_mavo="http://se.cs.toronto.edu/modelepedia/ICSE15_SequenceDiagram_MAVO" xmlns:mavo="http://se.cs.toronto.edu/MAVO">
   <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision1" description="ClasslessInstance">
     <alternatives formulaVariable="RC1" description="Remove the object"/>
-    <alternatives formulaVariable="RC2"/>
-    <alternatives formulaVariable="RC3a" description="Assign the object to the existing class Paste" mavoElements="//@messages.7/@operation.5 //@messages.6/@operation.5 //@lifelines.5/@class.5 //@classes.0/@operations.1"/>
-    <alternatives formulaVariable="RC3b" description="Assign the object to the existing class GridElement" mavoElements="//@classes.1/@operations.3 //@messages.7/@operation.4 //@messages.6/@operation.4 //@lifelines.5/@class.4"/>
-    <alternatives formulaVariable="RC3c" description="Assign the object to the existing class DiagramHandler" mavoElements="//@classes.2/@operations.2 //@messages.7/@operation.3 //@messages.6/@operation.3 //@lifelines.5/@class.3"/>
-    <alternatives formulaVariable="RC3d" description="Assign the object to the existing class AddElement" mavoElements="//@messages.6/@operation.2 //@messages.7/@operation.2 //@classes.3/@operations.2 //@lifelines.5/@class.2"/>
-    <alternatives formulaVariable="RC3e" description="Assign the object to the existing class DrawPanel" mavoElements="//@lifelines.5/@class.1 //@messages.6/@operation.1 //@messages.7/@operation.1 //@classes.4/@operations.2"/>
-    <alternatives formulaVariable="RC4" description="Assign the object to a new class" mavoElements="//@lifelines.5/@class.0 //@classes.5 //@classes.5/@operations.0 //@messages.6/@operation.0 //@messages.7/@operation.0 //@classes.5/@operations.1"/>
+    <alternatives formulaVariable="RC2a" description="Replace the object with the existing object self" mavoElements="//@messages.8/@sourceLifeline.5 //@messages.6/@targetLifeline.5 //@messages.7/@targetLifeline.5 //@classes.0/@operations.1 //@messages.6/@operation.5 //@messages.7/@operation.5"/>
+    <alternatives formulaVariable="RC2b" description="Replace the object with the existing object e" mavoElements="//@messages.8/@sourceLifeline.4 //@messages.7/@targetLifeline.4 //@messages.6/@targetLifeline.4 //@classes.1/@operations.3 //@messages.7/@operation.4 //@messages.6/@operation.4"/>
+    <alternatives formulaVariable="RC2c" description="Replace the object with the existing object handler" mavoElements="//@messages.8/@sourceLifeline.3 //@messages.6/@targetLifeline.3 //@messages.7/@targetLifeline.3 //@classes.2/@operations.2 //@messages.7/@operation.3 //@messages.6/@operation.3"/>
+    <alternatives formulaVariable="RC2d" description="Replace the object with the existing object elem" mavoElements="//@messages.8/@sourceLifeline.2 //@messages.6/@targetLifeline.2 //@messages.7/@targetLifeline.2 //@classes.3/@operations.2 //@messages.6/@operation.2 //@messages.7/@operation.2"/>
+    <alternatives formulaVariable="RC2e" description="Replace the object with the existing object pnl" mavoElements="//@messages.8/@sourceLifeline.1 //@messages.6/@targetLifeline.1 //@messages.7/@targetLifeline.1 //@classes.4/@operations.2 //@messages.6/@operation.1 //@messages.7/@operation.1"/>
+    <alternatives formulaVariable="RC3a" description="Assign the object to the existing class Paste" mavoElements="//@messages.7/@operation.5 //@messages.6/@operation.5 //@lifelines.5/@class.5 //@classes.0/@operations.1 //@lifelines.5"/>
+    <alternatives formulaVariable="RC3b" description="Assign the object to the existing class GridElement" mavoElements="//@classes.1/@operations.3 //@messages.7/@operation.4 //@messages.6/@operation.4 //@lifelines.5/@class.4 //@lifelines.5"/>
+    <alternatives formulaVariable="RC3c" description="Assign the object to the existing class DiagramHandler" mavoElements="//@classes.2/@operations.2 //@messages.7/@operation.3 //@messages.6/@operation.3 //@lifelines.5/@class.3 //@lifelines.5"/>
+    <alternatives formulaVariable="RC3d" description="Assign the object to the existing class AddElement" mavoElements="//@messages.6/@operation.2 //@messages.7/@operation.2 //@classes.3/@operations.2 //@lifelines.5/@class.2 //@lifelines.5"/>
+    <alternatives formulaVariable="RC3e" description="Assign the object to the existing class DrawPanel" mavoElements="//@lifelines.5/@class.1 //@messages.6/@operation.1 //@messages.7/@operation.1 //@classes.4/@operations.2 //@lifelines.5"/>
+    <alternatives formulaVariable="RC4" description="Assign the object to a new class" mavoElements="//@lifelines.5/@class.0 //@classes.5 //@classes.5/@operations.0 //@messages.6/@operation.0 //@messages.7/@operation.0 //@classes.5/@operations.1 //@lifelines.5"/>
   </decisions>
-  <lifelines formulaVariable="self" name="self" messagesAsSource="//@messages.0/@sourceLifeline.0 //@messages.1/@sourceLifeline.0 //@messages.2/@sourceLifeline.0 //@messages.3/@sourceLifeline.0 //@messages.4/@sourceLifeline.0 //@messages.5/@sourceLifeline.0 //@messages.6/@sourceLifeline.0 //@messages.7/@sourceLifeline.0">
-    <class target="//@classes.0"/>
+  <lifelines formulaVariable="self" name="self" messagesAsSource="//@messages.0/@sourceLifeline.0 //@messages.1/@sourceLifeline.0 //@messages.2/@sourceLifeline.0 //@messages.3/@sourceLifeline.0 //@messages.4/@sourceLifeline.0 //@messages.5/@sourceLifeline.0 //@messages.6/@sourceLifeline.0 //@messages.7/@sourceLifeline.0 //@messages.8/@sourceLifeline.5" messagesAsTarget="//@messages.7/@targetLifeline.5 //@messages.6/@targetLifeline.5">
+    <class formulaVariable="cr-self2Paste" target="//@classes.0"/>
   </lifelines>
-  <lifelines formulaVariable="e" name="e" messagesAsTarget="//@messages.0/@targetLifeline.0 //@messages.2/@targetLifeline.0">
-    <class target="//@classes.1"/>
+  <lifelines formulaVariable="e" name="e" messagesAsSource="//@messages.8/@sourceLifeline.4" messagesAsTarget="//@messages.0/@targetLifeline.0 //@messages.2/@targetLifeline.0 //@messages.7/@targetLifeline.4 //@messages.6/@targetLifeline.4">
+    <class formulaVariable="cr-e2GridElement" target="//@classes.1"/>
   </lifelines>
-  <lifelines formulaVariable="handler" name="handler" messagesAsTarget="//@messages.1/@targetLifeline.0 //@messages.3/@targetLifeline.0">
-    <class target="//@classes.2"/>
+  <lifelines formulaVariable="handler" name="handler" messagesAsSource="//@messages.8/@sourceLifeline.3" messagesAsTarget="//@messages.1/@targetLifeline.0 //@messages.3/@targetLifeline.0 //@messages.7/@targetLifeline.3 //@messages.6/@targetLifeline.3">
+    <class formulaVariable="cr-handler2DiagramHandler" target="//@classes.2"/>
   </lifelines>
-  <lifelines formulaVariable="elem" name="elem" messagesAsTarget="//@messages.4/@targetLifeline.0 //@messages.5/@targetLifeline.0">
-    <class target="//@classes.3"/>
+  <lifelines formulaVariable="elem" name="elem" messagesAsSource="//@messages.8/@sourceLifeline.2" messagesAsTarget="//@messages.4/@targetLifeline.0 //@messages.5/@targetLifeline.0 //@messages.7/@targetLifeline.2 //@messages.6/@targetLifeline.2">
+    <class formulaVariable="cr-elem2AddElement" target="//@classes.3"/>
   </lifelines>
-  <lifelines formulaVariable="pnl" name="pnl" messagesAsTarget="//@messages.8/@targetLifeline.0">
-    <class target="//@classes.4"/>
+  <lifelines formulaVariable="pnl" name="pnl" messagesAsSource="//@messages.8/@sourceLifeline.1" messagesAsTarget="//@messages.8/@targetLifeline.0 //@messages.7/@targetLifeline.1 //@messages.6/@targetLifeline.1">
+    <class formulaVariable="cr-pnl2DrawPanel" target="//@classes.4"/>
   </lifelines>
-  <lifelines formulaVariable="positioner" name="positioner" messagesAsSource="//@messages.8/@sourceLifeline.0" messagesAsTarget="//@messages.6/@targetLifeline.0 //@messages.7/@targetLifeline.0">
-    <class may="true" alternatives="//@decisions.0/@alternatives.7" target="//@classes.5"/>
-    <class may="true" alternatives="//@decisions.0/@alternatives.6" target="//@classes.4"/>
-    <class may="true" alternatives="//@decisions.0/@alternatives.5" target="//@classes.3"/>
-    <class may="true" alternatives="//@decisions.0/@alternatives.4" target="//@classes.2"/>
-    <class may="true" alternatives="//@decisions.0/@alternatives.3" target="//@classes.1"/>
-    <class may="true" alternatives="//@decisions.0/@alternatives.2" target="//@classes.0"/>
+  <lifelines formulaVariable="positioner" may="true" alternatives="//@decisions.0/@alternatives.11 //@decisions.0/@alternatives.10 //@decisions.0/@alternatives.9 //@decisions.0/@alternatives.8 //@decisions.0/@alternatives.7 //@decisions.0/@alternatives.6" name="positioner" messagesAsSource="//@messages.8/@sourceLifeline.0" messagesAsTarget="//@messages.6/@targetLifeline.0 //@messages.7/@targetLifeline.0">
+    <class formulaVariable="cr-positioner2NewClass" may="true" alternatives="//@decisions.0/@alternatives.11" target="//@classes.5"/>
+    <class formulaVariable="cr-positioner2DrawPanel" may="true" alternatives="//@decisions.0/@alternatives.10" target="//@classes.4"/>
+    <class formulaVariable="cr-positioner2AddElement" may="true" alternatives="//@decisions.0/@alternatives.9" target="//@classes.3"/>
+    <class formulaVariable="cr-positioner2DiagramHandler" may="true" alternatives="//@decisions.0/@alternatives.8" target="//@classes.2"/>
+    <class formulaVariable="cr-positioner2GridElement" may="true" alternatives="//@decisions.0/@alternatives.7" target="//@classes.1"/>
+    <class formulaVariable="cr-positioner2Paste" may="true" alternatives="//@decisions.0/@alternatives.6" target="//@classes.0"/>
   </lifelines>
   <classes formulaVariable="Paste" name="Paste" lifelines="//@lifelines.0/@class.0 //@lifelines.5/@class.5">
     <operations formulaVariable="Paste_constructor" name="Paste()" messages="//@messages.6/@operation.5"/>
-    <operations formulaVariable="moveToTop-Paste" may="true" alternatives="//@decisions.0/@alternatives.2" name="moveToTop(Paste, GridElement)" messages="//@messages.7/@operation.5"/>
+    <operations formulaVariable="moveToTop-Paste" may="true" alternatives="//@decisions.0/@alternatives.6 //@decisions.0/@alternatives.1" name="moveToTop(Paste, GridElement)" messages="//@messages.7/@operation.5"/>
   </classes>
   <classes formulaVariable="GridElement" name="GridElement" lifelines="//@lifelines.1/@class.0 //@lifelines.5/@class.4">
-    <operations formulaVariable="getX" name="getX()" messages="//@messages.0/@operation.0 //@messages.2/@operation.0"/>
-    <operations formulaVariable="getY" name="getY()"/>
+    <operations formulaVariable="getX" name="getX()" messages="//@messages.0/@operation.0"/>
+    <operations formulaVariable="getY" name="getY()" messages="//@messages.2/@operation.0"/>
     <operations formulaVariable="GridElement_constructor" name="GridElement()" messages="//@messages.6/@operation.4"/>
-    <operations formulaVariable="moveToTop-GridElement" may="true" alternatives="//@decisions.0/@alternatives.3" name="moveToTop(Paste, GridElement)" messages="//@messages.7/@operation.4"/>
+    <operations formulaVariable="moveToTop-GridElement" may="true" alternatives="//@decisions.0/@alternatives.7 //@decisions.0/@alternatives.2" name="moveToTop(Paste, GridElement)" messages="//@messages.7/@operation.4"/>
   </classes>
   <classes formulaVariable="DiagramHandler" name="DiagramHandler" lifelines="//@lifelines.2/@class.0 //@lifelines.5/@class.3">
     <operations formulaVariable="mult" name="mult()" messages="//@messages.1/@operation.0 //@messages.3/@operation.0"/>
     <operations formulaVariable="DiagramHandler_constructor" name="DiagramHandler()" messages="//@messages.6/@operation.3"/>
-    <operations formulaVariable="moveToTop-DiagramHandler" may="true" alternatives="//@decisions.0/@alternatives.4" name="moveToTop(Paste, GridElement)" messages="//@messages.7/@operation.3"/>
+    <operations formulaVariable="moveToTop-DiagramHandler" may="true" alternatives="//@decisions.0/@alternatives.8 //@decisions.0/@alternatives.3" name="moveToTop(Paste, GridElement)" messages="//@messages.7/@operation.3"/>
   </classes>
   <classes formulaVariable="AddElement" name="AddElement" lifelines="//@lifelines.3/@class.0 //@lifelines.5/@class.2">
     <operations formulaVariable="AddElement_constructor" name="AddElement(GridElement, int, int, int)" messages="//@messages.4/@operation.0 //@messages.6/@operation.2"/>
     <operations formulaVariable="execute" name="execute(DiagramHandler)" messages="//@messages.5/@operation.0"/>
-    <operations formulaVariable="moveToTop-AddElement" may="true" alternatives="//@decisions.0/@alternatives.5" name="moveToTop(Paste, GridElement)" messages="//@messages.7/@operation.2"/>
+    <operations formulaVariable="moveToTop-AddElement" may="true" alternatives="//@decisions.0/@alternatives.9 //@decisions.0/@alternatives.4" name="moveToTop(Paste, GridElement)" messages="//@messages.7/@operation.2"/>
   </classes>
   <classes formulaVariable="DrawPanel" name="DrawPanel" lifelines="//@lifelines.4/@class.0 //@lifelines.5/@class.1">
     <operations formulaVariable="setComponentZOrder" name="setComponentZOrder(GridElement, int)" messages="//@messages.8/@operation.0"/>
     <operations formulaVariable="DrawPanel_constructor" name="DrawPanel()" messages="//@messages.6/@operation.1"/>
-    <operations formulaVariable="moveToTop-DrawPanel" may="true" alternatives="//@decisions.0/@alternatives.6" name="moveToTop(Paste, GridElement)" messages="//@messages.7/@operation.1"/>
+    <operations formulaVariable="moveToTop-DrawPanel" may="true" alternatives="//@decisions.0/@alternatives.10 //@decisions.0/@alternatives.5" name="moveToTop(Paste, GridElement)" messages="//@messages.7/@operation.1"/>
   </classes>
-  <classes formulaVariable="NewClass" may="true" alternatives="//@decisions.0/@alternatives.7" name="NewClass" lifelines="//@lifelines.5/@class.0">
-    <operations formulaVariable="NewClass_constructor" may="true" alternatives="//@decisions.0/@alternatives.7" name="NewClass()" messages="//@messages.6/@operation.0"/>
-    <operations formulaVariable="moveToTop-NewClass" may="true" alternatives="//@decisions.0/@alternatives.7" name="moveToTop(Paste, GridElement)" messages="//@messages.7/@operation.0"/>
+  <classes formulaVariable="NewClass" may="true" alternatives="//@decisions.0/@alternatives.11" name="NewClass" lifelines="//@lifelines.5/@class.0">
+    <operations formulaVariable="NewClass_constructor" may="true" alternatives="//@decisions.0/@alternatives.11" name="NewClass()" messages="//@messages.6/@operation.0"/>
+    <operations formulaVariable="moveToTop-NewClass" may="true" alternatives="//@decisions.0/@alternatives.11" name="moveToTop(Paste, GridElement)" messages="//@messages.7/@operation.0"/>
   </classes>
   <messages formulaVariable="getX_message" name="getX()">
-    <operation target="//@classes.1/@operations.0"/>
+    <operation formulaVariable="or-getX_message2getX" target="//@classes.1/@operations.0"/>
     <sourceLifeline target="//@lifelines.0"/>
     <targetLifeline target="//@lifelines.1"/>
   </messages>
   <messages formulaVariable="mult1_message" name="mult()">
-    <operation target="//@classes.2/@operations.0"/>
-    <sourceLifeline target="//@lifelines.0"/>
-    <targetLifeline target="//@lifelines.2"/>
+    <operation formulaVariable="or-mult1_message2mult" target="//@classes.2/@operations.0"/>
+    <sourceLifeline formulaVariable="slr-mult1_message2self" target="//@lifelines.0"/>
+    <targetLifeline formulaVariable="tlr-mult1_message2handler" target="//@lifelines.2"/>
   </messages>
   <messages formulaVariable="getY_message" name="getY()">
-    <operation target="//@classes.1/@operations.0"/>
-    <sourceLifeline target="//@lifelines.0"/>
-    <targetLifeline target="//@lifelines.1"/>
+    <operation formulaVariable="or-getY_message2getY" target="//@classes.1/@operations.1"/>
+    <sourceLifeline formulaVariable="slr-getY_message2self" target="//@lifelines.0"/>
+    <targetLifeline formulaVariable="tlr-getY_message2e" target="//@lifelines.1"/>
   </messages>
   <messages formulaVariable="mult2_message" name="mult()">
-    <operation target="//@classes.2/@operations.0"/>
-    <sourceLifeline target="//@lifelines.0"/>
-    <targetLifeline target="//@lifelines.2"/>
+    <operation formulaVariable="or-mult2_message2mult" target="//@classes.2/@operations.0"/>
+    <sourceLifeline formulaVariable="slr-mult2_message2self" target="//@lifelines.0"/>
+    <targetLifeline formulaVariable="tlr-mult2_message2handler" target="//@lifelines.2"/>
   </messages>
   <messages formulaVariable="AddElement_message" name="AddElement(e, x, y, zoom)">
     <operation target="//@classes.3/@operations.0"/>
@@ -93,28 +97,43 @@
     <targetLifeline target="//@lifelines.3"/>
   </messages>
   <messages formulaVariable="new_message" name="new()">
-    <operation may="true" alternatives="//@decisions.0/@alternatives.7" target="//@classes.5/@operations.0"/>
-    <operation may="true" alternatives="//@decisions.0/@alternatives.6" target="//@classes.4/@operations.1"/>
-    <operation may="true" alternatives="//@decisions.0/@alternatives.5" target="//@classes.3/@operations.0"/>
-    <operation may="true" alternatives="//@decisions.0/@alternatives.4" target="//@classes.2/@operations.1"/>
-    <operation may="true" alternatives="//@decisions.0/@alternatives.3" target="//@classes.1/@operations.2"/>
-    <operation may="true" alternatives="//@decisions.0/@alternatives.2" target="//@classes.0/@operations.0"/>
+    <operation may="true" alternatives="//@decisions.0/@alternatives.11" target="//@classes.5/@operations.0"/>
+    <operation may="true" alternatives="//@decisions.0/@alternatives.10 //@decisions.0/@alternatives.5" target="//@classes.4/@operations.1"/>
+    <operation may="true" alternatives="//@decisions.0/@alternatives.9 //@decisions.0/@alternatives.4" target="//@classes.3/@operations.0"/>
+    <operation may="true" alternatives="//@decisions.0/@alternatives.8 //@decisions.0/@alternatives.3" target="//@classes.2/@operations.1"/>
+    <operation may="true" alternatives="//@decisions.0/@alternatives.7 //@decisions.0/@alternatives.2" target="//@classes.1/@operations.2"/>
+    <operation may="true" alternatives="//@decisions.0/@alternatives.6 //@decisions.0/@alternatives.1" target="//@classes.0/@operations.0"/>
     <sourceLifeline target="//@lifelines.0"/>
     <targetLifeline target="//@lifelines.5"/>
+    <targetLifeline may="true" alternatives="//@decisions.0/@alternatives.5" target="//@lifelines.4"/>
+    <targetLifeline may="true" alternatives="//@decisions.0/@alternatives.4" target="//@lifelines.3"/>
+    <targetLifeline may="true" alternatives="//@decisions.0/@alternatives.3" target="//@lifelines.2"/>
+    <targetLifeline may="true" alternatives="//@decisions.0/@alternatives.2" target="//@lifelines.1"/>
+    <targetLifeline may="true" alternatives="//@decisions.0/@alternatives.1" target="//@lifelines.0"/>
   </messages>
   <messages formulaVariable="moveToTop_message" name="moveToTop(self, e)">
-    <operation may="true" alternatives="//@decisions.0/@alternatives.7" target="//@classes.5/@operations.1"/>
-    <operation may="true" alternatives="//@decisions.0/@alternatives.6" target="//@classes.4/@operations.2"/>
-    <operation may="true" alternatives="//@decisions.0/@alternatives.5" target="//@classes.3/@operations.2"/>
-    <operation may="true" alternatives="//@decisions.0/@alternatives.4" target="//@classes.2/@operations.2"/>
-    <operation may="true" alternatives="//@decisions.0/@alternatives.3" target="//@classes.1/@operations.3"/>
-    <operation may="true" alternatives="//@decisions.0/@alternatives.2" target="//@classes.0/@operations.1"/>
+    <operation may="true" alternatives="//@decisions.0/@alternatives.11" target="//@classes.5/@operations.1"/>
+    <operation may="true" alternatives="//@decisions.0/@alternatives.10 //@decisions.0/@alternatives.5" target="//@classes.4/@operations.2"/>
+    <operation may="true" alternatives="//@decisions.0/@alternatives.9 //@decisions.0/@alternatives.4" target="//@classes.3/@operations.2"/>
+    <operation may="true" alternatives="//@decisions.0/@alternatives.8 //@decisions.0/@alternatives.3" target="//@classes.2/@operations.2"/>
+    <operation may="true" alternatives="//@decisions.0/@alternatives.7 //@decisions.0/@alternatives.2" target="//@classes.1/@operations.3"/>
+    <operation may="true" alternatives="//@decisions.0/@alternatives.6 //@decisions.0/@alternatives.1" target="//@classes.0/@operations.1"/>
     <sourceLifeline target="//@lifelines.0"/>
     <targetLifeline target="//@lifelines.5"/>
+    <targetLifeline may="true" alternatives="//@decisions.0/@alternatives.5" target="//@lifelines.4"/>
+    <targetLifeline may="true" alternatives="//@decisions.0/@alternatives.4" target="//@lifelines.3"/>
+    <targetLifeline may="true" alternatives="//@decisions.0/@alternatives.3" target="//@lifelines.2"/>
+    <targetLifeline may="true" alternatives="//@decisions.0/@alternatives.2" target="//@lifelines.1"/>
+    <targetLifeline may="true" alternatives="//@decisions.0/@alternatives.1" target="//@lifelines.0"/>
   </messages>
   <messages formulaVariable="setComponentZOrder_message" name="setComponentZOrder(e, 0)">
     <operation target="//@classes.4/@operations.0"/>
     <sourceLifeline target="//@lifelines.5"/>
+    <sourceLifeline may="true" alternatives="//@decisions.0/@alternatives.5" target="//@lifelines.4"/>
+    <sourceLifeline may="true" alternatives="//@decisions.0/@alternatives.4" target="//@lifelines.3"/>
+    <sourceLifeline may="true" alternatives="//@decisions.0/@alternatives.3" target="//@lifelines.2"/>
+    <sourceLifeline may="true" alternatives="//@decisions.0/@alternatives.2" target="//@lifelines.1"/>
+    <sourceLifeline may="true" alternatives="//@decisions.0/@alternatives.1" target="//@lifelines.0"/>
     <targetLifeline target="//@lifelines.4"/>
   </messages>
 </icse15_sequencediagram_mavo:SequenceDiagram>
