@@ -68,8 +68,8 @@
   </classes>
   <messages formulaVariable="getX_message" name="getX()">
     <operation formulaVariable="or-getX_message2getX" target="//@classes.1/@operations.0"/>
-    <sourceLifeline target="//@lifelines.0"/>
-    <targetLifeline target="//@lifelines.1"/>
+    <sourceLifeline formulaVariable="slr-getX_message2self" target="//@lifelines.0"/>
+    <targetLifeline formulaVariable="tlr-getX_message2e" target="//@lifelines.1"/>
   </messages>
   <messages formulaVariable="mult1_message" name="mult()">
     <operation formulaVariable="or-mult1_message2mult" target="//@classes.2/@operations.0"/>
