@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class#getOperations <em>Operations</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class#getObjects <em>Objects</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class#getLifelines <em>Lifelines</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,21 +49,21 @@ public interface Class extends NamedElement {
 	EList<Operation> getOperations();
 
 	/**
-	 * Returns the value of the '<em><b>Objects</b></em>' reference list.
+	 * Returns the value of the '<em><b>Lifelines</b></em>' reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference}.
 	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Objects</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Lifelines</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Objects</em>' reference list.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage#getClass_Objects()
+	 * @return the value of the '<em>Lifelines</em>' reference list.
+	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage#getClass_Lifelines()
 	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference#getTarget
 	 * @model opposite="target"
 	 * @generated
 	 */
-	EList<ClassReference> getObjects();
+	EList<ClassReference> getLifelines();
 
 } // Class

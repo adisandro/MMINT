@@ -33,7 +33,7 @@ import edu.toronto.cs.se.mavo.MAVOReference;
 public interface ClassReference extends MAVOReference {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object#getClass_ <em>Class</em>}'.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline#getClass_ <em>Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' container reference isn't clear,
@@ -41,13 +41,13 @@ public interface ClassReference extends MAVOReference {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' container reference.
-	 * @see #setSource(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object)
+	 * @see #setSource(Lifeline)
 	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage#getClassReference_Source()
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object#getClass_
+	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline#getClass_
 	 * @model opposite="class" required="true" transient="false"
 	 * @generated
 	 */
-	edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object getSource();
+	Lifeline getSource();
 
 	/**
 	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference#getSource <em>Source</em>}' container reference.
@@ -57,11 +57,11 @@ public interface ClassReference extends MAVOReference {
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object value);
+	void setSource(Lifeline value);
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class#getObjects <em>Objects</em>}'.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class#getLifelines <em>Lifelines</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear,
@@ -71,8 +71,8 @@ public interface ClassReference extends MAVOReference {
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class)
 	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage#getClassReference_Target()
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class#getObjects
-	 * @model opposite="objects" required="true"
+	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class#getLifelines
+	 * @model opposite="lifelines" required="true"
 	 * @generated
 	 */
 	edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class getTarget();

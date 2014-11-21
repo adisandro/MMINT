@@ -21,7 +21,6 @@ import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_Sequence
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.NamedElement;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.OperationReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram;
@@ -104,10 +103,6 @@ public class ICSE15_SequenceDiagram_MAVOAdapterFactory extends AdapterFactoryImp
 				return createLifelineAdapter();
 			}
 			@Override
-			public Adapter caseObject(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object object) {
-				return createObjectAdapter();
-			}
-			@Override
 			public Adapter caseClass(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class object) {
 				return createClassAdapter();
 			}
@@ -118,10 +113,6 @@ public class ICSE15_SequenceDiagram_MAVOAdapterFactory extends AdapterFactoryImp
 			@Override
 			public Adapter caseMessage(Message object) {
 				return createMessageAdapter();
-			}
-			@Override
-			public Adapter caseObjectReference(ObjectReference object) {
-				return createObjectReferenceAdapter();
 			}
 			@Override
 			public Adapter caseClassReference(ClassReference object) {
@@ -218,20 +209,6 @@ public class ICSE15_SequenceDiagram_MAVOAdapterFactory extends AdapterFactoryImp
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object <em>Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object
-	 * @generated
-	 */
-	public Adapter createObjectAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class <em>Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -270,20 +247,6 @@ public class ICSE15_SequenceDiagram_MAVOAdapterFactory extends AdapterFactoryImp
 	 * @generated
 	 */
 	public Adapter createMessageAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference <em>Object Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference
-	 * @generated
-	 */
-	public Adapter createObjectReferenceAdapter() {
 		return null;
 	}
 

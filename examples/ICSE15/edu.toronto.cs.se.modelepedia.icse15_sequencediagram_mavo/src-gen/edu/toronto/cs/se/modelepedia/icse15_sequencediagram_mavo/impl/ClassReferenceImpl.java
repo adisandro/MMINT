@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mavo.impl.MAVOReferenceImpl;
 
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage;
+import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -75,9 +76,9 @@ public class ClassReferenceImpl extends MAVOReferenceImpl implements ClassRefere
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object getSource() {
+	public Lifeline getSource() {
 		if (eContainerFeatureID() != ICSE15_SequenceDiagram_MAVOPackage.CLASS_REFERENCE__SOURCE) return null;
-		return (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object)eInternalContainer();
+		return (Lifeline)eInternalContainer();
 	}
 
 	/**
@@ -85,7 +86,7 @@ public class ClassReferenceImpl extends MAVOReferenceImpl implements ClassRefere
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object newSource, NotificationChain msgs) {
+	public NotificationChain basicSetSource(Lifeline newSource, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newSource, ICSE15_SequenceDiagram_MAVOPackage.CLASS_REFERENCE__SOURCE, msgs);
 		return msgs;
 	}
@@ -95,7 +96,7 @@ public class ClassReferenceImpl extends MAVOReferenceImpl implements ClassRefere
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSource(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object newSource) {
+	public void setSource(Lifeline newSource) {
 		if (newSource != eInternalContainer() || (eContainerFeatureID() != ICSE15_SequenceDiagram_MAVOPackage.CLASS_REFERENCE__SOURCE && newSource != null)) {
 			if (EcoreUtil.isAncestor(this, newSource))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -103,7 +104,7 @@ public class ClassReferenceImpl extends MAVOReferenceImpl implements ClassRefere
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newSource != null)
-				msgs = ((InternalEObject)newSource).eInverseAdd(this, ICSE15_SequenceDiagram_MAVOPackage.OBJECT__CLASS, edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object.class, msgs);
+				msgs = ((InternalEObject)newSource).eInverseAdd(this, ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__CLASS, Lifeline.class, msgs);
 			msgs = basicSetSource(newSource, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -161,9 +162,9 @@ public class ClassReferenceImpl extends MAVOReferenceImpl implements ClassRefere
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
-				msgs = ((InternalEObject)target).eInverseRemove(this, ICSE15_SequenceDiagram_MAVOPackage.CLASS__OBJECTS, edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class.class, msgs);
+				msgs = ((InternalEObject)target).eInverseRemove(this, ICSE15_SequenceDiagram_MAVOPackage.CLASS__LIFELINES, edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class.class, msgs);
 			if (newTarget != null)
-				msgs = ((InternalEObject)newTarget).eInverseAdd(this, ICSE15_SequenceDiagram_MAVOPackage.CLASS__OBJECTS, edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class.class, msgs);
+				msgs = ((InternalEObject)newTarget).eInverseAdd(this, ICSE15_SequenceDiagram_MAVOPackage.CLASS__LIFELINES, edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class.class, msgs);
 			msgs = basicSetTarget(newTarget, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -182,10 +183,10 @@ public class ClassReferenceImpl extends MAVOReferenceImpl implements ClassRefere
 			case ICSE15_SequenceDiagram_MAVOPackage.CLASS_REFERENCE__SOURCE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetSource((edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object)otherEnd, msgs);
+				return basicSetSource((Lifeline)otherEnd, msgs);
 			case ICSE15_SequenceDiagram_MAVOPackage.CLASS_REFERENCE__TARGET:
 				if (target != null)
-					msgs = ((InternalEObject)target).eInverseRemove(this, ICSE15_SequenceDiagram_MAVOPackage.CLASS__OBJECTS, edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class.class, msgs);
+					msgs = ((InternalEObject)target).eInverseRemove(this, ICSE15_SequenceDiagram_MAVOPackage.CLASS__LIFELINES, edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class.class, msgs);
 				return basicSetTarget((edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -216,7 +217,7 @@ public class ClassReferenceImpl extends MAVOReferenceImpl implements ClassRefere
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case ICSE15_SequenceDiagram_MAVOPackage.CLASS_REFERENCE__SOURCE:
-				return eInternalContainer().eInverseRemove(this, ICSE15_SequenceDiagram_MAVOPackage.OBJECT__CLASS, edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object.class, msgs);
+				return eInternalContainer().eInverseRemove(this, ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__CLASS, Lifeline.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -247,7 +248,7 @@ public class ClassReferenceImpl extends MAVOReferenceImpl implements ClassRefere
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ICSE15_SequenceDiagram_MAVOPackage.CLASS_REFERENCE__SOURCE:
-				setSource((edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object)newValue);
+				setSource((Lifeline)newValue);
 				return;
 			case ICSE15_SequenceDiagram_MAVOPackage.CLASS_REFERENCE__TARGET:
 				setTarget((edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class)newValue);
@@ -265,7 +266,7 @@ public class ClassReferenceImpl extends MAVOReferenceImpl implements ClassRefere
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ICSE15_SequenceDiagram_MAVOPackage.CLASS_REFERENCE__SOURCE:
-				setSource((edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object)null);
+				setSource((Lifeline)null);
 				return;
 			case ICSE15_SequenceDiagram_MAVOPackage.CLASS_REFERENCE__TARGET:
 				setTarget((edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class)null);

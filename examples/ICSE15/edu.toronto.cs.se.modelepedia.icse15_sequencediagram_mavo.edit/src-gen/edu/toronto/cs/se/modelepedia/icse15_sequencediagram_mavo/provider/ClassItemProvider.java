@@ -55,25 +55,25 @@ public class ClassItemProvider extends NamedElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addObjectsPropertyDescriptor(object);
+			addLifelinesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Objects feature.
+	 * This adds a property descriptor for the Lifelines feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addObjectsPropertyDescriptor(Object object) {
+	protected void addLifelinesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Class_objects_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Class_objects_feature", "_UI_Class_type"),
-				 ICSE15_SequenceDiagram_MAVOPackage.Literals.CLASS__OBJECTS,
+				 getString("_UI_Class_lifelines_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_lifelines_feature", "_UI_Class_type"),
+				 ICSE15_SequenceDiagram_MAVOPackage.Literals.CLASS__LIFELINES,
 				 true,
 				 false,
 				 true,

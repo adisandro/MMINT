@@ -21,7 +21,6 @@ import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_Sequence
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.NamedElement;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.OperationReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram;
@@ -108,17 +107,9 @@ public class ICSE15_SequenceDiagram_MAVOSwitch<T> extends Switch<T> {
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE: {
 				Lifeline lifeline = (Lifeline)theEObject;
 				T result = caseLifeline(lifeline);
+				if (result == null) result = caseNamedElement(lifeline);
 				if (result == null) result = caseMAVOElement(lifeline);
 				if (result == null) result = caseLogicElement(lifeline);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ICSE15_SequenceDiagram_MAVOPackage.OBJECT: {
-				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object object = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object)theEObject;
-				T result = caseObject(object);
-				if (result == null) result = caseNamedElement(object);
-				if (result == null) result = caseMAVOElement(object);
-				if (result == null) result = caseLogicElement(object);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -146,15 +137,6 @@ public class ICSE15_SequenceDiagram_MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = caseNamedElement(message);
 				if (result == null) result = caseMAVOElement(message);
 				if (result == null) result = caseLogicElement(message);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ICSE15_SequenceDiagram_MAVOPackage.OBJECT_REFERENCE: {
-				ObjectReference objectReference = (ObjectReference)theEObject;
-				T result = caseObjectReference(objectReference);
-				if (result == null) result = caseMAVOReference(objectReference);
-				if (result == null) result = caseMAVOElement(objectReference);
-				if (result == null) result = caseLogicElement(objectReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -244,21 +226,6 @@ public class ICSE15_SequenceDiagram_MAVOSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Object</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Object</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseObject(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -300,21 +267,6 @@ public class ICSE15_SequenceDiagram_MAVOSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMessage(Message object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Object Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Object Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseObjectReference(ObjectReference object) {
 		return null;
 	}
 

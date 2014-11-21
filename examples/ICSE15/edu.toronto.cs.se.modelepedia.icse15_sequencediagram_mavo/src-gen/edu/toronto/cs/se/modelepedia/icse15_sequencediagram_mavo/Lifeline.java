@@ -11,8 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo;
 
-import edu.toronto.cs.se.mavo.MAVOElement;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -23,34 +21,34 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline#getObject <em>Object</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline#getClass_ <em>Class</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline#getMessagesAsSource <em>Messages As Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline#getMessagesAsTarget <em>Messages As Target</em>}</li>
  * </ul>
  * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage#getLifeline()
- * @model
+ * @model annotation="gmf.node label='name'"
  * @generated
  */
-public interface Lifeline extends MAVOElement {
+public interface Lifeline extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Object</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference#getSource <em>Source</em>}'.
+	 * Returns the value of the '<em><b>Class</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Object</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Class</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Object</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage#getLifeline_Object()
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference#getSource
+	 * @return the value of the '<em>Class</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage#getLifeline_Class()
+	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference#getSource
 	 * @model opposite="source" containment="true" required="true"
 	 * @generated
 	 */
-	EList<ObjectReference> getObject();
+	EList<ClassReference> getClass_();
 
 	/**
 	 * Returns the value of the '<em><b>Messages As Source</b></em>' reference list.

@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ClassImpl#getOperations <em>Operations</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ClassImpl#getObjects <em>Objects</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ClassImpl#getLifelines <em>Lifelines</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,14 +54,14 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 	protected EList<Operation> operations;
 
 	/**
-	 * The cached value of the '{@link #getObjects() <em>Objects</em>}' reference list.
+	 * The cached value of the '{@link #getLifelines() <em>Lifelines</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getObjects()
+	 * @see #getLifelines()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ClassReference> objects;
+	protected EList<ClassReference> lifelines;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -99,11 +99,11 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ClassReference> getObjects() {
-		if (objects == null) {
-			objects = new EObjectWithInverseResolvingEList<ClassReference>(ClassReference.class, this, ICSE15_SequenceDiagram_MAVOPackage.CLASS__OBJECTS, ICSE15_SequenceDiagram_MAVOPackage.CLASS_REFERENCE__TARGET);
+	public EList<ClassReference> getLifelines() {
+		if (lifelines == null) {
+			lifelines = new EObjectWithInverseResolvingEList<ClassReference>(ClassReference.class, this, ICSE15_SequenceDiagram_MAVOPackage.CLASS__LIFELINES, ICSE15_SequenceDiagram_MAVOPackage.CLASS_REFERENCE__TARGET);
 		}
-		return objects;
+		return lifelines;
 	}
 
 	/**
@@ -115,8 +115,8 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__OBJECTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getObjects()).basicAdd(otherEnd, msgs);
+			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__LIFELINES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getLifelines()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -131,8 +131,8 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 		switch (featureID) {
 			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__OPERATIONS:
 				return ((InternalEList<?>)getOperations()).basicRemove(otherEnd, msgs);
-			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__OBJECTS:
-				return ((InternalEList<?>)getObjects()).basicRemove(otherEnd, msgs);
+			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__LIFELINES:
+				return ((InternalEList<?>)getLifelines()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -147,8 +147,8 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 		switch (featureID) {
 			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__OPERATIONS:
 				return getOperations();
-			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__OBJECTS:
-				return getObjects();
+			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__LIFELINES:
+				return getLifelines();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -166,9 +166,9 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 				getOperations().clear();
 				getOperations().addAll((Collection<? extends Operation>)newValue);
 				return;
-			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__OBJECTS:
-				getObjects().clear();
-				getObjects().addAll((Collection<? extends ClassReference>)newValue);
+			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__LIFELINES:
+				getLifelines().clear();
+				getLifelines().addAll((Collection<? extends ClassReference>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -185,8 +185,8 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__OPERATIONS:
 				getOperations().clear();
 				return;
-			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__OBJECTS:
-				getObjects().clear();
+			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__LIFELINES:
+				getLifelines().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -202,8 +202,8 @@ public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.mod
 		switch (featureID) {
 			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__OPERATIONS:
 				return operations != null && !operations.isEmpty();
-			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__OBJECTS:
-				return objects != null && !objects.isEmpty();
+			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__LIFELINES:
+				return lifelines != null && !lifelines.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

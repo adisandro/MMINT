@@ -76,7 +76,6 @@ public class SequenceDiagramItemProvider extends MAVOModelItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.SEQUENCE_DIAGRAM__LIFELINES);
-			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.SEQUENCE_DIAGRAM__OBJECTS);
 			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.SEQUENCE_DIAGRAM__CLASSES);
 			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.SEQUENCE_DIAGRAM__MESSAGES);
 		}
@@ -133,7 +132,6 @@ public class SequenceDiagramItemProvider extends MAVOModelItemProvider {
 
 		switch (notification.getFeatureID(SequenceDiagram.class)) {
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__LIFELINES:
-			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__OBJECTS:
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__CLASSES:
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__MESSAGES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -157,11 +155,6 @@ public class SequenceDiagramItemProvider extends MAVOModelItemProvider {
 			(createChildParameter
 				(ICSE15_SequenceDiagram_MAVOPackage.Literals.SEQUENCE_DIAGRAM__LIFELINES,
 				 ICSE15_SequenceDiagram_MAVOFactory.eINSTANCE.createLifeline()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ICSE15_SequenceDiagram_MAVOPackage.Literals.SEQUENCE_DIAGRAM__OBJECTS,
-				 ICSE15_SequenceDiagram_MAVOFactory.eINSTANCE.createObject()));
 
 		newChildDescriptors.add
 			(createChildParameter

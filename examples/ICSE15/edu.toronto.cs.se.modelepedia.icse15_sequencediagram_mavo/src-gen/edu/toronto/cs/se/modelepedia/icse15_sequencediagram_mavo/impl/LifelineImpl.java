@@ -11,11 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl;
 
-import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
-
+import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SourceLifelineReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.TargetLifelineReference;
 
@@ -39,7 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.LifelineImpl#getObject <em>Object</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.LifelineImpl#getClass_ <em>Class</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.LifelineImpl#getMessagesAsSource <em>Messages As Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.LifelineImpl#getMessagesAsTarget <em>Messages As Target</em>}</li>
  * </ul>
@@ -47,16 +45,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class LifelineImpl extends MAVOElementImpl implements Lifeline {
+public class LifelineImpl extends NamedElementImpl implements Lifeline {
 	/**
-	 * The cached value of the '{@link #getObject() <em>Object</em>}' containment reference list.
+	 * The cached value of the '{@link #getClass_() <em>Class</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getObject()
+	 * @see #getClass_()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ObjectReference> object;
+	protected EList<ClassReference> class_;
 
 	/**
 	 * The cached value of the '{@link #getMessagesAsSource() <em>Messages As Source</em>}' reference list.
@@ -102,11 +100,11 @@ public class LifelineImpl extends MAVOElementImpl implements Lifeline {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ObjectReference> getObject() {
-		if (object == null) {
-			object = new EObjectContainmentWithInverseEList<ObjectReference>(ObjectReference.class, this, ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__OBJECT, ICSE15_SequenceDiagram_MAVOPackage.OBJECT_REFERENCE__SOURCE);
+	public EList<ClassReference> getClass_() {
+		if (class_ == null) {
+			class_ = new EObjectContainmentWithInverseEList<ClassReference>(ClassReference.class, this, ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__CLASS, ICSE15_SequenceDiagram_MAVOPackage.CLASS_REFERENCE__SOURCE);
 		}
-		return object;
+		return class_;
 	}
 
 	/**
@@ -142,8 +140,8 @@ public class LifelineImpl extends MAVOElementImpl implements Lifeline {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__OBJECT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getObject()).basicAdd(otherEnd, msgs);
+			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__CLASS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getClass_()).basicAdd(otherEnd, msgs);
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__MESSAGES_AS_SOURCE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMessagesAsSource()).basicAdd(otherEnd, msgs);
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__MESSAGES_AS_TARGET:
@@ -160,8 +158,8 @@ public class LifelineImpl extends MAVOElementImpl implements Lifeline {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__OBJECT:
-				return ((InternalEList<?>)getObject()).basicRemove(otherEnd, msgs);
+			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__CLASS:
+				return ((InternalEList<?>)getClass_()).basicRemove(otherEnd, msgs);
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__MESSAGES_AS_SOURCE:
 				return ((InternalEList<?>)getMessagesAsSource()).basicRemove(otherEnd, msgs);
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__MESSAGES_AS_TARGET:
@@ -178,8 +176,8 @@ public class LifelineImpl extends MAVOElementImpl implements Lifeline {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__OBJECT:
-				return getObject();
+			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__CLASS:
+				return getClass_();
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__MESSAGES_AS_SOURCE:
 				return getMessagesAsSource();
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__MESSAGES_AS_TARGET:
@@ -197,9 +195,9 @@ public class LifelineImpl extends MAVOElementImpl implements Lifeline {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__OBJECT:
-				getObject().clear();
-				getObject().addAll((Collection<? extends ObjectReference>)newValue);
+			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__CLASS:
+				getClass_().clear();
+				getClass_().addAll((Collection<? extends ClassReference>)newValue);
 				return;
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__MESSAGES_AS_SOURCE:
 				getMessagesAsSource().clear();
@@ -221,8 +219,8 @@ public class LifelineImpl extends MAVOElementImpl implements Lifeline {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__OBJECT:
-				getObject().clear();
+			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__CLASS:
+				getClass_().clear();
 				return;
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__MESSAGES_AS_SOURCE:
 				getMessagesAsSource().clear();
@@ -242,8 +240,8 @@ public class LifelineImpl extends MAVOElementImpl implements Lifeline {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__OBJECT:
-				return object != null && !object.isEmpty();
+			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__CLASS:
+				return class_ != null && !class_.isEmpty();
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__MESSAGES_AS_SOURCE:
 				return messagesAsSource != null && !messagesAsSource.isEmpty();
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__MESSAGES_AS_TARGET:

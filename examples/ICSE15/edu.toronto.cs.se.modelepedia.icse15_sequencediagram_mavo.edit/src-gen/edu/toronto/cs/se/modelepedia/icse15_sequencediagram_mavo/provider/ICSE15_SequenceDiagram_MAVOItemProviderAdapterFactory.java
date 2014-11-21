@@ -150,29 +150,6 @@ public class ICSE15_SequenceDiagram_MAVOItemProviderAdapterFactory extends ICSE1
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ObjectItemProvider objectItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createObjectAdapter() {
-		if (objectItemProvider == null) {
-			objectItemProvider = new ObjectItemProvider(this);
-		}
-
-		return objectItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -239,29 +216,6 @@ public class ICSE15_SequenceDiagram_MAVOItemProviderAdapterFactory extends ICSE1
 		}
 
 		return messageItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ObjectReferenceItemProvider objectReferenceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createObjectReferenceAdapter() {
-		if (objectReferenceItemProvider == null) {
-			objectReferenceItemProvider = new ObjectReferenceItemProvider(this);
-		}
-
-		return objectReferenceItemProvider;
 	}
 
 	/**
@@ -458,11 +412,9 @@ public class ICSE15_SequenceDiagram_MAVOItemProviderAdapterFactory extends ICSE1
 		if (sequenceDiagramItemProvider != null) sequenceDiagramItemProvider.dispose();
 		if (namedElementItemProvider != null) namedElementItemProvider.dispose();
 		if (lifelineItemProvider != null) lifelineItemProvider.dispose();
-		if (objectItemProvider != null) objectItemProvider.dispose();
 		if (classItemProvider != null) classItemProvider.dispose();
 		if (operationItemProvider != null) operationItemProvider.dispose();
 		if (messageItemProvider != null) messageItemProvider.dispose();
-		if (objectReferenceItemProvider != null) objectReferenceItemProvider.dispose();
 		if (classReferenceItemProvider != null) classReferenceItemProvider.dispose();
 		if (operationReferenceItemProvider != null) operationReferenceItemProvider.dispose();
 		if (sourceLifelineReferenceItemProvider != null) sourceLifelineReferenceItemProvider.dispose();

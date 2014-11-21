@@ -38,7 +38,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.SequenceDiagramImpl#getLifelines <em>Lifelines</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.SequenceDiagramImpl#getObjects <em>Objects</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.SequenceDiagramImpl#getClasses <em>Classes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.SequenceDiagramImpl#getMessages <em>Messages</em>}</li>
  * </ul>
@@ -56,16 +55,6 @@ public class SequenceDiagramImpl extends MAVOModelImpl implements SequenceDiagra
 	 * @ordered
 	 */
 	protected EList<Lifeline> lifelines;
-
-	/**
-	 * The cached value of the '{@link #getObjects() <em>Objects</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getObjects()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object> objects;
 
 	/**
 	 * The cached value of the '{@link #getClasses() <em>Classes</em>}' containment reference list.
@@ -123,18 +112,6 @@ public class SequenceDiagramImpl extends MAVOModelImpl implements SequenceDiagra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object> getObjects() {
-		if (objects == null) {
-			objects = new EObjectContainmentEList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object>(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object.class, this, ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__OBJECTS);
-		}
-		return objects;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class> getClasses() {
 		if (classes == null) {
 			classes = new EObjectContainmentEList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class>(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class.class, this, ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__CLASSES);
@@ -164,8 +141,6 @@ public class SequenceDiagramImpl extends MAVOModelImpl implements SequenceDiagra
 		switch (featureID) {
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__LIFELINES:
 				return ((InternalEList<?>)getLifelines()).basicRemove(otherEnd, msgs);
-			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__OBJECTS:
-				return ((InternalEList<?>)getObjects()).basicRemove(otherEnd, msgs);
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__CLASSES:
 				return ((InternalEList<?>)getClasses()).basicRemove(otherEnd, msgs);
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__MESSAGES:
@@ -184,8 +159,6 @@ public class SequenceDiagramImpl extends MAVOModelImpl implements SequenceDiagra
 		switch (featureID) {
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__LIFELINES:
 				return getLifelines();
-			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__OBJECTS:
-				return getObjects();
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__CLASSES:
 				return getClasses();
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__MESSAGES:
@@ -206,10 +179,6 @@ public class SequenceDiagramImpl extends MAVOModelImpl implements SequenceDiagra
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__LIFELINES:
 				getLifelines().clear();
 				getLifelines().addAll((Collection<? extends Lifeline>)newValue);
-				return;
-			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__OBJECTS:
-				getObjects().clear();
-				getObjects().addAll((Collection<? extends edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object>)newValue);
 				return;
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__CLASSES:
 				getClasses().clear();
@@ -234,9 +203,6 @@ public class SequenceDiagramImpl extends MAVOModelImpl implements SequenceDiagra
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__LIFELINES:
 				getLifelines().clear();
 				return;
-			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__OBJECTS:
-				getObjects().clear();
-				return;
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__CLASSES:
 				getClasses().clear();
 				return;
@@ -257,8 +223,6 @@ public class SequenceDiagramImpl extends MAVOModelImpl implements SequenceDiagra
 		switch (featureID) {
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__LIFELINES:
 				return lifelines != null && !lifelines.isEmpty();
-			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__OBJECTS:
-				return objects != null && !objects.isEmpty();
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__CLASSES:
 				return classes != null && !classes.isEmpty();
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM__MESSAGES:

@@ -105,22 +105,13 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	int SEQUENCE_DIAGRAM__LIFELINES = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Objects</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_DIAGRAM__OBJECTS = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_DIAGRAM__CLASSES = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 2;
+	int SEQUENCE_DIAGRAM__CLASSES = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Messages</b></em>' containment reference list.
@@ -129,7 +120,7 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_DIAGRAM__MESSAGES = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 3;
+	int SEQUENCE_DIAGRAM__MESSAGES = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Sequence Diagram</em>' class.
@@ -138,7 +129,7 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_DIAGRAM_FEATURE_COUNT = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 4;
+	int SEQUENCE_DIAGRAM_FEATURE_COUNT = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Sequence Diagram</em>' class.
@@ -248,7 +239,7 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFELINE__FORMULA_VARIABLE = MAVOPackage.MAVO_ELEMENT__FORMULA_VARIABLE;
+	int LIFELINE__FORMULA_VARIABLE = NAMED_ELEMENT__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -257,7 +248,7 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFELINE__MAY = MAVOPackage.MAVO_ELEMENT__MAY;
+	int LIFELINE__MAY = NAMED_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -266,7 +257,7 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFELINE__SET = MAVOPackage.MAVO_ELEMENT__SET;
+	int LIFELINE__SET = NAMED_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -275,7 +266,7 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFELINE__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
+	int LIFELINE__VAR = NAMED_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
@@ -284,107 +275,7 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFELINE__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
-
-	/**
-	 * The feature id for the '<em><b>Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFELINE__OBJECT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Messages As Source</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFELINE__MESSAGES_AS_SOURCE = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Messages As Target</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFELINE__MESSAGES_AS_TARGET = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Lifeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFELINE_FEATURE_COUNT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>Lifeline</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFELINE_OPERATION_COUNT = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ObjectImpl <em>Object</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ObjectImpl
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ICSE15_SequenceDiagram_MAVOPackageImpl#getObject()
-	 * @generated
-	 */
-	int OBJECT = 3;
-
-	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT__FORMULA_VARIABLE = NAMED_ELEMENT__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT__MAY = NAMED_ELEMENT__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT__SET = NAMED_ELEMENT__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT__VAR = NAMED_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
+	int LIFELINE__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -393,7 +284,7 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT__NAME = NAMED_ELEMENT__NAME;
+	int LIFELINE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Class</b></em>' containment reference list.
@@ -402,34 +293,43 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT__CLASS = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int LIFELINE__CLASS = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Lifelines</b></em>' reference list.
+	 * The feature id for the '<em><b>Messages As Source</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT__LIFELINES = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int LIFELINE__MESSAGES_AS_SOURCE = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Object</em>' class.
+	 * The feature id for the '<em><b>Messages As Target</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int LIFELINE__MESSAGES_AS_TARGET = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Object</em>' class.
+	 * The number of structural features of the '<em>Lifeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int LIFELINE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Lifeline</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIFELINE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ClassImpl <em>Class</em>}' class.
@@ -439,7 +339,7 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ICSE15_SequenceDiagram_MAVOPackageImpl#getClass_()
 	 * @generated
 	 */
-	int CLASS = 4;
+	int CLASS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -505,13 +405,13 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	int CLASS__OPERATIONS = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Objects</b></em>' reference list.
+	 * The feature id for the '<em><b>Lifelines</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OBJECTS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int CLASS__LIFELINES = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Class</em>' class.
@@ -539,7 +439,7 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ICSE15_SequenceDiagram_MAVOPackageImpl#getOperation()
 	 * @generated
 	 */
-	int OPERATION = 5;
+	int OPERATION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -630,7 +530,7 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ICSE15_SequenceDiagram_MAVOPackageImpl#getMessage()
 	 * @generated
 	 */
-	int MESSAGE = 6;
+	int MESSAGE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -732,97 +632,6 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	int MESSAGE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ObjectReferenceImpl <em>Object Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ObjectReferenceImpl
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ICSE15_SequenceDiagram_MAVOPackageImpl#getObjectReference()
-	 * @generated
-	 */
-	int OBJECT_REFERENCE = 7;
-
-	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_REFERENCE__FORMULA_VARIABLE = MAVOPackage.MAVO_REFERENCE__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_REFERENCE__MAY = MAVOPackage.MAVO_REFERENCE__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_REFERENCE__SET = MAVOPackage.MAVO_REFERENCE__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_REFERENCE__VAR = MAVOPackage.MAVO_REFERENCE__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_REFERENCE__ALTERNATIVES = MAVOPackage.MAVO_REFERENCE__ALTERNATIVES;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_REFERENCE__SOURCE = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_REFERENCE__TARGET = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Object Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_REFERENCE_FEATURE_COUNT = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Object Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_REFERENCE_OPERATION_COUNT = MAVOPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ClassReferenceImpl <em>Class Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -830,7 +639,7 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ICSE15_SequenceDiagram_MAVOPackageImpl#getClassReference()
 	 * @generated
 	 */
-	int CLASS_REFERENCE = 8;
+	int CLASS_REFERENCE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -921,7 +730,7 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ICSE15_SequenceDiagram_MAVOPackageImpl#getOperationReference()
 	 * @generated
 	 */
-	int OPERATION_REFERENCE = 9;
+	int OPERATION_REFERENCE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -1012,7 +821,7 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ICSE15_SequenceDiagram_MAVOPackageImpl#getSourceLifelineReference()
 	 * @generated
 	 */
-	int SOURCE_LIFELINE_REFERENCE = 10;
+	int SOURCE_LIFELINE_REFERENCE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -1103,7 +912,7 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ICSE15_SequenceDiagram_MAVOPackageImpl#getTargetLifelineReference()
 	 * @generated
 	 */
-	int TARGET_LIFELINE_REFERENCE = 11;
+	int TARGET_LIFELINE_REFERENCE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -1209,17 +1018,6 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	EReference getSequenceDiagram_Lifelines();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram#getObjects <em>Objects</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Objects</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram#getObjects()
-	 * @see #getSequenceDiagram()
-	 * @generated
-	 */
-	EReference getSequenceDiagram_Objects();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram#getClasses <em>Classes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1273,15 +1071,15 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	EClass getLifeline();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline#getObject <em>Object</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline#getClass_ <em>Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Object</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline#getObject()
+	 * @return the meta object for the containment reference list '<em>Class</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline#getClass_()
 	 * @see #getLifeline()
 	 * @generated
 	 */
-	EReference getLifeline_Object();
+	EReference getLifeline_Class();
 
 	/**
 	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline#getMessagesAsSource <em>Messages As Source</em>}'.
@@ -1306,38 +1104,6 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	EReference getLifeline_MessagesAsTarget();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object <em>Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Object</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object
-	 * @generated
-	 */
-	EClass getObject();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object#getClass_ <em>Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Class</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object#getClass_()
-	 * @see #getObject()
-	 * @generated
-	 */
-	EReference getObject_Class();
-
-	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object#getLifelines <em>Lifelines</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Lifelines</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object#getLifelines()
-	 * @see #getObject()
-	 * @generated
-	 */
-	EReference getObject_Lifelines();
-
-	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class <em>Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1359,15 +1125,15 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	EReference getClass_Operations();
 
 	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class#getObjects <em>Objects</em>}'.
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class#getLifelines <em>Lifelines</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Objects</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class#getObjects()
+	 * @return the meta object for the reference list '<em>Lifelines</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class#getLifelines()
 	 * @see #getClass_()
 	 * @generated
 	 */
-	EReference getClass_Objects();
+	EReference getClass_Lifelines();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation <em>Operation</em>}'.
@@ -1432,38 +1198,6 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMessage_TargetLifeline();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference <em>Object Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Object Reference</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference
-	 * @generated
-	 */
-	EClass getObjectReference();
-
-	/**
-	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Source</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference#getSource()
-	 * @see #getObjectReference()
-	 * @generated
-	 */
-	EReference getObjectReference_Source();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference#getTarget()
-	 * @see #getObjectReference()
-	 * @generated
-	 */
-	EReference getObjectReference_Target();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference <em>Class Reference</em>}'.
@@ -1635,14 +1369,6 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 		EReference SEQUENCE_DIAGRAM__LIFELINES = eINSTANCE.getSequenceDiagram_Lifelines();
 
 		/**
-		 * The meta object literal for the '<em><b>Objects</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SEQUENCE_DIAGRAM__OBJECTS = eINSTANCE.getSequenceDiagram_Objects();
-
-		/**
 		 * The meta object literal for the '<em><b>Classes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1687,12 +1413,12 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 		EClass LIFELINE = eINSTANCE.getLifeline();
 
 		/**
-		 * The meta object literal for the '<em><b>Object</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Class</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LIFELINE__OBJECT = eINSTANCE.getLifeline_Object();
+		EReference LIFELINE__CLASS = eINSTANCE.getLifeline_Class();
 
 		/**
 		 * The meta object literal for the '<em><b>Messages As Source</b></em>' reference list feature.
@@ -1709,32 +1435,6 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LIFELINE__MESSAGES_AS_TARGET = eINSTANCE.getLifeline_MessagesAsTarget();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ObjectImpl <em>Object</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ObjectImpl
-		 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ICSE15_SequenceDiagram_MAVOPackageImpl#getObject()
-		 * @generated
-		 */
-		EClass OBJECT = eINSTANCE.getObject();
-
-		/**
-		 * The meta object literal for the '<em><b>Class</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OBJECT__CLASS = eINSTANCE.getObject_Class();
-
-		/**
-		 * The meta object literal for the '<em><b>Lifelines</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OBJECT__LIFELINES = eINSTANCE.getObject_Lifelines();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ClassImpl <em>Class</em>}' class.
@@ -1755,12 +1455,12 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 		EReference CLASS__OPERATIONS = eINSTANCE.getClass_Operations();
 
 		/**
-		 * The meta object literal for the '<em><b>Objects</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Lifelines</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CLASS__OBJECTS = eINSTANCE.getClass_Objects();
+		EReference CLASS__LIFELINES = eINSTANCE.getClass_Lifelines();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.OperationImpl <em>Operation</em>}' class.
@@ -1813,32 +1513,6 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MESSAGE__TARGET_LIFELINE = eINSTANCE.getMessage_TargetLifeline();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ObjectReferenceImpl <em>Object Reference</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ObjectReferenceImpl
-		 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ICSE15_SequenceDiagram_MAVOPackageImpl#getObjectReference()
-		 * @generated
-		 */
-		EClass OBJECT_REFERENCE = eINSTANCE.getObjectReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OBJECT_REFERENCE__SOURCE = eINSTANCE.getObjectReference_Source();
-
-		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OBJECT_REFERENCE__TARGET = eINSTANCE.getObjectReference_Target();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ClassReferenceImpl <em>Class Reference</em>}' class.

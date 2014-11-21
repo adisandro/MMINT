@@ -12,8 +12,6 @@
 package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.provider;
 
 
-import edu.toronto.cs.se.mavo.provider.MAVOElementItemProvider;
-
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline;
@@ -23,8 +21,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -38,7 +34,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class LifelineItemProvider extends MAVOElementItemProvider {
+public class LifelineItemProvider extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -122,7 +118,7 @@ public class LifelineItemProvider extends MAVOElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.LIFELINE__OBJECT);
+			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.LIFELINE__CLASS);
 		}
 		return childrenFeatures;
 	}
@@ -159,7 +155,7 @@ public class LifelineItemProvider extends MAVOElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Lifeline)object).getFormulaVariable();
+		String label = ((Lifeline)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Lifeline_type") :
 			getString("_UI_Lifeline_type") + " " + label;
@@ -178,7 +174,7 @@ public class LifelineItemProvider extends MAVOElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Lifeline.class)) {
-			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__OBJECT:
+			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__CLASS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -198,19 +194,8 @@ public class LifelineItemProvider extends MAVOElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ICSE15_SequenceDiagram_MAVOPackage.Literals.LIFELINE__OBJECT,
-				 ICSE15_SequenceDiagram_MAVOFactory.eINSTANCE.createObjectReference()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return ICSE15_SequenceDiagram_MAVOEditPlugin.INSTANCE;
+				(ICSE15_SequenceDiagram_MAVOPackage.Literals.LIFELINE__CLASS,
+				 ICSE15_SequenceDiagram_MAVOFactory.eINSTANCE.createClassReference()));
 	}
 
 }

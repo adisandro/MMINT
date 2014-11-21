@@ -58,15 +58,6 @@ public interface ICSE15_SequenceDiagram_MAVOFactory extends EFactory {
 	Lifeline createLifeline();
 
 	/**
-	 * Returns a new object of class '<em>Object</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Object</em>'.
-	 * @generated
-	 */
-	Object createObject();
-
-	/**
 	 * Returns a new object of class '<em>Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,15 +83,6 @@ public interface ICSE15_SequenceDiagram_MAVOFactory extends EFactory {
 	 * @generated
 	 */
 	Message createMessage();
-
-	/**
-	 * Returns a new object of class '<em>Object Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Object Reference</em>'.
-	 * @generated
-	 */
-	ObjectReference createObjectReference();
 
 	/**
 	 * Returns a new object of class '<em>Class Reference</em>'.

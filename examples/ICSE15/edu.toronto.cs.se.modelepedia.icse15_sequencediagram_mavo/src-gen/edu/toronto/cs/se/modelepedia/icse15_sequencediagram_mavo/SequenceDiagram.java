@@ -24,7 +24,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram#getLifelines <em>Lifelines</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram#getObjects <em>Objects</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram#getClasses <em>Classes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram#getMessages <em>Messages</em>}</li>
  * </ul>
@@ -50,22 +49,6 @@ public interface SequenceDiagram extends MAVOModel {
 	 * @generated
 	 */
 	EList<Lifeline> getLifelines();
-
-	/**
-	 * Returns the value of the '<em><b>Objects</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Objects</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Objects</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage#getSequenceDiagram_Objects()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object> getObjects();
 
 	/**
 	 * Returns the value of the '<em><b>Classes</b></em>' containment reference list.

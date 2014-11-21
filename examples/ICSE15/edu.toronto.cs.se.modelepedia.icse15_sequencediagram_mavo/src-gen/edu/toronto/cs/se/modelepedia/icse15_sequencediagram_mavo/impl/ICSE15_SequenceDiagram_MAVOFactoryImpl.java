@@ -17,7 +17,6 @@ import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_Sequence
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.NamedElement;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ObjectReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.OperationReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram;
@@ -79,11 +78,9 @@ public class ICSE15_SequenceDiagram_MAVOFactoryImpl extends EFactoryImpl impleme
 			case ICSE15_SequenceDiagram_MAVOPackage.SEQUENCE_DIAGRAM: return createSequenceDiagram();
 			case ICSE15_SequenceDiagram_MAVOPackage.NAMED_ELEMENT: return createNamedElement();
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE: return createLifeline();
-			case ICSE15_SequenceDiagram_MAVOPackage.OBJECT: return createObject();
 			case ICSE15_SequenceDiagram_MAVOPackage.CLASS: return createClass();
 			case ICSE15_SequenceDiagram_MAVOPackage.OPERATION: return createOperation();
 			case ICSE15_SequenceDiagram_MAVOPackage.MESSAGE: return createMessage();
-			case ICSE15_SequenceDiagram_MAVOPackage.OBJECT_REFERENCE: return createObjectReference();
 			case ICSE15_SequenceDiagram_MAVOPackage.CLASS_REFERENCE: return createClassReference();
 			case ICSE15_SequenceDiagram_MAVOPackage.OPERATION_REFERENCE: return createOperationReference();
 			case ICSE15_SequenceDiagram_MAVOPackage.SOURCE_LIFELINE_REFERENCE: return createSourceLifelineReference();
@@ -128,16 +125,6 @@ public class ICSE15_SequenceDiagram_MAVOFactoryImpl extends EFactoryImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Object createObject() {
-		ObjectImpl object = new ObjectImpl();
-		return object;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class createClass() {
 		ClassImpl class_ = new ClassImpl();
 		return class_;
@@ -161,16 +148,6 @@ public class ICSE15_SequenceDiagram_MAVOFactoryImpl extends EFactoryImpl impleme
 	public Message createMessage() {
 		MessageImpl message = new MessageImpl();
 		return message;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ObjectReference createObjectReference() {
-		ObjectReferenceImpl objectReference = new ObjectReferenceImpl();
-		return objectReference;
 	}
 
 	/**
