@@ -34,7 +34,7 @@
     <children xmi:type="notation:DecorationNode" xmi:id="_SJ5HcnE3EeSCSLJ2NKYL7Q" type="5001"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_SJ5Hc3E3EeSCSLJ2NKYL7Q" type="5002"/>
     <element xmi:type="icse15_sequencediagram_mavo:Lifeline" href="Paste.execute().icse15_sequencediagram_mavo#//@lifelines.5"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SJ5HcXE3EeSCSLJ2NKYL7Q" x="1212" y="576" height="181"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SJ5HcXE3EeSCSLJ2NKYL7Q" x="1548" y="576" height="181"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_WrcAAHE3EeSCSLJ2NKYL7Q" type="2002" fontName="Cantarell">
     <children xmi:type="notation:DecorationNode" xmi:id="_WrcnEnE3EeSCSLJ2NKYL7Q" type="5005"/>
@@ -221,19 +221,19 @@
     <children xmi:type="notation:DecorationNode" xmi:id="_R1fLcHE8EeSCSLJ2NKYL7Q" type="5007"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_R1fLcXE8EeSCSLJ2NKYL7Q" type="5008"/>
     <element xmi:type="icse15_sequencediagram_mavo:Message" href="Paste.execute().icse15_sequencediagram_mavo#//@messages.6"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_R1ekYXE8EeSCSLJ2NKYL7Q" x="1068" y="576"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_R1ekYXE8EeSCSLJ2NKYL7Q" x="1056" y="576"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_owThYHE8EeSCSLJ2NKYL7Q" type="2003" fontName="Cantarell">
     <children xmi:type="notation:DecorationNode" xmi:id="_owUIcHE8EeSCSLJ2NKYL7Q" type="5007"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_owUIcXE8EeSCSLJ2NKYL7Q" type="5008"/>
     <element xmi:type="icse15_sequencediagram_mavo:Message" href="Paste.execute().icse15_sequencediagram_mavo#//@messages.7"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_owThYXE8EeSCSLJ2NKYL7Q" x="1044" y="636"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_owThYXE8EeSCSLJ2NKYL7Q" x="1056" y="636"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_xtgs8HE8EeSCSLJ2NKYL7Q" type="2003" fontName="Cantarell">
     <children xmi:type="notation:DecorationNode" xmi:id="_xtgs8nE8EeSCSLJ2NKYL7Q" type="5007"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_xtgs83E8EeSCSLJ2NKYL7Q" type="5008"/>
     <element xmi:type="icse15_sequencediagram_mavo:Message" href="Paste.execute().icse15_sequencediagram_mavo#//@messages.8"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xtgs8XE8EeSCSLJ2NKYL7Q" x="1020" y="708"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xtgs8XE8EeSCSLJ2NKYL7Q" x="1056" y="708"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_2R3zgHE9EeSCSLJ2NKYL7Q" type="2002" fontName="Cantarell">
     <children xmi:type="notation:DecorationNode" xmi:id="_2R3zg3E9EeSCSLJ2NKYL7Q" type="5005"/>
@@ -256,7 +256,7 @@
     </children>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_2R3zgXE9EeSCSLJ2NKYL7Q"/>
     <element xmi:type="icse15_sequencediagram_mavo:Class" href="Paste.execute().icse15_sequencediagram_mavo#//@classes.5"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2R3zgnE9EeSCSLJ2NKYL7Q" x="1236" y="360"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2R3zgnE9EeSCSLJ2NKYL7Q" x="1572" y="360"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_BegIMXE3EeSCSLJ2NKYL7Q"/>
   <element xmi:type="icse15_sequencediagram_mavo:SequenceDiagram" href="Paste.execute().icse15_sequencediagram_mavo#/"/>
