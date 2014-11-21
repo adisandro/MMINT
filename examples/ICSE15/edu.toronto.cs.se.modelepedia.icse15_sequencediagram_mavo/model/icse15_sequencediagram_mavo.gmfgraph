@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ASCII"?>
+<gmfgraph:Canvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="icse15_sequencediagram_mavo">
+  <figures name="Default">
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="ClassReferenceFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="OperationReferenceFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="SourceLifelineReferenceFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="TargetLifelineReferenceFigureTargetDecoration"/>
+    <descriptors name="LifelineFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="LifelineFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="MAVOLifelineLabelFigure">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Label" name="LifelineLabelFigure" text="Lifeline"/>
+      </actualFigure>
+      <accessors accessor="getFigureLifelineLabelFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
+      <accessors accessor="getFigureMAVOLifelineLabelFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="ClassFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="ClassFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="MAVOClassLabelFigure">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Label" name="ClassLabelFigure" text="Class">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="ClassOperationsCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureClassLabelFigure" figure="//@figures.0/@descriptors.1/@actualFigure/@children.1"/>
+      <accessors accessor="getClassOperationsCompartmentFigure" figure="//@figures.0/@descriptors.1/@actualFigure/@children.2"/>
+      <accessors accessor="getFigureMAVOClassLabelFigure" figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="OperationFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="OperationFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="MAVOOperationLabelFigure">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Label" name="OperationLabelFigure" text="Operation"/>
+      </actualFigure>
+      <accessors accessor="getFigureOperationLabelFigure" figure="//@figures.0/@descriptors.2/@actualFigure/@children.1"/>
+      <accessors accessor="getFigureMAVOOperationLabelFigure" figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MessageFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MessageFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="MAVOMessageLabelFigure">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Label" name="MessageLabelFigure" text="Message"/>
+      </actualFigure>
+      <accessors accessor="getFigureMessageLabelFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.1"/>
+      <accessors accessor="getFigureMAVOMessageLabelFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="ClassReferenceFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ClassReferenceFigure" targetDecoration="//@figures.0/@figures.0">
+        <children xsi:type="gmfgraph:Label" name="MAVOClassReferenceLabelFigure">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+      </actualFigure>
+      <accessors accessor="getFigureMAVOClassReferenceLabelFigure" figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="OperationReferenceFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="OperationReferenceFigure" targetDecoration="//@figures.0/@figures.1">
+        <children xsi:type="gmfgraph:Label" name="MAVOOperationReferenceLabelFigure">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+      </actualFigure>
+      <accessors accessor="getFigureMAVOOperationReferenceLabelFigure" figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="SourceLifelineReferenceFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="SourceLifelineReferenceFigure" targetDecoration="//@figures.0/@figures.2">
+        <children xsi:type="gmfgraph:Label" name="MAVOSourceLifelineReferenceLabelFigure">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+      </actualFigure>
+      <accessors accessor="getFigureMAVOSourceLifelineReferenceLabelFigure" figure="//@figures.0/@descriptors.6/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="TargetLifelineReferenceFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="TargetLifelineReferenceFigure" targetDecoration="//@figures.0/@figures.3">
+        <children xsi:type="gmfgraph:Label" name="MAVOTargetLifelineReferenceLabelFigure">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+      </actualFigure>
+      <accessors accessor="getFigureMAVOTargetLifelineReferenceLabelFigure" figure="//@figures.0/@descriptors.7/@actualFigure/@children.0"/>
+    </descriptors>
+  </figures>
+  <nodes name="Lifeline" figure="LifelineFigure"/>
+  <nodes name="Class" figure="ClassFigure"/>
+  <nodes name="Operation" figure="OperationFigure"/>
+  <nodes name="Message" figure="MessageFigure"/>
+  <connections name="ClassReference" figure="ClassReferenceFigure"/>
+  <connections name="OperationReference" figure="OperationReferenceFigure"/>
+  <connections name="SourceLifelineReference" figure="SourceLifelineReferenceFigure"/>
+  <connections name="TargetLifelineReference" figure="TargetLifelineReferenceFigure"/>
+  <compartments name="ClassOperationsCompartment" figure="ClassFigure" collapsible="true" accessor="//@figures.0/@descriptors.1/@accessors.1"/>
+  <labels name="LifelineLabel" figure="LifelineFigure" elementIcon="false" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels name="ClassLabel" figure="ClassFigure" elementIcon="false" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels name="OperationLabel" figure="OperationFigure" elementIcon="false" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels name="MessageLabel" figure="MessageFigure" elementIcon="false" accessor="//@figures.0/@descriptors.3/@accessors.0"/>
+  <labels name="MAVOLifelineLabel" figure="LifelineFigure" accessor="//@figures.0/@descriptors.0/@accessors.1"/>
+  <labels name="MAVOClassLabel" figure="ClassFigure" accessor="//@figures.0/@descriptors.1/@accessors.2"/>
+  <labels name="MAVOOperationLabel" figure="OperationFigure" accessor="//@figures.0/@descriptors.2/@accessors.1"/>
+  <labels name="MAVOMessageLabel" figure="MessageFigure" accessor="//@figures.0/@descriptors.3/@accessors.1"/>
+  <labels name="MAVOClassReferenceLabel" figure="ClassReferenceFigure" accessor="//@figures.0/@descriptors.4/@accessors.0"/>
+  <labels name="MAVOOperationReferenceLabel" figure="OperationReferenceFigure" accessor="//@figures.0/@descriptors.5/@accessors.0"/>
+  <labels name="MAVOSourceLifelineReferenceLabel" figure="SourceLifelineReferenceFigure" accessor="//@figures.0/@descriptors.6/@accessors.0"/>
+  <labels name="MAVOTargetLifelineReferenceLabel" figure="TargetLifelineReferenceFigure" accessor="//@figures.0/@descriptors.7/@accessors.0"/>
+</gmfgraph:Canvas>
