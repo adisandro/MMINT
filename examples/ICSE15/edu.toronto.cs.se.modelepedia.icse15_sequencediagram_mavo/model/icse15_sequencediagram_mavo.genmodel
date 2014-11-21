@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012-2014 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation."
+    modelDirectory="/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo/src-gen"
+    editDirectory="/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.edit/src-gen"
+    editorDirectory="/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.editor/src-gen"
+    modelPluginID="edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo" modelName="ICSE15_SequenceDiagram_MAVO"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.mavo/model/mavo.genmodel#//mavo"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>icse15_sequencediagram_mavo.ecore</foreignModel>
+  <genPackages prefix="ICSE15_SequenceDiagram_MAVO" basePackage="edu.toronto.cs.se.modelepedia"
+      disposableProviderFactory="true" ecorePackage="icse15_sequencediagram_mavo.ecore#/">
+    <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//SequenceDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//SequenceDiagram/lifelines"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//SequenceDiagram/objects"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//SequenceDiagram/classes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//SequenceDiagram/messages"/>
+    </genClasses>
+    <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute icse15_sequencediagram_mavo.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//Lifeline">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Lifeline/object"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Lifeline/messagesAsSource"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Lifeline/messagesAsTarget"/>
+    </genClasses>
+    <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//Object">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Object/class"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Object/lifelines"/>
+    </genClasses>
+    <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//Class">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Class/operations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Class/objects"/>
+    </genClasses>
+    <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//Operation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Operation/messages"/>
+    </genClasses>
+    <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//Message">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Message/operation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Message/sourceLifeline"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Message/targetLifeline"/>
+    </genClasses>
+    <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//ObjectReference">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//ObjectReference/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//ObjectReference/target"/>
+    </genClasses>
+    <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//ClassReference">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//ClassReference/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//ClassReference/target"/>
+    </genClasses>
+    <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//OperationReference">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//OperationReference/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//OperationReference/target"/>
+    </genClasses>
+    <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//SourceLifelineReference">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//SourceLifelineReference/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//SourceLifelineReference/target"/>
+    </genClasses>
+    <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//TargetLifelineReference">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//TargetLifelineReference/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//TargetLifelineReference/target"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
