@@ -662,7 +662,7 @@ Contributors:
             isDiagram="true"
             wizardId="edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOCreationWizardID">
          <type
-               name="StateMachine_MAVO diagram"
+               name="ICSE15_SequenceDiagram_MAVO diagram"
                uri="http://se.cs.toronto.edu/modelepedia/Diagram_ICSE15_SequenceDiagram_MAVO">
          </type>
       </editorType>
