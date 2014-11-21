@@ -29,7 +29,7 @@
     <alternatives formulaVariable="N7" description="No"/>
   </decisions>
   <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision8" description="Does EParameter exist?">
-    <alternatives formulaVariable="Y8" description="Yes" mavoElements="//@classes.10"/>
+    <alternatives formulaVariable="Y8" description="Yes" mavoElements="//@classes.10 //@associations.5 //@classes.10/@superclass.0"/>
     <alternatives formulaVariable="N8" description="No"/>
   </decisions>
   <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision9" description="Does eSuperTypes exist?">
@@ -98,7 +98,7 @@
     <superclass formulaVariable="supEOperation" target="//@classes.5"/>
   </classes>
   <classes formulaVariable="EParameter" may="true" alternatives="//@decisions.7/@alternatives.0" name="EParameter" associationsAsTarget="//@associations.5">
-    <superclass formulaVariable="supEParameter" target="//@classes.5"/>
+    <superclass formulaVariable="supEParameter" may="true" alternatives="//@decisions.7/@alternatives.0" target="//@classes.5"/>
   </classes>
   <classes formulaVariable="EClass" name="EClass" associationsAsSource="//@associations.8 //@associations.9 //@associations.11 //@associations.17 //@associations.18" associationsAsTarget="//@associations.7 //@associations.9 //@associations.12">
     <ownedAttributes formulaVariable="abstract" name="abstract" type="//@classes.18"/>
@@ -140,7 +140,7 @@
   <associations formulaVariable="eType" name="eType" source="//@classes.5" target="//@classes.6"/>
   <associations formulaVariable="eClassifiers" name="eClassifiers" source="//@classes.7" target="//@classes.6"/>
   <associations formulaVariable="eSuperPackage" may="true" alternatives="//@decisions.4/@alternatives.0" name="eSuperPackage" source="//@classes.7" target="//@classes.7"/>
-  <associations formulaVariable="eParameters" name="eParameters" source="//@classes.9" target="//@classes.10"/>
+  <associations formulaVariable="eParameters" may="true" alternatives="//@decisions.7/@alternatives.0" name="eParameters" source="//@classes.9" target="//@classes.10"/>
   <associations formulaVariable="eExceptions" name="eExceptions" source="//@classes.9" target="//@classes.6"/>
   <associations formulaVariable="eContainingClass" name="eContainingClass" source="//@classes.9" target="//@classes.11"/>
   <associations formulaVariable="eOperations" name="eOperations" source="//@classes.11" target="//@classes.9"/>
