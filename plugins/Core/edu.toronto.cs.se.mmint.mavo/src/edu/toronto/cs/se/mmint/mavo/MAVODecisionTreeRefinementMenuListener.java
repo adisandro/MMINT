@@ -33,10 +33,10 @@ import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
+import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
@@ -103,7 +103,7 @@ public class MAVODecisionTreeRefinementMenuListener extends MIDContextMenuListen
 				}
 			}
 
-			MultiModelConstraintChecker.refineByDecision(model, (MAVOAlternative) selectedElements.get(0));
+			MAVOMultiModelConstraintChecker.refineByDecision(model, (MAVOAlternative) selectedElements.get(0));
 
 			return CommandResult.newOKCommandResult();
 		}

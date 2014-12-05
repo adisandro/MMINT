@@ -21,7 +21,7 @@ import edu.toronto.cs.se.mavo.MAVOAlternative;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.mavo.library.IMAVOReasoningEngine;
+import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -192,6 +192,18 @@ public class Z3ReasoningEngine implements IReasoningEngine, IMAVOReasoningEngine
 		catch (Exception e) {
 			MMINTException.print(MMINTException.Type.ERROR, "Can't refine the model by decision, aborting (some incomplete result could appear in your instance MID)", e);
 			return null;
+		}
+	}
+
+	@Override
+	public void highlightAlternative(@NonNull Diagram modelDiagram, @NonNull MAVOAlternative mavoAlternative) {
+
+		MAVOConcretizationHighlighter highlighter = new MAVOConcretizationHighlighter();
+		try {
+			highlighter.highlightAlternative(modelDiagram, mavoAlternative);
+		}
+		catch (Exception e) {
+			MMINTException.print(MMINTException.Type.WARNING, "Can't highlight alternative, skipping it", e);
 		}
 	}
 

@@ -29,6 +29,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import edu.toronto.cs.se.mavo.MAVOAlternative;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
+import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -37,7 +38,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
-import edu.toronto.cs.se.modelepedia.z3.mavo.MAVOConcretizationHighlighter;
 
 public class MAVOAlternativeHighlightMenuListener extends MIDContextMenuListener {
 
@@ -92,16 +92,7 @@ public class MAVOAlternativeHighlightMenuListener extends MIDContextMenuListener
 				IAdaptable info) throws ExecutionException {
 
 			Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
-			//TODO MMINT[MU-MMINT] Put highligther in reasoner api, this can't depend on z3
-			MAVOConcretizationHighlighter highlighter = new MAVOConcretizationHighlighter();
-			try {
-				highlighter.highlightAlternative(modelDiagram, alternative);
-			}
-			catch (Exception e) {
-				String error = "Can't highlight alternative, skipping it";
-				MMINTException.print(MMINTException.Type.WARNING, error, e);
-				return CommandResult.newErrorCommandResult(error);
-			}
+			MAVOMultiModelConstraintChecker.highlightAlternative(modelDiagram, alternative);
 
 			return CommandResult.newOKCommandResult();
 		}
