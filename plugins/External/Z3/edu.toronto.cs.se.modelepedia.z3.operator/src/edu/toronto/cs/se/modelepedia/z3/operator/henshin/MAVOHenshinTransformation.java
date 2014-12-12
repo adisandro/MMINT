@@ -29,9 +29,7 @@ import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
 import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
 import org.eclipse.emf.henshin.interpreter.util.InterpreterUtil;
-import org.eclipse.emf.henshin.model.Formula;
 import org.eclipse.emf.henshin.model.Module;
-import org.eclipse.emf.henshin.model.NestedCondition;
 import org.eclipse.emf.henshin.model.Node;
 import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
@@ -108,6 +106,7 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
 	protected void getMatchedModelObjs(Match match, Set<Node> nodes, Set<MAVOElement> modelObjs, Set<MAVOElement> allModelObjs) {
 
 		for (Node node : nodes) {
@@ -123,34 +122,21 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 
 	private TransformationApplicabilityCondition checkApplicabilityConditions(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver, int checkpointA) {
 
-		Set<Node> nodesN, nodesC, nodesD;
-
 		for (int i = 0; i < rule.getLhs().getNACs().size(); i++) { // one Nac at a time
 			Rule ruleCopyN = EcoreUtil.copy(rule);
-			NestedCondition conditionN = ruleCopyN.getLhs().getNACs().get(i);
-			ruleCopyN.getLhs().setFormula((Formula) conditionN.eContainer()); // remove other Nacs
-			nodesN = new LinkedHashSet<Node>();
-			nodesC = new LinkedHashSet<Node>();
-			nodesD = new LinkedHashSet<Node>();
-			getCDNodes(ruleCopyN, nodesC, nodesD);
-			getNNodesAndChangeToC(conditionN, ruleCopyN, nodesN);
-			List<Match> matchesN = InterpreterUtil.findAllMatches(engine, ruleCopyN, graph, null);
+			Set<Node> nodesN = new LinkedHashSet<Node>(), nodesC = new LinkedHashSet<Node>(), nodesD = new LinkedHashSet<Node>();
+			List<Match> matchesN = findNMatches(ruleCopyN, engine, graph, i, nodesC, nodesD, nodesN);
 matchesN:
 			for (int j = 0; j < matchesN.size(); j++) {
-				boolean isLiftedMatchNBar = true;
 				modelObjsNBar.clear();
-				Set<MAVOElement> modelObjsNj = new HashSet<MAVOElement>();
 				modelObjsC.clear();
 				modelObjsD.clear();
 				modelObjsCDN.clear();
 				Match matchNj = matchesN.get(j);
-				getMatchedModelObjs(matchNj, nodesN, modelObjsNj, modelObjsCDN);
-				isLiftedMatchNBar &= (modelObjsNj.size() > 0);
-				// check forall NBar condition
+				boolean isLiftedMatchNBar = addNBarModelObjs(matchNj, nodesN);
 				if (!isLiftedMatchNBar) {
 					continue;
 				}
-				modelObjsNBar.add(modelObjsNj);
 				getMatchedModelObjs(matchNj, nodesC, modelObjsC, modelObjsCDN);
 				getMatchedModelObjs(matchNj, nodesD, modelObjsD, modelObjsCDN);
 				for (int k = 0; k < matchesN.size(); k++) { // same Nac for NBar
@@ -161,39 +147,26 @@ matchesN:
 					if (!areMatchesOverlapping(matchNj, matchNk, nodesC, nodesC, nodesD, nodesD)) {
 						continue;
 					}
-					Set<MAVOElement> modelObjsNk = new HashSet<MAVOElement>();
-					getMatchedModelObjs(matchNk, nodesN, modelObjsNk, modelObjsCDN);
-					isLiftedMatchNBar &= (modelObjsNk.size() > 0);
-					// check forall NBar condition
+					isLiftedMatchNBar = addNBarModelObjs(matchNk, nodesN);
 					if (!isLiftedMatchNBar) {
 						continue matchesN;
 					}
-					modelObjsNBar.add(modelObjsNk);
 				}
 				for (int l = 0; l < rule.getLhs().getNACs().size(); l++) { // other Nacs for NBar
 					if (l == i) {
 						continue;
 					}
-					Rule ruleCopyNl = EcoreUtil.copy(rule);
-					NestedCondition conditionNl = ruleCopyNl.getLhs().getNACs().get(l);
-					ruleCopyNl.getLhs().setFormula((Formula) conditionNl.eContainer()); // remove other Nacs
 					Set<Node> nodesNl = new LinkedHashSet<Node>(), nodesCl = new LinkedHashSet<Node>(), nodesDl = new LinkedHashSet<Node>();
-					getCDNodes(ruleCopyNl, nodesCl, nodesDl);
-					getNNodesAndChangeToC(conditionNl, ruleCopyNl, nodesNl);
-					List<Match> matchesNl = InterpreterUtil.findAllMatches(engine, ruleCopyNl, graph, null);
+					List<Match> matchesNl = findNMatches(EcoreUtil.copy(rule), engine, graph, l, nodesCl, nodesDl, nodesNl);
 					for (int m = 0; m < matchesNl.size(); m++) {
 						Match matchNm = matchesNl.get(m);
 						if (!areMatchesOverlapping(matchNj, matchNm, nodesC, nodesCl, nodesD, nodesDl)) {
 							continue;
 						}
-						Set<MAVOElement> modelObjsNm = new HashSet<MAVOElement>();
-						getMatchedModelObjs(matchNm, nodesNl, modelObjsNm, modelObjsCDN);
-						isLiftedMatchNBar &= (modelObjsNm.size() > 0);
-						// check forall NBar condition
+						isLiftedMatchNBar = addNBarModelObjs(matchNm, nodesNl);
 						if (!isLiftedMatchNBar) {
 							continue matchesN;
 						}
-						modelObjsNBar.add(modelObjsNm);
 					}
 				}
 				// check apply formula
@@ -205,9 +178,7 @@ matchesN:
 
 		// no Nac matched
 		Rule ruleCopy = EcoreUtil.copy(rule);
-		nodesN = new HashSet<Node>();
-		nodesC = new HashSet<Node>();
-		nodesD = new HashSet<Node>();
+		Set<Node> nodesC = new HashSet<Node>(), nodesD = new HashSet<Node>();
 		getCDNodes(ruleCopy, nodesC, nodesD);
 		boolean isLiftedMatch = false;
 		List<Match> matches = InterpreterUtil.findAllMatches(engine, ruleCopy, graph, null);

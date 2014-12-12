@@ -26,9 +26,11 @@ import org.eclipse.emf.henshin.interpreter.Engine;
 import org.eclipse.emf.henshin.interpreter.Match;
 import org.eclipse.emf.henshin.interpreter.RuleApplication;
 import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
+import org.eclipse.emf.henshin.interpreter.util.InterpreterUtil;
 import org.eclipse.emf.henshin.model.Action;
 import org.eclipse.emf.henshin.model.Attribute;
 import org.eclipse.emf.henshin.model.Edge;
+import org.eclipse.emf.henshin.model.Formula;
 import org.eclipse.emf.henshin.model.HenshinFactory;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.NestedCondition;
@@ -432,6 +434,28 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		}
 
 		return true;
+	}
+
+	protected List<Match> findNMatches(Rule rule, Engine engine, EGraph graph, int indexN, Set<Node> nodesC, Set<Node> nodesD, Set<Node> nodesN) {
+
+		NestedCondition conditionN = rule.getLhs().getNACs().get(indexN);
+		rule.getLhs().setFormula((Formula) conditionN.eContainer()); // remove other Nacs
+		getCDNodes(rule, nodesC, nodesD);
+		getNNodesAndChangeToC(conditionN, rule, nodesN);
+
+		return InterpreterUtil.findAllMatches(engine, rule, graph, null);
+	}
+
+	protected boolean addNBarModelObjs(Match matchN, Set<Node> nodesN) {
+
+		Set<MAVOElement> modelObjsN = new HashSet<MAVOElement>();
+		getMatchedModelObjs(matchN, nodesN, modelObjsN, modelObjsCDN);
+		boolean isLiftedMatchNBar = (modelObjsN.size() > 0);
+		if (isLiftedMatchNBar) {
+			modelObjsNBar.add(modelObjsN);
+		}
+
+		return isLiftedMatchNBar;
 	}
 
 	protected abstract void getMatchedModelObjs(Match match, Set<Node> nodes, Set<MAVOElement> modelObjs, Set<MAVOElement> allModelObjs);
