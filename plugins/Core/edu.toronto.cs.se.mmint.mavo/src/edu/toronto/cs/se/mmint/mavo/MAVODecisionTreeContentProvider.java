@@ -7,59 +7,85 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Naama Ben-David - Implementation.
+ *    Naama Ben-David - Initial implementation.
+ *    Alessio Di Sandro - Revision.
  */
 package edu.toronto.cs.se.mmint.mavo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 
 import edu.toronto.cs.se.mavo.MAVOAlternative;
 import edu.toronto.cs.se.mavo.MAVODecision;
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
 
-public class MAVODecisionTreeContentProvider extends
-		AdapterFactoryContentProvider {
+public class MAVODecisionTreeContentProvider extends AdapterFactoryContentProvider {
 
 	public MAVODecisionTreeContentProvider(AdapterFactory adapterFactory) {
+
 		super(adapterFactory);
+	}
+
+	private List<Object> getLegacyMAVOElements(MAVOModel mavoModel) {
+
+		List<Object> mavoModelObjs = new ArrayList<Object>();
+		TreeIterator<EObject> iter = mavoModel.eAllContents();
+		while (iter.hasNext()) {
+			Object modelObj = iter.next();
+			if (!(modelObj instanceof MAVOElement)) {
+				continue;
+			}
+			MAVOElement mavoModelObj = (MAVOElement) modelObj;
+			if (
+				(mavoModelObj.isMay() || mavoModelObj.isSet() || mavoModelObj.isVar()) &&
+				mavoModelObj.getAlternatives().isEmpty()
+			) {
+				mavoModelObjs.add(mavoModelObj);
+			}
+		}
+
+		return mavoModelObjs;
 	}
 
 	@Override
 	public boolean hasChildren(Object object) {
+
 		boolean hasChildren = false;
-		if (object instanceof Resource) {
-			MAVOModel model = (MAVOModel) ((Resource) object).getContents()
-					.get(0);
-			if (!model.getDecisions().isEmpty()) {
-				hasChildren = true;
-			}
-		} else if (object instanceof MAVOModel) {
-			MAVOModel model = (MAVOModel) object;
-			if (!model.getDecisions().isEmpty()) {
-				hasChildren = true;
-			}
-		} else if (object instanceof MAVODecision) {
-			if (object instanceof MayDecision) {
-				MayDecision decision = (MayDecision) object;
-				if (!decision.getAlternatives().isEmpty()) {
-					hasChildren = true;
-				}
-			} else if (object instanceof VarDecision) {
-				VarDecision decision = (VarDecision) object;
-				if (decision.getDomain() != null) {
-					hasChildren = true;
-				}
-			}
-		} else if (object instanceof MAVOAlternative) {
-			MAVOAlternative alternative = (MAVOAlternative) object;
-			if (!alternative.getMavoElements().isEmpty()) {
+		if (object instanceof MAVOModel) {
+			if (
+				!((MAVOModel) object).getDecisions().isEmpty() ||
+				!getLegacyMAVOElements((MAVOModel) object).isEmpty()
+			) {
 				hasChildren = true;
 			}
 		}
+		else if (object instanceof MAVODecision) {
+			if (object instanceof MayDecision) {
+				if (!((MayDecision) object).getAlternatives().isEmpty()) {
+					hasChildren = true;
+				}
+			}
+			else if (object instanceof VarDecision) {
+				if (((VarDecision) object).getDomain() != null) {
+					hasChildren = true;
+				}
+			}
+		}
+		else if (object instanceof MAVOAlternative) {
+			if (!((MAVOAlternative) object).getMavoElements().isEmpty()) {
+				hasChildren = true;
+			}
+		}
+
 		return hasChildren;
 	}
 
@@ -71,23 +97,25 @@ public class MAVODecisionTreeContentProvider extends
 
 	@Override
 	public Object[] getChildren(Object object) {
+
 		Object[] children = new Object[] {};
 		if (object instanceof Resource) {
-			children = new Object[] { ((Resource) object).getContents().get(0) };
-		} else if (object instanceof MAVOModel) {
-			MAVOModel model = (MAVOModel) object;
-			children = model.getDecisions().toArray();
-		} else if (object instanceof MAVODecision) {
+			children = new Object[] {((Resource) object).getContents().get(0)};
+		}
+		else if (object instanceof MAVOModel) {
+			List<Object> childrenList = new ArrayList<Object>(((MAVOModel) object).getDecisions());
+			childrenList.addAll(getLegacyMAVOElements((MAVOModel) object));
+			children = childrenList.toArray();
+		}
+		else if (object instanceof MAVODecision) {
 			if (object instanceof MayDecision) {
-				MayDecision decision = (MayDecision) object;
-				children = decision.getAlternatives().toArray();
+				children = ((MayDecision) object).getAlternatives().toArray();
 			} else if (object instanceof VarDecision) {
-				VarDecision decision = (VarDecision) object;
-				children = new Object[] { decision.getDomain() };
+				children = new Object[] {((VarDecision) object).getDomain()};
 			}
-		} else if (object instanceof MAVOAlternative) {
-			MAVOAlternative alternative = (MAVOAlternative) object;
-			children = alternative.getMavoElements().toArray();
+		}
+		else if (object instanceof MAVOAlternative) {
+			children = ((MAVOAlternative) object).getMavoElements().toArray();
 		}
 
 		return children;
