@@ -11,7 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.z3;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
@@ -32,24 +34,25 @@ import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 
 public class Z3IncrementalSolver {
 
-	public enum Z3IncrementalBehavior {NORMAL, POP, POP_IF_UNSAT};
+	public enum Z3IncrementalBehavior {NORMAL, PUSH, POP, POP_IF_UNSAT};
 
 	private Context context;
 	private Solver solver;
-	private Model model;
+	private List<Model> models;
 
 	private void reset() {
 
 		context = null;
 		solver = null;
-		model = null;
+		models.clear();
 	}
 
-	private @NonNull Z3Model runCheckSatAndGetModel(@NonNull String smtEncoding, @NonNull Z3IncrementalBehavior incBehavior) throws Z3Exception {
+	private @NonNull Z3Model runCheckSatAndGetModel(@NonNull String smtEncoding) throws Z3Exception {
 
 		BoolExpr expr;
-		if (model != null) {
+		if (!models.isEmpty()) {
 			// parse incremental encoding
+			Model model = models.get(models.size()-1);
 			Sort[] sorts = model.getSorts();
 			Symbol[] sortSymbols = new Symbol[sorts.length];
 			for (int i = 0; i < sorts.length; i++) {
@@ -73,10 +76,7 @@ public class Z3IncrementalSolver {
 		Model returnModel = null;
 		if (status == Status.SATISFIABLE) {
 			returnModel = solver.getModel();
-			// store current model if encoding is piling up, or just keep the previous one
-			if (incBehavior != Z3IncrementalBehavior.POP) {
-				model = returnModel;
-			}
+			models.add(returnModel);
 		}
 
 		return new Z3Model(status, returnModel);
@@ -90,12 +90,12 @@ public class Z3IncrementalSolver {
 		try {
 			context = new Context(config);
 			solver = context.mkSolver();
-			model = null;
+			models = new ArrayList<Model>();
 
-			return runCheckSatAndGetModel(smtEncoding, Z3IncrementalBehavior.NORMAL);
+			return runCheckSatAndGetModel(smtEncoding);
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result", e);
+			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result and resetting solver", e);
 			reset();
 			return new Z3Model(Status.UNKNOWN, null);
 		}
@@ -104,16 +104,32 @@ public class Z3IncrementalSolver {
 	// incremental check sat and get model
 	public @NonNull Z3Model checkSatAndGetModel(@NonNull String smtEncoding, @NonNull Z3IncrementalBehavior incBehavior) {
 
-		if (model == null) {
+		if (models.isEmpty()) {
 			MMINTException.print(Type.WARNING, "No incremental model found, invoking firstCheckSatAndGetModel() instead", null);
 			return firstCheckSatAndGetModel(smtEncoding);
 		}
 
 		try {
+			// push
 			if (incBehavior != Z3IncrementalBehavior.NORMAL) {
 				solver.push();
 			}
-			Z3Model z3ModelResult = runCheckSatAndGetModel(smtEncoding, incBehavior);
+			// run
+			Z3Model z3ModelResult = runCheckSatAndGetModel(smtEncoding);
+			if (z3ModelResult.getZ3Bool() == Z3Bool.SAT) {
+				switch (incBehavior) {
+				case NORMAL:
+				case POP_IF_UNSAT:
+					models.remove(0); // keep current model
+					break;
+				case POP:
+					models.remove(models.size()-1); // keep previous model
+					break;
+				case PUSH:
+					// do nothing: keep previous and current models
+				}
+			}
+			// pop
 			if (
 				incBehavior == Z3IncrementalBehavior.POP ||
 				(incBehavior == Z3IncrementalBehavior.POP_IF_UNSAT && z3ModelResult.getZ3Bool() != Z3Bool.SAT)
@@ -124,9 +140,30 @@ public class Z3IncrementalSolver {
 			return z3ModelResult;
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result", e);
+			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result and resetting solver", e);
 			reset();
 			return new Z3Model(Status.UNKNOWN, null);
+		}
+	}
+
+	// manual pop
+	public void finalizePreviousPush() {
+
+		//TODO MMINT[Z3] Will break if there is a POP_IF_UNSAT with SAT result between the PUSH and this
+		models.remove(0);
+	}
+
+	// manual pop
+	public void revertToPreviousPush() {
+
+		//TODO MMINT[Z3] Will break if there is a POP_IF_UNSAT with SAT result between the PUSH and this
+		try {
+			solver.pop();
+			models.remove(models.size()-1);
+		}
+		catch (Z3Exception e) {
+			MMINTException.print(Type.WARNING, "Z3 problem, resetting solver", e);
+			reset();
 		}
 	}
 
