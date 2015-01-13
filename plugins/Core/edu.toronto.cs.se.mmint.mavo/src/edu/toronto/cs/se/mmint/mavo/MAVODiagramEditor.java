@@ -25,7 +25,7 @@ public class MAVODiagramEditor extends DiagramDocumentEditor {
 	public Object getAdapter(Class type) {
 
 		if (type == IContentOutlinePage.class) {
-			MAVODiagramDecisionTree decisionTree = new MAVODiagramDecisionTree(getDiagram());
+			MAVODiagramOutlinePage decisionTree = new MAVODiagramOutlinePage(getDiagram());
 			return decisionTree;
 		}
 

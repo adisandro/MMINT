@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Naama Ben-David - Implementation.
- *    Alessio Di Sandro - Implementation.
+ *    Naama Ben-David - Initial implementation.
+ *    Alessio Di Sandro - Refactoring and fixes.
  */
 package edu.toronto.cs.se.mmint.mavo;
 
@@ -19,9 +19,9 @@ import edu.toronto.cs.se.mavo.DecisionElement;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 
-public class MAVODecisionLabelProvider extends AdapterFactoryLabelProvider {
+public class MAVODiagramOutlineLabelProvider extends AdapterFactoryLabelProvider {
 
-	public MAVODecisionLabelProvider(AdapterFactory adapterFactory) {
+	public MAVODiagramOutlineLabelProvider(AdapterFactory adapterFactory) {
 
 		super(adapterFactory);
 	}
@@ -44,6 +44,10 @@ public class MAVODecisionLabelProvider extends AdapterFactoryLabelProvider {
 		else if (object instanceof MAVOElement) {
 			MAVOElement modelObj = (MAVOElement) object;
 			label = modelObj.getFormulaVariable();
+			//TODO MMINT[MU-MMINT] Create constant for this
+			if (modelObj.getAlternatives().isEmpty()) {
+				label = "(legacy) " + label;
+			}
 		}
 		else {
 			label = super.getText(object);

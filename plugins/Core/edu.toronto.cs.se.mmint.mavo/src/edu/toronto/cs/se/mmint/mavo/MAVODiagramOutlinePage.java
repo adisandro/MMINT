@@ -7,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Naama Ben-David - Implementation.
+ *    Naama Ben-David - Initial implementation.
+ *    Alessio Di Sandro - Refactoring and fixes.
  */
 package edu.toronto.cs.se.mmint.mavo;
 
@@ -16,7 +17,6 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Composite;
@@ -25,28 +25,19 @@ import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-public class MAVODiagramDecisionTree extends ContentOutlinePage {
+public class MAVODiagramOutlinePage extends ContentOutlinePage {
 
-	private MAVOModel model;
-	/** The tree viewer of the outline. */
+	private MAVOModel mavoRootModelObj;
 	protected TreeViewer contentOutlineViewer;
-	/** The adapter factory for content and labels of the tree viewer. */
 	protected ComposedAdapterFactory adapterFactory;
 
-	public MAVODiagramDecisionTree(Diagram diagram) {
+	public MAVODiagramOutlinePage(Diagram diagram) {
+
 		super();
-		model = (MAVOModel) diagram.getElement();
+		mavoRootModelObj = (MAVOModel) diagram.getElement();
 		adapterFactory = GMFDiagramUtils.getAdapterFactory();
 	}
 
-	/**
-	 * {@inheritDoc}<br />
-	 * Initialises the tree viewer with a content and label provider, enables
-	 * drag and drop, sets the input of the tree viewer.
-	 * 
-	 * @param parent
-	 *            The parent.
-	 */
 	@Override
 	public void createControl(Composite parent) {
 
@@ -54,32 +45,28 @@ public class MAVODiagramDecisionTree extends ContentOutlinePage {
 
 		contentOutlineViewer = getTreeViewer();
 		contentOutlineViewer.addSelectionChangedListener(this);
-		contentOutlineViewer
-				.addSelectionChangedListener(new ISelectionChangedListener() {
-					public void selectionChanged(SelectionChangedEvent event) {
-						contentOutlineViewer.refresh();
-					}
-				});
-		contentOutlineViewer
-				.setContentProvider(new MAVODecisionTreeContentProvider(
-						adapterFactory));
-		contentOutlineViewer.setLabelProvider(new MAVODecisionLabelProvider(
-				adapterFactory));
-		contentOutlineViewer.setInput(model.eResource());
+		contentOutlineViewer.setContentProvider(new MAVODiagramOutlineContentProvider(adapterFactory));
+		contentOutlineViewer.setLabelProvider(new MAVODiagramOutlineLabelProvider(adapterFactory));
+		contentOutlineViewer.setInput(mavoRootModelObj.eResource());
 
+		//TODO MMINT[MU-MMINT] Review
 		MenuManager manager = new MenuManager();
 		manager.setRemoveAllWhenShown(true);
 		manager.addMenuListener(new IMenuListener() {
 			public void menuAboutToShow(IMenuManager manager) {
-				manager.add(new MAVODecisionTreeContributionItem(
-						contentOutlineViewer));
+				manager.add(new MAVODecisionTreeContributionItem(contentOutlineViewer));
 				manager.add(new MAVOAlternativeHighlightContributionItem(contentOutlineViewer));
 			}
 		});
+		contentOutlineViewer.getControl().setMenu(manager.createContextMenu(contentOutlineViewer.getControl()));
 
-		contentOutlineViewer.getControl().setMenu(
-				manager.createContextMenu(contentOutlineViewer.getControl()));
+	}
 
+	//TODO MMINT[MU-MMINT] Review the need for refresh, if not needed just remove the function
+	public void selectionChanged(SelectionChangedEvent event) {
+
+		super.selectionChanged(event);
+		contentOutlineViewer.refresh();
 	}
 
 }

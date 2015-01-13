@@ -8,7 +8,7 @@
  * 
  * Contributors:
  *    Naama Ben-David - Initial implementation.
- *    Alessio Di Sandro - Revision.
+ *    Alessio Di Sandro - Refactoring and fixes.
  */
 package edu.toronto.cs.se.mmint.mavo;
 
@@ -28,9 +28,9 @@ import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
 
-public class MAVODecisionTreeContentProvider extends AdapterFactoryContentProvider {
+public class MAVODiagramOutlineContentProvider extends AdapterFactoryContentProvider {
 
-	public MAVODecisionTreeContentProvider(AdapterFactory adapterFactory) {
+	public MAVODiagramOutlineContentProvider(AdapterFactory adapterFactory) {
 
 		super(adapterFactory);
 	}
@@ -90,12 +90,6 @@ public class MAVODecisionTreeContentProvider extends AdapterFactoryContentProvid
 	}
 
 	@Override
-	public Object[] getElements(Object inputElement) {
-
-		return getChildren(inputElement);
-	}
-
-	@Override
 	public Object[] getChildren(Object object) {
 
 		Object[] children = new Object[] {};
@@ -119,6 +113,13 @@ public class MAVODecisionTreeContentProvider extends AdapterFactoryContentProvid
 		}
 
 		return children;
+	}
+
+	//TODO MMINT[MU-MMINT] Review the need for this, if not needed just remove the function
+	@Override
+	public Object[] getElements(Object inputElement) {
+
+		return getChildren(inputElement);
 	}
 
 }
