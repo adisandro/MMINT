@@ -300,23 +300,24 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 
 		int checkpointUnsat = smtEncoding.length();
 		createZ3ApplyFormula();
-		smtEncoding.append(
-			Z3Utils.assertion(
-				Z3Utils.equality(
-					Z3Utils.and(
-						Z3Utils.predicate(SMTLIB_APPLICABILITY_FUN_CONSTRAINTS, Integer.toString(ruleApplicationsLifting)) +
-						Z3Utils.predicate(SMTLIB_APPLICABILITY_FUN_APPLY, Integer.toString(ruleApplicationsLifting + 1))
-					) +
-					Z3Utils.SMTLIB_TRUE
-				)
+		z3IncSolver.checkSatAndGetModel(smtEncoding.substring(checkpointA), Z3IncrementalBehavior.PUSH);
+		String applicabilityCondition = Z3Utils.assertion(
+			Z3Utils.equality(
+				Z3Utils.and(
+					Z3Utils.predicate(SMTLIB_APPLICABILITY_FUN_CONSTRAINTS, Integer.toString(ruleApplicationsLifting)) +
+					Z3Utils.predicate(SMTLIB_APPLICABILITY_FUN_APPLY, Integer.toString(ruleApplicationsLifting + 1))
+				) +
+				Z3Utils.SMTLIB_TRUE
 			)
 		);
 
-		Z3Model z3ModelResult = z3IncSolver.checkSatAndGetModel(smtEncoding.substring(checkpointA), Z3IncrementalBehavior.POP_IF_UNSAT);
+		Z3Model z3ModelResult = z3IncSolver.checkSatAndGetModel(applicabilityCondition, Z3IncrementalBehavior.POP);
 		if (z3ModelResult.getZ3Bool() == Z3Bool.SAT) {
+			z3IncSolver.finalizePreviousPush();
 			satCountLifting++;
 			return true;
 		}
+		z3IncSolver.revertToPreviousPush();
 		smtEncoding.delete(checkpointUnsat, smtEncoding.length());
 		unsatCountLifting++;
 		return false;

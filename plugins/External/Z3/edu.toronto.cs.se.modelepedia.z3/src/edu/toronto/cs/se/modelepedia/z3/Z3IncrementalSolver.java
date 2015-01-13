@@ -95,7 +95,7 @@ public class Z3IncrementalSolver {
 			return runCheckSatAndGetModel(smtEncoding);
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result and resetting solver", e);
+			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result and resetting the solver", e);
 			reset();
 			return new Z3Model(Status.UNKNOWN, null);
 		}
@@ -140,7 +140,7 @@ public class Z3IncrementalSolver {
 			return z3ModelResult;
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result and resetting solver", e);
+			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result and resetting the solver", e);
 			reset();
 			return new Z3Model(Status.UNKNOWN, null);
 		}
@@ -162,7 +162,7 @@ public class Z3IncrementalSolver {
 			models.remove(models.size()-1);
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(Type.WARNING, "Z3 problem, resetting solver", e);
+			MMINTException.print(Type.WARNING, "Z3 problem, resetting the solver", e);
 			reset();
 		}
 	}
