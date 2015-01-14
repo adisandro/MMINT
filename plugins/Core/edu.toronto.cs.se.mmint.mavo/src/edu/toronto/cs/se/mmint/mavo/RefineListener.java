@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Naama Ben-David - Implementation.
- *    Alessio Di Sandro - Generalization to all metamodels.
+ *    Naama Ben-David - Initial implementation.
+ *    Alessio Di Sandro - Refactoring and fixes.
  */
 package edu.toronto.cs.se.mmint.mavo;
 
@@ -41,12 +41,12 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 
-public class MAVODecisionTreeRefinementMenuListener extends MIDContextMenuListener {
+public class RefineListener extends MIDContextMenuListener {
 
 	private Object[] objects;
 	private Model model;
 
-	public MAVODecisionTreeRefinementMenuListener(String menuLabel, Object[] objects){
+	public RefineListener(String menuLabel, Object[] objects) {
 
 		super(menuLabel);
 		this.objects = objects;

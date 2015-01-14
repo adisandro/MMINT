@@ -21,6 +21,8 @@ import edu.toronto.cs.se.mavo.MAVOModel;
 
 public class MAVODiagramOutlineLabelProvider extends AdapterFactoryLabelProvider {
 
+	private final static String UNSTRUCTURED_MAVO_ELEMENT_PREFIX = "(unstructured) ";
+
 	public MAVODiagramOutlineLabelProvider(AdapterFactory adapterFactory) {
 
 		super(adapterFactory);
@@ -44,9 +46,8 @@ public class MAVODiagramOutlineLabelProvider extends AdapterFactoryLabelProvider
 		else if (object instanceof MAVOElement) {
 			MAVOElement modelObj = (MAVOElement) object;
 			label = modelObj.getFormulaVariable();
-			//TODO MMINT[MU-MMINT] Create constant for this
 			if (modelObj.getAlternatives().isEmpty()) {
-				label = "(legacy) " + label;
+				label = UNSTRUCTURED_MAVO_ELEMENT_PREFIX + label;
 			}
 		}
 		else {

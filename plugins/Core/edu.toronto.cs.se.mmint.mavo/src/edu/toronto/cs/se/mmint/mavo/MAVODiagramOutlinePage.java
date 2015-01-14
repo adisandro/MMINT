@@ -47,19 +47,16 @@ public class MAVODiagramOutlinePage extends ContentOutlinePage {
 		contentOutlineViewer.addSelectionChangedListener(this);
 		contentOutlineViewer.setContentProvider(new MAVODiagramOutlineContentProvider(adapterFactory));
 		contentOutlineViewer.setLabelProvider(new MAVODiagramOutlineLabelProvider(adapterFactory));
-		contentOutlineViewer.setInput(mavoRootModelObj.eResource());
-
 		//TODO MMINT[MU-MMINT] Review
 		MenuManager manager = new MenuManager();
 		manager.setRemoveAllWhenShown(true);
 		manager.addMenuListener(new IMenuListener() {
 			public void menuAboutToShow(IMenuManager manager) {
-				manager.add(new MAVODecisionTreeContributionItem(contentOutlineViewer));
-				manager.add(new MAVOAlternativeHighlightContributionItem(contentOutlineViewer));
+				manager.add(new MAVODiagramOutlineContextMenu(contentOutlineViewer));
 			}
 		});
 		contentOutlineViewer.getControl().setMenu(manager.createContextMenu(contentOutlineViewer.getControl()));
-
+		contentOutlineViewer.setInput(mavoRootModelObj.eResource());
 	}
 
 	//TODO MMINT[MU-MMINT] Review the need for refresh, if not needed just remove the function

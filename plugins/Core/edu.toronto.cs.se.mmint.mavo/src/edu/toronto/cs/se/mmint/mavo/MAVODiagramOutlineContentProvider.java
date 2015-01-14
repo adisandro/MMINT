@@ -35,7 +35,7 @@ public class MAVODiagramOutlineContentProvider extends AdapterFactoryContentProv
 		super(adapterFactory);
 	}
 
-	private List<Object> getLegacyMAVOElements(MAVOModel mavoModel) {
+	private List<Object> getUnstructuredMAVOElements(MAVOModel mavoModel) {
 
 		List<Object> mavoModelObjs = new ArrayList<Object>();
 		TreeIterator<EObject> iter = mavoModel.eAllContents();
@@ -63,7 +63,7 @@ public class MAVODiagramOutlineContentProvider extends AdapterFactoryContentProv
 		if (object instanceof MAVOModel) {
 			if (
 				!((MAVOModel) object).getDecisions().isEmpty() ||
-				!getLegacyMAVOElements((MAVOModel) object).isEmpty()
+				!getUnstructuredMAVOElements((MAVOModel) object).isEmpty()
 			) {
 				hasChildren = true;
 			}
@@ -98,7 +98,7 @@ public class MAVODiagramOutlineContentProvider extends AdapterFactoryContentProv
 		}
 		else if (object instanceof MAVOModel) {
 			List<Object> childrenList = new ArrayList<Object>(((MAVOModel) object).getDecisions());
-			childrenList.addAll(getLegacyMAVOElements((MAVOModel) object));
+			childrenList.addAll(getUnstructuredMAVOElements((MAVOModel) object));
 			children = childrenList.toArray();
 		}
 		else if (object instanceof MAVODecision) {
@@ -113,13 +113,6 @@ public class MAVODiagramOutlineContentProvider extends AdapterFactoryContentProv
 		}
 
 		return children;
-	}
-
-	//TODO MMINT[MU-MMINT] Review the need for this, if not needed just remove the function
-	@Override
-	public Object[] getElements(Object inputElement) {
-
-		return getChildren(inputElement);
 	}
 
 }

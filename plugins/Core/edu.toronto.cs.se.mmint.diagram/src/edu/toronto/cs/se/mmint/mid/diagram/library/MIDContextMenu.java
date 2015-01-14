@@ -307,29 +307,6 @@ public class MIDContextMenu extends ContributionItem {
 			refineItem.addSelectionListener(
 				new RefineByConstraintListener(MMINT_MENU_REFINEBYCONSTRAINT_LABEL, models.get(0))
 			);
-//			MenuItem mayItem = new MenuItem(mmintMenu, SWT.CASCADE);
-//			mayItem.setText("May Models");
-//			Menu mayMenu = new Menu(menu);
-//			mayItem.setMenu(mayMenu);
-//
-//			MenuItem refinementItem = new MenuItem(mayMenu, SWT.CASCADE);
-//			refinementItem.setText("Refinement");
-//			Menu refinementMenu = new Menu(mayMenu);
-//			refinementItem.setMenu(refinementMenu);
-//
-//			MenuItem previewItem = new MenuItem(refinementMenu, SWT.NONE);
-//			previewItem.setText("Preview");
-//			/*TODO MMINT[MU-MMINT] create a listener for preview that greys out elements that will be removed. 
-//			 * Possibly have it similar/related to RefinementListener, since functionality for finding elements 
-//			 * to grey out should be the same, and the calculation should only have to be made once if preview is 
-//			 * called, and then make refinement follows.
-//			 */
-//			//previewItem.addSelectionListener(new RefinementListener(models.get(0), editParts.get(0), false));
-//			MenuItem refineItem = new MenuItem(refinementMenu, SWT.NONE);
-//			refineItem.setText(MMINT_MENU_REFINE_LABEL);
-//			refineItem.addSelectionListener(
-//				new RefinementListener(MMINT_MENU_REFINE_LABEL, models.get(0))
-//			);
 		}
 		// copy
 		if (doCopy) {

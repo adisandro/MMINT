@@ -7,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Naama Ben-David - Implementation.
+ *    Naama Ben-David - Initial implementation.
+ *    Alessio Di Sandro - Refactoring and fixes.
  */
 package edu.toronto.cs.se.mmint.mavo;
 

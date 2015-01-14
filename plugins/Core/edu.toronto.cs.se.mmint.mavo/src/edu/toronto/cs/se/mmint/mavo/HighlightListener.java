@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Naama Ben-David - Implementation.
- *    Alessio Di Sandro - Generalization to all metamodels.
+ *    Naama Ben-David - Initial implementation.
+ *    Alessio Di Sandro - Refactoring and fixes.
  */
 package edu.toronto.cs.se.mmint.mavo;
 
@@ -39,12 +39,12 @@ import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-public class MAVOAlternativeHighlightMenuListener extends MIDContextMenuListener {
+public class HighlightListener extends MIDContextMenuListener {
 
 	private MAVOAlternative alternative;
 	private Model model;
 
-	public MAVOAlternativeHighlightMenuListener(String menuLabel, MAVOAlternative alternative) {
+	public HighlightListener(String menuLabel, MAVOAlternative alternative) {
 
 		super(menuLabel);
 		this.alternative = alternative;
