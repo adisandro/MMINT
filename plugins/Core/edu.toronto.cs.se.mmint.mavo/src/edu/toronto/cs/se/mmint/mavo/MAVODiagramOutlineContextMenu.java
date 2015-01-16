@@ -21,16 +21,18 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 
 import edu.toronto.cs.se.mavo.MAVOAlternative;
-import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
 
 public class MAVODiagramOutlineContextMenu extends ContributionItem {
 
-	private static final String MAVO_OUTLINE_MENU_REMOVEALTERNATIVE_LABEL = "Remove this alternative";
+	private static final String MAVO_OUTLINE_MENU_ADDDECISION_LABEL = "Add new decision";
+	private static final String MAVO_OUTLINE_MENU_ADDALTERNATIVE_LABEL = "Add new alternative";
+	private static final String MAVO_OUTLINE_MENU_REMOVEDECISION_LABEL = "Remove this decision";
 	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTALTERNATIVE_LABEL = "Highlight alternative in diagram";
 	private static final String MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL = "Choose this alternative and refine";
+	private static final String MAVO_OUTLINE_MENU_REMOVEALTERNATIVE_LABEL = "Remove this alternative";
 
 	private TreeViewer viewer;
 
@@ -55,12 +57,30 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 		// get selection
 		Object object = objects[0];
 		if (object instanceof MAVOModel) {
-			MAVOModel model = (MAVOModel) object;
-			createModelMenuItems(model, menu);
+			MAVOModel mavoRootModelObj = (MAVOModel) object;
+			// add
+			MenuItem addItem = new MenuItem(menu, SWT.NONE);
+			addItem.setText(MAVO_OUTLINE_MENU_ADDDECISION_LABEL);
+			addItem.addSelectionListener(
+				new MAVODecisionTreeMenuListener(MAVO_OUTLINE_MENU_ADDDECISION_LABEL, mavoRootModelObj)
+			);
 		}
 		else if (object instanceof MayDecision) {
 			MayDecision decision = (MayDecision) object;
-			createDecisionMenuItems(decision, menu);
+			// highlight
+			//TODO MMINT[MU-MMINT] Implement and decouple from May only
+			// add
+			MenuItem addItem = new MenuItem(menu, SWT.NONE);
+			addItem.setText(MAVO_OUTLINE_MENU_ADDALTERNATIVE_LABEL);
+			addItem.addSelectionListener(
+				new MAVODecisionTreeMenuListener(MAVO_OUTLINE_MENU_ADDALTERNATIVE_LABEL, decision)
+			);
+			// remove
+			MenuItem removeItem = new MenuItem(menu, SWT.NONE);
+			removeItem.setText(MAVO_OUTLINE_MENU_REMOVEDECISION_LABEL);
+			removeItem.addSelectionListener(
+				new MAVODecisionTreeMenuListener(MAVO_OUTLINE_MENU_REMOVEDECISION_LABEL, decision.eContainer(), decision, false)
+			);
 		}
 		else if (object instanceof MAVOAlternative) {
 			MAVOAlternative mavoAlternative = (MAVOAlternative) object;
@@ -84,40 +104,10 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 			);
 		}
 		else if (object instanceof MAVOElement) {
-			
+			// highlight
+			// refine
+			//TODO MMINT[MU-MMINT] Implement
 		}
 	}
 
-	private void createModelMenuItems(MAVOModel model, Menu parent) {
-		// Add new decision
-		MenuItem addDecisionItem = new MenuItem(parent, SWT.NONE);
-		addDecisionItem.setText("Add a new decision");
-		addDecisionItem.addSelectionListener(new MAVODecisionTreeMenuListener("Add a new decision", model));
-
-		// Remove existing decisions
-		for (MAVODecision decision : model.getDecisions()) {
-			MenuItem removeDecisionItem = new MenuItem(parent, SWT.NONE);
-			removeDecisionItem.setText("Remove decision "
-					+ decision.getFormulaVariable());
-			removeDecisionItem
-					.addSelectionListener(new MAVODecisionTreeMenuListener("Remove decision ", model, decision, false));
-		}
-	}
-
-	private void createDecisionMenuItems(MayDecision decision, Menu parent) {
-		// Add new alternative
-		MenuItem addAlternativeItem = new MenuItem(parent, SWT.NONE);
-		addAlternativeItem.setText("Add new alternative");
-		addAlternativeItem
-				.addSelectionListener(new MAVODecisionTreeMenuListener("Add new alternative", decision));
-
-		// Remove existing alternatives
-		for (MAVOAlternative alternative : decision.getAlternatives()) {
-			MenuItem removeAlternativeItem = new MenuItem(parent, SWT.NONE);
-			removeAlternativeItem.setText("Remove alternative "
-					+ alternative.getFormulaVariable());
-			removeAlternativeItem
-					.addSelectionListener(new MAVODecisionTreeMenuListener("Remove alternative ", decision, alternative, false));
-		}
-	}
 }
