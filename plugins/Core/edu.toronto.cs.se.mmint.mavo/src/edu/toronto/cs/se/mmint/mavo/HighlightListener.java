@@ -82,8 +82,8 @@ public class HighlightListener extends MIDContextMenuListener {
 
 	protected class HighlightAlternativeCommand extends AbstractTransactionalCommand {
 
-		public HighlightAlternativeCommand(TransactionalEditingDomain domain,
-				String label, List affectedFiles) {
+		public HighlightAlternativeCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+
 			super(domain, label, affectedFiles);
 		}
 

@@ -21,18 +21,26 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 
 import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mavo.MayDecision;
+import edu.toronto.cs.se.mavo.VarDecision;
 
 public class MAVODiagramOutlineContextMenu extends ContributionItem {
 
 	private static final String MAVO_OUTLINE_MENU_ADDDECISION_LABEL = "Add new decision";
+	private static final String MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_MAY_LABEL = "May";
+	private static final String MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_VAR_LABEL = "Var";
 	private static final String MAVO_OUTLINE_MENU_ADDALTERNATIVE_LABEL = "Add new alternative";
+	private static final String MAVO_OUTLINE_MENU_ADDDOMAIN_LABEL = "Add new domain";
 	private static final String MAVO_OUTLINE_MENU_REMOVEDECISION_LABEL = "Remove this decision";
 	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTALTERNATIVE_LABEL = "Highlight alternative in diagram";
+	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTDOMAIN_LABEL = "Highlight domain in diagram";
 	private static final String MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL = "Choose this alternative and refine";
 	private static final String MAVO_OUTLINE_MENU_REMOVEALTERNATIVE_LABEL = "Remove this alternative";
+	private static final String MAVO_OUTLINE_MENU_REMOVEDOMAIN_LABEL = "Remove this domain";
 
 	private TreeViewer viewer;
 
@@ -59,53 +67,83 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 		if (object instanceof MAVOModel) {
 			MAVOModel mavoRootModelObj = (MAVOModel) object;
 			// add
-			MenuItem addItem = new MenuItem(menu, SWT.NONE);
+			MenuItem addItem = new MenuItem(menu, SWT.CASCADE);
 			addItem.setText(MAVO_OUTLINE_MENU_ADDDECISION_LABEL);
-			addItem.addSelectionListener(
-				new MAVODecisionTreeMenuListener(MAVO_OUTLINE_MENU_ADDDECISION_LABEL, mavoRootModelObj)
+			Menu addMenu = new Menu(menu);
+			addItem.setMenu(addMenu);
+			MenuItem addMayItem = new MenuItem(addMenu, SWT.NONE);
+			addMayItem.setText(MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_MAY_LABEL);
+			addMayItem.addSelectionListener(
+				new AddListener(MAVO_OUTLINE_MENU_ADDDECISION_LABEL + " " + MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_MAY_LABEL, mavoRootModelObj, MAVOPackage.eINSTANCE.getMayDecision())
+			);
+			MenuItem addVarItem = new MenuItem(addMenu, SWT.NONE);
+			addVarItem.setText(MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_VAR_LABEL);
+			addVarItem.addSelectionListener(
+				new AddListener(MAVO_OUTLINE_MENU_ADDDECISION_LABEL + " " + MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_VAR_LABEL, mavoRootModelObj, MAVOPackage.eINSTANCE.getVarDecision())
 			);
 		}
-		else if (object instanceof MayDecision) {
-			MayDecision decision = (MayDecision) object;
+		else if (object instanceof MAVODecision) {
+			MAVODecision mavoDecision = (MAVODecision) object;
 			// highlight
-			//TODO MMINT[MU-MMINT] Implement and decouple from May only
+			//TODO MMINT[MU-MMINT] Implement
 			// add
-			MenuItem addItem = new MenuItem(menu, SWT.NONE);
-			addItem.setText(MAVO_OUTLINE_MENU_ADDALTERNATIVE_LABEL);
-			addItem.addSelectionListener(
-				new MAVODecisionTreeMenuListener(MAVO_OUTLINE_MENU_ADDALTERNATIVE_LABEL, decision)
-			);
+			if (!(mavoDecision instanceof VarDecision) || ((VarDecision) mavoDecision).getDomain() == null) {
+				MenuItem addItem = new MenuItem(menu, SWT.NONE);
+				String addText = "";
+				if (mavoDecision instanceof MayDecision) {
+					addText = MAVO_OUTLINE_MENU_ADDALTERNATIVE_LABEL;
+				}
+				else if (mavoDecision instanceof VarDecision) {
+					addText = MAVO_OUTLINE_MENU_ADDDOMAIN_LABEL;
+				}
+				addItem.setText(addText);
+				addItem.addSelectionListener(
+					new AddListener(addText, mavoDecision)
+				);
+			}
 			// remove
 			MenuItem removeItem = new MenuItem(menu, SWT.NONE);
 			removeItem.setText(MAVO_OUTLINE_MENU_REMOVEDECISION_LABEL);
 			removeItem.addSelectionListener(
-				new MAVODecisionTreeMenuListener(MAVO_OUTLINE_MENU_REMOVEDECISION_LABEL, decision.eContainer(), decision, false)
+				new RemoveListener(MAVO_OUTLINE_MENU_REMOVEDECISION_LABEL, mavoDecision)
 			);
 		}
 		else if (object instanceof MAVOAlternative) {
-			MAVOAlternative mavoAlternative = (MAVOAlternative) object;
+			MAVOAlternative mavoSet = (MAVOAlternative) object;
+			String highlightText = "", removeText = "";
+			if (mavoSet.eContainer() instanceof MayDecision) {
+				highlightText = MAVO_OUTLINE_MENU_HIGHLIGHTALTERNATIVE_LABEL;
+				removeText = MAVO_OUTLINE_MENU_REMOVEALTERNATIVE_LABEL;
+			}
+			else if (mavoSet.eContainer() instanceof VarDecision) {
+				highlightText = MAVO_OUTLINE_MENU_HIGHLIGHTDOMAIN_LABEL;
+				removeText = MAVO_OUTLINE_MENU_REMOVEDOMAIN_LABEL;
+			}
 			// highlight
 			MenuItem highlightItem = new MenuItem(menu, SWT.NONE);
-			highlightItem.setText(MAVO_OUTLINE_MENU_HIGHLIGHTALTERNATIVE_LABEL);
+			highlightItem.setText(highlightText);
 			highlightItem.addSelectionListener(
-				new HighlightListener(MAVO_OUTLINE_MENU_HIGHLIGHTALTERNATIVE_LABEL, mavoAlternative)
+				new HighlightListener(highlightText, mavoSet)
 			);
 			// refine
-			MenuItem refineItem = new MenuItem(menu, SWT.NONE);
-			refineItem.setText(MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL);
-			refineItem.addSelectionListener(
-				new RefineListener(MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL, objects)
-			);
+			if (mavoSet.eContainer() instanceof MayDecision) {
+				MenuItem refineItem = new MenuItem(menu, SWT.NONE);
+				refineItem.setText(MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL);
+				refineItem.addSelectionListener(
+					new RefineListener(MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL, objects)
+				);
+			}
 			// remove
 			MenuItem removeItem = new MenuItem(menu, SWT.NONE);
-			removeItem.setText(MAVO_OUTLINE_MENU_REMOVEALTERNATIVE_LABEL);
+			removeItem.setText(removeText);
 			removeItem.addSelectionListener(
-				new MAVODecisionTreeMenuListener(MAVO_OUTLINE_MENU_REMOVEALTERNATIVE_LABEL, mavoAlternative.eContainer(), mavoAlternative, false)
+				new RemoveListener(removeText, mavoSet)
 			);
 		}
 		else if (object instanceof MAVOElement) {
 			// highlight
 			// refine
+			// remove
 			//TODO MMINT[MU-MMINT] Implement
 		}
 	}

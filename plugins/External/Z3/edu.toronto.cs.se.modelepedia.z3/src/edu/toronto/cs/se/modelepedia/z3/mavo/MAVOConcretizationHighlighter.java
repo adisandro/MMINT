@@ -32,6 +32,14 @@ public class MAVOConcretizationHighlighter {
 	private static final int FONT_HIGHLIGHT_COLOR = 0x005600;
 	private static final int GREYOUT_COLOR = 0xF4F4F4;
 	private static final int FONT_GREYOUT_COLOR = 0xD0D0D0;
+	private static final int[] SET_COLORS = {
+		0xFF0000,
+		0x00FF00,
+		0x0000FF,
+		0xFFFF00,
+		0xFF00FF,
+		0x00FFFF
+	};
 	private static final String EXAMPLE_MODEL_SUFFIX = "_example";
 
 	private Set<String> separateExampleElements(Map<String, String> z3ModelElems, Map<String, View> diagramViews) {

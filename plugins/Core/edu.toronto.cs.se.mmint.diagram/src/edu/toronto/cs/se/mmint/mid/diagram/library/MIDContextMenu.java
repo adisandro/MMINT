@@ -74,7 +74,7 @@ public class MIDContextMenu extends ContributionItem {
 	private static final String MMINT_MENU_CHECKCONSTRAINT_LABEL = "Check Constraint";
 	private static final String MMINT_MENU_REFINEBYCONSTRAINT_LABEL = "Refine by Constraint";
 	private static final String MMINT_MENU_COPY_LABEL = "Copy Model";
-	private static final String MMINT_MENU_MODELEPEDIA_SUBMENU_LABEL = "Wiki";
+	private static final String MMINT_MENU_MODELEPEDIA_LABEL = "Wiki";
 	private static final String MMINT_MENU_MODELEPEDIA_SUBMENU_OPEN_LABEL = "Open Wiki Page";
 	private static final String MMINT_MENU_MODELEPEDIA_SUBMENU_EDIT_LABEL = "Edit Wiki Page";
 	private static final String DOWNCAST_LABEL = " (downcast)";
@@ -323,7 +323,7 @@ public class MIDContextMenu extends ContributionItem {
 				model = model.getMetatype();
 			}
 			MenuItem modelepediaItem = new MenuItem(mmintMenu, SWT.CASCADE);
-			modelepediaItem.setText(MMINT_MENU_MODELEPEDIA_SUBMENU_LABEL);
+			modelepediaItem.setText(MMINT_MENU_MODELEPEDIA_LABEL);
 			Menu modelepediaMenu = new Menu(menu);
 			modelepediaItem.setMenu(modelepediaMenu);
 			MenuItem openModelepediaItem = new MenuItem(modelepediaMenu, SWT.NONE);
