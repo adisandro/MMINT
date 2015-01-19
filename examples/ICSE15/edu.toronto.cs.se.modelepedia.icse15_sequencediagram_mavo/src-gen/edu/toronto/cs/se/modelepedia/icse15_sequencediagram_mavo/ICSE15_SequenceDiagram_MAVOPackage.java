@@ -187,13 +187,13 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	int NAMED_ELEMENT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+	int NAMED_ELEMENT__COLLECTIONS = MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -269,13 +269,13 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	int LIFELINE__VAR = NAMED_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIFELINE__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
+	int LIFELINE__COLLECTIONS = NAMED_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -378,13 +378,13 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	int CLASS__VAR = NAMED_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
+	int CLASS__COLLECTIONS = NAMED_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -478,13 +478,13 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	int OPERATION__VAR = NAMED_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
+	int OPERATION__COLLECTIONS = NAMED_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -569,13 +569,13 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	int MESSAGE__VAR = NAMED_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
+	int MESSAGE__COLLECTIONS = NAMED_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -678,13 +678,13 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	int CLASS_REFERENCE__VAR = MAVOPackage.MAVO_REFERENCE__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_REFERENCE__ALTERNATIVES = MAVOPackage.MAVO_REFERENCE__ALTERNATIVES;
+	int CLASS_REFERENCE__COLLECTIONS = MAVOPackage.MAVO_REFERENCE__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' container reference.
@@ -769,13 +769,13 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	int OPERATION_REFERENCE__VAR = MAVOPackage.MAVO_REFERENCE__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_REFERENCE__ALTERNATIVES = MAVOPackage.MAVO_REFERENCE__ALTERNATIVES;
+	int OPERATION_REFERENCE__COLLECTIONS = MAVOPackage.MAVO_REFERENCE__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' container reference.
@@ -860,13 +860,13 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	int SOURCE_LIFELINE_REFERENCE__VAR = MAVOPackage.MAVO_REFERENCE__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_LIFELINE_REFERENCE__ALTERNATIVES = MAVOPackage.MAVO_REFERENCE__ALTERNATIVES;
+	int SOURCE_LIFELINE_REFERENCE__COLLECTIONS = MAVOPackage.MAVO_REFERENCE__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' container reference.
@@ -951,13 +951,13 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	int TARGET_LIFELINE_REFERENCE__VAR = MAVOPackage.MAVO_REFERENCE__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_LIFELINE_REFERENCE__ALTERNATIVES = MAVOPackage.MAVO_REFERENCE__ALTERNATIVES;
+	int TARGET_LIFELINE_REFERENCE__COLLECTIONS = MAVOPackage.MAVO_REFERENCE__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' container reference.

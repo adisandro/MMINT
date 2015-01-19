@@ -65,17 +65,17 @@ public interface MayDecision extends MAVODecision {
 
 	/**
 	 * Returns the value of the '<em><b>Alternatives</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mavo.MAVOAlternative}.
+	 * The list contents are of type {@link edu.toronto.cs.se.mavo.MAVOCollection}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The list of alternatives options for this decision.
+	 * The list of alternative options for this decision.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Alternatives</em>' containment reference list.
 	 * @see edu.toronto.cs.se.mavo.MAVOPackage#getMayDecision_Alternatives()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<MAVOAlternative> getAlternatives();
+	EList<MAVOCollection> getAlternatives();
 
 } // MayDecision

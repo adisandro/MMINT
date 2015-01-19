@@ -28,7 +28,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mavo.LogicElement;
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -103,7 +103,7 @@ public class RefineListener extends MIDContextMenuListener {
 				}
 			}
 
-			MAVOMultiModelConstraintChecker.refineByDecision(model, (MAVOAlternative) selectedElements.get(0));
+			MAVOMultiModelConstraintChecker.refineByDecision(model, (MAVOCollection) selectedElements.get(0));
 
 			return CommandResult.newOKCommandResult();
 		}

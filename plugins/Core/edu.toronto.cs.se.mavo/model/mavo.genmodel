@@ -26,14 +26,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/may"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/set"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/var"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mavo.ecore#//MAVOElement/alternatives"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mavo.ecore#//MAVOElement/collections"/>
     </genClasses>
     <genClasses image="false" ecoreClass="mavo.ecore#//MAVOReference"/>
     <genClasses ecoreClass="mavo.ecore#//MAVODecision">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mavo.ecore#//MAVODecision/requiredDecisions"/>
     </genClasses>
-    <genClasses ecoreClass="mavo.ecore#//MAVOAlternative">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mavo.ecore#//MAVOAlternative/mavoElements"/>
+    <genClasses ecoreClass="mavo.ecore#//MAVOCollection">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mavo.ecore#//MAVOCollection/mavoElements"/>
     </genClasses>
     <genClasses ecoreClass="mavo.ecore#//MayDecision">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MayDecision/logic"/>

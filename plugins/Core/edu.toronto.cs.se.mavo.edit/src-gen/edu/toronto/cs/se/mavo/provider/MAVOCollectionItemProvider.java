@@ -12,30 +12,32 @@
 package edu.toronto.cs.se.mavo.provider;
 
 
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOPackage;
+
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mavo.MAVOAlternative} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mavo.MAVOCollection} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MAVOAlternativeItemProvider
-	extends DecisionElementItemProvider {
+public class MAVOCollectionItemProvider extends DecisionElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MAVOAlternativeItemProvider(AdapterFactory adapterFactory) {
+	public MAVOCollectionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -66,9 +68,9 @@ public class MAVOAlternativeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_MAVOAlternative_mavoElements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MAVOAlternative_mavoElements_feature", "_UI_MAVOAlternative_type"),
-				 MAVOPackage.Literals.MAVO_ALTERNATIVE__MAVO_ELEMENTS,
+				 getString("_UI_MAVOCollection_mavoElements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MAVOCollection_mavoElements_feature", "_UI_MAVOCollection_type"),
+				 MAVOPackage.Literals.MAVO_COLLECTION__MAVO_ELEMENTS,
 				 true,
 				 false,
 				 true,
@@ -78,14 +80,14 @@ public class MAVOAlternativeItemProvider
 	}
 
 	/**
-	 * This returns MAVOAlternative.gif.
+	 * This returns MAVOCollection.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MAVOAlternative"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MAVOCollection"));
 	}
 
 	/**
@@ -96,11 +98,12 @@ public class MAVOAlternativeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MAVOAlternative)object).getFormulaVariable();
+		String label = ((MAVOCollection)object).getFormulaVariable();
 		return label == null || label.length() == 0 ?
-			getString("_UI_MAVOAlternative_type") :
-			getString("_UI_MAVOAlternative_type") + " " + label;
+			getString("_UI_MAVOCollection_type") :
+			getString("_UI_MAVOCollection_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

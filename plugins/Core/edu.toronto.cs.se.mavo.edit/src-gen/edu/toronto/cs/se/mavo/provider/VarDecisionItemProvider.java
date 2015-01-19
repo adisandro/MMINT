@@ -148,7 +148,7 @@ public class VarDecisionItemProvider extends MAVODecisionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(MAVOPackage.Literals.VAR_DECISION__DOMAIN,
-				 MAVOFactory.eINSTANCE.createMAVOAlternative()));
+				 MAVOFactory.eINSTANCE.createMAVOCollection()));
 	}
 
 }

@@ -41,12 +41,12 @@ public interface VarDecision extends MAVODecision {
 	 * The merge domain for this decision.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Domain</em>' containment reference.
-	 * @see #setDomain(MAVOAlternative)
+	 * @see #setDomain(MAVOCollection)
 	 * @see edu.toronto.cs.se.mavo.MAVOPackage#getVarDecision_Domain()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	MAVOAlternative getDomain();
+	MAVOCollection getDomain();
 
 	/**
 	 * Sets the value of the '{@link edu.toronto.cs.se.mavo.VarDecision#getDomain <em>Domain</em>}' containment reference.
@@ -56,6 +56,6 @@ public interface VarDecision extends MAVODecision {
 	 * @see #getDomain()
 	 * @generated
 	 */
-	void setDomain(MAVOAlternative value);
+	void setDomain(MAVOCollection value);
 
 } // VarDecision

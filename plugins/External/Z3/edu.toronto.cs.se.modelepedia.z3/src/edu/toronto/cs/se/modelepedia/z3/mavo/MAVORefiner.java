@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
@@ -141,7 +141,7 @@ public class MAVORefiner {
 			switch (entry.getValue()) {
 				case TRUE:
 					refinedModelObj.setMay(false);
-					refinedModelObj.getAlternatives().clear();
+					refinedModelObj.getCollections().clear();
 					break;
 				case FALSE:
 					EcoreUtil.delete(refinedModelObj, true);
@@ -155,7 +155,7 @@ public class MAVORefiner {
 		}
 	}
 
-	private void refineDecision(MAVOModel refinedRootModelObj, MAVOAlternative mavoAlternative) {
+	private void refineDecision(MAVOModel refinedRootModelObj, MAVOCollection mavoAlternative) {
 
 		MAVODecision mavoDecision = (MAVODecision) mavoAlternative.eContainer();
 		String decisionFormulaVar = mavoDecision.getFormulaVariable();
@@ -228,7 +228,7 @@ public class MAVORefiner {
 		refinedDiagram.setElement(refinedRootModelObj);
 	}
 
-	public @NonNull Model refine(@NonNull Model model, @Nullable Diagram modelDiagram, @Nullable MAVOAlternative mavoAlternative, @NonNull String smtEncoding) throws Exception {
+	public @NonNull Model refine(@NonNull Model model, @Nullable Diagram modelDiagram, @Nullable MAVOCollection mavoAlternative, @NonNull String smtEncoding) throws Exception {
 
 		// create mid artifacts
 		String refinedModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(model.getUri(), REFINED_MODEL_SUFFIX), true, false);

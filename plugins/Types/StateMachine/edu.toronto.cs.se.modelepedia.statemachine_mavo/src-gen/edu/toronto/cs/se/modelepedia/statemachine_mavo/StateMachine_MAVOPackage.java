@@ -178,13 +178,13 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	int FIRING_ELEMENT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FIRING_ELEMENT__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+	int FIRING_ELEMENT__COLLECTIONS = MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
@@ -306,13 +306,13 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	int STATE__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+	int STATE__COLLECTIONS = MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -471,13 +471,13 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	int TRANSITION__VAR = FIRING_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__ALTERNATIVES = FIRING_ELEMENT__ALTERNATIVES;
+	int TRANSITION__COLLECTIONS = FIRING_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
@@ -580,13 +580,13 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	int STATE_ACTION__VAR = FIRING_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_ACTION__ALTERNATIVES = FIRING_ELEMENT__ALTERNATIVES;
+	int STATE_ACTION__COLLECTIONS = FIRING_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Trigger</b></em>' attribute.

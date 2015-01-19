@@ -179,13 +179,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int DEPENDENCY_ENDPOINT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY_ENDPOINT__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+	int DEPENDENCY_ENDPOINT__COLLECTIONS = MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -279,13 +279,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int ACTOR__VAR = DEPENDENCY_ENDPOINT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__ALTERNATIVES = DEPENDENCY_ENDPOINT__ALTERNATIVES;
+	int ACTOR__COLLECTIONS = DEPENDENCY_ENDPOINT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -388,13 +388,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int INTENTION__VAR = DEPENDENCY_ENDPOINT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTION__ALTERNATIVES = DEPENDENCY_ENDPOINT__ALTERNATIVES;
+	int INTENTION__COLLECTIONS = DEPENDENCY_ENDPOINT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -587,13 +587,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int TASK__VAR = INTENTION__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__ALTERNATIVES = INTENTION__ALTERNATIVES;
+	int TASK__COLLECTIONS = INTENTION__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -786,13 +786,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int RESOURCE__VAR = INTENTION__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE__ALTERNATIVES = INTENTION__ALTERNATIVES;
+	int RESOURCE__COLLECTIONS = INTENTION__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -985,13 +985,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int GOAL__VAR = INTENTION__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__ALTERNATIVES = INTENTION__ALTERNATIVES;
+	int GOAL__COLLECTIONS = INTENTION__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1184,13 +1184,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int SOFT_GOAL__VAR = GOAL__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOFT_GOAL__ALTERNATIVES = GOAL__ALTERNATIVES;
+	int SOFT_GOAL__COLLECTIONS = GOAL__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1383,13 +1383,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int INTENTION_LINK__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTENTION_LINK__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+	int INTENTION_LINK__COLLECTIONS = MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1483,13 +1483,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int MEANS_END__VAR = INTENTION_LINK__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEANS_END__ALTERNATIVES = INTENTION_LINK__ALTERNATIVES;
+	int MEANS_END__COLLECTIONS = INTENTION_LINK__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1583,13 +1583,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int DECOMPOSITION__VAR = INTENTION_LINK__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECOMPOSITION__ALTERNATIVES = INTENTION_LINK__ALTERNATIVES;
+	int DECOMPOSITION__COLLECTIONS = INTENTION_LINK__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1683,13 +1683,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int CONTRIBUTION__VAR = INTENTION_LINK__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTRIBUTION__ALTERNATIVES = INTENTION_LINK__ALTERNATIVES;
+	int CONTRIBUTION__COLLECTIONS = INTENTION_LINK__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1792,13 +1792,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int DEPENDER_LINK__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDER_LINK__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+	int DEPENDER_LINK__COLLECTIONS = MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1892,13 +1892,13 @@ public interface IStar_MAVOPackage extends EPackage {
 	int DEPENDEE_LINK__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDEE_LINK__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+	int DEPENDEE_LINK__COLLECTIONS = MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.

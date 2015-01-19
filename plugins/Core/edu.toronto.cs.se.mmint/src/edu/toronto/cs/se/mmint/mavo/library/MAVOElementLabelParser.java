@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -26,7 +26,6 @@ import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
-import org.eclipse.gmf.runtime.common.ui.services.internal.CommonUIServicesPlugin;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
@@ -34,6 +33,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.MMINTActivator;
 
 public class MAVOElementLabelParser implements IParser {
 
@@ -56,9 +56,9 @@ public class MAVOElementLabelParser implements IParser {
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 
 		MAVOElement mavoElement = (MAVOElement) element.getAdapter(edu.toronto.cs.se.mavo.MAVOElement.class);
-		if (mavoElement.getAlternatives().size() > 0){
+		if (mavoElement.getCollections().size() > 0) {
 			return new ParserEditStatus(
-					CommonUIServicesPlugin.getPluginId(), ParserEditStatus.UNEDITABLE, "Cannot Modify Element in Alternative.");
+				MMINTActivator.PLUGIN_ID, ParserEditStatus.UNEDITABLE, "Please use MAVO menus to modify the element");
 		}
 
 		return ParserEditStatus.EDITABLE_STATUS;

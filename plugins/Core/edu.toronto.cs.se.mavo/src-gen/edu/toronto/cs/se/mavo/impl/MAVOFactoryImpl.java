@@ -66,7 +66,7 @@ public class MAVOFactoryImpl extends EFactoryImpl implements MAVOFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case MAVOPackage.MAVO_ALTERNATIVE: return createMAVOAlternative();
+			case MAVOPackage.MAVO_COLLECTION: return createMAVOCollection();
 			case MAVOPackage.MAY_DECISION: return createMayDecision();
 			case MAVOPackage.VAR_DECISION: return createVarDecision();
 			default:
@@ -109,9 +109,9 @@ public class MAVOFactoryImpl extends EFactoryImpl implements MAVOFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MAVOAlternative createMAVOAlternative() {
-		MAVOAlternativeImpl mavoAlternative = new MAVOAlternativeImpl();
-		return mavoAlternative;
+	public MAVOCollection createMAVOCollection() {
+		MAVOCollectionImpl mavoCollection = new MAVOCollectionImpl();
+		return mavoCollection;
 	}
 
 	/**

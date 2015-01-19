@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
@@ -47,7 +47,7 @@ public class MAVODiagramOutlineContentProvider extends AdapterFactoryContentProv
 			MAVOElement mavoModelObj = (MAVOElement) modelObj;
 			if (
 				(mavoModelObj.isMay() || mavoModelObj.isSet() || mavoModelObj.isVar()) &&
-				mavoModelObj.getAlternatives().isEmpty()
+				mavoModelObj.getCollections().isEmpty()
 			) {
 				mavoModelObjs.add(mavoModelObj);
 			}
@@ -80,8 +80,8 @@ public class MAVODiagramOutlineContentProvider extends AdapterFactoryContentProv
 				}
 			}
 		}
-		else if (object instanceof MAVOAlternative) {
-			if (!((MAVOAlternative) object).getMavoElements().isEmpty()) {
+		else if (object instanceof MAVOCollection) {
+			if (!((MAVOCollection) object).getMavoElements().isEmpty()) {
 				hasChildren = true;
 			}
 		}
@@ -108,8 +108,8 @@ public class MAVODiagramOutlineContentProvider extends AdapterFactoryContentProv
 				children = new Object[] {((VarDecision) object).getDomain()};
 			}
 		}
-		else if (object instanceof MAVOAlternative) {
-			children = ((MAVOAlternative) object).getMavoElements().toArray();
+		else if (object instanceof MAVOCollection) {
+			children = ((MAVOCollection) object).getMavoElements().toArray();
 		}
 
 		return children;

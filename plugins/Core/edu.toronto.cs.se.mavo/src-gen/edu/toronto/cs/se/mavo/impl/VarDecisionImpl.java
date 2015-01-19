@@ -11,16 +11,13 @@
  */
 package edu.toronto.cs.se.mavo.impl;
 
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mavo.VarDecision;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -45,7 +42,7 @@ public class VarDecisionImpl extends MAVODecisionImpl implements VarDecision {
 	 * @generated
 	 * @ordered
 	 */
-	protected MAVOAlternative domain;
+	protected MAVOCollection domain;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -71,7 +68,7 @@ public class VarDecisionImpl extends MAVODecisionImpl implements VarDecision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MAVOAlternative getDomain() {
+	public MAVOCollection getDomain() {
 		return domain;
 	}
 
@@ -80,8 +77,8 @@ public class VarDecisionImpl extends MAVODecisionImpl implements VarDecision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDomain(MAVOAlternative newDomain, NotificationChain msgs) {
-		MAVOAlternative oldDomain = domain;
+	public NotificationChain basicSetDomain(MAVOCollection newDomain, NotificationChain msgs) {
+		MAVOCollection oldDomain = domain;
 		domain = newDomain;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MAVOPackage.VAR_DECISION__DOMAIN, oldDomain, newDomain);
@@ -95,7 +92,7 @@ public class VarDecisionImpl extends MAVODecisionImpl implements VarDecision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDomain(MAVOAlternative newDomain) {
+	public void setDomain(MAVOCollection newDomain) {
 		if (newDomain != domain) {
 			NotificationChain msgs = null;
 			if (domain != null)
@@ -146,7 +143,7 @@ public class VarDecisionImpl extends MAVODecisionImpl implements VarDecision {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MAVOPackage.VAR_DECISION__DOMAIN:
-				setDomain((MAVOAlternative)newValue);
+				setDomain((MAVOCollection)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -161,7 +158,7 @@ public class VarDecisionImpl extends MAVODecisionImpl implements VarDecision {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MAVOPackage.VAR_DECISION__DOMAIN:
-				setDomain((MAVOAlternative)null);
+				setDomain((MAVOCollection)null);
 				return;
 		}
 		super.eUnset(featureID);

@@ -14,7 +14,7 @@ package edu.toronto.cs.se.mmint.mavo.constraint;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -28,7 +28,7 @@ public class MAVOMultiModelConstraintChecker {
 		return (IMAVOReasoningEngine) MultiModelConstraintChecker.getReasoner(constraintLanguage);
 	}
 
-	public static @Nullable Model refineByDecision(@NonNull Model model, @NonNull MAVOAlternative mavoAlternative) {
+	public static @Nullable Model refineByDecision(@NonNull Model model, @NonNull MAVOCollection mavoAlternative) {
 
 		IMAVOReasoningEngine reasoner;
 		try {
@@ -42,7 +42,7 @@ public class MAVOMultiModelConstraintChecker {
 		return reasoner.refineByDecision(model, mavoAlternative);
 	}
 
-	public static void highlightAlternative(@NonNull Diagram modelDiagram, @NonNull MAVOAlternative mavoAlternative) {
+	public static void highlightMAVOCollection(@NonNull Diagram modelDiagram, @NonNull MAVOCollection mavoCollection) {
 
 		IMAVOReasoningEngine reasoner;
 		try {
@@ -53,7 +53,7 @@ public class MAVOMultiModelConstraintChecker {
 			return;
 		}
 
-		reasoner.highlightAlternative(modelDiagram, mavoAlternative);
+		reasoner.highlightMAVOCollection(modelDiagram, mavoCollection);
 	}
 
 }

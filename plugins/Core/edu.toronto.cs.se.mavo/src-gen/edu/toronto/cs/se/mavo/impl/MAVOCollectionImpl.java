@@ -11,31 +11,36 @@
  */
 package edu.toronto.cs.se.mavo.impl;
 
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOPackage;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Alternative</b></em>'.
+ * An implementation of the model object '<em><b>Collection</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mavo.impl.MAVOAlternativeImpl#getMavoElements <em>Mavo Elements</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mavo.impl.MAVOCollectionImpl#getMavoElements <em>Mavo Elements</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class MAVOAlternativeImpl extends DecisionElementImpl implements MAVOAlternative {
+public class MAVOCollectionImpl extends DecisionElementImpl implements MAVOCollection {
 	/**
 	 * The cached value of the '{@link #getMavoElements() <em>Mavo Elements</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -51,7 +56,7 @@ public class MAVOAlternativeImpl extends DecisionElementImpl implements MAVOAlte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MAVOAlternativeImpl() {
+	protected MAVOCollectionImpl() {
 		super();
 	}
 
@@ -62,7 +67,7 @@ public class MAVOAlternativeImpl extends DecisionElementImpl implements MAVOAlte
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MAVOPackage.Literals.MAVO_ALTERNATIVE;
+		return MAVOPackage.Literals.MAVO_COLLECTION;
 	}
 
 	/**
@@ -72,7 +77,7 @@ public class MAVOAlternativeImpl extends DecisionElementImpl implements MAVOAlte
 	 */
 	public EList<MAVOElement> getMavoElements() {
 		if (mavoElements == null) {
-			mavoElements = new EObjectWithInverseResolvingEList.ManyInverse<MAVOElement>(MAVOElement.class, this, MAVOPackage.MAVO_ALTERNATIVE__MAVO_ELEMENTS, MAVOPackage.MAVO_ELEMENT__ALTERNATIVES);
+			mavoElements = new EObjectWithInverseResolvingEList.ManyInverse<MAVOElement>(MAVOElement.class, this, MAVOPackage.MAVO_COLLECTION__MAVO_ELEMENTS, MAVOPackage.MAVO_ELEMENT__COLLECTIONS);
 		}
 		return mavoElements;
 	}
@@ -86,7 +91,7 @@ public class MAVOAlternativeImpl extends DecisionElementImpl implements MAVOAlte
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MAVOPackage.MAVO_ALTERNATIVE__MAVO_ELEMENTS:
+			case MAVOPackage.MAVO_COLLECTION__MAVO_ELEMENTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMavoElements()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -100,7 +105,7 @@ public class MAVOAlternativeImpl extends DecisionElementImpl implements MAVOAlte
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MAVOPackage.MAVO_ALTERNATIVE__MAVO_ELEMENTS:
+			case MAVOPackage.MAVO_COLLECTION__MAVO_ELEMENTS:
 				return ((InternalEList<?>)getMavoElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -114,7 +119,7 @@ public class MAVOAlternativeImpl extends DecisionElementImpl implements MAVOAlte
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MAVOPackage.MAVO_ALTERNATIVE__MAVO_ELEMENTS:
+			case MAVOPackage.MAVO_COLLECTION__MAVO_ELEMENTS:
 				return getMavoElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -129,7 +134,7 @@ public class MAVOAlternativeImpl extends DecisionElementImpl implements MAVOAlte
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MAVOPackage.MAVO_ALTERNATIVE__MAVO_ELEMENTS:
+			case MAVOPackage.MAVO_COLLECTION__MAVO_ELEMENTS:
 				getMavoElements().clear();
 				getMavoElements().addAll((Collection<? extends MAVOElement>)newValue);
 				return;
@@ -145,7 +150,7 @@ public class MAVOAlternativeImpl extends DecisionElementImpl implements MAVOAlte
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MAVOPackage.MAVO_ALTERNATIVE__MAVO_ELEMENTS:
+			case MAVOPackage.MAVO_COLLECTION__MAVO_ELEMENTS:
 				getMavoElements().clear();
 				return;
 		}
@@ -160,10 +165,10 @@ public class MAVOAlternativeImpl extends DecisionElementImpl implements MAVOAlte
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MAVOPackage.MAVO_ALTERNATIVE__MAVO_ELEMENTS:
+			case MAVOPackage.MAVO_COLLECTION__MAVO_ELEMENTS:
 				return mavoElements != null && !mavoElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //MAVOAlternativeImpl
+} //MAVOCollectionImpl

@@ -20,7 +20,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
@@ -110,14 +110,14 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 				new RemoveListener(MAVO_OUTLINE_MENU_REMOVEDECISION_LABEL, mavoDecision)
 			);
 		}
-		else if (object instanceof MAVOAlternative) {
-			MAVOAlternative mavoSet = (MAVOAlternative) object;
+		else if (object instanceof MAVOCollection) {
+			MAVOCollection mavoCollection = (MAVOCollection) object;
 			String highlightText = "", removeText = "";
-			if (mavoSet.eContainer() instanceof MayDecision) {
+			if (mavoCollection.eContainer() instanceof MayDecision) {
 				highlightText = MAVO_OUTLINE_MENU_HIGHLIGHTALTERNATIVE_LABEL;
 				removeText = MAVO_OUTLINE_MENU_REMOVEALTERNATIVE_LABEL;
 			}
-			else if (mavoSet.eContainer() instanceof VarDecision) {
+			else if (mavoCollection.eContainer() instanceof VarDecision) {
 				highlightText = MAVO_OUTLINE_MENU_HIGHLIGHTDOMAIN_LABEL;
 				removeText = MAVO_OUTLINE_MENU_REMOVEDOMAIN_LABEL;
 			}
@@ -125,10 +125,10 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 			MenuItem highlightItem = new MenuItem(menu, SWT.NONE);
 			highlightItem.setText(highlightText);
 			highlightItem.addSelectionListener(
-				new HighlightListener(highlightText, mavoSet)
+				new HighlightListener(highlightText, mavoCollection)
 			);
 			// refine
-			if (mavoSet.eContainer() instanceof MayDecision) {
+			if (mavoCollection.eContainer() instanceof MayDecision) {
 				MenuItem refineItem = new MenuItem(menu, SWT.NONE);
 				refineItem.setText(MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL);
 				refineItem.addSelectionListener(
@@ -139,17 +139,17 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 			MenuItem removeItem = new MenuItem(menu, SWT.NONE);
 			removeItem.setText(removeText);
 			removeItem.addSelectionListener(
-				new RemoveListener(removeText, mavoSet)
+				new RemoveListener(removeText, mavoCollection)
 			);
 		}
 		else if (object instanceof MAVOElement) {
 			MAVOElement mavoModelObj = (MAVOElement) object;
-			MAVOAlternative mavoGroup = (MAVOAlternative) ((TreeSelection) selection).getPathsFor(mavoModelObj)[0].getParentPath().getLastSegment();
+			MAVOCollection mavoCollection = (MAVOCollection) ((TreeSelection) selection).getPathsFor(mavoModelObj)[0].getParentPath().getLastSegment();
 			String removeText = "";
-			if (mavoGroup.eContainer() instanceof MayDecision) {
+			if (mavoCollection.eContainer() instanceof MayDecision) {
 				removeText = MAVO_OUTLINE_MENU_REMOVEALTERNATIVEELEMENT_LABEL;
 			}
-			else if (mavoGroup.eContainer() instanceof VarDecision) {
+			else if (mavoCollection.eContainer() instanceof VarDecision) {
 				removeText = MAVO_OUTLINE_MENU_REMOVEDOMAINELEMENT_LABEL;
 			}
 			// highlight
@@ -159,7 +159,7 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 			MenuItem removeItem = new MenuItem(menu, SWT.NONE);
 			removeItem.setText(removeText);
 			removeItem.addSelectionListener(
-				new RemoveListener(removeText, mavoGroup, mavoModelObj)
+				new RemoveListener(removeText, mavoCollection, mavoModelObj)
 			);
 		}
 	}

@@ -242,13 +242,13 @@ public interface MAVOPackage extends EPackage {
 	int MAVO_ELEMENT__VAR = LOGIC_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_ELEMENT__ALTERNATIVES = LOGIC_ELEMENT_FEATURE_COUNT + 3;
+	int MAVO_ELEMENT__COLLECTIONS = LOGIC_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Element</em>' class.
@@ -315,13 +315,13 @@ public interface MAVOPackage extends EPackage {
 	int MAVO_REFERENCE__VAR = MAVO_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_REFERENCE__ALTERNATIVES = MAVO_ELEMENT__ALTERNATIVES;
+	int MAVO_REFERENCE__COLLECTIONS = MAVO_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The number of structural features of the '<em>Reference</em>' class.
@@ -398,14 +398,14 @@ public interface MAVOPackage extends EPackage {
 	int MAVO_DECISION_OPERATION_COUNT = DECISION_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mavo.impl.MAVOAlternativeImpl <em>Alternative</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mavo.impl.MAVOCollectionImpl <em>Collection</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mavo.impl.MAVOAlternativeImpl
-	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMAVOAlternative()
+	 * @see edu.toronto.cs.se.mavo.impl.MAVOCollectionImpl
+	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMAVOCollection()
 	 * @generated
 	 */
-	int MAVO_ALTERNATIVE = 6;
+	int MAVO_COLLECTION = 6;
 
 	/**
 	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -414,7 +414,7 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_ALTERNATIVE__FORMULA_VARIABLE = DECISION_ELEMENT__FORMULA_VARIABLE;
+	int MAVO_COLLECTION__FORMULA_VARIABLE = DECISION_ELEMENT__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -423,7 +423,7 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_ALTERNATIVE__DESCRIPTION = DECISION_ELEMENT__DESCRIPTION;
+	int MAVO_COLLECTION__DESCRIPTION = DECISION_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Mavo Elements</b></em>' reference list.
@@ -432,25 +432,25 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_ALTERNATIVE__MAVO_ELEMENTS = DECISION_ELEMENT_FEATURE_COUNT + 0;
+	int MAVO_COLLECTION__MAVO_ELEMENTS = DECISION_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Alternative</em>' class.
+	 * The number of structural features of the '<em>Collection</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_ALTERNATIVE_FEATURE_COUNT = DECISION_ELEMENT_FEATURE_COUNT + 1;
+	int MAVO_COLLECTION_FEATURE_COUNT = DECISION_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Alternative</em>' class.
+	 * The number of operations of the '<em>Collection</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_ALTERNATIVE_OPERATION_COUNT = DECISION_ELEMENT_OPERATION_COUNT + 0;
+	int MAVO_COLLECTION_OPERATION_COUNT = DECISION_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mavo.impl.MayDecisionImpl <em>May Decision</em>}' class.
@@ -717,15 +717,15 @@ public interface MAVOPackage extends EPackage {
 	EAttribute getMAVOElement_Var();
 
 	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mavo.MAVOElement#getAlternatives <em>Alternatives</em>}'.
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mavo.MAVOElement#getCollections <em>Collections</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Alternatives</em>'.
-	 * @see edu.toronto.cs.se.mavo.MAVOElement#getAlternatives()
+	 * @return the meta object for the reference list '<em>Collections</em>'.
+	 * @see edu.toronto.cs.se.mavo.MAVOElement#getCollections()
 	 * @see #getMAVOElement()
 	 * @generated
 	 */
-	EReference getMAVOElement_Alternatives();
+	EReference getMAVOElement_Collections();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mavo.MAVOReference <em>Reference</em>}'.
@@ -759,25 +759,25 @@ public interface MAVOPackage extends EPackage {
 	EReference getMAVODecision_RequiredDecisions();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mavo.MAVOAlternative <em>Alternative</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mavo.MAVOCollection <em>Collection</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Alternative</em>'.
-	 * @see edu.toronto.cs.se.mavo.MAVOAlternative
+	 * @return the meta object for class '<em>Collection</em>'.
+	 * @see edu.toronto.cs.se.mavo.MAVOCollection
 	 * @generated
 	 */
-	EClass getMAVOAlternative();
+	EClass getMAVOCollection();
 
 	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mavo.MAVOAlternative#getMavoElements <em>Mavo Elements</em>}'.
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mavo.MAVOCollection#getMavoElements <em>Mavo Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Mavo Elements</em>'.
-	 * @see edu.toronto.cs.se.mavo.MAVOAlternative#getMavoElements()
-	 * @see #getMAVOAlternative()
+	 * @see edu.toronto.cs.se.mavo.MAVOCollection#getMavoElements()
+	 * @see #getMAVOCollection()
 	 * @generated
 	 */
-	EReference getMAVOAlternative_MavoElements();
+	EReference getMAVOCollection_MavoElements();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mavo.MayDecision <em>May Decision</em>}'.
@@ -962,12 +962,12 @@ public interface MAVOPackage extends EPackage {
 		EAttribute MAVO_ELEMENT__VAR = eINSTANCE.getMAVOElement_Var();
 
 		/**
-		 * The meta object literal for the '<em><b>Alternatives</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Collections</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MAVO_ELEMENT__ALTERNATIVES = eINSTANCE.getMAVOElement_Alternatives();
+		EReference MAVO_ELEMENT__COLLECTIONS = eINSTANCE.getMAVOElement_Collections();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.impl.MAVOReferenceImpl <em>Reference</em>}' class.
@@ -998,14 +998,14 @@ public interface MAVOPackage extends EPackage {
 		EReference MAVO_DECISION__REQUIRED_DECISIONS = eINSTANCE.getMAVODecision_RequiredDecisions();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.impl.MAVOAlternativeImpl <em>Alternative</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.impl.MAVOCollectionImpl <em>Collection</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mavo.impl.MAVOAlternativeImpl
-		 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMAVOAlternative()
+		 * @see edu.toronto.cs.se.mavo.impl.MAVOCollectionImpl
+		 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMAVOCollection()
 		 * @generated
 		 */
-		EClass MAVO_ALTERNATIVE = eINSTANCE.getMAVOAlternative();
+		EClass MAVO_COLLECTION = eINSTANCE.getMAVOCollection();
 
 		/**
 		 * The meta object literal for the '<em><b>Mavo Elements</b></em>' reference list feature.
@@ -1013,7 +1013,7 @@ public interface MAVOPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MAVO_ALTERNATIVE__MAVO_ELEMENTS = eINSTANCE.getMAVOAlternative_MavoElements();
+		EReference MAVO_COLLECTION__MAVO_ELEMENTS = eINSTANCE.getMAVOCollection_MavoElements();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.impl.MayDecisionImpl <em>May Decision</em>}' class.

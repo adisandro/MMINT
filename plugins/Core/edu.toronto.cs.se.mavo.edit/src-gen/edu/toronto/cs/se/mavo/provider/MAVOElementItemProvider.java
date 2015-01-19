@@ -55,7 +55,7 @@ public class MAVOElementItemProvider
 			addMayPropertyDescriptor(object);
 			addSetPropertyDescriptor(object);
 			addVarPropertyDescriptor(object);
-			addAlternativesPropertyDescriptor(object);
+			addCollectionsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -127,19 +127,19 @@ public class MAVOElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Alternatives feature.
+	 * This adds a property descriptor for the Collections feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAlternativesPropertyDescriptor(Object object) {
+	protected void addCollectionsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_MAVOElement_alternatives_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MAVOElement_alternatives_feature", "_UI_MAVOElement_type"),
-				 MAVOPackage.Literals.MAVO_ELEMENT__ALTERNATIVES,
+				 getString("_UI_MAVOElement_collections_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MAVOElement_collections_feature", "_UI_MAVOElement_type"),
+				 MAVOPackage.Literals.MAVO_ELEMENT__COLLECTIONS,
 				 true,
 				 false,
 				 true,

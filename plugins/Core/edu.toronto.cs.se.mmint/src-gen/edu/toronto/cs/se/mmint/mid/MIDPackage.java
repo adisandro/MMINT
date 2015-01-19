@@ -255,13 +255,13 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+	int EXTENDIBLE_ELEMENT__COLLECTIONS = MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -409,13 +409,13 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT_ENDPOINT__VAR = EXTENDIBLE_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT__ALTERNATIVES = EXTENDIBLE_ELEMENT__ALTERNATIVES;
+	int EXTENDIBLE_ELEMENT_ENDPOINT__COLLECTIONS = EXTENDIBLE_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -617,13 +617,13 @@ public interface MIDPackage extends EPackage {
 	int MODEL__VAR = EXTENDIBLE_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__ALTERNATIVES = EXTENDIBLE_ELEMENT__ALTERNATIVES;
+	int MODEL__COLLECTIONS = EXTENDIBLE_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1006,13 +1006,13 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ELEMENT__VAR = EXTENDIBLE_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__ALTERNATIVES = EXTENDIBLE_ELEMENT__ALTERNATIVES;
+	int MODEL_ELEMENT__COLLECTIONS = EXTENDIBLE_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1259,13 +1259,13 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ENDPOINT__VAR = EXTENDIBLE_ELEMENT_ENDPOINT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT__ALTERNATIVES = EXTENDIBLE_ELEMENT_ENDPOINT__ALTERNATIVES;
+	int MODEL_ENDPOINT__COLLECTIONS = EXTENDIBLE_ELEMENT_ENDPOINT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.

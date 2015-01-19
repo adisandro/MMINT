@@ -46,7 +46,7 @@ public class MAVODiagramOutlineLabelProvider extends AdapterFactoryLabelProvider
 		else if (object instanceof MAVOElement) {
 			MAVOElement modelObj = (MAVOElement) object;
 			label = modelObj.getFormulaVariable();
-			if (modelObj.getAlternatives().isEmpty()) {
+			if (modelObj.getCollections().isEmpty()) {
 				label = UNSTRUCTURED_MAVO_ELEMENT_PREFIX + label;
 			}
 		}

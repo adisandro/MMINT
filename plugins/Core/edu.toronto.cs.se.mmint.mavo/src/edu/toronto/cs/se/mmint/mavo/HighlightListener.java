@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.swt.events.SelectionEvent;
 
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
@@ -41,20 +41,20 @@ import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class HighlightListener extends MIDContextMenuListener {
 
-	private MAVOAlternative alternative;
+	private MAVOCollection mavoCollection;
 	private Model model;
 
-	public HighlightListener(String menuLabel, MAVOAlternative alternative) {
+	public HighlightListener(String menuLabel, MAVOCollection mavoCollection) {
 
 		super(menuLabel);
-		this.alternative = alternative;
+		this.mavoCollection = mavoCollection;
 	}
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
 		//TODO MMINT[MU-MMINT] Unify with refinement
-		String modelUri = MultiModelRegistry.getModelAndModelElementUris(alternative, MIDLevel.INSTANCES)[0];
+		String modelUri = MultiModelRegistry.getModelAndModelElementUris(mavoCollection, MIDLevel.INSTANCES)[0];
 		Map<MultiModel, List<IFile>> midDiagrams = MIDDiagramUtils.getMIDsInWorkspace();
 		Model model = null;
 		List<IFile> files = null;
@@ -73,7 +73,7 @@ public class HighlightListener extends MIDContextMenuListener {
 		this.model = model;
 		AbstractTransactionalCommand command;
 		command = new HighlightAlternativeCommand(
-			TransactionUtil.getEditingDomain(alternative),
+			TransactionUtil.getEditingDomain(mavoCollection),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
@@ -92,7 +92,7 @@ public class HighlightListener extends MIDContextMenuListener {
 				IAdaptable info) throws ExecutionException {
 
 			Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
-			MAVOMultiModelConstraintChecker.highlightAlternative(modelDiagram, alternative);
+			MAVOMultiModelConstraintChecker.highlightMAVOCollection(modelDiagram, mavoCollection);
 
 			return CommandResult.newOKCommandResult();
 		}

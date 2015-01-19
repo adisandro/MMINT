@@ -21,15 +21,15 @@
   <states xsi:type="statemachine_mavo:State" formulaVariable="Leeching" name="Leeching">
     <internalActions formulaVariable="a0" may="true" trigger="entry" action="start()"/>
   </states>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="Finishing" may="true" alternatives="//@decisions.0/@alternatives.2" name="Finishing">
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Finishing" may="true" collections="//@decisions.0/@alternatives.2" name="Finishing">
     <internalActions formulaVariable="a2" may="true" trigger="entry" action="completed()"/>
   </states>
   <transitions formulaVariable="start" trigger="" action="" source="//@states.0" target="//@states.2"/>
   <transitions formulaVariable="cancelLI" trigger="" action="cancel()" source="//@states.2" target="//@states.0"/>
-  <transitions formulaVariable="completedLF" may="true" alternatives="//@decisions.0/@alternatives.2" trigger="" action="" source="//@states.2" target="//@states.3"/>
-  <transitions formulaVariable="peersDone" may="true" alternatives="//@decisions.0/@alternatives.2" trigger="" action="peersDone()" source="//@states.3" target="//@states.0"/>
-  <transitions formulaVariable="completedLS" may="true" alternatives="//@decisions.0/@alternatives.0" trigger="" action="" source="//@states.2" target="//@states.1"/>
-  <transitions formulaVariable="restart" may="true" alternatives="//@decisions.2/@alternatives.0" trigger="" action="restart()" source="//@states.1" target="//@states.2"/>
-  <transitions formulaVariable="share" may="true" alternatives="//@decisions.1/@alternatives.0" trigger="" action="" source="//@states.0" target="//@states.1"/>
+  <transitions formulaVariable="completedLF" may="true" collections="//@decisions.0/@alternatives.2" trigger="" action="" source="//@states.2" target="//@states.3"/>
+  <transitions formulaVariable="peersDone" may="true" collections="//@decisions.0/@alternatives.2" trigger="" action="peersDone()" source="//@states.3" target="//@states.0"/>
+  <transitions formulaVariable="completedLS" may="true" collections="//@decisions.0/@alternatives.0" trigger="" action="" source="//@states.2" target="//@states.1"/>
+  <transitions formulaVariable="restart" may="true" collections="//@decisions.2/@alternatives.0" trigger="" action="restart()" source="//@states.1" target="//@states.2"/>
+  <transitions formulaVariable="share" may="true" collections="//@decisions.1/@alternatives.0" trigger="" action="" source="//@states.0" target="//@states.1"/>
   <transitions formulaVariable="cancelSI" trigger="" action="cancel()" source="//@states.1" target="//@states.0"/>
 </statemachine_mavo:StateMachine>

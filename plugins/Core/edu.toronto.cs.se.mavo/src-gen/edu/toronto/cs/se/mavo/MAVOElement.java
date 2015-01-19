@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.toronto.cs.se.mavo.MAVOElement#isMay <em>May</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mavo.MAVOElement#isSet <em>Set</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mavo.MAVOElement#isVar <em>Var</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mavo.MAVOElement#getAlternatives <em>Alternatives</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mavo.MAVOElement#getCollections <em>Collections</em>}</li>
  * </ul>
  * </p>
  *
@@ -114,20 +114,20 @@ public interface MAVOElement extends LogicElement {
 	void setVar(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Alternatives</b></em>' reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mavo.MAVOAlternative}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mavo.MAVOAlternative#getMavoElements <em>Mavo Elements</em>}'.
+	 * Returns the value of the '<em><b>Collections</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mavo.MAVOCollection}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mavo.MAVOCollection#getMavoElements <em>Mavo Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The list of alternatives this MAVO element is part of, possibly empty.
+	 * The list of collections this MAVO element is part of, possibly empty.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Alternatives</em>' reference list.
-	 * @see edu.toronto.cs.se.mavo.MAVOPackage#getMAVOElement_Alternatives()
-	 * @see edu.toronto.cs.se.mavo.MAVOAlternative#getMavoElements
+	 * @return the value of the '<em>Collections</em>' reference list.
+	 * @see edu.toronto.cs.se.mavo.MAVOPackage#getMAVOElement_Collections()
+	 * @see edu.toronto.cs.se.mavo.MAVOCollection#getMavoElements
 	 * @model opposite="mavoElements"
 	 * @generated
 	 */
-	EList<MAVOAlternative> getAlternatives();
+	EList<MAVOCollection> getCollections();
 
 } // MAVOElement

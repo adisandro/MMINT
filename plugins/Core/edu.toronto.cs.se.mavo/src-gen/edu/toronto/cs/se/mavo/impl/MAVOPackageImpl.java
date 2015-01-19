@@ -13,7 +13,7 @@ package edu.toronto.cs.se.mavo.impl;
 
 import edu.toronto.cs.se.mavo.DecisionElement;
 import edu.toronto.cs.se.mavo.LogicElement;
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOFactory;
@@ -84,7 +84,7 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass mavoAlternativeEClass = null;
+	private EClass mavoCollectionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -272,7 +272,7 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMAVOElement_Alternatives() {
+	public EReference getMAVOElement_Collections() {
 		return (EReference)mavoElementEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -308,8 +308,8 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMAVOAlternative() {
-		return mavoAlternativeEClass;
+	public EClass getMAVOCollection() {
+		return mavoCollectionEClass;
 	}
 
 	/**
@@ -317,8 +317,8 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMAVOAlternative_MavoElements() {
-		return (EReference)mavoAlternativeEClass.getEStructuralFeatures().get(0);
+	public EReference getMAVOCollection_MavoElements() {
+		return (EReference)mavoCollectionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -417,15 +417,15 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 		createEAttribute(mavoElementEClass, MAVO_ELEMENT__MAY);
 		createEAttribute(mavoElementEClass, MAVO_ELEMENT__SET);
 		createEAttribute(mavoElementEClass, MAVO_ELEMENT__VAR);
-		createEReference(mavoElementEClass, MAVO_ELEMENT__ALTERNATIVES);
+		createEReference(mavoElementEClass, MAVO_ELEMENT__COLLECTIONS);
 
 		mavoReferenceEClass = createEClass(MAVO_REFERENCE);
 
 		mavoDecisionEClass = createEClass(MAVO_DECISION);
 		createEReference(mavoDecisionEClass, MAVO_DECISION__REQUIRED_DECISIONS);
 
-		mavoAlternativeEClass = createEClass(MAVO_ALTERNATIVE);
-		createEReference(mavoAlternativeEClass, MAVO_ALTERNATIVE__MAVO_ELEMENTS);
+		mavoCollectionEClass = createEClass(MAVO_COLLECTION);
+		createEReference(mavoCollectionEClass, MAVO_COLLECTION__MAVO_ELEMENTS);
 
 		mayDecisionEClass = createEClass(MAY_DECISION);
 		createEAttribute(mayDecisionEClass, MAY_DECISION__LOGIC);
@@ -470,7 +470,7 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 		mavoElementEClass.getESuperTypes().add(this.getLogicElement());
 		mavoReferenceEClass.getESuperTypes().add(this.getMAVOElement());
 		mavoDecisionEClass.getESuperTypes().add(this.getDecisionElement());
-		mavoAlternativeEClass.getESuperTypes().add(this.getDecisionElement());
+		mavoCollectionEClass.getESuperTypes().add(this.getDecisionElement());
 		mayDecisionEClass.getESuperTypes().add(this.getMAVODecision());
 		varDecisionEClass.getESuperTypes().add(this.getMAVODecision());
 
@@ -489,22 +489,22 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 		initEAttribute(getMAVOElement_May(), ecorePackage.getEBoolean(), "may", null, 0, 1, MAVOElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMAVOElement_Set(), ecorePackage.getEBoolean(), "set", null, 0, 1, MAVOElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMAVOElement_Var(), ecorePackage.getEBoolean(), "var", null, 0, 1, MAVOElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMAVOElement_Alternatives(), this.getMAVOAlternative(), this.getMAVOAlternative_MavoElements(), "alternatives", null, 0, -1, MAVOElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMAVOElement_Collections(), this.getMAVOCollection(), this.getMAVOCollection_MavoElements(), "collections", null, 0, -1, MAVOElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mavoReferenceEClass, MAVOReference.class, "MAVOReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mavoDecisionEClass, MAVODecision.class, "MAVODecision", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMAVODecision_RequiredDecisions(), this.getMAVODecision(), null, "requiredDecisions", null, 0, -1, MAVODecision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(mavoAlternativeEClass, MAVOAlternative.class, "MAVOAlternative", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMAVOAlternative_MavoElements(), this.getMAVOElement(), this.getMAVOElement_Alternatives(), "mavoElements", null, 0, -1, MAVOAlternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(mavoCollectionEClass, MAVOCollection.class, "MAVOCollection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMAVOCollection_MavoElements(), this.getMAVOElement(), this.getMAVOElement_Collections(), "mavoElements", null, 0, -1, MAVOCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mayDecisionEClass, MayDecision.class, "MayDecision", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMayDecision_Logic(), this.getMayDecisionLogic(), "logic", null, 1, 1, MayDecision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMayDecision_Alternatives(), this.getMAVOAlternative(), null, "alternatives", null, 1, -1, MayDecision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMayDecision_Alternatives(), this.getMAVOCollection(), null, "alternatives", null, 1, -1, MayDecision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(varDecisionEClass, VarDecision.class, "VarDecision", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVarDecision_Domain(), this.getMAVOAlternative(), null, "domain", null, 1, 1, VarDecision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVarDecision_Domain(), this.getMAVOCollection(), null, "domain", null, 1, 1, VarDecision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(mayDecisionLogicEEnum, MayDecisionLogic.class, "MayDecisionLogic");

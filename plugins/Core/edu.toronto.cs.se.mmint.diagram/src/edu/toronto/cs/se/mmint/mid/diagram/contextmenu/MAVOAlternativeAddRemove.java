@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
@@ -94,10 +94,10 @@ public class MAVOAlternativeAddRemove extends ContributionItem {
 		mavoItem.setMenu(mavoMenu);
 		for (MAVODecision mavoDecision : mavoModel.getDecisions()) {
 			if (mavoDecision instanceof MayDecision) {
-				for (MAVOAlternative mavoAlternative : ((MayDecision) mavoDecision).getAlternatives()) {
+				for (MAVOCollection mavoAlternative : ((MayDecision) mavoDecision).getAlternatives()) {
 					boolean add = false, remove = false;
 					for (MAVOElement mavoModelObj : mavoModelObjs){
-						if (mavoModelObj.getAlternatives().contains(mavoAlternative)) {
+						if (mavoModelObj.getCollections().contains(mavoAlternative)) {
 							remove = true;
 						}
 						else {

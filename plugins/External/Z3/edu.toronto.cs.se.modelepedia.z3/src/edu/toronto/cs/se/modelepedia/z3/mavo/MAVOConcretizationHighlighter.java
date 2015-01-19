@@ -18,7 +18,7 @@ import java.util.Set;
 
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.MayDecisionLogic;
@@ -71,17 +71,17 @@ public class MAVOConcretizationHighlighter {
 		GMFDiagramUtils.openGMFDiagram(exampleDiagramUri, modelDiagram.getId(), true);
 	}
 
-	public void highlightAlternative(Diagram modelDiagram, MAVOAlternative mayAlternative) throws Exception {
+	public void highlightMAVOCollection(Diagram modelDiagram, MAVOCollection mavoCollection) throws Exception {
 
 		// get view elements from diagram
 		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
 		Map<String, View> diagramViews = GMFDiagramUtils.getDiagramViews(exampleDiagram);
 
 		// grey out may model objects in other alternatives for the same decision, highlight may model objects in the alternative
-		MayDecision mayDecision = (MayDecision) mayAlternative.eContainer();
+		MayDecision mayDecision = (MayDecision) mavoCollection.eContainer();
 		if (mayDecision.getLogic() == MayDecisionLogic.XOR) {
-			for (MAVOAlternative otherMayAlternative : mayDecision.getAlternatives()) {
-				if (otherMayAlternative == mayAlternative) {
+			for (MAVOCollection otherMayAlternative : mayDecision.getAlternatives()) {
+				if (otherMayAlternative == mavoCollection) {
 					continue;
 				}
 				for (MAVOElement otherMayModelObj : otherMayAlternative.getMavoElements()) {
@@ -90,7 +90,7 @@ public class MAVOConcretizationHighlighter {
 				}
 			}
 		}
-		for (MAVOElement mayModelObj : mayAlternative.getMavoElements()) {
+		for (MAVOElement mayModelObj : mavoCollection.getMavoElements()) {
 			View diagramView = diagramViews.get(mayModelObj.getFormulaVariable());
 			GMFDiagramUtils.colorDiagramElement(diagramView, HIGHLIGHT_COLOR, FONT_HIGHLIGHT_COLOR);
 		}

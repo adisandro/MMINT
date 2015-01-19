@@ -15,40 +15,40 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Alternative</b></em>'.
+ * A representation of the model object '<em><b>Collection</b></em>'.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * An alternative for a MAVO decision.
+ * A collection of MAVO elements.
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mavo.MAVOAlternative#getMavoElements <em>Mavo Elements</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mavo.MAVOCollection#getMavoElements <em>Mavo Elements</em>}</li>
  * </ul>
  * </p>
  *
- * @see edu.toronto.cs.se.mavo.MAVOPackage#getMAVOAlternative()
+ * @see edu.toronto.cs.se.mavo.MAVOPackage#getMAVOCollection()
  * @model
  * @generated
  */
-public interface MAVOAlternative extends DecisionElement {
+public interface MAVOCollection extends DecisionElement {
 	/**
 	 * Returns the value of the '<em><b>Mavo Elements</b></em>' reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.mavo.MAVOElement}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mavo.MAVOElement#getAlternatives <em>Alternatives</em>}'.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mavo.MAVOElement#getCollections <em>Collections</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The list of MAVO elements in this alternative, possibly empty.
+	 * The list of MAVO elements in this collection.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Mavo Elements</em>' reference list.
-	 * @see edu.toronto.cs.se.mavo.MAVOPackage#getMAVOAlternative_MavoElements()
-	 * @see edu.toronto.cs.se.mavo.MAVOElement#getAlternatives
-	 * @model opposite="alternatives"
+	 * @see edu.toronto.cs.se.mavo.MAVOPackage#getMAVOCollection_MavoElements()
+	 * @see edu.toronto.cs.se.mavo.MAVOElement#getCollections
+	 * @model opposite="collections"
 	 * @generated
 	 */
 	EList<MAVOElement> getMavoElements();
 
-} // MAVOAlternative
+} // MAVOCollection

@@ -155,13 +155,13 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL__VAR = MIDPackage.MODEL__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL__ALTERNATIVES = MIDPackage.MODEL__ALTERNATIVES;
+	int MODEL_REL__COLLECTIONS = MIDPackage.MODEL__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -605,13 +605,13 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL__VAR = MODEL_REL__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL__ALTERNATIVES = MODEL_REL__ALTERNATIVES;
+	int BINARY_MODEL_REL__COLLECTIONS = MODEL_REL__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1525,13 +1525,13 @@ public interface RelationshipPackage extends EPackage {
 	int LINK__VAR = MIDPackage.EXTENDIBLE_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINK__ALTERNATIVES = MIDPackage.EXTENDIBLE_ELEMENT__ALTERNATIVES;
+	int LINK__COLLECTIONS = MIDPackage.EXTENDIBLE_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1778,13 +1778,13 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_LINK__VAR = LINK__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_LINK__ALTERNATIVES = LINK__ALTERNATIVES;
+	int BINARY_LINK__COLLECTIONS = LINK__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -2031,13 +2031,13 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ELEMENT_ENDPOINT__VAR = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_ENDPOINT__ALTERNATIVES = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__ALTERNATIVES;
+	int MODEL_ELEMENT_ENDPOINT__COLLECTIONS = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.

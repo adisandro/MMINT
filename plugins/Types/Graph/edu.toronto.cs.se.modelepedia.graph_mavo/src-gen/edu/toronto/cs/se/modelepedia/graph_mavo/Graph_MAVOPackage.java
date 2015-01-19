@@ -177,13 +177,13 @@ public interface Graph_MAVOPackage extends EPackage {
 	int NAMED_ELEMENT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+	int NAMED_ELEMENT__COLLECTIONS = MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -259,13 +259,13 @@ public interface Graph_MAVOPackage extends EPackage {
 	int NODE__VAR = NAMED_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
+	int NODE__COLLECTIONS = NAMED_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -359,13 +359,13 @@ public interface Graph_MAVOPackage extends EPackage {
 	int EDGE__VAR = NAMED_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
+	int EDGE__COLLECTIONS = NAMED_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.

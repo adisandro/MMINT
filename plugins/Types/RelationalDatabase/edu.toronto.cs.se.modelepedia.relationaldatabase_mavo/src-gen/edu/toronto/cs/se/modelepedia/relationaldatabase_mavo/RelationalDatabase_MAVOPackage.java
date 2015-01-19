@@ -168,13 +168,13 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	int NAMED_ELEMENT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+	int NAMED_ELEMENT__COLLECTIONS = MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -250,13 +250,13 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	int TABLE__VAR = NAMED_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
+	int TABLE__COLLECTIONS = NAMED_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -359,13 +359,13 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	int COLUMN__VAR = NAMED_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
+	int COLUMN__COLLECTIONS = NAMED_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -477,13 +477,13 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	int FOREIGN_KEY__VAR = NAMED_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOREIGN_KEY__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
+	int FOREIGN_KEY__COLLECTIONS = NAMED_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -586,13 +586,13 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	int TABLE_COLUMN_REFERENCE__VAR = MAVOPackage.MAVO_REFERENCE__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_COLUMN_REFERENCE__ALTERNATIVES = MAVOPackage.MAVO_REFERENCE__ALTERNATIVES;
+	int TABLE_COLUMN_REFERENCE__COLLECTIONS = MAVOPackage.MAVO_REFERENCE__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' container reference.
@@ -677,13 +677,13 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	int FOREIGN_COLUMN_REFERENCE__VAR = MAVOPackage.MAVO_REFERENCE__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOREIGN_COLUMN_REFERENCE__ALTERNATIVES = MAVOPackage.MAVO_REFERENCE__ALTERNATIVES;
+	int FOREIGN_COLUMN_REFERENCE__COLLECTIONS = MAVOPackage.MAVO_REFERENCE__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' container reference.

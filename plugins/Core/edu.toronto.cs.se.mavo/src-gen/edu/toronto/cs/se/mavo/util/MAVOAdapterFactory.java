@@ -101,8 +101,8 @@ public class MAVOAdapterFactory extends AdapterFactoryImpl {
 				return createMAVODecisionAdapter();
 			}
 			@Override
-			public Adapter caseMAVOAlternative(MAVOAlternative object) {
-				return createMAVOAlternativeAdapter();
+			public Adapter caseMAVOCollection(MAVOCollection object) {
+				return createMAVOCollectionAdapter();
 			}
 			@Override
 			public Adapter caseMayDecision(MayDecision object) {
@@ -217,16 +217,16 @@ public class MAVOAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.MAVOAlternative <em>Alternative</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.MAVOCollection <em>Collection</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mavo.MAVOAlternative
+	 * @see edu.toronto.cs.se.mavo.MAVOCollection
 	 * @generated
 	 */
-	public Adapter createMAVOAlternativeAdapter() {
+	public Adapter createMAVOCollectionAdapter() {
 		return null;
 	}
 

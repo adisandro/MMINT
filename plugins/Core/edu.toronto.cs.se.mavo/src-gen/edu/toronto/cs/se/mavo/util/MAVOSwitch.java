@@ -117,11 +117,11 @@ public class MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MAVOPackage.MAVO_ALTERNATIVE: {
-				MAVOAlternative mavoAlternative = (MAVOAlternative)theEObject;
-				T result = caseMAVOAlternative(mavoAlternative);
-				if (result == null) result = caseDecisionElement(mavoAlternative);
-				if (result == null) result = caseLogicElement(mavoAlternative);
+			case MAVOPackage.MAVO_COLLECTION: {
+				MAVOCollection mavoCollection = (MAVOCollection)theEObject;
+				T result = caseMAVOCollection(mavoCollection);
+				if (result == null) result = caseDecisionElement(mavoCollection);
+				if (result == null) result = caseLogicElement(mavoCollection);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -238,17 +238,17 @@ public class MAVOSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Alternative</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Collection</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Alternative</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Collection</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMAVOAlternative(MAVOAlternative object) {
+	public T caseMAVOCollection(MAVOCollection object) {
 		return null;
 	}
 

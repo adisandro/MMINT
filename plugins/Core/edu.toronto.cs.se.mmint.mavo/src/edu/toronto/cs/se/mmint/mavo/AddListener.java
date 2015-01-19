@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.mavo;
 
 import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
@@ -25,7 +26,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.swt.events.SelectionEvent;
 
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOFactory;
 import edu.toronto.cs.se.mavo.MAVOModel;
@@ -86,19 +87,19 @@ public class AddListener extends MIDContextMenuListener {
 			}
 			else if (decisionElemContainer instanceof MAVODecision) {
 				MAVODecision mavoDecision = (MAVODecision) decisionElemContainer;
-				MAVOAlternative mavoSet = MAVOFactory.eINSTANCE.createMAVOAlternative();
+				MAVOCollection mavoCollection = MAVOFactory.eINSTANCE.createMAVOCollection();
 				String suffix = "";
 				if (decisionElemContainer instanceof MayDecision) {
 					MayDecision mayDecision = (MayDecision) mavoDecision;
-					mayDecision.getAlternatives().add(mavoSet);
+					mayDecision.getAlternatives().add(mavoCollection);
 					suffix = MAVO_ALTERNATIVE_FORMULA_PREFIX + mayDecision.getAlternatives().size();
 				}
 				else if (decisionElemContainer instanceof VarDecision) {
 					VarDecision varDecision = (VarDecision) mavoDecision;
-					varDecision.setDomain(mavoSet);
+					varDecision.setDomain(mavoCollection);
 					suffix = MAVO_DOMAIN_FORMULA_PREFIX;
 				}
-				mavoSet.setFormulaVariable(mavoDecision.getFormulaVariable() + suffix);
+				mavoCollection.setFormulaVariable(mavoDecision.getFormulaVariable() + suffix);
 			}
 
 			return CommandResult.newOKCommandResult();

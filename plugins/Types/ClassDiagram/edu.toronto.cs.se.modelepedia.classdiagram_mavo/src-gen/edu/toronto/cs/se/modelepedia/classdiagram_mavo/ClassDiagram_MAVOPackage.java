@@ -187,13 +187,13 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int NAMED_ELEMENT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+	int NAMED_ELEMENT__COLLECTIONS = MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -269,13 +269,13 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int CLASS__VAR = NAMED_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
+	int CLASS__COLLECTIONS = NAMED_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -441,13 +441,13 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int TYPED_ELEMENT__VAR = NAMED_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
+	int TYPED_ELEMENT__COLLECTIONS = NAMED_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -541,13 +541,13 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int ATTRIBUTE__VAR = TYPED_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE__ALTERNATIVES = TYPED_ELEMENT__ALTERNATIVES;
+	int ATTRIBUTE__COLLECTIONS = TYPED_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -650,13 +650,13 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int OPERATION__VAR = TYPED_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION__ALTERNATIVES = TYPED_ELEMENT__ALTERNATIVES;
+	int OPERATION__COLLECTIONS = TYPED_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -759,13 +759,13 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int DEPENDENCY__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEPENDENCY__ALTERNATIVES = MAVOPackage.MAVO_ELEMENT__ALTERNATIVES;
+	int DEPENDENCY__COLLECTIONS = MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -859,13 +859,13 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int ASSOCIATION__VAR = NAMED_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__ALTERNATIVES = NAMED_ELEMENT__ALTERNATIVES;
+	int ASSOCIATION__COLLECTIONS = NAMED_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -959,13 +959,13 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int NESTED_IN_REFERENCE__VAR = MAVOPackage.MAVO_REFERENCE__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_IN_REFERENCE__ALTERNATIVES = MAVOPackage.MAVO_REFERENCE__ALTERNATIVES;
+	int NESTED_IN_REFERENCE__COLLECTIONS = MAVOPackage.MAVO_REFERENCE__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' container reference.
@@ -1050,13 +1050,13 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	int SUPERCLASS_REFERENCE__VAR = MAVOPackage.MAVO_REFERENCE__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUPERCLASS_REFERENCE__ALTERNATIVES = MAVOPackage.MAVO_REFERENCE__ALTERNATIVES;
+	int SUPERCLASS_REFERENCE__COLLECTIONS = MAVOPackage.MAVO_REFERENCE__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' container reference.

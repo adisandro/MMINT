@@ -56,10 +56,10 @@
         <details key="documentation" value="True if this element is a variable (V), false if it a constant (C)."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="alternatives" upperBound="-1"
-        eType="#//MAVOAlternative" eOpposite="#//MAVOAlternative/mavoElements">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="collections" upperBound="-1"
+        eType="#//MAVOCollection" eOpposite="#//MAVOCollection/mavoElements">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The list of alternatives this MAVO element is part of, possibly empty."/>
+        <details key="documentation" value="The list of collections this MAVO element is part of, possibly empty."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -79,14 +79,14 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MAVOAlternative" eSuperTypes="#//DecisionElement">
+  <eClassifiers xsi:type="ecore:EClass" name="MAVOCollection" eSuperTypes="#//DecisionElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="An alternative for a MAVO decision."/>
+      <details key="documentation" value="A collection of MAVO elements."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mavoElements" upperBound="-1"
-        eType="#//MAVOElement" eOpposite="#//MAVOElement/alternatives">
+        eType="#//MAVOElement" eOpposite="#//MAVOElement/collections">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The list of MAVO elements in this alternative, possibly empty."/>
+        <details key="documentation" value="The list of MAVO elements in this collection."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -110,9 +110,9 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="alternatives" lowerBound="1"
-        upperBound="-1" eType="#//MAVOAlternative" containment="true">
+        upperBound="-1" eType="#//MAVOCollection" containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The list of alternatives options for this decision."/>
+        <details key="documentation" value="The list of alternative options for this decision."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -121,7 +121,7 @@
       <details key="documentation" value="A Var decision to be made within a MAVO model."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
-        eType="#//MAVOAlternative" containment="true">
+        eType="#//MAVOCollection" containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The merge domain for this decision."/>
       </eAnnotations>

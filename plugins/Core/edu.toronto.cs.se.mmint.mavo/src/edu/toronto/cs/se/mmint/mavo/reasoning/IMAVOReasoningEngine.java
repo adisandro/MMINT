@@ -14,14 +14,14 @@ package edu.toronto.cs.se.mmint.mavo.reasoning;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 
 public interface IMAVOReasoningEngine {
 
-	public @Nullable Model refineByDecision(@NonNull Model model, @NonNull MAVOAlternative mavoAlternative);
+	public @Nullable Model refineByDecision(@NonNull Model model, @NonNull MAVOCollection mavoAlternative);
 
-	public void highlightAlternative(@NonNull Diagram modelDiagram, @NonNull MAVOAlternative mavoAlternative);
+	public void highlightMAVOCollection(@NonNull Diagram modelDiagram, @NonNull MAVOCollection mavoCollection);
 
 }

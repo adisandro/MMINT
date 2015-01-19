@@ -22,7 +22,8 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.swt.events.SelectionEvent;
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
@@ -31,10 +32,10 @@ import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 public class MAVOAlternativeAddRemoveListener extends MIDContextMenuListener {
 
 	List<MAVOElement> mavoModelObjs;
-	MAVOAlternative mavoAlternative;
+	MAVOCollection mavoAlternative;
 	boolean add;
 
-	public MAVOAlternativeAddRemoveListener(String menuLabel, List<MAVOElement> mavoElements, MAVOAlternative mavoAlternative, boolean add) {
+	public MAVOAlternativeAddRemoveListener(String menuLabel, List<MAVOElement> mavoElements, MAVOCollection mavoAlternative, boolean add) {
 
 		super(menuLabel);
 		this.mavoModelObjs = mavoElements;
@@ -72,7 +73,7 @@ public class MAVOAlternativeAddRemoveListener extends MIDContextMenuListener {
 			else {
 				mavoAlternative.getMavoElements().removeAll(mavoModelObjs);
 				for (MAVOElement mavoElement : mavoModelObjs) {
-					if (mavoElement.getAlternatives().isEmpty()) {
+					if (mavoElement.getCollections().isEmpty()) {
 						MAVOUtils.setMay(mavoElement, false);
 					}
 				}

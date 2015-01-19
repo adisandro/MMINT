@@ -81,26 +81,26 @@ public class MAVOItemProviderAdapterFactory extends MAVOAdapterFactory implement
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mavo.MAVOAlternative} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mavo.MAVOCollection} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MAVOAlternativeItemProvider mavoAlternativeItemProvider;
+	protected MAVOCollectionItemProvider mavoCollectionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mavo.MAVOAlternative}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mavo.MAVOCollection}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createMAVOAlternativeAdapter() {
-		if (mavoAlternativeItemProvider == null) {
-			mavoAlternativeItemProvider = new MAVOAlternativeItemProvider(this);
+	public Adapter createMAVOCollectionAdapter() {
+		if (mavoCollectionItemProvider == null) {
+			mavoCollectionItemProvider = new MAVOCollectionItemProvider(this);
 		}
 
-		return mavoAlternativeItemProvider;
+		return mavoCollectionItemProvider;
 	}
 
 	/**
@@ -248,7 +248,7 @@ public class MAVOItemProviderAdapterFactory extends MAVOAdapterFactory implement
 	 * @generated
 	 */
 	public void dispose() {
-		if (mavoAlternativeItemProvider != null) mavoAlternativeItemProvider.dispose();
+		if (mavoCollectionItemProvider != null) mavoCollectionItemProvider.dispose();
 		if (mayDecisionItemProvider != null) mayDecisionItemProvider.dispose();
 		if (varDecisionItemProvider != null) varDecisionItemProvider.dispose();
 	}

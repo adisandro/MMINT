@@ -31,13 +31,13 @@ public interface MAVOFactory extends EFactory {
 	MAVOFactory eINSTANCE = edu.toronto.cs.se.mavo.impl.MAVOFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Alternative</em>'.
+	 * Returns a new object of class '<em>Collection</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Alternative</em>'.
+	 * @return a new object of class '<em>Collection</em>'.
 	 * @generated
 	 */
-	MAVOAlternative createMAVOAlternative();
+	MAVOCollection createMAVOCollection();
 
 	/**
 	 * Returns a new object of class '<em>May Decision</em>'.

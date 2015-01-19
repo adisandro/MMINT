@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
@@ -163,7 +163,7 @@ public class Z3ReasoningEngine implements IReasoningEngine, IMAVOReasoningEngine
 	}
 
 	@Override
-	public @Nullable Model refineByDecision(@NonNull Model model, @NonNull MAVOAlternative mavoAlternative) {
+	public @Nullable Model refineByDecision(@NonNull Model model, @NonNull MAVOCollection mavoAlternative) {
 
 		Z3MAVOModelParser z3ModelParser;
 		try {
@@ -196,11 +196,11 @@ public class Z3ReasoningEngine implements IReasoningEngine, IMAVOReasoningEngine
 	}
 
 	@Override
-	public void highlightAlternative(@NonNull Diagram modelDiagram, @NonNull MAVOAlternative mavoAlternative) {
+	public void highlightMAVOCollection(@NonNull Diagram modelDiagram, @NonNull MAVOCollection mavoCollection) {
 
 		MAVOConcretizationHighlighter highlighter = new MAVOConcretizationHighlighter();
 		try {
-			highlighter.highlightAlternative(modelDiagram, mavoAlternative);
+			highlighter.highlightMAVOCollection(modelDiagram, mavoCollection);
 		}
 		catch (Exception e) {
 			MMINTException.print(MMINTException.Type.WARNING, "Can't highlight alternative, skipping it", e);

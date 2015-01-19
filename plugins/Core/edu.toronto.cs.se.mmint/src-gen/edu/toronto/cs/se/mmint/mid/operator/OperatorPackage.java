@@ -116,13 +116,13 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR__VAR = MIDPackage.EXTENDIBLE_ELEMENT__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__ALTERNATIVES = MIDPackage.EXTENDIBLE_ELEMENT__ALTERNATIVES;
+	int OPERATOR__COLLECTIONS = MIDPackage.EXTENDIBLE_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -397,13 +397,13 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR__VAR = OPERATOR__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR__ALTERNATIVES = OPERATOR__ALTERNATIVES;
+	int CONVERSION_OPERATOR__COLLECTIONS = OPERATOR__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -677,13 +677,13 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR__VAR = OPERATOR__VAR;
 
 	/**
-	 * The feature id for the '<em><b>Alternatives</b></em>' reference list.
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_OPERATOR__ALTERNATIVES = OPERATOR__ALTERNATIVES;
+	int RANDOM_OPERATOR__COLLECTIONS = OPERATOR__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.

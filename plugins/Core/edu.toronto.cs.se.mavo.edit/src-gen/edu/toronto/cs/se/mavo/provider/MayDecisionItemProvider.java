@@ -176,7 +176,7 @@ public class MayDecisionItemProvider extends MAVODecisionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(MAVOPackage.Literals.MAY_DECISION__ALTERNATIVES,
-				 MAVOFactory.eINSTANCE.createMAVOAlternative()));
+				 MAVOFactory.eINSTANCE.createMAVOCollection()));
 	}
 
 }

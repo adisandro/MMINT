@@ -31,7 +31,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mavo.LogicElement;
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOPackage;
@@ -43,27 +43,27 @@ import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 public class RemoveListener extends MIDContextMenuListener {
 
 	private LogicElement mavoElemToRemove;
-	private MAVOAlternative mavoGroupWhenRemovingMavoModelObj;
+	private MAVOCollection mavoCollectionWhenRemovingMavoModelObj;
 
 	public RemoveListener(@NonNull String menuLabel, @NonNull MAVODecision mavoDecision) {
 
 		super(menuLabel);
 		mavoElemToRemove = mavoDecision;
-		mavoGroupWhenRemovingMavoModelObj = null;
+		mavoCollectionWhenRemovingMavoModelObj = null;
 	}
 
-	public RemoveListener(@NonNull String menuLabel, @NonNull MAVOAlternative mavoSet) {
+	public RemoveListener(@NonNull String menuLabel, @NonNull MAVOCollection mavoCollection) {
 
 		super(menuLabel);
-		mavoElemToRemove = mavoSet;
-		mavoGroupWhenRemovingMavoModelObj = null;
+		mavoElemToRemove = mavoCollection;
+		mavoCollectionWhenRemovingMavoModelObj = null;
 	}
 
-	public RemoveListener(@NonNull String menuLabel, @NonNull MAVOAlternative mavoGroup, @NonNull MAVOElement mavoModelObj) {
+	public RemoveListener(@NonNull String menuLabel, @NonNull MAVOCollection mavoCollection, @NonNull MAVOElement mavoModelObj) {
 
 		super(menuLabel);
 		mavoElemToRemove = mavoModelObj;
-		mavoGroupWhenRemovingMavoModelObj = mavoGroup;
+		mavoCollectionWhenRemovingMavoModelObj = mavoCollection;
 	}
 
 	@Override
@@ -87,15 +87,15 @@ public class RemoveListener extends MIDContextMenuListener {
 		private void collectMAVOModelObjects (@NonNull LogicElement mavoElemToRemove, @NonNull Set<MAVOElement> mavoModelObjs) {
 
 			if (mavoElemToRemove instanceof MayDecision) {
-				for (MAVOAlternative mavoAlternative : ((MayDecision) mavoElemToRemove).getAlternatives()) {
+				for (MAVOCollection mavoAlternative : ((MayDecision) mavoElemToRemove).getAlternatives()) {
 					collectMAVOModelObjects(mavoAlternative, mavoModelObjs);
 				}
 			}
 			else if (mavoElemToRemove instanceof VarDecision) {
 				collectMAVOModelObjects(((VarDecision) mavoElemToRemove).getDomain(), mavoModelObjs);
 			}
-			else if (mavoElemToRemove instanceof MAVOAlternative) {
-				mavoModelObjs.addAll(((MAVOAlternative) mavoElemToRemove).getMavoElements());
+			else if (mavoElemToRemove instanceof MAVOCollection) {
+				mavoModelObjs.addAll(((MAVOCollection) mavoElemToRemove).getMavoElements());
 			}
 			else if (mavoElemToRemove instanceof MAVOElement) {
 				mavoModelObjs.add((MAVOElement) mavoElemToRemove);
@@ -114,8 +114,8 @@ public class RemoveListener extends MIDContextMenuListener {
 				mavoElemToRemove instanceof MayDecision ||
 				mavoElemToRemove.eContainer() instanceof MayDecision ||
 				(
-					mavoGroupWhenRemovingMavoModelObj != null &&
-					mavoGroupWhenRemovingMavoModelObj.eContainer() instanceof MayDecision
+					mavoCollectionWhenRemovingMavoModelObj != null &&
+					mavoCollectionWhenRemovingMavoModelObj.eContainer() instanceof MayDecision
 				)
 			) {
 				eclass = MAVOPackage.eINSTANCE.getMayDecision();
@@ -125,8 +125,8 @@ public class RemoveListener extends MIDContextMenuListener {
 				mavoElemToRemove instanceof VarDecision ||
 				mavoElemToRemove.eContainer() instanceof VarDecision ||
 				(
-					mavoGroupWhenRemovingMavoModelObj != null &&
-					mavoGroupWhenRemovingMavoModelObj.eContainer() instanceof VarDecision
+					mavoCollectionWhenRemovingMavoModelObj != null &&
+					mavoCollectionWhenRemovingMavoModelObj.eContainer() instanceof VarDecision
 				)
 			) {
 				eclass = MAVOPackage.eINSTANCE.getVarDecision();
@@ -138,14 +138,14 @@ public class RemoveListener extends MIDContextMenuListener {
 			}
 
 			// remove
-			if (mavoGroupWhenRemovingMavoModelObj == null) {
+			if (mavoCollectionWhenRemovingMavoModelObj == null) {
 				EcoreUtil.delete(mavoElemToRemove, true);
 			}
 			else {
-				mavoGroupWhenRemovingMavoModelObj.getMavoElements().remove(mavoElemToRemove);
+				mavoCollectionWhenRemovingMavoModelObj.getMavoElements().remove(mavoElemToRemove);
 			}
 			mavoModelObjs.stream()
-				.filter(mavoModelObj -> mavoModelObj.getAlternatives().stream()
+				.filter(mavoModelObj -> mavoModelObj.getCollections().stream()
 					.allMatch(mavoSet -> !eclass.isInstance(mavoSet.eContainer()))
 				)
 				.forEach(mavoModelObj -> mavoModelObj.eSet(feature, false));

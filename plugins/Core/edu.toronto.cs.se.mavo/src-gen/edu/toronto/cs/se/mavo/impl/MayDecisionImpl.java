@@ -11,23 +11,17 @@
  */
 package edu.toronto.cs.se.mavo.impl;
 
-import edu.toronto.cs.se.mavo.MAVOAlternative;
+import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.MayDecisionLogic;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -74,7 +68,7 @@ public class MayDecisionImpl extends MAVODecisionImpl implements MayDecision {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<MAVOAlternative> alternatives;
+	protected EList<MAVOCollection> alternatives;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,9 +115,9 @@ public class MayDecisionImpl extends MAVODecisionImpl implements MayDecision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<MAVOAlternative> getAlternatives() {
+	public EList<MAVOCollection> getAlternatives() {
 		if (alternatives == null) {
-			alternatives = new EObjectContainmentEList<MAVOAlternative>(MAVOAlternative.class, this, MAVOPackage.MAY_DECISION__ALTERNATIVES);
+			alternatives = new EObjectContainmentEList<MAVOCollection>(MAVOCollection.class, this, MAVOPackage.MAY_DECISION__ALTERNATIVES);
 		}
 		return alternatives;
 	}
@@ -172,7 +166,7 @@ public class MayDecisionImpl extends MAVODecisionImpl implements MayDecision {
 				return;
 			case MAVOPackage.MAY_DECISION__ALTERNATIVES:
 				getAlternatives().clear();
-				getAlternatives().addAll((Collection<? extends MAVOAlternative>)newValue);
+				getAlternatives().addAll((Collection<? extends MAVOCollection>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
