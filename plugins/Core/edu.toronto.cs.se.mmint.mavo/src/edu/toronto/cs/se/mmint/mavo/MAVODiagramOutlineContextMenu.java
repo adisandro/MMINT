@@ -14,7 +14,7 @@ package edu.toronto.cs.se.mmint.mavo;
 
 import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Menu;
@@ -41,6 +41,8 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 	private static final String MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL = "Choose this alternative and refine";
 	private static final String MAVO_OUTLINE_MENU_REMOVEALTERNATIVE_LABEL = "Remove this alternative";
 	private static final String MAVO_OUTLINE_MENU_REMOVEDOMAIN_LABEL = "Remove this domain";
+	private static final String MAVO_OUTLINE_MENU_REMOVEALTERNATIVEELEMENT_LABEL = "Remove this element from the alternative";
+	private static final String MAVO_OUTLINE_MENU_REMOVEDOMAINELEMENT_LABEL = "Remove this element from the domain";
 
 	private TreeViewer viewer;
 
@@ -54,10 +56,10 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 
 		// check selection
 		IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
-		if (selection == null || selection.isEmpty() || !(selection instanceof StructuredSelection)) {
+		if (selection == null || selection.isEmpty() || !(selection instanceof TreeSelection)) {
 			return;
 		}
-		Object[] objects = ((StructuredSelection) selection).toArray();
+		Object[] objects = ((TreeSelection) selection).toArray();
 		if (objects.length > 1) {
 			return;
 		}
@@ -141,10 +143,24 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 			);
 		}
 		else if (object instanceof MAVOElement) {
+			MAVOElement mavoModelObj = (MAVOElement) object;
+			MAVOAlternative mavoGroup = (MAVOAlternative) ((TreeSelection) selection).getPathsFor(mavoModelObj)[0].getParentPath().getLastSegment();
+			String removeText = "";
+			if (mavoGroup.eContainer() instanceof MayDecision) {
+				removeText = MAVO_OUTLINE_MENU_REMOVEALTERNATIVEELEMENT_LABEL;
+			}
+			else if (mavoGroup.eContainer() instanceof VarDecision) {
+				removeText = MAVO_OUTLINE_MENU_REMOVEDOMAINELEMENT_LABEL;
+			}
 			// highlight
 			// refine
-			// remove
 			//TODO MMINT[MU-MMINT] Implement
+			// remove
+			MenuItem removeItem = new MenuItem(menu, SWT.NONE);
+			removeItem.setText(removeText);
+			removeItem.addSelectionListener(
+				new RemoveListener(removeText, mavoGroup, mavoModelObj)
+			);
 		}
 	}
 
