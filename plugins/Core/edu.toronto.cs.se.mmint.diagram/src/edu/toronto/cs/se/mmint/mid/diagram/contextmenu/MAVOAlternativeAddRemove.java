@@ -94,10 +94,10 @@ public class MAVOAlternativeAddRemove extends ContributionItem {
 		mavoItem.setMenu(mavoMenu);
 		for (MAVODecision mavoDecision : mavoModel.getDecisions()) {
 			if (mavoDecision instanceof MayDecision) {
-				for (MAVOCollection mavoAlternative : ((MayDecision) mavoDecision).getAlternatives()) {
+				for (MAVOCollection mayAlternative : ((MayDecision) mavoDecision).getAlternatives()) {
 					boolean add = false, remove = false;
 					for (MAVOElement mavoModelObj : mavoModelObjs){
-						if (mavoModelObj.getCollections().contains(mavoAlternative)) {
+						if (mavoModelObj.getCollections().contains(mayAlternative)) {
 							remove = true;
 						}
 						else {
@@ -106,16 +106,16 @@ public class MAVOAlternativeAddRemove extends ContributionItem {
 					}
 					if (add) {
 						MenuItem alternativeItem = new MenuItem(mavoMenu, SWT.NONE);
-						alternativeItem.setText(MAVO_MENU_ADDTOALTERNATIVE_LABEL + " " + mavoAlternative.getFormulaVariable());
+						alternativeItem.setText(MAVO_MENU_ADDTOALTERNATIVE_LABEL + " " + mayAlternative.getFormulaVariable());
 						alternativeItem.addSelectionListener(
-							new MAVOAlternativeAddRemoveListener(MAVO_MENU_ADDTOALTERNATIVE_LABEL, mavoModelObjs, mavoAlternative, true)
+							new MAVOAlternativeAddRemoveListener(MAVO_MENU_ADDTOALTERNATIVE_LABEL, mavoModelObjs, mayAlternative, true)
 						);
 					}
 					if (remove) {
 						MenuItem alternativeItem = new MenuItem(mavoMenu, SWT.NONE);
-						alternativeItem.setText(MAVO_MENU_REMOVEFROMALTERNATIVE_LABEL + " " + mavoAlternative.getFormulaVariable());
+						alternativeItem.setText(MAVO_MENU_REMOVEFROMALTERNATIVE_LABEL + " " + mayAlternative.getFormulaVariable());
 						alternativeItem.addSelectionListener(
-							new MAVOAlternativeAddRemoveListener(MAVO_MENU_REMOVEFROMALTERNATIVE_LABEL, mavoModelObjs, mavoAlternative, false)
+							new MAVOAlternativeAddRemoveListener(MAVO_MENU_REMOVEFROMALTERNATIVE_LABEL, mavoModelObjs, mayAlternative, false)
 						);
 					}
 				}

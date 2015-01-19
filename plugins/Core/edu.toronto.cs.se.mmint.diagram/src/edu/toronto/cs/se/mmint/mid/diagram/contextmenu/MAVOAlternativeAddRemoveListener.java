@@ -32,14 +32,14 @@ import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 public class MAVOAlternativeAddRemoveListener extends MIDContextMenuListener {
 
 	List<MAVOElement> mavoModelObjs;
-	MAVOCollection mavoAlternative;
+	MAVOCollection mayAlternative;
 	boolean add;
 
-	public MAVOAlternativeAddRemoveListener(String menuLabel, List<MAVOElement> mavoElements, MAVOCollection mavoAlternative, boolean add) {
+	public MAVOAlternativeAddRemoveListener(String menuLabel, List<MAVOElement> mavoElements, MAVOCollection mayAlternative, boolean add) {
 
 		super(menuLabel);
 		this.mavoModelObjs = mavoElements;
-		this.mavoAlternative = mavoAlternative;
+		this.mayAlternative = mayAlternative;
 		this.add = add;
 	}
 
@@ -65,13 +65,13 @@ public class MAVOAlternativeAddRemoveListener extends MIDContextMenuListener {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			if (add) {
-				mavoAlternative.getMavoElements().addAll(mavoModelObjs);
+				mayAlternative.getMavoElements().addAll(mavoModelObjs);
 				for (MAVOElement mavoElement : mavoModelObjs) {
 					MAVOUtils.setMay(mavoElement, true);
 				}
 			}
 			else {
-				mavoAlternative.getMavoElements().removeAll(mavoModelObjs);
+				mayAlternative.getMavoElements().removeAll(mavoModelObjs);
 				for (MAVOElement mavoElement : mavoModelObjs) {
 					if (mavoElement.getCollections().isEmpty()) {
 						MAVOUtils.setMay(mavoElement, false);

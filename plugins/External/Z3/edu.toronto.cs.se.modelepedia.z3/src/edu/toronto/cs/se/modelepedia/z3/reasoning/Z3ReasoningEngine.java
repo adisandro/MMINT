@@ -18,6 +18,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mavo.MAVOCollection;
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
@@ -163,7 +164,7 @@ public class Z3ReasoningEngine implements IReasoningEngine, IMAVOReasoningEngine
 	}
 
 	@Override
-	public @Nullable Model refineByDecision(@NonNull Model model, @NonNull MAVOCollection mavoAlternative) {
+	public @Nullable Model refineByMayAlternative(@NonNull Model model, @NonNull MAVOCollection mayAlternative) {
 
 		Z3MAVOModelParser z3ModelParser;
 		try {
@@ -177,20 +178,49 @@ public class Z3ReasoningEngine implements IReasoningEngine, IMAVOReasoningEngine
 		// refine
 		Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
 		String smtEncoding = z3ModelParser.getSMTLIBEncoding();
-		if (model.getConstraint() == null) {
-			smtEncoding += Z3Utils.assertion(mavoAlternative.getFormulaVariable());
+		if (model.getConstraint() != null) {
+			smtEncoding += Z3Utils.assertion(model.getConstraint().getImplementation());
 		}
-		else {
-			smtEncoding += Z3Utils.assertion(
-				Z3Utils.and(model.getConstraint().getImplementation() + " " + mavoAlternative.getFormulaVariable())
-			);
-		}
+		smtEncoding += Z3Utils.assertion(mayAlternative.getFormulaVariable());
 		MAVORefiner refiner = new MAVORefiner(this);
 		try {
-			return refiner.refine(model, modelDiagram, mavoAlternative, smtEncoding);
+			return refiner.refine(model, modelDiagram, mayAlternative, smtEncoding);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.ERROR, "Can't refine the model by decision, aborting (some incomplete result could appear in your instance MID)", e);
+			MMINTException.print(MMINTException.Type.ERROR, "Can't refine the model by may alternative, aborting (some incomplete result could appear in your instance MID)", e);
+			return null;
+		}
+	}
+
+	@Override
+	public @Nullable Model refineByMayModelObject(@NonNull Model model, @NonNull MAVOElement mayModelObj) {
+
+		Z3MAVOModelParser z3ModelParser;
+		try {
+			z3ModelParser = generateSMTLIBEncoding(model);
+		}
+		catch (Exception e) {
+			MMINTException.print(MMINTException.Type.ERROR, "Can't generate SMTLIB encoding, aborting refinement", e);
+			return null;
+		}
+
+		// refine
+		Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
+		String smtEncoding = z3ModelParser.getSMTLIBEncoding();
+		if (model.getConstraint() != null) {
+			smtEncoding += Z3Utils.assertion(model.getConstraint().getImplementation());
+		}
+		String smtConstraint = MAVORefiner.getZ3MayEncoding(mayModelObj);
+		if (smtConstraint == null) {
+			return null;
+		}
+		smtEncoding += Z3Utils.assertion(smtConstraint);
+		MAVORefiner refiner = new MAVORefiner(this);
+		try {
+			return refiner.refine(model, modelDiagram, null, smtEncoding);
+		}
+		catch (Exception e) {
+			MMINTException.print(MMINTException.Type.ERROR, "Can't refine the model by may model object, aborting (some incomplete result could appear in your instance MID)", e);
 			return null;
 		}
 	}

@@ -30,15 +30,16 @@ import edu.toronto.cs.se.mavo.VarDecision;
 
 public class MAVODiagramOutlineContextMenu extends ContributionItem {
 
+	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTALTERNATIVE_LABEL = "Highlight alternative in diagram";
+	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTDOMAIN_LABEL = "Highlight domain in diagram";
+	private static final String MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL = "Choose this alternative and refine";
+	private static final String MAVO_OUTLINE_MENU_REFINEELEMENT_LABEL = "Choose this element and refine";
 	private static final String MAVO_OUTLINE_MENU_ADDDECISION_LABEL = "Add new decision";
 	private static final String MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_MAY_LABEL = "May";
 	private static final String MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_VAR_LABEL = "Var";
 	private static final String MAVO_OUTLINE_MENU_ADDALTERNATIVE_LABEL = "Add new alternative";
 	private static final String MAVO_OUTLINE_MENU_ADDDOMAIN_LABEL = "Add new domain";
 	private static final String MAVO_OUTLINE_MENU_REMOVEDECISION_LABEL = "Remove this decision";
-	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTALTERNATIVE_LABEL = "Highlight alternative in diagram";
-	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTDOMAIN_LABEL = "Highlight domain in diagram";
-	private static final String MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL = "Choose this alternative and refine";
 	private static final String MAVO_OUTLINE_MENU_REMOVEALTERNATIVE_LABEL = "Remove this alternative";
 	private static final String MAVO_OUTLINE_MENU_REMOVEDOMAIN_LABEL = "Remove this domain";
 	private static final String MAVO_OUTLINE_MENU_REMOVEALTERNATIVEELEMENT_LABEL = "Remove this element from the alternative";
@@ -60,6 +61,7 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 			return;
 		}
 		Object[] objects = ((TreeSelection) selection).toArray();
+		//TODO MMINT[MU-MMINT] Implementing var merge refinement requires multiple mavo elements selected from the same domain
 		if (objects.length > 1) {
 			return;
 		}
@@ -132,7 +134,7 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 				MenuItem refineItem = new MenuItem(menu, SWT.NONE);
 				refineItem.setText(MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL);
 				refineItem.addSelectionListener(
-					new RefineListener(MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL, objects)
+					new RefineListener(MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL, mavoCollection)
 				);
 			}
 			// remove
@@ -153,8 +155,15 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 				removeText = MAVO_OUTLINE_MENU_REMOVEDOMAINELEMENT_LABEL;
 			}
 			// highlight
-			// refine
 			//TODO MMINT[MU-MMINT] Implement
+			// refine
+			if (mavoCollection.eContainer() instanceof MayDecision) {
+				MenuItem refineItem = new MenuItem(menu, SWT.NONE);
+				refineItem.setText(MAVO_OUTLINE_MENU_REFINEELEMENT_LABEL);
+				refineItem.addSelectionListener(
+					new RefineListener(MAVO_OUTLINE_MENU_REFINEELEMENT_LABEL, mavoModelObj)
+				);
+			}
 			// remove
 			MenuItem removeItem = new MenuItem(menu, SWT.NONE);
 			removeItem.setText(removeText);

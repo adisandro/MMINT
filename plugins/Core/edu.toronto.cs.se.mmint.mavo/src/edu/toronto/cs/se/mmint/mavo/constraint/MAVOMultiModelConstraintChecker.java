@@ -15,6 +15,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mavo.MAVOCollection;
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -28,18 +29,32 @@ public class MAVOMultiModelConstraintChecker {
 		return (IMAVOReasoningEngine) MultiModelConstraintChecker.getReasoner(constraintLanguage);
 	}
 
-	public static @Nullable Model refineByDecision(@NonNull Model model, @NonNull MAVOCollection mavoAlternative) {
+	public static @Nullable Model refineByMayAlternative(@NonNull Model model, @NonNull MAVOCollection mayAlternative) {
 
 		IMAVOReasoningEngine reasoner;
 		try {
 			reasoner = getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Skipping decision-based refinement", e);
+			MMINTException.print(MMINTException.Type.WARNING, "Skipping refinement based on may alternative", e);
 			return null;
 		}
 
-		return reasoner.refineByDecision(model, mavoAlternative);
+		return reasoner.refineByMayAlternative(model, mayAlternative);
+	}
+
+	public static @Nullable Model refineByMayModelObject(@NonNull Model model, @NonNull MAVOElement mayModelObj) {
+
+		IMAVOReasoningEngine reasoner;
+		try {
+			reasoner = getMAVOReasoner("SMTLIB");
+		}
+		catch (MMINTException e) {
+			MMINTException.print(MMINTException.Type.WARNING, "Skipping refinement based on may model object", e);
+			return null;
+		}
+
+		return reasoner.refineByMayModelObject(model, mayModelObj);
 	}
 
 	public static void highlightMAVOCollection(@NonNull Diagram modelDiagram, @NonNull MAVOCollection mavoCollection) {

@@ -15,12 +15,15 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mavo.MAVOCollection;
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 
 public interface IMAVOReasoningEngine {
 
-	public @Nullable Model refineByDecision(@NonNull Model model, @NonNull MAVOCollection mavoAlternative);
+	public @Nullable Model refineByMayAlternative(@NonNull Model model, @NonNull MAVOCollection mayAlternative);
+
+	public @Nullable Model refineByMayModelObject(@NonNull Model model, @NonNull MAVOElement mayModelObj);
 
 	public void highlightMAVOCollection(@NonNull Diagram modelDiagram, @NonNull MAVOCollection mavoCollection);
 

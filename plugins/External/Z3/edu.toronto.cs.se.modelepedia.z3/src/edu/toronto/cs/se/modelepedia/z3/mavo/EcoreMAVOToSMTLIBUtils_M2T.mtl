@@ -171,7 +171,7 @@
 		[/let]
 	[/for]
 	[for (mayDecision : MayDecision | mavoModel.decisions->select(oclIsTypeOf(MayDecision))->collect(oclAsType(MayDecision)))]
-		[for (mayAlternative : MAVOAlternative | mayDecision.alternatives)]
+		[for (mayAlternative : MAVOCollection | mayDecision.alternatives)]
 ;[mayDecision.formulaVariable/]-[mayAlternative.formulaVariable/] Alternative elements
 (declare-fun [mayAlternative.formulaVariable/] () Bool)
 (assert (= [mayAlternative.formulaVariable/][if (mayDecision.getMayDecisionElements()->size() > 1)] (and[/if]
@@ -184,7 +184,7 @@
 ;[mayDecision.formulaVariable/] Decision
 			[if (mayDecision.alternatives->size() > 1)]
 (assert ([mayDecision.logic.toString().toLower()/]
-				[for (mayAlternative : MAVOAlternative | mayDecision.alternatives)]
+				[for (mayAlternative : MAVOCollection | mayDecision.alternatives)]
 	[mayAlternative.formulaVariable/]
 				[/for]
 ))
@@ -309,7 +309,7 @@
 	[for (mavoDecision : MAVODecision | mavoModel.decisions)]
 		[if (mavoDecision.oclIsTypeOf(MayDecision))]
 			[let mayDecision : MayDecision = mavoDecision.oclAsType(MayDecision)]
-			[for (mayAlternative : MAVOAlternative | mayDecision.alternatives)]
+			[for (mayAlternative : MAVOCollection | mayDecision.alternatives)]
 ;[mayDecision.formulaVariable/]-[mayAlternative.formulaVariable/] Alternative elements
 (declare-fun [mayAlternative.formulaVariable/] () Bool)
 (assert (= [mayAlternative.formulaVariable/][if (mayDecision.getMayDecisionElements()->size() > 1)] (and[/if]
@@ -322,7 +322,7 @@
 ;[mayDecision.formulaVariable/] Decision
 				[if (mayDecision.alternatives->size() > 1)]
 (assert ([mayDecision.logic.toString().toLower()/]
-					[for (mayAlternative : MAVOAlternative | mayDecision.alternatives)]
+					[for (mayAlternative : MAVOCollection | mayDecision.alternatives)]
 	[mayAlternative.formulaVariable/]
 					[/for]
 ))
@@ -334,7 +334,7 @@
 		[/if]
 		[if (mavoDecision.oclIsTypeOf(VarDecision))]
 			[let varDecision : VarDecision = mavoDecision.oclAsType(VarDecision)]
-			[let varDomain : MAVOAlternative = varDecision.domain]
+			[let varDomain : MAVOCollection = varDecision.domain]
 			[let domainFormulaVars : Sequence(String) = varDomain.mavoElements->collect(formulaVariable)]
 ;[varDecision.formulaVariable/]-[varDomain.formulaVariable/] merge Domain
 			[for (mavoElement : MAVOElement | varDomain.mavoElements)]

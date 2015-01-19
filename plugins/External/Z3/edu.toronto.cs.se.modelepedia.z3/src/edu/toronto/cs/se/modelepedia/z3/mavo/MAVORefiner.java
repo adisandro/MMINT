@@ -70,6 +70,20 @@ public class MAVORefiner {
 		this.reasoner = reasoner;
 	}
 
+	//TODO MMINT[Z3] Refactor
+	public static @Nullable String getZ3MayEncoding(MAVOElement mayModelObj) {
+
+		String smtEncoding = null;
+		if (mayModelObj.eClass().getEAnnotation("gmf.node") != null) {
+			smtEncoding = Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, mayModelObj.getFormulaVariable());
+		}
+		else if (mayModelObj.eClass().getEAnnotation("gmf.link") != null) {
+			smtEncoding = Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, mayModelObj.getFormulaVariable());
+		}
+
+		return smtEncoding;
+	}
+
 	private @NonNull Map<String, MAVOElement> getModelObjectsToRefine(@NonNull MAVOModel rootModelObj, @NonNull MAVOModel refinedRootModelObj, @NonNull String refinedModelUri, @NonNull Map<MAVOElement, MAVOElement> refinementMap) {
 
 		Map<String, MAVOElement> modelObjsToRefine = new HashMap<String, MAVOElement>();
@@ -112,14 +126,8 @@ public class MAVORefiner {
 		for (Entry<String, MAVOElement> entry : modelObjsToRefine.entrySet()) {
 			String formulaVar = entry.getKey();
 			MAVOElement modelObj = entry.getValue();
-			String smtConstraint = null;
-			if (modelObj.eClass().getEAnnotation("gmf.node") != null) {
-				smtConstraint = Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, formulaVar);
-			}
-			else if (modelObj.eClass().getEAnnotation("gmf.link") != null) {
-				smtConstraint = Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, formulaVar);
-			}
-			else {
+			String smtConstraint = getZ3MayEncoding(modelObj);
+			if (smtConstraint == null) {
 				continue;
 			}
 			MAVOTruthValue refinedTruthValue = reasoner.checkMAVOConstraintEncodingLoaded(z3IncSolver, smtConstraint);
@@ -155,9 +163,9 @@ public class MAVORefiner {
 		}
 	}
 
-	private void refineDecision(MAVOModel refinedRootModelObj, MAVOCollection mavoAlternative) {
+	private void refineDecision(MAVOModel refinedRootModelObj, MAVOCollection mayAlternative) {
 
-		MAVODecision mavoDecision = (MAVODecision) mavoAlternative.eContainer();
+		MAVODecision mavoDecision = (MAVODecision) mayAlternative.eContainer();
 		String decisionFormulaVar = mavoDecision.getFormulaVariable();
 		for (MAVODecision mavoDecisionToDelete : refinedRootModelObj.getDecisions()) {
 			if (decisionFormulaVar.equals(mavoDecisionToDelete.getFormulaVariable())) {
@@ -228,7 +236,7 @@ public class MAVORefiner {
 		refinedDiagram.setElement(refinedRootModelObj);
 	}
 
-	public @NonNull Model refine(@NonNull Model model, @Nullable Diagram modelDiagram, @Nullable MAVOCollection mavoAlternative, @NonNull String smtEncoding) throws Exception {
+	public @NonNull Model refine(@NonNull Model model, @Nullable Diagram modelDiagram, @Nullable MAVOCollection mayAlternative, @NonNull String smtEncoding) throws Exception {
 
 		// create mid artifacts
 		String refinedModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(model.getUri(), REFINED_MODEL_SUFFIX), true, false);
@@ -253,8 +261,8 @@ public class MAVORefiner {
 		Map<String, MAVOElement> modelObjsToRefine = getModelObjectsToRefine(rootModelObj, refinedRootModelObj, refinedModelUri, refinementMap);
 		Map<String, MAVOTruthValue> refinedTruthValues = runZ3SMTSolver(modelObjsToRefine, smtEncoding);
 		refineModel(modelObjsToRefine, refinedTruthValues, refinementMap);
-		if (mavoAlternative != null) {
-			refineDecision(refinedRootModelObj, mavoAlternative);
+		if (mayAlternative != null) {
+			refineDecision(refinedRootModelObj, mayAlternative);
 		}
 		populateRefinementRel(refinementRel, refinementMap);
 

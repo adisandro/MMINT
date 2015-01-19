@@ -87,8 +87,8 @@ public class RemoveListener extends MIDContextMenuListener {
 		private void collectMAVOModelObjects (@NonNull LogicElement mavoElemToRemove, @NonNull Set<MAVOElement> mavoModelObjs) {
 
 			if (mavoElemToRemove instanceof MayDecision) {
-				for (MAVOCollection mavoAlternative : ((MayDecision) mavoElemToRemove).getAlternatives()) {
-					collectMAVOModelObjects(mavoAlternative, mavoModelObjs);
+				for (MAVOCollection mayAlternative : ((MayDecision) mavoElemToRemove).getAlternatives()) {
+					collectMAVOModelObjects(mayAlternative, mavoModelObjs);
 				}
 			}
 			else if (mavoElemToRemove instanceof VarDecision) {

@@ -25,10 +25,12 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOCollection;
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -43,20 +45,25 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 
 public class RefineListener extends MIDContextMenuListener {
 
-	private Object[] objects;
-	private Model model;
+	private LogicElement mavoElemToRefine;
 
-	public RefineListener(String menuLabel, Object[] objects) {
+	public RefineListener(String menuLabel, MAVOCollection mayAlternative) {
 
 		super(menuLabel);
-		this.objects = objects;
+		mavoElemToRefine = mayAlternative;
+	}
+
+	public RefineListener(String menuLabel, MAVOElement mavoModelObj) {
+
+		super(menuLabel);
+		mavoElemToRefine = mavoModelObj;
 	}
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
 		//TODO MMINT[MU-MMINT] Unify with highlighting
-		String modelUri = MultiModelRegistry.getModelAndModelElementUris((LogicElement) objects[0], MIDLevel.INSTANCES)[0];
+		String modelUri = MultiModelRegistry.getModelAndModelElementUris(mavoElemToRefine, MIDLevel.INSTANCES)[0];
 		Map<MultiModel, List<IFile>> midDiagrams = MIDDiagramUtils.getMIDsInWorkspace();
 		Model model = null;
 		List<IFile> files = null;
@@ -72,38 +79,34 @@ public class RefineListener extends MIDContextMenuListener {
 			return;
 		}
 
-		this.model = model;
 		AbstractTransactionalCommand command = new RefineModelCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
-			files
+			files,
+			model
 		);
 		runListenerCommand(command);
 	}
 
 	protected class RefineModelCommand extends AbstractTransactionalCommand {
 
-		public RefineModelCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		private Model model;
+
+		public RefineModelCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles, Model model) {
 
 			super(domain, label, affectedFiles);
+			this.model = model;
 		}
 
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			ArrayList<LogicElement> selectedElements = new ArrayList<LogicElement>();
-			for (Object object: objects) {
-				//skip useless elements
-				if (object instanceof MAVOModel || object instanceof MayDecision) {
-					continue;
-				}
-				//TODO MMINT[MU-MMINT] use for mavo elements too with command from diagram MAVO context menu
-				if (object instanceof LogicElement){
-					selectedElements.add((LogicElement) object);
-				}
+			if (mavoElemToRefine instanceof MAVOCollection) {
+				MAVOMultiModelConstraintChecker.refineByMayAlternative(model, (MAVOCollection) mavoElemToRefine);
 			}
-
-			MAVOMultiModelConstraintChecker.refineByDecision(model, (MAVOCollection) selectedElements.get(0));
+			else if (mavoElemToRefine instanceof MAVOElement) {
+				MAVOMultiModelConstraintChecker.refineByMayModelObject(model, (MAVOElement) mavoElemToRefine);
+			}
 
 			return CommandResult.newOKCommandResult();
 		}
