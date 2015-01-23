@@ -12,7 +12,6 @@
  */
 package edu.toronto.cs.se.mmint.mavo;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -25,14 +24,11 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVOModel;
-import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
@@ -46,6 +42,7 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 public class RefineListener extends MIDContextMenuListener {
 
 	private LogicElement mavoElemToRefine;
+	private Model model;
 
 	public RefineListener(String menuLabel, MAVOCollection mayAlternative) {
 
@@ -65,7 +62,7 @@ public class RefineListener extends MIDContextMenuListener {
 		//TODO MMINT[MU-MMINT] Unify with highlighting
 		String modelUri = MultiModelRegistry.getModelAndModelElementUris(mavoElemToRefine, MIDLevel.INSTANCES)[0];
 		Map<MultiModel, List<IFile>> midDiagrams = MIDDiagramUtils.getMIDsInWorkspace();
-		Model model = null;
+		model = null;
 		List<IFile> files = null;
 		for (Entry<MultiModel, List<IFile>> entry: midDiagrams.entrySet()) {
 			model = MultiModelRegistry.getExtendibleElement(modelUri, entry.getKey());
@@ -82,8 +79,7 @@ public class RefineListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new RefineModelCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
-			files,
-			model
+			files
 		);
 		runListenerCommand(command);
 	}
@@ -92,10 +88,9 @@ public class RefineListener extends MIDContextMenuListener {
 
 		private Model model;
 
-		public RefineModelCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles, Model model) {
+		public RefineModelCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
-			this.model = model;
 		}
 
 		@Override

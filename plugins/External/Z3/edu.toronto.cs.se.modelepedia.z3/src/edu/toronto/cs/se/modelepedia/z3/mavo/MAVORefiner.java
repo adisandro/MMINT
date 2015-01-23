@@ -52,7 +52,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
-import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
 public class MAVORefiner {
@@ -68,20 +67,6 @@ public class MAVORefiner {
 	public MAVORefiner(@NonNull Z3ReasoningEngine reasoner) {
 
 		this.reasoner = reasoner;
-	}
-
-	//TODO MMINT[Z3] Refactor
-	public static @Nullable String getZ3MayEncoding(MAVOElement mayModelObj) {
-
-		String smtEncoding = null;
-		if (mayModelObj.eClass().getEAnnotation("gmf.node") != null) {
-			smtEncoding = Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, mayModelObj.getFormulaVariable());
-		}
-		else if (mayModelObj.eClass().getEAnnotation("gmf.link") != null) {
-			smtEncoding = Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, mayModelObj.getFormulaVariable());
-		}
-
-		return smtEncoding;
 	}
 
 	private @NonNull Map<String, MAVOElement> getModelObjectsToRefine(@NonNull MAVOModel rootModelObj, @NonNull MAVOModel refinedRootModelObj, @NonNull String refinedModelUri, @NonNull Map<MAVOElement, MAVOElement> refinementMap) {
@@ -126,8 +111,12 @@ public class MAVORefiner {
 		for (Entry<String, MAVOElement> entry : modelObjsToRefine.entrySet()) {
 			String formulaVar = entry.getKey();
 			MAVOElement modelObj = entry.getValue();
-			String smtConstraint = getZ3MayEncoding(modelObj);
-			if (smtConstraint == null) {
+			String smtConstraint;
+			try {
+				smtConstraint = reasoner.getSMTLIBMAVOModelObjectEncoding(modelObj);
+			}
+			catch (MMINTException e) {
+				MMINTException.print(Type.WARNING, "Can't generate SMTLIB encoding for the current mavo model object, skipping it", e);
 				continue;
 			}
 			MAVOTruthValue refinedTruthValue = reasoner.checkMAVOConstraintEncodingLoaded(z3IncSolver, smtConstraint);

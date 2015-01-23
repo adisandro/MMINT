@@ -26,6 +26,7 @@ public class MAVOMultiModelConstraintChecker {
 
 	private static @NonNull IMAVOReasoningEngine getMAVOReasoner(@NonNull String constraintLanguage) throws MMINTException {
 
+		//TODO MMINT[MAVO] Register reasoners as mavo reasoner
 		return (IMAVOReasoningEngine) MultiModelConstraintChecker.getReasoner(constraintLanguage);
 	}
 

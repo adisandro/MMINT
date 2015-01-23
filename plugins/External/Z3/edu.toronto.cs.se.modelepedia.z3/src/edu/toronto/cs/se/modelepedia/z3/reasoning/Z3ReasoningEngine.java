@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
+import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
@@ -132,9 +133,48 @@ public class Z3ReasoningEngine implements IReasoningEngine, IMAVOReasoningEngine
 		return true;
 	}
 
+	public @NonNull String getSMTLIBMAVOModelObjectEncoding(MAVOElement mavoModelObj) throws MMINTException {
+	
+		String smtEncoding;
+		if (mavoModelObj.eClass().getEAnnotation("gmf.node") != null) {
+			smtEncoding = Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, mavoModelObj.getFormulaVariable());
+		}
+		else if (mavoModelObj.eClass().getEAnnotation("gmf.link") != null) {
+			smtEncoding = Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, mavoModelObj.getFormulaVariable());
+		}
+		else {
+			throw new MMINTException("The model object " + mavoModelObj.getFormulaVariable() + " doesn't have a Eugenia node/link annotation");
+		}
+	
+		return smtEncoding;
+	}
+
+	private @NonNull String generateRefinementSMTLIBEncoding(@NonNull Model model, @NonNull LogicElement mayLogicElem) throws Exception {
+
+		// base encoding
+		Z3MAVOModelParser z3ModelParser = generateSMTLIBEncoding(model);
+		String smtEncoding = z3ModelParser.getSMTLIBEncoding();
+
+		// constraints
+		if (model.getConstraint() != null) {
+			smtEncoding += Z3Utils.assertion(model.getConstraint().getImplementation());
+		}
+		String smtMayLogicElem = "";
+		if (mayLogicElem instanceof MAVOCollection) {
+			smtMayLogicElem = mayLogicElem.getFormulaVariable();
+		}
+		else if (mayLogicElem instanceof MAVOElement) {
+			smtMayLogicElem = getSMTLIBMAVOModelObjectEncoding((MAVOElement) mayLogicElem);
+		}
+		smtEncoding += Z3Utils.assertion(smtMayLogicElem);
+
+		return smtEncoding;
+	}
+
 	@Override
 	public @Nullable Model refineByConstraint(@NonNull Model model) {
 
+		//TODO MMINT[MU-MMINT] use generateRefinementSMTLIBEncoding
 		Z3MAVOModelParser z3ModelParser;
 		try {
 			z3ModelParser = generateSMTLIBEncoding(model);
@@ -166,9 +206,9 @@ public class Z3ReasoningEngine implements IReasoningEngine, IMAVOReasoningEngine
 	@Override
 	public @Nullable Model refineByMayAlternative(@NonNull Model model, @NonNull MAVOCollection mayAlternative) {
 
-		Z3MAVOModelParser z3ModelParser;
+		String smtEncoding;
 		try {
-			z3ModelParser = generateSMTLIBEncoding(model);
+			smtEncoding = generateRefinementSMTLIBEncoding(model, mayAlternative);
 		}
 		catch (Exception e) {
 			MMINTException.print(MMINTException.Type.ERROR, "Can't generate SMTLIB encoding, aborting refinement", e);
@@ -177,11 +217,6 @@ public class Z3ReasoningEngine implements IReasoningEngine, IMAVOReasoningEngine
 
 		// refine
 		Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
-		String smtEncoding = z3ModelParser.getSMTLIBEncoding();
-		if (model.getConstraint() != null) {
-			smtEncoding += Z3Utils.assertion(model.getConstraint().getImplementation());
-		}
-		smtEncoding += Z3Utils.assertion(mayAlternative.getFormulaVariable());
 		MAVORefiner refiner = new MAVORefiner(this);
 		try {
 			return refiner.refine(model, modelDiagram, mayAlternative, smtEncoding);
@@ -195,9 +230,9 @@ public class Z3ReasoningEngine implements IReasoningEngine, IMAVOReasoningEngine
 	@Override
 	public @Nullable Model refineByMayModelObject(@NonNull Model model, @NonNull MAVOElement mayModelObj) {
 
-		Z3MAVOModelParser z3ModelParser;
+		String smtEncoding;
 		try {
-			z3ModelParser = generateSMTLIBEncoding(model);
+			smtEncoding = generateRefinementSMTLIBEncoding(model, mayModelObj);
 		}
 		catch (Exception e) {
 			MMINTException.print(MMINTException.Type.ERROR, "Can't generate SMTLIB encoding, aborting refinement", e);
@@ -206,15 +241,6 @@ public class Z3ReasoningEngine implements IReasoningEngine, IMAVOReasoningEngine
 
 		// refine
 		Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
-		String smtEncoding = z3ModelParser.getSMTLIBEncoding();
-		if (model.getConstraint() != null) {
-			smtEncoding += Z3Utils.assertion(model.getConstraint().getImplementation());
-		}
-		String smtConstraint = MAVORefiner.getZ3MayEncoding(mayModelObj);
-		if (smtConstraint == null) {
-			return null;
-		}
-		smtEncoding += Z3Utils.assertion(smtConstraint);
 		MAVORefiner refiner = new MAVORefiner(this);
 		try {
 			return refiner.refine(model, modelDiagram, null, smtEncoding);
