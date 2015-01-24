@@ -30,6 +30,7 @@ public class MAVOMultiModelConstraintChecker {
 		return (IMAVOReasoningEngine) MultiModelConstraintChecker.getReasoner(constraintLanguage);
 	}
 
+	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null
 	public static @Nullable Model refineByMayAlternative(@NonNull Model model, @NonNull MAVOCollection mayAlternative) {
 
 		IMAVOReasoningEngine reasoner;
@@ -44,6 +45,7 @@ public class MAVOMultiModelConstraintChecker {
 		return reasoner.refineByMayAlternative(model, mayAlternative);
 	}
 
+	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null
 	public static @Nullable Model refineByMayModelObject(@NonNull Model model, @NonNull MAVOElement mayModelObj) {
 
 		IMAVOReasoningEngine reasoner;

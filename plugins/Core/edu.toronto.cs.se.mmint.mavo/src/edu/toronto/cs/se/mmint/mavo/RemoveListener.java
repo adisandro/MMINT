@@ -144,9 +144,11 @@ public class RemoveListener extends MIDContextMenuListener {
 			else {
 				mavoCollectionWhenRemovingMavoModelObj.getMavoElements().remove(mavoElemToRemove);
 			}
+			// depending on the removal performed, set May or Var to false for each collected MAVO model object
+			// that is now not used by any May alternatives or Var domains
 			mavoModelObjs.stream()
 				.filter(mavoModelObj -> mavoModelObj.getCollections().stream()
-					.allMatch(mavoSet -> !eclass.isInstance(mavoSet.eContainer()))
+					.allMatch(mavoCollection -> !eclass.isInstance(mavoCollection.eContainer()))
 				)
 				.forEach(mavoModelObj -> mavoModelObj.eSet(feature, false));
 

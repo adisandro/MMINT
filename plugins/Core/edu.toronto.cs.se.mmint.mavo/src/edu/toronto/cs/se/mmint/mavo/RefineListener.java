@@ -86,8 +86,6 @@ public class RefineListener extends MIDContextMenuListener {
 
 	protected class RefineModelCommand extends AbstractTransactionalCommand {
 
-		private Model model;
-
 		public RefineModelCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);

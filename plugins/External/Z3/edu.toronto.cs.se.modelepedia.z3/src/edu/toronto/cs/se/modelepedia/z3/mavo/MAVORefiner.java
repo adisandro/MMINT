@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.modelepedia.z3.mavo;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -30,6 +31,7 @@ import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MMINT;
@@ -133,12 +135,20 @@ public class MAVORefiner {
 	 */
 	private void refineModel(@NonNull Map<String, MAVOElement> modelObjsToRefine, @NonNull Map<String, MAVOTruthValue> refinedTruthValues, @NonNull Map<MAVOElement, MAVOElement> refinementMap) {
 
+		//TODO MMINT[MU-MMINT] Generalize for Var
 		for (Entry<String, MAVOTruthValue> entry : refinedTruthValues.entrySet()) {
 			MAVOElement refinedModelObj = modelObjsToRefine.get(entry.getKey());
 			switch (entry.getValue()) {
 				case TRUE:
 					refinedModelObj.setMay(false);
-					refinedModelObj.getCollections().clear();
+					//TODO MMINT[MU-MMINT] Need to detect when a decision is made automatically, e.g. choice of an element has cascading effects to the alternatives
+					Iterator<MAVOCollection> iter = refinedModelObj.getCollections().iterator();
+					while (iter.hasNext()) {
+						MAVOCollection mavoCollection = iter.next();
+						if (mavoCollection.eContainer() instanceof MayDecision) {
+							iter.remove();
+						}
+					}
 					break;
 				case FALSE:
 					EcoreUtil.delete(refinedModelObj, true);
@@ -152,13 +162,16 @@ public class MAVORefiner {
 		}
 	}
 
-	private void refineDecision(MAVOModel refinedRootModelObj, MAVOCollection mayAlternative) {
+	private void refineMayDecision(MAVOModel refinedRootModelObj, MAVOCollection mayAlternative) {
 
-		MAVODecision mavoDecision = (MAVODecision) mayAlternative.eContainer();
-		String decisionFormulaVar = mavoDecision.getFormulaVariable();
-		for (MAVODecision mavoDecisionToDelete : refinedRootModelObj.getDecisions()) {
-			if (decisionFormulaVar.equals(mavoDecisionToDelete.getFormulaVariable())) {
-				EcoreUtil.delete(mavoDecisionToDelete, true);
+		MayDecision mayDecision = (MayDecision) mayAlternative.eContainer();
+		String mayDecisionFormulaVar = mayDecision.getFormulaVariable();
+		for (MAVODecision mayDecisionToDelete : refinedRootModelObj.getDecisions()) {
+			if (!(mayDecisionToDelete instanceof MayDecision)) {
+				continue;
+			}
+			if (mayDecisionFormulaVar.equals(mayDecisionToDelete.getFormulaVariable())) {
+				EcoreUtil.delete(mayDecisionToDelete, true);
 				break;
 			}
 		}
@@ -234,7 +247,7 @@ public class MAVORefiner {
 		Model refinedModel = model.getMetatype().createMAVOInstance(refinedModelUri, ModelOrigin.CREATED, instanceMID);
 		ModelRel modelRelType = MultiModelTypeRegistry.getType(MODELRELTYPE_URI);
 		if (modelRelType == null) {
-			MMINTException.print(Type.WARNING, "Can't find MAVORefinementRel type, fallback to ModelRel type", null);
+			MMINTException.print(Type.WARNING, "Can't find " + MODELRELTYPE_URI + " type, fallback to root ModelRel type", null);
 			modelRelType = MultiModelTypeHierarchy.getRootModelRelType();
 		}
 		EList<Model> modelEndpoints = new BasicEList<Model>();
@@ -251,7 +264,7 @@ public class MAVORefiner {
 		Map<String, MAVOTruthValue> refinedTruthValues = runZ3SMTSolver(modelObjsToRefine, smtEncoding);
 		refineModel(modelObjsToRefine, refinedTruthValues, refinementMap);
 		if (mayAlternative != null) {
-			refineDecision(refinedRootModelObj, mayAlternative);
+			refineMayDecision(refinedRootModelObj, mayAlternative);
 		}
 		populateRefinementRel(refinementRel, refinementMap);
 

@@ -601,6 +601,7 @@ linkTypes:
 		return reasoner.checkConstraintConsistency((Model) type, constraintImplementation);
 	}
 
+	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null
 	public static @Nullable Model refineByConstraint(@NonNull Model model) {
 
 		if (model.getConstraint() == null) {
@@ -616,7 +617,7 @@ linkTypes:
 			return null;
 		}
 
-		//TODO MMINT[MU-MMINT] should copy the model constraint to the new model? option to do it or not?
+		//TODO MMINT[MU-MMINT] Should copy the model constraint to the new model? option to do it or not?
 		return reasoner.refineByConstraint(model);
 	}
 

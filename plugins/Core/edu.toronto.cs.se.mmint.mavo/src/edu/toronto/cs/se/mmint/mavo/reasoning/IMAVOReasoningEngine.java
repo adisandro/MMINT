@@ -18,8 +18,9 @@ import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
+import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 
-public interface IMAVOReasoningEngine {
+public interface IMAVOReasoningEngine extends IReasoningEngine {
 
 	public @Nullable Model refineByMayAlternative(@NonNull Model model, @NonNull MAVOCollection mayAlternative);
 

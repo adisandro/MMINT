@@ -25,6 +25,7 @@ public interface IReasoningEngine {
 
 	public boolean checkConstraintConsistency(@NonNull Model modelType, String constraint);
 
+	//TODO MMINT[REFINE] Is this really for all models? == Can I refine a model based on a false property, to make it true?
 	public @Nullable Model refineByConstraint(@NonNull Model model);
 
 }
