@@ -26,7 +26,10 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.swt.events.SelectionEvent;
 
+import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOCollection;
+import edu.toronto.cs.se.mavo.MAVODecision;
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
@@ -41,20 +44,32 @@ import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class HighlightListener extends MIDContextMenuListener {
 
-	private MAVOCollection mavoCollection;
+	private LogicElement mavoElemToHighlight;
 	private Model model;
+
+	public HighlightListener(String menuLabel, MAVODecision mavoDecision) {
+
+		super(menuLabel);
+		mavoElemToHighlight = mavoDecision;
+	}
 
 	public HighlightListener(String menuLabel, MAVOCollection mavoCollection) {
 
 		super(menuLabel);
-		this.mavoCollection = mavoCollection;
+		mavoElemToHighlight = mavoCollection;
+	}
+
+	public HighlightListener(String menuLabel, MAVOElement mavoModelObj) {
+
+		super(menuLabel);
+		mavoElemToHighlight = mavoModelObj;
 	}
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
 		//TODO MMINT[MU-MMINT] Unify with refinement
-		String modelUri = MultiModelRegistry.getModelAndModelElementUris(mavoCollection, MIDLevel.INSTANCES)[0];
+		String modelUri = MultiModelRegistry.getModelAndModelElementUris(mavoElemToHighlight, MIDLevel.INSTANCES)[0];
 		Map<MultiModel, List<IFile>> midDiagrams = MIDDiagramUtils.getMIDsInWorkspace();
 		Model model = null;
 		List<IFile> files = null;
@@ -72,27 +87,34 @@ public class HighlightListener extends MIDContextMenuListener {
 
 		this.model = model;
 		AbstractTransactionalCommand command;
-		command = new HighlightAlternativeCommand(
-			TransactionUtil.getEditingDomain(mavoCollection),
+		command = new HighlightCommand(
+			TransactionUtil.getEditingDomain(mavoElemToHighlight),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
 		runListenerCommand(command);
 	}
 
-	protected class HighlightAlternativeCommand extends AbstractTransactionalCommand {
+	protected class HighlightCommand extends AbstractTransactionalCommand {
 
-		public HighlightAlternativeCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public HighlightCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}
 
 		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-				IAdaptable info) throws ExecutionException {
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
-			MAVOMultiModelConstraintChecker.highlightMAVOCollection(modelDiagram, mavoCollection);
+			if (mavoElemToHighlight instanceof MAVODecision) {
+				MAVOMultiModelConstraintChecker.highlightMAVODecision(modelDiagram, (MAVODecision) mavoElemToHighlight);
+			}
+			else if (mavoElemToHighlight instanceof MAVOCollection) {
+				MAVOMultiModelConstraintChecker.highlightMAVOCollection(modelDiagram, (MAVOCollection) mavoElemToHighlight);
+			}
+			else if (mavoElemToHighlight instanceof MAVOElement) {
+				//TODO MMINT[MU-MMINT] Implement
+			}
 
 			return CommandResult.newOKCommandResult();
 		}

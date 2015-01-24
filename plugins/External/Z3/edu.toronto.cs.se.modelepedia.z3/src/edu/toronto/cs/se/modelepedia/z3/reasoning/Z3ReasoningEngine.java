@@ -19,6 +19,7 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOCollection;
+import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -247,6 +248,18 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		catch (Exception e) {
 			MMINTException.print(MMINTException.Type.ERROR, "Can't refine the model by may model object, aborting (some incomplete result could appear in your instance MID)", e);
 			return null;
+		}
+	}
+
+	@Override
+	public void highlightMAVODecision(@NonNull Diagram modelDiagram, @NonNull MAVODecision mavoDecision) {
+
+		MAVOConcretizationHighlighter highlighter = new MAVOConcretizationHighlighter();
+		try {
+			highlighter.highlightMAVODecision(modelDiagram, mavoDecision);
+		}
+		catch (Exception e) {
+			MMINTException.print(MMINTException.Type.WARNING, "Can't highlight decision, skipping it", e);
 		}
 	}
 

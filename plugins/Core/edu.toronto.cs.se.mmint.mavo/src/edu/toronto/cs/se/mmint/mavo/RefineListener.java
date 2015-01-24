@@ -76,7 +76,7 @@ public class RefineListener extends MIDContextMenuListener {
 			return;
 		}
 
-		AbstractTransactionalCommand command = new RefineModelCommand(
+		AbstractTransactionalCommand command = new RefineCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
 			files
@@ -84,9 +84,9 @@ public class RefineListener extends MIDContextMenuListener {
 		runListenerCommand(command);
 	}
 
-	protected class RefineModelCommand extends AbstractTransactionalCommand {
+	protected class RefineCommand extends AbstractTransactionalCommand {
 
-		public RefineModelCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public RefineCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}

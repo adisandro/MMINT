@@ -15,6 +15,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mavo.MAVOCollection;
+import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine;
@@ -58,6 +59,20 @@ public class MAVOMultiModelConstraintChecker {
 		}
 
 		return reasoner.refineByMayModelObject(model, mayModelObj);
+	}
+
+	public static void highlightMAVODecision(@NonNull Diagram modelDiagram, @NonNull MAVODecision mavoDecision) {
+
+		IMAVOReasoningEngine reasoner;
+		try {
+			reasoner = getMAVOReasoner("SMTLIB");
+		}
+		catch (MMINTException e) {
+			MMINTException.print(MMINTException.Type.WARNING, "Skipping decision highlighting", e);
+			return;
+		}
+
+		reasoner.highlightMAVODecision(modelDiagram, mavoDecision);
 	}
 
 	public static void highlightMAVOCollection(@NonNull Diagram modelDiagram, @NonNull MAVOCollection mavoCollection) {

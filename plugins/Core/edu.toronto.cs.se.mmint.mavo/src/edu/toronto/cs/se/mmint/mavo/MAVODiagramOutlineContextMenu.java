@@ -30,8 +30,10 @@ import edu.toronto.cs.se.mavo.VarDecision;
 
 public class MAVODiagramOutlineContextMenu extends ContributionItem {
 
-	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTALTERNATIVE_LABEL = "Highlight alternative in diagram";
-	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTDOMAIN_LABEL = "Highlight domain in diagram";
+	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTDECISION_LABEL = "Highlight this decision in the diagram";
+	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTALTERNATIVE_LABEL = "Highlight this alternative in the diagram";
+	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTDOMAIN_LABEL = "Highlight this domain in the diagram";
+	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTELEMENT_LABEL = "Highlight this element in diagram";
 	private static final String MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL = "Choose this alternative and refine";
 	private static final String MAVO_OUTLINE_MENU_REFINEELEMENT_LABEL = "Choose this element and refine";
 	private static final String MAVO_OUTLINE_MENU_ADDDECISION_LABEL = "Add new decision";
@@ -89,7 +91,11 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 		else if (object instanceof MAVODecision) {
 			MAVODecision mavoDecision = (MAVODecision) object;
 			// highlight
-			//TODO MMINT[MU-MMINT] Implement
+			MenuItem highlightItem = new MenuItem(menu, SWT.NONE);
+			highlightItem.setText(MAVO_OUTLINE_MENU_HIGHLIGHTDECISION_LABEL);
+			highlightItem.addSelectionListener(
+				new HighlightListener(MAVO_OUTLINE_MENU_HIGHLIGHTDECISION_LABEL, mavoDecision)
+			);
 			// add
 			if (!(mavoDecision instanceof VarDecision) || ((VarDecision) mavoDecision).getDomain() == null) {
 				MenuItem addItem = new MenuItem(menu, SWT.NONE);
@@ -155,7 +161,11 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 				removeText = MAVO_OUTLINE_MENU_REMOVEDOMAINELEMENT_LABEL;
 			}
 			// highlight
-			//TODO MMINT[MU-MMINT] Implement
+			MenuItem highlightItem = new MenuItem(menu, SWT.NONE);
+			highlightItem.setText(MAVO_OUTLINE_MENU_HIGHLIGHTELEMENT_LABEL);
+			highlightItem.addSelectionListener(
+				new HighlightListener(MAVO_OUTLINE_MENU_HIGHLIGHTELEMENT_LABEL, mavoModelObj)
+			);
 			// refine
 			if (mavoCollection.eContainer() instanceof MayDecision) {
 				MenuItem refineItem = new MenuItem(menu, SWT.NONE);
