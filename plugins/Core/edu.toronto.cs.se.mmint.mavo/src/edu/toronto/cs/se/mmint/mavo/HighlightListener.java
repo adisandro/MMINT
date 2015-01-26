@@ -14,8 +14,6 @@ package edu.toronto.cs.se.mmint.mavo;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
@@ -51,32 +49,31 @@ public class HighlightListener extends MIDContextMenuListener {
 
 		super(menuLabel);
 		mavoElemToHighlight = mavoDecision;
+		model = null;
 	}
 
 	public HighlightListener(String menuLabel, MAVOCollection mavoCollection) {
 
 		super(menuLabel);
 		mavoElemToHighlight = mavoCollection;
+		model = null;
 	}
 
 	public HighlightListener(String menuLabel, MAVOElement mavoModelObj) {
 
 		super(menuLabel);
 		mavoElemToHighlight = mavoModelObj;
+		model = null;
 	}
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		//TODO MMINT[MU-MMINT] Unify with refinement
 		String modelUri = MultiModelRegistry.getModelAndModelElementUris(mavoElemToHighlight, MIDLevel.INSTANCES)[0];
-		Map<MultiModel, List<IFile>> midDiagrams = MIDDiagramUtils.getMIDsInWorkspace();
-		Model model = null;
-		List<IFile> files = null;
-		for (Entry<MultiModel, List<IFile>> entry: midDiagrams.entrySet()) {
-			model = MultiModelRegistry.getExtendibleElement(modelUri, entry.getKey());
+		Map<MultiModel, List<IFile>> instanceMIDs = MIDDiagramUtils.getMIDsInWorkspace();
+		for (MultiModel instanceMID : instanceMIDs.keySet()) {
+			model = MultiModelRegistry.getExtendibleElement(modelUri, instanceMID);
 			if (model != null) {
-				files = entry.getValue();
 				break;
 			}
 		}
@@ -85,7 +82,6 @@ public class HighlightListener extends MIDContextMenuListener {
 			return;
 		}
 
-		this.model = model;
 		AbstractTransactionalCommand command;
 		command = new HighlightCommand(
 			TransactionUtil.getEditingDomain(mavoElemToHighlight),

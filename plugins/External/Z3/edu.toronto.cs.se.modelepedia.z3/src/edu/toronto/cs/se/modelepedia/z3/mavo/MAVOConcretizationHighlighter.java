@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.MayDecisionLogic;
 import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
@@ -76,8 +77,7 @@ public class MAVOConcretizationHighlighter {
 		// grey out model objects that are not in the example
 		Set<String> notInExampleFormulaVars = separateExampleElements(z3ModelElems, diagramViews);
 		for (String notInExampleFormulaVar : notInExampleFormulaVars) {
-			View diagramView = diagramViews.get(notInExampleFormulaVar);
-			GMFDiagramUtils.colorDiagramElement(diagramView, GREYOUT_COLOR, FONT_GREYOUT_COLOR);
+			highlightMAVOElement(diagramViews, notInExampleFormulaVar, GREYOUT_COLOR, FONT_GREYOUT_COLOR);
 		}
 
 		// write diagram to file
@@ -86,7 +86,7 @@ public class MAVOConcretizationHighlighter {
 		GMFDiagramUtils.openGMFDiagram(exampleDiagramUri, modelDiagram.getId(), true);
 	}
 
-	private void highlightMAVODecision(@NonNull Map<String, View> diagramViews, @NonNull MAVODecision mavoDecision) throws MMINTException {
+	private void highlightMAVODecision(@NonNull Map<String, View> diagramViews, @NonNull MAVODecision mavoDecision) {
 
 		// highlight collections within the decision with different colors
 		List<MAVOCollection> mavoCollections = new ArrayList<MAVOCollection>();
@@ -99,13 +99,12 @@ public class MAVOConcretizationHighlighter {
 		for (int i = 0; i < mavoCollections.size(); i++) {
 			MAVOCollection mavoCollection = mavoCollections.get(i);
 			for (MAVOElement mavoModelObj : mavoCollection.getMavoElements()) {
-				View diagramView = diagramViews.get(mavoModelObj.getFormulaVariable());
-				GMFDiagramUtils.colorDiagramElement(diagramView, DIFFERENT_COLORS[i], FONT_DIFFERENT_COLORS[i]);
+				highlightMAVOElement(diagramViews, mavoModelObj, DIFFERENT_COLORS[i], FONT_DIFFERENT_COLORS[i]);
 			}
 		}
 	}
 
-	private void highlightMAVOCollection(@NonNull Map<String, View> diagramViews, @NonNull MAVOCollection mavoCollection) throws MMINTException {
+	private void highlightMAVOCollection(@NonNull Map<String, View> diagramViews, @NonNull MAVOCollection mavoCollection) {
 
 		// (May) grey out may model objects in other alternatives for the same decision, highlight may model objects in the alternative
 		// (Var) highlight var model objects in the domain
@@ -116,22 +115,37 @@ public class MAVOConcretizationHighlighter {
 					continue;
 				}
 				for (MAVOElement otherMayModelObj : otherMayAlternative.getMavoElements()) {
-					View diagramView = diagramViews.get(otherMayModelObj.getFormulaVariable());
-					GMFDiagramUtils.colorDiagramElement(diagramView, GREYOUT_COLOR, FONT_GREYOUT_COLOR);
+					highlightMAVOElement(diagramViews, otherMayModelObj, GREYOUT_COLOR, FONT_GREYOUT_COLOR);
 				}
 			}
 		}
 		for (MAVOElement mavoModelObj : mavoCollection.getMavoElements()) {
-			View diagramView = diagramViews.get(mavoModelObj.getFormulaVariable());
-			GMFDiagramUtils.colorDiagramElement(diagramView, HIGHLIGHT_COLOR, FONT_HIGHLIGHT_COLOR);
+			highlightMAVOElement(diagramViews, mavoModelObj, HIGHLIGHT_COLOR, FONT_HIGHLIGHT_COLOR);
 		}
 	}
 
-	private void highlightMAVOElement(@NonNull Map<String, View> diagramViews, @NonNull MAVOElement mavoModelObj) throws MMINTException {
+	private void highlightMAVOElement(@NonNull Map<String, View> diagramViews, @NonNull MAVOElement mavoModelObj, int color, int fontColor) {
+
+		// highlight model object and contained children
+		highlightMAVOElement(diagramViews, mavoModelObj.getFormulaVariable(), color, fontColor);
+		mavoModelObj.eContents().stream()
+			.filter(containedModelObj -> containedModelObj instanceof MAVOElement)
+			.forEach(mavoContainedModelObj -> highlightMAVOElement(diagramViews, (MAVOElement) mavoContainedModelObj, color, fontColor));
+	}
+
+	private void highlightMAVOElement(@NonNull Map<String, View> diagramViews, @NonNull String mavoModelObjFormulaVar, int color, int fontColor) {
 
 		// highlight model object
-		View diagramView = diagramViews.get(mavoModelObj.getFormulaVariable());
-		GMFDiagramUtils.colorDiagramElement(diagramView, HIGHLIGHT_COLOR, FONT_HIGHLIGHT_COLOR);
+		try {
+			View diagramView = diagramViews.get(mavoModelObjFormulaVar);
+			if (diagramView == null) {
+				throw new MMINTException("Can't find " + mavoModelObjFormulaVar + " in diagram");
+			}
+			GMFDiagramUtils.colorDiagramElement(diagramView, color, fontColor);
+		}
+		catch (MMINTException e) {
+			MMINTException.print(Type.WARNING, "Can't color diagram element, skipping it", e);
+		}
 	}
 
 	public void highlight(@NonNull Diagram modelDiagram, @NonNull LogicElement mavoElemToHighlight) throws Exception {
@@ -148,7 +162,7 @@ public class MAVOConcretizationHighlighter {
 			highlightMAVOCollection(diagramViews, (MAVOCollection) mavoElemToHighlight);
 		}
 		else if (mavoElemToHighlight instanceof MAVOElement) {
-			highlightMAVOElement(diagramViews, (MAVOElement) mavoElemToHighlight);
+			highlightMAVOElement(diagramViews, (MAVOElement) mavoElemToHighlight, HIGHLIGHT_COLOR, FONT_HIGHLIGHT_COLOR);
 		}
 
 		// write diagram to file

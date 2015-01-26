@@ -48,26 +48,26 @@ public class RefineListener extends MIDContextMenuListener {
 
 		super(menuLabel);
 		mavoElemToRefine = mayAlternative;
+		model = null;
 	}
 
 	public RefineListener(String menuLabel, MAVOElement mavoModelObj) {
 
 		super(menuLabel);
 		mavoElemToRefine = mavoModelObj;
+		model = null;
 	}
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		//TODO MMINT[MU-MMINT] Unify with highlighting
 		String modelUri = MultiModelRegistry.getModelAndModelElementUris(mavoElemToRefine, MIDLevel.INSTANCES)[0];
-		Map<MultiModel, List<IFile>> midDiagrams = MIDDiagramUtils.getMIDsInWorkspace();
-		model = null;
+		Map<MultiModel, List<IFile>> instanceMIDs = MIDDiagramUtils.getMIDsInWorkspace();
 		List<IFile> files = null;
-		for (Entry<MultiModel, List<IFile>> entry: midDiagrams.entrySet()) {
-			model = MultiModelRegistry.getExtendibleElement(modelUri, entry.getKey());
+		for (Entry<MultiModel, List<IFile>> instanceMID : instanceMIDs.entrySet()) {
+			model = MultiModelRegistry.getExtendibleElement(modelUri, instanceMID.getKey());
 			if (model != null) {
-				files = entry.getValue();
+				files = instanceMID.getValue();
 				break;
 			}
 		}
