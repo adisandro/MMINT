@@ -113,7 +113,7 @@ public class HighlightListener extends MIDContextMenuListener {
 				MAVOMultiModelConstraintChecker.highlightMAVOCollection(modelDiagram, (MAVOCollection) mavoElemToHighlight);
 			}
 			else if (mavoElemToHighlight instanceof MAVOElement) {
-				//TODO MMINT[MU-MMINT] Implement
+				MAVOMultiModelConstraintChecker.highlightMAVOElement(modelDiagram, (MAVOElement) mavoElemToHighlight);
 			}
 
 			return CommandResult.newOKCommandResult();

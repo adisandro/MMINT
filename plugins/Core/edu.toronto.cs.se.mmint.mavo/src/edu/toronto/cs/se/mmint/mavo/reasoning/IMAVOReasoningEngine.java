@@ -31,4 +31,6 @@ public interface IMAVOReasoningEngine extends IReasoningEngine {
 
 	public void highlightMAVOCollection(@NonNull Diagram modelDiagram, @NonNull MAVOCollection mavoCollection);
 
+	public void highlightMAVOElement(@NonNull Diagram modelDiagram, @NonNull MAVOElement mavoModelObj);
+
 }

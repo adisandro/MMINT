@@ -118,7 +118,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		MAVOConcretizationHighlighter highlighter;
 		try {
 			highlighter = new MAVOConcretizationHighlighter();
-			highlighter.highlightCounterExample(modelDiagram, z3ModelParser.getZ3MAVOModelElements(z3NotConstraintModel));
+			highlighter.highlightMAVOCounterExample(modelDiagram, z3ModelParser.getZ3MAVOModelElements(z3NotConstraintModel));
 		}
 		catch (Exception e) {
 			MMINTException.print(MMINTException.Type.WARNING, "Can't highlight concretization, skipping it", e);
@@ -256,10 +256,10 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 		MAVOConcretizationHighlighter highlighter = new MAVOConcretizationHighlighter();
 		try {
-			highlighter.highlightMAVODecision(modelDiagram, mavoDecision);
+			highlighter.highlight(modelDiagram, mavoDecision);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Can't highlight decision, skipping it", e);
+			MMINTException.print(MMINTException.Type.WARNING, "Can't highlight MAVO decision, skipping it", e);
 		}
 	}
 
@@ -268,10 +268,22 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 		MAVOConcretizationHighlighter highlighter = new MAVOConcretizationHighlighter();
 		try {
-			highlighter.highlightMAVOCollection(modelDiagram, mavoCollection);
+			highlighter.highlight(modelDiagram, mavoCollection);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Can't highlight alternative, skipping it", e);
+			MMINTException.print(MMINTException.Type.WARNING, "Can't highlight MAVO collection, skipping it", e);
+		}
+	}
+
+	@Override
+	public void highlightMAVOElement(@NonNull Diagram modelDiagram, @NonNull MAVOElement mavoModelObj) {
+
+		MAVOConcretizationHighlighter highlighter = new MAVOConcretizationHighlighter();
+		try {
+			highlighter.highlight(modelDiagram, mavoModelObj);
+		}
+		catch (Exception e) {
+			MMINTException.print(MMINTException.Type.WARNING, "Can't highlight MAVO element, skipping it", e);
 		}
 	}
 

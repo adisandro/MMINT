@@ -19,13 +19,16 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.MayDecisionLogic;
 import edu.toronto.cs.se.mavo.VarDecision;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
@@ -54,7 +57,7 @@ public class MAVOConcretizationHighlighter {
 	};
 	private static final String EXAMPLE_MODEL_SUFFIX = "_example";
 
-	private Set<String> separateExampleElements(Map<String, String> z3ModelElems, Map<String, View> diagramViews) {
+	private Set<String> separateExampleElements(@NonNull Map<String, String> z3ModelElems, @NonNull Map<String, View> diagramViews) {
 
 		Set<String> notInExampleFormulaVars = new HashSet<String>(diagramViews.keySet());
 		for (String formulaVar : z3ModelElems.values()) {
@@ -64,7 +67,7 @@ public class MAVOConcretizationHighlighter {
 		return notInExampleFormulaVars;
 	}
 
-	public void highlightCounterExample(Diagram modelDiagram, Map<String, String> z3ModelElems) throws Exception {
+	public void highlightMAVOCounterExample(@NonNull Diagram modelDiagram, @NonNull Map<String, String> z3ModelElems) throws Exception {
 
 		// get view elements from diagram
 		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
@@ -83,11 +86,7 @@ public class MAVOConcretizationHighlighter {
 		GMFDiagramUtils.openGMFDiagram(exampleDiagramUri, modelDiagram.getId(), true);
 	}
 
-	public void highlightMAVODecision(Diagram modelDiagram, MAVODecision mavoDecision) throws Exception {
-
-		// get view elements from diagram
-		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
-		Map<String, View> diagramViews = GMFDiagramUtils.getDiagramViews(exampleDiagram);
+	private void highlightMAVODecision(@NonNull Map<String, View> diagramViews, @NonNull MAVODecision mavoDecision) throws MMINTException {
 
 		// highlight collections within the decision with different colors
 		List<MAVOCollection> mavoCollections = new ArrayList<MAVOCollection>();
@@ -104,18 +103,9 @@ public class MAVOConcretizationHighlighter {
 				GMFDiagramUtils.colorDiagramElement(diagramView, DIFFERENT_COLORS[i], FONT_DIFFERENT_COLORS[i]);
 			}
 		}
-
-		// write diagram to file
-		String exampleDiagramUri = MultiModelUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
-		MultiModelUtils.createModelFile(exampleDiagram, exampleDiagramUri, true);
-		GMFDiagramUtils.openGMFDiagram(exampleDiagramUri, modelDiagram.getId(), true);
 	}
 
-	public void highlightMAVOCollection(Diagram modelDiagram, MAVOCollection mavoCollection) throws Exception {
-
-		// get view elements from diagram
-		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
-		Map<String, View> diagramViews = GMFDiagramUtils.getDiagramViews(exampleDiagram);
+	private void highlightMAVOCollection(@NonNull Map<String, View> diagramViews, @NonNull MAVOCollection mavoCollection) throws MMINTException {
 
 		// (May) grey out may model objects in other alternatives for the same decision, highlight may model objects in the alternative
 		// (Var) highlight var model objects in the domain
@@ -134,6 +124,31 @@ public class MAVOConcretizationHighlighter {
 		for (MAVOElement mavoModelObj : mavoCollection.getMavoElements()) {
 			View diagramView = diagramViews.get(mavoModelObj.getFormulaVariable());
 			GMFDiagramUtils.colorDiagramElement(diagramView, HIGHLIGHT_COLOR, FONT_HIGHLIGHT_COLOR);
+		}
+	}
+
+	private void highlightMAVOElement(@NonNull Map<String, View> diagramViews, @NonNull MAVOElement mavoModelObj) throws MMINTException {
+
+		// highlight model object
+		View diagramView = diagramViews.get(mavoModelObj.getFormulaVariable());
+		GMFDiagramUtils.colorDiagramElement(diagramView, HIGHLIGHT_COLOR, FONT_HIGHLIGHT_COLOR);
+	}
+
+	public void highlight(@NonNull Diagram modelDiagram, @NonNull LogicElement mavoElemToHighlight) throws Exception {
+
+		// get view elements from diagram
+		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
+		Map<String, View> diagramViews = GMFDiagramUtils.getDiagramViews(exampleDiagram);
+
+		// highlight
+		if (mavoElemToHighlight instanceof MAVODecision) {
+			highlightMAVODecision(diagramViews, (MAVODecision) mavoElemToHighlight);
+		}
+		else if (mavoElemToHighlight instanceof MAVOCollection) {
+			highlightMAVOCollection(diagramViews, (MAVOCollection) mavoElemToHighlight);
+		}
+		else if (mavoElemToHighlight instanceof MAVOElement) {
+			highlightMAVOElement(diagramViews, (MAVOElement) mavoElemToHighlight);
 		}
 
 		// write diagram to file

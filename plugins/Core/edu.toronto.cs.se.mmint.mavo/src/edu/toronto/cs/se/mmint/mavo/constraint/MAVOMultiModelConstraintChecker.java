@@ -68,7 +68,7 @@ public class MAVOMultiModelConstraintChecker {
 			reasoner = getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Skipping decision highlighting", e);
+			MMINTException.print(MMINTException.Type.WARNING, "Skipping MAVO decision highlighting", e);
 			return;
 		}
 
@@ -82,11 +82,25 @@ public class MAVOMultiModelConstraintChecker {
 			reasoner = getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Skipping alternative highlighting", e);
+			MMINTException.print(MMINTException.Type.WARNING, "Skipping MAVO collection highlighting", e);
 			return;
 		}
 
 		reasoner.highlightMAVOCollection(modelDiagram, mavoCollection);
+	}
+
+	public static void highlightMAVOElement(@NonNull Diagram modelDiagram, @NonNull MAVOElement mavoModelObj) {
+
+		IMAVOReasoningEngine reasoner;
+		try {
+			reasoner = getMAVOReasoner("SMTLIB");
+		}
+		catch (MMINTException e) {
+			MMINTException.print(MMINTException.Type.WARNING, "Skipping MAVO element highlighting", e);
+			return;
+		}
+
+		reasoner.highlightMAVOElement(modelDiagram, mavoModelObj);
 	}
 
 }
