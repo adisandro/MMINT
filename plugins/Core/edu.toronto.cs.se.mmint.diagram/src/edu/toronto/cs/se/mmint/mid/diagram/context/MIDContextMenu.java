@@ -201,7 +201,7 @@ public class MIDContextMenu extends ContributionItem {
 			if (!operatorTypes.isEmpty()) {
 				MenuItem operatorItem = new MenuItem(mmintMenu, SWT.CASCADE);
 				operatorItem.setText(MMINT_MENU_OPERATOR_LABEL);
-				Menu operatorMenu = new Menu(menu);
+				Menu operatorMenu = new Menu(mmintMenu);
 				operatorItem.setMenu(operatorMenu);
 				for (int i = 0; i < operatorTypes.size(); i++) {
 					Operator operatorType = operatorTypes.get(i);
@@ -243,7 +243,7 @@ public class MIDContextMenu extends ContributionItem {
 			if (runtimeModelTypes.get(0).size() > 1) {
 				MenuItem castItem = new MenuItem(mmintMenu, SWT.CASCADE);
 				castItem.setText(MMINT_MENU_CAST_LABEL);
-				Menu castMenu = new Menu(menu);
+				Menu castMenu = new Menu(mmintMenu);
 				castItem.setMenu(castMenu);
 				boolean isDowncast = false;
 				for (Model runtimeModelType : runtimeModelTypes.get(0)) {
@@ -266,7 +266,7 @@ public class MIDContextMenu extends ContributionItem {
 			if (!multiplePathConversions.isEmpty()) {
 				MenuItem coherenceItem = new MenuItem(mmintMenu, SWT.CASCADE);
 				coherenceItem.setText(MMINT_MENU_COHERENCE_LABEL);
-				Menu coherenceMenu = new Menu(menu);
+				Menu coherenceMenu = new Menu(mmintMenu);
 				coherenceItem.setMenu(coherenceMenu);
 				for (Map.Entry<Model, Set<List<ConversionOperator>>> conversionPathsEntry : multiplePathConversions.entrySet()) {
 					MenuItem coherenceSubitem = new MenuItem(coherenceMenu, SWT.NONE);
@@ -317,7 +317,7 @@ public class MIDContextMenu extends ContributionItem {
 			}
 			MenuItem modelepediaItem = new MenuItem(mmintMenu, SWT.CASCADE);
 			modelepediaItem.setText(MMINT_MENU_MODELEPEDIA_LABEL);
-			Menu modelepediaMenu = new Menu(menu);
+			Menu modelepediaMenu = new Menu(mmintMenu);
 			modelepediaItem.setMenu(modelepediaMenu);
 			MenuItem openModelepediaItem = new MenuItem(modelepediaMenu, SWT.NONE);
 			openModelepediaItem.setText(MMINT_MENU_MODELEPEDIA_SUBMENU_OPEN_LABEL);

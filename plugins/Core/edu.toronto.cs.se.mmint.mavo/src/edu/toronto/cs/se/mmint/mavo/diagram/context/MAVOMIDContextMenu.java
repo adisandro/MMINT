@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Alessio Di Sandro - Implementation.
  *    Naama Ben-David - Implementation.
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mavo.diagram.context;
 
@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
+import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextMenu;
 
 /**
@@ -41,12 +42,15 @@ import edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextMenu;
  * @author Alessio Di Sandro
  * 
  */
-
 public class MAVOMIDContextMenu extends ContributionItem {
 
-	private static final String MAVO_MENU_LABEL = "MAVO";
-	private static final String MAVO_MENU_ADDTOALTERNATIVE_LABEL = "(M) Add to Alternative";
-	private static final String MAVO_MENU_REMOVEFROMALTERNATIVE_LABEL = "(M) Remove from Alternative";
+	private static final String MAVO_CONTEXT_MENU_LABEL = "MAVO";
+	private static final String MAVO_CONTEXT_MENU_ADDTOMAYDECISION_LABEL = "Add to May decision";
+	private static final String MAVO_CONTEXT_MENU_ADDTOVARDECISION_LABEL = "Add to Var decision";
+	private static final String MAVO_OUTLINE_MENU_ADDTOMAYDECISION_SUBMENU_ADDTOALTERNATIVE_LABEL = "Add to alternative";
+	private static final String MAVO_OUTLINE_MENU_ADDTOVARDECISION_SUBMENU_ADDTODOMAIN_LABEL = "Add to domain";
+	private static final String MAVO_CONTEXT_MENU_ADDTOALTERNATIVE_LABEL = "(M) Add to Alternative";
+	private static final String MAVO_CONTEXT_MENU_REMOVEFROMALTERNATIVE_LABEL = "(M) Remove from Alternative";
 
 	@Override
 	public boolean isDynamic() {
@@ -82,21 +86,38 @@ public class MAVOMIDContextMenu extends ContributionItem {
 		if (mavoModelObjs.isEmpty()) {
 			return;
 		}
-		MAVOModel mavoModel = (MAVOModel) EcoreUtil.getRootContainer(mavoModelObjs.get(0), true);
-		if (mavoModel.getDecisions().size() == 0) {
+		MAVOModel mavoRootModelObj = (MAVOModel) EcoreUtil.getRootContainer(mavoModelObjs.get(0), true);
+		if (mavoRootModelObj.getDecisions().size() == 0) {
 			return;
 		}
 
-		// create dynamic menus
+		// create menus
 		MenuItem mavoItem = new MenuItem(menu, SWT.CASCADE, index);
-		mavoItem.setText(MAVO_MENU_LABEL);
+		mavoItem.setText(MAVO_CONTEXT_MENU_LABEL);
 		Menu mavoMenu = new Menu(menu);
 		mavoItem.setMenu(mavoMenu);
-		for (MAVODecision mavoDecision : mavoModel.getDecisions()) {
+		for (MAVODecision mavoDecision : mavoRootModelObj.getDecisions()) {
+//			MenuItem decisionItem = new MenuItem(mavoMenu, SWT.CASCADE);
+//			Menu decisionMenu = new Menu(mavoMenu);
+//			decisionItem.setMenu(decisionMenu);
+//			String decisionText = "";
+//			if (mavoDecision instanceof MayDecision) {
+//				decisionText = MAVO_CONTEXT_MENU_ADDTOMAYDECISION_LABEL;
+//				for (MAVOCollection mayAlternative : ((MayDecision) mavoDecision).getAlternatives()) {
+//					
+//				}
+//			}
+//			else if (mavoDecision instanceof VarDecision) {
+//				decisionText = MAVO_CONTEXT_MENU_ADDTOVARDECISION_LABEL;
+//				MAVOCollection varDomain = ((VarDecision) mavoDecision).getDomain();
+//			}
+//			decisionText += " " + mavoDecision.getFormulaVariable();
+//			decisionItem.setText(decisionText);
+
 			if (mavoDecision instanceof MayDecision) {
 				for (MAVOCollection mayAlternative : ((MayDecision) mavoDecision).getAlternatives()) {
 					boolean add = false, remove = false;
-					for (MAVOElement mavoModelObj : mavoModelObjs){
+					for (MAVOElement mavoModelObj : mavoModelObjs) {
 						if (mavoModelObj.getCollections().contains(mayAlternative)) {
 							remove = true;
 						}
@@ -106,16 +127,16 @@ public class MAVOMIDContextMenu extends ContributionItem {
 					}
 					if (add) {
 						MenuItem alternativeItem = new MenuItem(mavoMenu, SWT.NONE);
-						alternativeItem.setText(MAVO_MENU_ADDTOALTERNATIVE_LABEL + " " + mayAlternative.getFormulaVariable());
+						alternativeItem.setText(MAVO_CONTEXT_MENU_ADDTOALTERNATIVE_LABEL + " " + mayAlternative.getFormulaVariable());
 						alternativeItem.addSelectionListener(
-							new MAVOAlternativeAddRemoveListener(MAVO_MENU_ADDTOALTERNATIVE_LABEL, mavoModelObjs, mayAlternative, true)
+							new MAVOAlternativeAddRemoveListener(MAVO_CONTEXT_MENU_ADDTOALTERNATIVE_LABEL, mavoModelObjs, mayAlternative, true)
 						);
 					}
 					if (remove) {
 						MenuItem alternativeItem = new MenuItem(mavoMenu, SWT.NONE);
-						alternativeItem.setText(MAVO_MENU_REMOVEFROMALTERNATIVE_LABEL + " " + mayAlternative.getFormulaVariable());
+						alternativeItem.setText(MAVO_CONTEXT_MENU_REMOVEFROMALTERNATIVE_LABEL + " " + mayAlternative.getFormulaVariable());
 						alternativeItem.addSelectionListener(
-							new MAVOAlternativeAddRemoveListener(MAVO_MENU_REMOVEFROMALTERNATIVE_LABEL, mavoModelObjs, mayAlternative, false)
+							new MAVOAlternativeAddRemoveListener(MAVO_CONTEXT_MENU_REMOVEFROMALTERNATIVE_LABEL, mavoModelObjs, mayAlternative, false)
 						);
 					}
 				}
