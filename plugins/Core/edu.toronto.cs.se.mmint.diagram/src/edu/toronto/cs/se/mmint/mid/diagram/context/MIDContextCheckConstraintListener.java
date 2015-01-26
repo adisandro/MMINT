@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.diagram.contextmenu;
+package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.List;
 
@@ -30,12 +30,12 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.part.ValidateAction;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-public class CheckConstraintListener extends MIDContextMenuListener {
+public class MIDContextCheckConstraintListener extends MIDContextMenuListener {
 
 	private Model model;
 	private GraphicalEditPart editPart;
 
-	public CheckConstraintListener(String menuLabel, Model model, GraphicalEditPart editPart) {
+	public MIDContextCheckConstraintListener(String menuLabel, Model model, GraphicalEditPart editPart) {
 
 		super(menuLabel);
 		this.model = model;
@@ -45,7 +45,7 @@ public class CheckConstraintListener extends MIDContextMenuListener {
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		AbstractTransactionalCommand command = new CheckConstraintCommand(
+		AbstractTransactionalCommand command = new MIDContextCheckConstraintCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
@@ -53,9 +53,9 @@ public class CheckConstraintListener extends MIDContextMenuListener {
 		runListenerCommand(command);
 	}
 
-	protected class CheckConstraintCommand extends AbstractTransactionalCommand {
+	protected class MIDContextCheckConstraintCommand extends AbstractTransactionalCommand {
 
-		public CheckConstraintCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MIDContextCheckConstraintCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}

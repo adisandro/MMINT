@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mavo;
+package edu.toronto.cs.se.mmint.mavo.constraint;
 
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;

@@ -9,10 +9,12 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mavo;
+package edu.toronto.cs.se.mmint.mavo.diagram;
 
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
+
+import edu.toronto.cs.se.mmint.mavo.diagram.outline.MAVODiagramOutlinePage;
 
 public class MAVODiagramEditor extends DiagramDocumentEditor {
 

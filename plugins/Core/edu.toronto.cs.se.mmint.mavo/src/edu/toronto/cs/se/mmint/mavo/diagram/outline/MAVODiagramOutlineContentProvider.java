@@ -10,7 +10,7 @@
  *    Naama Ben-David - Initial implementation.
  *    Alessio Di Sandro - Refactoring and fixes.
  */
-package edu.toronto.cs.se.mmint.mavo;
+package edu.toronto.cs.se.mmint.mavo.diagram.outline;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.diagram.contextmenu;
+package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.net.URL;
 
@@ -24,12 +24,12 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
-public class EditModelepediaListener extends SelectionAdapter {
+public class MIDContextEditModelepediaListener extends SelectionAdapter {
 
 	private final static String WIKI_WWW = "http://www.cs.toronto.edu:40404/modelepedia_local/index.php/Special:FormEdit";
 	private Model modelType;
 	
-	public EditModelepediaListener(Model modelType) {
+	public MIDContextEditModelepediaListener(Model modelType) {
 
 		this.modelType = modelType;
 	}

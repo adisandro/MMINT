@@ -10,7 +10,7 @@
  *    Naama Ben-David - Initial implementation.
  *    Alessio Di Sandro - Refactoring and fixes.
  */
-package edu.toronto.cs.se.mmint.mavo;
+package edu.toronto.cs.se.mmint.mavo.diagram.outline.context;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-public class AddListener extends MIDContextMenuListener {
+public class MAVODiagramOutlineContextAddListener extends MIDContextMenuListener {
 
 	private static final String MAVO_DECISION_FORMULA_PREFIX = "d";
 	private static final String MAVO_ALTERNATIVE_FORMULA_PREFIX = "a";
@@ -44,14 +44,14 @@ public class AddListener extends MIDContextMenuListener {
 	private EObject decisionElemContainer;
 	private EClass mavoDecisionType;
 
-	public AddListener(String menuLabel, MAVOModel mavoRootModelObj, EClass mavoDecisionType) {
+	public MAVODiagramOutlineContextAddListener(String menuLabel, MAVOModel mavoRootModelObj, EClass mavoDecisionType) {
 
 		super(menuLabel);
 		decisionElemContainer = mavoRootModelObj;
 		this.mavoDecisionType = mavoDecisionType;
 	}
 
-	public AddListener(String menuLabel, MAVODecision mavoDecision) {
+	public MAVODiagramOutlineContextAddListener(String menuLabel, MAVODecision mavoDecision) {
 
 		super(menuLabel);
 		decisionElemContainer = mavoDecision;
@@ -61,7 +61,7 @@ public class AddListener extends MIDContextMenuListener {
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		AbstractTransactionalCommand command = new AddCommand(
+		AbstractTransactionalCommand command = new MAVODiagramOutlineContextAddCommand(
 			TransactionUtil.getEditingDomain(decisionElemContainer),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
@@ -69,9 +69,9 @@ public class AddListener extends MIDContextMenuListener {
 		runListenerCommand(command);
 	}
 
-	protected class AddCommand extends AbstractTransactionalCommand {
+	protected class MAVODiagramOutlineContextAddCommand extends AbstractTransactionalCommand {
 
-		public AddCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MAVODiagramOutlineContextAddCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}

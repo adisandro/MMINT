@@ -69,7 +69,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 
-import edu.toronto.cs.se.mmint.mavo.MAVODiagramEditor;
+import edu.toronto.cs.se.mmint.mavo.diagram.MAVODiagramEditor;
 
 /**
  * @generated

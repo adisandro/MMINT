@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.diagram.contextmenu;
+package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.List;
 
@@ -23,40 +23,39 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.swt.events.SelectionEvent;
 
-import edu.toronto.cs.se.mavo.MAVOCollection;
-import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MMINTException.Type;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 
-public class MAVOAlternativeAddRemoveListener extends MIDContextMenuListener {
+public class MIDContextCopyModelListener extends MIDContextMenuListener {
 
-	List<MAVOElement> mavoModelObjs;
-	MAVOCollection mayAlternative;
-	boolean add;
+	private Model oldModel;
 
-	public MAVOAlternativeAddRemoveListener(String menuLabel, List<MAVOElement> mavoElements, MAVOCollection mayAlternative, boolean add) {
+	public MIDContextCopyModelListener(String menuLabel, Model oldModel) {
 
 		super(menuLabel);
-		this.mavoModelObjs = mavoElements;
-		this.mayAlternative = mayAlternative;
-		this.add = add;
+		this.oldModel = oldModel;
 	}
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		AbstractTransactionalCommand command = new MAVOAlternativeAddRemoveCommand(
-			TransactionUtil.getEditingDomain(mavoModelObjs.get(0)),
+		AbstractTransactionalCommand command = new MIDContextCopyCommand(
+			TransactionUtil.getEditingDomain(oldModel),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
 		runListenerCommand(command);
 	}
 
-	protected class MAVOAlternativeAddRemoveCommand extends AbstractTransactionalCommand {
+	protected class MIDContextCopyCommand extends AbstractTransactionalCommand {
 
-		public MAVOAlternativeAddRemoveCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MIDContextCopyCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}
@@ -64,22 +63,17 @@ public class MAVOAlternativeAddRemoveListener extends MIDContextMenuListener {
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			if (add) {
-				mayAlternative.getMavoElements().addAll(mavoModelObjs);
-				for (MAVOElement mavoElement : mavoModelObjs) {
-					MAVOUtils.setMay(mavoElement, true);
-				}
+			try {
+				String newModelName = MultiModelDiagramUtils.getStringInput(menuLabel, "Insert new model name", oldModel.getName());
+				MultiModel multiModel = MultiModelRegistry.getMultiModel(oldModel);
+				Model newModel = oldModel.getMetatype().copyMAVOInstanceAndEditor(oldModel, newModelName, true, multiModel);
+	
+				return CommandResult.newOKCommandResult(newModel);
 			}
-			else {
-				mayAlternative.getMavoElements().removeAll(mavoModelObjs);
-				for (MAVOElement mavoElement : mavoModelObjs) {
-					if (mavoElement.getCollections().isEmpty()) {
-						MAVOUtils.setMay(mavoElement, false);
-					}
-				}
+			catch (Exception e) {
+				MMINTException.print(Type.ERROR, "No model copied", e);
+				return CommandResult.newErrorCommandResult("No model copied");
 			}
-
-			return CommandResult.newOKCommandResult();
 		}
 
 	}

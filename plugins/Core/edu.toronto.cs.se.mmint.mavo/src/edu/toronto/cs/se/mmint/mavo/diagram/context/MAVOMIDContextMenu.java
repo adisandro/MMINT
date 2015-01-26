@@ -10,7 +10,7 @@
  *    Alessio Di Sandro - Implementation.
  *    Naama Ben-David - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.diagram.contextmenu;
+package edu.toronto.cs.se.mmint.mavo.diagram.context;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenu;
+import edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextMenu;
 
 /**
  * The handler for the dynamic construction of a context menu for all
@@ -42,7 +42,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenu;
  * 
  */
 
-public class MAVOAlternativeAddRemove extends ContributionItem {
+public class MAVOMIDContextMenu extends ContributionItem {
 
 	private static final String MAVO_MENU_LABEL = "MAVO";
 	private static final String MAVO_MENU_ADDTOALTERNATIVE_LABEL = "(M) Add to Alternative";

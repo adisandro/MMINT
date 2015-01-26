@@ -8,9 +8,8 @@
  * 
  * Contributors:
  *    Alessio Di Sandro - Implementation.
- *    Naama Ben-David - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.diagram.contextmenu;
+package edu.toronto.cs.se.mmint.mavo.diagram.context;
 
 import java.util.List;
 
@@ -24,35 +23,40 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.swt.events.SelectionEvent;
 
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mavo.MAVOCollection;
+import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-public class RefineByConstraintListener extends MIDContextMenuListener {
+public class MAVOAlternativeAddRemoveListener extends MIDContextMenuListener {
 
-	private Model model;
+	List<MAVOElement> mavoModelObjs;
+	MAVOCollection mayAlternative;
+	boolean add;
 
-	public RefineByConstraintListener(String menuLabel, Model model) {
+	public MAVOAlternativeAddRemoveListener(String menuLabel, List<MAVOElement> mavoElements, MAVOCollection mayAlternative, boolean add) {
 
 		super(menuLabel);
-		this.model = model;
+		this.mavoModelObjs = mavoElements;
+		this.mayAlternative = mayAlternative;
+		this.add = add;
 	}
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		AbstractTransactionalCommand command = new RefineByConstraintCommand(
-			TransactionUtil.getEditingDomain(model),
+		AbstractTransactionalCommand command = new MAVOAlternativeAddRemoveCommand(
+			TransactionUtil.getEditingDomain(mavoModelObjs.get(0)),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
 		runListenerCommand(command);
 	}
 
-	protected class RefineByConstraintCommand extends AbstractTransactionalCommand {
+	protected class MAVOAlternativeAddRemoveCommand extends AbstractTransactionalCommand {
 
-		public RefineByConstraintCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MAVOAlternativeAddRemoveCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}
@@ -60,10 +64,24 @@ public class RefineByConstraintListener extends MIDContextMenuListener {
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			MultiModelConstraintChecker.refineByConstraint(model);
+			if (add) {
+				mayAlternative.getMavoElements().addAll(mavoModelObjs);
+				for (MAVOElement mavoElement : mavoModelObjs) {
+					MAVOUtils.setMay(mavoElement, true);
+				}
+			}
+			else {
+				mayAlternative.getMavoElements().removeAll(mavoModelObjs);
+				for (MAVOElement mavoElement : mavoModelObjs) {
+					if (mavoElement.getCollections().isEmpty()) {
+						MAVOUtils.setMay(mavoElement, false);
+					}
+				}
+			}
 
 			return CommandResult.newOKCommandResult();
 		}
 
 	}
+
 }

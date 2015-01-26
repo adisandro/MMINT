@@ -10,7 +10,7 @@
  *    Naama Ben-David - Initial implementation.
  *    Alessio Di Sandro - Refactoring and fixes.
  */
-package edu.toronto.cs.se.mmint.mavo;
+package edu.toronto.cs.se.mmint.mavo.diagram.outline;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
 import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mmint.mavo.diagram.outline.context.MAVODiagramOutlineContextMenu;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class MAVODiagramOutlinePage extends ContentOutlinePage {

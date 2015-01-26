@@ -10,7 +10,7 @@
  *    Naama Ben-David - Initial implementation.
  *    Alessio Di Sandro - Refactoring and fixes.
  */
-package edu.toronto.cs.se.mmint.mavo;
+package edu.toronto.cs.se.mmint.mavo.diagram.outline.context;
 
 import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -80,12 +80,12 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 			MenuItem addMayItem = new MenuItem(addMenu, SWT.NONE);
 			addMayItem.setText(MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_MAY_LABEL);
 			addMayItem.addSelectionListener(
-				new AddListener(MAVO_OUTLINE_MENU_ADDDECISION_LABEL + " " + MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_MAY_LABEL, mavoRootModelObj, MAVOPackage.eINSTANCE.getMayDecision())
+				new MAVODiagramOutlineContextAddListener(MAVO_OUTLINE_MENU_ADDDECISION_LABEL + " " + MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_MAY_LABEL, mavoRootModelObj, MAVOPackage.eINSTANCE.getMayDecision())
 			);
 			MenuItem addVarItem = new MenuItem(addMenu, SWT.NONE);
 			addVarItem.setText(MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_VAR_LABEL);
 			addVarItem.addSelectionListener(
-				new AddListener(MAVO_OUTLINE_MENU_ADDDECISION_LABEL + " " + MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_VAR_LABEL, mavoRootModelObj, MAVOPackage.eINSTANCE.getVarDecision())
+				new MAVODiagramOutlineContextAddListener(MAVO_OUTLINE_MENU_ADDDECISION_LABEL + " " + MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_VAR_LABEL, mavoRootModelObj, MAVOPackage.eINSTANCE.getVarDecision())
 			);
 		}
 		else if (object instanceof MAVODecision) {
@@ -94,7 +94,7 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 			MenuItem highlightItem = new MenuItem(menu, SWT.NONE);
 			highlightItem.setText(MAVO_OUTLINE_MENU_HIGHLIGHTDECISION_LABEL);
 			highlightItem.addSelectionListener(
-				new HighlightListener(MAVO_OUTLINE_MENU_HIGHLIGHTDECISION_LABEL, mavoDecision)
+				new MAVODiagramOutlineContextHighlightListener(MAVO_OUTLINE_MENU_HIGHLIGHTDECISION_LABEL, mavoDecision)
 			);
 			// add
 			if (!(mavoDecision instanceof VarDecision) || ((VarDecision) mavoDecision).getDomain() == null) {
@@ -108,14 +108,14 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 				}
 				addItem.setText(addText);
 				addItem.addSelectionListener(
-					new AddListener(addText, mavoDecision)
+					new MAVODiagramOutlineContextAddListener(addText, mavoDecision)
 				);
 			}
 			// remove
 			MenuItem removeItem = new MenuItem(menu, SWT.NONE);
 			removeItem.setText(MAVO_OUTLINE_MENU_REMOVEDECISION_LABEL);
 			removeItem.addSelectionListener(
-				new RemoveListener(MAVO_OUTLINE_MENU_REMOVEDECISION_LABEL, mavoDecision)
+				new MAVODiagramOutlineContextRemoveListener(MAVO_OUTLINE_MENU_REMOVEDECISION_LABEL, mavoDecision)
 			);
 		}
 		else if (object instanceof MAVOCollection) {
@@ -133,21 +133,21 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 			MenuItem highlightItem = new MenuItem(menu, SWT.NONE);
 			highlightItem.setText(highlightText);
 			highlightItem.addSelectionListener(
-				new HighlightListener(highlightText, mavoCollection)
+				new MAVODiagramOutlineContextHighlightListener(highlightText, mavoCollection)
 			);
 			// refine
 			if (mavoCollection.eContainer() instanceof MayDecision) {
 				MenuItem refineItem = new MenuItem(menu, SWT.NONE);
 				refineItem.setText(MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL);
 				refineItem.addSelectionListener(
-					new RefineListener(MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL, mavoCollection)
+					new MAVODiagramOutlineContextRefineListener(MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL, mavoCollection)
 				);
 			}
 			// remove
 			MenuItem removeItem = new MenuItem(menu, SWT.NONE);
 			removeItem.setText(removeText);
 			removeItem.addSelectionListener(
-				new RemoveListener(removeText, mavoCollection)
+				new MAVODiagramOutlineContextRemoveListener(removeText, mavoCollection)
 			);
 		}
 		else if (object instanceof MAVOElement) {
@@ -164,21 +164,21 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 			MenuItem highlightItem = new MenuItem(menu, SWT.NONE);
 			highlightItem.setText(MAVO_OUTLINE_MENU_HIGHLIGHTELEMENT_LABEL);
 			highlightItem.addSelectionListener(
-				new HighlightListener(MAVO_OUTLINE_MENU_HIGHLIGHTELEMENT_LABEL, mavoModelObj)
+				new MAVODiagramOutlineContextHighlightListener(MAVO_OUTLINE_MENU_HIGHLIGHTELEMENT_LABEL, mavoModelObj)
 			);
 			// refine
 			if (mavoCollection.eContainer() instanceof MayDecision) {
 				MenuItem refineItem = new MenuItem(menu, SWT.NONE);
 				refineItem.setText(MAVO_OUTLINE_MENU_REFINEELEMENT_LABEL);
 				refineItem.addSelectionListener(
-					new RefineListener(MAVO_OUTLINE_MENU_REFINEELEMENT_LABEL, mavoModelObj)
+					new MAVODiagramOutlineContextRefineListener(MAVO_OUTLINE_MENU_REFINEELEMENT_LABEL, mavoModelObj)
 				);
 			}
 			// remove
 			MenuItem removeItem = new MenuItem(menu, SWT.NONE);
 			removeItem.setText(removeText);
 			removeItem.addSelectionListener(
-				new RemoveListener(removeText, mavoCollection, mavoModelObj)
+				new MAVODiagramOutlineContextRemoveListener(removeText, mavoCollection, mavoModelObj)
 			);
 		}
 	}

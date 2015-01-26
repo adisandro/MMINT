@@ -10,7 +10,7 @@
  *    Naama Ben-David - Initial implementation.
  *    Alessio Di Sandro - Refactoring and fixes.
  */
-package edu.toronto.cs.se.mmint.mavo;
+package edu.toronto.cs.se.mmint.mavo.diagram.outline.context;
 
 import java.util.HashSet;
 import java.util.List;
@@ -40,26 +40,26 @@ import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-public class RemoveListener extends MIDContextMenuListener {
+public class MAVODiagramOutlineContextRemoveListener extends MIDContextMenuListener {
 
 	private LogicElement mavoElemToRemove;
 	private MAVOCollection mavoCollectionWhenRemovingMavoModelObj;
 
-	public RemoveListener(@NonNull String menuLabel, @NonNull MAVODecision mavoDecision) {
+	public MAVODiagramOutlineContextRemoveListener(@NonNull String menuLabel, @NonNull MAVODecision mavoDecision) {
 
 		super(menuLabel);
 		mavoElemToRemove = mavoDecision;
 		mavoCollectionWhenRemovingMavoModelObj = null;
 	}
 
-	public RemoveListener(@NonNull String menuLabel, @NonNull MAVOCollection mavoCollection) {
+	public MAVODiagramOutlineContextRemoveListener(@NonNull String menuLabel, @NonNull MAVOCollection mavoCollection) {
 
 		super(menuLabel);
 		mavoElemToRemove = mavoCollection;
 		mavoCollectionWhenRemovingMavoModelObj = null;
 	}
 
-	public RemoveListener(@NonNull String menuLabel, @NonNull MAVOCollection mavoCollection, @NonNull MAVOElement mavoModelObj) {
+	public MAVODiagramOutlineContextRemoveListener(@NonNull String menuLabel, @NonNull MAVOCollection mavoCollection, @NonNull MAVOElement mavoModelObj) {
 
 		super(menuLabel);
 		mavoElemToRemove = mavoModelObj;
@@ -69,7 +69,7 @@ public class RemoveListener extends MIDContextMenuListener {
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		AbstractTransactionalCommand command = new RemoveCommand(
+		AbstractTransactionalCommand command = new MAVODiagramOutlineContextRemoveCommand(
 			TransactionUtil.getEditingDomain(mavoElemToRemove),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
@@ -77,9 +77,9 @@ public class RemoveListener extends MIDContextMenuListener {
 		runListenerCommand(command);
 	}
 
-	protected class RemoveCommand extends AbstractTransactionalCommand {
+	protected class MAVODiagramOutlineContextRemoveCommand extends AbstractTransactionalCommand {
 
-		public RemoveCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MAVODiagramOutlineContextRemoveCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}

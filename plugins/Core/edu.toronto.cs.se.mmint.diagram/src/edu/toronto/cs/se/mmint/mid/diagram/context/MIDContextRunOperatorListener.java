@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.diagram.contextmenu;
+package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.List;
 import java.util.Map;
@@ -37,14 +37,14 @@ import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-public class RunOperatorListener extends MIDContextMenuListener {
+public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
 	private MultiModel instanceMID;
 	private Operator operator;
 	private EList<Model> actualParameters;
 	private Map<Integer, EList<ConversionOperator>> conversionMap;
 
-	public RunOperatorListener(String menuLabel, MultiModel instanceMid, Operator operator, EList<Model> actualParameters, Map<Integer, EList<ConversionOperator>> conversionMap) {
+	public MIDContextRunOperatorListener(String menuLabel, MultiModel instanceMid, Operator operator, EList<Model> actualParameters, Map<Integer, EList<ConversionOperator>> conversionMap) {
 
 		super(menuLabel);
 		this.instanceMID = instanceMid;
@@ -56,7 +56,7 @@ public class RunOperatorListener extends MIDContextMenuListener {
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		AbstractTransactionalCommand command = new RunOperatorCommand(
+		AbstractTransactionalCommand command = new MIDContextRunOperatorCommand(
 			TransactionUtil.getEditingDomain(instanceMID),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
@@ -64,9 +64,9 @@ public class RunOperatorListener extends MIDContextMenuListener {
 		runListenerCommand(command);
 	}
 
-	protected class RunOperatorCommand extends AbstractTransactionalCommand {
+	protected class MIDContextRunOperatorCommand extends AbstractTransactionalCommand {
 
-		public RunOperatorCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MIDContextRunOperatorCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}

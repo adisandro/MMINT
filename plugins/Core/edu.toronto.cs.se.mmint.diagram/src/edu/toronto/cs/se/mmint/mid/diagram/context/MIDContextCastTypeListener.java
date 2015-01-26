@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.diagram.contextmenu;
+package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.List;
 
@@ -35,13 +35,13 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-public class CastTypeListener extends MIDContextMenuListener {
+public class MIDContextCastTypeListener extends MIDContextMenuListener {
 
 	private Model model;
 	private Model newMetatype;
 	private ITextAwareEditPart label;
 
-	public CastTypeListener(String menuLabel, Model model, Model newMetatype, ITextAwareEditPart label) {
+	public MIDContextCastTypeListener(String menuLabel, Model model, Model newMetatype, ITextAwareEditPart label) {
 
 		super(menuLabel);
 		this.model = model;
@@ -52,7 +52,7 @@ public class CastTypeListener extends MIDContextMenuListener {
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		AbstractTransactionalCommand command = new CastTypeCommand(
+		AbstractTransactionalCommand command = new MIDContextCastTypeCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
@@ -60,9 +60,9 @@ public class CastTypeListener extends MIDContextMenuListener {
 		runListenerCommand(command);
 	}
 
-	protected class CastTypeCommand extends AbstractTransactionalCommand {
+	protected class MIDContextCastTypeCommand extends AbstractTransactionalCommand {
 
-		public CastTypeCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MIDContextCastTypeCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}

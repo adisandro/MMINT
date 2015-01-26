@@ -723,8 +723,8 @@ Contributors:
    <extension point="org.eclipse.ui.menus">
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <dynamic
-               class="edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenu"
-               id="edu.toronto.cs.se.mmint.mid.diagram.contextmenu.MIDDiagramActions">
+               class="edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextMenu"
+               id="edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextMenu">
             <visibleWhen>
                <with variable="activePartId">
                   <equals value="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"/>
@@ -789,12 +789,6 @@ Contributors:
                   id="edu.toronto.cs.se.mmint.mid.diagram.menu.ReasoningDropdown">
             </dynamic>
          </menu>
-      </menuContribution>
-      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
-         <dynamic
-               class="edu.toronto.cs.se.mmint.mid.diagram.contextmenu.MAVOAlternativeAddRemove"
-               id="edu.toronto.cs.se.mmint.mid.diagram.contextmenu.MAVOAddToAlternative">
-         </dynamic>
       </menuContribution>
    </extension>
 

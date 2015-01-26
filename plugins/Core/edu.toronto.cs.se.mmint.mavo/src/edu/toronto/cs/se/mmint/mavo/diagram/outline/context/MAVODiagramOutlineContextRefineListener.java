@@ -10,7 +10,7 @@
  *    Naama Ben-David - Initial implementation.
  *    Alessio Di Sandro - Refactoring and fixes.
  */
-package edu.toronto.cs.se.mmint.mavo;
+package edu.toronto.cs.se.mmint.mavo.diagram.outline.context;
 
 import java.util.List;
 import java.util.Map;
@@ -39,19 +39,19 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 
-public class RefineListener extends MIDContextMenuListener {
+public class MAVODiagramOutlineContextRefineListener extends MIDContextMenuListener {
 
 	private LogicElement mavoElemToRefine;
 	private Model model;
 
-	public RefineListener(String menuLabel, MAVOCollection mayAlternative) {
+	public MAVODiagramOutlineContextRefineListener(String menuLabel, MAVOCollection mayAlternative) {
 
 		super(menuLabel);
 		mavoElemToRefine = mayAlternative;
 		model = null;
 	}
 
-	public RefineListener(String menuLabel, MAVOElement mavoModelObj) {
+	public MAVODiagramOutlineContextRefineListener(String menuLabel, MAVOElement mavoModelObj) {
 
 		super(menuLabel);
 		mavoElemToRefine = mavoModelObj;
@@ -76,7 +76,7 @@ public class RefineListener extends MIDContextMenuListener {
 			return;
 		}
 
-		AbstractTransactionalCommand command = new RefineCommand(
+		AbstractTransactionalCommand command = new MAVODiagramOutlineContextRefineCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
 			files
@@ -84,9 +84,9 @@ public class RefineListener extends MIDContextMenuListener {
 		runListenerCommand(command);
 	}
 
-	protected class RefineCommand extends AbstractTransactionalCommand {
+	protected class MAVODiagramOutlineContextRefineCommand extends AbstractTransactionalCommand {
 
-		public RefineCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MAVODiagramOutlineContextRefineCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}

@@ -10,7 +10,7 @@
  *    Naama Ben-David - Initial implementation.
  *    Alessio Di Sandro - Refactoring and fixes.
  */
-package edu.toronto.cs.se.mmint.mavo;
+package edu.toronto.cs.se.mmint.mavo.diagram.outline.context;
 
 import java.util.List;
 import java.util.Map;
@@ -40,26 +40,26 @@ import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-public class HighlightListener extends MIDContextMenuListener {
+public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuListener {
 
 	private LogicElement mavoElemToHighlight;
 	private Model model;
 
-	public HighlightListener(String menuLabel, MAVODecision mavoDecision) {
+	public MAVODiagramOutlineContextHighlightListener(String menuLabel, MAVODecision mavoDecision) {
 
 		super(menuLabel);
 		mavoElemToHighlight = mavoDecision;
 		model = null;
 	}
 
-	public HighlightListener(String menuLabel, MAVOCollection mavoCollection) {
+	public MAVODiagramOutlineContextHighlightListener(String menuLabel, MAVOCollection mavoCollection) {
 
 		super(menuLabel);
 		mavoElemToHighlight = mavoCollection;
 		model = null;
 	}
 
-	public HighlightListener(String menuLabel, MAVOElement mavoModelObj) {
+	public MAVODiagramOutlineContextHighlightListener(String menuLabel, MAVOElement mavoModelObj) {
 
 		super(menuLabel);
 		mavoElemToHighlight = mavoModelObj;
@@ -83,7 +83,7 @@ public class HighlightListener extends MIDContextMenuListener {
 		}
 
 		AbstractTransactionalCommand command;
-		command = new HighlightCommand(
+		command = new MAVODiagramOutlineContextHighlightCommand(
 			TransactionUtil.getEditingDomain(mavoElemToHighlight),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
@@ -91,9 +91,9 @@ public class HighlightListener extends MIDContextMenuListener {
 		runListenerCommand(command);
 	}
 
-	protected class HighlightCommand extends AbstractTransactionalCommand {
+	protected class MAVODiagramOutlineContextHighlightCommand extends AbstractTransactionalCommand {
 
-		public HighlightCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MAVODiagramOutlineContextHighlightCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}

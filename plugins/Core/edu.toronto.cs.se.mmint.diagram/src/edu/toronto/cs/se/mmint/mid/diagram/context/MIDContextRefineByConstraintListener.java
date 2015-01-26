@@ -8,8 +8,9 @@
  * 
  * Contributors:
  *    Alessio Di Sandro - Implementation.
+ *    Naama Ben-David - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.diagram.contextmenu;
+package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.List;
 
@@ -23,39 +24,35 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.swt.events.SelectionEvent;
 
-import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 
-public class CopyModelListener extends MIDContextMenuListener {
+public class MIDContextRefineByConstraintListener extends MIDContextMenuListener {
 
-	private Model oldModel;
+	private Model model;
 
-	public CopyModelListener(String menuLabel, Model oldModel) {
+	public MIDContextRefineByConstraintListener(String menuLabel, Model model) {
 
 		super(menuLabel);
-		this.oldModel = oldModel;
+		this.model = model;
 	}
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		AbstractTransactionalCommand command = new CopyCommand(
-			TransactionUtil.getEditingDomain(oldModel),
+		AbstractTransactionalCommand command = new MIDContextRefineByConstraintCommand(
+			TransactionUtil.getEditingDomain(model),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
 		runListenerCommand(command);
 	}
 
-	protected class CopyCommand extends AbstractTransactionalCommand {
+	protected class MIDContextRefineByConstraintCommand extends AbstractTransactionalCommand {
 
-		public CopyCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MIDContextRefineByConstraintCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}
@@ -63,19 +60,10 @@ public class CopyModelListener extends MIDContextMenuListener {
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			try {
-				String newModelName = MultiModelDiagramUtils.getStringInput(menuLabel, "Insert new model name", oldModel.getName());
-				MultiModel multiModel = MultiModelRegistry.getMultiModel(oldModel);
-				Model newModel = oldModel.getMetatype().copyMAVOInstanceAndEditor(oldModel, newModelName, true, multiModel);
-	
-				return CommandResult.newOKCommandResult(newModel);
-			}
-			catch (Exception e) {
-				MMINTException.print(Type.ERROR, "No model copied", e);
-				return CommandResult.newErrorCommandResult("No model copied");
-			}
+			MultiModelConstraintChecker.refineByConstraint(model);
+
+			return CommandResult.newOKCommandResult();
 		}
 
 	}
-
 }

@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.diagram.library;
+package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,20 +36,13 @@ import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.diagram.contextmenu.CastTypeListener;
-import edu.toronto.cs.se.mmint.mid.diagram.contextmenu.CheckCoherenceListener;
-import edu.toronto.cs.se.mmint.mid.diagram.contextmenu.CheckConstraintListener;
-import edu.toronto.cs.se.mmint.mid.diagram.contextmenu.CopyModelListener;
-import edu.toronto.cs.se.mmint.mid.diagram.contextmenu.EditModelepediaListener;
-import edu.toronto.cs.se.mmint.mid.diagram.contextmenu.OpenModelepediaListener;
-import edu.toronto.cs.se.mmint.mid.diagram.contextmenu.RefineByConstraintListener;
-import edu.toronto.cs.se.mmint.mid.diagram.contextmenu.RunOperatorListener;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.library.AddModifyConstraintListener;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
@@ -238,7 +231,7 @@ public class MIDContextMenu extends ContributionItem {
 					MenuItem operatorSubitem = new MenuItem(operatorMenu, SWT.NONE);
 					operatorSubitem.setText(text);
 					operatorSubitem.addSelectionListener(
-						new RunOperatorListener(MMINT_MENU_OPERATOR_LABEL, instanceMID, operatorType, actualParameters, conversion)
+						new MIDContextRunOperatorListener(MMINT_MENU_OPERATOR_LABEL, instanceMID, operatorType, actualParameters, conversion)
 					);
 					//TODO MMINT[OPERATOR] nice to show label of operator invocation with actual parameters
 					//TODO MMINT[OPERATOR] traceability, could be nice to create an instance of operator, with name = actual parameters
@@ -262,7 +255,7 @@ public class MIDContextMenu extends ContributionItem {
 					String text = (isDowncast) ? runtimeModelType.getName() + DOWNCAST_LABEL : runtimeModelType.getName();
 					castSubitem.setText(text);
 					castSubitem.addSelectionListener(
-						new CastTypeListener(MMINT_MENU_CAST_LABEL, models.get(0), runtimeModelType, label)
+						new MIDContextCastTypeListener(MMINT_MENU_CAST_LABEL, models.get(0), runtimeModelType, label)
 					);
 				}
 			}
@@ -279,7 +272,7 @@ public class MIDContextMenu extends ContributionItem {
 					MenuItem coherenceSubitem = new MenuItem(coherenceMenu, SWT.NONE);
 					coherenceSubitem.setText("To " + conversionPathsEntry.getKey().getName());
 					coherenceSubitem.addSelectionListener(
-						new CheckCoherenceListener(MMINT_MENU_COHERENCE_LABEL, models.get(0), conversionPathsEntry.getValue())
+						new MIDContextCheckCoherenceListener(MMINT_MENU_COHERENCE_LABEL, models.get(0), conversionPathsEntry.getValue())
 					);
 				}
 			}
@@ -297,7 +290,7 @@ public class MIDContextMenu extends ContributionItem {
 			MenuItem constraintItem = new MenuItem(mmintMenu, SWT.NONE);
 			constraintItem.setText(MMINT_MENU_CHECKCONSTRAINT_LABEL);
 			constraintItem.addSelectionListener(
-				new CheckConstraintListener(MMINT_MENU_CHECKCONSTRAINT_LABEL, models.get(0), editParts.get(0))
+				new MIDContextCheckConstraintListener(MMINT_MENU_CHECKCONSTRAINT_LABEL, models.get(0), editParts.get(0))
 			);
 		}
 		// refine
@@ -305,7 +298,7 @@ public class MIDContextMenu extends ContributionItem {
 			MenuItem refineItem = new MenuItem(mmintMenu, SWT.NONE);
 			refineItem.setText(MMINT_MENU_REFINEBYCONSTRAINT_LABEL);
 			refineItem.addSelectionListener(
-				new RefineByConstraintListener(MMINT_MENU_REFINEBYCONSTRAINT_LABEL, models.get(0))
+				new MIDContextRefineByConstraintListener(MMINT_MENU_REFINEBYCONSTRAINT_LABEL, models.get(0))
 			);
 		}
 		// copy
@@ -313,7 +306,7 @@ public class MIDContextMenu extends ContributionItem {
 			MenuItem copyItem = new MenuItem(mmintMenu, SWT.NONE);
 			copyItem.setText(MMINT_MENU_COPY_LABEL);
 			copyItem.addSelectionListener(
-				new CopyModelListener(MMINT_MENU_COPY_LABEL, models.get(0))
+				new MIDContextCopyModelListener(MMINT_MENU_COPY_LABEL, models.get(0))
 			);
 		}
 		// modelepedia
@@ -329,12 +322,12 @@ public class MIDContextMenu extends ContributionItem {
 			MenuItem openModelepediaItem = new MenuItem(modelepediaMenu, SWT.NONE);
 			openModelepediaItem.setText(MMINT_MENU_MODELEPEDIA_SUBMENU_OPEN_LABEL);
 			openModelepediaItem.addSelectionListener(
-				new OpenModelepediaListener(model)
+				new MIDContextOpenModelepediaListener(model)
 			);
 			MenuItem editModelepediaItem = new MenuItem(modelepediaMenu, SWT.NONE);
 			editModelepediaItem.setText(MMINT_MENU_MODELEPEDIA_SUBMENU_EDIT_LABEL);
 			editModelepediaItem.addSelectionListener(
-				new EditModelepediaListener(model)
+				new MIDContextEditModelepediaListener(model)
 			);
 		}
 	}

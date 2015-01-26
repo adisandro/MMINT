@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.diagram.contextmenu;
+package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,12 +42,12 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-public class CheckCoherenceListener extends MIDContextMenuListener {
+public class MIDContextCheckCoherenceListener extends MIDContextMenuListener {
 
 	private Model model;
 	private Set<List<ConversionOperator>> conversionPaths;
 
-	public CheckCoherenceListener(String menuLabel, Model model, Set<List<ConversionOperator>> conversionPaths) {
+	public MIDContextCheckCoherenceListener(String menuLabel, Model model, Set<List<ConversionOperator>> conversionPaths) {
 
 		super(menuLabel);
 		this.model = model;
@@ -57,7 +57,7 @@ public class CheckCoherenceListener extends MIDContextMenuListener {
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		AbstractTransactionalCommand command = new CheckCoherenceCommand(
+		AbstractTransactionalCommand command = new MIDContextCheckCoherenceCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
@@ -65,9 +65,9 @@ public class CheckCoherenceListener extends MIDContextMenuListener {
 		runListenerCommand(command);
 	}
 
-	protected class CheckCoherenceCommand extends AbstractTransactionalCommand {
+	protected class MIDContextCheckCoherenceCommand extends AbstractTransactionalCommand {
 
-		public CheckCoherenceCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MIDContextCheckCoherenceCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}
