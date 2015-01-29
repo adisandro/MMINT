@@ -54,6 +54,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
 public class MAVORefiner {
@@ -103,11 +105,15 @@ public class MAVORefiner {
 	 * Calculates the refinement. 
 	 * @param graph
 	 * @return
+	 * @throws MMINTException 
 	 */
-	private @NonNull Map<String, MAVOTruthValue> runZ3SMTSolver(@NonNull Map<String, MAVOElement> modelObjsToRefine, @NonNull String smtEncoding) {
+	private @NonNull Map<String, MAVOTruthValue> runZ3SMTSolver(@NonNull Map<String, MAVOElement> modelObjsToRefine, @NonNull String smtEncoding) throws MMINTException {
 
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
-		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
+		Z3Model z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
+		if (z3Model.getZ3Bool() != Z3Bool.SAT) {
+			throw new MMINTException("Refinement is UNSAT");
+		}
 		Map<String, MAVOTruthValue> refinedTruthValues = new HashMap<String, MAVOTruthValue>();
 		// for each element, assert it and check
 		for (Entry<String, MAVOElement> entry : modelObjsToRefine.entrySet()) {

@@ -12,6 +12,9 @@
  */
 package edu.toronto.cs.se.modelepedia.z3.reasoning;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
@@ -181,7 +184,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		}
 	}
 
-	private @NonNull String generateMayRefinementSMTLIBEncoding(@NonNull Model model, @NonNull LogicElement mayLogicElem) throws Exception {
+	private @NonNull String generateMayRefinementSMTLIBEncoding(@NonNull Model model, @NonNull List<? extends LogicElement> mayLogicElems) throws Exception {
 
 		// base encoding
 		Z3MAVOModelParser z3ModelParser = generateSMTLIBEncoding(model);
@@ -192,13 +195,15 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			smtEncoding += Z3Utils.assertion(model.getConstraint().getImplementation());
 		}
 		String smtMayLogicElem = "";
-		if (mayLogicElem instanceof MAVOCollection) {
-			smtMayLogicElem = mayLogicElem.getFormulaVariable();
+		for (LogicElement mayLogicElem : mayLogicElems) {
+			if (mayLogicElem instanceof MAVOCollection) {
+				smtMayLogicElem = mayLogicElem.getFormulaVariable();
+			}
+			else if (mayLogicElem instanceof MAVOElement) {
+				smtMayLogicElem = getSMTLIBMAVOModelObjectEncoding((MAVOElement) mayLogicElem);
+			}
+			smtEncoding += Z3Utils.assertion(smtMayLogicElem);
 		}
-		else if (mayLogicElem instanceof MAVOElement) {
-			smtMayLogicElem = getSMTLIBMAVOModelObjectEncoding((MAVOElement) mayLogicElem);
-		}
-		smtEncoding += Z3Utils.assertion(smtMayLogicElem);
 
 		return smtEncoding;
 	}
@@ -208,7 +213,9 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 		String smtEncoding;
 		try {
-			smtEncoding = generateMayRefinementSMTLIBEncoding(model, mayAlternative);
+			List<MAVOCollection> mayLogicElems = new ArrayList<MAVOCollection>();
+			mayLogicElems.add(mayAlternative);
+			smtEncoding = generateMayRefinementSMTLIBEncoding(model, mayLogicElems);
 		}
 		catch (Exception e) {
 			MMINTException.print(MMINTException.Type.ERROR, "Can't generate SMTLIB encoding, aborting refinement", e);
@@ -228,11 +235,11 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	}
 
 	@Override
-	public @Nullable Model refineByMayModelObject(@NonNull Model model, @NonNull MAVOElement mayModelObj) {
+	public @Nullable Model refineByMayModelObjects(@NonNull Model model, @NonNull List<MAVOElement> mayModelObjs) {
 
 		String smtEncoding;
 		try {
-			smtEncoding = generateMayRefinementSMTLIBEncoding(model, mayModelObj);
+			smtEncoding = generateMayRefinementSMTLIBEncoding(model, mayModelObjs);
 		}
 		catch (Exception e) {
 			MMINTException.print(MMINTException.Type.ERROR, "Can't generate SMTLIB encoding, aborting refinement", e);
@@ -246,7 +253,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			return refiner.refine(model, modelDiagram, null, smtEncoding);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.ERROR, "Can't refine the model by may model object, aborting (some incomplete result could appear in your instance MID)", e);
+			MMINTException.print(MMINTException.Type.ERROR, "Can't refine the model by may model objects, aborting (some incomplete result could appear in your instance MID)", e);
 			return null;
 		}
 	}

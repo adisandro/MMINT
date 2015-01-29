@@ -10,8 +10,9 @@
  *    Naama Ben-David - Initial implementation.
  *    Alessio Di Sandro - Refactoring and fixes.
  */
-package edu.toronto.cs.se.mmint.mavo.diagram.outline.context;
+package edu.toronto.cs.se.mmint.mavo.diagram.context;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -39,29 +40,31 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 
-public class MAVODiagramOutlineContextRefineListener extends MIDContextMenuListener {
+public class MAVODiagramContextRefineListener extends MIDContextMenuListener {
 
-	private LogicElement mavoElemToRefine;
+	private List<? extends LogicElement> mavoElemsToRefine;
 	private Model model;
 
-	public MAVODiagramOutlineContextRefineListener(String menuLabel, MAVOCollection mayAlternative) {
+	public MAVODiagramContextRefineListener(String menuLabel, MAVOCollection mayAlternative) {
 
 		super(menuLabel);
-		mavoElemToRefine = mayAlternative;
+		List<MAVOCollection> mavoElemsToRefine = new ArrayList<MAVOCollection>();
+		mavoElemsToRefine.add(mayAlternative);
+		this.mavoElemsToRefine = mavoElemsToRefine;
 		model = null;
 	}
 
-	public MAVODiagramOutlineContextRefineListener(String menuLabel, MAVOElement mavoModelObj) {
+	public MAVODiagramContextRefineListener(String menuLabel, List<MAVOElement> mavoModelObjs) {
 
 		super(menuLabel);
-		mavoElemToRefine = mavoModelObj;
+		mavoElemsToRefine = mavoModelObjs;
 		model = null;
 	}
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		String modelUri = MultiModelRegistry.getModelAndModelElementUris(mavoElemToRefine, MIDLevel.INSTANCES)[0];
+		String modelUri = MultiModelRegistry.getModelAndModelElementUris(mavoElemsToRefine.get(0), MIDLevel.INSTANCES)[0];
 		Map<MultiModel, List<IFile>> instanceMIDs = MIDDiagramUtils.getMIDsInWorkspace();
 		List<IFile> files = null;
 		for (Entry<MultiModel, List<IFile>> instanceMID : instanceMIDs.entrySet()) {
@@ -76,7 +79,7 @@ public class MAVODiagramOutlineContextRefineListener extends MIDContextMenuListe
 			return;
 		}
 
-		AbstractTransactionalCommand command = new MAVODiagramOutlineContextRefineCommand(
+		AbstractTransactionalCommand command = new MAVODiagramContextRefineCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
 			files
@@ -84,9 +87,9 @@ public class MAVODiagramOutlineContextRefineListener extends MIDContextMenuListe
 		runListenerCommand(command);
 	}
 
-	protected class MAVODiagramOutlineContextRefineCommand extends AbstractTransactionalCommand {
+	protected class MAVODiagramContextRefineCommand extends AbstractTransactionalCommand {
 
-		public MAVODiagramOutlineContextRefineCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MAVODiagramContextRefineCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}
@@ -94,11 +97,12 @@ public class MAVODiagramOutlineContextRefineListener extends MIDContextMenuListe
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			if (mavoElemToRefine instanceof MAVOCollection) {
-				MAVOMultiModelConstraintChecker.refineByMayAlternative(model, (MAVOCollection) mavoElemToRefine);
+			LogicElement mavoFirstElemToRefine = mavoElemsToRefine.get(0);
+			if (mavoFirstElemToRefine instanceof MAVOCollection) {
+				MAVOMultiModelConstraintChecker.refineByMayAlternative(model, (MAVOCollection) mavoFirstElemToRefine);
 			}
-			else if (mavoElemToRefine instanceof MAVOElement) {
-				MAVOMultiModelConstraintChecker.refineByMayModelObject(model, (MAVOElement) mavoElemToRefine);
+			else if (mavoFirstElemToRefine instanceof MAVOElement) {
+				MAVOMultiModelConstraintChecker.refineByMayModelObjects(model, (List<MAVOElement>) mavoElemsToRefine);
 			}
 
 			return CommandResult.newOKCommandResult();

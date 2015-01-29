@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmint.mavo.constraint;
 
+import java.util.List;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -47,7 +49,7 @@ public class MAVOMultiModelConstraintChecker {
 	}
 
 	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null
-	public static @Nullable Model refineByMayModelObject(@NonNull Model model, @NonNull MAVOElement mayModelObj) {
+	public static @Nullable Model refineByMayModelObjects(@NonNull Model model, @NonNull List<MAVOElement> mayModelObjs) {
 
 		IMAVOReasoningEngine reasoner;
 		try {
@@ -58,7 +60,7 @@ public class MAVOMultiModelConstraintChecker {
 			return null;
 		}
 
-		return reasoner.refineByMayModelObject(model, mayModelObj);
+		return reasoner.refineByMayModelObjects(model, mayModelObjs);
 	}
 
 	public static void highlightMAVODecision(@NonNull Diagram modelDiagram, @NonNull MAVODecision mavoDecision) {

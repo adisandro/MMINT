@@ -10,8 +10,9 @@
  *    Naama Ben-David - Initial implementation.
  *    Alessio Di Sandro - Refactoring and fixes.
  */
-package edu.toronto.cs.se.mmint.mavo.diagram.outline.context;
+package edu.toronto.cs.se.mmint.mavo.diagram.context;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -40,46 +41,50 @@ import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-public class MAVODiagramOutlineContextRemoveListener extends MIDContextMenuListener {
+public class MAVODiagramContextRemoveListener extends MIDContextMenuListener {
 
-	private LogicElement mavoElemToRemove;
-	private MAVOCollection mavoCollectionWhenRemovingMavoModelObj;
+	private List<? extends LogicElement> mavoElemsToRemove;
+	private MAVOCollection mavoCollectionWhenRemovingMavoModelObjs;
 
-	public MAVODiagramOutlineContextRemoveListener(@NonNull String menuLabel, @NonNull MAVODecision mavoDecision) {
+	public MAVODiagramContextRemoveListener(@NonNull String menuLabel, @NonNull MAVODecision mavoDecision) {
 
 		super(menuLabel);
-		mavoElemToRemove = mavoDecision;
-		mavoCollectionWhenRemovingMavoModelObj = null;
+		List<MAVODecision> mavoElemsToRemove = new ArrayList<MAVODecision>();
+		mavoElemsToRemove.add(mavoDecision);
+		this.mavoElemsToRemove = mavoElemsToRemove;
+		mavoCollectionWhenRemovingMavoModelObjs = null;
 	}
 
-	public MAVODiagramOutlineContextRemoveListener(@NonNull String menuLabel, @NonNull MAVOCollection mavoCollection) {
+	public MAVODiagramContextRemoveListener(@NonNull String menuLabel, @NonNull MAVOCollection mavoCollection) {
 
 		super(menuLabel);
-		mavoElemToRemove = mavoCollection;
-		mavoCollectionWhenRemovingMavoModelObj = null;
+		List<MAVOCollection> mavoElemsToRemove = new ArrayList<MAVOCollection>();
+		mavoElemsToRemove.add(mavoCollection);
+		this.mavoElemsToRemove = mavoElemsToRemove;
+		mavoCollectionWhenRemovingMavoModelObjs = null;
 	}
 
-	public MAVODiagramOutlineContextRemoveListener(@NonNull String menuLabel, @NonNull MAVOCollection mavoCollection, @NonNull MAVOElement mavoModelObj) {
+	public MAVODiagramContextRemoveListener(@NonNull String menuLabel, @NonNull MAVOCollection mavoCollection, @NonNull List<MAVOElement> mavoModelObjs) {
 
 		super(menuLabel);
-		mavoElemToRemove = mavoModelObj;
-		mavoCollectionWhenRemovingMavoModelObj = mavoCollection;
+		mavoElemsToRemove = mavoModelObjs;
+		mavoCollectionWhenRemovingMavoModelObjs = mavoCollection;
 	}
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		AbstractTransactionalCommand command = new MAVODiagramOutlineContextRemoveCommand(
-			TransactionUtil.getEditingDomain(mavoElemToRemove),
+		AbstractTransactionalCommand command = new MAVODiagramContextRemoveCommand(
+			TransactionUtil.getEditingDomain(mavoElemsToRemove.get(0)),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
 		runListenerCommand(command);
 	}
 
-	protected class MAVODiagramOutlineContextRemoveCommand extends AbstractTransactionalCommand {
+	protected class MAVODiagramContextRemoveCommand extends AbstractTransactionalCommand {
 
-		public MAVODiagramOutlineContextRemoveCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MAVODiagramContextRemoveCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}
@@ -107,26 +112,27 @@ public class MAVODiagramOutlineContextRemoveListener extends MIDContextMenuListe
 
 			// collect info
 			Set<MAVOElement> mavoModelObjs = new HashSet<MAVOElement>();
-			collectMAVOModelObjects(mavoElemToRemove, mavoModelObjs);
+			mavoElemsToRemove.forEach(mavoElemToRemove -> collectMAVOModelObjects(mavoElemToRemove, mavoModelObjs));
+			LogicElement mavoFirstElemToRemove = mavoElemsToRemove.get(0);
 			EClass eclass;
 			EStructuralFeature feature;
 			if (
-				mavoElemToRemove instanceof MayDecision ||
-				mavoElemToRemove.eContainer() instanceof MayDecision ||
+				mavoFirstElemToRemove instanceof MayDecision ||
+				mavoFirstElemToRemove.eContainer() instanceof MayDecision ||
 				(
-					mavoCollectionWhenRemovingMavoModelObj != null &&
-					mavoCollectionWhenRemovingMavoModelObj.eContainer() instanceof MayDecision
+					mavoCollectionWhenRemovingMavoModelObjs != null &&
+					mavoCollectionWhenRemovingMavoModelObjs.eContainer() instanceof MayDecision
 				)
 			) {
 				eclass = MAVOPackage.eINSTANCE.getMayDecision();
 				feature = MAVOPackage.eINSTANCE.getMAVOElement_May();
 			}
 			else if (
-				mavoElemToRemove instanceof VarDecision ||
-				mavoElemToRemove.eContainer() instanceof VarDecision ||
+				mavoFirstElemToRemove instanceof VarDecision ||
+				mavoFirstElemToRemove.eContainer() instanceof VarDecision ||
 				(
-					mavoCollectionWhenRemovingMavoModelObj != null &&
-					mavoCollectionWhenRemovingMavoModelObj.eContainer() instanceof VarDecision
+					mavoCollectionWhenRemovingMavoModelObjs != null &&
+					mavoCollectionWhenRemovingMavoModelObjs.eContainer() instanceof VarDecision
 				)
 			) {
 				eclass = MAVOPackage.eINSTANCE.getVarDecision();
@@ -138,11 +144,11 @@ public class MAVODiagramOutlineContextRemoveListener extends MIDContextMenuListe
 			}
 
 			// remove
-			if (mavoCollectionWhenRemovingMavoModelObj == null) {
-				EcoreUtil.delete(mavoElemToRemove, true);
+			if (mavoCollectionWhenRemovingMavoModelObjs == null) {
+				EcoreUtil.delete(mavoFirstElemToRemove, true);
 			}
 			else {
-				mavoCollectionWhenRemovingMavoModelObj.getMavoElements().remove(mavoElemToRemove);
+				mavoCollectionWhenRemovingMavoModelObjs.getMavoElements().removeAll(mavoElemsToRemove);
 			}
 			// depending on the removal performed, set May or Var to false for each collected MAVO model object
 			// that is now not used by any May alternatives or Var domains

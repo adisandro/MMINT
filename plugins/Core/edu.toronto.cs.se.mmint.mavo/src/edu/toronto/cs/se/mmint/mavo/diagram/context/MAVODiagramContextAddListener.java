@@ -10,7 +10,7 @@
  *    Naama Ben-David - Initial implementation.
  *    Alessio Di Sandro - Refactoring and fixes.
  */
-package edu.toronto.cs.se.mmint.mavo.diagram.outline.context;
+package edu.toronto.cs.se.mmint.mavo.diagram.context;
 
 import java.util.List;
 
@@ -28,50 +28,63 @@ import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOFactory;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
+import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
-public class MAVODiagramOutlineContextAddListener extends MIDContextMenuListener {
+public class MAVODiagramContextAddListener extends MIDContextMenuListener {
 
 	private static final String MAVO_DECISION_FORMULA_PREFIX = "d";
 	private static final String MAVO_ALTERNATIVE_FORMULA_PREFIX = "a";
 	private static final String MAVO_DOMAIN_FORMULA_PREFIX = "d";
 
-	private EObject decisionElemContainer;
+	private EObject mavoContainer;
 	private EClass mavoDecisionType;
+	private List<MAVOElement> mavoModelObjs;
 
-	public MAVODiagramOutlineContextAddListener(String menuLabel, MAVOModel mavoRootModelObj, EClass mavoDecisionType) {
+	public MAVODiagramContextAddListener(String menuLabel, MAVOModel mavoRootModelObj, EClass mavoDecisionType) {
 
 		super(menuLabel);
-		decisionElemContainer = mavoRootModelObj;
+		mavoContainer = mavoRootModelObj;
 		this.mavoDecisionType = mavoDecisionType;
+		mavoModelObjs = null;
 	}
 
-	public MAVODiagramOutlineContextAddListener(String menuLabel, MAVODecision mavoDecision) {
+	public MAVODiagramContextAddListener(String menuLabel, MAVODecision mavoDecision) {
 
 		super(menuLabel);
-		decisionElemContainer = mavoDecision;
+		mavoContainer = mavoDecision;
 		mavoDecisionType = null;
+		mavoModelObjs = null;
+	}
+
+	public MAVODiagramContextAddListener(String menuLabel, MAVOCollection mavoCollection, List<MAVOElement> mavoModelObjs) {
+
+		super(menuLabel);
+		mavoContainer = mavoCollection;
+		mavoDecisionType = null;
+		this.mavoModelObjs = mavoModelObjs;
 	}
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		AbstractTransactionalCommand command = new MAVODiagramOutlineContextAddCommand(
-			TransactionUtil.getEditingDomain(decisionElemContainer),
+		AbstractTransactionalCommand command = new MAVODiagramContextAddCommand(
+			TransactionUtil.getEditingDomain(mavoContainer),
 			menuLabel,
 			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
 		runListenerCommand(command);
 	}
 
-	protected class MAVODiagramOutlineContextAddCommand extends AbstractTransactionalCommand {
+	protected class MAVODiagramContextAddCommand extends AbstractTransactionalCommand {
 
-		public MAVODiagramOutlineContextAddCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MAVODiagramContextAddCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}
@@ -79,27 +92,36 @@ public class MAVODiagramOutlineContextAddListener extends MIDContextMenuListener
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			if (decisionElemContainer instanceof MAVOModel) {
-				MAVOModel mavoRootModelObj = (MAVOModel) decisionElemContainer;
+			if (mavoContainer instanceof MAVOModel) {
+				MAVOModel mavoRootModelObj = (MAVOModel) mavoContainer;
 				MAVODecision mavoDecision = (MAVODecision) MAVOFactory.eINSTANCE.create(mavoDecisionType);
 				mavoRootModelObj.getDecisions().add(mavoDecision);
 				mavoDecision.setFormulaVariable(MAVO_DECISION_FORMULA_PREFIX + mavoRootModelObj.getDecisions().size());
 			}
-			else if (decisionElemContainer instanceof MAVODecision) {
-				MAVODecision mavoDecision = (MAVODecision) decisionElemContainer;
+			else if (mavoContainer instanceof MAVODecision) {
+				MAVODecision mavoDecision = (MAVODecision) mavoContainer;
 				MAVOCollection mavoCollection = MAVOFactory.eINSTANCE.createMAVOCollection();
 				String suffix = "";
-				if (decisionElemContainer instanceof MayDecision) {
+				if (mavoContainer instanceof MayDecision) {
 					MayDecision mayDecision = (MayDecision) mavoDecision;
 					mayDecision.getAlternatives().add(mavoCollection);
 					suffix = MAVO_ALTERNATIVE_FORMULA_PREFIX + mayDecision.getAlternatives().size();
 				}
-				else if (decisionElemContainer instanceof VarDecision) {
+				else if (mavoContainer instanceof VarDecision) {
 					VarDecision varDecision = (VarDecision) mavoDecision;
 					varDecision.setDomain(mavoCollection);
 					suffix = MAVO_DOMAIN_FORMULA_PREFIX;
 				}
 				mavoCollection.setFormulaVariable(mavoDecision.getFormulaVariable() + suffix);
+			}
+			else if (mavoContainer instanceof MAVOCollection) {
+				((MAVOCollection) mavoContainer).getMavoElements().addAll(mavoModelObjs);
+				if (mavoContainer.eContainer() instanceof MayDecision) {
+					mavoModelObjs.forEach(mavoModelObj -> MAVOUtils.setMay(mavoModelObj, true));
+				}
+				else if (mavoContainer.eContainer() instanceof VarDecision) {
+					mavoModelObjs.forEach(mavoModelObj -> MAVOUtils.setVar(mavoModelObj, true));
+				}
 			}
 
 			return CommandResult.newOKCommandResult();

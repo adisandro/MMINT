@@ -89,8 +89,8 @@
    <extension point="org.eclipse.ui.menus">
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <dynamic
-               class="edu.toronto.cs.se.mmint.mavo.diagram.context.MAVOMIDContextMenu"
-               id="edu.toronto.cs.se.mmint.mavo.diagram.context.MAVOMIDContextMenu">
+               class="edu.toronto.cs.se.mmint.mavo.diagram.context.MAVODiagramContextMenu"
+               id="edu.toronto.cs.se.mmint.mavo.diagram.context.MAVODiagramContextMenu">
          </dynamic>
       </menuContribution>
    </extension>
