@@ -46,6 +46,7 @@ import edu.toronto.cs.se.modelepedia.z3.mavo.MAVOConcretizationHighlighter;
 import edu.toronto.cs.se.modelepedia.z3.mavo.MAVORefiner;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 
+//TODO MMINT[Z3] Support refinement and highlighting for the complex full-MAVO encoding
 public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 	private final static @NonNull String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
@@ -256,6 +257,15 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			MMINTException.print(MMINTException.Type.ERROR, "Can't refine the model by may model objects, aborting (some incomplete result could appear in your instance MID)", e);
 			return null;
 		}
+	}
+
+	@Override
+	public @Nullable Model refineByVarDomain(@NonNull Model model, @NonNull MAVOCollection varDomain, @NonNull MAVOElement mergedModelObj, @NonNull List<MAVOElement> varModelObjs) {
+
+		//TODO MMINT[VAR-MMINT] Need to come up with a different approach than the may constraint-based: first merge in the model and remove Vs, then run the solver to cascade
+		//TODO MMINT[MU-MMINT] Migrate var approach to may too (first remove elements and Ms in the model, then run the solver to cascade)
+
+		return null;
 	}
 
 	@Override

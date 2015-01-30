@@ -25,6 +25,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.ui.PlatformUI;
 
@@ -50,7 +51,7 @@ public class MAVODiagramContextAddListener extends MIDContextMenuListener {
 	private EClass mavoDecisionType;
 	private List<MAVOElement> mavoModelObjs;
 
-	public MAVODiagramContextAddListener(String menuLabel, MAVOModel mavoRootModelObj, EClass mavoDecisionType) {
+	public MAVODiagramContextAddListener(@NonNull String menuLabel, @NonNull MAVOModel mavoRootModelObj, @NonNull EClass mavoDecisionType) {
 
 		super(menuLabel);
 		mavoContainer = mavoRootModelObj;
@@ -58,7 +59,7 @@ public class MAVODiagramContextAddListener extends MIDContextMenuListener {
 		mavoModelObjs = null;
 	}
 
-	public MAVODiagramContextAddListener(String menuLabel, MAVODecision mavoDecision) {
+	public MAVODiagramContextAddListener(@NonNull String menuLabel, @NonNull MAVODecision mavoDecision) {
 
 		super(menuLabel);
 		mavoContainer = mavoDecision;
@@ -66,7 +67,7 @@ public class MAVODiagramContextAddListener extends MIDContextMenuListener {
 		mavoModelObjs = null;
 	}
 
-	public MAVODiagramContextAddListener(String menuLabel, MAVOCollection mavoCollection, List<MAVOElement> mavoModelObjs) {
+	public MAVODiagramContextAddListener(@NonNull String menuLabel, @NonNull MAVOCollection mavoCollection, @NonNull List<MAVOElement> mavoModelObjs) {
 
 		super(menuLabel);
 		mavoContainer = mavoCollection;
@@ -87,7 +88,7 @@ public class MAVODiagramContextAddListener extends MIDContextMenuListener {
 
 	protected class MAVODiagramContextAddCommand extends AbstractTransactionalCommand {
 
-		public MAVODiagramContextAddCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MAVODiagramContextAddCommand(@NonNull TransactionalEditingDomain domain, @NonNull String label, @NonNull List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}

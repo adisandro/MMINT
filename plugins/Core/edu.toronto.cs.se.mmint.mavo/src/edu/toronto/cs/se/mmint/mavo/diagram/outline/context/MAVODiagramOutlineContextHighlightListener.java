@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.mavo.diagram.outline.context;
 
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
@@ -22,6 +23,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mavo.LogicElement;
@@ -45,21 +47,21 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 	private LogicElement mavoElemToHighlight;
 	private Model model;
 
-	public MAVODiagramOutlineContextHighlightListener(String menuLabel, MAVODecision mavoDecision) {
+	public MAVODiagramOutlineContextHighlightListener(@NonNull String menuLabel, @NonNull MAVODecision mavoDecision) {
 
 		super(menuLabel);
 		mavoElemToHighlight = mavoDecision;
 		model = null;
 	}
 
-	public MAVODiagramOutlineContextHighlightListener(String menuLabel, MAVOCollection mavoCollection) {
+	public MAVODiagramOutlineContextHighlightListener(@NonNull String menuLabel, @NonNull MAVOCollection mavoCollection) {
 
 		super(menuLabel);
 		mavoElemToHighlight = mavoCollection;
 		model = null;
 	}
 
-	public MAVODiagramOutlineContextHighlightListener(String menuLabel, MAVOElement mavoModelObj) {
+	public MAVODiagramOutlineContextHighlightListener(@NonNull String menuLabel, @NonNull MAVOElement mavoModelObj) {
 
 		super(menuLabel);
 		mavoElemToHighlight = mavoModelObj;
@@ -93,7 +95,7 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 
 	protected class MAVODiagramOutlineContextHighlightCommand extends AbstractTransactionalCommand {
 
-		public MAVODiagramOutlineContextHighlightCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MAVODiagramOutlineContextHighlightCommand(@NonNull TransactionalEditingDomain domain, @NonNull String label, @NonNull List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}

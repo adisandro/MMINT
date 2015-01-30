@@ -25,11 +25,14 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MayDecision;
+import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
@@ -43,21 +46,38 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 public class MAVODiagramContextRefineListener extends MIDContextMenuListener {
 
 	private List<? extends LogicElement> mavoElemsToRefine;
+	private MAVOElement mergedModelObj;
+	private List<MAVOElement> varModelObjs;
 	private Model model;
 
-	public MAVODiagramContextRefineListener(String menuLabel, MAVOCollection mayAlternative) {
+	public MAVODiagramContextRefineListener(@NonNull String menuLabel, @NonNull MAVOCollection mayAlternative) {
 
 		super(menuLabel);
 		List<MAVOCollection> mavoElemsToRefine = new ArrayList<MAVOCollection>();
 		mavoElemsToRefine.add(mayAlternative);
 		this.mavoElemsToRefine = mavoElemsToRefine;
+		mergedModelObj = null;
+		varModelObjs = null;
 		model = null;
 	}
 
-	public MAVODiagramContextRefineListener(String menuLabel, List<MAVOElement> mavoModelObjs) {
+	public MAVODiagramContextRefineListener(@NonNull String menuLabel, @NonNull List<MAVOElement> mavoModelObjs) {
 
 		super(menuLabel);
 		mavoElemsToRefine = mavoModelObjs;
+		mergedModelObj = null;
+		varModelObjs = null;
+		model = null;
+	}
+
+	public MAVODiagramContextRefineListener(@NonNull String menuLabel, @NonNull MAVOCollection varDomain, @NonNull MAVOElement mergedModelObj, @NonNull List<MAVOElement> varModelObjs) {
+
+		super(menuLabel);
+		List<MAVOCollection> mavoElemsToRefine = new ArrayList<MAVOCollection>();
+		mavoElemsToRefine.add(varDomain);
+		this.mavoElemsToRefine = mavoElemsToRefine;
+		this.mergedModelObj = mergedModelObj;
+		this.varModelObjs = varModelObjs;
 		model = null;
 	}
 
@@ -89,7 +109,7 @@ public class MAVODiagramContextRefineListener extends MIDContextMenuListener {
 
 	protected class MAVODiagramContextRefineCommand extends AbstractTransactionalCommand {
 
-		public MAVODiagramContextRefineCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MAVODiagramContextRefineCommand(@NonNull TransactionalEditingDomain domain, @NonNull String label, @NonNull List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}
@@ -99,7 +119,12 @@ public class MAVODiagramContextRefineListener extends MIDContextMenuListener {
 
 			LogicElement mavoFirstElemToRefine = mavoElemsToRefine.get(0);
 			if (mavoFirstElemToRefine instanceof MAVOCollection) {
-				MAVOMultiModelConstraintChecker.refineByMayAlternative(model, (MAVOCollection) mavoFirstElemToRefine);
+				if (mavoFirstElemToRefine.eContainer() instanceof MayDecision) {
+					MAVOMultiModelConstraintChecker.refineByMayAlternative(model, (MAVOCollection) mavoFirstElemToRefine);
+				}
+				if (mavoFirstElemToRefine.eContainer() instanceof VarDecision) {
+					MAVOMultiModelConstraintChecker.refineByVarDomain(model, (MAVOCollection) mavoFirstElemToRefine, mergedModelObj, varModelObjs);
+				}
 			}
 			else if (mavoFirstElemToRefine instanceof MAVOElement) {
 				MAVOMultiModelConstraintChecker.refineByMayModelObjects(model, (List<MAVOElement>) mavoElemsToRefine);

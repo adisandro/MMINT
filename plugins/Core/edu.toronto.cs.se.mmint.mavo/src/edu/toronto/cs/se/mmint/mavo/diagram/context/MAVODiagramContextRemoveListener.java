@@ -87,7 +87,7 @@ public class MAVODiagramContextRemoveListener extends MIDContextMenuListener {
 
 	protected class MAVODiagramContextRemoveCommand extends AbstractTransactionalCommand {
 
-		public MAVODiagramContextRemoveCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+		public MAVODiagramContextRemoveCommand(@NonNull TransactionalEditingDomain domain, @NonNull String label, @NonNull List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
 		}

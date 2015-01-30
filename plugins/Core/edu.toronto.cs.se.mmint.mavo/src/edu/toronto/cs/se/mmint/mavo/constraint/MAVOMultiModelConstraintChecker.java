@@ -49,6 +49,21 @@ public class MAVOMultiModelConstraintChecker {
 	}
 
 	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null
+	public static @Nullable Model refineByVarDomain(@NonNull Model model, @NonNull MAVOCollection varDomain, @NonNull MAVOElement mergedModelObj, @NonNull List<MAVOElement> varModelObjs) {
+
+		IMAVOReasoningEngine reasoner;
+		try {
+			reasoner = getMAVOReasoner("SMTLIB");
+		}
+		catch (MMINTException e) {
+			MMINTException.print(MMINTException.Type.WARNING, "Skipping refinement based on var domain", e);
+			return null;
+		}
+
+		return reasoner.refineByVarDomain(model, varDomain, mergedModelObj, varModelObjs);
+	}
+
+	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null
 	public static @Nullable Model refineByMayModelObjects(@NonNull Model model, @NonNull List<MAVOElement> mayModelObjs) {
 
 		IMAVOReasoningEngine reasoner;
