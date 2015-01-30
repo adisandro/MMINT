@@ -110,46 +110,33 @@ public class MAVODiagramContextMenu extends ContributionItem {
 				new MAVODiagramContextRefineListener(refineText, mavoModelObjs)
 			);
 		}
+		// add/remove
 		for (MAVODecision mavoDecision : mavoRootModelObj.getDecisions()) {
-			// add/remove
-			//TODO MMINT[MU_MMINT] Unify may/var
 			MenuItem decisionItem = new MenuItem(mavoMenu, SWT.CASCADE);
 			Menu decisionMenu = new Menu(mavoMenu);
 			decisionItem.setMenu(decisionMenu);
-			String decisionText = "";
+			String decisionText = "", addLabel = "", removeLabel = "";
+			List<MAVOCollection> mavoCollections = null;
 			if (mavoDecision instanceof MayDecision) {
 				decisionText = MAVO_CONTEXT_MENU_MAYDECISION_LABEL;
-				for (MAVOCollection mayAlternative : ((MayDecision) mavoDecision).getAlternatives()) {
-					boolean add = mavoModelObjs.stream().allMatch(mavoModelObj -> !mavoModelObj.getCollections().contains(mayAlternative));
-					boolean remove = false;
-					if (!add) {
-						remove = mavoModelObjs.stream().allMatch(mavoModelObj -> mavoModelObj.getCollections().contains(mayAlternative));
-					}
-					if (!add && !remove) {
-						continue;
-					}
-					String addremoveText = "";
-					MIDContextMenuListener addremoveListener = null;
-					if (add) {
-						addremoveText = MAVO_CONTEXT_MENU_MAYDECISION_SUBMENU_ADDTOALTERNATIVE_LABEL + " " + mayAlternative.getFormulaVariable();
-						addremoveListener = new MAVODiagramContextAddListener(addremoveText, mayAlternative, mavoModelObjs);
-					}
-					if (remove) {
-						addremoveText = MAVO_CONTEXT_MENU_MAYDECISION_SUBMENU_REMOVEFROMALTERNATIVE_LABEL + " " + mayAlternative.getFormulaVariable();
-						addremoveListener = new MAVODiagramContextRemoveListener(addremoveText, mayAlternative, mavoModelObjs);
-					}
-					MenuItem addremoveItem = new MenuItem(decisionMenu, SWT.NONE);
-					addremoveItem.setText(addremoveText);
-					addremoveItem.addSelectionListener(addremoveListener);
-				}
+				addLabel = MAVO_CONTEXT_MENU_MAYDECISION_SUBMENU_ADDTOALTERNATIVE_LABEL;
+				removeLabel = MAVO_CONTEXT_MENU_MAYDECISION_SUBMENU_REMOVEFROMALTERNATIVE_LABEL;
+				mavoCollections = ((MayDecision) mavoDecision).getAlternatives();
 			}
 			else if (mavoDecision instanceof VarDecision) {
 				decisionText = MAVO_CONTEXT_MENU_VARDECISION_LABEL;
-				MAVOCollection varDomain = ((VarDecision) mavoDecision).getDomain();
-				boolean add = mavoModelObjs.stream().allMatch(mavoModelObj -> !mavoModelObj.getCollections().contains(varDomain));
+				addLabel = MAVO_CONTEXT_MENU_VARDECISION_SUBMENU_ADDTODOMAIN_LABEL;
+				removeLabel = MAVO_CONTEXT_MENU_VARDECISION_SUBMENU_REMOVEFROMDOMAIN_LABEL;
+				mavoCollections = new ArrayList<MAVOCollection>();
+				mavoCollections.add(((VarDecision) mavoDecision).getDomain());
+			}
+			decisionText += " " + mavoDecision.getFormulaVariable();
+			decisionItem.setText(decisionText);
+			for (MAVOCollection mavoCollection : mavoCollections) {
+				boolean add = mavoModelObjs.stream().allMatch(mavoModelObj -> !mavoModelObj.getCollections().contains(mavoCollection));
 				boolean remove = false;
 				if (!add) {
-					remove = mavoModelObjs.stream().allMatch(mavoModelObj -> mavoModelObj.getCollections().contains(varDomain));
+					remove = mavoModelObjs.stream().allMatch(mavoModelObj -> mavoModelObj.getCollections().contains(mavoCollection));
 				}
 				if (!add && !remove) {
 					continue;
@@ -157,19 +144,17 @@ public class MAVODiagramContextMenu extends ContributionItem {
 				String addremoveText = "";
 				MIDContextMenuListener addremoveListener = null;
 				if (add) {
-					addremoveText = MAVO_CONTEXT_MENU_VARDECISION_SUBMENU_ADDTODOMAIN_LABEL + " " + varDomain.getFormulaVariable();
-					addremoveListener = new MAVODiagramContextAddListener(addremoveText, varDomain, mavoModelObjs);
+					addremoveText = addLabel + " " + mavoCollection.getFormulaVariable();
+					addremoveListener = new MAVODiagramContextAddListener(addremoveText, mavoCollection, mavoModelObjs);
 				}
 				if (remove) {
-					addremoveText = MAVO_CONTEXT_MENU_VARDECISION_SUBMENU_REMOVEFROMDOMAIN_LABEL + " " + varDomain.getFormulaVariable();
-					addremoveListener = new MAVODiagramContextRemoveListener(addremoveText, varDomain, mavoModelObjs);
+					addremoveText = removeLabel + " " + mavoCollection.getFormulaVariable();
+					addremoveListener = new MAVODiagramContextRemoveListener(addremoveText, mavoCollection, mavoModelObjs);
 				}
 				MenuItem addremoveItem = new MenuItem(decisionMenu, SWT.NONE);
 				addremoveItem.setText(addremoveText);
 				addremoveItem.addSelectionListener(addremoveListener);
 			}
-			decisionText += " " + mavoDecision.getFormulaVariable();
-			decisionItem.setText(decisionText);
 		}
 	}
 

@@ -18,6 +18,8 @@ import edu.toronto.cs.se.mmint.mavo.diagram.outline.MAVODiagramOutlinePage;
 
 public class MAVODiagramEditor extends DiagramDocumentEditor {
 
+	private MAVODiagramOutlinePage outlinePage;
+
 	public MAVODiagramEditor(boolean hasFlyoutPalette) {
 
 		super(hasFlyoutPalette);
@@ -27,11 +29,16 @@ public class MAVODiagramEditor extends DiagramDocumentEditor {
 	public Object getAdapter(Class type) {
 
 		if (type == IContentOutlinePage.class) {
-			MAVODiagramOutlinePage decisionTree = new MAVODiagramOutlinePage(getDiagram());
-			return decisionTree;
+			outlinePage = new MAVODiagramOutlinePage(getDiagram());
+			return outlinePage;
 		}
 
 		return super.getAdapter(type);
+	}
+
+	public MAVODiagramOutlinePage getOutlinePage() {
+
+		return outlinePage;
 	}
 
 }

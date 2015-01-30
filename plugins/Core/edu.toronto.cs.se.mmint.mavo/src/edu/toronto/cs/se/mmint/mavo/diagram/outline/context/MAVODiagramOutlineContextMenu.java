@@ -61,6 +61,12 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 	}
 
 	@Override
+	public boolean isDynamic() {
+
+		return true;
+	}
+
+	@Override
 	public void fill(Menu menu, int index) {
 
 		// check selection

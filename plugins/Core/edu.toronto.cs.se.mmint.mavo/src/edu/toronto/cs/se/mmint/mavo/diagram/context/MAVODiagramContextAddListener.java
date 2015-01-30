@@ -18,6 +18,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -25,6 +26,7 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
@@ -33,6 +35,7 @@ import edu.toronto.cs.se.mavo.MAVOFactory;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
+import edu.toronto.cs.se.mmint.mavo.diagram.MAVODiagramEditor;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
@@ -90,6 +93,28 @@ public class MAVODiagramContextAddListener extends MIDContextMenuListener {
 		}
 
 		@Override
+		protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+			IStatus status = super.doUndo(monitor, info);
+			// refresh
+			MAVODiagramEditor mavoDiagram = (MAVODiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+			mavoDiagram.getOutlinePage().refresh();
+
+			return status;
+		}
+
+		@Override
+		protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+			IStatus status = super.doRedo(monitor, info);
+			// refresh
+			MAVODiagramEditor mavoDiagram = (MAVODiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+			mavoDiagram.getOutlinePage().refresh();
+
+			return status;
+		}
+
+		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			if (mavoContainer instanceof MAVOModel) {
@@ -123,6 +148,10 @@ public class MAVODiagramContextAddListener extends MIDContextMenuListener {
 					mavoModelObjs.forEach(mavoModelObj -> MAVOUtils.setVar(mavoModelObj, true));
 				}
 			}
+
+			// refresh
+			MAVODiagramEditor mavoDiagram = (MAVODiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+			mavoDiagram.getOutlinePage().refresh();
 
 			return CommandResult.newOKCommandResult();
 		}

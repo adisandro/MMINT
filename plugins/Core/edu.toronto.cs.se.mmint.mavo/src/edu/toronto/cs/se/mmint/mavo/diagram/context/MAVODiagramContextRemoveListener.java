@@ -21,6 +21,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -30,6 +31,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOCollection;
@@ -38,6 +40,7 @@ import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
+import edu.toronto.cs.se.mmint.mavo.diagram.MAVODiagramEditor;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
@@ -87,6 +90,28 @@ public class MAVODiagramContextRemoveListener extends MIDContextMenuListener {
 		public MAVODiagramContextRemoveCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
+		}
+
+		@Override
+		protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+			IStatus status = super.doUndo(monitor, info);
+			// refresh
+			MAVODiagramEditor mavoDiagram = (MAVODiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+			mavoDiagram.getOutlinePage().refresh();
+
+			return status;
+		}
+
+		@Override
+		protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+			IStatus status = super.doRedo(monitor, info);
+			// refresh
+			MAVODiagramEditor mavoDiagram = (MAVODiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+			mavoDiagram.getOutlinePage().refresh();
+
+			return status;
 		}
 
 		private void collectMAVOModelObjects (@NonNull LogicElement mavoElemToRemove, @NonNull Set<MAVOElement> mavoModelObjs) {
@@ -157,6 +182,10 @@ public class MAVODiagramContextRemoveListener extends MIDContextMenuListener {
 					.allMatch(mavoCollection -> !eclass.isInstance(mavoCollection.eContainer()))
 				)
 				.forEach(mavoModelObj -> mavoModelObj.eSet(feature, false));
+
+			// refresh
+			MAVODiagramEditor mavoDiagram = (MAVODiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+			mavoDiagram.getOutlinePage().refresh();
 
 			return CommandResult.newOKCommandResult();
 		}

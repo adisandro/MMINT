@@ -17,9 +17,9 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
 import edu.toronto.cs.se.mavo.MAVOModel;
@@ -48,22 +48,15 @@ public class MAVODiagramOutlinePage extends ContentOutlinePage {
 		contentOutlineViewer.addSelectionChangedListener(this);
 		contentOutlineViewer.setContentProvider(new MAVODiagramOutlineContentProvider(adapterFactory));
 		contentOutlineViewer.setLabelProvider(new MAVODiagramOutlineLabelProvider(adapterFactory));
-		//TODO MMINT[MU-MMINT] Review
-		MenuManager manager = new MenuManager();
-		manager.setRemoveAllWhenShown(true);
-		manager.addMenuListener(new IMenuListener() {
-			public void menuAboutToShow(IMenuManager manager) {
-				manager.add(new MAVODiagramOutlineContextMenu(contentOutlineViewer));
-			}
-		});
-		contentOutlineViewer.getControl().setMenu(manager.createContextMenu(contentOutlineViewer.getControl()));
+		MenuManager menuManager = new MenuManager();
+		Menu contextMenu = menuManager.createContextMenu(contentOutlineViewer.getControl());
+		contentOutlineViewer.getControl().setMenu(contextMenu);
+		menuManager.add(new MAVODiagramOutlineContextMenu(contentOutlineViewer));
 		contentOutlineViewer.setInput(mavoRootModelObj.eResource());
 	}
 
-	//TODO MMINT[MU-MMINT] Review the need for refresh, if not needed just remove the function
-	public void selectionChanged(SelectionChangedEvent event) {
+	public void refresh() {
 
-		super.selectionChanged(event);
 		contentOutlineViewer.refresh();
 	}
 
