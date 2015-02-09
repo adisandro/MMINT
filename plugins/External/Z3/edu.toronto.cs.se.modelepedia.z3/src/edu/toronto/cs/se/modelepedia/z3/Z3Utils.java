@@ -38,10 +38,6 @@ public class Z3Utils {
 	public static final @NonNull String SMTLIB_EDGE_FUNCTION = SMTLIB_PREDICATE_START + SMTLIB_EDGE + " ";
 
 	public static final @NonNull String Z3_MODEL_SEPARATOR = "!";
-	public static final @NonNull String Z3_MODEL_DEFINITION = " -> ";
-	public static final @NonNull String Z3_MODEL_ELSE = "else";
-	public static final @NonNull String Z3_MODEL_FUNCTION_START = "{";
-	public static final @NonNull String Z3_MODEL_FUNCTION_END = "}";
 
 	public static @NonNull String predicate(@NonNull String predicateStart, @NonNull String smtTerms) {
 

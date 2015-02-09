@@ -319,7 +319,7 @@ public class MAVOUtils {
 
 	public static boolean createFormulaVars(Model mavoModel) throws Exception {
 
-		boolean modified = false, mayOnly = true;
+		boolean modified = false, isMayOnly = true;
 		MAVOModel rootMavoModel = (MAVOModel) mavoModel.getEMFInstanceRoot();
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(rootMavoModel, true);
 		while (iterator.hasNext()) {
@@ -328,8 +328,8 @@ public class MAVOUtils {
 				continue;
 			}
 			MAVOElement mavoModelObj = (MAVOElement) modelObj;
-			if (mayOnly && (mavoModelObj.isSet() || mavoModelObj.isVar())) { // detect if model has only may annotations
-				mayOnly = false;
+			if (isMayOnly && (mavoModelObj.isSet() || mavoModelObj.isVar())) { // detect if model has only may annotations
+				isMayOnly = false;
 			}
 			if (mavoModelObj.getFormulaVariable() != null && !mavoModelObj.getFormulaVariable().equals("")) {
 				continue;
@@ -346,7 +346,7 @@ public class MAVOUtils {
 			MultiModelUtils.createModelFile(rootMavoModel, mavoModel.getUri(), true);
 		}
 
-		return mayOnly;
+		return isMayOnly;
 	}
 
 	private static List<String> getVFormulaVars(MAVOModel mavoModel, MAVOElement mavoModelObj, boolean whichFormulaVars) {

@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -137,19 +138,30 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		return true;
 	}
 
-	public @NonNull String getSMTLIBMAVOModelObjectEncoding(MAVOElement mavoModelObj) throws MMINTException {
-	
+	public @NonNull String getSMTLIBMAVOModelObjectEncoding(MAVOElement mavoModelObj, boolean isMayOnly) throws MMINTException {
+
 		String smtEncoding;
-		if (mavoModelObj.eClass().getEAnnotation("gmf.node") != null) {
-			smtEncoding = Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, mavoModelObj.getFormulaVariable());
+		EClass mavoModelObjClass = mavoModelObj.eClass();
+		if (mavoModelObjClass.getEAnnotation("gmf.node") != null) {
+			smtEncoding = (isMayOnly) ?
+				Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, mavoModelObj.getFormulaVariable()) :
+				Z3Utils.exists(
+					Z3Utils.predicate(Z3Utils.SMTLIB_PREDICATE_START + " c", mavoModelObjClass.getName()),
+					Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, mavoModelObj.getFormulaVariable() + " c")
+				);
 		}
-		else if (mavoModelObj.eClass().getEAnnotation("gmf.link") != null) {
-			smtEncoding = Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, mavoModelObj.getFormulaVariable());
+		else if (mavoModelObjClass.getEAnnotation("gmf.link") != null) {
+			smtEncoding = (isMayOnly) ?
+				Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, mavoModelObj.getFormulaVariable()) :
+				Z3Utils.exists(
+					Z3Utils.predicate(Z3Utils.SMTLIB_PREDICATE_START + " c", mavoModelObjClass.getName()),
+					Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, mavoModelObj.getFormulaVariable() + " c")
+				);
 		}
 		else {
 			throw new MMINTException("The model object " + mavoModelObj.getFormulaVariable() + " doesn't have a Eugenia node/link annotation");
 		}
-	
+
 		return smtEncoding;
 	}
 
@@ -201,7 +213,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 				smtMayLogicElem = mayLogicElem.getFormulaVariable();
 			}
 			else if (mayLogicElem instanceof MAVOElement) {
-				smtMayLogicElem = getSMTLIBMAVOModelObjectEncoding((MAVOElement) mayLogicElem);
+				smtMayLogicElem = getSMTLIBMAVOModelObjectEncoding((MAVOElement) mayLogicElem, z3ModelParser.isMayOnly());
 			}
 			smtEncoding += Z3Utils.assertion(smtMayLogicElem);
 		}

@@ -25,6 +25,7 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 	private static final String MODEL_END_MARKER = ";End Model" + System.lineSeparator();
 	private static final int NUM_TOKENS = 4;
 
+	private boolean isMayOnly;
 	private StringBuilder textGeneration;
 	private Map<Integer, String> smtNodes;
 	private Map<Integer, String> smtEdges;
@@ -36,8 +37,9 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 	private String smtEncodingUri;
 	private Z3MAVOModelParser z3ModelParser;
 
-	public EcoreMAVOToSMTLIBListener() {
+	public EcoreMAVOToSMTLIBListener(boolean isMayOnly) {
 
+		this.isMayOnly = isMayOnly;
 		textGeneration = new StringBuilder();
 		smtNodes = new HashMap<Integer, String>();
 		smtEdges = new HashMap<Integer, String>();
@@ -87,7 +89,7 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 	public void fileGenerated(AcceleoTextGenerationEvent event) {
 
 		smtEncoding = textGeneration.toString();
-		z3ModelParser = new Z3MAVOModelParser(smtEncoding, smtEncodingUri, smtNodes, smtEdges);
+		z3ModelParser = new Z3MAVOModelParser(smtEncoding, smtEncodingUri, smtNodes, smtEdges, isMayOnly);
 	}
 
 	@Override

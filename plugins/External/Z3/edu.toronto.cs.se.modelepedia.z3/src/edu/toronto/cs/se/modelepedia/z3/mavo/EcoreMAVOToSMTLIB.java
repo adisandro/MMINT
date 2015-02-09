@@ -43,7 +43,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 	    public List<IAcceleoTextGenerationListener> getGenerationListeners() {
 
 			List<IAcceleoTextGenerationListener> listeners = new ArrayList<IAcceleoTextGenerationListener>();
-			smtListener = new EcoreMAVOToSMTLIBListener();
+			smtListener = new EcoreMAVOToSMTLIBListener(isMayOnly);
 			listeners.add(smtListener);
 
 			return listeners;
@@ -54,13 +54,13 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 	private static final Boolean PROPERTY_IN_MAYONLY_DEFAULT = null;
 
 	private EcoreMAVOToSMTLIBListener smtListener;
-	private Boolean mayOnly;
+	private Boolean isMayOnly;
 
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		mayOnly = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_MAYONLY, PROPERTY_IN_MAYONLY_DEFAULT);
+		isMayOnly = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_MAYONLY, PROPERTY_IN_MAYONLY_DEFAULT);
 	}
 
 	@Override
@@ -71,14 +71,14 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 		//TODO MMINT[REASONING] there's something wrong, at least one certain element per sort is required to get things right in full mavo
 		//TODO MMINT[REASONING] improve create formula vars 1) use other strings if name not present 2) check uniqueness 3) use names of src/tgt for edges
 		Model mavoModel = actualParameters.get(0);
-		boolean mayOnly = MAVOUtils.createFormulaVars(mavoModel);
-		if (this.mayOnly == null) {
-			this.mayOnly = mayOnly;
+		boolean isMayOnly = MAVOUtils.createFormulaVars(mavoModel);
+		if (this.isMayOnly == null) {
+			this.isMayOnly = isMayOnly;
 		}
 
 		List<Object> m2tArgs = new ArrayList<Object>();
 		m2tArgs.add(mavoModel.getName());
-		m2tArgs.add(this.mayOnly);
+		m2tArgs.add(this.isMayOnly);
 		File folder = (new File(MultiModelUtils.prependWorkspaceToUri(mavoModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);

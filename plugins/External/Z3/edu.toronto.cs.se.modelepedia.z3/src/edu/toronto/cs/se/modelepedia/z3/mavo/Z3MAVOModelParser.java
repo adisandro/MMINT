@@ -31,8 +31,9 @@ public class Z3MAVOModelParser {
 	private Map<Integer, String> smtEncodingNodes;
 	private Map<Integer, String> smtEncodingEdges;
 	private Map<Integer, String> smtEncodingElems;
+	private boolean isMayOnly;
 
-	public Z3MAVOModelParser(String smtEncoding, String smtEncodingUri, Map<Integer, String> smtEncodingNodes, Map<Integer, String> smtEncodingEdges) {
+	public Z3MAVOModelParser(String smtEncoding, String smtEncodingUri, Map<Integer, String> smtEncodingNodes, Map<Integer, String> smtEncodingEdges, boolean isMayOnly) {
 
 		this.smtEncoding = smtEncoding;
 		this.smtEncodingUri = smtEncodingUri;
@@ -41,6 +42,7 @@ public class Z3MAVOModelParser {
 		smtEncodingElems = new HashMap<Integer, String>();
 		smtEncodingElems.putAll(smtEncodingNodes);
 		smtEncodingElems.putAll(smtEncodingEdges);
+		this.isMayOnly = isMayOnly;
 	}
 
 	public String getSMTLIBEncoding() {
@@ -72,10 +74,9 @@ public class Z3MAVOModelParser {
 					continue;
 				}
 				// parse entries
-				boolean mayOnly = (interp.getEntries()[0].getNumArgs() == 1); // may-only encoding
 				boolean elseValue = Boolean.parseBoolean(interp.getElse().toString());
 				if (elseValue) { // entries are false
-					if (mayOnly) {
+					if (isMayOnly) {
 						//TODO MMINT[Z3] fix if mayOnly switches to sorts
 						Map<String, String> funcZ3ModelElems = new HashMap<String, String>();
 						for (Map.Entry<Integer, String> smtEncodingElemEntry : smtEncodingCurrentElems.entrySet()) {
@@ -97,7 +98,7 @@ public class Z3MAVOModelParser {
 					for (Entry entry : interp.getEntries()) {
 						Integer z3ModelElemId = new Integer(entry.getArgs()[0].toString());
 						String z3ModelElemFormulaVar = smtEncodingCurrentElems.get(z3ModelElemId);
-						if (mayOnly) {
+						if (isMayOnly) {
 							z3ModelElems.put(entry.getArgs()[0].toString(), z3ModelElemFormulaVar);
 						}
 						else {
@@ -139,6 +140,11 @@ public class Z3MAVOModelParser {
 		z3ModelElems.putAll(getZ3MAVOModelElems(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_EDGE, smtEncodingEdges));
 
 		return z3ModelElems;
+	}
+
+	public boolean isMayOnly() {
+
+		return isMayOnly;
 	}
 
 }
