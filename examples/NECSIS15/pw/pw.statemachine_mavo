@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statemachine_mavo:StateMachine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mavo="http://se.cs.toronto.edu/MAVO" xmlns:statemachine_mavo="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision1" description="What happens when done moving?">
+    <alternatives formulaVariable="Safe" description="When done moving, become locked" mavoElements="//@transitions.5"/>
+    <alternatives formulaVariable="Easy" description="When done moving, become unlocked" mavoElements="//@transitions.2"/>
+    <alternatives formulaVariable="Delegate" description="When done moving, delegate to the security system" mavoElements="//@transitions.4 //@states.3 //@transitions.3"/>
+  </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision2" description="Can you lock from any unlocked position?">
+    <alternatives formulaVariable="CanLock" description="Yes you can" mavoElements="//@transitions.7"/>
+    <alternatives formulaVariable="CannotLock" description="No you can't"/>
+  </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="Decision3" description="Can you have emergency move?">
+    <alternatives formulaVariable="CanEmergency" description="Yes you can" mavoElements="//@transitions.6"/>
+    <alternatives formulaVariable="CannotEmergency" description="No you can't"/>
+  </decisions>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Unlocked" name="Unlocked"/>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Locked" name="Locked"/>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Moving" name="Moving"/>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="SecuritySystemControlled" may="true" collections="//@decisions.0/@alternatives.2" name="SecuritySystemControlled"/>
+  <transitions formulaVariable="move" trigger="" action="move()" source="//@states.0" target="//@states.2"/>
+  <transitions formulaVariable="obstacle" trigger="" action="obstacle()" source="//@states.2" target="//@states.0"/>
+  <transitions formulaVariable="doneMU" may="true" collections="//@decisions.0/@alternatives.1" trigger="" action="done()" source="//@states.2" target="//@states.0"/>
+  <transitions formulaVariable="doneMS" may="true" collections="//@decisions.0/@alternatives.2" trigger="" action="done()" source="//@states.2" target="//@states.3"/>
+  <transitions formulaVariable="release" may="true" collections="//@decisions.0/@alternatives.2" trigger="" action="release()" source="//@states.3" target="//@states.0"/>
+  <transitions formulaVariable="doneML" may="true" collections="//@decisions.0/@alternatives.0" trigger="" action="done()" source="//@states.2" target="//@states.1"/>
+  <transitions formulaVariable="emergency_move" may="true" collections="//@decisions.2/@alternatives.0" trigger="" action="emergency_move()" source="//@states.1" target="//@states.2"/>
+  <transitions formulaVariable="lock" may="true" collections="//@decisions.1/@alternatives.0" trigger="" action="lock()" source="//@states.0" target="//@states.1"/>
+  <transitions formulaVariable="unlock" trigger="" action="unlock()" source="//@states.1" target="//@states.0"/>
+</statemachine_mavo:StateMachine>
