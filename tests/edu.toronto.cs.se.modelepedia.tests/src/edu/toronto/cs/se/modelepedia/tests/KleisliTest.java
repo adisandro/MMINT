@@ -66,6 +66,9 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 
+//TODO MMINT[HUDSON] Run test as part of the build
+//TODO MMINT[HUDSON] Do not delete repository if build is unsuccessful
+//TODO MMINT[HUDSON] Switch to Jenkins
 public class KleisliTest {
 
 	private final static String TESTS_BUNDLE_NAME = "edu.toronto.cs.se.modelepedia.tests";

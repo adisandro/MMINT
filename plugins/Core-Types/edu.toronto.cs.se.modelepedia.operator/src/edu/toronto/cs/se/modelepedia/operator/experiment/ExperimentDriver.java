@@ -8,7 +8,6 @@
  * 
  * Contributors:
  *    Alessio Di Sandro - Implementation.
- *    Vivien Suen - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.operator.experiment;
 
