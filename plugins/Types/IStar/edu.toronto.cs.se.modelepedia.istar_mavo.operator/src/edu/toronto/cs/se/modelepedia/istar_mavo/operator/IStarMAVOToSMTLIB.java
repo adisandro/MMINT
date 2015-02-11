@@ -45,7 +45,7 @@ public class IStarMAVOToSMTLIB extends OperatorImpl {
 	    public List<IAcceleoTextGenerationListener> getGenerationListeners() {
 
 			List<IAcceleoTextGenerationListener> listeners = new ArrayList<IAcceleoTextGenerationListener>();
-			smtListener = new EcoreMAVOToSMTLIBListener();
+			smtListener = new EcoreMAVOToSMTLIBListener(false);
 			listeners.add(smtListener);
 
 			return listeners;
