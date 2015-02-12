@@ -255,7 +255,6 @@ matchesN:
 		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		// do transformations
-		//TODO MMINT[LIFTING] implement D support and OR-ed N support
 		String fullUri = MultiModelUtils.prependWorkspaceToUri(MultiModelUtils.replaceLastSegmentInUri(model.getUri(), ""));
 		HenshinResourceSet resourceSet = new HenshinResourceSet(fullUri);
 		Module module = resourceSet.getModule(transformationModule, false);

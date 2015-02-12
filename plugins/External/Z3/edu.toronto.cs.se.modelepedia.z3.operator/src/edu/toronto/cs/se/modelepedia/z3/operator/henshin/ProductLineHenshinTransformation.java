@@ -215,7 +215,6 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		// function definition at every step for fX (phi P, external constraint)
 		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
-		//TODO MMINT[LIFTING] implement D support and OR-ed N support
 		// henshin initialization
 		String fullUri = MultiModelUtils.prependWorkspaceToUri(MultiModelUtils.replaceLastSegmentInUri(model.getUri(), ""));
 		HenshinResourceSet resourceSet = new HenshinResourceSet(fullUri);

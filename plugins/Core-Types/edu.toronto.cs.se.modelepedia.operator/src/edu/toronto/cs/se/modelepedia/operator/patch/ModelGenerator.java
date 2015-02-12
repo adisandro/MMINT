@@ -19,18 +19,19 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
-//TODO MMINT[OPERATOR] Create separate feature for these generic operators
+//TODO MMINT[OPERATOR] Create a separate feature for these generic operators
 public class ModelGenerator extends OperatorImpl {
 
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-		
+		super.readInputProperties(inputProperties);
 	}
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
+		Model model = actualParameters.get(0);
 		return null;
 	}
 

@@ -22,6 +22,7 @@ import java.util.Properties;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -36,7 +37,7 @@ public class MultiModelOperatorUtils {
 	public static final String PROPERTIES_SUFFIX = ".properties";
 	/** The separator for multiple properties with the same key. */
 	private static final String PROPERTY_SEPARATOR = ",";
-	public static final String PROPERTY_IN_UPDATEMID = "updateMid";
+	public static final String PROPERTY_IN_UPDATEMID = "updateMID";
 	public static final String PROPERTY_IN_SUBDIR = "subdir";
 	public static final String PROPERTY_IN_OUTPUTENABLED_SUFFIX = ".enabled";
 
@@ -101,7 +102,7 @@ public class MultiModelOperatorUtils {
 		}
 	}
 
-	public static String getStringProperty(Properties properties, String propertyName) throws MMINTException {
+	public static @NonNull String getStringProperty(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
 		String property = properties.getProperty(propertyName);
 		if (property == null) {
@@ -111,7 +112,7 @@ public class MultiModelOperatorUtils {
 		return property;
 	}
 
-	public static String getOptionalStringProperty(Properties properties, String propertyName, String defaultValue) {
+	public static @NonNull String getOptionalStringProperty(@NonNull Properties properties, @NonNull String propertyName, @NonNull String defaultValue) {
 
 		try {
 			return getStringProperty(properties, propertyName);
@@ -121,14 +122,14 @@ public class MultiModelOperatorUtils {
 		}
 	}
 
-	public static <E extends Enum<E>> E getEnumProperty(Properties properties, String propertyName, Class<E> enumClass) throws MMINTException {
+	public static @NonNull <E extends Enum<E>> E getEnumProperty(@NonNull Properties properties, @NonNull String propertyName, @NonNull Class<E> enumClass) throws MMINTException {
 
 		E property = Enum.valueOf(enumClass, getStringProperty(properties, propertyName));
 
 		return property;
 	}
 
-	public static <E extends Enum<E>> E getOptionalEnumProperty(Properties properties, String propertyName, E defaultValue, Class<E> enumClass) {
+	public static @NonNull <E extends Enum<E>> E getOptionalEnumProperty(@NonNull Properties properties, @NonNull String propertyName, @NonNull E defaultValue, @NonNull Class<E> enumClass) {
 
 		try {
 			return getEnumProperty(properties, propertyName, enumClass);
@@ -138,14 +139,14 @@ public class MultiModelOperatorUtils {
 		}
 	}
 
-	public static boolean getBoolProperty(Properties properties, String propertyName) throws MMINTException {
+	public static boolean getBoolProperty(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
 		boolean property = Boolean.parseBoolean(getStringProperty(properties, propertyName));
 
 		return property;
 	}
 
-	public static Boolean getOptionalBoolProperty(Properties properties, String propertyName, Boolean defaultValue) {
+	public static @NonNull Boolean getOptionalBoolProperty(@NonNull Properties properties, @NonNull String propertyName, @NonNull Boolean defaultValue) {
 
 		try {
 			return getBoolProperty(properties, propertyName);
@@ -155,7 +156,7 @@ public class MultiModelOperatorUtils {
 		}
 	}
 
-	public static int getIntProperty(Properties properties, String propertyName) throws MMINTException {
+	public static int getIntProperty(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
 		int property = Integer.parseInt(getStringProperty(properties, propertyName));
 		if (property == -1) {
@@ -165,7 +166,7 @@ public class MultiModelOperatorUtils {
 		return property;
 	}
 
-	public static int getOptionalIntProperty(Properties properties, String propertyName, int defaultValue) {
+	public static int getOptionalIntProperty(@NonNull Properties properties, @NonNull String propertyName, int defaultValue) {
 
 		try {
 			return getIntProperty(properties, propertyName);
@@ -175,7 +176,7 @@ public class MultiModelOperatorUtils {
 		}
 	}
 
-	public static double getDoubleProperty(Properties properties, String propertyName) throws MMINTException {
+	public static double getDoubleProperty(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
 		double property = Double.parseDouble(getStringProperty(properties, propertyName));
 		if (property == -1) {
@@ -185,7 +186,7 @@ public class MultiModelOperatorUtils {
 		return property;
 	}
 
-	public static double getOptionalDoubleProperty(Properties properties, String propertyName, double defaultValue) {
+	public static double getOptionalDoubleProperty(@NonNull Properties properties, @NonNull String propertyName, double defaultValue) {
 
 		try {
 			return getDoubleProperty(properties, propertyName);
@@ -195,12 +196,12 @@ public class MultiModelOperatorUtils {
 		}
 	}
 
-	public static String[] getStringProperties(Properties properties, String propertyName) throws MMINTException {
+	public static @NonNull String[] getStringProperties(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
 		return getStringProperty(properties, propertyName).split(PROPERTY_SEPARATOR);
 	}
 
-	public static String[] getOptionalStringProperties(Properties properties, String propertyName, String[] defaultValue) {
+	public static @NonNull String[] getOptionalStringProperties(@NonNull Properties properties, @NonNull String propertyName, @NonNull String[] defaultValue) {
 
 		try {
 			return getStringProperties(properties, propertyName);
@@ -210,13 +211,13 @@ public class MultiModelOperatorUtils {
 		}
 	}
 
-	public static MultiModel getInstanceMIDFromOperatorWithNoParameters() {
+	public static @NonNull MultiModel getInstanceMIDFromOperatorWithNoParameters() {
 
 		//TODO MMINT[OPERATOR] make it better integrated with Operator
 		EditPart editPart = (EditPart) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getAdapter(EditPart.class);
-		MultiModel instanceMid = (MultiModel) ((DiagramEditPart) editPart.getChildren().get(0)).getDiagramView().getElement();
+		MultiModel instanceMID = (MultiModel) ((DiagramEditPart) editPart.getChildren().get(0)).getDiagramView().getElement();
 
-		return instanceMid;
+		return instanceMID;
 	}
 
 }

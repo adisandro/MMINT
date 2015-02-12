@@ -916,8 +916,8 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	protected void addInstance(Model newModel, String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
 
 		boolean externalElement = newModelUri != null;
-		boolean updateMid = containerMultiModel != null;
-		boolean basicElement = !updateMid || !externalElement;
+		boolean updateMID = containerMultiModel != null;
+		boolean basicElement = !updateMID || !externalElement;
 
 		String newModelName = null;
 		String fileExtension = MMINT.EMPTY_MODEL_FILE_EXTENSION;
@@ -931,7 +931,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		else {
 			super.addInstance(newModel, newModelUri, newModelName, containerMultiModel);
 		}
-		if (updateMid) {
+		if (updateMID) {
 			containerMultiModel.getModels().add(newModel);
 		}
 		newModel.setOrigin(origin);
