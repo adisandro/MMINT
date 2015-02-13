@@ -11,15 +11,19 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
-import edu.toronto.cs.se.modelepedia.kleisli.*;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 
 /**
  * <!-- begin-user-doc -->

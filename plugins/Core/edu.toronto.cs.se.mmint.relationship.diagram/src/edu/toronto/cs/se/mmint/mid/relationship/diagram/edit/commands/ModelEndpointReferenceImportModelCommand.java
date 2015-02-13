@@ -14,16 +14,15 @@ package edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.ModelEndpointReferenceCreateCommand;
 
 /**
  * The command to create a model reference by importing an existing model.
@@ -134,7 +133,7 @@ public class ModelEndpointReferenceImportModelCommand extends ModelEndpointRefer
 			throw ee;
 		}
 		catch (Exception e) {
-			MMINTException.print(Type.ERROR, "No model imported", e);
+			MMINTException.print(IStatus.ERROR, "No model imported", e);
 			return CommandResult.newErrorCommandResult("No model imported");
 		}
 	}

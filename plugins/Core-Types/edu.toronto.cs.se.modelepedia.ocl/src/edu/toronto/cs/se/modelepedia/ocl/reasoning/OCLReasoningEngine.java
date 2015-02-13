@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.ocl.reasoning;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -97,7 +98,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 			return checkConstraint(modelObj, oclConstraint);
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.ERROR, "Can't get context for OCL constraint, evaluating to false", e);
+			MMINTException.print(IStatus.ERROR, "Can't get context for OCL constraint, evaluating to false", e);
 			return MAVOTruthValue.FALSE;
 		}
 	}
@@ -125,7 +126,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 			return (ocl.check(modelObj, expression)) ? MAVOTruthValue.TRUE : MAVOTruthValue.FALSE;
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "OCL constraint error, evaluating to false: " + oclConstraint, e);
+			MMINTException.print(IStatus.WARNING, "OCL constraint error, evaluating to false: " + oclConstraint, e);
 			return MAVOTruthValue.FALSE;
 		}
 	}
@@ -151,7 +152,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 			return evaluation;
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.ERROR, "OCL derivation error: " + oclConstraint, e);
+			MMINTException.print(IStatus.ERROR, "OCL derivation error: " + oclConstraint, e);
 			return null;
 		}
 	}

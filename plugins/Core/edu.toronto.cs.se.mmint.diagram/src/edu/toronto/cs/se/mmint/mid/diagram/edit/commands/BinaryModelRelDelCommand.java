@@ -127,7 +127,7 @@ public class BinaryModelRelDelCommand extends DestroyElementCommand {
 			return super.doExecuteWithResult(monitor, info);
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.ERROR, "No binary model relationship deleted", e);
+			MMINTException.print(IStatus.ERROR, "No binary model relationship deleted", e);
 			return CommandResult.newErrorCommandResult("No binary model relationship deleted");
 		}
 	}

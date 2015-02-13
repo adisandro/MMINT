@@ -24,7 +24,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.LinkRefere
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.LinkReferenceChangeModelElementEndpointReferenceCommand;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.BinaryLinkReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementEndpointReferenceEditPart;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.ModelElementReference3ItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementTypes;
 
 /**

@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.mid.diagram.edit.commands;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
@@ -22,7 +23,6 @@ import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.BinaryModelRelReorientCommand;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
@@ -188,7 +188,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.ERROR, "No model endpoint changed", e);
+			MMINTException.print(IStatus.ERROR, "No model endpoint changed", e);
 			return CommandResult.newErrorCommandResult("No model endpoint changed");
 		}
 	}
@@ -217,7 +217,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.ERROR, "No model endpoint changed", e);
+			MMINTException.print(IStatus.ERROR, "No model endpoint changed", e);
 			return CommandResult.newErrorCommandResult("No model endpoint changed");
 		}
 	}

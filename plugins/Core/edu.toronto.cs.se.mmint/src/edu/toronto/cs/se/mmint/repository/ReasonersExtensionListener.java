@@ -14,10 +14,10 @@ package edu.toronto.cs.se.mmint.repository;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IStatus;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the
@@ -43,7 +43,7 @@ public class ReasonersExtensionListener extends MMINTExtensionListener {
 					MMINT.createReasoner(config);
 				}
 				catch (CoreException e) {
-					MMINTException.print(Type.ERROR, "Reasoner can't be created in " + config.getContributor().getName(), e);
+					MMINTException.print(IStatus.ERROR, "Reasoner can't be created in " + config.getContributor().getName(), e);
 				}
 			}
 		}

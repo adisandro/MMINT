@@ -16,11 +16,24 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
@@ -47,20 +60,6 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
 import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
-
-import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EFactory;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * <!-- begin-user-doc -->
@@ -408,7 +407,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					activePage.openEditor(new URIEditorInput(kUri), editorId);
 				}
 				catch (PartInitException e) {
-					MMINTException.print(Type.ERROR, "Error opening extended metamodel file", e);
+					MMINTException.print(IStatus.ERROR, "Error opening extended metamodel file", e);
 				}
 			}
 		}
@@ -526,7 +525,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				MultiModelUtils.createModelFile(kRootModelObj, kModelUri, true);
 			}
 			catch (Exception e) {
-				MMINTException.print(Type.WARNING, "Error creating extended model file, fallback to no extension", e);
+				MMINTException.print(IStatus.WARNING, "Error creating extended model file, fallback to no extension", e);
 			}
 		}
 	}

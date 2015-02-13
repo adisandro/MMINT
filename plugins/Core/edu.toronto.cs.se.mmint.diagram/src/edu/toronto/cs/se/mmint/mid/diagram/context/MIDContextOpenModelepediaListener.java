@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.net.URL;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.ui.PlatformUI;
@@ -42,7 +43,7 @@ public class MIDContextOpenModelepediaListener extends SelectionAdapter {
 			browser.openURL(new URL(url));
 		}
 		catch (Exception ex) {
-			MMINTException.print(MMINTException.Type.ERROR, "Error opening wiki page " + url, ex);
+			MMINTException.print(IStatus.ERROR, "Error opening wiki page " + url, ex);
 		}
 	}
 

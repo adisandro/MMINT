@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
@@ -313,7 +314,7 @@ public class MultiModelConstraintChecker {
 				MultiModelRegistry.subtractEndpointCardinality(oldModelEndpoint.getMetatypeUri(), cardinalityTable);
 			}
 			catch (MMINTException e) {
-				MMINTException.print(MMINTException.Type.WARNING, "The model endpoint to be replaced can't be found in the model relationship, skipping it", e);
+				MMINTException.print(IStatus.WARNING, "The model endpoint to be replaced can't be found in the model relationship, skipping it", e);
 			}
 		}
 		// check allowance
@@ -382,7 +383,7 @@ public class MultiModelConstraintChecker {
 				MultiModelRegistry.subtractEndpointCardinality(oldModelElemEndpointRef.getObject().getMetatypeUri(), cardinalityTable);
 			}
 			catch (MMINTException e) {
-				MMINTException.print(MMINTException.Type.WARNING, "The model element endpoint to be replaced can't be found in the link, skipping it", e);
+				MMINTException.print(IStatus.WARNING, "The model element endpoint to be replaced can't be found in the link, skipping it", e);
 			}
 		}
 		// check allowance
@@ -576,7 +577,7 @@ linkTypes:
 			reasoner = getReasoner(constraint.getLanguage());
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Skipping constraint check", e);
+			MMINTException.print(IStatus.WARNING, "Skipping constraint check", e);
 			return MAVOTruthValue.TRUE;
 		}
 		MIDLevel constraintLevel = (element.getUri().equals(((Model) constraint.eContainer()).getUri())) ? MIDLevel.INSTANCES : MIDLevel.TYPES;
@@ -594,7 +595,7 @@ linkTypes:
 			reasoner = getReasoner(constraintLanguage);
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Skipping constraint consistency check", e);
+			MMINTException.print(IStatus.WARNING, "Skipping constraint consistency check", e);
 			return true;
 		}
 
@@ -613,7 +614,7 @@ linkTypes:
 			reasoner = getReasoner(model.getConstraint().getLanguage());
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Skipping constraint-based refinement", e);
+			MMINTException.print(IStatus.WARNING, "Skipping constraint-based refinement", e);
 			return null;
 		}
 

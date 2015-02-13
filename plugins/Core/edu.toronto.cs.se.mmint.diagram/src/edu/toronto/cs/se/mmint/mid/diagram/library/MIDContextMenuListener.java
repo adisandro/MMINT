@@ -13,10 +13,11 @@ package edu.toronto.cs.se.mmint.mid.diagram.library;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.swt.events.SelectionAdapter;
+
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 
 public class MIDContextMenuListener extends SelectionAdapter {
 
@@ -33,7 +34,7 @@ public class MIDContextMenuListener extends SelectionAdapter {
 			OperationHistoryFactory.getOperationHistory().execute(command, null, null);
 		}
 		catch (ExecutionException ex) {
-			MMINTException.print(Type.ERROR, menuLabel + " command execution error", ex);
+			MMINTException.print(IStatus.ERROR, menuLabel + " command execution error", ex);
 		}
 	}
 

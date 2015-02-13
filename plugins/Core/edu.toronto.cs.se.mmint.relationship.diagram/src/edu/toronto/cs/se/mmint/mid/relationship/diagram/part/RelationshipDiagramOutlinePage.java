@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship.diagram.part;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -23,7 +24,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -117,7 +117,7 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 			resourceSet.getResources().add(model.getEMFInstanceRoot().eResource());
 		}
 		catch (MMINTException e) {
-			MMINTException.print(Type.WARNING, "Can't get model root, skipping addition to outline", e);;
+			MMINTException.print(IStatus.WARNING, "Can't get model root, skipping addition to outline", e);;
 		}
 	}
 

@@ -13,14 +13,16 @@ package edu.toronto.cs.se.modelepedia.z3.mavo;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.eclipse.core.runtime.IStatus;
+
 import com.microsoft.z3.FuncDecl;
 import com.microsoft.z3.FuncInterp;
+import com.microsoft.z3.FuncInterp.Entry;
 import com.microsoft.z3.Model;
 import com.microsoft.z3.Z3Exception;
-import com.microsoft.z3.FuncInterp.Entry;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
@@ -109,7 +111,7 @@ public class Z3MAVOModelParser {
 			}
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(Type.WARNING, "Can't parse Z3 model elements, returning elements so far (possibly none)", e);
+			MMINTException.print(IStatus.WARNING, "Can't parse Z3 model elements, returning elements so far (possibly none)", e);
 		}
 
 		return z3ModelElems;

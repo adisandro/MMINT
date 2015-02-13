@@ -31,7 +31,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.LinkRefere
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ExtendibleElementReferenceSupertypeRefEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementEndpointReference2EditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementEndpointReferenceEditPart;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.LinkReferenceItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementTypes;
 

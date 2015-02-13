@@ -11,11 +11,11 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli;
 
+import org.eclipse.emf.ecore.EObject;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
-
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->

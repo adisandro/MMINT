@@ -18,6 +18,7 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.EList;
@@ -42,7 +43,6 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -213,7 +213,7 @@ public class GMFDiagramUtils {
 				files.add(getModelIFile(diagramFile));
 			}
 			catch (Exception e) {
-				MMINTException.print(Type.WARNING, "Can't add model file of diagram " + diagramFile.getName() + " for gmf transactional command", e);
+				MMINTException.print(IStatus.WARNING, "Can't add model file of diagram " + diagramFile.getName() + " for gmf transactional command", e);
 			}
 		}
 

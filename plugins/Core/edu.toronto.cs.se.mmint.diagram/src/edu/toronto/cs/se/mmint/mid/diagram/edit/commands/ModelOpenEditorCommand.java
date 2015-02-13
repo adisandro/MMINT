@@ -20,6 +20,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -33,7 +34,6 @@ import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
@@ -144,7 +144,7 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 			return CommandResult.newOKCommandResult();
 		}
 		catch (Exception e) {
-			MMINTException.print(Type.ERROR, "No editor associated", e);
+			MMINTException.print(IStatus.ERROR, "No editor associated", e);
 			return CommandResult.newErrorCommandResult("No editor associated");
 		}
 	}

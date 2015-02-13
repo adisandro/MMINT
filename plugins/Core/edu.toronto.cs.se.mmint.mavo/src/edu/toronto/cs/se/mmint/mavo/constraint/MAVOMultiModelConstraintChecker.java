@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint.mavo.constraint;
 
 import java.util.List;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -41,7 +42,7 @@ public class MAVOMultiModelConstraintChecker {
 			reasoner = getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Skipping refinement based on may alternative", e);
+			MMINTException.print(IStatus.WARNING, "Skipping refinement based on may alternative", e);
 			return null;
 		}
 
@@ -56,7 +57,7 @@ public class MAVOMultiModelConstraintChecker {
 			reasoner = getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Skipping refinement based on var domain", e);
+			MMINTException.print(IStatus.WARNING, "Skipping refinement based on var domain", e);
 			return null;
 		}
 
@@ -71,7 +72,7 @@ public class MAVOMultiModelConstraintChecker {
 			reasoner = getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Skipping refinement based on may model object", e);
+			MMINTException.print(IStatus.WARNING, "Skipping refinement based on may model object", e);
 			return null;
 		}
 
@@ -85,7 +86,7 @@ public class MAVOMultiModelConstraintChecker {
 			reasoner = getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Skipping MAVO decision highlighting", e);
+			MMINTException.print(IStatus.WARNING, "Skipping MAVO decision highlighting", e);
 			return;
 		}
 
@@ -99,7 +100,7 @@ public class MAVOMultiModelConstraintChecker {
 			reasoner = getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Skipping MAVO collection highlighting", e);
+			MMINTException.print(IStatus.WARNING, "Skipping MAVO collection highlighting", e);
 			return;
 		}
 
@@ -113,7 +114,7 @@ public class MAVOMultiModelConstraintChecker {
 			reasoner = getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Skipping MAVO element highlighting", e);
+			MMINTException.print(IStatus.WARNING, "Skipping MAVO element highlighting", e);
 			return;
 		}
 

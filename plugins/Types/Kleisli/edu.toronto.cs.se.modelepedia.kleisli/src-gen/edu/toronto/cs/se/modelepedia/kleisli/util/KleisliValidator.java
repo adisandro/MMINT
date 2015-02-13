@@ -11,15 +11,22 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.util;
 
-import edu.toronto.cs.se.mmint.mid.relationship.util.RelationshipValidator;
-import edu.toronto.cs.se.mmint.mid.util.MIDValidator;
-import edu.toronto.cs.se.modelepedia.kleisli.*;
 import java.util.Map;
+
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+
+import edu.toronto.cs.se.mmint.mid.relationship.util.RelationshipValidator;
+import edu.toronto.cs.se.mmint.mid.util.MIDValidator;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 
 /**
  * <!-- begin-user-doc -->

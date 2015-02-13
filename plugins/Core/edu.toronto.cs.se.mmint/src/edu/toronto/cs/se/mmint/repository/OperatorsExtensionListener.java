@@ -13,11 +13,11 @@ package edu.toronto.cs.se.mmint.repository;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IStatus;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
 /**
@@ -44,7 +44,7 @@ public class OperatorsExtensionListener extends MMINTExtensionListener {
 					MMINT.createOperatorType(config);
 				}
 				catch (MMINTException e) {
-					MMINTException.print(Type.ERROR, "Operator type can't be created in " + config.getContributor().getName(), e);
+					MMINTException.print(IStatus.ERROR, "Operator type can't be created in " + config.getContributor().getName(), e);
 				}
 			}
 		}

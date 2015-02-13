@@ -17,8 +17,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.ModelEndpointReference2ItemSemanticEditPolicy;
-
 /**
  * The semantic edit policy for model references.
  * 

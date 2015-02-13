@@ -14,6 +14,8 @@ package edu.toronto.cs.se.modelepedia.z3;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
+
 import com.microsoft.z3.BoolExpr;
 import com.microsoft.z3.Context;
 import com.microsoft.z3.Model;
@@ -22,7 +24,6 @@ import com.microsoft.z3.Status;
 import com.microsoft.z3.Z3Exception;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 
 public class Z3Solver {
@@ -48,7 +49,7 @@ public class Z3Solver {
 			return Z3Bool.toZ3Bool(status);
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result", e);
+			MMINTException.print(IStatus.WARNING, "Z3 problem, returning unknown result", e);
 			return Z3Bool.UNKNOWN;
 		}
 	}
@@ -69,7 +70,7 @@ public class Z3Solver {
 			return new Z3Model(status, model);
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result", e);
+			MMINTException.print(IStatus.WARNING, "Z3 problem, returning unknown result", e);
 			return new Z3Model(Status.UNKNOWN, null);
 		}
 	}

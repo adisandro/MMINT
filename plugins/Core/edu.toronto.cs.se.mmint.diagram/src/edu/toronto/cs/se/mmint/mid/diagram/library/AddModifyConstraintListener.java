@@ -18,6 +18,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -26,7 +27,6 @@ import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
@@ -95,7 +95,7 @@ public class AddModifyConstraintListener extends MIDContextMenuListener {
 				return CommandResult.newCancelledCommandResult();
 			}
 			catch (MMINTException e) {
-				MMINTException.print(Type.ERROR, "No constraint added", e);
+				MMINTException.print(IStatus.ERROR, "No constraint added", e);
 				return CommandResult.newErrorCommandResult("No constraint added");
 			}
 		}

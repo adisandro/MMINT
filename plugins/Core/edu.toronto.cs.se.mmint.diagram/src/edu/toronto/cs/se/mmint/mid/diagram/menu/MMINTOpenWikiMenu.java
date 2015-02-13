@@ -16,12 +16,12 @@ import java.net.URL;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.browser.IWebBrowser;
 import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 
 public class MMINTOpenWikiMenu extends AbstractHandler {
 	
@@ -36,7 +36,7 @@ public class MMINTOpenWikiMenu extends AbstractHandler {
 			browser.openURL(new URL(WIKI_WWW));
 		}
 		catch (Exception ex) {
-			MMINTException.print(Type.ERROR, "Error opening wiki page " + WIKI_WWW, ex);
+			MMINTException.print(IStatus.ERROR, "Error opening wiki page " + WIKI_WWW, ex);
 		}
 
 		return null;

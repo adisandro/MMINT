@@ -17,6 +17,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -82,7 +83,7 @@ public class MIDContextCastTypeListener extends MIDContextMenuListener {
 							modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelElem.getEMFInstanceObject());
 						}
 						catch (MMINTException e) {
-							MMINTException.print(MMINTException.Type.WARNING, "Can't get model object, skipping model element cast", e);
+							MMINTException.print(IStatus.WARNING, "Can't get model object, skipping model element cast", e);
 							continue;
 						}
 						if (modelElemType != null) {

@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.java.reasoning;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -41,7 +42,7 @@ public class JavaReasoningEngine implements IReasoningEngine {
 			return javaConstraint.validate(model);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.ERROR, "Java constraint error, evaluating to false: " + javaClassName, e);
+			MMINTException.print(IStatus.ERROR, "Java constraint error, evaluating to false: " + javaClassName, e);
 			return MAVOTruthValue.FALSE;
 		}
 	}

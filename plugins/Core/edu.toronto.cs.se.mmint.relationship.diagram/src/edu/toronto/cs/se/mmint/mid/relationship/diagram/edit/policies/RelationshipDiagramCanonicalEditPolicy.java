@@ -13,8 +13,6 @@ package edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies;
 
 import org.eclipse.emf.common.notify.Notification;
 
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.ModelRelCanonicalEditPolicy;
-
 /**
  * The canonical edit policy for the Relationship diagram (i.e. a model
  * relationship).

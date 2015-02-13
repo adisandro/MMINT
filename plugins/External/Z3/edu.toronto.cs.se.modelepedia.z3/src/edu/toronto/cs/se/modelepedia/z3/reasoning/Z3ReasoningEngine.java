@@ -15,6 +15,7 @@ package edu.toronto.cs.se.modelepedia.z3.reasoning;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -37,11 +38,11 @@ import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
-import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
-import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
+import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
 import edu.toronto.cs.se.modelepedia.z3.mavo.MAVOConcretizationHighlighter;
 import edu.toronto.cs.se.modelepedia.z3.mavo.MAVORefiner;
@@ -99,7 +100,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			z3ModelParser = generateSMTLIBEncoding(model);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.ERROR, "Can't generate SMTLIB encoding, evaluating to false", e);
+			MMINTException.print(IStatus.ERROR, "Can't generate SMTLIB encoding, evaluating to false", e);
 			return MAVOTruthValue.FALSE;
 		}
 		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), constraint.getImplementation());
@@ -126,7 +127,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			highlighter.highlightMAVOCounterExample(modelDiagram, z3ModelParser.getZ3MAVOModelElements(z3NotConstraintModel));
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Can't highlight concretization, skipping it", e);
+			MMINTException.print(IStatus.WARNING, "Can't highlight concretization, skipping it", e);
 		}
 
 		return constraintTruthValue;
@@ -173,14 +174,14 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			z3ModelParser = generateSMTLIBEncoding(model);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.ERROR, "Can't generate SMTLIB encoding, aborting refinement", e);
+			MMINTException.print(IStatus.ERROR, "Can't generate SMTLIB encoding, aborting refinement", e);
 			return null;
 		}
 		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), model.getConstraint().getImplementation());
 
 		// refine if: maybe
 		if (constraintTruthValue != MAVOTruthValue.MAYBE) {
-			MMINTException.print(MMINTException.Type.ERROR, "The constraint is not MAYBE, aborting refinement", null);
+			MMINTException.print(IStatus.ERROR, "The constraint is not MAYBE, aborting refinement", null);
 			return null;
 		}
 
@@ -192,7 +193,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			return refiner.refine(model, modelDiagram, null, smtEncoding);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.ERROR, "Can't refine the model by constraint, aborting (some incomplete result could appear in your instance MID)", e);
+			MMINTException.print(IStatus.ERROR, "Can't refine the model by constraint, aborting (some incomplete result could appear in your instance MID)", e);
 			return null;
 		}
 	}
@@ -231,7 +232,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			smtEncoding = generateMayRefinementSMTLIBEncoding(model, mayLogicElems);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.ERROR, "Can't generate SMTLIB encoding, aborting refinement", e);
+			MMINTException.print(IStatus.ERROR, "Can't generate SMTLIB encoding, aborting refinement", e);
 			return null;
 		}
 
@@ -242,7 +243,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			return refiner.refine(model, modelDiagram, mayAlternative, smtEncoding);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.ERROR, "Can't refine the model by may alternative, aborting (some incomplete result could appear in your instance MID)", e);
+			MMINTException.print(IStatus.ERROR, "Can't refine the model by may alternative, aborting (some incomplete result could appear in your instance MID)", e);
 			return null;
 		}
 	}
@@ -255,7 +256,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			smtEncoding = generateMayRefinementSMTLIBEncoding(model, mayModelObjs);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.ERROR, "Can't generate SMTLIB encoding, aborting refinement", e);
+			MMINTException.print(IStatus.ERROR, "Can't generate SMTLIB encoding, aborting refinement", e);
 			return null;
 		}
 
@@ -266,7 +267,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			return refiner.refine(model, modelDiagram, null, smtEncoding);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.ERROR, "Can't refine the model by may model objects, aborting (some incomplete result could appear in your instance MID)", e);
+			MMINTException.print(IStatus.ERROR, "Can't refine the model by may model objects, aborting (some incomplete result could appear in your instance MID)", e);
 			return null;
 		}
 	}
@@ -288,7 +289,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			highlighter.highlight(modelDiagram, mavoDecision);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Can't highlight MAVO decision, skipping it", e);
+			MMINTException.print(IStatus.WARNING, "Can't highlight MAVO decision, skipping it", e);
 		}
 	}
 
@@ -300,7 +301,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			highlighter.highlight(modelDiagram, mavoCollection);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Can't highlight MAVO collection, skipping it", e);
+			MMINTException.print(IStatus.WARNING, "Can't highlight MAVO collection, skipping it", e);
 		}
 	}
 
@@ -312,7 +313,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			highlighter.highlight(modelDiagram, mavoModelObj);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Can't highlight MAVO element, skipping it", e);
+			MMINTException.print(IStatus.WARNING, "Can't highlight MAVO element, skipping it", e);
 		}
 	}
 

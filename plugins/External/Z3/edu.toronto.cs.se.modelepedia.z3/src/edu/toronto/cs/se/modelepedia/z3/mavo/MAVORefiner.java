@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -32,9 +33,8 @@ import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
-import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -91,7 +91,7 @@ public class MAVORefiner {
 				refinedModelObj = (MAVOElement) MultiModelTypeIntrospection.getPointer(refinedResource, refinedModelObjUri);
 			}
 			catch (Exception e) {
-				MMINTException.print(Type.WARNING, "Can't get model object " + refinedModelObjUri + ", skipping it", e);
+				MMINTException.print(IStatus.WARNING, "Can't get model object " + refinedModelObjUri + ", skipping it", e);
 				continue;
 			}
 			modelObjsToRefine.put(refinedModelObj.getFormulaVariable(), refinedModelObj);
@@ -125,7 +125,7 @@ public class MAVORefiner {
 				smtConstraint = reasoner.getSMTLIBMAVOModelObjectEncoding(modelObj, true);
 			}
 			catch (MMINTException e) {
-				MMINTException.print(Type.WARNING, "Can't generate SMTLIB encoding for the current mavo model object, skipping it", e);
+				MMINTException.print(IStatus.WARNING, "Can't generate SMTLIB encoding for the current mavo model object, skipping it", e);
 				continue;
 			}
 			MAVOTruthValue refinedTruthValue = reasoner.checkMAVOConstraintEncodingLoaded(z3IncSolver, smtConstraint);
@@ -210,7 +210,7 @@ public class MAVORefiner {
 				refinementLinkRef.getObject().setName(linkName);
 			}
 			catch (MMINTException e) {
-				MMINTException.print(Type.WARNING, "Can't create refinement link", e);
+				MMINTException.print(IStatus.WARNING, "Can't create refinement link", e);
 			}
 		}
 	}
@@ -254,7 +254,7 @@ public class MAVORefiner {
 		Model refinedModel = model.getMetatype().createMAVOInstance(refinedModelUri, ModelOrigin.CREATED, instanceMID);
 		ModelRel modelRelType = MultiModelTypeRegistry.getType(MODELRELTYPE_URI);
 		if (modelRelType == null) {
-			MMINTException.print(Type.WARNING, "Can't find " + MODELRELTYPE_URI + " type, fallback to root ModelRel type", null);
+			MMINTException.print(IStatus.WARNING, "Can't find " + MODELRELTYPE_URI + " type, fallback to root ModelRel type", null);
 			modelRelType = MultiModelTypeHierarchy.getRootModelRelType();
 		}
 		EList<Model> modelEndpoints = new BasicEList<Model>();

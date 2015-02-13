@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -25,7 +26,6 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
@@ -142,7 +142,7 @@ public class MAVOUtils {
 			return isMAVOModel(model.getEMFInstanceRoot());
 		}
 		catch (MMINTException e) {
-			MMINTException.print(Type.WARNING, "Can't get model root object, skipping MAVO evaluation", e);
+			MMINTException.print(IStatus.WARNING, "Can't get model root object, skipping MAVO evaluation", e);
 			return false;
 		}
 	}
@@ -153,7 +153,7 @@ public class MAVOUtils {
 			return isMAVOElement(modelElem.getEMFInstanceObject());
 		}
 		catch (MMINTException e) {
-			MMINTException.print(Type.WARNING, "Can't get model object, skipping MAVO evaluation", e);
+			MMINTException.print(IStatus.WARNING, "Can't get model object, skipping MAVO evaluation", e);
 			return false;
 		}
 	}

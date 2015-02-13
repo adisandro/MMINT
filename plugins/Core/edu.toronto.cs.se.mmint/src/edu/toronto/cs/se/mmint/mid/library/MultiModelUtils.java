@@ -26,6 +26,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -272,7 +273,7 @@ public class MultiModelUtils {
 			Files.deleteIfExists(filePath);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "File " + fileUri + " not deleted", e);
+			MMINTException.print(IStatus.WARNING, "File " + fileUri + " not deleted", e);
 		}
 	}
 
@@ -321,7 +322,7 @@ public class MultiModelUtils {
 			});
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Directory " + directoryUri + " not deleted", e);
+			MMINTException.print(IStatus.WARNING, "Directory " + directoryUri + " not deleted", e);
 		}
 	}
 

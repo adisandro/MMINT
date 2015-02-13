@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.annotation.NonNull;
 
 import com.microsoft.z3.BoolExpr;
@@ -29,7 +30,6 @@ import com.microsoft.z3.Symbol;
 import com.microsoft.z3.Z3Exception;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 
 public class Z3IncrementalSolver {
@@ -95,7 +95,7 @@ public class Z3IncrementalSolver {
 			return runCheckSatAndGetModel(smtEncoding);
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result and resetting the solver", e);
+			MMINTException.print(IStatus.WARNING, "Z3 problem, returning unknown result and resetting the solver", e);
 			reset();
 			return new Z3Model(Status.UNKNOWN, null);
 		}
@@ -105,7 +105,7 @@ public class Z3IncrementalSolver {
 	public @NonNull Z3Model checkSatAndGetModel(@NonNull String smtEncoding, @NonNull Z3IncrementalBehavior incBehavior) {
 
 		if (models.isEmpty()) {
-			MMINTException.print(Type.WARNING, "No incremental model found, invoking firstCheckSatAndGetModel() instead", null);
+			MMINTException.print(IStatus.WARNING, "No incremental model found, invoking firstCheckSatAndGetModel() instead", null);
 			return firstCheckSatAndGetModel(smtEncoding);
 		}
 
@@ -140,7 +140,7 @@ public class Z3IncrementalSolver {
 			return z3ModelResult;
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(Type.WARNING, "Z3 problem, returning unknown result and resetting the solver", e);
+			MMINTException.print(IStatus.WARNING, "Z3 problem, returning unknown result and resetting the solver", e);
 			reset();
 			return new Z3Model(Status.UNKNOWN, null);
 		}
@@ -162,7 +162,7 @@ public class Z3IncrementalSolver {
 			models.remove(models.size()-1);
 		}
 		catch (Z3Exception e) {
-			MMINTException.print(Type.WARNING, "Z3 problem, resetting the solver", e);
+			MMINTException.print(IStatus.WARNING, "Z3 problem, resetting the solver", e);
 			reset();
 		}
 	}

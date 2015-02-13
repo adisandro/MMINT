@@ -11,10 +11,10 @@
  */
 package edu.toronto.cs.se.modelepedia.uml.constraint;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gmf.runtime.notation.Diagram;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
@@ -35,7 +35,7 @@ public abstract class UMLModelConstraint implements IJavaModelConstraint {
 			return (diagram.getType().equals(modelTypeName)) ? MAVOTruthValue.TRUE : MAVOTruthValue.FALSE;
 		}
 		catch (Exception e) {
-			MMINTException.print(Type.ERROR, "Can't get diagram root, skipping validation", e);
+			MMINTException.print(IStatus.ERROR, "Can't get diagram root, skipping validation", e);
 			return MAVOTruthValue.FALSE;
 		}
 	}

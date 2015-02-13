@@ -25,6 +25,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -142,7 +143,7 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 			}
 		}
 		catch (CoreException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Can't delete EMFtoCSP temporary project", e);
+			MMINTException.print(IStatus.WARNING, "Can't delete EMFtoCSP temporary project", e);
 		}
 	}
 
@@ -154,7 +155,7 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 			modelTypeObj = (EPackage) getConstraintContext(modelType, oclConstraint, MIDLevel.TYPES);
 		}
 		catch (MMINTException e) {
-			MMINTException.print(MMINTException.Type.ERROR, "Can't get context for OCL constraint, evaluating to false", e);
+			MMINTException.print(IStatus.ERROR, "Can't get context for OCL constraint, evaluating to false", e);
 			return false;
 		}
 		String modelTypeName = modelType.getName();
@@ -220,7 +221,7 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 			MultiModelUtils.createModelFile(flatModelTypeObj, flatUri, true);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Can't create EMFtoCSP temporary project, skipping consistency check", e);
+			MMINTException.print(IStatus.WARNING, "Can't create EMFtoCSP temporary project, skipping consistency check", e);
 			cleanupCheckOCLConstraintConsistency(tempProject);
 			return true;
 		}
@@ -273,7 +274,7 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 			importsFolder = new File(FileLocator.toFileURL(FrameworkUtil.getBundle(fr.inria.atlanmod.emftocsp.eclipsecs.EclipseSolver.class).getEntry("/libs")).getFile());
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Can't find EMFtoCSP libs, skipping consistency check", e);
+			MMINTException.print(IStatus.WARNING, "Can't find EMFtoCSP libs, skipping consistency check", e);
 			cleanupCheckOCLConstraintConsistency(tempProject);
 			return true;
 		}
@@ -293,7 +294,7 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 			isConsistent = modelSolver.solveModel(libList);
 		}
 		catch (ProcessingException e) {
-			MMINTException.print(MMINTException.Type.WARNING, "EMFtoCSP processing error, skipping consistency check", e);
+			MMINTException.print(IStatus.WARNING, "EMFtoCSP processing error, skipping consistency check", e);
 		}
 		finally {
 			EPackage.Registry.INSTANCE.put(flatModelTypeObj.getNsURI(), modelTypeObjToRestore); // EMFtoCSP messed this up, restore it

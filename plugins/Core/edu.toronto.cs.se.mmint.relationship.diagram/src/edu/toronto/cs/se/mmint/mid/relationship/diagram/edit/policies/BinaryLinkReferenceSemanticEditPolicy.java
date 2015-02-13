@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.BinaryLinkReferenceDelCommand;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.BinaryLinkReferenceItemSemanticEditPolicy;
 
 public class BinaryLinkReferenceSemanticEditPolicy extends BinaryLinkReferenceItemSemanticEditPolicy {
 

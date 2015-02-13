@@ -20,6 +20,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -36,7 +37,6 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
@@ -101,7 +101,7 @@ coherence:
 						IComparisonScope scope = new DefaultComparisonScope(resourceSet, resourceSet2, null);
 						Comparison comparison = EMFCompare.builder().build().compare(scope);
 						if (!comparison.getDifferences().isEmpty()) {
-							MMINTException.print(Type.ERROR, "The type system is not coherent", new MMINTException("The following conversion paths yield different results: " + conversionPaths));
+							MMINTException.print(IStatus.ERROR, "The type system is not coherent", new MMINTException("The following conversion paths yield different results: " + conversionPaths));
 							break coherence;
 						}
 					}
@@ -116,7 +116,7 @@ coherence:
 				return CommandResult.newOKCommandResult();
 			}
 			catch (Exception e) {
-				MMINTException.print(Type.ERROR, "Coherence check execution error", e);
+				MMINTException.print(IStatus.ERROR, "Coherence check execution error", e);
 				return CommandResult.newErrorCommandResult("Coherence check execution error");
 			}
 		}

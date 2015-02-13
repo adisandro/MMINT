@@ -16,6 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
@@ -26,7 +27,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -112,7 +112,7 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 					MultiModelUtils.setModelObjFeature(modelObjReferrer, kModelElemTypeEInfo.getFeatureName(), kModelObj);
 				}
 				catch (MMINTException e) {
-					MMINTException.print(Type.WARNING, "Error setting model object feature, skipping it", e);
+					MMINTException.print(IStatus.WARNING, "Error setting model object feature, skipping it", e);
 				}
 			}
 			i++;
@@ -133,7 +133,7 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 				MultiModelUtils.setModelObjFeature(kModelObj, kModelElemTypeEInfo.getFeatureName(), kModelObjAttr);
 			}
 			catch (MMINTException e) {
-				MMINTException.print(Type.WARNING, "Error setting model object feature, skipping it", e);
+				MMINTException.print(IStatus.WARNING, "Error setting model object feature, skipping it", e);
 			}
 		}
 	}

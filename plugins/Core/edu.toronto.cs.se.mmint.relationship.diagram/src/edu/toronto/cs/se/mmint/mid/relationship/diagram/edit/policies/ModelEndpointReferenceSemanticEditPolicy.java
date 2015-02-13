@@ -25,7 +25,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.ModelEndpointReferenceDelCommand;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelEndpointReferenceEditPart;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.ModelEndpointReferenceItemSemanticEditPolicy;
 
 /**
  * The semantic edit policy for model references.

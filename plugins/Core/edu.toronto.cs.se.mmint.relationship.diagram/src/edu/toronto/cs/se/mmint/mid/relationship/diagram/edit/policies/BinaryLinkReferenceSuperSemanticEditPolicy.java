@@ -18,8 +18,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.BinaryLinkReference2ItemSemanticEditPolicy;
-
 public class BinaryLinkReferenceSuperSemanticEditPolicy extends BinaryLinkReference2ItemSemanticEditPolicy {
 
 	@Override

@@ -13,11 +13,12 @@ package edu.toronto.cs.se.mmint.repository;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IStatus;
+
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 
 /**
@@ -45,7 +46,7 @@ public class EditorsExtensionListener extends MMINTExtensionListener {
 					MultiModelHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
 				}
 				catch (MMINTException e) {
-					MMINTException.print(Type.ERROR, "Editor type can't be created in " + config.getContributor().getName(), e);
+					MMINTException.print(IStatus.ERROR, "Editor type can't be created in " + config.getContributor().getName(), e);
 				}
 			}
 		}

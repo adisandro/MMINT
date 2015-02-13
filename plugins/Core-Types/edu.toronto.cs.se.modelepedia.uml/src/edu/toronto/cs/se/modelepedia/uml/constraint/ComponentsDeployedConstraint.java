@@ -11,11 +11,11 @@
  */
 package edu.toronto.cs.se.modelepedia.uml.constraint;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.PackageableElement;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
@@ -34,7 +34,7 @@ public class ComponentsDeployedConstraint implements IJavaModelConstraint {
 			srcUmlModel = (org.eclipse.uml2.uml.Model) deplRel.getSourceModel().getEMFInstanceRoot();
 		}
 		catch (MMINTException e) {
-			MMINTException.print(Type.ERROR, "Can't get model root, skipping validation", e);
+			MMINTException.print(IStatus.ERROR, "Can't get model root, skipping validation", e);
 			return MAVOTruthValue.FALSE;
 		}
 		for (PackageableElement umlModelObj : srcUmlModel.getPackagedElements()) {

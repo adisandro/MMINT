@@ -22,6 +22,7 @@ import java.util.Set;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
@@ -30,7 +31,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.osgi.service.prefs.BackingStoreException;
 
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
@@ -230,7 +230,7 @@ public class MMINT implements MMINTConstants {
 						);
 					}
 					catch (Exception e) {
-						MMINTException.print(Type.WARNING, "Model element type can't be created", e);
+						MMINTException.print(IStatus.WARNING, "Model element type can't be created", e);
 						continue;
 					}
 				}
@@ -255,7 +255,7 @@ public class MMINT implements MMINTConstants {
 				);
 			}
 			catch (Exception e) {
-				MMINTException.print(Type.WARNING, "Link type can't be created", e);
+				MMINTException.print(IStatus.WARNING, "Link type can't be created", e);
 				continue;
 			}
 			// binary link type
@@ -553,7 +553,7 @@ public class MMINT implements MMINTConstants {
 			}
 		}
 		catch (MMINTException e) {
-			MMINTException.print(Type.WARNING, "Dynamic type " + dynamicModelType.getName() + " can't be recreated", e);
+			MMINTException.print(IStatus.WARNING, "Dynamic type " + dynamicModelType.getName() + " can't be recreated", e);
 		}
 
 		return newModelType;
@@ -570,7 +570,7 @@ public class MMINT implements MMINTConstants {
 			multiModel = (MultiModel) MultiModelUtils.getModelFileInState(TYPEMID_FILENAME);
 		}
 		catch (Exception e) {
-			MMINTException.print(Type.WARNING, "No previous Type MID found, skipping dynamic types", e);
+			MMINTException.print(IStatus.WARNING, "No previous Type MID found, skipping dynamic types", e);
 			return;
 		}
 
@@ -643,7 +643,7 @@ public class MMINT implements MMINTConstants {
 				bundleTable.put(modelType.getUri(), config.getContributor().getName());
 			}
 			catch (MMINTException e) {
-				MMINTException.print(Type.ERROR, "Model type can't be created in " + config.getContributor().getName(), e);
+				MMINTException.print(IStatus.ERROR, "Model type can't be created in " + config.getContributor().getName(), e);
 			}
 		}
 		// model relationship types
@@ -656,7 +656,7 @@ public class MMINT implements MMINTConstants {
 				bundleTable.put(modelRelType.getUri(), config.getContributor().getName());
 			}
 			catch (Exception e) {
-				MMINTException.print(Type.ERROR, "Model relationship type can't be created in " + config.getContributor().getName(), e);
+				MMINTException.print(IStatus.ERROR, "Model relationship type can't be created in " + config.getContributor().getName(), e);
 			}
 		}
 		// editor types
@@ -670,7 +670,7 @@ public class MMINT implements MMINTConstants {
 				MultiModelHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
 			}
 			catch (MMINTException e) {
-				MMINTException.print(Type.ERROR, "Editor type can't be created in " + config.getContributor().getName(), e);
+				MMINTException.print(IStatus.ERROR, "Editor type can't be created in " + config.getContributor().getName(), e);
 			}
 		}
 		// operator types
@@ -682,7 +682,7 @@ public class MMINT implements MMINTConstants {
 				createOperatorType(config);
 			}
 			catch (MMINTException e) {
-				MMINTException.print(Type.ERROR, "Operator type can't be created in " + config.getContributor().getName(), e);
+				MMINTException.print(IStatus.ERROR, "Operator type can't be created in " + config.getContributor().getName(), e);
 			}
 		}
 		// dynamic types from last shutdown
@@ -695,7 +695,7 @@ public class MMINT implements MMINTConstants {
 				createReasoner(config);
 			}
 			catch (CoreException e) {
-				MMINTException.print(Type.ERROR, "Reasoner can't be created in " + config.getContributor().getName(), e);
+				MMINTException.print(IStatus.ERROR, "Reasoner can't be created in " + config.getContributor().getName(), e);
 			}
 		}
 
@@ -759,7 +759,7 @@ public class MMINT implements MMINTConstants {
 			MultiModelUtils.createModelFileInState(repository, TYPEMID_FILENAME);
 		}
 		catch (Exception e) {
-			MMINTException.print(Type.ERROR, "Error creating Type MID file", e);
+			MMINTException.print(IStatus.ERROR, "Error creating Type MID file", e);
 		}
 	}
 

@@ -14,12 +14,12 @@ package edu.toronto.cs.se.mmint.mid.diagram.edit.commands;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
@@ -95,7 +95,7 @@ public class ModelRelRemoveModelEndpointCommand extends DestroyElementCommand {
 			return super.doExecuteWithResult(monitor, info);
 		}
 		catch (MMINTException e) {
-			MMINTException.print(Type.ERROR, "No model endpoint deleted", e);
+			MMINTException.print(IStatus.ERROR, "No model endpoint deleted", e);
 			return CommandResult.newErrorCommandResult("No model endpoint deleted");
 		}
 	}

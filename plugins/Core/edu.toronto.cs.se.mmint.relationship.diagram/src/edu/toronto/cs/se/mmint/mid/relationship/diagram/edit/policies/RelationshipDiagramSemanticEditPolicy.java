@@ -16,7 +16,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.LinkReferenceNewNaryLinkCommand;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.ModelEndpointReferenceImportModelCommand;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.ModelRelItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementTypes;
 
 /**

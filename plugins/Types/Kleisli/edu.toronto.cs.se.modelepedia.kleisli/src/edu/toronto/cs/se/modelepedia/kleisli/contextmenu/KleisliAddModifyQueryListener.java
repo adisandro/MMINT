@@ -22,8 +22,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.swt.events.SelectionEvent;
+
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.diagram.library.AddModifyConstraintListener;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
@@ -60,7 +60,7 @@ public class KleisliAddModifyQueryListener extends AddModifyConstraintListener {
 			CommandResult result = super.doExecuteWithResult(monitor, info);
 			if (result.getStatus().getSeverity() == IStatus.OK) {
 				if (!element.getConstraint().getLanguage().equals(KleisliReasoningEngine.LANGUAGE_ID)) {
-					MMINTException.print(Type.ERROR, "The query language is not " + KleisliReasoningEngine.LANGUAGE_ID, null);
+					MMINTException.print(IStatus.ERROR, "The query language is not " + KleisliReasoningEngine.LANGUAGE_ID, null);
 					result = CommandResult.newErrorCommandResult("No kleisli query added");
 				}
 			}

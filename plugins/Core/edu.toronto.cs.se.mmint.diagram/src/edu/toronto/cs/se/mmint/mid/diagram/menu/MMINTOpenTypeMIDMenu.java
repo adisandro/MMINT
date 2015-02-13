@@ -17,11 +17,11 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IStatus;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTActivator;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditor;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
@@ -43,7 +43,7 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 			GMFDiagramUtils.openGMFDiagram(midDiagramUri, MIDDiagramEditor.ID, false);
 		}
 		catch (Exception e) {
-			MMINTException.print(Type.ERROR, "Error opening Type MID diagram", e);
+			MMINTException.print(IStatus.ERROR, "Error opening Type MID diagram", e);
 		}
 
 		return null;
@@ -58,7 +58,7 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 			GMFDiagramUtils.createGMFDiagram(midModelUri, midDiagramUri, MultiModelEditPart.MODEL_ID, MIDDiagramEditorPlugin.ID, false);
 		}
 		catch (Exception e) {
-			MMINTException.print(Type.ERROR, "Error creating Type MID diagram", e);
+			MMINTException.print(IStatus.ERROR, "Error creating Type MID diagram", e);
 		}
 	}
 

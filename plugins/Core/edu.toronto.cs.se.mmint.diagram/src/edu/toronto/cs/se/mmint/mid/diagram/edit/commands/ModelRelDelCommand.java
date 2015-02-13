@@ -21,7 +21,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
@@ -126,7 +125,7 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 			return super.doExecuteWithResult(monitor, info);
 		}
 		catch (MMINTException e) {
-			MMINTException.print(Type.ERROR, "No model relationship deleted", e);
+			MMINTException.print(IStatus.ERROR, "No model relationship deleted", e);
 			return CommandResult.newErrorCommandResult("No model relationship deleted");
 		}
 	}

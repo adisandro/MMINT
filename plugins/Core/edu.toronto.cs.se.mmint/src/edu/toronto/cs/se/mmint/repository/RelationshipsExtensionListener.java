@@ -13,11 +13,11 @@ package edu.toronto.cs.se.mmint.repository;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IStatus;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -44,7 +44,7 @@ public class RelationshipsExtensionListener extends MMINTExtensionListener {
 					MMINT.createModelRelType(config);
 				}
 				catch (Exception e) {
-					MMINTException.print(Type.ERROR, "Model relationship type can't be created in " + config.getContributor().getName(), e);
+					MMINTException.print(IStatus.ERROR, "Model relationship type can't be created in " + config.getContributor().getName(), e);
 				}
 			}
 		}

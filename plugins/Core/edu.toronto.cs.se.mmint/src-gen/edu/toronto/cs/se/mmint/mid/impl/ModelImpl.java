@@ -19,7 +19,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
@@ -45,6 +44,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -730,7 +730,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				newModelType.setFileExtension(MultiModelTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION);
 			}
 			catch (Exception e) {
-				MMINTException.print(Type.WARNING, "Error creating extended metamodel file, fallback to no extension", e);
+				MMINTException.print(IStatus.WARNING, "Error creating extended metamodel file, fallback to no extension", e);
 				newModelType.setFileExtension(getFileExtension());
 				isMetamodelExtension = false;
 			}
@@ -1061,7 +1061,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 						true
 					);
 				} catch (Exception e) {
-					MMINTException.print(Type.WARNING, "Error copying diagram file, skipping it", e);
+					MMINTException.print(IStatus.WARNING, "Error copying diagram file, skipping it", e);
 					continue;
 				}
 				//TODO MMINT[UML] add support for notation extra file (e.g. in UML)

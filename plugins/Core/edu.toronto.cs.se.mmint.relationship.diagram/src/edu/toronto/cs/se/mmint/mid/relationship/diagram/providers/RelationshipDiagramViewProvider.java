@@ -52,7 +52,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.WrappingLabel
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.WrappingLabel8EditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.WrappingLabel9EditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDViewProvider;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 public class RelationshipDiagramViewProvider extends MIDViewProvider {

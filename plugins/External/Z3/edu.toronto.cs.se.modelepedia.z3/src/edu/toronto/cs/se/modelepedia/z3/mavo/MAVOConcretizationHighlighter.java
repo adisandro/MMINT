@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
 
@@ -29,7 +30,6 @@ import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.MayDecisionLogic;
 import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
@@ -144,7 +144,7 @@ public class MAVOConcretizationHighlighter {
 			GMFDiagramUtils.colorDiagramElement(diagramView, color, fontColor);
 		}
 		catch (MMINTException e) {
-			MMINTException.print(Type.WARNING, "Can't color diagram element, skipping it", e);
+			MMINTException.print(IStatus.WARNING, "Can't color diagram element, skipping it", e);
 		}
 	}
 

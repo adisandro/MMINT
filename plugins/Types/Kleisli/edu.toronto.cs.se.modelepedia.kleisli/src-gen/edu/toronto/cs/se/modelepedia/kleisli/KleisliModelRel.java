@@ -11,12 +11,12 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-
-import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
  * <!-- begin-user-doc -->

@@ -31,6 +31,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -639,7 +640,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 				newInstance(shell, wizard);
 		}
 		catch (Exception e) {
-			MMINTException.print(MMINTException.Type.WARNING, "Custom editor creation wizard not found: " + wizardDialogClassName + " , using default as fallback", e);
+			MMINTException.print(IStatus.WARNING, "Custom editor creation wizard not found: " + wizardDialogClassName + " , using default as fallback", e);
 			wizDialog = new EditorCreationWizardDialog(shell, wizard);
 		}
 

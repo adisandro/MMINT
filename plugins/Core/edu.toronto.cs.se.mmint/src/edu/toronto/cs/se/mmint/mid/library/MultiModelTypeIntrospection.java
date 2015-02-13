@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -27,7 +28,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINTException.Type;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -115,7 +115,7 @@ public class MultiModelTypeIntrospection {
 				rootModelObj = ((Model) element).getEMFInstanceRoot();
 			}
 			catch (MMINTException e) {
-				MMINTException.print(Type.WARNING, "Can't get model root, skipping subtypes filtering", e);
+				MMINTException.print(IStatus.WARNING, "Can't get model root, skipping subtypes filtering", e);
 				return metamodelSubtypes;
 			}
 			String metamodelUri = rootModelObj.eClass().getEPackage().getNsURI();
