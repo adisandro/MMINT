@@ -10,7 +10,8 @@ Require-Bundle: org.eclipse.acceleo.engine,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.istar_mavo,
  edu.toronto.cs.se.modelepedia.libz3java,
- edu.toronto.cs.se.modelepedia.z3
+ edu.toronto.cs.se.modelepedia.z3,
+ org.eclipse.jdt.annotation;resolution:=optional
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
