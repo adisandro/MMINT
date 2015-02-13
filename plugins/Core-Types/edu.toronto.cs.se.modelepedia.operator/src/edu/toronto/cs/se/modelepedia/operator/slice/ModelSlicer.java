@@ -12,12 +12,15 @@
 package edu.toronto.cs.se.modelepedia.operator.slice;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 
@@ -37,9 +40,12 @@ public class ModelSlicer extends OperatorImpl {
 	@NonNull private static final String PROPERTY_IN_INCLUDEREFERENCES = "includeReferences";
 	private static final boolean PROPERTY_IN_INCLUDEREFERENCES_DEFAULT = false;
 
+	@NonNull private static final String SLICE_MODEL_SUFFIX = "_slice";
+
 	private String[] sliceIds;
 	private String idAttribute;
-	private boolean includeReferences;
+
+	private Set<EObject> sliceModelObjs;
 
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
@@ -47,26 +53,53 @@ public class ModelSlicer extends OperatorImpl {
 		super.readInputProperties(inputProperties);
 		sliceIds = MultiModelOperatorUtils.getStringProperties(inputProperties, PROPERTY_IN_SLICEIDS);
 		idAttribute = MultiModelOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_IDATTRIBUTE);
-		includeReferences = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_INCLUDEREFERENCES, PROPERTY_IN_INCLUDEREFERENCES_DEFAULT);
+	}
+
+	@Override
+	public void init() {
+
+		sliceModelObjs = new HashSet<>();
+	}
+
+	private void reachableObjectsRecursive(EObject sliceModelObj) {
+
+		
+	}
+
+	private void reachableObjects(EObject sliceRootModelObj) {
+
+		sliceRootModelObj.eAllContents().forEachRemaining(sliceModelObj -> {
+			EStructuralFeature feature = sliceModelObj.eClass().getEStructuralFeature(idAttribute);
+			if (feature != null) {
+				if (sliceModelObj.eGet(feature) != null) {//TODO contained in sliceIds
+					reachableObjectsRecursive(sliceModelObj);
+				}
+			}
+		});
 	}
 
 	private boolean isInSlice(EObject modelObj) {
 
+		/*TODO Is in slice if:
+		 * 1) is reachable from one of the sliceIds (references containment and non)
+		 * 2) is within the boundary (one or more boundaries are coupled with a sliceId [sliceId.boundaries=..])
+		 * 3) we need the model objects that correspond to the sliceIds, so it's better to compute the bag of reachable model objects from there instead of this isinslice
+		 */
 		return false;
 	}
 
 	private EObject slice(EObject rootModelObj) {
 
-		EObject slicedRootModelObj = EcoreUtil.copy(rootModelObj);
+		EObject sliceRootModelObj = EcoreUtil.copy(rootModelObj);
 		List<EObject> modelObjsToBeDeleted = new ArrayList<>();
-		slicedRootModelObj.eAllContents().forEachRemaining(modelObj -> {
+		sliceRootModelObj.eAllContents().forEachRemaining(modelObj -> {
 			if (!isInSlice(modelObj)) {
 				modelObjsToBeDeleted.add(modelObj);
 			}
 		});
 		modelObjsToBeDeleted.forEach(modelObj -> EcoreUtil.delete(modelObj, true));
 
-		return slicedRootModelObj;
+		return sliceRootModelObj;
 	}
 
 	@Override
@@ -75,14 +108,14 @@ public class ModelSlicer extends OperatorImpl {
 		Model model = actualParameters.get(0);
 
 		MultiModel instanceMID = MultiModelRegistry.getMultiModel(model);
-		EObject slicedRootModelObj = slice(model.getEMFInstanceRoot());
-		String slicedModelUri = "";
-		MultiModelUtils.createModelFile(slicedRootModelObj, slicedModelUri, true);
-		Model slicedModel = (isUpdateMID()) ?
-			model.getMetatype().createInstanceAndEditor(slicedModelUri, ModelOrigin.CREATED, instanceMID) :
-			model.getMetatype().createInstance(slicedModelUri, ModelOrigin.CREATED, null);
+		String sliceModelUri = MultiModelUtils.addFileNameSuffixInUri(model.getUri(), SLICE_MODEL_SUFFIX);
+		EObject sliceRootModelObj = slice(model.getEMFInstanceRoot());
+		MultiModelUtils.createModelFile(sliceRootModelObj, sliceModelUri, true);
+		Model sliceModel = (isUpdateMID()) ?
+			model.getMetatype().createInstanceAndEditor(sliceModelUri, ModelOrigin.CREATED, instanceMID) :
+			model.getMetatype().createInstance(sliceModelUri, ModelOrigin.CREATED, null);
 		EList<Model> result = new BasicEList<Model>();
-		result.add(slicedModel);
+		result.add(sliceModel);
 
 		return result;
 	}
