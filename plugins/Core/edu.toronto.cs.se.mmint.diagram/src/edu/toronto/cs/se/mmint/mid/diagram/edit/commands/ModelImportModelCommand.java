@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
@@ -65,6 +66,9 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		String newModelUri = MultiModelDiagramUtils.selectModelToImport(false);
 		Model modelType = MultiModelTypeRegistry.getType(MultiModelUtils.getModelFile(newModelUri, true).eClass().getEPackage().getNsURI());
+		if (modelType == null) { // unregistered dynamic EMF file
+			modelType = MultiModelTypeHierarchy.getRootModelType();
+		}
 		Model newModel = modelType.createMAVOInstanceAndEditor(newModelUri, ModelOrigin.IMPORTED, multiModel);
 
 		return newModel;

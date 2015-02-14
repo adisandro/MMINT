@@ -137,7 +137,9 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		addModelType(newModelType, isAbstract, constraintLanguage, constraintImplementation, MMINT.repository);
 		newModelType.setOrigin(ModelOrigin.IMPORTED);
 
-		String modelPackageName = modelPackage.getName();
+		String modelPackageName = (modelType == null) ?
+			MultiModelTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION : // root model type
+			modelPackage.getName();
 		newModelType.setFileExtension(modelPackageName);
 		// possibly register file extension to load resources
 		Map<String, Object> resourceMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();

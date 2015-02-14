@@ -35,7 +35,7 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
-public class ModelSlicer extends OperatorImpl {
+public class ModelSlice extends OperatorImpl {
 
 	@NonNull private static final String PROPERTY_IN_IDATTRIBUTE = "idAttribute";
 	@NonNull private static final String PROPERTY_IN_SLICEIDS = "sliceIds";
@@ -87,9 +87,12 @@ public class ModelSlicer extends OperatorImpl {
 			return;
 		}
 		sliceModelObjs.add(sliceModelObj);
-		sliceModelObj.eAllContents().forEachRemaining(reachableModelObj -> {
-			sliceReachableObjects(sliceId, reachableModelObj);
-		});
+		sliceModelObj.eAllContents().forEachRemaining(reachableModelObj ->
+			sliceReachableObjects(sliceId, reachableModelObj)
+		);
+		sliceModelObj.eCrossReferences().forEach(reachableModelObj ->
+			sliceReachableObjects(sliceId, reachableModelObj)
+		);
 	}
 
 	private EObject slice(EObject rootModelObj) {
@@ -120,7 +123,7 @@ public class ModelSlicer extends OperatorImpl {
 		Model model = actualParameters.get(0);
 
 		MultiModel instanceMID = MultiModelRegistry.getMultiModel(model);
-		String sliceModelUri = MultiModelUtils.addFileNameSuffixInUri(model.getUri(), SLICE_MODEL_SUFFIX);
+		String sliceModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(model.getUri(), SLICE_MODEL_SUFFIX), true, false);
 		EObject sliceRootModelObj = slice(model.getEMFInstanceRoot());
 		MultiModelUtils.createModelFile(sliceRootModelObj, sliceModelUri, true);
 		Model sliceModel = (isUpdateMID()) ?

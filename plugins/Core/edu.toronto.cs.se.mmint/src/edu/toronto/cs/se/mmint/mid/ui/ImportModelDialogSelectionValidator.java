@@ -17,6 +17,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.dialogs.ISelectionStatusValidator;
 
+import edu.toronto.cs.se.mmint.MMINTActivator;
+
 public class ImportModelDialogSelectionValidator implements ISelectionStatusValidator {
 
 	/**
@@ -28,11 +30,11 @@ public class ImportModelDialogSelectionValidator implements ISelectionStatusVali
 
 		for (Object object : selection) {
 			if (object instanceof IFolder || object instanceof IProject) {
-				return new Status(IStatus.ERROR, "edu.toronto.cs.se.mmint", "Please select a file");
+				return new Status(IStatus.ERROR, MMINTActivator.PLUGIN_ID, "Please select a file");
 			}
 		}
 
-		return new Status(IStatus.OK, "edu.toronto.cs.se.mmint", "");
+		return new Status(IStatus.OK, MMINTActivator.PLUGIN_ID, "File selected");
 	}
 
 }

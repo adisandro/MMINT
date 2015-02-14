@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Platform;
@@ -163,14 +164,13 @@ public class MultiModelTypeRegistry {
 	 * 
 	 * @return The list of file extensions for model types.
 	 */
-	public static ArrayList<String> getModelTypeFileExtensions() {
+	public static List<String> getModelTypeFileExtensions() {
 
-		ArrayList<String> filenames = new ArrayList<String>();
-		for (Model model : MMINT.repository.getModels()) {
-			filenames.add(model.getFileExtension());
-		}
+		List<String> fileExtensions = MMINT.repository.getModels().stream()
+			.map(Model::getFileExtension)
+			.collect(Collectors.toList());
 
-		return filenames;
+		return fileExtensions;
 	}
 
 	/**
