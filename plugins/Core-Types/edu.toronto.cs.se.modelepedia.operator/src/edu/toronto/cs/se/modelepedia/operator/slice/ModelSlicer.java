@@ -12,8 +12,10 @@
 package edu.toronto.cs.se.modelepedia.operator.slice;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
@@ -35,15 +37,15 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
 public class ModelSlicer extends OperatorImpl {
 
-	@NonNull private static final String PROPERTY_IN_SLICEIDS = "sliceIds";
 	@NonNull private static final String PROPERTY_IN_IDATTRIBUTE = "idAttribute";
-	@NonNull private static final String PROPERTY_IN_INCLUDEREFERENCES = "includeReferences";
-	private static final boolean PROPERTY_IN_INCLUDEREFERENCES_DEFAULT = false;
+	@NonNull private static final String PROPERTY_IN_SLICEIDS = "sliceIds";
+	@NonNull private static final String PROPERTY_IN_BOUNDARIESIDS_SUFFIX = ".boundariesIds";
 
 	@NonNull private static final String SLICE_MODEL_SUFFIX = "_slice";
 
-	private String[] sliceIds;
 	private String idAttribute;
+	private Set<String> sliceIds;
+	private Map<String, Set<String>> boundariesIds;
 
 	private Set<EObject> sliceModelObjs;
 
@@ -51,8 +53,12 @@ public class ModelSlicer extends OperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		sliceIds = MultiModelOperatorUtils.getStringProperties(inputProperties, PROPERTY_IN_SLICEIDS);
 		idAttribute = MultiModelOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_IDATTRIBUTE);
+		sliceIds = MultiModelOperatorUtils.getStringPropertySet(inputProperties, PROPERTY_IN_SLICEIDS);
+		boundariesIds = new HashMap<>();
+		for (String sliceId : sliceIds) {
+			boundariesIds.put(sliceId, MultiModelOperatorUtils.getStringPropertySet(inputProperties, sliceId + PROPERTY_IN_BOUNDARIESIDS_SUFFIX));
+		}
 	}
 
 	@Override
@@ -61,43 +67,49 @@ public class ModelSlicer extends OperatorImpl {
 		sliceModelObjs = new HashSet<>();
 	}
 
-	private void reachableObjectsRecursive(EObject sliceModelObj) {
+	private String getSliceId(EObject modelObj) {
 
-		
+		EStructuralFeature feature = modelObj.eClass().getEStructuralFeature(idAttribute);
+		if (feature == null) {
+			return null;
+		}
+
+		return (String) modelObj.eGet(feature);
 	}
 
-	private void reachableObjects(EObject sliceRootModelObj) {
+	private void sliceReachableObjects(String sliceId, EObject sliceModelObj) {
 
-		sliceRootModelObj.eAllContents().forEachRemaining(sliceModelObj -> {
-			EStructuralFeature feature = sliceModelObj.eClass().getEStructuralFeature(idAttribute);
-			if (feature != null) {
-				if (sliceModelObj.eGet(feature) != null) {//TODO contained in sliceIds
-					reachableObjectsRecursive(sliceModelObj);
-				}
-			}
+		if (sliceModelObjs.contains(sliceModelObj)) {
+			return;
+		}
+		String id = getSliceId(sliceModelObj);
+		if (id != null && boundariesIds.get(sliceId).contains(id)) {
+			return;
+		}
+		sliceModelObjs.add(sliceModelObj);
+		sliceModelObj.eAllContents().forEachRemaining(reachableModelObj -> {
+			sliceReachableObjects(sliceId, reachableModelObj);
 		});
-	}
-
-	private boolean isInSlice(EObject modelObj) {
-
-		/*TODO Is in slice if:
-		 * 1) is reachable from one of the sliceIds (references containment and non)
-		 * 2) is within the boundary (one or more boundaries are coupled with a sliceId [sliceId.boundaries=..])
-		 * 3) we need the model objects that correspond to the sliceIds, so it's better to compute the bag of reachable model objects from there instead of this isinslice
-		 */
-		return false;
 	}
 
 	private EObject slice(EObject rootModelObj) {
 
+		// collect slice model objects
 		EObject sliceRootModelObj = EcoreUtil.copy(rootModelObj);
-		List<EObject> modelObjsToBeDeleted = new ArrayList<>();
-		sliceRootModelObj.eAllContents().forEachRemaining(modelObj -> {
-			if (!isInSlice(modelObj)) {
-				modelObjsToBeDeleted.add(modelObj);
+		sliceRootModelObj.eAllContents().forEachRemaining(sliceModelObj -> {
+			String sliceId = getSliceId(sliceModelObj);
+			if (sliceId != null && sliceIds.contains(sliceId)) {
+				sliceReachableObjects(sliceId, sliceModelObj);
 			}
 		});
-		modelObjsToBeDeleted.forEach(modelObj -> EcoreUtil.delete(modelObj, true));
+		// slice proper
+		List<EObject> modelObjsToDelete = new ArrayList<>();
+		sliceRootModelObj.eAllContents().forEachRemaining(modelObjToDelete -> {
+			if (!sliceModelObjs.contains(modelObjToDelete)) {
+				modelObjsToDelete.add(modelObjToDelete);
+			}
+		});
+		modelObjsToDelete.forEach(modelObj -> EcoreUtil.delete(modelObj, true));
 
 		return sliceRootModelObj;
 	}

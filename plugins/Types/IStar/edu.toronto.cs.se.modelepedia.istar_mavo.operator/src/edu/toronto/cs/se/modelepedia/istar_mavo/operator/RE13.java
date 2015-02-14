@@ -167,6 +167,7 @@ public class RE13 extends OperatorImpl {
 					continue;
 				}
 				String z3ModelNodeFormulaVar = z3ModelNode.getValue();
+				//TODO MMINT[ISTAR] Error here when launching REJ14 on Windows for the SmartGrid example
 				intentions.get(z3ModelNodeFormulaVar).eSet(labelFeature, true);
 			}
 		}
