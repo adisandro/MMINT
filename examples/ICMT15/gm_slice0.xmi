@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ASCII"?>
+<src_recreated:rootElement xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:src_recreated="http://src_recreated" xsi:schemaLocation="http://src_recreated src_recreated.ecore">
+  <ecu Name="BodyControl" VirtualDevice="//@VirtualDevice.0 //@VirtualDevice.1"/>
+  <Signal Name="TurnAccon"/>
+  <Signal Name="TurnAccoff"/>
+  <Signal Name="SetACCSpeed"/>
+  <Signal Name="SetACCState"/>
+  <Signal Name="GetACCState"/>
+  <Signal Name="GetACCSpeed"/>
+  <Signal Name="GetUserSetPoint"/>
+  <Signal Name="GetExternalTemp"/>
+  <Signal Name="GetCurTemp"/>
+  <Signal Name="SetUserSetPoint"/>
+  <Signal Name="SetExternalTemp"/>
+  <Signal Name="Send2ControllerRollUp"/>
+  <Signal Name="Send2ControllerRollDown"/>
+  <Signal Name="SetACCDesiredSpeed"/>
+  <Signal Name="RollDownWin10cm"/>
+  <Signal Name="RollUpWinYcm"/>
+  <Signal Name="RollDownWinYcm"/>
+  <Signal Name="TurnHeaterOnOff"/>
+  <Signal Name="TurnAcOnOff"/>
+  <Signal Name="RaiseACTemp"/>
+  <Signal Name="LowerACTemp"/>
+  <Signal Name="RaiseHeaterTemp"/>
+  <Signal Name="LowerHeaterTemp"/>
+  <Signal Name="SetBlowerOff"/>
+  <Signal Name="SetBlower1"/>
+  <Signal Name="SetBlower2"/>
+  <Signal Name="SetBlower3"/>
+  <ExecFrame Name="De_ActivateACC" Provided="//@Signal.2 //@Signal.3" Required="//@Signal.0 //@Signal.1"/>
+  <ExecFrame Name="DisplayACCState" Required="//@Signal.4"/>
+  <ExecFrame Name="DisplaySetSpeed" Required="//@Signal.5"/>
+  <ExecFrame Name="DispUserSetPointInCel" Required="//@Signal.6"/>
+  <ExecFrame Name="DispExternalTempCel" Required="//@Signal.7"/>
+  <ExecFrame Name="DispCurCarTempCel" Required="//@Signal.8"/>
+  <ExecFrame Name="InputUserSetPointInCel" Provided="//@Signal.9"/>
+  <ExecFrame Name="InputExternalTempInCel" Provided="//@Signal.10"/>
+  <ExecFrame Name="RollUp" Required="//@Signal.11"/>
+  <ExecFrame Name="RollDown" Required="//@Signal.12"/>
+  <ExecFrame Name="ComputeDesiredSpeed" Provided="//@Signal.13"/>
+  <ExecFrame Name="DetectObstacle" Provided="//@Signal.14"/>
+  <ExecFrame Name="ValidateRollUpCommand" Provided="//@Signal.15"/>
+  <ExecFrame Name="ValidateRollDownCommand" Provided="//@Signal.16"/>
+  <ExecFrame Name="RegulateTemp" Provided="//@Signal.17 //@Signal.18 //@Signal.19 //@Signal.20 //@Signal.21 //@Signal.22 //@Signal.23 //@Signal.24 //@Signal.25 //@Signal.26"/>
+  <VirtualDevice Name="HumanMachineInterface_BodyControl" Distributable="//@Distributable.0 //@Distributable.1"/>
+  <VirtualDevice Name="SituationManagement_BodyControl" Distributable="//@Distributable.2 //@Distributable.3 //@Distributable.4"/>
+  <Distributable ExecFrame="//@ExecFrame.0 //@ExecFrame.2 //@ExecFrame.1 //@ExecFrame.3 //@ExecFrame.4 //@ExecFrame.5 //@ExecFrame.6 //@ExecFrame.7" Name="Display_BodyControl"/>
+  <Distributable ExecFrame="//@ExecFrame.8 //@ExecFrame.9" Name="PowerWindowButton"/>
+  <Distributable ExecFrame="//@ExecFrame.10" Name="AdaptiveCruiseControl"/>
+  <Distributable ExecFrame="//@ExecFrame.11 //@ExecFrame.12 //@ExecFrame.13" Name="PowerWindowController"/>
+  <Distributable ExecFrame="//@ExecFrame.14" Name="ClimateControl"/>
+</src_recreated:rootElement>

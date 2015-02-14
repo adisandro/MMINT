@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ASCII"?>
+<src_recreated:rootElement xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:src_recreated="http://src_recreated" xsi:schemaLocation="http://src_recreated src_recreated.ecore">
+  <ecu Name="BrakingControl" VirtualDevice="//@VirtualDevice.0 //@VirtualDevice.1"/>
+  <Signal Name="SetABSstate"/>
+  <Signal Name="TurnABSoff"/>
+  <Signal Name="TurnABSon"/>
+  <Signal Name="SetBrakePressure"/>
+  <Signal Name="GetABSstate"/>
+  <Signal Name="GetWheelTorque"/>
+  <Signal Name="GetDesiredSlip"/>
+  <Signal Name="GetCurSlip"/>
+  <Signal Name="SetWheelAngularSpeed"/>
+  <Signal Name="GetWheelAngularSpeed"/>
+  <Signal Name="SetCurSlip"/>
+  <Signal Name="GetVehicleSpeed"/>
+  <Signal Name="SetFrictionCoeff_MuSlipCurve"/>
+  <Signal Name="SetDesiredSlip"/>
+  <Signal Name="SetVehicleSpeed"/>
+  <Signal Name="GetFrictionCoeff_MuSlipCurve"/>
+  <Signal Name="GetWeightOnWheel"/>
+  <Signal Name="GetVehicleMass"/>
+  <Signal Name="SetVehicleDeceleration"/>
+  <ExecFrame Name="De_ActivateABS" Provided="//@Signal.0 //@Signal.1 //@Signal.2"/>
+  <ExecFrame Name="Apply_Rel_ForceOnBrakes" Provided="//@Signal.3" Required="//@Signal.2 //@Signal.1"/>
+  <ExecFrame Name="Unnamed" Required="//@Signal.4"/>
+  <ExecFrame Name="CalcWheelAngularSpeed" Provided="//@Signal.8" Required="//@Signal.6 //@Signal.7 //@Signal.5"/>
+  <ExecFrame Name="CalcSlip" Provided="//@Signal.10 //@Signal.13 //@Signal.12" Required="//@Signal.9 //@Signal.11"/>
+  <ExecFrame Name="CalcVehicleSpeed" Provided="//@Signal.14 //@Signal.18" Required="//@Signal.15 //@Signal.16 //@Signal.17"/>
+  <VirtualDevice Name="SituationManagement_BrakingControl" Distributable="//@Distributable.0"/>
+  <VirtualDevice Name="HumanMachineInterface_BrakingControl" Distributable="//@Distributable.1 //@Distributable.2"/>
+  <Distributable ExecFrame="//@ExecFrame.0 //@ExecFrame.3 //@ExecFrame.4 //@ExecFrame.5" Name="ABSController"/>
+  <Distributable ExecFrame="//@ExecFrame.2" Name="Display_BrakingControl"/>
+  <Distributable ExecFrame="//@ExecFrame.1" Name="BrakingPedalModule"/>
+</src_recreated:rootElement>
