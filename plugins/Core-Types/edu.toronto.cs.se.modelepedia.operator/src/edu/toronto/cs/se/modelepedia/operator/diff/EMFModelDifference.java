@@ -35,7 +35,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.modelepedia.operator.match.EMFModelNameMatch;
+import edu.toronto.cs.se.modelepedia.operator.match.EMFModelMatch;
 
 public class EMFModelDifference extends OperatorImpl {
 
@@ -72,9 +72,9 @@ public class EMFModelDifference extends OperatorImpl {
 		ModelEndpointReference tgtModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(matchRel.getModelEndpoints().get(1).getTarget(), diffModelRel);
 
 		// get output from previous operator
-		EMFModelNameMatch previousOperator = (getPreviousOperator() == null) ?
-			(EMFModelNameMatch) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
-			(EMFModelNameMatch) getPreviousOperator();
+		EMFModelMatch previousOperator = (getPreviousOperator() == null) ?
+			(EMFModelMatch) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
+			(EMFModelMatch) getPreviousOperator();
 		Comparison comparison = previousOperator.getComparison();
 		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
 		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();

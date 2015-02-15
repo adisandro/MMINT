@@ -40,8 +40,8 @@
       <operatorType>
          <type
                name="ModelNameMatch"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelNameMatch"
-               class="edu.toronto.cs.se.modelepedia.operator.match.ModelNameMatch">
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelMatch"
+               class="edu.toronto.cs.se.modelepedia.operator.match.ModelMatch">
          </type>
          <input>
             <parameter
@@ -53,7 +53,7 @@
          <output>
             <parameter
                   isVararg="false"
-                  name="nameMatch"
+                  name="match"
                   modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
          </output>
@@ -65,25 +65,25 @@
       <operatorType>
          <type
                name="EMFModelNameMatch"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_EMFModelNameMatch"
-               class="edu.toronto.cs.se.modelepedia.operator.match.EMFModelNameMatch">
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMatch"
+               class="edu.toronto.cs.se.modelepedia.operator.match.EMFModelMatch">
          </type>
          <input>
             <parameter
                   isVararg="false"
-                  name="srcModel"
+                  name="model1"
                   modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
             <parameter
                   isVararg="false"
-                  name="tgtModel"
+                  name="model2"
                   modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
-                  name="nameMatchRel"
+                  name="match"
                   modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
             </parameter>
          </output>

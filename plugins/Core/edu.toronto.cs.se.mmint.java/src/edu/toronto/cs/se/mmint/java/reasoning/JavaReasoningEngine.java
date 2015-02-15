@@ -42,7 +42,7 @@ public class JavaReasoningEngine implements IReasoningEngine {
 			return javaConstraint.validate(model);
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.ERROR, "Java constraint error, evaluating to false: " + javaClassName, e);
+			MMINTException.print(IStatus.WARNING, "Java constraint error, evaluating to false: " + javaClassName, e);
 			return MAVOTruthValue.FALSE;
 		}
 	}

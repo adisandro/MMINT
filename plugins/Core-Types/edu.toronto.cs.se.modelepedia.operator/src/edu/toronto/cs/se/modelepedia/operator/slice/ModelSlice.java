@@ -83,10 +83,10 @@ public class ModelSlice extends OperatorImpl {
 			return;
 		}
 		String id = getSliceId(sliceModelObj);
+		sliceModelObjs.add(sliceModelObj);
 		if (id != null && boundariesIds.get(sliceId).contains(id)) {
 			return;
 		}
-		sliceModelObjs.add(sliceModelObj);
 		sliceModelObj.eAllContents().forEachRemaining(reachableModelObj ->
 			sliceReachableObjects(sliceId, reachableModelObj)
 		);

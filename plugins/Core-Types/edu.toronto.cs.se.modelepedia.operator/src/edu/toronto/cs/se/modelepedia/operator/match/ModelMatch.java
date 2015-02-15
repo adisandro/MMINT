@@ -13,6 +13,7 @@ package edu.toronto.cs.se.modelepedia.operator.match;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Properties;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -20,13 +21,16 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
@@ -36,14 +40,24 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
-public class ModelNameMatch extends OperatorImpl {
+public class ModelMatch extends OperatorImpl {
 
-	private final static String NAME_FEATURE = "name";
-	private final static String MODELREL_NAME = "nameMatch";
+	@NonNull private final static String PROPERTY_IN_MATCHATTRIBUTE = "matchAttribute";
+	@NonNull private final static String PROPERTY_IN_MATCHATTRIBUTE_DEFAULT = "name";
+
+	@NonNull private final static String MODELREL_NAME = "match";
+
+	private String matchAttribute;
+
+	@Override
+	public void readInputProperties(Properties inputProperties) throws MMINTException {
+
+		matchAttribute = MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MATCHATTRIBUTE, PROPERTY_IN_MATCHATTRIBUTE_DEFAULT);
+	}
 
 	private void checkModelObjNames(EObject container, ModelEndpointReference modelEndpointRef, HashMap<String, ArrayList<EObject>> modelObjNames, HashMap<EObject, ModelEndpointReference> modelObjTable) {
 
-		EStructuralFeature feature = container.eClass().getEStructuralFeature(NAME_FEATURE);
+		EStructuralFeature feature = container.eClass().getEStructuralFeature(matchAttribute);
 		if (feature != null && feature instanceof EAttribute && container.eGet(feature) instanceof String) {
 			String modelObjName = (String) container.eGet(feature);
 			ArrayList<EObject> modelObjs = modelObjNames.get(modelObjName);

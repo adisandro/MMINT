@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.modelepedia.operator.match.EMFModelNameMatch;
+import edu.toronto.cs.se.modelepedia.operator.match.EMFModelMatch;
 
 public class EMFModelMerge extends OperatorImpl {
 
@@ -47,9 +47,9 @@ public class EMFModelMerge extends OperatorImpl {
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(srcModel);
 
 		// get output from previous operator
-		EMFModelNameMatch previousOperator = (getPreviousOperator() == null) ?
-			(EMFModelNameMatch) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
-			(EMFModelNameMatch) getPreviousOperator();
+		EMFModelMatch previousOperator = (getPreviousOperator() == null) ?
+			(EMFModelMatch) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
+			(EMFModelMatch) getPreviousOperator();
 		IComparisonScope scope = previousOperator.getScope();
 		Comparison comparison = previousOperator.getComparison();
 

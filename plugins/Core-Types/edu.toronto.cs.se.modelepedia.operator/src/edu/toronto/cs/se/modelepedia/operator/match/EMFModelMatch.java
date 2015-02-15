@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.match;
 
+import java.util.Properties;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -25,13 +27,16 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
@@ -41,13 +46,23 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
-public class EMFModelNameMatch extends OperatorImpl {
+public class EMFModelMatch extends OperatorImpl {
 
-	private final static String NAME_FEATURE = "name";
-	private final static String MODELREL_NAME = "nameMatch";
+	@NonNull private final static String PROPERTY_IN_MATCHATTRIBUTE = "matchAttribute";
+	@NonNull private final static String PROPERTY_IN_MATCHATTRIBUTE_DEFAULT = "name";
+
+	@NonNull private final static String MODELREL_NAME = "match";
+
+	private String matchAttribute;
 
 	private IComparisonScope scope;
 	private Comparison comparison;
+
+	@Override
+	public void readInputProperties(Properties inputProperties) throws MMINTException {
+
+		matchAttribute = MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MATCHATTRIBUTE, PROPERTY_IN_MATCHATTRIBUTE_DEFAULT);
+	}
 
 	private void match(Model srcModel, Model tgtModel) {
 
@@ -102,7 +117,7 @@ nextMatch:
 						}
 					}
 				}
-				EStructuralFeature feature = match.getLeft().eClass().getEStructuralFeature(NAME_FEATURE);
+				EStructuralFeature feature = match.getLeft().eClass().getEStructuralFeature(matchAttribute);
 				if (feature == null || !(feature instanceof EAttribute) || !(match.getLeft().eGet(feature) instanceof String)) {
 					continue;
 				}

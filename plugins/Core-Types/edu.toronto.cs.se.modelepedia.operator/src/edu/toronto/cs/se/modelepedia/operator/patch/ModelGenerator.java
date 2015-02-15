@@ -31,6 +31,13 @@ public class ModelGenerator extends OperatorImpl {
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
+		/**
+		 * TODO:
+		 * 1) Make model match parametric on the attribute to match
+		 * 2) When merging, add option to modify idAttribute of all the elements but the boundaries
+		 * 3) Create ModelGenerator script (not a generic operator)
+		 * 3a) do 2) just in the script maybe, together with the csv
+		 */
 		Model model = actualParameters.get(0);
 		return null;
 	}
