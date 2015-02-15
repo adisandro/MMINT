@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.operator.patch;
+package edu.toronto.cs.se.modelepedia.icmt15.operator;
 
 import java.util.Properties;
 
@@ -33,7 +33,6 @@ public class ModelGenerator extends OperatorImpl {
 
 		/**
 		 * TODO:
-		 * 1) Make model match parametric on the attribute to match
 		 * 2) When merging, add option to modify idAttribute of all the elements but the boundaries
 		 * 3) Create ModelGenerator script (not a generic operator)
 		 * 3a) do 2) just in the script maybe, together with the csv

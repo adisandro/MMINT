@@ -39,7 +39,7 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="ModelNameMatch"
+               name="ModelMatch"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelMatch"
                class="edu.toronto.cs.se.modelepedia.operator.match.ModelMatch">
          </type>
@@ -64,7 +64,7 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="EMFModelNameMatch"
+               name="EMFModelMatch"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMatch"
                class="edu.toronto.cs.se.modelepedia.operator.match.EMFModelMatch">
          </type>
