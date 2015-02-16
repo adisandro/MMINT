@@ -11,8 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.icmt15.operator;
 
-import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -33,12 +33,15 @@ public class ModelGenerator extends OperatorImpl {
 
 	@NonNull private final static String PROPERTY_IN_NUMITERATIONS = "numIterations";
 	@NonNull private static final String PROPERTY_IN_IDATTRIBUTE = "idAttribute";
+	@NonNull private static final String PROPERTY_IN_BOUNDARIESIDS = "boundariesIds";
 
 	@NonNull private final static String OPERATOR_EMFMODELMATCH_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMatch";
 	@NonNull private final static String OPERATOR_EMFMODELMERGE_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMerge";
+	@NonNull private final static String SLICE_IDATTRIBUTE_SUFFIX = "_slice_";
 
 	private int numIterations;
 	private String idAttribute;
+	private Set<String> boundariesIds;
 
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
@@ -46,6 +49,7 @@ public class ModelGenerator extends OperatorImpl {
 		super.readInputProperties(inputProperties);
 		numIterations = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMITERATIONS);
 		idAttribute = MultiModelOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_IDATTRIBUTE);
+		boundariesIds = MultiModelOperatorUtils.getStringPropertySet(inputProperties, PROPERTY_IN_BOUNDARIESIDS);
 	}
 
 	private Model copySliceAndChangeIds(Model sliceModel, String sliceIdSuffix) throws Exception {
@@ -57,7 +61,7 @@ public class ModelGenerator extends OperatorImpl {
 			String sliceId = null;
 			try {
 				sliceId = (String) MultiModelUtils.getModelObjFeature(sliceModelObj, idAttribute);
-				if (sliceId != null) {//TODO and sliceId not in boundaries
+				if (sliceId != null && !boundariesIds.contains(sliceId)) {
 					sliceId += sliceIdSuffix;
 					MultiModelUtils.setModelObjFeature(sliceModelObj, idAttribute, sliceId);
 				}
@@ -76,31 +80,34 @@ public class ModelGenerator extends OperatorImpl {
 
 		/**
 		 * TODO:
-		 * 1) Read 3 slices in memory
-		 * 2) Loop: create matches, merge modifying the idAttribute
 		 * 3) Handle csv
-		 * 4) Don't update mid in between and deal with different file names
-		 * 5) Add copyMAVOInstance() to MID apis
 		 */
-		Model model = actualParameters.get(0);
-		for (Model sliceModel : actualParameters) {
-			
-		}
-
 		EMFModelMatch matchOperator = (EMFModelMatch) MultiModelTypeRegistry.<Operator>getType(OPERATOR_EMFMODELMATCH_URI);
 		EMFModelMerge mergeOperator = (EMFModelMerge) MultiModelTypeRegistry.<Operator>getType(OPERATOR_EMFMODELMERGE_URI);
+		if (matchOperator == null || mergeOperator == null) {
+			throw new MMINTException("Can't find EMFModelMatch and/or EMFModelMerge operators");
+		}
+		Model model = actualParameters.get(0);
+		EList<Model> operatorInputs, operatorOutputs;
 		for (int i = 0; i < numIterations; i++) {
 			for (int j = 1; j < actualParameters.size(); j++) {
-				EList<Model> matchOperatorInputs = new BasicEList<>();
-				matchOperatorInputs.add(actualParameters.get(j));
-				matchOperatorInputs.add(actualParameters.get(j+1));
-				matchOperator.execute(actualParameters);
+				Model sliceModel = copySliceAndChangeIds(actualParameters.get(j), SLICE_IDATTRIBUTE_SUFFIX + i + "-" + j);
+				operatorInputs = new BasicEList<>();
+				operatorInputs.add(model);
+				operatorInputs.add(sliceModel);
+				operatorOutputs = matchOperator.execute(operatorInputs);
+				operatorInputs = new BasicEList<>();
+				operatorInputs.add(model);
+				operatorInputs.add(operatorOutputs.get(0));
+				operatorInputs.add(sliceModel);
+				operatorOutputs = mergeOperator.execute(operatorInputs);
+				model = operatorOutputs.get(0);
 			}
 		}
 
-		List<Model> results = new BasicEList<>();
-		results.add(model);
-		return null;
+		EList<Model> outputs = new BasicEList<>();
+		outputs.add(model);
+		return outputs;
 	}
 
 }

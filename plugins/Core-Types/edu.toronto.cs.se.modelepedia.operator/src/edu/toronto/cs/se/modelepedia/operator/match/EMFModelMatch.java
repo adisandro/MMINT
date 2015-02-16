@@ -92,7 +92,9 @@ public class EMFModelMatch extends OperatorImpl {
 		Model tgtModel = actualParameters.get(1);
 
 		// create match model relationship
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(srcModel);
+		MultiModel multiModel = (isUpdateMID()) ?
+			MultiModelRegistry.getMultiModel(srcModel) :
+			null;
 		ModelRel rootModelRelType = MultiModelTypeHierarchy.getRootModelRelType();
 		ModelRel matchRel = rootModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
 		matchRel.setName(MODELREL_NAME);

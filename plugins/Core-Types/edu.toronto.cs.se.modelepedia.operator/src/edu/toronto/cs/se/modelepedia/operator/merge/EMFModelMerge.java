@@ -62,7 +62,9 @@ public class EMFModelMerge extends OperatorImpl {
 		}
 		String mergedModelUri = MultiModelUtils.replaceFileNameInUri(srcModel.getUri(), srcModel.getName() + MERGED_MODEL_NAME_SEPARATOR + tgtModel.getName());
 		MultiModelUtils.createModelFile(((ResourceSet) scope.getRight()).getResources().get(0).getContents().get(0), mergedModelUri, true);
-		Model mergedModel = srcModel.getMetatype().createMAVOInstanceAndEditor(mergedModelUri, ModelOrigin.CREATED, multiModel);
+		Model mergedModel = (isUpdateMID()) ?
+			srcModel.getMetatype().createMAVOInstanceAndEditor(mergedModelUri, ModelOrigin.CREATED, multiModel) :
+			srcModel.getMetatype().createMAVOInstance(mergedModelUri, ModelOrigin.CREATED, null);
 
 		// run name match to create src and tgt match relationships
 		EList<Model> result = new BasicEList<Model>();
