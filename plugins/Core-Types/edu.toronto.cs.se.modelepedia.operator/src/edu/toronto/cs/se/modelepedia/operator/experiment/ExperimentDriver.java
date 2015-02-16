@@ -37,6 +37,7 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentSamples.DistributionType;
 
+//TODO MMINT[OPERATOR] Create a separate feature for these generic operators
 public class ExperimentDriver extends OperatorImpl {
 
 	protected class ExperimentWatchdog implements Runnable {

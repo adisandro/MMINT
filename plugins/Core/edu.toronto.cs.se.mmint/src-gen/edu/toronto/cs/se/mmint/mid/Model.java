@@ -329,7 +329,8 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 * @param origin
 	 *            The origin of the new model.
 	 * @param containerMultiModel
-	 *            An Instance MID.
+	 *            An Instance MID, null if the model isn't going to be added to
+	 *            it.
 	 * @return The created model.
 	 * @throws MMINTException
 	 *             If this is a model instance, if the uri of the new model
@@ -340,6 +341,31 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 * @generated
 	 */
 	Model createMAVOInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
+	 * type to an Instance MID, copying its structure from another model
+	 * instance (including its MAVO inc flag).
+	 * 
+	 * @param origModel
+	 *            The original model instance to be copied into the new one.
+	 * @param newModelName
+	 *            The name of the new model.
+	 * @param containerMultiModel
+	 *            An Instance MID, null if the model isn't going to be added to
+	 *            it.
+	 * @return The created model.
+	 * @throws MMINTException
+	 *             If this is a model instance, if the model file can't be
+	 *             copied, if the uri of the new model instance is already
+	 *             registered in the Instance MID. <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 *        origModelRequired="true" newModelNameRequired="true"
+	 *        containerMultiModelRequired="true"
+	 * @generated
+	 */
+	Model copyMAVOInstance(Model origModel, String newModelName, MultiModel containerMultiModel) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
@@ -355,7 +381,8 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 *            True if the diagrams for the original model should be copied,
 	 *            false otherwise.
 	 * @param containerMultiModel
-	 *            An Instance MID.
+	 *            An Instance MID, null if the model isn't going to be added to
+	 *            it.
 	 * @return The created model.
 	 * @throws MMINTException
 	 *             If this is a model instance, if the model file can't be

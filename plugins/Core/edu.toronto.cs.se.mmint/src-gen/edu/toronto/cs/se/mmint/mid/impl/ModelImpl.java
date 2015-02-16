@@ -625,6 +625,13 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MIDPackage.MODEL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL:
+				try {
+					return copyMAVOInstance((Model)arguments.get(0), (String)arguments.get(1), (MultiModel)arguments.get(2));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MIDPackage.MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL:
 				try {
 					return copyMAVOInstanceAndEditor((Model)arguments.get(0), (String)arguments.get(1), (Boolean)arguments.get(2), (MultiModel)arguments.get(3));
@@ -1032,7 +1039,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model copyMAVOInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MultiModel containerMultiModel) throws MMINTException {
+	public Model copyMAVOInstance(Model origModel, String newModelName, MultiModel containerMultiModel) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
@@ -1045,7 +1052,17 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		} catch (Exception e) {
 			throw new MMINTException("Error copying model file");
 		}
+		Model newModel = createMAVOInstance(newModelUri, ModelOrigin.CREATED, containerMultiModel);
 
+		return newModel;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Model copyMAVOInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MultiModel containerMultiModel) throws MMINTException {
+
+		Model newModel = copyMAVOInstance(origModel, newModelName, containerMultiModel);
 		// copy diagrams
 		if (copyDiagram) {
 			for (Editor oldEditor : origModel.getEditors()) {
@@ -1067,7 +1084,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				//TODO MMINT[UML] add support for notation extra file (e.g. in UML)
 			}
 		}
-		Model newModel = createMAVOInstanceAndEditor(newModelUri, ModelOrigin.CREATED, containerMultiModel);
+		newModel.createInstanceEditor();
 
 		return newModel;
 	}

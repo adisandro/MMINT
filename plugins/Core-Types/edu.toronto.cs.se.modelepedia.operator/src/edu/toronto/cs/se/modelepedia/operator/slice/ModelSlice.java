@@ -22,7 +22,6 @@ import java.util.Set;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 
@@ -67,22 +66,18 @@ public class ModelSlice extends OperatorImpl {
 		sliceModelObjs = new HashSet<>();
 	}
 
-	private String getSliceId(EObject modelObj) {
-
-		EStructuralFeature feature = modelObj.eClass().getEStructuralFeature(idAttribute);
-		if (feature == null) {
-			return null;
-		}
-
-		return (String) modelObj.eGet(feature);
-	}
-
 	private void sliceReachableObjects(String sliceId, EObject sliceModelObj) {
 
 		if (sliceModelObjs.contains(sliceModelObj)) {
 			return;
 		}
-		String id = getSliceId(sliceModelObj);
+		String id = null;
+		try {
+			id = (String) MultiModelUtils.getModelObjFeature(sliceModelObj, idAttribute);
+		}
+		catch (MMINTException e) {
+			// ignore and continue
+		}
 		sliceModelObjs.add(sliceModelObj);
 		if (id != null && boundariesIds.get(sliceId).contains(id)) {
 			return;
@@ -100,7 +95,13 @@ public class ModelSlice extends OperatorImpl {
 		// collect slice model objects
 		EObject sliceRootModelObj = EcoreUtil.copy(rootModelObj);
 		sliceRootModelObj.eAllContents().forEachRemaining(sliceModelObj -> {
-			String sliceId = getSliceId(sliceModelObj);
+			String sliceId = null;
+			try {
+				sliceId = (String) MultiModelUtils.getModelObjFeature(sliceModelObj, idAttribute);
+			}
+			catch (Exception e) {
+				// ignore and continue
+			}
 			if (sliceId != null && sliceIds.contains(sliceId)) {
 				sliceReachableObjects(sliceId, sliceModelObj);
 			}

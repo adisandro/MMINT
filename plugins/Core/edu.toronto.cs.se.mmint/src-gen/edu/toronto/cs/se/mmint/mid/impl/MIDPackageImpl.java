@@ -610,7 +610,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__CopyMAVOInstanceAndEditor__Model_String_boolean_MultiModel() {
+	public EOperation getModel__CopyMAVOInstance__Model_String_MultiModel() {
 		return modelEClass.getEOperations().get(10);
 	}
 
@@ -619,7 +619,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__DeleteInstance() {
+	public EOperation getModel__CopyMAVOInstanceAndEditor__Model_String_boolean_MultiModel() {
 		return modelEClass.getEOperations().get(11);
 	}
 
@@ -628,8 +628,17 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__GetEMFInstanceRoot() {
+	public EOperation getModel__DeleteInstance() {
 		return modelEClass.getEOperations().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__GetEMFInstanceRoot() {
+		return modelEClass.getEOperations().get(13);
 	}
 
 	/**
@@ -1040,6 +1049,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(modelEClass, MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL);
 		createEOperation(modelEClass, MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL);
 		createEOperation(modelEClass, MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL);
+		createEOperation(modelEClass, MODEL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL);
 		createEOperation(modelEClass, MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL);
 		createEOperation(modelEClass, MODEL___DELETE_INSTANCE);
 		createEOperation(modelEClass, MODEL___GET_EMF_INSTANCE_ROOT);
@@ -1222,6 +1232,12 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		op = initEOperation(getModel__CreateMAVOInstanceAndEditor__String_ModelOrigin_MultiModel(), this.getModel(), "createMAVOInstanceAndEditor", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getMultiModel(), "containerMultiModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMINTException());
+
+		op = initEOperation(getModel__CopyMAVOInstance__Model_String_MultiModel(), this.getModel(), "copyMAVOInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModel(), "origModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getMultiModel(), "containerMultiModel", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 

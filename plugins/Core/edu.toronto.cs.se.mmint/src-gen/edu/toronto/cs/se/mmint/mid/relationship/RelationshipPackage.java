@@ -425,6 +425,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
+	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL = MIDPackage.MODEL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL;
+
+	/**
 	 * The operation id for the '<em>Copy MAVO Instance And Editor</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -891,6 +900,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MODEL_REL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL = MODEL_REL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Copy MAVO Instance And Editor</em>' operation.

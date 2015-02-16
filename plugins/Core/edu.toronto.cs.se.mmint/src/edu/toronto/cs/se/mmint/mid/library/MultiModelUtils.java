@@ -32,6 +32,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTActivator;
@@ -331,8 +332,17 @@ public class MultiModelUtils {
 		deleteDirectory(prependStateToUri(relativeDirectoryUri), false);
 	}
 
-	@SuppressWarnings("unchecked")
-	public static void setModelObjFeature(EObject modelObj, String featureName, Object value) throws MMINTException {
+	public static @Nullable Object getModelObjFeature(@NonNull EObject modelObj, @NonNull String featureName) throws MMINTException {
+
+		EStructuralFeature feature = modelObj.eClass().getEStructuralFeature(featureName);
+		if (feature == null) {
+			throw new MMINTException("Feature " + featureName + " not found in " + modelObj);
+		}
+
+		return modelObj.eGet(feature);
+	}
+
+	public static void setModelObjFeature(@NonNull EObject modelObj, @NonNull String featureName, @NonNull Object value) throws MMINTException {
 
 		EStructuralFeature feature = modelObj.eClass().getEStructuralFeature(featureName);
 		if (feature == null) {

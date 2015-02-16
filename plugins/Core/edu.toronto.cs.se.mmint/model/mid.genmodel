@@ -90,6 +90,11 @@
         <genParameters ecoreParameter="mid.ecore#//Model/createMAVOInstanceAndEditor/origin"/>
         <genParameters ecoreParameter="mid.ecore#//Model/createMAVOInstanceAndEditor/containerMultiModel"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/copyMAVOInstance">
+        <genParameters ecoreParameter="mid.ecore#//Model/copyMAVOInstance/origModel"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/copyMAVOInstance/newModelName"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/copyMAVOInstance/containerMultiModel"/>
+      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/copyMAVOInstanceAndEditor">
         <genParameters ecoreParameter="mid.ecore#//Model/copyMAVOInstanceAndEditor/origModel"/>
         <genParameters ecoreParameter="mid.ecore#//Model/copyMAVOInstanceAndEditor/newModelName"/>

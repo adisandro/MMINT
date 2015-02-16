@@ -491,6 +491,20 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * @generated NOT
 	 */
 	@Override
+	public Model copyMAVOInstance(Model origModel, String newModelName, MultiModel containerMultiModel) throws MMINTException {
+
+		throw new MMINTException("Wrong function, use the specific one for model relationship instances");
+	}
+
+	/**
+	 * Do not use it, use the specific one for model relationship instances
+	 * instead.
+	 * 
+	 * @throws MMINTException
+	 *             Always.
+	 * @generated NOT
+	 */
+	@Override
 	public Model copyMAVOInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MultiModel containerMultiModel) throws MMINTException {
 
 		throw new MMINTException("Wrong function, use the specific one for model relationship instances");
