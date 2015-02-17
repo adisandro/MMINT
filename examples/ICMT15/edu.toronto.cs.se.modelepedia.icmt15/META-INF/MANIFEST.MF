@@ -9,4 +9,5 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
- edu.toronto.cs.se.modelepedia.operator
+ edu.toronto.cs.se.modelepedia.operator,
+ edu.toronto.cs.se.modelepedia.z3
