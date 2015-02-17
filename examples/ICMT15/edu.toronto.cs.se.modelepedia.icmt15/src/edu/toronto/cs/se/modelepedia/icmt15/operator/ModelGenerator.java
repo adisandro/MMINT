@@ -67,10 +67,16 @@ public class ModelGenerator extends OperatorImpl {
 		features = MultiModelOperatorUtils.getStringPropertyList(inputProperties, PROPERTY_IN_FEATURES);
 	}
 
-	private Model copySliceAndChangeIds(Model sliceModel, String sliceIdSuffix, String presenceConditions) throws Exception {
+	private Model copySlice(Model sliceModel) throws MMINTException {
 
 		String newSliceName = MultiModelUtils.getFileNameFromUri(MultiModelUtils.getUniqueUri(sliceModel.getUri(), true, false));
 		Model newSliceModel = sliceModel.getMetatype().copyMAVOInstance(sliceModel, newSliceName, null);
+
+		return newSliceModel;
+	}
+
+	private String changeSliceIds(Model newSliceModel, String sliceIdSuffix, String presenceConditions) throws Exception {
+
 		EObject newSliceRoot = newSliceModel.getEMFInstanceRoot();
 		TreeIterator<EObject> iter = newSliceRoot.eAllContents();
 		while (iter.hasNext()) {
@@ -81,7 +87,7 @@ public class ModelGenerator extends OperatorImpl {
 				if (sliceId != null && !boundariesIds.contains(sliceId)) {
 					newSliceId = sliceId + sliceIdSuffix + "_" + UUID.randomUUID().toString();
 					MultiModelUtils.setModelObjFeature(sliceModelObj, idAttribute, newSliceId);
-					presenceConditions = presenceConditions.replace(sliceId, newSliceId);
+					presenceConditions = presenceConditions.replace(";" + sliceId + ";", ";" + newSliceId + ";");
 				}
 			}
 			catch (MMINTException e) {
@@ -91,7 +97,7 @@ public class ModelGenerator extends OperatorImpl {
 		}
 		MultiModelUtils.createModelFile(newSliceRoot, newSliceModel.getUri(), true);
 
-		return newSliceModel;
+		return presenceConditions;
 	}
 
 	@Override
@@ -104,7 +110,7 @@ public class ModelGenerator extends OperatorImpl {
 		if (matchOperator == null || mergeOperator == null) {
 			throw new MMINTException("Can't find EMFModelMatch and/or EMFModelMerge operators");
 		}
-		String csvUri = MultiModelUtils.replaceFileExtensionInUri(inputModel.getUri(), ".csv");
+		String csvUri = MultiModelUtils.replaceFileExtensionInUri(inputModel.getUri(), "csv");
 		byte[] cvsBytes = Files.readAllBytes(Paths.get(MultiModelUtils.prependWorkspaceToUri(csvUri)));
 		String initialPresenceConditions = new String(cvsBytes);
 		String presenceConditions = initialPresenceConditions;
@@ -122,28 +128,29 @@ public class ModelGenerator extends OperatorImpl {
 				iterationConstraint = iterationConstraint.replace(feature, feature + iterationSuffix);
 			}
 			for (int j = 1; j < actualParameters.size(); j++) {
-				Model sliceModel = copySliceAndChangeIds(actualParameters.get(j), "_" + (j-1) + iterationSuffix, iterationPresenceConditions);
+				Model newSliceModel = copySlice(actualParameters.get(j));
+				iterationPresenceConditions = changeSliceIds(newSliceModel, "_" + (j-1) + iterationSuffix, iterationPresenceConditions);
 				operatorInputs = new BasicEList<>();
 				operatorInputs.add(generatedModel);
-				operatorInputs.add(sliceModel);
+				operatorInputs.add(newSliceModel);
 				operatorOutputs = matchOperator.execute(operatorInputs);
 				operatorInputs = new BasicEList<>();
 				operatorInputs.add(generatedModel);
 				operatorInputs.add(operatorOutputs.get(0));
-				operatorInputs.add(sliceModel);
+				operatorInputs.add(newSliceModel);
 				operatorOutputs = mergeOperator.execute(operatorInputs);
 				Model intermediateModel = generatedModel;
 				generatedModel = operatorOutputs.get(0);
-				MultiModelUtils.deleteFile(sliceModel.getUri(), true);
+				MultiModelUtils.deleteFile(newSliceModel.getUri(), true);
 				if (intermediateModel != inputModel) {
 					MultiModelUtils.deleteFile(intermediateModel.getUri(), true);
 				}
 			}
-			presenceConditions += iterationPresenceConditions;
+			presenceConditions += "\n" + iterationPresenceConditions;
 			globalConstraint += iterationConstraint;
 		}
 		globalConstraint += Z3Utils.SMTLIB_PREDICATE_END;
-		presenceConditions = globalConstraint + presenceConditions;
+		presenceConditions = globalConstraint + "\n" + presenceConditions;
 
 		// outputs
 		EList<Model> outputs = new BasicEList<>();
