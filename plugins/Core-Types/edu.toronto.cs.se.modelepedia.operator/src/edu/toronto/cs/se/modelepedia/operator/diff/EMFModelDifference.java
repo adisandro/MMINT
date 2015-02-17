@@ -39,7 +39,7 @@ import edu.toronto.cs.se.modelepedia.operator.match.EMFModelMatch;
 
 public class EMFModelDifference extends OperatorImpl {
 
-	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EMFModelNameMatch";
+	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMatch";
 	private final static String MODELREL_NAME = "diff";
 	private final static String DELETED_ELEMENT_LINK_NAME = "del";
 	private final static String ADDED_ELEMENT_LINK_NAME = "add";

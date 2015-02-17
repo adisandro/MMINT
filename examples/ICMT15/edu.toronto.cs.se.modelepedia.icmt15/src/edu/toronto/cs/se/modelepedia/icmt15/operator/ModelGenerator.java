@@ -22,7 +22,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelOrigin;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -37,7 +40,8 @@ public class ModelGenerator extends OperatorImpl {
 
 	@NonNull private final static String OPERATOR_EMFMODELMATCH_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMatch";
 	@NonNull private final static String OPERATOR_EMFMODELMERGE_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMerge";
-	@NonNull private final static String SLICE_IDATTRIBUTE_SUFFIX = "_slice_";
+	@NonNull private final static String SLICE_IDATTRIBUTE_SUFFIX = "_slice";
+	@NonNull private final static String MODEL_GENERATED_SUFFIX = "_generated";
 
 	private int numIterations;
 	private String idAttribute;
@@ -62,7 +66,7 @@ public class ModelGenerator extends OperatorImpl {
 			try {
 				sliceId = (String) MultiModelUtils.getModelObjFeature(sliceModelObj, idAttribute);
 				if (sliceId != null && !boundariesIds.contains(sliceId)) {
-					sliceId += sliceIdSuffix;
+					sliceId = sliceId.toLowerCase() + sliceIdSuffix;
 					MultiModelUtils.setModelObjFeature(sliceModelObj, idAttribute, sliceId);
 				}
 			}
@@ -78,35 +82,47 @@ public class ModelGenerator extends OperatorImpl {
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
-		/**
-		 * TODO:
-		 * 3) Handle csv
-		 */
+		Model inputModel = actualParameters.get(0);
 		EMFModelMatch matchOperator = (EMFModelMatch) MultiModelTypeRegistry.<Operator>getType(OPERATOR_EMFMODELMATCH_URI);
 		EMFModelMerge mergeOperator = (EMFModelMerge) MultiModelTypeRegistry.<Operator>getType(OPERATOR_EMFMODELMERGE_URI);
 		if (matchOperator == null || mergeOperator == null) {
 			throw new MMINTException("Can't find EMFModelMatch and/or EMFModelMerge operators");
 		}
-		Model model = actualParameters.get(0);
+
+		/**
+		 * TODO:
+		 * 3) Handle csv
+		 * 4) Remove temp files
+		 * 5) additive merge
+		 */
+		// generate model
+		Model generatedModel = inputModel;
 		EList<Model> operatorInputs, operatorOutputs;
 		for (int i = 0; i < numIterations; i++) {
 			for (int j = 1; j < actualParameters.size(); j++) {
-				Model sliceModel = copySliceAndChangeIds(actualParameters.get(j), SLICE_IDATTRIBUTE_SUFFIX + i + "-" + j);
+				Model sliceModel = copySliceAndChangeIds(actualParameters.get(j), SLICE_IDATTRIBUTE_SUFFIX + (j-1) + "-" + i);
 				operatorInputs = new BasicEList<>();
-				operatorInputs.add(model);
+				operatorInputs.add(generatedModel);
 				operatorInputs.add(sliceModel);
 				operatorOutputs = matchOperator.execute(operatorInputs);
 				operatorInputs = new BasicEList<>();
-				operatorInputs.add(model);
+				operatorInputs.add(generatedModel);
 				operatorInputs.add(operatorOutputs.get(0));
 				operatorInputs.add(sliceModel);
 				operatorOutputs = mergeOperator.execute(operatorInputs);
-				model = operatorOutputs.get(0);
+				generatedModel = operatorOutputs.get(0);
 			}
 		}
 
 		EList<Model> outputs = new BasicEList<>();
-		outputs.add(model);
+		String outputModelUri = MultiModelUtils.addFileNameSuffixInUri(inputModel.getUri(), MODEL_GENERATED_SUFFIX);
+		MultiModelUtils.createModelFile(generatedModel.getEMFInstanceRoot(), outputModelUri, true);
+		MultiModel instanceMID = MultiModelRegistry.getMultiModel(inputModel);
+		Model outputModel = (isUpdateMID()) ?
+			generatedModel.getMetatype().createInstanceAndEditor(outputModelUri, ModelOrigin.CREATED, instanceMID) :
+			generatedModel.getMetatype().createInstance(outputModelUri, ModelOrigin.CREATED, null);
+		outputs.add(outputModel);
+
 		return outputs;
 	}
 

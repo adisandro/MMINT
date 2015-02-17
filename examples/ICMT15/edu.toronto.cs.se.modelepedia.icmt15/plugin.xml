@@ -29,11 +29,16 @@
                   name="model"
                   modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
+            <parameter
+                  isVararg="true"
+                  name="slices"
+                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+            </parameter>
          </input>
          <output>
             <parameter
                   isVararg="false"
-                  name="bigModel"
+                  name="biggerModel"
                   modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
             </parameter>
          </output>

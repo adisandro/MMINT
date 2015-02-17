@@ -34,7 +34,7 @@ import edu.toronto.cs.se.modelepedia.operator.match.EMFModelMatch;
 
 public class EMFModelMerge extends OperatorImpl {
 
-	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EMFModelNameMatch";
+	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMatch";
 	private static final String MERGED_MODEL_NAME_SEPARATOR = "+";
 	private final static String SRC_MODELREL_NAME = "srcMatch";
 	private final static String TGT_MODELREL_NAME = "tgtMatch";

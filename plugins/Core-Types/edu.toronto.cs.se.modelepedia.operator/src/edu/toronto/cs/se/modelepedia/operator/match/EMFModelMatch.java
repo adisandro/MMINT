@@ -16,8 +16,10 @@ import java.util.Properties;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.compare.AttributeChange;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.Diff;
+import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.compare.EMFCompare;
 import org.eclipse.emf.compare.Match;
 import org.eclipse.emf.compare.ReferenceChange;
@@ -113,11 +115,9 @@ nextMatch:
 				if (match.getLeft() == null || match.getRight() == null) {
 					continue;
 				}
-				if (match.getDifferences().size() > 0) {
-					for (Diff diff : match.getDifferences()) {
-						if (!(diff instanceof ReferenceChange)) {
-							continue nextMatch;
-						}
+				for (Diff diff : match.getDifferences()) {
+					if (!(diff instanceof ReferenceChange)) {
+						continue nextMatch;
 					}
 				}
 				EStructuralFeature feature = match.getLeft().eClass().getEStructuralFeature(matchAttribute);
