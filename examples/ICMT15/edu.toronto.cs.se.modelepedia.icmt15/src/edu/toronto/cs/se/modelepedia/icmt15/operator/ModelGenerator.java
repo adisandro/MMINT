@@ -13,6 +13,7 @@ package edu.toronto.cs.se.modelepedia.icmt15.operator;
 
 import java.util.Properties;
 import java.util.Set;
+import java.util.UUID;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -40,7 +41,6 @@ public class ModelGenerator extends OperatorImpl {
 
 	@NonNull private final static String OPERATOR_EMFMODELMATCH_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMatch";
 	@NonNull private final static String OPERATOR_EMFMODELMERGE_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMerge";
-	@NonNull private final static String SLICE_IDATTRIBUTE_SUFFIX = "_slice";
 	@NonNull private final static String MODEL_GENERATED_SUFFIX = "_generated";
 
 	private int numIterations;
@@ -66,7 +66,7 @@ public class ModelGenerator extends OperatorImpl {
 			try {
 				sliceId = (String) MultiModelUtils.getModelObjFeature(sliceModelObj, idAttribute);
 				if (sliceId != null && !boundariesIds.contains(sliceId)) {
-					sliceId = sliceId.toLowerCase() + sliceIdSuffix;
+					sliceId += sliceIdSuffix + "_" + UUID.randomUUID().toString();
 					MultiModelUtils.setModelObjFeature(sliceModelObj, idAttribute, sliceId);
 				}
 			}
@@ -92,15 +92,13 @@ public class ModelGenerator extends OperatorImpl {
 		/**
 		 * TODO:
 		 * 3) Handle csv
-		 * 4) Remove temp files
-		 * 5) additive merge
 		 */
 		// generate model
 		Model generatedModel = inputModel;
 		EList<Model> operatorInputs, operatorOutputs;
 		for (int i = 0; i < numIterations; i++) {
 			for (int j = 1; j < actualParameters.size(); j++) {
-				Model sliceModel = copySliceAndChangeIds(actualParameters.get(j), SLICE_IDATTRIBUTE_SUFFIX + (j-1) + "-" + i);
+				Model sliceModel = copySliceAndChangeIds(actualParameters.get(j), "_" + (j-1) + "-" + i);
 				operatorInputs = new BasicEList<>();
 				operatorInputs.add(generatedModel);
 				operatorInputs.add(sliceModel);
@@ -110,13 +108,19 @@ public class ModelGenerator extends OperatorImpl {
 				operatorInputs.add(operatorOutputs.get(0));
 				operatorInputs.add(sliceModel);
 				operatorOutputs = mergeOperator.execute(operatorInputs);
+				Model intermediateModel = generatedModel;
 				generatedModel = operatorOutputs.get(0);
+				MultiModelUtils.deleteFile(sliceModel.getUri(), true);
+				if (intermediateModel != inputModel) {
+					MultiModelUtils.deleteFile(intermediateModel.getUri(), true);
+				}
 			}
 		}
 
 		EList<Model> outputs = new BasicEList<>();
 		String outputModelUri = MultiModelUtils.addFileNameSuffixInUri(inputModel.getUri(), MODEL_GENERATED_SUFFIX);
 		MultiModelUtils.createModelFile(generatedModel.getEMFInstanceRoot(), outputModelUri, true);
+		MultiModelUtils.deleteFile(generatedModel.getUri(), true);
 		MultiModel instanceMID = MultiModelRegistry.getMultiModel(inputModel);
 		Model outputModel = (isUpdateMID()) ?
 			generatedModel.getMetatype().createInstanceAndEditor(outputModelUri, ModelOrigin.CREATED, instanceMID) :
