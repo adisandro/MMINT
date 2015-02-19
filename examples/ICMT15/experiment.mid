@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
   <models uri="/ICMT15/gm.xmi" name="gm" metatypeUri="http://se.cs.toronto.edu/mmint/Model" dynamic="true" fileExtension="xmi" editors="//@editors.0"/>
-  <models uri="/ICMT15/gm_slice0.xmi" name="gm_slice0" metatypeUri="http://se.cs.toronto.edu/mmint/Model" dynamic="true" origin="CREATED" fileExtension="xmi" editors="//@editors.1"/>
-  <models uri="/ICMT15/gm_slice1.xmi" name="gm_slice1" metatypeUri="http://se.cs.toronto.edu/mmint/Model" dynamic="true" origin="CREATED" fileExtension="xmi" editors="//@editors.2"/>
-  <models uri="/ICMT15/gm_slice2.xmi" name="gm_slice2" metatypeUri="http://se.cs.toronto.edu/mmint/Model" dynamic="true" origin="CREATED" fileExtension="xmi" editors="//@editors.3"/>
   <editors uri="/ICMT15/gm.xmi" name="Ecore Reflective tree for model /ICMT15/gm.xmi" metatypeUri="http://se.cs.toronto.edu/mmint/Model_tree" dynamic="true" modelUri="/ICMT15/gm.xmi" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID">
     <fileExtensions>xmi</fileExtensions>
   </editors>
-  <editors uri="/ICMT15/gm_slice0.xmi" name="Ecore Reflective tree for model /ICMT15/gm_slice0.xmi" metatypeUri="http://se.cs.toronto.edu/mmint/Model_tree" dynamic="true" modelUri="/ICMT15/gm_slice0.xmi" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID">
-    <fileExtensions>xmi</fileExtensions>
-  </editors>
-  <editors uri="/ICMT15/gm_slice1.xmi" name="Ecore Reflective tree for model /ICMT15/gm_slice1.xmi" metatypeUri="http://se.cs.toronto.edu/mmint/Model_tree" dynamic="true" modelUri="/ICMT15/gm_slice1.xmi" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID">
-    <fileExtensions>xmi</fileExtensions>
-  </editors>
-  <editors uri="/ICMT15/gm_slice2.xmi" name="Ecore Reflective tree for model /ICMT15/gm_slice2.xmi" metatypeUri="http://se.cs.toronto.edu/mmint/Model_tree" dynamic="true" modelUri="/ICMT15/gm_slice2.xmi" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID">
-    <fileExtensions>xmi</fileExtensions>
-  </editors>
   <extendibleTable key="/ICMT15/gm.xmi" value="//@models.0"/>
-  <extendibleTable key="/ICMT15/gm_slice0.xmi" value="//@models.1"/>
-  <extendibleTable key="/ICMT15/gm_slice1.xmi" value="//@models.2"/>
-  <extendibleTable key="/ICMT15/gm_slice2.xmi" value="//@models.3"/>
 </mid:MultiModel>
