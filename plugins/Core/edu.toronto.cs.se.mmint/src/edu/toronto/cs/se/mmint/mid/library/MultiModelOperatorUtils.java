@@ -200,13 +200,15 @@ public class MultiModelOperatorUtils {
 		}
 	}
 
-	//TODO MMINT[OPERATOR] Remove and rename getStringProperties2
+	//TODO MMINT[OPERATOR] Remove
+	@Deprecated
 	public static @NonNull String[] getStringProperties(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
 		return getStringProperty(properties, propertyName).split(PROPERTY_SEPARATOR);
 	}
 
-	//TODO MMINT[OPERATOR] Remove and rename getOptionalStringProperties2
+	//TODO MMINT[OPERATOR] Remove
+	@Deprecated
 	public static @NonNull String[] getOptionalStringProperties(@NonNull Properties properties, @NonNull String propertyName, @NonNull String[] defaultValue) {
 
 		try {

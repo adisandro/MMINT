@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.Random;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
@@ -228,7 +230,13 @@ public class ICMT15 extends RandomOperatorImpl {
 
 		// outputs
 		EList<Model> outputs = new BasicEList<>();
-		String outputModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(inputModel.getUri(), MODEL_GENERATED_SUFFIX), true, false);
+		String uri = (getInputSubdir() != null) ?
+			MultiModelUtils.replaceLastSegmentInUri(
+				inputModel.getUri(),
+				getInputSubdir() + MMINT.URI_SEPARATOR + MultiModelUtils.getLastSegmentFromUri(inputModel.getUri())
+			) :
+			inputModel.getUri();
+		String outputModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(uri, MODEL_GENERATED_SUFFIX), true, false);
 		MultiModelUtils.createModelFile(outputRootModelObj, outputModelUri, true);
 		MultiModel instanceMID = MultiModelRegistry.getMultiModel(inputModel);
 		Model outputModel = (isUpdateMID()) ?

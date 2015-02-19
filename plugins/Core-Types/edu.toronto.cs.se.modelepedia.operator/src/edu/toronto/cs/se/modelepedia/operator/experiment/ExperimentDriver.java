@@ -25,6 +25,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -223,6 +224,7 @@ public class ExperimentDriver extends OperatorImpl {
 	private static final String PROPERTY_IN_ALLOPERATORS_SUFFIX = ".operator";
 	/** The outputs of the experiment. */
 	private static final String PROPERTY_IN_OUTPUTS = "outputs";
+	private static final String[] PROPERTY_IN_OUTPUTS_DEFAULT = new String[0];
 	/** The output default result property suffix. */
 	private static final String PROPERTY_IN_OUTPUTDEFAULT_SUFFIX = ".defaultResult";
 	/** Min value a sample can take. */
@@ -270,6 +272,17 @@ public class ExperimentDriver extends OperatorImpl {
 	private int maxProcessingTime;
 	private int numThreads;
 
+	private @NonNull String[] getArrayStringProperties(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
+
+		String property = MultiModelOperatorUtils.getStringProperty(properties, propertyName);
+		if (property.startsWith("[") && property.endsWith("]")) {
+			return property.substring(1, property.length()-1).split("\\],\\[");
+		}
+		else {
+			return MultiModelOperatorUtils.getStringProperties(properties, propertyName);
+		}
+	}
+
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
@@ -278,7 +291,7 @@ public class ExperimentDriver extends OperatorImpl {
 		varValues = new String[vars.length][];
 		numExperiments = 1;
 		for (int i = 0; i < vars.length; i++) {
-			varValues[i] = MultiModelOperatorUtils.getStringProperties(inputProperties, vars[i]+PROPERTY_IN_VARIABLEVALUES_SUFFIX);
+			varValues[i] = getArrayStringProperties(inputProperties, vars[i]+PROPERTY_IN_VARIABLEVALUES_SUFFIX);
 			numExperiments *= varValues[i].length;
 			if (MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, vars[i]+PROPERTY_IN_VARIABLEX_SUFFIX, false)) {
 				varX = i;
@@ -302,7 +315,7 @@ public class ExperimentDriver extends OperatorImpl {
 		}
 
 		// outputs
-		outputs = MultiModelOperatorUtils.getStringProperties(inputProperties, PROPERTY_IN_OUTPUTS);
+		outputs = MultiModelOperatorUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_OUTPUTS, PROPERTY_IN_OUTPUTS_DEFAULT);
 		outputOperators = new String[outputs.length];
 		outputDefaults = new double[outputs.length];
 		outputMins = new double[outputs.length];
