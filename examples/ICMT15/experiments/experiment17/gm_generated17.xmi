@@ -1,0 +1,787 @@
+<?xml version="1.0" encoding="ASCII"?>
+<src_recreated:rootElement xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:src_recreated="http://src_recreated" xsi:schemaLocation="http://src_recreated src_recreated.ecore">
+  <ecu Name="BodyControl_0" VirtualDevice="//@VirtualDevice.0 //@VirtualDevice.2"/>
+  <ecu Name="BrakingControl_0" VirtualDevice="//@VirtualDevice.1 //@VirtualDevice.5"/>
+  <ecu Name="EngineControl_0" VirtualDevice="//@VirtualDevice.3 //@VirtualDevice.4"/>
+  <ecu Name="BodyControl_1" VirtualDevice="//@VirtualDevice.6 //@VirtualDevice.8"/>
+  <ecu Name="BrakingControl_1" VirtualDevice="//@VirtualDevice.7 //@VirtualDevice.11"/>
+  <ecu Name="EngineControl_1" VirtualDevice="//@VirtualDevice.9 //@VirtualDevice.10"/>
+  <ecu Name="BodyControl_2" VirtualDevice="//@VirtualDevice.12 //@VirtualDevice.14"/>
+  <ecu Name="BrakingControl_2" VirtualDevice="//@VirtualDevice.13 //@VirtualDevice.17"/>
+  <ecu Name="EngineControl_2" VirtualDevice="//@VirtualDevice.15 //@VirtualDevice.16"/>
+  <ecu Name="BodyControl_3" VirtualDevice="//@VirtualDevice.18 //@VirtualDevice.20"/>
+  <ecu Name="BrakingControl_3" VirtualDevice="//@VirtualDevice.19 //@VirtualDevice.23"/>
+  <ecu Name="EngineControl_3" VirtualDevice="//@VirtualDevice.21 //@VirtualDevice.22"/>
+  <ecu Name="BodyControl_4" VirtualDevice="//@VirtualDevice.24 //@VirtualDevice.26"/>
+  <ecu Name="BrakingControl_4" VirtualDevice="//@VirtualDevice.25 //@VirtualDevice.29"/>
+  <ecu Name="EngineControl_4" VirtualDevice="//@VirtualDevice.27 //@VirtualDevice.28"/>
+  <ecu Name="BodyControl_5" VirtualDevice="//@VirtualDevice.30 //@VirtualDevice.32"/>
+  <ecu Name="BrakingControl_5" VirtualDevice="//@VirtualDevice.31 //@VirtualDevice.35"/>
+  <ecu Name="EngineControl_5" VirtualDevice="//@VirtualDevice.33 //@VirtualDevice.34"/>
+  <ecu Name="BodyControl_6" VirtualDevice="//@VirtualDevice.36 //@VirtualDevice.38"/>
+  <ecu Name="BrakingControl_6" VirtualDevice="//@VirtualDevice.37 //@VirtualDevice.41"/>
+  <ecu Name="EngineControl_6" VirtualDevice="//@VirtualDevice.39 //@VirtualDevice.40"/>
+  <ecu Name="BodyControl_7" VirtualDevice="//@VirtualDevice.42 //@VirtualDevice.44"/>
+  <ecu Name="BrakingControl_7" VirtualDevice="//@VirtualDevice.43 //@VirtualDevice.47"/>
+  <ecu Name="EngineControl_7" VirtualDevice="//@VirtualDevice.45 //@VirtualDevice.46"/>
+  <Signal Name="TurnAccon_0"/>
+  <Signal Name="TurnAccoff_0"/>
+  <Signal Name="SetABSstate_0"/>
+  <Signal Name="TurnABSoff_0"/>
+  <Signal Name="SetACCSpeed_0"/>
+  <Signal Name="SetACCState_0"/>
+  <Signal Name="GetACCState_0"/>
+  <Signal Name="GetACCSpeed_0"/>
+  <Signal Name="GetUserSetPoint_0"/>
+  <Signal Name="GetExternalTemp_0"/>
+  <Signal Name="GetCurTemp_0"/>
+  <Signal Name="SetUserSetPoint_0"/>
+  <Signal Name="SetExternalTemp_0"/>
+  <Signal Name="Send2ControllerRollUp_0"/>
+  <Signal Name="Send2ControllerRollDown_0"/>
+  <Signal Name="SetACCDesiredSpeed_0"/>
+  <Signal Name="RollDownWin10cm_0"/>
+  <Signal Name="RollUpWinYcm_0"/>
+  <Signal Name="RollDownWinYcm_0"/>
+  <Signal Name="TurnHeaterOnOff_0"/>
+  <Signal Name="TurnAcOnOff_0"/>
+  <Signal Name="RaiseACTemp_0"/>
+  <Signal Name="LowerACTemp_0"/>
+  <Signal Name="RaiseHeaterTemp_0"/>
+  <Signal Name="LowerHeaterTemp_0"/>
+  <Signal Name="SetBlowerOff_0"/>
+  <Signal Name="SetBlower1_0"/>
+  <Signal Name="SetBlower2_0"/>
+  <Signal Name="SetBlower3_0"/>
+  <Signal Name="GetArmatureVoltage_0"/>
+  <Signal Name="GetSpeed_0"/>
+  <Signal Name="SetSpeed_0"/>
+  <Signal Name="GetFieldExcitationCurrent_0"/>
+  <Signal Name="GetMotorTorque_0"/>
+  <Signal Name="UpdateRotationSpeedOfAlternator_SyncGenerator_0"/>
+  <Signal Name="SetArmatureVoltage_0"/>
+  <Signal Name="TurnABSon_0"/>
+  <Signal Name="SetBrakePressure_0"/>
+  <Signal Name="GetABSstate_0"/>
+  <Signal Name="GetWheelTorque_0"/>
+  <Signal Name="GetDesiredSlip_0"/>
+  <Signal Name="GetCurSlip_0"/>
+  <Signal Name="SetWheelAngularSpeed_0"/>
+  <Signal Name="GetWheelAngularSpeed_0"/>
+  <Signal Name="SetCurSlip_0"/>
+  <Signal Name="GetVehicleSpeed_0"/>
+  <Signal Name="SetFrictionCoeff_MuSlipCurve_0"/>
+  <Signal Name="SetDesiredSlip_0"/>
+  <Signal Name="SetVehicleSpeed_0"/>
+  <Signal Name="GetFrictionCoeff_MuSlipCurve_0"/>
+  <Signal Name="GetWeightOnWheel_0"/>
+  <Signal Name="GetVehicleMass_0"/>
+  <Signal Name="SetVehicleDeceleration_0"/>
+  <Signal Name="TurnAccon_1"/>
+  <Signal Name="TurnAccoff_1"/>
+  <Signal Name="SetABSstate_1"/>
+  <Signal Name="TurnABSoff_1"/>
+  <Signal Name="SetACCSpeed_1"/>
+  <Signal Name="SetACCState_1"/>
+  <Signal Name="GetACCState_1"/>
+  <Signal Name="GetACCSpeed_1"/>
+  <Signal Name="GetUserSetPoint_1"/>
+  <Signal Name="GetExternalTemp_1"/>
+  <Signal Name="GetCurTemp_1"/>
+  <Signal Name="SetUserSetPoint_1"/>
+  <Signal Name="SetExternalTemp_1"/>
+  <Signal Name="Send2ControllerRollUp_1"/>
+  <Signal Name="Send2ControllerRollDown_1"/>
+  <Signal Name="SetACCDesiredSpeed_1"/>
+  <Signal Name="RollDownWin10cm_1"/>
+  <Signal Name="RollUpWinYcm_1"/>
+  <Signal Name="RollDownWinYcm_1"/>
+  <Signal Name="TurnHeaterOnOff_1"/>
+  <Signal Name="TurnAcOnOff_1"/>
+  <Signal Name="RaiseACTemp_1"/>
+  <Signal Name="LowerACTemp_1"/>
+  <Signal Name="RaiseHeaterTemp_1"/>
+  <Signal Name="LowerHeaterTemp_1"/>
+  <Signal Name="SetBlowerOff_1"/>
+  <Signal Name="SetBlower1_1"/>
+  <Signal Name="SetBlower2_1"/>
+  <Signal Name="SetBlower3_1"/>
+  <Signal Name="GetArmatureVoltage_1"/>
+  <Signal Name="GetSpeed_1"/>
+  <Signal Name="SetSpeed_1"/>
+  <Signal Name="GetFieldExcitationCurrent_1"/>
+  <Signal Name="GetMotorTorque_1"/>
+  <Signal Name="UpdateRotationSpeedOfAlternator_SyncGenerator_1"/>
+  <Signal Name="SetArmatureVoltage_1"/>
+  <Signal Name="TurnABSon_1"/>
+  <Signal Name="SetBrakePressure_1"/>
+  <Signal Name="GetABSstate_1"/>
+  <Signal Name="GetWheelTorque_1"/>
+  <Signal Name="GetDesiredSlip_1"/>
+  <Signal Name="GetCurSlip_1"/>
+  <Signal Name="SetWheelAngularSpeed_1"/>
+  <Signal Name="GetWheelAngularSpeed_1"/>
+  <Signal Name="SetCurSlip_1"/>
+  <Signal Name="GetVehicleSpeed_1"/>
+  <Signal Name="SetFrictionCoeff_MuSlipCurve_1"/>
+  <Signal Name="SetDesiredSlip_1"/>
+  <Signal Name="SetVehicleSpeed_1"/>
+  <Signal Name="GetFrictionCoeff_MuSlipCurve_1"/>
+  <Signal Name="GetWeightOnWheel_1"/>
+  <Signal Name="GetVehicleMass_1"/>
+  <Signal Name="SetVehicleDeceleration_1"/>
+  <Signal Name="TurnAccon_2"/>
+  <Signal Name="TurnAccoff_2"/>
+  <Signal Name="SetABSstate_2"/>
+  <Signal Name="TurnABSoff_2"/>
+  <Signal Name="SetACCSpeed_2"/>
+  <Signal Name="SetACCState_2"/>
+  <Signal Name="GetACCState_2"/>
+  <Signal Name="GetACCSpeed_2"/>
+  <Signal Name="GetUserSetPoint_2"/>
+  <Signal Name="GetExternalTemp_2"/>
+  <Signal Name="GetCurTemp_2"/>
+  <Signal Name="SetUserSetPoint_2"/>
+  <Signal Name="SetExternalTemp_2"/>
+  <Signal Name="Send2ControllerRollUp_2"/>
+  <Signal Name="Send2ControllerRollDown_2"/>
+  <Signal Name="SetACCDesiredSpeed_2"/>
+  <Signal Name="RollDownWin10cm_2"/>
+  <Signal Name="RollUpWinYcm_2"/>
+  <Signal Name="RollDownWinYcm_2"/>
+  <Signal Name="TurnHeaterOnOff_2"/>
+  <Signal Name="TurnAcOnOff_2"/>
+  <Signal Name="RaiseACTemp_2"/>
+  <Signal Name="LowerACTemp_2"/>
+  <Signal Name="RaiseHeaterTemp_2"/>
+  <Signal Name="LowerHeaterTemp_2"/>
+  <Signal Name="SetBlowerOff_2"/>
+  <Signal Name="SetBlower1_2"/>
+  <Signal Name="SetBlower2_2"/>
+  <Signal Name="SetBlower3_2"/>
+  <Signal Name="GetArmatureVoltage_2"/>
+  <Signal Name="GetSpeed_2"/>
+  <Signal Name="SetSpeed_2"/>
+  <Signal Name="GetFieldExcitationCurrent_2"/>
+  <Signal Name="GetMotorTorque_2"/>
+  <Signal Name="UpdateRotationSpeedOfAlternator_SyncGenerator_2"/>
+  <Signal Name="SetArmatureVoltage_2"/>
+  <Signal Name="TurnABSon_2"/>
+  <Signal Name="SetBrakePressure_2"/>
+  <Signal Name="GetABSstate_2"/>
+  <Signal Name="GetWheelTorque_2"/>
+  <Signal Name="GetDesiredSlip_2"/>
+  <Signal Name="GetCurSlip_2"/>
+  <Signal Name="SetWheelAngularSpeed_2"/>
+  <Signal Name="GetWheelAngularSpeed_2"/>
+  <Signal Name="SetCurSlip_2"/>
+  <Signal Name="GetVehicleSpeed_2"/>
+  <Signal Name="SetFrictionCoeff_MuSlipCurve_2"/>
+  <Signal Name="SetDesiredSlip_2"/>
+  <Signal Name="SetVehicleSpeed_2"/>
+  <Signal Name="GetFrictionCoeff_MuSlipCurve_2"/>
+  <Signal Name="GetWeightOnWheel_2"/>
+  <Signal Name="GetVehicleMass_2"/>
+  <Signal Name="SetVehicleDeceleration_2"/>
+  <Signal Name="TurnAccon_3"/>
+  <Signal Name="TurnAccoff_3"/>
+  <Signal Name="SetABSstate_3"/>
+  <Signal Name="TurnABSoff_3"/>
+  <Signal Name="SetACCSpeed_3"/>
+  <Signal Name="SetACCState_3"/>
+  <Signal Name="GetACCState_3"/>
+  <Signal Name="GetACCSpeed_3"/>
+  <Signal Name="GetUserSetPoint_3"/>
+  <Signal Name="GetExternalTemp_3"/>
+  <Signal Name="GetCurTemp_3"/>
+  <Signal Name="SetUserSetPoint_3"/>
+  <Signal Name="SetExternalTemp_3"/>
+  <Signal Name="Send2ControllerRollUp_3"/>
+  <Signal Name="Send2ControllerRollDown_3"/>
+  <Signal Name="SetACCDesiredSpeed_3"/>
+  <Signal Name="RollDownWin10cm_3"/>
+  <Signal Name="RollUpWinYcm_3"/>
+  <Signal Name="RollDownWinYcm_3"/>
+  <Signal Name="TurnHeaterOnOff_3"/>
+  <Signal Name="TurnAcOnOff_3"/>
+  <Signal Name="RaiseACTemp_3"/>
+  <Signal Name="LowerACTemp_3"/>
+  <Signal Name="RaiseHeaterTemp_3"/>
+  <Signal Name="LowerHeaterTemp_3"/>
+  <Signal Name="SetBlowerOff_3"/>
+  <Signal Name="SetBlower1_3"/>
+  <Signal Name="SetBlower2_3"/>
+  <Signal Name="SetBlower3_3"/>
+  <Signal Name="GetArmatureVoltage_3"/>
+  <Signal Name="GetSpeed_3"/>
+  <Signal Name="SetSpeed_3"/>
+  <Signal Name="GetFieldExcitationCurrent_3"/>
+  <Signal Name="GetMotorTorque_3"/>
+  <Signal Name="UpdateRotationSpeedOfAlternator_SyncGenerator_3"/>
+  <Signal Name="SetArmatureVoltage_3"/>
+  <Signal Name="TurnABSon_3"/>
+  <Signal Name="SetBrakePressure_3"/>
+  <Signal Name="GetABSstate_3"/>
+  <Signal Name="GetWheelTorque_3"/>
+  <Signal Name="GetDesiredSlip_3"/>
+  <Signal Name="GetCurSlip_3"/>
+  <Signal Name="SetWheelAngularSpeed_3"/>
+  <Signal Name="GetWheelAngularSpeed_3"/>
+  <Signal Name="SetCurSlip_3"/>
+  <Signal Name="GetVehicleSpeed_3"/>
+  <Signal Name="SetFrictionCoeff_MuSlipCurve_3"/>
+  <Signal Name="SetDesiredSlip_3"/>
+  <Signal Name="SetVehicleSpeed_3"/>
+  <Signal Name="GetFrictionCoeff_MuSlipCurve_3"/>
+  <Signal Name="GetWeightOnWheel_3"/>
+  <Signal Name="GetVehicleMass_3"/>
+  <Signal Name="SetVehicleDeceleration_3"/>
+  <Signal Name="TurnAccon_4"/>
+  <Signal Name="TurnAccoff_4"/>
+  <Signal Name="SetABSstate_4"/>
+  <Signal Name="TurnABSoff_4"/>
+  <Signal Name="SetACCSpeed_4"/>
+  <Signal Name="SetACCState_4"/>
+  <Signal Name="GetACCState_4"/>
+  <Signal Name="GetACCSpeed_4"/>
+  <Signal Name="GetUserSetPoint_4"/>
+  <Signal Name="GetExternalTemp_4"/>
+  <Signal Name="GetCurTemp_4"/>
+  <Signal Name="SetUserSetPoint_4"/>
+  <Signal Name="SetExternalTemp_4"/>
+  <Signal Name="Send2ControllerRollUp_4"/>
+  <Signal Name="Send2ControllerRollDown_4"/>
+  <Signal Name="SetACCDesiredSpeed_4"/>
+  <Signal Name="RollDownWin10cm_4"/>
+  <Signal Name="RollUpWinYcm_4"/>
+  <Signal Name="RollDownWinYcm_4"/>
+  <Signal Name="TurnHeaterOnOff_4"/>
+  <Signal Name="TurnAcOnOff_4"/>
+  <Signal Name="RaiseACTemp_4"/>
+  <Signal Name="LowerACTemp_4"/>
+  <Signal Name="RaiseHeaterTemp_4"/>
+  <Signal Name="LowerHeaterTemp_4"/>
+  <Signal Name="SetBlowerOff_4"/>
+  <Signal Name="SetBlower1_4"/>
+  <Signal Name="SetBlower2_4"/>
+  <Signal Name="SetBlower3_4"/>
+  <Signal Name="GetArmatureVoltage_4"/>
+  <Signal Name="GetSpeed_4"/>
+  <Signal Name="SetSpeed_4"/>
+  <Signal Name="GetFieldExcitationCurrent_4"/>
+  <Signal Name="GetMotorTorque_4"/>
+  <Signal Name="UpdateRotationSpeedOfAlternator_SyncGenerator_4"/>
+  <Signal Name="SetArmatureVoltage_4"/>
+  <Signal Name="TurnABSon_4"/>
+  <Signal Name="SetBrakePressure_4"/>
+  <Signal Name="GetABSstate_4"/>
+  <Signal Name="GetWheelTorque_4"/>
+  <Signal Name="GetDesiredSlip_4"/>
+  <Signal Name="GetCurSlip_4"/>
+  <Signal Name="SetWheelAngularSpeed_4"/>
+  <Signal Name="GetWheelAngularSpeed_4"/>
+  <Signal Name="SetCurSlip_4"/>
+  <Signal Name="GetVehicleSpeed_4"/>
+  <Signal Name="SetFrictionCoeff_MuSlipCurve_4"/>
+  <Signal Name="SetDesiredSlip_4"/>
+  <Signal Name="SetVehicleSpeed_4"/>
+  <Signal Name="GetFrictionCoeff_MuSlipCurve_4"/>
+  <Signal Name="GetWeightOnWheel_4"/>
+  <Signal Name="GetVehicleMass_4"/>
+  <Signal Name="SetVehicleDeceleration_4"/>
+  <Signal Name="TurnAccon_5"/>
+  <Signal Name="TurnAccoff_5"/>
+  <Signal Name="SetABSstate_5"/>
+  <Signal Name="TurnABSoff_5"/>
+  <Signal Name="SetACCSpeed_5"/>
+  <Signal Name="SetACCState_5"/>
+  <Signal Name="GetACCState_5"/>
+  <Signal Name="GetACCSpeed_5"/>
+  <Signal Name="GetUserSetPoint_5"/>
+  <Signal Name="GetExternalTemp_5"/>
+  <Signal Name="GetCurTemp_5"/>
+  <Signal Name="SetUserSetPoint_5"/>
+  <Signal Name="SetExternalTemp_5"/>
+  <Signal Name="Send2ControllerRollUp_5"/>
+  <Signal Name="Send2ControllerRollDown_5"/>
+  <Signal Name="SetACCDesiredSpeed_5"/>
+  <Signal Name="RollDownWin10cm_5"/>
+  <Signal Name="RollUpWinYcm_5"/>
+  <Signal Name="RollDownWinYcm_5"/>
+  <Signal Name="TurnHeaterOnOff_5"/>
+  <Signal Name="TurnAcOnOff_5"/>
+  <Signal Name="RaiseACTemp_5"/>
+  <Signal Name="LowerACTemp_5"/>
+  <Signal Name="RaiseHeaterTemp_5"/>
+  <Signal Name="LowerHeaterTemp_5"/>
+  <Signal Name="SetBlowerOff_5"/>
+  <Signal Name="SetBlower1_5"/>
+  <Signal Name="SetBlower2_5"/>
+  <Signal Name="SetBlower3_5"/>
+  <Signal Name="GetArmatureVoltage_5"/>
+  <Signal Name="GetSpeed_5"/>
+  <Signal Name="SetSpeed_5"/>
+  <Signal Name="GetFieldExcitationCurrent_5"/>
+  <Signal Name="GetMotorTorque_5"/>
+  <Signal Name="UpdateRotationSpeedOfAlternator_SyncGenerator_5"/>
+  <Signal Name="SetArmatureVoltage_5"/>
+  <Signal Name="TurnABSon_5"/>
+  <Signal Name="SetBrakePressure_5"/>
+  <Signal Name="GetABSstate_5"/>
+  <Signal Name="GetWheelTorque_5"/>
+  <Signal Name="GetDesiredSlip_5"/>
+  <Signal Name="GetCurSlip_5"/>
+  <Signal Name="SetWheelAngularSpeed_5"/>
+  <Signal Name="GetWheelAngularSpeed_5"/>
+  <Signal Name="SetCurSlip_5"/>
+  <Signal Name="GetVehicleSpeed_5"/>
+  <Signal Name="SetFrictionCoeff_MuSlipCurve_5"/>
+  <Signal Name="SetDesiredSlip_5"/>
+  <Signal Name="SetVehicleSpeed_5"/>
+  <Signal Name="GetFrictionCoeff_MuSlipCurve_5"/>
+  <Signal Name="GetWeightOnWheel_5"/>
+  <Signal Name="GetVehicleMass_5"/>
+  <Signal Name="SetVehicleDeceleration_5"/>
+  <Signal Name="TurnAccon_6"/>
+  <Signal Name="TurnAccoff_6"/>
+  <Signal Name="SetABSstate_6"/>
+  <Signal Name="TurnABSoff_6"/>
+  <Signal Name="SetACCSpeed_6"/>
+  <Signal Name="SetACCState_6"/>
+  <Signal Name="GetACCState_6"/>
+  <Signal Name="GetACCSpeed_6"/>
+  <Signal Name="GetUserSetPoint_6"/>
+  <Signal Name="GetExternalTemp_6"/>
+  <Signal Name="GetCurTemp_6"/>
+  <Signal Name="SetUserSetPoint_6"/>
+  <Signal Name="SetExternalTemp_6"/>
+  <Signal Name="Send2ControllerRollUp_6"/>
+  <Signal Name="Send2ControllerRollDown_6"/>
+  <Signal Name="SetACCDesiredSpeed_6"/>
+  <Signal Name="RollDownWin10cm_6"/>
+  <Signal Name="RollUpWinYcm_6"/>
+  <Signal Name="RollDownWinYcm_6"/>
+  <Signal Name="TurnHeaterOnOff_6"/>
+  <Signal Name="TurnAcOnOff_6"/>
+  <Signal Name="RaiseACTemp_6"/>
+  <Signal Name="LowerACTemp_6"/>
+  <Signal Name="RaiseHeaterTemp_6"/>
+  <Signal Name="LowerHeaterTemp_6"/>
+  <Signal Name="SetBlowerOff_6"/>
+  <Signal Name="SetBlower1_6"/>
+  <Signal Name="SetBlower2_6"/>
+  <Signal Name="SetBlower3_6"/>
+  <Signal Name="GetArmatureVoltage_6"/>
+  <Signal Name="GetSpeed_6"/>
+  <Signal Name="SetSpeed_6"/>
+  <Signal Name="GetFieldExcitationCurrent_6"/>
+  <Signal Name="GetMotorTorque_6"/>
+  <Signal Name="UpdateRotationSpeedOfAlternator_SyncGenerator_6"/>
+  <Signal Name="SetArmatureVoltage_6"/>
+  <Signal Name="TurnABSon_6"/>
+  <Signal Name="SetBrakePressure_6"/>
+  <Signal Name="GetABSstate_6"/>
+  <Signal Name="GetWheelTorque_6"/>
+  <Signal Name="GetDesiredSlip_6"/>
+  <Signal Name="GetCurSlip_6"/>
+  <Signal Name="SetWheelAngularSpeed_6"/>
+  <Signal Name="GetWheelAngularSpeed_6"/>
+  <Signal Name="SetCurSlip_6"/>
+  <Signal Name="GetVehicleSpeed_6"/>
+  <Signal Name="SetFrictionCoeff_MuSlipCurve_6"/>
+  <Signal Name="SetDesiredSlip_6"/>
+  <Signal Name="SetVehicleSpeed_6"/>
+  <Signal Name="GetFrictionCoeff_MuSlipCurve_6"/>
+  <Signal Name="GetWeightOnWheel_6"/>
+  <Signal Name="GetVehicleMass_6"/>
+  <Signal Name="SetVehicleDeceleration_6"/>
+  <Signal Name="TurnAccon_7"/>
+  <Signal Name="TurnAccoff_7"/>
+  <Signal Name="SetABSstate_7"/>
+  <Signal Name="TurnABSoff_7"/>
+  <Signal Name="SetACCSpeed_7"/>
+  <Signal Name="SetACCState_7"/>
+  <Signal Name="GetACCState_7"/>
+  <Signal Name="GetACCSpeed_7"/>
+  <Signal Name="GetUserSetPoint_7"/>
+  <Signal Name="GetExternalTemp_7"/>
+  <Signal Name="GetCurTemp_7"/>
+  <Signal Name="SetUserSetPoint_7"/>
+  <Signal Name="SetExternalTemp_7"/>
+  <Signal Name="Send2ControllerRollUp_7"/>
+  <Signal Name="Send2ControllerRollDown_7"/>
+  <Signal Name="SetACCDesiredSpeed_7"/>
+  <Signal Name="RollDownWin10cm_7"/>
+  <Signal Name="RollUpWinYcm_7"/>
+  <Signal Name="RollDownWinYcm_7"/>
+  <Signal Name="TurnHeaterOnOff_7"/>
+  <Signal Name="TurnAcOnOff_7"/>
+  <Signal Name="RaiseACTemp_7"/>
+  <Signal Name="LowerACTemp_7"/>
+  <Signal Name="RaiseHeaterTemp_7"/>
+  <Signal Name="LowerHeaterTemp_7"/>
+  <Signal Name="SetBlowerOff_7"/>
+  <Signal Name="SetBlower1_7"/>
+  <Signal Name="SetBlower2_7"/>
+  <Signal Name="SetBlower3_7"/>
+  <Signal Name="GetArmatureVoltage_7"/>
+  <Signal Name="GetSpeed_7"/>
+  <Signal Name="SetSpeed_7"/>
+  <Signal Name="GetFieldExcitationCurrent_7"/>
+  <Signal Name="GetMotorTorque_7"/>
+  <Signal Name="UpdateRotationSpeedOfAlternator_SyncGenerator_7"/>
+  <Signal Name="SetArmatureVoltage_7"/>
+  <Signal Name="TurnABSon_7"/>
+  <Signal Name="SetBrakePressure_7"/>
+  <Signal Name="GetABSstate_7"/>
+  <Signal Name="GetWheelTorque_7"/>
+  <Signal Name="GetDesiredSlip_7"/>
+  <Signal Name="GetCurSlip_7"/>
+  <Signal Name="SetWheelAngularSpeed_7"/>
+  <Signal Name="GetWheelAngularSpeed_7"/>
+  <Signal Name="SetCurSlip_7"/>
+  <Signal Name="GetVehicleSpeed_7"/>
+  <Signal Name="SetFrictionCoeff_MuSlipCurve_7"/>
+  <Signal Name="SetDesiredSlip_7"/>
+  <Signal Name="SetVehicleSpeed_7"/>
+  <Signal Name="GetFrictionCoeff_MuSlipCurve_7"/>
+  <Signal Name="GetWeightOnWheel_7"/>
+  <Signal Name="GetVehicleMass_7"/>
+  <Signal Name="SetVehicleDeceleration_7"/>
+  <ExecFrame Name="De_ActivateACC_0" Provided="//@Signal.4 //@Signal.5" Required="//@Signal.0 //@Signal.1 //@Signal.3"/>
+  <ExecFrame Name="De_ActivateABS_0" Provided="//@Signal.2 //@Signal.3 //@Signal.36" Required="//@Signal.1"/>
+  <ExecFrame Name="DisplayACCState_0" Required="//@Signal.6"/>
+  <ExecFrame Name="DisplaySetSpeed_0" Required="//@Signal.7"/>
+  <ExecFrame Name="DispUserSetPointInCel_0" Required="//@Signal.8"/>
+  <ExecFrame Name="DispExternalTempCel_0" Required="//@Signal.9"/>
+  <ExecFrame Name="DispCurCarTempCel_0" Required="//@Signal.10"/>
+  <ExecFrame Name="InputUserSetPointInCel_0" Provided="//@Signal.11"/>
+  <ExecFrame Name="InputExternalTempInCel_0" Provided="//@Signal.12"/>
+  <ExecFrame Name="RollUp_0" Required="//@Signal.13"/>
+  <ExecFrame Name="RollDown_0" Required="//@Signal.14"/>
+  <ExecFrame Name="ComputeDesiredSpeed_0" Provided="//@Signal.15 //@Signal.31"/>
+  <ExecFrame Name="DetectObstacle_0" Provided="//@Signal.16"/>
+  <ExecFrame Name="ValidateRollUpCommand_0" Provided="//@Signal.17"/>
+  <ExecFrame Name="ValidateRollDownCommand_0" Provided="//@Signal.18"/>
+  <ExecFrame Name="RegulateTemp_0" Provided="//@Signal.19 //@Signal.20 //@Signal.21 //@Signal.22 //@Signal.23 //@Signal.24 //@Signal.25 //@Signal.26 //@Signal.27 //@Signal.28"/>
+  <ExecFrame Name="DepressAccelerator_0" Provided="//@Signal.31" Required="//@Signal.29"/>
+  <ExecFrame Name="ReleaseAccelerator_0" Provided="//@Signal.31" Required="//@Signal.29"/>
+  <ExecFrame Name="DispCurSpeed_0" Required="//@Signal.30"/>
+  <ExecFrame Name="ComputeArmatureVoltage_0" Provided="//@Signal.34 //@Signal.35" Required="//@Signal.30 //@Signal.32 //@Signal.33"/>
+  <ExecFrame Name="Apply_Rel_ForceOnBrakes_0" Provided="//@Signal.37" Required="//@Signal.36 //@Signal.3"/>
+  <ExecFrame Name="Unnamed_0" Required="//@Signal.38"/>
+  <ExecFrame Name="CalcWheelAngularSpeed_0" Provided="//@Signal.42" Required="//@Signal.40 //@Signal.41 //@Signal.39"/>
+  <ExecFrame Name="CalcSlip_0" Provided="//@Signal.44 //@Signal.47 //@Signal.46" Required="//@Signal.43 //@Signal.45"/>
+  <ExecFrame Name="CalcVehicleSpeed_0" Provided="//@Signal.48 //@Signal.52" Required="//@Signal.49 //@Signal.50 //@Signal.51"/>
+  <ExecFrame Name="De_ActivateACC_1" Provided="//@Signal.57 //@Signal.58" Required="//@Signal.53 //@Signal.54 //@Signal.56"/>
+  <ExecFrame Name="De_ActivateABS_1" Provided="//@Signal.55 //@Signal.56 //@Signal.89" Required="//@Signal.54"/>
+  <ExecFrame Name="DisplayACCState_1" Required="//@Signal.59"/>
+  <ExecFrame Name="DisplaySetSpeed_1" Required="//@Signal.60"/>
+  <ExecFrame Name="DispUserSetPointInCel_1" Required="//@Signal.61"/>
+  <ExecFrame Name="DispExternalTempCel_1" Required="//@Signal.62"/>
+  <ExecFrame Name="DispCurCarTempCel_1" Required="//@Signal.63"/>
+  <ExecFrame Name="InputUserSetPointInCel_1" Provided="//@Signal.64"/>
+  <ExecFrame Name="InputExternalTempInCel_1" Provided="//@Signal.65"/>
+  <ExecFrame Name="RollUp_1" Required="//@Signal.66"/>
+  <ExecFrame Name="RollDown_1" Required="//@Signal.67"/>
+  <ExecFrame Name="ComputeDesiredSpeed_1" Provided="//@Signal.68 //@Signal.84"/>
+  <ExecFrame Name="DetectObstacle_1" Provided="//@Signal.69"/>
+  <ExecFrame Name="ValidateRollUpCommand_1" Provided="//@Signal.70"/>
+  <ExecFrame Name="ValidateRollDownCommand_1" Provided="//@Signal.71"/>
+  <ExecFrame Name="RegulateTemp_1" Provided="//@Signal.72 //@Signal.73 //@Signal.74 //@Signal.75 //@Signal.76 //@Signal.77 //@Signal.78 //@Signal.79 //@Signal.80 //@Signal.81"/>
+  <ExecFrame Name="DepressAccelerator_1" Provided="//@Signal.84" Required="//@Signal.82"/>
+  <ExecFrame Name="ReleaseAccelerator_1" Provided="//@Signal.84" Required="//@Signal.82"/>
+  <ExecFrame Name="DispCurSpeed_1" Required="//@Signal.83"/>
+  <ExecFrame Name="ComputeArmatureVoltage_1" Provided="//@Signal.87 //@Signal.88" Required="//@Signal.83 //@Signal.85 //@Signal.86"/>
+  <ExecFrame Name="Apply_Rel_ForceOnBrakes_1" Provided="//@Signal.90" Required="//@Signal.89 //@Signal.56"/>
+  <ExecFrame Name="Unnamed_1" Required="//@Signal.91"/>
+  <ExecFrame Name="CalcWheelAngularSpeed_1" Provided="//@Signal.95" Required="//@Signal.93 //@Signal.94 //@Signal.92"/>
+  <ExecFrame Name="CalcSlip_1" Provided="//@Signal.97 //@Signal.100 //@Signal.99" Required="//@Signal.96 //@Signal.98"/>
+  <ExecFrame Name="CalcVehicleSpeed_1" Provided="//@Signal.101 //@Signal.105" Required="//@Signal.102 //@Signal.103 //@Signal.104"/>
+  <ExecFrame Name="De_ActivateACC_2" Provided="//@Signal.110 //@Signal.111" Required="//@Signal.106 //@Signal.107 //@Signal.109"/>
+  <ExecFrame Name="De_ActivateABS_2" Provided="//@Signal.108 //@Signal.109 //@Signal.142" Required="//@Signal.107"/>
+  <ExecFrame Name="DisplayACCState_2" Required="//@Signal.112"/>
+  <ExecFrame Name="DisplaySetSpeed_2" Required="//@Signal.113"/>
+  <ExecFrame Name="DispUserSetPointInCel_2" Required="//@Signal.114"/>
+  <ExecFrame Name="DispExternalTempCel_2" Required="//@Signal.115"/>
+  <ExecFrame Name="DispCurCarTempCel_2" Required="//@Signal.116"/>
+  <ExecFrame Name="InputUserSetPointInCel_2" Provided="//@Signal.117"/>
+  <ExecFrame Name="InputExternalTempInCel_2" Provided="//@Signal.118"/>
+  <ExecFrame Name="RollUp_2" Required="//@Signal.119"/>
+  <ExecFrame Name="RollDown_2" Required="//@Signal.120"/>
+  <ExecFrame Name="ComputeDesiredSpeed_2" Provided="//@Signal.121 //@Signal.137"/>
+  <ExecFrame Name="DetectObstacle_2" Provided="//@Signal.122"/>
+  <ExecFrame Name="ValidateRollUpCommand_2" Provided="//@Signal.123"/>
+  <ExecFrame Name="ValidateRollDownCommand_2" Provided="//@Signal.124"/>
+  <ExecFrame Name="RegulateTemp_2" Provided="//@Signal.125 //@Signal.126 //@Signal.127 //@Signal.128 //@Signal.129 //@Signal.130 //@Signal.131 //@Signal.132 //@Signal.133 //@Signal.134"/>
+  <ExecFrame Name="DepressAccelerator_2" Provided="//@Signal.137" Required="//@Signal.135"/>
+  <ExecFrame Name="ReleaseAccelerator_2" Provided="//@Signal.137" Required="//@Signal.135"/>
+  <ExecFrame Name="DispCurSpeed_2" Required="//@Signal.136"/>
+  <ExecFrame Name="ComputeArmatureVoltage_2" Provided="//@Signal.140 //@Signal.141" Required="//@Signal.136 //@Signal.138 //@Signal.139"/>
+  <ExecFrame Name="Apply_Rel_ForceOnBrakes_2" Provided="//@Signal.143" Required="//@Signal.142 //@Signal.109"/>
+  <ExecFrame Name="Unnamed_2" Required="//@Signal.144"/>
+  <ExecFrame Name="CalcWheelAngularSpeed_2" Provided="//@Signal.148" Required="//@Signal.146 //@Signal.147 //@Signal.145"/>
+  <ExecFrame Name="CalcSlip_2" Provided="//@Signal.150 //@Signal.153 //@Signal.152" Required="//@Signal.149 //@Signal.151"/>
+  <ExecFrame Name="CalcVehicleSpeed_2" Provided="//@Signal.154 //@Signal.158" Required="//@Signal.155 //@Signal.156 //@Signal.157"/>
+  <ExecFrame Name="De_ActivateACC_3" Provided="//@Signal.163 //@Signal.164" Required="//@Signal.159 //@Signal.160 //@Signal.162"/>
+  <ExecFrame Name="De_ActivateABS_3" Provided="//@Signal.161 //@Signal.162 //@Signal.195" Required="//@Signal.160"/>
+  <ExecFrame Name="DisplayACCState_3" Required="//@Signal.165"/>
+  <ExecFrame Name="DisplaySetSpeed_3" Required="//@Signal.166"/>
+  <ExecFrame Name="DispUserSetPointInCel_3" Required="//@Signal.167"/>
+  <ExecFrame Name="DispExternalTempCel_3" Required="//@Signal.168"/>
+  <ExecFrame Name="DispCurCarTempCel_3" Required="//@Signal.169"/>
+  <ExecFrame Name="InputUserSetPointInCel_3" Provided="//@Signal.170"/>
+  <ExecFrame Name="InputExternalTempInCel_3" Provided="//@Signal.171"/>
+  <ExecFrame Name="RollUp_3" Required="//@Signal.172"/>
+  <ExecFrame Name="RollDown_3" Required="//@Signal.173"/>
+  <ExecFrame Name="ComputeDesiredSpeed_3" Provided="//@Signal.174 //@Signal.190"/>
+  <ExecFrame Name="DetectObstacle_3" Provided="//@Signal.175"/>
+  <ExecFrame Name="ValidateRollUpCommand_3" Provided="//@Signal.176"/>
+  <ExecFrame Name="ValidateRollDownCommand_3" Provided="//@Signal.177"/>
+  <ExecFrame Name="RegulateTemp_3" Provided="//@Signal.178 //@Signal.179 //@Signal.180 //@Signal.181 //@Signal.182 //@Signal.183 //@Signal.184 //@Signal.185 //@Signal.186 //@Signal.187"/>
+  <ExecFrame Name="DepressAccelerator_3" Provided="//@Signal.190" Required="//@Signal.188"/>
+  <ExecFrame Name="ReleaseAccelerator_3" Provided="//@Signal.190" Required="//@Signal.188"/>
+  <ExecFrame Name="DispCurSpeed_3" Required="//@Signal.189"/>
+  <ExecFrame Name="ComputeArmatureVoltage_3" Provided="//@Signal.193 //@Signal.194" Required="//@Signal.189 //@Signal.191 //@Signal.192"/>
+  <ExecFrame Name="Apply_Rel_ForceOnBrakes_3" Provided="//@Signal.196" Required="//@Signal.195 //@Signal.162"/>
+  <ExecFrame Name="Unnamed_3" Required="//@Signal.197"/>
+  <ExecFrame Name="CalcWheelAngularSpeed_3" Provided="//@Signal.201" Required="//@Signal.199 //@Signal.200 //@Signal.198"/>
+  <ExecFrame Name="CalcSlip_3" Provided="//@Signal.203 //@Signal.206 //@Signal.205" Required="//@Signal.202 //@Signal.204"/>
+  <ExecFrame Name="CalcVehicleSpeed_3" Provided="//@Signal.207 //@Signal.211" Required="//@Signal.208 //@Signal.209 //@Signal.210"/>
+  <ExecFrame Name="De_ActivateACC_4" Provided="//@Signal.216 //@Signal.217" Required="//@Signal.212 //@Signal.213 //@Signal.215"/>
+  <ExecFrame Name="De_ActivateABS_4" Provided="//@Signal.214 //@Signal.215 //@Signal.248" Required="//@Signal.213"/>
+  <ExecFrame Name="DisplayACCState_4" Required="//@Signal.218"/>
+  <ExecFrame Name="DisplaySetSpeed_4" Required="//@Signal.219"/>
+  <ExecFrame Name="DispUserSetPointInCel_4" Required="//@Signal.220"/>
+  <ExecFrame Name="DispExternalTempCel_4" Required="//@Signal.221"/>
+  <ExecFrame Name="DispCurCarTempCel_4" Required="//@Signal.222"/>
+  <ExecFrame Name="InputUserSetPointInCel_4" Provided="//@Signal.223"/>
+  <ExecFrame Name="InputExternalTempInCel_4" Provided="//@Signal.224"/>
+  <ExecFrame Name="RollUp_4" Required="//@Signal.225"/>
+  <ExecFrame Name="RollDown_4" Required="//@Signal.226"/>
+  <ExecFrame Name="ComputeDesiredSpeed_4" Provided="//@Signal.227 //@Signal.243"/>
+  <ExecFrame Name="DetectObstacle_4" Provided="//@Signal.228"/>
+  <ExecFrame Name="ValidateRollUpCommand_4" Provided="//@Signal.229"/>
+  <ExecFrame Name="ValidateRollDownCommand_4" Provided="//@Signal.230"/>
+  <ExecFrame Name="RegulateTemp_4" Provided="//@Signal.231 //@Signal.232 //@Signal.233 //@Signal.234 //@Signal.235 //@Signal.236 //@Signal.237 //@Signal.238 //@Signal.239 //@Signal.240"/>
+  <ExecFrame Name="DepressAccelerator_4" Provided="//@Signal.243" Required="//@Signal.241"/>
+  <ExecFrame Name="ReleaseAccelerator_4" Provided="//@Signal.243" Required="//@Signal.241"/>
+  <ExecFrame Name="DispCurSpeed_4" Required="//@Signal.242"/>
+  <ExecFrame Name="ComputeArmatureVoltage_4" Provided="//@Signal.246 //@Signal.247" Required="//@Signal.242 //@Signal.244 //@Signal.245"/>
+  <ExecFrame Name="Apply_Rel_ForceOnBrakes_4" Provided="//@Signal.249" Required="//@Signal.248 //@Signal.215"/>
+  <ExecFrame Name="Unnamed_4" Required="//@Signal.250"/>
+  <ExecFrame Name="CalcWheelAngularSpeed_4" Provided="//@Signal.254" Required="//@Signal.252 //@Signal.253 //@Signal.251"/>
+  <ExecFrame Name="CalcSlip_4" Provided="//@Signal.256 //@Signal.259 //@Signal.258" Required="//@Signal.255 //@Signal.257"/>
+  <ExecFrame Name="CalcVehicleSpeed_4" Provided="//@Signal.260 //@Signal.264" Required="//@Signal.261 //@Signal.262 //@Signal.263"/>
+  <ExecFrame Name="De_ActivateACC_5" Provided="//@Signal.269 //@Signal.270" Required="//@Signal.265 //@Signal.266 //@Signal.268"/>
+  <ExecFrame Name="De_ActivateABS_5" Provided="//@Signal.267 //@Signal.268 //@Signal.301" Required="//@Signal.266"/>
+  <ExecFrame Name="DisplayACCState_5" Required="//@Signal.271"/>
+  <ExecFrame Name="DisplaySetSpeed_5" Required="//@Signal.272"/>
+  <ExecFrame Name="DispUserSetPointInCel_5" Required="//@Signal.273"/>
+  <ExecFrame Name="DispExternalTempCel_5" Required="//@Signal.274"/>
+  <ExecFrame Name="DispCurCarTempCel_5" Required="//@Signal.275"/>
+  <ExecFrame Name="InputUserSetPointInCel_5" Provided="//@Signal.276"/>
+  <ExecFrame Name="InputExternalTempInCel_5" Provided="//@Signal.277"/>
+  <ExecFrame Name="RollUp_5" Required="//@Signal.278"/>
+  <ExecFrame Name="RollDown_5" Required="//@Signal.279"/>
+  <ExecFrame Name="ComputeDesiredSpeed_5" Provided="//@Signal.280 //@Signal.296"/>
+  <ExecFrame Name="DetectObstacle_5" Provided="//@Signal.281"/>
+  <ExecFrame Name="ValidateRollUpCommand_5" Provided="//@Signal.282"/>
+  <ExecFrame Name="ValidateRollDownCommand_5" Provided="//@Signal.283"/>
+  <ExecFrame Name="RegulateTemp_5" Provided="//@Signal.284 //@Signal.285 //@Signal.286 //@Signal.287 //@Signal.288 //@Signal.289 //@Signal.290 //@Signal.291 //@Signal.292 //@Signal.293"/>
+  <ExecFrame Name="DepressAccelerator_5" Provided="//@Signal.296" Required="//@Signal.294"/>
+  <ExecFrame Name="ReleaseAccelerator_5" Provided="//@Signal.296" Required="//@Signal.294"/>
+  <ExecFrame Name="DispCurSpeed_5" Required="//@Signal.295"/>
+  <ExecFrame Name="ComputeArmatureVoltage_5" Provided="//@Signal.299 //@Signal.300" Required="//@Signal.295 //@Signal.297 //@Signal.298"/>
+  <ExecFrame Name="Apply_Rel_ForceOnBrakes_5" Provided="//@Signal.302" Required="//@Signal.301 //@Signal.268"/>
+  <ExecFrame Name="Unnamed_5" Required="//@Signal.303"/>
+  <ExecFrame Name="CalcWheelAngularSpeed_5" Provided="//@Signal.307" Required="//@Signal.305 //@Signal.306 //@Signal.304"/>
+  <ExecFrame Name="CalcSlip_5" Provided="//@Signal.309 //@Signal.312 //@Signal.311" Required="//@Signal.308 //@Signal.310"/>
+  <ExecFrame Name="CalcVehicleSpeed_5" Provided="//@Signal.313 //@Signal.317" Required="//@Signal.314 //@Signal.315 //@Signal.316"/>
+  <ExecFrame Name="De_ActivateACC_6" Provided="//@Signal.322 //@Signal.323" Required="//@Signal.318 //@Signal.319 //@Signal.321"/>
+  <ExecFrame Name="De_ActivateABS_6" Provided="//@Signal.320 //@Signal.321 //@Signal.354" Required="//@Signal.319"/>
+  <ExecFrame Name="DisplayACCState_6" Required="//@Signal.324"/>
+  <ExecFrame Name="DisplaySetSpeed_6" Required="//@Signal.325"/>
+  <ExecFrame Name="DispUserSetPointInCel_6" Required="//@Signal.326"/>
+  <ExecFrame Name="DispExternalTempCel_6" Required="//@Signal.327"/>
+  <ExecFrame Name="DispCurCarTempCel_6" Required="//@Signal.328"/>
+  <ExecFrame Name="InputUserSetPointInCel_6" Provided="//@Signal.329"/>
+  <ExecFrame Name="InputExternalTempInCel_6" Provided="//@Signal.330"/>
+  <ExecFrame Name="RollUp_6" Required="//@Signal.331"/>
+  <ExecFrame Name="RollDown_6" Required="//@Signal.332"/>
+  <ExecFrame Name="ComputeDesiredSpeed_6" Provided="//@Signal.333 //@Signal.349"/>
+  <ExecFrame Name="DetectObstacle_6" Provided="//@Signal.334"/>
+  <ExecFrame Name="ValidateRollUpCommand_6" Provided="//@Signal.335"/>
+  <ExecFrame Name="ValidateRollDownCommand_6" Provided="//@Signal.336"/>
+  <ExecFrame Name="RegulateTemp_6" Provided="//@Signal.337 //@Signal.338 //@Signal.339 //@Signal.340 //@Signal.341 //@Signal.342 //@Signal.343 //@Signal.344 //@Signal.345 //@Signal.346"/>
+  <ExecFrame Name="DepressAccelerator_6" Provided="//@Signal.349" Required="//@Signal.347"/>
+  <ExecFrame Name="ReleaseAccelerator_6" Provided="//@Signal.349" Required="//@Signal.347"/>
+  <ExecFrame Name="DispCurSpeed_6" Required="//@Signal.348"/>
+  <ExecFrame Name="ComputeArmatureVoltage_6" Provided="//@Signal.352 //@Signal.353" Required="//@Signal.348 //@Signal.350 //@Signal.351"/>
+  <ExecFrame Name="Apply_Rel_ForceOnBrakes_6" Provided="//@Signal.355" Required="//@Signal.354 //@Signal.321"/>
+  <ExecFrame Name="Unnamed_6" Required="//@Signal.356"/>
+  <ExecFrame Name="CalcWheelAngularSpeed_6" Provided="//@Signal.360" Required="//@Signal.358 //@Signal.359 //@Signal.357"/>
+  <ExecFrame Name="CalcSlip_6" Provided="//@Signal.362 //@Signal.365 //@Signal.364" Required="//@Signal.361 //@Signal.363"/>
+  <ExecFrame Name="CalcVehicleSpeed_6" Provided="//@Signal.366 //@Signal.370" Required="//@Signal.367 //@Signal.368 //@Signal.369"/>
+  <ExecFrame Name="De_ActivateACC_7" Provided="//@Signal.375 //@Signal.376" Required="//@Signal.371 //@Signal.372 //@Signal.374"/>
+  <ExecFrame Name="De_ActivateABS_7" Provided="//@Signal.373 //@Signal.374 //@Signal.407" Required="//@Signal.372"/>
+  <ExecFrame Name="DisplayACCState_7" Required="//@Signal.377"/>
+  <ExecFrame Name="DisplaySetSpeed_7" Required="//@Signal.378"/>
+  <ExecFrame Name="DispUserSetPointInCel_7" Required="//@Signal.379"/>
+  <ExecFrame Name="DispExternalTempCel_7" Required="//@Signal.380"/>
+  <ExecFrame Name="DispCurCarTempCel_7" Required="//@Signal.381"/>
+  <ExecFrame Name="InputUserSetPointInCel_7" Provided="//@Signal.382"/>
+  <ExecFrame Name="InputExternalTempInCel_7" Provided="//@Signal.383"/>
+  <ExecFrame Name="RollUp_7" Required="//@Signal.384"/>
+  <ExecFrame Name="RollDown_7" Required="//@Signal.385"/>
+  <ExecFrame Name="ComputeDesiredSpeed_7" Provided="//@Signal.386 //@Signal.402"/>
+  <ExecFrame Name="DetectObstacle_7" Provided="//@Signal.387"/>
+  <ExecFrame Name="ValidateRollUpCommand_7" Provided="//@Signal.388"/>
+  <ExecFrame Name="ValidateRollDownCommand_7" Provided="//@Signal.389"/>
+  <ExecFrame Name="RegulateTemp_7" Provided="//@Signal.390 //@Signal.391 //@Signal.392 //@Signal.393 //@Signal.394 //@Signal.395 //@Signal.396 //@Signal.397 //@Signal.398 //@Signal.399"/>
+  <ExecFrame Name="DepressAccelerator_7" Provided="//@Signal.402" Required="//@Signal.400"/>
+  <ExecFrame Name="ReleaseAccelerator_7" Provided="//@Signal.402" Required="//@Signal.400"/>
+  <ExecFrame Name="DispCurSpeed_7" Required="//@Signal.401"/>
+  <ExecFrame Name="ComputeArmatureVoltage_7" Provided="//@Signal.405 //@Signal.406" Required="//@Signal.401 //@Signal.403 //@Signal.404"/>
+  <ExecFrame Name="Apply_Rel_ForceOnBrakes_7" Provided="//@Signal.408" Required="//@Signal.407 //@Signal.374"/>
+  <ExecFrame Name="Unnamed_7" Required="//@Signal.409"/>
+  <ExecFrame Name="CalcWheelAngularSpeed_7" Provided="//@Signal.413" Required="//@Signal.411 //@Signal.412 //@Signal.410"/>
+  <ExecFrame Name="CalcSlip_7" Provided="//@Signal.415 //@Signal.418 //@Signal.417" Required="//@Signal.414 //@Signal.416"/>
+  <ExecFrame Name="CalcVehicleSpeed_7" Provided="//@Signal.419 //@Signal.423" Required="//@Signal.420 //@Signal.421 //@Signal.422"/>
+  <VirtualDevice Name="HumanMachineInterface_BodyControl_0" Distributable="//@Distributable.0 //@Distributable.2"/>
+  <VirtualDevice Name="SituationManagement_BrakingControl_0" Distributable="//@Distributable.1"/>
+  <VirtualDevice Name="SituationManagement_BodyControl_0" Distributable="//@Distributable.3 //@Distributable.4 //@Distributable.5"/>
+  <VirtualDevice Name="SituationManagement_EngineControl_0" Distributable="//@Distributable.8"/>
+  <VirtualDevice Name="HumanMachineInterface_EngineControl_0" Distributable="//@Distributable.6 //@Distributable.7"/>
+  <VirtualDevice Name="HumanMachineInterface_BrakingControl_0" Distributable="//@Distributable.9 //@Distributable.10"/>
+  <VirtualDevice Name="HumanMachineInterface_BodyControl_1" Distributable="//@Distributable.11 //@Distributable.13"/>
+  <VirtualDevice Name="SituationManagement_BrakingControl_1" Distributable="//@Distributable.12"/>
+  <VirtualDevice Name="SituationManagement_BodyControl_1" Distributable="//@Distributable.14 //@Distributable.15 //@Distributable.16"/>
+  <VirtualDevice Name="SituationManagement_EngineControl_1" Distributable="//@Distributable.19"/>
+  <VirtualDevice Name="HumanMachineInterface_EngineControl_1" Distributable="//@Distributable.17 //@Distributable.18"/>
+  <VirtualDevice Name="HumanMachineInterface_BrakingControl_1" Distributable="//@Distributable.20 //@Distributable.21"/>
+  <VirtualDevice Name="HumanMachineInterface_BodyControl_2" Distributable="//@Distributable.22 //@Distributable.24"/>
+  <VirtualDevice Name="SituationManagement_BrakingControl_2" Distributable="//@Distributable.23"/>
+  <VirtualDevice Name="SituationManagement_BodyControl_2" Distributable="//@Distributable.25 //@Distributable.26 //@Distributable.27"/>
+  <VirtualDevice Name="SituationManagement_EngineControl_2" Distributable="//@Distributable.30"/>
+  <VirtualDevice Name="HumanMachineInterface_EngineControl_2" Distributable="//@Distributable.28 //@Distributable.29"/>
+  <VirtualDevice Name="HumanMachineInterface_BrakingControl_2" Distributable="//@Distributable.31 //@Distributable.32"/>
+  <VirtualDevice Name="HumanMachineInterface_BodyControl_3" Distributable="//@Distributable.33 //@Distributable.35"/>
+  <VirtualDevice Name="SituationManagement_BrakingControl_3" Distributable="//@Distributable.34"/>
+  <VirtualDevice Name="SituationManagement_BodyControl_3" Distributable="//@Distributable.36 //@Distributable.37 //@Distributable.38"/>
+  <VirtualDevice Name="SituationManagement_EngineControl_3" Distributable="//@Distributable.41"/>
+  <VirtualDevice Name="HumanMachineInterface_EngineControl_3" Distributable="//@Distributable.39 //@Distributable.40"/>
+  <VirtualDevice Name="HumanMachineInterface_BrakingControl_3" Distributable="//@Distributable.42 //@Distributable.43"/>
+  <VirtualDevice Name="HumanMachineInterface_BodyControl_4" Distributable="//@Distributable.44 //@Distributable.46"/>
+  <VirtualDevice Name="SituationManagement_BrakingControl_4" Distributable="//@Distributable.45"/>
+  <VirtualDevice Name="SituationManagement_BodyControl_4" Distributable="//@Distributable.47 //@Distributable.48 //@Distributable.49"/>
+  <VirtualDevice Name="SituationManagement_EngineControl_4" Distributable="//@Distributable.52"/>
+  <VirtualDevice Name="HumanMachineInterface_EngineControl_4" Distributable="//@Distributable.50 //@Distributable.51"/>
+  <VirtualDevice Name="HumanMachineInterface_BrakingControl_4" Distributable="//@Distributable.53 //@Distributable.54"/>
+  <VirtualDevice Name="HumanMachineInterface_BodyControl_5" Distributable="//@Distributable.55 //@Distributable.57"/>
+  <VirtualDevice Name="SituationManagement_BrakingControl_5" Distributable="//@Distributable.56"/>
+  <VirtualDevice Name="SituationManagement_BodyControl_5" Distributable="//@Distributable.58 //@Distributable.59 //@Distributable.60"/>
+  <VirtualDevice Name="SituationManagement_EngineControl_5" Distributable="//@Distributable.63"/>
+  <VirtualDevice Name="HumanMachineInterface_EngineControl_5" Distributable="//@Distributable.61 //@Distributable.62"/>
+  <VirtualDevice Name="HumanMachineInterface_BrakingControl_5" Distributable="//@Distributable.64 //@Distributable.65"/>
+  <VirtualDevice Name="HumanMachineInterface_BodyControl_6" Distributable="//@Distributable.66 //@Distributable.68"/>
+  <VirtualDevice Name="SituationManagement_BrakingControl_6" Distributable="//@Distributable.67"/>
+  <VirtualDevice Name="SituationManagement_BodyControl_6" Distributable="//@Distributable.69 //@Distributable.70 //@Distributable.71"/>
+  <VirtualDevice Name="SituationManagement_EngineControl_6" Distributable="//@Distributable.74"/>
+  <VirtualDevice Name="HumanMachineInterface_EngineControl_6" Distributable="//@Distributable.72 //@Distributable.73"/>
+  <VirtualDevice Name="HumanMachineInterface_BrakingControl_6" Distributable="//@Distributable.75 //@Distributable.76"/>
+  <VirtualDevice Name="HumanMachineInterface_BodyControl_7" Distributable="//@Distributable.77 //@Distributable.79"/>
+  <VirtualDevice Name="SituationManagement_BrakingControl_7" Distributable="//@Distributable.78"/>
+  <VirtualDevice Name="SituationManagement_BodyControl_7" Distributable="//@Distributable.80 //@Distributable.81 //@Distributable.82"/>
+  <VirtualDevice Name="SituationManagement_EngineControl_7" Distributable="//@Distributable.85"/>
+  <VirtualDevice Name="HumanMachineInterface_EngineControl_7" Distributable="//@Distributable.83 //@Distributable.84"/>
+  <VirtualDevice Name="HumanMachineInterface_BrakingControl_7" Distributable="//@Distributable.86 //@Distributable.87"/>
+  <Distributable ExecFrame="//@ExecFrame.0 //@ExecFrame.3 //@ExecFrame.2 //@ExecFrame.4 //@ExecFrame.5 //@ExecFrame.6 //@ExecFrame.7 //@ExecFrame.8" Name="Display_BodyControl_0"/>
+  <Distributable ExecFrame="//@ExecFrame.1 //@ExecFrame.22 //@ExecFrame.23 //@ExecFrame.24" Name="ABSController_0"/>
+  <Distributable ExecFrame="//@ExecFrame.9 //@ExecFrame.10" Name="PowerWindowButton_0"/>
+  <Distributable ExecFrame="//@ExecFrame.11" Name="AdaptiveCruiseControl_0"/>
+  <Distributable ExecFrame="//@ExecFrame.12 //@ExecFrame.13 //@ExecFrame.14" Name="PowerWindowController_0"/>
+  <Distributable ExecFrame="//@ExecFrame.15" Name="ClimateControl_0"/>
+  <Distributable ExecFrame="//@ExecFrame.18" Name="Display_EngineControl_0"/>
+  <Distributable ExecFrame="//@ExecFrame.16 //@ExecFrame.17" Name="Input_EngineControl_0"/>
+  <Distributable ExecFrame="//@ExecFrame.19" Name="SpeedControl_0"/>
+  <Distributable ExecFrame="//@ExecFrame.21" Name="Display_BrakingControl_0"/>
+  <Distributable ExecFrame="//@ExecFrame.20" Name="BrakingPedalModule_0"/>
+  <Distributable ExecFrame="//@ExecFrame.25 //@ExecFrame.28 //@ExecFrame.27 //@ExecFrame.29 //@ExecFrame.30 //@ExecFrame.31 //@ExecFrame.32 //@ExecFrame.33" Name="Display_BodyControl_1"/>
+  <Distributable ExecFrame="//@ExecFrame.26 //@ExecFrame.47 //@ExecFrame.48 //@ExecFrame.49" Name="ABSController_1"/>
+  <Distributable ExecFrame="//@ExecFrame.34 //@ExecFrame.35" Name="PowerWindowButton_1"/>
+  <Distributable ExecFrame="//@ExecFrame.36" Name="AdaptiveCruiseControl_1"/>
+  <Distributable ExecFrame="//@ExecFrame.37 //@ExecFrame.38 //@ExecFrame.39" Name="PowerWindowController_1"/>
+  <Distributable ExecFrame="//@ExecFrame.40" Name="ClimateControl_1"/>
+  <Distributable ExecFrame="//@ExecFrame.43" Name="Display_EngineControl_1"/>
+  <Distributable ExecFrame="//@ExecFrame.41 //@ExecFrame.42" Name="Input_EngineControl_1"/>
+  <Distributable ExecFrame="//@ExecFrame.44" Name="SpeedControl_1"/>
+  <Distributable ExecFrame="//@ExecFrame.46" Name="Display_BrakingControl_1"/>
+  <Distributable ExecFrame="//@ExecFrame.45" Name="BrakingPedalModule_1"/>
+  <Distributable ExecFrame="//@ExecFrame.50 //@ExecFrame.53 //@ExecFrame.52 //@ExecFrame.54 //@ExecFrame.55 //@ExecFrame.56 //@ExecFrame.57 //@ExecFrame.58" Name="Display_BodyControl_2"/>
+  <Distributable ExecFrame="//@ExecFrame.51 //@ExecFrame.72 //@ExecFrame.73 //@ExecFrame.74" Name="ABSController_2"/>
+  <Distributable ExecFrame="//@ExecFrame.59 //@ExecFrame.60" Name="PowerWindowButton_2"/>
+  <Distributable ExecFrame="//@ExecFrame.61" Name="AdaptiveCruiseControl_2"/>
+  <Distributable ExecFrame="//@ExecFrame.62 //@ExecFrame.63 //@ExecFrame.64" Name="PowerWindowController_2"/>
+  <Distributable ExecFrame="//@ExecFrame.65" Name="ClimateControl_2"/>
+  <Distributable ExecFrame="//@ExecFrame.68" Name="Display_EngineControl_2"/>
+  <Distributable ExecFrame="//@ExecFrame.66 //@ExecFrame.67" Name="Input_EngineControl_2"/>
+  <Distributable ExecFrame="//@ExecFrame.69" Name="SpeedControl_2"/>
+  <Distributable ExecFrame="//@ExecFrame.71" Name="Display_BrakingControl_2"/>
+  <Distributable ExecFrame="//@ExecFrame.70" Name="BrakingPedalModule_2"/>
+  <Distributable ExecFrame="//@ExecFrame.75 //@ExecFrame.78 //@ExecFrame.77 //@ExecFrame.79 //@ExecFrame.80 //@ExecFrame.81 //@ExecFrame.82 //@ExecFrame.83" Name="Display_BodyControl_3"/>
+  <Distributable ExecFrame="//@ExecFrame.76 //@ExecFrame.97 //@ExecFrame.98 //@ExecFrame.99" Name="ABSController_3"/>
+  <Distributable ExecFrame="//@ExecFrame.84 //@ExecFrame.85" Name="PowerWindowButton_3"/>
+  <Distributable ExecFrame="//@ExecFrame.86" Name="AdaptiveCruiseControl_3"/>
+  <Distributable ExecFrame="//@ExecFrame.87 //@ExecFrame.88 //@ExecFrame.89" Name="PowerWindowController_3"/>
+  <Distributable ExecFrame="//@ExecFrame.90" Name="ClimateControl_3"/>
+  <Distributable ExecFrame="//@ExecFrame.93" Name="Display_EngineControl_3"/>
+  <Distributable ExecFrame="//@ExecFrame.91 //@ExecFrame.92" Name="Input_EngineControl_3"/>
+  <Distributable ExecFrame="//@ExecFrame.94" Name="SpeedControl_3"/>
+  <Distributable ExecFrame="//@ExecFrame.96" Name="Display_BrakingControl_3"/>
+  <Distributable ExecFrame="//@ExecFrame.95" Name="BrakingPedalModule_3"/>
+  <Distributable ExecFrame="//@ExecFrame.100 //@ExecFrame.103 //@ExecFrame.102 //@ExecFrame.104 //@ExecFrame.105 //@ExecFrame.106 //@ExecFrame.107 //@ExecFrame.108" Name="Display_BodyControl_4"/>
+  <Distributable ExecFrame="//@ExecFrame.101 //@ExecFrame.122 //@ExecFrame.123 //@ExecFrame.124" Name="ABSController_4"/>
+  <Distributable ExecFrame="//@ExecFrame.109 //@ExecFrame.110" Name="PowerWindowButton_4"/>
+  <Distributable ExecFrame="//@ExecFrame.111" Name="AdaptiveCruiseControl_4"/>
+  <Distributable ExecFrame="//@ExecFrame.112 //@ExecFrame.113 //@ExecFrame.114" Name="PowerWindowController_4"/>
+  <Distributable ExecFrame="//@ExecFrame.115" Name="ClimateControl_4"/>
+  <Distributable ExecFrame="//@ExecFrame.118" Name="Display_EngineControl_4"/>
+  <Distributable ExecFrame="//@ExecFrame.116 //@ExecFrame.117" Name="Input_EngineControl_4"/>
+  <Distributable ExecFrame="//@ExecFrame.119" Name="SpeedControl_4"/>
+  <Distributable ExecFrame="//@ExecFrame.121" Name="Display_BrakingControl_4"/>
+  <Distributable ExecFrame="//@ExecFrame.120" Name="BrakingPedalModule_4"/>
+  <Distributable ExecFrame="//@ExecFrame.125 //@ExecFrame.128 //@ExecFrame.127 //@ExecFrame.129 //@ExecFrame.130 //@ExecFrame.131 //@ExecFrame.132 //@ExecFrame.133" Name="Display_BodyControl_5"/>
+  <Distributable ExecFrame="//@ExecFrame.126 //@ExecFrame.147 //@ExecFrame.148 //@ExecFrame.149" Name="ABSController_5"/>
+  <Distributable ExecFrame="//@ExecFrame.134 //@ExecFrame.135" Name="PowerWindowButton_5"/>
+  <Distributable ExecFrame="//@ExecFrame.136" Name="AdaptiveCruiseControl_5"/>
+  <Distributable ExecFrame="//@ExecFrame.137 //@ExecFrame.138 //@ExecFrame.139" Name="PowerWindowController_5"/>
+  <Distributable ExecFrame="//@ExecFrame.140" Name="ClimateControl_5"/>
+  <Distributable ExecFrame="//@ExecFrame.143" Name="Display_EngineControl_5"/>
+  <Distributable ExecFrame="//@ExecFrame.141 //@ExecFrame.142" Name="Input_EngineControl_5"/>
+  <Distributable ExecFrame="//@ExecFrame.144" Name="SpeedControl_5"/>
+  <Distributable ExecFrame="//@ExecFrame.146" Name="Display_BrakingControl_5"/>
+  <Distributable ExecFrame="//@ExecFrame.145" Name="BrakingPedalModule_5"/>
+  <Distributable ExecFrame="//@ExecFrame.150 //@ExecFrame.153 //@ExecFrame.152 //@ExecFrame.154 //@ExecFrame.155 //@ExecFrame.156 //@ExecFrame.157 //@ExecFrame.158" Name="Display_BodyControl_6"/>
+  <Distributable ExecFrame="//@ExecFrame.151 //@ExecFrame.172 //@ExecFrame.173 //@ExecFrame.174" Name="ABSController_6"/>
+  <Distributable ExecFrame="//@ExecFrame.159 //@ExecFrame.160" Name="PowerWindowButton_6"/>
+  <Distributable ExecFrame="//@ExecFrame.161" Name="AdaptiveCruiseControl_6"/>
+  <Distributable ExecFrame="//@ExecFrame.162 //@ExecFrame.163 //@ExecFrame.164" Name="PowerWindowController_6"/>
+  <Distributable ExecFrame="//@ExecFrame.165" Name="ClimateControl_6"/>
+  <Distributable ExecFrame="//@ExecFrame.168" Name="Display_EngineControl_6"/>
+  <Distributable ExecFrame="//@ExecFrame.166 //@ExecFrame.167" Name="Input_EngineControl_6"/>
+  <Distributable ExecFrame="//@ExecFrame.169" Name="SpeedControl_6"/>
+  <Distributable ExecFrame="//@ExecFrame.171" Name="Display_BrakingControl_6"/>
+  <Distributable ExecFrame="//@ExecFrame.170" Name="BrakingPedalModule_6"/>
+  <Distributable ExecFrame="//@ExecFrame.175 //@ExecFrame.178 //@ExecFrame.177 //@ExecFrame.179 //@ExecFrame.180 //@ExecFrame.181 //@ExecFrame.182 //@ExecFrame.183" Name="Display_BodyControl_7"/>
+  <Distributable ExecFrame="//@ExecFrame.176 //@ExecFrame.197 //@ExecFrame.198 //@ExecFrame.199" Name="ABSController_7"/>
+  <Distributable ExecFrame="//@ExecFrame.184 //@ExecFrame.185" Name="PowerWindowButton_7"/>
+  <Distributable ExecFrame="//@ExecFrame.186" Name="AdaptiveCruiseControl_7"/>
+  <Distributable ExecFrame="//@ExecFrame.187 //@ExecFrame.188 //@ExecFrame.189" Name="PowerWindowController_7"/>
+  <Distributable ExecFrame="//@ExecFrame.190" Name="ClimateControl_7"/>
+  <Distributable ExecFrame="//@ExecFrame.193" Name="Display_EngineControl_7"/>
+  <Distributable ExecFrame="//@ExecFrame.191 //@ExecFrame.192" Name="Input_EngineControl_7"/>
+  <Distributable ExecFrame="//@ExecFrame.194" Name="SpeedControl_7"/>
+  <Distributable ExecFrame="//@ExecFrame.196" Name="Display_BrakingControl_7"/>
+  <Distributable ExecFrame="//@ExecFrame.195" Name="BrakingPedalModule_7"/>
+</src_recreated:rootElement>

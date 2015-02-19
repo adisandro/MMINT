@@ -50,6 +50,7 @@ public class ICMT15 extends RandomOperatorImpl {
 	@NonNull private final static String MODEL_GENERATED_SUFFIX = "_generated";
 	private final static double EASY_PRESENCECONDITION_PERCENTAGE = 0.8;
 	private final static double HARD_PRESENCECONDITION_PERCENTAGE = 0.2;
+	private final static int VARIABLES_PER_CLAUSE = 2;
 
 	private int modelMultiplier;
 	private int variablesMultiplier;
@@ -169,10 +170,9 @@ public class ICMT15 extends RandomOperatorImpl {
 			presenceCondition = Z3Utils.emptyPredicate(outputVariables.get(i));
 		}
 		else {
-			int numVariables = 2;
 			for (int j = 0; j < numClauses-1; j++) {
 				List<String> clause = new ArrayList<>();
-				for (int k = 0; k < numVariables; k++) {
+				for (int k = 0; k < VARIABLES_PER_CLAUSE; k++) {
 					i = random.nextInt(outputVariables.size());
 					String variable = outputVariables.get(i);
 					if (clause.contains(variable)) {
@@ -213,11 +213,14 @@ public class ICMT15 extends RandomOperatorImpl {
 		// generate presence conditions
 		List<String> outputModelEncodings = generateModelEncodings(outputRootModelObj);
 		int numPresenceConditions = (int) (outputModelEncodings.size() * presenceConditionsToModelSizeRatio);
+		int numClauses = getNumClauses();
 		for (int i = 0; i < (numPresenceConditions * EASY_PRESENCECONDITION_PERCENTAGE); i++) {
 			presenceConditions += generatePresenceCondition(outputModelEncodings, 1) + "\n";
 		}
-		for (int i = 0; i < (numPresenceConditions * HARD_PRESENCECONDITION_PERCENTAGE); i++) {
-			presenceConditions += generatePresenceCondition(outputModelEncodings, getNumClauses()) + "\n";
+		if (numClauses > 0) {
+			for (int i = 0; i < (numPresenceConditions * HARD_PRESENCECONDITION_PERCENTAGE); i++) {
+				presenceConditions += generatePresenceCondition(outputModelEncodings, numClauses) + "\n";
+			}
 		}
 		for (String outputModelEncoding : outputModelEncodings) {
 			presenceConditions += outputModelEncoding + Z3Utils.emptyPredicate(Z3Utils.SMTLIB_TRUE) + "\n";
@@ -225,7 +228,7 @@ public class ICMT15 extends RandomOperatorImpl {
 
 		// outputs
 		EList<Model> outputs = new BasicEList<>();
-		String outputModelUri = MultiModelUtils.addFileNameSuffixInUri(inputModel.getUri(), MODEL_GENERATED_SUFFIX);
+		String outputModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(inputModel.getUri(), MODEL_GENERATED_SUFFIX), true, false);
 		MultiModelUtils.createModelFile(outputRootModelObj, outputModelUri, true);
 		MultiModel instanceMID = MultiModelRegistry.getMultiModel(inputModel);
 		Model outputModel = (isUpdateMID()) ?
