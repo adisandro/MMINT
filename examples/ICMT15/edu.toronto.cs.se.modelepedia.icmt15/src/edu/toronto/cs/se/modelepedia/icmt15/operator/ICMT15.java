@@ -80,7 +80,7 @@ public class ICMT15 extends RandomOperatorImpl {
 
 		outputConstraint = "";
 		outputVariables = new ArrayList<>();
-		for (int i = 0; i < variablesMultiplier; i++) {
+		for (int i = 0; i < Math.pow(2, variablesMultiplier-1); i++) {
 			String tempConstraint = constraint;
 			for (int j = 0; j < variables.size(); j++) {
 				String variable = variables.get(j);
@@ -169,12 +169,17 @@ public class ICMT15 extends RandomOperatorImpl {
 			presenceCondition = Z3Utils.emptyPredicate(outputVariables.get(i));
 		}
 		else {
-			int numVariables = numClauses / 2;
+			int numVariables = 2;
 			for (int j = 0; j < numClauses-1; j++) {
 				List<String> clause = new ArrayList<>();
 				for (int k = 0; k < numVariables; k++) {
 					i = random.nextInt(outputVariables.size());
-					clause.add(outputVariables.get(i));
+					String variable = outputVariables.get(i);
+					if (clause.contains(variable)) {
+						k--;
+						continue;
+					}
+					clause.add(variable);
 				}
 				presenceCondition += Z3Utils.or(String.join(" ", clause));
 			}
@@ -194,7 +199,7 @@ public class ICMT15 extends RandomOperatorImpl {
 		EObject inputRootModelObj = inputModel.getEMFInstanceRoot();
 		EObject outputRootModelObj = inputRootModelObj.eClass().getEPackage().getEFactoryInstance().create(inputRootModelObj.eClass());
 		String presenceConditions = Z3Utils.or(outputConstraint) + "\n";
-		for (int i = 0; i < modelMultiplier; i++) {
+		for (int i = 0; i < Math.pow(2, modelMultiplier-1); i++) {
 			EObject inputRootModelObjCopy = EcoreUtil.copy(inputRootModelObj);
 			changeCopyIds(inputRootModelObjCopy, "_" + i);
 			for (EReference containmentFeature : inputRootModelObjCopy.eClass().getEAllContainments()) {
@@ -208,16 +213,14 @@ public class ICMT15 extends RandomOperatorImpl {
 		// generate presence conditions
 		List<String> outputModelEncodings = generateModelEncodings(outputRootModelObj);
 		int numPresenceConditions = (int) (outputModelEncodings.size() * presenceConditionsToModelSizeRatio);
-		for (int i = 0; i < numPresenceConditions; i++) {
-			for (int j = 0; j < (numPresenceConditions * EASY_PRESENCECONDITION_PERCENTAGE); j++) {
-				presenceConditions += generatePresenceCondition(outputModelEncodings, 1);
-			}
-			for (int j = 0; j < (numPresenceConditions * HARD_PRESENCECONDITION_PERCENTAGE); j++) {
-				presenceConditions += generatePresenceCondition(outputModelEncodings, getNumClauses());
-			}
+		for (int i = 0; i < (numPresenceConditions * EASY_PRESENCECONDITION_PERCENTAGE); i++) {
+			presenceConditions += generatePresenceCondition(outputModelEncodings, 1) + "\n";
+		}
+		for (int i = 0; i < (numPresenceConditions * HARD_PRESENCECONDITION_PERCENTAGE); i++) {
+			presenceConditions += generatePresenceCondition(outputModelEncodings, getNumClauses()) + "\n";
 		}
 		for (String outputModelEncoding : outputModelEncodings) {
-			presenceConditions += outputModelEncoding + Z3Utils.emptyPredicate(Z3Utils.SMTLIB_TRUE);
+			presenceConditions += outputModelEncoding + Z3Utils.emptyPredicate(Z3Utils.SMTLIB_TRUE) + "\n";
 		}
 
 		// outputs
