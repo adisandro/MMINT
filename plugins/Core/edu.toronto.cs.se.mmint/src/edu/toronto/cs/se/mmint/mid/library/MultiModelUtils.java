@@ -357,6 +357,9 @@ public class MultiModelUtils {
 			}
 		}
 		else {
+			if (value instanceof EList<?>) {
+				throw new MMINTException("Feature " + featureName + " is not multi-valued");
+			}
 			modelObj.eSet(feature, value);
 		}
 	}
