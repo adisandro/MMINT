@@ -169,7 +169,7 @@ public class ICMT15 extends RandomOperatorImpl {
 		String presenceCondition = "";
 		if (numClauses == 1) {
 			i = random.nextInt(outputVariables.size());
-			presenceCondition = Z3Utils.emptyPredicate(outputVariables.get(i));
+			presenceCondition = outputVariables.get(i);
 		}
 		else {
 			for (int j = 0; j < numClauses-1; j++) {
@@ -225,7 +225,7 @@ public class ICMT15 extends RandomOperatorImpl {
 			}
 		}
 		for (String outputModelEncoding : outputModelEncodings) {
-			presenceConditions += outputModelEncoding + Z3Utils.emptyPredicate(Z3Utils.SMTLIB_TRUE) + "\n";
+			presenceConditions += outputModelEncoding + Z3Utils.SMTLIB_TRUE.trim() + "\n";
 		}
 
 		// outputs
