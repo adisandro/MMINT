@@ -82,9 +82,9 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="REJ14"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_REJ14"
-               class="edu.toronto.cs.se.modelepedia.istar_mavo.operator.REJ14">
+               name="REJ15"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_REJ15"
+               class="edu.toronto.cs.se.modelepedia.istar_mavo.operator.REJ15">
             <superType
                   uri="http://se.cs.toronto.edu/modelepedia/Operator_FASE14">
             </superType>

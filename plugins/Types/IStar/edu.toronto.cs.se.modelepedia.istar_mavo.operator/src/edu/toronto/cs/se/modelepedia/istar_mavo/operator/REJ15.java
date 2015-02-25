@@ -35,7 +35,7 @@ import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
-public class REJ14 extends FASE14 {
+public class REJ15 extends FASE14 {
 
 	private final static String PROPERTY_IN_MODELCONSTRAINT = "modelConstraint";
 	private final static String PROPERTY_IN_MODELCONSTRAINT_DEFAULT = null;
