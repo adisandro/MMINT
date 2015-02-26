@@ -36,6 +36,8 @@ public class Z3Utils {
 	public static final @NonNull String SMTLIB_EDGE = "edge";
 	public static final @NonNull String SMTLIB_NODE_FUNCTION = SMTLIB_PREDICATE_START + SMTLIB_NODE + " ";
 	public static final @NonNull String SMTLIB_EDGE_FUNCTION = SMTLIB_PREDICATE_START + SMTLIB_EDGE + " ";
+	public static final @NonNull String SMTLIB_CONCRETIZATION = "c";
+	public static final @NonNull String SMTLIB_CONCRETIZATION_QUANTIFIER = SMTLIB_PREDICATE_START + SMTLIB_CONCRETIZATION + " ";
 
 	public static final @NonNull String Z3_MODEL_SEPARATOR = "!";
 

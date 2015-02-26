@@ -20,8 +20,6 @@ import java.util.Properties;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -41,11 +39,12 @@ import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 public class FASE14 extends RE13 {
 
+	// input-output properties
+	protected static final String PROPERTY_OUT_TIMERNF = "timeRNF";
+	// constants
+	private static final String RNF_OUTPUT_SUFFIX = "_rnf";
 	private static final String SMTLIB_CONCRETIZATION1 = " c1 ";
 	private static final String SMTLIB_CONCRETIZATION2 = " c2 ";
-
-	protected static final String PROPERTY_OUT_TIMERNF = "timeRNF";
-	private static final String RNF_OUTPUT_SUFFIX = "_rnf";
 
 	// state
 	protected Map<String, MAVOElement> mavoModelObjs;
@@ -59,7 +58,7 @@ public class FASE14 extends RE13 {
 		super.init();
 
 		// state
-		mavoModelObjs = new HashMap<String, MAVOElement>();
+		mavoModelObjs = new HashMap<>();
 		smtEncodingRNF = "";
 		// output
 		timeRNF = -1;
@@ -211,22 +210,10 @@ public class FASE14 extends RE13 {
 	}
 
 	@Override
-	protected void collectAnalysisModelObjs(Model istarModel) throws MMINTException {
+	protected void collectAnalysisModelObjects(Model istarModel) throws MMINTException {
 
-		super.collectAnalysisModelObjs(istarModel);
-		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(istar, true);
-		while (iterator.hasNext()) {
-			EObject modelObj = iterator.next();
-			if (
-				modelObj instanceof MAVOElement && (
-					((MAVOElement) modelObj).isMay() ||
-					((MAVOElement) modelObj).isSet() ||
-					((MAVOElement) modelObj).isVar()
-				)
-			) {
-				mavoModelObjs.put(((MAVOElement) modelObj).getFormulaVariable(), (MAVOElement) modelObj);
-			}
-		}
+		super.collectAnalysisModelObjects(istarModel);
+		mavoModelObjs = MAVOUtils.getMAVOModelObjects(istar);
 	}
 
 	@Override
@@ -235,7 +222,7 @@ public class FASE14 extends RE13 {
 		Model istarModel = actualParameters.get(0);
 
 		// run
-		collectAnalysisModelObjs(istarModel);
+		collectAnalysisModelObjects(istarModel);
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		doAnalysis(z3IncSolver);
 		if (timeTargetsEnabled) {

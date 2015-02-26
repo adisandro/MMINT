@@ -40,20 +40,22 @@ import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 //TODO MMINT[OPERATOR] Move other paper experiments to examples
 public class ICMT15 extends RandomOperatorImpl {
 
-	@NonNull private final static String PROPERTY_IN_MODELMULTIPLIER = "modelMultiplier";
-	@NonNull private final static String PROPERTY_IN_VARIABLESMULTIPLIER = "variablesMultiplier";
-	@NonNull private static final String PROPERTY_IN_IDATTRIBUTE = "idAttribute";
-	@NonNull private static final String PROPERTY_IN_CONSTRAINT = "constraint";
-	@NonNull private static final String PROPERTY_IN_VARIABLES = "variables";
-	@NonNull private static final String PROPERTY_IN_CLAUSESTOVARIABLESRATIO = "clausesToVariablesRatio";
-	@NonNull private static final String PROPERTY_IN_PRESENCECONDITIONSTOMODELSIZERATIO = "presenceConditionsToModelSizeRatio";
-
-	@NonNull private final static String CSV_SEPARATOR = ";";
-	@NonNull private final static String MODEL_GENERATED_SUFFIX = "_generated";
+	// input-output properties
+	private final static @NonNull String PROPERTY_IN_MODELMULTIPLIER = "modelMultiplier";
+	private final static @NonNull String PROPERTY_IN_VARIABLESMULTIPLIER = "variablesMultiplier";
+	private static final @NonNull String PROPERTY_IN_IDATTRIBUTE = "idAttribute";
+	private static final @NonNull String PROPERTY_IN_CONSTRAINT = "constraint";
+	private static final @NonNull String PROPERTY_IN_VARIABLES = "variables";
+	private static final @NonNull String PROPERTY_IN_CLAUSESTOVARIABLESRATIO = "clausesToVariablesRatio";
+	private static final @NonNull String PROPERTY_IN_PRESENCECONDITIONSTOMODELSIZERATIO = "presenceConditionsToModelSizeRatio";
+	// constants
+	private final static @NonNull String CSV_SEPARATOR = ";";
+	private final static @NonNull String MODEL_GENERATED_SUFFIX = "_generated";
 	private final static double EASY_PRESENCECONDITION_PERCENTAGE = 0.8;
 	private final static double HARD_PRESENCECONDITION_PERCENTAGE = 0.2;
 	private final static int VARIABLES_PER_CLAUSE = 2;
 
+	// input
 	private int modelMultiplier;
 	private int variablesMultiplier;
 	private String idAttribute;
@@ -61,7 +63,7 @@ public class ICMT15 extends RandomOperatorImpl {
 	private List<String> variables;
 	private double clausesToVariablesRatio;
 	private double presenceConditionsToModelSizeRatio;
-
+	// output
 	private List<String> outputVariables;
 	private String outputConstraint;
 
@@ -81,6 +83,7 @@ public class ICMT15 extends RandomOperatorImpl {
 	@Override
 	public void init() {
 
+		// output
 		outputConstraint = "";
 		outputVariables = new ArrayList<>();
 		for (int i = 0; i < Math.pow(2, variablesMultiplier-1); i++) {
@@ -95,7 +98,7 @@ public class ICMT15 extends RandomOperatorImpl {
 		}
 	}
 
-	private String getModelObjectEncoding(EObject modelObj) throws MMINTException {
+	private String getModelObjectEncoding(@NonNull EObject modelObj) throws MMINTException {
 
 		return
 			modelObj.eClass().getName() +
@@ -104,7 +107,7 @@ public class ICMT15 extends RandomOperatorImpl {
 			CSV_SEPARATOR;
 	}
 
-	private String getModelReferenceEncoding(EObject srcModelObj, EObject tgtModelObj, EStructuralFeature reference) throws MMINTException {
+	private String getModelReferenceEncoding(@NonNull EObject srcModelObj, @NonNull EObject tgtModelObj, @NonNull EStructuralFeature reference) throws MMINTException {
 
 		return
 			reference.getName() +
@@ -113,7 +116,7 @@ public class ICMT15 extends RandomOperatorImpl {
 			getModelObjectEncoding(tgtModelObj);
 	}
 
-	private List<String> generateModelEncodings(EObject inputRootModelObj) {
+	private List<String> generateModelEncodings(@NonNull EObject inputRootModelObj) {
 
 		List<String> modelEncodings = new ArrayList<>();
 		TreeIterator<EObject> iter = inputRootModelObj.eAllContents();
@@ -161,7 +164,7 @@ public class ICMT15 extends RandomOperatorImpl {
 		}
 	}
 
-	private String generatePresenceCondition(List<String> outputModelEncodings, int numClauses) {
+	private @NonNull String generatePresenceCondition(@NonNull List<String> outputModelEncodings, int numClauses) {
 
 		Random random = getState();
 		int i = random.nextInt(outputModelEncodings.size());

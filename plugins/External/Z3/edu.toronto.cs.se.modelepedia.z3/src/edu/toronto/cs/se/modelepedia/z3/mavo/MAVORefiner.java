@@ -122,13 +122,13 @@ public class MAVORefiner {
 			String smtConstraint;
 			try {
 				//TODO MMINT[MAVO-MMINT] Get this from the model parser
-				smtConstraint = reasoner.getSMTLIBMAVOModelObjectEncoding(modelObj, true);
+				smtConstraint = reasoner.getSMTLIBMayModelObjectEncoding(modelObj, true, false);
 			}
 			catch (MMINTException e) {
 				MMINTException.print(IStatus.WARNING, "Can't generate SMTLIB encoding for the current mavo model object, skipping it", e);
 				continue;
 			}
-			MAVOTruthValue refinedTruthValue = reasoner.checkMAVOConstraintEncodingLoaded(z3IncSolver, smtConstraint);
+			MAVOTruthValue refinedTruthValue = reasoner.checkMAVOConstraintWithSolver(z3IncSolver, smtConstraint);
 			refinedTruthValues.put(formulaVar, refinedTruthValue);
 		}
 

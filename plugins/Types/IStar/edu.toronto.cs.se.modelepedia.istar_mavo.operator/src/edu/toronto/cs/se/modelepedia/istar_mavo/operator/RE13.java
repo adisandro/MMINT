@@ -66,7 +66,7 @@ public class RE13 extends OperatorImpl {
 		}
 	}
 
-	protected static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_IStarMAVOToSMTLIB";
+	// input-output properties
 	private static final String PROPERTY_IN_TARGETSPROPERTY = "targetsProperty";
 	private static final String PROPERTY_IN_TARGETSPROPERTY_DEFAULT = "";
 	private static final String PROPERTY_OUT_TIMEMODEL = "timeModel";
@@ -74,7 +74,8 @@ public class RE13 extends OperatorImpl {
 	private static final String PROPERTY_OUT_TIMETARGETS = "timeTargets";
 	private static final String PROPERTY_OUT_LABELS_SUFFIX = ".labels";
 	private static final String PROPERTY_OUT_TARGETS = "targets";
-
+	// constants
+	protected static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_IStarMAVOToSMTLIB";
 	protected static final String SMTLIB_CONCRETIZATION = " c ";
 	private static final Set<String> Z3_MODEL_NODETYPES = new HashSet<String>();
 	static {
@@ -293,7 +294,7 @@ public class RE13 extends OperatorImpl {
 		return intentions;
 	}
 
-	protected void collectAnalysisModelObjs(Model istarModel) throws MMINTException {
+	protected void collectAnalysisModelObjects(Model istarModel) throws MMINTException {
 
 		istar = (IStar) istarModel.getEMFInstanceRoot();
 		intentions = collectIntentions(istar);
@@ -319,7 +320,7 @@ public class RE13 extends OperatorImpl {
 		Model istarModel = actualParameters.get(0);
 
 		// run solver
-		collectAnalysisModelObjs(istarModel);
+		collectAnalysisModelObjects(istarModel);
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		doAnalysis(z3IncSolver);
 		if (timeTargetsEnabled) {

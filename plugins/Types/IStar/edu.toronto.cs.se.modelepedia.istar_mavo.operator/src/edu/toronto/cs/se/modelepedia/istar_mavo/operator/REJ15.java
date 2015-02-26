@@ -37,6 +37,7 @@ import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 public class REJ15 extends FASE14 {
 
+	// input-output properties
 	private final static String PROPERTY_IN_MODELCONSTRAINT = "modelConstraint";
 	private final static String PROPERTY_IN_MODELCONSTRAINT_DEFAULT = null;
 	private final static String PROPERTY_IN_GENERATETARGETSCONCRETIZATION = "generateTargetsConcretization";
@@ -86,27 +87,19 @@ public class REJ15 extends FASE14 {
 
 	private String[] getConcretization(IStar istar, Z3Model z3Model) {
 
-		//TODO MMINT[Z3] Change api names, make this process an api, make nodes+edges an api
-		//TODO MMINT[MAVO] Rethink mavo apis to include all of this
-		/*TODO
-		 * mavoModelObjs = formulaVar->mavoModelObj
-		 * smtNodes/smtEdges = int->formulaVar
-		 * getZ3ModelNodes()/getZ3ModelEdges() = universe->int
-		 * S: x concretizationVar to same formulaVar
-		 * V: 1 concretizationVar to x formulaVar
-		 */
 		String concretization = "", smtConcretizationConstraint = "";
-		Map<String, List<String>> z3ModelElems = new HashMap<String, List<String>>();
-		Map<String, String> z3ModelElemsTemp = z3ModelParser.getZ3MAVOModelElements(z3Model);
-		for (Entry<String, String> z3ModelElem : z3ModelElemsTemp.entrySet()) {
-			String z3ModelElemUniverse = z3ModelElem.getKey();
-			String z3ModelElemFormulaVar = z3ModelElem.getValue();
-			List<String> z3ModelElemFormulaVars = z3ModelElems.get(z3ModelElemUniverse);
-			if (z3ModelElemFormulaVars == null) {
-				z3ModelElemFormulaVars = new ArrayList<String>();
-				z3ModelElems.put(z3ModelElemUniverse, z3ModelElemFormulaVars);
+		Map<String, List<String>> z3ModelElems = new HashMap<>();
+		for (Entry<String, String> z3ModelElem : z3ModelParser.getZ3MAVOModelElements(z3Model).entrySet()) {
+			// S: x universe ids to same formula var
+			// V: 1 universe id to x formula vars
+			String universeId = z3ModelElem.getKey();
+			String formulaVar = z3ModelElem.getValue();
+			List<String> formulaVars = z3ModelElems.get(universeId);
+			if (formulaVars == null) {
+				formulaVars = new ArrayList<>();
+				z3ModelElems.put(universeId, formulaVars);
 			}
-			z3ModelElemFormulaVars.add(z3ModelElemFormulaVar);
+			formulaVars.add(formulaVar);
 		}
 		for (Entry<String, MAVOElement> mavoModelObjEntry : mavoModelObjs.entrySet()) {
 			MAVOElement mavoModelObj = mavoModelObjEntry.getValue();
@@ -182,7 +175,7 @@ public class REJ15 extends FASE14 {
 		Model istarModel = actualParameters.get(0);
 
 		// run
-		collectAnalysisModelObjs(istarModel);
+		collectAnalysisModelObjects(istarModel);
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		if (timeAnalysisEnabled) {
 			doAnalysis(z3IncSolver);

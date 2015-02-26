@@ -128,8 +128,9 @@ public class Z3MAVOModelParser {
 	}
 
 	/**
-	 * Gets a Z3 model element to formula variable map for elements of a Z3
-	 * model that represents a MAVO model concretization.
+	 * Gets a map from Z3 model elements (universe ids) to their formula
+	 * variable, for elements of a Z3 model that represents a MAVO model
+	 * concretization.
 	 * 
 	 * @param z3Model
 	 *            The Z3 model that represents a MAVO model concretization.

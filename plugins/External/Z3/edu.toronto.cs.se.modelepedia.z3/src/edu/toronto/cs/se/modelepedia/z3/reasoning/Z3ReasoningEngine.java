@@ -13,7 +13,10 @@
 package edu.toronto.cs.se.modelepedia.z3.reasoning;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
@@ -29,6 +32,7 @@ import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -56,7 +60,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	private Z3Model z3ConstraintModel;
 	private Z3Model z3NotConstraintModel;
 
-	private Z3MAVOModelParser generateSMTLIBEncoding(Model model) throws Exception {
+	private @NonNull Z3MAVOModelParser generateSMTLIBEncoding(@NonNull Model model) throws Exception {
 
 		if (!(model.getEMFInstanceRoot() instanceof MAVOModel)) {
 			//TODO MMINT[Z3] Support non-mavo models (create acceleo transformation, check constraint once)
@@ -72,7 +76,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		return ecore2smt.getZ3MAVOModelParser();
 	}
 
-	public @NonNull MAVOTruthValue checkMAVOConstraintEncodingLoaded(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull String smtConstraint) {
+	public @NonNull MAVOTruthValue checkMAVOConstraintWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull String smtConstraint) {
 
 		Z3Model z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(smtConstraint), Z3IncrementalBehavior.POP);
 		boolean constraintTruthValue = z3Model.getZ3Bool() == Z3Bool.SAT;
@@ -89,7 +93,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
 
-		return checkMAVOConstraintEncodingLoaded(z3IncSolver, smtConstraint);
+		return checkMAVOConstraintWithSolver(z3IncSolver, smtConstraint);
 	}
 
 	@Override
@@ -139,28 +143,160 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		return true;
 	}
 
-	public @NonNull String getSMTLIBMAVOModelObjectEncoding(MAVOElement mavoModelObj, boolean isMayOnly) throws MMINTException {
+	public int allSATWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull Z3MAVOModelParser z3ModelParser, @NonNull Z3Model z3Model, @NonNull Map<String, MAVOElement> mavoModelObjs, MAVOModel rootMavoModelObj) throws MMINTException {
+
+		int numSolutions = -1;
+
+		do {
+			numSolutions++;
+			String smtConcretizationConstraint = "";
+			Map<String, List<String>> z3ModelElems = new HashMap<>();
+			for (Entry<String, String> z3ModelElem : z3ModelParser.getZ3MAVOModelElements(z3Model).entrySet()) {
+				// M: 1 universe id to 1 formula var, or nothing
+				// S: x universe ids to 1 formula var
+				// V: 1 universe id to x formula vars
+				String universeId = z3ModelElem.getKey();
+				String formulaVar = z3ModelElem.getValue();
+				List<String> formulaVars = z3ModelElems.get(universeId);
+				if (formulaVars == null) {
+					formulaVars = new ArrayList<>();
+					z3ModelElems.put(universeId, formulaVars);
+				}
+				formulaVars.add(formulaVar);
+			}
+			for (Entry<String, MAVOElement> mavoModelObjEntry : mavoModelObjs.entrySet()) {
+				MAVOElement mavoModelObj = mavoModelObjEntry.getValue();
+				String formulaVar = mavoModelObjEntry.getKey();
+				int counterMS = 0;
+				List<String> mergedV = null;
+				for (List<String> z3ModelElemFormulaVars : z3ModelElems.values()) {
+					if (z3ModelElemFormulaVars.contains(formulaVar)) {
+						counterMS++;
+						mergedV = z3ModelElemFormulaVars;
+					}
+				}
+				boolean isNegation;
+				String smtConstraint = "";
+				if (mavoModelObj.isMay()) {
+					isNegation = (counterMS == 0);
+					smtConstraint = getSMTLIBMayModelObjectEncoding(mavoModelObj, z3ModelParser.isMayOnly(), isNegation);
+				}
+				if (mavoModelObj.isSet() && counterMS > 0) {
+					isNegation = (counterMS > 1);
+					smtConstraint = getSMTLIBSetModelObjectEncoding(mavoModelObj, isNegation);
+				}
+				if (mavoModelObj.isVar() && counterMS > 0) {
+					isNegation = (mergedV.size() > 1);
+					if (!isNegation) {
+						mergedV = MAVOUtils.getMergeableFormulaVars(rootMavoModelObj, mavoModelObj);
+						if (mergedV.size() == 0) {
+							continue;
+						}
+					}
+					smtConstraint = getSMTLIBVarModelObjectEncoding(mavoModelObj, mergedV, isNegation);
+				}
+				smtConcretizationConstraint += smtConstraint;
+			}
+			smtConcretizationConstraint = Z3Utils.assertion(Z3Utils.not(Z3Utils.and(smtConcretizationConstraint)));
+			z3Model = z3IncSolver.checkSatAndGetModel(smtConcretizationConstraint, Z3IncrementalBehavior.NORMAL);
+		}
+		while (z3Model.getZ3Bool().toBoolean());
+
+		return numSolutions;
+	}
+
+	public int allSAT(@NonNull String smtEncoding, @NonNull Z3MAVOModelParser z3ModelParser, @NonNull Map<String, MAVOElement> mavoModelObjs, @NonNull MAVOModel rootMavoModelObj) throws MMINTException {
+
+		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
+		Z3Model z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
+
+		return allSATWithSolver(z3IncSolver, z3ModelParser, z3Model, mavoModelObjs, rootMavoModelObj);
+	}
+
+	public @NonNull String getSMTLIBMayModelObjectEncoding(@NonNull MAVOElement mayModelObj, boolean isMayOnly, boolean isNegation) throws MMINTException {
 
 		String smtEncoding;
-		EClass mavoModelObjClass = mavoModelObj.eClass();
+		EClass mavoModelObjClass = mayModelObj.eClass();
 		if (mavoModelObjClass.getEAnnotation("gmf.node") != null) {
 			smtEncoding = (isMayOnly) ?
-				Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, mavoModelObj.getFormulaVariable()) :
+				Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, mayModelObj.getFormulaVariable()) :
 				Z3Utils.exists(
-					Z3Utils.predicate(Z3Utils.SMTLIB_PREDICATE_START + " c", mavoModelObjClass.getName()),
-					Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, mavoModelObj.getFormulaVariable() + " c")
+					Z3Utils.predicate(Z3Utils.SMTLIB_CONCRETIZATION_QUANTIFIER, mavoModelObjClass.getName()),
+					Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, mayModelObj.getFormulaVariable() + " " + Z3Utils.SMTLIB_CONCRETIZATION)
 				);
 		}
 		else if (mavoModelObjClass.getEAnnotation("gmf.link") != null) {
 			smtEncoding = (isMayOnly) ?
-				Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, mavoModelObj.getFormulaVariable()) :
+				Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, mayModelObj.getFormulaVariable()) :
 				Z3Utils.exists(
-					Z3Utils.predicate(Z3Utils.SMTLIB_PREDICATE_START + " c", mavoModelObjClass.getName()),
-					Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, mavoModelObj.getFormulaVariable() + " c")
+					Z3Utils.predicate(Z3Utils.SMTLIB_CONCRETIZATION_QUANTIFIER, mavoModelObjClass.getName()),
+					Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, mayModelObj.getFormulaVariable() + " " + Z3Utils.SMTLIB_CONCRETIZATION)
 				);
 		}
 		else {
-			throw new MMINTException("The model object " + mavoModelObj.getFormulaVariable() + " doesn't have a Eugenia node/link annotation");
+			throw new MMINTException("The model object " + mayModelObj.getFormulaVariable() + " doesn't have a Eugenia node/link annotation");
+		}
+
+		return (isNegation) ? Z3Utils.not(smtEncoding) : smtEncoding;
+	}
+
+	public @NonNull String getSMTLIBSetModelObjectEncoding(@NonNull MAVOElement setModelObj, boolean isNegation) throws MMINTException {
+
+		String smtEncoding;
+		EClass mavoModelObjClass = setModelObj.eClass();
+		if (mavoModelObjClass.getEAnnotation("gmf.node") != null) {
+			smtEncoding = Z3Utils.exists(
+				Z3Utils.predicate(Z3Utils.SMTLIB_CONCRETIZATION_QUANTIFIER, mavoModelObjClass.getName()),
+				Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, setModelObj.getFormulaVariable() + " " + Z3Utils.SMTLIB_CONCRETIZATION)
+			);
+		}
+		else if (mavoModelObjClass.getEAnnotation("gmf.link") != null) {
+			smtEncoding = Z3Utils.exists(
+				Z3Utils.predicate(Z3Utils.SMTLIB_CONCRETIZATION_QUANTIFIER, mavoModelObjClass.getName()),
+				Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, setModelObj.getFormulaVariable() + " " + Z3Utils.SMTLIB_CONCRETIZATION)
+			);
+		}
+		else {
+			throw new MMINTException("The model object " + setModelObj.getFormulaVariable() + " doesn't have a Eugenia node/link annotation");
+		}
+
+		return (isNegation) ? Z3Utils.not(smtEncoding) : smtEncoding;
+	}
+
+	public @NonNull String getSMTLIBVarModelObjectEncoding(@NonNull MAVOElement varModelObj, @NonNull List<String> unmergeableFormulaVars, boolean isNegation) throws MMINTException {
+
+		String smtEncoding;
+		EClass mavoModelObjClass = varModelObj.eClass();
+		if (mavoModelObjClass.getEAnnotation("gmf.node") != null) {
+			String smtThenTerms = "";
+			for (String unmergeableFormulaVar : unmergeableFormulaVars) {
+				smtThenTerms += Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, unmergeableFormulaVar + " " + Z3Utils.SMTLIB_CONCRETIZATION);
+			}
+			smtThenTerms = (isNegation) ? Z3Utils.and(smtThenTerms) : Z3Utils.not(Z3Utils.or(smtThenTerms));
+			smtEncoding = Z3Utils.forall(
+				Z3Utils.predicate(Z3Utils.SMTLIB_CONCRETIZATION_QUANTIFIER, mavoModelObjClass.getName()),
+				Z3Utils.implication(
+					Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, varModelObj.getFormulaVariable() + " " + Z3Utils.SMTLIB_CONCRETIZATION),
+					smtThenTerms
+				)
+			);
+		}
+		else if (mavoModelObjClass.getEAnnotation("gmf.link") != null) {
+			String smtThenTerms = "";
+			for (String unmergeableFormulaVar : unmergeableFormulaVars) {
+				smtThenTerms += Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, unmergeableFormulaVar + " " + Z3Utils.SMTLIB_CONCRETIZATION);
+			}
+			smtThenTerms = (isNegation) ? Z3Utils.and(smtThenTerms) : Z3Utils.not(Z3Utils.or(smtThenTerms));
+			smtEncoding = Z3Utils.forall(
+				Z3Utils.predicate(Z3Utils.SMTLIB_CONCRETIZATION_QUANTIFIER, mavoModelObjClass.getName()),
+				Z3Utils.implication(
+					Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, varModelObj.getFormulaVariable() + " " + Z3Utils.SMTLIB_CONCRETIZATION),
+					smtThenTerms
+				)
+			);
+		}
+		else {
+			throw new MMINTException("The model object " + varModelObj.getFormulaVariable() + " doesn't have a Eugenia node/link annotation");
 		}
 
 		return smtEncoding;
@@ -214,7 +350,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 				smtMayLogicElem = mayLogicElem.getFormulaVariable();
 			}
 			else if (mayLogicElem instanceof MAVOElement) {
-				smtMayLogicElem = getSMTLIBMAVOModelObjectEncoding((MAVOElement) mayLogicElem, z3ModelParser.isMayOnly());
+				smtMayLogicElem = getSMTLIBMayModelObjectEncoding((MAVOElement) mayLogicElem, z3ModelParser.isMayOnly(), false);
 			}
 			smtEncoding += Z3Utils.assertion(smtMayLogicElem);
 		}
@@ -227,7 +363,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 		String smtEncoding;
 		try {
-			List<MAVOCollection> mayLogicElems = new ArrayList<MAVOCollection>();
+			List<MAVOCollection> mayLogicElems = new ArrayList<>();
 			mayLogicElems.add(mayAlternative);
 			smtEncoding = generateMayRefinementSMTLIBEncoding(model, mayLogicElems);
 		}

@@ -32,6 +32,18 @@ public class Z3Model {
 			}
 		}
 
+		public boolean toBoolean() {
+
+			switch(this) {
+				case SAT:
+					return true;
+				case UNSAT:
+				case UNKNOWN:
+				default:
+					return false;
+			}
+		}
+
 	}
 
 	private Z3Bool z3Bool;

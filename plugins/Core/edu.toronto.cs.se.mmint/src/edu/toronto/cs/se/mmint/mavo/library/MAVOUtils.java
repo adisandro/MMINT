@@ -16,12 +16,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -388,6 +390,36 @@ public class MAVOUtils {
 	public static List<String> getUnmergeableFormulaVars(MAVOModel mavoModel, MAVOElement mavoModelObj) {
 
 		return getVFormulaVars(mavoModel, mavoModelObj, false);
+	}
+
+	public static @NonNull Map<String, MAVOElement> getMAVOModelObjects(@NonNull MAVOModel mavoModel) {
+
+		Iterable<EObject> iterable = () -> mavoModel.eAllContents();
+		Map<String, MAVOElement> mavoModelObjs = StreamSupport.stream(iterable.spliterator(), false)
+			.filter(modelObj ->
+				modelObj instanceof MAVOElement && (
+					((MAVOElement) modelObj).isMay() ||
+					((MAVOElement) modelObj).isSet() ||
+					((MAVOElement) modelObj).isVar()
+				)
+			)
+			.map(modelObj -> (MAVOElement) modelObj)
+			.collect(Collectors.toMap(
+				MAVOElement::getFormulaVariable,
+				mavoModelObj -> mavoModelObj)
+			);
+
+		return mavoModelObjs;
+	}
+
+	public static @NonNull Map<String, MAVOElement> getMAVOModelObjects(@NonNull Model model) throws MMINTException {
+
+		EObject rootModelObj = model.getEMFInstanceRoot();
+		if (!(rootModelObj instanceof MAVOModel)) {
+			throw new MMINTException("Not a MAVO model");
+		}
+
+		return getMAVOModelObjects((MAVOModel) rootModelObj);
 	}
 
 }
