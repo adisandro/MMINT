@@ -22,6 +22,8 @@ import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
@@ -50,8 +52,8 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 		}
 	}
 
-	private static final String PROPERTY_IN_MAYONLY = "mayOnly";
-	private static final Boolean PROPERTY_IN_MAYONLY_DEFAULT = null;
+	private static final @NonNull String PROPERTY_IN_MAYONLY = "mayOnly";
+	private static final @Nullable Boolean PROPERTY_IN_MAYONLY_DEFAULT = null;
 
 	private EcoreMAVOToSMTLIBListener smtListener;
 	private Boolean isMayOnly;
@@ -93,7 +95,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 		MultiModelUtils.deleteFile(smtListener.getZ3MAVOModelParser().getSMTLIBEncodingUri(), false);
 	}
 
-	public Z3MAVOModelParser getZ3MAVOModelParser() {
+	public @NonNull Z3MAVOModelParser getZ3MAVOModelParser() {
 
 		return smtListener.getZ3MAVOModelParser();
 	}

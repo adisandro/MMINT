@@ -16,13 +16,14 @@ import java.util.Map;
 
 import org.eclipse.acceleo.engine.event.AcceleoTextGenerationEvent;
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
+import org.eclipse.jdt.annotation.NonNull;
 
 public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener {
 
-	private static final String NODE_MARKER = "Node";
-	private static final String EDGE_MARKER = "Edge";
-	private static final String MODEL_START_MARKER = ";Model" + System.lineSeparator();
-	private static final String MODEL_END_MARKER = ";End Model" + System.lineSeparator();
+	private static final @NonNull String NODE_MARKER = "Node";
+	private static final @NonNull String EDGE_MARKER = "Edge";
+	private static final @NonNull String MODEL_START_MARKER = ";Model" + System.lineSeparator();
+	private static final @NonNull String MODEL_END_MARKER = ";End Model" + System.lineSeparator();
 	private static final int NUM_TOKENS = 4;
 
 	private boolean isMayOnly;
@@ -104,7 +105,7 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 		return false;
 	}
 
-	public Z3MAVOModelParser getZ3MAVOModelParser() {
+	public @NonNull Z3MAVOModelParser getZ3MAVOModelParser() {
 
 		return z3ModelParser;
 	}

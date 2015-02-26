@@ -122,7 +122,7 @@ public class MAVORefiner {
 			String smtConstraint;
 			try {
 				//TODO MMINT[MAVO-MMINT] Get this from the model parser
-				smtConstraint = reasoner.getSMTLIBMayModelObjectEncoding(modelObj, true, false);
+				smtConstraint = reasoner.getSMTLIBMayModelObjectConstraint(modelObj, true, false);
 			}
 			catch (MMINTException e) {
 				MMINTException.print(IStatus.WARNING, "Can't generate SMTLIB encoding for the current mavo model object, skipping it", e);

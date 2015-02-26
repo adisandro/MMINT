@@ -27,6 +27,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -116,7 +117,7 @@ public class MultiModelOperatorUtils {
 		return property;
 	}
 
-	public static @NonNull String getOptionalStringProperty(@NonNull Properties properties, @NonNull String propertyName, @NonNull String defaultValue) {
+	public static @Nullable String getOptionalStringProperty(@NonNull Properties properties, @NonNull String propertyName, @Nullable String defaultValue) {
 
 		try {
 			return getStringProperty(properties, propertyName);
@@ -150,7 +151,7 @@ public class MultiModelOperatorUtils {
 		return property;
 	}
 
-	public static @NonNull Boolean getOptionalBoolProperty(@NonNull Properties properties, @NonNull String propertyName, @NonNull Boolean defaultValue) {
+	public static @Nullable Boolean getOptionalBoolProperty(@NonNull Properties properties, @NonNull String propertyName, @Nullable Boolean defaultValue) {
 
 		try {
 			return getBoolProperty(properties, propertyName);
