@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
@@ -107,7 +108,7 @@ public class FASE14 extends RE13 {
 		);
 	}
 
-	protected String encodeVConstraint(String sort, String function, String formulaVar, List<String> unmergeableFormulaVars, boolean isNegation) {
+	protected String encodeVConstraint(String sort, String function, String formulaVar, Set<String> unmergeableFormulaVars, boolean isNegation) {
 
 		String smtThenTerms = "";
 		for (String unmergeableFormulaVar : unmergeableFormulaVars) {
@@ -149,6 +150,7 @@ public class FASE14 extends RE13 {
 
 	protected void doRNF(Z3IncrementalSolver z3IncSolver, Z3Model z3Model) {
 
+		//TODO MMINT[ISTAR] Use Z3 allsat utility functions
 		long startTime = System.nanoTime();
 
 		Z3Model z3TempModel;
@@ -177,7 +179,7 @@ public class FASE14 extends RE13 {
 				}
 			}
 			if (mavoModelObj.isVar()) {
-				List<String> mergeableFormulaVars = MAVOUtils.getMergeableFormulaVars(istar, mavoModelObj);
+				Set<String> mergeableFormulaVars = MAVOUtils.getMergeableFormulaVars(istar, mavoModelObj);
 				if (!mergeableFormulaVars.isEmpty()) {
 					String smtVConstraint = encodeVConstraint(sort, function, formulaVar, mergeableFormulaVars, false);
 					z3TempModel = checkMAVOAnnotation(mavoModelObj, MAVOPackage.eINSTANCE.getMAVOElement_Var(), smtVConstraint, z3IncSolver, mavoModelObjsToRemove);

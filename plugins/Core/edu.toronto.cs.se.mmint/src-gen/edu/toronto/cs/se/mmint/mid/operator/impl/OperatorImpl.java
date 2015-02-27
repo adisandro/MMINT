@@ -591,6 +591,7 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	 */
 	public void init() throws MMINTException {
 
+		//TODO MMINT[OPERATOR] Add actualParameters to the signature
 		// do nothing
 	}
 

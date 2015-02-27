@@ -155,30 +155,25 @@ public class RE13 extends OperatorImpl {
 		}
 	}
 
-	private void getConcretizationAnalysisLabel(Map<String, Intention> intentions, Map<String, String> z3ModelNodes, Set<String> z3LabelNodeUniverses, SMTLIBLabel label, String nodeType, boolean elseValue) {
+	private void getConcretizationAnalysisLabel(Map<String, Intention> intentions, Map<String, Set<String>> z3ModelNodes, Set<String> z3LabelNodeIds, SMTLIBLabel label, String nodeType, boolean elseValue) {
 
 		EStructuralFeature labelFeature = label.getModelFeature();
 		if (elseValue) {
-			for (Map.Entry<String, String> z3ModelNode : z3ModelNodes.entrySet()) {
-				String z3ModelNodeUniverse = z3ModelNode.getKey();
-				if (!z3ModelNodeUniverse.startsWith(nodeType)) {
+			for (Map.Entry<String, Set<String>> z3ModelNode : z3ModelNodes.entrySet()) {
+				String z3NodeId = z3ModelNode.getKey();
+				if (!z3NodeId.startsWith(nodeType)) {
 					continue;
 				}
-				if (z3LabelNodeUniverses.contains(z3ModelNodeUniverse)) {
+				if (z3LabelNodeIds.contains(z3NodeId)) {
 					continue;
 				}
-				String z3ModelNodeFormulaVar = z3ModelNode.getValue();
 				//TODO MMINT[ISTAR] Error here when launching REJ14 on Windows for the SmartGrid example
-				intentions.get(z3ModelNodeFormulaVar).eSet(labelFeature, true);
+				z3ModelNode.getValue().forEach(formulaVar -> intentions.get(formulaVar).eSet(labelFeature, true));
 			}
 		}
 		else {
-			for (String z3LabelNodeUniverse : z3LabelNodeUniverses) {
-				String z3LabelNodeFormulaVar = z3ModelNodes.get(z3LabelNodeUniverse);
-				if (z3LabelNodeFormulaVar == null) { // result of a node all true function
-					continue;
-				}
-				intentions.get(z3LabelNodeFormulaVar).eSet(labelFeature, true);
+			for (String z3LabelNodeId : z3LabelNodeIds) {
+				z3ModelNodes.get(z3LabelNodeId).forEach(formulaVar -> intentions.get(formulaVar).eSet(labelFeature, true));
 			}
 		}
 	}
@@ -186,7 +181,7 @@ public class RE13 extends OperatorImpl {
 	protected void getConcretizationAnalysisLabels(Map<String, Intention> intentions, Z3Model z3Model) {
 
 		try {
-			Map<String, String> z3ModelNodes = z3ModelParser.getZ3MAVOModelNodes(z3Model, null);
+			Map<String, Set<String>> z3ModelNodes = z3ModelParser.getZ3MAVOModelNodes(z3Model);
 			com.microsoft.z3.Model z3InternalModel = z3Model.getZ3InternalModel();
 			for (SMTLIBLabel label : SMTLIBLabel.values()) {
 				for (FuncDecl decl : z3InternalModel.getFuncDecls()) {

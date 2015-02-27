@@ -22,17 +22,17 @@ import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIBListener;
-import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 
-public class IStarMAVOToSMTLIB extends OperatorImpl {
+public class IStarMAVOToSMTLIB extends EcoreMAVOToSMTLIB {
 
 	public class IStarMAVOToSMTLIBWithListeners_M2T extends IStarMAVOToSMTLIB_M2T {
 
@@ -45,7 +45,7 @@ public class IStarMAVOToSMTLIB extends OperatorImpl {
 	    public List<IAcceleoTextGenerationListener> getGenerationListeners() {
 
 			List<IAcceleoTextGenerationListener> listeners = new ArrayList<IAcceleoTextGenerationListener>();
-			smtListener = new EcoreMAVOToSMTLIBListener(false);
+			smtListener = new EcoreMAVOToSMTLIBListener(mavoModelObjs, isMayOnly);
 			listeners.add(smtListener);
 
 			return listeners;
@@ -54,10 +54,9 @@ public class IStarMAVOToSMTLIB extends OperatorImpl {
 
 	public enum AnalysisDirection {FORWARD, BACKWARD};
 
-	private static final String PROPERTY_IN_ANALYSISDIRECTION = "analysisDirection";
-	private static final AnalysisDirection PROPERTY_IN_ANALYSISDIRECTION_DEFAULT = AnalysisDirection.FORWARD;
+	private static final @NonNull String PROPERTY_IN_ANALYSISDIRECTION = "analysisDirection";
+	private static final @NonNull AnalysisDirection PROPERTY_IN_ANALYSISDIRECTION_DEFAULT = AnalysisDirection.FORWARD;
 
-	private EcoreMAVOToSMTLIBListener smtListener;
 	private AnalysisDirection analysisDirection;
 
 	@Override
@@ -71,7 +70,10 @@ public class IStarMAVOToSMTLIB extends OperatorImpl {
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
 		Model istarModel = actualParameters.get(0);
-		MAVOUtils.createFormulaVars(istarModel);
+		mavoModelObjs = MAVOUtils.createFormulaVars(istarModel);
+		if (this.isMayOnly == null) {
+			this.isMayOnly = MAVOUtils.isMayOnly(mavoModelObjs);
+		}
 
 		List<Object> m2tArgs = new ArrayList<Object>();
 		m2tArgs.add(istarModel.getName());
@@ -91,11 +93,6 @@ public class IStarMAVOToSMTLIB extends OperatorImpl {
 		m2t.doGenerate(new BasicMonitor());
 
 		return actualParameters;
-	}
-
-	public Z3MAVOModelParser getZ3MAVOModelParser() {
-
-		return smtListener.getZ3MAVOModelParser();
 	}
 
 }

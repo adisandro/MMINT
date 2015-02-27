@@ -58,24 +58,22 @@ public class MAVOConcretizationHighlighter {
 	};
 	private static final String EXAMPLE_MODEL_SUFFIX = "_example";
 
-	private Set<String> separateExampleElements(@NonNull Map<String, String> z3ModelElems, @NonNull Map<String, View> diagramViews) {
+	private Set<String> separateExampleElements(@NonNull Map<String, Set<String>> z3ModelObjs, @NonNull Map<String, View> diagramViews) {
 
 		Set<String> notInExampleFormulaVars = new HashSet<String>(diagramViews.keySet());
-		for (String formulaVar : z3ModelElems.values()) {
-			notInExampleFormulaVars.remove(formulaVar);
-		}
+		z3ModelObjs.values().forEach(formulaVars -> notInExampleFormulaVars.removeAll(formulaVars));
 
 		return notInExampleFormulaVars;
 	}
 
-	public void highlightMAVOCounterExample(@NonNull Diagram modelDiagram, @NonNull Map<String, String> z3ModelElems) throws Exception {
+	public void highlightMAVOCounterExample(@NonNull Diagram modelDiagram, @NonNull Map<String, Set<String>> z3ModelObjs) throws Exception {
 
 		// get view elements from diagram
 		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
 		Map<String, View> diagramViews = GMFDiagramUtils.getDiagramViews(exampleDiagram);
 
 		// grey out model objects that are not in the example
-		Set<String> notInExampleFormulaVars = separateExampleElements(z3ModelElems, diagramViews);
+		Set<String> notInExampleFormulaVars = separateExampleElements(z3ModelObjs, diagramViews);
 		for (String notInExampleFormulaVar : notInExampleFormulaVars) {
 			highlightMAVOElement(diagramViews, notInExampleFormulaVar, GREYOUT_COLOR, FONT_GREYOUT_COLOR);
 		}

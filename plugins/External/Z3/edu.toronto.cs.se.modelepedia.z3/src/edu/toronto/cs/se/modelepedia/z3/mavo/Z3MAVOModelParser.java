@@ -32,8 +32,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
-//TODO MMINT[Z3] Refactor all variable names to be consistent
-//TODO MMINT[Z3] Remove mavoModelObjs passed to getZ3MAVOModelElements
 public class Z3MAVOModelParser {
 
 	private String smtEncoding;
@@ -41,9 +39,10 @@ public class Z3MAVOModelParser {
 	private Map<Integer, String> smtEncodingNodes;
 	private Map<Integer, String> smtEncodingEdges;
 	private Map<Integer, String> smtEncodingElems;
+	private Map<String, MAVOElement> mavoModelObjs;
 	private boolean isMayOnly;
 
-	public Z3MAVOModelParser(@NonNull String smtEncoding, @NonNull String smtEncodingUri, @NonNull Map<Integer, String> smtEncodingNodes, @NonNull Map<Integer, String> smtEncodingEdges, boolean isMayOnly) {
+	public Z3MAVOModelParser(@NonNull String smtEncoding, @NonNull String smtEncodingUri, @NonNull Map<Integer, String> smtEncodingNodes, @NonNull Map<Integer, String> smtEncodingEdges, @NonNull Map<String, MAVOElement> mavoModelObjs, boolean isMayOnly) {
 
 		this.smtEncoding = smtEncoding;
 		this.smtEncodingUri = smtEncodingUri;
@@ -52,6 +51,7 @@ public class Z3MAVOModelParser {
 		smtEncodingElems = new HashMap<Integer, String>();
 		smtEncodingElems.putAll(smtEncodingNodes);
 		smtEncodingElems.putAll(smtEncodingEdges);
+		this.mavoModelObjs = mavoModelObjs;
 		this.isMayOnly = isMayOnly;
 	}
 
@@ -65,9 +65,9 @@ public class Z3MAVOModelParser {
 		return smtEncodingUri;
 	}
 
-	private @NonNull Map<String, String> getZ3MAVOModelElems(@NonNull Model z3InternalModel, @NonNull String functionName, @NonNull Map<Integer, String> smtEncodingCurrentElems, Map<String, MAVOElement> mavoModelObjs) {
+	private @NonNull Map<String, Set<String>> getZ3MAVOModelObjs(@NonNull Model z3InternalModel, @NonNull String z3FunctionName, @NonNull Map<Integer, String> smtEncodingCurrentElems) {
 
-		Map<String, String> z3ModelElems = new HashMap<String, String>();
+		Map<String, Set<String>> z3ModelObjs = new HashMap<>();
 		try {
 			for (FuncDecl decl : z3InternalModel.getFuncDecls()) {
 				// filter function
@@ -76,7 +76,7 @@ public class Z3MAVOModelParser {
 				if (subfuncIndex != -1) {
 					declName = declName.substring(0, subfuncIndex);
 				}
-				if (!functionName.equals(declName)) {
+				if (!z3FunctionName.equals(declName)) {
 					continue;
 				}
 				FuncInterp interp = z3InternalModel.getFuncInterp(decl);
@@ -89,54 +89,63 @@ public class Z3MAVOModelParser {
 				// parse entries
 				if (elseValue) { // entries are false, else is true (includes all true function)
 					if (isMayOnly) {
-						Map<String, String> funcZ3ModelElems = new HashMap<>();
-						for (Map.Entry<Integer, String> smtEncodingElemEntry : smtEncodingCurrentElems.entrySet()) {
-							funcZ3ModelElems.put(smtEncodingElemEntry.getKey().toString(), smtEncodingElemEntry.getValue());
+						Map<String, Set<String>> funcZ3ModelObjs = new HashMap<>();
+						for (Map.Entry<Integer, String> smtEncodingElem : smtEncodingCurrentElems.entrySet()) {
+							Set<String> formulaVars = new HashSet<>(1);
+							formulaVars.add(smtEncodingElem.getValue());
+							funcZ3ModelObjs.put(smtEncodingElem.getKey().toString(), formulaVars);
 						}
 						// remove false entries
 						for (Entry entry : interp.getEntries()) {
-							funcZ3ModelElems.remove(entry.getArgs()[0].toString());
+							funcZ3ModelObjs.remove(entry.getArgs()[0].toString());
 						}
 						// add remaining
-						z3ModelElems.putAll(funcZ3ModelElems);
+						z3ModelObjs.putAll(funcZ3ModelObjs);
 					}
 					else {
-						// create cartesian product of universeIds and modelIds
-						Sort s = decl.getDomain()[1];
-						Set<String> universeIds = new HashSet<>();
-						for (Expr e : z3InternalModel.getSortUniverse(s)) {
-							universeIds.add(e.toString());
+						// create cartesian product of universeIds and integerIds
+						Sort sort = decl.getDomain()[1];
+						Set<String> z3UniverseIds = new HashSet<>();
+						for (Expr z3UniverseId : z3InternalModel.getSortUniverse(sort)) {
+							z3UniverseIds.add(z3UniverseId.toString());
 						}
-						Set<Integer> modelIds = new HashSet<>();
-						for (Map.Entry<Integer, String> xEntry : smtEncodingCurrentElems.entrySet()) {
-							MAVOElement mavoModelObj = mavoModelObjs.get(xEntry.getValue());
-							if (mavoModelObj == null || !mavoModelObj.eClass().getName().equals(s.toString())) {
+						Set<Integer> z3IntegerIds = new HashSet<>();
+						for (Map.Entry<Integer, String> smtEncodingElem : smtEncodingCurrentElems.entrySet()) {
+							MAVOElement mavoModelObj = mavoModelObjs.get(smtEncodingElem.getValue());
+							if (!mavoModelObj.eClass().getName().equals(sort.toString())) {
 								continue;
 							}
-							modelIds.add(xEntry.getKey());
+							z3IntegerIds.add(smtEncodingElem.getKey());
 						}
-						Map<String, Set<Integer>> zz = new HashMap<>();
-						for (String universeId : universeIds) {
-							zz.put(universeId, new HashSet<>(modelIds));
+						Map<String, Set<Integer>> funcZ3ModelObjs = new HashMap<>();
+						for (String z3UniverseId : z3UniverseIds) {
+							funcZ3ModelObjs.put(z3UniverseId, new HashSet<>(z3IntegerIds));
 						}
 						// remove false entries
 						for (Entry entry : interp.getEntries()) {
-							zz.get(entry.getArgs()[1].toString()).remove(entry.getArgs()[0].toString());
+							funcZ3ModelObjs.get(entry.getArgs()[1].toString()).remove(Integer.valueOf(entry.getArgs()[0].toString()));
 						}
 						// add remaining
-						for (Map.Entry<String, Set<Integer>> zzEntry : zz.entrySet()) {
-							for (Integer zzi : zzEntry.getValue()) {
-								//TODO MMINT[Z3] Wrong, need to return String to Set<String>
-								z3ModelElems.put(zzEntry.getKey(), smtEncodingCurrentElems.get(zzi));
+						for (Map.Entry<String, Set<Integer>> funcZ3ModelObj : funcZ3ModelObjs.entrySet()) {
+							Set<String> formulaVars = new HashSet<>();
+							z3ModelObjs.put(funcZ3ModelObj.getKey(), formulaVars);
+							for (Integer z3IntegerId : funcZ3ModelObj.getValue()) {
+								formulaVars.add(smtEncodingCurrentElems.get(z3IntegerId));
 							}
 						}
 					}
 				}
 				else { // entries are true, else is false (includes all false function)
 					for (Entry entry : interp.getEntries()) {
-						Integer z3ModelElemId = new Integer(entry.getArgs()[0].toString());
-						int universeIndex = (isMayOnly) ? 0 : 1;
-						z3ModelElems.put(entry.getArgs()[universeIndex].toString(), smtEncodingCurrentElems.get(z3ModelElemId));
+						int z3IdIndex = (isMayOnly) ? 0 : 1;
+						String z3Id = entry.getArgs()[z3IdIndex].toString();
+						Set<String> formulaVars = z3ModelObjs.get(z3Id);
+						if (formulaVars == null) {
+							formulaVars = new HashSet<>();
+							z3ModelObjs.put(z3Id, formulaVars);
+						}
+						Integer z3IntegerId = new Integer(entry.getArgs()[0].toString());
+						formulaVars.add(smtEncodingCurrentElems.get(z3IntegerId));
 					}
 				}
 			}
@@ -145,35 +154,39 @@ public class Z3MAVOModelParser {
 			MMINTException.print(IStatus.WARNING, "Can't parse Z3 model elements, returning elements so far (possibly none)", e);
 		}
 
-		return z3ModelElems;
+		return z3ModelObjs;
 	}
 
-	public @NonNull Map<String, String> getZ3MAVOModelNodes(@NonNull Z3Model z3Model, Map<String, MAVOElement> mavoModelObjs) {
+	public @NonNull Map<String, Set<String>> getZ3MAVOModelNodes(@NonNull Z3Model z3Model) {
 
-		return getZ3MAVOModelElems(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_NODE, smtEncodingNodes, mavoModelObjs);
+		return getZ3MAVOModelObjs(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_NODE, smtEncodingNodes);
 	}
 
-	public @NonNull Map<String, String> getZ3MAVOModelEdges(@NonNull Z3Model z3Model, Map<String, MAVOElement> mavoModelObjs) {
+	public @NonNull Map<String, Set<String>> getZ3MAVOModelEdges(@NonNull Z3Model z3Model) {
 
-		return getZ3MAVOModelElems(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_EDGE, smtEncodingEdges, mavoModelObjs);
+		return getZ3MAVOModelObjs(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_EDGE, smtEncodingEdges);
 	}
 
 	/**
-	 * Gets a map from Z3 model elements (universe ids) to their formula
-	 * variable, for elements of a Z3 model that represents a MAVO model
-	 * concretization.
+	 * Gets a map from Z3 model objects (a simple Z3 integer id for may only, a
+	 * Z3 universe id for full mavo) to their formula variable (multiple formula
+	 * variables in case of merged Var model objects), for elements of a Z3
+	 * model that represents a MAVO model concretization:
+	 * M: 1 Z3 integerId/universeId to 1 formula var, or nothing
+	 * S: x Z3 universeIds to 1 formula var
+	 * V: 1 Z3 universeId to x formula vars
 	 * 
 	 * @param z3Model
 	 *            The Z3 model that represents a MAVO model concretization.
-	 * @return The Z3 model element to formula variable map.
+	 * @return The Z3 model objects to formula variables map.
 	 */
-	public @NonNull Map<String, String> getZ3MAVOModelElements(@NonNull Z3Model z3Model, Map<String, MAVOElement> mavoModelObjs) {
+	public @NonNull Map<String, Set<String>> getZ3MAVOModelObjects(@NonNull Z3Model z3Model) {
 
-		Map<String, String> z3ModelElems = new HashMap<String, String>();
-		z3ModelElems.putAll(getZ3MAVOModelElems(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_NODE, smtEncodingNodes, mavoModelObjs));
-		z3ModelElems.putAll(getZ3MAVOModelElems(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_EDGE, smtEncodingEdges, mavoModelObjs));
+		Map<String, Set<String>> z3ModelObjs = new HashMap<>();
+		z3ModelObjs.putAll(getZ3MAVOModelObjs(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_NODE, smtEncodingNodes));
+		z3ModelObjs.putAll(getZ3MAVOModelObjs(z3Model.getZ3InternalModel(), Z3Utils.SMTLIB_EDGE, smtEncodingEdges));
 
-		return z3ModelElems;
+		return z3ModelObjs;
 	}
 
 	public boolean isMayOnly() {

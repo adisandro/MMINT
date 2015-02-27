@@ -57,7 +57,7 @@
 	getEdgeFeatureName(eclass, 'target')
 /]
 
-[query public getMergeableFormulaVars(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Sequence(String) =
+[query public getMergeableFormulaVars(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Set(String) =
 	invoke(
 		'edu.toronto.cs.se.mmint.mavo.library.MAVOUtils',
 		'getMergeableFormulaVars(edu.toronto.cs.se.mavo.MAVOModel, edu.toronto.cs.se.mavo.MAVOElement)',
@@ -65,7 +65,7 @@
 	)
 /]
 
-[query public getUnmergeableFormulaVars(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Sequence(String) =
+[query public getUnmergeableFormulaVars(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Set(String) =
 	invoke(
 		'edu.toronto.cs.se.mmint.mavo.library.MAVOUtils',
 		'getUnmergeableFormulaVars(edu.toronto.cs.se.mavo.MAVOModel, edu.toronto.cs.se.mavo.MAVOElement)',
@@ -338,7 +338,7 @@
 			[let domainFormulaVars : Sequence(String) = varDomain.mavoElements->collect(formulaVariable)]
 ;[varDecision.formulaVariable/]-[varDomain.formulaVariable/] merge Domain
 			[for (mavoElement : MAVOElement | varDomain.mavoElements)]
-				[let mergeableFormulaVars : Sequence(String) = mavoModel.getMergeableFormulaVars(mavoElement)]
+				[let mergeableFormulaVars : Set(String) = mavoModel.getMergeableFormulaVars(mavoElement)]
 (assert	(forall ((c [mavoElement.eClass().getMAVOClassName()/])) (=>
 	([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/] c)
 	(not (or

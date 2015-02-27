@@ -18,6 +18,8 @@ import org.eclipse.acceleo.engine.event.AcceleoTextGenerationEvent;
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mavo.MAVOElement;
+
 public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener {
 
 	private static final @NonNull String NODE_MARKER = "Node";
@@ -26,6 +28,7 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 	private static final @NonNull String MODEL_END_MARKER = ";End Model" + System.lineSeparator();
 	private static final int NUM_TOKENS = 4;
 
+	private Map<String, MAVOElement> mavoModelObjs;
 	private boolean isMayOnly;
 	private StringBuilder textGeneration;
 	private Map<Integer, String> smtNodes;
@@ -38,8 +41,9 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 	private String smtEncodingUri;
 	private Z3MAVOModelParser z3ModelParser;
 
-	public EcoreMAVOToSMTLIBListener(boolean isMayOnly) {
+	public EcoreMAVOToSMTLIBListener(@NonNull Map<String, MAVOElement> mavoModelObjs, boolean isMayOnly) {
 
+		this.mavoModelObjs = mavoModelObjs;
 		this.isMayOnly = isMayOnly;
 		textGeneration = new StringBuilder();
 		smtNodes = new HashMap<Integer, String>();
@@ -90,7 +94,7 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 	public void fileGenerated(AcceleoTextGenerationEvent event) {
 
 		smtEncoding = textGeneration.toString();
-		z3ModelParser = new Z3MAVOModelParser(smtEncoding, smtEncodingUri, smtNodes, smtEdges, isMayOnly);
+		z3ModelParser = new Z3MAVOModelParser(smtEncoding, smtEncodingUri, smtNodes, smtEdges, mavoModelObjs, isMayOnly);
 	}
 
 	@Override

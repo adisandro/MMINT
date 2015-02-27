@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
@@ -136,7 +137,7 @@ try {
 		MAVOConcretizationHighlighter highlighter;
 		try {
 			highlighter = new MAVOConcretizationHighlighter();
-			highlighter.highlightMAVOCounterExample(modelDiagram, z3ModelParser.getZ3MAVOModelElements(z3NotConstraintModel, null));
+			highlighter.highlightMAVOCounterExample(modelDiagram, z3ModelParser.getZ3MAVOModelObjects(z3NotConstraintModel));
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "Can't highlight concretization, skipping it", e);
@@ -158,29 +159,16 @@ try {
 		do {
 			numSolutions++;
 			String smtConcretizationConstraint = "";
-			Map<String, List<String>> z3ModelElems = new HashMap<>();
-			for (Entry<String, String> z3ModelElem : z3ModelParser.getZ3MAVOModelElements(z3Model, MAVOUtils.getAllMAVOModelObjects(rootMavoModelObj)).entrySet()) {
-				// M: 1 universe id to 1 formula var, or nothing
-				// S: x universe ids to 1 formula var
-				// V: 1 universe id to x formula vars
-				String universeId = z3ModelElem.getKey();
-				String formulaVar = z3ModelElem.getValue();
-				List<String> formulaVars = z3ModelElems.get(universeId);
-				if (formulaVars == null) {
-					formulaVars = new ArrayList<>();
-					z3ModelElems.put(universeId, formulaVars);
-				}
-				formulaVars.add(formulaVar);
-			}
+			Map<String, Set<String>> z3ModelObjs = z3ModelParser.getZ3MAVOModelObjects(z3Model);
 			for (Entry<String, MAVOElement> mavoModelObjEntry : mavoModelObjs.entrySet()) {
 				MAVOElement mavoModelObj = mavoModelObjEntry.getValue();
 				String formulaVar = mavoModelObjEntry.getKey();
 				int counterMS = 0;
-				List<String> mergedV = null;
-				for (List<String> z3ModelElemFormulaVars : z3ModelElems.values()) {
-					if (z3ModelElemFormulaVars.contains(formulaVar)) {
+				Set<String> mergedV = null;
+				for (Set<String> formulaVars : z3ModelObjs.values()) {
+					if (formulaVars.contains(formulaVar)) {
 						counterMS++;
-						mergedV = z3ModelElemFormulaVars;
+						mergedV = formulaVars;
 					}
 				}
 				boolean isNegation;
@@ -276,7 +264,7 @@ try {
 		return (isNegation) ? Z3Utils.not(smtEncoding) : smtEncoding;
 	}
 
-	public @NonNull String getSMTLIBVarModelObjectConstraint(@NonNull MAVOElement varModelObj, @NonNull List<String> unmergeableFormulaVars, boolean isNegation) throws MMINTException {
+	public @NonNull String getSMTLIBVarModelObjectConstraint(@NonNull MAVOElement varModelObj, @NonNull Set<String> unmergeableFormulaVars, boolean isNegation) throws MMINTException {
 
 		String smtFunction = getSMTLIBMAVOModelObjectFunction(varModelObj);
 		String smtThenTerms = "";

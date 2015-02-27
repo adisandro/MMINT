@@ -11,10 +11,10 @@
  */
 package edu.toronto.cs.se.mmint.mavo.library;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -23,7 +23,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
@@ -39,14 +38,14 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 
 public class MAVOUtils {
 
-	public static final String UML_MAVO_PROFILE = "MAVOProfile";
-	private static final String UML_INC_STEREOTYPE = UML_MAVO_PROFILE + "::" + "inc";
-	private static final String UML_MAY_STEREOTYPE = UML_MAVO_PROFILE + "::" + "may";
-	private static final String UML_SET_STEREOTYPE = UML_MAVO_PROFILE + "::" + "set";
-	private static final String UML_VAR_STEREOTYPE = UML_MAVO_PROFILE + "::" + "var";
-	public static final Map<String, String> MAVO_UML_STEREOTYPE_EQUIVALENCE;
+	public static final @NonNull String UML_MAVO_PROFILE = "MAVOProfile";
+	private static final @NonNull String UML_INC_STEREOTYPE = UML_MAVO_PROFILE + "::" + "inc";
+	private static final @NonNull String UML_MAY_STEREOTYPE = UML_MAVO_PROFILE + "::" + "may";
+	private static final @NonNull String UML_SET_STEREOTYPE = UML_MAVO_PROFILE + "::" + "set";
+	private static final @NonNull String UML_VAR_STEREOTYPE = UML_MAVO_PROFILE + "::" + "var";
+	public static final @NonNull Map<String, String> MAVO_UML_STEREOTYPE_EQUIVALENCE;
 	static {
-		MAVO_UML_STEREOTYPE_EQUIVALENCE = new HashMap<String, String>();
+		MAVO_UML_STEREOTYPE_EQUIVALENCE = new HashMap<>();
 		MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVOModel", "inc");
 		MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVOElement", "may");
 		MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVOElement", "set");
@@ -320,43 +319,45 @@ public class MAVOUtils {
 		newElement.setFormulaVariable(oldElement.getFormulaVariable());
 	}
 
-	public static boolean createFormulaVars(Model mavoModel) throws Exception {
+	public static Map<String, MAVOElement> createFormulaVars(Model mavoModel) throws Exception {
 
-		boolean modified = false, isMayOnly = true;
-		MAVOModel rootMavoModel = (MAVOModel) mavoModel.getEMFInstanceRoot();
-		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(rootMavoModel, true);
+		Map<String, MAVOElement> mavoModelObjs = new HashMap<>();
+		boolean modified = false;
+		MAVOModel mavoRootModelObj = (MAVOModel) mavoModel.getEMFInstanceRoot();
+		TreeIterator<EObject> iterator = mavoRootModelObj.eAllContents();
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();
 			if (!(modelObj instanceof MAVOElement)) {
 				continue;
 			}
 			MAVOElement mavoModelObj = (MAVOElement) modelObj;
-			if (isMayOnly && (mavoModelObj.isSet() || mavoModelObj.isVar())) { // detect if model has only may annotations
-				isMayOnly = false;
+			if (mavoModelObj.getFormulaVariable() == null || mavoModelObj.getFormulaVariable().equals("")) {
+				EStructuralFeature nameFeature = mavoModelObj.eClass().getEStructuralFeature(NAME_FEATURE);
+				if (nameFeature != null) {
+					mavoModelObj.setFormulaVariable(((String) mavoModelObj.eGet(nameFeature)).replace(" ", ""));
+					modified = true;
+				}
 			}
-			if (mavoModelObj.getFormulaVariable() != null && !mavoModelObj.getFormulaVariable().equals("")) {
-				continue;
-			}
-			EStructuralFeature nameFeature = mavoModelObj.eClass().getEStructuralFeature(NAME_FEATURE);
-			if (nameFeature != null) {
-				mavoModelObj.setFormulaVariable(((String) mavoModelObj.eGet(nameFeature)).replace(" ", ""));
-				modified = true;
-			}
+			mavoModelObjs.put(mavoModelObj.getFormulaVariable(), mavoModelObj);
 		}
-
 		// overwrite
 		if (modified) {
-			MultiModelUtils.createModelFile(rootMavoModel, mavoModel.getUri(), true);
+			MultiModelUtils.createModelFile(mavoRootModelObj, mavoModel.getUri(), true);
 		}
 
-		return isMayOnly;
+		return mavoModelObjs;
 	}
 
-	private static List<String> getVFormulaVars(MAVOModel mavoModel, MAVOElement mavoModelObj, boolean whichFormulaVars) {
+	public static boolean isMayOnly(Map<String, MAVOElement> mavoModelObjs) {
 
-		List<String> formulaVars = new ArrayList<String>();
+		return !mavoModelObjs.values().stream().anyMatch(mavoModelObj -> mavoModelObj.isSet() || mavoModelObj.isVar());
+	}
+
+	private static @NonNull Set<String> getVFormulaVars(@NonNull MAVOModel mavoModel, @NonNull MAVOElement mavoModelObj, boolean whichFormulaVars) {
+
+		Set<String> formulaVars = new HashSet<>();
 		EObject modelObjContainer = mavoModelObj.eContainer();
-		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(mavoModel, true);
+		TreeIterator<EObject> iterator = mavoModel.eAllContents();
 		while (iterator.hasNext()) {
 			EObject otherModelObj = iterator.next();
 			if (
@@ -383,12 +384,12 @@ public class MAVOUtils {
 		return formulaVars;
 	}
 
-	public static List<String> getMergeableFormulaVars(MAVOModel mavoModel, MAVOElement mavoModelObj) {
+	public static @NonNull Set<String> getMergeableFormulaVars(@NonNull MAVOModel mavoModel, @NonNull MAVOElement mavoModelObj) {
 
 		return getVFormulaVars(mavoModel, mavoModelObj, true);
 	}
 
-	public static List<String> getUnmergeableFormulaVars(MAVOModel mavoModel, MAVOElement mavoModelObj) {
+	public static @NonNull Set<String> getUnmergeableFormulaVars(@NonNull MAVOModel mavoModel, @NonNull MAVOElement mavoModelObj) {
 
 		return getVFormulaVars(mavoModel, mavoModelObj, false);
 	}
@@ -414,6 +415,16 @@ public class MAVOUtils {
 		return getMAVOModelObjects(mavoModel, filterLambda);
 	}
 
+	public static @NonNull Map<String, MAVOElement> getAllMAVOModelObjects(@NonNull Model model) throws MMINTException {
+
+		EObject rootModelObj = model.getEMFInstanceRoot();
+		if (!(rootModelObj instanceof MAVOModel)) {
+			throw new MMINTException("Not a MAVO model");
+		}
+
+		return getAllMAVOModelObjects((MAVOModel) rootModelObj);
+	}
+
 	public static @NonNull Map<String, MAVOElement> getAnnotatedMAVOModelObjects(@NonNull MAVOModel mavoModel) {
 
 		Predicate<? super EObject> filterLambda = modelObj ->
@@ -426,7 +437,7 @@ public class MAVOUtils {
 		return getMAVOModelObjects(mavoModel, filterLambda);
 	}
 
-	public static @NonNull Map<String, MAVOElement> getMAVOModelObjects(@NonNull Model model) throws MMINTException {
+	public static @NonNull Map<String, MAVOElement> getAnnotatedMAVOModelObjects(@NonNull Model model) throws MMINTException {
 
 		EObject rootModelObj = model.getEMFInstanceRoot();
 		if (!(rootModelObj instanceof MAVOModel)) {
