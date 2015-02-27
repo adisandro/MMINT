@@ -213,7 +213,7 @@ public class FASE14 extends RE13 {
 	protected void collectAnalysisModelObjects(Model istarModel) throws MMINTException {
 
 		super.collectAnalysisModelObjects(istarModel);
-		mavoModelObjs = MAVOUtils.getMAVOModelObjects(istar);
+		mavoModelObjs = MAVOUtils.getAnnotatedMAVOModelObjects(istar);
 	}
 
 	@Override

@@ -186,7 +186,7 @@ public class RE13 extends OperatorImpl {
 	protected void getConcretizationAnalysisLabels(Map<String, Intention> intentions, Z3Model z3Model) {
 
 		try {
-			Map<String, String> z3ModelNodes = z3ModelParser.getZ3MAVOModelNodes(z3Model);
+			Map<String, String> z3ModelNodes = z3ModelParser.getZ3MAVOModelNodes(z3Model, null);
 			com.microsoft.z3.Model z3InternalModel = z3Model.getZ3InternalModel();
 			for (SMTLIBLabel label : SMTLIBLabel.values()) {
 				for (FuncDecl decl : z3InternalModel.getFuncDecls()) {

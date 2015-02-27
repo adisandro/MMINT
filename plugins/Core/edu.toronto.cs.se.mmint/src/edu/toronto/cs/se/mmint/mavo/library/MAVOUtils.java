@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -392,17 +393,11 @@ public class MAVOUtils {
 		return getVFormulaVars(mavoModel, mavoModelObj, false);
 	}
 
-	public static @NonNull Map<String, MAVOElement> getMAVOModelObjects(@NonNull MAVOModel mavoModel) {
+	private static @NonNull Map<String, MAVOElement> getMAVOModelObjects(@NonNull MAVOModel mavoModel, @NonNull Predicate<? super EObject> filterLambda) {
 
 		Iterable<EObject> iterable = () -> mavoModel.eAllContents();
 		Map<String, MAVOElement> mavoModelObjs = StreamSupport.stream(iterable.spliterator(), false)
-			.filter(modelObj ->
-				modelObj instanceof MAVOElement && (
-					((MAVOElement) modelObj).isMay() ||
-					((MAVOElement) modelObj).isSet() ||
-					((MAVOElement) modelObj).isVar()
-				)
-			)
+			.filter(filterLambda)
 			.map(modelObj -> (MAVOElement) modelObj)
 			.collect(Collectors.toMap(
 				MAVOElement::getFormulaVariable,
@@ -412,6 +407,25 @@ public class MAVOUtils {
 		return mavoModelObjs;
 	}
 
+	public static @NonNull Map<String, MAVOElement> getAllMAVOModelObjects(@NonNull MAVOModel mavoModel) {
+
+		Predicate<? super EObject> filterLambda = modelObj -> modelObj instanceof MAVOElement;
+
+		return getMAVOModelObjects(mavoModel, filterLambda);
+	}
+
+	public static @NonNull Map<String, MAVOElement> getAnnotatedMAVOModelObjects(@NonNull MAVOModel mavoModel) {
+
+		Predicate<? super EObject> filterLambda = modelObj ->
+			modelObj instanceof MAVOElement && (
+				((MAVOElement) modelObj).isMay() ||
+				((MAVOElement) modelObj).isSet() ||
+				((MAVOElement) modelObj).isVar()
+			);
+
+		return getMAVOModelObjects(mavoModel, filterLambda);
+	}
+
 	public static @NonNull Map<String, MAVOElement> getMAVOModelObjects(@NonNull Model model) throws MMINTException {
 
 		EObject rootModelObj = model.getEMFInstanceRoot();
@@ -419,7 +433,7 @@ public class MAVOUtils {
 			throw new MMINTException("Not a MAVO model");
 		}
 
-		return getMAVOModelObjects((MAVOModel) rootModelObj);
+		return getAnnotatedMAVOModelObjects((MAVOModel) rootModelObj);
 	}
 
 }

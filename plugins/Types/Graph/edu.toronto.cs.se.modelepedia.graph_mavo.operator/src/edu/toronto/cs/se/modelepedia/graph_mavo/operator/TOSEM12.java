@@ -402,7 +402,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		if (z3Model.getZ3Bool() != Z3Bool.SAT) {
 			throw new MMINTException("MAVO Property checking was SAT but now backbone baseline is not.");
 		}
-		Set<String> initialZ3ModelElemFormulaVars = new HashSet<String>(z3ModelParser.getZ3MAVOModelElements(z3Model).values());
+		Set<String> initialZ3ModelElemFormulaVars = new HashSet<String>(z3ModelParser.getZ3MAVOModelElements(z3Model, null).values());
 		Set<String> currentZ3ModelElemFormulaVars;
 		Set<String> outOfBackboneFormulaVars = new HashSet<String>();
 		for (MAVOElement mayModelObj : mayModelObjs) {
@@ -415,7 +415,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 			if (z3Model.getZ3Bool() != Z3Bool.SAT) {
 				continue;
 			}
-			currentZ3ModelElemFormulaVars = new HashSet<String>(z3ModelParser.getZ3MAVOModelElements(z3Model).values());
+			currentZ3ModelElemFormulaVars = new HashSet<String>(z3ModelParser.getZ3MAVOModelElements(z3Model, null).values());
 			optimizeBackbone(initialZ3ModelElemFormulaVars, currentZ3ModelElemFormulaVars, outOfBackboneFormulaVars);
 			if (optimizeBackboneCondition(initialZ3ModelElemFormulaVars, currentZ3ModelElemFormulaVars, mayModelObjFormulaVar)) {
 				continue;
@@ -424,7 +424,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 			if (z3Model.getZ3Bool() != Z3Bool.SAT) {
 				continue;
 			}
-			currentZ3ModelElemFormulaVars = new HashSet<String>(z3ModelParser.getZ3MAVOModelElements(z3Model).values());
+			currentZ3ModelElemFormulaVars = new HashSet<String>(z3ModelParser.getZ3MAVOModelElements(z3Model, null).values());
 			optimizeBackbone(initialZ3ModelElemFormulaVars, currentZ3ModelElemFormulaVars, outOfBackboneFormulaVars);
 		}
 		long endTime = System.nanoTime();
@@ -432,6 +432,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		timeMAVOBackbone = endTime - startTime;
 	}
 
+	//TODO MMINT[TOSEM] Just use Z3 reasoner's allsat
 	private void doMAVOAllsatPropertyCheck() {
 
 		long startTime = System.nanoTime();
@@ -440,7 +441,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		Z3Model z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding + Z3Utils.assertion(smtConcretizationsConstraint) + Z3Utils.assertion(smtProperty));
 		while (z3Model.getZ3Bool() == Z3Bool.SAT) {
 			Set<String> z3ModelElemFormulaVars = new HashSet<String>();
-			for (String z3ModelElemFormulaVar : z3ModelParser.getZ3MAVOModelElements(z3Model).values()) {
+			for (String z3ModelElemFormulaVar : z3ModelParser.getZ3MAVOModelElements(z3Model, null).values()) {
 				z3ModelElemFormulaVars.add(z3ModelElemFormulaVar);
 			}
 			String smtConcretizationConstraint = "";

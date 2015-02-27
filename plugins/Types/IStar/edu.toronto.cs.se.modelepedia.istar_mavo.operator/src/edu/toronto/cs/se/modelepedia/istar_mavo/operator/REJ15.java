@@ -85,89 +85,89 @@ public class REJ15 extends FASE14 {
 		return z3Model;
 	}
 
-	private String[] getConcretization(IStar istar, Z3Model z3Model) {
-
-		String concretization = "", smtConcretizationConstraint = "";
-		Map<String, List<String>> z3ModelElems = new HashMap<>();
-		for (Entry<String, String> z3ModelElem : z3ModelParser.getZ3MAVOModelElements(z3Model).entrySet()) {
-			// S: x universe ids to same formula var
-			// V: 1 universe id to x formula vars
-			String universeId = z3ModelElem.getKey();
-			String formulaVar = z3ModelElem.getValue();
-			List<String> formulaVars = z3ModelElems.get(universeId);
-			if (formulaVars == null) {
-				formulaVars = new ArrayList<>();
-				z3ModelElems.put(universeId, formulaVars);
-			}
-			formulaVars.add(formulaVar);
-		}
-		for (Entry<String, MAVOElement> mavoModelObjEntry : mavoModelObjs.entrySet()) {
-			MAVOElement mavoModelObj = mavoModelObjEntry.getValue();
-			String formulaVar = mavoModelObjEntry.getKey();
-			String sort = mavoModelObj.eClass().getName();
-			String function = encodeMAVConstraintFunction(mavoModelObj);
-			int counterMS = 0;
-			List<String> mergedV = null;
-			for (List<String> z3ModelElemFormulaVars : z3ModelElems.values()) {
-				if (z3ModelElemFormulaVars.contains(formulaVar)) {
-					counterMS++;
-					mergedV = z3ModelElemFormulaVars;
-				}
-			}
-			boolean isNegation;
-			String smtConstraint = "";
-			if (mavoModelObj.isMay()) {
-				isNegation = (counterMS == 0);
-				if (isNegation) {
-					concretization += formulaVar + " deleted (M)" + System.lineSeparator();
-				}
-				smtConstraint = encodeMConstraint(sort, function, formulaVar, isNegation);
-			}
-			if (mavoModelObj.isSet() && counterMS > 0) {
-				isNegation = (counterMS > 1);
-				if (isNegation) {
-					concretization += formulaVar + " split into " + counterMS + " (S)" + System.lineSeparator();
-				}
-				smtConstraint = encodeSConstraint(sort, function, formulaVar, isNegation);
-			}
-			if (mavoModelObj.isVar() && counterMS > 0) {
-				isNegation = (mergedV.size() > 1);
-				if (isNegation) {
-					concretization += formulaVar + " merged with " + mergedV + " (V)" + System.lineSeparator();
-				}
-				else {
-					mergedV = MAVOUtils.getMergeableFormulaVars(istar, mavoModelObj);
-					if (mergedV.size() == 0) {
-						continue;
-					}
-				}
-				smtConstraint = encodeVConstraint(sort, function, formulaVar, mergedV, isNegation);
-			}
-			smtConcretizationConstraint += smtConstraint;
-		}
-		concretization += System.lineSeparator();
-		Map<String, Intention> intentions = super.collectIntentions(istar);
-		getConcretizationAnalysisLabels(intentions, z3Model);
-		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
-			concretization += entry.getKey() + "(" + writeIntentionLabels(entry.getValue()) + ") ";
-		}
-		smtConcretizationConstraint = Z3Utils.assertion(Z3Utils.not(Z3Utils.and(smtConcretizationConstraint)));
-
-		return new String[] {concretization, smtConcretizationConstraint};
-	}
-
-	private IStar copyIStarRootModelObj() {
-
-		IStar istarCopy = EcoreUtil.copy(istar);
-		Map<String, Intention> intentions = super.collectIntentions(istarCopy);
-		for (Intention intention : intentions.values()) {
-			for (SMTLIBLabel label : SMTLIBLabel.values()) {
-				intention.eSet(label.getModelFeature(), false);
-			}
-		}
-
-		return istarCopy;
-	}
+//	private String[] getConcretization(IStar istar, Z3Model z3Model) {
+//
+//		String concretization = "", smtConcretizationConstraint = "";
+//		Map<String, List<String>> z3ModelElems = new HashMap<>();
+//		for (Entry<String, String> z3ModelElem : z3ModelParser.getZ3MAVOModelElements(z3Model).entrySet()) {
+//			// S: x universe ids to same formula var
+//			// V: 1 universe id to x formula vars
+//			String universeId = z3ModelElem.getKey();
+//			String formulaVar = z3ModelElem.getValue();
+//			List<String> formulaVars = z3ModelElems.get(universeId);
+//			if (formulaVars == null) {
+//				formulaVars = new ArrayList<>();
+//				z3ModelElems.put(universeId, formulaVars);
+//			}
+//			formulaVars.add(formulaVar);
+//		}
+//		for (Entry<String, MAVOElement> mavoModelObjEntry : mavoModelObjs.entrySet()) {
+//			MAVOElement mavoModelObj = mavoModelObjEntry.getValue();
+//			String formulaVar = mavoModelObjEntry.getKey();
+//			String sort = mavoModelObj.eClass().getName();
+//			String function = encodeMAVConstraintFunction(mavoModelObj);
+//			int counterMS = 0;
+//			List<String> mergedV = null;
+//			for (List<String> z3ModelElemFormulaVars : z3ModelElems.values()) {
+//				if (z3ModelElemFormulaVars.contains(formulaVar)) {
+//					counterMS++;
+//					mergedV = z3ModelElemFormulaVars;
+//				}
+//			}
+//			boolean isNegation;
+//			String smtConstraint = "";
+//			if (mavoModelObj.isMay()) {
+//				isNegation = (counterMS == 0);
+//				if (isNegation) {
+//					concretization += formulaVar + " deleted (M)" + System.lineSeparator();
+//				}
+//				smtConstraint = encodeMConstraint(sort, function, formulaVar, isNegation);
+//			}
+//			if (mavoModelObj.isSet() && counterMS > 0) {
+//				isNegation = (counterMS > 1);
+//				if (isNegation) {
+//					concretization += formulaVar + " split into " + counterMS + " (S)" + System.lineSeparator();
+//				}
+//				smtConstraint = encodeSConstraint(sort, function, formulaVar, isNegation);
+//			}
+//			if (mavoModelObj.isVar() && counterMS > 0) {
+//				isNegation = (mergedV.size() > 1);
+//				if (isNegation) {
+//					concretization += formulaVar + " merged with " + mergedV + " (V)" + System.lineSeparator();
+//				}
+//				else {
+//					mergedV = MAVOUtils.getMergeableFormulaVars(istar, mavoModelObj);
+//					if (mergedV.size() == 0) {
+//						continue;
+//					}
+//				}
+//				smtConstraint = encodeVConstraint(sort, function, formulaVar, mergedV, isNegation);
+//			}
+//			smtConcretizationConstraint += smtConstraint;
+//		}
+//		concretization += System.lineSeparator();
+//		Map<String, Intention> intentions = super.collectIntentions(istar);
+//		getConcretizationAnalysisLabels(intentions, z3Model);
+//		for (Map.Entry<String, Intention> entry : intentions.entrySet()) {
+//			concretization += entry.getKey() + "(" + writeIntentionLabels(entry.getValue()) + ") ";
+//		}
+//		smtConcretizationConstraint = Z3Utils.assertion(Z3Utils.not(Z3Utils.and(smtConcretizationConstraint)));
+//
+//		return new String[] {concretization, smtConcretizationConstraint};
+//	}
+//
+//	private IStar copyIStarRootModelObj() {
+//
+//		IStar istarCopy = EcoreUtil.copy(istar);
+//		Map<String, Intention> intentions = super.collectIntentions(istarCopy);
+//		for (Intention intention : intentions.values()) {
+//			for (SMTLIBLabel label : SMTLIBLabel.values()) {
+//				intention.eSet(label.getModelFeature(), false);
+//			}
+//		}
+//
+//		return istarCopy;
+//	}
 
 	@Override
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
@@ -187,18 +187,18 @@ public class REJ15 extends FASE14 {
 					doRNF(z3IncSolver, z3Model);
 				}
 				if (generateTargetsConcretization) {
-					while (true) {
-						String[] concretization = getConcretization(copyIStarRootModelObj(), z3Model);
-						//TODO MMINT[MAVO] Integrate with mu-mmint code to show concretization model
-						if (!MultiModelDiagramUtils.getBooleanInput("Concretization", concretization[0] + System.lineSeparator() + System.lineSeparator() + "Do you want another concretization?")) {
-							break;
-						}
-						//TODO MMINT[TOSEM] Integrate with tosem allsat to negate current concretization
-						z3Model = z3IncSolver.checkSatAndGetModel(concretization[1], Z3IncrementalBehavior.NORMAL);
-						if (z3Model.getZ3Bool() != Z3Bool.SAT) {
-							break;
-						}
-					}
+//					while (true) {
+//						String[] concretization = getConcretization(copyIStarRootModelObj(), z3Model);
+//						//TODO MMINT[MAVO] Integrate with mu-mmint code to show concretization model
+//						if (!MultiModelDiagramUtils.getBooleanInput("Concretization", concretization[0] + System.lineSeparator() + System.lineSeparator() + "Do you want another concretization?")) {
+//							break;
+//						}
+//						//TODO MMINT[TOSEM] Integrate with tosem allsat to negate current concretization
+//						z3Model = z3IncSolver.checkSatAndGetModel(concretization[1], Z3IncrementalBehavior.NORMAL);
+//						if (z3Model.getZ3Bool() != Z3Bool.SAT) {
+//							break;
+//						}
+//					}
 				}
 			}
 		}

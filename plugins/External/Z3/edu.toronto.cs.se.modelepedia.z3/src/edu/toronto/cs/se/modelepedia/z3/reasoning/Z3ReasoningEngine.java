@@ -114,6 +114,11 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 		// show example if: maybe, has a diagram, user accepts
 		if (constraintTruthValue != MAVOTruthValue.MAYBE) {
+try {
+	System.err.println(allSAT(model));
+} catch (MMINTException e) {
+	e.printStackTrace();
+}
 			return constraintTruthValue;
 		}
 		Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
@@ -131,7 +136,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		MAVOConcretizationHighlighter highlighter;
 		try {
 			highlighter = new MAVOConcretizationHighlighter();
-			highlighter.highlightMAVOCounterExample(modelDiagram, z3ModelParser.getZ3MAVOModelElements(z3NotConstraintModel));
+			highlighter.highlightMAVOCounterExample(modelDiagram, z3ModelParser.getZ3MAVOModelElements(z3NotConstraintModel, null));
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "Can't highlight concretization, skipping it", e);
@@ -154,7 +159,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			numSolutions++;
 			String smtConcretizationConstraint = "";
 			Map<String, List<String>> z3ModelElems = new HashMap<>();
-			for (Entry<String, String> z3ModelElem : z3ModelParser.getZ3MAVOModelElements(z3Model).entrySet()) {
+			for (Entry<String, String> z3ModelElem : z3ModelParser.getZ3MAVOModelElements(z3Model, MAVOUtils.getAllMAVOModelObjects(rootMavoModelObj)).entrySet()) {
 				// M: 1 universe id to 1 formula var, or nothing
 				// S: x universe ids to 1 formula var
 				// V: 1 universe id to x formula vars
@@ -228,7 +233,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		}
 		MAVOModel rootMavoModelObj = (MAVOModel) model.getEMFInstanceRoot();
 
-		return allSAT(z3ModelParser.getSMTLIBEncoding(), z3ModelParser, MAVOUtils.getMAVOModelObjects(rootMavoModelObj), rootMavoModelObj);
+		return allSAT(z3ModelParser.getSMTLIBEncoding(), z3ModelParser, MAVOUtils.getAnnotatedMAVOModelObjects(rootMavoModelObj), rootMavoModelObj);
 	}
 
 	private @NonNull String getSMTLIBMAVOModelObjectFunction(@NonNull MAVOElement mavoModelObj) throws MMINTException {
