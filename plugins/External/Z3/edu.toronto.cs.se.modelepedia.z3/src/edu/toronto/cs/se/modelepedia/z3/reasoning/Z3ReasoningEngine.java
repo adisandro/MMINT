@@ -115,11 +115,6 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 		// show example if: maybe, has a diagram, user accepts
 		if (constraintTruthValue != MAVOTruthValue.MAYBE) {
-try {
-	System.err.println(allSAT(model));
-} catch (MMINTException e) {
-	e.printStackTrace();
-}
 			return constraintTruthValue;
 		}
 		Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
