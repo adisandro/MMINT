@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.modelepedia.z3.reasoning;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -250,13 +249,31 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 	public @NonNull String getSMTLIBSetModelObjectConstraint(@NonNull MAVOElement setModelObj, boolean isNegation) throws MMINTException {
 
-		String smtFunction = getSMTLIBMAVOModelObjectFunction(setModelObj);
-		String smtEncoding = Z3Utils.exists(
-			Z3Utils.predicate(Z3Utils.SMTLIB_CONCRETIZATION_QUANTIFIER, setModelObj.eClass().getName()),
-			Z3Utils.predicate(smtFunction, setModelObj.getFormulaVariable() + " " + Z3Utils.SMTLIB_CONCRETIZATION)
-		);
+		final String SMTLIB_CONCRETIZATION1 = Z3Utils.SMTLIB_CONCRETIZATION + "1";
+		final String SMTLIB_CONCRETIZATION2 = Z3Utils.SMTLIB_CONCRETIZATION + "2";
+		final String SMTLIB_CONCRETIZATION1_QUANTIFIER = Z3Utils.SMTLIB_PREDICATE_START + SMTLIB_CONCRETIZATION1 + " ";
+		final String SMTLIB_CONCRETIZATION2_QUANTIFIER = Z3Utils.SMTLIB_PREDICATE_START + SMTLIB_CONCRETIZATION2 + " ";
 
-		return (isNegation) ? Z3Utils.not(smtEncoding) : smtEncoding;
+		String smtFunction = getSMTLIBMAVOModelObjectFunction(setModelObj);
+		String smtThenTerms = Z3Utils.equality(SMTLIB_CONCRETIZATION1 + " " + SMTLIB_CONCRETIZATION2);
+		if (isNegation) {
+			smtThenTerms = Z3Utils.not(smtThenTerms);
+		}
+		String smtTerms = Z3Utils.implication(
+			Z3Utils.and(
+				Z3Utils.predicate(smtFunction, setModelObj.getFormulaVariable() + " " + SMTLIB_CONCRETIZATION1) +
+				Z3Utils.predicate(smtFunction, setModelObj.getFormulaVariable() + " " + SMTLIB_CONCRETIZATION2)
+			),
+			smtThenTerms
+		);
+		String smtQuantification = 
+			Z3Utils.predicate(SMTLIB_CONCRETIZATION1_QUANTIFIER, setModelObj.eClass().getName()) +
+			Z3Utils.predicate(SMTLIB_CONCRETIZATION2_QUANTIFIER, setModelObj.eClass().getName());
+		String smtEncoding = (isNegation) ?
+			Z3Utils.exists(smtQuantification, smtTerms) :
+			Z3Utils.forall(smtQuantification, smtTerms);
+
+		return smtEncoding;
 	}
 
 	public @NonNull String getSMTLIBVarModelObjectConstraint(@NonNull MAVOElement varModelObj, @NonNull Set<String> unmergeableFormulaVars, boolean isNegation) throws MMINTException {
