@@ -205,7 +205,6 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		return allSATWithSolver(z3IncSolver, z3ModelParser, z3Model, mavoModelObjs, rootMavoModelObj);
 	}
 
-	//TODO MMINT[ISTAR] Invoke it from REJ15
 	public int allSAT(@NonNull Model model) throws MMINTException {
 
 		Z3MAVOModelParser z3ModelParser;

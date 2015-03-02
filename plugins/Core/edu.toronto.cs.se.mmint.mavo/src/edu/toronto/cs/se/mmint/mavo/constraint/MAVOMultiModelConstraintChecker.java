@@ -28,7 +28,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 
 public class MAVOMultiModelConstraintChecker {
 
-	private static @NonNull IMAVOReasoningEngine getMAVOReasoner(@NonNull String constraintLanguage) throws MMINTException {
+	public static @NonNull IMAVOReasoningEngine getMAVOReasoner(@NonNull String constraintLanguage) throws MMINTException {
 
 		//TODO MMINT[MAVO] Register reasoners as mavo reasoner
 		return (IMAVOReasoningEngine) MultiModelConstraintChecker.getReasoner(constraintLanguage);

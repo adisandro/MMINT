@@ -18,13 +18,17 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
+import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
@@ -34,6 +38,7 @@ import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavio
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
+import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
 public class REJ15 extends FASE14 {
 
@@ -42,12 +47,18 @@ public class REJ15 extends FASE14 {
 	private final static String PROPERTY_IN_MODELCONSTRAINT_DEFAULT = null;
 	private final static String PROPERTY_IN_GENERATETARGETSCONCRETIZATION = "generateTargetsConcretization";
 	private final static Boolean PROPERTY_IN_GENERATETARGETSCONCRETIZATION_DEFAULT = false;
+	private final static String PROPERTY_OUT_TIMEALLSAT = "timeAllSAT";
+	private final static String PROPERTY_OUT_NUMSOLUTIONS = "numSolutions";
 
 	// input
 	private boolean timeAnalysisEnabled;
 	private boolean timeRNFEnabled;
 	private String modelConstraint;
 	private boolean generateTargetsConcretization;
+	private boolean timeAllSATEnabled;
+	// output
+	private long timeAllSAT;
+	private int numSolutions;
 
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
@@ -57,6 +68,7 @@ public class REJ15 extends FASE14 {
 		timeRNFEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMERNF+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 		modelConstraint = MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MODELCONSTRAINT, PROPERTY_IN_MODELCONSTRAINT_DEFAULT);
 		generateTargetsConcretization = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_GENERATETARGETSCONCRETIZATION, PROPERTY_IN_GENERATETARGETSCONCRETIZATION_DEFAULT);
+		timeAllSATEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEALLSAT+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 	}
 
 	@Override
@@ -68,6 +80,17 @@ public class REJ15 extends FASE14 {
 		if (modelConstraint != null) {
 			smtEncoding += Z3Utils.assertion(modelConstraint);
 		}
+		// output
+		timeAllSAT = -1;
+		numSolutions = 0;
+	}
+
+	@Override
+	protected void writeProperties(Properties properties) {
+
+		super.writeProperties(properties);
+		properties.setProperty(PROPERTY_OUT_TIMEALLSAT, String.valueOf(timeAllSAT));
+		properties.setProperty(PROPERTY_OUT_NUMSOLUTIONS, String.valueOf(numSolutions));
 	}
 
 	@Override
@@ -85,7 +108,24 @@ public class REJ15 extends FASE14 {
 		return z3Model;
 	}
 
-//	private String[] getConcretization(IStar istar, Z3Model z3Model) {
+	private void doAllSAT(Z3IncrementalSolver z3IncSolver, Z3Model z3Model) {
+
+		long startTime = System.nanoTime();
+
+		Z3ReasoningEngine z3Reasoner;
+		try {
+			z3Reasoner = (Z3ReasoningEngine) MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
+			numSolutions = z3Reasoner.allSATWithSolver(z3IncSolver, z3ModelParser, z3Model, mavoModelObjs, istar);
+		}
+		catch (MMINTException e) {
+			MMINTException.print(IStatus.WARNING, "Skipping allSAT", e);
+			return;
+		}
+
+		timeAllSAT = System.nanoTime() - startTime;
+	}
+
+//		private String[] getConcretization(IStar istar, Z3Model z3Model) {
 //
 //		String concretization = "", smtConcretizationConstraint = "";
 //		Map<String, List<String>> z3ModelElems = new HashMap<>();
@@ -185,6 +225,9 @@ public class REJ15 extends FASE14 {
 			if (targets == Z3Bool.SAT) {
 				if (timeRNFEnabled) {
 					doRNF(z3IncSolver, z3Model);
+				}
+				if (timeAllSATEnabled) {
+					doAllSAT(z3IncSolver, z3Model);
 				}
 				if (generateTargetsConcretization) {
 //					while (true) {
