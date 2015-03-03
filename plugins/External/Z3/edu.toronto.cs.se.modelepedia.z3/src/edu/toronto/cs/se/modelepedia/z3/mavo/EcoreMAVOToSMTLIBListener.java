@@ -24,8 +24,8 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 
 	private static final @NonNull String NODE_MARKER = "Node";
 	private static final @NonNull String EDGE_MARKER = "Edge";
-	private static final @NonNull String MODEL_START_MARKER = ";Model" + System.lineSeparator();
-	private static final @NonNull String MODEL_END_MARKER = ";End Model" + System.lineSeparator();
+	private static final @NonNull String MODEL_START_MARKER = ";Model\n";
+	private static final @NonNull String MODEL_END_MARKER = ";End Model\n";
 	private static final int NUM_TOKENS = 4;
 
 	private Map<String, MAVOElement> mavoModelObjs;
