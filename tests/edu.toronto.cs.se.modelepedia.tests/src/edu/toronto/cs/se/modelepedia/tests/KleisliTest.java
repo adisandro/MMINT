@@ -18,8 +18,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
@@ -71,7 +69,6 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 //TODO MMINT[HUDSON] Switch to Jenkins
 public class KleisliTest {
 
-	private final static String TESTS_BUNDLE_NAME = "edu.toronto.cs.se.modelepedia.tests";
 	private final static String TESTS_BUNDLE_MODEL_DIR= "model/kleisli";
 	private final static String SRC_MODELTYPE_NAME = "NECSIS14_DatabaseSchema";
 	private final static String SRC_METAMODEL_NAME = SRC_MODELTYPE_NAME + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
@@ -110,7 +107,7 @@ public class KleisliTest {
 		"_QTable.classes->get(origin)\n_QTable.classes->get(origin.parent)\n_QTable.classes->get(origin.oclContainer())\n_QTable.associations->get(origin)\n_QTable.associations->get(origin)\n_QTable.classes->get(origin.target)",
 		"_QTable.classes->get(origin)\nNULL\nNULL\n_QTable.associations->get(origin)\n_QTable.associations->get(origin)\nNULL"
 	};
-	private final static String TESTS_TEMPPROJECT = TESTS_BUNDLE_NAME;
+	private final static String TESTS_TEMPPROJECT = TestUtils.TESTS_BUNDLE_NAME;
 	private final static String TESTS_TEMP_PROJECT_URI = IPath.SEPARATOR + TESTS_TEMPPROJECT + IPath.SEPARATOR;
 	private final static String TESTS_INSTANCEMID_URI = TESTS_TEMP_PROJECT_URI + "instances" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
 	private final static String INPUT_MODEL_FILENAME = "cd" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MultiModelTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION;
@@ -145,16 +142,16 @@ public class KleisliTest {
 	public void test() throws Exception {
 
 		MMINT.setPreference(MMINTConstants.PREFERENCE_TESTS_ENABLED, "true");
-		Bundle testsBundle = Platform.getBundle(TESTS_BUNDLE_NAME);
+		Bundle testBundle = Platform.getBundle(TestUtils.TESTS_BUNDLE_NAME);
 		// model types
 		Model rootModelType = MultiModelTypeRegistry.getType(MMINT.ROOT_MODEL_URI);
 		Model srcModelType = rootModelType.createSubtype(SRC_MODELTYPE_NAME, null, null, true);
 		MMINT.createTypeHierarchy();
-		URL srcMetamodelUrl = testsBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, SRC_METAMODEL_NAME, false).nextElement();
+		URL srcMetamodelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, SRC_METAMODEL_NAME, false).nextElement();
 		Files.copy(Paths.get(FileLocator.toFileURL(srcMetamodelUrl).getFile()), Paths.get(MultiModelUtils.prependStateToUri(SRC_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
 		Model tgtModelType = rootModelType.createSubtype(TGT_MODELTYPE_NAME, null, null, true);
 		MMINT.createTypeHierarchy();
-		URL tgtMetamodelUrl = testsBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, TGT_METAMODEL_NAME, false).nextElement();
+		URL tgtMetamodelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, TGT_METAMODEL_NAME, false).nextElement();
 		Files.copy(Paths.get(FileLocator.toFileURL(tgtMetamodelUrl).getFile()), Paths.get(MultiModelUtils.prependStateToUri(TGT_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
 
 		// model rel type
@@ -163,7 +160,7 @@ public class KleisliTest {
 		MMINT.createTypeHierarchy();
 		KleisliModelEndpoint kRootModelTypeEndpoint = (KleisliModelEndpoint) kRootModelRelType.getModelEndpoints().get(0);
 		ModelEndpointReference srcModelTypeEndpointRef = kRootModelTypeEndpoint.createSubtypeAndReference(SRC_MODELTYPEENDPOINT_NAME, srcModelType, false, kModelRelType);
-		URL kTgtMetamodelUrl = testsBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, KLEISLI_TGT_METAMODEL_NAME, false).nextElement();
+		URL kTgtMetamodelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, KLEISLI_TGT_METAMODEL_NAME, false).nextElement();
 		Files.copy(Paths.get(FileLocator.toFileURL(kTgtMetamodelUrl).getFile()), Paths.get(MultiModelUtils.prependStateToUri(MODELRELTYPE_NAME + MMINT.URI_SEPARATOR + KLEISLI_TGT_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
 		KleisliModelEndpointReference kTgtModelTypeEndpointRef = (KleisliModelEndpointReference) kRootModelTypeEndpoint.createSubtypeAndReference(TGT_MODELTYPEENDPOINT_NAME, tgtModelType, false, kModelRelType);
 		// model element types and link types
@@ -194,11 +191,9 @@ public class KleisliTest {
 		}
 
 		// instances
-		IProject tempProject = ResourcesPlugin.getWorkspace().getRoot().getProject(TESTS_TEMPPROJECT);
-		tempProject.create(null);
-		tempProject.open(null);
+		TestUtils.createTestProject();
 		MultiModel instanceMID = MIDFactory.eINSTANCE.createMultiModel();
-		URL inputModelUrl = testsBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, INPUT_MODEL_FILENAME, false).nextElement();
+		URL inputModelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, INPUT_MODEL_FILENAME, false).nextElement();
 		MultiModelUtils.copyTextFileAndReplaceText(
 			FileLocator.toFileURL(inputModelUrl).getFile().toString(),
 			MultiModelUtils.prependWorkspaceToUri(INPUT_MODEL_URI),
@@ -216,14 +211,14 @@ public class KleisliTest {
 
 		// test equivalence with oracle
 		ResourceSet oracleResourceSet = new ResourceSetImpl();
-		URI oracleResourceUri = URI.createPlatformPluginURI(TESTS_BUNDLE_NAME + IPath.SEPARATOR + TESTS_BUNDLE_MODEL_DIR + IPath.SEPARATOR + MultiModelUtils.getLastSegmentFromUri(TESTS_INSTANCEMID_URI), true);
+		URI oracleResourceUri = URI.createPlatformPluginURI(TestUtils.TESTS_BUNDLE_NAME + IPath.SEPARATOR + TESTS_BUNDLE_MODEL_DIR + IPath.SEPARATOR + MultiModelUtils.getLastSegmentFromUri(TESTS_INSTANCEMID_URI), true);
 		oracleResourceSet.getResource(oracleResourceUri, true);
 		ResourceSet outputResourceSet = new ResourceSetImpl();
 		outputResourceSet.getResource(URI.createPlatformResourceURI(TESTS_INSTANCEMID_URI, true), true);
 		IComparisonScope scope = new DefaultComparisonScope(oracleResourceSet, outputResourceSet, null);
 		Comparison comparison = EMFCompare.builder().build().compare(scope);
 		assertTrue(comparison.getDifferences().isEmpty());
-		URL outputModelUrl = testsBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, OUTPUT_ORACLE_FILENAME, false).nextElement();
+		URL outputModelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, OUTPUT_ORACLE_FILENAME, false).nextElement();
 		MultiModelUtils.copyTextFileAndReplaceText(
 			FileLocator.toFileURL(outputModelUrl).getFile().toString(),
 			MultiModelUtils.prependWorkspaceToUri(OUTPUT_ORACLE_URI),

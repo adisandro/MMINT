@@ -15,5 +15,7 @@ Require-Bundle: org.junit;bundle-version="4.11.0",
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.mmint.mavo,
+ edu.toronto.cs.se.modelepedia.z3,
  edu.toronto.cs.se.modelepedia.kleisli
 Bundle-ActivationPolicy: lazy
