@@ -113,6 +113,10 @@ public class MAVOAdapterFactory extends AdapterFactoryImpl {
 				return createVarDecisionAdapter();
 			}
 			@Override
+			public Adapter caseSetDecision(SetDecision object) {
+				return createSetDecisionAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -255,6 +259,20 @@ public class MAVOAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVarDecisionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.SetDecision <em>Set Decision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mavo.SetDecision
+	 * @generated
+	 */
+	public Adapter createSetDecisionAdapter() {
 		return null;
 	}
 

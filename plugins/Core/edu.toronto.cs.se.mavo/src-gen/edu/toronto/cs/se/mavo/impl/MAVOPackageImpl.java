@@ -22,6 +22,7 @@ import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mavo.MAVOReference;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.MayDecisionLogic;
+import edu.toronto.cs.se.mavo.SetDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -99,6 +100,13 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 	 * @generated
 	 */
 	private EClass varDecisionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass setDecisionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -371,6 +379,24 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSetDecision() {
+		return setDecisionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSetDecision_Entity() {
+		return (EReference)setDecisionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getMayDecisionLogic() {
 		return mayDecisionLogicEEnum;
 	}
@@ -434,6 +460,9 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 		varDecisionEClass = createEClass(VAR_DECISION);
 		createEReference(varDecisionEClass, VAR_DECISION__DOMAIN);
 
+		setDecisionEClass = createEClass(SET_DECISION);
+		createEReference(setDecisionEClass, SET_DECISION__ENTITY);
+
 		// Create enums
 		mayDecisionLogicEEnum = createEEnum(MAY_DECISION_LOGIC);
 	}
@@ -473,6 +502,7 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 		mavoCollectionEClass.getESuperTypes().add(this.getDecisionElement());
 		mayDecisionEClass.getESuperTypes().add(this.getMAVODecision());
 		varDecisionEClass.getESuperTypes().add(this.getMAVODecision());
+		setDecisionEClass.getESuperTypes().add(this.getMAVODecision());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(logicElementEClass, LogicElement.class, "LogicElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -505,6 +535,9 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 
 		initEClass(varDecisionEClass, VarDecision.class, "VarDecision", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVarDecision_Domain(), this.getMAVOCollection(), null, "domain", null, 1, 1, VarDecision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(setDecisionEClass, SetDecision.class, "SetDecision", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSetDecision_Entity(), this.getMAVOCollection(), null, "entity", null, 1, 1, SetDecision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(mayDecisionLogicEEnum, MayDecisionLogic.class, "MayDecisionLogic");

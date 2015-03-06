@@ -590,6 +590,70 @@ public interface MAVOPackage extends EPackage {
 	int VAR_DECISION_OPERATION_COUNT = MAVO_DECISION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mavo.impl.SetDecisionImpl <em>Set Decision</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mavo.impl.SetDecisionImpl
+	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getSetDecision()
+	 * @generated
+	 */
+	int SET_DECISION = 9;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_DECISION__FORMULA_VARIABLE = MAVO_DECISION__FORMULA_VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_DECISION__DESCRIPTION = MAVO_DECISION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Required Decisions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_DECISION__REQUIRED_DECISIONS = MAVO_DECISION__REQUIRED_DECISIONS;
+
+	/**
+	 * The feature id for the '<em><b>Entity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_DECISION__ENTITY = MAVO_DECISION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Set Decision</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_DECISION_FEATURE_COUNT = MAVO_DECISION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Set Decision</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_DECISION_OPERATION_COUNT = MAVO_DECISION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mavo.MayDecisionLogic <em>May Decision Logic</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -597,7 +661,7 @@ public interface MAVOPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMayDecisionLogic()
 	 * @generated
 	 */
-	int MAY_DECISION_LOGIC = 9;
+	int MAY_DECISION_LOGIC = 10;
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mavo.LogicElement <em>Logic Element</em>}'.
@@ -833,6 +897,27 @@ public interface MAVOPackage extends EPackage {
 	EReference getVarDecision_Domain();
 
 	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mavo.SetDecision <em>Set Decision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Set Decision</em>'.
+	 * @see edu.toronto.cs.se.mavo.SetDecision
+	 * @generated
+	 */
+	EClass getSetDecision();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mavo.SetDecision#getEntity <em>Entity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Entity</em>'.
+	 * @see edu.toronto.cs.se.mavo.SetDecision#getEntity()
+	 * @see #getSetDecision()
+	 * @generated
+	 */
+	EReference getSetDecision_Entity();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mavo.MayDecisionLogic <em>May Decision Logic</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1058,6 +1143,24 @@ public interface MAVOPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VAR_DECISION__DOMAIN = eINSTANCE.getVarDecision_Domain();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.impl.SetDecisionImpl <em>Set Decision</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mavo.impl.SetDecisionImpl
+		 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getSetDecision()
+		 * @generated
+		 */
+		EClass SET_DECISION = eINSTANCE.getSetDecision();
+
+		/**
+		 * The meta object literal for the '<em><b>Entity</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SET_DECISION__ENTITY = eINSTANCE.getSetDecision_Entity();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.MayDecisionLogic <em>May Decision Logic</em>}' enum.

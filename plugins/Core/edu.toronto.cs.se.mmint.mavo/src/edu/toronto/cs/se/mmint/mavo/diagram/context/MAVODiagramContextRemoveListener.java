@@ -39,6 +39,7 @@ import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mavo.MayDecision;
+import edu.toronto.cs.se.mavo.SetDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.mavo.diagram.MAVODiagramEditor;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
@@ -124,6 +125,9 @@ public class MAVODiagramContextRemoveListener extends MIDContextMenuListener {
 			else if (mavoElemToRemove instanceof VarDecision) {
 				collectMAVOModelObjects(((VarDecision) mavoElemToRemove).getDomain(), mavoModelObjs);
 			}
+			else if (mavoElemToRemove instanceof SetDecision) {
+				collectMAVOModelObjects(((SetDecision) mavoElemToRemove).getEntity(), mavoModelObjs);
+			}
 			else if (mavoElemToRemove instanceof MAVOCollection) {
 				mavoModelObjs.addAll(((MAVOCollection) mavoElemToRemove).getMavoElements());
 			}
@@ -163,6 +167,17 @@ public class MAVODiagramContextRemoveListener extends MIDContextMenuListener {
 				eclass = MAVOPackage.eINSTANCE.getVarDecision();
 				feature = MAVOPackage.eINSTANCE.getMAVOElement_Var();
 			}
+			else if (
+					mavoFirstElemToRemove instanceof SetDecision ||
+					mavoFirstElemToRemove.eContainer() instanceof SetDecision ||
+					(
+						mavoCollectionWhenRemovingMavoModelObjs != null &&
+						mavoCollectionWhenRemovingMavoModelObjs.eContainer() instanceof SetDecision
+					)
+				) {
+					eclass = MAVOPackage.eINSTANCE.getSetDecision();
+					feature = MAVOPackage.eINSTANCE.getMAVOElement_Set();
+				}
 			else {
 				eclass = null;
 				feature = null;
@@ -175,8 +190,8 @@ public class MAVODiagramContextRemoveListener extends MIDContextMenuListener {
 			else {
 				mavoCollectionWhenRemovingMavoModelObjs.getMavoElements().removeAll(mavoElemsToRemove);
 			}
-			// depending on the removal performed, set May or Var to false for each collected MAVO model object
-			// that is now not used by any May alternatives or Var domains
+			// depending on the removal performed, set May/Var/Set to false for each collected MAVO model object
+			// that is now not used by any May alternatives or Var domains or Set entities
 			mavoModelObjs.stream()
 				.filter(mavoModelObj -> mavoModelObj.getCollections().stream()
 					.allMatch(mavoCollection -> !eclass.isInstance(mavoCollection.eContainer()))

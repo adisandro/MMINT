@@ -31,6 +31,7 @@ import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mavo.MayDecision;
+import edu.toronto.cs.se.mavo.SetDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.mavo.diagram.context.MAVODiagramContextAddListener;
 import edu.toronto.cs.se.mmint.mavo.diagram.context.MAVODiagramContextRefineListener;
@@ -39,26 +40,31 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 
 public class MAVODiagramOutlineContextMenu extends ContributionItem {
 
-	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTDECISION_LABEL = "Highlight this decision in the diagram";
-	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTALTERNATIVE_LABEL = "Highlight this alternative in the diagram";
-	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTDOMAIN_LABEL = "Highlight this domain in the diagram";
-	private static final String MAVO_OUTLINE_MENU_HIGHLIGHTELEMENT_LABEL = "Highlight this element in the diagram";
-	private static final String MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL = "Choose this alternative and refine";
-	private static final String MAVO_OUTLINE_MENU_REFINEDOMAIN_LABEL = "Merge this domain and refine";
-	private static final String MAVO_OUTLINE_MENU_REFINEMAYELEMENT_LABEL = "Choose this may element and refine";
-	private static final String MAVO_OUTLINE_MENU_REFINEVAR_SUBMENU_INTO_LABEL = "Into";
-	private static final String MAVO_OUTLINE_MENU_REFINEVAR_SUBMENU_INTONEW_LABEL = MAVO_OUTLINE_MENU_REFINEVAR_SUBMENU_INTO_LABEL + " a new object";
-	private static final String MAVO_OUTLINE_MENU_REFINEVARELEMENTS_LABEL = "Merge these var elements and refine";
-	private static final String MAVO_OUTLINE_MENU_ADDDECISION_LABEL = "Add new decision";
-	private static final String MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_MAY_LABEL = "May";
-	private static final String MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_VAR_LABEL = "Var";
-	private static final String MAVO_OUTLINE_MENU_ADDALTERNATIVE_LABEL = "Add new alternative";
-	private static final String MAVO_OUTLINE_MENU_ADDDOMAIN_LABEL = "Add new domain";
-	private static final String MAVO_OUTLINE_MENU_REMOVEDECISION_LABEL = "Remove this decision";
-	private static final String MAVO_OUTLINE_MENU_REMOVEALTERNATIVE_LABEL = "Remove this alternative";
-	private static final String MAVO_OUTLINE_MENU_REMOVEDOMAIN_LABEL = "Remove this domain";
-	private static final String MAVO_OUTLINE_MENU_REMOVEALTERNATIVEELEMENT_LABEL = "Remove this element from the alternative";
-	private static final String MAVO_OUTLINE_MENU_REMOVEDOMAINELEMENT_LABEL = "Remove this element from the domain";
+	private static final @NonNull String MAVO_OUTLINE_MENU_HIGHLIGHTDECISION_LABEL = "Highlight this decision in the diagram";
+	private static final @NonNull String MAVO_OUTLINE_MENU_HIGHLIGHTALTERNATIVE_LABEL = "Highlight this alternative in the diagram";
+	private static final @NonNull String MAVO_OUTLINE_MENU_HIGHLIGHTDOMAIN_LABEL = "Highlight this domain in the diagram";
+	private static final @NonNull String MAVO_OUTLINE_MENU_HIGHLIGHTENTITY_LABEL = "Highlight this entity in the diagram";
+	private static final @NonNull String MAVO_OUTLINE_MENU_HIGHLIGHTELEMENT_LABEL = "Highlight this element in the diagram";
+	private static final @NonNull String MAVO_OUTLINE_MENU_REFINEALTERNATIVE_LABEL = "Choose this alternative and refine";
+	private static final @NonNull String MAVO_OUTLINE_MENU_REFINEDOMAIN_LABEL = "Merge this domain and refine";
+	private static final @NonNull String MAVO_OUTLINE_MENU_REFINEMAYELEMENT_LABEL = "Choose this may element and refine";
+	private static final @NonNull String MAVO_OUTLINE_MENU_REFINEVAR_SUBMENU_INTO_LABEL = "Into";
+	private static final @NonNull String MAVO_OUTLINE_MENU_REFINEVAR_SUBMENU_INTONEW_LABEL = MAVO_OUTLINE_MENU_REFINEVAR_SUBMENU_INTO_LABEL + " a new object";
+	private static final @NonNull String MAVO_OUTLINE_MENU_REFINEVARELEMENTS_LABEL = "Merge these var elements and refine";
+	private static final @NonNull String MAVO_OUTLINE_MENU_ADDDECISION_LABEL = "Add new decision";
+	private static final @NonNull String MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_MAY_LABEL = "May";
+	private static final @NonNull String MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_VAR_LABEL = "Var";
+	private static final @NonNull String MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_SET_LABEL = "Set";
+	private static final @NonNull String MAVO_OUTLINE_MENU_ADDALTERNATIVE_LABEL = "Add new alternative";
+	private static final @NonNull String MAVO_OUTLINE_MENU_ADDDOMAIN_LABEL = "Add new domain";
+	private static final @NonNull String MAVO_OUTLINE_MENU_ADDENTITY_LABEL = "Add new entity";
+	private static final @NonNull String MAVO_OUTLINE_MENU_REMOVEDECISION_LABEL = "Remove this decision";
+	private static final @NonNull String MAVO_OUTLINE_MENU_REMOVEALTERNATIVE_LABEL = "Remove this alternative";
+	private static final @NonNull String MAVO_OUTLINE_MENU_REMOVEDOMAIN_LABEL = "Remove this domain";
+	private static final @NonNull String MAVO_OUTLINE_MENU_REMOVEENTITY_LABEL = "Remove this entity";
+	private static final @NonNull String MAVO_OUTLINE_MENU_REMOVEALTERNATIVEELEMENT_LABEL = "Remove this element from the alternative";
+	private static final @NonNull String MAVO_OUTLINE_MENU_REMOVEDOMAINELEMENT_LABEL = "Remove this element from the domain";
+	private static final @NonNull String MAVO_OUTLINE_MENU_REMOVEENTITYELEMENT_LABEL = "Remove this element from the entity";
 
 	private TreeViewer viewer;
 
@@ -122,6 +128,11 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 				MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_VAR_LABEL,
 				new MAVODiagramContextAddListener(MAVO_OUTLINE_MENU_ADDDECISION_LABEL + " " + MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_VAR_LABEL, mavoRootModelObj, MAVOPackage.eINSTANCE.getVarDecision())
 			);
+			addMenuItem(
+				addMenu,
+				MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_SET_LABEL,
+				new MAVODiagramContextAddListener(MAVO_OUTLINE_MENU_ADDDECISION_LABEL + " " + MAVO_OUTLINE_MENU_ADDDECISION_SUBMENU_SET_LABEL, mavoRootModelObj, MAVOPackage.eINSTANCE.getSetDecision())
+			);
 		}
 		else if (object instanceof MAVODecision) {
 			MAVODecision mavoDecision = (MAVODecision) object;
@@ -132,13 +143,20 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 				new MAVODiagramOutlineContextHighlightListener(MAVO_OUTLINE_MENU_HIGHLIGHTDECISION_LABEL, mavoDecision)
 			);
 			// add
-			if (!(mavoDecision instanceof VarDecision) || ((VarDecision) mavoDecision).getDomain() == null) {
+			if (
+				mavoDecision instanceof MayDecision ||
+				(mavoDecision instanceof VarDecision && ((VarDecision) mavoDecision).getDomain() == null) ||
+				(mavoDecision instanceof SetDecision && ((SetDecision) mavoDecision).getEntity() == null)
+			) {
 				String addText = "";
 				if (mavoDecision instanceof MayDecision) {
 					addText = MAVO_OUTLINE_MENU_ADDALTERNATIVE_LABEL;
 				}
 				else if (mavoDecision instanceof VarDecision) {
 					addText = MAVO_OUTLINE_MENU_ADDDOMAIN_LABEL;
+				}
+				else if (mavoDecision instanceof SetDecision) {
+					addText = MAVO_OUTLINE_MENU_ADDENTITY_LABEL;
 				}
 				addMenuItem(
 					menu,
@@ -163,6 +181,10 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 			else if (mavoCollection.eContainer() instanceof VarDecision) {
 				highlightText = MAVO_OUTLINE_MENU_HIGHLIGHTDOMAIN_LABEL;
 				removeText = MAVO_OUTLINE_MENU_REMOVEDOMAIN_LABEL;
+			}
+			else if (mavoCollection.eContainer() instanceof SetDecision) {
+				highlightText = MAVO_OUTLINE_MENU_HIGHLIGHTENTITY_LABEL;
+				removeText = MAVO_OUTLINE_MENU_REMOVEENTITY_LABEL;
 			}
 			// highlight
 			addMenuItem(
@@ -266,6 +288,9 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 				}
 				else if (mavoCollection.eContainer() instanceof VarDecision) {
 					removeText = MAVO_OUTLINE_MENU_REMOVEDOMAINELEMENT_LABEL;
+				}
+				else if (mavoCollection.eContainer() instanceof SetDecision) {
+					removeText = MAVO_OUTLINE_MENU_REMOVEENTITYELEMENT_LABEL;
 				}
 				addMenuItem(
 					menu,

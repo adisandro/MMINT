@@ -42,5 +42,8 @@
     <genClasses ecoreClass="mavo.ecore#//VarDecision">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mavo.ecore#//VarDecision/domain"/>
     </genClasses>
+    <genClasses ecoreClass="mavo.ecore#//SetDecision">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mavo.ecore#//SetDecision/entity"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

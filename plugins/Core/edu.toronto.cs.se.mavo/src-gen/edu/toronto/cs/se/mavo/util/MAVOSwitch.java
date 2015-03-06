@@ -143,6 +143,15 @@ public class MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MAVOPackage.SET_DECISION: {
+				SetDecision setDecision = (SetDecision)theEObject;
+				T result = caseSetDecision(setDecision);
+				if (result == null) result = caseMAVODecision(setDecision);
+				if (result == null) result = caseDecisionElement(setDecision);
+				if (result == null) result = caseLogicElement(setDecision);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -279,6 +288,21 @@ public class MAVOSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseVarDecision(VarDecision object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Set Decision</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Set Decision</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSetDecision(SetDecision object) {
 		return null;
 	}
 

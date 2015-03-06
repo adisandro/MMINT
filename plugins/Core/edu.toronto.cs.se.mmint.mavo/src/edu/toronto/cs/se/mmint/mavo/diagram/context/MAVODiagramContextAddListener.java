@@ -35,6 +35,7 @@ import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOFactory;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
+import edu.toronto.cs.se.mavo.SetDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.mavo.diagram.MAVODiagramEditor;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
@@ -44,8 +45,9 @@ import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 public class MAVODiagramContextAddListener extends MIDContextMenuListener {
 
 	private static final String MAVO_DECISION_FORMULA_PREFIX = "d";
-	private static final String MAVO_ALTERNATIVE_FORMULA_PREFIX = "a";
-	private static final String MAVO_DOMAIN_FORMULA_PREFIX = "d";
+	private static final String MAY_ALTERNATIVE_FORMULA_PREFIX = "a";
+	private static final String VAR_DOMAIN_FORMULA_PREFIX = "d";
+	private static final String SET_ENTITY_FORMULA_PREFIX = "e";
 
 	private EObject mavoContainer;
 	private EClass mavoDecisionType;
@@ -131,12 +133,17 @@ public class MAVODiagramContextAddListener extends MIDContextMenuListener {
 				if (mavoContainer instanceof MayDecision) {
 					MayDecision mayDecision = (MayDecision) mavoDecision;
 					mayDecision.getAlternatives().add(mavoCollection);
-					suffix = MAVO_ALTERNATIVE_FORMULA_PREFIX + mayDecision.getAlternatives().size();
+					suffix = MAY_ALTERNATIVE_FORMULA_PREFIX + mayDecision.getAlternatives().size();
 				}
 				else if (mavoContainer instanceof VarDecision) {
 					VarDecision varDecision = (VarDecision) mavoDecision;
 					varDecision.setDomain(mavoCollection);
-					suffix = MAVO_DOMAIN_FORMULA_PREFIX;
+					suffix = VAR_DOMAIN_FORMULA_PREFIX;
+				}
+				else if (mavoContainer instanceof SetDecision) {
+					SetDecision setDecision = (SetDecision) mavoDecision;
+					setDecision.setEntity(mavoCollection);
+					suffix = SET_ENTITY_FORMULA_PREFIX;
 				}
 				mavoCollection.setFormulaVariable(mavoDecision.getFormulaVariable() + suffix);
 			}
@@ -147,6 +154,9 @@ public class MAVODiagramContextAddListener extends MIDContextMenuListener {
 				}
 				else if (mavoContainer.eContainer() instanceof VarDecision) {
 					mavoModelObjs.forEach(mavoModelObj -> MAVOUtils.setVar(mavoModelObj, true));
+				}
+				else if (mavoContainer.eContainer() instanceof SetDecision) {
+					mavoModelObjs.forEach(mavoModelObj -> MAVOUtils.setSet(mavoModelObj, true));
 				}
 			}
 

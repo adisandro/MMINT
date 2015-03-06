@@ -150,6 +150,29 @@ public class MAVOItemProviderAdapterFactory extends MAVOAdapterFactory implement
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mavo.SetDecision} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SetDecisionItemProvider setDecisionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mavo.SetDecision}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSetDecisionAdapter() {
+		if (setDecisionItemProvider == null) {
+			setDecisionItemProvider = new SetDecisionItemProvider(this);
+		}
+
+		return setDecisionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -251,6 +274,7 @@ public class MAVOItemProviderAdapterFactory extends MAVOAdapterFactory implement
 		if (mavoCollectionItemProvider != null) mavoCollectionItemProvider.dispose();
 		if (mayDecisionItemProvider != null) mayDecisionItemProvider.dispose();
 		if (varDecisionItemProvider != null) varDecisionItemProvider.dispose();
+		if (setDecisionItemProvider != null) setDecisionItemProvider.dispose();
 	}
 
 }

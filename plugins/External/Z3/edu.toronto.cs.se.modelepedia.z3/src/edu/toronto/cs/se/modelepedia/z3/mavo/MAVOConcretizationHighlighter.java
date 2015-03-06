@@ -28,6 +28,7 @@ import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.MayDecisionLogic;
+import edu.toronto.cs.se.mavo.SetDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
@@ -93,6 +94,9 @@ public class MAVOConcretizationHighlighter {
 		}
 		else if (mavoDecision instanceof VarDecision) {
 			mavoCollections.add(((VarDecision) mavoDecision).getDomain());
+		}
+		else if (mavoDecision instanceof SetDecision) {
+			mavoCollections.add(((SetDecision) mavoDecision).getEntity());
 		}
 		for (int i = 0; i < mavoCollections.size(); i++) {
 			MAVOCollection mavoCollection = mavoCollections.get(i);

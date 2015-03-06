@@ -58,6 +58,15 @@ public interface MAVOFactory extends EFactory {
 	VarDecision createVarDecision();
 
 	/**
+	 * Returns a new object of class '<em>Set Decision</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Set Decision</em>'.
+	 * @generated
+	 */
+	SetDecision createSetDecision();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

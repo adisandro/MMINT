@@ -69,6 +69,7 @@ public class MAVOFactoryImpl extends EFactoryImpl implements MAVOFactory {
 			case MAVOPackage.MAVO_COLLECTION: return createMAVOCollection();
 			case MAVOPackage.MAY_DECISION: return createMayDecision();
 			case MAVOPackage.VAR_DECISION: return createVarDecision();
+			case MAVOPackage.SET_DECISION: return createSetDecision();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -132,6 +133,16 @@ public class MAVOFactoryImpl extends EFactoryImpl implements MAVOFactory {
 	public VarDecision createVarDecision() {
 		VarDecisionImpl varDecision = new VarDecisionImpl();
 		return varDecision;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SetDecision createSetDecision() {
+		SetDecisionImpl setDecision = new SetDecisionImpl();
+		return setDecision;
 	}
 
 	/**
