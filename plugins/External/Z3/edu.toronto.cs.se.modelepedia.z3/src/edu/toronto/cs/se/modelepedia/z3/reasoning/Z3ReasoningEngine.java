@@ -168,14 +168,13 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 					}
 				}
 				boolean isNegation;
-				String smtConstraint = "";
 				if (mavoModelObj.isMay()) {
 					isNegation = (counterMS == 0);
-					smtConstraint = Z3MAVOUtils.getSMTLIBMayModelObjectConstraint(mavoModelObj, z3ModelParser.isMayOnly(), isNegation);
+					smtConcretizationConstraint += Z3MAVOUtils.getSMTLIBMayModelObjectConstraint(mavoModelObj, z3ModelParser.isMayOnly(), isNegation);
 				}
 				if (mavoModelObj.isSet() && counterMS > 0) {
 					isNegation = (counterMS > 1);
-					smtConstraint = Z3MAVOUtils.getSMTLIBSetModelObjectConstraint(mavoModelObj, isNegation);
+					smtConcretizationConstraint += Z3MAVOUtils.getSMTLIBSetModelObjectConstraint(mavoModelObj, isNegation);
 				}
 				if (mavoModelObj.isVar() && counterMS > 0) {
 					isNegation = (mergedV.size() > 1);
@@ -185,9 +184,8 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 							continue;
 						}
 					}
-					smtConstraint = Z3MAVOUtils.getSMTLIBVarModelObjectConstraint(mavoModelObj, mergedV, isNegation);
+					smtConcretizationConstraint += Z3MAVOUtils.getSMTLIBVarModelObjectConstraint(mavoModelObj, mergedV, isNegation);
 				}
-				smtConcretizationConstraint += smtConstraint;
 			}
 			smtConcretizationConstraint = Z3Utils.assertion(Z3Utils.not(Z3Utils.and(smtConcretizationConstraint)));
 			z3Model = z3IncSolver.checkSatAndGetModel(smtConcretizationConstraint, Z3IncrementalBehavior.NORMAL);

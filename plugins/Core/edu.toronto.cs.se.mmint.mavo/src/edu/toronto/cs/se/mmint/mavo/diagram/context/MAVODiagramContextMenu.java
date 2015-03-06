@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -32,6 +33,7 @@ import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
+import edu.toronto.cs.se.mavo.SetDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextMenu;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
@@ -45,15 +47,18 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
  */
 public class MAVODiagramContextMenu extends ContributionItem {
 
-	private static final String MAVO_CONTEXT_MENU_LABEL = "MAVO";
-	private static final String MAVO_CONTEXT_MENU_REFINE_LABEL = "Choose this element and refine";
-	private static final String MAVO_CONTEXT_MENU_REFINE2_LABEL = "Choose these elements and refine";
-	private static final String MAVO_CONTEXT_MENU_MAYDECISION_LABEL = "May decision";
-	private static final String MAVO_CONTEXT_MENU_VARDECISION_LABEL = "Var decision";
-	private static final String MAVO_CONTEXT_MENU_MAYDECISION_SUBMENU_ADDTOALTERNATIVE_LABEL = "Add to alternative";
-	private static final String MAVO_CONTEXT_MENU_VARDECISION_SUBMENU_ADDTODOMAIN_LABEL = "Add to domain";
-	private static final String MAVO_CONTEXT_MENU_MAYDECISION_SUBMENU_REMOVEFROMALTERNATIVE_LABEL = "Remove from alternative";
-	private static final String MAVO_CONTEXT_MENU_VARDECISION_SUBMENU_REMOVEFROMDOMAIN_LABEL = "Remove from domain";
+	private static final @NonNull String MAVO_CONTEXT_MENU_LABEL = "MAVO";
+	private static final @NonNull String MAVO_CONTEXT_MENU_REFINEONE_LABEL = "Choose this element and refine";
+	private static final @NonNull String MAVO_CONTEXT_MENU_REFINEMULTI_LABEL = "Choose these elements and refine";
+	private static final @NonNull String MAVO_CONTEXT_MENU_MAYDECISION_LABEL = "May decision";
+	private static final @NonNull String MAVO_CONTEXT_MENU_VARDECISION_LABEL = "Var decision";
+	private static final @NonNull String MAVO_CONTEXT_MENU_SETDECISION_LABEL = "Set decision";
+	private static final @NonNull String MAVO_CONTEXT_MENU_MAYDECISION_SUBMENU_ADDTOALTERNATIVE_LABEL = "Add to alternative";
+	private static final @NonNull String MAVO_CONTEXT_MENU_VARDECISION_SUBMENU_ADDTODOMAIN_LABEL = "Add to domain";
+	private static final @NonNull String MAVO_CONTEXT_MENU_SETDECISION_SUBMENU_ADDTOENTITY_LABEL = "Add to entity";
+	private static final @NonNull String MAVO_CONTEXT_MENU_MAYDECISION_SUBMENU_REMOVEFROMALTERNATIVE_LABEL = "Remove from alternative";
+	private static final @NonNull String MAVO_CONTEXT_MENU_VARDECISION_SUBMENU_REMOVEFROMDOMAIN_LABEL = "Remove from domain";
+	private static final @NonNull String MAVO_CONTEXT_MENU_SETDECISION_SUBMENU_REMOVEFROMENTITY_LABEL = "Remove from entity";
 
 	@Override
 	public boolean isDynamic() {
@@ -103,8 +108,8 @@ public class MAVODiagramContextMenu extends ContributionItem {
 		if (mavoModelObjs.stream().anyMatch(mavoModelObj -> mavoModelObj.isMay())) {
 			MenuItem refineItem = new MenuItem(mavoMenu, SWT.NONE);
 			String refineText = (mavoModelObjs.size() == 1) ?
-				MAVO_CONTEXT_MENU_REFINE_LABEL :
-				MAVO_CONTEXT_MENU_REFINE2_LABEL;
+				MAVO_CONTEXT_MENU_REFINEONE_LABEL :
+				MAVO_CONTEXT_MENU_REFINEMULTI_LABEL;
 			refineItem.setText(refineText);
 			refineItem.addSelectionListener(
 				new MAVODiagramContextRefineListener(refineText, mavoModelObjs)
@@ -129,6 +134,13 @@ public class MAVODiagramContextMenu extends ContributionItem {
 				removeLabel = MAVO_CONTEXT_MENU_VARDECISION_SUBMENU_REMOVEFROMDOMAIN_LABEL;
 				mavoCollections = new ArrayList<MAVOCollection>();
 				mavoCollections.add(((VarDecision) mavoDecision).getDomain());
+			}
+			else if (mavoDecision instanceof SetDecision) {
+				decisionText = MAVO_CONTEXT_MENU_SETDECISION_LABEL;
+				addLabel = MAVO_CONTEXT_MENU_SETDECISION_SUBMENU_ADDTOENTITY_LABEL;
+				removeLabel = MAVO_CONTEXT_MENU_SETDECISION_SUBMENU_REMOVEFROMENTITY_LABEL;
+				mavoCollections = new ArrayList<MAVOCollection>();
+				mavoCollections.add(((SetDecision) mavoDecision).getEntity());
 			}
 			decisionText += " " + mavoDecision.getFormulaVariable();
 			decisionItem.setText(decisionText);

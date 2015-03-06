@@ -26,6 +26,7 @@ import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
+import edu.toronto.cs.se.mavo.SetDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
 
 public class MAVODiagramOutlineContentProvider extends AdapterFactoryContentProvider {
@@ -79,6 +80,11 @@ public class MAVODiagramOutlineContentProvider extends AdapterFactoryContentProv
 					hasChildren = true;
 				}
 			}
+			else if (object instanceof SetDecision) {
+				if (((SetDecision) object).getEntity() != null) {
+					hasChildren = true;
+				}
+			}
 		}
 		else if (object instanceof MAVOCollection) {
 			if (!((MAVOCollection) object).getMavoElements().isEmpty()) {
@@ -104,8 +110,12 @@ public class MAVODiagramOutlineContentProvider extends AdapterFactoryContentProv
 		else if (object instanceof MAVODecision) {
 			if (object instanceof MayDecision) {
 				children = ((MayDecision) object).getAlternatives().toArray();
-			} else if (object instanceof VarDecision) {
+			}
+			else if (object instanceof VarDecision) {
 				children = new Object[] {((VarDecision) object).getDomain()};
+			}
+			else if (object instanceof SetDecision) {
+				children = new Object[] {((SetDecision) object).getEntity()};
 			}
 		}
 		else if (object instanceof MAVOCollection) {
