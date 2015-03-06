@@ -19,6 +19,10 @@
     <alternatives formulaVariable="SeparateException" description="Yes they are" mavoElements="//@classes.20/@superclass.0 //@associations.19"/>
     <alternatives formulaVariable="MergedException" description="No they're not"/>
   </decisions>
+  <decisions xsi:type="mavo:MayDecision" formulaVariable="DecisionExceptionAttributes" description="Are exception attributes needed?">
+    <alternatives formulaVariable="NeedExceptionAttributes" description="Yes they are" mavoElements="//@classes.20/@ownedAttributes.0"/>
+    <alternatives formulaVariable="NeedNotExceptionAttributes" description="No they aren't"/>
+  </decisions>
   <classes formulaVariable="EModelElement" name="EModelElement" subclasses="//@classes.2/@superclass.0 //@classes.3/@superclass.0 //@classes.4/@superclass.0" associationsAsTarget="//@associations.1"/>
   <classes formulaVariable="EStringToStringMapEntry" name="EStringToStringMapEntry" associationsAsTarget="//@associations.0">
     <ownedAttributes formulaVariable="ekey" name="ekey" type="//@classes.17"/>
@@ -103,6 +107,7 @@
   <classes formulaVariable="EBoolean" name="EBoolean"/>
   <classes formulaVariable="EInt" name="EInt"/>
   <classes formulaVariable="EException" var="true" collections="//@decisions.3/@domain" name="EException" associationsAsTarget="//@associations.19">
+    <ownedAttributes formulaVariable="exceptionAttributes" may="true" set="true" collections="//@decisions.5/@alternatives.0" name="exceptionAttributes"/>
     <superclass formulaVariable="supEException" may="true" collections="//@decisions.4/@alternatives.0" target="//@classes.6"/>
   </classes>
   <associations formulaVariable="details" name="details" source="//@classes.2" target="//@classes.1"/>

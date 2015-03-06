@@ -55,7 +55,7 @@ import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOUtils;
 //TODO MMINT[Z3] Support refinement and highlighting for the complex full-MAVO encoding
 public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
-	private final static @NonNull String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
+	public final static @NonNull String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
 
 	private Z3Model z3ConstraintModel;
 	private Z3Model z3NotConstraintModel;
