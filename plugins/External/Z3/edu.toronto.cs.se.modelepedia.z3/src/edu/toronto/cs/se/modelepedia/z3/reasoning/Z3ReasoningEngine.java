@@ -161,7 +161,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 				int counterMS = 0;
 				Set<String> mergedV = null;
 				for (Set<String> formulaVars : z3ModelObjs.values()) {
-					//TODO MMINT[Z3] Understand why we don't break here
+					//TODO MMINT[Z3] Understand why we don't break here, is it only because of counterMS?
 					if (formulaVars.contains(formulaVar)) {
 						counterMS++;
 						mergedV = formulaVars;
