@@ -12,11 +12,10 @@
 package edu.toronto.cs.se.mmint.mid.operator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
-
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import java.util.Map;
-
 import java.util.Properties;
 import org.eclipse.emf.common.util.EList;
 
@@ -34,6 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getInputs <em>Inputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getOutputs <em>Outputs</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getGenerics <em>Generics</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getInputSubdir <em>Input Subdir</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getPreviousOperator <em>Previous Operator</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#isUpdateMID <em>Update MID</em>}</li>
@@ -44,10 +44,10 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Operator extends ExtendibleElement {
+public interface Operator extends GenericElement {
 	/**
 	 * Returns the value of the '<em><b>Inputs</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.operator.Parameter}.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.ModelEndpoint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -58,11 +58,11 @@ public interface Operator extends ExtendibleElement {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Parameter> getInputs();
+	EList<ModelEndpoint> getInputs();
 
 	/**
 	 * Returns the value of the '<em><b>Outputs</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.operator.Parameter}.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.ModelEndpoint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -73,7 +73,22 @@ public interface Operator extends ExtendibleElement {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Parameter> getOutputs();
+	EList<ModelEndpoint> getOutputs();
+
+	/**
+	 * Returns the value of the '<em><b>Generics</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of generics of this operator.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Generics</em>' containment reference list.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperator_Generics()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<GenericEndpoint> getGenerics();
 
 	/**
 	 * Returns the value of the '<em><b>Input Subdir</b></em>' attribute.

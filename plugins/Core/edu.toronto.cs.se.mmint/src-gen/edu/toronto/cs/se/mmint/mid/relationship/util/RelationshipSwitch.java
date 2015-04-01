@@ -16,6 +16,7 @@ import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.*;
 import org.eclipse.emf.ecore.EObject;
@@ -83,8 +84,9 @@ public class RelationshipSwitch<T> extends Switch<T> {
 				ModelRel modelRel = (ModelRel)theEObject;
 				T result = caseModelRel(modelRel);
 				if (result == null) result = caseModel(modelRel);
-				if (result == null) result = caseExtendibleElement(modelRel);
+				if (result == null) result = caseGenericElement(modelRel);
 				if (result == null) result = caseMAVOModel(modelRel);
+				if (result == null) result = caseExtendibleElement(modelRel);
 				if (result == null) result = caseMAVOElement(modelRel);
 				if (result == null) result = caseLogicElement(modelRel);
 				if (result == null) result = defaultCase(theEObject);
@@ -95,8 +97,9 @@ public class RelationshipSwitch<T> extends Switch<T> {
 				T result = caseBinaryModelRel(binaryModelRel);
 				if (result == null) result = caseModelRel(binaryModelRel);
 				if (result == null) result = caseModel(binaryModelRel);
-				if (result == null) result = caseExtendibleElement(binaryModelRel);
+				if (result == null) result = caseGenericElement(binaryModelRel);
 				if (result == null) result = caseMAVOModel(binaryModelRel);
+				if (result == null) result = caseExtendibleElement(binaryModelRel);
 				if (result == null) result = caseMAVOElement(binaryModelRel);
 				if (result == null) result = caseLogicElement(binaryModelRel);
 				if (result == null) result = defaultCase(theEObject);
@@ -408,6 +411,21 @@ public class RelationshipSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExtendibleElement(ExtendibleElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenericElement(GenericElement object) {
 		return null;
 	}
 

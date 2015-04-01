@@ -17,6 +17,7 @@ import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
@@ -112,6 +113,13 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * @generated
 	 */
 	private EClass emfInfoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass genericElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -952,6 +960,15 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getGenericElement() {
+		return genericElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getMIDLevel() {
 		return midLevelEEnum;
 	}
@@ -1092,6 +1109,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(emfInfoEClass, EMF_INFO___TO_TYPE_STRING);
 		createEOperation(emfInfoEClass, EMF_INFO___TO_INSTANCE_STRING);
 
+		genericElementEClass = createEClass(GENERIC_ELEMENT);
+
 		// Create enums
 		midLevelEEnum = createEEnum(MID_LEVEL);
 		modelOriginEEnum = createEEnum(MODEL_ORIGIN);
@@ -1142,10 +1161,11 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		multiModelEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
 		extendibleElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 		extendibleElementEndpointEClass.getESuperTypes().add(this.getExtendibleElement());
-		modelEClass.getESuperTypes().add(this.getExtendibleElement());
+		modelEClass.getESuperTypes().add(this.getGenericElement());
 		modelEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
 		modelElementEClass.getESuperTypes().add(this.getExtendibleElement());
 		modelEndpointEClass.getESuperTypes().add(this.getExtendibleElementEndpoint());
+		genericElementEClass.getESuperTypes().add(this.getExtendibleElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(multiModelEClass, MultiModel.class, "MultiModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1359,6 +1379,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		initEOperation(getEMFInfo__ToTypeString(), ecorePackage.getEString(), "toTypeString", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getEMFInfo__ToInstanceString(), ecorePackage.getEString(), "toInstanceString", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(genericElementEClass, GenericElement.class, "GenericElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(midLevelEEnum, MIDLevel.class, "MIDLevel");

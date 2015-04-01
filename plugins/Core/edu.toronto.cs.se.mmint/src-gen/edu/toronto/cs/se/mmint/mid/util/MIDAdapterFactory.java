@@ -119,6 +119,10 @@ public class MIDAdapterFactory extends AdapterFactoryImpl {
 				return createEMFInfoAdapter();
 			}
 			@Override
+			public Adapter caseGenericElement(GenericElement object) {
+				return createGenericElementAdapter();
+			}
+			@Override
 			public Adapter caseMAVOModel(MAVOModel object) {
 				return createMAVOModelAdapter();
 			}
@@ -273,6 +277,20 @@ public class MIDAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEMFInfoAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.GenericElement <em>Generic Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.GenericElement
+	 * @generated
+	 */
+	public Adapter createGenericElementAdapter() {
 		return null;
 	}
 

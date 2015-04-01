@@ -88,7 +88,7 @@ The relationship&apos;s enpoints model packages have to be registered too throug
    <element name="modelElemType">
       <annotation>
          <documentation>
-            An model element type.
+            A model element type.
          </documentation>
       </annotation>
       <complexType>

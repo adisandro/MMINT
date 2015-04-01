@@ -60,7 +60,7 @@
       <details key="constraints" value="typeLevel"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="The abstract basic element. It represents a unique typed element, able to extend or be extended by other elements."/>
+      <details key="documentation" value="The abstract basic element. It represents a unique type at the type level able to extend or be extended by other elements, or a typed element at the instance level."/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="typeLevel" value="level = MIDLevel::INSTANCES implies metatype.level = MIDLevel::TYPES"/>
@@ -180,7 +180,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//ExtendibleElement ../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOModel">
+  <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//GenericElement ../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOModel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A model type or a model instance."/>
     </eAnnotations>
@@ -457,6 +457,11 @@
         <details key="documentation" value="The related EClass name, if applicable (types: metamodel class of the type if reference; instances: metamodel class of the container if not root and not attribute)"/>
       </eAnnotations>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericElement" abstract="true" eSuperTypes="#//ExtendibleElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The abstract element for generic operator definitions."/>
+    </eAnnotations>
   </eClassifiers>
   <eSubpackages name="relationship" nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship"
       nsPrefix="relationship">
@@ -1061,7 +1066,7 @@
       <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     </eAnnotations>
-    <eClassifiers xsi:type="ecore:EClass" name="Operator" eSuperTypes="#//ExtendibleElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Operator" eSuperTypes="#//GenericElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="An operator type or an operator instance."/>
       </eAnnotations>
@@ -1110,15 +1115,21 @@
         <eParameters name="actualParameters" lowerBound="1" upperBound="-1" eType="#//Model"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
-          eType="#//operator/Parameter" containment="true">
+          eType="#//ModelEndpoint" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The list of input parameters of this operator."/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"
-          eType="#//operator/Parameter" containment="true">
+          eType="#//ModelEndpoint" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The list of output parameters of this operator."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="generics" upperBound="-1"
+          eType="#//operator/GenericEndpoint" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of generics of this operator."/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="inputSubdir" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -1154,28 +1165,28 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Parameter">
+    <eClassifiers xsi:type="ecore:EClass" name="GenericEndpoint" eSuperTypes="#//ExtendibleElementEndpoint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="An operator's parameter."/>
+        <details key="documentation" value="The endpoint for a generic operator definition."/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eOperations name="getSupertype" eType="#//operator/GenericEndpoint">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The name."/>
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the generic supertype endpoint of this generic type endpoint."/>
+          <details key="body" value="ExtendibleElementEndpoint supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (GenericEndpoint) supertype;"/>
         </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="vararg" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      </eOperations>
+      <eOperations name="getTarget" lowerBound="1" eType="#//GenericElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="True if this parameter represents a variable argument, i.e. any number of actual arguments."/>
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the generic target of this generic endpoint."/>
+          <details key="body" value="ExtendibleElement target = super.getTarget();&#xA;return (target == null) ? null : (GenericElement) target;"/>
         </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1"
-          eType="#//Model">
+      </eOperations>
+      <eOperations name="getMetatype" lowerBound="1" eType="#//operator/GenericEndpoint">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The model type or model instance identified by this parameter (types: formal argument; instances: actual argument)."/>
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the generic type endpoint of this generic instance endpoint."/>
+          <details key="body" value="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (GenericEndpoint) metatype;"/>
         </eAnnotations>
-      </eStructuralFeatures>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="Random" instanceClassName="java.util.Random">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

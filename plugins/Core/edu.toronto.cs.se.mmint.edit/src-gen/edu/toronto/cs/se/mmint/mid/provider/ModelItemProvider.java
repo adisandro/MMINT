@@ -34,7 +34,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ModelItemProvider
-	extends ExtendibleElementItemProvider {
+	extends GenericElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -300,6 +300,11 @@ public class ModelItemProvider
 			(createChildParameter
 				(MAVOPackage.Literals.MAVO_MODEL__DECISIONS,
 				 MAVOFactory.eINSTANCE.createVarDecision()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MAVOPackage.Literals.MAVO_MODEL__DECISIONS,
+				 MAVOFactory.eINSTANCE.createSetDecision()));
 
 		newChildDescriptors.add
 			(createChildParameter

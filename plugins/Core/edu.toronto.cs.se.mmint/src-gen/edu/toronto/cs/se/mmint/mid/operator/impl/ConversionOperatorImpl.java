@@ -76,7 +76,7 @@ public class ConversionOperatorImpl extends OperatorImpl implements ConversionOp
 	public void deleteType() throws MMINTException {
 
 		super.deleteType();
-		getInputs().get(0).getModel().getConversionOperators().remove(this);
+		getInputs().get(0).getTarget().getConversionOperators().remove(this);
 	}
 
 	/**

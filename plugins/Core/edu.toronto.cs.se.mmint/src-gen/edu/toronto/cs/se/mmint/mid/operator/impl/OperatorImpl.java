@@ -15,24 +15,23 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
+import edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.operator.Parameter;
-
 import java.io.FileInputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
@@ -55,6 +54,7 @@ import org.eclipse.ui.PlatformUI;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getInputs <em>Inputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getOutputs <em>Outputs</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getGenerics <em>Generics</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getInputSubdir <em>Input Subdir</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getPreviousOperator <em>Previous Operator</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#isUpdateMID <em>Update MID</em>}</li>
@@ -63,7 +63,7 @@ import org.eclipse.ui.PlatformUI;
  *
  * @generated
  */
-public class OperatorImpl extends ExtendibleElementImpl implements Operator {
+public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * The cached value of the '{@link #getInputs() <em>Inputs</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -72,7 +72,7 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Parameter> inputs;
+	protected EList<ModelEndpoint> inputs;
 
 	/**
 	 * The cached value of the '{@link #getOutputs() <em>Outputs</em>}' containment reference list.
@@ -82,7 +82,17 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Parameter> outputs;
+	protected EList<ModelEndpoint> outputs;
+
+	/**
+	 * The cached value of the '{@link #getGenerics() <em>Generics</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGenerics()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<GenericEndpoint> generics;
 
 	/**
 	 * The default value of the '{@link #getInputSubdir() <em>Input Subdir</em>}' attribute.
@@ -158,9 +168,9 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Parameter> getInputs() {
+	public EList<ModelEndpoint> getInputs() {
 		if (inputs == null) {
-			inputs = new EObjectContainmentEList<Parameter>(Parameter.class, this, OperatorPackage.OPERATOR__INPUTS);
+			inputs = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
 		}
 		return inputs;
 	}
@@ -170,11 +180,23 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Parameter> getOutputs() {
+	public EList<ModelEndpoint> getOutputs() {
 		if (outputs == null) {
-			outputs = new EObjectContainmentEList<Parameter>(Parameter.class, this, OperatorPackage.OPERATOR__OUTPUTS);
+			outputs = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
 		}
 		return outputs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<GenericEndpoint> getGenerics() {
+		if (generics == null) {
+			generics = new EObjectContainmentEList<GenericEndpoint>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
+		}
+		return generics;
 	}
 
 	/**
@@ -289,6 +311,8 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 				return ((InternalEList<?>)getInputs()).basicRemove(otherEnd, msgs);
 			case OperatorPackage.OPERATOR__OUTPUTS:
 				return ((InternalEList<?>)getOutputs()).basicRemove(otherEnd, msgs);
+			case OperatorPackage.OPERATOR__GENERICS:
+				return ((InternalEList<?>)getGenerics()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -305,6 +329,8 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 				return getInputs();
 			case OperatorPackage.OPERATOR__OUTPUTS:
 				return getOutputs();
+			case OperatorPackage.OPERATOR__GENERICS:
+				return getGenerics();
 			case OperatorPackage.OPERATOR__INPUT_SUBDIR:
 				return getInputSubdir();
 			case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
@@ -327,11 +353,15 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 		switch (featureID) {
 			case OperatorPackage.OPERATOR__INPUTS:
 				getInputs().clear();
-				getInputs().addAll((Collection<? extends Parameter>)newValue);
+				getInputs().addAll((Collection<? extends ModelEndpoint>)newValue);
 				return;
 			case OperatorPackage.OPERATOR__OUTPUTS:
 				getOutputs().clear();
-				getOutputs().addAll((Collection<? extends Parameter>)newValue);
+				getOutputs().addAll((Collection<? extends ModelEndpoint>)newValue);
+				return;
+			case OperatorPackage.OPERATOR__GENERICS:
+				getGenerics().clear();
+				getGenerics().addAll((Collection<? extends GenericEndpoint>)newValue);
 				return;
 			case OperatorPackage.OPERATOR__INPUT_SUBDIR:
 				setInputSubdir((String)newValue);
@@ -360,6 +390,9 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 			case OperatorPackage.OPERATOR__OUTPUTS:
 				getOutputs().clear();
 				return;
+			case OperatorPackage.OPERATOR__GENERICS:
+				getGenerics().clear();
+				return;
 			case OperatorPackage.OPERATOR__INPUT_SUBDIR:
 				setInputSubdir(INPUT_SUBDIR_EDEFAULT);
 				return;
@@ -385,6 +418,8 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 				return inputs != null && !inputs.isEmpty();
 			case OperatorPackage.OPERATOR__OUTPUTS:
 				return outputs != null && !outputs.isEmpty();
+			case OperatorPackage.OPERATOR__GENERICS:
+				return generics != null && !generics.isEmpty();
 			case OperatorPackage.OPERATOR__INPUT_SUBDIR:
 				return INPUT_SUBDIR_EDEFAULT == null ? inputSubdir != null : !INPUT_SUBDIR_EDEFAULT.equals(inputSubdir);
 			case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
@@ -500,7 +535,7 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 
 		int i = 0;
 		Map<Integer, EList<ConversionOperator>> conversion = new HashMap<Integer, EList<ConversionOperator>>();
-		for (Parameter parameter : getInputs()) {
+		for (ModelEndpoint inputParameter : getInputs()) {
 			// check 1: not enough actual parameters
 			if (i >= actualModels.size()) {
 				return new BasicEList<Operator>();
@@ -508,7 +543,7 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 			// check 2: type or substitutable types
 			while (i < actualModels.size()) {
 				Model actualParameter = actualModels.get(i);
-				Model formalParameter = parameter.getModel();
+				Model formalParameter = inputParameter.getTarget();
 				// easy if formal parameter is root type for actual parameter
 				if (!MultiModelTypeHierarchy.isRootType(formalParameter) || !formalParameter.getClass().isAssignableFrom(actualParameter.getClass())) {
 					EList<ConversionOperator> conversionOperatorTypes = MultiModelTypeHierarchy.isEligibleParameter(actualModelTypes.get(i), formalParameter);
@@ -520,7 +555,7 @@ public class OperatorImpl extends ExtendibleElementImpl implements Operator {
 					}
 				}
 				i++;
-				if (!parameter.isVararg()) {
+				if (inputParameter.getUpperBound() == 1) {
 					//TODO MMINT[OPERATOR] introduce vararg with low multiplicity
 					break;
 				}

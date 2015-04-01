@@ -16,6 +16,7 @@ import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.*;
 import org.eclipse.emf.common.notify.Adapter;
@@ -138,6 +139,10 @@ public class RelationshipAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseExtendibleElement(ExtendibleElement object) {
 				return createExtendibleElementAdapter();
+			}
+			@Override
+			public Adapter caseGenericElement(GenericElement object) {
+				return createGenericElementAdapter();
 			}
 			@Override
 			public Adapter caseMAVOModel(MAVOModel object) {
@@ -378,6 +383,20 @@ public class RelationshipAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExtendibleElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.GenericElement <em>Generic Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.GenericElement
+	 * @generated
+	 */
+	public Adapter createGenericElementAdapter() {
 		return null;
 	}
 

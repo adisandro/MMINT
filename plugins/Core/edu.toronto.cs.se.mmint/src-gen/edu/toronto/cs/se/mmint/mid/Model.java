@@ -44,7 +44,7 @@ import org.eclipse.emf.ecore.EPackage;
  * @model
  * @generated
  */
-public interface Model extends ExtendibleElement, MAVOModel {
+public interface Model extends GenericElement, MAVOModel {
 	/**
 	 * Returns the value of the '<em><b>Origin</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmint.mid.ModelOrigin}.
@@ -359,10 +359,7 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 *             If this is a model instance, if the model file can't be
 	 *             copied, if the uri of the new model instance is already
 	 *             registered in the Instance MID. <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 *        origModelRequired="true" newModelNameRequired="true"
-	 *        containerMultiModelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" containerMultiModelRequired="true"
 	 * @generated
 	 */
 	Model copyMAVOInstance(Model origModel, String newModelName, MultiModel containerMultiModel) throws MMINTException;

@@ -35,7 +35,6 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.Parameter;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
@@ -81,7 +80,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ModelImpl extends ExtendibleElementImpl implements Model {
+public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * The default value of the '{@link #isInc() <em>Inc</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -824,13 +823,13 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		// delete operator types that use this model type
 		List<String> delOperatorTypeUris = new ArrayList<String>();
 		for (Operator operatorType : multiModel.getOperators()) {
-			for (Parameter par : operatorType.getInputs()) {
-				if (par.getModel().getUri().equals(getUri()) && !delOperatorTypeUris.contains(operatorType.getUri())) {
+			for (ModelEndpoint inputParameter : operatorType.getInputs()) {
+				if (inputParameter.getTarget().getUri().equals(getUri()) && !delOperatorTypeUris.contains(operatorType.getUri())) {
 					delOperatorTypeUris.add(operatorType.getUri());
 				}
 			}
-			for (Parameter par : operatorType.getOutputs()) {
-				if (par.getModel().getUri().equals(getUri()) && !delOperatorTypeUris.contains(operatorType.getUri())) {
+			for (ModelEndpoint inputParameter : operatorType.getOutputs()) {
+				if (inputParameter.getTarget().getUri().equals(getUri()) && !delOperatorTypeUris.contains(operatorType.getUri())) {
 					delOperatorTypeUris.add(operatorType.getUri());
 				}
 			}

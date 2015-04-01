@@ -40,15 +40,6 @@ public interface OperatorFactory extends EFactory {
 	Operator createOperator();
 
 	/**
-	 * Returns a new object of class '<em>Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Parameter</em>'.
-	 * @generated
-	 */
-	Parameter createParameter();
-
-	/**
 	 * Returns a new object of class '<em>Conversion Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,6 +56,15 @@ public interface OperatorFactory extends EFactory {
 	 * @generated
 	 */
 	RandomOperator createRandomOperator();
+
+	/**
+	 * Returns a new object of class '<em>Generic Endpoint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Generic Endpoint</em>'.
+	 * @generated
+	 */
+	GenericEndpoint createGenericEndpoint();
 
 	/**
 	 * Returns the package supported by this factory.

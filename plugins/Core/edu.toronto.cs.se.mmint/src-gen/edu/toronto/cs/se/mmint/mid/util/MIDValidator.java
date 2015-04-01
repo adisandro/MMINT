@@ -116,6 +116,8 @@ public class MIDValidator extends EObjectValidator {
 				return validateModelEndpoint((ModelEndpoint)value, diagnostics, context);
 			case MIDPackage.EMF_INFO:
 				return validateEMFInfo((EMFInfo)value, diagnostics, context);
+			case MIDPackage.GENERIC_ELEMENT:
+				return validateGenericElement((GenericElement)value, diagnostics, context);
 			case MIDPackage.MID_LEVEL:
 				return validateMIDLevel((MIDLevel)value, diagnostics, context);
 			case MIDPackage.MODEL_ORIGIN:
@@ -316,6 +318,25 @@ public class MIDValidator extends EObjectValidator {
 	 */
 	public boolean validateEMFInfo(EMFInfo emfInfo, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(emfInfo, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateGenericElement(GenericElement genericElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(genericElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(genericElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(genericElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(genericElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(genericElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(genericElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(genericElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(genericElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(genericElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExtendibleElement_typeLevel(genericElement, diagnostics, context);
+		return result;
 	}
 
 	/**

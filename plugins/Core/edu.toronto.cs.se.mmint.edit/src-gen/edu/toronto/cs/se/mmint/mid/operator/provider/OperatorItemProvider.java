@@ -12,10 +12,10 @@
 package edu.toronto.cs.se.mmint.mid.operator.provider;
 
 
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.provider.ExtendibleElementItemProvider;
+import edu.toronto.cs.se.mmint.mid.provider.GenericElementItemProvider;
 import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
 import java.util.Collection;
 import java.util.List;
@@ -35,7 +35,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class OperatorItemProvider
-	extends ExtendibleElementItemProvider {
+	extends GenericElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -57,11 +57,34 @@ public class OperatorItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addGenericsPropertyDescriptor(object);
 			addInputSubdirPropertyDescriptor(object);
 			addPreviousOperatorPropertyDescriptor(object);
 			addUpdateMIDPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Generics feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGenericsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Operator_generics_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Operator_generics_feature", "_UI_Operator_type"),
+				 OperatorPackage.Literals.OPERATOR__GENERICS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -224,12 +247,12 @@ public class OperatorItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(OperatorPackage.Literals.OPERATOR__INPUTS,
-				 OperatorFactory.eINSTANCE.createParameter()));
+				 MIDFactory.eINSTANCE.createModelEndpoint()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(OperatorPackage.Literals.OPERATOR__OUTPUTS,
-				 OperatorFactory.eINSTANCE.createParameter()));
+				 MIDFactory.eINSTANCE.createModelEndpoint()));
 	}
 
 	/**

@@ -109,8 +109,8 @@ public class OperatorValidator extends EObjectValidator {
 				return validateConversionOperator((ConversionOperator)value, diagnostics, context);
 			case OperatorPackage.RANDOM_OPERATOR:
 				return validateRandomOperator((RandomOperator)value, diagnostics, context);
-			case OperatorPackage.PARAMETER:
-				return validateParameter((Parameter)value, diagnostics, context);
+			case OperatorPackage.GENERIC_ENDPOINT:
+				return validateGenericEndpoint((GenericEndpoint)value, diagnostics, context);
 			case OperatorPackage.RANDOM:
 				return validateRandom((Random)value, diagnostics, context);
 			case OperatorPackage.EXCEPTION:
@@ -139,15 +139,6 @@ public class OperatorValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(operator, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(operator, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateParameter(Parameter parameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(parameter, diagnostics, context);
 	}
 
 	/**
@@ -215,6 +206,26 @@ public class OperatorValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(randomOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(randomOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(randomOperator, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateGenericEndpoint(GenericEndpoint genericEndpoint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(genericEndpoint, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElementEndpoint_unboundedLevel(genericEndpoint, diagnostics, context);
 		return result;
 	}
 

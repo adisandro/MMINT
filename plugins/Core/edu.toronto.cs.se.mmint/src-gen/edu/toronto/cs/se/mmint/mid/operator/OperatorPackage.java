@@ -86,7 +86,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__FORMULA_VARIABLE = MIDPackage.EXTENDIBLE_ELEMENT__FORMULA_VARIABLE;
+	int OPERATOR__FORMULA_VARIABLE = MIDPackage.GENERIC_ELEMENT__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -95,7 +95,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__MAY = MIDPackage.EXTENDIBLE_ELEMENT__MAY;
+	int OPERATOR__MAY = MIDPackage.GENERIC_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -104,7 +104,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__SET = MIDPackage.EXTENDIBLE_ELEMENT__SET;
+	int OPERATOR__SET = MIDPackage.GENERIC_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -113,7 +113,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__VAR = MIDPackage.EXTENDIBLE_ELEMENT__VAR;
+	int OPERATOR__VAR = MIDPackage.GENERIC_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Collections</b></em>' reference list.
@@ -122,7 +122,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__COLLECTIONS = MIDPackage.EXTENDIBLE_ELEMENT__COLLECTIONS;
+	int OPERATOR__COLLECTIONS = MIDPackage.GENERIC_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -131,7 +131,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
+	int OPERATOR__SUPERTYPE = MIDPackage.GENERIC_ELEMENT__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Metatype</b></em>' reference.
@@ -140,7 +140,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__METATYPE = MIDPackage.EXTENDIBLE_ELEMENT__METATYPE;
+	int OPERATOR__METATYPE = MIDPackage.GENERIC_ELEMENT__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -149,7 +149,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__URI = MIDPackage.EXTENDIBLE_ELEMENT__URI;
+	int OPERATOR__URI = MIDPackage.GENERIC_ELEMENT__URI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -158,7 +158,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__NAME = MIDPackage.EXTENDIBLE_ELEMENT__NAME;
+	int OPERATOR__NAME = MIDPackage.GENERIC_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -167,7 +167,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__LEVEL = MIDPackage.EXTENDIBLE_ELEMENT__LEVEL;
+	int OPERATOR__LEVEL = MIDPackage.GENERIC_ELEMENT__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -176,7 +176,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__METATYPE_URI = MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
+	int OPERATOR__METATYPE_URI = MIDPackage.GENERIC_ELEMENT__METATYPE_URI;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -185,7 +185,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__DYNAMIC = MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC;
+	int OPERATOR__DYNAMIC = MIDPackage.GENERIC_ELEMENT__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -194,7 +194,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT;
+	int OPERATOR__CONSTRAINT = MIDPackage.GENERIC_ELEMENT__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
@@ -203,7 +203,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__INPUTS = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
+	int OPERATOR__INPUTS = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
@@ -212,7 +212,16 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__OUTPUTS = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
+	int OPERATOR__OUTPUTS = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Generics</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__GENERICS = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
@@ -221,7 +230,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__INPUT_SUBDIR = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
+	int OPERATOR__INPUT_SUBDIR = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Previous Operator</b></em>' reference.
@@ -230,7 +239,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__PREVIOUS_OPERATOR = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
+	int OPERATOR__PREVIOUS_OPERATOR = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Update MID</b></em>' attribute.
@@ -239,7 +248,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__UPDATE_MID = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
+	int OPERATOR__UPDATE_MID = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Operator</em>' class.
@@ -248,7 +257,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 5;
+	int OPERATOR_FEATURE_COUNT = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -257,7 +266,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+	int OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.GENERIC_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -266,7 +275,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_METATYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+	int OPERATOR___GET_METATYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -275,7 +284,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
+	int OPERATOR___GET_SUPERTYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -284,7 +293,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___DELETE_TYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+	int OPERATOR___DELETE_TYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get Executables</em>' operation.
@@ -293,7 +302,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+	int OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -302,7 +311,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_INPUT_PROPERTIES = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+	int OPERATOR___GET_INPUT_PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Read Input Properties</em>' operation.
@@ -311,7 +320,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+	int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Init</em>' operation.
@@ -320,7 +329,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___INIT = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
+	int OPERATOR___INIT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Execute</em>' operation.
@@ -329,7 +338,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___EXECUTE__ELIST = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+	int OPERATOR___EXECUTE__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -338,17 +347,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.ParameterImpl
-	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getParameter()
-	 * @generated
-	 */
-	int PARAMETER = 3;
+	int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
@@ -494,6 +493,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR__OUTPUTS = OPERATOR__OUTPUTS;
+
+	/**
+	 * The feature id for the '<em><b>Generics</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR__GENERICS = OPERATOR__GENERICS;
 
 	/**
 	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
@@ -776,6 +784,15 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR__OUTPUTS = OPERATOR__OUTPUTS;
 
 	/**
+	 * The feature id for the '<em><b>Generics</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__GENERICS = OPERATOR__GENERICS;
+
+	/**
 	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -911,49 +928,221 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.GenericEndpointImpl <em>Generic Endpoint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.GenericEndpointImpl
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getGenericEndpoint()
+	 * @generated
+	 */
+	int GENERIC_ENDPOINT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT__FORMULA_VARIABLE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__FORMULA_VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>May</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT__MAY = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__MAY;
+
+	/**
+	 * The feature id for the '<em><b>Set</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT__SET = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__SET;
+
+	/**
+	 * The feature id for the '<em><b>Var</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT__VAR = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT__COLLECTIONS = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__COLLECTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT__SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__SUPERTYPE;
+
+	/**
+	 * The feature id for the '<em><b>Metatype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT__METATYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__METATYPE;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT__URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__URI;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__NAME = 0;
+	int GENERIC_ENDPOINT__NAME = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Vararg</b></em>' attribute.
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__VARARG = 1;
+	int GENERIC_ENDPOINT__LEVEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LEVEL;
 
 	/**
-	 * The feature id for the '<em><b>Model</b></em>' reference.
+	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__MODEL = 2;
+	int GENERIC_ENDPOINT__METATYPE_URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__METATYPE_URI;
 
 	/**
-	 * The number of structural features of the '<em>Parameter</em>' class.
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_FEATURE_COUNT = 3;
+	int GENERIC_ENDPOINT__DYNAMIC = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__DYNAMIC;
 
 	/**
-	 * The number of operations of the '<em>Parameter</em>' class.
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_OPERATION_COUNT = 0;
+	int GENERIC_ENDPOINT__CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT__LOWER_BOUND = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND;
+
+	/**
+	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT__UPPER_BOUND = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT__TARGET = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Target Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT__TARGET_URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI;
+
+	/**
+	 * The number of structural features of the '<em>Generic Endpoint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Supertype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___GET_SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Target</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___GET_TARGET = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___GET_METATYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Generic Endpoint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '<em>Random</em>' data type.
@@ -1019,6 +1208,17 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOperator_Outputs();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getGenerics <em>Generics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Generics</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#getGenerics()
+	 * @see #getOperator()
+	 * @generated
+	 */
+	EReference getOperator_Generics();
 
 	/**
 	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getInputSubdir <em>Input Subdir</em>}'.
@@ -1134,49 +1334,6 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__Init();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.Parameter <em>Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Parameter</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Parameter
-	 * @generated
-	 */
-	EClass getParameter();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.Parameter#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Parameter#getName()
-	 * @see #getParameter()
-	 * @generated
-	 */
-	EAttribute getParameter_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.Parameter#isVararg <em>Vararg</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Vararg</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Parameter#isVararg()
-	 * @see #getParameter()
-	 * @generated
-	 */
-	EAttribute getParameter_Vararg();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmint.mid.operator.Parameter#getModel <em>Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Model</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Parameter#getModel()
-	 * @see #getParameter()
-	 * @generated
-	 */
-	EReference getParameter_Model();
-
-	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.ConversionOperator <em>Conversion Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1226,6 +1383,46 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRandomOperator_State();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint <em>Generic Endpoint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Generic Endpoint</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint
+	 * @generated
+	 */
+	EClass getGenericEndpoint();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#getSupertype() <em>Get Supertype</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Supertype</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#getSupertype()
+	 * @generated
+	 */
+	EOperation getGenericEndpoint__GetSupertype();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#getTarget() <em>Get Target</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Target</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#getTarget()
+	 * @generated
+	 */
+	EOperation getGenericEndpoint__GetTarget();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#getMetatype() <em>Get Metatype</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Metatype</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#getMetatype()
+	 * @generated
+	 */
+	EOperation getGenericEndpoint__GetMetatype();
 
 	/**
 	 * Returns the meta object for data type '{@link java.util.Random <em>Random</em>}'.
@@ -1308,6 +1505,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATOR__OUTPUTS = eINSTANCE.getOperator_Outputs();
+
+		/**
+		 * The meta object literal for the '<em><b>Generics</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR__GENERICS = eINSTANCE.getOperator_Generics();
 
 		/**
 		 * The meta object literal for the '<em><b>Input Subdir</b></em>' attribute feature.
@@ -1398,40 +1603,6 @@ public interface OperatorPackage extends EPackage {
 		EOperation OPERATOR___INIT = eINSTANCE.getOperator__Init();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ParameterImpl <em>Parameter</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.ParameterImpl
-		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getParameter()
-		 * @generated
-		 */
-		EClass PARAMETER = eINSTANCE.getParameter();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PARAMETER__NAME = eINSTANCE.getParameter_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Vararg</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PARAMETER__VARARG = eINSTANCE.getParameter_Vararg();
-
-		/**
-		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PARAMETER__MODEL = eINSTANCE.getParameter_Model();
-
-		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1474,6 +1645,40 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute RANDOM_OPERATOR__STATE = eINSTANCE.getRandomOperator_State();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.GenericEndpointImpl <em>Generic Endpoint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.GenericEndpointImpl
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getGenericEndpoint()
+		 * @generated
+		 */
+		EClass GENERIC_ENDPOINT = eINSTANCE.getGenericEndpoint();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GENERIC_ENDPOINT___GET_SUPERTYPE = eINSTANCE.getGenericEndpoint__GetSupertype();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Target</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GENERIC_ENDPOINT___GET_TARGET = eINSTANCE.getGenericEndpoint__GetTarget();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GENERIC_ENDPOINT___GET_METATYPE = eINSTANCE.getGenericEndpoint__GetMetatype();
 
 		/**
 		 * The meta object literal for the '<em>Random</em>' data type.

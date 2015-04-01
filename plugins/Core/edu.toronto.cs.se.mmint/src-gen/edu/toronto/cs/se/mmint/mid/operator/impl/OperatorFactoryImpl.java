@@ -70,7 +70,7 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 			case OperatorPackage.OPERATOR: return createOperator();
 			case OperatorPackage.CONVERSION_OPERATOR: return createConversionOperator();
 			case OperatorPackage.RANDOM_OPERATOR: return createRandomOperator();
-			case OperatorPackage.PARAMETER: return createParameter();
+			case OperatorPackage.GENERIC_ENDPOINT: return createGenericEndpoint();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -129,16 +129,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Parameter createParameter() {
-		ParameterImpl parameter = new ParameterImpl();
-		return parameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ConversionOperator createConversionOperator() {
 		ConversionOperatorImpl conversionOperator = new ConversionOperatorImpl();
 		return conversionOperator;
@@ -152,6 +142,16 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	public RandomOperator createRandomOperator() {
 		RandomOperatorImpl randomOperator = new RandomOperatorImpl();
 		return randomOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GenericEndpoint createGenericEndpoint() {
+		GenericEndpointImpl genericEndpoint = new GenericEndpointImpl();
+		return genericEndpoint;
 	}
 
 	/**
