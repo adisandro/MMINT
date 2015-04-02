@@ -626,7 +626,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public void init() throws MMINTException {
 
-		//TODO MMINT[OPERATOR] Add actualParameters to the signature
 		// do nothing
 	}
 
@@ -635,6 +634,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
 
+		/* TODO MMINT[OPERATOR]
+		 * When an operator instance is created, this can become: public void execute()
+		 * Inputs, outputs and generics should be available by their name through a hash map
+		 */
 		throw new MMINTException("The default execute() function must be overridden");
 	}
 

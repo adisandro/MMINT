@@ -112,20 +112,32 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_UML2Java"
                class="edu.toronto.cs.se.modelepedia.necsis13.operator.DummyUML2Java">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="uml"
-                  modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="uml"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="java"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/Java">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="java"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Java">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 
@@ -137,20 +149,32 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_JavaOpt"
                class="edu.toronto.cs.se.modelepedia.necsis13.operator.DummyJavaOpt">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="java"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/Java">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="java"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Java">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="optimizedJava"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/Java">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="optimizedJava"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Java">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 

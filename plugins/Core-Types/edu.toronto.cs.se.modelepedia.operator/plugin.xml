@@ -23,15 +23,19 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ExperimentDriver"
                class="edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentDriver">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="modelType"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="modelType"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-         </output>
+         </inputs>
       </operatorType>
    </extension>
 
@@ -43,20 +47,32 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelMatch"
                class="edu.toronto.cs.se.modelepedia.operator.match.ModelMatch">
          </type>
-         <input>
-            <parameter
-                  isVararg="true"
-                  name="models"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="models"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="-1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="match"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="match"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 
@@ -68,25 +84,43 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMatch"
                class="edu.toronto.cs.se.modelepedia.operator.match.EMFModelMatch">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="model1"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="model1"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="model2"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+            <parameter>
+	           <type
+	                 name="model2"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="match"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="match"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 
@@ -98,30 +132,54 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelDifference"
                class="edu.toronto.cs.se.modelepedia.operator.diff.ModelDifference">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="srcModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="srcModel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="matchRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+            <parameter>
+	           <type
+	                 name="matchRel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="tgtModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+            <parameter>
+	           <type
+	                 name="tgtModel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="diffRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="diffRel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 
@@ -133,30 +191,54 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_EMFModelDifference"
                class="edu.toronto.cs.se.modelepedia.operator.diff.EMFModelDifference">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="srcModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="srcModel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="matchRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+            <parameter>
+	           <type
+	                 name="matchRel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="tgtModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+            <parameter>
+	           <type
+	                 name="tgtModel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="diffRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="diffRel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 
@@ -168,40 +250,76 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMerge"
                class="edu.toronto.cs.se.modelepedia.operator.merge.EMFModelMerge">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="srcModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="srcModel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="matchRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+            <parameter>
+	           <type
+	                 name="matchRel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="tgtModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+            <parameter>
+	           <type
+	                 name="tgtModel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="mergedModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="mergedModel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="srcMatchRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+            <parameter>
+	           <type
+	                 name="srcMatchRel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="tgtMatchRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+            <parameter>
+	           <type
+	                 name="tgtMatchRel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 
@@ -213,40 +331,76 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ChangeImpact"
                class="edu.toronto.cs.se.modelepedia.operator.slice.ChangeImpact">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="original"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="original"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="difference"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+            <parameter>
+	           <type
+	                 name="difference"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="modified"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+            <parameter>
+	           <type
+	                 name="modified"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="trace"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+            <parameter>
+	           <type
+	                 name="trace"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="impacted"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+            <parameter>
+	           <type
+	                 name="impacted"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="changeImpact"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="changeImpact"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 
@@ -258,50 +412,98 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ChangePropagation"
                class="edu.toronto.cs.se.modelepedia.operator.propagate.ChangePropagation">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="original"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="original"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="refinement"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel">
+            <parameter>
+	           <type
+	                 name="refinement"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="refined"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
+            <parameter>
+	           <type
+	                 name="refined"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="trace"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+            <parameter>
+	           <type
+	                 name="trace"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="related"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
+            <parameter>
+	           <type
+	                 name="related"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="propagated"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="propagated"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="propagatedRefinement"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel">
+            <parameter>
+	           <type
+	                 name="propagatedRefinement"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="propagatedTrace"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+            <parameter>
+	           <type
+	                 name="propagatedTrace"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 
@@ -313,20 +515,32 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_BinaryModelRelInversion"
                class="edu.toronto.cs.se.modelepedia.operator.patch.BinaryModelRelInversion">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="modelRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="modelRel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="invertedModelRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="invertedModelRel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 
@@ -338,31 +552,56 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelRelTypeTransformation"
                class="edu.toronto.cs.se.modelepedia.operator.patch.ModelRelTypeTransformation">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  isType="true"
-                  name="modelRelType"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+         <generics>
+            <parameter>
+	           <type
+	                 name="MR"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="srcModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+         </generics>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="srcModel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="tgtModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="tgtModel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="traceModelRel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+            <parameter>
+	           <type
+	                 name="traceModelRel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 
@@ -374,20 +613,32 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelSlice"
                class="edu.toronto.cs.se.modelepedia.operator.slice.ModelSlice">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="model"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="model"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="modelSlice"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="modelSlice"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 

@@ -254,20 +254,32 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_StateToArmy"
                class="edu.toronto.cs.se.modelepedia.tutorial.operator.StateToArmy">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="state"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/State">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="state"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/State">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="army"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/Army">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="army"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Army">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 
@@ -279,20 +291,32 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_StateToEconomy"
                class="edu.toronto.cs.se.modelepedia.tutorial.operator.StateToEconomy">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="state"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/State">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="state"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/State">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="economy"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/Economy">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="economy"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Economy">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 
@@ -304,20 +328,32 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_EconomyToArmy"
                class="edu.toronto.cs.se.modelepedia.tutorial.operator.EconomyToArmy">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="economy"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/Economy">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="economy"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Economy">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="army"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/Army">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="army"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Army">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 

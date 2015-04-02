@@ -23,25 +23,43 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_MAVOHenshinTransformation"
                class="edu.toronto.cs.se.modelepedia.z3.operator.henshin.MAVOHenshinTransformation">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="mavoModel"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="mavoModel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="transformedMavoModelInput"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="transformedMavoModelInput"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="transformedMavoModelOutput"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
+            <parameter>
+	           <type
+	                 name="transformedMavoModelOutput"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 
@@ -53,25 +71,43 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ProductLineHenshinTransformation"
                class="edu.toronto.cs.se.modelepedia.z3.operator.henshin.ProductLineHenshinTransformation">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="model"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="model"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="transformedModelInput"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="transformedModelInput"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="transformedModelOutput"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
+            <parameter>
+	           <type
+	                 name="transformedModelOutput"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 

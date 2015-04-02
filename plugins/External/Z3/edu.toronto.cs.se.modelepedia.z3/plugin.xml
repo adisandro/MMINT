@@ -34,15 +34,21 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB"
                class="edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="mavoModel"
-                  modelTypeUri="http://se.cs.toronto.edu/MAVO">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="mavoModel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-         </output>
+         </inputs>
+         <outputs>
+         </outputs>
       </operatorType>
    </extension>
 

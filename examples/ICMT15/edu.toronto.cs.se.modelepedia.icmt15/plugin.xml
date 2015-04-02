@@ -23,20 +23,32 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ICMT15"
                class="edu.toronto.cs.se.modelepedia.icmt15.operator.ICMT15">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="model"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="model"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="biggerModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="biggerModel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 

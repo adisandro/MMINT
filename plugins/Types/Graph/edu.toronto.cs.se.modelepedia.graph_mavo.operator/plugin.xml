@@ -23,15 +23,19 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_GenerateRandomGraphMAVO"
                class="edu.toronto.cs.se.modelepedia.graph_mavo.operator.GenerateRandomGraphMAVO">
          </type>
-         <input>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="randomGraphModel"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/Graph_MAVO">
+         <outputs>
+            <parameter>
+	           <type
+	                 name="randomGraphModel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Graph_MAVO">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 
@@ -43,15 +47,19 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_TOSEM12"
                class="edu.toronto.cs.se.modelepedia.graph_mavo.operator.TOSEM12">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="randomGraphModel"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/Graph_MAVO">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="randomGraphModel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Graph_MAVO">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-         </output>
+         </inputs>
       </operatorType>
    </extension>
 

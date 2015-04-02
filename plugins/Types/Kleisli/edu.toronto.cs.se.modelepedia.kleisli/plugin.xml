@@ -78,31 +78,56 @@
                   uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelRelTypeTransformation">
             </superType>
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  isType="true"
-                  name="kModelRelType"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel">
+         <generics>
+            <parameter>
+	           <type
+	                 name="kModelRelType"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="srcModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+         </generics>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="srcModel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="tgtModel"
-                  modelTypeUri="http://se.cs.toronto.edu/mmint/Model">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="tgtModel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
             </parameter>
-            <parameter
-                  isVararg="false"
-                  name="kTraceModelRel"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel">
+            <parameter>
+	           <type
+	                 name="kTraceModelRel"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 

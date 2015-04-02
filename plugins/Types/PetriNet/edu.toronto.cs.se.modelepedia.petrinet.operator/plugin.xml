@@ -23,15 +23,19 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_PetriNetSimulate"
                class="edu.toronto.cs.se.modelepedia.petrinet.operator.PetriNetSimulate">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="petriNet"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/PetriNet">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="petriNet"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/PetriNet">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-         </output>
+         </inputs>
       </operatorType>
    </extension>
 

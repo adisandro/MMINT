@@ -60,9 +60,9 @@
       <complexType>
          <sequence>
             <element ref="type"/>
-            <element ref="inputs"/>
-            <element ref="outputs"/>
-            <element ref="generics"/>
+            <element ref="inputs" minOccurs="0" maxOccurs="1"/>
+            <element ref="outputs" minOccurs="0" maxOccurs="1"/>
+            <element ref="generics" minOccurs="0" maxOccurs="1"/>
          </sequence>
       </complexType>
    </element>

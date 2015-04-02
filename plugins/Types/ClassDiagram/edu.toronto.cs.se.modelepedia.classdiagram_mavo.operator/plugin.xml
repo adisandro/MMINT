@@ -23,20 +23,32 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_UMLToClassDiagramMAVO"
                class="edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator.UMLToClassDiagramMAVO">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="umlClassDiagram"
-                  modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="umlClassDiagram"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="mavoClassDiagram"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="mavoClassDiagram"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 
@@ -48,15 +60,21 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ICSE14"
                class="edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator.ICSE14">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="classDiagram"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="classDiagram"
+	                 uri="">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="1"
+	                 upperBound="1"
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-         </output>
+         </inputs>
+         <outputs>
+         </outputs>
       </operatorType>
    </extension>
 
