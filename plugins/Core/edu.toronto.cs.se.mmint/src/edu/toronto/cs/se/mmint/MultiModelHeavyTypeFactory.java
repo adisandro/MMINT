@@ -18,8 +18,10 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -32,7 +34,6 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
-import edu.toronto.cs.se.mmint.mid.operator.Parameter;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -96,7 +97,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 */
 	protected static void addHeavyType(ExtendibleElement newType, ExtendibleElement type, String newTypeUri, String newTypeName) throws MMINTException {
 
-		addType(newType, type, newTypeUri, newTypeName, MMINT.repository);
+		addType(newType, type, newTypeUri, newTypeName, MMINT.cachedTypeMID);
 		newType.setDynamic(false);
 	}
 
@@ -134,7 +135,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		}
 		Model modelType = getSupertype(newModelType, newModelTypeUri, modelTypeUri);
 		addHeavyType(newModelType, modelType, newModelTypeUri, newModelTypeName);
-		addModelType(newModelType, isAbstract, constraintLanguage, constraintImplementation, MMINT.repository);
+		addModelType(newModelType, isAbstract, constraintLanguage, constraintImplementation, MMINT.cachedTypeMID);
 		newModelType.setOrigin(ModelOrigin.IMPORTED);
 
 		String modelPackageName = (modelType == null) ?
@@ -355,6 +356,19 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		return newModelTypeEndpointRef;
 	}
 
+//	public ModelEndpointReference createHeavyModelTypeEndpoint(ExtensionType extensionType, Model targetModelType, Operator containerOperatorType, EReference containerOperatorTypeReference) throws MMINTException {
+//
+//		ModelEndpoint newModelTypeEndpoint = (extensionType.getNewType() == null) ?
+//			MIDFactory.eINSTANCE.createModelEndpoint() :
+//			(ModelEndpoint) extensionType.getNewType();
+//		String newModelTypeEndpointUri = (extensionType.getUri() == null) ?
+//			containerOperatorType.getUri() + MMINT.URI_SEPARATOR + extensionType.getName() :
+//			extensionType.getUri();
+//		ModelEndpointReference newModelTypeEndpointRef = addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, newModelTypeEndpointUri, extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, isBinarySrc, containerModelRelType);
+//
+//		return newModelTypeEndpointRef;
+//	}
+
 	/**
 	 * Creates and adds a "heavy" link type and a reference to it to the
 	 * repository.
@@ -476,7 +490,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		}
 		Editor editorType = getSupertype(newEditorType, extensionType.getUri(), extensionType.getSupertypeUri());
 		addHeavyType(newEditorType, editorType, extensionType.getUri(), extensionType.getName());
-		addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, MMINT.repository);
+		addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, MMINT.cachedTypeMID);
 
 		//TODO MMINT[MISC] this can be optimized to run once instead of for each editor, if needed
 		IExtensionRegistry registry = RegistryFactory.getRegistry();
@@ -542,7 +556,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             the new operator type is already registered in the
 	 *             repository.
 	 */
-	public Operator createHeavyOperatorType(ExtensionType extensionType) throws MMINTException {
+	public @NonNull Operator createHeavyOperatorType(@NonNull ExtensionType extensionType) throws MMINTException {
 
 		if (extensionType.getNewType() == null) {
 			throw new MMINTException("Missing operator implementation for " + extensionType.getName());
@@ -551,7 +565,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		Operator newOperatorType = (Operator) extensionType.getNewType();
 		Operator operatorType = getSupertype(newOperatorType, extensionType.getUri(), extensionType.getSupertypeUri());
 		addHeavyType(newOperatorType, operatorType, extensionType.getUri(), extensionType.getName());
-		addOperatorType(newOperatorType, MMINT.repository);
+		addOperatorType(newOperatorType, MMINT.cachedTypeMID);
 
 		return newOperatorType;
 	}

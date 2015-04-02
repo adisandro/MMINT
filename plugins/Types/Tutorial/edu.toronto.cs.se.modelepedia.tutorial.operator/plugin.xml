@@ -94,7 +94,6 @@
                   uri="http://se.cs.toronto.edu/modelepedia/Deployed-Army/ArmyEndpoint">
             </type>
             <typeEndpoint
-                  lowerBound="1"
                   upperBound="-1"
                   targetTypeUri="http://se.cs.toronto.edu/modelepedia/Army">
             </typeEndpoint>
@@ -111,8 +110,6 @@
                   uri="http://se.cs.toronto.edu/modelepedia/Deployed-State/StateEndpoint">
             </type>
             <typeEndpoint
-                  lowerBound="1"
-                  upperBound="1"
                   targetTypeUri="http://se.cs.toronto.edu/modelepedia/State">
             </typeEndpoint>
             <modelElemType>
@@ -137,7 +134,6 @@
                      uri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink-Unit/UnitEndpoint">
                </type>
                <typeEndpoint
-                     lowerBound="1"
                      upperBound="-1"
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/Army#//Unit">
                </typeEndpoint>
@@ -148,8 +144,6 @@
                      uri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink-Region/RegionEndpoint">
                </type>
                <typeEndpoint
-                     lowerBound="1"
-                     upperBound="1"
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/State#//Region">
                </typeEndpoint>
             </modelElemTypeEndpoint>
@@ -183,8 +177,6 @@
                   uri="http://se.cs.toronto.edu/modelepedia/Has-State/StateEndpoint">
             </type>
             <typeEndpoint
-                  lowerBound="1"
-                  upperBound="1"
                   targetTypeUri="http://se.cs.toronto.edu/modelepedia/State">
             </typeEndpoint>
             <modelElemType>
@@ -200,8 +192,6 @@
                   uri="http://se.cs.toronto.edu/modelepedia/Has-Economy/EconomyEndpoint">
             </type>
             <typeEndpoint
-                  lowerBound="1"
-                  upperBound="1"
                   targetTypeUri="http://se.cs.toronto.edu/modelepedia/Economy">
             </typeEndpoint>
             <modelElemType>
@@ -226,8 +216,6 @@
                      uri="http://se.cs.toronto.edu/modelepedia/Has/HasLink-Region/RegionEndpoint">
                </type>
                <typeEndpoint
-                     lowerBound="1"
-                     upperBound="1"
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/State#//Region">
                </typeEndpoint>
             </modelElemTypeEndpoint>
@@ -257,12 +245,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="state"
-	                 uri="">
+	                 name="state">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/State">
 	           </typeEndpoint>
             </parameter>
@@ -270,12 +255,9 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="army"
-	                 uri="">
+	                 name="army">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Army">
 	           </typeEndpoint>
             </parameter>
@@ -294,12 +276,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="state"
-	                 uri="">
+	                 name="state">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/State">
 	           </typeEndpoint>
             </parameter>
@@ -307,12 +286,9 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="economy"
-	                 uri="">
+	                 name="economy">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Economy">
 	           </typeEndpoint>
             </parameter>
@@ -331,12 +307,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="economy"
-	                 uri="">
+	                 name="economy">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Economy">
 	           </typeEndpoint>
             </parameter>
@@ -344,12 +317,9 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="army"
-	                 uri="">
+	                 name="army">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Army">
 	           </typeEndpoint>
             </parameter>

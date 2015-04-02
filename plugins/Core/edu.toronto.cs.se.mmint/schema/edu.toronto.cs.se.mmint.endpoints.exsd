@@ -54,17 +54,17 @@
          </documentation>
       </annotation>
       <complexType>
-         <attribute name="lowerBound" type="string" use="required">
+         <attribute name="lowerBound" type="string">
             <annotation>
                <documentation>
-                  The minimum number of target types associated with the source type of this endpoint.
+                  The minimum number of target types associated with the source type of this endpoint, defaults to 1.
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="upperBound" type="string" use="required">
+         <attribute name="upperBound" type="string">
             <annotation>
                <documentation>
-                  The maximum number of target types associated with the source type of this endpoint (-1 represents unbounded).
+                  The maximum number of target types associated with the source type of this endpoint, defaults to 1 (-1 represents unbounded).
                </documentation>
             </annotation>
          </attribute>

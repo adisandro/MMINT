@@ -26,12 +26,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="model"
-	                 uri="">
+	                 name="model">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
 	           </typeEndpoint>
             </parameter>
@@ -39,12 +36,9 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="biggerModel"
-	                 uri="">
+	                 name="biggerModel">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
 	           </typeEndpoint>
             </parameter>

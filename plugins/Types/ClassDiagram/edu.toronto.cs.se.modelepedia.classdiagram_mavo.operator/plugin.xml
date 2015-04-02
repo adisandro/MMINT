@@ -26,12 +26,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="umlClassDiagram"
-	                 uri="">
+	                 name="umlClassDiagram">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
 	           </typeEndpoint>
             </parameter>
@@ -39,12 +36,9 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="mavoClassDiagram"
-	                 uri="">
+	                 name="mavoClassDiagram">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
 	           </typeEndpoint>
             </parameter>
@@ -63,12 +57,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="classDiagram"
-	                 uri="">
+	                 name="classDiagram">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
 	           </typeEndpoint>
             </parameter>

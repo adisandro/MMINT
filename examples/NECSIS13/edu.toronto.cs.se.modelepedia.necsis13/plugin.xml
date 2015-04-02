@@ -52,8 +52,6 @@
                   uri="http://se.cs.toronto.edu/modelepedia/WellFormedJava-Java/JavaEndpoint">
             </type>
             <typeEndpoint
-                  lowerBound="1"
-                  upperBound="1"
                   targetTypeUri="http://se.cs.toronto.edu/modelepedia/Java">
             </typeEndpoint>
          </modelTypeEndpoint>
@@ -85,8 +83,6 @@
                   uri="http://se.cs.toronto.edu/modelepedia/PreserveComponentInterfaces-UML/UMLEndpoint">
             </type>
             <typeEndpoint
-                  lowerBound="1"
-                  upperBound="1"
                   targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
             </typeEndpoint>
          </modelTypeEndpoint>
@@ -96,8 +92,6 @@
                   uri="http://se.cs.toronto.edu/modelepedia/PreserveComponentInterfaces-Java/JavaEndpoint">
             </type>
             <typeEndpoint
-                  lowerBound="1"
-                  upperBound="1"
                   targetTypeUri="http://se.cs.toronto.edu/modelepedia/Java">
             </typeEndpoint>
          </modelTypeEndpoint>
@@ -115,12 +109,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="uml"
-	                 uri="">
+	                 name="uml">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
 	           </typeEndpoint>
             </parameter>
@@ -128,12 +119,9 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="java"
-	                 uri="">
+	                 name="java">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Java">
 	           </typeEndpoint>
             </parameter>
@@ -152,12 +140,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="java"
-	                 uri="">
+	                 name="java">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Java">
 	           </typeEndpoint>
             </parameter>
@@ -165,12 +150,9 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="optimizedJava"
-	                 uri="">
+	                 name="optimizedJava">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Java">
 	           </typeEndpoint>
             </parameter>

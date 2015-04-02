@@ -510,7 +510,7 @@ public class MultiModelTypeHierarchy {
 	 */
 	private static Map<String, Set<String>> getSubtypeTable(MultiModel multiModel) {
 
-		return (multiModel == MMINT.repository) ?
+		return (multiModel == MMINT.cachedTypeMID) ?
 			MMINT.subtypeTable :
 			MMINT.subtypeTableMID;
 	}
@@ -525,14 +525,14 @@ public class MultiModelTypeHierarchy {
 	 */
 	private static Map<String, Map<String, Set<List<String>>>> getConversionTable(MultiModel multiModel) {
 
-		return (multiModel == MMINT.repository) ?
+		return (multiModel == MMINT.cachedTypeMID) ?
 			MMINT.conversionTable :
 			MMINT.conversionTableMID;
 	}
 
 	public static Map<Model, Set<List<ConversionOperator>>> getMultiplePathConversions(String srcModelTypeUri) {
 
-		Map<String, Set<List<String>>> srcModelTypeConversionUris = getConversionTable(MMINT.repository).get(srcModelTypeUri);
+		Map<String, Set<List<String>>> srcModelTypeConversionUris = getConversionTable(MMINT.cachedTypeMID).get(srcModelTypeUri);
 		Map<Model, Set<List<ConversionOperator>>> multiplePathConversions = new HashMap<Model, Set<List<ConversionOperator>>>();
 		for (Map.Entry<String, Set<List<String>>> srcModelTypeConversionUrisEntry : srcModelTypeConversionUris.entrySet()) {
 			if (srcModelTypeConversionUrisEntry.getValue().size() == 1) {
@@ -591,7 +591,7 @@ public class MultiModelTypeHierarchy {
 	 */
 	public static boolean isSubtypeOf(String subtypeUri, String supertypeUri) {
 
-		return isSubtypeOf(subtypeUri, supertypeUri, MMINT.repository);
+		return isSubtypeOf(subtypeUri, supertypeUri, MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -683,7 +683,7 @@ public class MultiModelTypeHierarchy {
 	 */
 	public static <T extends ExtendibleElement> List<T> getSubtypes(T type) {
 
-		return getSubtypes(type, MMINT.repository);
+		return getSubtypes(type, MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -732,7 +732,7 @@ public class MultiModelTypeHierarchy {
 
 		// conversion
 		for (String actualModelTypeUri : actualModelTypeUris) {
-			Map<String, Set<List<String>>> conversions = getConversionTable(MMINT.repository).get(actualModelTypeUri);
+			Map<String, Set<List<String>>> conversions = getConversionTable(MMINT.cachedTypeMID).get(actualModelTypeUri);
 			for (Map.Entry<String, Set<List<String>>> conversion : conversions.entrySet()) {
 				String convertedActualModelTypeUri = conversion.getKey();
 				if (formalModelTypeUri.equals(convertedActualModelTypeUri) || isSubtypeOf(convertedActualModelTypeUri, formalModelTypeUri)) {

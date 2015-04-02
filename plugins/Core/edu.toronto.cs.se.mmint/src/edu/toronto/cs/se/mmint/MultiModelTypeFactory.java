@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Random;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -31,7 +33,6 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.Parameter;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
@@ -59,7 +60,7 @@ public class MultiModelTypeFactory {
 	public final static String ECORE_REFLECTIVE_FILE_EXTENSION = "xmi";
 
 	/**
-	 * Adds a type to a multimodel.
+	 * Adds a type to the Type MID.
 	 * 
 	 * @param newType
 	 *            The new type to be added.
@@ -69,15 +70,15 @@ public class MultiModelTypeFactory {
 	 *            The uri of the new type.
 	 * @param newTypeName
 	 *            The name of the new type.
-	 * @param multiModel
-	 *            The multimodel that will contain the new type.
+	 * @param typeMID
+	 *            The Type MID.
 	 * @throws MMINTException
-	 *             If the uri of the new type is already registered in the
-	 *             multimodel.
+	 *             If the uri of the new type is already registered in the Type
+	 *             MID.
 	 */
-	public static void addType(ExtendibleElement newType, ExtendibleElement type, String newTypeUri, String newTypeName, MultiModel multiModel) throws MMINTException {
+	public static void addType(@NonNull ExtendibleElement newType, @Nullable ExtendibleElement type, @NonNull String newTypeUri, @NonNull String newTypeName, @NonNull MultiModel typeMID) throws MMINTException {
 
-		if (multiModel.getExtendibleTable().containsKey(newTypeUri)) {
+		if (typeMID.getExtendibleTable().containsKey(newTypeUri)) {
 			throw new MMINTException("Type with uri " + newTypeUri + " is already registered");
 		}
 
@@ -85,7 +86,7 @@ public class MultiModelTypeFactory {
 		newType.setName(newTypeName);
 		newType.setLevel(MIDLevel.TYPES);
 		newType.setSupertype(type);
-		multiModel.getExtendibleTable().put(newTypeUri, newType);
+		typeMID.getExtendibleTable().put(newTypeUri, newType);
 	}
 
 	/**
@@ -98,7 +99,7 @@ public class MultiModelTypeFactory {
 	 * @param upperBound
 	 *            The upper cardinality, -1 for infinite.
 	 */
-	public static void addTypeEndpointCardinality(ExtendibleElementEndpoint typeEndpoint, int lowerBound, int upperBound) {
+	public static void addTypeEndpointCardinality(@NonNull ExtendibleElementEndpoint typeEndpoint, int lowerBound, int upperBound) {
 
 		typeEndpoint.setLowerBound(lowerBound);
 		typeEndpoint.setUpperBound(upperBound);

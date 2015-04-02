@@ -128,20 +128,14 @@ public interface MMINTConstants {
 
 	/** The Operators extension point's id. */
 	public final static String OPERATORS_EXT_POINT = "edu.toronto.cs.se.mmint.operators";
-	/** The Operators extension point's input child. */
-	public final static String OPERATORS_CHILD_INPUT = "input";
-	/** The Operators extension point's output child. */
-	public final static String OPERATORS_CHILD_OUTPUT = "output";
-	/** The Operators extension point's input/output's parameter child. */
-	public final static String OPERATORS_INPUTOUTPUT_CHILD_PARAMETER = "parameter";
-	/** The Operators extension point's input/output's parameter child's name attribute. */
-	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_NAME = "name";
-	/** The Operators extension point's input/output's parameter child's isVararg attribute. */
-	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_ISVARARG = "isVararg";
-	/** The Operators extension point's input/output's parameter child's isType attribute. */
-	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_ISTYPE = "isType";
-	/** The Operators extension point's input/output's parameter child's modelTypeUri attribute. */
-	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_MODELTYPEURI = "modelTypeUri";
+	/** The Operators extension point's generics child. */
+	public final static String OPERATORS_CHILD_GENERICS = "generics";
+	/** The Operators extension point's inputs child. */
+	public final static String OPERATORS_CHILD_INPUTS = "inputs";
+	/** The Operators extension point's outputs child. */
+	public final static String OPERATORS_CHILD_OUTPUTS = "outputs";
+	/** The Operators extension point's generics/inputs/outputs's parameter child. */
+	public final static String OPERATORS_GENINOUT_CHILD_PARAMETER = "parameter";
 
 	/** The Eclipse's Editors extension point's id. */
 	public final static String ECLIPSE_EDITORS_EXT_POINT = "org.eclipse.ui.editors";

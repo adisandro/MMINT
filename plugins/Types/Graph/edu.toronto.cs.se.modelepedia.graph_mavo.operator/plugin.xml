@@ -26,12 +26,9 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="randomGraphModel"
-	                 uri="">
+	                 name="randomGraphModel">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Graph_MAVO">
 	           </typeEndpoint>
             </parameter>
@@ -50,12 +47,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="randomGraphModel"
-	                 uri="">
+	                 name="randomGraphModel">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Graph_MAVO">
 	           </typeEndpoint>
             </parameter>

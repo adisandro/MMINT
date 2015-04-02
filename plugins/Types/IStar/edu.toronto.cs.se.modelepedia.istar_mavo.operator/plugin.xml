@@ -26,12 +26,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="istarModel"
-	                 uri="">
+	                 name="istarModel">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
 	           </typeEndpoint>
             </parameter>
@@ -50,12 +47,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="istarModel"
-	                 uri="">
+	                 name="istarModel">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
 	           </typeEndpoint>
             </parameter>
@@ -77,12 +71,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="istarModel"
-	                 uri="">
+	                 name="istarModel">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
 	           </typeEndpoint>
             </parameter>
@@ -104,12 +95,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="istarModel"
-	                 uri="">
+	                 name="istarModel">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
 	           </typeEndpoint>
             </parameter>

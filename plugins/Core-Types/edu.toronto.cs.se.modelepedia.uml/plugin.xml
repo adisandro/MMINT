@@ -249,8 +249,6 @@
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel-UMLComponentDiagram/UMLComponentEndpoint">
             </type>
             <typeEndpoint
-                  lowerBound="1"
-                  upperBound="1"
                   targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram">
             </typeEndpoint>
             <modelElemType>
@@ -272,8 +270,6 @@
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel-UMLDeploymentDiagram/UMLDeploymentEndpoint">
             </type>
             <typeEndpoint
-                  lowerBound="1"
-                  upperBound="1"
                   targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram">
             </typeEndpoint>
             <modelElemType>
@@ -318,8 +314,6 @@
                      uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Device/DeviceEndpoint">
                </type>
                <typeEndpoint
-                     lowerBound="1"
-                     upperBound="1"
                      targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Device">
                </typeEndpoint>
             </modelElemTypeEndpoint>
@@ -351,7 +345,6 @@
                </type>
                <typeEndpoint
                      lowerBound="0"
-                     upperBound="1"
                      targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Node">
                </typeEndpoint>
             </modelElemTypeEndpoint>
@@ -597,8 +590,6 @@
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO-UMLComponentDiagram_MAVO/UMLComponentEndpoint">
             </type>
             <typeEndpoint
-                  lowerBound="1"
-                  upperBound="1"
                   targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO">
             </typeEndpoint>
             <modelElemType>
@@ -620,8 +611,6 @@
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO-UMLDeploymentDiagram_MAVO/UMLDeploymentEndpoint">
             </type>
             <typeEndpoint
-                  lowerBound="1"
-                  upperBound="1"
                   targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO">
             </typeEndpoint>
             <modelElemType>
@@ -666,8 +655,6 @@
                      uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/ComponentDeviceLink-Device/DeviceEndpoint">
                </type>
                <typeEndpoint
-                     lowerBound="1"
-                     upperBound="1"
                      targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Device">
                </typeEndpoint>
             </modelElemTypeEndpoint>
@@ -699,7 +686,6 @@
                </type>
                <typeEndpoint
                      lowerBound="0"
-                     upperBound="1"
                      targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Node">
                </typeEndpoint>
             </modelElemTypeEndpoint>

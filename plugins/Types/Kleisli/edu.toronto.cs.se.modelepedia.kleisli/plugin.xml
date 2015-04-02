@@ -81,12 +81,9 @@
          <generics>
             <parameter>
 	           <type
-	                 name="kModelRelType"
-	                 uri="">
+	                 name="kModelRelType">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel">
 	           </typeEndpoint>
             </parameter>
@@ -94,12 +91,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="srcModel"
-	                 uri="">
+	                 name="srcModel">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
 	           </typeEndpoint>
             </parameter>
@@ -107,23 +101,17 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="tgtModel"
-	                 uri="">
+	                 name="tgtModel">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
 	           </typeEndpoint>
             </parameter>
             <parameter>
 	           <type
-	                 name="kTraceModelRel"
-	                 uri="">
+	                 name="kTraceModelRel">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel">
 	           </typeEndpoint>
             </parameter>

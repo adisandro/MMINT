@@ -60,8 +60,6 @@
                   uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel-IStar_MAVO/IStarEndpoint">
             </type>
             <typeEndpoint
-                  lowerBound="1"
-                  upperBound="1"
                   targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
             </typeEndpoint>
             <modelElemType>
@@ -95,8 +93,6 @@
                   uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel-ClassDiagram_MAVO/ClassDiagramEndpoint">
             </type>
             <typeEndpoint
-                  lowerBound="1"
-                  upperBound="1"
                   targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
             </typeEndpoint>
             <modelElemType>
@@ -134,7 +130,6 @@
                </type>
                <typeEndpoint
                      lowerBound="0"
-                     upperBound="1"
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Actor">
                </typeEndpoint>
             </modelElemTypeEndpoint>
@@ -144,8 +139,6 @@
                      uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Class/ClassEndpoint">
                </type>
                <typeEndpoint
-                     lowerBound="1"
-                     upperBound="1"
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class">
                </typeEndpoint>
             </modelElemTypeEndpoint>
@@ -166,7 +159,6 @@
                </type>
                <typeEndpoint
                      lowerBound="0"
-                     upperBound="1"
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Resource">
                </typeEndpoint>
             </modelElemTypeEndpoint>
@@ -176,8 +168,6 @@
                      uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Class/ClassEndpoint">
                </type>
                <typeEndpoint
-                     lowerBound="1"
-                     upperBound="1"
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class">
                </typeEndpoint>
             </modelElemTypeEndpoint>
@@ -198,7 +188,6 @@
                </type>
                <typeEndpoint
                      lowerBound="0"
-                     upperBound="1"
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Task">
                </typeEndpoint>
             </modelElemTypeEndpoint>
@@ -208,8 +197,6 @@
                      uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Operation/OperationEndpoint">
                </type>
                <typeEndpoint
-                     lowerBound="1"
-                     upperBound="1"
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Operation">
                </typeEndpoint>
             </modelElemTypeEndpoint>
@@ -240,8 +227,6 @@
                      uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumDependencyLink-Dependency/DependencyEndpoint">
                </type>
                <typeEndpoint
-                     lowerBound="1"
-                     upperBound="1"
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Dependency">
                </typeEndpoint>
             </modelElemTypeEndpoint>
@@ -272,8 +257,6 @@
                      uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-Dependency/DependencyEndpoint">
                </type>
                <typeEndpoint
-                     lowerBound="1"
-                     upperBound="1"
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Dependency">
                </typeEndpoint>
             </modelElemTypeEndpoint>

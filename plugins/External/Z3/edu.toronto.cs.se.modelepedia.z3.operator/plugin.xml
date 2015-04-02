@@ -26,12 +26,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="mavoModel"
-	                 uri="">
+	                 name="mavoModel">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
 	           </typeEndpoint>
             </parameter>
@@ -39,23 +36,17 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="transformedMavoModelInput"
-	                 uri="">
+	                 name="transformedMavoModelInput">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
 	           </typeEndpoint>
             </parameter>
             <parameter>
 	           <type
-	                 name="transformedMavoModelOutput"
-	                 uri="">
+	                 name="transformedMavoModelOutput">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
 	           </typeEndpoint>
             </parameter>
@@ -74,12 +65,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="model"
-	                 uri="">
+	                 name="model">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
 	           </typeEndpoint>
             </parameter>
@@ -87,23 +75,17 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="transformedModelInput"
-	                 uri="">
+	                 name="transformedModelInput">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
 	           </typeEndpoint>
             </parameter>
             <parameter>
 	           <type
-	                 name="transformedModelOutput"
-	                 uri="">
+	                 name="transformedModelOutput">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
 	           </typeEndpoint>
             </parameter>

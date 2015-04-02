@@ -26,12 +26,9 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="powerWindow"
-	                 uri="">
+	                 name="powerWindow">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/PowerWindow">
 	           </typeEndpoint>
             </parameter>
@@ -39,12 +36,9 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="petriNet"
-	                 uri="">
+	                 name="petriNet">
 	           </type>
 	           <typeEndpoint
-	                 lowerBound="1"
-	                 upperBound="1"
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/PetriNet">
 	           </typeEndpoint>
             </parameter>

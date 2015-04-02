@@ -77,7 +77,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static <T extends ExtendibleElement> @Nullable T getType(@NonNull String typeUri) {
 
-		return MultiModelRegistry.getExtendibleElement(typeUri, MMINT.repository);
+		return MultiModelRegistry.getExtendibleElement(typeUri, MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static List<Operator> getOperatorTypes() {
 
-		return MultiModelRegistry.getOperators(MMINT.repository);
+		return MultiModelRegistry.getOperators(MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static EList<Model> getModelTypes() {
 
-		return MultiModelRegistry.getModels(MMINT.repository);
+		return MultiModelRegistry.getModels(MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static EList<ModelRel> getModelRelTypes() {
 
-		return MultiModelRegistry.getModelRels(MMINT.repository);
+		return MultiModelRegistry.getModelRels(MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static EList<Editor> getEditorTypes() {
 
-		return MultiModelRegistry.getEditors(MMINT.repository);
+		return MultiModelRegistry.getEditors(MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -166,7 +166,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static List<String> getModelTypeFileExtensions() {
 
-		List<String> fileExtensions = MMINT.repository.getModels().stream()
+		List<String> fileExtensions = MMINT.cachedTypeMID.getModels().stream()
 			.map(Model::getFileExtension)
 			.collect(Collectors.toList());
 
@@ -203,8 +203,8 @@ public class MultiModelTypeRegistry {
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
 			new MultiModelDialogLabelProvider(),
-			new NewModelDialogContentProvider(MMINT.repository),
-			MMINT.repository
+			new NewModelDialogContentProvider(MMINT.cachedTypeMID),
+			MMINT.cachedTypeMID
 		);
 		dialog.setValidator(new NewModelDialogSelectionValidator());
 
@@ -253,7 +253,7 @@ public class MultiModelTypeRegistry {
 			shell,
 			new MultiModelDialogLabelProvider(),
 			new NewModelRelDialogContentProvider(MultiModelConstraintChecker.getAllowedModelRelTypes(targetSrcModel, targetTgtModel)),
-			MMINT.repository
+			MMINT.cachedTypeMID
 		);
 
 		return dialog;
