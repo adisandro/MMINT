@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
 
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ModelEndpointItemSemanticEditPolicy;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ModelEndpointSemanticEditPolicy;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ModelRelModelEndpointSemanticEditPolicy;
 
 /**
  * @generated
@@ -52,7 +52,7 @@ public class ModelEndpointEditPart extends ConnectionNodeEditPart implements
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new ModelEndpointItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelEndpointSemanticEditPolicy());
+				new ModelRelModelEndpointSemanticEditPolicy());
 	}
 
 	/**

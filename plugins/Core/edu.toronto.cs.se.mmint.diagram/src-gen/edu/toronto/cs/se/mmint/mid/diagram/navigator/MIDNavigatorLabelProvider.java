@@ -33,15 +33,15 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint2EditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint3EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointName2EditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointNameEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.OperatorEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Parameter2EditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ParameterEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ParameterName2EditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ParameterNameEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel3EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel4EditPart;
@@ -148,12 +148,12 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 		case BinaryModelRelEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://se.cs.toronto.edu/mmint/MID/Relationship?BinaryModelRel", MIDElementTypes.BinaryModelRel_4015); //$NON-NLS-1$
-		case ParameterEditPart.VISUAL_ID:
+		case ModelEndpoint2EditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/mmint/MID/Operator?Parameter", MIDElementTypes.Parameter_4016); //$NON-NLS-1$
-		case Parameter2EditPart.VISUAL_ID:
+					"Navigator?Link?http://se.cs.toronto.edu/mmint/MID?ModelEndpoint", MIDElementTypes.ModelEndpoint_4018); //$NON-NLS-1$
+		case ModelEndpoint3EditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/mmint/MID/Operator?Parameter", MIDElementTypes.Parameter_4017); //$NON-NLS-1$
+					"Navigator?Link?http://se.cs.toronto.edu/mmint/MID?ModelEndpoint", MIDElementTypes.ModelEndpoint_4019); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -232,10 +232,10 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 			return getModelEndpoint_4014Text(view);
 		case BinaryModelRelEditPart.VISUAL_ID:
 			return getBinaryModelRel_4015Text(view);
-		case ParameterEditPart.VISUAL_ID:
-			return getParameter_4016Text(view);
-		case Parameter2EditPart.VISUAL_ID:
-			return getParameter_4017Text(view);
+		case ModelEndpoint2EditPart.VISUAL_ID:
+			return getModelEndpoint_4018Text(view);
+		case ModelEndpoint3EditPart.VISUAL_ID:
+			return getModelEndpoint_4019Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -397,18 +397,19 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getParameter_4016Text(View view) {
+	private String getModelEndpoint_4018Text(View view) {
 		IParser parser = MIDParserProvider.getParser(
-				MIDElementTypes.Parameter_4016,
+				MIDElementTypes.ModelEndpoint_4018,
 				view.getElement() != null ? view.getElement() : view,
-				MIDVisualIDRegistry.getType(ParameterNameEditPart.VISUAL_ID));
+				MIDVisualIDRegistry
+						.getType(ModelEndpointNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
 		} else {
 			MIDDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 6015); //$NON-NLS-1$
+					"Parser was not found for label " + 6019); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -416,18 +417,19 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getParameter_4017Text(View view) {
+	private String getModelEndpoint_4019Text(View view) {
 		IParser parser = MIDParserProvider.getParser(
-				MIDElementTypes.Parameter_4017,
+				MIDElementTypes.ModelEndpoint_4019,
 				view.getElement() != null ? view.getElement() : view,
-				MIDVisualIDRegistry.getType(ParameterName2EditPart.VISUAL_ID));
+				MIDVisualIDRegistry
+						.getType(ModelEndpointName2EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
 		} else {
 			MIDDiagramEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 6016); //$NON-NLS-1$
+					"Parser was not found for label " + 6020); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

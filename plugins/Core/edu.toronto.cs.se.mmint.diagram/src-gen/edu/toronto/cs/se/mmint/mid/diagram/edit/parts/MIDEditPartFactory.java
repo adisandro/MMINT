@@ -105,17 +105,17 @@ public class MIDEditPartFactory implements EditPartFactory {
 			case WrappingLabel15EditPart.VISUAL_ID:
 				return new WrappingLabel15EditPart(view);
 
-			case ParameterEditPart.VISUAL_ID:
-				return new ParameterEditPart(view);
+			case ModelEndpoint2EditPart.VISUAL_ID:
+				return new ModelEndpoint2EditPart(view);
 
-			case ParameterNameEditPart.VISUAL_ID:
-				return new ParameterNameEditPart(view);
+			case ModelEndpointNameEditPart.VISUAL_ID:
+				return new ModelEndpointNameEditPart(view);
 
-			case Parameter2EditPart.VISUAL_ID:
-				return new Parameter2EditPart(view);
+			case ModelEndpoint3EditPart.VISUAL_ID:
+				return new ModelEndpoint3EditPart(view);
 
-			case ParameterName2EditPart.VISUAL_ID:
-				return new ParameterName2EditPart(view);
+			case ModelEndpointName2EditPart.VISUAL_ID:
+				return new ModelEndpointName2EditPart(view);
 
 			}
 		}

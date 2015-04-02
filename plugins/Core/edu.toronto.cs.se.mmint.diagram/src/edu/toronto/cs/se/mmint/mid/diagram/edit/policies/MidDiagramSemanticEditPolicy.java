@@ -18,7 +18,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelImportModelCommand
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelNewModelCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRelImportNaryRelCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRelNewNaryRelCommand;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MultiModelItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 
 /**

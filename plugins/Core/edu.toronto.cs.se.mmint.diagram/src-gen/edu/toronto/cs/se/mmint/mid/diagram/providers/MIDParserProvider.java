@@ -25,8 +25,9 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmint.mavo.library.MAVOElementLabelParser;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ParameterName2EditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ParameterNameEditPart;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointName2EditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointNameEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel10EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel11EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel12EditPart;
@@ -49,7 +50,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.ExtendibleElementLabelParser;
 import edu.toronto.cs.se.mmint.mid.diagram.parsers.MessageFormatParser;
 import edu.toronto.cs.se.mmint.mid.diagram.parsers.OperatorLabelExpressionLabelParser;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 
 /**
  * @generated
@@ -277,49 +277,49 @@ public class MIDParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser parameterName_6015Parser;
+	private IParser modelEndpointName_6019Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getParameterName_6015Parser() {
-		if (parameterName_6015Parser == null) {
-			EAttribute[] features = new EAttribute[] { OperatorPackage.eINSTANCE
-					.getParameter_Name() };
-			EAttribute[] editableFeatures = new EAttribute[] { OperatorPackage.eINSTANCE
-					.getParameter_Name() };
+	private IParser getModelEndpointName_6019Parser() {
+		if (modelEndpointName_6019Parser == null) {
+			EAttribute[] features = new EAttribute[] { MIDPackage.eINSTANCE
+					.getExtendibleElement_Name() };
+			EAttribute[] editableFeatures = new EAttribute[] { MIDPackage.eINSTANCE
+					.getExtendibleElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features,
 					editableFeatures);
 			parser.setViewPattern("(in) {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			parameterName_6015Parser = parser;
+			modelEndpointName_6019Parser = parser;
 		}
-		return parameterName_6015Parser;
+		return modelEndpointName_6019Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser parameterName_6016Parser;
+	private IParser modelEndpointName_6020Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getParameterName_6016Parser() {
-		if (parameterName_6016Parser == null) {
-			EAttribute[] features = new EAttribute[] { OperatorPackage.eINSTANCE
-					.getParameter_Name() };
-			EAttribute[] editableFeatures = new EAttribute[] { OperatorPackage.eINSTANCE
-					.getParameter_Name() };
+	private IParser getModelEndpointName_6020Parser() {
+		if (modelEndpointName_6020Parser == null) {
+			EAttribute[] features = new EAttribute[] { MIDPackage.eINSTANCE
+					.getExtendibleElement_Name() };
+			EAttribute[] editableFeatures = new EAttribute[] { MIDPackage.eINSTANCE
+					.getExtendibleElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features,
 					editableFeatures);
 			parser.setViewPattern("(out) {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			parameterName_6016Parser = parser;
+			modelEndpointName_6020Parser = parser;
 		}
-		return parameterName_6016Parser;
+		return modelEndpointName_6020Parser;
 	}
 
 	/**
@@ -357,10 +357,10 @@ public class MIDParserProvider extends AbstractProvider implements
 			return getBinaryModelRelLabel_6014Parser();
 		case WrappingLabel15EditPart.VISUAL_ID:
 			return getBinaryModelRelLabel_6018Parser();
-		case ParameterNameEditPart.VISUAL_ID:
-			return getParameterName_6015Parser();
-		case ParameterName2EditPart.VISUAL_ID:
-			return getParameterName_6016Parser();
+		case ModelEndpointNameEditPart.VISUAL_ID:
+			return getModelEndpointName_6019Parser();
+		case ModelEndpointName2EditPart.VISUAL_ID:
+			return getModelEndpointName_6020Parser();
 		}
 		return null;
 	}

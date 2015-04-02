@@ -32,10 +32,9 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRelAddModelEndpoin
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRelChangeModelEndpointCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint2EditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint3EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Parameter2EditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ParameterEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ModelItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 
@@ -75,11 +74,11 @@ public class ModelCreatedSemanticEditPolicy extends ModelItemSemanticEditPolicy 
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (MIDVisualIDRegistry.getVisualID(incomingLink) == ParameterEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(incomingLink) == ModelEndpoint2EditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (MIDVisualIDRegistry.getVisualID(incomingLink) == Parameter2EditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(incomingLink) == ModelEndpoint3EditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}

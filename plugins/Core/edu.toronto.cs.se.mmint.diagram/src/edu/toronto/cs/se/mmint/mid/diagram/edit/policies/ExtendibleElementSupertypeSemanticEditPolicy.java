@@ -15,8 +15,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ExtendibleElementSupertypeItemSemanticEditPolicy;
-
 /**
  * The semantic edit policy for supertypes.
  * 

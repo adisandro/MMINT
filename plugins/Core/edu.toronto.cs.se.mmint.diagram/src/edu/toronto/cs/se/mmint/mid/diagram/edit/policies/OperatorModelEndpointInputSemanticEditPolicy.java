@@ -15,15 +15,13 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ParameterItemSemanticEditPolicy;
-
 /**
  * The semantic edit policy for input parameters.
  * 
  * @author Vivien Suen
  * 
  */
-public class ParameterInputSemanticEditPolicy extends ParameterItemSemanticEditPolicy {
+public class OperatorModelEndpointInputSemanticEditPolicy extends ModelEndpoint2ItemSemanticEditPolicy {
 
 	/** Gets the command to destroy an input parameter.
 	 * 

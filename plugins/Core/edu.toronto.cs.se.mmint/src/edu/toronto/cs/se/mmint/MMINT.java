@@ -117,8 +117,10 @@ public class MMINT implements MMINTConstants {
 	 * - Change uris into ids
 	 * - Handle optional uris/ids for subelements of model/modelrel/operator
 	 * - Use defaults in extension points as much as possible
+	 * - Decouple from MAVO framework
+	 * - Move modelepedia types into the examples directory
+	 * - Document how everything works in the user guide
 	 * - Add javadoc + @NonNull/@Nullable annotations
-	 * - Document how this works in the user guide
 	 */
 
 	/**
@@ -157,32 +159,32 @@ public class MMINT implements MMINTConstants {
 		return newModelType;
 	}
 
-//	private static ModelEndpoint addModelTypeEndpoint(IConfigurationElement modelTypeEndpointConfig) throws Exception {
-//
-//		ExtensionType extensionType = new ExtensionType(modelTypeEndpointConfig, typeFactory);
-//		IConfigurationElement modelTypeEndpointSubconfig = modelTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
-//		String targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
-//		Model targetModelType = MultiModelTypeRegistry.getType(targetModelTypeUri);
-//		if (targetModelType == null) {
-//			throw new MMINTException("Can't find target model type " + targetModelTypeUri + " for model type endpoint " + extensionType.getName());
-//		}
-//		boolean isBinarySrc = (isBinary && srcModelTypeUri.equals(targetModelTypeUri));
-//		ModelEndpointReference newModelTypeEndpointRef = extensionType.getFactory().createHeavyModelTypeEndpointAndModelTypeEndpointReference(
-//			extensionType,
-//			targetModelType,
-//			isBinarySrc,
-//			newModelRelType
-//		);
-//		String lowerBoundString = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND);
-//		int lowerBound = (lowerBoundString == null) ? 1 : Integer.parseInt(lowerBoundString);
-//		String upperBoundString = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND);
-//		int upperBound = (upperBoundString == null) ? 1 : Integer.parseInt(upperBoundString);
-//		MultiModelTypeFactory.addTypeEndpointCardinality(
-//			newModelTypeEndpointRef.getObject(),
-//			lowerBound,
-//			upperBound
-//		);
-//	}
+	private static ModelEndpoint addModelTypeEndpoint(IConfigurationElement modelTypeEndpointConfig) throws Exception {
+
+		ExtensionType extensionType = new ExtensionType(modelTypeEndpointConfig, typeFactory);
+		IConfigurationElement modelTypeEndpointSubconfig = modelTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
+		String targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
+		Model targetModelType = MultiModelTypeRegistry.getType(targetModelTypeUri);
+		if (targetModelType == null) {
+			throw new MMINTException("Can't find target model type " + targetModelTypeUri + " for model type endpoint " + extensionType.getName());
+		}
+		boolean isBinarySrc = (isBinary && srcModelTypeUri.equals(targetModelTypeUri));
+		ModelEndpointReference newModelTypeEndpointRef = extensionType.getFactory().createHeavyModelTypeEndpointAndModelTypeEndpointReference(
+			extensionType,
+			targetModelType,
+			isBinarySrc,
+			newModelRelType
+		);
+		String lowerBoundString = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND);
+		int lowerBound = (lowerBoundString == null) ? 1 : Integer.parseInt(lowerBoundString);
+		String upperBoundString = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND);
+		int upperBound = (upperBoundString == null) ? 1 : Integer.parseInt(upperBoundString);
+		MultiModelTypeFactory.addTypeEndpointCardinality(
+			newModelTypeEndpointRef.getObject(),
+			lowerBound,
+			upperBound
+		);
+	}
 
 	/**
 	 * Creates and adds a model relationship type to the repository from a
@@ -387,35 +389,45 @@ public class MMINT implements MMINTConstants {
 	/**
 	 * Creates and adds a class of parameter types to an operator type.
 	 * 
-	 * @param paramTypeConfig
+	 * @param extensionConfig
 	 *            The edu.toronto.cs.se.mmint.operators extension
 	 *            subconfiguration for the class of parameter types.
 	 * @param paramTypes
 	 *            The list of parameter types that will contain the new
 	 *            parameter types.
-	 * @param operatorType
+	 * @param containerOperatorType
 	 *            The operator type that will contain the new parameter types.
 	 * @throws MMINTException
 	 *             If there exists a vararg parameter type which is not the last
 	 *             parameter type.
 	 */
-	private static void createOperatorTypeParameters(IConfigurationElement paramTypeConfig, EList<ModelEndpoint> paramTypes, Operator operatorType) throws MMINTException {
+	private static void createOperatorTypeParameters(IConfigurationElement extensionConfig, EList<ModelEndpoint> paramTypes, Operator containerOperatorType) throws MMINTException {
 
-		int i = 0;
-		IConfigurationElement[] paramTypeConfigElems = paramTypeConfig.getChildren(OPERATORS_GENINOUT_CHILD_PARAMETER);
-		for (IConfigurationElement paramTypeConfigElem : paramTypeConfigElems) {
-			String newParamTypeName = paramTypeConfigElem.getAttribute(OPERATORS_INOUT_PARAMETER_ATTR_NAME);
-			boolean isVararg = Boolean.parseBoolean(paramTypeConfigElem.getAttribute(OPERATORS_INOUT_PARAMETER_ATTR_ISVARARG));
-			boolean isType = Boolean.parseBoolean(paramTypeConfigElem.getAttribute(OPERATORS_INOUT_PARAMETER_ATTR_ISTYPE));
-			if (isType) {
-				newParamTypeName = "META-" + newParamTypeName; 
+		IConfigurationElement[] paramTypeConfigs = extensionConfig.getChildren(OPERATORS_GENINOUT_CHILD_PARAMETER);
+		for (IConfigurationElement paramTypeConfig : paramTypeConfigs) {
+			ExtensionType extensionType = new ExtensionType(paramTypeConfig, typeFactory);
+			IConfigurationElement modelTypeEndpointSubconfig = paramTypeConfig.getChildren(CHILD_TYPEENDPOINT)[0];
+			String targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
+			Model targetModelType = MultiModelTypeRegistry.getType(targetModelTypeUri);
+			if (targetModelType == null) {
+				continue;
 			}
-			if (isVararg && i != (paramTypeConfigElems.length-1)) {
-				throw new MMINTException("Only the last parameter can be vararg");
-			}
-			String modelTypeUri = paramTypeConfigElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_MODELTYPEURI);
-			MultiModelHeavyTypeFactory.createHeavyOperatorTypeParameter(newParamTypeName, modelTypeUri, isVararg, paramTypes, operatorType);
-			i++;
+			ModelEndpoint newModelTypeEndpoint = extensionType.getFactory().createHeavyModelTypeEndpoint(
+				extensionType,
+				targetModelType,
+				containerOperatorType,
+				null
+			);
+			String lowerBoundString = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND);
+			int lowerBound = (lowerBoundString == null) ? 1 : Integer.parseInt(lowerBoundString);
+			String upperBoundString = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND);
+			int upperBound = (upperBoundString == null) ? 1 : Integer.parseInt(upperBoundString);
+			MultiModelTypeFactory.addTypeEndpointCardinality(
+				newModelTypeEndpoint,
+				lowerBound,
+				upperBound
+			);
+			MultiModelHeavyTypeFactory.createHeavyOperatorTypeParameter(newParamTypeName, modelTypeUri, isVararg, paramTypes, containerOperatorType);
 		}
 	}
 

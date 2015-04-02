@@ -19,15 +19,15 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
-import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.Parameter;
 
 /**
  * @generated
  */
-public class ParameterReorientCommand extends EditElementCommand {
+public class ModelEndpoint3ReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -47,7 +47,7 @@ public class ParameterReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ParameterReorientCommand(ReorientRelationshipRequest request) {
+	public ModelEndpoint3ReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
 		oldEnd = request.getOldRelationshipEnd();
@@ -58,7 +58,7 @@ public class ParameterReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof Parameter) {
+		if (false == getElementToEdit() instanceof ModelEndpoint) {
 			return false;
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -77,16 +77,16 @@ public class ParameterReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Operator && newEnd instanceof Operator)) {
 			return false;
 		}
-		Model target = getLink().getModel();
+		ExtendibleElement target = getLink().getTarget();
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistParameter_4016(getLink(), getNewSource(), target);
+				.canExistModelEndpoint_4019(getLink(), getNewSource(), target);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Model && newEnd instanceof Model)) {
+		if (!(oldEnd instanceof ExtendibleElement && newEnd instanceof ExtendibleElement)) {
 			return false;
 		}
 		if (!(getLink().eContainer() instanceof Operator)) {
@@ -94,7 +94,7 @@ public class ParameterReorientCommand extends EditElementCommand {
 		}
 		Operator source = (Operator) getLink().eContainer();
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistParameter_4016(getLink(), source, getNewTarget());
+				.canExistModelEndpoint_4019(getLink(), source, getNewTarget());
 	}
 
 	/**
@@ -119,8 +119,8 @@ public class ParameterReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getInputs().remove(getLink());
-		getNewSource().getInputs().add(getLink());
+		getOldSource().getOutputs().remove(getLink());
+		getNewSource().getOutputs().add(getLink());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
@@ -128,15 +128,15 @@ public class ParameterReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getLink().setModel(getNewTarget());
+		getLink().setTarget(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Parameter getLink() {
-		return (Parameter) getElementToEdit();
+	protected ModelEndpoint getLink() {
+		return (ModelEndpoint) getElementToEdit();
 	}
 
 	/**
@@ -156,14 +156,14 @@ public class ParameterReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Model getOldTarget() {
-		return (Model) oldEnd;
+	protected ExtendibleElement getOldTarget() {
+		return (ExtendibleElement) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Model getNewTarget() {
-		return (Model) newEnd;
+	protected ExtendibleElement getNewTarget() {
+		return (ExtendibleElement) newEnd;
 	}
 }

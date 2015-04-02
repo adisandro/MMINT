@@ -20,9 +20,15 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ExtendibleElementSupertypeCreateCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ExtendibleElementSupertypeReorientCommand;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelEndpoint2CreateCommand;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelEndpoint2ReorientCommand;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelEndpoint3CreateCommand;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelEndpoint3ReorientCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelEndpointCreateCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelEndpointReorientCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint2EditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint3EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 
@@ -69,6 +75,12 @@ public class ModelEndpointItemSemanticEditPolicy extends
 		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
 			return null;
 		}
+		if (MIDElementTypes.ModelEndpoint_4018 == req.getElementType()) {
+			return null;
+		}
+		if (MIDElementTypes.ModelEndpoint_4019 == req.getElementType()) {
+			return null;
+		}
 		return null;
 	}
 
@@ -86,6 +98,14 @@ public class ModelEndpointItemSemanticEditPolicy extends
 			return getGEFWrapper(new ModelEndpointCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
+		if (MIDElementTypes.ModelEndpoint_4018 == req.getElementType()) {
+			return getGEFWrapper(new ModelEndpoint2CreateCommand(req,
+					req.getSource(), req.getTarget()));
+		}
+		if (MIDElementTypes.ModelEndpoint_4019 == req.getElementType()) {
+			return getGEFWrapper(new ModelEndpoint3CreateCommand(req,
+					req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -100,6 +120,10 @@ public class ModelEndpointItemSemanticEditPolicy extends
 		switch (getVisualID(req)) {
 		case ModelEndpointEditPart.VISUAL_ID:
 			return getGEFWrapper(new ModelEndpointReorientCommand(req));
+		case ModelEndpoint2EditPart.VISUAL_ID:
+			return getGEFWrapper(new ModelEndpoint2ReorientCommand(req));
+		case ModelEndpoint3EditPart.VISUAL_ID:
+			return getGEFWrapper(new ModelEndpoint3ReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

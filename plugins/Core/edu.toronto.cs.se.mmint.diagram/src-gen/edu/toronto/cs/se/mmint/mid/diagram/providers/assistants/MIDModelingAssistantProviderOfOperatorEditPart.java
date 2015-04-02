@@ -49,8 +49,8 @@ public class MIDModelingAssistantProviderOfOperatorEditPart extends
 	public List<IElementType> doGetRelTypesOnSource(OperatorEditPart source) {
 		List<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(MIDElementTypes.ExtendibleElementSupertype_4013);
-		types.add(MIDElementTypes.Parameter_4016);
-		types.add(MIDElementTypes.Parameter_4017);
+		types.add(MIDElementTypes.ModelEndpoint_4018);
+		types.add(MIDElementTypes.ModelEndpoint_4019);
 		return types;
 	}
 
@@ -90,28 +90,34 @@ public class MIDModelingAssistantProviderOfOperatorEditPart extends
 			types.add(MIDElementTypes.ExtendibleElementSupertype_4013);
 		}
 		if (targetEditPart instanceof ModelEditPart) {
-			types.add(MIDElementTypes.Parameter_4016);
+			types.add(MIDElementTypes.ModelEndpoint_4018);
 		}
 		if (targetEditPart instanceof Model2EditPart) {
-			types.add(MIDElementTypes.Parameter_4016);
+			types.add(MIDElementTypes.ModelEndpoint_4018);
 		}
 		if (targetEditPart instanceof ModelRelEditPart) {
-			types.add(MIDElementTypes.Parameter_4016);
+			types.add(MIDElementTypes.ModelEndpoint_4018);
 		}
 		if (targetEditPart instanceof ModelRel2EditPart) {
-			types.add(MIDElementTypes.Parameter_4016);
+			types.add(MIDElementTypes.ModelEndpoint_4018);
+		}
+		if (targetEditPart instanceof OperatorEditPart) {
+			types.add(MIDElementTypes.ModelEndpoint_4018);
 		}
 		if (targetEditPart instanceof ModelEditPart) {
-			types.add(MIDElementTypes.Parameter_4017);
+			types.add(MIDElementTypes.ModelEndpoint_4019);
 		}
 		if (targetEditPart instanceof Model2EditPart) {
-			types.add(MIDElementTypes.Parameter_4017);
+			types.add(MIDElementTypes.ModelEndpoint_4019);
 		}
 		if (targetEditPart instanceof ModelRelEditPart) {
-			types.add(MIDElementTypes.Parameter_4017);
+			types.add(MIDElementTypes.ModelEndpoint_4019);
 		}
 		if (targetEditPart instanceof ModelRel2EditPart) {
-			types.add(MIDElementTypes.Parameter_4017);
+			types.add(MIDElementTypes.ModelEndpoint_4019);
+		}
+		if (targetEditPart instanceof OperatorEditPart) {
+			types.add(MIDElementTypes.ModelEndpoint_4019);
 		}
 		return types;
 	}
@@ -140,16 +146,18 @@ public class MIDModelingAssistantProviderOfOperatorEditPart extends
 			types.add(MIDElementTypes.ModelRel_2013);
 			types.add(MIDElementTypes.ModelRel_2014);
 			types.add(MIDElementTypes.Operator_2015);
-		} else if (relationshipType == MIDElementTypes.Parameter_4016) {
+		} else if (relationshipType == MIDElementTypes.ModelEndpoint_4018) {
 			types.add(MIDElementTypes.Model_2011);
 			types.add(MIDElementTypes.Model_2012);
 			types.add(MIDElementTypes.ModelRel_2013);
 			types.add(MIDElementTypes.ModelRel_2014);
-		} else if (relationshipType == MIDElementTypes.Parameter_4017) {
+			types.add(MIDElementTypes.Operator_2015);
+		} else if (relationshipType == MIDElementTypes.ModelEndpoint_4019) {
 			types.add(MIDElementTypes.Model_2011);
 			types.add(MIDElementTypes.Model_2012);
 			types.add(MIDElementTypes.ModelRel_2013);
 			types.add(MIDElementTypes.ModelRel_2014);
+			types.add(MIDElementTypes.Operator_2015);
 		}
 		return types;
 	}
@@ -168,9 +176,11 @@ public class MIDModelingAssistantProviderOfOperatorEditPart extends
 	 * @generated
 	 */
 	public List<IElementType> doGetRelTypesOnTarget(OperatorEditPart target) {
-		List<IElementType> types = new ArrayList<IElementType>(2);
+		List<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(MIDElementTypes.ExtendibleElementSupertype_4013);
 		types.add(MIDElementTypes.ModelEndpoint_4014);
+		types.add(MIDElementTypes.ModelEndpoint_4018);
+		types.add(MIDElementTypes.ModelEndpoint_4019);
 		return types;
 	}
 
@@ -201,6 +211,10 @@ public class MIDModelingAssistantProviderOfOperatorEditPart extends
 		} else if (relationshipType == MIDElementTypes.ModelEndpoint_4014) {
 			types.add(MIDElementTypes.ModelRel_2013);
 			types.add(MIDElementTypes.ModelRel_2014);
+		} else if (relationshipType == MIDElementTypes.ModelEndpoint_4018) {
+			types.add(MIDElementTypes.Operator_2015);
+		} else if (relationshipType == MIDElementTypes.ModelEndpoint_4019) {
+			types.add(MIDElementTypes.Operator_2015);
 		}
 		return types;
 	}

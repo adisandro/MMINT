@@ -197,7 +197,7 @@
   </links>
   <links>
     <domainMetaElement
-        href="mid.ecore#//operator/Parameter"/>
+        href="mid.ecore#//ModelEndpoint"/>
     <domainSpecialization
         body="return domainElement.eContainmentFeature().getName().equals(&quot;inputs&quot;);"
         language="java"/>
@@ -209,9 +209,9 @@
       <diagramLabel
           href="mid.gmfgraph#OperatorInputsLabel"/>
       <features
-          href="mid.ecore#//operator/Parameter/name"/>
+          href="mid.ecore#//ExtendibleElement/name"/>
       <editableFeatures
-          href="mid.ecore#//operator/Parameter/name"/>
+          href="mid.ecore#//ExtendibleElement/name"/>
     </labelMappings>
     <containmentFeature
         href="mid.ecore#//operator/Operator/inputs"/>
@@ -219,11 +219,11 @@
         href="mid.gmfgraph#OperatorInputs"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//operator/Parameter/model"/>
+        href="mid.ecore#//ExtendibleElementEndpoint/target"/>
   </links>
   <links>
     <domainMetaElement
-        href="mid.ecore#//operator/Parameter"/>
+        href="mid.ecore#//ModelEndpoint"/>
     <domainSpecialization
         body="return domainElement.eContainmentFeature().getName().equals(&quot;outputs&quot;);"
         language="java"/>
@@ -235,9 +235,9 @@
       <diagramLabel
           href="mid.gmfgraph#OperatorOutputsLabel"/>
       <features
-          href="mid.ecore#//operator/Parameter/name"/>
+          href="mid.ecore#//ExtendibleElement/name"/>
       <editableFeatures
-          href="mid.ecore#//operator/Parameter/name"/>
+          href="mid.ecore#//ExtendibleElement/name"/>
     </labelMappings>
     <containmentFeature
         href="mid.ecore#//operator/Operator/outputs"/>
@@ -245,7 +245,7 @@
         href="mid.gmfgraph#OperatorOutputs"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//operator/Parameter/model"/>
+        href="mid.ecore#//ExtendibleElementEndpoint/target"/>
   </links>
   <diagram>
     <diagramCanvas

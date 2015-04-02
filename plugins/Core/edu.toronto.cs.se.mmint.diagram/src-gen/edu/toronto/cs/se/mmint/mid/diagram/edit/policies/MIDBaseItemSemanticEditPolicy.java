@@ -56,7 +56,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.Parameter;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
@@ -377,15 +376,17 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateParameter_4016(Operator source, Model target) {
-			return canExistParameter_4016(null, source, target);
+		public boolean canCreateModelEndpoint_4018(Operator source,
+				ExtendibleElement target) {
+			return canExistModelEndpoint_4018(null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateParameter_4017(Operator source, Model target) {
-			return canExistParameter_4017(null, source, target);
+		public boolean canCreateModelEndpoint_4019(Operator source,
+				ExtendibleElement target) {
+			return canExistModelEndpoint_4019(null, source, target);
 		}
 
 		/**
@@ -455,16 +456,16 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistParameter_4016(Parameter linkInstance,
-				Operator source, Model target) {
+		public boolean canExistModelEndpoint_4018(ModelEndpoint linkInstance,
+				Operator source, ExtendibleElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canExistParameter_4017(Parameter linkInstance,
-				Operator source, Model target) {
+		public boolean canExistModelEndpoint_4019(ModelEndpoint linkInstance,
+				Operator source, ExtendibleElement target) {
 			return true;
 		}
 	}

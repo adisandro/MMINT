@@ -23,16 +23,16 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
-import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
-import edu.toronto.cs.se.mmint.mid.operator.Parameter;
 
 /**
  * @generated
  */
-public class ParameterCreateCommand extends EditElementCommand {
+public class ModelEndpoint3CreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -47,7 +47,7 @@ public class ParameterCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ParameterCreateCommand(CreateRelationshipRequest request,
+	public ModelEndpoint3CreateCommand(CreateRelationshipRequest request,
 			EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
@@ -64,7 +64,7 @@ public class ParameterCreateCommand extends EditElementCommand {
 		if (source != null && false == source instanceof Operator) {
 			return false;
 		}
-		if (target != null && false == target instanceof Model) {
+		if (target != null && false == target instanceof ExtendibleElement) {
 			return false;
 		}
 		if (getSource() == null) {
@@ -72,7 +72,7 @@ public class ParameterCreateCommand extends EditElementCommand {
 		}
 		// target may be null here but it's possible to check constraint
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canCreateParameter_4016(getSource(), getTarget());
+				.canCreateModelEndpoint_4019(getSource(), getTarget());
 	}
 
 	/**
@@ -85,9 +85,9 @@ public class ParameterCreateCommand extends EditElementCommand {
 					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
-		Parameter newElement = OperatorFactory.eINSTANCE.createParameter();
-		getSource().getInputs().add(newElement);
-		newElement.setModel(getTarget());
+		ModelEndpoint newElement = MIDFactory.eINSTANCE.createModelEndpoint();
+		getSource().getOutputs().add(newElement);
+		newElement.setTarget(getTarget());
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
@@ -97,8 +97,9 @@ public class ParameterCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Parameter newElement, IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected void doConfigure(ModelEndpoint newElement,
+			IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest())
 				.getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(
@@ -134,8 +135,8 @@ public class ParameterCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Model getTarget() {
-		return (Model) target;
+	protected ExtendibleElement getTarget() {
+		return (ExtendibleElement) target;
 	}
 
 }

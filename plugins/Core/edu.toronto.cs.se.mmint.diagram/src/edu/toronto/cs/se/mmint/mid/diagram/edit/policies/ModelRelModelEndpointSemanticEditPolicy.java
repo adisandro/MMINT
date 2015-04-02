@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRelRemoveModelEndpointCommand;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ModelEndpointItemSemanticEditPolicy;
 
 /**
  * The semantic edit policy for model relationships' models.
@@ -27,7 +26,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ModelEndpointItemSemant
  * @author Alessio Di Sandro
  * 
  */
-public class ModelEndpointSemanticEditPolicy extends ModelEndpointItemSemanticEditPolicy {
+public class ModelRelModelEndpointSemanticEditPolicy extends ModelEndpointItemSemanticEditPolicy {
 
 	/**
 	 * Gets the command to remove a model from a model relationship.

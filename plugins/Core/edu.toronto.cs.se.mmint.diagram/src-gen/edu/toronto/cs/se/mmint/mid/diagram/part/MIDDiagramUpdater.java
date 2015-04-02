@@ -33,17 +33,15 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint2EditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint3EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.OperatorEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Parameter2EditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ParameterEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.operator.Parameter;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
@@ -137,10 +135,10 @@ public class MIDDiagramUpdater {
 			return getModelEndpoint_4014ContainedLinks(view);
 		case BinaryModelRelEditPart.VISUAL_ID:
 			return getBinaryModelRel_4015ContainedLinks(view);
-		case ParameterEditPart.VISUAL_ID:
-			return getParameter_4016ContainedLinks(view);
-		case Parameter2EditPart.VISUAL_ID:
-			return getParameter_4017ContainedLinks(view);
+		case ModelEndpoint2EditPart.VISUAL_ID:
+			return getModelEndpoint_4018ContainedLinks(view);
+		case ModelEndpoint3EditPart.VISUAL_ID:
+			return getModelEndpoint_4019ContainedLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -164,10 +162,10 @@ public class MIDDiagramUpdater {
 			return getModelEndpoint_4014IncomingLinks(view);
 		case BinaryModelRelEditPart.VISUAL_ID:
 			return getBinaryModelRel_4015IncomingLinks(view);
-		case ParameterEditPart.VISUAL_ID:
-			return getParameter_4016IncomingLinks(view);
-		case Parameter2EditPart.VISUAL_ID:
-			return getParameter_4017IncomingLinks(view);
+		case ModelEndpoint2EditPart.VISUAL_ID:
+			return getModelEndpoint_4018IncomingLinks(view);
+		case ModelEndpoint3EditPart.VISUAL_ID:
+			return getModelEndpoint_4019IncomingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -191,10 +189,10 @@ public class MIDDiagramUpdater {
 			return getModelEndpoint_4014OutgoingLinks(view);
 		case BinaryModelRelEditPart.VISUAL_ID:
 			return getBinaryModelRel_4015OutgoingLinks(view);
-		case ParameterEditPart.VISUAL_ID:
-			return getParameter_4016OutgoingLinks(view);
-		case Parameter2EditPart.VISUAL_ID:
-			return getParameter_4017OutgoingLinks(view);
+		case ModelEndpoint2EditPart.VISUAL_ID:
+			return getModelEndpoint_4018OutgoingLinks(view);
+		case ModelEndpoint3EditPart.VISUAL_ID:
+			return getModelEndpoint_4019OutgoingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -262,8 +260,8 @@ public class MIDDiagramUpdater {
 		Operator modelElement = (Operator) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Parameter_4016(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Parameter_4017(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4018(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4019(modelElement));
 		return result;
 	}
 
@@ -293,17 +291,23 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getParameter_4016ContainedLinks(
+	public static List<MIDLinkDescriptor> getModelEndpoint_4018ContainedLinks(
 			View view) {
-		return Collections.emptyList();
+		ModelEndpoint modelElement = (ModelEndpoint) view.getElement();
+		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getParameter_4017ContainedLinks(
+	public static List<MIDLinkDescriptor> getModelEndpoint_4019ContainedLinks(
 			View view) {
-		return Collections.emptyList();
+		ModelEndpoint modelElement = (ModelEndpoint) view.getElement();
+		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
+		return result;
 	}
 
 	/**
@@ -320,9 +324,9 @@ public class MIDDiagramUpdater {
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4015(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4016(
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4017(
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(
 				modelElement, crossReferences));
 		return result;
 	}
@@ -341,9 +345,9 @@ public class MIDDiagramUpdater {
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4015(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4016(
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4017(
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(
 				modelElement, crossReferences));
 		return result;
 	}
@@ -363,9 +367,9 @@ public class MIDDiagramUpdater {
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4015(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4016(
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4017(
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(
 				modelElement, crossReferences));
 		return result;
 	}
@@ -385,9 +389,9 @@ public class MIDDiagramUpdater {
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4015(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4016(
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4017(
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(
 				modelElement, crossReferences));
 		return result;
 	}
@@ -405,6 +409,10 @@ public class MIDDiagramUpdater {
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4014(
 				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(
+				modelElement, crossReferences));
 		return result;
 	}
 
@@ -420,6 +428,10 @@ public class MIDDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4014(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(
 				modelElement, crossReferences));
 		return result;
 	}
@@ -439,9 +451,9 @@ public class MIDDiagramUpdater {
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4015(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4016(
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(
 				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Parameter_4017(
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(
 				modelElement, crossReferences));
 		return result;
 	}
@@ -449,17 +461,41 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getParameter_4016IncomingLinks(
+	public static List<MIDLinkDescriptor> getModelEndpoint_4018IncomingLinks(
 			View view) {
-		return Collections.emptyList();
+		ModelEndpoint modelElement = (ModelEndpoint) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4014(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(
+				modelElement, crossReferences));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getParameter_4017IncomingLinks(
+	public static List<MIDLinkDescriptor> getModelEndpoint_4019IncomingLinks(
 			View view) {
-		return Collections.emptyList();
+		ModelEndpoint modelElement = (ModelEndpoint) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4014(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(
+				modelElement, crossReferences));
+		return result;
 	}
 
 	/**
@@ -518,8 +554,8 @@ public class MIDDiagramUpdater {
 		Operator modelElement = (Operator) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Parameter_4016(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Parameter_4017(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4018(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4019(modelElement));
 		return result;
 	}
 
@@ -550,17 +586,23 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getParameter_4016OutgoingLinks(
+	public static List<MIDLinkDescriptor> getModelEndpoint_4018OutgoingLinks(
 			View view) {
-		return Collections.emptyList();
+		ModelEndpoint modelElement = (ModelEndpoint) view.getElement();
+		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getParameter_4017OutgoingLinks(
+	public static List<MIDLinkDescriptor> getModelEndpoint_4019OutgoingLinks(
 			View view) {
-		return Collections.emptyList();
+		ModelEndpoint modelElement = (ModelEndpoint) view.getElement();
+		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
+		return result;
 	}
 
 	/**
@@ -617,23 +659,24 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_Parameter_4016(
+	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_ModelEndpoint_4018(
 			Operator container) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		for (Iterator<?> links = container.getInputs().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
-			if (false == linkObject instanceof Parameter) {
+			if (false == linkObject instanceof ModelEndpoint) {
 				continue;
 			}
-			Parameter link = (Parameter) linkObject;
-			if (ParameterEditPart.VISUAL_ID != MIDVisualIDRegistry
+			ModelEndpoint link = (ModelEndpoint) linkObject;
+			if (ModelEndpoint2EditPart.VISUAL_ID != MIDVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			Model dst = link.getModel();
+			ExtendibleElement dst = link.getTarget();
 			result.add(new MIDLinkDescriptor(container, dst, link,
-					MIDElementTypes.Parameter_4016, ParameterEditPart.VISUAL_ID));
+					MIDElementTypes.ModelEndpoint_4018,
+					ModelEndpoint2EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -641,24 +684,24 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_Parameter_4017(
+	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_ModelEndpoint_4019(
 			Operator container) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		for (Iterator<?> links = container.getOutputs().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
-			if (false == linkObject instanceof Parameter) {
+			if (false == linkObject instanceof ModelEndpoint) {
 				continue;
 			}
-			Parameter link = (Parameter) linkObject;
-			if (Parameter2EditPart.VISUAL_ID != MIDVisualIDRegistry
+			ModelEndpoint link = (ModelEndpoint) linkObject;
+			if (ModelEndpoint3EditPart.VISUAL_ID != MIDVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			Model dst = link.getModel();
+			ExtendibleElement dst = link.getTarget();
 			result.add(new MIDLinkDescriptor(container, dst, link,
-					MIDElementTypes.Parameter_4017,
-					Parameter2EditPart.VISUAL_ID));
+					MIDElementTypes.ModelEndpoint_4019,
+					ModelEndpoint3EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -746,20 +789,20 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_Parameter_4016(
-			Model target,
+	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_ModelEndpoint_4018(
+			ExtendibleElement target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferences
 				.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != OperatorPackage.eINSTANCE
-					.getParameter_Model()
-					|| false == setting.getEObject() instanceof Parameter) {
+			if (setting.getEStructuralFeature() != MIDPackage.eINSTANCE
+					.getExtendibleElementEndpoint_Target()
+					|| false == setting.getEObject() instanceof ModelEndpoint) {
 				continue;
 			}
-			Parameter link = (Parameter) setting.getEObject();
-			if (ParameterEditPart.VISUAL_ID != MIDVisualIDRegistry
+			ModelEndpoint link = (ModelEndpoint) setting.getEObject();
+			if (ModelEndpoint2EditPart.VISUAL_ID != MIDVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -768,7 +811,8 @@ public class MIDDiagramUpdater {
 			}
 			Operator container = (Operator) link.eContainer();
 			result.add(new MIDLinkDescriptor(container, target, link,
-					MIDElementTypes.Parameter_4016, ParameterEditPart.VISUAL_ID));
+					MIDElementTypes.ModelEndpoint_4018,
+					ModelEndpoint2EditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -777,20 +821,20 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_Parameter_4017(
-			Model target,
+	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_ModelEndpoint_4019(
+			ExtendibleElement target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferences
 				.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != OperatorPackage.eINSTANCE
-					.getParameter_Model()
-					|| false == setting.getEObject() instanceof Parameter) {
+			if (setting.getEStructuralFeature() != MIDPackage.eINSTANCE
+					.getExtendibleElementEndpoint_Target()
+					|| false == setting.getEObject() instanceof ModelEndpoint) {
 				continue;
 			}
-			Parameter link = (Parameter) setting.getEObject();
-			if (Parameter2EditPart.VISUAL_ID != MIDVisualIDRegistry
+			ModelEndpoint link = (ModelEndpoint) setting.getEObject();
+			if (ModelEndpoint3EditPart.VISUAL_ID != MIDVisualIDRegistry
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
@@ -799,8 +843,8 @@ public class MIDDiagramUpdater {
 			}
 			Operator container = (Operator) link.eContainer();
 			result.add(new MIDLinkDescriptor(container, target, link,
-					MIDElementTypes.Parameter_4017,
-					Parameter2EditPart.VISUAL_ID));
+					MIDElementTypes.ModelEndpoint_4019,
+					ModelEndpoint3EditPart.VISUAL_ID));
 
 		}
 		return result;

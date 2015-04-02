@@ -356,18 +356,18 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		return newModelTypeEndpointRef;
 	}
 
-//	public ModelEndpointReference createHeavyModelTypeEndpoint(ExtensionType extensionType, Model targetModelType, Operator containerOperatorType, EReference containerOperatorTypeReference) throws MMINTException {
-//
-//		ModelEndpoint newModelTypeEndpoint = (extensionType.getNewType() == null) ?
-//			MIDFactory.eINSTANCE.createModelEndpoint() :
-//			(ModelEndpoint) extensionType.getNewType();
-//		String newModelTypeEndpointUri = (extensionType.getUri() == null) ?
-//			containerOperatorType.getUri() + MMINT.URI_SEPARATOR + extensionType.getName() :
-//			extensionType.getUri();
-//		ModelEndpointReference newModelTypeEndpointRef = addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, newModelTypeEndpointUri, extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, isBinarySrc, containerModelRelType);
-//
-//		return newModelTypeEndpointRef;
-//	}
+	public ModelEndpoint createHeavyModelTypeEndpoint(ExtensionType extensionType, Model targetModelType, Operator containerOperatorType, EReference containerOperatorTypeFeature) throws MMINTException {
+
+		ModelEndpoint newModelTypeEndpoint = (extensionType.getNewType() == null) ?
+			MIDFactory.eINSTANCE.createModelEndpoint() :
+			(ModelEndpoint) extensionType.getNewType();
+		String newModelTypeEndpointUri = (extensionType.getUri() == null) ?
+			containerOperatorType.getUri() + MMINT.URI_SEPARATOR + extensionType.getName() :
+			extensionType.getUri();
+		//ModelEndpointReference newModelTypeEndpointRef = addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, newModelTypeEndpointUri, extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, isBinarySrc, containerModelRelType);
+
+		return newModelTypeEndpoint;
+	}
 
 	/**
 	 * Creates and adds a "heavy" link type and a reference to it to the

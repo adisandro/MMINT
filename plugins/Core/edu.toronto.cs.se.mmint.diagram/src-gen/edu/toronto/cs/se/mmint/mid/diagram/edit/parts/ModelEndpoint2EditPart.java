@@ -23,24 +23,24 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ParameterInputSemanticEditPolicy;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ParameterItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ModelEndpoint2ItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.OperatorModelEndpointInputSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class ParameterEditPart extends ConnectionNodeEditPart implements
+public class ModelEndpoint2EditPart extends ConnectionNodeEditPart implements
 		ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4016;
+	public static final int VISUAL_ID = 4018;
 
 	/**
 	 * @generated
 	 */
-	public ParameterEditPart(View view) {
+	public ModelEndpoint2EditPart(View view) {
 		super(view);
 	}
 
@@ -50,18 +50,19 @@ public class ParameterEditPart extends ConnectionNodeEditPart implements
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ParameterItemSemanticEditPolicy());
+				new ModelEndpoint2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ParameterInputSemanticEditPolicy());
+				new OperatorModelEndpointInputSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ParameterNameEditPart) {
-			((ParameterNameEditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureOperatorInputsLabelFigure());
+		if (childEditPart instanceof ModelEndpointNameEditPart) {
+			((ModelEndpointNameEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureOperatorInputsLabelFigure());
 			return true;
 		}
 		return false;
@@ -81,7 +82,7 @@ public class ParameterEditPart extends ConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ParameterNameEditPart) {
+		if (childEditPart instanceof ModelEndpointNameEditPart) {
 			return true;
 		}
 		return false;

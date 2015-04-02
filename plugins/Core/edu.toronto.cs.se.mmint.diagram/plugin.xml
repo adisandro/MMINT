@@ -257,7 +257,7 @@ Contributors:
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="MID"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2012,2013,2014,2015"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4013,4014,4015,4016,4017"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4013,4014,4015,4018,4019"/>
       </viewProvider>
    </extension>
 
@@ -272,7 +272,7 @@ Contributors:
             <method name="getType()" value="2011,2012,2013,2014,2015"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4013,4014,4015,4016,4017"/>
+            <method name="getType()" value="4013,4014,4015,4018,4019"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="5011,5016,5012,5017,5013,5018,5014,5019,5015"/>
@@ -435,23 +435,22 @@ Contributors:
             <param name="semanticHint" value="4015"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Operator">
-         <metamodelType
-               id="edu.toronto.cs.se.mmint.diagram.Parameter_4016"
-               name="%metatype.name.Parameter_4016"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Parameter"
-               edithelper="edu.toronto.cs.se.mmint.mid.diagram.edit.helpers.ParameterEditHelper">
-            <param name="semanticHint" value="4016"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Operator">
+      <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID">
          <specializationType
-               id="edu.toronto.cs.se.mmint.diagram.Parameter_4017"
-               name="%metatype.name.Parameter_4017"
+               id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4018"
+               name="%metatype.name.ModelEndpoint_4018"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.mmint.diagram.Parameter_4016"/>
-            <param name="semanticHint" value="4017"/>
+            <specializes id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4014"/>
+            <param name="semanticHint" value="4018"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID">
+         <specializationType
+               id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4019"
+               name="%metatype.name.ModelEndpoint_4019"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4014"/>
+            <param name="semanticHint" value="4019"/>
          </specializationType>
       </metamodel>
    </extension>
@@ -475,8 +474,8 @@ Contributors:
          <elementType ref="edu.toronto.cs.se.mmint.diagram.ExtendibleElementSupertype_4013"/>
          <elementType ref="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4014"/>
          <elementType ref="edu.toronto.cs.se.mmint.diagram.BinaryModelRel_4015"/>
-         <elementType ref="edu.toronto.cs.se.mmint.diagram.Parameter_4016"/>
-         <elementType ref="edu.toronto.cs.se.mmint.diagram.Parameter_4017"/>
+         <elementType ref="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4018"/>
+         <elementType ref="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4019"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

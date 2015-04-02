@@ -25,15 +25,15 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint2EditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint3EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointName2EditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointNameEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.OperatorEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Parameter2EditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ParameterEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ParameterName2EditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ParameterNameEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel10EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel11EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel12EditPart;
@@ -51,7 +51,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel9EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.expressions.MIDOCLFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.operator.Parameter;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
@@ -292,13 +291,13 @@ public class MIDVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ParameterEditPart.VISUAL_ID:
-			if (ParameterNameEditPart.VISUAL_ID == nodeVisualID) {
+		case ModelEndpoint2EditPart.VISUAL_ID:
+			if (ModelEndpointNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case Parameter2EditPart.VISUAL_ID:
-			if (ParameterName2EditPart.VISUAL_ID == nodeVisualID) {
+		case ModelEndpoint3EditPart.VISUAL_ID:
+			if (ModelEndpointName2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -322,15 +321,15 @@ public class MIDVisualIDRegistry {
 				domainElement.eClass())) {
 			return BinaryModelRelEditPart.VISUAL_ID;
 		}
-		if (OperatorPackage.eINSTANCE.getParameter().isSuperTypeOf(
+		if (MIDPackage.eINSTANCE.getModelEndpoint().isSuperTypeOf(
 				domainElement.eClass())
-				&& isParameter_4016((Parameter) domainElement)) {
-			return ParameterEditPart.VISUAL_ID;
+				&& isModelEndpoint_4018((ModelEndpoint) domainElement)) {
+			return ModelEndpoint2EditPart.VISUAL_ID;
 		}
-		if (OperatorPackage.eINSTANCE.getParameter().isSuperTypeOf(
+		if (MIDPackage.eINSTANCE.getModelEndpoint().isSuperTypeOf(
 				domainElement.eClass())
-				&& isParameter_4017((Parameter) domainElement)) {
-			return Parameter2EditPart.VISUAL_ID;
+				&& isModelEndpoint_4019((ModelEndpoint) domainElement)) {
+			return ModelEndpoint3EditPart.VISUAL_ID;
 		}
 		return -1;
 	}
@@ -393,14 +392,14 @@ public class MIDVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static boolean isParameter_4016(Parameter domainElement) {
+	private static boolean isModelEndpoint_4018(ModelEndpoint domainElement) {
 		return domainElement.eContainmentFeature().getName().equals("inputs");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isParameter_4017(Parameter domainElement) {
+	private static boolean isModelEndpoint_4019(ModelEndpoint domainElement) {
 		return domainElement.eContainmentFeature().getName().equals("outputs");
 	}
 

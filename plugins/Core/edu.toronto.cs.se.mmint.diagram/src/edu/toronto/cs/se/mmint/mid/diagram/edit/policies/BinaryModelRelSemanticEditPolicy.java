@@ -25,7 +25,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRelAddModelEndpoin
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRelChangeModelEndpointCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.BinaryModelRelItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 
 /**

@@ -12,29 +12,27 @@
 package edu.toronto.cs.se.mmint.mid.diagram.edit.policies;
 
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
-import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
-
 /**
- * @generated
+ * The semantic edit policy for output parameters.
+ * 
+ * @author Vivien Suen
+ * 
  */
-public class Parameter2ItemSemanticEditPolicy extends
-		MIDBaseItemSemanticEditPolicy {
+public class OperatorModelEndpointOutputSemanticEditPolicy extends ModelEndpoint3ItemSemanticEditPolicy {
 
-	/**
-	 * @generated
+	/** Gets the command to destroy an output parameter.
+	 * 
+	 * @param req
+	 *            The request.
+	 * @return The executable command.
 	 */
-	public Parameter2ItemSemanticEditPolicy() {
-		super(MIDElementTypes.Parameter_4017);
-	}
-
-	/**
-	 * @generated
-	 */
+	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		return getGEFWrapper(new DestroyElementCommand(req));
+
+		return UnexecutableCommand.INSTANCE;
 	}
 
 }

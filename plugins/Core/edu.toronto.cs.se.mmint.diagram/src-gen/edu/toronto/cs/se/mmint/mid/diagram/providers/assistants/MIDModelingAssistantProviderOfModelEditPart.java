@@ -154,8 +154,8 @@ public class MIDModelingAssistantProviderOfModelEditPart extends
 		types.add(MIDElementTypes.ExtendibleElementSupertype_4013);
 		types.add(MIDElementTypes.ModelEndpoint_4014);
 		types.add(MIDElementTypes.BinaryModelRel_4015);
-		types.add(MIDElementTypes.Parameter_4016);
-		types.add(MIDElementTypes.Parameter_4017);
+		types.add(MIDElementTypes.ModelEndpoint_4018);
+		types.add(MIDElementTypes.ModelEndpoint_4019);
 		return types;
 	}
 
@@ -191,9 +191,9 @@ public class MIDModelingAssistantProviderOfModelEditPart extends
 			types.add(MIDElementTypes.Model_2012);
 			types.add(MIDElementTypes.ModelRel_2013);
 			types.add(MIDElementTypes.ModelRel_2014);
-		} else if (relationshipType == MIDElementTypes.Parameter_4016) {
+		} else if (relationshipType == MIDElementTypes.ModelEndpoint_4018) {
 			types.add(MIDElementTypes.Operator_2015);
-		} else if (relationshipType == MIDElementTypes.Parameter_4017) {
+		} else if (relationshipType == MIDElementTypes.ModelEndpoint_4019) {
 			types.add(MIDElementTypes.Operator_2015);
 		}
 		return types;
