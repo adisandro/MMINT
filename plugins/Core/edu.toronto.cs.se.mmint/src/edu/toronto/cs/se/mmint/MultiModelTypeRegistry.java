@@ -37,7 +37,6 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.Parameter;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -477,58 +476,6 @@ public class MultiModelTypeRegistry {
 		);
 
 		return dialog;
-	}
-
-	/**
-	 * Gets the signature of an operator type's parameter.
-	 * 
-	 * @param parameter
-	 *            The parameter of an operator type.
-	 * @return The signature of the parameter.
-	 */
-	private static String getParameterSignature(Parameter parameter) {
-
-		String signature = parameter.getModel().getName();
-		if (parameter.isVararg()) {
-			signature += "...";
-		}
-		signature += " " + parameter.getName();
-
-		return signature;
-	}
-
-	/**
-	 * Gets the signature of an operator type.
-	 * 
-	 * @param operatorType
-	 *            The operator type.
-	 * @return The signature of the operator type.
-	 */
-	public static String getOperatorSignature(Operator operatorType) {
-
-		// output parameters
-		String signature = "[";
-		for (Parameter parameter : operatorType.getOutputs()) {
-			signature += getParameterSignature(parameter) + ", ";
-		}
-		if (operatorType.getOutputs().size() > 0) {
-			signature = signature.substring(0, signature.length() - 2);
-		}
-		signature += "] ";
-
-		// operator name
-		signature += operatorType.getName() + "(";
-
-		// input parameters
-		for (Parameter parameter : operatorType.getInputs()) {
-			signature += getParameterSignature(parameter) + ", ";
-		}
-		if (operatorType.getInputs().size() > 0) {
-			signature = signature.substring(0, signature.length() - 2);
-		}
-		signature += ")";
-
-		return signature;
 	}
 
 	/**

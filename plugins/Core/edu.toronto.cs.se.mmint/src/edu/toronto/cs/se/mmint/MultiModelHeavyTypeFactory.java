@@ -16,12 +16,11 @@ import java.util.Map;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.RegistryFactory;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -33,7 +32,6 @@ import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -192,9 +190,45 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	}
 
 	/**
+	 * Adds a "heavy" model type endpoint (for an operator type) to the Type
+	 * MID.
+	 * 
+	 * @param newModelTypeEndpoint
+	 *            The new model type endpoint to be added.
+	 * @param newModelTypeEndpointUri
+	 *            The uri of the new model type endpoint.
+	 * @param modelTypeEndpointUri
+	 *            The uri of the supertype of the new model type endpoint, null
+	 *            if the root model type endpoint should be used as supertype.
+	 * @param newModelTypeEndpointName
+	 *            The name of the new model type endpoint.
+	 * @param targetModelType
+	 *            The new model type that is the target of the new model type
+	 *            endpoint.
+	 * @param containerOperatorType
+	 *            The operator type that will contain the new model type
+	 *            endpoint.
+	 * @param containerFeatureName
+	 *            The name of the feature in the operator type that will contain
+	 *            the new model type endpoint.
+	 * @return The created reference to the new model type endpoint.
+	 * @throws MMINTException
+	 *             If the uri of the new model type endpoint is already
+	 *             registered in the Type MID.
+	 */
+	protected void addHeavyModelTypeEndpoint(@NonNull ModelEndpoint newModelTypeEndpoint, @NonNull String newModelTypeEndpointUri, @Nullable String modelTypeEndpointUri, @NonNull String newModelTypeEndpointName, @NonNull Model targetModelType, @NonNull Operator containerOperatorType, @NonNull String containerFeatureName) throws MMINTException {
+
+		ModelEndpoint modelTypeEndpoint = getSupertype(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri);
+		addHeavyType(newModelTypeEndpoint, modelTypeEndpoint, newModelTypeEndpointUri, newModelTypeEndpointName);
+		addModelTypeEndpoint(newModelTypeEndpoint, targetModelType, containerOperatorType, containerFeatureName);
+	}
+
+	/**
 	 * Adds a "heavy" model type endpoint and a reference to it to the
 	 * repository.
 	 * 
+	 * @param newModelTypeEndpoint
+	 *            The new model type endpoint to be added.
 	 * @param newModelTypeEndpointUri
 	 *            The uri of the new model type endpoint.
 	 * @param modelTypeEndpointUri
@@ -217,7 +251,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new model type endpoint is already
 	 *             registered in the repository.
 	 */
-	protected ModelEndpointReference addHeavyModelTypeEndpointAndModelTypeEndpointReference(ModelEndpoint newModelTypeEndpoint, String newModelTypeEndpointUri, String modelTypeEndpointUri, String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
+	protected @NonNull ModelEndpointReference addHeavyModelTypeEndpointAndModelTypeEndpointReference(@NonNull ModelEndpoint newModelTypeEndpoint, @NonNull String newModelTypeEndpointUri, @Nullable String modelTypeEndpointUri, @NonNull String newModelTypeEndpointName, @NonNull Model targetModelType, boolean isBinarySrc, @NonNull ModelRel containerModelRelType) throws MMINTException {
 
 		ModelEndpoint modelTypeEndpoint = getSupertype(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri);
 		addHeavyType(newModelTypeEndpoint, modelTypeEndpoint, newModelTypeEndpointUri, newModelTypeEndpointName);
@@ -346,7 +380,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new model type endpoint is already
 	 *             registered in the repository.
 	 */
-	public ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(ExtensionType extensionType, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
+	public @NonNull ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(@NonNull ExtensionType extensionType, @NonNull Model targetModelType, boolean isBinarySrc, @NonNull ModelRel containerModelRelType) throws MMINTException {
 
 		ModelEndpoint newModelTypeEndpoint = (extensionType.getNewType() == null) ?
 			MIDFactory.eINSTANCE.createModelEndpoint() :
@@ -356,7 +390,27 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		return newModelTypeEndpointRef;
 	}
 
-	public ModelEndpoint createHeavyModelTypeEndpoint(ExtensionType extensionType, Model targetModelType, Operator containerOperatorType, EReference containerOperatorTypeFeature) throws MMINTException {
+	/**
+	 * Creates and adds a "heavy" model type endpoint (for an operator type) to
+	 * the Type MID.
+	 * 
+	 * @param extensionType
+	 *            The extension info for the new model type endpoint.
+	 * @param targetModelType
+	 *            The model type that is the target of the new model type
+	 *            endpoint.
+	 * @param containerOperatorType
+	 *            The operator type that will contain the new model type
+	 *            endpoint.
+	 * @param containerFeatureName
+	 *            The name of the feature in the operator type that will contain
+	 *            the new model type endpoint.
+	 * @return The created model type endpoint.
+	 * @throws MMINTException
+	 *             If the uri of the new model type endpoint is already
+	 *             registered in the Type MID.
+	 */
+	public @NonNull ModelEndpoint createHeavyModelTypeEndpoint(@NonNull ExtensionType extensionType, @NonNull Model targetModelType, @NonNull Operator containerOperatorType, @NonNull String containerFeatureName) throws MMINTException {
 
 		ModelEndpoint newModelTypeEndpoint = (extensionType.getNewType() == null) ?
 			MIDFactory.eINSTANCE.createModelEndpoint() :
@@ -364,7 +418,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		String newModelTypeEndpointUri = (extensionType.getUri() == null) ?
 			containerOperatorType.getUri() + MMINT.URI_SEPARATOR + extensionType.getName() :
 			extensionType.getUri();
-		//ModelEndpointReference newModelTypeEndpointRef = addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, newModelTypeEndpointUri, extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, isBinarySrc, containerModelRelType);
+		addHeavyModelTypeEndpoint(newModelTypeEndpoint, newModelTypeEndpointUri, extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, containerOperatorType, containerFeatureName);
 
 		return newModelTypeEndpoint;
 	}
@@ -568,36 +622,6 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		addOperatorType(newOperatorType, MMINT.cachedTypeMID);
 
 		return newOperatorType;
-	}
-
-	/**
-	 * Creates and adds a "heavy" parameter type (i.e. a formal parameter) to
-	 * the repository.
-	 * 
-	 * @param newParamTypeName
-	 *            The name of the new parameter type.
-	 * @param modelTypeUri
-	 *            The uri of the model type that is the target of the new
-	 *            parameter type.
-	 * @param isVararg
-	 *            True if the new parameter type represents a variable number of
-	 *            parameter types of the same kind, false otherwise.
-	 * @param paramTypes
-	 *            The list of parameter types that will contain the new
-	 *            parameter type.
-	 * @param operatorType
-	 *            The operator type that will contain the new parameter type.
-	 * @throws MMINTException
-	 *             If the target model type is not registered in the repository.
-	 */
-	public static void createHeavyOperatorTypeParameter(String newParamTypeName, String modelTypeUri, boolean isVararg, EList<Parameter> paramTypes, Operator operatorType) throws MMINTException {
-
-		Parameter newParamType = OperatorFactory.eINSTANCE.createParameter();
-		Model modelType = MultiModelTypeRegistry.getType(modelTypeUri);
-		if (modelType == null) {
-			throw new MMINTException("Model type " + modelTypeUri + " is not registered");
-		}
-		addOperatorTypeParameter(newParamType, newParamTypeName, modelType, isVararg, paramTypes, operatorType);
 	}
 
 }

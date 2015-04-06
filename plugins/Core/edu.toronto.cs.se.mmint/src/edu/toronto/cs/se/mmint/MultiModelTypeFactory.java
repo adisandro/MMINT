@@ -16,7 +16,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -31,6 +30,7 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
@@ -271,15 +271,41 @@ public class MultiModelTypeFactory {
 	 * @param containerModelRelType
 	 *            The model relationship type that will contain the new model
 	 *            type endpoint.
-	 * @throws MMINTException 
+	 * @throws MMINTException
+	 *             If the container model relationship is a model relationship
+	 *             instance.
 	 */
-	public static void addModelTypeEndpoint(ModelEndpoint newModelTypeEndpoint, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
+	public static void addModelTypeEndpoint(@NonNull ModelEndpoint newModelTypeEndpoint, @NonNull Model targetModelType, boolean isBinarySrc, @NonNull ModelRel containerModelRelType) throws MMINTException {
 
 		addTypeEndpoint(newModelTypeEndpoint, targetModelType);
 		containerModelRelType.getModelEndpoints().add(newModelTypeEndpoint);
 		if (containerModelRelType instanceof BinaryModelRel) {
 			((BinaryModelRel) containerModelRelType).addModelType(targetModelType, isBinarySrc);
 		}
+	}
+
+	/**
+	 * Adds a model type endpoint to an operator type.
+	 * 
+	 * @param newModelTypeEndpoint
+	 *            The new model type endpoint to be added.
+	 * @param targetModelType
+	 *            The new model type that is the target of the new model type
+	 *            endpoint.
+	 * @param containerOperatorType
+	 *            The operator type that will contain the new model type
+	 *            endpoint.
+	 * @param containerFeatureName
+	 *            The name of the feature in the operator type that will contain
+	 *            the new model type endpoint.
+	 * @throws MMINTException
+	 *             If the feature name is not found in the container operator
+	 *             type.
+	 */
+	public static void addModelTypeEndpoint(@NonNull ModelEndpoint newModelTypeEndpoint, @NonNull Model targetModelType, @NonNull Operator containerOperatorType, @NonNull String containerFeatureName) throws MMINTException {
+
+		addTypeEndpoint(newModelTypeEndpoint, targetModelType);
+		MultiModelUtils.setModelObjFeature(containerOperatorType, containerFeatureName, newModelTypeEndpoint);
 	}
 
 	/**
@@ -391,32 +417,6 @@ public class MultiModelTypeFactory {
 	}
 
 	/**
-	 * Adds a parameter type (i.e. a formal parameter) to an operator type.
-	 * 
-	 * @param newParamType
-	 *            The new parameter type to be added.
-	 * @param newParamTypeName
-	 *            The name of the new parameter type.
-	 * @param modelType
-	 *            The model type that is the target of the new parameter type.
-	 * @param isVararg
-	 *            True if the new parameter type represents a variable number of
-	 *            parameter types of the same kind, false otherwise.
-	 * @param paramTypes
-	 *            The list of parameter types that will contain the new
-	 *            parameter type.
-	 * @param operatorType
-	 *            The operator type that will contain the new parameter type.
-	 */
-	protected static void addOperatorTypeParameter(Parameter newParamType, String newParamTypeName, Model modelType, boolean isVararg, EList<Parameter> paramTypes, Operator operatorType) {
-
-		newParamType.setModel(modelType);
-		newParamType.setName(newParamTypeName);
-		newParamType.setVararg(isVararg);
-		paramTypes.add(newParamType);
-	}
-
-	/**
 	 * Adds additional info for a random operator type.
 	 * 
 	 * @param operatorType
@@ -435,7 +435,7 @@ public class MultiModelTypeFactory {
 	 */
 	public static void addOperatorTypeConversion(ConversionOperator operatorType) {
 
-		operatorType.getInputs().get(0).getModel().getConversionOperators().add(operatorType);
+		operatorType.getInputs().get(0).getTarget().getConversionOperators().add(operatorType);
 	}
 
 }
