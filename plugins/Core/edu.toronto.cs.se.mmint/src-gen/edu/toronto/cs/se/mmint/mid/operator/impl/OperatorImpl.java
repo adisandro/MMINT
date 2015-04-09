@@ -516,6 +516,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
 		// delete the "thing"
+		getInputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), multiModel));
+		getOutputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), multiModel));
+		//TODO MMINT[MEGAMODELS] Deal with generics
 		super.deleteType();
 		multiModel.getOperators().remove(this);
 		// delete the subtypes of the "thing"

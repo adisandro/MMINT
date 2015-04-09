@@ -423,6 +423,7 @@ public class MMINT implements MMINTConstants {
 		Operator newOperatorType = extensionType.getFactory().createHeavyOperatorType(extensionType);
 		IConfigurationElement[] genericsParamTypeConfigs = extensionConfig.getChildren(OPERATORS_CHILD_GENERICS);
 		if (genericsParamTypeConfigs.length > 0) {
+			//TODO MMINT[MEGAMODELS] Deal with generics
 			//createOperatorTypeParameters(genericsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Generics().getName());
 		}
 		IConfigurationElement[] inputsParamTypeConfigs = extensionConfig.getChildren(OPERATORS_CHILD_INPUTS);
