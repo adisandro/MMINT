@@ -109,7 +109,7 @@ public class RelationshipDiagramViewProvider extends MIDViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ENDPOINTS_ENABLED))) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED))) {
 			return edge;
 		}
 		Node label6007 = createLabel(edge,
@@ -177,7 +177,7 @@ public class RelationshipDiagramViewProvider extends MIDViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_LINKS_ENABLED))) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_MODELRELS_ENABLED))) {
 			return edge;
 		}
 		Node label6008 = createLabel(edge,
@@ -196,7 +196,7 @@ public class RelationshipDiagramViewProvider extends MIDViewProvider {
 			location6009.setX(0);
 			location6009.setY(60);
 		}
-		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ENDPOINTS_ENABLED))) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED))) {
 			return edge;
 		}
 		Node label6010 = createLabel(edge,
@@ -262,7 +262,7 @@ public class RelationshipDiagramViewProvider extends MIDViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_LINKS_ENABLED))) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_MODELRELS_ENABLED))) {
 			return edge;
 		}
 		Node label6011 = createLabel(edge,
@@ -281,7 +281,7 @@ public class RelationshipDiagramViewProvider extends MIDViewProvider {
 			location6012.setX(0);
 			location6012.setY(60);
 		}
-		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ENDPOINTS_ENABLED))) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED))) {
 			return edge;
 		}
 		Node label6013 = createLabel(edge,
@@ -347,7 +347,7 @@ public class RelationshipDiagramViewProvider extends MIDViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ENDPOINTS_ENABLED))) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED))) {
 			return edge;
 		}
 		Node label6014 = createLabel(edge,

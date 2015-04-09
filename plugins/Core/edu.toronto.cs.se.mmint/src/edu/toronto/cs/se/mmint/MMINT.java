@@ -121,6 +121,8 @@ public class MMINT implements MMINTConstants {
 	 * - Move modelepedia types into the examples directory
 	 * - Document how everything works in the user guide
 	 * - Add javadoc + @NonNull/@Nullable annotations
+	 * - Rename link to mapping
+	 * - Rethink mid link icons with/without mavo
 	 */
 
 	/**
@@ -846,10 +848,9 @@ public class MMINT implements MMINTConstants {
 
 		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(MMINTActivator.PLUGIN_ID);
 		initPreference(preferences, PREFERENCE_MENU_ICONS_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_MENU_ENDPOINTS_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_MENU_MODELRELS_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_MENU_LINKS_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_MENU_DIAGRAMS_CREATION_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_TESTS_ENABLED, "false", true);
 		for (String languageId : languageReasoners.keySet()) {
 			String reasonerName = preferences.get(PREFERENCE_MENU_LANGUAGE_REASONER + languageId, null);

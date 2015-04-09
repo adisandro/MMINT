@@ -3,7 +3,7 @@
   <figures name="Default">
     <figures xsi:type="gmfgraph:PolylineDecoration" name="ModelEndpointTgtDecoration" lineWidth="3"/>
     <figures xsi:type="gmfgraph:PolylineDecoration" name="BinaryModelRelTgtDecoration" lineWidth="3"/>
-    <figures xsi:type="gmfgraph:PolylineDecoration" name="OperatorInputsTgtDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="OperatorInputsSrcDecoration"/>
     <figures xsi:type="gmfgraph:PolylineDecoration" name="OperatorOutputsTgtDecoration"/>
     <figures xsi:type="gmfgraph:PolygonDecoration" name="ExtendibleElementSupertypeTgtDecoration" lineWidth="2">
       <backgroundColor xsi:type="gmfgraph:ConstantColor"/>
@@ -91,7 +91,7 @@
       <accessors figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="OperatorInputsFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="OperatorInputsFigure" targetDecoration="//@figures.0/@figures.2">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="OperatorInputsFigure" sourceDecoration="//@figures.0/@figures.2">
         <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
         <children xsi:type="gmfgraph:Label" name="OperatorInputsLabelFigure" text=""/>
       </actualFigure>
@@ -117,8 +117,8 @@
   <labels name="ModelRelLabel" figure="ModelRelFigure" elementIcon="false" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels name="OperatorLabel" figure="OperatorFigure" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
   <labels name="BinaryModelRelLabel" figure="BinaryModelRelFigure" elementIcon="false" accessor="//@figures.0/@descriptors.5/@accessors.0"/>
-  <labels name="OperatorInputsLabel" figure="OperatorInputsFigure" accessor="//@figures.0/@descriptors.6/@accessors.0"/>
-  <labels name="OperatorOutputsLabel" figure="OperatorOutputsFigure" accessor="//@figures.0/@descriptors.7/@accessors.0"/>
+  <labels name="OperatorInputsLabel" figure="OperatorInputsFigure" elementIcon="false" accessor="//@figures.0/@descriptors.6/@accessors.0"/>
+  <labels name="OperatorOutputsLabel" figure="OperatorOutputsFigure" elementIcon="false" accessor="//@figures.0/@descriptors.7/@accessors.0"/>
   <labels name="ModelEndpointLabel" figure="ModelEndpointFigure" elementIcon="false" accessor="//@figures.0/@descriptors.4/@accessors.0">
     <facets xsi:type="gmfgraph:AlignmentFacet"/>
   </labels>

@@ -17,13 +17,10 @@ import java.util.List;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
-import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 public class NewModelDialogContentProvider implements ITreeContentProvider {
 
@@ -78,20 +75,7 @@ public class NewModelDialogContentProvider implements ITreeContentProvider {
 			return modelTypes.toArray();
 		}
 		if (parentElement instanceof Model) {
-			boolean allowDiagramTypes = Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_DIAGRAMS_CREATION_ENABLED));
-			if (allowDiagramTypes) {
-				return ((Model) parentElement).getEditors().toArray();
-			}
-			else {
-				List<Editor> editorTypes = new ArrayList<Editor>();
-				for (Editor editorType : ((Model) parentElement).getEditors()) {
-					if (editorType instanceof Diagram) {
-						continue;
-					}
-					editorTypes.add(editorType);
-				}
-				return editorTypes.toArray();
-			}
+			return ((Model) parentElement).getEditors().toArray();
 		}
 
 		return new Object[] {};

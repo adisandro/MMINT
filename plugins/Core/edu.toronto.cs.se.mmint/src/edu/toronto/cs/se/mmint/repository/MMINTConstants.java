@@ -160,10 +160,9 @@ public interface MMINTConstants {
 	public final static String PREFERENCE_MMINT_ID = "edu.toronto.cs.se.mmint";
 	public final static String PREFERENCE_MENU_ID = PREFERENCE_MMINT_ID + ".mid.diagram.menu";
 	public final static String PREFERENCE_MENU_ICONS_ENABLED = PREFERENCE_MENU_ID + ".IconsEnabled";
-	public final static String PREFERENCE_MENU_ENDPOINTS_ENABLED = PREFERENCE_MENU_ID + ".EndpointsEnabled";
 	public final static String PREFERENCE_MENU_MODELRELS_ENABLED = PREFERENCE_MENU_ID + ".ModelRelsEnabled";
-	public final static String PREFERENCE_MENU_LINKS_ENABLED = PREFERENCE_MENU_ID + ".LinksEnabled";
-	public final static String PREFERENCE_MENU_DIAGRAMS_CREATION_ENABLED = PREFERENCE_MENU_ID + ".DiagramsCreationEnabled";
+	public final static String PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED = PREFERENCE_MENU_ID + ".ModelRelEndpointsEnabled";
+	public final static String PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED = PREFERENCE_MENU_ID + ".OperatorEndpointsEnabled";
 	public final static String PREFERENCE_MENU_LANGUAGE_REASONER = PREFERENCE_MENU_ID + ".Reasoner";
 	public final static String PREFERENCE_TESTS_ENABLED = PREFERENCE_MMINT_ID + ".TestsEnabled";
 

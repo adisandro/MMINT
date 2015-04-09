@@ -37,7 +37,11 @@ import org.eclipse.swt.graphics.FontData;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint2EditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint3EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointName2EditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointNameEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel14EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel15EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel6EditPart;
@@ -61,6 +65,7 @@ public class MIDDiagramViewProvider extends MIDViewProvider {
 	 * Customizes label creation.
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public Edge createModelEndpoint_4014(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
@@ -103,7 +108,7 @@ public class MIDDiagramViewProvider extends MIDViewProvider {
 					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
 					routing);
 		}
-		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ENDPOINTS_ENABLED))) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED))) {
 			return edge;
 		}
 		Node label6011 = createLabel(edge,
@@ -126,12 +131,135 @@ public class MIDDiagramViewProvider extends MIDViewProvider {
 	}
 
 	/**
-	 * Adds missing diagram hint for binary model relationships.
+	 * Customizes label creation.
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
+	public Edge createModelEndpoint_4018(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Edge edge = NotationFactory.eINSTANCE.createEdge();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
+				.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(MIDVisualIDRegistry
+				.getType(ModelEndpoint2EditPart.VISUAL_ID));
+		edge.setElement(domainElement);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+		FontStyle edgeFontStyle = (FontStyle) edge
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (edgeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			edgeFontStyle.setFontName(fontData.getName());
+			edgeFontStyle.setFontHeight(fontData.getHeight());
+			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Routing routing = Routing.get(prefStore
+				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
+		}
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED))) {
+			return edge;
+		}
+		Node label6019 = createLabel(edge,
+				MIDVisualIDRegistry
+						.getType(ModelEndpointNameEditPart.VISUAL_ID));
+		label6019.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6019 = (Location) label6019.getLayoutConstraint();
+		location6019.setX(0);
+		location6019.setY(40);
+		return edge;
+	}
+
+	/**
+	 * Customizes label creation.
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Edge createModelEndpoint_4019(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Edge edge = NotationFactory.eINSTANCE.createEdge();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
+				.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(MIDVisualIDRegistry
+				.getType(ModelEndpoint3EditPart.VISUAL_ID));
+		edge.setElement(domainElement);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+		FontStyle edgeFontStyle = (FontStyle) edge
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (edgeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			edgeFontStyle.setFontName(fontData.getName());
+			edgeFontStyle.setFontHeight(fontData.getHeight());
+			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Routing routing = Routing.get(prefStore
+				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
+		}
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED))) {
+			return edge;
+		}
+		Node label6020 = createLabel(edge,
+				MIDVisualIDRegistry
+						.getType(ModelEndpointName2EditPart.VISUAL_ID));
+		label6020.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location6020 = (Location) label6020.getLayoutConstraint();
+		location6020.setX(0);
+		location6020.setY(40);
+		return edge;
+	}
+
+	/**
+	 * Adds missing diagram hint for binary model relationships and customizes label creation.
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public Edge createBinaryModelRel_4015(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 
-		Edge edge = createBinaryModelRel_4015Gen(domainElement, containerView, index, persisted, preferencesHint);
+		Edge edge = _createBinaryModelRel_4015(domainElement, containerView, index, persisted, preferencesHint);
 		HintedDiagramLinkStyle diagramFacet = NotationFactory.eINSTANCE.createHintedDiagramLinkStyle();
 		diagramFacet.setHint("Relationship");
 		edge.getStyles().add(diagramFacet);
@@ -143,7 +271,7 @@ public class MIDDiagramViewProvider extends MIDViewProvider {
 	 * Customizes label creation.
 	 */
 	@SuppressWarnings("unchecked")
-	public Edge createBinaryModelRel_4015Gen(EObject domainElement,
+	private Edge _createBinaryModelRel_4015(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
@@ -204,7 +332,7 @@ public class MIDDiagramViewProvider extends MIDViewProvider {
 			location6013.setX(0);
 			location6013.setY(60);
 		}
-		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ENDPOINTS_ENABLED))) {
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED))) {
 			return edge;
 		}
 		Node label6014 = createLabel(edge,
