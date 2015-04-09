@@ -49,7 +49,7 @@
     </children>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_YXPdYXAtEeShFJi-rsWWvQ"/>
     <element xmi:type="statemachine_mavo:State" href="p2p_refined0_transformed0.statemachine_mavo#//@states.2"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YXPdYnAtEeShFJi-rsWWvQ" x="684" y="348"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YXPdYnAtEeShFJi-rsWWvQ" x="660" y="348"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_YXPdaHAtEeShFJi-rsWWvQ" type="2001" fontName="Cantarell" fontHeight="16">
     <children xmi:type="notation:DecorationNode" xmi:id="_YXPda3AtEeShFJi-rsWWvQ" type="5003"/>
