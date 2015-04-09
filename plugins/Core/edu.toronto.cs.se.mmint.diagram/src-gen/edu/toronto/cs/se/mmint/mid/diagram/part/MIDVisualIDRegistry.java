@@ -50,6 +50,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel8EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel9EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.expressions.MIDOCLFactory;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -386,7 +387,7 @@ public class MIDVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isModelEndpoint_4014(ModelEndpoint domainElement) {
-		return !(domainElement.eContainer() instanceof BinaryModelRel);
+		return !(domainElement.eContainer() instanceof BinaryModelRel) && !(domainElement.eContainer() instanceof Operator);
 	}
 
 	/**

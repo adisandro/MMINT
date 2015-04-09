@@ -133,7 +133,7 @@
     <domainMetaElement
         href="mid.ecore#//ModelEndpoint"/>
     <domainSpecialization
-        body="return !(domainElement.eContainer() instanceof BinaryModelRel);"
+        body="return !(domainElement.eContainer() instanceof BinaryModelRel) &amp;&amp; !(domainElement.eContainer() instanceof Operator);"
         language="java"/>
     <labelMappings>
       <diagramLabel
