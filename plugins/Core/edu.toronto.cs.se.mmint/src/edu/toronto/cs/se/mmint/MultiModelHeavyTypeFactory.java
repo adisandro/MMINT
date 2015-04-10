@@ -24,6 +24,7 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
@@ -31,7 +32,9 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -59,12 +62,10 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 * @param newTypeUri
 	 *            The uri of the new type.
 	 * @param typeUri
-	 *            The uri of the supertype of the new type, null if the root uri
-	 *            should be used instead.
-	 * @return The supertype of the new type, null if the new type is the root
-	 *         type.
+	 *            The uri of the supertype of the new type, null if the root uri should be used instead.
+	 * @return The supertype of the new type, null if the new type is the root type.
 	 */
-	protected static <T extends ExtendibleElement> T getSupertype(T newType, String newTypeUri, String typeUri) {
+	protected static @Nullable <T extends ExtendibleElement> T getSupertype(@NonNull T newType, @NonNull String newTypeUri, @Nullable String typeUri) {
 
 		T type = null;
 		String rootUri = MultiModelTypeHierarchy.getRootTypeUri(newType);
@@ -79,12 +80,30 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	}
 
 	/**
+	 * Gets the supertype of a new type from the repository, when there is no root type.
+	 * 
+	 * @param newType
+	 *            The new type for which the supertype has to be got.
+	 * @param newTypeUri
+	 *            The uri of the new type.
+	 * @param typeUri
+	 *            The uri of the supertype of the new type, null if the new type has no supertype.
+	 * @return The supertype of the new type, null if the new type has no supertype.
+	 */
+	protected static @Nullable <T extends ExtendibleElement> T getSupertypeWithoutRoot(@NonNull T newType, @NonNull String newTypeUri, @Nullable String typeUri) {
+
+		return (typeUri == null) ?
+			null :
+			getSupertype(newType, newTypeUri, typeUri);
+	}
+
+	/**
 	 * Adds a "heavy" type to the repository.
 	 * 
 	 * @param newType
 	 *            The new type to be added.
 	 * @param type
-	 *            The supertype of the new type.
+	 *            The supertype of the new type, null if the new type has no supertype.
 	 * @param newTypeUri
 	 *            The uri of the new type.
 	 * @param newTypeName
@@ -93,7 +112,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             If the uri of the new type is already registered in the
 	 *             repository.
 	 */
-	protected static void addHeavyType(ExtendibleElement newType, ExtendibleElement type, String newTypeUri, String newTypeName) throws MMINTException {
+	protected static void addHeavyType(@NonNull ExtendibleElement newType, @Nullable ExtendibleElement type, @NonNull String newTypeUri, @NonNull String newTypeName) throws MMINTException {
 
 		addType(newType, type, newTypeUri, newTypeName, MMINT.cachedTypeMID);
 		newType.setDynamic(false);
@@ -190,37 +209,58 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	}
 
 	/**
-	 * Adds a "heavy" model type endpoint (for an operator type) to the Type
-	 * MID.
+	 * Adds a "heavy" model type endpoint (for an operator type) to the Type MID.
 	 * 
 	 * @param newModelTypeEndpoint
 	 *            The new model type endpoint to be added.
 	 * @param newModelTypeEndpointUri
 	 *            The uri of the new model type endpoint.
 	 * @param modelTypeEndpointUri
-	 *            The uri of the supertype of the new model type endpoint, null
-	 *            if the root model type endpoint should be used as supertype.
+	 *            The uri of the supertype of the new model type endpoint, null if the new model type endpoint has no
+	 *            supertype.
 	 * @param newModelTypeEndpointName
 	 *            The name of the new model type endpoint.
 	 * @param targetModelType
-	 *            The new model type that is the target of the new model type
-	 *            endpoint.
+	 *            The new model type that is the target of the new model type endpoint.
 	 * @param containerOperatorType
-	 *            The operator type that will contain the new model type
-	 *            endpoint.
+	 *            The operator type that will contain the new model type endpoint.
 	 * @param containerFeatureName
-	 *            The name of the feature in the operator type that will contain
-	 *            the new model type endpoint.
-	 * @return The created reference to the new model type endpoint.
+	 *            The name of the feature in the operator type that will contain the new model type endpoint.
 	 * @throws MMINTException
-	 *             If the uri of the new model type endpoint is already
-	 *             registered in the Type MID.
+	 *             If the uri of the new model type endpoint is already registered in the Type MID.
 	 */
 	protected void addHeavyModelTypeEndpoint(@NonNull ModelEndpoint newModelTypeEndpoint, @NonNull String newModelTypeEndpointUri, @Nullable String modelTypeEndpointUri, @NonNull String newModelTypeEndpointName, @NonNull Model targetModelType, @NonNull Operator containerOperatorType, @NonNull String containerFeatureName) throws MMINTException {
 
-		ModelEndpoint modelTypeEndpoint = getSupertype(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri);
+		ModelEndpoint modelTypeEndpoint = getSupertypeWithoutRoot(newModelTypeEndpoint, newModelTypeEndpointUri, modelTypeEndpointUri);
 		addHeavyType(newModelTypeEndpoint, modelTypeEndpoint, newModelTypeEndpointUri, newModelTypeEndpointName);
 		addModelTypeEndpoint(newModelTypeEndpoint, targetModelType, containerOperatorType, containerFeatureName);
+	}
+
+	/**
+	 * Adds a "heavy" generic type endpoint to the Type MID.
+	 * 
+	 * @param newGenericTypeEndpoint
+	 *            The new generic type endpoint to be added.
+	 * @param newGenericTypeEndpointUri
+	 *            The uri of the new generic type endpoint.
+	 * @param genericTypeEndpointUri
+	 *            The uri of the supertype of the new generic type endpoint, null if the new generic type endpoint has
+	 *            no supertype.
+	 * @param newGenericTypeEndpointName
+	 *            The name of the new generic type endpoint.
+	 * @param targetGenericType
+	 *            The new generic type that is the target of the new generic type endpoint.
+	 * @param containerOperatorType
+	 *            The operator type that will contain the new generic type endpoint.
+	 * @throws MMINTException
+	 *             If the uri of the new generic type endpoint is already registered in the Type MID.
+	 */
+	protected void addHeavyGenericTypeEndpoint(@NonNull GenericEndpoint newGenericTypeEndpoint, @NonNull String newGenericTypeEndpointUri, @Nullable String genericTypeEndpointUri, @NonNull String newGenericTypeEndpointName, @NonNull GenericElement targetGenericType, @NonNull Operator containerOperatorType) throws MMINTException {
+
+		GenericEndpoint modelTypeEndpoint = getSupertypeWithoutRoot(newGenericTypeEndpoint, newGenericTypeEndpointUri, genericTypeEndpointUri);
+		addHeavyType(newGenericTypeEndpoint, modelTypeEndpoint, newGenericTypeEndpointUri, newGenericTypeEndpointName);
+		addTypeEndpoint(newGenericTypeEndpoint, targetGenericType);
+		containerOperatorType.getGenerics().add(newGenericTypeEndpoint);
 	}
 
 	/**
@@ -391,36 +431,58 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	}
 
 	/**
-	 * Creates and adds a "heavy" model type endpoint (for an operator type) to
-	 * the Type MID.
+	 * Creates and adds a "heavy" model type endpoint (for an operator type) to the Type MID.
 	 * 
 	 * @param extensionType
 	 *            The extension info for the new model type endpoint.
 	 * @param targetModelType
-	 *            The model type that is the target of the new model type
-	 *            endpoint.
+	 *            The model type that is the target of the new model type endpoint.
 	 * @param containerOperatorType
-	 *            The operator type that will contain the new model type
-	 *            endpoint.
+	 *            The operator type that will contain the new model type endpoint.
 	 * @param containerFeatureName
-	 *            The name of the feature in the operator type that will contain
-	 *            the new model type endpoint.
+	 *            The name of the feature in the operator type that will contain the new model type endpoint.
 	 * @return The created model type endpoint.
 	 * @throws MMINTException
-	 *             If the uri of the new model type endpoint is already
-	 *             registered in the Type MID.
+	 *             If the uri of the new model type endpoint is already registered in the Type MID.
 	 */
 	public @NonNull ModelEndpoint createHeavyModelTypeEndpoint(@NonNull ExtensionType extensionType, @NonNull Model targetModelType, @NonNull Operator containerOperatorType, @NonNull String containerFeatureName) throws MMINTException {
 
 		ModelEndpoint newModelTypeEndpoint = (extensionType.getNewType() == null) ?
 			MIDFactory.eINSTANCE.createModelEndpoint() :
 			(ModelEndpoint) extensionType.getNewType();
+		//TODO MMINT[USABILITY] Put into default uri creator function
 		String newModelTypeEndpointUri = (extensionType.getUri() == null) ?
 			containerOperatorType.getUri() + MMINT.URI_SEPARATOR + extensionType.getName() :
 			extensionType.getUri();
 		addHeavyModelTypeEndpoint(newModelTypeEndpoint, newModelTypeEndpointUri, extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, containerOperatorType, containerFeatureName);
 
 		return newModelTypeEndpoint;
+	}
+
+	/**
+	 * Creates and adds a "heavy" generic type endpoint to the Type MID.
+	 * 
+	 * @param extensionType
+	 *            The extension info for the new generic type endpoint.
+	 * @param targetGenericType
+	 *            The generic type that is the target of the new generic type endpoint.
+	 * @param containerOperatorType
+	 *            The operator type that will contain the new generic type endpoint.
+	 * @return The created generic type endpoint.
+	 * @throws MMINTException
+	 *             If the uri of the new generic type endpoint is already registered in the Type MID.
+	 */
+	public @NonNull GenericEndpoint createHeavyGenericTypeEndpoint(@NonNull ExtensionType extensionType, @NonNull GenericElement targetGenericType, @NonNull Operator containerOperatorType) throws MMINTException {
+
+		GenericEndpoint newGenericTypeEndpoint = (extensionType.getNewType() == null) ?
+			OperatorFactory.eINSTANCE.createGenericEndpoint() :
+			(GenericEndpoint) extensionType.getNewType();
+		String newGenericTypeEndpointUri = (extensionType.getUri() == null) ?
+			containerOperatorType.getUri() + MMINT.URI_SEPARATOR + extensionType.getName() :
+			extensionType.getUri();
+		addHeavyGenericTypeEndpoint(newGenericTypeEndpoint, newGenericTypeEndpointUri, extensionType.getSupertypeUri(), extensionType.getName(), targetGenericType, containerOperatorType);
+
+		return newGenericTypeEndpoint;
 	}
 
 	/**

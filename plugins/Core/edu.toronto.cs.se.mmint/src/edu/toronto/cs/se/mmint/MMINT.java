@@ -32,6 +32,7 @@ import org.osgi.service.prefs.BackingStoreException;
 
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
@@ -44,6 +45,7 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
@@ -363,19 +365,16 @@ public class MMINT implements MMINTConstants {
 	}
 
 	/**
-	 * Creates and adds a class of parameter types to an operator type.
+	 * Creates and adds parameter types to an operator type.
 	 * 
 	 * @param extensionConfig
-	 *            The edu.toronto.cs.se.mmint.operators extension
-	 *            subconfiguration for the class of parameter types.
-	 * @param paramTypes
-	 *            The list of parameter types that will contain the new
-	 *            parameter types.
+	 *            The edu.toronto.cs.se.mmint.operators extension subconfiguration for the parameter types.
 	 * @param containerOperatorType
 	 *            The operator type that will contain the new parameter types.
+	 * @param containerFeatureName
+	 *            The name of the feature in the operator type that will contain the new parameter types.
 	 * @throws MMINTException
-	 *             If there exists a vararg parameter type which is not the last
-	 *             parameter type.
+	 *             If the parameter types can't be created.
 	 */
 	private static void createOperatorTypeParameters(IConfigurationElement extensionConfig, Operator containerOperatorType, String containerFeatureName) throws MMINTException {
 
@@ -407,6 +406,44 @@ public class MMINT implements MMINTConstants {
 	}
 
 	/**
+	 * Creates and adds generic types to an operator type.
+	 * 
+	 * @param extensionConfig
+	 *            The edu.toronto.cs.se.mmint.operators extension subconfiguration for the generic types.
+	 * @param containerOperatorType
+	 *            The operator type that will contain the new generic types.
+	 * @throws MMINTException
+	 *             If the generic types can't be created.
+	 */
+	private static void createOperatorTypeGenerics(IConfigurationElement extensionConfig, Operator containerOperatorType) throws MMINTException {
+
+		IConfigurationElement[] paramTypeConfigs = extensionConfig.getChildren(OPERATORS_GENINOUT_CHILD_PARAMETER);
+		for (IConfigurationElement paramTypeConfig : paramTypeConfigs) {
+			ExtensionType extensionType = new ExtensionType(paramTypeConfig, typeFactory);
+			IConfigurationElement genericTypeEndpointSubconfig = paramTypeConfig.getChildren(CHILD_TYPEENDPOINT)[0];
+			String targetGenericTypeUri = genericTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
+			GenericElement targetGenericType = MultiModelTypeRegistry.getType(targetGenericTypeUri);
+			if (targetGenericType == null) {
+				continue;
+			}
+			GenericEndpoint newGenericTypeEndpoint = extensionType.getFactory().createHeavyGenericTypeEndpoint(
+				extensionType,
+				targetGenericType,
+				containerOperatorType
+			);
+			String lowerBoundString = genericTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND);
+			int lowerBound = (lowerBoundString == null) ? 1 : Integer.parseInt(lowerBoundString);
+			String upperBoundString = genericTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND);
+			int upperBound = (upperBoundString == null) ? 1 : Integer.parseInt(upperBoundString);
+			MultiModelTypeFactory.addTypeEndpointCardinality(
+				newGenericTypeEndpoint,
+				lowerBound,
+				upperBound
+			);
+		}
+	}
+
+	/**
 	 * Creates and adds an editor type to the repository from a registered
 	 * edu.toronto.cs.se.mmint.operators extension.
 	 * 
@@ -426,8 +463,7 @@ public class MMINT implements MMINTConstants {
 		Operator newOperatorType = extensionType.getFactory().createHeavyOperatorType(extensionType);
 		IConfigurationElement[] genericsParamTypeConfigs = extensionConfig.getChildren(OPERATORS_CHILD_GENERICS);
 		if (genericsParamTypeConfigs.length > 0) {
-			//TODO MMINT[MEGAMODELS] Deal with generics
-			//createOperatorTypeParameters(genericsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Generics().getName());
+			createOperatorTypeGenerics(genericsParamTypeConfigs[0], newOperatorType);
 		}
 		IConfigurationElement[] inputsParamTypeConfigs = extensionConfig.getChildren(OPERATORS_CHILD_INPUTS);
 		if (inputsParamTypeConfigs.length > 0) {
