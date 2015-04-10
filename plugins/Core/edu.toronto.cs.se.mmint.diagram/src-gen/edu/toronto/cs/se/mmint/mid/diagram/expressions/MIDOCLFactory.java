@@ -48,13 +48,12 @@ public class MIDOCLFactory {
 	 * @generated
 	 */
 	protected MIDOCLFactory() {
-		this.expressions = new MIDAbstractExpression[7];
+		this.expressions = new MIDAbstractExpression[6];
 		this.expressionBodies = new String[] {
 				"not self.oclIsKindOf(relationship::ModelRel) and self.origin = ModelOrigin::CREATED", //$NON-NLS-1$
 				"not self.oclIsKindOf(relationship::ModelRel) and self.origin = ModelOrigin::IMPORTED", //$NON-NLS-1$
 				"not self.oclIsKindOf(relationship::BinaryModelRel) and self.origin = ModelOrigin::CREATED", //$NON-NLS-1$
 				"not self.oclIsKindOf(relationship::BinaryModelRel) and self.origin = ModelOrigin::IMPORTED", //$NON-NLS-1$
-				"if self.oclIsKindOf(operator::ConversionOperator) then \'(conv) \'.concat(self.name) else self.name endif", //$NON-NLS-1$
 				"not self.oclIsKindOf(relationship::BinaryModelRel)", //$NON-NLS-1$
 				"self.oclIsKindOf(Model)", //$NON-NLS-1$
 		};
@@ -64,11 +63,9 @@ public class MIDOCLFactory {
 	 * @generated
 	 */
 	private static MIDOCLFactory getInstance() {
-		MIDOCLFactory instance = MIDDiagramEditorPlugin.getInstance()
-				.getMIDOCLFactory();
+		MIDOCLFactory instance = MIDDiagramEditorPlugin.getInstance().getMIDOCLFactory();
 		if (instance == null) {
-			MIDDiagramEditorPlugin.getInstance().setMIDOCLFactory(
-					instance = new MIDOCLFactory());
+			MIDDiagramEditorPlugin.getInstance().setMIDOCLFactory(instance = new MIDOCLFactory());
 		}
 		return instance;
 	}
@@ -83,18 +80,15 @@ public class MIDOCLFactory {
 	/**
 	 * @generated
 	 */
-	public static MIDAbstractExpression getExpression(int index,
-			EClassifier context, Map<String, EClassifier> environment) {
+	public static MIDAbstractExpression getExpression(int index, EClassifier context,
+			Map<String, EClassifier> environment) {
 		MIDOCLFactory cached = getInstance();
 		if (index < 0 || index >= cached.expressions.length) {
 			throw new IllegalArgumentException();
 		}
 		if (cached.expressions[index] == null) {
-			cached.expressions[index] = getExpression(
-					cached.expressionBodies[index],
-					context,
-					environment == null ? Collections
-							.<String, EClassifier> emptyMap() : environment);
+			cached.expressions[index] = getExpression(cached.expressionBodies[index], context,
+					environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}
 		return cached.expressions[index];
 	}
@@ -103,8 +97,8 @@ public class MIDOCLFactory {
 	 * This is factory method, callers are responsible to keep reference to the return value if they want to reuse parsed expression
 	 * @generated
 	 */
-	public static MIDAbstractExpression getExpression(String body,
-			EClassifier context, Map<String, EClassifier> environment) {
+	public static MIDAbstractExpression getExpression(String body, EClassifier context,
+			Map<String, EClassifier> environment) {
 		return new Expression(body, context, environment);
 	}
 
@@ -112,10 +106,8 @@ public class MIDOCLFactory {
 	 * This method will become private in the next release
 	 * @generated
 	 */
-	public static MIDAbstractExpression getExpression(String body,
-			EClassifier context) {
-		return getExpression(body, context,
-				Collections.<String, EClassifier> emptyMap());
+	public static MIDAbstractExpression getExpression(String body, EClassifier context) {
+		return getExpression(body, context, Collections.<String, EClassifier> emptyMap());
 	}
 
 	/**
@@ -136,8 +128,7 @@ public class MIDOCLFactory {
 		/**
 		 * @generated
 		 */
-		public Expression(String body, EClassifier context,
-				Map<String, EClassifier> environment) {
+		public Expression(String body, EClassifier context, Map<String, EClassifier> environment) {
 			super(body, context);
 			oclInstance = org.eclipse.ocl.ecore.OCL.newInstance();
 			initCustomEnv(oclInstance.getEnvironment(), environment);
@@ -160,8 +151,7 @@ public class MIDOCLFactory {
 				return null;
 			}
 			// on the first call, both evalEnvironment and extentMap are clear, for later we have finally, below.
-			EvaluationEnvironment<?, ?, ?, ?, ?> evalEnv = oclInstance
-					.getEvaluationEnvironment();
+			EvaluationEnvironment<?, ?, ?, ?, ?> evalEnv = oclInstance.getEvaluationEnvironment();
 			// initialize environment
 			for (Object nextKey : env.keySet()) {
 				evalEnv.replace((String) nextKey, env.get(nextKey));
@@ -178,25 +168,21 @@ public class MIDOCLFactory {
 		/**
 		 * @generated
 		 */
-		private static void initCustomEnv(
-				Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv,
+		private static void initCustomEnv(Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv,
 				Map<String, EClassifier> environment) {
 			// Use EObject as implicit root class for any object, to allow eContainer() and other EObject operations from OCL expressions
-			ParsingOptions.setOption(ecoreEnv,
-					ParsingOptions.implicitRootClass(ecoreEnv),
+			ParsingOptions.setOption(ecoreEnv, ParsingOptions.implicitRootClass(ecoreEnv),
 					EcorePackage.eINSTANCE.getEObject());
 			for (String varName : environment.keySet()) {
 				EClassifier varType = environment.get(varName);
-				ecoreEnv.addElement(varName,
-						createVar(ecoreEnv, varName, varType), false);
+				ecoreEnv.addElement(varName, createVar(ecoreEnv, varName, varType), false);
 			}
 		}
 
 		/**
 		 * @generated
 		 */
-		private static Variable createVar(
-				Environment<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ecoreEnv,
+		private static Variable createVar(Environment<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ecoreEnv,
 				String name, EClassifier type) {
 			Variable var = EcoreFactory.eINSTANCE.createVariable();
 			var.setName(name);

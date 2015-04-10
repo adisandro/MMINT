@@ -24,7 +24,6 @@ public class DiagramPrintingPreferencePage extends PrintingPreferencePage {
 	 * @generated
 	 */
 	public DiagramPrintingPreferencePage() {
-		setPreferenceStore(MIDDiagramEditorPlugin.getInstance()
-				.getPreferenceStore());
+		setPreferenceStore(MIDDiagramEditorPlugin.getInstance().getPreferenceStore());
 	}
 }

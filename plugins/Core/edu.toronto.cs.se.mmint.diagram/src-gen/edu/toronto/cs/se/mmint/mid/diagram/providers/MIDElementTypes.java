@@ -60,9 +60,8 @@ public class MIDElementTypes {
 	/**
 	 * @generated
 	 */
-	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(
-			MIDDiagramEditorPlugin.getInstance()
-					.getItemProvidersAdapterFactory());
+	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(MIDDiagramEditorPlugin
+			.getInstance().getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -159,28 +158,21 @@ public class MIDElementTypes {
 
 			elements.put(Model_2012, MIDPackage.eINSTANCE.getModel());
 
-			elements.put(ModelRel_2013,
-					RelationshipPackage.eINSTANCE.getModelRel());
+			elements.put(ModelRel_2013, RelationshipPackage.eINSTANCE.getModelRel());
 
-			elements.put(ModelRel_2014,
-					RelationshipPackage.eINSTANCE.getModelRel());
+			elements.put(ModelRel_2014, RelationshipPackage.eINSTANCE.getModelRel());
 
 			elements.put(Operator_2015, OperatorPackage.eINSTANCE.getOperator());
 
-			elements.put(ExtendibleElementSupertype_4013,
-					MIDPackage.eINSTANCE.getExtendibleElement_Supertype());
+			elements.put(ExtendibleElementSupertype_4013, MIDPackage.eINSTANCE.getExtendibleElement_Supertype());
 
-			elements.put(ModelEndpoint_4014,
-					MIDPackage.eINSTANCE.getModelEndpoint());
+			elements.put(ModelEndpoint_4014, MIDPackage.eINSTANCE.getModelEndpoint());
 
-			elements.put(BinaryModelRel_4015,
-					RelationshipPackage.eINSTANCE.getBinaryModelRel());
+			elements.put(BinaryModelRel_4015, RelationshipPackage.eINSTANCE.getBinaryModelRel());
 
-			elements.put(ModelEndpoint_4018,
-					MIDPackage.eINSTANCE.getModelEndpoint());
+			elements.put(ModelEndpoint_4018, MIDPackage.eINSTANCE.getModelEndpoint());
 
-			elements.put(ModelEndpoint_4019,
-					MIDPackage.eINSTANCE.getModelEndpoint());
+			elements.put(ModelEndpoint_4019, MIDPackage.eINSTANCE.getModelEndpoint());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -247,16 +239,14 @@ public class MIDElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final DiagramElementTypes TYPED_INSTANCE = new DiagramElementTypes(
-			elementTypeImages) {
+	public static final DiagramElementTypes TYPED_INSTANCE = new DiagramElementTypes(elementTypeImages) {
 
 		/**
 		 * @generated
 		 */
 		@Override
 		public boolean isKnownElementType(IElementType elementType) {
-			return edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes
-					.isKnownElementType(elementType);
+			return edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes.isKnownElementType(elementType);
 		}
 
 		/**
@@ -264,18 +254,15 @@ public class MIDElementTypes {
 		 */
 		@Override
 		public IElementType getElementTypeForVisualId(int visualID) {
-			return edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes
-					.getElementType(visualID);
+			return edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes.getElementType(visualID);
 		}
 
 		/**
 		 * @generated
 		 */
 		@Override
-		public ENamedElement getDefiningNamedElement(
-				IAdaptable elementTypeAdapter) {
-			return edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes
-					.getElement(elementTypeAdapter);
+		public ENamedElement getDefiningNamedElement(IAdaptable elementTypeAdapter) {
+			return edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes.getElement(elementTypeAdapter);
 		}
 	};
 

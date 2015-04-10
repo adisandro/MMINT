@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gmfgraph:Canvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="mid">
   <figures name="Default">
-    <figures xsi:type="gmfgraph:PolylineDecoration" name="ModelEndpointTgtDecoration" lineWidth="3"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="ModelRelModelEndpointTgtDecoration" lineWidth="3"/>
     <figures xsi:type="gmfgraph:PolylineDecoration" name="BinaryModelRelTgtDecoration" lineWidth="3"/>
-    <figures xsi:type="gmfgraph:PolylineDecoration" name="OperatorInputsSrcDecoration"/>
-    <figures xsi:type="gmfgraph:PolylineDecoration" name="OperatorOutputsTgtDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="OperatorModelEndpointInputSrcDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="OperatorModelEndpointOutputTgtDecoration"/>
     <figures xsi:type="gmfgraph:PolygonDecoration" name="ExtendibleElementSupertypeTgtDecoration" lineWidth="2">
       <backgroundColor xsi:type="gmfgraph:ConstantColor"/>
       <template/>
@@ -68,11 +68,11 @@
         <foregroundColor xsi:type="gmfgraph:ConstantColor" value="gray"/>
       </actualFigure>
     </descriptors>
-    <descriptors name="ModelEndpointFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ModelEndpointFigure" lineWidth="3" targetDecoration="//@figures.0/@figures.0">
+    <descriptors name="ModelRelModelEndpointFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ModelRelModelEndpointFigure" lineWidth="3" targetDecoration="//@figures.0/@figures.0">
         <foregroundColor xsi:type="gmfgraph:RGBColor" red="44" green="109" blue="163"/>
-        <children xsi:type="gmfgraph:Label" name="MAVOModelEndpointLabelFigure" text=""/>
-        <children xsi:type="gmfgraph:Label" name="ModelEndpointLabelFigure" text=""/>
+        <children xsi:type="gmfgraph:Label" name="MAVOModelRelModelEndpointLabelFigure" text=""/>
+        <children xsi:type="gmfgraph:Label" name="ModelRelModelEndpointLabelFigure" text=""/>
       </actualFigure>
       <accessors figure="//@figures.0/@descriptors.4/@actualFigure/@children.1"/>
       <accessors figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
@@ -90,17 +90,17 @@
       <accessors figure="//@figures.0/@descriptors.5/@actualFigure/@children.3"/>
       <accessors figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="OperatorInputsFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="OperatorInputsFigure" sourceDecoration="//@figures.0/@figures.2">
+    <descriptors name="OperatorModelEndpointInputFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="OperatorModelEndpointInputFigure" sourceDecoration="//@figures.0/@figures.2">
         <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
-        <children xsi:type="gmfgraph:Label" name="OperatorInputsLabelFigure" text=""/>
+        <children xsi:type="gmfgraph:Label" name="OperatorModelEndpointInputLabelFigure" text=""/>
       </actualFigure>
       <accessors figure="//@figures.0/@descriptors.6/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="OperatorOutputsFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="OperatorOutputsFigure" targetDecoration="//@figures.0/@figures.3">
+    <descriptors name="OperatorModelEndpointOutputFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="OperatorModelEndpointOutputFigure" targetDecoration="//@figures.0/@figures.3">
         <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
-        <children xsi:type="gmfgraph:Label" name="OperatorOutputsLabelFigure" text=""/>
+        <children xsi:type="gmfgraph:Label" name="OperatorModelEndpointOutputLabelFigure" text=""/>
       </actualFigure>
       <accessors figure="//@figures.0/@descriptors.7/@actualFigure/@children.0"/>
     </descriptors>
@@ -109,17 +109,17 @@
   <nodes name="ModelRel" figure="ModelRelFigure"/>
   <nodes name="Operator" figure="OperatorFigure"/>
   <connections name="ExtendibleElementSupertype" figure="ExtendibleElementSupertypeFigure"/>
-  <connections name="ModelEndpoint" figure="ModelEndpointFigure"/>
+  <connections name="ModelRelModelEndpoint" figure="ModelRelModelEndpointFigure"/>
   <connections name="BinaryModelRel" figure="BinaryModelRelFigure"/>
-  <connections name="OperatorInputs" figure="OperatorInputsFigure"/>
-  <connections name="OperatorOutputs" figure="OperatorOutputsFigure"/>
+  <connections name="OperatorModelEndpointInput" figure="OperatorModelEndpointInputFigure"/>
+  <connections name="OperatorModelEndpointOutput" figure="OperatorModelEndpointOutputFigure"/>
   <labels name="ModelLabel" figure="ModelFigure" elementIcon="false" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
   <labels name="ModelRelLabel" figure="ModelRelFigure" elementIcon="false" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels name="OperatorLabel" figure="OperatorFigure" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
   <labels name="BinaryModelRelLabel" figure="BinaryModelRelFigure" elementIcon="false" accessor="//@figures.0/@descriptors.5/@accessors.0"/>
-  <labels name="OperatorInputsLabel" figure="OperatorInputsFigure" elementIcon="false" accessor="//@figures.0/@descriptors.6/@accessors.0"/>
-  <labels name="OperatorOutputsLabel" figure="OperatorOutputsFigure" elementIcon="false" accessor="//@figures.0/@descriptors.7/@accessors.0"/>
-  <labels name="ModelEndpointLabel" figure="ModelEndpointFigure" elementIcon="false" accessor="//@figures.0/@descriptors.4/@accessors.0">
+  <labels name="OperatorModelEndpointInputLabel" figure="OperatorModelEndpointInputFigure" elementIcon="false" accessor="//@figures.0/@descriptors.6/@accessors.0"/>
+  <labels name="OperatorModelEndpointOutputLabel" figure="OperatorModelEndpointOutputFigure" elementIcon="false" accessor="//@figures.0/@descriptors.7/@accessors.0"/>
+  <labels name="ModelRelModelEndpointLabel" figure="ModelRelModelEndpointFigure" elementIcon="false" accessor="//@figures.0/@descriptors.4/@accessors.0">
     <facets xsi:type="gmfgraph:AlignmentFacet"/>
   </labels>
   <labels name="BinaryModelRelSourceModelEndpointLabel" figure="BinaryModelRelFigure" accessor="//@figures.0/@descriptors.5/@accessors.1">
@@ -130,7 +130,7 @@
   </labels>
   <labels name="MAVOModelLabel" figure="ModelFigure" accessor="//@figures.0/@descriptors.0/@accessors.1"/>
   <labels name="MAVOModelRelLabel" figure="ModelRelFigure" accessor="//@figures.0/@descriptors.1/@accessors.1"/>
-  <labels name="MAVOModelEndpointLabel" figure="ModelEndpointFigure" accessor="//@figures.0/@descriptors.4/@accessors.1">
+  <labels name="MAVOModelRelModelEndpointLabel" figure="ModelRelModelEndpointFigure" accessor="//@figures.0/@descriptors.4/@accessors.1">
     <facets xsi:type="gmfgraph:AlignmentFacet"/>
   </labels>
   <labels name="MAVOBinaryModelRelLabel" figure="BinaryModelRelFigure" accessor="//@figures.0/@descriptors.5/@accessors.3"/>

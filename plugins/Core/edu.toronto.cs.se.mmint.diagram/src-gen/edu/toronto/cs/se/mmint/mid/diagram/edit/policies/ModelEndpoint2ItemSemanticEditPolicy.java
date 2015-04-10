@@ -35,8 +35,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 /**
  * @generated
  */
-public class ModelEndpoint2ItemSemanticEditPolicy extends
-		MIDBaseItemSemanticEditPolicy {
+public class ModelEndpoint2ItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -58,19 +57,15 @@ public class ModelEndpoint2ItemSemanticEditPolicy extends
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
 				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
+		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (MIDElementTypes.ExtendibleElementSupertype_4013 == req
-				.getElementType()) {
-			return getGEFWrapper(new ExtendibleElementSupertypeCreateCommand(
-					req, req.getSource(), req.getTarget()));
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (MIDElementTypes.ExtendibleElementSupertype_4013 == req.getElementType()) {
+			return getGEFWrapper(new ExtendibleElementSupertypeCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
 			return null;
@@ -87,24 +82,18 @@ public class ModelEndpoint2ItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (MIDElementTypes.ExtendibleElementSupertype_4013 == req
-				.getElementType()) {
-			return getGEFWrapper(new ExtendibleElementSupertypeCreateCommand(
-					req, req.getSource(), req.getTarget()));
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (MIDElementTypes.ExtendibleElementSupertype_4013 == req.getElementType()) {
+			return getGEFWrapper(new ExtendibleElementSupertypeCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
-			return getGEFWrapper(new ModelEndpointCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ModelEndpointCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.ModelEndpoint_4018 == req.getElementType()) {
-			return getGEFWrapper(new ModelEndpoint2CreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ModelEndpoint2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.ModelEndpoint_4019 == req.getElementType()) {
-			return getGEFWrapper(new ModelEndpoint3CreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ModelEndpoint3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -115,8 +104,7 @@ public class ModelEndpoint2ItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case ModelEndpointEditPart.VISUAL_ID:
 			return getGEFWrapper(new ModelEndpointReorientCommand(req));
@@ -134,12 +122,10 @@ public class ModelEndpoint2ItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(
-			ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case ExtendibleElementSupertypeEditPart.VISUAL_ID:
-			return getGEFWrapper(new ExtendibleElementSupertypeReorientCommand(
-					req));
+			return getGEFWrapper(new ExtendibleElementSupertypeReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

@@ -74,13 +74,10 @@ public class ModelRel2EditPart extends ShapeNodeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelRel2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelRel2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new ModelRelOpenDiagramEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelRelImportedSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new ModelRelOpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelRelImportedSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -96,8 +93,7 @@ public class ModelRel2EditPart extends ShapeNodeEditPart {
 				return null;
 			}
 
-			protected Command createMoveChildCommand(EditPart child,
-					EditPart after) {
+			protected Command createMoveChildCommand(EditPart child, EditPart after) {
 				return null;
 			}
 
@@ -127,14 +123,11 @@ public class ModelRel2EditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WrappingLabel4EditPart) {
-			((WrappingLabel4EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureModelRelLabelFigure());
+			((WrappingLabel4EditPart) childEditPart).setLabel(getPrimaryShape().getFigureModelRelLabelFigure());
 			return true;
 		}
 		if (childEditPart instanceof WrappingLabel13EditPart) {
-			((WrappingLabel13EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureMAVOModelRelLabelFigure());
+			((WrappingLabel13EditPart) childEditPart).setLabel(getPrimaryShape().getFigureMAVOModelRelLabelFigure());
 			return true;
 		}
 		return false;
@@ -270,8 +263,7 @@ public class ModelRel2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(MIDVisualIDRegistry
-				.getType(WrappingLabel4EditPart.VISUAL_ID));
+		return getChildBySemanticHint(MIDVisualIDRegistry.getType(WrappingLabel4EditPart.VISUAL_ID));
 	}
 
 	/**
@@ -279,8 +271,7 @@ public class ModelRel2EditPart extends ShapeNodeEditPart {
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		if (event.getNotifier() == getModel()
-				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations()
-						.equals(event.getFeature())) {
+				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations().equals(event.getFeature())) {
 			handleMajorSemanticChange();
 		} else {
 			super.handleNotificationEvent(event);
@@ -318,15 +309,12 @@ public class ModelRel2EditPart extends ShapeNodeEditPart {
 
 			this.setLayoutManager(layoutThis);
 
-			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(12),
-					getMapMode().DPtoLP(12)));
+			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(12), getMapMode().DPtoLP(12)));
 			this.setLineWidth(3);
 			this.setForegroundColor(THIS_FORE);
 			this.setBackgroundColor(THIS_BACK);
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(0),
-					getMapMode().DPtoLP(60)));
-			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7),
-					getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(0), getMapMode().DPtoLP(60)));
+			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
 					getMapMode().DPtoLP(7)));
 			createContents();
 		}
@@ -339,16 +327,14 @@ public class ModelRel2EditPart extends ShapeNodeEditPart {
 			fFigureMAVOModelRelLabelFigure = new WrappingLabel();
 
 			fFigureMAVOModelRelLabelFigure.setText("");
-			fFigureMAVOModelRelLabelFigure
-					.setForegroundColor(ColorConstants.darkGray);
+			fFigureMAVOModelRelLabelFigure.setForegroundColor(ColorConstants.darkGray);
 
 			this.add(fFigureMAVOModelRelLabelFigure);
 
 			fFigureModelRelLabelFigure = new WrappingLabel();
 
 			fFigureModelRelLabelFigure.setText("");
-			fFigureModelRelLabelFigure
-					.setForegroundColor(ColorConstants.darkGray);
+			fFigureModelRelLabelFigure.setForegroundColor(ColorConstants.darkGray);
 
 			this.add(fFigureModelRelLabelFigure);
 

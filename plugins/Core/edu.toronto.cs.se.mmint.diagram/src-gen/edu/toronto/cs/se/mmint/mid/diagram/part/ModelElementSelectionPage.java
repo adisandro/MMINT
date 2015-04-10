@@ -22,8 +22,7 @@ public class ModelElementSelectionPage extends DefaultModelElementSelectionPage 
 	 * @generated
 	 */
 	public ModelElementSelectionPage(String pageName) {
-		super(MIDDiagramEditorPlugin.getInstance()
-				.getItemProvidersAdapterFactory(), pageName);
+		super(MIDDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory(), pageName);
 	}
 
 	/**

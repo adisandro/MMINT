@@ -78,8 +78,8 @@ public class ModelEndpoint2ReorientCommand extends EditElementCommand {
 			return false;
 		}
 		ExtendibleElement target = getLink().getTarget();
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistModelEndpoint_4018(getLink(), getNewSource(), target);
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistModelEndpoint_4018(getLink(), getNewSource(),
+				target);
 	}
 
 	/**
@@ -93,18 +93,16 @@ public class ModelEndpoint2ReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Operator source = (Operator) getLink().eContainer();
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistModelEndpoint_4018(getLink(), source, getNewTarget());
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistModelEndpoint_4018(getLink(), source,
+				getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

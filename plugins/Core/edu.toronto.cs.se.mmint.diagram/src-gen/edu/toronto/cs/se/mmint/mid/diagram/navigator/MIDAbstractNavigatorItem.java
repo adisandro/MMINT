@@ -31,23 +31,20 @@ public abstract class MIDAbstractNavigatorItem extends PlatformObject {
 				return "edu.toronto.cs.se.mmint.diagram"; //$NON-NLS-1$
 			}
 		};
-		Platform.getAdapterManager().registerAdapters(
-				new IAdapterFactory() {
+		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
-					public Object getAdapter(Object adaptableObject,
-							Class adapterType) {
-						if (adaptableObject instanceof edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDAbstractNavigatorItem
-								&& adapterType == ITabbedPropertySheetPageContributor.class) {
-							return propertySheetPageContributor;
-						}
-						return null;
-					}
+			public Object getAdapter(Object adaptableObject, Class adapterType) {
+				if (adaptableObject instanceof edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDAbstractNavigatorItem
+						&& adapterType == ITabbedPropertySheetPageContributor.class) {
+					return propertySheetPageContributor;
+				}
+				return null;
+			}
 
-					public Class[] getAdapterList() {
-						return supportedTypes;
-					}
-				},
-				edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDAbstractNavigatorItem.class);
+			public Class[] getAdapterList() {
+				return supportedTypes;
+			}
+		}, edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDAbstractNavigatorItem.class);
 	}
 
 	/**

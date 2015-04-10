@@ -26,8 +26,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 /**
  * @generated
  */
-public class MIDSheetLabelProvider extends BaseLabelProvider implements
-		ILabelProvider {
+public class MIDSheetLabelProvider extends BaseLabelProvider implements ILabelProvider {
 
 	/**
 	 * @generated
@@ -83,8 +82,7 @@ public class MIDSheetLabelProvider extends BaseLabelProvider implements
 			if (etype != null) {
 				return etype;
 			}
-			view = view.eContainer() instanceof View ? (View) view.eContainer()
-					: null;
+			view = view.eContainer() instanceof View ? (View) view.eContainer() : null;
 		}
 		return null;
 	}

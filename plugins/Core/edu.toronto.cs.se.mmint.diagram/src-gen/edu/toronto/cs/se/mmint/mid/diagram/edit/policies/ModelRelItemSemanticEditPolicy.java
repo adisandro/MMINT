@@ -48,8 +48,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 /**
  * @generated
  */
-public class ModelRelItemSemanticEditPolicy extends
-		MIDBaseItemSemanticEditPolicy {
+public class ModelRelItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -63,43 +62,37 @@ public class ModelRelItemSemanticEditPolicy extends
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View) getHost().getModel();
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
-				getEditingDomain(), null);
+		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
 			if (MIDVisualIDRegistry.getVisualID(incomingLink) == ExtendibleElementSupertypeEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						incomingLink.getSource().getElement(), null,
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if (MIDVisualIDRegistry.getVisualID(incomingLink) == ModelEndpointEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						incomingLink.getElement(), false);
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if (MIDVisualIDRegistry.getVisualID(incomingLink) == BinaryModelRelEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						incomingLink.getElement(), false);
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if (MIDVisualIDRegistry.getVisualID(incomingLink) == ModelEndpoint2EditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						incomingLink.getElement(), false);
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if (MIDVisualIDRegistry.getVisualID(incomingLink) == ModelEndpoint3EditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						incomingLink.getElement(), false);
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
@@ -108,23 +101,20 @@ public class ModelRelItemSemanticEditPolicy extends
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
 			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == ExtendibleElementSupertypeEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(
-						outgoingLink.getSource().getElement(), null,
+				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
 						outgoingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == ModelEndpointEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						outgoingLink.getElement(), false);
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == BinaryModelRelEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						outgoingLink.getElement(), false);
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
@@ -148,27 +138,21 @@ public class ModelRelItemSemanticEditPolicy extends
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
 				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
+		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (MIDElementTypes.ExtendibleElementSupertype_4013 == req
-				.getElementType()) {
-			return getGEFWrapper(new ExtendibleElementSupertypeCreateCommand(
-					req, req.getSource(), req.getTarget()));
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (MIDElementTypes.ExtendibleElementSupertype_4013 == req.getElementType()) {
+			return getGEFWrapper(new ExtendibleElementSupertypeCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
-			return getGEFWrapper(new ModelEndpointCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ModelEndpointCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.BinaryModelRel_4015 == req.getElementType()) {
-			return getGEFWrapper(new BinaryModelRelCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new BinaryModelRelCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.ModelEndpoint_4018 == req.getElementType()) {
 			return null;
@@ -182,28 +166,21 @@ public class ModelRelItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (MIDElementTypes.ExtendibleElementSupertype_4013 == req
-				.getElementType()) {
-			return getGEFWrapper(new ExtendibleElementSupertypeCreateCommand(
-					req, req.getSource(), req.getTarget()));
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (MIDElementTypes.ExtendibleElementSupertype_4013 == req.getElementType()) {
+			return getGEFWrapper(new ExtendibleElementSupertypeCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
-			return getGEFWrapper(new ModelEndpointCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ModelEndpointCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.BinaryModelRel_4015 == req.getElementType()) {
-			return getGEFWrapper(new BinaryModelRelCreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new BinaryModelRelCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.ModelEndpoint_4018 == req.getElementType()) {
-			return getGEFWrapper(new ModelEndpoint2CreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ModelEndpoint2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (MIDElementTypes.ModelEndpoint_4019 == req.getElementType()) {
-			return getGEFWrapper(new ModelEndpoint3CreateCommand(req,
-					req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ModelEndpoint3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -214,8 +191,7 @@ public class ModelRelItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case ModelEndpointEditPart.VISUAL_ID:
 			return getGEFWrapper(new ModelEndpointReorientCommand(req));
@@ -235,12 +211,10 @@ public class ModelRelItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(
-			ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case ExtendibleElementSupertypeEditPart.VISUAL_ID:
-			return getGEFWrapper(new ExtendibleElementSupertypeReorientCommand(
-					req));
+			return getGEFWrapper(new ExtendibleElementSupertypeReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

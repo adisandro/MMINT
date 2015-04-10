@@ -28,34 +28,28 @@ public class MIDDomainNavigatorItem extends PlatformObject {
 	 * @generated
 	 */
 	static {
-		final Class[] supportedTypes = new Class[] { EObject.class,
-				IPropertySource.class };
-		Platform.getAdapterManager().registerAdapters(
-				new IAdapterFactory() {
+		final Class[] supportedTypes = new Class[] { EObject.class, IPropertySource.class };
+		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
-					public Object getAdapter(Object adaptableObject,
-							Class adapterType) {
-						if (adaptableObject instanceof edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem) {
-							edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem domainNavigatorItem = (edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem) adaptableObject;
-							EObject eObject = domainNavigatorItem.getEObject();
-							if (adapterType == EObject.class) {
-								return eObject;
-							}
-							if (adapterType == IPropertySource.class) {
-								return domainNavigatorItem
-										.getPropertySourceProvider()
-										.getPropertySource(eObject);
-							}
-						}
-
-						return null;
+			public Object getAdapter(Object adaptableObject, Class adapterType) {
+				if (adaptableObject instanceof edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem) {
+					edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem domainNavigatorItem = (edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem) adaptableObject;
+					EObject eObject = domainNavigatorItem.getEObject();
+					if (adapterType == EObject.class) {
+						return eObject;
 					}
-
-					public Class[] getAdapterList() {
-						return supportedTypes;
+					if (adapterType == IPropertySource.class) {
+						return domainNavigatorItem.getPropertySourceProvider().getPropertySource(eObject);
 					}
-				},
-				edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem.class);
+				}
+
+				return null;
+			}
+
+			public Class[] getAdapterList() {
+				return supportedTypes;
+			}
+		}, edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem.class);
 	}
 
 	/**
@@ -76,8 +70,7 @@ public class MIDDomainNavigatorItem extends PlatformObject {
 	/**
 	 * @generated
 	 */
-	public MIDDomainNavigatorItem(EObject eObject, Object parent,
-			IPropertySourceProvider propertySourceProvider) {
+	public MIDDomainNavigatorItem(EObject eObject, Object parent, IPropertySourceProvider propertySourceProvider) {
 		myParent = parent;
 		myEObject = eObject;
 		myPropertySourceProvider = propertySourceProvider;
@@ -109,11 +102,9 @@ public class MIDDomainNavigatorItem extends PlatformObject {
 	 */
 	public boolean equals(Object obj) {
 		if (obj instanceof edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem) {
-			return EcoreUtil
-					.getURI(getEObject())
-					.equals(EcoreUtil
-							.getURI(((edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem) obj)
-									.getEObject()));
+			return EcoreUtil.getURI(getEObject()).equals(
+					EcoreUtil.getURI(((edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem) obj)
+							.getEObject()));
 		}
 		return super.equals(obj);
 	}

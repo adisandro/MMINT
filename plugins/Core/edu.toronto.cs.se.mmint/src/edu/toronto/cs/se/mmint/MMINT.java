@@ -123,6 +123,7 @@ public class MMINT implements MMINTConstants {
 	 * - Add javadoc + @NonNull/@Nullable annotations
 	 * - Rename link to mapping
 	 * - Rethink mid link icons with/without mavo
+	 * - Transform various labels into toString() functions (also helps debug)
 	 */
 
 	/**

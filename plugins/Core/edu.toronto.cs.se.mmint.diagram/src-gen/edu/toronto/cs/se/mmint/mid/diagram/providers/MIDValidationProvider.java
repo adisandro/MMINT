@@ -49,8 +49,7 @@ public class MIDValidationProvider {
 	/**
 	 * @generated
 	 */
-	public static void runWithConstraints(
-			TransactionalEditingDomain editingDomain, Runnable operation) {
+	public static void runWithConstraints(TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
 			public void run() {
@@ -66,8 +65,7 @@ public class MIDValidationProvider {
 			try {
 				editingDomain.runExclusive(task);
 			} catch (Exception e) {
-				MIDDiagramEditorPlugin.getInstance().logError(
-						"Validation failed", e); //$NON-NLS-1$
+				MIDDiagramEditorPlugin.getInstance().logError("Validation failed", e); //$NON-NLS-1$
 			}
 		} else {
 			task.run();
@@ -83,8 +81,7 @@ public class MIDValidationProvider {
 		}
 		if (object instanceof View) {
 			return constraintsActive
-					&& MultiModelEditPart.MODEL_ID.equals(MIDVisualIDRegistry
-							.getModelID((View) object));
+					&& MultiModelEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID((View) object));
 		}
 		return true;
 	}
@@ -112,21 +109,16 @@ public class MIDValidationProvider {
 		 */
 		public IStatus validate(IValidationContext ctx) {
 			Model context = (Model) ctx.getTarget();
-			MAVOTruthValue validates = MultiModelTypeIntrospection
-					.validateType(context, context.getMetatype(), true);
-			String modelRel = (context instanceof ModelRel) ? " relationship"
-					: "";
+			MAVOTruthValue validates = MultiModelTypeIntrospection.validateType(context, context.getMetatype(), true);
+			String modelRel = (context instanceof ModelRel) ? " relationship" : "";
 			IStatus status;
 			if (validates == MAVOTruthValue.TRUE) {
 				status = ctx.createSuccessStatus();
 			} else {
-				ConstraintStatus failureStatus = (ConstraintStatus) ctx
-						.createFailureStatus(modelRel, context.getName(),
-								context.getMetatype().getName());
-				status = (validates == MAVOTruthValue.MAYBE) ? new ConstraintStatus(
-						failureStatus.getConstraint(), context,
-						IStatus.WARNING, 200, "Maybe",
-						failureStatus.getResultLocus()) : failureStatus;
+				ConstraintStatus failureStatus = (ConstraintStatus) ctx.createFailureStatus(modelRel,
+						context.getName(), context.getMetatype().getName());
+				status = (validates == MAVOTruthValue.MAYBE) ? new ConstraintStatus(failureStatus.getConstraint(),
+						context, IStatus.WARNING, 200, "Maybe", failureStatus.getResultLocus()) : failureStatus;
 			}
 			return status;
 		}

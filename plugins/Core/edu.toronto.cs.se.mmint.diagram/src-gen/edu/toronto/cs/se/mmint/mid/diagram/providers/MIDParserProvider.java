@@ -48,14 +48,12 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.BinaryModelRelTargetModelEndp
 import edu.toronto.cs.se.mmint.mid.diagram.library.ExtendibleElementEndpointLabelParser;
 import edu.toronto.cs.se.mmint.mid.diagram.library.ExtendibleElementLabelParser;
 import edu.toronto.cs.se.mmint.mid.diagram.parsers.MessageFormatParser;
-import edu.toronto.cs.se.mmint.mid.diagram.parsers.OperatorLabelExpressionLabelParser;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 
 /**
  * @generated
  */
-public class MIDParserProvider extends AbstractProvider implements
-		IParserProvider {
+public class MIDParserProvider extends AbstractProvider implements IParserProvider {
 
 	/**
 	 * @generated
@@ -180,8 +178,16 @@ public class MIDParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private ExtendibleElementLabelParser operatorLabel_5015Parser;
+
+	/**
+	 * @generated
+	 */
 	private IParser getOperatorLabel_5015Parser() {
-		return new OperatorLabelExpressionLabelParser();
+		if (operatorLabel_5015Parser == null) {
+			operatorLabel_5015Parser = new ExtendibleElementLabelParser();
+		}
+		return operatorLabel_5015Parser;
 	}
 
 	/**
@@ -284,12 +290,9 @@ public class MIDParserProvider extends AbstractProvider implements
 	 */
 	private IParser getModelEndpointName_6019Parser() {
 		if (modelEndpointName_6019Parser == null) {
-			EAttribute[] features = new EAttribute[] { MIDPackage.eINSTANCE
-					.getExtendibleElement_Name() };
-			EAttribute[] editableFeatures = new EAttribute[] { MIDPackage.eINSTANCE
-					.getExtendibleElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features,
-					editableFeatures);
+			EAttribute[] features = new EAttribute[] { MIDPackage.eINSTANCE.getExtendibleElement_Name() };
+			EAttribute[] editableFeatures = new EAttribute[] { MIDPackage.eINSTANCE.getExtendibleElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features, editableFeatures);
 			parser.setViewPattern("(in) {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
@@ -308,12 +311,9 @@ public class MIDParserProvider extends AbstractProvider implements
 	 */
 	private IParser getModelEndpointName_6020Parser() {
 		if (modelEndpointName_6020Parser == null) {
-			EAttribute[] features = new EAttribute[] { MIDPackage.eINSTANCE
-					.getExtendibleElement_Name() };
-			EAttribute[] editableFeatures = new EAttribute[] { MIDPackage.eINSTANCE
-					.getExtendibleElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features,
-					editableFeatures);
+			EAttribute[] features = new EAttribute[] { MIDPackage.eINSTANCE.getExtendibleElement_Name() };
+			EAttribute[] editableFeatures = new EAttribute[] { MIDPackage.eINSTANCE.getExtendibleElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features, editableFeatures);
 			parser.setViewPattern("(out) {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
@@ -369,10 +369,8 @@ public class MIDParserProvider extends AbstractProvider implements
 	 * Utility method that consults ParserService
 	 * @generated
 	 */
-	public static IParser getParser(IElementType type, EObject object,
-			String parserHint) {
-		return ParserService.getInstance().getParser(
-				new HintAdapter(type, object, parserHint));
+	public static IParser getParser(IElementType type, EObject object, String parserHint) {
+		return ParserService.getInstance().getParser(new HintAdapter(type, object, parserHint));
 	}
 
 	/**

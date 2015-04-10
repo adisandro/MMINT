@@ -26,8 +26,7 @@ public class MIDEditPartProvider extends DefaultEditPartProvider {
 	 * @generated
 	 */
 	public MIDEditPartProvider() {
-		super(new MIDEditPartFactory(), MIDVisualIDRegistry.TYPED_INSTANCE,
-				MultiModelEditPart.MODEL_ID);
+		super(new MIDEditPartFactory(), MIDVisualIDRegistry.TYPED_INSTANCE, MultiModelEditPart.MODEL_ID);
 	}
 
 }

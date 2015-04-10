@@ -32,8 +32,7 @@ public class MIDNavigatorItem extends MIDAbstractNavigatorItem {
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if (adaptableObject instanceof edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorItem
 						&& (adapterType == View.class || adapterType == EObject.class)) {
-					return ((edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorItem) adaptableObject)
-							.getView();
+					return ((edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorItem) adaptableObject).getView();
 				}
 				return null;
 			}
@@ -82,11 +81,8 @@ public class MIDNavigatorItem extends MIDAbstractNavigatorItem {
 	 */
 	public boolean equals(Object obj) {
 		if (obj instanceof edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorItem) {
-			return EcoreUtil
-					.getURI(getView())
-					.equals(EcoreUtil
-							.getURI(((edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorItem) obj)
-									.getView()));
+			return EcoreUtil.getURI(getView()).equals(
+					EcoreUtil.getURI(((edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorItem) obj).getView()));
 		}
 		return super.equals(obj);
 	}

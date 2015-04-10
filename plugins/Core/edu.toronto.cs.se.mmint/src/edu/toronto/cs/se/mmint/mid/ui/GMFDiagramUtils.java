@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -49,6 +50,9 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
 public class GMFDiagramUtils {
 
@@ -59,6 +63,17 @@ public class GMFDiagramUtils {
 	public static String getElementLabel(ExtendibleElement element) {
 	
 		String label = (element.getName() == null) ? "" : element.getName();
+		if (element instanceof ConversionOperator) {
+			label = "(conv) " + label;
+		}
+		if (element instanceof Operator && !((Operator) element).getGenerics().isEmpty()) {
+			label +=
+				"<" +
+				((Operator) element).getGenerics().stream()
+					.map(GenericEndpoint::getName)
+					.collect(Collectors.joining(",")) +
+				">";
+		}
 		if (MultiModelConstraintChecker.isInstancesLevel(element)) {
 			ExtendibleElement type = element.getMetatype();
 			String typeLabel = (type == null) ? EXTELEM_NULLTYPE : type.getName();

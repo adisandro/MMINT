@@ -69,27 +69,17 @@ import org.eclipse.ui.part.FileEditorInput;
 /**
  * @generated
  */
-public class MIDDocumentProvider extends AbstractDocumentProvider implements
-		IDiagramDocumentProvider {
+public class MIDDocumentProvider extends AbstractDocumentProvider implements IDiagramDocumentProvider {
 
 	/**
 	 * @generated
 	 */
-	protected ElementInfo createElementInfo(Object element)
-			throws CoreException {
-		if (false == element instanceof FileEditorInput
-				&& false == element instanceof URIEditorInput) {
-			throw new CoreException(
-					new Status(
-							IStatus.ERROR,
-							MIDDiagramEditorPlugin.ID,
-							0,
-							NLS.bind(
-									Messages.MIDDocumentProvider_IncorrectInputError,
-									new Object[] {
-											element,
-											"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-							null));
+	protected ElementInfo createElementInfo(Object element) throws CoreException {
+		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
+			throw new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID, 0, NLS.bind(
+					Messages.MIDDocumentProvider_IncorrectInputError, new Object[] { element,
+							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+					null));
 		}
 		IEditorInput editorInput = (IEditorInput) element;
 		IDiagramDocument document = (IDiagramDocument) createDocument(editorInput);
@@ -104,19 +94,11 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 	 * @generated
 	 */
 	protected IDocument createDocument(Object element) throws CoreException {
-		if (false == element instanceof FileEditorInput
-				&& false == element instanceof URIEditorInput) {
-			throw new CoreException(
-					new Status(
-							IStatus.ERROR,
-							MIDDiagramEditorPlugin.ID,
-							0,
-							NLS.bind(
-									Messages.MIDDocumentProvider_IncorrectInputError,
-									new Object[] {
-											element,
-											"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-							null));
+		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
+			throw new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID, 0, NLS.bind(
+					Messages.MIDDocumentProvider_IncorrectInputError, new Object[] { element,
+							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+					null));
 		}
 		IDocument document = createEmptyDocument();
 		setDocumentContent(document, (IEditorInput) element);
@@ -142,8 +124,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 	 */
 	private long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
-				.hasNext();) {
+		for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 			Resource nextResource = it.next();
 			IFile file = WorkspaceSynchronizer.getFile(nextResource);
 			if (file != null) {
@@ -170,14 +151,12 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 	 * @generated
 	 */
 	private TransactionalEditingDomain createEditingDomain() {
-		TransactionalEditingDomain editingDomain = DiagramEditingDomainFactory
-				.getInstance().createEditingDomain();
+		TransactionalEditingDomain editingDomain = DiagramEditingDomainFactory.getInstance().createEditingDomain();
 		editingDomain.setID("edu.toronto.cs.se.mmint.diagram.EditingDomain"); //$NON-NLS-1$
 		final NotificationFilter diagramResourceModifiedFilter = NotificationFilter
 				.createNotifierFilter(editingDomain.getResourceSet())
 				.and(NotificationFilter.createEventTypeFilter(Notification.ADD))
-				.and(NotificationFilter.createFeatureFilter(ResourceSet.class,
-						ResourceSet.RESOURCE_SET__RESOURCES));
+				.and(NotificationFilter.createFeatureFilter(ResourceSet.class, ResourceSet.RESOURCE_SET__RESOURCES));
 		editingDomain.getResourceSet().eAdapters().add(new Adapter() {
 
 			private Notifier myTarger;
@@ -211,29 +190,24 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 	/**
 	 * @generated
 	 */
-	protected void setDocumentContent(IDocument document, IEditorInput element)
-			throws CoreException {
+	protected void setDocumentContent(IDocument document, IEditorInput element) throws CoreException {
 		IDiagramDocument diagramDocument = (IDiagramDocument) document;
 		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
 		if (element instanceof FileEditorInput) {
 			IStorage storage = ((FileEditorInput) element).getStorage();
-			Diagram diagram = DiagramIOUtil.load(domain, storage, true,
-					getProgressMonitor());
+			Diagram diagram = DiagramIOUtil.load(domain, storage, true, getProgressMonitor());
 			document.setContent(diagram);
 		} else if (element instanceof URIEditorInput) {
 			URI uri = ((URIEditorInput) element).getURI();
 			Resource resource = null;
 			try {
-				resource = domain.getResourceSet().getResource(
-						uri.trimFragment(), false);
+				resource = domain.getResourceSet().getResource(uri.trimFragment(), false);
 				if (resource == null) {
-					resource = domain.getResourceSet().createResource(
-							uri.trimFragment());
+					resource = domain.getResourceSet().createResource(uri.trimFragment());
 				}
 				if (!resource.isLoaded()) {
 					try {
-						Map options = new HashMap(
-								GMFResourceFactory.getDefaultLoadOptions());
+						Map options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());
 						// @see 171060 
 						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 						resource.load(options);
@@ -249,8 +223,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 						return;
 					}
 				} else {
-					for (Iterator it = resource.getContents().iterator(); it
-							.hasNext();) {
+					for (Iterator it = resource.getContents().iterator(); it.hasNext();) {
 						Object rootElement = it.next();
 						if (rootElement instanceof Diagram) {
 							document.setContent((Diagram) rootElement);
@@ -258,37 +231,23 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 						}
 					}
 				}
-				throw new RuntimeException(
-						Messages.MIDDocumentProvider_NoDiagramInResourceError);
+				throw new RuntimeException(Messages.MIDDocumentProvider_NoDiagramInResourceError);
 			} catch (Exception e) {
 				CoreException thrownExcp = null;
 				if (e instanceof CoreException) {
 					thrownExcp = (CoreException) e;
 				} else {
 					String msg = e.getLocalizedMessage();
-					thrownExcp = new CoreException(
-							new Status(
-									IStatus.ERROR,
-									MIDDiagramEditorPlugin.ID,
-									0,
-									msg != null ? msg
-											: Messages.MIDDocumentProvider_DiagramLoadingError,
-									e));
+					thrownExcp = new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID, 0,
+							msg != null ? msg : Messages.MIDDocumentProvider_DiagramLoadingError, e));
 				}
 				throw thrownExcp;
 			}
 		} else {
-			throw new CoreException(
-					new Status(
-							IStatus.ERROR,
-							MIDDiagramEditorPlugin.ID,
-							0,
-							NLS.bind(
-									Messages.MIDDocumentProvider_IncorrectInputError,
-									new Object[] {
-											element,
-											"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-							null));
+			throw new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID, 0, NLS.bind(
+					Messages.MIDDocumentProvider_IncorrectInputError, new Object[] { element,
+							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+					null));
 		}
 	}
 
@@ -312,8 +271,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 			Resource diagramResource = document.getDiagram().eResource();
 			if (diagramResource != null) {
 				IFile file = WorkspaceSynchronizer.getFile(diagramResource);
-				return file == null || file.getLocation() == null
-						|| !file.getLocation().toFile().exists();
+				return file == null || file.getLocation() == null || !file.getLocation().toFile().exists();
 			}
 		}
 		return super.isDeleted(element);
@@ -331,15 +289,13 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 				// Check for files located outside workspace.
 				// getFile above returns null if it cannot be found inside the workspace.
 				if (file != null) {
-					return file.getLocation() == null
-							|| !file.getLocation().toFile().exists();
+					return file.getLocation() == null || !file.getLocation().toFile().exists();
 				}
 				// check for files located outside workspace.
 				else {
 					// check if the file exists on disk
 					return !diagramResource.getURI().isFile()
-							|| !(new File(diagramResource.getURI()
-									.toFileString())).exists();
+							|| !(new File(diagramResource.getURI().toFileString())).exists();
 				}
 			}
 		}
@@ -367,13 +323,11 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 	/**
 	 * @generated
 	 */
-	protected void doValidateState(Object element, Object computationContext)
-			throws CoreException {
+	protected void doValidateState(Object element, Object computationContext) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			LinkedList<IFile> files2Validate = new LinkedList<IFile>();
-			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
-					.hasNext();) {
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null && file.isReadOnly()) {
@@ -381,8 +335,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 				}
 			}
 			ResourcesPlugin.getWorkspace().validateEdit(
-					(IFile[]) files2Validate.toArray(new IFile[files2Validate
-							.size()]), computationContext);
+					(IFile[]) files2Validate.toArray(new IFile[files2Validate.size()]), computationContext);
 		}
 
 		super.doValidateState(element, computationContext);
@@ -398,8 +351,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
-					MIDDiagramEditorPlugin.getInstance().logError(
-							Messages.MIDDocumentProvider_isModifiable, ex);
+					MIDDiagramEditorPlugin.getInstance().logError(Messages.MIDDocumentProvider_isModifiable, ex);
 					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
@@ -413,8 +365,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 	 */
 	public boolean isModifiable(Object element) {
 		if (!isStateValidated(element)) {
-			if (element instanceof FileEditorInput
-					|| element instanceof URIEditorInput) {
+			if (element instanceof FileEditorInput || element instanceof URIEditorInput) {
 				return true;
 			}
 		}
@@ -424,8 +375,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
-					MIDDiagramEditorPlugin.getInstance().logError(
-							Messages.MIDDocumentProvider_isModifiable, ex);
+					MIDDiagramEditorPlugin.getInstance().logError(Messages.MIDDocumentProvider_isModifiable, ex);
 					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
@@ -440,8 +390,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 	protected void updateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
-					.hasNext();) {
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null && file.isReadOnly()) {
@@ -485,18 +434,14 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
-			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
-					.hasNext();) {
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
-					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory()
-							.modifyRule(file));
+					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(file));
 				}
 			}
-			return new MultiRule(
-					(ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules
-							.size()]));
+			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -508,17 +453,14 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
-			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
-					.hasNext();) {
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
 					rules.add(computeSchedulingRule(file));
 				}
 			}
-			return new MultiRule(
-					(ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules
-							.size()]));
+			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -530,18 +472,14 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
-			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
-					.hasNext();) {
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
-					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory()
-							.refreshRule(file));
+					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory().refreshRule(file));
 				}
 			}
-			return new MultiRule(
-					(ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules
-							.size()]));
+			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -553,19 +491,15 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			LinkedList<ISchedulingRule> files = new LinkedList<ISchedulingRule>();
-			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
-					.hasNext();) {
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
 					files.add(file);
 				}
 			}
-			return ResourcesPlugin
-					.getWorkspace()
-					.getRuleFactory()
-					.validateEditRule(
-							(IFile[]) files.toArray(new IFile[files.size()]));
+			return ResourcesPlugin.getWorkspace().getRuleFactory()
+					.validateEditRule((IFile[]) files.toArray(new IFile[files.size()]));
 		}
 		return null;
 	}
@@ -575,8 +509,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 	 */
 	private ISchedulingRule computeSchedulingRule(IResource toCreateOrModify) {
 		if (toCreateOrModify.exists())
-			return ResourcesPlugin.getWorkspace().getRuleFactory()
-					.modifyRule(toCreateOrModify);
+			return ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(toCreateOrModify);
 
 		IResource parent = toCreateOrModify;
 		do {
@@ -590,19 +523,16 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 			parent = toCreateOrModify.getParent();
 		} while (parent != null && !parent.exists());
 
-		return ResourcesPlugin.getWorkspace().getRuleFactory()
-				.createRule(toCreateOrModify);
+		return ResourcesPlugin.getWorkspace().getRuleFactory().createRule(toCreateOrModify);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void doSynchronize(Object element, IProgressMonitor monitor)
-			throws CoreException {
+	protected void doSynchronize(Object element, IProgressMonitor monitor) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
-					.hasNext();) {
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				handleElementChanged(info, nextResource, monitor);
 			}
@@ -614,42 +544,31 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 	/**
 	 * @generated
 	 */
-	protected void doSaveDocument(IProgressMonitor monitor, Object element,
-			IDocument document, boolean overwrite) throws CoreException {
+	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite)
+			throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			if (!overwrite && !info.isSynchronized()) {
-				throw new CoreException(
-						new Status(
-								IStatus.ERROR,
-								MIDDiagramEditorPlugin.ID,
-								IResourceStatus.OUT_OF_SYNC_LOCAL,
-								Messages.MIDDocumentProvider_UnsynchronizedFileSaveError,
-								null));
+				throw new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID,
+						IResourceStatus.OUT_OF_SYNC_LOCAL, Messages.MIDDocumentProvider_UnsynchronizedFileSaveError,
+						null));
 			}
 			info.stopResourceListening();
 			fireElementStateChanging(element);
 			try {
-				monitor.beginTask(Messages.MIDDocumentProvider_SaveDiagramTask,
-						info.getResourceSet().getResources().size() + 1); //"Saving diagram"
-				for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
-						.hasNext();) {
+				monitor.beginTask(Messages.MIDDocumentProvider_SaveDiagramTask, info.getResourceSet().getResources()
+						.size() + 1); //"Saving diagram"
+				for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 					Resource nextResource = it.next();
-					monitor.setTaskName(NLS.bind(
-							Messages.MIDDocumentProvider_SaveNextResourceTask,
+					monitor.setTaskName(NLS.bind(Messages.MIDDocumentProvider_SaveNextResourceTask,
 							nextResource.getURI()));
-					if (nextResource.isLoaded()
-							&& !info.getEditingDomain()
-									.isReadOnly(nextResource)) {
+					if (nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource)) {
 						try {
-							nextResource.save(MIDDiagramEditorUtil
-									.getSaveOptions());
+							nextResource.save(MIDDiagramEditorUtil.getSaveOptions());
 						} catch (IOException e) {
 							fireElementStateChangeFailed(element);
-							throw new CoreException(new Status(IStatus.ERROR,
-									MIDDiagramEditorPlugin.ID,
-									EditorStatusCodes.RESOURCE_FAILURE,
-									e.getLocalizedMessage(), null));
+							throw new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID,
+									EditorStatusCodes.RESOURCE_FAILURE, e.getLocalizedMessage(), null));
 						}
 					}
 					monitor.worked(1);
@@ -668,23 +587,15 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 			if (element instanceof FileEditorInput) {
 				IFile newFile = ((FileEditorInput) element).getFile();
 				affectedFiles = Collections.singletonList(newFile);
-				newResoruceURI = URI.createPlatformResourceURI(newFile
-						.getFullPath().toString(), true);
+				newResoruceURI = URI.createPlatformResourceURI(newFile.getFullPath().toString(), true);
 			} else if (element instanceof URIEditorInput) {
 				newResoruceURI = ((URIEditorInput) element).getURI();
 			} else {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(
-						new Status(
-								IStatus.ERROR,
-								MIDDiagramEditorPlugin.ID,
-								0,
-								NLS.bind(
-										Messages.MIDDocumentProvider_IncorrectInputError,
-										new Object[] {
-												element,
-												"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-								null));
+				throw new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID, 0, NLS.bind(
+						Messages.MIDDocumentProvider_IncorrectInputError, new Object[] { element,
+								"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+						null));
 			}
 			if (false == document instanceof IDiagramDocument) {
 				fireElementStateChangeFailed(element);
@@ -696,17 +607,13 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 								"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 			IDiagramDocument diagramDocument = (IDiagramDocument) document;
-			final Resource newResource = diagramDocument.getEditingDomain()
-					.getResourceSet().createResource(newResoruceURI);
-			final Diagram diagramCopy = (Diagram) EcoreUtil
-					.copy(diagramDocument.getDiagram());
+			final Resource newResource = diagramDocument.getEditingDomain().getResourceSet()
+					.createResource(newResoruceURI);
+			final Diagram diagramCopy = (Diagram) EcoreUtil.copy(diagramDocument.getDiagram());
 			try {
-				new AbstractTransactionalCommand(
-						diagramDocument.getEditingDomain(), NLS.bind(
-								Messages.MIDDocumentProvider_SaveAsOperation,
-								diagramCopy.getName()), affectedFiles) {
-					protected CommandResult doExecuteWithResult(
-							IProgressMonitor monitor, IAdaptable info)
+				new AbstractTransactionalCommand(diagramDocument.getEditingDomain(), NLS.bind(
+						Messages.MIDDocumentProvider_SaveAsOperation, diagramCopy.getName()), affectedFiles) {
+					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 							throws ExecutionException {
 						newResource.getContents().add(diagramCopy);
 						return CommandResult.newOKCommandResult();
@@ -715,14 +622,12 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 				newResource.save(MIDDiagramEditorUtil.getSaveOptions());
 			} catch (ExecutionException e) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR,
-						MIDDiagramEditorPlugin.ID, 0, e.getLocalizedMessage(),
-						null));
+				throw new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID, 0,
+						e.getLocalizedMessage(), null));
 			} catch (IOException e) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR,
-						MIDDiagramEditorPlugin.ID, 0, e.getLocalizedMessage(),
-						null));
+				throw new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID, 0,
+						e.getLocalizedMessage(), null));
 			}
 			newResource.unload();
 		}
@@ -731,18 +636,14 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 	/**
 	 * @generated
 	 */
-	protected void handleElementChanged(ResourceSetInfo info,
-			Resource changedResource, IProgressMonitor monitor) {
+	protected void handleElementChanged(ResourceSetInfo info, Resource changedResource, IProgressMonitor monitor) {
 		IFile file = WorkspaceSynchronizer.getFile(changedResource);
 		if (file != null) {
 			try {
 				file.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 			} catch (CoreException ex) {
-				MIDDiagramEditorPlugin
-						.getInstance()
-						.logError(
-								Messages.MIDDocumentProvider_handleElementContentChanged,
-								ex);
+				MIDDiagramEditorPlugin.getInstance().logError(Messages.MIDDocumentProvider_handleElementContentChanged,
+						ex);
 				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
 			}
 		}
@@ -768,14 +669,9 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 	 */
 	protected void handleElementMoved(IEditorInput input, URI uri) {
 		if (input instanceof FileEditorInput) {
-			IFile newFile = ResourcesPlugin
-					.getWorkspace()
-					.getRoot()
-					.getFile(
-							new Path(URI.decode(uri.path()))
-									.removeFirstSegments(1));
-			fireElementMoved(input, newFile == null ? null
-					: new FileEditorInput(newFile));
+			IFile newFile = ResourcesPlugin.getWorkspace().getRoot()
+					.getFile(new Path(URI.decode(uri.path())).removeFirstSegments(1));
+			fireElementMoved(input, newFile == null ? null : new FileEditorInput(newFile));
 			return;
 		}
 		// TODO: append suffix to the URI! (use diagram as a parameter)
@@ -785,8 +681,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 	/**
 	 * @generated
 	 */
-	public IEditorInput createInputWithEditingDomain(IEditorInput editorInput,
-			TransactionalEditingDomain domain) {
+	public IEditorInput createInputWithEditingDomain(IEditorInput editorInput, TransactionalEditingDomain domain) {
 		return editorInput;
 	}
 
@@ -861,8 +756,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 		/**
 		 * @generated
 		 */
-		public ResourceSetInfo(IDiagramDocument document,
-				IEditorInput editorInput) {
+		public ResourceSetInfo(IDiagramDocument document, IEditorInput editorInput) {
 			super(document);
 			myDocument = document;
 			myEditorInput = editorInput;
@@ -903,8 +797,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 		 * @generated
 		 */
 		public Iterator<Resource> getLoadedResourcesIterator() {
-			return new ArrayList<Resource>(getResourceSet().getResources())
-					.iterator();
+			return new ArrayList<Resource>(getResourceSet().getResources()).iterator();
 		}
 
 		/**
@@ -920,8 +813,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 		public void dispose() {
 			stopResourceListening();
 			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for (Iterator<Resource> it = getLoadedResourcesIterator(); it
-					.hasNext();) {
+			for (Iterator<Resource> it = getLoadedResourcesIterator(); it.hasNext();) {
 				Resource resource = it.next();
 				resource.unload();
 			}
@@ -961,8 +853,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 		 * @generated
 		 */
 		public final void startResourceListening() {
-			mySynchronizer = new WorkspaceSynchronizer(getEditingDomain(),
-					new SynchronizerDelegate());
+			mySynchronizer = new WorkspaceSynchronizer(getEditingDomain(), new SynchronizerDelegate());
 		}
 
 		/**
@@ -1010,8 +901,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 		/**
 		 * @generated
 		 */
-		private class SynchronizerDelegate implements
-				WorkspaceSynchronizer.Delegate {
+		private class SynchronizerDelegate implements WorkspaceSynchronizer.Delegate {
 
 			/**
 			 * @generated
@@ -1031,8 +921,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 				}
 				Display.getDefault().asyncExec(new Runnable() {
 					public void run() {
-						handleElementChanged(ResourceSetInfo.this, resource,
-								null);
+						handleElementChanged(ResourceSetInfo.this, resource, null);
 					}
 				});
 				return true;
@@ -1050,8 +939,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 				}
 				Display.getDefault().asyncExec(new Runnable() {
 					public void run() {
-						fireElementDeleted(ResourceSetInfo.this
-								.getEditorInput());
+						fireElementDeleted(ResourceSetInfo.this.getEditorInput());
 					}
 				});
 				return true;
@@ -1060,8 +948,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 			/**
 			 * @generated
 			 */
-			public boolean handleResourceMoved(Resource resource,
-					final URI newURI) {
+			public boolean handleResourceMoved(Resource resource, final URI newURI) {
 				synchronized (ResourceSetInfo.this) {
 					if (ResourceSetInfo.this.fCanBeSaved) {
 						ResourceSetInfo.this.setUnSynchronized(resource);
@@ -1071,9 +958,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 				if (myDocument.getDiagram().eResource() == resource) {
 					Display.getDefault().asyncExec(new Runnable() {
 						public void run() {
-							handleElementMoved(
-									ResourceSetInfo.this.getEditorInput(),
-									newURI);
+							handleElementMoved(ResourceSetInfo.this.getEditorInput(), newURI);
 						}
 					});
 				} else {
@@ -1106,12 +991,9 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 		 */
 		public ResourceSetModificationListener(ResourceSetInfo info) {
 			myInfo = info;
-			myModifiedFilter = NotificationFilter
-					.createEventTypeFilter(Notification.SET)
-					.or(NotificationFilter
-							.createEventTypeFilter(Notification.UNSET))
-					.and(NotificationFilter.createFeatureFilter(Resource.class,
-							Resource.RESOURCE__IS_MODIFIED));
+			myModifiedFilter = NotificationFilter.createEventTypeFilter(Notification.SET)
+					.or(NotificationFilter.createEventTypeFilter(Notification.UNSET))
+					.and(NotificationFilter.createFeatureFilter(Resource.class, Resource.RESOURCE__IS_MODIFIED));
 		}
 
 		/**
@@ -1121,15 +1003,13 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 			if (notification.getNotifier() instanceof ResourceSet) {
 				super.notifyChanged(notification);
 			}
-			if (!notification.isTouch()
-					&& myModifiedFilter.matches(notification)) {
+			if (!notification.isTouch() && myModifiedFilter.matches(notification)) {
 				if (notification.getNotifier() instanceof Resource) {
 					Resource resource = (Resource) notification.getNotifier();
 					if (resource.isLoaded()) {
 						boolean modified = false;
 						for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = myInfo
-								.getLoadedResourcesIterator(); it.hasNext()
-								&& !modified;) {
+								.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
 							Resource nextResource = (Resource) it.next();
 							if (nextResource.isLoaded()) {
 								modified = nextResource.isModified();
@@ -1146,8 +1026,7 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements
 							}
 						}
 						if (dirtyStateChanged) {
-							fireElementDirtyStateChanged(
-									myInfo.getEditorInput(), modified);
+							fireElementDirtyStateChanged(myInfo.getEditorInput(), modified);
 
 							if (!modified) {
 								myInfo.setModificationStamp(computeModificationStamp(myInfo));

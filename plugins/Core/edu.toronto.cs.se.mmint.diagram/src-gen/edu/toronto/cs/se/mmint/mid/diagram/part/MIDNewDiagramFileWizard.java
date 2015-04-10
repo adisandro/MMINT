@@ -64,43 +64,33 @@ public class MIDNewDiagramFileWizard extends Wizard {
 	/**
 	 * @generated
 	 */
-	public MIDNewDiagramFileWizard(URI domainModelURI, EObject diagramRoot,
-			TransactionalEditingDomain editingDomain) {
+	public MIDNewDiagramFileWizard(URI domainModelURI, EObject diagramRoot, TransactionalEditingDomain editingDomain) {
 		assert domainModelURI != null : "Domain model uri must be specified"; //$NON-NLS-1$
 		assert diagramRoot != null : "Doagram root element must be specified"; //$NON-NLS-1$
 		assert editingDomain != null : "Editing domain must be specified"; //$NON-NLS-1$
 
-		myFileCreationPage = new WizardNewFileCreationPage(
-				Messages.MIDNewDiagramFileWizard_CreationPageName,
+		myFileCreationPage = new WizardNewFileCreationPage(Messages.MIDNewDiagramFileWizard_CreationPageName,
 				StructuredSelection.EMPTY);
-		myFileCreationPage
-				.setTitle(Messages.MIDNewDiagramFileWizard_CreationPageTitle);
-		myFileCreationPage.setDescription(NLS.bind(
-				Messages.MIDNewDiagramFileWizard_CreationPageDescription,
+		myFileCreationPage.setTitle(Messages.MIDNewDiagramFileWizard_CreationPageTitle);
+		myFileCreationPage.setDescription(NLS.bind(Messages.MIDNewDiagramFileWizard_CreationPageDescription,
 				MultiModelEditPart.MODEL_ID));
 		IPath filePath;
-		String fileName = URI.decode(domainModelURI.trimFileExtension()
-				.lastSegment());
+		String fileName = URI.decode(domainModelURI.trimFileExtension().lastSegment());
 		if (domainModelURI.isPlatformResource()) {
-			filePath = new Path(domainModelURI.trimSegments(1)
-					.toPlatformString(true));
+			filePath = new Path(domainModelURI.trimSegments(1).toPlatformString(true));
 		} else if (domainModelURI.isFile()) {
 			filePath = new Path(domainModelURI.trimSegments(1).toFileString());
 		} else {
 			// TODO : use some default path
-			throw new IllegalArgumentException(
-					"Unsupported URI: " + domainModelURI); //$NON-NLS-1$
+			throw new IllegalArgumentException("Unsupported URI: " + domainModelURI); //$NON-NLS-1$
 		}
 		myFileCreationPage.setContainerFullPath(filePath);
-		myFileCreationPage.setFileName(MIDDiagramEditorUtil.getUniqueFileName(
-				filePath, fileName, "middiag")); //$NON-NLS-1$
+		myFileCreationPage.setFileName(MIDDiagramEditorUtil.getUniqueFileName(filePath, fileName, "middiag")); //$NON-NLS-1$
 
 		diagramRootElementSelectionPage = new DiagramRootElementSelectionPage(
 				Messages.MIDNewDiagramFileWizard_RootSelectionPageName);
-		diagramRootElementSelectionPage
-				.setTitle(Messages.MIDNewDiagramFileWizard_RootSelectionPageTitle);
-		diagramRootElementSelectionPage
-				.setDescription(Messages.MIDNewDiagramFileWizard_RootSelectionPageDescription);
+		diagramRootElementSelectionPage.setTitle(Messages.MIDNewDiagramFileWizard_RootSelectionPageTitle);
+		diagramRootElementSelectionPage.setDescription(Messages.MIDNewDiagramFileWizard_RootSelectionPageDescription);
 		diagramRootElementSelectionPage.setModelElement(diagramRoot);
 
 		myEditingDomain = editingDomain;
@@ -122,48 +112,35 @@ public class MIDNewDiagramFileWizard extends Wizard {
 		IFile diagramFile = myFileCreationPage.createNewFile();
 		MIDDiagramEditorUtil.setCharset(diagramFile);
 		affectedFiles.add(diagramFile);
-		URI diagramModelURI = URI.createPlatformResourceURI(diagramFile
-				.getFullPath().toString(), true);
+		URI diagramModelURI = URI.createPlatformResourceURI(diagramFile.getFullPath().toString(), true);
 		ResourceSet resourceSet = myEditingDomain.getResourceSet();
-		final Resource diagramResource = resourceSet
-				.createResource(diagramModelURI);
-		AbstractTransactionalCommand command = new AbstractTransactionalCommand(
-				myEditingDomain,
-				Messages.MIDNewDiagramFileWizard_InitDiagramCommand,
-				affectedFiles) {
+		final Resource diagramResource = resourceSet.createResource(diagramModelURI);
+		AbstractTransactionalCommand command = new AbstractTransactionalCommand(myEditingDomain,
+				Messages.MIDNewDiagramFileWizard_InitDiagramCommand, affectedFiles) {
 
-			protected CommandResult doExecuteWithResult(
-					IProgressMonitor monitor, IAdaptable info)
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
-				int diagramVID = MIDVisualIDRegistry
-						.getDiagramVisualID(diagramRootElementSelectionPage
-								.getModelElement());
+				int diagramVID = MIDVisualIDRegistry.getDiagramVisualID(diagramRootElementSelectionPage
+						.getModelElement());
 				if (diagramVID != MultiModelEditPart.VISUAL_ID) {
-					return CommandResult
-							.newErrorCommandResult(Messages.MIDNewDiagramFileWizard_IncorrectRootError);
+					return CommandResult.newErrorCommandResult(Messages.MIDNewDiagramFileWizard_IncorrectRootError);
 				}
-				Diagram diagram = ViewService.createDiagram(
-						diagramRootElementSelectionPage.getModelElement(),
-						MultiModelEditPart.MODEL_ID,
-						MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				Diagram diagram = ViewService.createDiagram(diagramRootElementSelectionPage.getModelElement(),
+						MultiModelEditPart.MODEL_ID, MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				diagramResource.getContents().add(diagram);
 				return CommandResult.newOKCommandResult();
 			}
 		};
 		try {
-			OperationHistoryFactory.getOperationHistory().execute(command,
-					new NullProgressMonitor(), null);
+			OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
 			diagramResource.save(MIDDiagramEditorUtil.getSaveOptions());
 			MIDDiagramEditorUtil.openDiagram(diagramResource);
 		} catch (ExecutionException e) {
-			MIDDiagramEditorPlugin.getInstance().logError(
-					"Unable to create model and diagram", e); //$NON-NLS-1$
+			MIDDiagramEditorPlugin.getInstance().logError("Unable to create model and diagram", e); //$NON-NLS-1$
 		} catch (IOException ex) {
-			MIDDiagramEditorPlugin.getInstance().logError(
-					"Save operation failed for: " + diagramModelURI, ex); //$NON-NLS-1$
+			MIDDiagramEditorPlugin.getInstance().logError("Save operation failed for: " + diagramModelURI, ex); //$NON-NLS-1$
 		} catch (PartInitException ex) {
-			MIDDiagramEditorPlugin.getInstance().logError(
-					"Unable to open editor", ex); //$NON-NLS-1$
+			MIDDiagramEditorPlugin.getInstance().logError("Unable to open editor", ex); //$NON-NLS-1$
 		}
 		return true;
 	}
@@ -171,8 +148,7 @@ public class MIDNewDiagramFileWizard extends Wizard {
 	/**
 	 * @generated
 	 */
-	private static class DiagramRootElementSelectionPage extends
-			ModelElementSelectionPage {
+	private static class DiagramRootElementSelectionPage extends ModelElementSelectionPage {
 
 		/**
 		 * @generated
@@ -197,11 +173,9 @@ public class MIDNewDiagramFileWizard extends Wizard {
 				return false;
 			}
 			boolean result = ViewService.getInstance().provides(
-					new CreateDiagramViewOperation(new EObjectAdapter(
-							getModelElement()), MultiModelEditPart.MODEL_ID,
+					new CreateDiagramViewOperation(new EObjectAdapter(getModelElement()), MultiModelEditPart.MODEL_ID,
 							MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
-			setErrorMessage(result ? null
-					: Messages.MIDNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage);
+			setErrorMessage(result ? null : Messages.MIDNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage);
 			return result;
 		}
 	}

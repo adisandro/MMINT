@@ -31,8 +31,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 /**
  * @generated
  */
-public class MIDShortcutsDecoratorProvider extends AbstractProvider implements
-		IDecoratorProvider {
+public class MIDShortcutsDecoratorProvider extends AbstractProvider implements IDecoratorProvider {
 
 	/**
 	 * @generated
@@ -46,12 +45,9 @@ public class MIDShortcutsDecoratorProvider extends AbstractProvider implements
 		if (!(operation instanceof CreateDecoratorsOperation)) {
 			return false;
 		}
-		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation)
-				.getDecoratorTarget();
+		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
 		View view = (View) decoratorTarget.getAdapter(View.class);
-		return view != null
-				&& MultiModelEditPart.MODEL_ID.equals(MIDVisualIDRegistry
-						.getModelID(view));
+		return view != null && MultiModelEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(view));
 	}
 
 	/**
@@ -62,8 +58,7 @@ public class MIDShortcutsDecoratorProvider extends AbstractProvider implements
 		if (view != null) {
 			EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 			if (annotation != null) {
-				decoratorTarget.installDecorator(SHORTCUTS_DECORATOR_ID,
-						new ShortcutsDecorator(decoratorTarget));
+				decoratorTarget.installDecorator(SHORTCUTS_DECORATOR_ID, new ShortcutsDecorator(decoratorTarget));
 			}
 		}
 	}
@@ -92,16 +87,13 @@ public class MIDShortcutsDecoratorProvider extends AbstractProvider implements
 		 */
 		public void refresh() {
 			removeDecoration();
-			EditPart editPart = (EditPart) getDecoratorTarget().getAdapter(
-					EditPart.class);
-			Image image = MIDDiagramEditorPlugin.getInstance().getBundledImage(
-					"icons/shortcut.gif"); //$NON-NLS-1$
+			EditPart editPart = (EditPart) getDecoratorTarget().getAdapter(EditPart.class);
+			Image image = MIDDiagramEditorPlugin.getInstance().getBundledImage("icons/shortcut.gif"); //$NON-NLS-1$
 			if (editPart instanceof ShapeEditPart) {
-				setDecoration(getDecoratorTarget().addShapeDecoration(image,
-						IDecoratorTarget.Direction.SOUTH_WEST, 0, false));
+				setDecoration(getDecoratorTarget().addShapeDecoration(image, IDecoratorTarget.Direction.SOUTH_WEST, 0,
+						false));
 			} else if (editPart instanceof ConnectionEditPart) {
-				setDecoration(getDecoratorTarget().addConnectionDecoration(
-						image, 50, false));
+				setDecoration(getDecoratorTarget().addConnectionDecoration(image, 50, false));
 			}
 		}
 

@@ -37,14 +37,14 @@
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureModelLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
         </viewmap>
-        <modelFacet parser="//@labelParsers/@implementations.3"/>
+        <modelFacet parser="//@labelParsers/@implementations.2"/>
       </labels>
       <labels visualID="5016" editPartClassName="WrappingLabel10EditPart" itemSemanticEditPolicyClassName="WrappingLabel10ItemSemanticEditPolicy" notationViewFactoryClassName="ModelLabelViewFactory" elementIcon="true">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureMAVOModelLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
         </viewmap>
-        <modelFacet parser="//@labelParsers/@implementations.2"/>
+        <modelFacet parser="//@labelParsers/@implementations.1"/>
       </labels>
     </topLevelNodes>
     <topLevelNodes visualID="2012" editPartClassName="Model2EditPart" itemSemanticEditPolicyClassName="Model2ItemSemanticEditPolicy" notationViewFactoryClassName="ModelViewFactory" canonicalEditPolicyClassName="Model2CanonicalEditPolicy" graphicalNodeEditPolicyClassName="Model2GraphicalNodeEditPolicy" createCommandClassName="Model2CreateCommand">
@@ -66,14 +66,14 @@
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureModelLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
         </viewmap>
-        <modelFacet parser="//@labelParsers/@implementations.3"/>
+        <modelFacet parser="//@labelParsers/@implementations.2"/>
       </labels>
       <labels visualID="5017" editPartClassName="WrappingLabel11EditPart" itemSemanticEditPolicyClassName="WrappingLabel11ItemSemanticEditPolicy" notationViewFactoryClassName="ModelLabelViewFactory" elementIcon="true">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureMAVOModelLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
         </viewmap>
-        <modelFacet parser="//@labelParsers/@implementations.2"/>
+        <modelFacet parser="//@labelParsers/@implementations.1"/>
       </labels>
     </topLevelNodes>
     <topLevelNodes visualID="2013" editPartClassName="ModelRelEditPart" itemSemanticEditPolicyClassName="ModelRelItemSemanticEditPolicy" notationViewFactoryClassName="ModelRelViewFactory" canonicalEditPolicyClassName="ModelRelCanonicalEditPolicy" graphicalNodeEditPolicyClassName="ModelRelGraphicalNodeEditPolicy" createCommandClassName="ModelRelCreateCommand">
@@ -94,14 +94,14 @@
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureModelRelLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
         </viewmap>
-        <modelFacet parser="//@labelParsers/@implementations.3"/>
+        <modelFacet parser="//@labelParsers/@implementations.2"/>
       </labels>
       <labels visualID="5018" editPartClassName="WrappingLabel12EditPart" itemSemanticEditPolicyClassName="WrappingLabel12ItemSemanticEditPolicy" notationViewFactoryClassName="ModelRelLabelViewFactory" elementIcon="true">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureMAVOModelRelLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
         </viewmap>
-        <modelFacet parser="//@labelParsers/@implementations.2"/>
+        <modelFacet parser="//@labelParsers/@implementations.1"/>
       </labels>
     </topLevelNodes>
     <topLevelNodes visualID="2014" editPartClassName="ModelRel2EditPart" itemSemanticEditPolicyClassName="ModelRel2ItemSemanticEditPolicy" notationViewFactoryClassName="ModelRelViewFactory" canonicalEditPolicyClassName="ModelRel2CanonicalEditPolicy" graphicalNodeEditPolicyClassName="ModelRel2GraphicalNodeEditPolicy" createCommandClassName="ModelRel2CreateCommand">
@@ -122,14 +122,14 @@
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureModelRelLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
         </viewmap>
-        <modelFacet parser="//@labelParsers/@implementations.3"/>
+        <modelFacet parser="//@labelParsers/@implementations.2"/>
       </labels>
       <labels visualID="5019" editPartClassName="WrappingLabel13EditPart" itemSemanticEditPolicyClassName="WrappingLabel13ItemSemanticEditPolicy" notationViewFactoryClassName="ModelRelLabelViewFactory" elementIcon="true">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureMAVOModelRelLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
         </viewmap>
-        <modelFacet parser="//@labelParsers/@implementations.2"/>
+        <modelFacet parser="//@labelParsers/@implementations.1"/>
       </labels>
     </topLevelNodes>
     <topLevelNodes visualID="2015" editPartClassName="OperatorEditPart" itemSemanticEditPolicyClassName="OperatorItemSemanticEditPolicy" notationViewFactoryClassName="OperatorViewFactory" canonicalEditPolicyClassName="OperatorCanonicalEditPolicy" graphicalNodeEditPolicyClassName="OperatorGraphicalNodeEditPolicy" createCommandClassName="OperatorCreateCommand">
@@ -149,7 +149,7 @@
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureOperatorLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
         </viewmap>
-        <modelFacet xsi:type="gmfgen:ExpressionLabelModelFacet" parser="//@labelParsers/@implementations.0"/>
+        <modelFacet parser="//@labelParsers/@implementations.2"/>
       </labels>
     </topLevelNodes>
     <links visualID="4013" editPartClassName="ExtendibleElementSupertypeEditPart" itemSemanticEditPolicyClassName="ExtendibleElementSupertypeItemSemanticEditPolicy" notationViewFactoryClassName="ExtendibleElementSupertypeViewFactory" createCommandClassName="ExtendibleElementSupertypeCreateCommand" reorientCommandClassName="ExtendibleElementSupertypeReorientCommand">
@@ -166,7 +166,7 @@
     <links visualID="4014" editPartClassName="ModelEndpointEditPart" itemSemanticEditPolicyClassName="ModelEndpointItemSemanticEditPolicy" notationViewFactoryClassName="ModelEndpointViewFactory" createCommandClassName="ModelEndpointCreateCommand" reorientCommandClassName="ModelEndpointReorientCommand">
       <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="ModelEndpointEditHelper"/>
-      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="ModelEndpointFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ModelEndpointFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureModelEndpointLabelFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureMAVOModelEndpointLabelFigure; &#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ModelEndpointFigure() {&#xA;&#x9;&#x9;this.setLineWidth(3);&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureMAVOModelEndpointLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureMAVOModelEndpointLabelFigure.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureMAVOModelEndpointLabelFigure);&#xA;&#xA;&#xA;&#xA;fFigureModelEndpointLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureModelEndpointLabelFigure.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureModelEndpointLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(3);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureModelEndpointLabelFigure() {&#xA;&#x9;&#x9;return fFigureModelEndpointLabelFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureMAVOModelEndpointLabelFigure() {&#xA;&#x9;&#x9;return fFigureMAVOModelEndpointLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 44, 109, 163);&#xA;&#xA;">
+      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="ModelRelModelEndpointFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ModelRelModelEndpointFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureModelRelModelEndpointLabelFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureMAVOModelRelModelEndpointLabelFigure; &#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ModelRelModelEndpointFigure() {&#xA;&#x9;&#x9;this.setLineWidth(3);&#xA;&#x9;this.setForegroundColor(THIS_FORE&#xA;);&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureMAVOModelRelModelEndpointLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureMAVOModelRelModelEndpointLabelFigure.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureMAVOModelRelModelEndpointLabelFigure);&#xA;&#xA;&#xA;&#xA;fFigureModelRelModelEndpointLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureModelRelModelEndpointLabelFigure.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureModelRelModelEndpointLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(3);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureModelRelModelEndpointLabelFigure() {&#xA;&#x9;&#x9;return fFigureModelRelModelEndpointLabelFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureMAVOModelRelModelEndpointLabelFigure() {&#xA;&#x9;&#x9;return fFigureMAVOModelRelModelEndpointLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_FORE = new org.eclipse.swt.graphics.Color(null, 44, 109, 163);&#xA;&#xA;">
         <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
       </viewmap>
       <behaviour xsi:type="gmfgen:CustomBehaviour" key="EditPolicyRoles.SEMANTIC_ROLE" editPolicyQualifiedClassName="edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ModelRelModelEndpointSemanticEditPolicy"/>
@@ -178,19 +178,19 @@
       </modelFacet>
       <labels visualID="6011" editPartClassName="WrappingLabel6EditPart" itemSemanticEditPolicyClassName="WrappingLabel6ItemSemanticEditPolicy" notationViewFactoryClassName="ModelEndpointLabelViewFactory" alignment="SOURCE">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureModelEndpointLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureModelRelModelEndpointLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="40"/>
         </viewmap>
-        <modelFacet parser="//@labelParsers/@implementations.4"/>
+        <modelFacet parser="//@labelParsers/@implementations.3"/>
       </labels>
       <labels visualID="6017" editPartClassName="WrappingLabel14EditPart" itemSemanticEditPolicyClassName="WrappingLabel14ItemSemanticEditPolicy" notationViewFactoryClassName="ModelEndpointLabelViewFactory" elementIcon="true" alignment="SOURCE">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureMAVOModelEndpointLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureMAVOModelRelModelEndpointLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="60"/>
         </viewmap>
-        <modelFacet parser="//@labelParsers/@implementations.2"/>
+        <modelFacet parser="//@labelParsers/@implementations.1"/>
       </labels>
-      <creationConstraints sourceEnd="//@expressionProviders/@providers.0/@expressions.5" targetEnd="//@expressionProviders/@providers.0/@expressions.6"/>
+      <creationConstraints sourceEnd="//@expressionProviders/@providers.0/@expressions.4" targetEnd="//@expressionProviders/@providers.0/@expressions.5"/>
     </links>
     <links visualID="4015" editPartClassName="BinaryModelRelEditPart" itemSemanticEditPolicyClassName="BinaryModelRelItemSemanticEditPolicy" notationViewFactoryClassName="BinaryModelRelViewFactory" createCommandClassName="BinaryModelRelCreateCommand" reorientCommandClassName="BinaryModelRelReorientCommand">
       <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
@@ -212,34 +212,34 @@
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureBinaryModelRelLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="40"/>
         </viewmap>
-        <modelFacet parser="//@labelParsers/@implementations.3"/>
+        <modelFacet parser="//@labelParsers/@implementations.2"/>
       </labels>
       <labels visualID="6013" editPartClassName="WrappingLabel8EditPart" itemSemanticEditPolicyClassName="WrappingLabel8ItemSemanticEditPolicy" notationViewFactoryClassName="BinaryModelRelLabelViewFactory" elementIcon="true">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureMAVOBinaryModelRelLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="60"/>
         </viewmap>
-        <modelFacet parser="//@labelParsers/@implementations.2"/>
+        <modelFacet parser="//@labelParsers/@implementations.1"/>
       </labels>
       <labels visualID="6014" editPartClassName="WrappingLabel9EditPart" itemSemanticEditPolicyClassName="WrappingLabel9ItemSemanticEditPolicy" notationViewFactoryClassName="BinaryModelRelLabelViewFactory" elementIcon="true" alignment="TARGET">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureBinaryModelRelSourceModelEndpointLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="80"/>
         </viewmap>
-        <modelFacet parser="//@labelParsers/@implementations.5"/>
+        <modelFacet parser="//@labelParsers/@implementations.4"/>
       </labels>
       <labels visualID="6018" editPartClassName="WrappingLabel15EditPart" itemSemanticEditPolicyClassName="WrappingLabel15ItemSemanticEditPolicy" notationViewFactoryClassName="BinaryModelRelLabelViewFactory" elementIcon="true" alignment="SOURCE">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureBinaryModelRelTargetModelEndpointLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="100"/>
         </viewmap>
-        <modelFacet parser="//@labelParsers/@implementations.6"/>
+        <modelFacet parser="//@labelParsers/@implementations.5"/>
       </labels>
     </links>
-    <links visualID="4018" editPartClassName="ModelEndpoint2EditPart" itemSemanticEditPolicyClassName="ModelEndpoint2ItemSemanticEditPolicy" createCommandClassName="ModelEndpoint2CreateCommand" reorientCommandClassName="ModelEndpoint2ReorientCommand">
+    <links visualID="4018" editPartClassName="ModelEndpoint2EditPart" itemSemanticEditPolicyClassName="ModelEndpoint2ItemSemanticEditPolicy" notationViewFactoryClassName="ModelEndpointViewFactory" createCommandClassName="ModelEndpoint2CreateCommand" reorientCommandClassName="ModelEndpoint2ReorientCommand">
       <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType xsi:type="gmfgen:SpecializationType" metamodelType="//@diagram/@links.1/@elementType"/>
-      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="OperatorInputsFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class OperatorInputsFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureOperatorInputsLabelFigure; &#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public OperatorInputsFigure() {&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureOperatorInputsLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureOperatorInputsLabelFigure.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureOperatorInputsLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureOperatorInputsLabelFigure() {&#xA;&#x9;&#x9;return fFigureOperatorInputsLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="OperatorModelEndpointInputFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class OperatorModelEndpointInputFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureOperatorModelEndpointInputLabelFigure; &#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public OperatorModelEndpointInputFigure() {&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setSourceDecoration(createSourceDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureOperatorModelEndpointInputLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureOperatorModelEndpointInputLabelFigure.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureOperatorModelEndpointInputLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createSourceDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureOperatorModelEndpointInputLabelFigure() {&#xA;&#x9;&#x9;return fFigureOperatorModelEndpointInputLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
         <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
       </viewmap>
       <behaviour xsi:type="gmfgen:CustomBehaviour" key="EditPolicyRoles.SEMANTIC_ROLE" editPolicyQualifiedClassName="edu.toronto.cs.se.mmint.mid.diagram.edit.policies.OperatorModelEndpointInputSemanticEditPolicy"/>
@@ -249,21 +249,21 @@
         <childMetaFeature href="mid.genmodel#//mid/operator/Operator/inputs"/>
         <targetMetaFeature href="mid.genmodel#//mid/ExtendibleElementEndpoint/target"/>
       </modelFacet>
-      <labels visualID="6019" editPartClassName="ModelEndpointNameEditPart" itemSemanticEditPolicyClassName="ModelEndpointNameItemSemanticEditPolicy" elementIcon="true">
+      <labels visualID="6019" editPartClassName="ModelEndpointNameEditPart" itemSemanticEditPolicyClassName="ModelEndpointNameItemSemanticEditPolicy" notationViewFactoryClassName="ModelEndpointNameViewFactory">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureOperatorInputsLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureOperatorModelEndpointInputLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="40"/>
         </viewmap>
-        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.1" viewPattern="(in) {0}" editorPattern="{0}" editPattern="{0}">
+        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="(in) {0}" editorPattern="{0}" editPattern="{0}">
           <metaFeatures href="mid.genmodel#//mid/ExtendibleElement/name"/>
           <editableMetaFeatures href="mid.genmodel#//mid/ExtendibleElement/name"/>
         </modelFacet>
       </labels>
     </links>
-    <links visualID="4019" editPartClassName="ModelEndpoint3EditPart" itemSemanticEditPolicyClassName="ModelEndpoint3ItemSemanticEditPolicy" createCommandClassName="ModelEndpoint3CreateCommand" reorientCommandClassName="ModelEndpoint3ReorientCommand">
+    <links visualID="4019" editPartClassName="ModelEndpoint3EditPart" itemSemanticEditPolicyClassName="ModelEndpoint3ItemSemanticEditPolicy" notationViewFactoryClassName="ModelEndpointViewFactory" createCommandClassName="ModelEndpoint3CreateCommand" reorientCommandClassName="ModelEndpoint3ReorientCommand">
       <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType xsi:type="gmfgen:SpecializationType" metamodelType="//@diagram/@links.1/@elementType"/>
-      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="OperatorOutputsFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class OperatorOutputsFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureOperatorOutputsLabelFigure; &#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public OperatorOutputsFigure() {&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureOperatorOutputsLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureOperatorOutputsLabelFigure.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureOperatorOutputsLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureOperatorOutputsLabelFigure() {&#xA;&#x9;&#x9;return fFigureOperatorOutputsLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="OperatorModelEndpointOutputFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class OperatorModelEndpointOutputFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureOperatorModelEndpointOutputLabelFigure; &#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public OperatorModelEndpointOutputFigure() {&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureOperatorModelEndpointOutputLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureOperatorModelEndpointOutputLabelFigure.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureOperatorModelEndpointOutputLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureOperatorModelEndpointOutputLabelFigure() {&#xA;&#x9;&#x9;return fFigureOperatorModelEndpointOutputLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
         <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
       </viewmap>
       <behaviour xsi:type="gmfgen:CustomBehaviour" key="EditPolicyRoles.SEMANTIC_ROLE" editPolicyQualifiedClassName="edu.toronto.cs.se.mmint.mid.diagram.edit.policies.OperatorModelEndpointOutputSemanticEditPolicy"/>
@@ -273,12 +273,12 @@
         <childMetaFeature href="mid.genmodel#//mid/operator/Operator/outputs"/>
         <targetMetaFeature href="mid.genmodel#//mid/ExtendibleElementEndpoint/target"/>
       </modelFacet>
-      <labels visualID="6020" editPartClassName="ModelEndpointName2EditPart" itemSemanticEditPolicyClassName="ModelEndpointName2ItemSemanticEditPolicy" elementIcon="true">
+      <labels visualID="6020" editPartClassName="ModelEndpointName2EditPart" itemSemanticEditPolicyClassName="ModelEndpointName2ItemSemanticEditPolicy" notationViewFactoryClassName="ModelEndpointNameViewFactory">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureOperatorOutputsLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureOperatorModelEndpointOutputLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
           <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="40"/>
         </viewmap>
-        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.1" viewPattern="(out) {0}" editorPattern="{0}" editPattern="{0}">
+        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="(out) {0}" editorPattern="{0}" editPattern="{0}">
           <metaFeatures href="mid.genmodel#//mid/ExtendibleElement/name"/>
           <editableMetaFeatures href="mid.genmodel#//mid/ExtendibleElement/name"/>
         </modelFacet>
@@ -435,7 +435,6 @@
       <expressions xsi:type="gmfgen:GenConstraint" body="not self.oclIsKindOf(relationship::ModelRel) and self.origin = ModelOrigin::IMPORTED"/>
       <expressions xsi:type="gmfgen:GenConstraint" body="not self.oclIsKindOf(relationship::BinaryModelRel) and self.origin = ModelOrigin::CREATED"/>
       <expressions xsi:type="gmfgen:GenConstraint" body="not self.oclIsKindOf(relationship::BinaryModelRel) and self.origin = ModelOrigin::IMPORTED"/>
-      <expressions body="if self.oclIsKindOf(operator::ConversionOperator) then '(conv) '.concat(self.name) else self.name endif"/>
       <expressions xsi:type="gmfgen:GenConstraint" body="not self.oclIsKindOf(relationship::BinaryModelRel)"/>
       <expressions xsi:type="gmfgen:GenConstraint" body="self.oclIsKindOf(Model)"/>
     </providers>
@@ -447,12 +446,9 @@
     </providers>
   </expressionProviders>
   <labelParsers extensibleViaService="true">
-    <implementations xsi:type="gmfgen:ExpressionLabelParser" uses="//@diagram/@topLevelNodes.4/@labels.0/@modelFacet" viewExpression="//@expressionProviders/@providers.0/@expressions.4">
-      <expressionContext href="mid.genmodel#//mid/operator/Operator"/>
-    </implementations>
     <implementations xsi:type="gmfgen:PredefinedParser" uses="//@diagram/@links.3/@labels.0/@modelFacet //@diagram/@links.4/@labels.0/@modelFacet"/>
-    <implementations xsi:type="gmfgen:CustomParser" uses="//@diagram/@links.1/@labels.1/@modelFacet //@diagram/@topLevelNodes.0/@labels.1/@modelFacet //@diagram/@topLevelNodes.3/@labels.1/@modelFacet //@diagram/@topLevelNodes.1/@labels.1/@modelFacet //@diagram/@topLevelNodes.2/@labels.1/@modelFacet //@diagram/@links.2/@labels.1/@modelFacet" qualifiedName="edu.toronto.cs.se.mmint.mavo.library.MAVOElementLabelParser"/>
-    <implementations xsi:type="gmfgen:CustomParser" uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@links.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.3/@labels.0/@modelFacet" qualifiedName="edu.toronto.cs.se.mmint.mid.diagram.library.ExtendibleElementLabelParser"/>
+    <implementations xsi:type="gmfgen:CustomParser" uses="//@diagram/@topLevelNodes.2/@labels.1/@modelFacet //@diagram/@topLevelNodes.1/@labels.1/@modelFacet //@diagram/@links.2/@labels.1/@modelFacet //@diagram/@links.1/@labels.1/@modelFacet //@diagram/@topLevelNodes.0/@labels.1/@modelFacet //@diagram/@topLevelNodes.3/@labels.1/@modelFacet" qualifiedName="edu.toronto.cs.se.mmint.mavo.library.MAVOElementLabelParser"/>
+    <implementations xsi:type="gmfgen:CustomParser" uses="//@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.3/@labels.0/@modelFacet //@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@links.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.4/@labels.0/@modelFacet" qualifiedName="edu.toronto.cs.se.mmint.mid.diagram.library.ExtendibleElementLabelParser"/>
     <implementations xsi:type="gmfgen:CustomParser" uses="//@diagram/@links.1/@labels.0/@modelFacet" qualifiedName="edu.toronto.cs.se.mmint.mid.diagram.library.ExtendibleElementEndpointLabelParser"/>
     <implementations xsi:type="gmfgen:CustomParser" uses="//@diagram/@links.2/@labels.2/@modelFacet" qualifiedName="edu.toronto.cs.se.mmint.mid.diagram.library.BinaryModelRelSourceModelEndpointLabelParser"/>
     <implementations xsi:type="gmfgen:CustomParser" uses="//@diagram/@links.2/@labels.3/@modelFacet" qualifiedName="edu.toronto.cs.se.mmint.mid.diagram.library.BinaryModelRelTargetModelEndpointLabelParser"/>

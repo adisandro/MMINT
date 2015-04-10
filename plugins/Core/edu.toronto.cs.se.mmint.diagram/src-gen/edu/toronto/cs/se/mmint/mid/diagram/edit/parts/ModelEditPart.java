@@ -75,15 +75,11 @@ public class ModelEditPart extends ShapeNodeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new ModelOpenDiagramEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelCreatedSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new ModelOpenEditorEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new ModelOpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelCreatedSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new ModelOpenEditorEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -99,8 +95,7 @@ public class ModelEditPart extends ShapeNodeEditPart {
 				return null;
 			}
 
-			protected Command createMoveChildCommand(EditPart child,
-					EditPart after) {
+			protected Command createMoveChildCommand(EditPart child, EditPart after) {
 				return null;
 			}
 
@@ -130,13 +125,11 @@ public class ModelEditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WrappingLabelEditPart) {
-			((WrappingLabelEditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureModelLabelFigure());
+			((WrappingLabelEditPart) childEditPart).setLabel(getPrimaryShape().getFigureModelLabelFigure());
 			return true;
 		}
 		if (childEditPart instanceof WrappingLabel10EditPart) {
-			((WrappingLabel10EditPart) childEditPart)
-					.setLabel(getPrimaryShape().getFigureMAVOModelLabelFigure());
+			((WrappingLabel10EditPart) childEditPart).setLabel(getPrimaryShape().getFigureMAVOModelLabelFigure());
 			return true;
 		}
 		return false;
@@ -272,8 +265,7 @@ public class ModelEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(MIDVisualIDRegistry
-				.getType(WrappingLabelEditPart.VISUAL_ID));
+		return getChildBySemanticHint(MIDVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -281,8 +273,7 @@ public class ModelEditPart extends ShapeNodeEditPart {
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		if (event.getNotifier() == getModel()
-				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations()
-						.equals(event.getFeature())) {
+				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations().equals(event.getFeature())) {
 			handleMajorSemanticChange();
 		} else {
 			super.handleNotificationEvent(event);
@@ -323,10 +314,8 @@ public class ModelEditPart extends ShapeNodeEditPart {
 			this.setLineWidth(3);
 			this.setForegroundColor(THIS_FORE);
 			this.setBackgroundColor(THIS_BACK);
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(0),
-					getMapMode().DPtoLP(60)));
-			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7),
-					getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(0), getMapMode().DPtoLP(60)));
+			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
 					getMapMode().DPtoLP(7)));
 			createContents();
 		}
@@ -339,8 +328,7 @@ public class ModelEditPart extends ShapeNodeEditPart {
 			fFigureMAVOModelLabelFigure = new WrappingLabel();
 
 			fFigureMAVOModelLabelFigure.setText("");
-			fFigureMAVOModelLabelFigure
-					.setForegroundColor(ColorConstants.darkGray);
+			fFigureMAVOModelLabelFigure.setForegroundColor(ColorConstants.darkGray);
 
 			this.add(fFigureMAVOModelLabelFigure);
 

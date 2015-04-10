@@ -22,8 +22,7 @@ public class MIDUriEditorInputTester extends PropertyTester {
 	/**
 	 * @generated
 	 */
-	public boolean test(Object receiver, String method, Object[] args,
-			Object expectedValue) {
+	public boolean test(Object receiver, String method, Object[] args, Object expectedValue) {
 		if (false == receiver instanceof URIEditorInput) {
 			return false;
 		}

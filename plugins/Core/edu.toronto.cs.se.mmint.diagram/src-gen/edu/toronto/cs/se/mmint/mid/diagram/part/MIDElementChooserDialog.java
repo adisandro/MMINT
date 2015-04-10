@@ -34,17 +34,14 @@ public class MIDElementChooserDialog extends DefaultElementChooserDialog {
 	/**
 	 * @generated
 	 */
-	public MIDElementChooserDialog(Shell parentShell, View view,
-			boolean allowMultiSelection) {
-		super(parentShell, view, new MIDElementChooserDialogContextImpl(
-				allowMultiSelection));
+	public MIDElementChooserDialog(Shell parentShell, View view, boolean allowMultiSelection) {
+		super(parentShell, view, new MIDElementChooserDialogContextImpl(allowMultiSelection));
 	}
 
 	/**
 	 * @generated
 	 */
-	private static class MIDElementChooserDialogContextImpl implements
-			DefaultElementChooserDialog.Context {
+	private static class MIDElementChooserDialogContextImpl implements DefaultElementChooserDialog.Context {
 
 		/**
 		 * @generated
@@ -68,8 +65,7 @@ public class MIDElementChooserDialog extends DefaultElementChooserDialog {
 		 */
 		@Override
 		public AdapterFactory getAdapterFactory() {
-			return MIDDiagramEditorPlugin.getInstance()
-					.getItemProvidersAdapterFactory();
+			return MIDDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory();
 		}
 
 		/**

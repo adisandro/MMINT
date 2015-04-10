@@ -91,8 +91,7 @@ public class MIDCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
-	public void setOpenNewlyCreatedDiagramEditor(
-			boolean openNewlyCreatedDiagramEditor) {
+	public void setOpenNewlyCreatedDiagramEditor(boolean openNewlyCreatedDiagramEditor) {
 		this.openNewlyCreatedDiagramEditor = openNewlyCreatedDiagramEditor;
 	}
 
@@ -103,8 +102,7 @@ public class MIDCreationWizard extends Wizard implements INewWizard {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(Messages.MIDCreationWizardTitle);
-		setDefaultPageImageDescriptor(MIDDiagramEditorPlugin
-				.getBundledImageDescriptor("icons/wizban/NewMIDWizard.gif")); //$NON-NLS-1$
+		setDefaultPageImageDescriptor(MIDDiagramEditorPlugin.getBundledImageDescriptor("icons/wizban/NewMIDWizard.gif")); //$NON-NLS-1$
 		setNeedsProgressMonitor(true);
 	}
 
@@ -112,32 +110,24 @@ public class MIDCreationWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public void addPages() {
-		diagramModelFilePage = new MIDCreationWizardPage(
-				"DiagramModelFile", getSelection(), "middiag"); //$NON-NLS-1$ //$NON-NLS-2$
-		diagramModelFilePage
-				.setTitle(Messages.MIDCreationWizard_DiagramModelFilePageTitle);
-		diagramModelFilePage
-				.setDescription(Messages.MIDCreationWizard_DiagramModelFilePageDescription);
+		diagramModelFilePage = new MIDCreationWizardPage("DiagramModelFile", getSelection(), "middiag"); //$NON-NLS-1$ //$NON-NLS-2$
+		diagramModelFilePage.setTitle(Messages.MIDCreationWizard_DiagramModelFilePageTitle);
+		diagramModelFilePage.setDescription(Messages.MIDCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
 
-		domainModelFilePage = new MIDCreationWizardPage(
-				"DomainModelFile", getSelection(), "mid") { //$NON-NLS-1$ //$NON-NLS-2$
+		domainModelFilePage = new MIDCreationWizardPage("DomainModelFile", getSelection(), "mid") { //$NON-NLS-1$ //$NON-NLS-2$
 
 			public void setVisible(boolean visible) {
 				if (visible) {
 					String fileName = diagramModelFilePage.getFileName();
-					fileName = fileName.substring(0, fileName.length()
-							- ".middiag".length()); //$NON-NLS-1$
-					setFileName(MIDDiagramEditorUtil.getUniqueFileName(
-							getContainerFullPath(), fileName, "mid")); //$NON-NLS-1$
+					fileName = fileName.substring(0, fileName.length() - ".middiag".length()); //$NON-NLS-1$
+					setFileName(MIDDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), fileName, "mid")); //$NON-NLS-1$
 				}
 				super.setVisible(visible);
 			}
 		};
-		domainModelFilePage
-				.setTitle(Messages.MIDCreationWizard_DomainModelFilePageTitle);
-		domainModelFilePage
-				.setDescription(Messages.MIDCreationWizard_DomainModelFilePageDescription);
+		domainModelFilePage.setTitle(Messages.MIDCreationWizard_DomainModelFilePageTitle);
+		domainModelFilePage.setDescription(Messages.MIDCreationWizard_DomainModelFilePageDescription);
 		addPage(domainModelFilePage);
 	}
 
@@ -147,17 +137,14 @@ public class MIDCreationWizard extends Wizard implements INewWizard {
 	public boolean performFinish() {
 		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 
-			protected void execute(IProgressMonitor monitor)
-					throws CoreException, InterruptedException {
-				diagram = MIDDiagramEditorUtil.createDiagram(
-						diagramModelFilePage.getURI(),
+			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
+				diagram = MIDDiagramEditorUtil.createDiagram(diagramModelFilePage.getURI(),
 						domainModelFilePage.getURI(), monitor);
 				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
 						MIDDiagramEditorUtil.openDiagram(diagram);
 					} catch (PartInitException e) {
-						ErrorDialog.openError(getContainer().getShell(),
-								Messages.MIDCreationWizardOpenEditorError,
+						ErrorDialog.openError(getContainer().getShell(), Messages.MIDCreationWizardOpenEditorError,
 								null, e.getStatus());
 					}
 				}
@@ -169,12 +156,10 @@ public class MIDCreationWizard extends Wizard implements INewWizard {
 			return false;
 		} catch (InvocationTargetException e) {
 			if (e.getTargetException() instanceof CoreException) {
-				ErrorDialog.openError(getContainer().getShell(),
-						Messages.MIDCreationWizardCreationError, null,
+				ErrorDialog.openError(getContainer().getShell(), Messages.MIDCreationWizardCreationError, null,
 						((CoreException) e.getTargetException()).getStatus());
 			} else {
-				MIDDiagramEditorPlugin.getInstance().logError(
-						"Error creating diagram", e.getTargetException()); //$NON-NLS-1$
+				MIDDiagramEditorPlugin.getInstance().logError("Error creating diagram", e.getTargetException()); //$NON-NLS-1$
 			}
 			return false;
 		}

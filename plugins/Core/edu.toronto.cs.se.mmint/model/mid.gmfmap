@@ -111,12 +111,9 @@
       <domainMetaElement
           href="mid.ecore#//operator/Operator"/>
       <labelMappings
-          xsi:type="gmfmap:ExpressionLabelMapping"
           readOnly="true">
         <diagramLabel
             href="mid.gmfgraph#OperatorLabel"/>
-        <viewExpression
-            body="if self.oclIsKindOf(operator::ConversionOperator) then '(conv) '.concat(self.name) else self.name endif"/>
       </labelMappings>
       <diagramNode
           href="mid.gmfgraph#Operator"/>
@@ -137,11 +134,11 @@
         language="java"/>
     <labelMappings>
       <diagramLabel
-          href="mid.gmfgraph#ModelEndpointLabel"/>
+          href="mid.gmfgraph#ModelRelModelEndpointLabel"/>
     </labelMappings>
     <labelMappings>
       <diagramLabel
-          href="mid.gmfgraph#MAVOModelEndpointLabel"/>
+          href="mid.gmfgraph#MAVOModelRelModelEndpointLabel"/>
     </labelMappings>
     <containmentFeature
         href="mid.ecore#//relationship/ModelRel/modelEndpoints"/>
@@ -149,7 +146,7 @@
         xsi:type="gmftool:CreationTool"
         href="mid.gmftool#//@palette/@tools.0/@tools.3"/>
     <diagramLink
-        href="mid.gmfgraph#ModelEndpoint"/>
+        href="mid.gmfgraph#ModelRelModelEndpoint"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="mid.ecore#//ExtendibleElementEndpoint/target"/>
@@ -207,7 +204,7 @@
         editorPattern="{0}"
         editPattern="{0}">
       <diagramLabel
-          href="mid.gmfgraph#OperatorInputsLabel"/>
+          href="mid.gmfgraph#OperatorModelEndpointInputLabel"/>
       <features
           href="mid.ecore#//ExtendibleElement/name"/>
       <editableFeatures
@@ -216,7 +213,7 @@
     <containmentFeature
         href="mid.ecore#//operator/Operator/inputs"/>
     <diagramLink
-        href="mid.gmfgraph#OperatorInputs"/>
+        href="mid.gmfgraph#OperatorModelEndpointInput"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="mid.ecore#//ExtendibleElementEndpoint/target"/>
@@ -233,7 +230,7 @@
         editorPattern="{0}"
         editPattern="{0}">
       <diagramLabel
-          href="mid.gmfgraph#OperatorOutputsLabel"/>
+          href="mid.gmfgraph#OperatorModelEndpointOutputLabel"/>
       <features
           href="mid.ecore#//ExtendibleElement/name"/>
       <editableFeatures
@@ -242,7 +239,7 @@
     <containmentFeature
         href="mid.ecore#//operator/Operator/outputs"/>
     <diagramLink
-        href="mid.gmfgraph#OperatorOutputs"/>
+        href="mid.gmfgraph#OperatorModelEndpointOutput"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="mid.ecore#//ExtendibleElementEndpoint/target"/>

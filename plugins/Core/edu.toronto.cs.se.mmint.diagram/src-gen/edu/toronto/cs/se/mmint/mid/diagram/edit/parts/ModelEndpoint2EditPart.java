@@ -29,8 +29,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.OperatorModelEndpointIn
 /**
  * @generated
  */
-public class ModelEndpoint2EditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class ModelEndpoint2EditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -49,10 +48,8 @@ public class ModelEndpoint2EditPart extends ConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelEndpoint2ItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new OperatorModelEndpointInputSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelEndpoint2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new OperatorModelEndpointInputSemanticEditPolicy());
 	}
 
 	/**
@@ -60,9 +57,8 @@ public class ModelEndpoint2EditPart extends ConnectionNodeEditPart implements
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ModelEndpointNameEditPart) {
-			((ModelEndpointNameEditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureOperatorInputsLabelFigure());
+			((ModelEndpointNameEditPart) childEditPart).setLabel(getPrimaryShape()
+					.getFigureOperatorModelEndpointInputLabelFigure());
 			return true;
 		}
 		return false;
@@ -108,34 +104,34 @@ public class ModelEndpoint2EditPart extends ConnectionNodeEditPart implements
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new OperatorInputsFigure();
+		return new OperatorModelEndpointInputFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public OperatorInputsFigure getPrimaryShape() {
-		return (OperatorInputsFigure) getFigure();
+	public OperatorModelEndpointInputFigure getPrimaryShape() {
+		return (OperatorModelEndpointInputFigure) getFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class OperatorInputsFigure extends PolylineConnectionEx {
+	public class OperatorModelEndpointInputFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureOperatorInputsLabelFigure;
+		private WrappingLabel fFigureOperatorModelEndpointInputLabelFigure;
 
 		/**
 		 * @generated
 		 */
-		public OperatorInputsFigure() {
+		public OperatorModelEndpointInputFigure() {
 			this.setForegroundColor(ColorConstants.black);
 
 			createContents();
-			setTargetDecoration(createTargetDecoration());
+			setSourceDecoration(createSourceDecoration());
 		}
 
 		/**
@@ -143,18 +139,18 @@ public class ModelEndpoint2EditPart extends ConnectionNodeEditPart implements
 		 */
 		private void createContents() {
 
-			fFigureOperatorInputsLabelFigure = new WrappingLabel();
+			fFigureOperatorModelEndpointInputLabelFigure = new WrappingLabel();
 
-			fFigureOperatorInputsLabelFigure.setText("");
+			fFigureOperatorModelEndpointInputLabelFigure.setText("");
 
-			this.add(fFigureOperatorInputsLabelFigure);
+			this.add(fFigureOperatorModelEndpointInputLabelFigure);
 
 		}
 
 		/**
 		 * @generated
 		 */
-		private RotatableDecoration createTargetDecoration() {
+		private RotatableDecoration createSourceDecoration() {
 			PolylineDecoration df = new PolylineDecoration();
 			return df;
 		}
@@ -162,8 +158,8 @@ public class ModelEndpoint2EditPart extends ConnectionNodeEditPart implements
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureOperatorInputsLabelFigure() {
-			return fFigureOperatorInputsLabelFigure;
+		public WrappingLabel getFigureOperatorModelEndpointInputLabelFigure() {
+			return fFigureOperatorModelEndpointInputLabelFigure;
 		}
 
 	}
