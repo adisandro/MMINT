@@ -73,6 +73,15 @@ public class ConversionOperatorImpl extends OperatorImpl implements ConversionOp
 	 * @generated NOT
 	 */
 	@Override
+	public String toString() {
+
+		return "[conv] " + super.toString();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
 	public void deleteType() throws MMINTException {
 
 		super.deleteType();

@@ -79,7 +79,7 @@ public class GMFDiagramUtils {
 			String typeLabel = (type == null) ? EXTELEM_NULLTYPE : type.getName();
 			label += " : " + typeLabel;
 		}
-	
+
 		return label;
 	}
 

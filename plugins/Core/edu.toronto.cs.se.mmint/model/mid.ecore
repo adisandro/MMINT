@@ -1086,11 +1086,6 @@
       <eOperations name="getExecutables" upperBound="-1" eType="#//operator/Operator"
           eExceptions="#//MMINTException">
         <eParameters name="actualModels" upperBound="-1" eType="#//Model"/>
-        <eParameters name="actualModelTypes" upperBound="-1">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-            <eTypeArguments eClassifier="#//Model"/>
-          </eGenericType>
-        </eParameters>
         <eParameters name="conversions" upperBound="-1">
           <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
             <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>

@@ -68,9 +68,9 @@ public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformatio
 	}
 
 	@Override
-	public EList<Operator> getExecutables(EList<Model> actualModels, EList<EList<Model>> actualModelTypes, EList<Map<Integer, EList<ConversionOperator>>> conversions, EList<EList<Model>> generics) throws MMINTException {
+	public EList<Operator> getExecutables(EList<Model> actualModels, EList<Map<Integer, EList<ConversionOperator>>> conversions, EList<EList<Model>> generics) throws MMINTException {
 
-		EList<Operator> executableOperatorTypes = super.getExecutables(actualModels, actualModelTypes, conversions, generics);
+		EList<Operator> executableOperatorTypes = super.getExecutables(actualModels, conversions, generics);
 		EList<Operator> kExecutableOperatorTypes = new BasicEList<Operator>();
 		// replace transformation operator types with kleisli ones
 		for (int i = 0; i < executableOperatorTypes.size(); i++) {

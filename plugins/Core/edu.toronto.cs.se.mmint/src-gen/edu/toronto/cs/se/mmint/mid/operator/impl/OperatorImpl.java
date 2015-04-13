@@ -21,17 +21,22 @@ import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+
 import java.io.FileInputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.stream.Collectors;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
@@ -453,7 +458,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				}
 			case OperatorPackage.OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST:
 				try {
-					return getExecutables((EList<Model>)arguments.get(0), (EList<EList<Model>>)arguments.get(1), (EList<Map<Integer, EList<ConversionOperator>>>)arguments.get(2), (EList<EList<Model>>)arguments.get(3));
+					return getExecutables((EList<Model>)arguments.get(0), (EList<Map<Integer, EList<ConversionOperator>>>)arguments.get(2), (EList<EList<Model>>)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -492,8 +497,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public String toString() {
+	public String toStringGen() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -503,6 +507,33 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		result.append(updateMID);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+
+		String label = (getName() == null) ? "" : getName();
+		if (!getGenerics().isEmpty()) {
+			label +=
+				"<" +
+				getGenerics().stream()
+					.map(GenericEndpoint::getName)
+					.collect(Collectors.joining(",")) +
+				">";
+		}
+		if (!getInputs().isEmpty()) {
+			label +=
+				"(" +
+				getInputs().stream()
+					.map(ModelEndpoint::getName)
+					.collect(Collectors.joining(",")) +
+				")";
+		}
+
+		return label;
 	}
 
 	/**
@@ -530,16 +561,21 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public EList<Operator> getExecutables(EList<Model> actualModels, EList<EList<Model>> actualModelTypes, EList<Map<Integer, EList<ConversionOperator>>> conversions, EList<EList<Model>> generics) throws MMINTException {
+	public EList<Operator> getExecutables(EList<Model> actualModels, EList<Map<Integer, EList<ConversionOperator>>> conversions, EList<EList<Model>> generics) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
+		// polymorphism
+		EList<EList<Model>> actualModelTypes = new BasicEList<EList<Model>>();
+		for (Model model : actualModels) {
+			actualModelTypes.add(new BasicEList<Model>(MultiModelTypeIntrospection.getRuntimeTypes(model)));
+		}
 		int i = 0;
 		Map<Integer, EList<ConversionOperator>> conversion = new HashMap<Integer, EList<ConversionOperator>>();
 		for (ModelEndpoint inputParameter : getInputs()) {
-			// check 1: not enough actual parameters
+			// check 1: not enough actual parameters, considering formal parameters with upper bound > 1 too
 			if (i >= actualModels.size()) {
 				return new BasicEList<Operator>();
 			}
@@ -549,17 +585,16 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				Model formalParameter = inputParameter.getTarget();
 				// easy if formal parameter is root type for actual parameter
 				if (!MultiModelTypeHierarchy.isRootType(formalParameter) || !formalParameter.getClass().isAssignableFrom(actualParameter.getClass())) {
-					EList<ConversionOperator> conversionOperatorTypes = MultiModelTypeHierarchy.isEligibleParameter(actualModelTypes.get(i), formalParameter);
+					List<ConversionOperator> conversionOperatorTypes = MultiModelTypeHierarchy.instanceOf(actualParameter, formalParameter.getUri());
 					if (conversionOperatorTypes == null) {
 						return new BasicEList<Operator>();
 					}
 					if (!conversionOperatorTypes.isEmpty()) {
-						conversion.put(new Integer(i), conversionOperatorTypes);
+						conversion.put(new Integer(i), new BasicEList<ConversionOperator>(conversionOperatorTypes));
 					}
 				}
 				i++;
 				if (inputParameter.getUpperBound() == 1) {
-					//TODO MMINT[OPERATOR] introduce vararg with low multiplicity
 					break;
 				}
 			}

@@ -210,9 +210,6 @@ public interface Operator extends GenericElement {
 	 * 
 	 * @param actualModels
 	 *            The list of actual model parameters.
-	 * @param actualModelTypes
-	 *            A list of model types obtained through polymorphism for each
-	 *            actual model parameter.
 	 * @param conversions
 	 *            Used as output, a list of conversion operator types for each
 	 *            executable operator type and for each actual model parameter
@@ -228,7 +225,7 @@ public interface Operator extends GenericElement {
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" actualModelsMany="true" actualModelTypesMany="true" conversionsMany="true" genericsMany="true"
 	 * @generated
 	 */
-	EList<Operator> getExecutables(EList<Model> actualModels, EList<EList<Model>> actualModelTypes, EList<Map<Integer, EList<ConversionOperator>>> conversions, EList<EList<Model>> generics) throws MMINTException;
+	EList<Operator> getExecutables(EList<Model> actualModels, EList<Map<Integer, EList<ConversionOperator>>> conversions, EList<EList<Model>> generics) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Gets the input properties of this operator.

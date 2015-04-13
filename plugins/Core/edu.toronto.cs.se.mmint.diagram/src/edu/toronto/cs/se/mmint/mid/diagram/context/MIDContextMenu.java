@@ -169,14 +169,6 @@ public class MIDContextMenu extends ContributionItem {
 			return;
 		}
 
-		// polymorphism
-		EList<EList<Model>> runtimeModelTypes = null;
-		if (doOperator || doCast) {
-			runtimeModelTypes = new BasicEList<EList<Model>>();
-			for (Model model : models) {
-				runtimeModelTypes.add(new BasicEList<Model>(MultiModelTypeIntrospection.getRuntimeTypes(model)));
-			}
-		}
 		// create dynamic menus
 		MenuItem mmintItem = new MenuItem(menu, SWT.CASCADE, index);
 		mmintItem.setText(MMINT_MENU_LABEL);
@@ -192,7 +184,7 @@ public class MIDContextMenu extends ContributionItem {
 			EList<EList<Model>> generics = new BasicEList<EList<Model>>();
 			for (Operator operatorType : MultiModelTypeRegistry.getOperatorTypes()) {
 				try {
-					operatorTypes.addAll(operatorType.getExecutables(models, runtimeModelTypes, conversions, generics));
+					operatorTypes.addAll(operatorType.getExecutables(models, conversions, generics));
 				}
 				catch (MMINTException e) {
 					continue;
@@ -207,10 +199,11 @@ public class MIDContextMenu extends ContributionItem {
 					Operator operatorType = operatorTypes.get(i);
 					Map<Integer, EList<ConversionOperator>> conversion = conversions.get(i);
 					EList<Model> generic = generics.get(i);
-					String text = operatorType.getName();
 					EList<Model> actualParameters = new BasicEList<Model>();
 					actualParameters.addAll(generic);
 					actualParameters.addAll(models);
+					//TODO MMINT[OPERATOR] String text = operatorInstance.toString(); should be used but operatorInstance does not exist yet
+					String text = operatorType.getName();
 					if (!generic.isEmpty()) {
 						text += "<";
 						boolean separator = false;
@@ -240,6 +233,11 @@ public class MIDContextMenu extends ContributionItem {
 		}
 		// cast
 		if (doCast) {
+			// polymorphism
+			EList<EList<Model>> runtimeModelTypes = new BasicEList<EList<Model>>();
+			for (Model model : models) {
+				runtimeModelTypes.add(new BasicEList<Model>(MultiModelTypeIntrospection.getRuntimeTypes(model)));
+			}
 			if (runtimeModelTypes.get(0).size() > 1) {
 				MenuItem castItem = new MenuItem(mmintMenu, SWT.CASCADE);
 				castItem.setText(MMINT_MENU_CAST_LABEL);
