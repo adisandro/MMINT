@@ -272,8 +272,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__Execute__EList() {
-		return operatorEClass.getEOperations().get(7);
+	public EOperation getOperator__GetExecutables__EList_EList() {
+		return operatorEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -281,8 +281,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__GetExecutables__EList_EList_EList_EList() {
-		return operatorEClass.getEOperations().get(3);
+	public EOperation getOperator__Execute__EList() {
+		return operatorEClass.getEOperations().get(7);
 	}
 
 	/**
@@ -458,7 +458,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(operatorEClass, OPERATOR___GET_METATYPE);
 		createEOperation(operatorEClass, OPERATOR___GET_SUPERTYPE);
 		createEOperation(operatorEClass, OPERATOR___DELETE_TYPE);
-		createEOperation(operatorEClass, OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST);
+		createEOperation(operatorEClass, OPERATOR___GET_EXECUTABLES__ELIST_ELIST);
 		createEOperation(operatorEClass, OPERATOR___GET_INPUT_PROPERTIES);
 		createEOperation(operatorEClass, OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES);
 		createEOperation(operatorEClass, OPERATOR___INIT);
@@ -534,24 +534,16 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		EOperation op = initEOperation(getOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
-		op = initEOperation(getOperator__GetExecutables__EList_EList_EList_EList(), this.getOperator(), "getExecutables", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getOperator__GetExecutables__EList_EList(), this.getOperator(), "getExecutables", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getModel(), "actualModels", 0, -1, IS_UNIQUE, IS_ORDERED);
-		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
-		EGenericType g2 = createEGenericType(theMIDPackage.getModel());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "actualModelTypes", 0, -1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEIntegerObject());
+		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
+		EGenericType g2 = createEGenericType(ecorePackage.getEIntegerObject());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(ecorePackage.getEEList());
 		g1.getETypeArguments().add(g2);
 		EGenericType g3 = createEGenericType(this.getConversionOperator());
 		g2.getETypeArguments().add(g3);
 		addEParameter(op, g1, "conversions", 0, -1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEEList());
-		g2 = createEGenericType(theMIDPackage.getModel());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "generics", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		initEOperation(getOperator__GetInputProperties(), this.getProperties(), "getInputProperties", 1, 1, IS_UNIQUE, IS_ORDERED);

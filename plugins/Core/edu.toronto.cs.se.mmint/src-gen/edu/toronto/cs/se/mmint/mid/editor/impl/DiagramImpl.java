@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.mid.editor.impl;
 
-import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -23,8 +22,6 @@ import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
-import edu.toronto.cs.se.mmint.repository.MMINTConstants;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;

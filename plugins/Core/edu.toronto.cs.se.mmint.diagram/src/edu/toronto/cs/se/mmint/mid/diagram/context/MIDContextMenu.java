@@ -46,6 +46,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.AddModifyConstraintListener;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
@@ -181,10 +182,9 @@ public class MIDContextMenu extends ContributionItem {
 			}
 			EList<Operator> operatorTypes = new BasicEList<Operator>();
 			EList<Map<Integer, EList<ConversionOperator>>> conversions = new BasicEList<Map<Integer, EList<ConversionOperator>>>();
-			EList<EList<Model>> generics = new BasicEList<EList<Model>>();
 			for (Operator operatorType : MultiModelTypeRegistry.getOperatorTypes()) {
 				try {
-					operatorTypes.addAll(operatorType.getExecutables(models, conversions, generics));
+					operatorTypes.addAll(operatorType.getExecutables(models, conversions));
 				}
 				catch (MMINTException e) {
 					continue;
@@ -198,20 +198,18 @@ public class MIDContextMenu extends ContributionItem {
 				for (int i = 0; i < operatorTypes.size(); i++) {
 					Operator operatorType = operatorTypes.get(i);
 					Map<Integer, EList<ConversionOperator>> conversion = conversions.get(i);
-					EList<Model> generic = generics.get(i);
 					EList<Model> actualParameters = new BasicEList<Model>();
-					actualParameters.addAll(generic);
 					actualParameters.addAll(models);
 					//TODO MMINT[OPERATOR] String text = operatorInstance.toString(); should be used but operatorInstance does not exist yet
 					String text = operatorType.getName();
-					if (!generic.isEmpty()) {
+					if (!operatorType.getGenerics().isEmpty()) {
 						text += "<";
 						boolean separator = false;
-						for (Model genericModel : generic) {
+						for (GenericEndpoint genericTypeEndpoint : operatorType.getGenerics()) {
 							if (separator) {
 								text += ",";
 							}
-							text += genericModel.getName();
+							text += genericTypeEndpoint.getName();
 							if (!separator) {
 								separator = true;
 							}
@@ -226,8 +224,6 @@ public class MIDContextMenu extends ContributionItem {
 					operatorSubitem.addSelectionListener(
 						new MIDContextRunOperatorListener(MMINT_MENU_OPERATOR_LABEL, instanceMID, operatorType, actualParameters, conversion)
 					);
-					//TODO MMINT[OPERATOR] nice to show label of operator invocation with actual parameters
-					//TODO MMINT[OPERATOR] traceability, could be nice to create an instance of operator, with name = actual parameters
 				}
 			}
 		}

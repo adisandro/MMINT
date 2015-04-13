@@ -75,6 +75,8 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
+				//TODO MMINT[OPERATOR] add the operator instance to the instanceMID, depending on global settings
+				//TODO MMINT[OPERATOR] it would be more efficient to create an operator only here, but it's hard
 				//TODO MMINT[OPERATOR] is conversionMap ordered?? I don't think so
 				// run all conversion operators
 				if (!conversionMap.isEmpty()) {

@@ -1094,11 +1094,6 @@
             </eTypeArguments>
           </eGenericType>
         </eParameters>
-        <eParameters name="generics" upperBound="-1">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-            <eTypeArguments eClassifier="#//Model"/>
-          </eGenericType>
-        </eParameters>
       </eOperations>
       <eOperations name="getInputProperties" lowerBound="1" eType="#//operator/Properties"/>
       <eOperations name="readInputProperties" eExceptions="#//MMINTException">

@@ -302,7 +302,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 3;
+	int OPERATOR___GET_EXECUTABLES__ELIST_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -573,7 +573,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST;
+	int CONVERSION_OPERATOR___GET_EXECUTABLES__ELIST_ELIST = OPERATOR___GET_EXECUTABLES__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -880,7 +880,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST;
+	int RANDOM_OPERATOR___GET_EXECUTABLES__ELIST_ELIST = OPERATOR___GET_EXECUTABLES__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -1284,6 +1284,16 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__DeleteType();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutables(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Executables</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Executables</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutables(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getOperator__GetExecutables__EList_EList();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#execute(org.eclipse.emf.common.util.EList) <em>Execute</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1292,16 +1302,6 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getOperator__Execute__EList();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutables(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Executables</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Executables</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutables(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
-	 * @generated
-	 */
-	EOperation getOperator__GetExecutables__EList_EList_EList_EList();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getInputProperties() <em>Get Input Properties</em>}' operation.
@@ -1563,20 +1563,20 @@ public interface OperatorPackage extends EPackage {
 		EOperation OPERATOR___DELETE_TYPE = eINSTANCE.getOperator__DeleteType();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Executables</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___GET_EXECUTABLES__ELIST_ELIST = eINSTANCE.getOperator__GetExecutables__EList_EList();
+
+		/**
 		 * The meta object literal for the '<em><b>Execute</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EOperation OPERATOR___EXECUTE__ELIST = eINSTANCE.getOperator__Execute__EList();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Executables</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation OPERATOR___GET_EXECUTABLES__ELIST_ELIST_ELIST_ELIST = eINSTANCE.getOperator__GetExecutables__EList_EList_EList_EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Input Properties</b></em>' operation.

@@ -454,7 +454,6 @@
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getExecutables">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/getExecutables/actualModels"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/getExecutables/conversions"/>
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/getExecutables/generics"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getInputProperties"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/readInputProperties">

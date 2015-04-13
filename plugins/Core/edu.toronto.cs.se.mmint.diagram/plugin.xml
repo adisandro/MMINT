@@ -772,6 +772,12 @@ Contributors:
                   tooltip="Enables/disables endpoint labels for model relationships in MIDs">
             </command>
             <command
+                  commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.OperatorsEnabled"
+                  label="Operator traceability Enabled"
+                  style="toggle"
+                  tooltip="Enables/disables operator traceability at the instance level in MIDs">
+            </command>
+            <command
                   commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.OperatorEndpointsEnabled"
                   label="Operator Endpoint labels Enabled"
                   style="toggle"
@@ -823,6 +829,15 @@ Contributors:
             defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
             id="edu.toronto.cs.se.mmint.mid.diagram.menu.ModelRelEndpointsEnabled"
             name="ModelRel Endpoints Enabled">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState:true"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
+      <command
+            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
+            id="edu.toronto.cs.se.mmint.mid.diagram.menu.OperatorsEnabled"
+            name="Operators Enabled">
          <state
                class="org.eclipse.ui.handlers.RegistryToggleState:true"
                id="org.eclipse.ui.commands.toggleState">

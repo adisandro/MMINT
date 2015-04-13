@@ -203,29 +203,22 @@ public interface Operator extends GenericElement {
 	void deleteType() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Gets the list of executable operator types given
-	 * a list of actual parameters to be used for their invocation. Contract:
-	 * for each executable operator type, populate conversions and generics with
-	 * the corresponding structures.
+	 * <!-- begin-user-doc --> Gets the list of executable operator types given a list of actual parameters to be used
+	 * for their invocation. Contract: for each executable operator type, populate the list of conversions.
 	 * 
 	 * @param actualModels
 	 *            The list of actual model parameters.
 	 * @param conversions
-	 *            Used as output, a list of conversion operator types for each
-	 *            executable operator type and for each actual model parameter
-	 *            to be converted into an equivalent one. The actual model
-	 *            parameter to be converted is given by the integer index of the
-	 *            map, to avoid the creation of many empty lists.
-	 * @param generics
-	 *            Used as output, a list of model types for each executable
-	 *            operator type to parameterize its execution.
+	 *            Used as output, a list of conversion operator types for each executable operator type and for each
+	 *            actual model parameter to be converted into an equivalent one. The actual model parameter to be
+	 *            converted is given by the integer index of the map, to avoid the creation of many empty lists.
 	 * @return The list of executable operator types.
 	 * @throws MMINTException
 	 *             If this is an operator instance. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" actualModelsMany="true" actualModelTypesMany="true" conversionsMany="true" genericsMany="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" actualModelsMany="true" conversionsMany="true"
 	 * @generated
 	 */
-	EList<Operator> getExecutables(EList<Model> actualModels, EList<Map<Integer, EList<ConversionOperator>>> conversions, EList<EList<Model>> generics) throws MMINTException;
+	EList<Operator> getExecutables(EList<Model> actualModels, EList<Map<Integer, EList<ConversionOperator>>> conversions) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Gets the input properties of this operator.

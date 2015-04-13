@@ -887,6 +887,7 @@ public class MMINT implements MMINTConstants {
 		initPreference(preferences, PREFERENCE_MENU_ICONS_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_MENU_MODELRELS_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_MENU_OPERATORS_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_TESTS_ENABLED, "false", true);
 		for (String languageId : languageReasoners.keySet()) {

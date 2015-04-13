@@ -250,13 +250,14 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 	}
 
 	@Override
-	public EList<Operator> getExecutables(EList<Model> actualModels, EList<Map<Integer, EList<ConversionOperator>>> conversions, EList<EList<Model>> generics) throws MMINTException {
+	public EList<Operator> getExecutables(EList<Model> actualModels, EList<Map<Integer, EList<ConversionOperator>>> conversions) throws MMINTException {
 
 		//TODO MMINT[TRANSFORMATION] this operator shouldn't appear when only a kleisli model rel type is available
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
+		//TODO MMINT[OPERATOR] Create ModelRel subtype with the constraint for type check (and make interested model rel types extend it), then this overriding is useless
 		EList<Operator> executableOperatorTypes = new BasicEList<Operator>();
 		// check 1: only one actual parameter
 		if (actualModels.size() != 1) {
@@ -284,7 +285,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			conversions.add(new HashMap<Integer, EList<ConversionOperator>>());
 			EList<Model> generic = new BasicEList<Model>();
 			generic.add(modelRelType);
-			generics.add(generic);
+			//generics.add(generic);
 		}
 
 		return executableOperatorTypes;
