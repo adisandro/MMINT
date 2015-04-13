@@ -167,13 +167,16 @@ public class RE13 extends OperatorImpl {
 				if (z3LabelNodeIds.contains(z3NodeId)) {
 					continue;
 				}
-				//TODO MMINT[ISTAR] Error here when launching REJ14 on Windows for the SmartGrid example
 				z3ModelNode.getValue().forEach(formulaVar -> intentions.get(formulaVar).eSet(labelFeature, true));
 			}
 		}
 		else {
 			for (String z3LabelNodeId : z3LabelNodeIds) {
-				z3ModelNodes.get(z3LabelNodeId).forEach(formulaVar -> intentions.get(formulaVar).eSet(labelFeature, true));
+				Set<String> formulaVars = z3ModelNodes.get(z3LabelNodeId);
+				if (formulaVars == null) {
+					continue;
+				}
+				formulaVars.forEach(formulaVar -> intentions.get(formulaVar).eSet(labelFeature, true));
 			}
 		}
 	}
