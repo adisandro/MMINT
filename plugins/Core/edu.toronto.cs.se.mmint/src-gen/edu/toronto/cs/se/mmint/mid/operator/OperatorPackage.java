@@ -287,13 +287,22 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___GET_SUPERTYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Create Erasure Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___CREATE_ERASURE_TYPE__GENERICENDPOINT_GENERICELEMENT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___DELETE_TYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 2;
+	int OPERATOR___DELETE_TYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Executables</em>' operation.
@@ -302,7 +311,16 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_EXECUTABLES__ELIST_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 3;
+	int OPERATOR___GET_EXECUTABLES__ELIST_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___CREATE_INSTANCE__MULTIMODEL = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -311,7 +329,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_INPUT_PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 4;
+	int OPERATOR___GET_INPUT_PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Read Input Properties</em>' operation.
@@ -320,7 +338,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 5;
+	int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Init</em>' operation.
@@ -329,7 +347,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___INIT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 6;
+	int OPERATOR___INIT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Execute</em>' operation.
@@ -338,7 +356,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___EXECUTE__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 7;
+	int OPERATOR___EXECUTE__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -347,7 +365,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 8;
+	int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 10;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
@@ -567,6 +585,15 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR___GET_SUPERTYPE = OPERATOR___GET_SUPERTYPE;
 
 	/**
+	 * The operation id for the '<em>Create Erasure Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___CREATE_ERASURE_TYPE__GENERICENDPOINT_GENERICELEMENT = OPERATOR___CREATE_ERASURE_TYPE__GENERICENDPOINT_GENERICELEMENT;
+
+	/**
 	 * The operation id for the '<em>Get Executables</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -574,6 +601,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___GET_EXECUTABLES__ELIST_ELIST = OPERATOR___GET_EXECUTABLES__ELIST_ELIST;
+
+	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___CREATE_INSTANCE__MULTIMODEL = OPERATOR___CREATE_INSTANCE__MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -865,6 +901,15 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___GET_SUPERTYPE = OPERATOR___GET_SUPERTYPE;
 
 	/**
+	 * The operation id for the '<em>Create Erasure Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___CREATE_ERASURE_TYPE__GENERICENDPOINT_GENERICELEMENT = OPERATOR___CREATE_ERASURE_TYPE__GENERICENDPOINT_GENERICELEMENT;
+
+	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -881,6 +926,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_OPERATOR___GET_EXECUTABLES__ELIST_ELIST = OPERATOR___GET_EXECUTABLES__ELIST_ELIST;
+
+	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___CREATE_INSTANCE__MULTIMODEL = OPERATOR___CREATE_INSTANCE__MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -1136,13 +1190,22 @@ public interface OperatorPackage extends EPackage {
 	int GENERIC_ENDPOINT___GET_METATYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 3;
+
+	/**
 	 * The number of operations of the '<em>Generic Endpoint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_ENDPOINT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 3;
+	int GENERIC_ENDPOINT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '<em>Random</em>' data type.
@@ -1274,6 +1337,16 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__GetSupertype();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createErasureType(edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint, edu.toronto.cs.se.mmint.mid.GenericElement) <em>Create Erasure Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Erasure Type</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#createErasureType(edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint, edu.toronto.cs.se.mmint.mid.GenericElement)
+	 * @generated
+	 */
+	EOperation getOperator__CreateErasureType__GenericEndpoint_GenericElement();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#deleteType() <em>Delete Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1292,6 +1365,16 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getOperator__GetExecutables__EList_EList();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createInstance(edu.toronto.cs.se.mmint.mid.MultiModel) <em>Create Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#createInstance(edu.toronto.cs.se.mmint.mid.MultiModel)
+	 * @generated
+	 */
+	EOperation getOperator__CreateInstance__MultiModel();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#execute(org.eclipse.emf.common.util.EList) <em>Execute</em>}' operation.
@@ -1425,6 +1508,16 @@ public interface OperatorPackage extends EPackage {
 	EOperation getGenericEndpoint__GetMetatype();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#createInstance(edu.toronto.cs.se.mmint.mid.GenericElement, edu.toronto.cs.se.mmint.mid.operator.Operator) <em>Create Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#createInstance(edu.toronto.cs.se.mmint.mid.GenericElement, edu.toronto.cs.se.mmint.mid.operator.Operator)
+	 * @generated
+	 */
+	EOperation getGenericEndpoint__CreateInstance__GenericElement_Operator();
+
+	/**
 	 * Returns the meta object for data type '{@link java.util.Random <em>Random</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1555,6 +1648,14 @@ public interface OperatorPackage extends EPackage {
 		EOperation OPERATOR___GET_SUPERTYPE = eINSTANCE.getOperator__GetSupertype();
 
 		/**
+		 * The meta object literal for the '<em><b>Create Erasure Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___CREATE_ERASURE_TYPE__GENERICENDPOINT_GENERICELEMENT = eINSTANCE.getOperator__CreateErasureType__GenericEndpoint_GenericElement();
+
+		/**
 		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1569,6 +1670,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation OPERATOR___GET_EXECUTABLES__ELIST_ELIST = eINSTANCE.getOperator__GetExecutables__EList_EList();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___CREATE_INSTANCE__MULTIMODEL = eINSTANCE.getOperator__CreateInstance__MultiModel();
 
 		/**
 		 * The meta object literal for the '<em><b>Execute</b></em>' operation.
@@ -1679,6 +1788,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation GENERIC_ENDPOINT___GET_METATYPE = eINSTANCE.getGenericEndpoint__GetMetatype();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR = eINSTANCE.getGenericEndpoint__CreateInstance__GenericElement_Operator();
 
 		/**
 		 * The meta object literal for the '<em>Random</em>' data type.

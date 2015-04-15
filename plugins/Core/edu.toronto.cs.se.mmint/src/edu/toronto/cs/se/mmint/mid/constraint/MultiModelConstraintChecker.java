@@ -296,7 +296,7 @@ public class MultiModelConstraintChecker {
 		return false;
 	}
 
-	public static List<String> getAllowedModelEndpoints(ModelRel modelRel, ModelEndpoint oldModelEndpoint, Model targetModel) {
+	public static @Nullable List<String> getAllowedModelEndpoints(@NonNull ModelRel modelRel, @Nullable ModelEndpoint oldModelEndpoint, @Nullable Model targetModel) {
 
 		if (targetModel == null) { // model not added yet
 			return new ArrayList<String>();

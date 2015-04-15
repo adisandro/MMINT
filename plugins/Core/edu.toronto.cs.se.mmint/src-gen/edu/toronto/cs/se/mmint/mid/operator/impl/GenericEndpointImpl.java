@@ -11,12 +11,16 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 
 import java.lang.reflect.InvocationTargetException;
@@ -114,8 +118,40 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 				return getTarget();
 			case OperatorPackage.GENERIC_ENDPOINT___GET_METATYPE:
 				return getMetatype();
+			case OperatorPackage.GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR:
+				try {
+					return createInstance((GenericElement)arguments.get(0), (Operator)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected void addInstance(GenericEndpoint newGenericEndpoint, GenericElement targetGenericType, Operator containerOperator) {
+
+		super.addBasicInstance(newGenericEndpoint, null, targetGenericType.getName());
+		super.addInstanceEndpoint(newGenericEndpoint, targetGenericType);
+		containerOperator.getGenerics().add(newGenericEndpoint);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public GenericEndpoint createInstance(GenericElement targetGenericType, Operator containerOperator) throws MMINTException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		GenericEndpoint newGenericEndpoint = OperatorFactory.eINSTANCE.createGenericEndpoint();
+		addInstance(newGenericEndpoint, targetGenericType, containerOperator);
+
+		return newGenericEndpoint;
 	}
 
 } //GenericEndpointImpl

@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import java.util.Map;
 import java.util.Properties;
 import org.eclipse.emf.common.util.EList;
@@ -193,6 +194,14 @@ public interface Operator extends GenericElement {
 	Operator getSupertype();
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" genericTypeEndpointRequired="true" genericTypeRequired="true"
+	 * @generated
+	 */
+	Operator createErasureType(GenericEndpoint genericTypeEndpoint, GenericElement genericType) throws MMINTException;
+
+	/**
 	 * <!-- begin-user-doc --> Deletes this operator type from the Type MID.
 	 * 
 	 * @throws MMINTException
@@ -219,6 +228,14 @@ public interface Operator extends GenericElement {
 	 * @generated
 	 */
 	EList<Operator> getExecutables(EList<Model> actualModels, EList<Map<Integer, EList<ConversionOperator>>> conversions) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	Operator createInstance(MultiModel instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Gets the input properties of this operator.

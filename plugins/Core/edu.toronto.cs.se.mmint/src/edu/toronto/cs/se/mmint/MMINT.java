@@ -117,15 +117,29 @@ public class MMINT implements MMINTConstants {
 
 	/* TODO MMINT[USABILITY]
 	 * - Change uris into ids
+	 * - Simplify the type system
 	 * - Handle optional uris/ids for subelements of model/modelrel/operator
 	 * - Use defaults in extension points as much as possible
-	 * - Decouple from MAVO framework
-	 * - Move modelepedia types into the examples directory
-	 * - Document how everything works in the user guide
-	 * - Add javadoc + @NonNull/@Nullable annotations
 	 * - Rename link to mapping
-	 * - Rethink mid link icons with/without mavo
+	 * - Decouple from MAVO framework
+	 * - Rethink mid link icons with/without MAVO
+	 * - Move modelepedia types into the examples directory
 	 * - Transform various labels into toString() functions (also helps debug)
+	 * - Add documentation ->
+	 *   a) Prerequisite: review apis for mid construction and destruction
+	 *   b) Take every api function
+	 *   c) Check usage and delete if unnecessary
+	 *   d) Add @NonNull/@Nullable annotations + javadoc
+	 *   e) Make a proper user guide online
+	 */
+	/* TODO MMINT[MATURITY]
+	 * - Address todos
+	 * - Resource change listeners to track changes in model elements
+	 * - Operator workflows
+	 * - Formalize override semantics
+	 * - Formalize type introspection
+	 * - Introduce intermediate level between model element and model element reference, contained in model endpoints
+	 * - Support standalone model rels (in their own file)
 	 */
 
 	/**

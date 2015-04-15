@@ -22,15 +22,12 @@ import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-
 import java.io.FileInputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -39,7 +36,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
@@ -451,6 +447,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				return getMetatype();
 			case OperatorPackage.OPERATOR___GET_SUPERTYPE:
 				return getSupertype();
+			case OperatorPackage.OPERATOR___CREATE_ERASURE_TYPE__GENERICENDPOINT_GENERICELEMENT:
+				try {
+					return createErasureType((GenericEndpoint)arguments.get(0), (GenericElement)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case OperatorPackage.OPERATOR___DELETE_TYPE:
 				try {
 					deleteType();
@@ -462,6 +465,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			case OperatorPackage.OPERATOR___GET_EXECUTABLES__ELIST_ELIST:
 				try {
 					return getExecutables((EList<Model>)arguments.get(0), (EList<Map<Integer, EList<ConversionOperator>>>)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___CREATE_INSTANCE__MULTIMODEL:
+				try {
+					return createInstance((MultiModel)arguments.get(0));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -542,6 +552,23 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
+	public Operator createErasureType(GenericEndpoint genericTypeEndpoint, GenericElement genericType) throws MMINTException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		Operator operatorTypeErasure = OperatorFactory.eINSTANCE.createOperator();
+		//super.addBasicInstance(operatorTypeErasure, null, getName());
+		operatorTypeErasure.setName(getName());
+		GenericEndpoint newGenericEndpoint = genericTypeEndpoint.createInstance(genericType, operatorTypeErasure);
+
+		return operatorTypeErasure;
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	public void deleteType() throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
@@ -552,7 +579,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		// delete the "thing"
 		getInputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), multiModel));
 		getOutputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), multiModel));
-		//TODO MMINT[MEGAMODELS] Deal with generics
+		getGenerics().forEach(genericTypeEndpoint -> super.delete(genericTypeEndpoint.getUri(), multiModel));
 		super.deleteType();
 		multiModel.getOperators().remove(this);
 		// delete the subtypes of the "thing"
@@ -570,11 +597,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		// polymorphism
-		EList<EList<Model>> actualModelTypes = new BasicEList<EList<Model>>();
-		for (Model model : actualModels) {
-			actualModelTypes.add(new BasicEList<Model>(MultiModelTypeIntrospection.getRuntimeTypes(model)));
-		}
 		int i = 0;
 		Map<Integer, EList<ConversionOperator>> conversion = new HashMap<Integer, EList<ConversionOperator>>();
 		for (ModelEndpoint inputParameter : getInputs()) {
@@ -610,44 +632,43 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		conversions.add(conversion);
 		EList<Operator> executableOperators = new BasicEList<Operator>();
 		if (getGenerics().isEmpty()) {
-			//TODO MMINT[OPERATOR] Always create an instance of operator: requires operator workflows for experiments to work
 			executableOperators.add(this);
 		}
 		else {
-			for (GenericEndpoint genericTypeEndpoint : getGenerics()) {
-				GenericElement genericSuperType = genericTypeEndpoint.getTarget();
-				List<GenericElement> genericTypes = MultiModelTypeHierarchy.getSubtypes(genericSuperType);
-				genericTypes.add(0, genericSuperType);
-				//TODO MMINT[OPERATOR] Add proper support for multiple generics
-				for (GenericElement genericType : genericTypes) {
-					if (genericType instanceof Model && ((Model) genericType).isAbstract()) {
-						continue;
-					}
-					if (genericType instanceof ModelRel || genericType instanceof Operator) {
-						EList<ModelEndpoint> modelTypeEndpoints = (genericType instanceof ModelRel) ?
-							((ModelRel) genericType).getModelEndpoints() :
-							((Operator) genericType).getInputs();
-//						for (Model actualModel : actualModels) {
-//							if (
-//								!MultiModelConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>()) && (
-//									modelRelType instanceof BinaryModelRel ||
-//									!MultiModelConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(1), srcModel, new HashMap<String, Integer>())
-//								)
-//							) {
-//								continue;
-//							}
-//						}
-					}
-					// do checks for model endpoints (model rel and operators), like they're done for model rel construction in a mid;
-					// create operator instance + model endpoints + generic instance
-					//TODO MMINT[OPERATOR] Add instance functions to create operators and their components
+			//TODO MMINT[GENERICS] Add proper support for multiple generics
+			GenericEndpoint genericTypeEndpoint = getGenerics().get(0);
+			GenericElement genericSuperType = genericTypeEndpoint.getTarget();
+			List<GenericElement> genericTypes = MultiModelTypeHierarchy.getSubtypes(genericSuperType);
+			genericTypes.add(0, genericSuperType);
+			for (GenericElement genericType : genericTypes) {
+				if (genericType instanceof Model && ((Model) genericType).isAbstract()) {
+					continue;
 				}
-				Operator operatorInstance = null;
-				executableOperators.add(operatorInstance);
+				//TODO MMINT[GENERICS] Do we need to check that the generic type is consistent with the input, or is it done by the operator itself?
+				Operator operatorTypeErasure = this.createErasureType(genericTypeEndpoint, genericType);
+				executableOperators.add(operatorTypeErasure);
 			}
 		}
 
 		return executableOperators;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Operator createInstance(MultiModel instanceMID) throws MMINTException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		Operator newOperator = OperatorFactory.eINSTANCE.createOperator();
+		super.addBasicInstance(newOperator, null, getName());
+		if (instanceMID != null) {
+			instanceMID.getOperators().add(newOperator);
+		}
+
+		return newOperator;
 	}
 
 	/**

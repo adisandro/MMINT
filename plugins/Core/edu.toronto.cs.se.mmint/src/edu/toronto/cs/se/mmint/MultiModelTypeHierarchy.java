@@ -645,15 +645,15 @@ public class MultiModelTypeHierarchy {
 	 *            The element.
 	 * @param typeUri
 	 *            The uri of the type.
-	 * @param considerConversions
-	 *            True if conversions should be considered, false otherwise.
+	 * @param includeConversions
+	 *            True if conversions should be included, false otherwise.
 	 * @return True if the element is an instance of the type or one of its subtypes.
 	 */
-	public static boolean instanceOf(ExtendibleElement element, String typeUri, boolean considerConversions) {
+	public static boolean instanceOf(ExtendibleElement element, String typeUri, boolean includeConversions) {
 
 		List<ConversionOperator> conversionOperatorTypes = instanceOf(element, typeUri);
 		
-		return (conversionOperatorTypes == null || (!considerConversions && !conversionOperatorTypes.isEmpty())) ?
+		return (conversionOperatorTypes == null || (!includeConversions && !conversionOperatorTypes.isEmpty())) ?
 			false :
 			true;
 	}

@@ -27,8 +27,10 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.swt.events.SelectionEvent;
 
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -36,19 +38,20 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
 	private MultiModel instanceMID;
-	private Operator operator;
+	private Operator operatorType;
 	private EList<Model> actualParameters;
 	private Map<Integer, EList<ConversionOperator>> conversionMap;
 
-	public MIDContextRunOperatorListener(String menuLabel, MultiModel instanceMid, Operator operator, EList<Model> actualParameters, Map<Integer, EList<ConversionOperator>> conversionMap) {
+	public MIDContextRunOperatorListener(@NonNull String menuLabel, @NonNull MultiModel instanceMID, @NonNull Operator operatorType, @NonNull EList<Model> actualParameters, @NonNull Map<Integer, EList<ConversionOperator>> conversionMap) {
 
 		super(menuLabel);
-		this.instanceMID = instanceMid;
-		this.operator = operator;
+		this.instanceMID = instanceMID;
+		this.operatorType = operatorType;
 		this.actualParameters = actualParameters;
 		this.conversionMap = conversionMap;
 	}
@@ -75,6 +78,9 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
+				if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED))) {
+					instanceMID = null;
+				}
 				//TODO MMINT[OPERATOR] add the operator instance to the instanceMID, depending on global settings
 				//TODO MMINT[OPERATOR] it would be more efficient to create an operator only here, but it's hard
 				//TODO MMINT[OPERATOR] is conversionMap ordered?? I don't think so
@@ -96,10 +102,16 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 					}
 				}
 				// run operator
-				Properties inputProperties = operator.getInputProperties();
-				operator.readInputProperties(inputProperties);
-				operator.init();
-				operator.execute(actualParameters);
+				Operator runnableOperator = operatorType;
+				//TODO MMINT[OPERATOR] Always create an instance of operator: requires operator workflows for experiments to work
+				if (!operatorType.getGenerics().isEmpty()) {
+					runnableOperator = operatorType.createInstance(instanceMID);
+					//TODO MMINT[OPERATOR] Add instance functions to create operators and their components
+				}
+				Properties inputProperties = runnableOperator.getInputProperties();
+				runnableOperator.readInputProperties(inputProperties);
+				runnableOperator.init();
+				runnableOperator.execute(actualParameters);
 				// cleanup all conversion operators
 				if (!conversionMap.isEmpty()) {
 					for (Entry<Integer, EList<ConversionOperator>> entry : conversionMap.entrySet()) {
@@ -112,8 +124,8 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 				return CommandResult.newOKCommandResult();
 			}
 			catch (Exception e) {
-				MMINTException.print(IStatus.ERROR, "Operator " + operator.getName() + " execution error", e);
-				return CommandResult.newErrorCommandResult("Operator " + operator.getName() + " execution error");
+				MMINTException.print(IStatus.ERROR, "Operator " + operatorType.getName() + " execution error", e);
+				return CommandResult.newErrorCommandResult("Operator " + operatorType.getName() + " execution error");
 			}
 		}
 

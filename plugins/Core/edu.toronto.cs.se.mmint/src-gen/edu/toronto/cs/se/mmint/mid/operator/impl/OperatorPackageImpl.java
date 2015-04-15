@@ -263,7 +263,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__DeleteType() {
+	public EOperation getOperator__CreateErasureType__GenericEndpoint_GenericElement() {
 		return operatorEClass.getEOperations().get(2);
 	}
 
@@ -272,7 +272,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__GetExecutables__EList_EList() {
+	public EOperation getOperator__DeleteType() {
 		return operatorEClass.getEOperations().get(3);
 	}
 
@@ -281,16 +281,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__Execute__EList() {
-		return operatorEClass.getEOperations().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getOperator__GetInputProperties() {
+	public EOperation getOperator__GetExecutables__EList_EList() {
 		return operatorEClass.getEOperations().get(4);
 	}
 
@@ -299,7 +290,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__ReadInputProperties__Properties() {
+	public EOperation getOperator__CreateInstance__MultiModel() {
 		return operatorEClass.getEOperations().get(5);
 	}
 
@@ -308,8 +299,35 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__Init() {
+	public EOperation getOperator__Execute__EList() {
+		return operatorEClass.getEOperations().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__GetInputProperties() {
 		return operatorEClass.getEOperations().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__ReadInputProperties__Properties() {
+		return operatorEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__Init() {
+		return operatorEClass.getEOperations().get(8);
 	}
 
 	/**
@@ -398,6 +416,15 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getGenericEndpoint__CreateInstance__GenericElement_Operator() {
+		return genericEndpointEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getRandom() {
 		return randomEDataType;
 	}
@@ -457,8 +484,10 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEAttribute(operatorEClass, OPERATOR__UPDATE_MID);
 		createEOperation(operatorEClass, OPERATOR___GET_METATYPE);
 		createEOperation(operatorEClass, OPERATOR___GET_SUPERTYPE);
+		createEOperation(operatorEClass, OPERATOR___CREATE_ERASURE_TYPE__GENERICENDPOINT_GENERICELEMENT);
 		createEOperation(operatorEClass, OPERATOR___DELETE_TYPE);
 		createEOperation(operatorEClass, OPERATOR___GET_EXECUTABLES__ELIST_ELIST);
+		createEOperation(operatorEClass, OPERATOR___CREATE_INSTANCE__MULTIMODEL);
 		createEOperation(operatorEClass, OPERATOR___GET_INPUT_PROPERTIES);
 		createEOperation(operatorEClass, OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES);
 		createEOperation(operatorEClass, OPERATOR___INIT);
@@ -475,6 +504,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(genericEndpointEClass, GENERIC_ENDPOINT___GET_SUPERTYPE);
 		createEOperation(genericEndpointEClass, GENERIC_ENDPOINT___GET_TARGET);
 		createEOperation(genericEndpointEClass, GENERIC_ENDPOINT___GET_METATYPE);
+		createEOperation(genericEndpointEClass, GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR);
 
 		// Create data types
 		randomEDataType = createEDataType(RANDOM);
@@ -531,7 +561,12 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		initEOperation(getOperator__GetSupertype(), this.getOperator(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		EOperation op = initEOperation(getOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getOperator__CreateErasureType__GenericEndpoint_GenericElement(), this.getOperator(), "createErasureType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getGenericEndpoint(), "genericTypeEndpoint", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getGenericElement(), "genericType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
+
+		op = initEOperation(getOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getOperator__GetExecutables__EList_EList(), this.getOperator(), "getExecutables", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -544,6 +579,10 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		EGenericType g3 = createEGenericType(this.getConversionOperator());
 		g2.getETypeArguments().add(g3);
 		addEParameter(op, g1, "conversions", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
+
+		op = initEOperation(getOperator__CreateInstance__MultiModel(), this.getOperator(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getMultiModel(), "instanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		initEOperation(getOperator__GetInputProperties(), this.getProperties(), "getInputProperties", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -577,6 +616,11 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		initEOperation(getGenericEndpoint__GetTarget(), theMIDPackage.getGenericElement(), "getTarget", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getGenericEndpoint__GetMetatype(), this.getGenericEndpoint(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getGenericEndpoint__CreateInstance__GenericElement_Operator(), this.getGenericEndpoint(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getGenericElement(), "targetGenericType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getOperator(), "containerOperator", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
 
 		// Initialize data types
 		initEDataType(randomEDataType, Random.class, "Random", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

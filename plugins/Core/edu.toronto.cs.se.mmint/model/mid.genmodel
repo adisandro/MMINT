@@ -450,10 +450,17 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Operator/updateMID"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMetatype"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getSupertype"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/createErasureType">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createErasureType/genericTypeEndpoint"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createErasureType/genericType"/>
+        </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteType"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getExecutables">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/getExecutables/actualModels"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/getExecutables/conversions"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/createInstance">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createInstance/instanceMID"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getInputProperties"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/readInputProperties">
@@ -475,6 +482,10 @@
         <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/getSupertype"/>
         <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/getTarget"/>
         <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/getMetatype"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/createInstance">
+          <genParameters ecoreParameter="mid.ecore#//operator/GenericEndpoint/createInstance/targetGenericType"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/GenericEndpoint/createInstance/containerOperator"/>
+        </genOperations>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

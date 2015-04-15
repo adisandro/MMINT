@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 
@@ -67,5 +68,13 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
 	 * @generated
 	 */
 	GenericEndpoint getMetatype();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetGenericTypeRequired="true" containerOperatorRequired="true"
+	 * @generated
+	 */
+	GenericEndpoint createInstance(GenericElement targetGenericType, Operator containerOperator) throws MMINTException;
 
 } // GenericEndpoint

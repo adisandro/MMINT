@@ -1082,6 +1082,11 @@
           <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Operator) supertype;"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="createErasureType" lowerBound="1" eType="#//operator/Operator"
+          eExceptions="#//MMINTException">
+        <eParameters name="genericTypeEndpoint" lowerBound="1" eType="#//operator/GenericEndpoint"/>
+        <eParameters name="genericType" lowerBound="1" eType="#//GenericElement"/>
+      </eOperations>
       <eOperations name="deleteType" eExceptions="#//MMINTException"/>
       <eOperations name="getExecutables" upperBound="-1" eType="#//operator/Operator"
           eExceptions="#//MMINTException">
@@ -1094,6 +1099,10 @@
             </eTypeArguments>
           </eGenericType>
         </eParameters>
+      </eOperations>
+      <eOperations name="createInstance" lowerBound="1" eType="#//operator/Operator"
+          eExceptions="#//MMINTException">
+        <eParameters name="instanceMID" eType="#//MultiModel"/>
       </eOperations>
       <eOperations name="getInputProperties" lowerBound="1" eType="#//operator/Properties"/>
       <eOperations name="readInputProperties" eExceptions="#//MMINTException">
@@ -1176,6 +1185,11 @@
           <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the generic type endpoint of this generic instance endpoint."/>
           <details key="body" value="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (GenericEndpoint) metatype;"/>
         </eAnnotations>
+      </eOperations>
+      <eOperations name="createInstance" lowerBound="1" eType="#//operator/GenericEndpoint"
+          eExceptions="#//MMINTException">
+        <eParameters name="targetGenericType" lowerBound="1" eType="#//GenericElement"/>
+        <eParameters name="containerOperator" lowerBound="1" eType="#//operator/Operator"/>
       </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="Random" instanceClassName="java.util.Random">
