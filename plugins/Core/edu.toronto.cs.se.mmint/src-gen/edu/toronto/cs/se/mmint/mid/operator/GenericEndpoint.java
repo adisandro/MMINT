@@ -71,10 +71,20 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Creates and adds a generic instance endpoint of
+	 * this generic type endpoint to an Instance MID.
+	 * @param targetGeneric
+	 *            The generic that is the target of the new generic endpoint.
+	 * @param containerOperator
+	 *            The operator that will contain the new generic
+	 *            endpoint.
+	 * @return The created generic endpoint.
+	 * @throws MMINTException
+	 *             If this is a generic instance endpoint.
 	 * <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetGenericTypeRequired="true" containerOperatorRequired="true"
 	 * @generated
 	 */
-	GenericEndpoint createInstance(GenericElement targetGenericType, Operator containerOperator) throws MMINTException;
+	GenericEndpoint createInstance(GenericElement targetGeneric, Operator containerOperator) throws MMINTException;
 
 } // GenericEndpoint

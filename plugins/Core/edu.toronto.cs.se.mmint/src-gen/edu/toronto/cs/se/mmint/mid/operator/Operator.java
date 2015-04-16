@@ -11,14 +11,16 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator;
 
+import java.util.Map;
+import java.util.Properties;
+
+import org.eclipse.emf.common.util.EList;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
-import java.util.Map;
-import java.util.Properties;
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -194,14 +196,6 @@ public interface Operator extends GenericElement {
 	Operator getSupertype();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" genericTypeEndpointRequired="true" genericTypeRequired="true"
-	 * @generated
-	 */
-	Operator createErasureType(GenericEndpoint genericTypeEndpoint, GenericElement genericType) throws MMINTException;
-
-	/**
 	 * <!-- begin-user-doc --> Deletes this operator type from the Type MID.
 	 * 
 	 * @throws MMINTException
@@ -230,9 +224,17 @@ public interface Operator extends GenericElement {
 	EList<Operator> getExecutables(EList<Model> actualModels, EList<Map<Integer, EList<ConversionOperator>>> conversions) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * <!-- begin-user-doc --> Creates and possibly adds an operator instance of
+	 * this operator type to an Instance MID.
+	 * 
+	 * @param instanceMID
+	 *            An Instance MID, null if the operator isn't going to be added
+	 *            to it.
+	 * @return The created operator.
+	 * @throws MMINTException
+	 *             If this is an operator instance. <!-- end-user-doc -->
+	 * @model required="true"
+	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
 	Operator createInstance(MultiModel instanceMID) throws MMINTException;

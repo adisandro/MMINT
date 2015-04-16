@@ -170,7 +170,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a model instance endpoint of
-	 * this model endpoint type and the reference to it to an Instance MID.
+	 * this model type endpoint and the reference to it to an Instance MID.
 	 * 
 	 * @param targetModel
 	 *            The model that is the target of the new model endpoint.

@@ -11,10 +11,10 @@
  */
 package edu.toronto.cs.se.mmint.mid.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->

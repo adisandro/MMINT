@@ -180,28 +180,31 @@ public class MIDContextMenu extends ContributionItem {
 			if (instanceMID == null) {
 				instanceMID = MultiModelRegistry.getMultiModel(models.get(0));
 			}
-			EList<Operator> operatorTypes = new BasicEList<Operator>();
+			EList<Operator> executableOperators = new BasicEList<Operator>();
 			EList<Map<Integer, EList<ConversionOperator>>> conversions = new BasicEList<Map<Integer, EList<ConversionOperator>>>();
 			for (Operator operatorType : MultiModelTypeRegistry.getOperatorTypes()) {
 				try {
-					operatorTypes.addAll(operatorType.getExecutables(models, conversions));
+					executableOperators.addAll(operatorType.getExecutables(models, conversions));
 				}
 				catch (MMINTException e) {
 					continue;
 				}
 			}
-			if (!operatorTypes.isEmpty()) {
+			if (!executableOperators.isEmpty()) {
 				MenuItem operatorItem = new MenuItem(mmintMenu, SWT.CASCADE);
 				operatorItem.setText(MMINT_MENU_OPERATOR_LABEL);
 				Menu operatorMenu = new Menu(mmintMenu);
 				operatorItem.setMenu(operatorMenu);
-				for (int i = 0; i < operatorTypes.size(); i++) {
-					Operator operatorType = operatorTypes.get(i);
+				for (int i = 0; i < executableOperators.size(); i++) {
+					Operator operatorType = executableOperators.get(i);
 					Map<Integer, EList<ConversionOperator>> conversion = conversions.get(i);
 					EList<Model> actualParameters = new BasicEList<Model>();
 					actualParameters.addAll(models);
-					//TODO MMINT[OPERATOR] String text = operatorInstance.toString(); should be used but operatorInstance does not exist yet
+					//TODO MMINT[OPERATOR] String text = operatorInstance.toString(); should be used but operatorInstance does not exist yet for all operators
 					String text = operatorType.getName();
+					if (!conversion.isEmpty()) {
+						text = "[coercion] " + text;
+					}
 					if (!operatorType.getGenerics().isEmpty()) {
 						text += "<";
 						boolean separator = false;
@@ -215,9 +218,6 @@ public class MIDContextMenu extends ContributionItem {
 							}
 						}
 						text += ">";
-					}
-					if (!conversion.isEmpty()) {
-						text += " [coercion]";
 					}
 					MenuItem operatorSubitem = new MenuItem(operatorMenu, SWT.NONE);
 					operatorSubitem.setText(text);

@@ -11,6 +11,28 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
+import java.io.FileInputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.stream.Collectors;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ui.PlatformUI;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -28,26 +50,6 @@ import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import java.io.FileInputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.stream.Collectors;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * <!-- begin-user-doc -->
@@ -447,13 +449,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				return getMetatype();
 			case OperatorPackage.OPERATOR___GET_SUPERTYPE:
 				return getSupertype();
-			case OperatorPackage.OPERATOR___CREATE_ERASURE_TYPE__GENERICENDPOINT_GENERICELEMENT:
-				try {
-					return createErasureType((GenericEndpoint)arguments.get(0), (GenericElement)arguments.get(1));
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
 			case OperatorPackage.OPERATOR___DELETE_TYPE:
 				try {
 					deleteType();
@@ -552,23 +547,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public Operator createErasureType(GenericEndpoint genericTypeEndpoint, GenericElement genericType) throws MMINTException {
-
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
-
-		Operator operatorTypeErasure = OperatorFactory.eINSTANCE.createOperator();
-		//super.addBasicInstance(operatorTypeErasure, null, getName());
-		operatorTypeErasure.setName(getName());
-		GenericEndpoint newGenericEndpoint = genericTypeEndpoint.createInstance(genericType, operatorTypeErasure);
-
-		return operatorTypeErasure;
-	}
-
-	/**
-	 * @generated NOT
-	 */
 	public void deleteType() throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
@@ -632,6 +610,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		conversions.add(conversion);
 		EList<Operator> executableOperators = new BasicEList<Operator>();
 		if (getGenerics().isEmpty()) {
+			//TODO MMINT[OPERATOR] Always create an instance of operator: requires operator workflows for experiments to work
 			executableOperators.add(this);
 		}
 		else {
@@ -645,8 +624,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 					continue;
 				}
 				//TODO MMINT[GENERICS] Do we need to check that the generic type is consistent with the input, or is it done by the operator itself?
-				Operator operatorTypeErasure = this.createErasureType(genericTypeEndpoint, genericType);
-				executableOperators.add(operatorTypeErasure);
+				Operator newOperator = this.createInstance(null);
+				genericTypeEndpoint.createInstance(genericType, newOperator);
+				executableOperators.add(newOperator);
 			}
 		}
 

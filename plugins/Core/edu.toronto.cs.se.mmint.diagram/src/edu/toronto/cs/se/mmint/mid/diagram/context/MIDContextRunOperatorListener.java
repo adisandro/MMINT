@@ -43,15 +43,15 @@ import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
 	private MultiModel instanceMID;
-	private Operator operatorType;
+	private Operator operator;
 	private EList<Model> actualParameters;
 	private Map<Integer, EList<ConversionOperator>> conversionMap;
 
-	public MIDContextRunOperatorListener(@NonNull String menuLabel, @NonNull MultiModel instanceMID, @NonNull Operator operatorType, @NonNull EList<Model> actualParameters, @NonNull Map<Integer, EList<ConversionOperator>> conversionMap) {
+	public MIDContextRunOperatorListener(@NonNull String menuLabel, @NonNull MultiModel instanceMID, @NonNull Operator operator, @NonNull EList<Model> actualParameters, @NonNull Map<Integer, EList<ConversionOperator>> conversionMap) {
 
 		super(menuLabel);
 		this.instanceMID = instanceMID;
-		this.operatorType = operatorType;
+		this.operator = operator;
 		this.actualParameters = actualParameters;
 		this.conversionMap = conversionMap;
 	}
@@ -78,11 +78,6 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
-				if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED))) {
-					instanceMID = null;
-				}
-				//TODO MMINT[OPERATOR] add the operator instance to the instanceMID, depending on global settings
-				//TODO MMINT[OPERATOR] it would be more efficient to create an operator only here, but it's hard
 				//TODO MMINT[OPERATOR] is conversionMap ordered?? I don't think so
 				// run all conversion operators
 				if (!conversionMap.isEmpty()) {
@@ -102,16 +97,14 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 					}
 				}
 				// run operator
-				Operator runnableOperator = operatorType;
-				//TODO MMINT[OPERATOR] Always create an instance of operator: requires operator workflows for experiments to work
-				if (!operatorType.getGenerics().isEmpty()) {
-					runnableOperator = operatorType.createInstance(instanceMID);
-					//TODO MMINT[OPERATOR] Add instance functions to create operators and their components
+				Properties inputProperties = operator.getInputProperties();
+				operator.readInputProperties(inputProperties);
+				operator.init();
+				operator.execute(actualParameters);
+				//TODO MMINT[OPERATOR] Add instance functions to create operator endpoints (input and output)
+				if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED))) {
+					instanceMID.getOperators().add(operator);
 				}
-				Properties inputProperties = runnableOperator.getInputProperties();
-				runnableOperator.readInputProperties(inputProperties);
-				runnableOperator.init();
-				runnableOperator.execute(actualParameters);
 				// cleanup all conversion operators
 				if (!conversionMap.isEmpty()) {
 					for (Entry<Integer, EList<ConversionOperator>> entry : conversionMap.entrySet()) {
@@ -124,8 +117,8 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 				return CommandResult.newOKCommandResult();
 			}
 			catch (Exception e) {
-				MMINTException.print(IStatus.ERROR, "Operator " + operatorType.getName() + " execution error", e);
-				return CommandResult.newErrorCommandResult("Operator " + operatorType.getName() + " execution error");
+				MMINTException.print(IStatus.ERROR, "Operator " + operator.getName() + " execution error", e);
+				return CommandResult.newErrorCommandResult("Operator " + operator.getName() + " execution error");
 			}
 		}
 

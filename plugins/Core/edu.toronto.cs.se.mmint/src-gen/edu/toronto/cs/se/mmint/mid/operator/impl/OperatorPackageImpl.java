@@ -11,6 +11,19 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
+import java.util.Properties;
+import java.util.Random;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EGenericType;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
@@ -25,17 +38,6 @@ import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.operator.util.OperatorValidator;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl;
-import java.util.Properties;
-import java.util.Random;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EGenericType;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -263,7 +265,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__CreateErasureType__GenericEndpoint_GenericElement() {
+	public EOperation getOperator__DeleteType() {
 		return operatorEClass.getEOperations().get(2);
 	}
 
@@ -272,7 +274,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__DeleteType() {
+	public EOperation getOperator__GetExecutables__EList_EList() {
 		return operatorEClass.getEOperations().get(3);
 	}
 
@@ -281,7 +283,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__GetExecutables__EList_EList() {
+	public EOperation getOperator__CreateInstance__MultiModel() {
 		return operatorEClass.getEOperations().get(4);
 	}
 
@@ -290,17 +292,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__CreateInstance__MultiModel() {
-		return operatorEClass.getEOperations().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getOperator__Execute__EList() {
-		return operatorEClass.getEOperations().get(9);
+		return operatorEClass.getEOperations().get(8);
 	}
 
 	/**
@@ -309,7 +302,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	public EOperation getOperator__GetInputProperties() {
-		return operatorEClass.getEOperations().get(6);
+		return operatorEClass.getEOperations().get(5);
 	}
 
 	/**
@@ -318,7 +311,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	public EOperation getOperator__ReadInputProperties__Properties() {
-		return operatorEClass.getEOperations().get(7);
+		return operatorEClass.getEOperations().get(6);
 	}
 
 	/**
@@ -327,7 +320,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	public EOperation getOperator__Init() {
-		return operatorEClass.getEOperations().get(8);
+		return operatorEClass.getEOperations().get(7);
 	}
 
 	/**
@@ -484,7 +477,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEAttribute(operatorEClass, OPERATOR__UPDATE_MID);
 		createEOperation(operatorEClass, OPERATOR___GET_METATYPE);
 		createEOperation(operatorEClass, OPERATOR___GET_SUPERTYPE);
-		createEOperation(operatorEClass, OPERATOR___CREATE_ERASURE_TYPE__GENERICENDPOINT_GENERICELEMENT);
 		createEOperation(operatorEClass, OPERATOR___DELETE_TYPE);
 		createEOperation(operatorEClass, OPERATOR___GET_EXECUTABLES__ELIST_ELIST);
 		createEOperation(operatorEClass, OPERATOR___CREATE_INSTANCE__MULTIMODEL);
@@ -561,12 +553,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		initEOperation(getOperator__GetSupertype(), this.getOperator(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		EOperation op = initEOperation(getOperator__CreateErasureType__GenericEndpoint_GenericElement(), this.getOperator(), "createErasureType", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getGenericEndpoint(), "genericTypeEndpoint", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMIDPackage.getGenericElement(), "genericType", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMIDPackage.getMMINTException());
-
-		op = initEOperation(getOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getOperator__GetExecutables__EList_EList(), this.getOperator(), "getExecutables", 0, -1, IS_UNIQUE, IS_ORDERED);

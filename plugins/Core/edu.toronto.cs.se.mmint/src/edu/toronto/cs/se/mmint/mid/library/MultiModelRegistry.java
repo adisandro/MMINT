@@ -197,7 +197,7 @@ public class MultiModelRegistry {
 	 *            The element contained in the multimodel.
 	 * @return The multimodel that contains the element.
 	 */
-	public static MultiModel getMultiModel(@NonNull ExtendibleElement element) {
+	public static @Nullable MultiModel getMultiModel(@NonNull ExtendibleElement element) {
 
 		MultiModel multiModel = null;
 		if (element instanceof Model || element instanceof ModelRel || element instanceof Editor || element instanceof Operator) {

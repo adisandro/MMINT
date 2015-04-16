@@ -11,13 +11,13 @@
  */
 package edu.toronto.cs.se.mmint.mid.editor;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.jface.viewers.IStructuredSelection;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
-
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.jface.viewers.IStructuredSelection;
 
 /**
  * <!-- begin-user-doc -->

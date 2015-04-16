@@ -11,9 +11,9 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship;
 
-import edu.toronto.cs.se.mmint.MMINTException;
-
 import org.eclipse.emf.common.util.EList;
+
+import edu.toronto.cs.se.mmint.MMINTException;
 
 /**
  * <!-- begin-user-doc -->

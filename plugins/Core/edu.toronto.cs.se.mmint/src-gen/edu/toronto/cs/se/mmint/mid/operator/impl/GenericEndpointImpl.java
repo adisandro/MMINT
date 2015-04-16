@@ -11,6 +11,11 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
@@ -22,11 +27,6 @@ import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-
-import java.lang.reflect.InvocationTargetException;
-
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -142,14 +142,14 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 	/**
 	 * @generated NOT
 	 */
-	public GenericEndpoint createInstance(GenericElement targetGenericType, Operator containerOperator) throws MMINTException {
+	public GenericEndpoint createInstance(GenericElement targetGeneric, Operator containerOperator) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		GenericEndpoint newGenericEndpoint = OperatorFactory.eINSTANCE.createGenericEndpoint();
-		addInstance(newGenericEndpoint, targetGenericType, containerOperator);
+		addInstance(newGenericEndpoint, targetGeneric, containerOperator);
 
 		return newGenericEndpoint;
 	}

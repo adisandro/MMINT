@@ -11,12 +11,13 @@
  */
 package edu.toronto.cs.se.mmint.mid.editor;
 
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 
 /**
  * <!-- begin-user-doc -->

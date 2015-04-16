@@ -11,22 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.mid.editor.impl;
 
-import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
-import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
-import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
@@ -45,6 +29,22 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.wizards.IWizardDescriptor;
+
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.editor.Editor;
+import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
+import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
+import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 
 /**
  * <!-- begin-user-doc -->

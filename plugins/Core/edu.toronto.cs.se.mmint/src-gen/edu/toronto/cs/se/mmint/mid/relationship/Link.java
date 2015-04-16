@@ -11,10 +11,10 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship;
 
+import org.eclipse.emf.common.util.EList;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
