@@ -33,10 +33,12 @@ import org.eclipse.swt.events.SelectionEvent;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
@@ -44,16 +46,16 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
 	private MultiModel instanceMID;
 	private Operator operator;
-	private EList<Model> actualParameters;
-	private Map<Integer, EList<ConversionOperator>> conversionMap;
+	private EList<Model> inputModels;
+	private Map<Integer, EList<ConversionOperator>> conversions;
 
-	public MIDContextRunOperatorListener(@NonNull String menuLabel, @NonNull MultiModel instanceMID, @NonNull Operator operator, @NonNull EList<Model> actualParameters, @NonNull Map<Integer, EList<ConversionOperator>> conversionMap) {
+	public MIDContextRunOperatorListener(@NonNull String menuLabel, @NonNull MultiModel instanceMID, @NonNull Operator operator, @NonNull EList<Model> inputModels, @NonNull Map<Integer, EList<ConversionOperator>> conversions) {
 
 		super(menuLabel);
 		this.instanceMID = instanceMID;
 		this.operator = operator;
-		this.actualParameters = actualParameters;
-		this.conversionMap = conversionMap;
+		this.inputModels = inputModels;
+		this.conversions = conversions;
 	}
 
 	@Override
@@ -78,13 +80,13 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
-				//TODO MMINT[OPERATOR] is conversionMap ordered?? I don't think so
+				//TODO MMINT[OPERATOR] is conversions ordered?? I don't think so
 				// run all conversion operators
-				if (!conversionMap.isEmpty()) {
-					for (Entry<Integer, EList<ConversionOperator>> entry : conversionMap.entrySet()) {
+				if (!conversions.isEmpty()) {
+					for (Entry<Integer, EList<ConversionOperator>> entry : conversions.entrySet()) {
 						int i = entry.getKey();
 						List<ConversionOperator> conversionList = entry.getValue();
-						Model newActualParameter = actualParameters.get(i);
+						Model newActualParameter = inputModels.get(i);
 						for (ConversionOperator operator : conversionList) {
 							EList<Model> operatorParameters = new BasicEList<Model>();
 							operatorParameters.add(newActualParameter);
@@ -93,21 +95,28 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 							operator.init();
 							newActualParameter = operator.execute(operatorParameters).get(0);
 						}
-						actualParameters.set(i, newActualParameter);
+						inputModels.set(i, newActualParameter);
 					}
 				}
 				// run operator
 				Properties inputProperties = operator.getInputProperties();
 				operator.readInputProperties(inputProperties);
 				operator.init();
-				operator.execute(actualParameters);
-				//TODO MMINT[OPERATOR] Add instance functions to create operator endpoints (input and output)
+				EList<Model> outputModels = operator.execute(inputModels);
 				if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED))) {
+					//TODO MMINT[OPERATOR] Remove if when operator instances are always created
+					if (!operator.getGenerics().isEmpty()) {
+						Operator operatorType = operator.getMetatype();
+						for (int i = 0; i < operatorType.getOutputs().size(); i++) {
+							ModelEndpoint outputModelTypeEndpoint = operatorType.getOutputs().get(i);
+							outputModelTypeEndpoint.createInstance(outputModels.get(i), operator, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+						}
+					}
 					instanceMID.getOperators().add(operator);
 				}
 				// cleanup all conversion operators
-				if (!conversionMap.isEmpty()) {
-					for (Entry<Integer, EList<ConversionOperator>> entry : conversionMap.entrySet()) {
+				if (!conversions.isEmpty()) {
+					for (Entry<Integer, EList<ConversionOperator>> entry : conversions.entrySet()) {
 						for (ConversionOperator operator : entry.getValue()) {
 							((ConversionOperator) operator).cleanup();
 						}

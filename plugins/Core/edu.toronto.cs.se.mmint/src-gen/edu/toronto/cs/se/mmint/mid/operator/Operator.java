@@ -206,22 +206,21 @@ public interface Operator extends GenericElement {
 	void deleteType() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Gets the list of executable operator types given a list of actual parameters to be used
-	 * for their invocation. Contract: for each executable operator type, populate the list of conversions.
+	 * <!-- begin-user-doc --> Gets the list of executable operator types given a list of input models to be used for
+	 * their invocation. Contract: for each executable operator type, populate the list of conversions.
 	 * 
-	 * @param actualModels
-	 *            The list of actual model parameters.
+	 * @param inputModels
+	 *            The list of input models.
 	 * @param conversions
-	 *            Used as output, a list of conversion operator types for each executable operator type and for each
-	 *            actual model parameter to be converted into an equivalent one. The actual model parameter to be
-	 *            converted is given by the integer index of the map, to avoid the creation of many empty lists.
+	 *            Used as output, a list of conversion operator types for each input model to be converted into an
+	 *            equivalent one. The input model to be converted is given by the integer index of the map.
 	 * @return The list of executable operator types.
 	 * @throws MMINTException
 	 *             If this is an operator instance. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" actualModelsMany="true" conversionsMany="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputModelsMany="true" conversionsRequired="true"
 	 * @generated
 	 */
-	EList<Operator> getExecutables(EList<Model> actualModels, EList<Map<Integer, EList<ConversionOperator>>> conversions) throws MMINTException;
+	EList<Operator> getExecutables(EList<Model> inputModels, Map<Integer, EList<ConversionOperator>> conversions) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and possibly adds an operator instance of
@@ -233,11 +232,37 @@ public interface Operator extends GenericElement {
 	 * @return The created operator.
 	 * @throws MMINTException
 	 *             If this is an operator instance. <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
 	Operator createInstance(MultiModel instanceMID) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Deletes this operator instance from an Instance MID.
+	 * 
+	 * @throws MMINTException
+	 *             If this is an operator type. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	void deleteInstance() throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Checks if a generic type is allowed for this operator type.
+	 * 
+	 * @param genericTypeEndpoint
+	 *            The generic type endpoint.
+	 * @param genericType
+	 *            The generic type.
+	 * @param inputModels
+	 *            The list of input models.
+	 * @return Always true.
+	 * @throws MMINTException
+	 *             If this is an operator instance. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" genericTypeEndpointRequired="true" genericTypeRequired="true" inputModelsMany="true"
+	 * @generated
+	 */
+	boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<Model> inputModels) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Gets the input properties of this operator.

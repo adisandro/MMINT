@@ -400,25 +400,21 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	}
 
 	/**
-	 * Creates and adds a "heavy" model type endpoint and a reference to it to
-	 * the repository.
+	 * Creates and adds a "heavy" model type endpoint and a reference to it to the Type MID (variant for model
+	 * relationship types).
 	 * 
 	 * @param extensionType
 	 *            The extension info for the new model type endpoint.
 	 * @param targetModelType
-	 *            The model type that is the target of the new model type
-	 *            endpoint.
+	 *            The model type that is the target of the new model type endpoint.
 	 * @param isBinarySrc
-	 *            (Only for a binary model relationship type container) True if
-	 *            the target model type is the source in the binary model
-	 *            relationship type container, false otherwise.
+	 *            (Only for a binary model relationship type container) True if the target model type is the source in
+	 *            the binary model relationship type container, false otherwise.
 	 * @param containerModelRelType
-	 *            The model relationship type that will contain the new model
-	 *            type endpoint.
+	 *            The model relationship type that will contain the new model type endpoint.
 	 * @return The created reference to the new model type endpoint.
 	 * @throws MMINTException
-	 *             If the uri of the new model type endpoint is already
-	 *             registered in the repository.
+	 *             If the uri of the new model type endpoint is already registered in the repository.
 	 */
 	public @NonNull ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(@NonNull ExtensionType extensionType, @NonNull Model targetModelType, boolean isBinarySrc, @NonNull ModelRel containerModelRelType) throws MMINTException {
 
@@ -431,7 +427,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	}
 
 	/**
-	 * Creates and adds a "heavy" model type endpoint (for an operator type) to the Type MID.
+	 * Creates and adds a "heavy" model type endpoint to the Type MID (variant for operator types).
 	 * 
 	 * @param extensionType
 	 *            The extension info for the new model type endpoint.

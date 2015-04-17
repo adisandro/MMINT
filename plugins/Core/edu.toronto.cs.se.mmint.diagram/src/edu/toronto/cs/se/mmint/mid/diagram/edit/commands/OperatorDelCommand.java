@@ -87,9 +87,14 @@ public class OperatorDelCommand extends DestroyElementCommand {
 
 	protected void doExecuteTypesLevel() throws MMINTException {
 
-		MultiModel multiModel = (MultiModel) getElementToEdit();
+		MultiModel typeMID = (MultiModel) getElementToEdit();
 		((Operator) getElementToDestroy()).deleteType();
-		MMINT.createTypeHierarchy(multiModel);
+		MMINT.createTypeHierarchy(typeMID);
+	}
+
+	protected void doExecuteInstancesLevel() throws MMINTException {
+
+		((Operator) getElementToDestroy()).deleteInstance();
 	}
 
 	/**
@@ -107,7 +112,12 @@ public class OperatorDelCommand extends DestroyElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			doExecuteTypesLevel();
+			if (MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToEdit())) {
+				doExecuteInstancesLevel();
+			}
+			else {
+				doExecuteTypesLevel();
+			}
 	
 			return super.doExecuteWithResult(monitor, info);
 		}

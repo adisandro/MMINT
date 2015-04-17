@@ -29,6 +29,8 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -164,6 +166,13 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			case MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL:
 				try {
 					return createInstanceAndReference((Model)arguments.get(0), (ModelRel)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING:
+				try {
+					return createInstance((Model)arguments.get(0), (Operator)arguments.get(1), (String)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -400,15 +409,14 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	}
 
 	/**
-	 * Adds a model instance endpoint and a reference to it to an Instance MID.
+	 * Adds a model instance endpoint and a reference to it to an Instance MID (variant for model relationships).
 	 * 
 	 * @param newModelEndpoint
 	 *            The new model endpoint to be added.
 	 * @param targetModel
 	 *            The model that is the target of the new model endpoint.
 	 * @param modelRel
-	 *            The model relationship that will contain the new model
-	 *            endpoint.
+	 *            The model relationship that will contain the new model endpoint.
 	 * @return The created reference to the new model endpoint.
 	 * @throws MMINTException
 	 *             If the new model endpoint is a model type endpoint.
@@ -449,6 +457,43 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		ModelEndpointReference newModelEndpointRef = addInstanceAndReference(newModelEndpoint, targetModel, containerModelRel);
 
 		return newModelEndpointRef;
+	}
+
+	/**
+	 * Adds a model instance endpoint to an Instance MID (variant for operators).
+	 * 
+	 * @param newModelEndpoint
+	 *            The new model endpoint to be added.
+	 * @param targetModel
+	 *            The model that is the target of the new model endpoint.
+	 * @param containerOperator
+	 *            The operator that will contain the new model endpoint.
+	 * @param containerFeatureName
+	 *            The name of the feature in the operator that will contain the new model endpoint.
+	 * @throws MMINTException
+	 *             If the feature name is not found in the container operator.
+	 * @generated NOT
+	 */
+	protected void addInstance(ModelEndpoint newModelEndpoint, Model targetModel, Operator containerOperator, String containerFeatureName) throws MMINTException {
+
+		super.addBasicInstance(newModelEndpoint, null, targetModel.getName());
+		super.addInstanceEndpoint(newModelEndpoint, targetModel);
+		MultiModelUtils.setModelObjFeature(containerOperator, containerFeatureName, newModelEndpoint);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public ModelEndpoint createInstance(Model targetModel, Operator containerOperator, String containerFeatureName) throws MMINTException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		ModelEndpoint newModelEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
+		addInstance(newModelEndpoint, targetModel, containerOperator, containerFeatureName);
+
+		return newModelEndpoint;
 	}
 
 	/**

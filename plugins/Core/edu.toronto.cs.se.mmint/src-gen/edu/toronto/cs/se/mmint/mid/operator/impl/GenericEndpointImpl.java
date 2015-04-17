@@ -13,10 +13,13 @@ package edu.toronto.cs.se.mmint.mid.operator.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -33,11 +36,34 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
  * An implementation of the model object '<em><b>Generic Endpoint</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.GenericEndpointImpl#getMetatargetUri <em>Metatarget Uri</em>}</li>
+ * </ul>
  * </p>
  *
  * @generated
  */
 public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implements GenericEndpoint {
+	/**
+	 * The default value of the '{@link #getMetatargetUri() <em>Metatarget Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMetatargetUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String METATARGET_URI_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getMetatargetUri() <em>Metatarget Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMetatargetUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected String metatargetUri = METATARGET_URI_EDEFAULT;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,6 +88,27 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getMetatargetUri() {
+		return metatargetUri;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMetatargetUri(String newMetatargetUri) {
+		String oldMetatargetUri = metatargetUri;
+		metatargetUri = newMetatargetUri;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.GENERIC_ENDPOINT__METATARGET_URI, oldMetatargetUri, metatargetUri));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GenericEndpoint getSupertype() {
 		ExtendibleElementEndpoint supertype = super.getSupertype();
 		return (supertype == null) ? null : (GenericEndpoint) supertype;
@@ -73,8 +120,17 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 	 * @generated
 	 */
 	public GenericElement getTarget() {
-		ExtendibleElement target = super.getTarget();
-		return (target == null) ? null : (GenericElement) target;
+		GenericElement target = MultiModelTypeRegistry.getType(getMetatargetUri());
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTarget(final ExtendibleElement newTarget) {
+		setMetatargetUri(newTarget.getUri());
 	}
 
 	/**
@@ -116,6 +172,9 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 				return getSupertype();
 			case OperatorPackage.GENERIC_ENDPOINT___GET_TARGET:
 				return getTarget();
+			case OperatorPackage.GENERIC_ENDPOINT___SET_TARGET__EXTENDIBLEELEMENT:
+				setTarget((ExtendibleElement)arguments.get(0));
+				return null;
 			case OperatorPackage.GENERIC_ENDPOINT___GET_METATYPE:
 				return getMetatype();
 			case OperatorPackage.GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR:
@@ -127,6 +186,22 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 				}
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (metatargetUri: ");
+		result.append(metatargetUri);
+		result.append(')');
+		return result.toString();
 	}
 
 	/**
@@ -152,6 +227,64 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 		addInstance(newGenericEndpoint, targetGeneric, containerOperator);
 
 		return newGenericEndpoint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case OperatorPackage.GENERIC_ENDPOINT__METATARGET_URI:
+				return getMetatargetUri();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case OperatorPackage.GENERIC_ENDPOINT__METATARGET_URI:
+				setMetatargetUri((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case OperatorPackage.GENERIC_ENDPOINT__METATARGET_URI:
+				setMetatargetUri(METATARGET_URI_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case OperatorPackage.GENERIC_ENDPOINT__METATARGET_URI:
+				return METATARGET_URI_EDEFAULT == null ? metatargetUri != null : !METATARGET_URI_EDEFAULT.equals(metatargetUri);
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //GenericEndpointImpl

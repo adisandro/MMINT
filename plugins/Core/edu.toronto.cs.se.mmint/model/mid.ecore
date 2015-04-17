@@ -417,6 +417,11 @@
       <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
       <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
     </eOperations>
+    <eOperations name="createInstance" lowerBound="1" eType="#//ModelEndpoint" eExceptions="#//MMINTException">
+      <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
+      <eParameters name="containerOperator" lowerBound="1" eType="#//operator/Operator"/>
+      <eParameters name="containerFeatureName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eOperations name="replaceInstanceAndReference" eExceptions="#//MMINTException">
       <eParameters name="oldModelEndpoint" lowerBound="1" eType="#//ModelEndpoint"/>
       <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
@@ -1085,8 +1090,8 @@
       <eOperations name="deleteType" eExceptions="#//MMINTException"/>
       <eOperations name="getExecutables" upperBound="-1" eType="#//operator/Operator"
           eExceptions="#//MMINTException">
-        <eParameters name="actualModels" upperBound="-1" eType="#//Model"/>
-        <eParameters name="conversions" upperBound="-1">
+        <eParameters name="inputModels" upperBound="-1" eType="#//Model"/>
+        <eParameters name="conversions" lowerBound="1">
           <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
             <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
             <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
@@ -1098,6 +1103,13 @@
       <eOperations name="createInstance" lowerBound="1" eType="#//operator/Operator"
           eExceptions="#//MMINTException">
         <eParameters name="instanceMID" eType="#//MultiModel"/>
+      </eOperations>
+      <eOperations name="deleteInstance" eExceptions="#//MMINTException"/>
+      <eOperations name="isAllowedTargetGeneric" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          eExceptions="#//MMINTException">
+        <eParameters name="genericTypeEndpoint" lowerBound="1" eType="#//operator/GenericEndpoint"/>
+        <eParameters name="genericType" lowerBound="1" eType="#//GenericElement"/>
+        <eParameters name="inputModels" upperBound="-1" eType="#//Model"/>
       </eOperations>
       <eOperations name="getInputProperties" lowerBound="1" eType="#//operator/Properties"/>
       <eOperations name="readInputProperties" eExceptions="#//MMINTException">
@@ -1172,8 +1184,15 @@
       <eOperations name="getTarget" lowerBound="1" eType="#//GenericElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the generic target of this generic endpoint."/>
-          <details key="body" value="ExtendibleElement target = super.getTarget();&#xA;return (target == null) ? null : (GenericElement) target;"/>
+          <details key="body" value="GenericElement target = MultiModelTypeRegistry.getType(getMetatargetUri());&#xA;return target;"/>
         </eAnnotations>
+      </eOperations>
+      <eOperations name="setTarget" lowerBound="1">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Sets the generic target of this generic endpoint."/>
+          <details key="body" value="setMetatargetUri(newTarget.getUri());"/>
+        </eAnnotations>
+        <eParameters name="newTarget" lowerBound="1" eType="#//ExtendibleElement"/>
       </eOperations>
       <eOperations name="getMetatype" lowerBound="1" eType="#//operator/GenericEndpoint">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1186,6 +1205,12 @@
         <eParameters name="targetGeneric" lowerBound="1" eType="#//GenericElement"/>
         <eParameters name="containerOperator" lowerBound="1" eType="#//operator/Operator"/>
       </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="metatargetUri" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The target uri, at the upper MID level (types: empty; instances: the target type uri)."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="Random" instanceClassName="java.util.Random">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

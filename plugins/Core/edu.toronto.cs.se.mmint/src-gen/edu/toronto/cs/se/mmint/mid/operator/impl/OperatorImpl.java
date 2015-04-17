@@ -14,7 +14,6 @@ package edu.toronto.cs.se.mmint.mid.operator.impl;
 import java.io.FileInputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -48,7 +47,6 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 
 /**
@@ -457,9 +455,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___GET_EXECUTABLES__ELIST_ELIST:
+			case OperatorPackage.OPERATOR___GET_EXECUTABLES__ELIST_MAP:
 				try {
-					return getExecutables((EList<Model>)arguments.get(0), (EList<Map<Integer, EList<ConversionOperator>>>)arguments.get(1));
+					return getExecutables((EList<Model>)arguments.get(0), (Map<Integer, EList<ConversionOperator>>)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -467,6 +465,21 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			case OperatorPackage.OPERATOR___CREATE_INSTANCE__MULTIMODEL:
 				try {
 					return createInstance((MultiModel)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___DELETE_INSTANCE:
+				try {
+					deleteInstance();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___IS_ALLOWED_TARGET_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST:
+				try {
+					return isAllowedTargetGeneric((GenericEndpoint)arguments.get(0), (GenericElement)arguments.get(1), (EList<Model>)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -569,48 +582,16 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public EList<Operator> getExecutables(EList<Model> actualModels, EList<Map<Integer, EList<ConversionOperator>>> conversions) throws MMINTException {
+	public EList<Operator> getExecutables(EList<Model> inputModels, Map<Integer, EList<ConversionOperator>> conversions) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		int i = 0;
-		Map<Integer, EList<ConversionOperator>> conversion = new HashMap<Integer, EList<ConversionOperator>>();
-		for (ModelEndpoint inputParameter : getInputs()) {
-			// check 1: not enough actual parameters, considering formal parameters with upper bound > 1 too
-			if (i >= actualModels.size()) {
-				return new BasicEList<Operator>();
-			}
-			// check 2: type or substitutable types
-			while (i < actualModels.size()) {
-				Model actualParameter = actualModels.get(i);
-				Model formalParameter = inputParameter.getTarget();
-				// easy if formal parameter is root type for actual parameter, otherwise check instanceof
-				if (!MultiModelTypeHierarchy.isRootType(formalParameter) || !formalParameter.getClass().isAssignableFrom(actualParameter.getClass())) {
-					List<ConversionOperator> conversionOperatorTypes = MultiModelTypeHierarchy.instanceOf(actualParameter, formalParameter.getUri());
-					if (conversionOperatorTypes == null) {
-						return new BasicEList<Operator>();
-					}
-					if (!conversionOperatorTypes.isEmpty()) {
-						conversion.put(new Integer(i), new BasicEList<ConversionOperator>(conversionOperatorTypes));
-					}
-				}
-				i++;
-				if (inputParameter.getUpperBound() == 1) {
-					break;
-				}
-			}
-		}
-		// check 3: too many actual parameters
-		if (i < actualModels.size()) {
-			return new BasicEList<Operator>();
-		}
-		// create return structures and deal with generics
-		conversions.add(conversion);
+		// deal with generics first
 		EList<Operator> executableOperators = new BasicEList<Operator>();
+		//TODO MMINT[OPERATOR] Always create an instance of operator: requires operator workflows for experiments to work
 		if (getGenerics().isEmpty()) {
-			//TODO MMINT[OPERATOR] Always create an instance of operator: requires operator workflows for experiments to work
 			executableOperators.add(this);
 		}
 		else {
@@ -623,11 +604,55 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				if (genericType instanceof Model && ((Model) genericType).isAbstract()) {
 					continue;
 				}
-				//TODO MMINT[GENERICS] Do we need to check that the generic type is consistent with the input, or is it done by the operator itself?
+				if (!this.isAllowedTargetGeneric(genericTypeEndpoint, genericType, inputModels)) {
+					//TODO MMINT[GENERICS] Do we need to check that the generic type is consistent with the input, or is it done by the operator itself?
+					continue;
+				}
 				Operator newOperator = this.createInstance(null);
 				genericTypeEndpoint.createInstance(genericType, newOperator);
 				executableOperators.add(newOperator);
 			}
+		}
+
+		// check actual parameters
+		int i = 0;
+inputs:
+		for (ModelEndpoint inputModelTypeEndpoint : getInputs()) {
+			// check 1: not enough actual parameters, considering formal parameters with upper bound > 1 too
+			if (i >= inputModels.size()) {
+				executableOperators.clear();
+				break;
+			}
+			// check 2: type or substitutable types
+			while (i < inputModels.size()) {
+				Model inputModel = inputModels.get(i); // == actual parameter
+				Model inputModelType = inputModelTypeEndpoint.getTarget(); // == formal parameter
+				// easy if formal parameter is root type for actual parameter, otherwise check instanceof
+				if (!MultiModelTypeHierarchy.isRootType(inputModelType) || !inputModelType.getClass().isAssignableFrom(inputModel.getClass())) {
+					List<ConversionOperator> conversionOperatorTypes = MultiModelTypeHierarchy.instanceOf(inputModel, inputModelType.getUri());
+					if (conversionOperatorTypes == null) {
+						executableOperators.clear();
+						break inputs;
+					}
+					if (!conversionOperatorTypes.isEmpty()) {
+						conversions.put(new Integer(i), new BasicEList<ConversionOperator>(conversionOperatorTypes));
+					}
+				}
+				//TODO MMINT[OPERATOR] Always create an instance of operator: requires operator workflows for experiments to work
+				if (!getGenerics().isEmpty()) {
+					for (Operator executableOperator : executableOperators) {
+						inputModelTypeEndpoint.createInstance(inputModel, executableOperator, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
+					}
+				}
+				i++;
+				if (inputModelTypeEndpoint.getUpperBound() == 1) {
+					break;
+				}
+			}
+		}
+		// check 3: too many actual parameters
+		if (i < inputModels.size()) {
+			executableOperators.clear();
 		}
 
 		return executableOperators;
@@ -642,13 +667,44 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		Operator newOperator = OperatorFactory.eINSTANCE.createOperator();
+		Operator newOperator;
+		try {
+			newOperator = this.getClass().newInstance();
+		}
+		catch (Exception e) {
+			throw new MMINTException("Can't invoke constructor");
+		}
 		super.addBasicInstance(newOperator, null, getName());
 		if (instanceMID != null) {
 			instanceMID.getOperators().add(newOperator);
 		}
 
 		return newOperator;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteInstance() throws MMINTException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
+		}
+
+		MultiModel instanceMID = MultiModelRegistry.getMultiModel(this);
+		instanceMID.getOperators().remove(this);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<Model> inputModels) throws MMINTException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		return true;
 	}
 
 	/**

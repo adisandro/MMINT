@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint.mid.operator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 
@@ -24,12 +25,47 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
  * The endpoint for a generic operator definition.
  * <!-- end-model-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#getMetatargetUri <em>Metatarget Uri</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getGenericEndpoint()
  * @model
  * @generated
  */
 public interface GenericEndpoint extends ExtendibleElementEndpoint {
+	/**
+	 * Returns the value of the '<em><b>Metatarget Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Metatarget Uri</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The target uri, at the upper MID level (types: empty; instances: the target type uri).
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Metatarget Uri</em>' attribute.
+	 * @see #setMetatargetUri(String)
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getGenericEndpoint_MetatargetUri()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getMetatargetUri();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#getMetatargetUri <em>Metatarget Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Metatarget Uri</em>' attribute.
+	 * @see #getMetatargetUri()
+	 * @generated
+	 */
+	void setMetatargetUri(String value);
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -51,10 +87,23 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
 	 * Gets the generic target of this generic endpoint.
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement target = super.getTarget();\nreturn (target == null) ? null : (GenericElement) target;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='GenericElement target = MultiModelTypeRegistry.getType(getMetatargetUri());\nreturn target;'"
 	 * @generated
 	 */
 	GenericElement getTarget();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * {@inheritDoc}<br />
+	 * Sets the generic target of this generic endpoint.
+	 * <!-- end-model-doc -->
+	 * @model newTargetRequired="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='setMetatargetUri(newTarget.getUri());'"
+	 * @generated
+	 */
+	void setTarget(ExtendibleElement newTarget);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -82,7 +131,7 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
 	 * @throws MMINTException
 	 *             If this is a generic instance endpoint.
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetGenericTypeRequired="true" containerOperatorRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetGenericRequired="true" containerOperatorRequired="true"
 	 * @generated
 	 */
 	GenericEndpoint createInstance(GenericElement targetGeneric, Operator containerOperator) throws MMINTException;

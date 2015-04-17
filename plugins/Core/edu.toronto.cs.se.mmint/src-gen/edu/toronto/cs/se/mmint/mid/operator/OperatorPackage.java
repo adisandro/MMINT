@@ -303,7 +303,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_EXECUTABLES__ELIST_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 3;
+	int OPERATOR___GET_EXECUTABLES__ELIST_MAP = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -315,13 +315,31 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___CREATE_INSTANCE__MULTIMODEL = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___DELETE_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Is Allowed Target Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___IS_ALLOWED_TARGET_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 6;
+
+	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_INPUT_PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 5;
+	int OPERATOR___GET_INPUT_PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Read Input Properties</em>' operation.
@@ -330,7 +348,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 6;
+	int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Init</em>' operation.
@@ -339,7 +357,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___INIT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 7;
+	int OPERATOR___INIT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Execute</em>' operation.
@@ -348,7 +366,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___EXECUTE__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 8;
+	int OPERATOR___EXECUTE__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -357,7 +375,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 9;
+	int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 11;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
@@ -583,7 +601,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR___GET_EXECUTABLES__ELIST_ELIST = OPERATOR___GET_EXECUTABLES__ELIST_ELIST;
+	int CONVERSION_OPERATOR___GET_EXECUTABLES__ELIST_MAP = OPERATOR___GET_EXECUTABLES__ELIST_MAP;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -593,6 +611,24 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___CREATE_INSTANCE__MULTIMODEL = OPERATOR___CREATE_INSTANCE__MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___DELETE_INSTANCE = OPERATOR___DELETE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Is Allowed Target Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___IS_ALLOWED_TARGET_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = OPERATOR___IS_ALLOWED_TARGET_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -899,7 +935,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_OPERATOR___GET_EXECUTABLES__ELIST_ELIST = OPERATOR___GET_EXECUTABLES__ELIST_ELIST;
+	int RANDOM_OPERATOR___GET_EXECUTABLES__ELIST_MAP = OPERATOR___GET_EXECUTABLES__ELIST_MAP;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -909,6 +945,24 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_OPERATOR___CREATE_INSTANCE__MULTIMODEL = OPERATOR___CREATE_INSTANCE__MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___DELETE_INSTANCE = OPERATOR___DELETE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Is Allowed Target Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___IS_ALLOWED_TARGET_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = OPERATOR___IS_ALLOWED_TARGET_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -1119,13 +1173,22 @@ public interface OperatorPackage extends EPackage {
 	int GENERIC_ENDPOINT__TARGET_URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI;
 
 	/**
+	 * The feature id for the '<em><b>Metatarget Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT__METATARGET_URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Generic Endpoint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_ENDPOINT_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT + 0;
+	int GENERIC_ENDPOINT_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -1155,13 +1218,22 @@ public interface OperatorPackage extends EPackage {
 	int GENERIC_ENDPOINT___GET_TARGET = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Set Target</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___SET_TARGET__EXTENDIBLEELEMENT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 2;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_ENDPOINT___GET_METATYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 2;
+	int GENERIC_ENDPOINT___GET_METATYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -1170,7 +1242,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 3;
+	int GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Generic Endpoint</em>' class.
@@ -1179,7 +1251,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_ENDPOINT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 4;
+	int GENERIC_ENDPOINT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
 
 	/**
 	 * The meta object id for the '<em>Random</em>' data type.
@@ -1321,14 +1393,14 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__DeleteType();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutables(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Get Executables</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutables(org.eclipse.emf.common.util.EList, java.util.Map) <em>Get Executables</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Executables</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutables(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutables(org.eclipse.emf.common.util.EList, java.util.Map)
 	 * @generated
 	 */
-	EOperation getOperator__GetExecutables__EList_EList();
+	EOperation getOperator__GetExecutables__EList_Map();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createInstance(edu.toronto.cs.se.mmint.mid.MultiModel) <em>Create Instance</em>}' operation.
@@ -1339,6 +1411,26 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getOperator__CreateInstance__MultiModel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#deleteInstance() <em>Delete Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#deleteInstance()
+	 * @generated
+	 */
+	EOperation getOperator__DeleteInstance();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#isAllowedTargetGeneric(edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint, edu.toronto.cs.se.mmint.mid.GenericElement, org.eclipse.emf.common.util.EList) <em>Is Allowed Target Generic</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Allowed Target Generic</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#isAllowedTargetGeneric(edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint, edu.toronto.cs.se.mmint.mid.GenericElement, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getOperator__IsAllowedTargetGeneric__GenericEndpoint_GenericElement_EList();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#execute(org.eclipse.emf.common.util.EList) <em>Execute</em>}' operation.
@@ -1442,6 +1534,17 @@ public interface OperatorPackage extends EPackage {
 	EClass getGenericEndpoint();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#getMetatargetUri <em>Metatarget Uri</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Metatarget Uri</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#getMetatargetUri()
+	 * @see #getGenericEndpoint()
+	 * @generated
+	 */
+	EAttribute getGenericEndpoint_MetatargetUri();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#getSupertype() <em>Get Supertype</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1460,6 +1563,16 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getGenericEndpoint__GetTarget();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#setTarget(edu.toronto.cs.se.mmint.mid.ExtendibleElement) <em>Set Target</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Set Target</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#setTarget(edu.toronto.cs.se.mmint.mid.ExtendibleElement)
+	 * @generated
+	 */
+	EOperation getGenericEndpoint__SetTarget__ExtendibleElement();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#getMetatype() <em>Get Metatype</em>}' operation.
@@ -1625,7 +1738,7 @@ public interface OperatorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation OPERATOR___GET_EXECUTABLES__ELIST_ELIST = eINSTANCE.getOperator__GetExecutables__EList_EList();
+		EOperation OPERATOR___GET_EXECUTABLES__ELIST_MAP = eINSTANCE.getOperator__GetExecutables__EList_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
@@ -1634,6 +1747,22 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation OPERATOR___CREATE_INSTANCE__MULTIMODEL = eINSTANCE.getOperator__CreateInstance__MultiModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___DELETE_INSTANCE = eINSTANCE.getOperator__DeleteInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Allowed Target Generic</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___IS_ALLOWED_TARGET_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = eINSTANCE.getOperator__IsAllowedTargetGeneric__GenericEndpoint_GenericElement_EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Execute</b></em>' operation.
@@ -1722,6 +1851,14 @@ public interface OperatorPackage extends EPackage {
 		EClass GENERIC_ENDPOINT = eINSTANCE.getGenericEndpoint();
 
 		/**
+		 * The meta object literal for the '<em><b>Metatarget Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GENERIC_ENDPOINT__METATARGET_URI = eINSTANCE.getGenericEndpoint_MetatargetUri();
+
+		/**
 		 * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1736,6 +1873,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation GENERIC_ENDPOINT___GET_TARGET = eINSTANCE.getGenericEndpoint__GetTarget();
+
+		/**
+		 * The meta object literal for the '<em><b>Set Target</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GENERIC_ENDPOINT___SET_TARGET__EXTENDIBLEELEMENT = eINSTANCE.getGenericEndpoint__SetTarget__ExtendibleElement();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.

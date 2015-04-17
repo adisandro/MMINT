@@ -11,16 +11,10 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.transformation;
 
-import java.util.Map;
-
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
@@ -65,22 +59,6 @@ public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformatio
 		}
 
 		return result;
-	}
-
-	@Override
-	public EList<Operator> getExecutables(EList<Model> actualModels, EList<Map<Integer, EList<ConversionOperator>>> conversions) throws MMINTException {
-
-		//TODO MMINT[OPERATOR] This overriding is useless with generics
-		EList<Operator> executableOperatorTypes = super.getExecutables(actualModels, conversions);
-		EList<Operator> kExecutableOperatorTypes = new BasicEList<Operator>();
-		// replace transformation operator types with kleisli ones
-		for (int i = 0; i < executableOperatorTypes.size(); i++) {
-			Operator kOperatorType = new KleisliModelRelTypeTransformation();
-			kOperatorType.setName(getName());
-			kExecutableOperatorTypes.add(kOperatorType);
-		}
-
-		return kExecutableOperatorTypes;
 	}
 
 }

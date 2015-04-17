@@ -193,22 +193,6 @@ public class MultiModelTypeIntrospection {
 		return elementTypes;
 	}
 
-	public static ExtendibleElement getType(ExtendibleElement element) {
-
-		if (!MultiModelConstraintChecker.isInstancesLevel(element)) {
-			return null;
-		}
-
-		ExtendibleElement type = MultiModelTypeRegistry.getType(element.getMetatypeUri());
-		if (type == null) { // this can happen when a type is uninstalled
-			//TODO MMINT[INTROSPECTION] find a way to try with runtime type in this read transaction?
-			//element.setMetatypeUri(null);
-			//type = getRuntimeTypes(element);
-		}
-
-		return type;
-	}
-
 	/**
 	 * Gets the root of an ECore model file.
 	 * 
