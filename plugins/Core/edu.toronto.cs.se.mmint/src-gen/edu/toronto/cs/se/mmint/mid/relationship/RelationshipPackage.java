@@ -237,6 +237,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL__CONSTRAINT = MIDPackage.MODEL__CONSTRAINT;
 
 	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL__ABSTRACT = MIDPackage.MODEL__ABSTRACT;
+
+	/**
 	 * The feature id for the '<em><b>Inc</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -298,15 +307,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_REL__CONVERSION_OPERATORS = MIDPackage.MODEL__CONVERSION_OPERATORS;
-
-	/**
-	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL__ABSTRACT = MIDPackage.MODEL__ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Model Endpoints</b></em>' containment reference list.
@@ -696,6 +696,15 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL__CONSTRAINT = MODEL_REL__CONSTRAINT;
 
 	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL__ABSTRACT = MODEL_REL__ABSTRACT;
+
+	/**
 	 * The feature id for the '<em><b>Inc</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -757,15 +766,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL__CONVERSION_OPERATORS = MODEL_REL__CONVERSION_OPERATORS;
-
-	/**
-	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL__ABSTRACT = MODEL_REL__ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Model Endpoints</b></em>' containment reference list.

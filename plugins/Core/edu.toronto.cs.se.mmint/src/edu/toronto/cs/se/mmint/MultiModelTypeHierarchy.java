@@ -20,11 +20,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -33,6 +35,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
@@ -722,6 +725,16 @@ public class MultiModelTypeHierarchy {
 		return getSubtypes(type, MMINT.cachedTypeMID);
 	}
 
+	public static List<GenericElement> getSubtypes(GenericElement type) {
+
+		if (type instanceof Operator && isRootType(type)) { // wildcard to select all operators
+			List<GenericElement> allOperatorTypes = new ArrayList<GenericElement>(MultiModelTypeRegistry.getOperatorTypes());
+			allOperatorTypes.remove(type);
+			return allOperatorTypes;
+		}
+		return getSubtypes(type, MMINT.cachedTypeMID);
+	}
+
 	/**
 	 * Gets something hacky related to the multiple inheritance of a type in the
 	 * repository.
@@ -768,10 +781,12 @@ public class MultiModelTypeHierarchy {
 		else if (type instanceof ModelElementEndpoint) {
 			rootUri = MMINT.ROOT_MODELELEMENDPOINT_URI;
 		}
+		else if (type instanceof Operator) {
+			rootUri = MMINT.ROOT_OPERATOR_URI;
+		}
 		else if (type instanceof Editor) {
 			rootUri = MMINT.ROOT_EDITOR_URI;
 		}
-		//TODO MMINT[OO] root operator?
 	
 		return rootUri;
 	}

@@ -119,6 +119,28 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	}
 
 	/**
+	 * Adds a "heavy" generic type to the repository.
+	 * 
+	 * @param newType
+	 *            The new type to be added.
+	 * @param type
+	 *            The supertype of the new type, null if the new type has no supertype.
+	 * @param newTypeUri
+	 *            The uri of the new type.
+	 * @param newTypeName
+	 *            The name of the new type.
+	 * @param isAbstract
+	 *            True if the new type is abstract, false otherwise.
+	 * @throws MMINTException
+	 *             If the uri of the new type is already registered in the repository.
+	 */
+	protected static void addHeavyGenericType(@NonNull GenericElement newType, @Nullable GenericElement type, @NonNull String newTypeUri, @NonNull String newTypeName, boolean isAbstract) throws MMINTException {
+
+		newType.setAbstract(isAbstract);
+		addType(newType, type, newTypeUri, newTypeName, MMINT.cachedTypeMID);
+	}
+
+	/**
 	 * Adds a "heavy" model type to the repository.
 	 * 
 	 * @param newModelType
@@ -151,8 +173,8 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 			throw new MMINTException("EPackage for URI " + newModelTypeUri + " is not registered");
 		}
 		Model modelType = getSupertype(newModelType, newModelTypeUri, modelTypeUri);
-		addHeavyType(newModelType, modelType, newModelTypeUri, newModelTypeName);
-		addModelType(newModelType, isAbstract, constraintLanguage, constraintImplementation, MMINT.cachedTypeMID);
+		addHeavyGenericType(newModelType, modelType, newModelTypeUri, newModelTypeName, isAbstract);
+		addModelType(newModelType, constraintLanguage, constraintImplementation, MMINT.cachedTypeMID);
 		newModelType.setOrigin(ModelOrigin.IMPORTED);
 
 		String modelPackageName = (modelType == null) ?
@@ -306,8 +328,6 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 * 
 	 * @param extensionType
 	 *            The extension info for the new model type.
-	 * @param isAbstract
-	 *            True if the new model type is abstract, false otherwise.
 	 * @param constraintLanguage
 	 *            The constraint language of the constraint associated with the
 	 *            new model type, null if no constraint is associated.
@@ -321,12 +341,12 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             or if the uri of the new model type is already registered in
 	 *             the repository.
 	 */
-	public Model createHeavyModelType(ExtensionType extensionType, boolean isAbstract, String constraintLanguage, String constraintImplementation) throws MMINTException {
+	public Model createHeavyModelType(ExtensionType extensionType, String constraintLanguage, String constraintImplementation) throws MMINTException {
 
 		Model newModelType = (extensionType.getNewType() == null) ?
 			MIDFactory.eINSTANCE.createModel() :
 			(Model) extensionType.getNewType();
-		addHeavyModelType(newModelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), isAbstract, constraintLanguage, constraintImplementation);
+		addHeavyModelType(newModelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract(), constraintLanguage, constraintImplementation);
 
 		return newModelType;
 	}
@@ -362,9 +382,6 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 * 
 	 * @param extensionType
 	 *            The extension info for the new model relationship type.
-	 * @param isAbstract
-	 *            True if the new model relationship type is abstract, false
-	 *            otherwise.
 	 * @param isBinary
 	 *            True if the new model relationship type is binary, false
 	 *            otherwise.
@@ -383,7 +400,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             extension, or if the uri of the new model relationship type
 	 *             is already registered in the repository.
 	 */
-	public ModelRel createHeavyModelRelType(ExtensionType extensionType, boolean isAbstract, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMINTException {
+	public ModelRel createHeavyModelRelType(ExtensionType extensionType, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMINTException {
 
 		ModelRel newModelRelType;
 		if (extensionType.getNewType() == null) {
@@ -394,7 +411,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		else {
 			newModelRelType = (ModelRel) extensionType.getNewType();
 		}
-		addHeavyModelRelType(newModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), isAbstract, constraintLanguage, constraintImplementation);
+		addHeavyModelRelType(newModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract(), constraintLanguage, constraintImplementation);
 
 		return newModelRelType;
 	}
@@ -675,8 +692,8 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		}
 
 		Operator newOperatorType = (Operator) extensionType.getNewType();
-		Operator operatorType = getSupertype(newOperatorType, extensionType.getUri(), extensionType.getSupertypeUri());
-		addHeavyType(newOperatorType, operatorType, extensionType.getUri(), extensionType.getName());
+		Operator operatorType = getSupertypeWithoutRoot(newOperatorType, extensionType.getUri(), extensionType.getSupertypeUri());
+		addHeavyGenericType(newOperatorType, operatorType, extensionType.getUri(), extensionType.getName(), extensionType.isAbstract());
 		addOperatorType(newOperatorType, MMINT.cachedTypeMID);
 
 		return newOperatorType;

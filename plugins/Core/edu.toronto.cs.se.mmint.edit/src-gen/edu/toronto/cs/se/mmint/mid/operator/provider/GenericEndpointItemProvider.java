@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.mid.operator.provider;
 
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.provider.ExtendibleElementEndpointItemProvider;
 import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
 
@@ -25,7 +26,10 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint} object.
@@ -55,8 +59,31 @@ public class GenericEndpointItemProvider extends ExtendibleElementEndpointItemPr
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addMetatargetUriPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Metatarget Uri feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMetatargetUriPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenericEndpoint_metatargetUri_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenericEndpoint_metatargetUri_feature", "_UI_GenericEndpoint_type"),
+				 OperatorPackage.Literals.GENERIC_ENDPOINT__METATARGET_URI,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -95,6 +122,12 @@ public class GenericEndpointItemProvider extends ExtendibleElementEndpointItemPr
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(GenericEndpoint.class)) {
+			case OperatorPackage.GENERIC_ENDPOINT__METATARGET_URI:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

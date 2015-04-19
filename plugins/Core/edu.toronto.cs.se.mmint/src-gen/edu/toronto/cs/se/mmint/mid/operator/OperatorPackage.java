@@ -198,6 +198,15 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR__CONSTRAINT = MIDPackage.GENERIC_ELEMENT__CONSTRAINT;
 
 	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__ABSTRACT = MIDPackage.GENERIC_ELEMENT__ABSTRACT;
+
+	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -503,6 +512,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR__CONSTRAINT = OPERATOR__CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR__ABSTRACT = OPERATOR__ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
@@ -819,6 +837,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_OPERATOR__CONSTRAINT = OPERATOR__CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__ABSTRACT = OPERATOR__ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.

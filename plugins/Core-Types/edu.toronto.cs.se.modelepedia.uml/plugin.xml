@@ -73,11 +73,11 @@
 
    <extension
          point="edu.toronto.cs.se.mmint.models">
-      <modelType
-            isAbstract="true">
+      <modelType>
          <type
                name="UMLClassDiagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram">
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram"
+               isAbstract="true">
             <superType
                   uri="http://www.eclipse.org/uml2/4.0.0/UML">
             </superType>
@@ -126,11 +126,11 @@
 
    <extension
          point="edu.toronto.cs.se.mmint.models">
-      <modelType
-            isAbstract="true">
+      <modelType>
          <type
                name="UMLComponentDiagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram">
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram"
+               isAbstract="true">
             <superType
                   uri="http://www.eclipse.org/uml2/4.0.0/UML">
             </superType>
@@ -179,11 +179,11 @@
 
    <extension
          point="edu.toronto.cs.se.mmint.models">
-      <modelType
-            isAbstract="true">
+      <modelType>
          <type
                name="UMLDeploymentDiagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram">
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram"
+               isAbstract="true">
             <superType
                   uri="http://www.eclipse.org/uml2/4.0.0/UML">
             </superType>
@@ -362,11 +362,11 @@
 
    <extension
          point="edu.toronto.cs.se.mmint.models">
-      <modelType
-            isAbstract="true">
+      <modelType>
          <type
                name="UML_MAVO"
-               uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
+               uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO"
+               isAbstract="true">
             <superType
                   uri="http://se.cs.toronto.edu/MAVO">
             </superType>
@@ -414,11 +414,11 @@
 
    <extension
          point="edu.toronto.cs.se.mmint.models">
-      <modelType
-            isAbstract="true">
+      <modelType>
          <type
                name="UMLClassDiagram_MAVO"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO">
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO"
+               isAbstract="true">
             <superType
                   uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
             </superType>
@@ -467,11 +467,11 @@
 
    <extension
          point="edu.toronto.cs.se.mmint.models">
-      <modelType
-            isAbstract="true">
+      <modelType>
          <type
                name="UMLComponentDiagram_MAVO"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO">
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO"
+               isAbstract="true">
             <superType
                   uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
             </superType>
@@ -520,11 +520,11 @@
 
    <extension
          point="edu.toronto.cs.se.mmint.models">
-      <modelType
-            isAbstract="true">
+      <modelType>
          <type
                name="UMLDeploymentDiagram_MAVO"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO">
+               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO"
+               isAbstract="true">
             <superType
                   uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
             </superType>

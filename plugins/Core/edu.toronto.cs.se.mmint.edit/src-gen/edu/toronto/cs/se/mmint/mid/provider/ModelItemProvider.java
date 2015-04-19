@@ -61,7 +61,6 @@ public class ModelItemProvider
 			addFileExtensionPropertyDescriptor(object);
 			addEditorsPropertyDescriptor(object);
 			addConversionOperatorsPropertyDescriptor(object);
-			addAbstractPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -177,28 +176,6 @@ public class ModelItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Abstract feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAbstractPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Model_abstract_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Model_abstract_feature", "_UI_Model_type"),
-				 MIDPackage.Literals.MODEL__ABSTRACT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -269,7 +246,6 @@ public class ModelItemProvider
 			case MIDPackage.MODEL__INC:
 			case MIDPackage.MODEL__ORIGIN:
 			case MIDPackage.MODEL__FILE_EXTENSION:
-			case MIDPackage.MODEL__ABSTRACT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MIDPackage.MODEL__DECISIONS:

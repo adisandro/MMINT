@@ -74,7 +74,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getModelElems <em>Model Elems</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getConversionOperators <em>Conversion Operators</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#isAbstract <em>Abstract</em>}</li>
  * </ul>
  * </p>
  *
@@ -180,26 +179,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 * @ordered
 	 */
 	protected EList<ConversionOperator> conversionOperators;
-
-	/**
-	 * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAbstract()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean ABSTRACT_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAbstract()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean abstract_ = ABSTRACT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -336,27 +315,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAbstract() {
-		return abstract_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAbstract(boolean newAbstract) {
-		boolean oldAbstract = abstract_;
-		abstract_ = newAbstract;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ABSTRACT, oldAbstract, abstract_));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Model getMetatype() {
 		ExtendibleElement metatype = super.getMetatype();
 		return (metatype == null) ? null : (Model) metatype;
@@ -410,8 +368,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				return getModelElems();
 			case MIDPackage.MODEL__CONVERSION_OPERATORS:
 				return getConversionOperators();
-			case MIDPackage.MODEL__ABSTRACT:
-				return isAbstract();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -450,9 +406,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				getConversionOperators().clear();
 				getConversionOperators().addAll((Collection<? extends ConversionOperator>)newValue);
 				return;
-			case MIDPackage.MODEL__ABSTRACT:
-				setAbstract((Boolean)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -486,9 +439,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			case MIDPackage.MODEL__CONVERSION_OPERATORS:
 				getConversionOperators().clear();
 				return;
-			case MIDPackage.MODEL__ABSTRACT:
-				setAbstract(ABSTRACT_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -515,8 +465,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				return modelElems != null && !modelElems.isEmpty();
 			case MIDPackage.MODEL__CONVERSION_OPERATORS:
 				return conversionOperators != null && !conversionOperators.isEmpty();
-			case MIDPackage.MODEL__ABSTRACT:
-				return abstract_ != ABSTRACT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -673,8 +621,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		result.append(origin);
 		result.append(", fileExtension: ");
 		result.append(fileExtension);
-		result.append(", abstract: ");
-		result.append(abstract_);
 		result.append(')');
 		return result.toString();
 	}
@@ -705,7 +651,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
 		super.addSubtype(newModelType, this, null, newModelTypeName);
-		MultiModelTypeFactory.addModelType(newModelType, false, constraintLanguage, constraintImplementation, multiModel);
+		MultiModelTypeFactory.addModelType(newModelType, constraintLanguage, constraintImplementation, multiModel);
 		newModelType.setOrigin(ModelOrigin.CREATED);
 
 		if (isMetamodelExtension) {

@@ -25,8 +25,7 @@
 
    <extension
          point="edu.toronto.cs.se.mmint.models">
-      <modelType
-            isAbstract="false">
+      <modelType>
          <type
                name="State"
                uri="http://se.cs.toronto.edu/modelepedia/State">

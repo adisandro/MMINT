@@ -73,8 +73,7 @@ public class MultiModelTypeFactory {
 	 * @param typeMID
 	 *            The Type MID.
 	 * @throws MMINTException
-	 *             If the uri of the new type is already registered in the Type
-	 *             MID.
+	 *             If the uri of the new type is already registered in the Type MID.
 	 */
 	public static void addType(@NonNull ExtendibleElement newType, @Nullable ExtendibleElement type, @NonNull String newTypeUri, @NonNull String newTypeName, @NonNull MultiModel typeMID) throws MMINTException {
 
@@ -153,8 +152,6 @@ public class MultiModelTypeFactory {
 	 * 
 	 * @param newModelType
 	 *            The new model type to be added.
-	 * @param newModelTypeAbstract
-	 *            True if the new model type is abstract, false otherwise.
 	 * @param constraintLanguage
 	 *            The constraint language of the constraint associated with the
 	 *            new model type, null if no constraint is associated.
@@ -164,9 +161,8 @@ public class MultiModelTypeFactory {
 	 * @param multiModel
 	 *            The multimodel that will contain the new model type.
 	 */
-	public static void addModelType(Model newModelType, boolean newModelTypeAbstract, String constraintLanguage, String constraintImplementation, MultiModel multiModel) {
+	public static void addModelType(Model newModelType, String constraintLanguage, String constraintImplementation, MultiModel multiModel) {
 
-		newModelType.setAbstract(newModelTypeAbstract);
 		ExtendibleElementConstraint modelConstraint = null;
 		if (constraintLanguage != null) {
 			modelConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();

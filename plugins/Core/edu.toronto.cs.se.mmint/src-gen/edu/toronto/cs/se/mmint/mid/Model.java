@@ -37,7 +37,6 @@ import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getModelElems <em>Model Elems</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getConversionOperators <em>Conversion Operators</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#isAbstract <em>Abstract</em>}</li>
  * </ul>
  * </p>
  *
@@ -143,31 +142,6 @@ public interface Model extends GenericElement, MAVOModel {
 	 * @generated
 	 */
 	EList<ConversionOperator> getConversionOperators();
-
-	/**
-	 * Returns the value of the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * True if the model type can't be instanciated, false otherwise (instances: always false).
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Abstract</em>' attribute.
-	 * @see #setAbstract(boolean)
-	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getModel_Abstract()
-	 * @model required="true"
-	 * @generated
-	 */
-	boolean isAbstract();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.Model#isAbstract <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Abstract</em>' attribute.
-	 * @see #isAbstract()
-	 * @generated
-	 */
-	void setAbstract(boolean value);
 
 	/**
 	 * <!-- begin-user-doc -->

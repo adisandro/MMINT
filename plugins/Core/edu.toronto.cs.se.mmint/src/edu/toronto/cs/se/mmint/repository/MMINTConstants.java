@@ -54,6 +54,8 @@ public interface MMINTConstants {
 	public final static String ROOT_LINK_URI = ROOT_MODELREL_URI + URI_SEPARATOR + "Link";
 	/** The uri of the root model element type endpoint. */
 	public final static String ROOT_MODELELEMENDPOINT_URI = ROOT_MODELREL_URI + URI_SEPARATOR + "Link" + ENDPOINT_SEPARATOR + "ModelElem" + URI_SEPARATOR + "ModelElemEndpoint";
+	/** The uri of the root operator type. */
+	public final static String ROOT_OPERATOR_URI = ROOT_URI + URI_SEPARATOR + "Operator";
 	/** The uri of the root editor type. */
 	public final static String ROOT_EDITOR_URI = ROOT_MODEL_URI + EDITOR_SEPARATOR + "tree";
 	/** The name of the root editor type. */
@@ -69,6 +71,8 @@ public interface MMINTConstants {
 	public final static String TYPE_ATTR_URI = "uri";
 	/** An extension point's type child's class attribute. */
 	public final static String TYPE_ATTR_CLASS = "class";
+	/** An extension point's type child's abstract attribute. */
+	public final static String TYPE_ATTR_ISABSTRACT = "isAbstract";
 	/** An extension point's type superType child. */
 	public final static String TYPE_CHILD_SUPERTYPE = "superType";
 	/** An extension point's type superType child's uri attribute. */
@@ -93,8 +97,6 @@ public interface MMINTConstants {
 	public final static String MODELS_EXT_POINT = "edu.toronto.cs.se.mmint.models";
 	/** The Models extension point's modelType child. */
 	public final static String MODELS_CHILD_MODELTYPE = "modelType";
-	/** The Models extension point's modelType's abstract attribute. */
-	public final static String MODELS_MODELTYPE_ATTR_ABSTRACT = "isAbstract";
 	/** The Models extension point's modelType's constraint child. */
 	public final static String MODELS_MODELTYPE_CHILD_CONSTRAINT = "constraint";
 	/** The Models extension point's modelType's constraint child's language attribute. */

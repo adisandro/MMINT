@@ -61,13 +61,6 @@ The model package has to be registered through the org.eclipse.emf.ecore.generat
             <element ref="type"/>
             <element ref="constraint" minOccurs="0" maxOccurs="1"/>
          </sequence>
-         <attribute name="isAbstract" type="boolean" use="default" value="false">
-            <annotation>
-               <documentation>
-                  True if the model type is not to be instanciated, false otherwise.
-               </documentation>
-            </annotation>
-         </attribute>
       </complexType>
    </element>
 

@@ -601,7 +601,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			List<GenericElement> genericTypes = MultiModelTypeHierarchy.getSubtypes(genericSuperType);
 			genericTypes.add(0, genericSuperType);
 			for (GenericElement genericType : genericTypes) {
-				if (genericType instanceof Model && ((Model) genericType).isAbstract()) {
+				if (genericType.isAbstract()) {
 					continue;
 				}
 				if (!this.isAllowedTargetGeneric(genericTypeEndpoint, genericType, inputModels)) {

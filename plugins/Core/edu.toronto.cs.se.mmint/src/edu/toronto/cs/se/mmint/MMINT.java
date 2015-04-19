@@ -156,7 +156,6 @@ public class MMINT implements MMINTConstants {
 	 */
 	public static Model createModelType(IConfigurationElement extensionConfig) throws MMINTException {
 
-		boolean isAbstract = Boolean.parseBoolean(extensionConfig.getAttribute(MODELS_MODELTYPE_ATTR_ABSTRACT));
 		ExtensionType extensionType = new ExtensionType(extensionConfig, multipleInheritanceTable, typeFactory);
 		if (extensionType.getUri() == null) {
 			throw new MMINTException("Model type " + extensionType.getName() + " must have a uri");
@@ -170,7 +169,6 @@ public class MMINT implements MMINTConstants {
 			constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION);
 		Model newModelType = extensionType.getFactory().createHeavyModelType(
 			extensionType,
-			isAbstract,
 			constraintLanguage,
 			constraintImplementation
 		);
@@ -195,7 +193,6 @@ public class MMINT implements MMINTConstants {
 	public static ModelRel createModelRelType(IConfigurationElement extensionConfig) throws Exception {
 
 		IConfigurationElement modelTypeConfig = extensionConfig.getChildren(MODELS_CHILD_MODELTYPE)[0];
-		boolean isAbstract = Boolean.parseBoolean(modelTypeConfig.getAttribute(MODELS_MODELTYPE_ATTR_ABSTRACT));
 		ExtensionType extensionType = new ExtensionType(modelTypeConfig, typeFactory);
 		if (extensionType.getUri() == null) {
 			throw new MMINTException("Model relationship type " + extensionType.getName() + " must have a uri");
@@ -211,7 +208,6 @@ public class MMINT implements MMINTConstants {
 			constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION);
 		ModelRel newModelRelType = extensionType.getFactory().createHeavyModelRelType(
 			extensionType,
-			isAbstract,
 			isBinary,
 			constraintLanguage,
 			constraintImplementation

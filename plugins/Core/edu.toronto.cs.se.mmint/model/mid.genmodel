@@ -58,7 +58,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/editors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Model/modelElems"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/conversionOperators"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/abstract"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getMetatype"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getSupertype"/>
       <genOperations ecoreOperation="mid.ecore#//Model/createSubtype">
@@ -188,7 +187,9 @@
       <genOperations ecoreOperation="mid.ecore#//EMFInfo/toTypeString"/>
       <genOperations ecoreOperation="mid.ecore#//EMFInfo/toInstanceString"/>
     </genClasses>
-    <genClasses ecoreClass="mid.ecore#//GenericElement"/>
+    <genClasses ecoreClass="mid.ecore#//GenericElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//GenericElement/abstract"/>
+    </genClasses>
     <nestedGenPackages prefix="Relationship" basePackage="edu.toronto.cs.se.mmint.mid"
         disposableProviderFactory="true" ecorePackage="mid.ecore#//relationship">
       <genClasses ecoreClass="mid.ecore#//relationship/ModelRel">

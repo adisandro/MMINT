@@ -521,15 +521,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getModel_Abstract() {
-		return (EAttribute)modelEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getModel__GetMetatype() {
 		return modelEClass.getEOperations().get(0);
 	}
@@ -980,6 +971,15 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getGenericElement_Abstract() {
+		return (EAttribute)genericElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getMIDLevel() {
 		return midLevelEEnum;
 	}
@@ -1066,7 +1066,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEReference(modelEClass, MODEL__EDITORS);
 		createEReference(modelEClass, MODEL__MODEL_ELEMS);
 		createEReference(modelEClass, MODEL__CONVERSION_OPERATORS);
-		createEAttribute(modelEClass, MODEL__ABSTRACT);
 		createEOperation(modelEClass, MODEL___GET_METATYPE);
 		createEOperation(modelEClass, MODEL___GET_SUPERTYPE);
 		createEOperation(modelEClass, MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN);
@@ -1122,6 +1121,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(emfInfoEClass, EMF_INFO___TO_INSTANCE_STRING);
 
 		genericElementEClass = createEClass(GENERIC_ELEMENT);
+		createEAttribute(genericElementEClass, GENERIC_ELEMENT__ABSTRACT);
 
 		// Create enums
 		midLevelEEnum = createEEnum(MID_LEVEL);
@@ -1221,7 +1221,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		initEReference(getModel_Editors(), theEditorPackage.getEditor(), null, "editors", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModel_ModelElems(), this.getModelElement(), null, "modelElems", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModel_ConversionOperators(), theOperatorPackage.getConversionOperator(), null, "conversionOperators", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModel_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 1, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getModel__GetMetatype(), this.getModel(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1399,6 +1398,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		initEOperation(getEMFInfo__ToInstanceString(), ecorePackage.getEString(), "toInstanceString", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(genericElementEClass, GenericElement.class, "GenericElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGenericElement_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 1, 1, GenericElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(midLevelEEnum, MIDLevel.class, "MIDLevel");

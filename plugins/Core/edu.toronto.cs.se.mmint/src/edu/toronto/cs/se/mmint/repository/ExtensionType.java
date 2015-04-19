@@ -34,6 +34,8 @@ public class ExtensionType {
 	private String uri;
 	/** The name of the extension type. */
 	private String name;
+	/** True if the extension type is abstract, false otherwise. */
+	private boolean isAbstract;
 	/** The uri of the supertype of the extension type. */
 	private String supertypeUri;
 	/** The factory of the extension type. */
@@ -53,6 +55,7 @@ public class ExtensionType {
 		IConfigurationElement typeConfig = extensionConfig.getChildren(MMINTConstants.CHILD_TYPE)[0];
 		uri = typeConfig.getAttribute(MMINTConstants.TYPE_ATTR_URI);
 		name = typeConfig.getAttribute(MMINTConstants.TYPE_ATTR_NAME);
+		isAbstract = Boolean.parseBoolean(typeConfig.getAttribute(MMINTConstants.TYPE_ATTR_ISABSTRACT));
 		IConfigurationElement[] supertypeConfigs = typeConfig.getChildren(MMINTConstants.TYPE_CHILD_SUPERTYPE);
 		supertypeUri = (supertypeConfigs.length == 0) ?
 			null :
@@ -141,6 +144,16 @@ public class ExtensionType {
 	public @NonNull String getName() {
 
 		return name;
+	}
+
+	/**
+	 * Checks if the extension type is abstract.
+	 * 
+	 * @return True if the extension type is abstract, false otherwise.
+	 */
+	public boolean isAbstract() {
+
+		return isAbstract;
 	}
 
 	/**

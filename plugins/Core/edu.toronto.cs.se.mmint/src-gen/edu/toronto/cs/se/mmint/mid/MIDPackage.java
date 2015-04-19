@@ -698,13 +698,22 @@ public interface MIDPackage extends EPackage {
 	int GENERIC_ELEMENT__CONSTRAINT = EXTENDIBLE_ELEMENT__CONSTRAINT;
 
 	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT__ABSTRACT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Generic Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
+	int GENERIC_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -852,6 +861,15 @@ public interface MIDPackage extends EPackage {
 	int MODEL__CONSTRAINT = GENERIC_ELEMENT__CONSTRAINT;
 
 	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__ABSTRACT = GENERIC_ELEMENT__ABSTRACT;
+
+	/**
 	 * The feature id for the '<em><b>Inc</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -915,22 +933,13 @@ public interface MIDPackage extends EPackage {
 	int MODEL__CONVERSION_OPERATORS = GENERIC_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
-	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__ABSTRACT = GENERIC_ELEMENT_FEATURE_COUNT + 7;
-
-	/**
 	 * The number of structural features of the '<em>Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_FEATURE_COUNT = GENERIC_ELEMENT_FEATURE_COUNT + 8;
+	int MODEL_FEATURE_COUNT = GENERIC_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -2133,17 +2142,6 @@ public interface MIDPackage extends EPackage {
 	EReference getModel_ConversionOperators();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.Model#isAbstract <em>Abstract</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Abstract</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.Model#isAbstract()
-	 * @see #getModel()
-	 * @generated
-	 */
-	EAttribute getModel_Abstract();
-
-	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#getMetatype() <em>Get Metatype</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2651,6 +2649,17 @@ public interface MIDPackage extends EPackage {
 	EClass getGenericElement();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.GenericElement#isAbstract <em>Abstract</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Abstract</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.GenericElement#isAbstract()
+	 * @see #getGenericElement()
+	 * @generated
+	 */
+	EAttribute getGenericElement_Abstract();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmint.mid.MIDLevel <em>Level</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2969,14 +2978,6 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL__CONVERSION_OPERATORS = eINSTANCE.getModel_ConversionOperators();
-
-		/**
-		 * The meta object literal for the '<em><b>Abstract</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODEL__ABSTRACT = eINSTANCE.getModel_Abstract();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
@@ -3387,6 +3388,14 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EClass GENERIC_ELEMENT = eINSTANCE.getGenericElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Abstract</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GENERIC_ELEMENT__ABSTRACT = eINSTANCE.getGenericElement_Abstract();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.MIDLevel <em>Level</em>}' enum.

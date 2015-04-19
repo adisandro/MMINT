@@ -24,8 +24,7 @@
    <extension
          point="edu.toronto.cs.se.mmint.relationships">
       <relationshipType>
-         <modelType
-               isAbstract="false">
+         <modelType>
             <type
                   name="Border"
                   uri="http://se.cs.toronto.edu/modelepedia/Border">
@@ -77,8 +76,7 @@
    <extension
          point="edu.toronto.cs.se.mmint.relationships">
       <relationshipType>
-         <modelType
-               isAbstract="false">
+         <modelType>
             <type
                   name="Deployed"
                   uri="http://se.cs.toronto.edu/modelepedia/Deployed">
@@ -160,8 +158,7 @@
    <extension
          point="edu.toronto.cs.se.mmint.relationships">
       <relationshipType>
-         <modelType
-               isAbstract="false">
+         <modelType>
             <type
                   name="Has"
                   uri="http://se.cs.toronto.edu/modelepedia/Has">

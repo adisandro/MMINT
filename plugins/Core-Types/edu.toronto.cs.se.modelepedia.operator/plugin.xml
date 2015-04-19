@@ -517,4 +517,45 @@
       </operatorType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="Map"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_Map"
+               class="edu.toronto.cs.se.modelepedia.operator.mid.Map">
+         </type>
+         <generics>
+            <parameter>
+	           <type
+	                 name="O">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Operator">
+	           </typeEndpoint>
+            </parameter>
+         </generics>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="mid">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="mappedMid">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
 </plugin>

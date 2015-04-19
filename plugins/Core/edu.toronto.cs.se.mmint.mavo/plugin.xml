@@ -17,11 +17,11 @@
 
    <extension
          point="edu.toronto.cs.se.mmint.models">
-      <modelType
-            isAbstract="true">
+      <modelType>
          <type
                name="Model_MAVO"
-               uri="http://se.cs.toronto.edu/MAVO">
+               uri="http://se.cs.toronto.edu/MAVO"
+               isAbstract="true">
             <superType
                   uri="http://se.cs.toronto.edu/mmint/Model">
             </superType>

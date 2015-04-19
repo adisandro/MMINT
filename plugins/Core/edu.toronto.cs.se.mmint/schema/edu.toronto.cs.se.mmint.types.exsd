@@ -81,6 +81,13 @@
                </appinfo>
             </annotation>
          </attribute>
+         <attribute name="isAbstract" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  True if the type is not to be instanciated, false otherwise.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
