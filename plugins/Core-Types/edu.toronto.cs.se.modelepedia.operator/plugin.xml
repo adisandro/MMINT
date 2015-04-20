@@ -538,9 +538,10 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="mid">
+	                 name="inputMIDs">
 	           </type>
 	           <typeEndpoint
+                     upperBound="-1"
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
 	           </typeEndpoint>
             </parameter>
@@ -548,9 +549,10 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="mappedMid">
+	                 name="outputMIDs">
 	           </type>
 	           <typeEndpoint
+                     upperBound="-1"
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
 	           </typeEndpoint>
             </parameter>
