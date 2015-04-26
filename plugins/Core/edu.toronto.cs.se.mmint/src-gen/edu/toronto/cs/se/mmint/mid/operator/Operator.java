@@ -302,19 +302,38 @@ public interface Operator extends GenericElement {
 	void init() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Executes this operator instance. When running an
-	 * operator instance, MMINT invokes readInputProperties() -> init() ->
-	 * execute().
+	 * <!-- begin-user-doc --> Executes this operator instance. This function contains the logic of the operator and
+	 * must be overridden.
 	 * 
-	 * @param actualParameters
+	 * @param inputModels
 	 *            A list of input model instances.
 	 * @return A list of output model instances.
 	 * @throws Exception
-	 *             If something went wrong during the execution of the operator.
-	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" actualParametersRequired="true" actualParametersMany="true"
+	 *             If something went wrong during the execution of the operator. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputModelsRequired="true"
+	 *        inputModelsMany="true"
 	 * @generated
 	 */
-	EList<Model> execute(EList<Model> actualParameters) throws Exception;
+	EList<Model> execute(EList<Model> inputModels) throws Exception;
+
+	/**
+	 * <!-- begin-user-doc --> Runs this operator instance, i.e. runs conversions for the input models and then invokes
+	 * readInputProperties(), init(), execute().
+	 * 
+	 * @param inputModels
+	 *            A list of input model instances.
+	 * @param conversions
+	 *            A list of conversion operator types for each input model to be converted into an equivalent one. The
+	 *            input model to be converted is given by the integer index of the map.
+	 * @param instanceMID
+	 *            An Instance MID, null if the operator isn't going to be added to it.
+	 * @throws Exception
+	 *             If something went wrong running the operator. <!-- end-user-doc -->
+	 * 
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputModelsMany="true"
+	 *        conversionsRequired="true"
+	 * @generated
+	 */
+	void run(EList<Model> inputModels, Map<Integer, EList<ConversionOperator>> conversions, MultiModel instanceMID) throws Exception;
 
 } // Operator

@@ -212,7 +212,7 @@ public class MIDContextMenu extends ContributionItem {
 					MenuItem operatorSubitem = new MenuItem(operatorMenu, SWT.NONE);
 					operatorSubitem.setText(text);
 					operatorSubitem.addSelectionListener(
-						new MIDContextRunOperatorListener(MMINT_MENU_OPERATOR_LABEL, instanceMID, executableOperator, inputModels, conversions)
+						new MIDContextRunOperatorListener(MMINT_MENU_OPERATOR_LABEL, executableOperator, inputModels, conversions, instanceMID)
 					);
 				}
 			}

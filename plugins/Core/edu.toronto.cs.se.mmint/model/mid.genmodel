@@ -476,7 +476,12 @@
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/init"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/execute">
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/execute/actualParameters"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/execute/inputModels"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/run">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/run/inputModels"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/run/conversions"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/run/instanceMID"/>
         </genOperations>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/ConversionOperator">

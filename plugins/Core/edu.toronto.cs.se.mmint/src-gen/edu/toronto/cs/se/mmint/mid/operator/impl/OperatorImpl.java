@@ -16,6 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -48,6 +50,7 @@ import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 /**
  * <!-- begin-user-doc -->
@@ -509,6 +512,14 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case OperatorPackage.OPERATOR___RUN__ELIST_MAP_MULTIMODEL:
+				try {
+					run((EList<Model>)arguments.get(0), (Map<Integer, EList<ConversionOperator>>)arguments.get(1), (MultiModel)arguments.get(2));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -762,13 +773,63 @@ inputs:
 	/**
 	 * @generated NOT
 	 */
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> execute(EList<Model> inputModels) throws Exception {
 
 		/* TODO MMINT[OPERATOR]
-		 * When an operator instance is created, this can become: public void execute()
+		 * When an operator instance is always created, this can become: public void execute()
 		 * Inputs, outputs and generics should be available by their name through a hash map
 		 */
 		throw new MMINTException("The default execute() function must be overridden");
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void run(EList<Model> inputModels, Map<Integer, EList<ConversionOperator>> conversions, MultiModel instanceMID) throws Exception {
+
+		//TODO MMINT[OPERATOR] When an operator instance is always created check that this is an instance
+		//TODO MMINT[OPERATOR] is conversions ordered?? I don't think so
+		// run all conversion operators
+		if (!conversions.isEmpty()) {
+			for (Entry<Integer, EList<ConversionOperator>> entry : conversions.entrySet()) {
+				int i = entry.getKey();
+				List<ConversionOperator> conversionList = entry.getValue();
+				Model newActualParameter = inputModels.get(i);
+				for (ConversionOperator operator : conversionList) {
+					EList<Model> operatorParameters = new BasicEList<Model>();
+					operatorParameters.add(newActualParameter);
+					Properties inputProperties = operator.getInputProperties();
+					operator.readInputProperties(inputProperties);
+					operator.init();
+					newActualParameter = operator.execute(operatorParameters).get(0);
+				}
+				inputModels.set(i, newActualParameter);
+			}
+		}
+		// run operator
+		Properties inputProperties = this.getInputProperties();
+		this.readInputProperties(inputProperties);
+		this.init();
+		EList<Model> outputModels = this.execute(inputModels);
+		if (instanceMID != null && Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED))) {
+			//TODO MMINT[OPERATOR] Remove if when operator instances are always created
+			if (!this.getGenerics().isEmpty()) {
+				Operator operatorType = this.getMetatype();
+				for (int i = 0; i < operatorType.getOutputs().size(); i++) {
+					ModelEndpoint outputModelTypeEndpoint = operatorType.getOutputs().get(i);
+					outputModelTypeEndpoint.createInstance(outputModels.get(i), this, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+				}
+				instanceMID.getOperators().add(this);
+			}
+		}
+		// cleanup all conversion operators
+		if (!conversions.isEmpty()) {
+			for (Entry<Integer, EList<ConversionOperator>> entry : conversions.entrySet()) {
+				for (ConversionOperator operator : entry.getValue()) {
+					((ConversionOperator) operator).cleanup();
+				}
+			}
+		}
 	}
 
 } //OperatorImpl

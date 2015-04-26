@@ -1118,7 +1118,19 @@
       <eOperations name="init" eExceptions="#//MMINTException"/>
       <eOperations name="execute" lowerBound="1" upperBound="-1" eType="#//Model"
           eExceptions="#//operator/Exception">
-        <eParameters name="actualParameters" lowerBound="1" upperBound="-1" eType="#//Model"/>
+        <eParameters name="inputModels" lowerBound="1" upperBound="-1" eType="#//Model"/>
+      </eOperations>
+      <eOperations name="run" eExceptions="#//operator/Exception">
+        <eParameters name="inputModels" upperBound="-1" eType="#//Model"/>
+        <eParameters name="conversions" lowerBound="1">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+              <eTypeArguments eClassifier="#//operator/ConversionOperator"/>
+            </eTypeArguments>
+          </eGenericType>
+        </eParameters>
+        <eParameters name="instanceMID" eType="#//MultiModel"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
           eType="#//ModelEndpoint" containment="true">

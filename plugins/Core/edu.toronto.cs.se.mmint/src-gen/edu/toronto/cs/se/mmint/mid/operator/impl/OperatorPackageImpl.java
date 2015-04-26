@@ -319,6 +319,15 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getOperator__Run__EList_Map_MultiModel() {
+		return operatorEClass.getEOperations().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getOperator__GetInputProperties() {
 		return operatorEClass.getEOperations().get(7);
 	}
@@ -522,6 +531,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(operatorEClass, OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES);
 		createEOperation(operatorEClass, OPERATOR___INIT);
 		createEOperation(operatorEClass, OPERATOR___EXECUTE__ELIST);
+		createEOperation(operatorEClass, OPERATOR___RUN__ELIST_MAP_MULTIMODEL);
 
 		conversionOperatorEClass = createEClass(CONVERSION_OPERATOR);
 		createEOperation(conversionOperatorEClass, CONVERSION_OPERATOR___DELETE_TYPE);
@@ -631,7 +641,20 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getOperator__Execute__EList(), theMIDPackage.getModel(), "execute", 1, -1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMIDPackage.getModel(), "actualParameters", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getModel(), "inputModels", 1, -1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getException());
+
+		op = initEOperation(getOperator__Run__EList_Map_MultiModel(), null, "run", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getModel(), "inputModels", 0, -1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEIntegerObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEEList());
+		g1.getETypeArguments().add(g2);
+		g3 = createEGenericType(this.getConversionOperator());
+		g2.getETypeArguments().add(g3);
+		addEParameter(op, g1, "conversions", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getMultiModel(), "instanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getException());
 
 		initEClass(conversionOperatorEClass, ConversionOperator.class, "ConversionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

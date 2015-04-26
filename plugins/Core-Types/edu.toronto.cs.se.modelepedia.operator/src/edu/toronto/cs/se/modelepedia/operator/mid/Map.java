@@ -11,22 +11,81 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.mid;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.jdt.annotation.NonNull;
+
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.ModelOrigin;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
 public class Map extends OperatorImpl {
 
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	@NonNull private final static String MAP_MID_SUFFIX = "_map";
 
-		Model mid = actualParameters.get(0);
+	private List<List<Model>> x(Operator operatorType, MultiModel mid, List<List<List<ConversionOperator>>> conversions) {
+
+		//TODO MMINT[MAP] Add support for upper bound = -1
+		//TODO MMINT[MAP] Need something more in the operators themselves to validate proper input in case of model rels
+		List<List<Model>> y = new ArrayList<>();
+		for (ModelEndpoint inputModelTypeEndpoint : operatorType.getInputs()) {
+			Model inputModelType = inputModelTypeEndpoint.getTarget();
+			List<Model> yy = new ArrayList<>();
+			y.add(yy);
+			List<List<ConversionOperator>> zz = new ArrayList<>();
+			conversions.add(zz);
+			for (Model inputModel : mid.getModels()) {
+				List<ConversionOperator> conversionOperatorTypes = MultiModelTypeHierarchy.instanceOf(inputModel, inputModelType.getUri());
+				if (conversionOperatorTypes == null) {
+					continue;
+				}
+				if (!conversionOperatorTypes.isEmpty()) {
+					zz.add(conversionOperatorTypes);
+				}
+				yy.add(inputModel);
+			}
+		}
+
+		return y;
+	}
+
+	private void y(Operator operatorType, MultiModel mid, List<List<Model>> midInputs, List<List<List<ConversionOperator>>> conversions) {
+
+		EList<Model> inputModels = new BasicEList<>();
+		for (int i = 0; i < midInputs.size(); i++) {
+			List<Model> a = midInputs.get(i);
+			inputModels.add(a.get(0));
+			//TODO MMINT[MAP] Select by cartesian product
+		}
+		//operatorType.run(inputModels, conversions, mid);
+	}
+
+	public EList<Model> execute(EList<Model> inputModels) throws Exception {
+
+		Model midModel = inputModels.get(0);
+		MultiModel instanceMID = MultiModelRegistry.getMultiModel(midModel);
 		Operator operatorType = (Operator) getGenerics().get(0);
+		MultiModel mapMid = (MultiModel) midModel.getEMFInstanceRoot();
+
+		// find all possible combinations of inputs for operatorType and execute them
+		List<List<List<ConversionOperator>>> conversions = new ArrayList<>();
+		List<List<Model>> midInputs = x(operatorType, mapMid, conversions);
+		y(operatorType, mapMid, midInputs, conversions);
+
+		// 
 		/* TODO
-		 * 1) Copy into an output mid first
 		 * 2) Apply operatorType to the mid
-		 * 2a) find all possible combinations of the input of operatorType 
+		 * 2a) find all possible combinations of the input of operatorType
 		 *     (== matches, list of lists of actual parameters List<EList<Model>>)
 		 *     use some heuristics to have groups of actual parameters, then invoke getExecutables() to check
 		 * 2b) execute the operatorType on the matches and store the output mid
@@ -35,7 +94,17 @@ public class Map extends OperatorImpl {
 		 * 5) Think about the alternative invocation, with a mid for every parameter of operatorType (no need to find matches?)
 		 */
 
-		return actualParameters;
+		String mapMidUri = MultiModelUtils.getUniqueUri(
+			MultiModelUtils.addFileNameSuffixInUri(midModel.getUri(), MAP_MID_SUFFIX),
+			true,
+			false
+		);
+		MultiModelUtils.createModelFile(mapMid, mapMidUri, true);
+		Model mapMidModel = midModel.getMetatype().createInstanceAndEditor(mapMidUri, ModelOrigin.CREATED, instanceMID);
+		EList<Model> operatorOutputs = new BasicEList<>();
+		operatorOutputs.add(mapMidModel);
+
+		return operatorOutputs;
 	}
 
 }
