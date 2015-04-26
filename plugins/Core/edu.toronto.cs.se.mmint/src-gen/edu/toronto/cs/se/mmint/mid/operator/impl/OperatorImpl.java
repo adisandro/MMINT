@@ -788,7 +788,7 @@ inputs:
 	public void run(EList<Model> inputModels, Map<Integer, EList<ConversionOperator>> conversions, MultiModel instanceMID) throws Exception {
 
 		//TODO MMINT[OPERATOR] When an operator instance is always created check that this is an instance
-		//TODO MMINT[OPERATOR] is conversions ordered?? I don't think so
+		//TODO MMINT[OPERATOR] Run in its own thread to avoid blocking the user interface
 		// run all conversion operators
 		if (!conversions.isEmpty()) {
 			for (Entry<Integer, EList<ConversionOperator>> entry : conversions.entrySet()) {
@@ -822,7 +822,7 @@ inputs:
 				instanceMID.getOperators().add(this);
 			}
 		}
-		// cleanup all conversion operators
+		// clean up all conversion operators
 		if (!conversions.isEmpty()) {
 			for (Entry<Integer, EList<ConversionOperator>> entry : conversions.entrySet()) {
 				for (ConversionOperator operator : entry.getValue()) {

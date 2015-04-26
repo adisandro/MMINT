@@ -12,12 +12,15 @@
 package edu.toronto.cs.se.modelepedia.operator.mid;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -26,6 +29,7 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
@@ -49,9 +53,7 @@ public class Map extends OperatorImpl {
 				if (conversionOperatorTypes == null) {
 					continue;
 				}
-				if (!conversionOperatorTypes.isEmpty()) {
-					zz.add(conversionOperatorTypes);
-				}
+				zz.add(conversionOperatorTypes);
 				yy.add(inputModel);
 			}
 		}
@@ -59,22 +61,34 @@ public class Map extends OperatorImpl {
 		return y;
 	}
 
-	private void y(Operator operatorType, MultiModel mid, List<List<Model>> midInputs, List<List<List<ConversionOperator>>> conversions) {
+	private void y(Operator operatorType, MultiModel mid, List<List<Model>> midInputs, List<List<List<ConversionOperator>>> midConversions) {
 
 		EList<Model> inputModels = new BasicEList<>();
+		java.util.Map<Integer, EList<ConversionOperator>> conversions = new HashMap<>();
 		for (int i = 0; i < midInputs.size(); i++) {
+			int cartesianIndex = 0;//TODO MMINT[MAP] Select by cartesian product
 			List<Model> a = midInputs.get(i);
-			inputModels.add(a.get(0));
-			//TODO MMINT[MAP] Select by cartesian product
+			inputModels.add(a.get(cartesianIndex));
+			List<List<ConversionOperator>> b = midConversions.get(i);
+			List<ConversionOperator> bb = b.get(cartesianIndex);
+			if (!bb.isEmpty()) {
+				conversions.put(new Integer(i), new BasicEList<>(bb));
+			}
 		}
-		//operatorType.run(inputModels, conversions, mid);
+		try {
+			//TODO MMINT[OPERATOR] An operator instance should be created here
+			operatorType.run(inputModels, conversions, mid);
+		}
+		catch (Exception e) {
+			MMINTException.print(IStatus.WARNING, "Operator " + operatorType + " execution error, skipping it", e);
+		}
 	}
 
 	public EList<Model> execute(EList<Model> inputModels) throws Exception {
 
 		Model midModel = inputModels.get(0);
 		MultiModel instanceMID = MultiModelRegistry.getMultiModel(midModel);
-		Operator operatorType = (Operator) getGenerics().get(0);
+		Operator operatorType = (Operator) ((GenericEndpoint) getGenerics().get(0)).getTarget();
 		MultiModel mapMid = (MultiModel) midModel.getEMFInstanceRoot();
 
 		// find all possible combinations of inputs for operatorType and execute them
