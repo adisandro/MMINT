@@ -226,7 +226,7 @@ public class MultiModelUtils {
 	}
 
 	/**
-	 * Writes the root of an ECore model into an ECore model file.
+	 * Writes the root of an ECore model in memory into an ECore model file.
 	 * 
 	 * @param root
 	 *            The ECore model root.

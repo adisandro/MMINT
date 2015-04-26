@@ -228,6 +228,7 @@ public class MMINT implements MMINTConstants {
 			String targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
 			Model targetModelType = MultiModelTypeRegistry.getType(targetModelTypeUri);
 			if (targetModelType == null) {
+				MMINTException.print(IStatus.WARNING, "Target model type " + targetModelTypeUri + " can't be found, skipping it", null);
 				continue;
 			}
 			boolean isBinarySrc = (isBinary && srcModelTypeUri.equals(targetModelTypeUri));
@@ -263,7 +264,7 @@ public class MMINT implements MMINTConstants {
 						);
 					}
 					catch (Exception e) {
-						MMINTException.print(IStatus.WARNING, "Model element type can't be created", e);
+						MMINTException.print(IStatus.WARNING, "Model element type " + extensionType.getUri() + " can't be created, skipping it", e);
 						continue;
 					}
 				}
@@ -288,7 +289,7 @@ public class MMINT implements MMINTConstants {
 				);
 			}
 			catch (Exception e) {
-				MMINTException.print(IStatus.WARNING, "Link type can't be created", e);
+				MMINTException.print(IStatus.WARNING, "Link type " + extensionType.getUri() + " can't be created, skipping it", e);
 				continue;
 			}
 			// binary link type
@@ -315,6 +316,7 @@ public class MMINT implements MMINTConstants {
 				String targetModelElemTypeUri = modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
 				ModelElement modelElemType = MultiModelTypeRegistry.getType(targetModelElemTypeUri);
 				if (modelElemType == null) {
+					MMINTException.print(IStatus.WARNING, "Target model element type " + targetModelElemTypeUri + " can't be found, skipping it", null);
 					continue;
 				}
 				//TODO MMINT[MODELENDPOINT] well model elements should *really* be contained in the model endpoint now that they exist
@@ -389,12 +391,14 @@ public class MMINT implements MMINTConstants {
 	private static void createOperatorTypeParameters(IConfigurationElement extensionConfig, Operator containerOperatorType, String containerFeatureName) throws MMINTException {
 
 		IConfigurationElement[] paramTypeConfigs = extensionConfig.getChildren(OPERATORS_GENINOUT_CHILD_PARAMETER);
-		for (IConfigurationElement paramTypeConfig : paramTypeConfigs) {
+		for (int i = 0; i < paramTypeConfigs.length; i++) {
+			IConfigurationElement paramTypeConfig = paramTypeConfigs[i];
 			ExtensionType extensionType = new ExtensionType(paramTypeConfig, typeFactory);
 			IConfigurationElement modelTypeEndpointSubconfig = paramTypeConfig.getChildren(CHILD_TYPEENDPOINT)[0];
 			String targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
 			Model targetModelType = MultiModelTypeRegistry.getType(targetModelTypeUri);
 			if (targetModelType == null) {
+				MMINTException.print(IStatus.WARNING, "Target model type " + targetModelTypeUri + " can't be found, skipping it", null);
 				continue;
 			}
 			ModelEndpoint newModelTypeEndpoint = extensionType.getFactory().createHeavyModelTypeEndpoint(
@@ -407,6 +411,10 @@ public class MMINT implements MMINTConstants {
 			int lowerBound = (lowerBoundString == null) ? 1 : Integer.parseInt(lowerBoundString);
 			String upperBoundString = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND);
 			int upperBound = (upperBoundString == null) ? 1 : Integer.parseInt(upperBoundString);
+			if (upperBound > 1 && i != paramTypeConfigs.length-1) {
+				MMINTException.print(IStatus.WARNING, "Only the last input parameter can have an upper bound > 1, setting it to 1", null);
+				upperBound = 1;
+			}
 			MultiModelTypeFactory.addTypeEndpointCardinality(
 				newModelTypeEndpoint,
 				lowerBound,
@@ -434,6 +442,7 @@ public class MMINT implements MMINTConstants {
 			String targetGenericTypeUri = genericTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
 			GenericElement targetGenericType = MultiModelTypeRegistry.getType(targetGenericTypeUri);
 			if (targetGenericType == null) {
+				MMINTException.print(IStatus.WARNING, "Target generic type " + targetGenericTypeUri + " can't be found, skipping it", null);
 				continue;
 			}
 			GenericEndpoint newGenericTypeEndpoint = extensionType.getFactory().createHeavyGenericTypeEndpoint(

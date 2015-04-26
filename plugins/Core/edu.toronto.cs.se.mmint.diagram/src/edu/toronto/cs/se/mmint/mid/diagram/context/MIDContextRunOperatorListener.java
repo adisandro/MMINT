@@ -111,8 +111,8 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 							ModelEndpoint outputModelTypeEndpoint = operatorType.getOutputs().get(i);
 							outputModelTypeEndpoint.createInstance(outputModels.get(i), operator, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
 						}
+						instanceMID.getOperators().add(operator);
 					}
-					instanceMID.getOperators().add(operator);
 				}
 				// cleanup all conversion operators
 				if (!conversions.isEmpty()) {

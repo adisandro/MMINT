@@ -627,16 +627,13 @@ inputs:
 			while (i < inputModels.size()) {
 				Model inputModel = inputModels.get(i); // == actual parameter
 				Model inputModelType = inputModelTypeEndpoint.getTarget(); // == formal parameter
-				// easy if formal parameter is root type for actual parameter, otherwise check instanceof
-				if (!MultiModelTypeHierarchy.isRootType(inputModelType) || !inputModelType.getClass().isAssignableFrom(inputModel.getClass())) {
-					List<ConversionOperator> conversionOperatorTypes = MultiModelTypeHierarchy.instanceOf(inputModel, inputModelType.getUri());
-					if (conversionOperatorTypes == null) {
-						executableOperators.clear();
-						break inputs;
-					}
-					if (!conversionOperatorTypes.isEmpty()) {
-						conversions.put(new Integer(i), new BasicEList<ConversionOperator>(conversionOperatorTypes));
-					}
+				List<ConversionOperator> conversionOperatorTypes = MultiModelTypeHierarchy.instanceOf(inputModel, inputModelType.getUri());
+				if (conversionOperatorTypes == null) {
+					executableOperators.clear();
+					break inputs;
+				}
+				if (!conversionOperatorTypes.isEmpty()) {
+					conversions.put(new Integer(i), new BasicEList<ConversionOperator>(conversionOperatorTypes));
 				}
 				//TODO MMINT[OPERATOR] Always create an instance of operator: requires operator workflows for experiments to work
 				if (!getGenerics().isEmpty()) {
