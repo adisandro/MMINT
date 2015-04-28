@@ -38,7 +38,8 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentSamples.DistributionType;
 
-//TODO MMINT[OPERATOR] Create a separate feature for these generic operators
+//TODO MMINT[OPERATOR] Create a separate feature for these generic megamodel operators
+//TODO MMINT[OPERATOR] Add operator workflows for experiments to work now that operator instances are created
 public class ExperimentDriver extends OperatorImpl {
 
 	protected class ExperimentWatchdog implements Runnable {

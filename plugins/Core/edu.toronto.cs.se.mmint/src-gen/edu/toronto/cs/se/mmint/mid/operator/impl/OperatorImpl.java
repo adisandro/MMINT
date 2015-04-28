@@ -601,9 +601,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		// deal with generics first
 		EList<Operator> executableOperators = new BasicEList<Operator>();
-		//TODO MMINT[OPERATOR] Always create an instance of operator: requires operator workflows for experiments to work
 		if (getGenerics().isEmpty()) {
-			executableOperators.add(this);
+			Operator newOperator = this.createInstance(null);
+			executableOperators.add(newOperator);
 		}
 		else {
 			//TODO MMINT[GENERICS] Add proper support for multiple generics
@@ -646,11 +646,8 @@ inputs:
 				if (!conversionOperatorTypes.isEmpty()) {
 					conversions.put(new Integer(i), new BasicEList<ConversionOperator>(conversionOperatorTypes));
 				}
-				//TODO MMINT[OPERATOR] Always create an instance of operator: requires operator workflows for experiments to work
-				if (!getGenerics().isEmpty()) {
-					for (Operator executableOperator : executableOperators) {
-						inputModelTypeEndpoint.createInstance(inputModel, executableOperator, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
-					}
+				for (Operator executableOperator : executableOperators) {
+					inputModelTypeEndpoint.createInstance(inputModel, executableOperator, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
 				}
 				i++;
 				if (inputModelTypeEndpoint.getUpperBound() == 1) {
@@ -775,10 +772,8 @@ inputs:
 	 */
 	public EList<Model> execute(EList<Model> inputModels) throws Exception {
 
-		/* TODO MMINT[OPERATOR]
-		 * When an operator instance is always created, this can become: public void execute()
-		 * Inputs, outputs and generics should be available by their name through a hash map
-		 */
+		//TODO MMINT[OPERATOR] This can become: public void execute()
+		//TODO MMINT[OPERATOR] Inputs, outputs and generics should be available by their name through a hash map
 		throw new MMINTException("The default execute() function must be overridden");
 	}
 
@@ -812,15 +807,12 @@ inputs:
 		this.init();
 		EList<Model> outputModels = this.execute(inputModels);
 		if (instanceMID != null && Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED))) {
-			//TODO MMINT[OPERATOR] Remove if when operator instances are always created
-			if (!this.getGenerics().isEmpty()) {
-				Operator operatorType = this.getMetatype();
-				for (int i = 0; i < operatorType.getOutputs().size(); i++) {
-					ModelEndpoint outputModelTypeEndpoint = operatorType.getOutputs().get(i);
-					outputModelTypeEndpoint.createInstance(outputModels.get(i), this, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
-				}
-				instanceMID.getOperators().add(this);
+			Operator operatorType = this.getMetatype();
+			for (int i = 0; i < operatorType.getOutputs().size(); i++) {
+				ModelEndpoint outputModelTypeEndpoint = operatorType.getOutputs().get(i);
+				outputModelTypeEndpoint.createInstance(outputModels.get(i), this, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
 			}
+			instanceMID.getOperators().add(this);
 		}
 		// clean up all conversion operators
 		if (!conversions.isEmpty()) {

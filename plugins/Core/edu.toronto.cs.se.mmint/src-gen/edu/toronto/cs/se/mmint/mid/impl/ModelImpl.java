@@ -751,43 +751,42 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		MultiModel typeMID = MultiModelRegistry.getMultiModel(this);
 		// delete the "thing"
 		for (ModelElement modelElemType : getModelElems()) {
-			super.delete(modelElemType.getUri(), multiModel);
+			super.delete(modelElemType.getUri(), typeMID);
 		}
 		List<Editor> delEditorTypes = new ArrayList<Editor>(getEditors());
 		for (Editor delEditorType : delEditorTypes) {
 			delEditorType.deleteType();
 		}
 		super.deleteType();
-		multiModel.getModels().remove(this);
+		typeMID.getModels().remove(this);
 		String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(this);
 		if (metamodelUri != null) {
 			MultiModelUtils.deleteFile(metamodelUri, false);
 		}
 		// delete operator types that use this model type
-		List<String> delOperatorTypeUris = new ArrayList<String>();
-		for (Operator operatorType : multiModel.getOperators()) {
-			for (ModelEndpoint inputParameter : operatorType.getInputs()) {
-				if (inputParameter.getTarget().getUri().equals(getUri()) && !delOperatorTypeUris.contains(operatorType.getUri())) {
-					delOperatorTypeUris.add(operatorType.getUri());
+		List<Operator> delOperatorTypes = new ArrayList<>();
+		for (Operator operatorType : MultiModelRegistry.getOperators(typeMID)) {
+			for (ModelEndpoint inputModelTypeEndpoint : operatorType.getInputs()) {
+				if (inputModelTypeEndpoint.getTargetUri().equals(getUri()) && !delOperatorTypes.contains(operatorType)) {
+					delOperatorTypes.add(operatorType);
 				}
 			}
-			for (ModelEndpoint inputParameter : operatorType.getOutputs()) {
-				if (inputParameter.getTarget().getUri().equals(getUri()) && !delOperatorTypeUris.contains(operatorType.getUri())) {
-					delOperatorTypeUris.add(operatorType.getUri());
+			for (ModelEndpoint outputModelTypeEndpoint : operatorType.getOutputs()) {
+				if (outputModelTypeEndpoint.getTargetUri().equals(getUri()) && !delOperatorTypes.contains(operatorType)) {
+					delOperatorTypes.add(operatorType);
 				}
 			}
 		}
-		for (String operatorTypeUri : delOperatorTypeUris) {
-			Operator operatorType = MultiModelRegistry.getExtendibleElement(operatorTypeUri, multiModel);
+		for (Operator operatorType : delOperatorTypes) {
 			operatorType.deleteType();
 		}
-		// delete model relationship types and endpoints that use this model type
-		List<ModelRel> delModelRelTypes = new ArrayList<ModelRel>();
-		List<ModelEndpoint> delModelTypeEndpoints = new ArrayList<ModelEndpoint>();
-		for (ModelRel modelRelType : MultiModelRegistry.getModelRels(multiModel)) {
+		// delete model relationship types that use this model type
+		List<ModelRel> delModelRelTypes = new ArrayList<>();
+		List<ModelEndpoint> delModelTypeEndpoints = new ArrayList<>();
+		for (ModelRel modelRelType : MultiModelRegistry.getModelRels(typeMID)) {
 			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
 				if (modelTypeEndpoint.getTargetUri().equals(getUri())) {
 					if (modelRelType instanceof BinaryModelRel) {
@@ -808,7 +807,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			modelRelType.deleteType();
 		}
 		// delete the subtypes of the "thing"
-		for (Model modelSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, multiModel)) {
+		for (Model modelSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, typeMID)) {
 			modelSubtype.deleteType();
 		}
 	}
@@ -1043,20 +1042,37 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		MultiModel instanceMID = MultiModelRegistry.getMultiModel(this);
 		for (ModelElement modelElem : getModelElems()) {
-			super.delete(modelElem.getUri(), multiModel);
+			super.delete(modelElem.getUri(), instanceMID);
 		}
 		super.deleteInstance();
-		multiModel.getModels().remove(this);
+		instanceMID.getModels().remove(this);
 		// delete editors for this model
 		for (Editor editor : getEditors()) {
 			editor.deleteInstance();
 		}
-		// delete model relationships and endpoints that use this model
-		List<ModelRel> delModelRels = new ArrayList<ModelRel>();
-		List<ModelEndpoint> delModelEndpoints = new ArrayList<ModelEndpoint>();
-		for (ModelRel modelRel : MultiModelRegistry.getModelRels(multiModel)) {
+		// delete operators that use this model type
+		List<Operator> delOperators = new ArrayList<>();
+		for (Operator operator : MultiModelRegistry.getOperators(instanceMID)) {
+			for (ModelEndpoint inputModelEndpoint : operator.getInputs()) {
+				if (inputModelEndpoint.getTargetUri().equals(getUri()) && !delOperators.contains(operator)) {
+					delOperators.add(operator);
+				}
+			}
+			for (ModelEndpoint outputModelEndpoint : operator.getOutputs()) {
+				if (outputModelEndpoint.getTargetUri().equals(getUri()) && !delOperators.contains(operator)) {
+					delOperators.add(operator);
+				}
+			}
+		}
+		for (Operator operatorType : delOperators) {
+			operatorType.deleteInstance();
+		}
+		// delete model relationships that use this model
+		List<ModelRel> delModelRels = new ArrayList<>();
+		List<ModelEndpoint> delModelEndpoints = new ArrayList<>();
+		for (ModelRel modelRel : MultiModelRegistry.getModelRels(instanceMID)) {
 			for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
 				if (modelEndpoint.getTargetUri().equals(getUri())) {
 					if (modelRel instanceof BinaryModelRel) {
