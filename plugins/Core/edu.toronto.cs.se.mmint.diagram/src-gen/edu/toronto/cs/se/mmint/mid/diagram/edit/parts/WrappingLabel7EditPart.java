@@ -101,9 +101,8 @@ public class WrappingLabel7EditPart extends LabelEditPart implements ITextAwareE
 	 */
 	static {
 		registerSnapBackPosition(
-				MIDVisualIDRegistry
-						.getType(edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel7EditPart.VISUAL_ID),
-				new Point(0, 40));
+			MIDVisualIDRegistry.getType(edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel7EditPart.VISUAL_ID),
+			new Point(0, 40));
 	}
 
 	/**
@@ -136,9 +135,11 @@ public class WrappingLabel7EditPart extends LabelEditPart implements ITextAwareE
 	protected String getLabelTextHelper(IFigure figure) {
 		if (figure instanceof WrappingLabel) {
 			return ((WrappingLabel) figure).getText();
-		} else if (figure instanceof Label) {
+		}
+		else if (figure instanceof Label) {
 			return ((Label) figure).getText();
-		} else {
+		}
+		else {
 			return getLabelDelegate().getText();
 		}
 	}
@@ -149,9 +150,11 @@ public class WrappingLabel7EditPart extends LabelEditPart implements ITextAwareE
 	protected void setLabelTextHelper(IFigure figure, String text) {
 		if (figure instanceof WrappingLabel) {
 			((WrappingLabel) figure).setText(text);
-		} else if (figure instanceof Label) {
+		}
+		else if (figure instanceof Label) {
 			((Label) figure).setText(text);
-		} else {
+		}
+		else {
 			getLabelDelegate().setText(text);
 		}
 	}
@@ -162,9 +165,11 @@ public class WrappingLabel7EditPart extends LabelEditPart implements ITextAwareE
 	protected Image getLabelIconHelper(IFigure figure) {
 		if (figure instanceof WrappingLabel) {
 			return ((WrappingLabel) figure).getIcon();
-		} else if (figure instanceof Label) {
+		}
+		else if (figure instanceof Label) {
 			return ((Label) figure).getIcon();
-		} else {
+		}
+		else {
 			return getLabelDelegate().getIcon(0);
 		}
 	}
@@ -176,10 +181,12 @@ public class WrappingLabel7EditPart extends LabelEditPart implements ITextAwareE
 		if (figure instanceof WrappingLabel) {
 			((WrappingLabel) figure).setIcon(icon);
 			return;
-		} else if (figure instanceof Label) {
+		}
+		else if (figure instanceof Label) {
 			((Label) figure).setIcon(icon);
 			return;
-		} else {
+		}
+		else {
 			getLabelDelegate().setIcon(icon, 0);
 		}
 	}
@@ -276,14 +283,15 @@ public class WrappingLabel7EditPart extends LabelEditPart implements ITextAwareE
 					final IParser parser = getParser();
 					try {
 						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(
-								new RunnableWithResult.Impl<IParserEditStatus>() {
+							new RunnableWithResult.Impl<IParserEditStatus>() {
 
-									public void run() {
-										setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
-									}
-								});
+								public void run() {
+									setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
+								}
+							});
 						return valid.getCode() == ParserEditStatus.EDITABLE ? null : valid.getMessage();
-					} catch (InterruptedException ie) {
+					}
+					catch (InterruptedException ie) {
 						ie.printStackTrace();
 					}
 				}
@@ -316,9 +324,11 @@ public class WrappingLabel7EditPart extends LabelEditPart implements ITextAwareE
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = MIDParserProvider.getParser(MIDElementTypes.BinaryModelRel_4015, getParserElement(),
-					MIDVisualIDRegistry
-							.getType(edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel7EditPart.VISUAL_ID));
+			parser = MIDParserProvider.getParser(
+				MIDElementTypes.BinaryModelRel_4015,
+				getParserElement(),
+				MIDVisualIDRegistry
+						.getType(edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel7EditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -362,7 +372,8 @@ public class WrappingLabel7EditPart extends LabelEditPart implements ITextAwareE
 	private void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
-		} else //
+		}
+		else //
 		{
 			performDirectEdit();
 		}
@@ -380,18 +391,21 @@ public class WrappingLabel7EditPart extends LabelEditPart implements ITextAwareE
 					if (isActive() && isEditable()) {
 						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) theRequest.getExtendedData().get(
-									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+								RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+						}
+						else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
 							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
 							performDirectEdit(editRequest.getLocation());
-						} else {
+						}
+						else {
 							performDirectEdit();
 						}
 					}
 				}
 			});
-		} catch (InterruptedException e) {
+		}
+		catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
@@ -484,7 +498,8 @@ public class WrappingLabel7EditPart extends LabelEditPart implements ITextAwareE
 			for (int i = 0; i < parserElements.size(); i++) {
 				addListenerFilter("SemanticModel" + i, this, (EObject) parserElements.get(i)); //$NON-NLS-1$
 			}
-		} else {
+		}
+		else {
 			super.addSemanticListeners();
 		}
 	}
@@ -497,7 +512,8 @@ public class WrappingLabel7EditPart extends LabelEditPart implements ITextAwareE
 			for (int i = 0; i < parserElements.size(); i++) {
 				removeListenerFilter("SemanticModel" + i); //$NON-NLS-1$
 			}
-		} else {
+		}
+		else {
 			super.removeSemanticListeners();
 		}
 	}
@@ -532,7 +548,8 @@ public class WrappingLabel7EditPart extends LabelEditPart implements ITextAwareE
 			IFigure label = getFigure();
 			if (label instanceof WrappingLabel) {
 				labelDelegate = new WrappingLabelDelegate((WrappingLabel) label);
-			} else {
+			}
+			else {
 				labelDelegate = new SimpleLabelDelegate((Label) label);
 			}
 		}
@@ -558,16 +575,20 @@ public class WrappingLabel7EditPart extends LabelEditPart implements ITextAwareE
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			Integer c = (Integer) event.getNewValue();
 			setFontColor(DiagramColorRegistry.getInstance().getColor(c));
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Underline().equals(feature)) {
+		}
+		else if (NotationPackage.eINSTANCE.getFontStyle_Underline().equals(feature)) {
 			refreshUnderline();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
+		}
+		else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
 			refreshStrikeThrough();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature)
+		}
+		else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature)
 				|| NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature)
 				|| NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature)
 				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
-		} else {
+		}
+		else {
 			if (getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
 				refreshLabel();
 			}

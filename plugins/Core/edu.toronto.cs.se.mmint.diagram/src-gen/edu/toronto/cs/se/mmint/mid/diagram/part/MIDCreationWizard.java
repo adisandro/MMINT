@@ -138,27 +138,39 @@ public class MIDCreationWizard extends Wizard implements INewWizard {
 		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 
 			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
-				diagram = MIDDiagramEditorUtil.createDiagram(diagramModelFilePage.getURI(),
-						domainModelFilePage.getURI(), monitor);
+				diagram = MIDDiagramEditorUtil.createDiagram(
+					diagramModelFilePage.getURI(),
+					domainModelFilePage.getURI(),
+					monitor);
 				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
 						MIDDiagramEditorUtil.openDiagram(diagram);
-					} catch (PartInitException e) {
-						ErrorDialog.openError(getContainer().getShell(), Messages.MIDCreationWizardOpenEditorError,
-								null, e.getStatus());
+					}
+					catch (PartInitException e) {
+						ErrorDialog.openError(
+							getContainer().getShell(),
+							Messages.MIDCreationWizardOpenEditorError,
+							null,
+							e.getStatus());
 					}
 				}
 			}
 		};
 		try {
 			getContainer().run(false, true, op);
-		} catch (InterruptedException e) {
+		}
+		catch (InterruptedException e) {
 			return false;
-		} catch (InvocationTargetException e) {
+		}
+		catch (InvocationTargetException e) {
 			if (e.getTargetException() instanceof CoreException) {
-				ErrorDialog.openError(getContainer().getShell(), Messages.MIDCreationWizardCreationError, null,
-						((CoreException) e.getTargetException()).getStatus());
-			} else {
+				ErrorDialog.openError(
+					getContainer().getShell(),
+					Messages.MIDCreationWizardCreationError,
+					null,
+					((CoreException) e.getTargetException()).getStatus());
+			}
+			else {
 				MIDDiagramEditorPlugin.getInstance().logError("Error creating diagram", e.getTargetException()); //$NON-NLS-1$
 			}
 			return false;

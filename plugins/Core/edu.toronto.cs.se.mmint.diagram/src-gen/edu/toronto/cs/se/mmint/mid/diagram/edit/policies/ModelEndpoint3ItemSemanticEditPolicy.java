@@ -106,12 +106,12 @@ public class ModelEndpoint3ItemSemanticEditPolicy extends MIDBaseItemSemanticEdi
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case ModelEndpointEditPart.VISUAL_ID:
-			return getGEFWrapper(new ModelEndpointReorientCommand(req));
-		case ModelEndpoint2EditPart.VISUAL_ID:
-			return getGEFWrapper(new ModelEndpoint2ReorientCommand(req));
-		case ModelEndpoint3EditPart.VISUAL_ID:
-			return getGEFWrapper(new ModelEndpoint3ReorientCommand(req));
+			case ModelEndpointEditPart.VISUAL_ID:
+				return getGEFWrapper(new ModelEndpointReorientCommand(req));
+			case ModelEndpoint2EditPart.VISUAL_ID:
+				return getGEFWrapper(new ModelEndpoint2ReorientCommand(req));
+			case ModelEndpoint3EditPart.VISUAL_ID:
+				return getGEFWrapper(new ModelEndpoint3ReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
@@ -124,8 +124,8 @@ public class ModelEndpoint3ItemSemanticEditPolicy extends MIDBaseItemSemanticEdi
 	 */
 	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case ExtendibleElementSupertypeEditPart.VISUAL_ID:
-			return getGEFWrapper(new ExtendibleElementSupertypeReorientCommand(req));
+			case ExtendibleElementSupertypeEditPart.VISUAL_ID:
+				return getGEFWrapper(new ExtendibleElementSupertypeReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

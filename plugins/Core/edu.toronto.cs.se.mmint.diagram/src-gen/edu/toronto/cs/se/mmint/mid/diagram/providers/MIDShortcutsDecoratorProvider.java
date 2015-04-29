@@ -90,9 +90,13 @@ public class MIDShortcutsDecoratorProvider extends AbstractProvider implements I
 			EditPart editPart = (EditPart) getDecoratorTarget().getAdapter(EditPart.class);
 			Image image = MIDDiagramEditorPlugin.getInstance().getBundledImage("icons/shortcut.gif"); //$NON-NLS-1$
 			if (editPart instanceof ShapeEditPart) {
-				setDecoration(getDecoratorTarget().addShapeDecoration(image, IDecoratorTarget.Direction.SOUTH_WEST, 0,
-						false));
-			} else if (editPart instanceof ConnectionEditPart) {
+				setDecoration(getDecoratorTarget().addShapeDecoration(
+					image,
+					IDecoratorTarget.Direction.SOUTH_WEST,
+					0,
+					false));
+			}
+			else if (editPart instanceof ConnectionEditPart) {
 				setDecoration(getDecoratorTarget().addConnectionDecoration(image, 50, false));
 			}
 		}

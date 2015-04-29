@@ -62,7 +62,8 @@ public class MIDNavigatorActionProvider extends CommonActionProvider {
 		if (aSite.getViewSite() instanceof ICommonViewerWorkbenchSite) {
 			myContribute = true;
 			makeActions((ICommonViewerWorkbenchSite) aSite.getViewSite());
-		} else {
+		}
+		else {
 			myContribute = false;
 		}
 	}
@@ -126,7 +127,8 @@ public class MIDNavigatorActionProvider extends CommonActionProvider {
 				Object selectedElement = selection.getFirstElement();
 				if (selectedElement instanceof MIDNavigatorItem) {
 					selectedElement = ((MIDNavigatorItem) selectedElement).getView();
-				} else if (selectedElement instanceof IAdaptable) {
+				}
+				else if (selectedElement instanceof IAdaptable) {
 					selectedElement = ((IAdaptable) selectedElement).getAdapter(View.class);
 				}
 				if (selectedElement instanceof Diagram) {
@@ -151,7 +153,8 @@ public class MIDNavigatorActionProvider extends CommonActionProvider {
 			IWorkbenchPage page = myViewerSite.getPage();
 			try {
 				page.openEditor(editorInput, MIDDiagramEditor.ID);
-			} catch (PartInitException e) {
+			}
+			catch (PartInitException e) {
 				MIDDiagramEditorPlugin.getInstance().logError("Exception while openning diagram", e); //$NON-NLS-1$
 			}
 		}

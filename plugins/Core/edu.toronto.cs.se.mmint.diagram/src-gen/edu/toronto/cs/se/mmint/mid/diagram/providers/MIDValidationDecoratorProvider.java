@@ -142,7 +142,8 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 							}
 						}
 					});
-				} catch (Exception e) {
+				}
+				catch (Exception e) {
 					MIDDiagramEditorPlugin.getInstance().logError("Decorator refresh failure", e); //$NON-NLS-1$
 				}
 			}
@@ -172,7 +173,8 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 						StatusDecorator.this.viewId = view != null ? ViewUtil.getIdStr(view) : null;
 					}
 				});
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				MIDDiagramEditorPlugin.getInstance().logError("ViewID access failure", e); //$NON-NLS-1$			
 			}
 		}
@@ -205,7 +207,8 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 			IMarker[] markers = null;
 			try {
 				markers = resource.findMarkers(MARKER_TYPE, true, IResource.DEPTH_INFINITE);
-			} catch (CoreException e) {
+			}
+			catch (CoreException e) {
 				MIDDiagramEditorPlugin.getInstance().logError("Validation markers refresh failure", e); //$NON-NLS-1$
 			}
 			if (markers == null || markers.length == 0) {
@@ -214,16 +217,18 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 			Label toolTip = null;
 			for (int i = 0; i < markers.length; i++) {
 				IMarker marker = markers[i];
-				String attribute = marker.getAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID,
-						""); //$NON-NLS-1$
+				String attribute = marker.getAttribute(
+					org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID,
+					""); //$NON-NLS-1$
 				if (attribute.equals(elementId)) {
 					int nextSeverity = marker.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
 					Image nextImage = getImage(nextSeverity);
 					if (foundMarker == null) {
 						foundMarker = marker;
 						toolTip = new Label(marker.getAttribute(IMarker.MESSAGE, ""), //$NON-NLS-1$
-								nextImage);
-					} else {
+							nextImage);
+					}
+					else {
 						if (toolTip.getChildren().isEmpty()) {
 							Label comositeLabel = new Label();
 							FlowLayout fl = new FlowLayout(false);
@@ -233,7 +238,7 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 							toolTip = comositeLabel;
 						}
 						toolTip.add(new Label(marker.getAttribute(IMarker.MESSAGE, ""), //$NON-NLS-1$
-								nextImage));
+							nextImage));
 					}
 					severity = (nextSeverity > severity) ? nextSeverity : severity;
 				}
@@ -246,14 +251,18 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 			if (editPart instanceof org.eclipse.gef.GraphicalEditPart) {
 				if (view instanceof Edge) {
 					setDecoration(getDecoratorTarget().addConnectionDecoration(getImage(severity), 50, true));
-				} else {
+				}
+				else {
 					int margin = -1;
 					if (editPart instanceof org.eclipse.gef.GraphicalEditPart) {
 						margin = MapModeUtil.getMapMode(((org.eclipse.gef.GraphicalEditPart) editPart).getFigure())
 								.DPtoLP(margin);
 					}
-					setDecoration(getDecoratorTarget().addShapeDecoration(getImage(severity),
-							IDecoratorTarget.Direction.NORTH_EAST, margin, true));
+					setDecoration(getDecoratorTarget().addShapeDecoration(
+						getImage(severity),
+						IDecoratorTarget.Direction.NORTH_EAST,
+						margin,
+						true));
 				}
 				getDecoration().setToolTip(toolTip);
 			}
@@ -265,14 +274,14 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 		private Image getImage(int severity) {
 			String imageName = ISharedImages.IMG_OBJS_ERROR_TSK;
 			switch (severity) {
-			case IMarker.SEVERITY_ERROR:
-				imageName = ISharedImages.IMG_OBJS_ERROR_TSK;
-				break;
-			case IMarker.SEVERITY_WARNING:
-				imageName = ISharedImages.IMG_OBJS_WARN_TSK;
-				break;
-			default:
-				imageName = ISharedImages.IMG_OBJS_INFO_TSK;
+				case IMarker.SEVERITY_ERROR:
+					imageName = ISharedImages.IMG_OBJS_ERROR_TSK;
+					break;
+				case IMarker.SEVERITY_WARNING:
+					imageName = ISharedImages.IMG_OBJS_WARN_TSK;
+					break;
+				default:
+					imageName = ISharedImages.IMG_OBJS_INFO_TSK;
 			}
 			return PlatformUI.getWorkbench().getSharedImages().getImage(imageName);
 		}
@@ -291,7 +300,8 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 				list = new ArrayList(2);
 				list.add(this);
 				allDecorators.put(viewId, list);
-			} else if (!list.contains(this)) {
+			}
+			else if (!list.contains(this)) {
 				list.add(this);
 			}
 
@@ -410,7 +420,8 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 		private String getType(IMarker marker) {
 			try {
 				return marker.getType();
-			} catch (CoreException e) {
+			}
+			catch (CoreException e) {
 				MIDDiagramEditorPlugin.getInstance().logError("Validation marker refresh failure", e); //$NON-NLS-1$
 				return ""; //$NON-NLS-1$
 			}

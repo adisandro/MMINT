@@ -82,8 +82,11 @@ public class BinaryModelRelReorientCommand extends EditElementCommand {
 			return false;
 		}
 		MultiModel container = (MultiModel) getLink().eContainer();
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryModelRel_4015(container, getLink(),
-				getNewSource(), target);
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryModelRel_4015(
+			container,
+			getLink(),
+			getNewSource(),
+			target);
 	}
 
 	/**
@@ -98,8 +101,11 @@ public class BinaryModelRelReorientCommand extends EditElementCommand {
 			return false;
 		}
 		MultiModel container = (MultiModel) getLink().eContainer();
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryModelRel_4015(container, getLink(),
-				source, getNewTarget());
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryModelRel_4015(
+			container,
+			getLink(),
+			source,
+			getNewTarget());
 	}
 
 	/**

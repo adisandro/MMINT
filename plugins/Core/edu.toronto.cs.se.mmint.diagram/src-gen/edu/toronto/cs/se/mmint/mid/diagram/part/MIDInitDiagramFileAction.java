@@ -84,12 +84,15 @@ public class MIDInitDiagramFileAction implements IObjectActionDelegate {
 		try {
 			Resource resource = resourceSet.getResource(domainModelURI, true);
 			diagramRoot = (EObject) resource.getContents().get(0);
-		} catch (WrappedException ex) {
+		}
+		catch (WrappedException ex) {
 			MIDDiagramEditorPlugin.getInstance().logError("Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
 		}
 		if (diagramRoot == null) {
-			MessageDialog.openError(getShell(), Messages.InitDiagramFile_ResourceErrorDialogTitle,
-					Messages.InitDiagramFile_ResourceErrorDialogMessage);
+			MessageDialog.openError(
+				getShell(),
+				Messages.InitDiagramFile_ResourceErrorDialogTitle,
+				Messages.InitDiagramFile_ResourceErrorDialogMessage);
 			return;
 		}
 		Wizard wizard = new MIDNewDiagramFileWizard(domainModelURI, diagramRoot, editingDomain);

@@ -65,8 +65,10 @@ public class MIDPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createNewModel1CreationTool() {
-		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(Messages.NewModel1CreationTool_title,
-				Messages.NewModel1CreationTool_desc, Collections.singletonList(MIDElementTypes.Model_2011));
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
+			Messages.NewModel1CreationTool_title,
+			Messages.NewModel1CreationTool_desc,
+			Collections.singletonList(MIDElementTypes.Model_2011));
 		entry.setId("createNewModel1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MIDElementTypes.getImageDescriptor(MIDElementTypes.Model_2011));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -77,8 +79,10 @@ public class MIDPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createNewBinaryRel2CreationTool() {
-		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(Messages.NewBinaryRel2CreationTool_title,
-				Messages.NewBinaryRel2CreationTool_desc, Collections.singletonList(MIDElementTypes.BinaryModelRel_4015));
+		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
+			Messages.NewBinaryRel2CreationTool_title,
+			Messages.NewBinaryRel2CreationTool_desc,
+			Collections.singletonList(MIDElementTypes.BinaryModelRel_4015));
 		entry.setId("createNewBinaryRel2CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MIDElementTypes.getImageDescriptor(MIDElementTypes.BinaryModelRel_4015));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -89,8 +93,10 @@ public class MIDPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createNewNaryRel3CreationTool() {
-		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(Messages.NewNaryRel3CreationTool_title,
-				Messages.NewNaryRel3CreationTool_desc, Collections.singletonList(MIDElementTypes.ModelRel_2013));
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
+			Messages.NewNaryRel3CreationTool_title,
+			Messages.NewNaryRel3CreationTool_desc,
+			Collections.singletonList(MIDElementTypes.ModelRel_2013));
 		entry.setId("createNewNaryRel3CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MIDElementTypes.getImageDescriptor(MIDElementTypes.ModelRel_2013));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -101,8 +107,10 @@ public class MIDPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createConnectModel4CreationTool() {
-		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(Messages.ConnectModel4CreationTool_title,
-				Messages.ConnectModel4CreationTool_desc, Collections.singletonList(MIDElementTypes.ModelEndpoint_4014));
+		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
+			Messages.ConnectModel4CreationTool_title,
+			Messages.ConnectModel4CreationTool_desc,
+			Collections.singletonList(MIDElementTypes.ModelEndpoint_4014));
 		entry.setId("createConnectModel4CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MIDElementTypes.getImageDescriptor(MIDElementTypes.ModelEndpoint_4014));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -113,8 +121,10 @@ public class MIDPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createImportModel1CreationTool() {
-		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(Messages.ImportModel1CreationTool_title,
-				Messages.ImportModel1CreationTool_desc, Collections.singletonList(MIDElementTypes.Model_2012));
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
+			Messages.ImportModel1CreationTool_title,
+			Messages.ImportModel1CreationTool_desc,
+			Collections.singletonList(MIDElementTypes.Model_2012));
 		entry.setId("createImportModel1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MIDElementTypes.getImageDescriptor(MIDElementTypes.Model_2012));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -125,8 +135,10 @@ public class MIDPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createImportNaryRel2CreationTool() {
-		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(Messages.ImportNaryRel2CreationTool_title,
-				Messages.ImportNaryRel2CreationTool_desc, Collections.singletonList(MIDElementTypes.ModelRel_2014));
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
+			Messages.ImportNaryRel2CreationTool_title,
+			Messages.ImportNaryRel2CreationTool_desc,
+			Collections.singletonList(MIDElementTypes.ModelRel_2014));
 		entry.setId("createImportNaryRel2CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MIDElementTypes.getImageDescriptor(MIDElementTypes.ModelRel_2014));
 		entry.setLargeIcon(entry.getSmallIcon());

@@ -96,11 +96,13 @@ public class MIDNavigatorLinkHelper implements ILinkHelper {
 		View navigatorView = null;
 		if (abstractNavigatorItem instanceof MIDNavigatorItem) {
 			navigatorView = ((MIDNavigatorItem) abstractNavigatorItem).getView();
-		} else if (abstractNavigatorItem instanceof MIDNavigatorGroup) {
+		}
+		else if (abstractNavigatorItem instanceof MIDNavigatorGroup) {
 			MIDNavigatorGroup navigatorGroup = (MIDNavigatorGroup) abstractNavigatorItem;
 			if (navigatorGroup.getParent() instanceof MIDNavigatorItem) {
 				navigatorView = ((MIDNavigatorItem) navigatorGroup.getParent()).getView();
-			} else if (navigatorGroup.getParent() instanceof IAdaptable) {
+			}
+			else if (navigatorGroup.getParent() instanceof IAdaptable) {
 				navigatorView = (View) ((IAdaptable) navigatorGroup.getParent()).getAdapter(View.class);
 			}
 		}

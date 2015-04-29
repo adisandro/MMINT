@@ -210,28 +210,28 @@ public class MIDElementTypes {
 	 */
 	public static IElementType getElementType(int visualID) {
 		switch (visualID) {
-		case MultiModelEditPart.VISUAL_ID:
-			return MultiModel_1000;
-		case ModelEditPart.VISUAL_ID:
-			return Model_2011;
-		case Model2EditPart.VISUAL_ID:
-			return Model_2012;
-		case ModelRelEditPart.VISUAL_ID:
-			return ModelRel_2013;
-		case ModelRel2EditPart.VISUAL_ID:
-			return ModelRel_2014;
-		case OperatorEditPart.VISUAL_ID:
-			return Operator_2015;
-		case ExtendibleElementSupertypeEditPart.VISUAL_ID:
-			return ExtendibleElementSupertype_4013;
-		case ModelEndpointEditPart.VISUAL_ID:
-			return ModelEndpoint_4014;
-		case BinaryModelRelEditPart.VISUAL_ID:
-			return BinaryModelRel_4015;
-		case ModelEndpoint2EditPart.VISUAL_ID:
-			return ModelEndpoint_4018;
-		case ModelEndpoint3EditPart.VISUAL_ID:
-			return ModelEndpoint_4019;
+			case MultiModelEditPart.VISUAL_ID:
+				return MultiModel_1000;
+			case ModelEditPart.VISUAL_ID:
+				return Model_2011;
+			case Model2EditPart.VISUAL_ID:
+				return Model_2012;
+			case ModelRelEditPart.VISUAL_ID:
+				return ModelRel_2013;
+			case ModelRel2EditPart.VISUAL_ID:
+				return ModelRel_2014;
+			case OperatorEditPart.VISUAL_ID:
+				return Operator_2015;
+			case ExtendibleElementSupertypeEditPart.VISUAL_ID:
+				return ExtendibleElementSupertype_4013;
+			case ModelEndpointEditPart.VISUAL_ID:
+				return ModelEndpoint_4014;
+			case BinaryModelRelEditPart.VISUAL_ID:
+				return BinaryModelRel_4015;
+			case ModelEndpoint2EditPart.VISUAL_ID:
+				return ModelEndpoint_4018;
+			case ModelEndpoint3EditPart.VISUAL_ID:
+				return ModelEndpoint_4019;
 		}
 		return null;
 	}

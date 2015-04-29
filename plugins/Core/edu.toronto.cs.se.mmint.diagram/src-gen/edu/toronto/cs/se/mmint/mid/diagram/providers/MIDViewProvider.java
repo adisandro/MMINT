@@ -97,9 +97,11 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		assert operation instanceof CreateViewOperation;
 		if (operation instanceof CreateDiagramViewOperation) {
 			return provides((CreateDiagramViewOperation) operation);
-		} else if (operation instanceof CreateEdgeViewOperation) {
+		}
+		else if (operation instanceof CreateEdgeViewOperation) {
 			return provides((CreateEdgeViewOperation) operation);
-		} else if (operation instanceof CreateNodeViewOperation) {
+		}
+		else if (operation instanceof CreateNodeViewOperation) {
 			return provides((CreateNodeViewOperation) operation);
 		}
 		return false;
@@ -144,7 +146,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 				return false;
 			}
 			visualID = MIDVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement);
-		} else {
+		}
+		else {
 			visualID = MIDVisualIDRegistry.getVisualID(op.getSemanticHint());
 			if (elementType != null) {
 				if (!MIDElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
@@ -158,23 +161,25 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 						&& visualID != MIDVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 					return false; // visual id for node EClass should match visual id from element type
 				}
-			} else {
+			}
+			else {
 				if (!MultiModelEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(op.getContainerView()))) {
 					return false; // foreign diagram
 				}
 				switch (visualID) {
-				case ModelEditPart.VISUAL_ID:
-				case ModelRelEditPart.VISUAL_ID:
-				case OperatorEditPart.VISUAL_ID:
-				case Model2EditPart.VISUAL_ID:
-				case ModelRel2EditPart.VISUAL_ID:
-					if (domainElement == null
-							|| visualID != MIDVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
-						return false; // visual id in semantic hint should match visual id for domain element
-					}
-					break;
-				default:
-					return false;
+					case ModelEditPart.VISUAL_ID:
+					case ModelRelEditPart.VISUAL_ID:
+					case OperatorEditPart.VISUAL_ID:
+					case Model2EditPart.VISUAL_ID:
+					case ModelRel2EditPart.VISUAL_ID:
+						if (domainElement == null
+								|| visualID != MIDVisualIDRegistry
+										.getNodeVisualID(op.getContainerView(), domainElement)) {
+							return false; // visual id in semantic hint should match visual id for domain element
+						}
+						break;
+					default:
+						return false;
 				}
 			}
 		}
@@ -224,20 +229,21 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		final int visualID;
 		if (semanticHint == null) {
 			visualID = MIDVisualIDRegistry.getNodeVisualID(containerView, domainElement);
-		} else {
+		}
+		else {
 			visualID = MIDVisualIDRegistry.getVisualID(semanticHint);
 		}
 		switch (visualID) {
-		case ModelEditPart.VISUAL_ID:
-			return createModel_2011(domainElement, containerView, index, persisted, preferencesHint);
-		case Model2EditPart.VISUAL_ID:
-			return createModel_2012(domainElement, containerView, index, persisted, preferencesHint);
-		case ModelRelEditPart.VISUAL_ID:
-			return createModelRel_2013(domainElement, containerView, index, persisted, preferencesHint);
-		case ModelRel2EditPart.VISUAL_ID:
-			return createModelRel_2014(domainElement, containerView, index, persisted, preferencesHint);
-		case OperatorEditPart.VISUAL_ID:
-			return createOperator_2015(domainElement, containerView, index, persisted, preferencesHint);
+			case ModelEditPart.VISUAL_ID:
+				return createModel_2011(domainElement, containerView, index, persisted, preferencesHint);
+			case Model2EditPart.VISUAL_ID:
+				return createModel_2012(domainElement, containerView, index, persisted, preferencesHint);
+			case ModelRelEditPart.VISUAL_ID:
+				return createModelRel_2013(domainElement, containerView, index, persisted, preferencesHint);
+			case ModelRel2EditPart.VISUAL_ID:
+				return createModelRel_2014(domainElement, containerView, index, persisted, preferencesHint);
+			case OperatorEditPart.VISUAL_ID:
+				return createOperator_2015(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -251,19 +257,35 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		IElementType elementType = getSemanticElementType(semanticAdapter);
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		switch (MIDVisualIDRegistry.getVisualID(elementTypeHint)) {
-		case ExtendibleElementSupertypeEditPart.VISUAL_ID:
-			return createExtendibleElementSupertype_4013(containerView, index, persisted, preferencesHint);
-		case ModelEndpointEditPart.VISUAL_ID:
-			return createModelEndpoint_4014(getSemanticElement(semanticAdapter), containerView, index, persisted,
+			case ExtendibleElementSupertypeEditPart.VISUAL_ID:
+				return createExtendibleElementSupertype_4013(containerView, index, persisted, preferencesHint);
+			case ModelEndpointEditPart.VISUAL_ID:
+				return createModelEndpoint_4014(
+					getSemanticElement(semanticAdapter),
+					containerView,
+					index,
+					persisted,
 					preferencesHint);
-		case BinaryModelRelEditPart.VISUAL_ID:
-			return createBinaryModelRel_4015(getSemanticElement(semanticAdapter), containerView, index, persisted,
+			case BinaryModelRelEditPart.VISUAL_ID:
+				return createBinaryModelRel_4015(
+					getSemanticElement(semanticAdapter),
+					containerView,
+					index,
+					persisted,
 					preferencesHint);
-		case ModelEndpoint2EditPart.VISUAL_ID:
-			return createModelEndpoint_4018(getSemanticElement(semanticAdapter), containerView, index, persisted,
+			case ModelEndpoint2EditPart.VISUAL_ID:
+				return createModelEndpoint_4018(
+					getSemanticElement(semanticAdapter),
+					containerView,
+					index,
+					persisted,
 					preferencesHint);
-		case ModelEndpoint3EditPart.VISUAL_ID:
-			return createModelEndpoint_4019(getSemanticElement(semanticAdapter), containerView, index, persisted,
+			case ModelEndpoint3EditPart.VISUAL_ID:
+				return createModelEndpoint_4019(
+					getSemanticElement(semanticAdapter),
+					containerView,
+					index,
+					persisted,
 					preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
@@ -297,8 +319,9 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
-					IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
+				prefStore,
+				IPreferenceConstants.PREF_FONT_COLOR);
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
 		Node label5011 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
@@ -333,8 +356,9 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
-					IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
+				prefStore,
+				IPreferenceConstants.PREF_FONT_COLOR);
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
 		Node label5012 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel2EditPart.VISUAL_ID));
@@ -369,8 +393,9 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
-					IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
+				prefStore,
+				IPreferenceConstants.PREF_FONT_COLOR);
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
 		Node label5013 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel3EditPart.VISUAL_ID));
@@ -405,8 +430,9 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
-					IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
+				prefStore,
+				IPreferenceConstants.PREF_FONT_COLOR);
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
 		Node label5014 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel4EditPart.VISUAL_ID));
@@ -436,8 +462,9 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
-					IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
+				prefStore,
+				IPreferenceConstants.PREF_FONT_COLOR);
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
 		Node label5015 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel5EditPart.VISUAL_ID));
@@ -470,8 +497,9 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			edgeFontStyle.setFontHeight(fontData.getHeight());
 			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
-					IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
+				prefStore,
+				IPreferenceConstants.PREF_FONT_COLOR);
 			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
 		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
@@ -507,8 +535,9 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			edgeFontStyle.setFontHeight(fontData.getHeight());
 			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
-					IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
+				prefStore,
+				IPreferenceConstants.PREF_FONT_COLOR);
 			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
 		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
@@ -554,8 +583,9 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			edgeFontStyle.setFontHeight(fontData.getHeight());
 			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
-					IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
+				prefStore,
+				IPreferenceConstants.PREF_FONT_COLOR);
 			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
 		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
@@ -611,8 +641,9 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			edgeFontStyle.setFontHeight(fontData.getHeight());
 			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
-					IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
+				prefStore,
+				IPreferenceConstants.PREF_FONT_COLOR);
 			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
 		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
@@ -653,8 +684,9 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			edgeFontStyle.setFontHeight(fontData.getHeight());
 			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
-					IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
+				prefStore,
+				IPreferenceConstants.PREF_FONT_COLOR);
 			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
 		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));

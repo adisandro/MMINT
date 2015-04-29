@@ -687,6 +687,16 @@ Contributors:
                </and>
             </visibleWhen>
          </command>
+         <command commandId="edu.toronto.cs.se.mmint.diagram.CreateShortcutAction">
+            <visibleWhen>
+               <and>
+                  <with variable="activePartId"><equals value="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"/></with>
+                  <with variable="selection"><iterate ifEmpty="false"> 
+                     <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart"/>
+                  </iterate></with>
+               </and>
+            </visibleWhen>
+         </command>
       </menuContribution>
    </extension>
 
@@ -697,6 +707,10 @@ Contributors:
          name="Load Resource"
          categoryId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"
          defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.part.LoadResourceAction"/>
+      <command id="edu.toronto.cs.se.mmint.diagram.CreateShortcutAction"
+         name="Create Shortcut..."
+         categoryId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"
+         defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.part.CreateShortcutAction"/>
    </extension>
 
    <extension point="org.eclipse.ui.handlers" id="menu-handlers">

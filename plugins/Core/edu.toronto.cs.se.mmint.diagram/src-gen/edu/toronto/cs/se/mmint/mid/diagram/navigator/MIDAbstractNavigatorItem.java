@@ -44,7 +44,8 @@ public abstract class MIDAbstractNavigatorItem extends PlatformObject {
 			public Class[] getAdapterList() {
 				return supportedTypes;
 			}
-		}, edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDAbstractNavigatorItem.class);
+		},
+			edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDAbstractNavigatorItem.class);
 	}
 
 	/**

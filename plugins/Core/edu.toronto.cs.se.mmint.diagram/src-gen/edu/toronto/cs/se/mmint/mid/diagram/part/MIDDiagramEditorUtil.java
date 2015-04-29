@@ -103,7 +103,8 @@ public class MIDDiagramEditorUtil {
 		}
 		try {
 			file.setCharset("UTF-8", new NullProgressMonitor()); //$NON-NLS-1$
-		} catch (CoreException e) {
+		}
+		catch (CoreException e) {
 			MIDDiagramEditorPlugin.getInstance().logError("Unable to set charset for file " + file.getFullPath(), e); //$NON-NLS-1$
 		}
 	}
@@ -112,8 +113,11 @@ public class MIDDiagramEditorUtil {
 	 * @generated
 	 */
 	public static String getUniqueFileName(IPath containerFullPath, String fileName, String extension) {
-		return DefaultDiagramEditorUtil.getUniqueFileName(containerFullPath, fileName, extension,
-				DefaultDiagramEditorUtil.EXISTS_IN_WORKSPACE);
+		return DefaultDiagramEditorUtil.getUniqueFileName(
+			containerFullPath,
+			fileName,
+			extension,
+			DefaultDiagramEditorUtil.EXISTS_IN_WORKSPACE);
 	}
 
 	/**
@@ -144,15 +148,19 @@ public class MIDDiagramEditorUtil {
 		final Resource diagramResource = editingDomain.getResourceSet().createResource(diagramURI);
 		final Resource modelResource = editingDomain.getResourceSet().createResource(modelURI);
 		final String diagramName = diagramURI.lastSegment();
-		AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain,
-				Messages.MIDDiagramEditorUtil_CreateDiagramCommandLabel, Collections.EMPTY_LIST) {
+		AbstractTransactionalCommand command = new AbstractTransactionalCommand(
+			editingDomain,
+			Messages.MIDDiagramEditorUtil_CreateDiagramCommandLabel,
+			Collections.EMPTY_LIST) {
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
 				MultiModel model = createInitialModel();
 				attachModelToResource(model, modelResource);
 
-				Diagram diagram = ViewService.createDiagram(model, MultiModelEditPart.MODEL_ID,
-						MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				Diagram diagram = ViewService.createDiagram(
+					model,
+					MultiModelEditPart.MODEL_ID,
+					MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				if (diagram != null) {
 					diagramResource.getContents().add(diagram);
 					diagram.setName(diagramName);
@@ -163,7 +171,8 @@ public class MIDDiagramEditorUtil {
 					modelResource.save(edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorUtil.getSaveOptions());
 					diagramResource
 							.save(edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorUtil.getSaveOptions());
-				} catch (IOException e) {
+				}
+				catch (IOException e) {
 
 					MIDDiagramEditorPlugin.getInstance().logError("Unable to store model and diagram resources", e); //$NON-NLS-1$
 				}
@@ -171,9 +180,12 @@ public class MIDDiagramEditorUtil {
 			}
 		};
 		try {
-			OperationHistoryFactory.getOperationHistory().execute(command, new SubProgressMonitor(progressMonitor, 1),
-					null);
-		} catch (ExecutionException e) {
+			OperationHistoryFactory.getOperationHistory().execute(
+				command,
+				new SubProgressMonitor(progressMonitor, 1),
+				null);
+		}
+		catch (ExecutionException e) {
 			MIDDiagramEditorPlugin.getInstance().logError("Unable to create model and diagram", e); //$NON-NLS-1$
 		}
 		setCharset(WorkspaceSynchronizer.getFile(modelResource));
@@ -230,7 +242,7 @@ public class MIDDiagramEditorUtil {
 
 		if (!editParts.isEmpty()) {
 			diagramPart.getDiagramGraphicalViewer().reveal(
-					firstPrimary != null ? firstPrimary : (EditPart) editParts.get(0));
+				firstPrimary != null ? firstPrimary : (EditPart) editParts.get(0));
 		}
 	}
 
@@ -267,7 +279,8 @@ public class MIDDiagramEditorUtil {
 		if (intialNumOfEditParts == editPartCollector.size()) {
 			if (!associatedParts.isEmpty()) {
 				editPartCollector.add(associatedParts.get(0));
-			} else {
+			}
+			else {
 				if (element.eContainer() != null) {
 					return findElementsInDiagramByID(diagramPart, element.eContainer(), editPartCollector);
 				}
@@ -290,7 +303,8 @@ public class MIDDiagramEditorUtil {
 		LinkedList<EditPart> editPartHolder = new LinkedList<EditPart>();
 		if (hasStructuralURI && !lazyElement2ViewMap.getElement2ViewMap().isEmpty()) {
 			view = lazyElement2ViewMap.getElement2ViewMap().get(targetElement);
-		} else if (findElementsInDiagramByID(diagramEditPart, targetElement, editPartHolder) > 0) {
+		}
+		else if (findElementsInDiagramByID(diagramEditPart, targetElement, editPartHolder) > 0) {
 			EditPart editPart = editPartHolder.get(0);
 			view = editPart.getModel() instanceof View ? (View) editPart.getModel() : null;
 		}

@@ -263,7 +263,8 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 		if (event.getNotifier() == getModel()
 				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations().equals(event.getFeature())) {
 			handleMajorSemanticChange();
-		} else {
+		}
+		else {
 			super.handleNotificationEvent(event);
 		}
 	}
@@ -297,8 +298,11 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 			this.setLineWidth(3);
 			this.setForegroundColor(THIS_FORE);
 			this.setBackgroundColor(THIS_BACK);
-			this.setBorder(new MarginBorder(getMapMode().DPtoLP(10), getMapMode().DPtoLP(10), getMapMode().DPtoLP(10),
-					getMapMode().DPtoLP(10)));
+			this.setBorder(new MarginBorder(
+				getMapMode().DPtoLP(10),
+				getMapMode().DPtoLP(10),
+				getMapMode().DPtoLP(10),
+				getMapMode().DPtoLP(10)));
 			createContents();
 		}
 

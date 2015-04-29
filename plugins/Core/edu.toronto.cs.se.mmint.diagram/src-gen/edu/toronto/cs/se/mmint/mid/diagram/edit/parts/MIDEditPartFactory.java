@@ -33,89 +33,89 @@ public class MIDEditPartFactory implements EditPartFactory {
 			View view = (View) model;
 			switch (MIDVisualIDRegistry.getVisualID(view)) {
 
-			case MultiModelEditPart.VISUAL_ID:
-				return new MultiModelEditPart(view);
+				case MultiModelEditPart.VISUAL_ID:
+					return new MultiModelEditPart(view);
 
-			case ModelEditPart.VISUAL_ID:
-				return new ModelEditPart(view);
+				case ModelEditPart.VISUAL_ID:
+					return new ModelEditPart(view);
 
-			case WrappingLabelEditPart.VISUAL_ID:
-				return new WrappingLabelEditPart(view);
+				case WrappingLabelEditPart.VISUAL_ID:
+					return new WrappingLabelEditPart(view);
 
-			case WrappingLabel10EditPart.VISUAL_ID:
-				return new WrappingLabel10EditPart(view);
+				case WrappingLabel10EditPart.VISUAL_ID:
+					return new WrappingLabel10EditPart(view);
 
-			case Model2EditPart.VISUAL_ID:
-				return new Model2EditPart(view);
+				case Model2EditPart.VISUAL_ID:
+					return new Model2EditPart(view);
 
-			case WrappingLabel2EditPart.VISUAL_ID:
-				return new WrappingLabel2EditPart(view);
+				case WrappingLabel2EditPart.VISUAL_ID:
+					return new WrappingLabel2EditPart(view);
 
-			case WrappingLabel11EditPart.VISUAL_ID:
-				return new WrappingLabel11EditPart(view);
+				case WrappingLabel11EditPart.VISUAL_ID:
+					return new WrappingLabel11EditPart(view);
 
-			case ModelRelEditPart.VISUAL_ID:
-				return new ModelRelEditPart(view);
+				case ModelRelEditPart.VISUAL_ID:
+					return new ModelRelEditPart(view);
 
-			case WrappingLabel3EditPart.VISUAL_ID:
-				return new WrappingLabel3EditPart(view);
+				case WrappingLabel3EditPart.VISUAL_ID:
+					return new WrappingLabel3EditPart(view);
 
-			case WrappingLabel12EditPart.VISUAL_ID:
-				return new WrappingLabel12EditPart(view);
+				case WrappingLabel12EditPart.VISUAL_ID:
+					return new WrappingLabel12EditPart(view);
 
-			case ModelRel2EditPart.VISUAL_ID:
-				return new ModelRel2EditPart(view);
+				case ModelRel2EditPart.VISUAL_ID:
+					return new ModelRel2EditPart(view);
 
-			case WrappingLabel4EditPart.VISUAL_ID:
-				return new WrappingLabel4EditPart(view);
+				case WrappingLabel4EditPart.VISUAL_ID:
+					return new WrappingLabel4EditPart(view);
 
-			case WrappingLabel13EditPart.VISUAL_ID:
-				return new WrappingLabel13EditPart(view);
+				case WrappingLabel13EditPart.VISUAL_ID:
+					return new WrappingLabel13EditPart(view);
 
-			case OperatorEditPart.VISUAL_ID:
-				return new OperatorEditPart(view);
+				case OperatorEditPart.VISUAL_ID:
+					return new OperatorEditPart(view);
 
-			case WrappingLabel5EditPart.VISUAL_ID:
-				return new WrappingLabel5EditPart(view);
+				case WrappingLabel5EditPart.VISUAL_ID:
+					return new WrappingLabel5EditPart(view);
 
-			case ExtendibleElementSupertypeEditPart.VISUAL_ID:
-				return new ExtendibleElementSupertypeEditPart(view);
+				case ExtendibleElementSupertypeEditPart.VISUAL_ID:
+					return new ExtendibleElementSupertypeEditPart(view);
 
-			case ModelEndpointEditPart.VISUAL_ID:
-				return new ModelEndpointEditPart(view);
+				case ModelEndpointEditPart.VISUAL_ID:
+					return new ModelEndpointEditPart(view);
 
-			case WrappingLabel6EditPart.VISUAL_ID:
-				return new WrappingLabel6EditPart(view);
+				case WrappingLabel6EditPart.VISUAL_ID:
+					return new WrappingLabel6EditPart(view);
 
-			case WrappingLabel14EditPart.VISUAL_ID:
-				return new WrappingLabel14EditPart(view);
+				case WrappingLabel14EditPart.VISUAL_ID:
+					return new WrappingLabel14EditPart(view);
 
-			case BinaryModelRelEditPart.VISUAL_ID:
-				return new BinaryModelRelEditPart(view);
+				case BinaryModelRelEditPart.VISUAL_ID:
+					return new BinaryModelRelEditPart(view);
 
-			case WrappingLabel7EditPart.VISUAL_ID:
-				return new WrappingLabel7EditPart(view);
+				case WrappingLabel7EditPart.VISUAL_ID:
+					return new WrappingLabel7EditPart(view);
 
-			case WrappingLabel8EditPart.VISUAL_ID:
-				return new WrappingLabel8EditPart(view);
+				case WrappingLabel8EditPart.VISUAL_ID:
+					return new WrappingLabel8EditPart(view);
 
-			case WrappingLabel9EditPart.VISUAL_ID:
-				return new WrappingLabel9EditPart(view);
+				case WrappingLabel9EditPart.VISUAL_ID:
+					return new WrappingLabel9EditPart(view);
 
-			case WrappingLabel15EditPart.VISUAL_ID:
-				return new WrappingLabel15EditPart(view);
+				case WrappingLabel15EditPart.VISUAL_ID:
+					return new WrappingLabel15EditPart(view);
 
-			case ModelEndpoint2EditPart.VISUAL_ID:
-				return new ModelEndpoint2EditPart(view);
+				case ModelEndpoint2EditPart.VISUAL_ID:
+					return new ModelEndpoint2EditPart(view);
 
-			case ModelEndpointNameEditPart.VISUAL_ID:
-				return new ModelEndpointNameEditPart(view);
+				case ModelEndpointNameEditPart.VISUAL_ID:
+					return new ModelEndpointNameEditPart(view);
 
-			case ModelEndpoint3EditPart.VISUAL_ID:
-				return new ModelEndpoint3EditPart(view);
+				case ModelEndpoint3EditPart.VISUAL_ID:
+					return new ModelEndpoint3EditPart(view);
 
-			case ModelEndpointName2EditPart.VISUAL_ID:
-				return new ModelEndpointName2EditPart(view);
+				case ModelEndpointName2EditPart.VISUAL_ID:
+					return new ModelEndpointName2EditPart(view);
 
 			}
 		}

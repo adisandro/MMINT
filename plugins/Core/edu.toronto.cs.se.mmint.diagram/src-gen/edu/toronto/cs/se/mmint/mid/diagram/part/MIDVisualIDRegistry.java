@@ -77,7 +77,8 @@ public class MIDVisualIDRegistry {
 		if (view instanceof Diagram) {
 			if (MultiModelEditPart.MODEL_ID.equals(view.getType())) {
 				return MultiModelEditPart.VISUAL_ID;
-			} else {
+			}
+			else {
 				return -1;
 			}
 		}
@@ -105,7 +106,8 @@ public class MIDVisualIDRegistry {
 	public static int getVisualID(String type) {
 		try {
 			return Integer.parseInt(type);
-		} catch (NumberFormatException e) {
+		}
+		catch (NumberFormatException e) {
 			if (Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
 				MIDDiagramEditorPlugin.getInstance()
 						.logError("Unable to parse view type as a visualID number: " + type);
@@ -150,35 +152,37 @@ public class MIDVisualIDRegistry {
 		int containerVisualID;
 		if (MultiModelEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry.getVisualID(containerView);
-		} else {
+		}
+		else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = MultiModelEditPart.VISUAL_ID;
-			} else {
+			}
+			else {
 				return -1;
 			}
 		}
 		switch (containerVisualID) {
-		case MultiModelEditPart.VISUAL_ID:
-			if (MIDPackage.eINSTANCE.getModel().isSuperTypeOf(domainElement.eClass())
-					&& isModel_2011((Model) domainElement)) {
-				return ModelEditPart.VISUAL_ID;
-			}
-			if (MIDPackage.eINSTANCE.getModel().isSuperTypeOf(domainElement.eClass())
-					&& isModel_2012((Model) domainElement)) {
-				return Model2EditPart.VISUAL_ID;
-			}
-			if (RelationshipPackage.eINSTANCE.getModelRel().isSuperTypeOf(domainElement.eClass())
-					&& isModelRel_2013((ModelRel) domainElement)) {
-				return ModelRelEditPart.VISUAL_ID;
-			}
-			if (RelationshipPackage.eINSTANCE.getModelRel().isSuperTypeOf(domainElement.eClass())
-					&& isModelRel_2014((ModelRel) domainElement)) {
-				return ModelRel2EditPart.VISUAL_ID;
-			}
-			if (OperatorPackage.eINSTANCE.getOperator().isSuperTypeOf(domainElement.eClass())) {
-				return OperatorEditPart.VISUAL_ID;
-			}
-			break;
+			case MultiModelEditPart.VISUAL_ID:
+				if (MIDPackage.eINSTANCE.getModel().isSuperTypeOf(domainElement.eClass())
+						&& isModel_2011((Model) domainElement)) {
+					return ModelEditPart.VISUAL_ID;
+				}
+				if (MIDPackage.eINSTANCE.getModel().isSuperTypeOf(domainElement.eClass())
+						&& isModel_2012((Model) domainElement)) {
+					return Model2EditPart.VISUAL_ID;
+				}
+				if (RelationshipPackage.eINSTANCE.getModelRel().isSuperTypeOf(domainElement.eClass())
+						&& isModelRel_2013((ModelRel) domainElement)) {
+					return ModelRelEditPart.VISUAL_ID;
+				}
+				if (RelationshipPackage.eINSTANCE.getModelRel().isSuperTypeOf(domainElement.eClass())
+						&& isModelRel_2014((ModelRel) domainElement)) {
+					return ModelRel2EditPart.VISUAL_ID;
+				}
+				if (OperatorPackage.eINSTANCE.getOperator().isSuperTypeOf(domainElement.eClass())) {
+					return OperatorEditPart.VISUAL_ID;
+				}
+				break;
 		}
 		return -1;
 	}
@@ -195,100 +199,102 @@ public class MIDVisualIDRegistry {
 		int containerVisualID;
 		if (MultiModelEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry.getVisualID(containerView);
-		} else {
+		}
+		else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = MultiModelEditPart.VISUAL_ID;
-			} else {
+			}
+			else {
 				return false;
 			}
 		}
 		switch (containerVisualID) {
-		case MultiModelEditPart.VISUAL_ID:
-			if (ModelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (Model2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (ModelRelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (ModelRel2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (OperatorEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ModelEditPart.VISUAL_ID:
-			if (WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (WrappingLabel10EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case Model2EditPart.VISUAL_ID:
-			if (WrappingLabel2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (WrappingLabel11EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ModelRelEditPart.VISUAL_ID:
-			if (WrappingLabel3EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (WrappingLabel12EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ModelRel2EditPart.VISUAL_ID:
-			if (WrappingLabel4EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (WrappingLabel13EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case OperatorEditPart.VISUAL_ID:
-			if (WrappingLabel5EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ModelEndpointEditPart.VISUAL_ID:
-			if (WrappingLabel6EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (WrappingLabel14EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case BinaryModelRelEditPart.VISUAL_ID:
-			if (WrappingLabel7EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (WrappingLabel8EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (WrappingLabel9EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (WrappingLabel15EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ModelEndpoint2EditPart.VISUAL_ID:
-			if (ModelEndpointNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ModelEndpoint3EditPart.VISUAL_ID:
-			if (ModelEndpointName2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
+			case MultiModelEditPart.VISUAL_ID:
+				if (ModelEditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				if (Model2EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				if (ModelRelEditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				if (ModelRel2EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				if (OperatorEditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				break;
+			case ModelEditPart.VISUAL_ID:
+				if (WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				if (WrappingLabel10EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				break;
+			case Model2EditPart.VISUAL_ID:
+				if (WrappingLabel2EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				if (WrappingLabel11EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				break;
+			case ModelRelEditPart.VISUAL_ID:
+				if (WrappingLabel3EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				if (WrappingLabel12EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				break;
+			case ModelRel2EditPart.VISUAL_ID:
+				if (WrappingLabel4EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				if (WrappingLabel13EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				break;
+			case OperatorEditPart.VISUAL_ID:
+				if (WrappingLabel5EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				break;
+			case ModelEndpointEditPart.VISUAL_ID:
+				if (WrappingLabel6EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				if (WrappingLabel14EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				break;
+			case BinaryModelRelEditPart.VISUAL_ID:
+				if (WrappingLabel7EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				if (WrappingLabel8EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				if (WrappingLabel9EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				if (WrappingLabel15EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				break;
+			case ModelEndpoint2EditPart.VISUAL_ID:
+				if (ModelEndpointNameEditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				break;
+			case ModelEndpoint3EditPart.VISUAL_ID:
+				if (ModelEndpointName2EditPart.VISUAL_ID == nodeVisualID) {
+					return true;
+				}
+				break;
 		}
 		return false;
 	}
@@ -349,7 +355,7 @@ public class MIDVisualIDRegistry {
 	 */
 	private static boolean isModelRel_2013(ModelRel domainElement) {
 		Object result = MIDOCLFactory.getExpression(2, RelationshipPackage.eINSTANCE.getModelRel(), null).evaluate(
-				domainElement);
+			domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -358,7 +364,7 @@ public class MIDVisualIDRegistry {
 	 */
 	private static boolean isModelRel_2014(ModelRel domainElement) {
 		Object result = MIDOCLFactory.getExpression(3, RelationshipPackage.eINSTANCE.getModelRel(), null).evaluate(
-				domainElement);
+			domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -408,16 +414,16 @@ public class MIDVisualIDRegistry {
 	 */
 	public static boolean isSemanticLeafVisualID(int visualID) {
 		switch (visualID) {
-		case MultiModelEditPart.VISUAL_ID:
-			return false;
-		case ModelEditPart.VISUAL_ID:
-		case Model2EditPart.VISUAL_ID:
-		case ModelRelEditPart.VISUAL_ID:
-		case ModelRel2EditPart.VISUAL_ID:
-		case OperatorEditPart.VISUAL_ID:
-			return true;
-		default:
-			break;
+			case MultiModelEditPart.VISUAL_ID:
+				return false;
+			case ModelEditPart.VISUAL_ID:
+			case Model2EditPart.VISUAL_ID:
+			case ModelRelEditPart.VISUAL_ID:
+			case ModelRel2EditPart.VISUAL_ID:
+			case OperatorEditPart.VISUAL_ID:
+				return true;
+			default:
+				break;
 		}
 		return false;
 	}
@@ -447,8 +453,9 @@ public class MIDVisualIDRegistry {
 		 */
 		@Override
 		public int getNodeVisualID(View containerView, EObject domainElement) {
-			return edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry.getNodeVisualID(containerView,
-					domainElement);
+			return edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry.getNodeVisualID(
+				containerView,
+				domainElement);
 		}
 
 		/**
@@ -456,8 +463,10 @@ public class MIDVisualIDRegistry {
 		 */
 		@Override
 		public boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
-			return edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry.checkNodeVisualID(containerView,
-					domainElement, candidate);
+			return edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry.checkNodeVisualID(
+				containerView,
+				domainElement,
+				candidate);
 		}
 
 		/**

@@ -64,7 +64,7 @@ public class MultiModelEditPart extends DiagramEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new MultiModelItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new MultiModelCanonicalEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicyWithCustomReparent(
-				MIDVisualIDRegistry.TYPED_INSTANCE));
+			MIDVisualIDRegistry.TYPED_INSTANCE));
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DiagramDragDropEditPolicy() {
 			public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
 				ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>();
@@ -73,8 +73,11 @@ public class MultiModelEditPart extends DiagramEditPart {
 					if (false == nextObject instanceof EObject) {
 						continue;
 					}
-					viewDescriptors.add(new CreateViewRequest.ViewDescriptor(new EObjectAdapter((EObject) nextObject),
-							Node.class, null, getDiagramPreferencesHint()));
+					viewDescriptors.add(new CreateViewRequest.ViewDescriptor(
+						new EObjectAdapter((EObject) nextObject),
+						Node.class,
+						null,
+						getDiagramPreferencesHint()));
 				}
 				return createShortcutsCommand(dropRequest, viewDescriptors);
 			}
@@ -83,8 +86,10 @@ public class MultiModelEditPart extends DiagramEditPart {
 					List<CreateViewRequest.ViewDescriptor> viewDescriptors) {
 				Command command = createViewsAndArrangeCommand(dropRequest, viewDescriptors);
 				if (command != null) {
-					return command.chain(new ICommandProxy(new MIDCreateShortcutDecorationsCommand(getEditingDomain(),
-							(View) getModel(), viewDescriptors)));
+					return command.chain(new ICommandProxy(new MIDCreateShortcutDecorationsCommand(
+						getEditingDomain(),
+						(View) getModel(),
+						viewDescriptors)));
 				}
 				return null;
 			}

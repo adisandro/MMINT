@@ -126,7 +126,8 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				page.openEditor(editorInput, getEditorID());
 				return CommandResult.newOKCommandResult();
-			} catch (Exception ex) {
+			}
+			catch (Exception ex) {
 				throw new ExecutionException("Can't open diagram", ex);
 			}
 		}
@@ -166,14 +167,17 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 									nextResource.save(MIDDiagramEditorUtil.getSaveOptions());
 								}
 							}
-						} catch (IOException ex) {
+						}
+						catch (IOException ex) {
 							throw new InvocationTargetException(ex, "Save operation failed");
 						}
 					}
 				}.run(null);
-			} catch (InvocationTargetException e) {
+			}
+			catch (InvocationTargetException e) {
 				throw new ExecutionException("Can't create diagram of '" + getDiagramKind() + "' kind", e);
-			} catch (InterruptedException e) {
+			}
+			catch (InterruptedException e) {
 				throw new ExecutionException("Can't create diagram of '" + getDiagramKind() + "' kind", e);
 			}
 			return d;
@@ -254,7 +258,8 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 				ModelRel modelRel = (ModelRel) diagram.getElement();
 				if (MultiModelConstraintChecker.isInstancesLevel(modelRel)) {
 					doExecuteInstancesLevel(modelRel);
-				} else {
+				}
+				else {
 					doExecuteTypesLevel(modelRel);
 				}
 				URI uri = EcoreUtil.getURI(diagram);
@@ -264,7 +269,8 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 				page.openEditor(editorInput, getEditorID());
 
 				return CommandResult.newOKCommandResult();
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				throw new ExecutionException("No editor opened", e);
 			}
 		}

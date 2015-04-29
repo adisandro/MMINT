@@ -108,7 +108,8 @@ public abstract class MIDAbstractExpression {
 		if (context().isInstance(context)) {
 			try {
 				return doEvaluate(context, env);
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				MIDDiagramEditorPlugin.getInstance().logError("Expression evaluation failure: " + body(), e); //$NON-NLS-1$
 			}
 		}

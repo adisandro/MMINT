@@ -78,8 +78,10 @@ public class ModelEndpointReorientCommand extends EditElementCommand {
 			return false;
 		}
 		ExtendibleElement target = getLink().getTarget();
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistModelEndpoint_4014(getLink(), getNewSource(),
-				target);
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistModelEndpoint_4014(
+			getLink(),
+			getNewSource(),
+			target);
 	}
 
 	/**
@@ -93,8 +95,10 @@ public class ModelEndpointReorientCommand extends EditElementCommand {
 			return false;
 		}
 		ModelRel source = (ModelRel) getLink().eContainer();
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistModelEndpoint_4014(getLink(), source,
-				getNewTarget());
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistModelEndpoint_4014(
+			getLink(),
+			source,
+			getNewTarget());
 	}
 
 	/**

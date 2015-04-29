@@ -29,7 +29,8 @@ public class MIDMatchingStrategy implements IEditorMatchingStrategy {
 		IEditorInput editorInput;
 		try {
 			editorInput = editorRef.getEditorInput();
-		} catch (PartInitException e) {
+		}
+		catch (PartInitException e) {
 			return false;
 		}
 

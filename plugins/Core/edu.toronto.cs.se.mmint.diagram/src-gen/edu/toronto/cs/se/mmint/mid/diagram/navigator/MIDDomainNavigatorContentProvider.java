@@ -189,8 +189,8 @@ public class MIDDomainNavigatorContentProvider implements ICommonContentProvider
 
 		if (parentElement instanceof MIDDomainNavigatorItem) {
 			return wrapEObjects(
-					myAdapterFctoryContentProvier.getChildren(((MIDDomainNavigatorItem) parentElement).getEObject()),
-					parentElement);
+				myAdapterFctoryContentProvier.getChildren(((MIDDomainNavigatorItem) parentElement).getEObject()),
+				parentElement);
 		}
 		return EMPTY_ARRAY;
 	}
@@ -202,8 +202,10 @@ public class MIDDomainNavigatorContentProvider implements ICommonContentProvider
 		Collection result = new ArrayList();
 		for (int i = 0; i < objects.length; i++) {
 			if (objects[i] instanceof EObject) {
-				result.add(new MIDDomainNavigatorItem((EObject) objects[i], parentElement,
-						myAdapterFctoryContentProvier));
+				result.add(new MIDDomainNavigatorItem(
+					(EObject) objects[i],
+					parentElement,
+					myAdapterFctoryContentProvier));
 			}
 		}
 		return result.toArray();

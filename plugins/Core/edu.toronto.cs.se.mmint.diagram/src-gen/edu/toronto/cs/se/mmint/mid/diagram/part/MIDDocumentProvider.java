@@ -77,9 +77,10 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 	protected ElementInfo createElementInfo(Object element) throws CoreException {
 		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
 			throw new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID, 0, NLS.bind(
-					Messages.MIDDocumentProvider_IncorrectInputError, new Object[] { element,
-							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-					null));
+				Messages.MIDDocumentProvider_IncorrectInputError,
+				new Object[] { element,
+						"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+				null));
 		}
 		IEditorInput editorInput = (IEditorInput) element;
 		IDiagramDocument document = (IDiagramDocument) createDocument(editorInput);
@@ -96,9 +97,10 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 	protected IDocument createDocument(Object element) throws CoreException {
 		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
 			throw new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID, 0, NLS.bind(
-					Messages.MIDDocumentProvider_IncorrectInputError, new Object[] { element,
-							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-					null));
+				Messages.MIDDocumentProvider_IncorrectInputError,
+				new Object[] { element,
+						"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+				null));
 		}
 		IDocument document = createEmptyDocument();
 		setDocumentContent(document, (IEditorInput) element);
@@ -130,7 +132,8 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 			if (file != null) {
 				if (file.getLocation() != null) {
 					result += file.getLocation().toFile().lastModified();
-				} else {
+				}
+				else {
 					result += file.getModificationStamp();
 				}
 			}
@@ -197,7 +200,8 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 			IStorage storage = ((FileEditorInput) element).getStorage();
 			Diagram diagram = DiagramIOUtil.load(domain, storage, true, getProgressMonitor());
 			document.setContent(diagram);
-		} else if (element instanceof URIEditorInput) {
+		}
+		else if (element instanceof URIEditorInput) {
 			URI uri = ((URIEditorInput) element).getURI();
 			Resource resource = null;
 			try {
@@ -211,7 +215,8 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 						// @see 171060 
 						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 						resource.load(options);
-					} catch (IOException e) {
+					}
+					catch (IOException e) {
 						resource.unload();
 						throw e;
 					}
@@ -222,7 +227,8 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 						document.setContent((Diagram) rootElement);
 						return;
 					}
-				} else {
+				}
+				else {
 					for (Iterator it = resource.getContents().iterator(); it.hasNext();) {
 						Object rootElement = it.next();
 						if (rootElement instanceof Diagram) {
@@ -232,22 +238,30 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 					}
 				}
 				throw new RuntimeException(Messages.MIDDocumentProvider_NoDiagramInResourceError);
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				CoreException thrownExcp = null;
 				if (e instanceof CoreException) {
 					thrownExcp = (CoreException) e;
-				} else {
+				}
+				else {
 					String msg = e.getLocalizedMessage();
-					thrownExcp = new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID, 0,
-							msg != null ? msg : Messages.MIDDocumentProvider_DiagramLoadingError, e));
+					thrownExcp = new CoreException(new Status(
+						IStatus.ERROR,
+						MIDDiagramEditorPlugin.ID,
+						0,
+						msg != null ? msg : Messages.MIDDocumentProvider_DiagramLoadingError,
+						e));
 				}
 				throw thrownExcp;
 			}
-		} else {
+		}
+		else {
 			throw new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID, 0, NLS.bind(
-					Messages.MIDDocumentProvider_IncorrectInputError, new Object[] { element,
-							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-					null));
+				Messages.MIDDocumentProvider_IncorrectInputError,
+				new Object[] { element,
+						"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+				null));
 		}
 	}
 
@@ -335,7 +349,8 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 				}
 			}
 			ResourcesPlugin.getWorkspace().validateEdit(
-					(IFile[]) files2Validate.toArray(new IFile[files2Validate.size()]), computationContext);
+				(IFile[]) files2Validate.toArray(new IFile[files2Validate.size()]),
+				computationContext);
 		}
 
 		super.doValidateState(element, computationContext);
@@ -350,7 +365,8 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 			if (info.isUpdateCache()) {
 				try {
 					updateCache(element);
-				} catch (CoreException ex) {
+				}
+				catch (CoreException ex) {
 					MIDDiagramEditorPlugin.getInstance().logError(Messages.MIDDocumentProvider_isModifiable, ex);
 					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
@@ -374,7 +390,8 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 			if (info.isUpdateCache()) {
 				try {
 					updateCache(element);
-				} catch (CoreException ex) {
+				}
+				catch (CoreException ex) {
 					MIDDiagramEditorPlugin.getInstance().logError(Messages.MIDDocumentProvider_isModifiable, ex);
 					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
@@ -521,7 +538,8 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 			 */
 			toCreateOrModify = parent;
 			parent = toCreateOrModify.getParent();
-		} while (parent != null && !parent.exists());
+		}
+		while (parent != null && !parent.exists());
 
 		return ResourcesPlugin.getWorkspace().getRuleFactory().createRule(toCreateOrModify);
 	}
@@ -549,9 +567,12 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			if (!overwrite && !info.isSynchronized()) {
-				throw new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID,
-						IResourceStatus.OUT_OF_SYNC_LOCAL, Messages.MIDDocumentProvider_UnsynchronizedFileSaveError,
-						null));
+				throw new CoreException(new Status(
+					IStatus.ERROR,
+					MIDDiagramEditorPlugin.ID,
+					IResourceStatus.OUT_OF_SYNC_LOCAL,
+					Messages.MIDDocumentProvider_UnsynchronizedFileSaveError,
+					null));
 			}
 			info.stopResourceListening();
 			fireElementStateChanging(element);
@@ -560,51 +581,63 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 						.size() + 1); //"Saving diagram"
 				for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 					Resource nextResource = it.next();
-					monitor.setTaskName(NLS.bind(Messages.MIDDocumentProvider_SaveNextResourceTask,
-							nextResource.getURI()));
+					monitor.setTaskName(NLS.bind(
+						Messages.MIDDocumentProvider_SaveNextResourceTask,
+						nextResource.getURI()));
 					if (nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource)) {
 						try {
 							nextResource.save(MIDDiagramEditorUtil.getSaveOptions());
-						} catch (IOException e) {
+						}
+						catch (IOException e) {
 							fireElementStateChangeFailed(element);
-							throw new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID,
-									EditorStatusCodes.RESOURCE_FAILURE, e.getLocalizedMessage(), null));
+							throw new CoreException(new Status(
+								IStatus.ERROR,
+								MIDDiagramEditorPlugin.ID,
+								EditorStatusCodes.RESOURCE_FAILURE,
+								e.getLocalizedMessage(),
+								null));
 						}
 					}
 					monitor.worked(1);
 				}
 				monitor.done();
 				info.setModificationStamp(computeModificationStamp(info));
-			} catch (RuntimeException x) {
+			}
+			catch (RuntimeException x) {
 				fireElementStateChangeFailed(element);
 				throw x;
-			} finally {
+			}
+			finally {
 				info.startResourceListening();
 			}
-		} else {
+		}
+		else {
 			URI newResoruceURI;
 			List<IFile> affectedFiles = null;
 			if (element instanceof FileEditorInput) {
 				IFile newFile = ((FileEditorInput) element).getFile();
 				affectedFiles = Collections.singletonList(newFile);
 				newResoruceURI = URI.createPlatformResourceURI(newFile.getFullPath().toString(), true);
-			} else if (element instanceof URIEditorInput) {
+			}
+			else if (element instanceof URIEditorInput) {
 				newResoruceURI = ((URIEditorInput) element).getURI();
-			} else {
+			}
+			else {
 				fireElementStateChangeFailed(element);
 				throw new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID, 0, NLS.bind(
-						Messages.MIDDocumentProvider_IncorrectInputError, new Object[] { element,
-								"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-						null));
+					Messages.MIDDocumentProvider_IncorrectInputError,
+					new Object[] { element,
+							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+					null));
 			}
 			if (false == document instanceof IDiagramDocument) {
 				fireElementStateChangeFailed(element);
 				throw new CoreException(
-						new Status(
-								IStatus.ERROR,
-								MIDDiagramEditorPlugin.ID,
-								0,
-								"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
+					new Status(
+						IStatus.ERROR,
+						MIDDiagramEditorPlugin.ID,
+						0,
+						"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 			IDiagramDocument diagramDocument = (IDiagramDocument) document;
 			final Resource newResource = diagramDocument.getEditingDomain().getResourceSet()
@@ -612,7 +645,8 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 			final Diagram diagramCopy = (Diagram) EcoreUtil.copy(diagramDocument.getDiagram());
 			try {
 				new AbstractTransactionalCommand(diagramDocument.getEditingDomain(), NLS.bind(
-						Messages.MIDDocumentProvider_SaveAsOperation, diagramCopy.getName()), affectedFiles) {
+					Messages.MIDDocumentProvider_SaveAsOperation,
+					diagramCopy.getName()), affectedFiles) {
 					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 							throws ExecutionException {
 						newResource.getContents().add(diagramCopy);
@@ -620,14 +654,24 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 					}
 				}.execute(monitor, null);
 				newResource.save(MIDDiagramEditorUtil.getSaveOptions());
-			} catch (ExecutionException e) {
+			}
+			catch (ExecutionException e) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID, 0,
-						e.getLocalizedMessage(), null));
-			} catch (IOException e) {
+				throw new CoreException(new Status(
+					IStatus.ERROR,
+					MIDDiagramEditorPlugin.ID,
+					0,
+					e.getLocalizedMessage(),
+					null));
+			}
+			catch (IOException e) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR, MIDDiagramEditorPlugin.ID, 0,
-						e.getLocalizedMessage(), null));
+				throw new CoreException(new Status(
+					IStatus.ERROR,
+					MIDDiagramEditorPlugin.ID,
+					0,
+					e.getLocalizedMessage(),
+					null));
 			}
 			newResource.unload();
 		}
@@ -641,9 +685,11 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 		if (file != null) {
 			try {
 				file.refreshLocal(IResource.DEPTH_INFINITE, monitor);
-			} catch (CoreException ex) {
-				MIDDiagramEditorPlugin.getInstance().logError(Messages.MIDDocumentProvider_handleElementContentChanged,
-						ex);
+			}
+			catch (CoreException ex) {
+				MIDDiagramEditorPlugin.getInstance().logError(
+					Messages.MIDDocumentProvider_handleElementContentChanged,
+					ex);
 				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
 			}
 		}
@@ -654,7 +700,8 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 		info.fStatus = null;
 		try {
 			setDocumentContent(info.fDocument, info.getEditorInput());
-		} catch (CoreException e) {
+		}
+		catch (CoreException e) {
 			info.fStatus = e.getStatus();
 		}
 		if (!info.fCanBeSaved) {
@@ -961,7 +1008,8 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 							handleElementMoved(ResourceSetInfo.this.getEditorInput(), newURI);
 						}
 					});
-				} else {
+				}
+				else {
 					handleResourceDeleted(resource);
 				}
 				return true;

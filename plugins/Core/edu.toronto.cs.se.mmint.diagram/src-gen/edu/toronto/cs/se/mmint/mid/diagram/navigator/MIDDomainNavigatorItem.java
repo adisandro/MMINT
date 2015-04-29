@@ -49,7 +49,8 @@ public class MIDDomainNavigatorItem extends PlatformObject {
 			public Class[] getAdapterList() {
 				return supportedTypes;
 			}
-		}, edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem.class);
+		},
+			edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem.class);
 	}
 
 	/**
@@ -103,8 +104,8 @@ public class MIDDomainNavigatorItem extends PlatformObject {
 	public boolean equals(Object obj) {
 		if (obj instanceof edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem) {
 			return EcoreUtil.getURI(getEObject()).equals(
-					EcoreUtil.getURI(((edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem) obj)
-							.getEObject()));
+				EcoreUtil.getURI(((edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem) obj)
+						.getEObject()));
 		}
 		return super.equals(obj);
 	}

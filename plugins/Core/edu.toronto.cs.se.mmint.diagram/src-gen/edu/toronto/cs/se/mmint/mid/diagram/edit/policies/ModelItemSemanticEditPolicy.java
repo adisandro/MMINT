@@ -67,8 +67,11 @@ public class ModelItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
 			if (MIDVisualIDRegistry.getVisualID(incomingLink) == ExtendibleElementSupertypeEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null,
-						incomingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+					incomingLink.getSource().getElement(),
+					null,
+					incomingLink.getTarget().getElement(),
+					false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
@@ -101,8 +104,11 @@ public class ModelItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
 			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == ExtendibleElementSupertypeEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null,
-						outgoingLink.getTarget().getElement(), false);
+				DestroyReferenceRequest r = new DestroyReferenceRequest(
+					outgoingLink.getSource().getElement(),
+					null,
+					outgoingLink.getTarget().getElement(),
+					false);
 				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
@@ -120,7 +126,8 @@ public class ModelItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
 			cmd.add(new DestroyElementCommand(req));
-		} else {
+		}
+		else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}
 		return getGEFWrapper(cmd.reduce());
@@ -187,14 +194,14 @@ public class ModelItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case ModelEndpointEditPart.VISUAL_ID:
-			return getGEFWrapper(new ModelEndpointReorientCommand(req));
-		case BinaryModelRelEditPart.VISUAL_ID:
-			return getGEFWrapper(new BinaryModelRelReorientCommand(req));
-		case ModelEndpoint2EditPart.VISUAL_ID:
-			return getGEFWrapper(new ModelEndpoint2ReorientCommand(req));
-		case ModelEndpoint3EditPart.VISUAL_ID:
-			return getGEFWrapper(new ModelEndpoint3ReorientCommand(req));
+			case ModelEndpointEditPart.VISUAL_ID:
+				return getGEFWrapper(new ModelEndpointReorientCommand(req));
+			case BinaryModelRelEditPart.VISUAL_ID:
+				return getGEFWrapper(new BinaryModelRelReorientCommand(req));
+			case ModelEndpoint2EditPart.VISUAL_ID:
+				return getGEFWrapper(new ModelEndpoint2ReorientCommand(req));
+			case ModelEndpoint3EditPart.VISUAL_ID:
+				return getGEFWrapper(new ModelEndpoint3ReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
@@ -207,8 +214,8 @@ public class ModelItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 	 */
 	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case ExtendibleElementSupertypeEditPart.VISUAL_ID:
-			return getGEFWrapper(new ExtendibleElementSupertypeReorientCommand(req));
+			case ExtendibleElementSupertypeEditPart.VISUAL_ID:
+				return getGEFWrapper(new ExtendibleElementSupertypeReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

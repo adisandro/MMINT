@@ -171,25 +171,35 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	protected Command getSemanticCommandSwitch(IEditCommandRequest req) {
 		if (req instanceof CreateRelationshipRequest) {
 			return getCreateRelationshipCommand((CreateRelationshipRequest) req);
-		} else if (req instanceof CreateElementRequest) {
+		}
+		else if (req instanceof CreateElementRequest) {
 			return getCreateCommand((CreateElementRequest) req);
-		} else if (req instanceof ConfigureRequest) {
+		}
+		else if (req instanceof ConfigureRequest) {
 			return getConfigureCommand((ConfigureRequest) req);
-		} else if (req instanceof DestroyElementRequest) {
+		}
+		else if (req instanceof DestroyElementRequest) {
 			return getDestroyElementCommand((DestroyElementRequest) req);
-		} else if (req instanceof DestroyReferenceRequest) {
+		}
+		else if (req instanceof DestroyReferenceRequest) {
 			return getDestroyReferenceCommand((DestroyReferenceRequest) req);
-		} else if (req instanceof DuplicateElementsRequest) {
+		}
+		else if (req instanceof DuplicateElementsRequest) {
 			return getDuplicateCommand((DuplicateElementsRequest) req);
-		} else if (req instanceof GetEditContextRequest) {
+		}
+		else if (req instanceof GetEditContextRequest) {
 			return getEditContextCommand((GetEditContextRequest) req);
-		} else if (req instanceof MoveRequest) {
+		}
+		else if (req instanceof MoveRequest) {
 			return getMoveCommand((MoveRequest) req);
-		} else if (req instanceof ReorientReferenceRelationshipRequest) {
+		}
+		else if (req instanceof ReorientReferenceRelationshipRequest) {
 			return getReorientReferenceRelationshipCommand((ReorientReferenceRelationshipRequest) req);
-		} else if (req instanceof ReorientRelationshipRequest) {
+		}
+		else if (req instanceof ReorientRelationshipRequest) {
 			return getReorientRelationshipCommand((ReorientRelationshipRequest) req);
-		} else if (req instanceof SetRequest) {
+		}
+		else if (req instanceof SetRequest) {
 			return getSetCommand((SetRequest) req);
 		}
 		return null;
@@ -380,9 +390,10 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			try {
 				if (source == null) {
 					return true;
-				} else {
+				}
+				else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap(
-							"oppositeEnd", MIDPackage.eINSTANCE.getExtendibleElement()); //$NON-NLS-1$
+						"oppositeEnd", MIDPackage.eINSTANCE.getExtendibleElement()); //$NON-NLS-1$
 					Object sourceVal = MIDOCLFactory.getExpression(4, RelationshipPackage.eINSTANCE.getModelRel(), env)
 							.evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
 					if (false == sourceVal instanceof Boolean || !((Boolean) sourceVal).booleanValue()) {
@@ -391,9 +402,10 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				}
 				if (target == null) {
 					return true;
-				} else {
+				}
+				else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap(
-							"oppositeEnd", RelationshipPackage.eINSTANCE.getModelRel()); //$NON-NLS-1$
+						"oppositeEnd", RelationshipPackage.eINSTANCE.getModelRel()); //$NON-NLS-1$
 					Object targetVal = MIDOCLFactory.getExpression(5, MIDPackage.eINSTANCE.getExtendibleElement(), env)
 							.evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
 					if (false == targetVal instanceof Boolean || !((Boolean) targetVal).booleanValue()) {
@@ -401,7 +413,8 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					} // else fall-through
 				}
 				return true;
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				MIDDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
 				return false;
 			}

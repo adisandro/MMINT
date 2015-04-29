@@ -83,7 +83,8 @@ public class ExtendibleElementSupertypeReorientCommand extends EditElementComman
 			return false;
 		}
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistExtendibleElementSupertype_4013(
-				getNewSource(), getOldTarget());
+			getNewSource(),
+			getOldTarget());
 	}
 
 	/**
@@ -94,7 +95,8 @@ public class ExtendibleElementSupertypeReorientCommand extends EditElementComman
 			return false;
 		}
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistExtendibleElementSupertype_4013(
-				getOldSource(), getNewTarget());
+			getOldSource(),
+			getNewTarget());
 	}
 
 	/**

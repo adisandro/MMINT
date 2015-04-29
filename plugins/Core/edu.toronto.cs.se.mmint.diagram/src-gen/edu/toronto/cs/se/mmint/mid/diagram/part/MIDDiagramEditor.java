@@ -203,7 +203,8 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	protected void setDocumentProvider(IEditorInput input) {
 		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
 			setDocumentProvider(MIDDiagramEditorPlugin.getInstance().getDocumentProvider());
-		} else {
+		}
+		else {
 			super.setDocumentProvider(input);
 		}
 	}
@@ -237,11 +238,13 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 			provider.saveDocument(progressMonitor, input, getDocumentProvider().getDocument(input), overwrite);
 			editorSaved();
 
-		} catch (CoreException x) {
+		}
+		catch (CoreException x) {
 			IStatus status = x.getStatus();
 			if (status == null || status.getSeverity() != IStatus.CANCEL)
 				handleExceptionOnSave(x, progressMonitor);
-		} finally {
+		}
+		finally {
 			provider.changed(getEditorInput());
 		}
 
@@ -265,7 +268,8 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 					IDocumentProvider provider2 = editor.getDocumentProvider();
 					try {
 						provider2.synchronize(editorRef.getEditorInput());
-					} catch (Exception e) {
+					}
+					catch (Exception e) {
 						MMINTException.print(IStatus.ERROR, "Diagram synchronization failed", e);
 					}
 				}
@@ -324,24 +328,34 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 				.getEditorReferences();
 		for (int i = 0; i < editorRefs.length; i++) {
 			if (matchingStrategy.matches(editorRefs[i], newInput)) {
-				MessageDialog.openWarning(shell, Messages.MIDDiagramEditor_SaveAsErrorTitle,
-						Messages.MIDDiagramEditor_SaveAsErrorMessage);
+				MessageDialog.openWarning(
+					shell,
+					Messages.MIDDiagramEditor_SaveAsErrorTitle,
+					Messages.MIDDiagramEditor_SaveAsErrorMessage);
 				return;
 			}
 		}
 		boolean success = false;
 		try {
 			provider.aboutToChange(newInput);
-			getDocumentProvider(newInput).saveDocument(progressMonitor, newInput,
-					getDocumentProvider().getDocument(getEditorInput()), true);
+			getDocumentProvider(newInput).saveDocument(
+				progressMonitor,
+				newInput,
+				getDocumentProvider().getDocument(getEditorInput()),
+				true);
 			success = true;
-		} catch (CoreException x) {
+		}
+		catch (CoreException x) {
 			IStatus status = x.getStatus();
 			if (status == null || status.getSeverity() != IStatus.CANCEL) {
-				ErrorDialog.openError(shell, Messages.MIDDiagramEditor_SaveErrorTitle,
-						Messages.MIDDiagramEditor_SaveErrorMessage, x.getStatus());
+				ErrorDialog.openError(
+					shell,
+					Messages.MIDDiagramEditor_SaveErrorTitle,
+					Messages.MIDDiagramEditor_SaveErrorMessage,
+					x.getStatus());
 			}
-		} finally {
+		}
+		finally {
 			provider.changed(newInput);
 			if (success) {
 				setInput(newInput);
@@ -384,8 +398,9 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	 */
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
-		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this,
-				getDiagramGraphicalViewer());
+		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(
+			this,
+			getDiagramGraphicalViewer());
 		getDiagramGraphicalViewer().setContextMenu(provider);
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
 	}
@@ -396,21 +411,21 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
 		getDiagramGraphicalViewer().addDropTargetListener(
-				new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
+			new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
 
-					protected Object getJavaObject(TransferData data) {
-						return LocalSelectionTransfer.getTransfer().nativeToJava(data);
-					}
+				protected Object getJavaObject(TransferData data) {
+					return LocalSelectionTransfer.getTransfer().nativeToJava(data);
+				}
 
-				});
+			});
 		getDiagramGraphicalViewer().addDropTargetListener(
-				new DropTargetListener(getDiagramGraphicalViewer(), LocalTransfer.getInstance()) {
+			new DropTargetListener(getDiagramGraphicalViewer(), LocalTransfer.getInstance()) {
 
-					protected Object getJavaObject(TransferData data) {
-						return LocalTransfer.getInstance().nativeToJava(data);
-					}
+				protected Object getJavaObject(TransferData data) {
+					return LocalTransfer.getInstance().nativeToJava(data);
+				}
 
-				});
+			});
 		startupLastClickPositionProvider();
 	}
 
@@ -471,7 +486,8 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 					if (nextSelectedObject instanceof MIDNavigatorItem) {
 						View view = ((MIDNavigatorItem) nextSelectedObject).getView();
 						nextSelectedObject = view.getElement();
-					} else if (nextSelectedObject instanceof IAdaptable) {
+					}
+					else if (nextSelectedObject instanceof IAdaptable) {
 						IAdaptable adaptable = (IAdaptable) nextSelectedObject;
 						nextSelectedObject = adaptable.getAdapter(EObject.class);
 					}

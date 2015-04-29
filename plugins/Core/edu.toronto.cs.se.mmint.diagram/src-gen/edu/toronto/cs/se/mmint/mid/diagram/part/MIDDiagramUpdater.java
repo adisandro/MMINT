@@ -63,8 +63,8 @@ public class MIDDiagramUpdater {
 	 */
 	public static List<MIDNodeDescriptor> getSemanticChildren(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
-		case MultiModelEditPart.VISUAL_ID:
-			return getMultiModel_1000SemanticChildren(view);
+			case MultiModelEditPart.VISUAL_ID:
+				return getMultiModel_1000SemanticChildren(view);
 		}
 		return Collections.emptyList();
 	}
@@ -114,26 +114,26 @@ public class MIDDiagramUpdater {
 	 */
 	public static List<MIDLinkDescriptor> getContainedLinks(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
-		case MultiModelEditPart.VISUAL_ID:
-			return getMultiModel_1000ContainedLinks(view);
-		case ModelEditPart.VISUAL_ID:
-			return getModel_2011ContainedLinks(view);
-		case Model2EditPart.VISUAL_ID:
-			return getModel_2012ContainedLinks(view);
-		case ModelRelEditPart.VISUAL_ID:
-			return getModelRel_2013ContainedLinks(view);
-		case ModelRel2EditPart.VISUAL_ID:
-			return getModelRel_2014ContainedLinks(view);
-		case OperatorEditPart.VISUAL_ID:
-			return getOperator_2015ContainedLinks(view);
-		case ModelEndpointEditPart.VISUAL_ID:
-			return getModelEndpoint_4014ContainedLinks(view);
-		case BinaryModelRelEditPart.VISUAL_ID:
-			return getBinaryModelRel_4015ContainedLinks(view);
-		case ModelEndpoint2EditPart.VISUAL_ID:
-			return getModelEndpoint_4018ContainedLinks(view);
-		case ModelEndpoint3EditPart.VISUAL_ID:
-			return getModelEndpoint_4019ContainedLinks(view);
+			case MultiModelEditPart.VISUAL_ID:
+				return getMultiModel_1000ContainedLinks(view);
+			case ModelEditPart.VISUAL_ID:
+				return getModel_2011ContainedLinks(view);
+			case Model2EditPart.VISUAL_ID:
+				return getModel_2012ContainedLinks(view);
+			case ModelRelEditPart.VISUAL_ID:
+				return getModelRel_2013ContainedLinks(view);
+			case ModelRel2EditPart.VISUAL_ID:
+				return getModelRel_2014ContainedLinks(view);
+			case OperatorEditPart.VISUAL_ID:
+				return getOperator_2015ContainedLinks(view);
+			case ModelEndpointEditPart.VISUAL_ID:
+				return getModelEndpoint_4014ContainedLinks(view);
+			case BinaryModelRelEditPart.VISUAL_ID:
+				return getBinaryModelRel_4015ContainedLinks(view);
+			case ModelEndpoint2EditPart.VISUAL_ID:
+				return getModelEndpoint_4018ContainedLinks(view);
+			case ModelEndpoint3EditPart.VISUAL_ID:
+				return getModelEndpoint_4019ContainedLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -143,24 +143,24 @@ public class MIDDiagramUpdater {
 	 */
 	public static List<MIDLinkDescriptor> getIncomingLinks(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
-		case ModelEditPart.VISUAL_ID:
-			return getModel_2011IncomingLinks(view);
-		case Model2EditPart.VISUAL_ID:
-			return getModel_2012IncomingLinks(view);
-		case ModelRelEditPart.VISUAL_ID:
-			return getModelRel_2013IncomingLinks(view);
-		case ModelRel2EditPart.VISUAL_ID:
-			return getModelRel_2014IncomingLinks(view);
-		case OperatorEditPart.VISUAL_ID:
-			return getOperator_2015IncomingLinks(view);
-		case ModelEndpointEditPart.VISUAL_ID:
-			return getModelEndpoint_4014IncomingLinks(view);
-		case BinaryModelRelEditPart.VISUAL_ID:
-			return getBinaryModelRel_4015IncomingLinks(view);
-		case ModelEndpoint2EditPart.VISUAL_ID:
-			return getModelEndpoint_4018IncomingLinks(view);
-		case ModelEndpoint3EditPart.VISUAL_ID:
-			return getModelEndpoint_4019IncomingLinks(view);
+			case ModelEditPart.VISUAL_ID:
+				return getModel_2011IncomingLinks(view);
+			case Model2EditPart.VISUAL_ID:
+				return getModel_2012IncomingLinks(view);
+			case ModelRelEditPart.VISUAL_ID:
+				return getModelRel_2013IncomingLinks(view);
+			case ModelRel2EditPart.VISUAL_ID:
+				return getModelRel_2014IncomingLinks(view);
+			case OperatorEditPart.VISUAL_ID:
+				return getOperator_2015IncomingLinks(view);
+			case ModelEndpointEditPart.VISUAL_ID:
+				return getModelEndpoint_4014IncomingLinks(view);
+			case BinaryModelRelEditPart.VISUAL_ID:
+				return getBinaryModelRel_4015IncomingLinks(view);
+			case ModelEndpoint2EditPart.VISUAL_ID:
+				return getModelEndpoint_4018IncomingLinks(view);
+			case ModelEndpoint3EditPart.VISUAL_ID:
+				return getModelEndpoint_4019IncomingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -170,24 +170,24 @@ public class MIDDiagramUpdater {
 	 */
 	public static List<MIDLinkDescriptor> getOutgoingLinks(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
-		case ModelEditPart.VISUAL_ID:
-			return getModel_2011OutgoingLinks(view);
-		case Model2EditPart.VISUAL_ID:
-			return getModel_2012OutgoingLinks(view);
-		case ModelRelEditPart.VISUAL_ID:
-			return getModelRel_2013OutgoingLinks(view);
-		case ModelRel2EditPart.VISUAL_ID:
-			return getModelRel_2014OutgoingLinks(view);
-		case OperatorEditPart.VISUAL_ID:
-			return getOperator_2015OutgoingLinks(view);
-		case ModelEndpointEditPart.VISUAL_ID:
-			return getModelEndpoint_4014OutgoingLinks(view);
-		case BinaryModelRelEditPart.VISUAL_ID:
-			return getBinaryModelRel_4015OutgoingLinks(view);
-		case ModelEndpoint2EditPart.VISUAL_ID:
-			return getModelEndpoint_4018OutgoingLinks(view);
-		case ModelEndpoint3EditPart.VISUAL_ID:
-			return getModelEndpoint_4019OutgoingLinks(view);
+			case ModelEditPart.VISUAL_ID:
+				return getModel_2011OutgoingLinks(view);
+			case Model2EditPart.VISUAL_ID:
+				return getModel_2012OutgoingLinks(view);
+			case ModelRelEditPart.VISUAL_ID:
+				return getModelRel_2013OutgoingLinks(view);
+			case ModelRel2EditPart.VISUAL_ID:
+				return getModelRel_2014OutgoingLinks(view);
+			case OperatorEditPart.VISUAL_ID:
+				return getOperator_2015OutgoingLinks(view);
+			case ModelEndpointEditPart.VISUAL_ID:
+				return getModelEndpoint_4014OutgoingLinks(view);
+			case BinaryModelRelEditPart.VISUAL_ID:
+				return getBinaryModelRel_4015OutgoingLinks(view);
+			case ModelEndpoint2EditPart.VISUAL_ID:
+				return getModelEndpoint_4018OutgoingLinks(view);
+			case ModelEndpoint3EditPart.VISUAL_ID:
+				return getModelEndpoint_4019OutgoingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -552,8 +552,12 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 			ExtendibleElement dst = link.getTarget();
-			result.add(new MIDLinkDescriptor(container, dst, link, MIDElementTypes.ModelEndpoint_4014,
-					ModelEndpointEditPart.VISUAL_ID));
+			result.add(new MIDLinkDescriptor(
+				container,
+				dst,
+				link,
+				MIDElementTypes.ModelEndpoint_4014,
+				ModelEndpointEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -575,8 +579,12 @@ public class MIDDiagramUpdater {
 			}
 			Model dst = link.getTargetModel();
 			Model src = link.getSourceModel();
-			result.add(new MIDLinkDescriptor(src, dst, link, MIDElementTypes.BinaryModelRel_4015,
-					BinaryModelRelEditPart.VISUAL_ID));
+			result.add(new MIDLinkDescriptor(
+				src,
+				dst,
+				link,
+				MIDElementTypes.BinaryModelRel_4015,
+				BinaryModelRelEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -596,8 +604,12 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 			ExtendibleElement dst = link.getTarget();
-			result.add(new MIDLinkDescriptor(container, dst, link, MIDElementTypes.ModelEndpoint_4018,
-					ModelEndpoint2EditPart.VISUAL_ID));
+			result.add(new MIDLinkDescriptor(
+				container,
+				dst,
+				link,
+				MIDElementTypes.ModelEndpoint_4018,
+				ModelEndpoint2EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -617,8 +629,12 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 			ExtendibleElement dst = link.getTarget();
-			result.add(new MIDLinkDescriptor(container, dst, link, MIDElementTypes.ModelEndpoint_4019,
-					ModelEndpoint3EditPart.VISUAL_ID));
+			result.add(new MIDLinkDescriptor(
+				container,
+				dst,
+				link,
+				MIDElementTypes.ModelEndpoint_4019,
+				ModelEndpoint3EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -632,8 +648,11 @@ public class MIDDiagramUpdater {
 		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == MIDPackage.eINSTANCE.getExtendibleElement_Supertype()) {
-				result.add(new MIDLinkDescriptor(setting.getEObject(), target,
-						MIDElementTypes.ExtendibleElementSupertype_4013, ExtendibleElementSupertypeEditPart.VISUAL_ID));
+				result.add(new MIDLinkDescriptor(
+					setting.getEObject(),
+					target,
+					MIDElementTypes.ExtendibleElementSupertype_4013,
+					ExtendibleElementSupertypeEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -659,8 +678,12 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 			ModelRel container = (ModelRel) link.eContainer();
-			result.add(new MIDLinkDescriptor(container, target, link, MIDElementTypes.ModelEndpoint_4014,
-					ModelEndpointEditPart.VISUAL_ID));
+			result.add(new MIDLinkDescriptor(
+				container,
+				target,
+				link,
+				MIDElementTypes.ModelEndpoint_4014,
+				ModelEndpointEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -683,8 +706,12 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 			Model src = link.getSourceModel();
-			result.add(new MIDLinkDescriptor(src, target, link, MIDElementTypes.BinaryModelRel_4015,
-					BinaryModelRelEditPart.VISUAL_ID));
+			result.add(new MIDLinkDescriptor(
+				src,
+				target,
+				link,
+				MIDElementTypes.BinaryModelRel_4015,
+				BinaryModelRelEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -709,8 +736,12 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 			Operator container = (Operator) link.eContainer();
-			result.add(new MIDLinkDescriptor(container, target, link, MIDElementTypes.ModelEndpoint_4018,
-					ModelEndpoint2EditPart.VISUAL_ID));
+			result.add(new MIDLinkDescriptor(
+				container,
+				target,
+				link,
+				MIDElementTypes.ModelEndpoint_4018,
+				ModelEndpoint2EditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -736,8 +767,12 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 			Operator container = (Operator) link.eContainer();
-			result.add(new MIDLinkDescriptor(container, target, link, MIDElementTypes.ModelEndpoint_4019,
-					ModelEndpoint3EditPart.VISUAL_ID));
+			result.add(new MIDLinkDescriptor(
+				container,
+				target,
+				link,
+				MIDElementTypes.ModelEndpoint_4019,
+				ModelEndpoint3EditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -753,8 +788,11 @@ public class MIDDiagramUpdater {
 		if (destination == null) {
 			return result;
 		}
-		result.add(new MIDLinkDescriptor(source, destination, MIDElementTypes.ExtendibleElementSupertype_4013,
-				ExtendibleElementSupertypeEditPart.VISUAL_ID));
+		result.add(new MIDLinkDescriptor(
+			source,
+			destination,
+			MIDElementTypes.ExtendibleElementSupertype_4013,
+			ExtendibleElementSupertypeEditPart.VISUAL_ID));
 		return result;
 	}
 
@@ -789,8 +827,12 @@ public class MIDDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new MIDLinkDescriptor(src, dst, link, MIDElementTypes.BinaryModelRel_4015,
-					BinaryModelRelEditPart.VISUAL_ID));
+			result.add(new MIDLinkDescriptor(
+				src,
+				dst,
+				link,
+				MIDElementTypes.BinaryModelRel_4015,
+				BinaryModelRelEditPart.VISUAL_ID));
 		}
 		return result;
 	}

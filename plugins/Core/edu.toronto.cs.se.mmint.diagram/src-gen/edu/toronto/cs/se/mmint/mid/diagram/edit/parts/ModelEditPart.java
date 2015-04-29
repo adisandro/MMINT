@@ -275,7 +275,8 @@ public class ModelEditPart extends ShapeNodeEditPart {
 		if (event.getNotifier() == getModel()
 				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations().equals(event.getFeature())) {
 			handleMajorSemanticChange();
-		} else {
+		}
+		else {
 			super.handleNotificationEvent(event);
 		}
 	}
@@ -315,8 +316,11 @@ public class ModelEditPart extends ShapeNodeEditPart {
 			this.setForegroundColor(THIS_FORE);
 			this.setBackgroundColor(THIS_BACK);
 			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(0), getMapMode().DPtoLP(60)));
-			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
-					getMapMode().DPtoLP(7)));
+			this.setBorder(new MarginBorder(
+				getMapMode().DPtoLP(7),
+				getMapMode().DPtoLP(7),
+				getMapMode().DPtoLP(7),
+				getMapMode().DPtoLP(7)));
 			createContents();
 		}
 

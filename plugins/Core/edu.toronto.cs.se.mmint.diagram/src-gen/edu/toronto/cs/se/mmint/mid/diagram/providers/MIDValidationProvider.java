@@ -56,7 +56,8 @@ public class MIDValidationProvider {
 				try {
 					constraintsActive = true;
 					op.run();
-				} finally {
+				}
+				finally {
 					constraintsActive = false;
 				}
 			}
@@ -64,10 +65,12 @@ public class MIDValidationProvider {
 		if (editingDomain != null) {
 			try {
 				editingDomain.runExclusive(task);
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				MIDDiagramEditorPlugin.getInstance().logError("Validation failed", e); //$NON-NLS-1$
 			}
-		} else {
+		}
+		else {
 			task.run();
 		}
 	}
@@ -114,11 +117,19 @@ public class MIDValidationProvider {
 			IStatus status;
 			if (validates == MAVOTruthValue.TRUE) {
 				status = ctx.createSuccessStatus();
-			} else {
-				ConstraintStatus failureStatus = (ConstraintStatus) ctx.createFailureStatus(modelRel,
-						context.getName(), context.getMetatype().getName());
-				status = (validates == MAVOTruthValue.MAYBE) ? new ConstraintStatus(failureStatus.getConstraint(),
-						context, IStatus.WARNING, 200, "Maybe", failureStatus.getResultLocus()) : failureStatus;
+			}
+			else {
+				ConstraintStatus failureStatus = (ConstraintStatus) ctx.createFailureStatus(
+					modelRel,
+					context.getName(),
+					context.getMetatype().getName());
+				status = (validates == MAVOTruthValue.MAYBE) ? new ConstraintStatus(
+					failureStatus.getConstraint(),
+					context,
+					IStatus.WARNING,
+					200,
+					"Maybe",
+					failureStatus.getResultLocus()) : failureStatus;
 			}
 			return status;
 		}

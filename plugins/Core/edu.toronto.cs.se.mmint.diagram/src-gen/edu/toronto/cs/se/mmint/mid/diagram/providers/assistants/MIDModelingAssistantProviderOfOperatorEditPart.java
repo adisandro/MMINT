@@ -135,13 +135,15 @@ public class MIDModelingAssistantProviderOfOperatorEditPart extends MIDModelingA
 			types.add(MIDElementTypes.ModelRel_2013);
 			types.add(MIDElementTypes.ModelRel_2014);
 			types.add(MIDElementTypes.Operator_2015);
-		} else if (relationshipType == MIDElementTypes.ModelEndpoint_4018) {
+		}
+		else if (relationshipType == MIDElementTypes.ModelEndpoint_4018) {
 			types.add(MIDElementTypes.Model_2011);
 			types.add(MIDElementTypes.Model_2012);
 			types.add(MIDElementTypes.ModelRel_2013);
 			types.add(MIDElementTypes.ModelRel_2014);
 			types.add(MIDElementTypes.Operator_2015);
-		} else if (relationshipType == MIDElementTypes.ModelEndpoint_4019) {
+		}
+		else if (relationshipType == MIDElementTypes.ModelEndpoint_4019) {
 			types.add(MIDElementTypes.Model_2011);
 			types.add(MIDElementTypes.Model_2012);
 			types.add(MIDElementTypes.ModelRel_2013);
@@ -192,12 +194,15 @@ public class MIDModelingAssistantProviderOfOperatorEditPart extends MIDModelingA
 			types.add(MIDElementTypes.ModelRel_2013);
 			types.add(MIDElementTypes.ModelRel_2014);
 			types.add(MIDElementTypes.Operator_2015);
-		} else if (relationshipType == MIDElementTypes.ModelEndpoint_4014) {
+		}
+		else if (relationshipType == MIDElementTypes.ModelEndpoint_4014) {
 			types.add(MIDElementTypes.ModelRel_2013);
 			types.add(MIDElementTypes.ModelRel_2014);
-		} else if (relationshipType == MIDElementTypes.ModelEndpoint_4018) {
+		}
+		else if (relationshipType == MIDElementTypes.ModelEndpoint_4018) {
 			types.add(MIDElementTypes.Operator_2015);
-		} else if (relationshipType == MIDElementTypes.ModelEndpoint_4019) {
+		}
+		else if (relationshipType == MIDElementTypes.ModelEndpoint_4019) {
 			types.add(MIDElementTypes.Operator_2015);
 		}
 		return types;

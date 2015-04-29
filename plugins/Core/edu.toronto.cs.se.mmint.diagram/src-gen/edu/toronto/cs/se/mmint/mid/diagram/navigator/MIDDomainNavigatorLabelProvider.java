@@ -29,7 +29,7 @@ public class MIDDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 * @generated
 	 */
 	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-			MIDDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+		MIDDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated

@@ -107,7 +107,8 @@ public class ModelOpenDiagramEditPolicy extends OpenEditPolicy {
 				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				page.openEditor(editorInput, getEditorID());
 				return CommandResult.newOKCommandResult();
-			} catch (Exception ex) {
+			}
+			catch (Exception ex) {
 				throw new ExecutionException("Can't open diagram", ex);
 			}
 		}
@@ -147,14 +148,17 @@ public class ModelOpenDiagramEditPolicy extends OpenEditPolicy {
 									nextResource.save(MIDDiagramEditorUtil.getSaveOptions());
 								}
 							}
-						} catch (IOException ex) {
+						}
+						catch (IOException ex) {
 							throw new InvocationTargetException(ex, "Save operation failed");
 						}
 					}
 				}.run(null);
-			} catch (InvocationTargetException e) {
+			}
+			catch (InvocationTargetException e) {
 				throw new ExecutionException("Can't create diagram of '" + getDiagramKind() + "' kind", e);
-			} catch (InterruptedException e) {
+			}
+			catch (InterruptedException e) {
 				throw new ExecutionException("Can't create diagram of '" + getDiagramKind() + "' kind", e);
 			}
 			return d;

@@ -87,8 +87,10 @@ public class MIDOCLFactory {
 			throw new IllegalArgumentException();
 		}
 		if (cached.expressions[index] == null) {
-			cached.expressions[index] = getExpression(cached.expressionBodies[index], context,
-					environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
+			cached.expressions[index] = getExpression(
+				cached.expressionBodies[index],
+				context,
+				environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}
 		return cached.expressions[index];
 	}
@@ -137,7 +139,8 @@ public class MIDOCLFactory {
 			try {
 				oclExpression = oclHelper.createQuery(body());
 				setStatus(IStatus.OK, null, null);
-			} catch (ParserException e) {
+			}
+			catch (ParserException e) {
 				setStatus(IStatus.ERROR, e.getMessage(), e);
 			}
 		}
@@ -159,7 +162,8 @@ public class MIDOCLFactory {
 			try {
 				Object result = oclInstance.evaluate(context, oclExpression);
 				return oclInstance.isInvalid(result) ? null : result;
-			} finally {
+			}
+			finally {
 				evalEnv.clear();
 				oclInstance.setExtentMap(null); // clear allInstances cache, and get the oclInstance ready for the next call
 			}
@@ -171,8 +175,10 @@ public class MIDOCLFactory {
 		private static void initCustomEnv(Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv,
 				Map<String, EClassifier> environment) {
 			// Use EObject as implicit root class for any object, to allow eContainer() and other EObject operations from OCL expressions
-			ParsingOptions.setOption(ecoreEnv, ParsingOptions.implicitRootClass(ecoreEnv),
-					EcorePackage.eINSTANCE.getEObject());
+			ParsingOptions.setOption(
+				ecoreEnv,
+				ParsingOptions.implicitRootClass(ecoreEnv),
+				EcorePackage.eINSTANCE.getEObject());
 			for (String varName : environment.keySet()) {
 				EClassifier varType = environment.get(varName);
 				ecoreEnv.addElement(varName, createVar(ecoreEnv, varName, varType), false);
