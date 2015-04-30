@@ -33,6 +33,7 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
 public class Map extends OperatorImpl {
@@ -41,15 +42,21 @@ public class Map extends OperatorImpl {
 	private class OperatorInput {
 		private Model model;
 		private List<ConversionOperator> conversions;
-		public OperatorInput(@NonNull Model model, @NonNull List<ConversionOperator> conversions) {
+		private ModelEndpoint inputModelTypeEndpoint;
+		public OperatorInput(@NonNull Model model, @NonNull List<ConversionOperator> conversions,
+				@NonNull ModelEndpoint inputModelTypeEndpoint) {
 			this.model = model;
 			this.conversions = conversions;
+			this.inputModelTypeEndpoint = inputModelTypeEndpoint;
 		}
 		public @NonNull Model getModel() {
 			return model;
 		}
 		public @NonNull List<ConversionOperator> getConversions() {
 			return conversions;
+		}
+		public @NonNull ModelEndpoint getInputModelTypeEndpoint() {
+			return inputModelTypeEndpoint;
 		}
 	}
 
@@ -71,14 +78,15 @@ public class Map extends OperatorImpl {
 				if (conversions == null) {
 					continue;
 				}
-				modelTypeEndpointInputSet.add(new OperatorInput(inputModel, conversions));
+				modelTypeEndpointInputSet.add(new OperatorInput(inputModel, conversions, inputModelTypeEndpoint));
 			}
 		}
 
 		return modelTypeEndpointInputs;
 	}
 
-	private void getOperatorTypeInputs(List<Set<OperatorInput>> modelTypeEndpointInputs, Set<List<OperatorInput>> operatorTypeInputs, List<OperatorInput> inputModelsAccumulator, int currentIndex) {
+	private void getOperatorTypeInputs(List<Set<OperatorInput>> modelTypeEndpointInputs,
+			Set<List<OperatorInput>> operatorTypeInputs, List<OperatorInput> inputModelsAccumulator, int currentIndex) {
 
 		if (modelTypeEndpointInputs.size() == currentIndex) {
 			operatorTypeInputs.add(inputModelsAccumulator);
@@ -97,25 +105,28 @@ public class Map extends OperatorImpl {
 		}
 	}
 
-	private void runOperatorType(Operator operatorType, List<Set<OperatorInput>> modelTypeEndpointInputs, MultiModel mapMID) {
+	private void runOperatorType(Operator operatorType, List<Set<OperatorInput>> modelTypeEndpointInputs,
+			MultiModel mapMID) {
 
-		Set<List<OperatorInput>> operatorTypeInputs = new HashSet<>();
-		getOperatorTypeInputs(modelTypeEndpointInputs, operatorTypeInputs, new ArrayList<>(), 0);
-		for (List<OperatorInput> operatorTypeInput : operatorTypeInputs) {
+		Set<List<OperatorInput>> operatorTypeInputSet = new HashSet<>();
+		getOperatorTypeInputs(modelTypeEndpointInputs, operatorTypeInputSet, new ArrayList<>(), 0);
+		for (List<OperatorInput> operatorTypeInputs : operatorTypeInputSet) {
 			EList<Model> inputModels = new BasicEList<>();
 			java.util.Map<Integer, EList<ConversionOperator>> conversions = new HashMap<>();
-			for (int i = 0; i < operatorTypeInput.size(); i++) {
-				inputModels.add(operatorTypeInput.get(i).getModel());
-				List<ConversionOperator> conversion = operatorTypeInput.get(i).getConversions();
-				if (!conversion.isEmpty()) {
-					conversions.put(new Integer(i), new BasicEList<>(conversion));
-				}
-			}
 			try {
 				Operator newOperator = operatorType.createInstance(mapMID);
-				for (Model inputModel : inputModels) {
-					//TODO MMINT[OPERATOR] Create operator inputs
-					//inputModelTypeEndpoint.createInstance(inputModel, newOperator, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
+				for (int i = 0; i < operatorTypeInputs.size(); i++) {
+					OperatorInput operatorTypeInput = operatorTypeInputs.get(i);
+					inputModels.add(operatorTypeInput.getModel());
+					List<ConversionOperator> conversion = operatorTypeInput.getConversions();
+					operatorTypeInput.getInputModelTypeEndpoint().createInstance(
+						operatorTypeInput.getModel(),
+						newOperator,
+						OperatorPackage.eINSTANCE.getOperator_Inputs().getName()
+					);
+					if (!conversion.isEmpty()) {
+						conversions.put(new Integer(i), new BasicEList<>(conversion));
+					}
 				}
 				newOperator.run(inputModels, conversions, mapMID);
 			}
