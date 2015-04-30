@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.util.MIDValidator;
@@ -117,6 +118,8 @@ public class OperatorValidator extends EObjectValidator {
 				return validateRandomOperator((RandomOperator)value, diagnostics, context);
 			case OperatorPackage.GENERIC_ENDPOINT:
 				return validateGenericEndpoint((GenericEndpoint)value, diagnostics, context);
+			case OperatorPackage.OPERATOR_INPUT:
+				return validateOperatorInput((OperatorInput)value, diagnostics, context);
 			case OperatorPackage.RANDOM:
 				return validateRandom((Random)value, diagnostics, context);
 			case OperatorPackage.EXCEPTION:
@@ -233,6 +236,15 @@ public class OperatorValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(genericEndpoint, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElementEndpoint_unboundedLevel(genericEndpoint, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateOperatorInput(OperatorInput operatorInput, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(operatorInput, diagnostics, context);
 	}
 
 	/**

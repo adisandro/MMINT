@@ -85,7 +85,7 @@ public class MIDContextCheckCoherenceListener extends MIDContextMenuListener {
 						actualParameters.add(newActualParameter);
 						Properties inputProperties = conversionOperatorType.getInputProperties();
 						conversionOperatorType.readInputProperties(inputProperties);
-						newActualParameter = conversionOperatorType.execute(actualParameters).get(0);
+						newActualParameter = conversionOperatorType.run(actualParameters).get(0);
 					}
 					coherentModels.add(newActualParameter);
 					coherentModels2.add(newActualParameter);

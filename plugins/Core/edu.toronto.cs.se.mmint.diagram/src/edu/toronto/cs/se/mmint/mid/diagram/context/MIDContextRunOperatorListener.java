@@ -13,6 +13,8 @@ package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
@@ -27,26 +29,23 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
-import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
-	private Operator operator;
-	private EList<Model> inputModels;
-	private Map<Integer, EList<ConversionOperator>> conversions;
+	private Operator operatorType;
+	private EList<OperatorInput> operatorInputs;
 	private MultiModel instanceMID;
 
-	public MIDContextRunOperatorListener(@NonNull String menuLabel, @NonNull Operator operator, @NonNull EList<Model> inputModels, @NonNull Map<Integer, EList<ConversionOperator>> conversions, @NonNull MultiModel instanceMID) {
+	public MIDContextRunOperatorListener(@NonNull String menuLabel, @NonNull Operator operatorType, @NonNull EList<OperatorInput> operatorInputs, @NonNull MultiModel instanceMID) {
 
 		super(menuLabel);
-		this.operator = operator;
-		this.inputModels = inputModels;
-		this.conversions = conversions;
+		this.operatorType = operatorType;
+		this.operatorInputs = operatorInputs;
 		this.instanceMID = instanceMID;
 	}
 
@@ -72,12 +71,17 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
-				operator.run(inputModels, conversions, instanceMID);
+				Map<String, MultiModel> outputMIDsByName = operatorType.getOutputs().stream()
+					.collect(Collectors.toMap(
+						outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
+						outputModelTypeEndpoint -> instanceMID)
+					);
+				operatorType.start(operatorInputs, outputMIDsByName, instanceMID);
 				return CommandResult.newOKCommandResult();
 			}
 			catch (Exception e) {
-				MMINTException.print(IStatus.ERROR, "Operator " + operator.getName() + " execution error", e);
-				return CommandResult.newErrorCommandResult("Operator " + operator.getName() + " execution error");
+				MMINTException.print(IStatus.ERROR, "Operator " + operatorType.getName() + " execution error", e);
+				return CommandResult.newErrorCommandResult("Operator " + operatorType.getName() + " execution error");
 			}
 		}
 

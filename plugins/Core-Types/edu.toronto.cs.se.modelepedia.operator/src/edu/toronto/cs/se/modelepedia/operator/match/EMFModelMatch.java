@@ -86,7 +86,7 @@ public class EMFModelMatch extends OperatorImpl {
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
 		Model srcModel = actualParameters.get(0);
 		Model tgtModel = actualParameters.get(1);

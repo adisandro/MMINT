@@ -172,6 +172,29 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.operator.OperatorInput} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OperatorInputItemProvider operatorInputItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.operator.OperatorInput}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOperatorInputAdapter() {
+		if (operatorInputItemProvider == null) {
+			operatorInputItemProvider = new OperatorInputItemProvider(this);
+		}
+
+		return operatorInputItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -274,6 +297,7 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 		if (conversionOperatorItemProvider != null) conversionOperatorItemProvider.dispose();
 		if (randomOperatorItemProvider != null) randomOperatorItemProvider.dispose();
 		if (genericEndpointItemProvider != null) genericEndpointItemProvider.dispose();
+		if (operatorInputItemProvider != null) operatorInputItemProvider.dispose();
 	}
 
 }

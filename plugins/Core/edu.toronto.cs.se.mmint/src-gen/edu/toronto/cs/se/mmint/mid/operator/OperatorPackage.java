@@ -306,13 +306,13 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___DELETE_TYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Get Executables</em>' operation.
+	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_EXECUTABLES__ELIST_MAP = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 3;
+	int OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -369,22 +369,22 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___INIT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
-	 * The operation id for the '<em>Execute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR___EXECUTE__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 10;
-
-	/**
 	 * The operation id for the '<em>Run</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___RUN__ELIST_MAP_MULTIMODEL = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 11;
+	int OPERATOR___RUN__MAP_MAP_MAP = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 10;
+
+	/**
+	 * The operation id for the '<em>Start</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___START__ELIST_MAP_MULTIMODEL = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 11;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -622,13 +622,13 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR___GET_SUPERTYPE = OPERATOR___GET_SUPERTYPE;
 
 	/**
-	 * The operation id for the '<em>Get Executables</em>' operation.
+	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR___GET_EXECUTABLES__ELIST_MAP = OPERATOR___GET_EXECUTABLES__ELIST_MAP;
+	int CONVERSION_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = OPERATOR___CHECK_ALLOWED_INPUTS__ELIST;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -685,22 +685,22 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR___INIT = OPERATOR___INIT;
 
 	/**
-	 * The operation id for the '<em>Execute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR___EXECUTE__ELIST = OPERATOR___EXECUTE__ELIST;
-
-	/**
 	 * The operation id for the '<em>Run</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR___RUN__ELIST_MAP_MULTIMODEL = OPERATOR___RUN__ELIST_MAP_MULTIMODEL;
+	int CONVERSION_OPERATOR___RUN__MAP_MAP_MAP = OPERATOR___RUN__MAP_MAP_MAP;
+
+	/**
+	 * The operation id for the '<em>Start</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___START__ELIST_MAP_MULTIMODEL = OPERATOR___START__ELIST_MAP_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -974,13 +974,13 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___DELETE_TYPE = OPERATOR___DELETE_TYPE;
 
 	/**
-	 * The operation id for the '<em>Get Executables</em>' operation.
+	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_OPERATOR___GET_EXECUTABLES__ELIST_MAP = OPERATOR___GET_EXECUTABLES__ELIST_MAP;
+	int RANDOM_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = OPERATOR___CHECK_ALLOWED_INPUTS__ELIST;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -1037,22 +1037,22 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___INIT = OPERATOR___INIT;
 
 	/**
-	 * The operation id for the '<em>Execute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR___EXECUTE__ELIST = OPERATOR___EXECUTE__ELIST;
-
-	/**
 	 * The operation id for the '<em>Run</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_OPERATOR___RUN__ELIST_MAP_MULTIMODEL = OPERATOR___RUN__ELIST_MAP_MULTIMODEL;
+	int RANDOM_OPERATOR___RUN__MAP_MAP_MAP = OPERATOR___RUN__MAP_MAP_MAP;
+
+	/**
+	 * The operation id for the '<em>Start</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___START__ELIST_MAP_MULTIMODEL = OPERATOR___START__ELIST_MAP_MULTIMODEL;
 
 	/**
 	 * The number of operations of the '<em>Random Operator</em>' class.
@@ -1308,6 +1308,61 @@ public interface OperatorPackage extends EPackage {
 	int GENERIC_ENDPOINT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorInputImpl <em>Input</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorInputImpl
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorInput()
+	 * @generated
+	 */
+	int OPERATOR_INPUT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_INPUT__MODEL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Conversions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_INPUT__CONVERSIONS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Model Type Endpoint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_INPUT__MODEL_TYPE_ENDPOINT = 2;
+
+	/**
+	 * The number of structural features of the '<em>Input</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_INPUT_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Input</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_INPUT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '<em>Random</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1315,7 +1370,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getRandom()
 	 * @generated
 	 */
-	int RANDOM = 4;
+	int RANDOM = 5;
 
 
 	/**
@@ -1326,7 +1381,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getException()
 	 * @generated
 	 */
-	int EXCEPTION = 5;
+	int EXCEPTION = 6;
 
 
 	/**
@@ -1337,7 +1392,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getProperties()
 	 * @generated
 	 */
-	int PROPERTIES = 6;
+	int PROPERTIES = 7;
 
 
 	/**
@@ -1447,14 +1502,14 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__DeleteType();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutables(org.eclipse.emf.common.util.EList, java.util.Map) <em>Get Executables</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#checkAllowedInputs(org.eclipse.emf.common.util.EList) <em>Check Allowed Inputs</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Executables</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutables(org.eclipse.emf.common.util.EList, java.util.Map)
+	 * @return the meta object for the '<em>Check Allowed Inputs</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#checkAllowedInputs(org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getOperator__GetExecutables__EList_Map();
+	EOperation getOperator__CheckAllowedInputs__EList();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createInstance(edu.toronto.cs.se.mmint.mid.MultiModel) <em>Create Instance</em>}' operation.
@@ -1487,26 +1542,6 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__IsAllowedTargetGeneric__GenericEndpoint_GenericElement_EList();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#execute(org.eclipse.emf.common.util.EList) <em>Execute</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Execute</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#execute(org.eclipse.emf.common.util.EList)
-	 * @generated
-	 */
-	EOperation getOperator__Execute__EList();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#run(org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MultiModel) <em>Run</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Run</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#run(org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MultiModel)
-	 * @generated
-	 */
-	EOperation getOperator__Run__EList_Map_MultiModel();
-
-	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getInputProperties() <em>Get Input Properties</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1535,6 +1570,26 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getOperator__Init();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#run(java.util.Map, java.util.Map, java.util.Map) <em>Run</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Run</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#run(java.util.Map, java.util.Map, java.util.Map)
+	 * @generated
+	 */
+	EOperation getOperator__Run__Map_Map_Map();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#start(org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MultiModel) <em>Start</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Start</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#start(org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MultiModel)
+	 * @generated
+	 */
+	EOperation getOperator__Start__EList_Map_MultiModel();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.ConversionOperator <em>Conversion Operator</em>}'.
@@ -1657,6 +1712,49 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getGenericEndpoint__CreateInstance__GenericElement_Operator();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorInput <em>Input</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Input</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorInput
+	 * @generated
+	 */
+	EClass getOperatorInput();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorInput#getModel <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Model</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorInput#getModel()
+	 * @see #getOperatorInput()
+	 * @generated
+	 */
+	EReference getOperatorInput_Model();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorInput#getConversions <em>Conversions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Conversions</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorInput#getConversions()
+	 * @see #getOperatorInput()
+	 * @generated
+	 */
+	EReference getOperatorInput_Conversions();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorInput#getModelTypeEndpoint <em>Model Type Endpoint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Model Type Endpoint</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorInput#getModelTypeEndpoint()
+	 * @see #getOperatorInput()
+	 * @generated
+	 */
+	EReference getOperatorInput_ModelTypeEndpoint();
 
 	/**
 	 * Returns the meta object for data type '{@link java.util.Random <em>Random</em>}'.
@@ -1797,12 +1895,12 @@ public interface OperatorPackage extends EPackage {
 		EOperation OPERATOR___DELETE_TYPE = eINSTANCE.getOperator__DeleteType();
 
 		/**
-		 * The meta object literal for the '<em><b>Get Executables</b></em>' operation.
+		 * The meta object literal for the '<em><b>Check Allowed Inputs</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation OPERATOR___GET_EXECUTABLES__ELIST_MAP = eINSTANCE.getOperator__GetExecutables__EList_Map();
+		EOperation OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = eINSTANCE.getOperator__CheckAllowedInputs__EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
@@ -1829,22 +1927,6 @@ public interface OperatorPackage extends EPackage {
 		EOperation OPERATOR___IS_ALLOWED_TARGET_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = eINSTANCE.getOperator__IsAllowedTargetGeneric__GenericEndpoint_GenericElement_EList();
 
 		/**
-		 * The meta object literal for the '<em><b>Execute</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation OPERATOR___EXECUTE__ELIST = eINSTANCE.getOperator__Execute__EList();
-
-		/**
-		 * The meta object literal for the '<em><b>Run</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation OPERATOR___RUN__ELIST_MAP_MULTIMODEL = eINSTANCE.getOperator__Run__EList_Map_MultiModel();
-
-		/**
 		 * The meta object literal for the '<em><b>Get Input Properties</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1867,6 +1949,22 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation OPERATOR___INIT = eINSTANCE.getOperator__Init();
+
+		/**
+		 * The meta object literal for the '<em><b>Run</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___RUN__MAP_MAP_MAP = eINSTANCE.getOperator__Run__Map_Map_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Start</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___START__ELIST_MAP_MULTIMODEL = eINSTANCE.getOperator__Start__EList_Map_MultiModel();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
@@ -1969,6 +2067,40 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR = eINSTANCE.getGenericEndpoint__CreateInstance__GenericElement_Operator();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorInputImpl <em>Input</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorInputImpl
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorInput()
+		 * @generated
+		 */
+		EClass OPERATOR_INPUT = eINSTANCE.getOperatorInput();
+
+		/**
+		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_INPUT__MODEL = eINSTANCE.getOperatorInput_Model();
+
+		/**
+		 * The meta object literal for the '<em><b>Conversions</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_INPUT__CONVERSIONS = eINSTANCE.getOperatorInput_Conversions();
+
+		/**
+		 * The meta object literal for the '<em><b>Model Type Endpoint</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_INPUT__MODEL_TYPE_ENDPOINT = eINSTANCE.getOperatorInput_ModelTypeEndpoint();
 
 		/**
 		 * The meta object literal for the '<em>Random</em>' data type.

@@ -218,7 +218,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
 		ModelRel traceModelRelType = (ModelRel) getGenerics().get(0).getTarget();
 		Model srcModel = actualParameters.get(0);

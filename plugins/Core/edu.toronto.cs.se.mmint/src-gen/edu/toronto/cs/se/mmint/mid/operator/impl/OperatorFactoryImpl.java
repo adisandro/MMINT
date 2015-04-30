@@ -25,6 +25,7 @@ import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 
@@ -76,6 +77,7 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 			case OperatorPackage.CONVERSION_OPERATOR: return createConversionOperator();
 			case OperatorPackage.RANDOM_OPERATOR: return createRandomOperator();
 			case OperatorPackage.GENERIC_ENDPOINT: return createGenericEndpoint();
+			case OperatorPackage.OPERATOR_INPUT: return createOperatorInput();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -157,6 +159,16 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	public GenericEndpoint createGenericEndpoint() {
 		GenericEndpointImpl genericEndpoint = new GenericEndpointImpl();
 		return genericEndpoint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OperatorInput createOperatorInput() {
+		OperatorInputImpl operatorInput = new OperatorInputImpl();
+		return operatorInput;
 	}
 
 	/**

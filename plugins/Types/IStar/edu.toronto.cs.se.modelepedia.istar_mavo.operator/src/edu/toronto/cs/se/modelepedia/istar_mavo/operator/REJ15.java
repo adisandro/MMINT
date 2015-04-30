@@ -210,7 +210,7 @@ public class REJ15 extends FASE14 {
 //	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
 		Model istarModel = actualParameters.get(0);
 

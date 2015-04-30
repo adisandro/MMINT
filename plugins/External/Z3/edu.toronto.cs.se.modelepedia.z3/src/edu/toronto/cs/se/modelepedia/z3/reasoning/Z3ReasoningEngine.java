@@ -74,7 +74,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		actualParameters.add(model);
 		ecore2smt.readInputProperties(ecore2smt.getInputProperties());
 		ecore2smt.init();
-		ecore2smt.execute(actualParameters);
+		ecore2smt.run(actualParameters);
 		ecore2smt.cleanup();
 
 		return ecore2smt.getZ3MAVOModelParser();

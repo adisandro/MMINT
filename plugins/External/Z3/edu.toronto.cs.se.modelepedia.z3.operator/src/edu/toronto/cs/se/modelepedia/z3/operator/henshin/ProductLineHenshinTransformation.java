@@ -202,7 +202,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
 		// Using MAVO elements in this operator is a "trick" to reuse the
 		// formulaVariable field as the container of presence conditions. It works

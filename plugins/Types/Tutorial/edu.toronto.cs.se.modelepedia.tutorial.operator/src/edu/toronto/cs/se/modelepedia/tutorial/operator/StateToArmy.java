@@ -21,7 +21,7 @@ import edu.toronto.cs.se.modelepedia.tutorial.army.ArmyPackage;
 public class StateToArmy extends ATLConversion {
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
 		init(actualParameters, ArmyPackage.eNAME);
 		StateToArmy_M2M atl = new StateToArmy_M2M();

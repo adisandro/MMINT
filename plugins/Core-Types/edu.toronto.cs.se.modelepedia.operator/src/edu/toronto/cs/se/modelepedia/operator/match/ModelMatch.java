@@ -74,7 +74,7 @@ public class ModelMatch extends OperatorImpl {
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
 		// create model relationship among models
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(actualParameters.get(0));

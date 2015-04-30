@@ -67,6 +67,15 @@ public interface OperatorFactory extends EFactory {
 	GenericEndpoint createGenericEndpoint();
 
 	/**
+	 * Returns a new object of class '<em>Input</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Input</em>'.
+	 * @generated
+	 */
+	OperatorInput createOperatorInput();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

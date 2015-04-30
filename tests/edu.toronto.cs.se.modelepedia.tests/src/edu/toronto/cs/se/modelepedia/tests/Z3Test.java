@@ -48,7 +48,7 @@ public class Z3Test extends MMINTTest {
 		EcoreMAVOToSMTLIB ecore2smt = (EcoreMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(Z3ReasoningEngine.ECOREMAVOTOSMTLIB_OPERATOR_URI);
 		EList<Model> actualParameters = new BasicEList<Model>();
 		actualParameters.add(model);
-		ecore2smt.execute(actualParameters);
+		ecore2smt.run(actualParameters);
 		Z3MAVOModelParser z3ModelParser = ecore2smt.getZ3MAVOModelParser();
 		MAVOModel rootMavoModelObj = (MAVOModel) model.getEMFInstanceRoot();
 		int numSolutions = z3Reasoner.allSAT(z3ModelParser.getSMTLIBEncoding(), z3ModelParser, MAVOUtils.getAnnotatedMAVOModelObjects(rootMavoModelObj), rootMavoModelObj);

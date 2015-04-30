@@ -23,7 +23,7 @@ import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
 public class PetriNetSimulate extends OperatorImpl {
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
 		// simulate
 		PetriNet petrinet = (PetriNet) actualParameters.get(0).getEMFInstanceRoot();

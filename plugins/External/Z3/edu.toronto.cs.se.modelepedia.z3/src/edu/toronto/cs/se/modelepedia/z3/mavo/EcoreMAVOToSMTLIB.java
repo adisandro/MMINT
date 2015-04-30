@@ -69,7 +69,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
 		//TODO MMINT[REASONING] generalize for non-mavo too
 		//TODO MMINT[REASONING] refactor common code/encoding for mayOnly and not

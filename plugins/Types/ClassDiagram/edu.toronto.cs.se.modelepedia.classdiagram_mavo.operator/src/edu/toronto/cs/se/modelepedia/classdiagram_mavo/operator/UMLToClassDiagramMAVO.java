@@ -29,7 +29,7 @@ public class UMLToClassDiagramMAVO extends ConversionOperatorImpl {
 	private Model newCdModel;
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
 		Model umlModel = actualParameters.get(0);
 		String newCdModelUri = MultiModelUtils.replaceFileExtensionInUri(umlModel.getUri(), ClassDiagram_MAVOPackage.eNAME);

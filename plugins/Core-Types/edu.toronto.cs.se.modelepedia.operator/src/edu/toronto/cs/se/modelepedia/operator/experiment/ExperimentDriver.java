@@ -459,7 +459,7 @@ public class ExperimentDriver extends OperatorImpl {
 		// execute and get state
 		operator.readInputProperties(operatorProperties);
 		operator.init();
-		EList<Model> result = operator.execute(actualParameters);
+		EList<Model> result = operator.run(actualParameters);
 		if (operator instanceof RandomOperatorImpl) {
 			state[experimentIndex] = ((RandomOperatorImpl) operator).getState();
 		}
@@ -487,7 +487,7 @@ public class ExperimentDriver extends OperatorImpl {
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
 		long startTime = System.nanoTime();
 

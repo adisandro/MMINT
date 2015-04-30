@@ -14,9 +14,9 @@ package edu.toronto.cs.se.mmint.mid.operator.impl;
 import java.io.FileInputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
@@ -49,6 +49,8 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
@@ -458,9 +460,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___GET_EXECUTABLES__ELIST_MAP:
+			case OperatorPackage.OPERATOR___CHECK_ALLOWED_INPUTS__ELIST:
 				try {
-					return getExecutables((EList<Model>)arguments.get(0), (Map<Integer, EList<ConversionOperator>>)arguments.get(1));
+					return checkAllowedInputs((EList<Model>)arguments.get(0));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -505,16 +507,16 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___EXECUTE__ELIST:
+			case OperatorPackage.OPERATOR___RUN__MAP_MAP_MAP:
 				try {
-					return execute((EList<Model>)arguments.get(0));
+					return run((Map<String, Model>)arguments.get(0), (Map<String, GenericElement>)arguments.get(1), (Map<String, MultiModel>)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___RUN__ELIST_MAP_MULTIMODEL:
+			case OperatorPackage.OPERATOR___START__ELIST_MAP_MULTIMODEL:
 				try {
-					run((EList<Model>)arguments.get(0), (Map<Integer, EList<ConversionOperator>>)arguments.get(1), (MultiModel)arguments.get(2));
+					start((EList<OperatorInput>)arguments.get(0), (Map<String, MultiModel>)arguments.get(1), (MultiModel)arguments.get(2));
 					return null;
 				}
 				catch (Throwable throwable) {
@@ -593,61 +595,33 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public EList<Operator> getExecutables(EList<Model> inputModels, Map<Integer, EList<ConversionOperator>> conversions) throws MMINTException {
+	public EList<OperatorInput> checkAllowedInputs(EList<Model> inputModels) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		// deal with generics first
-		EList<Operator> executableOperators = new BasicEList<Operator>();
-		if (getGenerics().isEmpty()) {
-			Operator newOperator = this.createInstance(null);
-			executableOperators.add(newOperator);
-		}
-		else {
-			//TODO MMINT[GENERICS] Add proper support for multiple generics
-			GenericEndpoint genericTypeEndpoint = getGenerics().get(0);
-			GenericElement genericSuperType = genericTypeEndpoint.getTarget();
-			List<GenericElement> genericTypes = MultiModelTypeHierarchy.getSubtypes(genericSuperType);
-			genericTypes.add(0, genericSuperType);
-			for (GenericElement genericType : genericTypes) {
-				if (genericType.isAbstract()) {
-					continue;
-				}
-				if (!this.isAllowedTargetGeneric(genericTypeEndpoint, genericType, inputModels)) {
-					//TODO MMINT[GENERICS] Do we need to check that the generic type is consistent with the input, or is it done by the operator itself?
-					continue;
-				}
-				Operator newOperator = this.createInstance(null);
-				genericTypeEndpoint.createInstance(genericType, newOperator);
-				executableOperators.add(newOperator);
-			}
-		}
-
 		// check actual parameters
+		EList<OperatorInput> inputs = new BasicEList<>();
 		int i = 0;
-inputs:
 		for (ModelEndpoint inputModelTypeEndpoint : getInputs()) {
 			// check 1: not enough actual parameters, considering formal parameters with upper bound > 1 too
 			if (i >= inputModels.size()) {
-				executableOperators.clear();
-				break;
+				return null;
 			}
 			// check 2: type or substitutable types
 			while (i < inputModels.size()) {
 				Model inputModel = inputModels.get(i); // == actual parameter
 				Model inputModelType = inputModelTypeEndpoint.getTarget(); // == formal parameter
-				List<ConversionOperator> conversionOperatorTypes = MultiModelTypeHierarchy.instanceOf(inputModel, inputModelType.getUri());
-				if (conversionOperatorTypes == null) {
-					executableOperators.clear();
-					break inputs;
+				List<ConversionOperator> conversions = MultiModelTypeHierarchy.instanceOf(inputModel, inputModelType.getUri());
+				if (conversions == null) {
+					return null;
 				}
-				if (!conversionOperatorTypes.isEmpty()) {
-					conversions.put(new Integer(i), new BasicEList<ConversionOperator>(conversionOperatorTypes));
-				}
-				for (Operator executableOperator : executableOperators) {
-					inputModelTypeEndpoint.createInstance(inputModel, executableOperator, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
+				OperatorInput input = OperatorFactory.eINSTANCE.createOperatorInput();
+				input.setModel(inputModel);
+				input.setModelTypeEndpoint(inputModelTypeEndpoint);
+				if (!conversions.isEmpty()) {
+					input.getConversions().addAll(conversions);
 				}
 				i++;
 				if (inputModelTypeEndpoint.getUpperBound() == 1) {
@@ -657,10 +631,10 @@ inputs:
 		}
 		// check 3: too many actual parameters
 		if (i < inputModels.size()) {
-			executableOperators.clear();
+			return null;
 		}
 
-		return executableOperators;
+		return inputs;
 	}
 
 	/**
@@ -770,56 +744,107 @@ inputs:
 	/**
 	 * @generated NOT
 	 */
-	public EList<Model> execute(EList<Model> inputModels) throws Exception {
+	public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		//TODO MMINT[OPERATOR] This can become: public void execute()
-		//TODO MMINT[OPERATOR] Inputs, outputs and generics should be available by their name through a hash map
-		throw new MMINTException("The default execute() function must be overridden");
+		throw new MMINTException("The default run() function must be overridden");
 	}
 
 	/**
 	 * @generated NOT
 	 */
-	public void run(EList<Model> inputModels, Map<Integer, EList<ConversionOperator>> conversions, MultiModel instanceMID) throws Exception {
+	private void temp(EList<Model> inputModels) throws MMINTException {
 
-		//TODO MMINT[OPERATOR] When an operator instance is always created check that this is an instance
-		//TODO MMINT[OPERATOR] Run in its own thread to avoid blocking the user interface
-		// run all conversion operators
-		if (!conversions.isEmpty()) {
-			for (Entry<Integer, EList<ConversionOperator>> entry : conversions.entrySet()) {
-				int i = entry.getKey();
-				List<ConversionOperator> conversionList = entry.getValue();
-				Model newActualParameter = inputModels.get(i);
-				for (ConversionOperator operator : conversionList) {
-					EList<Model> operatorParameters = new BasicEList<Model>();
-					operatorParameters.add(newActualParameter);
-					Properties inputProperties = operator.getInputProperties();
-					operator.readInputProperties(inputProperties);
-					operator.init();
-					newActualParameter = operator.execute(operatorParameters).get(0);
+		// deal with generics first
+		EList<Operator> executableOperators = new BasicEList<Operator>();
+		if (getGenerics().isEmpty()) {
+			Operator newOperator = this.createInstance(null);
+			executableOperators.add(newOperator);
+		}
+		else {
+			//TODO MMINT[GENERICS] Add proper support for multiple generics
+			GenericEndpoint genericTypeEndpoint = getGenerics().get(0);
+			GenericElement genericSuperType = genericTypeEndpoint.getTarget();
+			List<GenericElement> genericTypes = MultiModelTypeHierarchy.getSubtypes(genericSuperType);
+			genericTypes.add(0, genericSuperType);
+			for (GenericElement genericType : genericTypes) {
+				if (genericType.isAbstract()) {
+					continue;
 				}
-				inputModels.set(i, newActualParameter);
+				if (!this.isAllowedTargetGeneric(genericTypeEndpoint, genericType, inputModels)) {
+					//TODO MMINT[GENERICS] Do we need to check that the generic type is consistent with the input, or is it done by the operator itself?
+					continue;
+				}
+				Operator newOperator = this.createInstance(null);
+				genericTypeEndpoint.createInstance(genericType, newOperator);
+				executableOperators.add(newOperator);
 			}
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		//TODO MMINT[OPERATOR] Run in its own thread to avoid blocking the user interface
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED))) {
+			instanceMID = null;
+		}
+		Operator newOperator = this.createInstance(instanceMID);
+		Map<String, Model> inputsByName = new HashMap<>();
+		Map<String, GenericElement> genericsByName = new HashMap<>();//TODO ask user
+		for (OperatorInput input : inputs) {
+			if (instanceMID != null) {
+				input.getModelTypeEndpoint().createInstance(
+					input.getModel(),
+					newOperator,
+					OperatorPackage.eINSTANCE.getOperator_Inputs().getName()
+				);
+			}
+			if (input.getConversions().isEmpty()) {
+				continue;
+			}
+			// run conversions
+			Model convertedInputModel = input.getModel();
+			for (ConversionOperator conversion : input.getConversions()) {
+				Properties inputProperties = conversion.getInputProperties();
+				conversion.readInputProperties(inputProperties);
+				conversion.init();
+				Map<String, Model> conversionInputsByName = new HashMap<>();
+				conversionInputsByName.put(conversion.getInputs().get(0).getName(), convertedInputModel);
+				Map<String, MultiModel> conversionOutputMIDsByName = new HashMap<>();
+				conversionOutputMIDsByName.put(conversion.getOutputs().get(0).getName(), null);
+				convertedInputModel = conversion.run(conversionInputsByName, new HashMap<>(), conversionOutputMIDsByName)
+					.get(conversion.getOutputs().get(0).getName());
+			}
+			inputsByName.put(input.getModelTypeEndpoint().getName(), convertedInputModel);
 		}
 		// run operator
-		Properties inputProperties = this.getInputProperties();
-		this.readInputProperties(inputProperties);
-		this.init();
-		EList<Model> outputModels = this.execute(inputModels);
-		if (instanceMID != null && Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED))) {
-			Operator operatorType = this.getMetatype();
-			for (int i = 0; i < operatorType.getOutputs().size(); i++) {
-				ModelEndpoint outputModelTypeEndpoint = operatorType.getOutputs().get(i);
-				outputModelTypeEndpoint.createInstance(outputModels.get(i), this, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+		Properties inputProperties = newOperator.getInputProperties();
+		newOperator.readInputProperties(inputProperties);
+		newOperator.init();
+		Map<String, Model> outputs = newOperator.run(inputsByName, genericsByName, outputMIDsByName);
+		if (instanceMID != null) {
+			for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
+				outputModelTypeEndpoint.createInstance(
+					outputs.get(outputModelTypeEndpoint.getName()),
+					newOperator,
+					OperatorPackage.eINSTANCE.getOperator_Outputs().getName()
+				);
 			}
-			instanceMID.getOperators().add(this);
 		}
-		// clean up all conversion operators
-		if (!conversions.isEmpty()) {
-			for (Entry<Integer, EList<ConversionOperator>> entry : conversions.entrySet()) {
-				for (ConversionOperator operator : entry.getValue()) {
-					((ConversionOperator) operator).cleanup();
-				}
+		// clean up conversions
+		for (OperatorInput input : inputs) {
+			if (input.getConversions().isEmpty()) {
+				continue;
+			}
+			for (ConversionOperator conversion : input.getConversions()) {
+				conversion.cleanup();
 			}
 		}
 	}

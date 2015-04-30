@@ -537,7 +537,7 @@ traceLinks:
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
 		Model origModel = actualParameters.get(0);
 		BinaryModelRel refinementRel = (BinaryModelRel) actualParameters.get(1);

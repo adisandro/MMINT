@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -48,6 +47,7 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -180,11 +180,16 @@ public class MIDContextMenu extends ContributionItem {
 			if (instanceMID == null) {
 				instanceMID = MultiModelRegistry.getMultiModel(selectedModels.get(0));
 			}
-			EList<Operator> executableOperators = new BasicEList<Operator>();
-			Map<Integer, EList<ConversionOperator>> conversions = new HashMap<>();
+			List<Operator> executableOperators = new ArrayList<>();
+			List<EList<OperatorInput>> executableOperatorsInputs = new ArrayList<>();
 			for (Operator operatorType : MultiModelTypeRegistry.getOperatorTypes()) {
 				try {
-					executableOperators.addAll(operatorType.getExecutables(selectedModels, conversions));
+					EList<OperatorInput> executableOperatorInputs = operatorType.checkAllowedInputs(selectedModels);
+					if (executableOperatorInputs == null) {
+						continue;
+					}
+					executableOperators.add(operatorType);
+					executableOperatorsInputs.add(executableOperatorInputs);
 				}
 				catch (MMINTException e) {
 					continue;
@@ -198,21 +203,17 @@ public class MIDContextMenu extends ContributionItem {
 				for (int i = 0; i < executableOperators.size(); i++) {
 					Operator executableOperator = executableOperators.get(i);
 					EList<Model> inputModels = new BasicEList<Model>(selectedModels);
-					String text;
-					if (executableOperator.getGenerics().isEmpty()) {
-						//TODO MMINT[OPERATOR] String text = operatorInstance.toString(); should always be used but operatorInstance does not exist yet for all operators
-						text = executableOperator.getName();
-					}
-					else {
-						text = executableOperator.toString();
-					}
-					if (!conversions.isEmpty()) {
-						text = "[coercion] " + text;
-					}
+					//TODO MMINT[OPERATOR] There should be a visual match between formal and actual parameter, with indication of coercion
+					String text = executableOperator.toString();
 					MenuItem operatorSubitem = new MenuItem(operatorMenu, SWT.NONE);
 					operatorSubitem.setText(text);
 					operatorSubitem.addSelectionListener(
-						new MIDContextRunOperatorListener(MMINT_MENU_OPERATOR_LABEL, executableOperator, inputModels, conversions, instanceMID)
+						new MIDContextRunOperatorListener(
+							MMINT_MENU_OPERATOR_LABEL,
+							executableOperator,
+							executableOperatorsInputs.get(i),
+							instanceMID
+						)
 					);
 				}
 			}

@@ -27,7 +27,7 @@ public class BinaryModelRelInversion extends OperatorImpl {
 	private static final String INVERTED_MODELREL_SUFFIX = "_inv";
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
 		BinaryModelRel modelRel = (BinaryModelRel) actualParameters.get(0);
 

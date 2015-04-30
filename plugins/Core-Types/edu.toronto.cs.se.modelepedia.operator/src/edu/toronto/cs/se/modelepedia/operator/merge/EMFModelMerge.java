@@ -40,7 +40,7 @@ public class EMFModelMerge extends OperatorImpl {
 	private final static String TGT_MODELREL_NAME = "tgtMatch";
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
 		Model srcModel = actualParameters.get(0);
 		Model tgtModel = actualParameters.get(2);
@@ -72,11 +72,11 @@ public class EMFModelMerge extends OperatorImpl {
 		EList<Model> matchInput = new BasicEList<Model>();
 		matchInput.add(srcModel);
 		matchInput.add(mergedModel);
-		EList<Model> matchOutput = previousOperator.execute(matchInput);
+		EList<Model> matchOutput = previousOperator.run(matchInput);
 		matchOutput.get(0).setName(SRC_MODELREL_NAME);
 		result.add(matchOutput.get(0));
 		matchInput.set(0, tgtModel);
-		matchOutput = previousOperator.execute(matchInput);
+		matchOutput = previousOperator.run(matchInput);
 		matchOutput.get(0).setName(TGT_MODELREL_NAME);
 		result.add(matchOutput.get(0));
 

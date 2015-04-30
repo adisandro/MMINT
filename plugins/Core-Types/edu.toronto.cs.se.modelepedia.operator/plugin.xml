@@ -528,7 +528,7 @@
          <generics>
             <parameter>
 	           <type
-	                 name="O">
+	                 name="OP">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Operator">

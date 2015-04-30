@@ -38,9 +38,9 @@ public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformatio
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
-		EList<Model> result = super.execute(actualParameters);
+		EList<Model> result = super.run(actualParameters);
 		KleisliBinaryModelRel kTraceModelRel = (KleisliBinaryModelRel) result.get(1);
 		Model modelPivot = kTraceModelRel.getSourceModel();
 		kTraceModelRel.setSourceModel(kTraceModelRel.getTargetModel());

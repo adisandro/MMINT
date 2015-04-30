@@ -164,7 +164,7 @@ public class FASE14 extends RE13 {
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
 		Model istarModel = actualParameters.get(0);
 

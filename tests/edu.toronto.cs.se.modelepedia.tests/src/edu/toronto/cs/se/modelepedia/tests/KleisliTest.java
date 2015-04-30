@@ -203,7 +203,7 @@ public class KleisliTest extends MMINTTest {
 		EList<Model> transformationParameters = new BasicEList<Model>();
 		transformationParameters.add(kModelRelType);
 		transformationParameters.add(inputModel);
-		EList<Model> transformationOutput = MultiModelTypeRegistry.<Operator>getType(KLEISLI_TRANSFORMATIONOPERATORTYPE_URI).execute(transformationParameters);
+		EList<Model> transformationOutput = MultiModelTypeRegistry.<Operator>getType(KLEISLI_TRANSFORMATIONOPERATORTYPE_URI).run(transformationParameters);
 		MultiModelUtils.createModelFile(instanceMID, TESTS_INSTANCEMID_URI, true);
 
 		// test equivalence with oracle

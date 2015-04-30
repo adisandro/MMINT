@@ -54,7 +54,7 @@ public interface Operator extends GenericElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The list of input parameters of this operator.
+	 * The list of input parameters of this operator (types: formal parameters; instances: actual parameters).
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Inputs</em>' containment reference list.
 	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperator_Inputs()
@@ -206,21 +206,18 @@ public interface Operator extends GenericElement {
 	void deleteType() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Gets the list of executable operator types given a list of input models to be used for
-	 * their invocation. Contract: for each executable operator type, populate the list of conversions.
+	 * <!-- begin-user-doc --> Checks if a list of input models can be used as actual parameters to run this operator
+	 * type.
 	 * 
 	 * @param inputModels
 	 *            The list of input models.
-	 * @param conversions
-	 *            Used as output, a list of conversion operator types for each input model to be converted into an
-	 *            equivalent one. The input model to be converted is given by the integer index of the map.
-	 * @return The list of executable operator types.
+	 * @return The list of inputs to the operator, including necessary conversions.
 	 * @throws MMINTException
 	 *             If this is an operator instance. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputModelsMany="true" conversionsRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputModelsMany="true"
 	 * @generated
 	 */
-	EList<Operator> getExecutables(EList<Model> inputModels, Map<Integer, EList<ConversionOperator>> conversions) throws MMINTException;
+	EList<OperatorInput> checkAllowedInputs(EList<Model> inputModels) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and possibly adds an operator instance of
@@ -302,38 +299,42 @@ public interface Operator extends GenericElement {
 	void init() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Executes this operator instance. This function contains the logic of the operator and
-	 * must be overridden.
+	 * <!-- begin-user-doc --> Runs this operator instance. This function contains the logic of the operator and must be
+	 * overridden.
 	 * 
-	 * @param inputModels
-	 *            A list of input model instances.
+	 * @param inputsByName
+	 *            The input model instances, identified by their formal parameter name.
+	 * @param genericsByName
+	 *            The generic types, identified by their metatype name.
+	 * @param outputMIDsByName
+	 *            The instance MIDs where the output models are created, identified by the output name. A null instance
+	 *            MID means that the output model isn't added to it.
 	 * @return A list of output model instances.
 	 * @throws Exception
-	 *             If something went wrong during the execution of the operator. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputModelsRequired="true"
-	 *        inputModelsMany="true"
+	 *             If something went wrong running the operator. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsByNameRequired="true" genericsByNameRequired="true" outputMIDsByNameRequired="true"
 	 * @generated
 	 */
-	EList<Model> execute(EList<Model> inputModels) throws Exception;
+	Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName) throws Exception;
 
 	/**
-	 * <!-- begin-user-doc --> Runs this operator instance, i.e. runs conversions for the input models and then invokes
-	 * readInputProperties(), init(), execute().
+	 * <!-- begin-user-doc --> Starts an instance of this operator type, i.e. runs conversions for the input models and
+	 * then invokes readInputProperties(), init(), run().
 	 * 
-	 * @param inputModels
-	 *            A list of input model instances.
-	 * @param conversions
-	 *            A list of conversion operator types for each input model to be converted into an equivalent one. The
-	 *            input model to be converted is given by the integer index of the map.
+	 * @param inputs
+	 *            A list of inputs to the operator instance, including necessary conversions.
+	 * @param outputMIDsByName
+	 *            The instance MIDs where the output models are created, identified by the output name. A null instance
+	 *            MID means that the output model isn't added to it.
 	 * @param instanceMID
-	 *            An Instance MID, null if the operator isn't going to be added to it.
+	 *            The Instance MID where the operator instance is run, null if the operator isn't going to be added to
+	 *            it.
 	 * @throws Exception
-	 *             If something went wrong running the operator. <!-- end-user-doc -->
-	 * 
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputModelsMany="true"
-	 *        conversionsRequired="true"
+	 *             If something went wrong starting the operator. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true"
+	 *        outputMIDsByNameRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
-	void run(EList<Model> inputModels, Map<Integer, EList<ConversionOperator>> conversions, MultiModel instanceMID) throws Exception;
+	void start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception;
 
 } // Operator
