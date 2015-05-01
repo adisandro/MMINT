@@ -52,6 +52,7 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 /**
@@ -484,7 +485,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				}
 			case OperatorPackage.OPERATOR___IS_ALLOWED_TARGET_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST:
 				try {
-					return isAllowedTargetGeneric((GenericEndpoint)arguments.get(0), (GenericElement)arguments.get(1), (EList<Model>)arguments.get(2));
+					return isAllowedTargetGeneric((GenericEndpoint)arguments.get(0), (GenericElement)arguments.get(1), (EList<OperatorInput>)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -623,6 +624,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				if (!conversions.isEmpty()) {
 					input.getConversions().addAll(conversions);
 				}
+				inputs.add(input);
 				i++;
 				if (inputModelTypeEndpoint.getUpperBound() == 1) {
 					break;
@@ -677,7 +679,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<Model> inputModels) throws MMINTException {
+	public boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
@@ -753,38 +755,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	private void temp(EList<Model> inputModels) throws MMINTException {
-
-		// deal with generics first
-		EList<Operator> executableOperators = new BasicEList<Operator>();
-		if (getGenerics().isEmpty()) {
-			Operator newOperator = this.createInstance(null);
-			executableOperators.add(newOperator);
-		}
-		else {
-			//TODO MMINT[GENERICS] Add proper support for multiple generics
-			GenericEndpoint genericTypeEndpoint = getGenerics().get(0);
-			GenericElement genericSuperType = genericTypeEndpoint.getTarget();
-			List<GenericElement> genericTypes = MultiModelTypeHierarchy.getSubtypes(genericSuperType);
-			genericTypes.add(0, genericSuperType);
-			for (GenericElement genericType : genericTypes) {
-				if (genericType.isAbstract()) {
-					continue;
-				}
-				if (!this.isAllowedTargetGeneric(genericTypeEndpoint, genericType, inputModels)) {
-					//TODO MMINT[GENERICS] Do we need to check that the generic type is consistent with the input, or is it done by the operator itself?
-					continue;
-				}
-				Operator newOperator = this.createInstance(null);
-				genericTypeEndpoint.createInstance(genericType, newOperator);
-				executableOperators.add(newOperator);
-			}
-		}
-	}
-
-	/**
-	 * @generated NOT
-	 */
 	public void start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
@@ -796,8 +766,15 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			instanceMID = null;
 		}
 		Operator newOperator = this.createInstance(instanceMID);
+		// generics
+		Map<String, GenericElement> genericsByName = new HashMap<>();
+		for (GenericEndpoint genericSuperTypeEndpoint : this.getGenerics()) {
+			GenericElement genericType = MultiModelDiagramUtils.selectGenericTypeToCreate(genericSuperTypeEndpoint, inputs);
+			genericSuperTypeEndpoint.createInstance(genericType, newOperator);
+			genericsByName.put(genericSuperTypeEndpoint.getName(), genericType);
+		}
+		// inputs and conversions
 		Map<String, Model> inputsByName = new HashMap<>();
-		Map<String, GenericElement> genericsByName = new HashMap<>();//TODO ask user
 		for (OperatorInput input : inputs) {
 			if (instanceMID != null) {
 				input.getModelTypeEndpoint().createInstance(
@@ -807,9 +784,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				);
 			}
 			if (input.getConversions().isEmpty()) {
+				inputsByName.put(input.getModelTypeEndpoint().getName(), input.getModel());
 				continue;
 			}
-			// run conversions
 			Model convertedInputModel = input.getModel();
 			for (ConversionOperator conversion : input.getConversions()) {
 				Properties inputProperties = conversion.getInputProperties();

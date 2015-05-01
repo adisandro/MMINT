@@ -16,8 +16,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -95,13 +93,18 @@ public class Map extends OperatorImpl {
 	private void runOperatorType(Operator operatorType, List<Set<OperatorInput>> modelTypeEndpointInputs,
 			MultiModel mapMID) {
 
+		//TODO MMINT[MAP] Create mid of operator applications
 		Set<EList<OperatorInput>> operatorInputSet = new HashSet<>();
 		getOperatorTypeInputs(modelTypeEndpointInputs, operatorInputSet, new BasicEList<>(), 0);
-		java.util.Map<String, MultiModel> outputMIDsByName = operatorType.getOutputs().stream()
-			.collect(Collectors.toMap(
-				outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
-				outputModelTypeEndpoint -> null)
-			);
+		java.util.Map<String, MultiModel> outputMIDsByName = new HashMap<>();
+		for (ModelEndpoint outputModelTypeEndpoint : operatorType.getOutputs()) {
+			outputMIDsByName.put(outputModelTypeEndpoint.getName(), null);
+		}
+//		java.util.Map<String, MultiModel> outputMIDsByName = operatorType.getOutputs().stream()
+//			.collect(Collectors.toMap(
+//				outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
+//				outputModelTypeEndpoint -> null)
+//			);
 		for (EList<OperatorInput> operatorInputs : operatorInputSet) {
 			try {
 				operatorType.start(operatorInputs, outputMIDsByName, mapMID);
@@ -117,6 +120,8 @@ public class Map extends OperatorImpl {
 			java.util.Map<String, GenericElement> genericsByName, java.util.Map<String, MultiModel> outputMIDsByName)
 			throws Exception {
 
+		//TODO MMINT[MAP] Add option for shallow/deep and support for deep
+		//TODO MMINT[MAP] mux/demux input and output mids now that the apis support them
 		Model inputMIDModel = inputsByName.get(INPUT_MIDS);
 		Operator operatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
 		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_MIDS);
@@ -125,10 +130,6 @@ public class Map extends OperatorImpl {
 		// find all possible combinations of inputs for operatorType and execute them
 		List<Set<OperatorInput>> modelTypeEndpointInputs = getModelTypeEndpointInputs(operatorType, mapMID);
 		runOperatorType(operatorType, modelTypeEndpointInputs, mapMID);
-		/* TODO
-		 * - Make it recursive and add option for shallow/deep
-		 * - Think about the alternative invocation, with a mid for every parameter of operatorType
-		 */
 
 		String mapMIDUri = MultiModelUtils.getUniqueUri(
 			MultiModelUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), MAP_MID_SUFFIX),

@@ -44,6 +44,7 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
@@ -250,9 +251,9 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 	}
 
 	@Override
-	public boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<Model> inputModels) throws MMINTException {
+	public boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
 
-		if (!super.isAllowedTargetGeneric(genericTypeEndpoint, genericType, inputModels)) {
+		if (!super.isAllowedTargetGeneric(genericTypeEndpoint, genericType, inputs)) {
 			return false;
 		}
 
@@ -261,7 +262,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		if (new ModelRelTypeTransformationConstraint().validate(modelRelType) != MAVOTruthValue.TRUE) {
 			return false;
 		}
-		Model srcModel = inputModels.get(0);
+		Model srcModel = inputs.get(0).getModel();
 		// check 2: allowed source model
 		if (
 			!MultiModelConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>()) && (

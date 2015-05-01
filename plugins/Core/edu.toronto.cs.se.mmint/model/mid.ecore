@@ -1101,7 +1101,7 @@
           eExceptions="#//MMINTException">
         <eParameters name="genericTypeEndpoint" lowerBound="1" eType="#//operator/GenericEndpoint"/>
         <eParameters name="genericType" lowerBound="1" eType="#//GenericElement"/>
-        <eParameters name="inputModels" upperBound="-1" eType="#//Model"/>
+        <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
       </eOperations>
       <eOperations name="getInputProperties" lowerBound="1" eType="#//operator/Properties"/>
       <eOperations name="readInputProperties" eExceptions="#//MMINTException">

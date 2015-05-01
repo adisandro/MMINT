@@ -669,7 +669,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		op = initEOperation(getOperator__IsAllowedTargetGeneric__GenericEndpoint_GenericElement_EList(), ecorePackage.getEBoolean(), "isAllowedTargetGeneric", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getGenericEndpoint(), "genericTypeEndpoint", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getGenericElement(), "genericType", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMIDPackage.getModel(), "inputModels", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getOperatorInput(), "inputs", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		initEOperation(getOperator__GetInputProperties(), this.getProperties(), "getInputProperties", 1, 1, IS_UNIQUE, IS_ORDERED);

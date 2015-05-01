@@ -165,33 +165,17 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="srcModel">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
-	                 name="matchRel">
+	                 name="match">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
-	                 name="tgtModel">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
 	           </typeEndpoint>
             </parameter>
          </inputs>
          <outputs>
             <parameter>
 	           <type
-	                 name="diffRel">
+	                 name="diff">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">

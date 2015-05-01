@@ -467,7 +467,7 @@
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/isAllowedTargetGeneric">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedTargetGeneric/genericTypeEndpoint"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedTargetGeneric/genericType"/>
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedTargetGeneric/inputModels"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedTargetGeneric/inputs"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getInputProperties"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/readInputProperties">

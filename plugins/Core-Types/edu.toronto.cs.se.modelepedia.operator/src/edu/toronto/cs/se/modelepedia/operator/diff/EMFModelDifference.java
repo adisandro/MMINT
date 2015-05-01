@@ -11,16 +11,19 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.diff;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
@@ -39,6 +42,9 @@ import edu.toronto.cs.se.modelepedia.operator.match.EMFModelMatch;
 
 public class EMFModelDifference extends OperatorImpl {
 
+	@NonNull private static final String INPUT_MATCHMODELREL = "match";
+	@NonNull private static final String OUTPUT_DIFFMODELREL = "diff";
+
 	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMatch";
 	private final static String MODELREL_NAME = "diff";
 	private final static String DELETED_ELEMENT_LINK_NAME = "del";
@@ -56,14 +62,15 @@ public class EMFModelDifference extends OperatorImpl {
 	}
 
 	@Override
-	public EList<Model> run(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		ModelRel matchRel = (ModelRel) actualParameters.get(1);
+		ModelRel matchRel = (ModelRel) inputsByName.get(INPUT_MATCHMODELREL);
 
 		// create diff model relationship
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(matchRel);
+		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_DIFFMODELREL);
 		ModelRel rootModelRelType = MultiModelTypeHierarchy.getRootModelRelType();
-		ModelRel diffModelRel = rootModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
+		ModelRel diffModelRel = rootModelRelType.createInstance(null, true, ModelOrigin.CREATED, instanceMID);
 		diffModelRel.setName(MODELREL_NAME);
 
 		// create model endpoints
@@ -108,10 +115,10 @@ nextDiff:
 			}
 			createLinkReference(rootLinkType, rootModelElemTypeEndpoint, diffModelRel, modelEndpointRef, modelObj, linkName);
 		}
+		Map<String, Model> outputs = new HashMap<>();
+		outputs.put(OUTPUT_DIFFMODELREL, diffModelRel);
 
-		EList<Model> result = new BasicEList<Model>();
-		result.add(diffModelRel);
-		return result;
+		return outputs;
 	}
 
 }

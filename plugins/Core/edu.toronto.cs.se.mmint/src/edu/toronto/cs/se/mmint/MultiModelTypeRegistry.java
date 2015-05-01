@@ -12,7 +12,9 @@
 package edu.toronto.cs.se.mmint;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -29,6 +31,7 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -36,7 +39,9 @@ import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -48,6 +53,7 @@ import edu.toronto.cs.se.mmint.mid.ui.ImportModelDialogFilter;
 import edu.toronto.cs.se.mmint.mid.ui.ImportModelDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogLabelProvider;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelTreeSelectionDialog;
+import edu.toronto.cs.se.mmint.mid.ui.NewGenericTypeDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewLinkReferenceDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewLinkTypeReferenceDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelDialogContentProvider;
@@ -100,13 +106,18 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets the list of model relationship types in the repository.
+	 * Gets the list of generic types in the repository.
 	 * 
-	 * @return The list of model relationship types in the repository.
+	 * @return The list of generic types in the repository.
 	 */
-	public static EList<ModelRel> getModelRelTypes() {
+	public static List<GenericElement> getGenericTypes() {
 
-		return MultiModelRegistry.getModelRels(MMINT.cachedTypeMID);
+		List<GenericElement> genericTypes = new ArrayList<>();
+		genericTypes.addAll(getModelTypes());
+		genericTypes.addAll(getModelRelTypes());
+		genericTypes.addAll(getOperatorTypes());
+
+		return genericTypes;
 	}
 
 	/**
@@ -117,6 +128,16 @@ public class MultiModelTypeRegistry {
 	public static EList<Editor> getEditorTypes() {
 
 		return MultiModelRegistry.getEditors(MMINT.cachedTypeMID);
+	}
+
+	/**
+	 * Gets the list of model relationship types in the repository.
+	 * 
+	 * @return The list of model relationship types in the repository.
+	 */
+	public static EList<ModelRel> getModelRelTypes() {
+
+		return MultiModelRegistry.getModelRels(MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -473,6 +494,41 @@ public class MultiModelTypeRegistry {
 			new MultiModelDialogLabelProvider(),
 			new NewLinkTypeReferenceDialogContentProvider(modelRelType, linkTypeUris),
 			modelRelType
+		);
+
+		return dialog;
+	}
+
+	public static MultiModelTreeSelectionDialog getGenericTypeCreationDialog(GenericEndpoint genericSuperTypeEndpoint, EList<OperatorInput> inputs) {
+
+		Operator operatorType = (Operator) genericSuperTypeEndpoint.eContainer();
+		MultiModel TypeMID = MultiModelRegistry.getMultiModel(operatorType);
+		GenericElement genericSuperType = genericSuperTypeEndpoint.getTarget();
+		List<GenericElement> genericTypes = MultiModelTypeHierarchy.getSubtypes(genericSuperType);
+		genericTypes.add(0, genericSuperType);
+		Set<GenericElement> filteredGenericTypes = new HashSet<>();
+		for (GenericElement genericType : genericTypes) {
+			try {
+				if (genericType.isAbstract()) {
+					continue;
+				}
+				if (!operatorType.isAllowedTargetGeneric(genericSuperTypeEndpoint, genericType, inputs)) {
+					//TODO MMINT[GENERICS] Can we check that the generic type is consistent with the input, or is it always done by the operator itself?
+					continue;
+				}
+				filteredGenericTypes.add(genericType);
+			}
+			catch (MMINTException e) {
+				continue;
+			}
+		}
+
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
+			shell,
+			new MultiModelDialogLabelProvider(),
+			new NewGenericTypeDialogContentProvider(filteredGenericTypes),
+			TypeMID
 		);
 
 		return dialog;

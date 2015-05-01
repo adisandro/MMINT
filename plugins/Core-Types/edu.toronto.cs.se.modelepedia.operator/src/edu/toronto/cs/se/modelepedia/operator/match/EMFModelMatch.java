@@ -11,10 +11,10 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.match;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.Diff;
@@ -31,6 +31,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
@@ -47,6 +48,10 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class EMFModelMatch extends OperatorImpl {
+
+	@NonNull private final static String INPUT_MODEL1 = "model1";
+	@NonNull private final static String INPUT_MODEL2 = "model2";
+	@NonNull private final static String OUTPUT_MATCHMODELREL = "match";
 
 	@NonNull private final static String PROPERTY_IN_MATCHATTRIBUTE = "matchAttribute";
 	@NonNull private final static String PROPERTY_IN_MATCHATTRIBUTE_DEFAULT = "name";
@@ -86,10 +91,11 @@ public class EMFModelMatch extends OperatorImpl {
 	}
 
 	@Override
-	public EList<Model> run(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		Model srcModel = actualParameters.get(0);
-		Model tgtModel = actualParameters.get(1);
+		Model srcModel = inputsByName.get(INPUT_MODEL1);
+		Model tgtModel = inputsByName.get(INPUT_MODEL2);
 
 		// create match model relationship
 		MultiModel multiModel = (isUpdateMID()) ?
@@ -133,10 +139,10 @@ nextMatch:
 				rootModelElemTypeEndpoint.createInstanceAndReference(tgtModelElemRef, matchLinkRef);
 			}
 		}
+		Map<String, Model> outputs = new HashMap<>();
+		outputs.put(OUTPUT_MATCHMODELREL, matchRel);
 
-		EList<Model> result = new BasicEList<Model>();
-		result.add(matchRel);
-		return result;
+		return outputs;
 	}
 
 }
