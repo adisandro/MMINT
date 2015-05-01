@@ -253,7 +253,7 @@ public interface Model extends GenericElement, MAVOModel {
 	Editor createInstanceEditor() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
+	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of this model
 	 * type to an Instance MID, together with an editor for it.
 	 * 
 	 * @param newModelUri
@@ -261,7 +261,8 @@ public interface Model extends GenericElement, MAVOModel {
 	 * @param origin
 	 *            The origin of the new model.
 	 * @param containerMultiModel
-	 *            An Instance MID.
+	 *            An Instance MID, null if the model isn't going to be added to
+	 *            it and the editor is not going to be created.
 	 * @return The created model.
 	 * @throws MMINTException
 	 *             If this is a model instance, if the uri of the new model

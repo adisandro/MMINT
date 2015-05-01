@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint.mid.operator.impl;
 
 import java.io.FileInputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -783,8 +784,16 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 					OperatorPackage.eINSTANCE.getOperator_Inputs().getName()
 				);
 			}
+			String inputName = input.getModelTypeEndpoint().getName();
+			if (input.getModelTypeEndpoint().getUpperBound() == -1) {
+				int i = 0;
+				while (inputsByName.get(inputName + i) != null) {
+					i++;
+				}
+				inputName += i;
+			}
 			if (input.getConversions().isEmpty()) {
-				inputsByName.put(input.getModelTypeEndpoint().getName(), input.getModel());
+				inputsByName.put(inputName, input.getModel());
 				continue;
 			}
 			Model convertedInputModel = input.getModel();
@@ -799,20 +808,31 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				convertedInputModel = conversion.run(conversionInputsByName, new HashMap<>(), conversionOutputMIDsByName)
 					.get(conversion.getOutputs().get(0).getName());
 			}
-			inputsByName.put(input.getModelTypeEndpoint().getName(), convertedInputModel);
+			inputsByName.put(inputName, convertedInputModel);
 		}
 		// run operator
 		Properties inputProperties = newOperator.getInputProperties();
 		newOperator.readInputProperties(inputProperties);
 		newOperator.init();
-		Map<String, Model> outputs = newOperator.run(inputsByName, genericsByName, outputMIDsByName);
+		Map<String, Model> outputsByName = newOperator.run(inputsByName, genericsByName, outputMIDsByName);
+		// outputs
 		if (instanceMID != null) {
 			for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
-				outputModelTypeEndpoint.createInstance(
-					outputs.get(outputModelTypeEndpoint.getName()),
-					newOperator,
-					OperatorPackage.eINSTANCE.getOperator_Outputs().getName()
-				);
+				List<Model> outputModels;
+				if (outputModelTypeEndpoint.getUpperBound() == -1) {
+					outputModels = MultiModelOperatorUtils.getVarargs(outputsByName, outputModelTypeEndpoint.getName());
+				}
+				else {
+					outputModels = new ArrayList<>();
+					outputModels.add(outputsByName.get(outputModelTypeEndpoint.getName()));
+				}
+				for (Model outputModel : outputModels) {
+					outputModelTypeEndpoint.createInstance(
+						outputModel,
+						newOperator,
+						OperatorPackage.eINSTANCE.getOperator_Outputs().getName()
+					);
+				}
 			}
 		}
 		// clean up conversions

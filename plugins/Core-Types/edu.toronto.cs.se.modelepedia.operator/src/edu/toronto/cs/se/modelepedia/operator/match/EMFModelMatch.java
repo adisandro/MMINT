@@ -38,7 +38,6 @@ import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
@@ -96,13 +95,11 @@ public class EMFModelMatch extends OperatorImpl {
 
 		Model srcModel = inputsByName.get(INPUT_MODEL1);
 		Model tgtModel = inputsByName.get(INPUT_MODEL2);
+		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_MATCHMODELREL);
 
 		// create match model relationship
-		MultiModel multiModel = (isUpdateMID()) ?
-			MultiModelRegistry.getMultiModel(srcModel) :
-			null;
 		ModelRel rootModelRelType = MultiModelTypeHierarchy.getRootModelRelType();
-		ModelRel matchRel = rootModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
+		ModelRel matchRel = rootModelRelType.createInstance(null, true, ModelOrigin.CREATED, instanceMID);
 		matchRel.setName(MODELREL_NAME);
 		// create model endpoints
 		ModelEndpoint rootModelTypeEndpoint = MultiModelTypeHierarchy.getRootModelTypeEndpoint();

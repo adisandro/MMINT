@@ -953,7 +953,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	public Model createInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
 
 		Model newModel = createInstance(newModelUri, origin, containerMultiModel);
-		newModel.createInstanceEditor();
+		if (containerMultiModel != null) {
+			newModel.createInstanceEditor();
+		}
 
 		return newModel;
 	}

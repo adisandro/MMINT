@@ -17,9 +17,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
@@ -257,6 +259,19 @@ public class MultiModelOperatorUtils {
 		MultiModel instanceMID = (MultiModel) ((DiagramEditPart) editPart.getChildren().get(0)).getDiagramView().getElement();
 
 		return instanceMID;
+	}
+
+	public static List<Model> getVarargs(Map<String, Model> argsByName, String argName) {
+
+		List<Model> models = new ArrayList<>();
+		int i = 0;
+		Model model;
+		while ((model = argsByName.get(argName + i)) != null) {
+			models.add(model);
+			i++;
+		}
+
+		return models;
 	}
 
 }

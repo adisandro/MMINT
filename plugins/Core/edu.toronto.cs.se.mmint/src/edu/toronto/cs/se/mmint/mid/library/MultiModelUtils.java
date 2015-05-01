@@ -89,7 +89,7 @@ public class MultiModelUtils {
 
 		String fileName = getFileNameFromUri(uri);
 
-		return uri.replace(fileName, newFileName);
+		return uri.replace(fileName + MMINT.MODEL_FILEEXTENSION_SEPARATOR, newFileName + MMINT.MODEL_FILEEXTENSION_SEPARATOR);
 	}
 
 	public static String replaceFileExtensionInUri(String uri, String newFileExtension) {
