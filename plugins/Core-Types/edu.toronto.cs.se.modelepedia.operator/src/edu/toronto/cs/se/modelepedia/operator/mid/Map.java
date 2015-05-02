@@ -53,14 +53,17 @@ public class Map extends OperatorImpl {
 
 	@NonNull private final static String MAP_MID_SUFFIX = "_map";
 
-	private List<Set<OperatorInput>> getModelTypeEndpointInputs(Operator operatorType, MultiModel mapMID) {
+	private List<Set<OperatorInput>> getModelTypeEndpointInputs(Operator operatorType, List<MultiModel> inputMIDs) {
 
 		//TODO MMINT[MAP] Add support for upper bound = -1
 		List<Set<OperatorInput>> modelTypeEndpointInputs = new ArrayList<>();
-		for (ModelEndpoint inputModelTypeEndpoint : operatorType.getInputs()) {
+		for (int i = 0; i < operatorType.getInputs().size(); i++) {
+			ModelEndpoint inputModelTypeEndpoint = operatorType.getInputs().get(i);
+			//TODO MMINT[MAP] Add support for intermediate combinations of input MIDs to input arguments
+			MultiModel mapMID = (inputMIDs.size() == 1) ? inputMIDs.get(0) : inputMIDs.get(i);
 			Set<OperatorInput> modelTypeEndpointInputSet = new HashSet<>();
 			modelTypeEndpointInputs.add(modelTypeEndpointInputSet);
-			for (Model inputModel : mapMID.getModels()) {
+			for (Model inputModel : MultiModelRegistry.getModels(mapMID)) {
 				List<ConversionOperator> conversions = MultiModelTypeHierarchy.instanceOf(
 					inputModel,
 					inputModelTypeEndpoint.getTargetUri()
@@ -163,21 +166,23 @@ public class Map extends OperatorImpl {
 
 		//TODO MMINT[MAP] Add option for shallow/deep and support for deep
 		List<Model> inputMIDModels = MultiModelOperatorUtils.getVarargs(inputsByName, INPUT_MIDS);
-		//TODO MMINT[MAP] Add case for inputMIDModels.size() == 0 and inputMIDModels.size() == operatorType.getInputs().size()
-		//TODO MMINT[MAP] Add support for intermediate combinations of input MIDs to input arguments
-		Model inputMIDModel = inputMIDModels.get(0);
 		Operator operatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
 		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_MIDS);
+		List<MultiModel> inputMIDs = new ArrayList<>();
+		for (Model inputMIDModel : inputMIDModels) {
+			inputMIDs.add((MultiModel) inputMIDModel.getEMFInstanceRoot());
+		}
 
 		// find all possible combinations of inputs for operatorType and execute them
-		MultiModel inputMID = (MultiModel) inputMIDModel.getEMFInstanceRoot();
-		List<Set<OperatorInput>> modelTypeEndpointInputs = getModelTypeEndpointInputs(operatorType, inputMID);
+		List<Set<OperatorInput>> modelTypeEndpointInputs = getModelTypeEndpointInputs(operatorType, inputMIDs);
 		Set<EList<OperatorInput>> operatorInputSet = new HashSet<>();
 		getOperatorTypeInputs(modelTypeEndpointInputs, operatorInputSet, new BasicEList<>(), 0);
 		java.util.Map<String, Model> outputsByName = mapOperatorType(operatorType, operatorInputSet, instanceMID);
 
 		// store model elements created in the input mids
-		MultiModelUtils.createModelFile(inputMID, inputMIDModel.getUri(), true);
+		for (int i = 0; i < inputMIDModels.size(); i++) {
+			MultiModelUtils.createModelFile(inputMIDs.get(i), inputMIDModels.get(i).getUri(), true);
+		}
 
 		return outputsByName;
 	}
