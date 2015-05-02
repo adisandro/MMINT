@@ -518,8 +518,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				}
 			case OperatorPackage.OPERATOR___START__ELIST_MAP_MULTIMODEL:
 				try {
-					start((EList<OperatorInput>)arguments.get(0), (Map<String, MultiModel>)arguments.get(1), (MultiModel)arguments.get(2));
-					return null;
+					return start((EList<OperatorInput>)arguments.get(0), (Map<String, MultiModel>)arguments.get(1), (MultiModel)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -756,7 +755,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public void start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception {
+	public Map<String, Model> start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
@@ -844,6 +843,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				conversion.cleanup();
 			}
 		}
+
+		return outputsByName;
 	}
 
 } //OperatorImpl

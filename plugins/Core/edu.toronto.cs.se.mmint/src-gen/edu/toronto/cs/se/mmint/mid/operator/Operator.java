@@ -309,7 +309,7 @@ public interface Operator extends GenericElement {
 	 * @param outputMIDsByName
 	 *            The instance MIDs where the output models are created, identified by the output name. A null instance
 	 *            MID means that the output model isn't added to it.
-	 * @return A list of output model instances.
+	 * @return The output model instances, identified by their name.
 	 * @throws Exception
 	 *             If something went wrong running the operator. <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsByNameRequired="true" genericsByNameRequired="true" outputMIDsByNameRequired="true"
@@ -329,11 +329,12 @@ public interface Operator extends GenericElement {
 	 * @param instanceMID
 	 *            The Instance MID where the operator instance is run, null if the operator isn't going to be added to
 	 *            it.
+	 * @return The output model instances, identified by their name.
 	 * @throws Exception
 	 *             If something went wrong starting the operator. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true" outputMIDsByNameRequired="true" instanceMIDRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true" outputMIDsByNameRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
-	void start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception;
+	Map<String, Model> start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception;
 
 } // Operator

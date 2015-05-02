@@ -95,8 +95,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 					new Path(modelUri)
 				)
 			);
-			EditorCreationWizardDialog wizDialog;
-			wizDialog = invokeInstanceWizard(modelFile);
+			EditorCreationWizardDialog wizDialog = invokeInstanceWizard(modelFile);
 			if (wizDialog == null) {
 				throw new MMINTException("Diagram creation canceled by user");
 			}

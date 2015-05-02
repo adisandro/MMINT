@@ -29,7 +29,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicyWithCustomReparent;
 
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.MIDCreateShortcutDecorationsCommand;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MidDiagramSemanticEditPolicy;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MIDDiagramSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MultiModelCanonicalEditPolicy;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MultiModelItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
@@ -94,7 +94,7 @@ public class MultiModelEditPart extends DiagramEditPart {
 				return null;
 			}
 		});
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new MidDiagramSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new MIDDiagramSemanticEditPolicy());
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}

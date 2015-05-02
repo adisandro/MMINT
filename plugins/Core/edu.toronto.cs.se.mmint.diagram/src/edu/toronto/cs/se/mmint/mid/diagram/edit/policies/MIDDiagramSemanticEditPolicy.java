@@ -26,7 +26,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
  * @author Alessio Di Sandro
  * 
  */
-public class MidDiagramSemanticEditPolicy extends MultiModelItemSemanticEditPolicy {
+public class MIDDiagramSemanticEditPolicy extends MultiModelItemSemanticEditPolicy {
 
 	/**
 	 * Gets the command to create a new element in the diagram.

@@ -43,6 +43,7 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class Map extends OperatorImpl {
 
@@ -98,36 +99,50 @@ public class Map extends OperatorImpl {
 		}
 	}
 
-	private java.util.Map<String, Model> runOperatorType(Operator operatorType, Set<EList<OperatorInput>> operatorInputSet, MultiModel instanceMID) throws Exception {
+	private java.util.Map<String, Model> mapOperatorType(Operator operatorType, Set<EList<OperatorInput>> operatorInputSet, MultiModel instanceMID) throws Exception {
 
-		// start operator types
+		// create output MIDs
 		java.util.Map<String, MultiModel> outputMIDsByName = operatorType.getOutputs().stream()
 			.collect(Collectors.toMap(
 				outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
 				outputModelTypeEndpoint -> MIDFactory.eINSTANCE.createMultiModel())
 			);
+		// start operator types
+		java.util.Map<String, List<Model>> gmfShortcutsByOutputName = new HashMap<>();
 		for (EList<OperatorInput> operatorInputs : operatorInputSet) {
 			try {
-				//TODO MMINT[MAP] Create mid of operator applications
-				operatorType.start(operatorInputs, outputMIDsByName, null);
+				//TODO MMINT[MAP] Create mid of operator applications and pass it instead of null
+				java.util.Map<String, Model> operatorOutputsByName = operatorType.start(operatorInputs, outputMIDsByName, null);
+				// get gmf shortcuts to be created (output MIDs containing model rels need gmf shortcuts to model endpoints)
+				for (Entry<String, Model> operatorOutput : operatorOutputsByName.entrySet()) {
+					if (!(operatorOutput.getValue() instanceof ModelRel)) {
+						continue;
+					}
+					List<Model> gmfShortcuts = ((ModelRel) operatorOutput.getValue()).getModelEndpoints().stream()
+						.map(ModelEndpoint::getTarget)
+						.distinct()
+						.collect(Collectors.toList());
+					gmfShortcutsByOutputName.put(operatorOutput.getKey(), gmfShortcuts);
+				}
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.WARNING, "Operator " + operatorType + " execution error, skipping it", e);
 			}
 		}
-		// create output MIDs
+		//TODO MMINT[MAP] create gmf shortcuts
+		// store output MIDs
 		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
 		String baseOutputUri = MultiModelRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
 		java.util.Map<String, Model> outputsByName = new HashMap<>();
 		int i = 0;
-		for (Entry<String, MultiModel> output : outputMIDsByName.entrySet()) {
+		for (Entry<String, MultiModel> outputMID : outputMIDsByName.entrySet()) {
 			String outputMIDUri = MultiModelUtils.getUniqueUri(
-				MultiModelUtils.replaceFileNameInUri(baseOutputUri, output.getKey() + MAP_MID_SUFFIX),
+				MultiModelUtils.replaceFileNameInUri(baseOutputUri, outputMID.getKey() + MAP_MID_SUFFIX),
 				true,
 				false
 			);
 			//TODO MMINT[MAP] Fix issues with gmf shortcuts: NOTYPE + creating shortcuts in advance
-			MultiModelUtils.createModelFile(output.getValue(), outputMIDUri, true);
+			MultiModelUtils.createModelFile(outputMID.getValue(), outputMIDUri, true);
 			Model outputMIDModel = midModelType.createInstanceAndEditor(
 				outputMIDUri,
 				ModelOrigin.CREATED,
@@ -159,7 +174,10 @@ public class Map extends OperatorImpl {
 		List<Set<OperatorInput>> modelTypeEndpointInputs = getModelTypeEndpointInputs(operatorType, inputMID);
 		Set<EList<OperatorInput>> operatorInputSet = new HashSet<>();
 		getOperatorTypeInputs(modelTypeEndpointInputs, operatorInputSet, new BasicEList<>(), 0);
-		java.util.Map<String, Model> outputsByName = runOperatorType(operatorType, operatorInputSet, instanceMID);
+		java.util.Map<String, Model> outputsByName = mapOperatorType(operatorType, operatorInputSet, instanceMID);
+
+		// store model elements created in the input mids
+		MultiModelUtils.createModelFile(inputMID, inputMIDModel.getUri(), true);
 
 		return outputsByName;
 	}

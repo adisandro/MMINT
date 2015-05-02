@@ -53,7 +53,7 @@
     <behaviour
         xsi:type="gmfgen:CustomBehaviour"
         key="EditPolicyRoles.SEMANTIC_ROLE"
-        editPolicyQualifiedClassName="edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MidDiagramSemanticEditPolicy"/>
+        editPolicyQualifiedClassName="edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MIDDiagramSemanticEditPolicy"/>
     <behaviour
         xsi:type="gmfgen:CustomBehaviour"
         key="EditPolicyRoles.POPUPBAR_ROLE"

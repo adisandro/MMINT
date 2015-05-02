@@ -1132,7 +1132,11 @@
           </eGenericType>
         </eParameters>
       </eOperations>
-      <eOperations name="start" eExceptions="#//operator/Exception">
+      <eOperations name="start" lowerBound="1" eExceptions="#//operator/Exception">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eTypeArguments eClassifier="#//Model"/>
+        </eGenericType>
         <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
         <eParameters name="outputMIDsByName" lowerBound="1">
           <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
