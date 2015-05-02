@@ -396,7 +396,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		ModelElement newModelElem = MultiModelRegistry.getExtendibleElement(newModelElemUri, multiModel);
 		if (newModelElem == null) {
 			newModelElem = MIDFactory.eINSTANCE.createModelElement();
-			//TODO MMINT[MAP] When input and output come from different mids, is it correct to store the extendible map entry in the output only?
+			//TODO MMINT[MAP] When input and output come from different mids, is it not correct to store the extendible map entry in the output
 			super.addInstance(newModelElem, newModelElemUri, newModelElemName, multiModel);
 			newModelElem.setEInfo(eInfo);
 			containerModelEndpointRef.getObject().getTarget().getModelElems().add(newModelElem);
