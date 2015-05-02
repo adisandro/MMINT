@@ -120,9 +120,7 @@ public class Map extends OperatorImpl {
 			@NonNull MultiModel instanceMID) throws Exception {
 
 		// create output MIDs
-		java.util.Map<String, MultiModel> outputMIDsByName = operatorType
-			.getOutputs()
-			.stream()
+		java.util.Map<String, MultiModel> outputMIDsByName = operatorType.getOutputs().stream()
 			.collect(
 				Collectors.toMap(
 					outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
@@ -141,9 +139,7 @@ public class Map extends OperatorImpl {
 					if (!(operatorOutput.getValue() instanceof ModelRel)) {
 						continue;
 					}
-					Set<Model> gmfShortcutsToAdd = ((ModelRel) operatorOutput.getValue())
-						.getModelEndpoints()
-						.stream()
+					Set<Model> gmfShortcutsToAdd = ((ModelRel) operatorOutput.getValue()).getModelEndpoints().stream()
 						.map(ModelEndpoint::getTarget)
 						.collect(Collectors.toSet());
 					Set<Model> gmfShortcuts = gmfShortcutsByOutputName.get(operatorOutput.getKey());
