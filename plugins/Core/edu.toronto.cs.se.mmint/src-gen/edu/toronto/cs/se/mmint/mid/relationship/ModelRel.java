@@ -214,28 +214,27 @@ public interface ModelRel extends Model {
 	ModelRel createInstance(String newModelRelUri, boolean isBinary, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and adds a model relationship instance of
-	 * this model relationship type to an Instance MID, together with its model
-	 * instance endpoints and references to them.
+	 * <!-- begin-user-doc --> Creates and adds a model relationship instance of this model relationship type to an
+	 * Instance MID, together with its model instance endpoints and references to them.
 	 * 
 	 * @param newModelRelUri
-	 *            The uri of the new model relationship, null if the new model
-	 *            relationship is not in a separate file; e.g. a standalone
-	 *            model relationship is in its own files, a plain model
-	 *            relationship is not.
+	 *            The uri of the new model relationship, null if the new model relationship is not in a separate file;
+	 *            e.g. a standalone model relationship is in its own files, a plain model relationship is not.
+	 * @param isBinary
+	 *            True if the new model relationship is binary, false otherwise.
 	 * @param origin
 	 *            The origin of the new model relationship.
 	 * @param targetModels
 	 *            The models that are the target of the new model endpoints.
 	 * @return The created model relationship.
 	 * @throws MMINTException
-	 *             If this is a model relationship instance, if no target models
-	 *             are specified, or if the uri of the new model relationship is
-	 *             already registered in the Instance MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" originRequired="true" targetModelsRequired="true" targetModelsMany="true"
+	 *             If this is a model relationship instance, if no target models are specified, if the uri of the new
+	 *             model relationship is already registered in the Instance MID, or if the new model relationship is
+	 *             binary but 2 target models are not specified. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isBinaryRequired="true" originRequired="true" targetModelsRequired="true" targetModelsMany="true"
 	 * @generated
 	 */
-	ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, ModelOrigin origin, EList<Model> targetModels) throws MMINTException;
+	ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, boolean isBinary, ModelOrigin origin, EList<Model> targetModels) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->Creates and adds a model relationship instance of

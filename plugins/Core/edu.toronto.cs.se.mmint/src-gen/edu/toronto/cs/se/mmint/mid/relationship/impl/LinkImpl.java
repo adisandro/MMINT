@@ -435,6 +435,9 @@ public class LinkImpl extends ExtendibleElementImpl implements Link {
 		if (targetModelElemRefs.size() == 0) {
 			throw new MMINTException("No target model element references specified");
 		}
+		if (isBinary && targetModelElemRefs.size() != 2) {
+			throw new MMINTException("A binary link must have 2 target model elements");
+		}
 
 		ModelRel containerModelRel = (ModelRel) targetModelElemRefs.get(0).eContainer().eContainer();
 		// create link

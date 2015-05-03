@@ -183,19 +183,17 @@ public interface Link extends ExtendibleElement {
 	LinkReference createInstanceAndReference(boolean isBinary, ModelRel containerModelRel) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and adds a link instance of this link
-	 * type and a reference to it to an Instance MID, together with its model
-	 * element instance endpoints and references to them.
+	 * <!-- begin-user-doc --> Creates and adds a link instance of this link type and a reference to it to an Instance
+	 * MID, together with its model element instance endpoints and references to them.
 	 * 
 	 * @param isBinary
 	 *            True if the new link is binary, false otherwise.
 	 * @param targetModelElemRefs
-	 *            The references to the model elements that are the target of
-	 *            the new model element endpoints.
+	 *            The references to the model elements that are the target of the new model element endpoints.
 	 * @return The created reference to the new link.
 	 * @throws MMINTException
-	 *             If this is a link instance, or if no target references to
-	 *             model elements are specified. <!-- end-user-doc -->
+	 *             If this is a link instance, if no target references to model elements are specified, or if the new
+	 *             link is binary but 2 target model elements are not specified. <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isBinaryRequired="true" targetModelElemRefsRequired="true" targetModelElemRefsMany="true"
 	 * @generated
 	 */
