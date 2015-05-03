@@ -121,10 +121,9 @@ public class Map extends OperatorImpl {
 
 		// create output MIDs
 		java.util.Map<String, MultiModel> outputMIDsByName = operatorType.getOutputs().stream()
-			.collect(
-				Collectors.toMap(
-					outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
-					outputModelTypeEndpoint -> MIDFactory.eINSTANCE.createMultiModel()));
+			.collect(Collectors.toMap(
+				outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
+				outputModelTypeEndpoint -> MIDFactory.eINSTANCE.createMultiModel()));
 		// start operator types
 		java.util.Map<String, Set<Model>> gmfShortcutsByOutputName = new HashMap<>();
 		for (EList<OperatorInput> operatorInputs : operatorInputSet) {
