@@ -442,7 +442,7 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="srcModel">
+	                 name="src">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
@@ -452,7 +452,7 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="tgtModel">
+	                 name="tgt">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
@@ -460,7 +460,7 @@
             </parameter>
             <parameter>
 	           <type
-	                 name="traceModelRel">
+	                 name="traceRel">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -55,6 +56,16 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 
+	@NonNull
+	private final static String INPUT_MODEL = "src";
+	@NonNull
+	private final static String OUTPUT_MODEL = "tgt";
+	@NonNull
+	private final static String OUTPUT_MODELREL = "traceRel";
+	@NonNull
+	private final static String GENERIC_MODELRELTYPE = "MR";
+
+	@NonNull
 	protected static final String TRANSFORMATION_SUFFIX = "_transformed";
 
 	protected EObject tgtRootModelObj;
@@ -219,11 +230,12 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 	}
 
 	@Override
-	public EList<Model> run(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(Map<String, Model> inputsByName,
+		java.util.Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName)
+		throws Exception {
 
-		ModelRel traceModelRelType = (ModelRel) getGenerics().get(0).getTarget();
-		Model srcModel = actualParameters.get(0);
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(srcModel);
+		ModelRel traceModelRelType = (ModelRel) genericsByName.get(GENERIC_MODELRELTYPE);
+		Model srcModel = inputsByName.get(INPUT_MODEL);
 
 		int srcIndex = (
 			traceModelRelType instanceof BinaryModelRel ||
@@ -236,18 +248,19 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			MultiModelUtils.addFileNameSuffixInUri(srcModel.getUri(), TRANSFORMATION_SUFFIX),
 			tgtModelType.getFileExtension()
 		);
-		Model tgtModel = tgtModelType.createInstance(tgtModelUri, ModelOrigin.CREATED, multiModel);
-		BinaryModelRel traceModelRel = (BinaryModelRel) traceModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
+		Model tgtModel = tgtModelType.createInstance(tgtModelUri, ModelOrigin.CREATED, outputMIDsByName.get(OUTPUT_MODEL));
+		BinaryModelRel traceModelRel = (BinaryModelRel) traceModelRelType.createInstance(null, true, ModelOrigin.CREATED, outputMIDsByName.get(OUTPUT_MODELREL));
 		traceModelRel.setName(srcModel.getName() + MMINT.BINARY_MODELREL_LINK_SEPARATOR + tgtModel.getName());
 		traceModelRelType.getModelEndpointRefs().get(srcIndex).getObject().createInstanceAndReference(srcModel, traceModelRel);
 		traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().createInstanceAndReference(tgtModel, traceModelRel);
 		transform(traceModelRel, srcModel, srcIndex, tgtIndex);
 		tgtModel.createInstanceEditor();
 
-		EList<Model> result = new BasicEList<Model>();
-		result.add(tgtModel);
-		result.add(traceModelRel);
-		return result;
+		Map<String, Model> outputsByName = new HashMap<>();
+		outputsByName.put(OUTPUT_MODEL, tgtModel);
+		outputsByName.put(OUTPUT_MODELREL, traceModelRel);
+
+		return outputsByName;
 	}
 
 	@Override

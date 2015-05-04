@@ -65,21 +65,17 @@ public class Reduce extends OperatorImpl {
 		while (!(operatorInputSet = operatorType.findAllowedInputs(inputMIDs)).isEmpty()) {
 			for (EList<OperatorInput> operatorInputs : operatorInputSet) {
 				try {
-					Map<String, Model> operatorOutputsByName = operatorType.start(
-						operatorInputs,
-						operatorOutputMIDsByName,
-						null);
+					Map<String, Model> operatorOutputsByName = operatorType.start(operatorInputs,
+						operatorOutputMIDsByName, null);
 					// get all model inputs, including the ones attached to model rel inputs
 					Set<Model> inputModels = new HashSet<>();
 					Set<ModelRel> inputModelRels = new HashSet<>();
 					for (OperatorInput operatorInput : operatorInputs) {
 						Model inputModel = operatorInput.getModel();
 						if (inputModel instanceof ModelRel) {
-							inputModels.addAll(
-								((ModelRel) inputModel).getModelEndpoints().stream()
-									.map(ModelEndpoint::getTarget)
-									.collect(Collectors.toSet())
-							);
+							inputModels.addAll(((ModelRel) inputModel).getModelEndpoints().stream()
+								.map(ModelEndpoint::getTarget)
+								.collect(Collectors.toSet()));
 							inputModelRels.add((ModelRel) inputModel);
 						}
 						else {
@@ -95,7 +91,8 @@ public class Reduce extends OperatorImpl {
 								.map(ModelEndpoint::getTarget)
 								.collect(Collectors.toSet())))
 						.collect(Collectors.toSet());
-					// ..then for each model rel in the output that is connected with the input model, compute the composition
+					// ..then for each model rel in the output that is connected with the input model, compute the
+					// composition
 					Operator compOperatorType = MultiModelTypeRegistry.getType(OPERATORTYPE_MODELRELCOMPOSITION_URI);
 					Map<String, MultiModel> compOperatorOutputMIDsByName = compOperatorType.getOutputs().stream()
 						.collect(Collectors.toMap(
@@ -125,14 +122,19 @@ public class Reduce extends OperatorImpl {
 					}
 					// delete operator inputs (model rels are deleted as a side effect of deleting the models)
 					inputModels.forEach(modelInput -> {
-						try {modelInput.deleteInstance();} catch(MMINTException e){}
+						try {
+							modelInput.deleteInstance();
+						}
+						catch (MMINTException e) {}
 					});
 					// after a successful execution, go back to the outer loop
 					break;
 				}
 				catch (Exception e) {
-					// other than errors, the operator can fail because of input constraints due to the cartesian product
-					MMINTException.print(IStatus.WARNING, "Operator " + operatorType + " execution error, skipping it", e);
+					// other than errors, the operator can fail because of input constraints due to the cartesian
+					// product
+					MMINTException.print(IStatus.WARNING, "Operator " + operatorType + " execution error, skipping it",
+						e);
 				}
 			}
 		}
