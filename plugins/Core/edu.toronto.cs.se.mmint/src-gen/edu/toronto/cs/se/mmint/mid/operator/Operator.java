@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint.mid.operator;
 
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -204,6 +205,22 @@ public interface Operator extends GenericElement {
 	 * @generated
 	 */
 	void deleteType() throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Finds all input models that can be used as actual parameters to run this operator type.
+	 * 
+	 * @param inputMIDs
+	 *            A list of MIDs where to look for input models. If it's one MID then all input models are taken from
+	 *            it, otherwise each formal parameter is matched to a MID and input models are taken accordingly.
+	 * @return A set of inputs to the operator, including necessary conversions.
+	 * @throws MMINTException
+	 *             If this is an operator instance. <!-- end-user-doc -->
+	 * @model dataType=
+	 *        "edu.toronto.cs.se.mmint.mid.operator.Set<org.eclipse.emf.ecore.EEList<edu.toronto.cs.se.mmint.mid.operator.OperatorInput>>"
+	 *        required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputMIDsMany="true"
+	 * @generated
+	 */
+	Set<EList<OperatorInput>> findAllowedInputs(EList<MultiModel> inputMIDs) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Checks if a list of input models can be used as actual parameters to run this operator

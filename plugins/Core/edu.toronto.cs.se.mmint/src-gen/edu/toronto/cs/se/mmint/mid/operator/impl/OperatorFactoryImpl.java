@@ -13,14 +13,13 @@ package edu.toronto.cs.se.mmint.mid.operator.impl;
 
 import java.util.Properties;
 import java.util.Random;
-
+import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -97,6 +96,8 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 				return createExceptionFromString(eDataType, initialValue);
 			case OperatorPackage.PROPERTIES:
 				return createPropertiesFromString(eDataType, initialValue);
+			case OperatorPackage.SET:
+				return createSetFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -116,6 +117,8 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 				return convertExceptionToString(eDataType, instanceValue);
 			case OperatorPackage.PROPERTIES:
 				return convertPropertiesToString(eDataType, instanceValue);
+			case OperatorPackage.SET:
+				return convertSetToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -223,6 +226,24 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	 */
 	public String convertPropertiesToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Set<?> createSetFromString(EDataType eDataType, String initialValue) {
+		return (Set<?>)super.createFromString(initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSetToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(instanceValue);
 	}
 
 	/**

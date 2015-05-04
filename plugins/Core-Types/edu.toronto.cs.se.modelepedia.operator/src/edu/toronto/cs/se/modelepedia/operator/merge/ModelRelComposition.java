@@ -85,7 +85,7 @@ public class ModelRelComposition extends OperatorImpl {
 					.map(modelElemEndpointRef -> (LinkReference) modelElemEndpointRef.eContainer())
 					.collect(Collectors.toList());
 				for (LinkReference linkRef2 : linkRefs2) {
-					EList targetModelElemRefs = new BasicEList<>();
+					EList<ModelElementReference> targetModelElemRefs = new BasicEList<>();
 					for (ModelElement modelElem1 : modelElems1) {
 						targetModelElemRefs.add(modelElem1.createInstanceReference(composedModelEndpointRef1));
 					}
@@ -120,6 +120,7 @@ public class ModelRelComposition extends OperatorImpl {
 		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_COMPOSEDMODELREL);
 
 		// check input constraints
+		//TODO MMINT[OPERATOR] Turn checking of input constraints into api, or create specific exception to signal it
 		if (modelRel1.getModelEndpoints().size() != 2) {
 			throw new MMINTException("The model relationship " + modelRel1 + " doesn't have 2 model endpoints");
 		}

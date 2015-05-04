@@ -446,6 +446,9 @@
       <genDataTypes ecoreDataType="mid.ecore#//operator/Random"/>
       <genDataTypes ecoreDataType="mid.ecore#//operator/Exception"/>
       <genDataTypes ecoreDataType="mid.ecore#//operator/Properties"/>
+      <genDataTypes ecoreDataType="mid.ecore#//operator/Set">
+        <genTypeParameters ecoreTypeParameter="mid.ecore#//operator/Set/E"/>
+      </genDataTypes>
       <genClasses ecoreClass="mid.ecore#//operator/Operator">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/inputs"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/outputs"/>
@@ -458,6 +461,9 @@
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMetatype"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getSupertype"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteType"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/findAllowedInputs">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/findAllowedInputs/inputMIDs"/>
+        </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/checkAllowedInputs">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/checkAllowedInputs/inputModels"/>
         </genOperations>

@@ -14,13 +14,12 @@ package edu.toronto.cs.se.mmint.mid.operator.util;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
-
+import java.util.Set;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -126,6 +125,8 @@ public class OperatorValidator extends EObjectValidator {
 				return validateException((Exception)value, diagnostics, context);
 			case OperatorPackage.PROPERTIES:
 				return validateProperties((Properties)value, diagnostics, context);
+			case OperatorPackage.SET:
+				return validateSet((Set<?>)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -271,6 +272,15 @@ public class OperatorValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateProperties(Properties properties, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSet(Set<?> set, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

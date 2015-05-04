@@ -16,9 +16,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IFile;
@@ -32,6 +34,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINT;
@@ -462,6 +465,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case OperatorPackage.OPERATOR___FIND_ALLOWED_INPUTS__ELIST:
+				try {
+					return findAllowedInputs((EList<MultiModel>)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case OperatorPackage.OPERATOR___CHECK_ALLOWED_INPUTS__ELIST:
 				try {
 					return checkAllowedInputs((EList<Model>)arguments.get(0));
@@ -591,6 +601,80 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		for (Operator operatorSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, multiModel)) {
 			operatorSubtype.deleteType();
 		}
+	}
+
+	/**
+	 * Computes the cartesian product of allowed input models for each formal parameters of this operator type.
+	 * 
+	 * @param modelTypeEndpointInputs
+	 *            The allowed input models for each formal parameter.
+	 * @param operatorTypeInputs
+	 *            A set of inputs to the operator type, including necessary conversions, used as output.
+	 * @param inputsAccumulator
+	 *            A list of inputs so far, used in the recursive cartesian product.
+	 * @param currentIndex
+	 *            The current recursion index.
+	 * @generated NOT
+	 */
+	private void getOperatorTypeInputs(
+			@NonNull EList<Set<OperatorInput>> modelTypeEndpointInputs,
+			@NonNull Set<EList<OperatorInput>> operatorTypeInputs,
+			@NonNull EList<OperatorInput> inputsAccumulator, int currentIndex) {
+
+		if (modelTypeEndpointInputs.size() == currentIndex) {
+			operatorTypeInputs.add(inputsAccumulator);
+		}
+		else {
+			for (OperatorInput inputModel : modelTypeEndpointInputs.get(currentIndex)) {
+				EList<OperatorInput> newInputModelsAccumulator = new BasicEList<>(inputsAccumulator);
+				newInputModelsAccumulator.add(inputModel);
+				getOperatorTypeInputs(
+					modelTypeEndpointInputs,
+					operatorTypeInputs,
+					newInputModelsAccumulator,
+					currentIndex + 1);
+			}
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Set<EList<OperatorInput>> findAllowedInputs(EList<MultiModel> inputMIDs) throws MMINTException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		// get inputs by model type endpoint
+		// TODO MMINT[MAP] Add support for upper bound = -1
+		EList<Set<OperatorInput>> modelTypeEndpointInputs = new BasicEList<>();
+		for (int i = 0; i < this.getInputs().size(); i++) {
+			ModelEndpoint inputModelTypeEndpoint = this.getInputs().get(i);
+			// TODO MMINT[MAP] Add support for intermediate combinations of input MIDs to input arguments
+			MultiModel inputMID = (inputMIDs.size() == 1) ? inputMIDs.get(0) : inputMIDs.get(i);
+			Set<OperatorInput> modelTypeEndpointInputSet = new HashSet<>();
+			modelTypeEndpointInputs.add(modelTypeEndpointInputSet);
+			for (Model inputModel : MultiModelRegistry.getModels(inputMID)) {
+				List<ConversionOperator> conversions = MultiModelTypeHierarchy.instanceOf(
+					inputModel,
+					inputModelTypeEndpoint.getTargetUri());
+				if (conversions == null) {
+					continue;
+				}
+				OperatorInput operatorInput = OperatorFactory.eINSTANCE.createOperatorInput();
+				operatorInput.setModel(inputModel);
+				operatorInput.getConversions().addAll(conversions);
+				operatorInput.setModelTypeEndpoint(inputModelTypeEndpoint);
+				modelTypeEndpointInputSet.add(operatorInput);
+			}
+		}
+
+		// do cartesian product of inputs
+		Set<EList<OperatorInput>> operatorInputSet = new HashSet<>();
+		getOperatorTypeInputs(modelTypeEndpointInputs, operatorInputSet, new BasicEList<>(), 0);
+
+		return operatorInputSet;
 	}
 
 	/**

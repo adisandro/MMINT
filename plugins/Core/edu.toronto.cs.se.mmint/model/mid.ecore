@@ -1089,6 +1089,14 @@
         </eAnnotations>
       </eOperations>
       <eOperations name="deleteType" eExceptions="#//MMINTException"/>
+      <eOperations name="findAllowedInputs" lowerBound="1" eExceptions="#//MMINTException">
+        <eGenericType eClassifier="#//operator/Set">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+            <eTypeArguments eClassifier="#//operator/OperatorInput"/>
+          </eTypeArguments>
+        </eGenericType>
+        <eParameters name="inputMIDs" upperBound="-1" eType="#//MultiModel"/>
+      </eOperations>
       <eOperations name="checkAllowedInputs" upperBound="-1" eType="#//operator/OperatorInput"
           eExceptions="#//MMINTException">
         <eParameters name="inputModels" upperBound="-1" eType="#//Model"/>
@@ -1276,6 +1284,9 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The wrapper for java.util.Properties."/>
       </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="Set" instanceClassName="java.util.Set">
+      <eTypeParameters name="E"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

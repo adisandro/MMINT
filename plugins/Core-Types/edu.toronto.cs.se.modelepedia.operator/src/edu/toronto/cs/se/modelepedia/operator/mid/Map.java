@@ -11,9 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.mid;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -30,7 +28,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
@@ -46,9 +43,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -64,56 +59,6 @@ public class Map extends OperatorImpl {
 
 	@NonNull
 	private final static String MAP_MID_SUFFIX = "_map";
-
-	private @NonNull List<Set<OperatorInput>> getModelTypeEndpointInputs(
-			@NonNull Operator operatorType, @NonNull List<MultiModel> inputMIDs) {
-
-		// TODO MMINT[MAP] Add support for upper bound = -1
-		List<Set<OperatorInput>> modelTypeEndpointInputs = new ArrayList<>();
-		for (int i = 0; i < operatorType.getInputs().size(); i++) {
-			ModelEndpoint inputModelTypeEndpoint = operatorType.getInputs().get(i);
-			// TODO MMINT[MAP] Add support for intermediate combinations of input MIDs to input arguments
-			MultiModel mapMID = (inputMIDs.size() == 1) ? inputMIDs.get(0) : inputMIDs.get(i);
-			Set<OperatorInput> modelTypeEndpointInputSet = new HashSet<>();
-			modelTypeEndpointInputs.add(modelTypeEndpointInputSet);
-			for (Model inputModel : MultiModelRegistry.getModels(mapMID)) {
-				List<ConversionOperator> conversions = MultiModelTypeHierarchy.instanceOf(
-					inputModel,
-					inputModelTypeEndpoint.getTargetUri());
-				if (conversions == null) {
-					continue;
-				}
-				OperatorInput operatorInput = OperatorFactory.eINSTANCE.createOperatorInput();
-				operatorInput.setModel(inputModel);
-				operatorInput.getConversions().addAll(conversions);
-				operatorInput.setModelTypeEndpoint(inputModelTypeEndpoint);
-				modelTypeEndpointInputSet.add(operatorInput);
-			}
-		}
-
-		return modelTypeEndpointInputs;
-	}
-
-	private void getOperatorTypeInputs(
-			@NonNull List<Set<OperatorInput>> modelTypeEndpointInputs,
-			@NonNull Set<EList<OperatorInput>> operatorTypeInputs,
-			@NonNull EList<OperatorInput> inputModelsAccumulator, int currentIndex) {
-
-		if (modelTypeEndpointInputs.size() == currentIndex) {
-			operatorTypeInputs.add(inputModelsAccumulator);
-		}
-		else {
-			for (OperatorInput inputModel : modelTypeEndpointInputs.get(currentIndex)) {
-				EList<OperatorInput> newInputModelsAccumulator = new BasicEList<>(inputModelsAccumulator);
-				newInputModelsAccumulator.add(inputModel);
-				getOperatorTypeInputs(
-					modelTypeEndpointInputs,
-					operatorTypeInputs,
-					newInputModelsAccumulator,
-					currentIndex + 1);
-			}
-		}
-	}
 
 	private java.util.Map<String, Model> mapOperatorType(
 			@NonNull Operator operatorType, @NonNull Set<EList<OperatorInput>> operatorInputSet,
@@ -151,6 +96,7 @@ public class Map extends OperatorImpl {
 				}
 			}
 			catch (Exception e) {
+				// other than errors, the operator can fail because of input constraints due to the cartesian product
 				MMINTException.print(IStatus.WARNING, "Operator " + operatorType + " execution error, skipping it", e);
 			}
 		}
@@ -206,15 +152,13 @@ public class Map extends OperatorImpl {
 		List<Model> inputMIDModels = MultiModelOperatorUtils.getVarargs(inputsByName, INPUT_MIDS);
 		Operator operatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
 		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_MIDS);
-		List<MultiModel> inputMIDs = new ArrayList<>();
+		EList<MultiModel> inputMIDs = new BasicEList<>();
 		for (Model inputMIDModel : inputMIDModels) {
 			inputMIDs.add((MultiModel) inputMIDModel.getEMFInstanceRoot());
 		}
 
 		// find all possible combinations of inputs for operatorType and execute them
-		List<Set<OperatorInput>> modelTypeEndpointInputs = getModelTypeEndpointInputs(operatorType, inputMIDs);
-		Set<EList<OperatorInput>> operatorInputSet = new HashSet<>();
-		getOperatorTypeInputs(modelTypeEndpointInputs, operatorInputSet, new BasicEList<>(), 0);
+		Set<EList<OperatorInput>> operatorInputSet = operatorType.findAllowedInputs(inputMIDs);
 		java.util.Map<String, Model> outputsByName = mapOperatorType(operatorType, operatorInputSet, instanceMID);
 
 		// store model elements created in the input mids
