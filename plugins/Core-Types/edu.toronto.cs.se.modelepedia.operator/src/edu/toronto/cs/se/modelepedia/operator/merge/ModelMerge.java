@@ -77,7 +77,7 @@ public class ModelMerge extends OperatorImpl {
 		return connModelElemRefs;
 	}
 
-	private @NonNull EObject createMergedModel(
+	private @NonNull EObject merge(
 			@NonNull Model model1, @NonNull Model model2, @NonNull ModelRel matchRel, @NonNull Model mergedModel,
 			@NonNull ModelRel traceRel1, @NonNull ModelRel traceRel2) throws MMINTException {
 
@@ -221,7 +221,7 @@ public class ModelMerge extends OperatorImpl {
 			traceModels2);
 		traceRel2.setName(OUTPUT_MODELREL2);
 		// merge the models
-		EObject rootMergedModelObj = createMergedModel(model1, model2, matchRel, mergedModel, traceRel1, traceRel2);
+		EObject rootMergedModelObj = merge(model1, model2, matchRel, mergedModel, traceRel1, traceRel2);
 		MultiModelUtils.createModelFile(rootMergedModelObj, mergedModelUri, true);
 		mergedModel.createInstanceEditor(); // opens the new model editor as side effect
 

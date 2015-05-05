@@ -53,20 +53,18 @@ public class Reduce extends OperatorImpl {
 	@NonNull
 	private final static String OPERATORTYPE_MODELRELCOMPOSITION_URI = "http://se.cs.toronto.edu/modelepedia/Operator_ModelRelComposition";
 
-	private void reduceOperatorType(@NonNull Operator operatorType, @NonNull MultiModel outputMID) throws Exception {
+	private void reduce(@NonNull Operator accumulatorOperatorType, @NonNull MultiModel outputMID) throws Exception {
 
 		EList<MultiModel> inputMIDs = new BasicEList<>();
 		inputMIDs.add(outputMID);
-		Map<String, MultiModel> operatorOutputMIDsByName = operatorType.getOutputs().stream()
+		Map<String, MultiModel> operatorOutputMIDsByName = accumulatorOperatorType.getOutputs().stream()
 			.collect(Collectors.toMap(
 				outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
 				outputModelTypeEndpoint -> outputMID));
 		Set<EList<OperatorInput>> operatorInputSet;
-		while (!(operatorInputSet = operatorType.findAllowedInputs(inputMIDs)).isEmpty()) {
+		while (!(operatorInputSet = accumulatorOperatorType.findAllowedInputs(inputMIDs)).isEmpty()) {
 			for (EList<OperatorInput> operatorInputs : operatorInputSet) {
 				try {
-					Map<String, Model> operatorOutputsByName = operatorType.start(operatorInputs,
-						operatorOutputMIDsByName, null);
 					// get all model inputs, including the ones attached to model rel inputs
 					Set<Model> inputModels = new HashSet<>();
 					Set<ModelRel> inputModelRels = new HashSet<>();
@@ -82,7 +80,7 @@ public class Reduce extends OperatorImpl {
 							inputModels.add(inputModel);
 						}
 					}
-					// get all model rels attached to input models that are not inputs themselves..
+					// get all model rels attached to input models that are not inputs themselves
 					Set<ModelRel> connectedModelRels = MultiModelRegistry.getModelRels(outputMID).stream()
 						.filter(modelRel -> !inputModelRels.contains(modelRel))
 						.filter(modelRel -> !Collections.disjoint(
@@ -91,8 +89,10 @@ public class Reduce extends OperatorImpl {
 								.map(ModelEndpoint::getTarget)
 								.collect(Collectors.toSet())))
 						.collect(Collectors.toSet());
-					// ..then for each model rel in the output that is connected with the input model, compute the
-					// composition
+					// run the ACCUMULATOR operator
+					Map<String, Model> operatorOutputsByName = accumulatorOperatorType.start(operatorInputs,
+						operatorOutputMIDsByName, null);
+					// for each model rel in the output that is connected with the input models, do the composition
 					Operator compOperatorType = MultiModelTypeRegistry.getType(OPERATORTYPE_MODELRELCOMPOSITION_URI);
 					Map<String, MultiModel> compOperatorOutputMIDsByName = compOperatorType.getOutputs().stream()
 						.collect(Collectors.toMap(
@@ -111,7 +111,7 @@ public class Reduce extends OperatorImpl {
 								compOperatorInputs.add(compOperatorInput1);
 								OperatorInput compOperatorInput2 = OperatorFactory.eINSTANCE.createOperatorInput();
 								compOperatorInput2.setModel(outputModelRel);
-								compOperatorInput2.setModelTypeEndpoint(compOperatorType.getInputs().get(0));
+								compOperatorInput2.setModelTypeEndpoint(compOperatorType.getInputs().get(1));
 								compOperatorInputs.add(compOperatorInput2);
 								compOperatorType.start(compOperatorInputs, compOperatorOutputMIDsByName, null);
 							}
@@ -124,7 +124,7 @@ public class Reduce extends OperatorImpl {
 					inputModels.forEach(modelInput -> {
 						try {
 							modelInput.deleteInstance();
-							//TODO MMINT[REDUCE] Remove intermediate model files
+							//TODO MMINT[REDUCE] Remove intermediate model files and don't open them
 						}
 						catch (MMINTException e) {}
 					});
@@ -134,7 +134,7 @@ public class Reduce extends OperatorImpl {
 				catch (Exception e) {
 					// other than errors, the operator can fail because of input constraints due to the cartesian
 					// product
-					MMINTException.print(IStatus.WARNING, "Operator " + operatorType + " execution error, skipping it",
+					MMINTException.print(IStatus.WARNING, "Operator " + accumulatorOperatorType + " execution error, skipping it",
 						e);
 				}
 			}
@@ -147,12 +147,12 @@ public class Reduce extends OperatorImpl {
 			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
 		Model inputMIDModel = inputsByName.get(INPUT_MID);
-		Operator operatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
+		Operator accumulatorOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
 		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_MID);
 
 		// loop until reduction is no longer possible, reducing one input at a time
 		MultiModel outputMID = (MultiModel) inputMIDModel.getEMFInstanceRoot();
-		reduceOperatorType(operatorType, outputMID);
+		reduce(accumulatorOperatorType, outputMID);
 
 		String outputMIDUri = MultiModelUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), REDUCED_MID_SUFFIX);
 		MultiModelUtils.createModelFile(outputMID, outputMIDUri, true);

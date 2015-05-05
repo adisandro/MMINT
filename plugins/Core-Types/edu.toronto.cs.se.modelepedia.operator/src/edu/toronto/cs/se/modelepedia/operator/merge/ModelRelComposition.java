@@ -48,7 +48,7 @@ public class ModelRelComposition extends OperatorImpl {
 	@NonNull
 	private final static String COMPOSITION_SEPARATOR = "+";
 
-	private @NonNull ModelRel createComposedModelRel(@NonNull ModelRel modelRel1, @NonNull ModelRel modelRel2,
+	private @NonNull ModelRel compose(@NonNull ModelRel modelRel1, @NonNull ModelRel modelRel2,
 		@NonNull Model model1, @NonNull Model model2, @NonNull Model modelPivot, @NonNull MultiModel instanceMID)
 		throws MMINTException {
 
@@ -58,7 +58,7 @@ public class ModelRelComposition extends OperatorImpl {
 		targetModels.add(model1);
 		targetModels.add(model2);
 		ModelRel composedModelRel = MultiModelTypeHierarchy.getRootModelRelType()
-			.createInstanceAndEndpointsAndReferences(null, false, ModelOrigin.CREATED, targetModels);
+			.createInstanceAndEndpointsAndReferences(null, true, ModelOrigin.CREATED, targetModels);
 		composedModelRel.setName(modelRel1.getName() + COMPOSITION_SEPARATOR + modelRel2.getName());
 		ModelEndpointReference composedModelEndpointRef1 = composedModelRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference composedModelEndpointRef2 = composedModelRel.getModelEndpointRefs().get(1);
@@ -120,7 +120,7 @@ public class ModelRelComposition extends OperatorImpl {
 		ModelRel modelRel1 = (ModelRel) inputsByName.get(INPUT_MODELREL1);
 		ModelRel modelRel2 = (ModelRel) inputsByName.get(INPUT_MODELREL2);
 		// check input constraints
-		//TODO MMINT[OPERATOR] Turn checking of input constraints into api, or create specific exception to signal it
+		//TODO MMINT[OPERATOR] Turn checking of input constraints into api, because it should invalidate checkAllowedInputs
 		if (modelRel1.getModelEndpoints().size() != 2) {
 			throw new MMINTException("The model relationship " + modelRel1 + " doesn't have 2 model endpoints");
 		}
@@ -155,7 +155,7 @@ public class ModelRelComposition extends OperatorImpl {
 		}
 
 		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_MODELREL);
-		ModelRel composedModelRel = createComposedModelRel(modelRel1, modelRel2, model1, model2, modelPivot,
+		ModelRel composedModelRel = compose(modelRel1, modelRel2, model1, model2, modelPivot,
 			instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUTPUT_MODELREL, composedModelRel);
