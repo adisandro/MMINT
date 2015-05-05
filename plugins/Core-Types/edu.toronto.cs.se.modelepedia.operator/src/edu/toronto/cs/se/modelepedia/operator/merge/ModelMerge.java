@@ -60,12 +60,13 @@ public class ModelMerge extends OperatorImpl {
 	@NonNull
 	private static final String MERGED_SEPARATOR = "+";
 
-	//TODO MMINT[OPERATOR] Make this an api
+	// TODO MMINT[OPERATOR] Make this an api
 	private @NonNull Set<ModelElementReference> getConnected(@NonNull ModelElementReference modelElemRef) {
 
 		Set<ModelElementReference> connModelElemRefs = new HashSet<>();
 		for (ModelElementEndpointReference modelElemEndpointRef : modelElemRef.getModelElemEndpointRefs()) {
-			for (ModelElementEndpointReference connModelElemEndpointRef : ((LinkReference) modelElemEndpointRef.eContainer()).getModelElemEndpointRefs()) {
+			for (ModelElementEndpointReference connModelElemEndpointRef : ((LinkReference) modelElemEndpointRef
+					.eContainer()).getModelElemEndpointRefs()) {
 				if (connModelElemEndpointRef == modelElemEndpointRef) {
 					continue;
 				}
@@ -77,8 +78,8 @@ public class ModelMerge extends OperatorImpl {
 	}
 
 	private @NonNull EObject createMergedModel(
-			@NonNull Model model1, @NonNull Model model2, @NonNull ModelRel matchRel, @NonNull Model mergedModel, @NonNull ModelRel traceRel1,
-			@NonNull ModelRel traceRel2) throws MMINTException {
+			@NonNull Model model1, @NonNull Model model2, @NonNull ModelRel matchRel, @NonNull Model mergedModel,
+			@NonNull ModelRel traceRel1, @NonNull ModelRel traceRel2) throws MMINTException {
 
 		// create merged root
 		EObject rootModelObj1 = model1.getEMFInstanceRoot();
@@ -105,30 +106,37 @@ public class ModelMerge extends OperatorImpl {
 					mergedModelObj);
 				try { // change merged attribute
 					MultiModelUtils.setModelObjFeature(
-						mergedModelObj, MERGED_MODELOBJECT_ATTRIBUTE,
-						MultiModelUtils.getModelObjFeature(modelObj1, MERGED_MODELOBJECT_ATTRIBUTE) + MERGED_SEPARATOR +
-						MultiModelUtils.getModelObjFeature(modelObj2, MERGED_MODELOBJECT_ATTRIBUTE));
+						mergedModelObj,
+						MERGED_MODELOBJECT_ATTRIBUTE,
+						MultiModelUtils.getModelObjFeature(modelObj1, MERGED_MODELOBJECT_ATTRIBUTE) + MERGED_SEPARATOR
+								+ MultiModelUtils.getModelObjFeature(modelObj2, MERGED_MODELOBJECT_ATTRIBUTE));
 				}
 				catch (MMINTException e) {
 					// no attribute to be merged
 				}
 			}
 			MultiModelUtils.setModelObjFeature(
-				rootMergedModelObj, modelObj1.eContainingFeature().getName(), mergedModelObj);
+				rootMergedModelObj,
+				modelObj1.eContainingFeature().getName(),
+				mergedModelObj);
 			EList<ModelElementReference> traceModelElemRefs1 = new BasicEList<>();
-			traceModelElemRefs1.add(
-				ModelElementImpl.createInstanceAndReference(
-					modelObj1, null, traceRel1.getModelEndpointRefs().get(0)));
-			String newModelElemUri =
-				mergedModel.getUri() +
-				MultiModelRegistry.getModelAndModelElementUris(mergedModelObj, MIDLevel.INSTANCES)[1];
+			traceModelElemRefs1.add(ModelElementImpl.createInstanceAndReference(
+				modelObj1,
+				null,
+				traceRel1.getModelEndpointRefs().get(0)));
+			String newModelElemUri = mergedModel.getUri()
+					+ MultiModelRegistry.getModelAndModelElementUris(mergedModelObj, MIDLevel.INSTANCES)[1];
 			EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(mergedModelObj, MIDLevel.INSTANCES);
 			String newModelElemName = MultiModelRegistry.getModelElementName(eInfo, mergedModelObj, MIDLevel.INSTANCES);
 			traceModelElemRefs1.add( // merged model element is not serialized yet
 				MultiModelTypeHierarchy.getRootModelElementType().createInstanceAndReference(
-					newModelElemUri, newModelElemName, eInfo, traceRel1.getModelEndpointRefs().get(1)));
+					newModelElemUri,
+					newModelElemName,
+					eInfo,
+					traceRel1.getModelEndpointRefs().get(1)));
 			MultiModelTypeHierarchy.getRootLinkType().createInstanceAndReferenceAndEndpointsAndReferences(
-				true, traceModelElemRefs1);
+				true,
+				traceModelElemRefs1);
 		}
 
 		// copy elements from model2
@@ -143,22 +151,28 @@ public class ModelMerge extends OperatorImpl {
 			else {
 				mergedModelObj = EcoreUtil.copy(modelObj2);
 				MultiModelUtils.setModelObjFeature(
-					rootMergedModelObj, modelObj2.eContainingFeature().getName(), mergedModelObj);
+					rootMergedModelObj,
+					modelObj2.eContainingFeature().getName(),
+					mergedModelObj);
 			}
 			EList<ModelElementReference> traceModelElemRefs2 = new BasicEList<>();
-			traceModelElemRefs2.add(
-				ModelElementImpl.createInstanceAndReference(
-					modelObj2, null, traceRel2.getModelEndpointRefs().get(0)));
-			String newModelElemUri =
-				mergedModel.getUri() +
-				MultiModelRegistry.getModelAndModelElementUris(mergedModelObj, MIDLevel.INSTANCES)[1];
+			traceModelElemRefs2.add(ModelElementImpl.createInstanceAndReference(
+				modelObj2,
+				null,
+				traceRel2.getModelEndpointRefs().get(0)));
+			String newModelElemUri = mergedModel.getUri()
+					+ MultiModelRegistry.getModelAndModelElementUris(mergedModelObj, MIDLevel.INSTANCES)[1];
 			EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(mergedModelObj, MIDLevel.INSTANCES);
 			String newModelElemName = MultiModelRegistry.getModelElementName(eInfo, mergedModelObj, MIDLevel.INSTANCES);
 			traceModelElemRefs2.add( // merged model element is not serialized yet
 				MultiModelTypeHierarchy.getRootModelElementType().createInstanceAndReference(
-					newModelElemUri, newModelElemName, eInfo, traceRel2.getModelEndpointRefs().get(1)));
+					newModelElemUri,
+					newModelElemName,
+					eInfo,
+					traceRel2.getModelEndpointRefs().get(1)));
 			MultiModelTypeHierarchy.getRootLinkType().createInstanceAndReferenceAndEndpointsAndReferences(
-				true, traceModelElemRefs2);
+				true,
+				traceModelElemRefs2);
 		}
 
 		return rootMergedModelObj;
@@ -169,7 +183,7 @@ public class ModelMerge extends OperatorImpl {
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
 			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		//TODO MMINT[MERGE] Support more complex cases than just first-level objects without references
+		// TODO MMINT[MERGE] Support more complex cases than just first-level objects without references
 		ModelRel matchRel = (ModelRel) inputsByName.get(INPUT_MODELREL);
 		// check input constraints
 		if (matchRel.getModelEndpoints().size() != 2) {
@@ -185,20 +199,26 @@ public class ModelMerge extends OperatorImpl {
 		MultiModel mergedModelMID = outputMIDsByName.get(OUTPUT_MODEL);
 		String mergedModelUri = MultiModelUtils.replaceLastSegmentInUri(
 			MultiModelRegistry.getModelAndModelElementUris(mergedModelMID, MIDLevel.INSTANCES)[0],
-			model1.getName() + MERGED_SEPARATOR + model2.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + model1.getFileExtension());
-		Model mergedModel = model1.getMetatype().createInstance(
-			mergedModelUri, ModelOrigin.CREATED, mergedModelMID);
+			model1.getName() + MERGED_SEPARATOR + model2.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR
+					+ model1.getFileExtension());
+		Model mergedModel = model1.getMetatype().createInstance(mergedModelUri, ModelOrigin.CREATED, mergedModelMID);
 		EList<Model> traceModels1 = new BasicEList<Model>();
 		traceModels1.add(model1);
 		traceModels1.add(mergedModel);
 		ModelRel traceRel1 = MultiModelTypeHierarchy.getRootModelRelType().createInstanceAndEndpointsAndReferences(
-			null, true, ModelOrigin.CREATED, traceModels1);
+			null,
+			true,
+			ModelOrigin.CREATED,
+			traceModels1);
 		traceRel1.setName(OUTPUT_MODELREL1);
 		EList<Model> traceModels2 = new BasicEList<Model>();
 		traceModels2.add(model2);
 		traceModels2.add(mergedModel);
 		ModelRel traceRel2 = MultiModelTypeHierarchy.getRootModelRelType().createInstanceAndEndpointsAndReferences(
-			null, true, ModelOrigin.CREATED, traceModels2);
+			null,
+			true,
+			ModelOrigin.CREATED,
+			traceModels2);
 		traceRel2.setName(OUTPUT_MODELREL2);
 		// merge the models
 		EObject rootMergedModelObj = createMergedModel(model1, model2, matchRel, mergedModel, traceRel1, traceRel2);

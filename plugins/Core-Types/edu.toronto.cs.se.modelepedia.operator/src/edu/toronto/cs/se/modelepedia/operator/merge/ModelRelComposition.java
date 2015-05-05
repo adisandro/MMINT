@@ -46,7 +46,7 @@ public class ModelRelComposition extends OperatorImpl {
 	private final static String OUTPUT_MODELREL = "composition";
 
 	@NonNull
-	private final static String COMPOSED_MODELREL_NAME_SEPARATOR = "+";
+	private final static String COMPOSITION_SEPARATOR = "+";
 
 	private @NonNull ModelRel createComposedModelRel(@NonNull ModelRel modelRel1, @NonNull ModelRel modelRel2,
 		@NonNull Model model1, @NonNull Model model2, @NonNull Model modelPivot, @NonNull MultiModel instanceMID)
@@ -59,7 +59,7 @@ public class ModelRelComposition extends OperatorImpl {
 		targetModels.add(model2);
 		ModelRel composedModelRel = MultiModelTypeHierarchy.getRootModelRelType()
 			.createInstanceAndEndpointsAndReferences(null, false, ModelOrigin.CREATED, targetModels);
-		composedModelRel.setName(modelRel1.getName() + COMPOSED_MODELREL_NAME_SEPARATOR + modelRel2.getName());
+		composedModelRel.setName(modelRel1.getName() + COMPOSITION_SEPARATOR + modelRel2.getName());
 		ModelEndpointReference composedModelEndpointRef1 = composedModelRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference composedModelEndpointRef2 = composedModelRel.getModelEndpointRefs().get(1);
 		// loop through links in modelRel1
@@ -104,7 +104,7 @@ public class ModelRelComposition extends OperatorImpl {
 					LinkReference composedLinkRef = MultiModelTypeHierarchy.getRootLinkType()
 						.createInstanceAndReferenceAndEndpointsAndReferences(false, targetModelElemRefs);
 					composedLinkRef.getObject().setName(
-						link1.getName() + COMPOSED_MODELREL_NAME_SEPARATOR + linkRef2.getObject().getName());
+						link1.getName() + COMPOSITION_SEPARATOR + linkRef2.getObject().getName());
 				}
 			}
 		}

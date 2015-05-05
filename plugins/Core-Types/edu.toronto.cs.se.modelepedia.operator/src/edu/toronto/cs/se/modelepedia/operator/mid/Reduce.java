@@ -124,6 +124,7 @@ public class Reduce extends OperatorImpl {
 					inputModels.forEach(modelInput -> {
 						try {
 							modelInput.deleteInstance();
+							//TODO MMINT[REDUCE] Remove intermediate model files
 						}
 						catch (MMINTException e) {}
 					});

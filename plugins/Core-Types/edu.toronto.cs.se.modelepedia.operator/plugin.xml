@@ -671,4 +671,36 @@
       </operatorType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="Union"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_Union"
+               class="edu.toronto.cs.se.modelepedia.operator.mid.Union">
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="mids">
+	           </type>
+	           <typeEndpoint
+	                 upperBound="-1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="unionMid">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
 </plugin>
