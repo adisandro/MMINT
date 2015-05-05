@@ -42,14 +42,14 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public class Reduce extends OperatorImpl {
 
 	@NonNull
-	private final static String INPUT_MID = "inputMID";
+	private final static String INPUT_MID = "mid";
 	@NonNull
-	private final static String OUTPUT_MID = "outputMID";
+	private final static String OUTPUT_MID = "reducedMid";
 	@NonNull
-	private final static String GENERIC_OPERATORTYPE = "OP";
+	private final static String GENERIC_OPERATORTYPE = "ACCUMULATOR";
 
 	@NonNull
-	private final static String REDUCE_MID_SUFFIX = "_reduce";
+	private final static String REDUCED_MID_SUFFIX = "_reduced";
 	@NonNull
 	private final static String OPERATORTYPE_MODELRELCOMPOSITION_URI = "http://se.cs.toronto.edu/modelepedia/Operator_ModelRelComposition";
 
@@ -141,9 +141,9 @@ public class Reduce extends OperatorImpl {
 	}
 
 	@Override
-	public Map<String, Model> run(Map<String, Model> inputsByName,
-		java.util.Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName)
-		throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
 		Model inputMIDModel = inputsByName.get(INPUT_MID);
 		Operator operatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
@@ -153,7 +153,7 @@ public class Reduce extends OperatorImpl {
 		MultiModel outputMID = (MultiModel) inputMIDModel.getEMFInstanceRoot();
 		reduceOperatorType(operatorType, outputMID);
 
-		String outputMIDUri = MultiModelUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), REDUCE_MID_SUFFIX);
+		String outputMIDUri = MultiModelUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), REDUCED_MID_SUFFIX);
 		MultiModelUtils.createModelFile(outputMID, outputMIDUri, true);
 		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
 		Model outputMIDModel = midModelType.createInstanceAndEditor(outputMIDUri, ModelOrigin.CREATED, instanceMID);

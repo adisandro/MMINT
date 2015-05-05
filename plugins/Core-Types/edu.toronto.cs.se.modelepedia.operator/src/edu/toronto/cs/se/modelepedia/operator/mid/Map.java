@@ -51,14 +51,14 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public class Map extends OperatorImpl {
 
 	@NonNull
-	private final static String INPUT_MIDS = "inputMIDs";
+	private final static String INPUT_MIDS = "mids";
 	@NonNull
-	private final static String OUTPUT_MIDS = "outputMIDs";
+	private final static String OUTPUT_MIDS = "mappedMids";
 	@NonNull
-	private final static String GENERIC_OPERATORTYPE = "OP";
+	private final static String GENERIC_OPERATORTYPE = "MAPPER";
 
 	@NonNull
-	private final static String MAP_MID_SUFFIX = "_map";
+	private final static String MAPPED_MID_SUFFIX = "_mapped";
 
 	private java.util.Map<String, Model> mapOperatorType(
 			@NonNull Operator operatorType, @NonNull Set<EList<OperatorInput>> operatorInputSet,
@@ -107,7 +107,7 @@ public class Map extends OperatorImpl {
 		int i = 0;
 		for (Entry<String, MultiModel> outputMID : outputMIDsByName.entrySet()) {
 			String outputMIDUri = MultiModelUtils.getUniqueUri(
-				MultiModelUtils.replaceFileNameInUri(baseOutputUri, outputMID.getKey() + MAP_MID_SUFFIX),
+				MultiModelUtils.replaceFileNameInUri(baseOutputUri, outputMID.getKey() + MAPPED_MID_SUFFIX),
 				true,
 				false);
 			MultiModelUtils.createModelFile(outputMID.getValue(), outputMIDUri, true);

@@ -43,10 +43,10 @@ public class ModelRelComposition extends OperatorImpl {
 	@NonNull
 	private final static String INPUT_MODELREL2 = "rel2";
 	@NonNull
-	private final static String OUTPUT_COMPOSEDMODELREL = "composedRel";
+	private final static String OUTPUT_MODELREL = "composition";
 
 	@NonNull
-	private final static String COMPOSEDMODELREL_SEPARATOR = "+";
+	private final static String COMPOSED_MODELREL_NAME_SEPARATOR = "+";
 
 	private @NonNull ModelRel createComposedModelRel(@NonNull ModelRel modelRel1, @NonNull ModelRel modelRel2,
 		@NonNull Model model1, @NonNull Model model2, @NonNull Model modelPivot, @NonNull MultiModel instanceMID)
@@ -59,18 +59,20 @@ public class ModelRelComposition extends OperatorImpl {
 		targetModels.add(model2);
 		ModelRel composedModelRel = MultiModelTypeHierarchy.getRootModelRelType()
 			.createInstanceAndEndpointsAndReferences(null, false, ModelOrigin.CREATED, targetModels);
-		composedModelRel.setName(modelRel1.getName() + COMPOSEDMODELREL_SEPARATOR + modelRel2.getName());
+		composedModelRel.setName(modelRel1.getName() + COMPOSED_MODELREL_NAME_SEPARATOR + modelRel2.getName());
 		ModelEndpointReference composedModelEndpointRef1 = composedModelRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference composedModelEndpointRef2 = composedModelRel.getModelEndpointRefs().get(1);
 		// loop through links in modelRel1
 		for (Link link1 : modelRel1.getLinks()) {
 			// get model elements in model1
 			List<ModelElement> modelElems1 = link1.getModelElemEndpoints().stream()
-				.map(ModelElementEndpoint::getTarget).filter(modelElem -> modelElem.eContainer() == model1)
+				.map(ModelElementEndpoint::getTarget)
+				.filter(modelElem -> modelElem.eContainer() == model1)
 				.collect(Collectors.toList());
 			// get model elements in modelPivot from the modelRel1 side
 			List<ModelElement> modelElemsPivot1 = link1.getModelElemEndpoints().stream()
-				.map(ModelElementEndpoint::getTarget).filter(modelElem -> modelElem.eContainer() == modelPivot)
+				.map(ModelElementEndpoint::getTarget)
+				.filter(modelElem -> modelElem.eContainer() == modelPivot)
 				.collect(Collectors.toList());
 			ModelEndpointReference modelEndpointRefPivot2 = modelRel2.getModelEndpointRefs().stream()
 				.filter(modelEndpointRef -> modelEndpointRef.getObject().getTarget() == modelPivot)
@@ -102,7 +104,7 @@ public class ModelRelComposition extends OperatorImpl {
 					LinkReference composedLinkRef = MultiModelTypeHierarchy.getRootLinkType()
 						.createInstanceAndReferenceAndEndpointsAndReferences(false, targetModelElemRefs);
 					composedLinkRef.getObject().setName(
-						link1.getName() + COMPOSEDMODELREL_SEPARATOR + linkRef2.getObject().getName());
+						link1.getName() + COMPOSED_MODELREL_NAME_SEPARATOR + linkRef2.getObject().getName());
 				}
 			}
 		}
@@ -117,8 +119,6 @@ public class ModelRelComposition extends OperatorImpl {
 
 		ModelRel modelRel1 = (ModelRel) inputsByName.get(INPUT_MODELREL1);
 		ModelRel modelRel2 = (ModelRel) inputsByName.get(INPUT_MODELREL2);
-		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_COMPOSEDMODELREL);
-
 		// check input constraints
 		//TODO MMINT[OPERATOR] Turn checking of input constraints into api, or create specific exception to signal it
 		if (modelRel1.getModelEndpoints().size() != 2) {
@@ -154,10 +154,11 @@ public class ModelRelComposition extends OperatorImpl {
 			throw new MMINTException("The input model relationships don't share a model endpoint");
 		}
 
+		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_MODELREL);
 		ModelRel composedModelRel = createComposedModelRel(modelRel1, modelRel2, model1, model2, modelPivot,
 			instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUTPUT_COMPOSEDMODELREL, composedModelRel);
+		outputsByName.put(OUTPUT_MODELREL, composedModelRel);
 
 		return outputsByName;
 	}

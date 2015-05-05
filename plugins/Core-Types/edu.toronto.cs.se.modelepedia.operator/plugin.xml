@@ -512,7 +512,7 @@
          <generics>
             <parameter>
 	           <type
-	                 name="OP">
+	                 name="MAPPER">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Operator">
@@ -522,7 +522,7 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="inputMIDs">
+	                 name="mids">
 	           </type>
 	           <typeEndpoint
                      upperBound="-1"
@@ -533,7 +533,7 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="outputMIDs">
+	                 name="mappedMids">
 	           </type>
 	           <typeEndpoint
                      upperBound="-1"
@@ -573,7 +573,7 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="composedRel">
+	                 name="composition">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -594,7 +594,7 @@
          <generics>
             <parameter>
 	           <type
-	                 name="OP">
+	                 name="ACCUMULATOR">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Operator">
@@ -604,7 +604,7 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="inputMID">
+	                 name="mid">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
@@ -614,10 +614,57 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="outputMID">
+	                 name="reducedMid">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="ModelMerge"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelMerge"
+               class="edu.toronto.cs.se.modelepedia.operator.merge.ModelMerge">
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="match">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="merged">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="trace1">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="trace2">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
             </parameter>
          </outputs>
