@@ -53,14 +53,16 @@ public class Reduce extends OperatorImpl {
 	@NonNull
 	private final static String OPERATORTYPE_MODELRELCOMPOSITION_URI = "http://se.cs.toronto.edu/modelepedia/Operator_ModelRelComposition";
 
-	private void reduce(@NonNull Operator accumulatorOperatorType, @NonNull MultiModel outputMID) throws Exception {
+	private @NonNull MultiModel reduce(@NonNull Model inputMIDModel, @NonNull Operator accumulatorOperatorType)
+			throws Exception {
 
-		EList<MultiModel> inputMIDs = new BasicEList<>();
-		inputMIDs.add(outputMID);
+		MultiModel reducedMID = (MultiModel) inputMIDModel.getEMFInstanceRoot();
 		Map<String, MultiModel> operatorOutputMIDsByName = accumulatorOperatorType.getOutputs().stream()
 			.collect(Collectors.toMap(
 				outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
-				outputModelTypeEndpoint -> outputMID));
+				outputModelTypeEndpoint -> reducedMID));
+		EList<MultiModel> inputMIDs = new BasicEList<>();
+		inputMIDs.add(reducedMID);
 		Set<EList<OperatorInput>> operatorInputSet;
 		while (!(operatorInputSet = accumulatorOperatorType.findAllowedInputs(inputMIDs)).isEmpty()) {
 			for (EList<OperatorInput> operatorInputs : operatorInputSet) {
@@ -81,7 +83,7 @@ public class Reduce extends OperatorImpl {
 						}
 					}
 					// get all model rels attached to input models that are not inputs themselves
-					Set<ModelRel> connectedModelRels = MultiModelRegistry.getModelRels(outputMID).stream()
+					Set<ModelRel> connectedModelRels = MultiModelRegistry.getModelRels(reducedMID).stream()
 						.filter(modelRel -> !inputModelRels.contains(modelRel))
 						.filter(modelRel -> !Collections.disjoint(
 							inputModels,
@@ -97,7 +99,7 @@ public class Reduce extends OperatorImpl {
 					Map<String, MultiModel> compOperatorOutputMIDsByName = compOperatorType.getOutputs().stream()
 						.collect(Collectors.toMap(
 							outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
-							outputModelTypeEndpoint -> outputMID));
+							outputModelTypeEndpoint -> reducedMID));
 					for (ModelRel connectedModelRel : connectedModelRels) {
 						for (Model outputModelRel : operatorOutputsByName.values()) {
 							if (!(outputModelRel instanceof ModelRel)) {
@@ -139,6 +141,8 @@ public class Reduce extends OperatorImpl {
 				}
 			}
 		}
+
+		return reducedMID;
 	}
 
 	@Override
@@ -146,20 +150,24 @@ public class Reduce extends OperatorImpl {
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
 			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
+		// input
 		Model inputMIDModel = inputsByName.get(INPUT_MID);
 		Operator accumulatorOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
 		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_MID);
 
 		// loop until reduction is no longer possible, reducing one input at a time
-		MultiModel outputMID = (MultiModel) inputMIDModel.getEMFInstanceRoot();
-		reduce(accumulatorOperatorType, outputMID);
+		MultiModel reducedMID = reduce(inputMIDModel, accumulatorOperatorType);
 
-		String outputMIDUri = MultiModelUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), REDUCED_MID_SUFFIX);
-		MultiModelUtils.createModelFile(outputMID, outputMIDUri, true);
+		// output
+		String reducedMIDModelUri = MultiModelUtils.getUniqueUri(
+			MultiModelUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), REDUCED_MID_SUFFIX),
+			true,
+			false);
+		MultiModelUtils.createModelFile(reducedMID, reducedMIDModelUri, true);
 		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
-		Model outputMIDModel = midModelType.createInstanceAndEditor(outputMIDUri, ModelOrigin.CREATED, instanceMID);
+		Model reducedMIDModel = midModelType.createInstanceAndEditor(reducedMIDModelUri, ModelOrigin.CREATED, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUTPUT_MID, outputMIDModel);
+		outputsByName.put(OUTPUT_MID, reducedMIDModel);
 
 		return outputsByName;
 	}

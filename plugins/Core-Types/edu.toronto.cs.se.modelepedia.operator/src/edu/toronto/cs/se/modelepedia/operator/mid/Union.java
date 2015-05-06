@@ -61,7 +61,7 @@ public class Union extends OperatorImpl {
 			true,
 			false);
 
-		Model unionMIDModel = midModelType.createInstanceAndEditor(unionMIDModelUri, ModelOrigin.CREATED, outputMIDsByName.get(OUTPUT_MID));
+		Model unionMIDModel = midModelType.createInstanceAndEditor(unionMIDModelUri, ModelOrigin.CREATED, instanceMID);
 
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUTPUT_MID, unionMIDModel);

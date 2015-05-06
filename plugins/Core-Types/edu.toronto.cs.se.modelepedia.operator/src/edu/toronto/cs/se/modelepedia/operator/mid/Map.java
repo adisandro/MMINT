@@ -150,6 +150,7 @@ public class Map extends OperatorImpl {
 			java.util.Map<String, MultiModel> outputMIDsByName) throws Exception {
 
 		// TODO MMINT[MAP] Add option for shallow/deep and support for deep
+		// input
 		List<Model> inputMIDModels = MultiModelOperatorUtils.getVarargs(inputsByName, INPUT_MIDS);
 		Operator mapperOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
 		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_MIDS);

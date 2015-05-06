@@ -98,7 +98,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 			return checkConstraint(modelObj, oclConstraint);
 		}
 		catch (MMINTException e) {
-			MMINTException.print(IStatus.ERROR, "Can't get context for OCL constraint, evaluating to false", e);
+			MMINTException.print(IStatus.ERROR, "Can't get context for OCL constraint \"" + constraint + "\" applied to model " + model + " , evaluating to false", e);
 			return MAVOTruthValue.FALSE;
 		}
 	}
@@ -126,7 +126,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 			return (ocl.check(modelObj, expression)) ? MAVOTruthValue.TRUE : MAVOTruthValue.FALSE;
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "OCL constraint error, evaluating to false: " + oclConstraint, e);
+			MMINTException.print(IStatus.WARNING, "Error in OCL constraint \"" + oclConstraint + "\" applied to model object " + modelObj + ", evaluating to false", e);
 			return MAVOTruthValue.FALSE;
 		}
 	}
