@@ -730,27 +730,28 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
 		// create initial empty copy
 		ModelRel newModelRel = createInstance(null, (origModelRel instanceof BinaryModelRel), ModelOrigin.CREATED, containerMultiModel);
+		newModelRel.setName(origModelRel.getName());
 
 		// models
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
-		for (ModelEndpointReference oldModelEndpointRef : origModelRel.getModelEndpointRefs()) {
-			Model newModel = MultiModelRegistry.getExtendibleElement(oldModelEndpointRef.getTargetUri(), containerMultiModel);
-			ModelEndpointReference newModelEndpointRef = oldModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, newModelRel);
+		for (ModelEndpointReference origModelEndpointRef : origModelRel.getModelEndpointRefs()) {
+			Model newModel = MultiModelRegistry.getExtendibleElement(origModelEndpointRef.getTargetUri(), containerMultiModel);
+			ModelEndpointReference newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, newModelRel);
 			// model elements
-			for (ModelElementReference oldModelElemRef : oldModelEndpointRef.getModelElemRefs()) {
-				EObject newModelObj = oldModelElemRef.getObject().getEMFInstanceObject();
-				ModelElementReference newModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(newModelObj, oldModelElemRef.getObject().getName(), newModelEndpointRef);
+			for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
+				EObject newModelObj = origModelElemRef.getObject().getEMFInstanceObject();
+				ModelElementReference newModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(newModelObj, origModelElemRef.getObject().getName(), newModelEndpointRef);
 				newModelElemRefs.put(newModelElemRef.getUri(), newModelElemRef);
 			}
 		}
 		// links
-		for (LinkReference oldLinkRef : origModelRel.getLinkRefs()) {
-			LinkReference newLinkRef = oldLinkRef.getObject().getMetatype().createInstanceAndReference((oldLinkRef.getObject() instanceof BinaryLink), newModelRel);
-			MAVOUtils.copyMAVOElement(oldLinkRef.getObject(), newLinkRef.getObject());
-			newLinkRef.getObject().setName(oldLinkRef.getObject().getName());
-			for (ModelElementEndpointReference oldModelElemEndpointRef : oldLinkRef.getModelElemEndpointRefs()) {
-				ModelElementReference newModelElemRef = newModelElemRefs.get(oldModelElemEndpointRef.getTargetUri());
-				oldModelElemEndpointRef.getObject().getMetatype().createInstanceAndReference(newModelElemRef, newLinkRef);
+		for (LinkReference origLinkRef : origModelRel.getLinkRefs()) {
+			LinkReference newLinkRef = origLinkRef.getObject().getMetatype().createInstanceAndReference((origLinkRef.getObject() instanceof BinaryLink), newModelRel);
+			MAVOUtils.copyMAVOElement(origLinkRef.getObject(), newLinkRef.getObject());
+			newLinkRef.getObject().setName(origLinkRef.getObject().getName());
+			for (ModelElementEndpointReference origModelElemEndpointRef : origLinkRef.getModelElemEndpointRefs()) {
+				ModelElementReference newModelElemRef = newModelElemRefs.get(origModelElemEndpointRef.getTargetUri());
+				origModelElemEndpointRef.getObject().getMetatype().createInstanceAndReference(newModelElemRef, newLinkRef);
 			}
 		}
 
