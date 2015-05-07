@@ -651,8 +651,17 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		EList<Set<OperatorInput>> modelTypeEndpointInputs = new BasicEList<>();
 		for (int i = 0; i < this.getInputs().size(); i++) {
 			ModelEndpoint inputModelTypeEndpoint = this.getInputs().get(i);
-			// TODO MMINT[MAP] Add support for intermediate combinations of input MIDs to input arguments
-			MultiModel inputMID = (inputMIDs.size() == 1) ? inputMIDs.get(0) : inputMIDs.get(i);
+			// TODO MMINT[MAP] Add support for arbitrary combinations of input MIDs to input arguments
+			MultiModel inputMID;
+			if (inputMIDs.size() == 1) {
+				inputMID = inputMIDs.get(0);
+			}
+			else if (i < inputMIDs.size()) {
+				inputMID = inputMIDs.get(i);
+			}
+			else {
+				inputMID = inputMIDs.get(inputMIDs.size()-1);
+			}
 			Set<OperatorInput> modelTypeEndpointInputSet = new HashSet<>();
 			modelTypeEndpointInputs.add(modelTypeEndpointInputSet);
 			for (Model inputModel : MultiModelRegistry.getModels(inputMID)) {
