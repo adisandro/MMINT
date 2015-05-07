@@ -16,7 +16,25 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_27k5EvRpEeS52eloHMJiCw" fontName="Cantarell" fontHeight="10"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_27k5E_RpEeS52eloHMJiCw" hint="Mid"/>
     <element xmi:type="mid:Model" href="x.mid#//@models.1"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_27k5FPRpEeS52eloHMJiCw" x="324" y="96"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_27k5FPRpEeS52eloHMJiCw" x="96" y="192"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_LI_0oPRqEeS52eloHMJiCw" type="2011">
+    <children xmi:type="notation:DecorationNode" xmi:id="_LJAbsPRqEeS52eloHMJiCw" type="5011"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_LJAbsfRqEeS52eloHMJiCw" type="5016"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_LI_0ofRqEeS52eloHMJiCw"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_LI_0ovRqEeS52eloHMJiCw" fontName="Cantarell" fontHeight="10"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_LI_0o_RqEeS52eloHMJiCw" hint="Mid"/>
+    <element xmi:type="mid:Model" href="x.mid#//@models.2"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LI_0pPRqEeS52eloHMJiCw" x="360" y="96"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_Na2igPRqEeS52eloHMJiCw" type="2011">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Na3JkPRqEeS52eloHMJiCw" type="5011"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_Na3JkfRqEeS52eloHMJiCw" type="5016"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_Na2igfRqEeS52eloHMJiCw"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Na2igvRqEeS52eloHMJiCw" fontName="Cantarell" fontHeight="10"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_Na2ig_RqEeS52eloHMJiCw" hint="Mid"/>
+    <element xmi:type="mid:Model" href="x.mid#//@models.3"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Na2ihPRqEeS52eloHMJiCw" x="360" y="192"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_l8ycsfRpEeS52eloHMJiCw"/>
   <element xmi:type="mid:MultiModel" href="x.mid#/"/>
