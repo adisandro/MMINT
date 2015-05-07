@@ -34,6 +34,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
 public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
@@ -78,6 +79,9 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 					);
 				operatorType.start(operatorInputs, outputMIDsByName, instanceMID);
 				return CommandResult.newOKCommandResult();
+			}
+			catch (MultiModelDialogCancellation e) {
+				return CommandResult.newCancelledCommandResult();
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.ERROR, "Operator " + operatorType.getName() + " execution error", e);
