@@ -261,13 +261,22 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR__UPDATE_MID = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Execution Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__EXECUTION_TIME = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_FEATURE_COUNT = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 6;
+	int OPERATOR_FEATURE_COUNT = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -593,6 +602,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR__UPDATE_MID = OPERATOR__UPDATE_MID;
+
+	/**
+	 * The feature id for the '<em><b>Execution Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR__EXECUTION_TIME = OPERATOR__EXECUTION_TIME;
 
 	/**
 	 * The number of structural features of the '<em>Conversion Operator</em>' class.
@@ -936,6 +954,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_OPERATOR__UPDATE_MID = OPERATOR__UPDATE_MID;
+
+	/**
+	 * The feature id for the '<em><b>Execution Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__EXECUTION_TIME = OPERATOR__EXECUTION_TIME;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -1510,6 +1537,17 @@ public interface OperatorPackage extends EPackage {
 	EAttribute getOperator_UpdateMID();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutionTime <em>Execution Time</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Execution Time</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutionTime()
+	 * @see #getOperator()
+	 * @generated
+	 */
+	EAttribute getOperator_ExecutionTime();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getMetatype() <em>Get Metatype</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1928,6 +1966,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute OPERATOR__UPDATE_MID = eINSTANCE.getOperator_UpdateMID();
+
+		/**
+		 * The meta object literal for the '<em><b>Execution Time</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATOR__EXECUTION_TIME = eINSTANCE.getOperator_ExecutionTime();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.

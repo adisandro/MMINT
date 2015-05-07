@@ -72,6 +72,7 @@ import edu.toronto.cs.se.mmint.repository.MMINTConstants;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getInputSubdir <em>Input Subdir</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getPreviousOperator <em>Previous Operator</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#isUpdateMID <em>Update MID</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getExecutionTime <em>Execution Time</em>}</li>
  * </ul>
  * </p>
  *
@@ -157,6 +158,26 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * @ordered
 	 */
 	protected boolean updateMID = UPDATE_MID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getExecutionTime() <em>Execution Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExecutionTime()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long EXECUTION_TIME_EDEFAULT = 0L;
+
+	/**
+	 * The cached value of the '{@link #getExecutionTime() <em>Execution Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExecutionTime()
+	 * @generated
+	 * @ordered
+	 */
+	protected long executionTime = EXECUTION_TIME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -298,6 +319,27 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public long getExecutionTime() {
+		return executionTime;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExecutionTime(long newExecutionTime) {
+		long oldExecutionTime = executionTime;
+		executionTime = newExecutionTime;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__EXECUTION_TIME, oldExecutionTime, executionTime));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Operator getMetatype() {
 		ExtendibleElement metatype = super.getMetatype();
 		return (metatype == null) ? null : (Operator) metatype;
@@ -352,6 +394,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				return basicGetPreviousOperator();
 			case OperatorPackage.OPERATOR__UPDATE_MID:
 				return isUpdateMID();
+			case OperatorPackage.OPERATOR__EXECUTION_TIME:
+				return getExecutionTime();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -386,6 +430,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			case OperatorPackage.OPERATOR__UPDATE_MID:
 				setUpdateMID((Boolean)newValue);
 				return;
+			case OperatorPackage.OPERATOR__EXECUTION_TIME:
+				setExecutionTime((Long)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -416,6 +463,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			case OperatorPackage.OPERATOR__UPDATE_MID:
 				setUpdateMID(UPDATE_MID_EDEFAULT);
 				return;
+			case OperatorPackage.OPERATOR__EXECUTION_TIME:
+				setExecutionTime(EXECUTION_TIME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -440,6 +490,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				return previousOperator != null;
 			case OperatorPackage.OPERATOR__UPDATE_MID:
 				return updateMID != UPDATE_MID_EDEFAULT;
+			case OperatorPackage.OPERATOR__EXECUTION_TIME:
+				return executionTime != EXECUTION_TIME_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -550,6 +602,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		result.append(inputSubdir);
 		result.append(", updateMID: ");
 		result.append(updateMID);
+		result.append(", executionTime: ");
+		result.append(executionTime);
 		result.append(')');
 		return result.toString();
 	}
@@ -906,7 +960,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		Properties inputProperties = newOperator.getInputProperties();
 		newOperator.readInputProperties(inputProperties);
 		newOperator.init();
+		long startTime = System.nanoTime();
 		Map<String, Model> outputsByName = newOperator.run(inputsByName, genericsByName, outputMIDsByName);
+		newOperator.setExecutionTime(System.nanoTime()-startTime);
 		// outputs
 		if (instanceMID != null) {
 			for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {

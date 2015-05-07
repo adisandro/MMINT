@@ -458,6 +458,7 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/previousOperator"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Operator/updateMID"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Operator/executionTime"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMetatype"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getSupertype"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteType"/>

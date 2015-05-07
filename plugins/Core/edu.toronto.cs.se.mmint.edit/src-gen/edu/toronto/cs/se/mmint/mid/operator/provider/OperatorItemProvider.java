@@ -61,6 +61,7 @@ public class OperatorItemProvider
 			addInputSubdirPropertyDescriptor(object);
 			addPreviousOperatorPropertyDescriptor(object);
 			addUpdateMIDPropertyDescriptor(object);
+			addExecutionTimePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -154,6 +155,28 @@ public class OperatorItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Execution Time feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExecutionTimePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Operator_executionTime_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Operator_executionTime_feature", "_UI_Operator_type"),
+				 OperatorPackage.Literals.OPERATOR__EXECUTION_TIME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -223,6 +246,7 @@ public class OperatorItemProvider
 		switch (notification.getFeatureID(Operator.class)) {
 			case OperatorPackage.OPERATOR__INPUT_SUBDIR:
 			case OperatorPackage.OPERATOR__UPDATE_MID:
+			case OperatorPackage.OPERATOR__EXECUTION_TIME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case OperatorPackage.OPERATOR__INPUTS:

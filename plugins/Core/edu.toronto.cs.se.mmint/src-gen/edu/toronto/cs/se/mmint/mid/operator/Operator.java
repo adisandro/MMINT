@@ -41,6 +41,7 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getInputSubdir <em>Input Subdir</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getPreviousOperator <em>Previous Operator</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#isUpdateMID <em>Update MID</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutionTime <em>Execution Time</em>}</li>
  * </ul>
  * </p>
  *
@@ -171,6 +172,31 @@ public interface Operator extends GenericElement {
 	void setUpdateMID(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Execution Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The execution time of this operator instance in nanoseconds (types: not used).
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Execution Time</em>' attribute.
+	 * @see #setExecutionTime(long)
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperator_ExecutionTime()
+	 * @model required="true"
+	 * @generated
+	 */
+	long getExecutionTime();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutionTime <em>Execution Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Execution Time</em>' attribute.
+	 * @see #getExecutionTime()
+	 * @generated
+	 */
+	void setExecutionTime(long value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -215,9 +241,7 @@ public interface Operator extends GenericElement {
 	 * @return A set of inputs to the operator, including necessary conversions.
 	 * @throws MMINTException
 	 *             If this is an operator instance. <!-- end-user-doc -->
-	 * @model dataType=
-	 *        "edu.toronto.cs.se.mmint.mid.operator.Set<org.eclipse.emf.ecore.EEList<edu.toronto.cs.se.mmint.mid.operator.OperatorInput>>"
-	 *        required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputMIDsMany="true"
+	 * @model dataType="edu.toronto.cs.se.mmint.mid.operator.Set<org.eclipse.emf.ecore.EEList<edu.toronto.cs.se.mmint.mid.operator.OperatorInput>>" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputMIDsMany="true"
 	 * @generated
 	 */
 	Set<EList<OperatorInput>> findAllowedInputs(EList<MultiModel> inputMIDs) throws MMINTException;
