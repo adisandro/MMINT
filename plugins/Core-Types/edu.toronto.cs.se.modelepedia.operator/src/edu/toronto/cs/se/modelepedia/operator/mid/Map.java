@@ -50,15 +50,12 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class Map extends OperatorImpl {
 
-	@NonNull
-	private final static String INPUT_MIDS = "mids";
-	@NonNull
-	private final static String OUTPUT_MIDS = "mappedMids";
-	@NonNull
-	private final static String GENERIC_OPERATORTYPE = "MAPPER";
-
-	@NonNull
-	private final static String MAPPED_MID_SUFFIX = "_mapped";
+	// input-output
+	private final static @NonNull String IN_MIDS = "mids";
+	private final static @NonNull String OUT_MIDS = "mappedMids";
+	private final static @NonNull String GENERIC_OPERATORTYPE = "MAPPER";
+	// constants
+	private final static @NonNull String MAPPED_MID_SUFFIX = "_mapped";
 
 	private java.util.Map<String, Model> map(
 			@NonNull Operator mapperOperatorType, @NonNull Set<EList<OperatorInput>> operatorInputSet,
@@ -113,7 +110,7 @@ public class Map extends OperatorImpl {
 				false);
 			MultiModelUtils.createModelFile(outputMID.getValue(), outputMIDUri, true);
 			Model outputMIDModel = midModelType.createInstanceAndEditor(outputMIDUri, ModelOrigin.CREATED, instanceMID);
-			outputsByName.put(OUTPUT_MIDS + i, outputMIDModel);
+			outputsByName.put(OUT_MIDS + i, outputMIDModel);
 			i++;
 			// create gmf shortcuts
 			if (gmfShortcutsByOutputName.get(outputMID.getKey()) == null) {
@@ -151,9 +148,9 @@ public class Map extends OperatorImpl {
 
 		// TODO MMINT[MAP] Add option for shallow/deep and support for deep
 		// input
-		List<Model> inputMIDModels = MultiModelOperatorUtils.getVarargs(inputsByName, INPUT_MIDS);
+		List<Model> inputMIDModels = MultiModelOperatorUtils.getVarargs(inputsByName, IN_MIDS);
 		Operator mapperOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
-		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_MIDS);
+		MultiModel instanceMID = outputMIDsByName.get(OUT_MIDS);
 		EList<MultiModel> inputMIDs = new BasicEList<>();
 		for (Model inputMIDModel : inputMIDModels) {
 			inputMIDs.add((MultiModel) inputMIDModel.getEMFInstanceRoot());

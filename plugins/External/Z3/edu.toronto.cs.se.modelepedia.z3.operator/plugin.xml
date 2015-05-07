@@ -93,4 +93,35 @@
       </operatorType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="HenshinTransformation"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_HenshinTransformation"
+               class="edu.toronto.cs.se.modelepedia.z3.operator.henshin.HenshinTransformation">
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="original">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="transformed">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
 </plugin>

@@ -41,17 +41,13 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class Reduce extends OperatorImpl {
 
-	@NonNull
-	private final static String INPUT_MID = "mid";
-	@NonNull
-	private final static String OUTPUT_MID = "reducedMid";
-	@NonNull
-	private final static String GENERIC_OPERATORTYPE = "ACCUMULATOR";
-
-	@NonNull
-	private final static String REDUCED_MID_SUFFIX = "_reduced";
-	@NonNull
-	private final static String OPERATORTYPE_MODELRELCOMPOSITION_URI = "http://se.cs.toronto.edu/modelepedia/Operator_ModelRelComposition";
+	// input-output
+	private final static @NonNull String IN_MID = "mid";
+	private final static @NonNull String OUT_MID = "reducedMid";
+	private final static @NonNull String GENERIC_OPERATORTYPE = "ACCUMULATOR";
+	// constants
+	private final static @NonNull String REDUCED_MID_SUFFIX = "_reduced";
+	private final static @NonNull String OPERATORTYPE_MODELRELCOMPOSITION_URI = "http://se.cs.toronto.edu/modelepedia/Operator_ModelRelComposition";
 
 	private @NonNull MultiModel reduce(@NonNull Model inputMIDModel, @NonNull Operator accumulatorOperatorType)
 			throws Exception {
@@ -151,9 +147,9 @@ public class Reduce extends OperatorImpl {
 			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
 		// input
-		Model inputMIDModel = inputsByName.get(INPUT_MID);
+		Model inputMIDModel = inputsByName.get(IN_MID);
 		Operator accumulatorOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
-		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_MID);
+		MultiModel instanceMID = outputMIDsByName.get(OUT_MID);
 
 		// loop until reduction is no longer possible, reducing one input at a time
 		MultiModel reducedMID = reduce(inputMIDModel, accumulatorOperatorType);
@@ -167,7 +163,7 @@ public class Reduce extends OperatorImpl {
 		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
 		Model reducedMIDModel = midModelType.createInstanceAndEditor(reducedMIDModelUri, ModelOrigin.CREATED, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUTPUT_MID, reducedMIDModel);
+		outputsByName.put(OUT_MID, reducedMIDModel);
 
 		return outputsByName;
 	}

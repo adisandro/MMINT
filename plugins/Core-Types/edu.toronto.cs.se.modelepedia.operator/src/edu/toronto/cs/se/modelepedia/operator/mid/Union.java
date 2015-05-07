@@ -35,13 +35,11 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class Union extends OperatorImpl {
 
-	@NonNull
-	private final static String INPUT_MIDS = "mids";
-	@NonNull
-	private final static String OUTPUT_MID = "unionMid";
-
-	@NonNull
-	private final static String UNION_SEPARATOR = "+";
+	// input-output
+	private final static @NonNull String IN_MIDS = "mids";
+	private final static @NonNull String OUT_MID = "unionMid";
+	// constants
+	private final static @NonNull String UNION_SEPARATOR = "+";
 
 	private @NonNull MultiModel union(@NonNull List<Model> inputMIDModels) throws MMINTException {
 
@@ -74,8 +72,8 @@ public class Union extends OperatorImpl {
 			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
 		// input
-		List<Model> inputMIDModels = MultiModelOperatorUtils.getVarargs(inputsByName, INPUT_MIDS);
-		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_MID);
+		List<Model> inputMIDModels = MultiModelOperatorUtils.getVarargs(inputsByName, IN_MIDS);
+		MultiModel instanceMID = outputMIDsByName.get(OUT_MID);
 
 		// create union of input mids
 		MultiModel unionMID = union(inputMIDModels);
@@ -91,7 +89,7 @@ public class Union extends OperatorImpl {
 		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
 		Model unionMIDModel = midModelType.createInstanceAndEditor(unionMIDModelUri, ModelOrigin.CREATED, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUTPUT_MID, unionMIDModel);
+		outputsByName.put(OUT_MID, unionMIDModel);
 
 		return outputsByName;
 	}

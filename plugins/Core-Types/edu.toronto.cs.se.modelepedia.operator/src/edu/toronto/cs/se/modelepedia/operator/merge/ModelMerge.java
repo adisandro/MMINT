@@ -46,19 +46,14 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 // e.g. direct access through ext table is useful, but there's that _AS_ thing to be fixed first
 public class ModelMerge extends OperatorImpl {
 
-	@NonNull
-	private final static String INPUT_MODELREL = "match";
-	@NonNull
-	private final static String OUTPUT_MODEL = "merged";
-	@NonNull
-	private final static String OUTPUT_MODELREL1 = "trace1";
-	@NonNull
-	private final static String OUTPUT_MODELREL2 = "trace2";
-
-	@NonNull
-	private static final String MERGED_MODELOBJECT_ATTRIBUTE = "name";
-	@NonNull
-	private static final String MERGED_SEPARATOR = "+";
+	// input-output
+	private final static @NonNull String IN_MODELREL = "match";
+	private final static @NonNull String OUT_MODEL = "merged";
+	private final static @NonNull String OUT_MODELREL1 = "trace1";
+	private final static @NonNull String OUT_MODELREL2 = "trace2";
+	// constants
+	private static final @NonNull String MERGED_MODELOBJECT_ATTRIBUTE = "name";
+	private static final @NonNull String MERGED_SEPARATOR = "+";
 
 	// TODO MMINT[OPERATOR] Make this an api
 	private @NonNull Set<ModelElementReference> getConnected(@NonNull ModelElementReference modelElemRef) {
@@ -184,7 +179,7 @@ public class ModelMerge extends OperatorImpl {
 			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
 		// TODO MMINT[MERGE] Support more complex cases than just first-level objects without references
-		ModelRel matchRel = (ModelRel) inputsByName.get(INPUT_MODELREL);
+		ModelRel matchRel = (ModelRel) inputsByName.get(IN_MODELREL);
 		// check input constraints
 		if (matchRel.getModelEndpoints().size() != 2) {
 			throw new MMINTException("The match model relationship " + matchRel + " doesn't have 2 model endpoints");
@@ -196,7 +191,7 @@ public class ModelMerge extends OperatorImpl {
 		}
 
 		// create merged model and trace relationships as placeholders
-		MultiModel mergedModelMID = outputMIDsByName.get(OUTPUT_MODEL);
+		MultiModel mergedModelMID = outputMIDsByName.get(OUT_MODEL);
 		String mergedModelUri = MultiModelUtils.replaceLastSegmentInUri(
 			MultiModelRegistry.getModelAndModelElementUris(mergedModelMID, MIDLevel.INSTANCES)[0],
 			model1.getName() + MERGED_SEPARATOR + model2.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR
@@ -210,7 +205,7 @@ public class ModelMerge extends OperatorImpl {
 			true,
 			ModelOrigin.CREATED,
 			traceModels1);
-		traceRel1.setName(OUTPUT_MODELREL1);
+		traceRel1.setName(OUT_MODELREL1);
 		EList<Model> traceModels2 = new BasicEList<Model>();
 		traceModels2.add(model2);
 		traceModels2.add(mergedModel);
@@ -219,16 +214,16 @@ public class ModelMerge extends OperatorImpl {
 			true,
 			ModelOrigin.CREATED,
 			traceModels2);
-		traceRel2.setName(OUTPUT_MODELREL2);
+		traceRel2.setName(OUT_MODELREL2);
 		// merge the models
 		EObject rootMergedModelObj = merge(model1, model2, matchRel, mergedModel, traceRel1, traceRel2);
 		MultiModelUtils.createModelFile(rootMergedModelObj, mergedModelUri, true);
 		mergedModel.createInstanceEditor(); // opens the new model editor as side effect
 
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUTPUT_MODEL, mergedModel);
-		outputsByName.put(OUTPUT_MODELREL1, traceRel1);
-		outputsByName.put(OUTPUT_MODELREL2, traceRel2);
+		outputsByName.put(OUT_MODEL, mergedModel);
+		outputsByName.put(OUT_MODELREL1, traceRel1);
+		outputsByName.put(OUT_MODELREL2, traceRel2);
 
 		return outputsByName;
 	}

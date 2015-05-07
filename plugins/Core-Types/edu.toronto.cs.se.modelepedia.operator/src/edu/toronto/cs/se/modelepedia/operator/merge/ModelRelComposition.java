@@ -38,15 +38,12 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class ModelRelComposition extends OperatorImpl {
 
-	@NonNull
-	private final static String INPUT_MODELREL1 = "rel1";
-	@NonNull
-	private final static String INPUT_MODELREL2 = "rel2";
-	@NonNull
-	private final static String OUTPUT_MODELREL = "composition";
-
-	@NonNull
-	private final static String COMPOSITION_SEPARATOR = "+";
+	// input-output
+	private final static @NonNull String IN_MODELREL1 = "rel1";
+	private final static @NonNull String IN_MODELREL2 = "rel2";
+	private final static @NonNull String OUT_MODELREL = "composition";
+	// constants
+	private final static @NonNull String COMPOSITION_SEPARATOR = "+";
 
 	private @NonNull ModelRel compose(@NonNull ModelRel modelRel1, @NonNull ModelRel modelRel2,
 		@NonNull Model model1, @NonNull Model model2, @NonNull Model modelPivot, @NonNull MultiModel instanceMID)
@@ -117,8 +114,8 @@ public class ModelRelComposition extends OperatorImpl {
 		java.util.Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName)
 		throws Exception {
 
-		ModelRel modelRel1 = (ModelRel) inputsByName.get(INPUT_MODELREL1);
-		ModelRel modelRel2 = (ModelRel) inputsByName.get(INPUT_MODELREL2);
+		ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
+		ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
 		// check input constraints
 		//TODO MMINT[OPERATOR] Turn checking of input constraints into api, because it should invalidate checkAllowedInputs
 		if (modelRel1.getModelEndpoints().size() != 2) {
@@ -154,11 +151,11 @@ public class ModelRelComposition extends OperatorImpl {
 			throw new MMINTException("The input model relationships don't share a model endpoint");
 		}
 
-		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_MODELREL);
+		MultiModel instanceMID = outputMIDsByName.get(OUT_MODELREL);
 		ModelRel composedModelRel = compose(modelRel1, modelRel2, model1, model2, modelPivot,
 			instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUTPUT_MODELREL, composedModelRel);
+		outputsByName.put(OUT_MODELREL, composedModelRel);
 
 		return outputsByName;
 	}

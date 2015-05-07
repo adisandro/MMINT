@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.operator.mid;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
@@ -26,6 +27,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -33,15 +35,34 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class Filter extends OperatorImpl {
 
-	@NonNull
-	private final static String INPUT_MID = "mid";
-	@NonNull
-	private final static String OUTPUT_MID = "filteredMid";
-	@NonNull
-	private final static String GENERIC_MODELTYPE = "TYPE";
+	private enum Polarity {
+		POSITIVE, NEGATIVE;
+		public boolean toBoolean() {
+			return this == POSITIVE;
+		}
+	};
 
-	@NonNull
-	private final static String FILTERED_MID_SUFFIX = "_filtered";
+	// input-output
+	private final static @NonNull String IN_MID = "mid";
+	private final static @NonNull String OUT_MID = "filteredMid";
+	private final static @NonNull String GENERIC_MODELTYPE = "TYPE";
+	private final static @NonNull String PROPERTY_IN_POLARITY = "polarity";
+	private final static @NonNull Polarity PROPERTY_IN_POLARITY_DEFAULT = Polarity.POSITIVE;
+	// constants
+	private final static @NonNull String FILTERED_MID_SUFFIX = "_filtered";
+
+	// input
+	private Polarity polarity;
+
+	@Override
+	public void readInputProperties(Properties inputProperties) throws MMINTException {
+
+		polarity = MultiModelOperatorUtils.getOptionalEnumProperty(
+			inputProperties,
+			PROPERTY_IN_POLARITY,
+			PROPERTY_IN_POLARITY_DEFAULT,
+			Polarity.class);
+	}
 
 	private @NonNull MultiModel filter(@NonNull Model inputMIDModel, @NonNull Model filterModelType)
 			throws MMINTException {
@@ -49,11 +70,13 @@ public class Filter extends OperatorImpl {
 		MultiModel filteredMID = (MultiModel) inputMIDModel.getEMFInstanceRoot();
 		Set<Model> modelsToDelete = new HashSet<>();
 		for (Model model : MultiModelRegistry.getModels(filteredMID)) {
-			boolean isModelRel = model instanceof ModelRel;
-			boolean isFilterModelRelType = filterModelType instanceof ModelRel;
-			// check constraint only if types match (Model and Model, or ModelRel and ModelRel
-			if (isModelRel ^ isFilterModelRelType
-					|| MultiModelConstraintChecker.checkConstraint(model, filterModelType.getConstraint()).toBoolean()) {
+			// check constraint only if types match (Model and Model, or ModelRel and ModelRel)
+			if ((model instanceof ModelRel) != (filterModelType instanceof ModelRel)) {
+				continue;
+			}
+			// check constraint according to polarity
+			if (MultiModelConstraintChecker.checkConstraint(model, filterModelType.getConstraint()).toBoolean() ==
+					polarity.toBoolean()) {
 				continue;
 			}
 			modelsToDelete.add(model);
@@ -75,9 +98,9 @@ public class Filter extends OperatorImpl {
 			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
 		// input
-		Model inputMIDModel = inputsByName.get(INPUT_MID);
+		Model inputMIDModel = inputsByName.get(IN_MID);
 		Model filterModelType = (Model) genericsByName.get(GENERIC_MODELTYPE);
-		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_MID);
+		MultiModel instanceMID = outputMIDsByName.get(OUT_MID);
 
 		// filter mid models based on property attached to type
 		MultiModel filteredMID = filter(inputMIDModel, filterModelType);
@@ -94,7 +117,7 @@ public class Filter extends OperatorImpl {
 			ModelOrigin.CREATED,
 			instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUTPUT_MID, filteredMIDModel);
+		outputsByName.put(OUT_MID, filteredMIDModel);
 
 		return outputsByName;
 	}
