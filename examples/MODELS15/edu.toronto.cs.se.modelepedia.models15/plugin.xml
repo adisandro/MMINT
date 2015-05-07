@@ -2,4 +2,27 @@
 <?eclipse version="3.4"?>
 <plugin>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/ClassDiagramWithPublicAttributes"
+            class="edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.models">
+      <modelType>
+         <type
+               name="ClassDiagramWithPublicAttributes"
+               uri="http://se.cs.toronto.edu/modelepedia/ClassDiagramWithPublicAttributes">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+            </superType>
+         </type>
+         <constraint
+               implementation="Attribute.allInstances()-&gt;exists(attribute | attribute.public)"
+               language="OCL">
+         </constraint>
+      </modelType>
+   </extension>
+
 </plugin>
