@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/MODELS15/refactoring/cd1.classdiagram" name="cd1" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" origin="CREATED" fileExtension="classdiagram" editors="//@editors.0"/>
+  <models uri="/MODELS15/refactoring/cd2.classdiagram" name="cd2" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" origin="CREATED" fileExtension="classdiagram" editors="//@editors.1"/>
+  <editors xsi:type="editor:Diagram" uri="/MODELS15/refactoring/cd1.classdiagramdiag" name="ClassDiagram diagram for model /MODELS15/refactoring/cd1.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_ClassDiagram" dynamic="true" modelUri="/MODELS15/refactoring/cd1.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramCreationWizardID">
+    <fileExtensions>classdiagramdiag</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/MODELS15/refactoring/cd2.classdiagramdiag" name="ClassDiagram diagram for model /MODELS15/refactoring/cd2.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_ClassDiagram" dynamic="true" modelUri="/MODELS15/refactoring/cd2.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramCreationWizardID">
+    <fileExtensions>classdiagramdiag</fileExtensions>
+  </editors>
+  <extendibleTable key="/MODELS15/refactoring/cd1.classdiagram" value="//@models.0"/>
+  <extendibleTable key="/MODELS15/refactoring/cd2.classdiagram" value="//@models.1"/>
+</mid:MultiModel>
