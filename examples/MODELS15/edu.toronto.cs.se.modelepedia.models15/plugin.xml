@@ -17,7 +17,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/modelepedia/ClassDiagramWithPublicAttributes"
+            uri="http://se.cs.toronto.edu/modelepedia/CDPublicAttributes"
             class="edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage"/>
    </extension>
 
@@ -25,14 +25,37 @@
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
-               name="ClassDiagramWithPublicAttributes"
-               uri="http://se.cs.toronto.edu/modelepedia/ClassDiagramWithPublicAttributes">
+               name="CDPublicAttributes"
+               uri="http://se.cs.toronto.edu/modelepedia/CDPublicAttributes">
             <superType
                   uri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
             </superType>
          </type>
          <constraint
                implementation="Attribute.allInstances()-&gt;exists(attribute | attribute.public)"
+               language="OCL">
+         </constraint>
+      </modelType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/CDNoPublicAttributes"
+            class="edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.models">
+      <modelType>
+         <type
+               name="CDNoPublicAttributes"
+               uri="http://se.cs.toronto.edu/modelepedia/CDNoPublicAttributes">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+            </superType>
+         </type>
+         <constraint
+               implementation="not Attribute.allInstances()-&gt;exists(attribute | attribute.public)"
                language="OCL">
          </constraint>
       </modelType>
@@ -218,5 +241,172 @@
          </outputs>
       </operatorType>
    </extension>
+
+   <!-- empty stuff for screenshots
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/CDRel"
+            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.relationships">
+      <relationshipType>
+         <modelType>
+            <type
+                  name="CDRel"
+                  uri="http://se.cs.toronto.edu/modelepedia/CDRel">
+            </type>
+         </modelType>
+         <binaryType
+               sourceTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram"
+               targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+         </binaryType>
+         <modelTypeEndpoint>
+            <type
+                  name="CDsrc"
+                  uri="http://se.cs.toronto.edu/modelepedia/CDRel-ClassDiagram/CDsrc">
+            </type>
+            <typeEndpoint
+                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+            </typeEndpoint>
+         </modelTypeEndpoint>
+         <modelTypeEndpoint>
+            <type
+                  name="CDtgt"
+                  uri="http://se.cs.toronto.edu/modelepedia/CDRel-ClassDiagram/CDtgt">
+            </type>
+            <typeEndpoint
+                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+            </typeEndpoint>
+         </modelTypeEndpoint>
+      </relationshipType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="CDMatch"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_CDMatch"
+               class="edu.toronto.cs.se.modelepedia.models15.operator.MODELS15">
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="cd1">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="cd2">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="match">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/CDRel">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="CDMerge"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_CDMerge"
+               class="edu.toronto.cs.se.modelepedia.models15.operator.MODELS15">
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="match">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/CDRel">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="merged">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="trace1">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/CDRel">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="trace2">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/CDRel">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="CDRelComposition"
+               uri="http://se.cs.toronto.edu/mmint/Operator_CDRelComposition"
+               class="edu.toronto.cs.se.modelepedia.models15.operator.MODELS15">
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="rel1">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/CDRel">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="rel2">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/CDRel">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="composition">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/CDRel">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+   -->
 
 </plugin>

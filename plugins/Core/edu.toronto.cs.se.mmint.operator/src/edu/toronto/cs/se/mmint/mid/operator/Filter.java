@@ -14,7 +14,6 @@ package edu.toronto.cs.se.mmint.mid.operator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
@@ -27,7 +26,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -35,58 +33,12 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class Filter extends OperatorImpl {
 
-	private enum Polarity {
-		POSITIVE, NEGATIVE;
-		public boolean toBoolean() {
-			return this == POSITIVE;
-		}
-		public String toString() {
-			String polarity;
-			switch (this) {
-				case NEGATIVE:
-					polarity = "-";
-					break;
-				case POSITIVE:
-				default:
-					polarity = "+";
-					break;
-			}
-			return polarity;
-		}
-	};
-
 	// input-output
 	private final static @NonNull String IN_MID = "mid";
 	private final static @NonNull String OUT_MID = "filteredMid";
 	private final static @NonNull String GENERIC_MODELTYPE = "TYPE";
-	private final static @NonNull String PROPERTY_IN_POLARITY = "polarity";
-	private final static @NonNull Polarity PROPERTY_IN_POLARITY_DEFAULT = Polarity.POSITIVE;
 	// constants
 	private final static @NonNull String FILTERED_MID_SUFFIX = "_filtered";
-
-	// input
-	private Polarity polarity;
-
-	@Override
-	public String toString() {
-
-		String ret = super.toString();
-		if (polarity != null) {
-			ret = polarity.toString() + ret;
-		}
-
-		return ret;
-	}
-
-	@Override
-	public void readInputProperties(Properties inputProperties) throws MMINTException {
-
-		polarity = MultiModelOperatorUtils.getOptionalEnumProperty(
-			inputProperties,
-			PROPERTY_IN_POLARITY,
-			PROPERTY_IN_POLARITY_DEFAULT,
-			Polarity.class);
-	}
 
 	private @NonNull MultiModel filter(@NonNull Model inputMIDModel, @NonNull Model filterModelType)
 			throws MMINTException {
@@ -98,9 +50,8 @@ public class Filter extends OperatorImpl {
 			if ((model instanceof ModelRel) != (filterModelType instanceof ModelRel)) {
 				continue;
 			}
-			// check constraint according to polarity
-			if (MultiModelConstraintChecker.checkConstraint(model, filterModelType.getConstraint()).toBoolean() ==
-					polarity.toBoolean()) {
+			// check constraint
+			if (MultiModelConstraintChecker.checkConstraint(model, filterModelType.getConstraint()).toBoolean()) {
 				continue;
 			}
 			modelsToDelete.add(model);
