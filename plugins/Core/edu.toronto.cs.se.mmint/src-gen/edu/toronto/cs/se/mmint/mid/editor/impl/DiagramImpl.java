@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
@@ -34,6 +35,7 @@ import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 /**
  * <!-- begin-user-doc -->
@@ -132,7 +134,9 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 				// create the diagram directly and do not open the wizard
 				try {
 					GMFDiagramUtils.createGMFDiagram(modelUri, diagramUri, diagramKind, diagramPluginId, true);
-					GMFDiagramUtils.openGMFDiagram(diagramUri, getId(), true);
+					if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED))) {
+						GMFDiagramUtils.openGMFDiagram(diagramUri, getId(), true);
+					}
 				}
 				catch (Exception e) {
 					throw new MMINTException("Error creating or opening the gmf diagram", e);

@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -31,6 +32,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -38,6 +40,7 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 public class Reduce extends OperatorImpl {
 
@@ -60,6 +63,8 @@ public class Reduce extends OperatorImpl {
 		EList<MultiModel> inputMIDs = new BasicEList<>();
 		inputMIDs.add(reducedMID);
 		Set<EList<OperatorInput>> operatorInputSet;
+		Set<Model> tempModelsToDelete = new HashSet<>();
+		Map<String, Model> operatorOutputsByName = null;
 		while (!(operatorInputSet = accumulatorOperatorType.findAllowedInputs(inputMIDs)).isEmpty()) {
 			for (EList<OperatorInput> operatorInputs : operatorInputSet) {
 				try {
@@ -88,8 +93,12 @@ public class Reduce extends OperatorImpl {
 								.collect(Collectors.toSet())))
 						.collect(Collectors.toSet());
 					// run the ACCUMULATOR operator
-					Map<String, Model> operatorOutputsByName = accumulatorOperatorType.start(operatorInputs,
+					operatorOutputsByName = accumulatorOperatorType.start(operatorInputs,
 						operatorOutputMIDsByName, null);
+					tempModelsToDelete.addAll(
+						operatorOutputsByName.values().stream()
+							.filter(outputModel -> !(outputModel instanceof ModelRel))
+							.collect(Collectors.toSet()));
 					// for each model rel in the output that is connected with the input models, do the composition
 					Operator compOperatorType = MultiModelTypeRegistry.getType(MODELRELCOMPOSITION_OPERATORTYPE_URI);
 					Map<String, MultiModel> compOperatorOutputMIDsByName = compOperatorType.getOutputs().stream()
@@ -122,7 +131,7 @@ public class Reduce extends OperatorImpl {
 					inputModels.forEach(modelInput -> {
 						try {
 							modelInput.deleteInstance();
-							//TODO MMINT[REDUCE] Remove intermediate model files and don't open them
+							//TODO MMINT[REDUCE] Remove intermediate model files
 						}
 						catch (MMINTException e) {}
 					});
@@ -136,6 +145,16 @@ public class Reduce extends OperatorImpl {
 						e);
 				}
 			}
+		}
+		// delete intermediate model files but the ones from last execution
+		for (Model tempModelToDelete : tempModelsToDelete) {
+			if (operatorOutputsByName != null && operatorOutputsByName.values().contains(tempModelToDelete)) {
+				continue;
+			}
+			for (Editor tempEditorToDelete : tempModelToDelete.getEditors()) {
+				MultiModelUtils.deleteFile(tempEditorToDelete.getUri(), true);
+			}
+			MultiModelUtils.deleteFile(tempModelToDelete.getUri(), true);
 		}
 
 		return reducedMID;
@@ -152,7 +171,15 @@ public class Reduce extends OperatorImpl {
 		MultiModel instanceMID = outputMIDsByName.get(OUT_MID);
 
 		// loop until reduction is no longer possible, reducing one input at a time
+		boolean openEditors = Boolean.parseBoolean(
+			MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED));
+		if (openEditors) {
+			MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "false");
+		}
 		MultiModel reducedMID = reduce(inputMIDModel, accumulatorOperatorType);
+		if (openEditors) {
+			MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "true");
+		}
 
 		// output
 		String reducedMIDModelUri = MultiModelUtils.getUniqueUri(
