@@ -5,7 +5,9 @@ Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.models15;singleton:=true
 Bundle-Version: 1.3.0.qualifier
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.eclipse.emf.ecore,
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
  org.eclipse.jdt.annotation;resolution:=optional,
+ edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.classdiagram

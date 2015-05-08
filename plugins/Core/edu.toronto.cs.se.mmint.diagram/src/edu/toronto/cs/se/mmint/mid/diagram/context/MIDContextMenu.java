@@ -59,7 +59,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  */
 public class MIDContextMenu extends ContributionItem {
 
-	public static final int INVALID_MENU_ITEM_LIMIT = 20;
+	public static final int INVALID_MENU_ITEM_LIMIT = 25;
 	public static final String MMINT_MENU_LABEL = "MMINT";
 	private static final String MMINT_MENU_OPERATOR_LABEL = "Run Operator";
 	private static final String MMINT_MENU_CAST_LABEL = "Cast Type";

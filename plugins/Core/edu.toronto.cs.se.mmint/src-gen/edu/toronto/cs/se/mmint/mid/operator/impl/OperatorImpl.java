@@ -623,14 +623,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 					.collect(Collectors.joining(",")) +
 				">";
 		}
-		if (!getInputs().isEmpty()) {
-			label +=
-				"(" +
-				getInputs().stream()
-					.map(ModelEndpoint::getName)
-					.collect(Collectors.joining(",")) +
-				")";
-		}
 
 		return label;
 	}

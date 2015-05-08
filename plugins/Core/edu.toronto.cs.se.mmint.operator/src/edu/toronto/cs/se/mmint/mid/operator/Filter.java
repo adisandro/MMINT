@@ -40,6 +40,19 @@ public class Filter extends OperatorImpl {
 		public boolean toBoolean() {
 			return this == POSITIVE;
 		}
+		public String toString() {
+			String polarity;
+			switch (this) {
+				case NEGATIVE:
+					polarity = "-";
+					break;
+				case POSITIVE:
+				default:
+					polarity = "+";
+					break;
+			}
+			return polarity;
+		}
 	};
 
 	// input-output
@@ -53,6 +66,17 @@ public class Filter extends OperatorImpl {
 
 	// input
 	private Polarity polarity;
+
+	@Override
+	public String toString() {
+
+		String ret = super.toString();
+		if (polarity != null) {
+			ret = polarity.toString() + ret;
+		}
+
+		return ret;
+	}
 
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {

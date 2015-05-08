@@ -95,6 +95,10 @@ public class EMFModelMatch extends OperatorImpl {
 
 		Model srcModel = inputsByName.get(INPUT_MODEL1);
 		Model tgtModel = inputsByName.get(INPUT_MODEL2);
+		// check input constraints
+		if (srcModel == tgtModel) {
+			throw new MMINTException("The two input models must be distinct");
+		}
 		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_MATCHMODELREL);
 
 		// create match model relationship
