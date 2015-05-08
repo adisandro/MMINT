@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.operator.merge;
+package edu.toronto.cs.se.mmint.operator.merge;
 
 import java.util.HashMap;
 import java.util.List;

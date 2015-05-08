@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.operator.mid;
+package edu.toronto.cs.se.mmint.mid.operator;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -47,7 +47,7 @@ public class Reduce extends OperatorImpl {
 	private final static @NonNull String GENERIC_OPERATORTYPE = "ACCUMULATOR";
 	// constants
 	private final static @NonNull String REDUCED_MID_SUFFIX = "_reduced";
-	private final static @NonNull String OPERATORTYPE_MODELRELCOMPOSITION_URI = "http://se.cs.toronto.edu/modelepedia/Operator_ModelRelComposition";
+	private final static @NonNull String OPERATORTYPE_MODELRELCOMPOSITION_URI = "http://se.cs.toronto.edu/mmint/Operator_ModelRelComposition";
 
 	private @NonNull MultiModel reduce(@NonNull Model inputMIDModel, @NonNull Operator accumulatorOperatorType)
 			throws Exception {

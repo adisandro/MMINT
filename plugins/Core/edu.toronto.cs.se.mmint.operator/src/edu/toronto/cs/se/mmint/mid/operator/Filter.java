@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.operator.mid;
+package edu.toronto.cs.se.mmint.mid.operator;
 
 import java.util.HashMap;
 import java.util.HashSet;

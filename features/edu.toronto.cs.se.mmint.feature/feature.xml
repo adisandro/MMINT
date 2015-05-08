@@ -64,11 +64,11 @@ sets of related models.
       <import plugin="org.eclipse.papyrus.uml.diagram.wizards"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.gmf.runtime.notation"/>
-      <import plugin="org.eclipse.swt"/>
       <import plugin="org.eclipse.gmf.runtime.notation.edit"/>
       <import plugin="org.eclipse.gmf.codegen"/>
       <import plugin="org.eclipse.gmf.codegen.xtend"/>
       <import plugin="org.eclipse.xtext.xbase.lib"/>
+      <import plugin="org.eclipse.swt"/>
       <import feature="org.eclipse.gmf.sdk"/>
       <import feature="org.eclipse.ocl.examples"/>
       <import feature="org.eclipse.papyrus.sdk.feature"/>
@@ -167,5 +167,11 @@ sets of related models.
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.operator"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
 </feature>
