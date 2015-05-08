@@ -38,6 +38,40 @@
       </modelType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/mmint/MIDRel"
+            id="edu.toronto.cs.se.mmint.mid.presentation.MIDEditorID"
+            isDiagram="false"
+            wizardId="edu.toronto.cs.se.mmint.mid.presentation.MIDModelWizardID">
+         <type
+               name="MIDRel tree"
+               uri="http://se.cs.toronto.edu/mmint/MIDRel_tree">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/MID_tree">
+            </superType>
+         </type>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/mmint/MIDRel"
+            id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"
+            isDiagram="true"
+            wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
+         <type
+               name="MIDRel diagram"
+               uri="http://se.cs.toronto.edu/mmint/MIDRel_diagram">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/MID_diagram">
+            </superType>
+         </type>
+      </editorType>
+   </extension>
+
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://se.cs.toronto.edu/mmint/MIDOper"
@@ -59,6 +93,40 @@
                language="JAVA">
          </constraint>
       </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/mmint/MIDOper"
+            id="edu.toronto.cs.se.mmint.mid.presentation.MIDEditorID"
+            isDiagram="false"
+            wizardId="edu.toronto.cs.se.mmint.mid.presentation.MIDModelWizardID">
+         <type
+               name="MIDOper tree"
+               uri="http://se.cs.toronto.edu/mmint/MIDOper_tree">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/MID_tree">
+            </superType>
+         </type>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/mmint/MIDOper"
+            id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"
+            isDiagram="true"
+            wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
+         <type
+               name="MIDOper diagram"
+               uri="http://se.cs.toronto.edu/mmint/MIDOper_diagram">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/MID_diagram">
+            </superType>
+         </type>
+      </editorType>
    </extension>
 
    <extension

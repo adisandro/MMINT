@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint.mid.operator;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -27,7 +28,9 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
@@ -47,6 +50,7 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 public class Map extends OperatorImpl {
 
@@ -56,39 +60,58 @@ public class Map extends OperatorImpl {
 	private final static @NonNull String GENERIC_OPERATORTYPE = "MAPPER";
 	// constants
 	private final static @NonNull String MAPPED_MID_SUFFIX = "_mapped";
+	private final static @NonNull String MIDREL_MODELTYPE_URI_SUFFIX = "Rel";
+	private final static @NonNull String MIDOPER_MODELTYPE_URI_SUFFIX = "Oper";
 
 	private java.util.Map<String, Model> map(
-			@NonNull Operator mapperOperatorType, @NonNull Set<EList<OperatorInput>> operatorInputSet,
-			@NonNull MultiModel instanceMID) throws Exception {
+			@NonNull List<Model> inputMIDModels, @NonNull Operator mapperOperatorType,
+			@NonNull Set<EList<OperatorInput>> operatorInputSet, @NonNull MultiModel instanceMID) throws Exception {
 
 		// create output MIDs
 		java.util.Map<String, MultiModel> outputMIDsByName = mapperOperatorType.getOutputs().stream()
 			.collect(Collectors.toMap(
 				outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
 				outputModelTypeEndpoint -> MIDFactory.eINSTANCE.createMultiModel()));
+		// TODO MMINT[MAP] Keep track of needed shortcuts and create them
+		MultiModel operatorMID = Boolean.parseBoolean(
+			MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED)) ?
+				MIDFactory.eINSTANCE.createMultiModel() :
+				null;
 		// start operator types
-		java.util.Map<String, Set<Model>> gmfShortcutsByOutputName = new HashMap<>();
+		java.util.Map<String, Set<Model>> midrelShortcutsByOutputName = new HashMap<>();
+		Set<Model> midoperModelShortcuts = new HashSet<>(), midoperModelRelShortcuts = new HashSet<>();
 		for (EList<OperatorInput> operatorInputs : operatorInputSet) {
 			try {
-				// TODO MMINT[MAP] Create mid of operator applications and pass it instead of null
 				java.util.Map<String, Model> operatorOutputsByName = mapperOperatorType.start(
 					operatorInputs,
 					outputMIDsByName,
-					null);
-				// get gmf shortcuts to create (output MIDs containing model rels need gmf shortcuts to model endpoints)
-				for (Entry<String, Model> operatorOutput : operatorOutputsByName.entrySet()) {
-					if (!(operatorOutput.getValue() instanceof ModelRel)) {
-						continue;
-					}
-					Set<Model> gmfShortcutsToAdd = ((ModelRel) operatorOutput.getValue()).getModelEndpoints().stream()
-						.map(ModelEndpoint::getTarget)
-						.collect(Collectors.toSet());
-					Set<Model> gmfShortcuts = gmfShortcutsByOutputName.get(operatorOutput.getKey());
-					if (gmfShortcuts == null) {
-						gmfShortcutsByOutputName.put(operatorOutput.getKey(), gmfShortcutsToAdd);
+					operatorMID);
+				// get gmf shortcuts to create (output MIDRels/MIDOpers need gmf shortcuts to model endpoints)
+				for (OperatorInput operatorInput : operatorInputs) {
+					if (operatorInput.getModel() instanceof ModelRel) {
+						midoperModelRelShortcuts.add(operatorInput.getModel());
 					}
 					else {
-						gmfShortcuts.addAll(gmfShortcutsToAdd);
+						midoperModelShortcuts.add(operatorInput.getModel());
+					}
+				}
+				for (Entry<String, Model> operatorOutput : operatorOutputsByName.entrySet()) {
+					if (operatorOutput.getValue() instanceof ModelRel) {
+						midoperModelRelShortcuts.add(operatorOutput.getValue());
+						Set<Model> midrelShortcutsToAdd = ((ModelRel) operatorOutput.getValue()).getModelEndpoints()
+							.stream()
+							.map(ModelEndpoint::getTarget)
+							.collect(Collectors.toSet());
+						Set<Model> midrelShortcuts = midrelShortcutsByOutputName.get(operatorOutput.getKey());
+						if (midrelShortcuts == null) {
+							midrelShortcutsByOutputName.put(operatorOutput.getKey(), midrelShortcutsToAdd);
+						}
+						else {
+							midrelShortcuts.addAll(midrelShortcutsToAdd);
+						}
+					}
+					else {
+						midoperModelShortcuts.add(operatorOutput.getValue());
 					}
 				}
 			}
@@ -100,31 +123,37 @@ public class Map extends OperatorImpl {
 		}
 		// store output MIDs
 		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
+		Model midrelModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
 		String baseOutputUri = MultiModelRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
 		java.util.Map<String, Model> outputsByName = new HashMap<>();
 		int i = 0;
-		for (Entry<String, MultiModel> outputMID : outputMIDsByName.entrySet()) {
+		for (Entry<String, MultiModel> outputMIDByName : outputMIDsByName.entrySet()) {
+			boolean isMIDRel = midrelShortcutsByOutputName.get(outputMIDByName.getKey()) != null;
 			String outputMIDUri = MultiModelUtils.getUniqueUri(
-				MultiModelUtils.replaceFileNameInUri(baseOutputUri, outputMID.getKey() + MAPPED_MID_SUFFIX),
+				MultiModelUtils.replaceFileNameInUri(baseOutputUri, outputMIDByName.getKey() + MAPPED_MID_SUFFIX),
 				true,
 				false);
-			MultiModelUtils.createModelFile(outputMID.getValue(), outputMIDUri, true);
-			Model outputMIDModel = midModelType.createInstanceAndEditor(outputMIDUri, ModelOrigin.CREATED, instanceMID);
+			MultiModelUtils.createModelFile(outputMIDByName.getValue(), outputMIDUri, true);
+			Model outputModelType = (isMIDRel) ? midrelModelType : midModelType;
+			Model outputMIDModel = outputModelType.createInstanceAndEditor(
+				outputMIDUri,
+				ModelOrigin.CREATED,
+				instanceMID);
 			outputsByName.put(OUT_MIDS + i, outputMIDModel);
 			i++;
-			// create gmf shortcuts
-			if (gmfShortcutsByOutputName.get(outputMID.getKey()) == null) {
+			if (!isMIDRel) {
 				continue;
 			}
+			// create gmf shortcuts for midrels
 			Diagram outputMIDModelDiagram = (Diagram) outputMIDModel.getEditors().get(0);
 			View gmfDiagramRoot = (View) MultiModelUtils.getModelFile(outputMIDModelDiagram.getUri(), true);
-			String gmfDiagramPluginId = MultiModelTypeRegistry
-				.getTypeBundle(outputMIDModelDiagram.getMetatypeUri())
-				.getSymbolicName();
+			//TODO MMINT[DIAGRAM] This is wrong, I'd need the supertype
+			String gmfDiagramPluginId = MultiModelTypeRegistry.getTypeBundle(
+				outputMIDModelDiagram.getMetatypeUri()).getSymbolicName();
 			MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
-			for (Model gmfShortcut : gmfShortcutsByOutputName.get(outputMID.getKey())) {
+			for (Model midrelShortcut : midrelShortcutsByOutputName.get(outputMIDByName.getKey())) {
 				Node gmfNode = gmfViewProvider.createModel_2012(
-					gmfShortcut,
+					midrelShortcut,
 					gmfDiagramRoot,
 					-1,
 					true,
@@ -135,7 +164,77 @@ public class Map extends OperatorImpl {
 				gmfNode.getEAnnotations().add(shortcutAnnotation);
 			}
 			MultiModelUtils.createModelFile(gmfDiagramRoot, outputMIDModelDiagram.getUri(), true);
-			// TODO MMINT[MAP] Create empty relationships with all input MIDs?
+			// create empty model rels for midrels
+			for (Model inputMIDModel : inputMIDModels) {
+				EList<Model> midrelModels = new BasicEList<>();
+				midrelModels.add(outputMIDModel);
+				midrelModels.add(inputMIDModel);
+				ModelRel midrelModelRel = MultiModelTypeHierarchy.getRootModelRelType().createInstanceAndEndpointsAndReferences(
+					null,
+					true,
+					ModelOrigin.CREATED,
+					midrelModels);
+				midrelModelRel.setName(inputMIDModel.getName());
+			}
+		}
+		// create midoper
+		if (operatorMID != null) {
+			Model midoperModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI + MIDOPER_MODELTYPE_URI_SUFFIX);
+			String operatorMIDUri = MultiModelUtils.getUniqueUri(
+				MultiModelUtils.replaceFileNameInUri(baseOutputUri, mapperOperatorType.getName() + MAPPED_MID_SUFFIX),
+				true,
+				false);
+			MultiModelUtils.createModelFile(operatorMID, operatorMIDUri, true);
+			Model operatorMIDModel = midoperModelType.createInstanceAndEditor(
+				operatorMIDUri,
+				ModelOrigin.CREATED,
+				instanceMID);
+			outputsByName.put(OUT_MIDS + i, operatorMIDModel);
+			// create gmf shortcuts
+			Diagram operatorMIDModelDiagram = (Diagram) operatorMIDModel.getEditors().get(0);
+			View gmfDiagramRoot = (View) MultiModelUtils.getModelFile(operatorMIDModelDiagram.getUri(), true);
+			//TODO MMINT[DIAGRAM] This is wrong, I'd need the supertype
+			String gmfDiagramPluginId = MultiModelTypeRegistry.getTypeBundle(
+				operatorMIDModelDiagram.getMetatypeUri()).getSymbolicName();
+			MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
+			for (Model midoperModelShortcut : midoperModelShortcuts) {
+				Node gmfNode = gmfViewProvider.createModel_2012(
+					midoperModelShortcut,
+					gmfDiagramRoot,
+					-1,
+					true,
+					new PreferencesHint(gmfDiagramPluginId));
+				EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+				shortcutAnnotation.setSource("Shortcut");
+				shortcutAnnotation.getDetails().put("modelID", MultiModelEditPart.MODEL_ID);
+				gmfNode.getEAnnotations().add(shortcutAnnotation);
+			}
+			//TODO MMINT[MAP] Fix refresh problems, don't know if there can be shortcuts for links
+//			for (Model midoperModelRelShortcut : midoperModelRelShortcuts) {
+//				View gmfView;
+//				//TODO MMINT[MAP] Create function to do this
+//				if (midoperModelRelShortcut instanceof BinaryModelRel) {
+//					gmfView = gmfViewProvider.createBinaryModelRel_4015(
+//						midoperModelRelShortcut,
+//						gmfDiagramRoot,
+//						-1,
+//						true,
+//						new PreferencesHint(gmfDiagramPluginId));
+//				}
+//				else {
+//					gmfView = gmfViewProvider.createModelRel_2014(
+//						midoperModelRelShortcut,
+//						gmfDiagramRoot,
+//						-1,
+//						true,
+//						new PreferencesHint(gmfDiagramPluginId));
+//				}
+//				EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+//				shortcutAnnotation.setSource("Shortcut");
+//				shortcutAnnotation.getDetails().put("modelID", MultiModelEditPart.MODEL_ID);
+//				gmfView.getEAnnotations().add(shortcutAnnotation);
+//			}
+			MultiModelUtils.createModelFile(gmfDiagramRoot, operatorMIDModelDiagram.getUri(), true);
 		}
 
 		return outputsByName;
@@ -158,7 +257,7 @@ public class Map extends OperatorImpl {
 
 		// find all possible combinations of inputs for operatorType and execute them
 		Set<EList<OperatorInput>> operatorInputSet = mapperOperatorType.findAllowedInputs(inputMIDs);
-		java.util.Map<String, Model> outputsByName = map(mapperOperatorType, operatorInputSet, instanceMID);
+		java.util.Map<String, Model> outputsByName = map(inputMIDModels, mapperOperatorType, operatorInputSet, instanceMID);
 
 		// store model elements created in the input mids
 		for (int i = 0; i < inputMIDModels.size(); i++) {

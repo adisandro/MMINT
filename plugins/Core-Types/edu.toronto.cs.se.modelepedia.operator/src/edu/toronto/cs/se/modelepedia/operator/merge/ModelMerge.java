@@ -100,11 +100,14 @@ public class ModelMerge extends OperatorImpl {
 					modelElem2.getUri().substring(0, modelElem2.getUri().indexOf(MMINT.ROLE_SEPARATOR)),
 					mergedModelObj);
 				try { // change merged attribute
-					MultiModelUtils.setModelObjFeature(
-						mergedModelObj,
-						MERGED_MODELOBJECT_ATTRIBUTE,
-						MultiModelUtils.getModelObjFeature(modelObj1, MERGED_MODELOBJECT_ATTRIBUTE) + MERGED_SEPARATOR
-								+ MultiModelUtils.getModelObjFeature(modelObj2, MERGED_MODELOBJECT_ATTRIBUTE));
+					Object modelObjAttr1 = MultiModelUtils.getModelObjFeature(modelObj1, MERGED_MODELOBJECT_ATTRIBUTE);
+					Object modelObjAttr2 = MultiModelUtils.getModelObjFeature(modelObj2, MERGED_MODELOBJECT_ATTRIBUTE);
+					if (!modelObjAttr1.equals(modelObjAttr2)) {
+						MultiModelUtils.setModelObjFeature(
+							mergedModelObj,
+							MERGED_MODELOBJECT_ATTRIBUTE,
+							modelObjAttr1 + MERGED_SEPARATOR + modelObjAttr2);
+					}
 				}
 				catch (MMINTException e) {
 					// no attribute to be merged

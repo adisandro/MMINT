@@ -47,7 +47,7 @@ public class Reduce extends OperatorImpl {
 	private final static @NonNull String GENERIC_OPERATORTYPE = "ACCUMULATOR";
 	// constants
 	private final static @NonNull String REDUCED_MID_SUFFIX = "_reduced";
-	private final static @NonNull String OPERATORTYPE_MODELRELCOMPOSITION_URI = "http://se.cs.toronto.edu/mmint/Operator_ModelRelComposition";
+	private final static @NonNull String MODELRELCOMPOSITION_OPERATORTYPE_URI = "http://se.cs.toronto.edu/mmint/Operator_ModelRelComposition";
 
 	private @NonNull MultiModel reduce(@NonNull Model inputMIDModel, @NonNull Operator accumulatorOperatorType)
 			throws Exception {
@@ -91,7 +91,7 @@ public class Reduce extends OperatorImpl {
 					Map<String, Model> operatorOutputsByName = accumulatorOperatorType.start(operatorInputs,
 						operatorOutputMIDsByName, null);
 					// for each model rel in the output that is connected with the input models, do the composition
-					Operator compOperatorType = MultiModelTypeRegistry.getType(OPERATORTYPE_MODELRELCOMPOSITION_URI);
+					Operator compOperatorType = MultiModelTypeRegistry.getType(MODELRELCOMPOSITION_OPERATORTYPE_URI);
 					Map<String, MultiModel> compOperatorOutputMIDsByName = compOperatorType.getOutputs().stream()
 						.collect(Collectors.toMap(
 							outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),

@@ -821,6 +821,11 @@ public class MultiModelTypeHierarchy {
 		return MultiModelTypeRegistry.getType(MMINT.ROOT_MODELELEMENDPOINT_URI);
 	}
 
+	public static Editor getRootEditorType() {
+
+		return MultiModelTypeRegistry.getType(MMINT.ROOT_EDITOR_URI);
+	}
+
 	/**
 	 * Checks if the given type is the root type for its class.
 	 * 

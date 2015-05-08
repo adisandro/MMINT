@@ -23,6 +23,7 @@ import org.eclipse.ui.IWorkbenchWizard;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
@@ -122,8 +123,12 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 			if (initialSelection.getFirstElement() instanceof IFile) {
 				String modelUri = ((IFile) initialSelection.getFirstElement()).getFullPath().toOSString();
 				String diagramUri = MultiModelUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
-				String diagramKind = MultiModelTypeRegistry.getType(getModelUri()).getName();
-				String diagramPluginId = MultiModelTypeRegistry.getTypeBundle(getUri()).getSymbolicName();
+				Diagram superDiagramType = this;
+				while (superDiagramType.getSupertype() != null && superDiagramType.getSupertype() != MultiModelTypeHierarchy.getRootEditorType()) {
+					superDiagramType = (Diagram) superDiagramType.getSupertype();
+				}
+				String diagramKind = MultiModelTypeRegistry.getType(superDiagramType.getModelUri()).getName();
+				String diagramPluginId = MultiModelTypeRegistry.getTypeBundle(superDiagramType.getUri()).getSymbolicName();
 				// create the diagram directly and do not open the wizard
 				try {
 					GMFDiagramUtils.createGMFDiagram(modelUri, diagramUri, diagramKind, diagramPluginId, true);
