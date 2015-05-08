@@ -107,6 +107,10 @@ public class MODELS15 extends RandomOperatorImpl {
 
 		// input
 		MultiModel instanceMID = outputMIDsByName.get(OUT_MID);
+		// check constraints
+		if (numClassesPerClassDiagram > numClassNames) {
+			throw new MMINTException("numClassNames must be >= numClassesPerClassDiagram");
+		}
 
 		// create random class diagrams in a mid
 		String instanceMIDUri = MultiModelRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
