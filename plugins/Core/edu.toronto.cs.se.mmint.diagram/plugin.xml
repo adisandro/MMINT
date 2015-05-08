@@ -803,6 +803,12 @@ Contributors:
                   style="toggle"
                   tooltip="Enables/disables automatic opening of editors when new models are created">
             </command>
+            <command
+                  commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.PolymorphismEnabled"
+                  label="Polymorphism Enabled"
+                  style="toggle"
+                  tooltip="Enables/disables polymorphic model types (can be slow for big models)">
+            </command>
             <separator
                   name="edu.toronto.cs.se.mmint.mid.diagram.menu.separator1"
                   visible="true">
@@ -876,6 +882,15 @@ Contributors:
             defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
             id="edu.toronto.cs.se.mmint.mid.diagram.menu.OpenModelEditorsEnabled"
             name="Open Editors For New Models">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState:true"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
+      <command
+            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
+            id="edu.toronto.cs.se.mmint.mid.diagram.menu.PolymorphismEnabled"
+            name="Polymorphism Enabled">
          <state
                class="org.eclipse.ui.handlers.RegistryToggleState:true"
                id="org.eclipse.ui.commands.toggleState">

@@ -909,6 +909,7 @@ public class MMINT implements MMINTConstants {
 		initPreference(preferences, PREFERENCE_MENU_OPERATORS_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_TESTS_ENABLED, "false", true);
 		for (String languageId : languageReasoners.keySet()) {
 			String reasonerName = preferences.get(PREFERENCE_MENU_LANGUAGE_REASONER + languageId, null);

@@ -87,17 +87,26 @@ public class Map extends OperatorImpl {
 					outputMIDsByName,
 					operatorMID);
 				// get gmf shortcuts to create (output MIDRels/MIDOpers need gmf shortcuts to model endpoints)
-				for (OperatorInput operatorInput : operatorInputs) {
-					if (operatorInput.getModel() instanceof ModelRel) {
-						midoperModelRelShortcuts.add(operatorInput.getModel());
-					}
-					else {
-						midoperModelShortcuts.add(operatorInput.getModel());
+				if (operatorMID != null) {
+					for (OperatorInput operatorInput : operatorInputs) {
+						if (operatorInput.getModel() instanceof ModelRel) {
+							midoperModelRelShortcuts.add(operatorInput.getModel());
+						}
+						else {
+							midoperModelShortcuts.add(operatorInput.getModel());
+						}
 					}
 				}
 				for (Entry<String, Model> operatorOutput : operatorOutputsByName.entrySet()) {
+					if (operatorMID != null) {
+						if (operatorOutput.getValue() instanceof ModelRel) {
+							midoperModelRelShortcuts.add(operatorOutput.getValue());
+						}
+						else {
+							midoperModelShortcuts.add(operatorOutput.getValue());
+						}
+					}
 					if (operatorOutput.getValue() instanceof ModelRel) {
-						midoperModelRelShortcuts.add(operatorOutput.getValue());
 						Set<Model> midrelShortcutsToAdd = ((ModelRel) operatorOutput.getValue()).getModelEndpoints()
 							.stream()
 							.map(ModelEndpoint::getTarget)
@@ -110,15 +119,12 @@ public class Map extends OperatorImpl {
 							midrelShortcuts.addAll(midrelShortcutsToAdd);
 						}
 					}
-					else {
-						midoperModelShortcuts.add(operatorOutput.getValue());
-					}
 				}
 			}
 			catch (Exception e) {
 				// other than errors, the operator can fail because of input constraints due to the cartesian product
-				MMINTException.print(IStatus.WARNING, "Operator " + mapperOperatorType
-						+ " execution error, skipping it", e);
+				MMINTException.print(
+					IStatus.WARNING, "Operator " + mapperOperatorType + " execution error, skipping it", e);
 			}
 		}
 		// store output MIDs

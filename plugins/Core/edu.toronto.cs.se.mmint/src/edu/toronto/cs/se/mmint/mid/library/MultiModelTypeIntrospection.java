@@ -19,12 +19,14 @@ import java.util.Map;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
@@ -36,6 +38,7 @@ import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTr
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 /**
  * The type introspection engine for multimodels.
@@ -110,15 +113,15 @@ public class MultiModelTypeIntrospection {
 
 		if (elementType instanceof Model && !(elementType instanceof ModelRel)) { // explore metamodel-compatible supertrees and subtrees
 			List<T> metamodelSubtypes = new ArrayList<T>();
-			EObject rootModelObj;
+			EPackage rootStaticModelTypeObj;
 			try {
-				rootModelObj = ((Model) element).getEMFInstanceRoot();
+				rootStaticModelTypeObj = ((Model) element).getMetatype().getEMFTypeRoot();
 			}
 			catch (MMINTException e) {
 				MMINTException.print(IStatus.WARNING, "Can't get model root, skipping subtypes filtering", e);
 				return metamodelSubtypes;
 			}
-			String metamodelUri = rootModelObj.eClass().getEPackage().getNsURI();
+			String metamodelUri = rootStaticModelTypeObj.getNsURI();
 			for (T filteredElementSubtype : filteredElementSubtypes) {
 				if (
 					metamodelUri.equals(filteredElementSubtype.getUri()) ||
@@ -184,9 +187,13 @@ public class MultiModelTypeIntrospection {
 		if (!MultiModelConstraintChecker.isInstancesLevel(element)) {
 			return null;
 		}
+		List<T> elementTypes = new ArrayList<T>();
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED))) {
+			elementTypes.add((T) element.getMetatype());
+			return elementTypes;
+		}
 
 		// start from root
-		List<T> elementTypes = new ArrayList<T>();
 		T rootType = MultiModelTypeRegistry.getType(MultiModelTypeHierarchy.getRootTypeUri(element));
 		getRuntimeTypes(element, rootType, elementTypes);
 

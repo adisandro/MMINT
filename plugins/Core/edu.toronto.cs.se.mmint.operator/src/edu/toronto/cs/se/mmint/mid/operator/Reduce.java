@@ -131,7 +131,6 @@ public class Reduce extends OperatorImpl {
 					inputModels.forEach(modelInput -> {
 						try {
 							modelInput.deleteInstance();
-							//TODO MMINT[REDUCE] Remove intermediate model files
 						}
 						catch (MMINTException e) {}
 					});
@@ -141,7 +140,8 @@ public class Reduce extends OperatorImpl {
 				catch (Exception e) {
 					// other than errors, the operator can fail because of input constraints due to the cartesian
 					// product
-					MMINTException.print(IStatus.WARNING, "Operator " + accumulatorOperatorType + " execution error, skipping it",
+					MMINTException.print(
+						IStatus.WARNING, "Operator " + accumulatorOperatorType + " execution error, skipping it",
 						e);
 				}
 			}
