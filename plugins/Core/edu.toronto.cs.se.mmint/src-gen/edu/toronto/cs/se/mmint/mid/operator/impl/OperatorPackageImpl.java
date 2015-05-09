@@ -308,7 +308,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__CheckAllowedInputs__EList() {
+	public EOperation getOperator__FindFirstAllowedInput__EList() {
 		return operatorEClass.getEOperations().get(4);
 	}
 
@@ -317,7 +317,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__CreateInstance__MultiModel() {
+	public EOperation getOperator__CheckAllowedInputs__EList() {
 		return operatorEClass.getEOperations().get(5);
 	}
 
@@ -326,7 +326,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__DeleteInstance() {
+	public EOperation getOperator__IsAllowedInput__Map() {
 		return operatorEClass.getEOperations().get(6);
 	}
 
@@ -335,7 +335,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__IsAllowedTargetGeneric__GenericEndpoint_GenericElement_EList() {
+	public EOperation getOperator__CreateInstance__MultiModel() {
 		return operatorEClass.getEOperations().get(7);
 	}
 
@@ -344,7 +344,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__GetInputProperties() {
+	public EOperation getOperator__DeleteInstance() {
 		return operatorEClass.getEOperations().get(8);
 	}
 
@@ -353,7 +353,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__ReadInputProperties__Properties() {
+	public EOperation getOperator__IsAllowedTargetGeneric__GenericEndpoint_GenericElement_EList() {
 		return operatorEClass.getEOperations().get(9);
 	}
 
@@ -362,7 +362,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__Init() {
+	public EOperation getOperator__GetInputProperties() {
 		return operatorEClass.getEOperations().get(10);
 	}
 
@@ -371,7 +371,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__Run__Map_Map_Map() {
+	public EOperation getOperator__ReadInputProperties__Properties() {
 		return operatorEClass.getEOperations().get(11);
 	}
 
@@ -380,8 +380,26 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__Start__EList_Map_MultiModel() {
+	public EOperation getOperator__Init() {
 		return operatorEClass.getEOperations().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__Run__Map_Map_Map() {
+		return operatorEClass.getEOperations().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__Start__EList_Map_MultiModel() {
+		return operatorEClass.getEOperations().get(14);
 	}
 
 	/**
@@ -604,7 +622,9 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(operatorEClass, OPERATOR___GET_SUPERTYPE);
 		createEOperation(operatorEClass, OPERATOR___DELETE_TYPE);
 		createEOperation(operatorEClass, OPERATOR___FIND_ALLOWED_INPUTS__ELIST);
+		createEOperation(operatorEClass, OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST);
 		createEOperation(operatorEClass, OPERATOR___CHECK_ALLOWED_INPUTS__ELIST);
+		createEOperation(operatorEClass, OPERATOR___IS_ALLOWED_INPUT__MAP);
 		createEOperation(operatorEClass, OPERATOR___CREATE_INSTANCE__MULTIMODEL);
 		createEOperation(operatorEClass, OPERATOR___DELETE_INSTANCE);
 		createEOperation(operatorEClass, OPERATOR___IS_ALLOWED_TARGET_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST);
@@ -705,8 +725,21 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		g2.getETypeArguments().add(g3);
 		initEOperation(op, g1);
 
+		op = initEOperation(getOperator__FindFirstAllowedInput__EList(), this.getOperatorInput(), "findFirstAllowedInput", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getMultiModel(), "inputMIDs", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
+
 		op = initEOperation(getOperator__CheckAllowedInputs__EList(), this.getOperatorInput(), "checkAllowedInputs", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getModel(), "inputModels", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
+
+		op = initEOperation(getOperator__IsAllowedInput__Map(), ecorePackage.getEBoolean(), "isAllowedInput", 1, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEString());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theMIDPackage.getModel());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "inputsByName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getOperator__CreateInstance__MultiModel(), this.getOperator(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);

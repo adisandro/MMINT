@@ -1097,9 +1097,22 @@
         </eGenericType>
         <eParameters name="inputMIDs" upperBound="-1" eType="#//MultiModel"/>
       </eOperations>
+      <eOperations name="findFirstAllowedInput" upperBound="-1" eType="#//operator/OperatorInput"
+          eExceptions="#//MMINTException">
+        <eParameters name="inputMIDs" upperBound="-1" eType="#//MultiModel"/>
+      </eOperations>
       <eOperations name="checkAllowedInputs" upperBound="-1" eType="#//operator/OperatorInput"
           eExceptions="#//MMINTException">
         <eParameters name="inputModels" upperBound="-1" eType="#//Model"/>
+      </eOperations>
+      <eOperations name="isAllowedInput" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          eExceptions="#//MMINTException">
+        <eParameters name="inputsByName" lowerBound="1">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            <eTypeArguments eClassifier="#//Model"/>
+          </eGenericType>
+        </eParameters>
       </eOperations>
       <eOperations name="createInstance" lowerBound="1" eType="#//operator/Operator"
           eExceptions="#//MMINTException">

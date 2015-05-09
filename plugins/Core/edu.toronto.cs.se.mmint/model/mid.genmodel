@@ -465,8 +465,14 @@
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/findAllowedInputs">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/findAllowedInputs/inputMIDs"/>
         </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/findFirstAllowedInput">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/findFirstAllowedInput/inputMIDs"/>
+        </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/checkAllowedInputs">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/checkAllowedInputs/inputModels"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/isAllowedInput">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedInput/inputsByName"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/createInstance">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/createInstance/instanceMID"/>

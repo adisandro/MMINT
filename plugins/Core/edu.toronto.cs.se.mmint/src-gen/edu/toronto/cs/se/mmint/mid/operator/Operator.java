@@ -247,6 +247,14 @@ public interface Operator extends GenericElement {
 	Set<EList<OperatorInput>> findAllowedInputs(EList<MultiModel> inputMIDs) throws MMINTException;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputMIDsMany="true"
+	 * @generated
+	 */
+	EList<OperatorInput> findFirstAllowedInput(EList<MultiModel> inputMIDs) throws MMINTException;
+
+	/**
 	 * <!-- begin-user-doc --> Checks if a list of input models can be used as actual parameters to run this operator
 	 * type.
 	 * 
@@ -259,6 +267,14 @@ public interface Operator extends GenericElement {
 	 * @generated
 	 */
 	EList<OperatorInput> checkAllowedInputs(EList<Model> inputModels) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsByNameRequired="true"
+	 * @generated
+	 */
+	boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and possibly adds an operator instance of
