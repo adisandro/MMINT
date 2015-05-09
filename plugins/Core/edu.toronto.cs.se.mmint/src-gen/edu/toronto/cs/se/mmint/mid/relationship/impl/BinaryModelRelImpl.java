@@ -247,6 +247,24 @@ public class BinaryModelRelImpl extends ModelRelImpl implements BinaryModelRel {
 	/**
 	 * @generated NOT
 	 */
+	public String toString() {
+
+		String ret = this.getName() + "(";
+		if (this.getSourceModel() != null) {
+			ret += this.getSourceModel().getName();
+		}
+		ret += "->";
+		if (this.getTargetModel() != null) {
+			ret += this.getTargetModel().getName();
+		}
+		ret += ")";
+
+		return ret;
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	public void addModelType(Model modelType, boolean isBinarySrc) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {

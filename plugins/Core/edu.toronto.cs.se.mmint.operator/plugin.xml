@@ -172,6 +172,45 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
+               name="ModelRelMerge"
+               uri="http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge"
+               class="edu.toronto.cs.se.mmint.operator.merge.ModelRelMerge">
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="rel1">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="rel2">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="merge">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
                name="Map"
                uri="http://se.cs.toronto.edu/mmint/Operator_Map"
                class="edu.toronto.cs.se.mmint.mid.operator.Map">
