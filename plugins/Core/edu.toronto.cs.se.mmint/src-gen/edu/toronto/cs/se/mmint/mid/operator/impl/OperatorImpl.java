@@ -820,6 +820,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		if (i < inputModels.size()) {
 			return null;
 		}
+		//TODO MMINT[OPERATOR] Use isAllowedInput here, but how does one handle conversions?
+		//If I make them here, this is extremely redundant (for each operator in the menu), but if I don't
+		//then it's rather useless. Should I turn it into an api that throws an exception within run()?
 
 		return inputs;
 	}
@@ -828,14 +831,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * @generated NOT
 	 */
 	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
-
-		return true;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public boolean isValidInput(Map<String, Model> inputsByName) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");

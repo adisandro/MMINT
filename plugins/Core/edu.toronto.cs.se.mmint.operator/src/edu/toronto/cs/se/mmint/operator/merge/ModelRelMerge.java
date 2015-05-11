@@ -107,6 +107,28 @@ public class ModelRelMerge extends OperatorImpl {
 	}
 
 	@Override
+	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
+
+		ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
+		ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+		if (modelRel1.getModelEndpoints().size() != 2 || modelRel2.getModelEndpoints().size() != 2) {
+			return false;
+		}
+		Model model11 = modelRel1.getModelEndpoints().get(0).getTarget();
+		Model model12 = modelRel1.getModelEndpoints().get(1).getTarget();
+		Model model21 = modelRel2.getModelEndpoints().get(0).getTarget();
+		Model model22 = modelRel2.getModelEndpoints().get(1).getTarget();
+		if (model11 == model21 && model12 == model22) {
+			return true;
+		}
+		else if (model11 == model22 && model12 == model21) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
 	public Map<String, Model> run(Map<String, Model> inputsByName,
 		java.util.Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName)
 		throws Exception {
@@ -114,26 +136,18 @@ public class ModelRelMerge extends OperatorImpl {
 		// input
 		ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
 		ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
-		// check input constraints
-		if (modelRel1.getModelEndpoints().size() != 2) {
-			throw new MMINTException("The model relationship " + modelRel1 + " doesn't have 2 model endpoints");
-		}
-		if (modelRel2.getModelEndpoints().size() != 2) {
-			throw new MMINTException("The model relationship " + modelRel2 + " doesn't have 2 model endpoints");
-		}
-		Model model11 = modelRel1.getModelEndpoints().get(0).getTarget(), model12 = modelRel1.getModelEndpoints()
-			.get(1).getTarget(), model21 = modelRel2.getModelEndpoints().get(0).getTarget(), model22 = modelRel2
-			.getModelEndpoints().get(1).getTarget(), model1 = null, model2 = null;
+		Model model11 = modelRel1.getModelEndpoints().get(0).getTarget();
+		Model model12 = modelRel1.getModelEndpoints().get(1).getTarget();
+		Model model21 = modelRel2.getModelEndpoints().get(0).getTarget();
+		Model model22 = modelRel2.getModelEndpoints().get(1).getTarget();
+		Model model1 = null, model2 = null;
 		if (model11 == model21 && model12 == model22) {
 			model1 = model11;
 			model2 = model22;
 		}
-		else if (model11 == model22 && model12 == model21) {
+		else { // model11 == model22 && model12 == model21
 			model1 = model11;
 			model2 = model21;
-		}
-		if (model1 == null) {
-			throw new MMINTException("The input model relationships don't share the same model endpoints");
 		}
 
 		// merge the two model rels
