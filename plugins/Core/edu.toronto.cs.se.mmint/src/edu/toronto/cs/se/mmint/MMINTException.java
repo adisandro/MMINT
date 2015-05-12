@@ -15,6 +15,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.statushandlers.StatusManager;
 
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+
 /**
  * Custom exception for MMINT.
  *
@@ -76,6 +79,20 @@ public class MMINTException extends Exception {
 	public MMINTException(String message, Throwable cause) {
 
 		super(message, cause);
+	}
+
+	public static void mustBeType(ExtendibleElement type) throws MMINTException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(type)) {
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+	}
+
+	public static void mustBeInstance(ExtendibleElement instance) throws MMINTException {
+
+		if (!MultiModelConstraintChecker.isInstancesLevel(instance)) {
+			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
+		}
 	}
 
 }

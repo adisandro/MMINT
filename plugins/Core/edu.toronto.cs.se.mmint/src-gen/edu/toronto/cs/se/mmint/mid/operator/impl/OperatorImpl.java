@@ -45,7 +45,6 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
@@ -646,9 +645,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public void deleteType() throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
 		// delete the "thing"
@@ -702,7 +699,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	private @NonNull EList<EList<OperatorInput>> getModelTypeEndpointInputs(@NonNull EList<MultiModel> inputMIDs) {
 
-		// TODO MMINT[MAP] Add support for upper bound = -1
+		//TODO MMINT[OPERATOR] Unify with checkAllowedInputs() or with getOperatorTypeInputs()/findFirstAllowedInput() in an iterative fashion
+		//TODO MMINT[MAP] Add support for upper bound = -1
 		EList<EList<OperatorInput>> modelTypeEndpointInputs = new BasicEList<>();
 		for (int i = 0; i < this.getInputs().size(); i++) {
 			ModelEndpoint inputModelTypeEndpoint = this.getInputs().get(i);
@@ -742,9 +740,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public Set<EList<OperatorInput>> findAllowedInputs(EList<MultiModel> inputMIDs) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		// get inputs by model type endpoint
 		EList<EList<OperatorInput>> modelTypeEndpointInputs = getModelTypeEndpointInputs(inputMIDs);
@@ -760,12 +756,11 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public EList<OperatorInput> findFirstAllowedInput(EList<MultiModel> inputMIDs) throws MMINTException {
 
-		//TODO Generate this and the validInput
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
+
 		// get inputs by model type endpoint
 		EList<EList<OperatorInput>> modelTypeEndpointInputs = getModelTypeEndpointInputs(inputMIDs);
+		// get the first input
 		EList<OperatorInput> operatorInputs = new BasicEList<>();
 		for (EList<OperatorInput> modelTypeEndpointInput : modelTypeEndpointInputs) {
 			if (modelTypeEndpointInput.isEmpty()) {
@@ -773,6 +768,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			}
 			operatorInputs.add(modelTypeEndpointInput.get(0));
 		}
+		//TODO MMINT[MEGAMODELS] Use isAllowedInput() here, but I need to make this iterative
 
 		return operatorInputs;
 	}
@@ -782,10 +778,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public EList<OperatorInput> checkAllowedInputs(EList<Model> inputModels) throws MMINTException {
 
-		//TODO MMINT[OPERATOR] Possibly unify with other allowed inputs functions
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		// check actual parameters
 		EList<OperatorInput> inputs = new BasicEList<>();
@@ -820,9 +813,18 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		if (i < inputModels.size()) {
 			return null;
 		}
-		//TODO MMINT[OPERATOR] Use isAllowedInput here, but how does one handle conversions?
-		//If I make them here, this is extremely redundant (for each operator in the menu), but if I don't
-		//then it's rather useless. Should I turn it into an api that throws an exception within run()?
+		// check 4: operator-specific constraints other than types (e.g. 2 model rels as input connected by same model)
+		Map<String, Model> inputsByName = null;
+		try {
+			inputsByName = createInputsByName(inputs, false, null);
+		}
+		catch (Exception e) {
+			// never happens
+		}
+		if (!this.isAllowedInput(inputsByName)) {
+			//TODO MMINT[OPERATOR] Can there be conflicts since conversions are not run?
+			return null;
+		}
 
 		return inputs;
 	}
@@ -832,9 +834,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		return true;
 	}
@@ -844,9 +844,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public Operator createInstance(MultiModel instanceMID) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		Operator newOperator;
 		try {
@@ -868,9 +866,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public void deleteInstance() throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		MultiModel instanceMID = MultiModelRegistry.getMultiModel(this);
 		instanceMID.getOperators().remove(this);
@@ -881,9 +877,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		return true;
 	}
@@ -955,28 +949,11 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public Map<String, Model> start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception {
+	private Map<String, Model> createInputsByName(EList<OperatorInput> inputs, boolean runConversions, Operator newOperator) throws Exception {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
-
-		//TODO MMINT[OPERATOR] Run in its own thread to avoid blocking the user interface
-		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED))) {
-			instanceMID = null;
-		}
-		Operator newOperator = this.createInstance(instanceMID);
-		// generics
-		Map<String, GenericElement> genericsByName = new HashMap<>();
-		for (GenericEndpoint genericSuperTypeEndpoint : this.getGenerics()) {
-			GenericElement genericType = MultiModelDiagramUtils.selectGenericTypeToCreate(genericSuperTypeEndpoint, inputs);
-			genericSuperTypeEndpoint.createInstance(genericType, newOperator);
-			genericsByName.put(genericSuperTypeEndpoint.getName(), genericType);
-		}
-		// inputs and conversions
 		Map<String, Model> inputsByName = new HashMap<>();
 		for (OperatorInput input : inputs) {
-			if (instanceMID != null) {
+			if (newOperator != null) {
 				input.getModelTypeEndpoint().createInstance(
 					input.getModel(),
 					newOperator,
@@ -991,7 +968,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				}
 				inputName += i;
 			}
-			if (input.getConversions().isEmpty()) {
+			if (input.getConversions().isEmpty() || !runConversions) {
 				inputsByName.put(inputName, input.getModel());
 				continue;
 			}
@@ -1009,6 +986,31 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			}
 			inputsByName.put(inputName, convertedInputModel);
 		}
+
+		return inputsByName;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Map<String, Model> start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception {
+
+		MMINTException.mustBeType(this);
+
+		//TODO MMINT[OPERATOR] Run in its own thread to avoid blocking the user interface
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED))) {
+			instanceMID = null;
+		}
+		Operator newOperator = this.createInstance(instanceMID);
+		// generics
+		Map<String, GenericElement> genericsByName = new HashMap<>();
+		for (GenericEndpoint genericSuperTypeEndpoint : this.getGenerics()) {
+			GenericElement genericType = MultiModelDiagramUtils.selectGenericTypeToCreate(genericSuperTypeEndpoint, inputs);
+			genericSuperTypeEndpoint.createInstance(genericType, newOperator);
+			genericsByName.put(genericSuperTypeEndpoint.getName(), genericType);
+		}
+		// inputs and conversions
+		Map<String, Model> inputsByName = createInputsByName(inputs, true, (instanceMID == null) ? null : newOperator);
 		// run operator
 		Properties inputProperties = newOperator.getInputProperties();
 		newOperator.readInputProperties(inputProperties);

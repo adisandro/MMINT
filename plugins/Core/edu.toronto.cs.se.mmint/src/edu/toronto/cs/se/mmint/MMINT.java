@@ -117,14 +117,21 @@ public class MMINT implements MMINTConstants {
 
 	/* TODO MMINT[USABILITY]
 	 * - Change uris into ids
-	 * - Simplify the type system
+	 * - Simplify the type system of model rels
 	 * - Handle optional uris/ids for subelements of model/modelrel/operator
 	 * - Use defaults in extension points as much as possible
 	 * - Rename link to mapping
-	 * - Decouple from MAVO framework
+	 * - Decouple from MAVO framework: use a kleisli-like mechanism MAVOModel->Model with overridden apis, where the current MAVOModel becomes a simple MAVORoot
 	 * - Rethink mid link icons with/without MAVO
-	 * - Move modelepedia types into the examples directory
+	 * - Move modelepedia types into the examples directory and create appropriate features for mm operators
 	 * - Transform various labels into toString() functions (also helps debug)
+	 * - Turn updateMID into global option and use it directly into apis
+	 * - Address the issue of not inheriting Editor and Diagram types
+	 * - Unify createInstance/Subtype() for Model and ModelRel, removing origin and isBinary
+	 * - Add createBinaryInstance/Subtype() to ModelRel
+	 * - Review stuff done in megamodel operators and create more helper apis (e.g. createInstance() + createModelFile())
+	 * - Separate file apis from MultiModelUtils to MultiModelFileUtils
+	 * - Rename all multimodels (vars and api names) to MID
 	 * - Add documentation ->
 	 *   a) Prerequisite: review apis for mid construction and destruction
 	 *   b) Take every api function
@@ -140,6 +147,7 @@ public class MMINT implements MMINTConstants {
 	 * - Formalize type introspection
 	 * - Introduce intermediate level between model element and model element reference, contained in model endpoints
 	 * - Support standalone model rels (in their own file)
+	 * - Can operators detect input/output by code inspection rather than plugin.xml?
 	 */
 
 	/**
