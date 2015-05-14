@@ -1018,7 +1018,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		long startTime = System.nanoTime();
 		Map<String, Model> outputsByName = newOperator.run(inputsByName, genericsByName, outputMIDsByName);
 		newOperator.setExecutionTime(System.nanoTime()-startTime);
-		if (newOperator.getName().equals("Map")){System.err.println(newOperator.getExecutionTime());}
 		// outputs
 		if (instanceMID != null) {
 			for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {

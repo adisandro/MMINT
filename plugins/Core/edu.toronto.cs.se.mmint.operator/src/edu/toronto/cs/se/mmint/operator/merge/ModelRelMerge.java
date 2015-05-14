@@ -46,6 +46,28 @@ public class ModelRelMerge extends OperatorImpl {
 	// constants
 	private final static @NonNull String MERGE_SEPARATOR = "+";
 
+	@Override
+	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
+
+		ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
+		ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+		if (modelRel1.getModelEndpoints().size() != 2 || modelRel2.getModelEndpoints().size() != 2) {
+			return false;
+		}
+		Model model11 = modelRel1.getModelEndpoints().get(0).getTarget();
+		Model model12 = modelRel1.getModelEndpoints().get(1).getTarget();
+		Model model21 = modelRel2.getModelEndpoints().get(0).getTarget();
+		Model model22 = modelRel2.getModelEndpoints().get(1).getTarget();
+		if (model11 == model21 && model12 == model22) {
+			return true;
+		}
+		else if (model11 == model22 && model12 == model21) {
+			return true;
+		}
+
+		return false;
+	}
+
 	private void populate(ModelRel mergedModelRel, ModelRel origModelRel, MultiModel instanceMID) throws MMINTException {
 
 		// models
@@ -104,28 +126,6 @@ public class ModelRelMerge extends OperatorImpl {
 		populate(mergedModelRel, modelRel2, instanceMID);
 
 		return mergedModelRel;
-	}
-
-	@Override
-	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
-
-		ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
-		ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
-		if (modelRel1.getModelEndpoints().size() != 2 || modelRel2.getModelEndpoints().size() != 2) {
-			return false;
-		}
-		Model model11 = modelRel1.getModelEndpoints().get(0).getTarget();
-		Model model12 = modelRel1.getModelEndpoints().get(1).getTarget();
-		Model model21 = modelRel2.getModelEndpoints().get(0).getTarget();
-		Model model22 = modelRel2.getModelEndpoints().get(1).getTarget();
-		if (model11 == model21 && model12 == model22) {
-			return true;
-		}
-		else if (model11 == model22 && model12 == model21) {
-			return true;
-		}
-
-		return false;
 	}
 
 	@Override

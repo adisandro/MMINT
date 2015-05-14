@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ Rick Salay.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+    Alessio Di Sandro - Implementation.
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated models15_java -->
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/MODELS15_Java"
+            class="edu.toronto.cs.se.modelepedia.models15_java.MODELS15_JavaPackage"
+            genModel="model/models15_java.genmodel"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.models">
+      <modelType>
+         <type
+               name="MODELS15_Java"
+               uri="http://se.cs.toronto.edu/modelepedia/MODELS15_Java">
+         </type>
+      </modelType>
+   </extension>
+
+</plugin>
