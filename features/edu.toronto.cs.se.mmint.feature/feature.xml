@@ -174,4 +174,25 @@ sets of related models.
          install-size="0"
          version="0.0.0"/>
 
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.primitive"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.primitive.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.primitive.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
