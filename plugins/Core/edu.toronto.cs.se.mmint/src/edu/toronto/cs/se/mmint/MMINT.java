@@ -126,7 +126,7 @@ public class MMINT implements MMINTConstants {
 	 * - Move modelepedia types into the examples directory and create appropriate features for mm operators
 	 * - Transform various labels into toString() functions (also helps debug)
 	 * - Turn updateMID into global option and use it directly into apis
-	 * - Address the issue of not inheriting Editor and Diagram types
+	 * - Address the issue of not inheriting Editor and Diagram types; this will fix a model type without editor, which is still able to use the reflective ecore
 	 * - Unify createInstance/Subtype() for Model and ModelRel, removing origin and isBinary
 	 * - Add createBinaryInstance/Subtype() to ModelRel
 	 * - Review stuff done in megamodel operators and create more helper apis (e.g. createInstance() + createModelFile())

@@ -799,7 +799,7 @@ Contributors:
             </command>
             <command
                   commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.OpenModelEditorsEnabled"
-                  label="Open Editors For New Models"
+                  label="Open Editors for new Models"
                   style="toggle"
                   tooltip="Enables/disables automatic opening of editors when new models are created">
             </command>
@@ -881,7 +881,7 @@ Contributors:
       <command
             defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
             id="edu.toronto.cs.se.mmint.mid.diagram.menu.OpenModelEditorsEnabled"
-            name="Open Editors For New Models">
+            name="Open Editors for new Models">
          <state
                class="org.eclipse.ui.handlers.RegistryToggleState:true"
                id="org.eclipse.ui.commands.toggleState">

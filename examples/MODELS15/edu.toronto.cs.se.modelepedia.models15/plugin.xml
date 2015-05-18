@@ -402,6 +402,37 @@
       </relationshipType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="CD2JavaCheck"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_CD2JavaCheck"
+               class="edu.toronto.cs.se.modelepedia.models15.operator.CD2JavaCheck">
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="cd2java">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/CD2Java">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="check">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Int">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
    <!-- empty stuff for screenshots
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package

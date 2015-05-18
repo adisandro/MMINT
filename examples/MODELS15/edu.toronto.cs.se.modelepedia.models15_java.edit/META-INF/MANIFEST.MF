@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.models15_java.edit;singleton:=true
+Bundle-Version: 1.3.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: edu.toronto.cs.se.modelepedia.models15_java.provider.MODELS15_JavaEditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: edu.toronto.cs.se.modelepedia.models15_java.provider
+Require-Bundle: org.eclipse.core.runtime,
+ edu.toronto.cs.se.modelepedia.models15_java,
+ org.eclipse.emf.edit
+Bundle-ActivationPolicy: lazy

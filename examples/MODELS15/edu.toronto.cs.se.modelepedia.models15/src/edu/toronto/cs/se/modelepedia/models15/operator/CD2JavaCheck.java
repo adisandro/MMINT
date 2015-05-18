@@ -17,6 +17,7 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -27,9 +28,12 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
+import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 import edu.toronto.cs.se.modelepedia.primitive.int_.Int;
 import edu.toronto.cs.se.modelepedia.primitive.int_.IntFactory;
 import edu.toronto.cs.se.modelepedia.primitive.int_.IntPackage;
+import edu.toronto.cs.se.modelepedia.models15_java.Package;
 
 public class CD2JavaCheck extends OperatorImpl {
 
@@ -39,14 +43,24 @@ public class CD2JavaCheck extends OperatorImpl {
 	// constants
 	private final static @NonNull String CHECK_INT_SUFFIX = "_check";
 
-	private @NonNull Int check(ModelRel modelRel) {
+	private @NonNull Int check(ModelRel modelRel) throws MMINTException {
 
-		// TODO Detect better
-		Model cdModel = modelRel.getModelEndpoints().get(0).getTarget();
-		Model javaModel = modelRel.getModelEndpoints().get(1).getTarget();
-		// TODO Do actual check
+		int cdIndex, javaIndex;
+		Model modelType1 = modelRel.getModelEndpoints().get(0).getTarget().getMetatype();
+		if (modelType1 == MultiModelTypeRegistry.getType(ClassDiagramPackage.eNS_URI)) {
+			cdIndex = 0;
+			javaIndex = 1;
+		}
+		else {
+			cdIndex = 1;
+			javaIndex = 0;
+		}
+		Model cdModel = modelRel.getModelEndpoints().get(cdIndex).getTarget();
+		Model javaModel = modelRel.getModelEndpoints().get(javaIndex).getTarget();
 		Int check = IntFactory.eINSTANCE.createInt();
-		//TODO Add operator to plugin.xml
+		ClassDiagram cd = (ClassDiagram) cdModel.getEMFInstanceRoot();
+		Package p = (Package) javaModel.getEMFInstanceRoot();
+		check.setValue(cd.getClasses().size() - p.getClasses().size());
 
 		return check;
 	}
@@ -66,11 +80,9 @@ public class CD2JavaCheck extends OperatorImpl {
 		// output
 		Model intModelType = MultiModelTypeRegistry.getType(IntPackage.eNS_URI);
 		String checkModelUri = MultiModelUtils.replaceLastSegmentInUri(
-			MultiModelRegistry.getModelAndModelElementUris(
-				instanceMID,
-				MIDLevel.INSTANCES)[0],
-				modelRel.getName() + CHECK_INT_SUFFIX + MMINT.MODEL_FILEEXTENSION_SEPARATOR
-						+ intModelType.getFileExtension());
+			MultiModelRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0],
+			modelRel.getName() + CHECK_INT_SUFFIX + MMINT.MODEL_FILEEXTENSION_SEPARATOR
+					+ intModelType.getFileExtension());
 		MultiModelUtils.createModelFile(check, checkModelUri, true);
 		Model checkModel = intModelType.createInstanceAndEditor(checkModelUri, ModelOrigin.CREATED, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
