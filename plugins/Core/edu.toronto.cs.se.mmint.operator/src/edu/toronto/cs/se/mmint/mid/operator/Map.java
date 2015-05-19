@@ -198,7 +198,6 @@ public class Map extends OperatorImpl {
 		Model midrelModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
 		String baseOutputUri = MultiModelRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
 		java.util.Map<String, Model> outputsByName = new HashMap<>();
-		java.util.Map<String, Set<Model>> x = new HashMap<>();
 		int i = 0;
 		// pass 1: no midrels
 		for (Entry<String, MultiModel> outputMIDByName : outputMIDsByName.entrySet()) {
