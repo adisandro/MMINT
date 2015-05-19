@@ -665,31 +665,48 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * 
 	 * @param modelTypeEndpointInputs
 	 *            The allowed input models for each formal parameter.
-	 * @param operatorTypeInputs
-	 *            A set of inputs to the operator type, including necessary conversions, used as output.
-	 * @param inputsAccumulator
-	 *            A list of inputs so far, used in the recursive cartesian product.
-	 * @param currentIndex
-	 *            The current recursion index.
+	 * @return A set of allowed inputs to the operator type, including necessary conversions.
 	 * @generated NOT
 	 */
-	private void getOperatorTypeInputs(
-			@NonNull EList<EList<OperatorInput>> modelTypeEndpointInputs,
-			@NonNull Set<EList<OperatorInput>> operatorTypeInputs,
-			@NonNull EList<OperatorInput> inputsAccumulator, int currentIndex) {
+	private @NonNull Set<EList<OperatorInput>> getOperatorTypeInputs(@NonNull EList<EList<OperatorInput>> modelTypeEndpointInputs, boolean firstOnly) {
 
-		if (modelTypeEndpointInputs.size() == currentIndex) {
-			operatorTypeInputs.add(inputsAccumulator);
+		Set<EList<OperatorInput>> operatorTypeInputSet = new HashSet<>();
+		int[] indexes = new int[modelTypeEndpointInputs.size()];
+		for (int i = 0; i < indexes.length; i++) {
+			indexes[i] = 0;
 		}
-		else {
-			for (OperatorInput inputModel : modelTypeEndpointInputs.get(currentIndex)) {
-				EList<OperatorInput> newInputModelsAccumulator = new BasicEList<>(inputsAccumulator);
-				newInputModelsAccumulator.add(inputModel);
-				getOperatorTypeInputs(
-					modelTypeEndpointInputs,
-					operatorTypeInputs,
-					newInputModelsAccumulator,
-					currentIndex + 1);
+		while (true) {
+			// get current inputs
+			EList<OperatorInput> operatorTypeInputs = new BasicEList<>();
+			for (int i = 0; i < indexes.length; i++) {
+				EList<OperatorInput> modelTypeEndpointInput = modelTypeEndpointInputs.get(i);
+				operatorTypeInputs.add(modelTypeEndpointInput.get(indexes[i]));
+			}
+			// add only if allowed
+			try {
+				Map<String, Model> inputsByName = createInputsByName(operatorTypeInputs, false, null);
+				if (this.isAllowedInput(inputsByName)) {
+					operatorTypeInputSet.add(operatorTypeInputs);
+					if (firstOnly) { // just return the first allowed
+						return operatorTypeInputSet;
+					}
+				}
+			}
+			catch (Exception e) {
+				// do nothing
+			}
+			// move indexes
+			int j = indexes.length - 1;
+			while (true) {
+				indexes[j] += 1;
+				if (indexes[j] < modelTypeEndpointInputs.get(j).size()) {
+					break;
+				}
+				indexes[j] = 0;
+				j -= 1;
+				if (j < 0) { // overflow, cartesian product done
+					return operatorTypeInputSet;
+				}
 			}
 		}
 	}
@@ -699,7 +716,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	private @NonNull EList<EList<OperatorInput>> getModelTypeEndpointInputs(@NonNull EList<MultiModel> inputMIDs) {
 
-		//TODO MMINT[OPERATOR] Unify with checkAllowedInputs() or with getOperatorTypeInputs()/findFirstAllowedInput() in an iterative fashion
+		//TODO MMINT[OPERATOR] Unify with checkAllowedInputs()
 		//TODO MMINT[MAP] Add support for upper bound = -1
 		EList<EList<OperatorInput>> modelTypeEndpointInputs = new BasicEList<>();
 		for (int i = 0; i < this.getInputs().size(); i++) {
@@ -745,10 +762,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		// get inputs by model type endpoint
 		EList<EList<OperatorInput>> modelTypeEndpointInputs = getModelTypeEndpointInputs(inputMIDs);
 		// do cartesian product of inputs
-		Set<EList<OperatorInput>> operatorInputSet = new HashSet<>();
-		getOperatorTypeInputs(modelTypeEndpointInputs, operatorInputSet, new BasicEList<>(), 0);
+		Set<EList<OperatorInput>> operatorTypeInputSet = getOperatorTypeInputs(modelTypeEndpointInputs, false);
 
-		return operatorInputSet;
+		return operatorTypeInputSet;
 	}
 
 	/**
@@ -760,17 +776,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		// get inputs by model type endpoint
 		EList<EList<OperatorInput>> modelTypeEndpointInputs = getModelTypeEndpointInputs(inputMIDs);
-		// get the first input
-		EList<OperatorInput> operatorInputs = new BasicEList<>();
-		for (EList<OperatorInput> modelTypeEndpointInput : modelTypeEndpointInputs) {
-			if (modelTypeEndpointInput.isEmpty()) {
-				return null;
-			}
-			operatorInputs.add(modelTypeEndpointInput.get(0));
+		// get the first allowed input
+		Set<EList<OperatorInput>> operatorTypeInputSet = getOperatorTypeInputs(modelTypeEndpointInputs, true);
+		if (operatorTypeInputSet.isEmpty()) {
+			return null;
 		}
-		//TODO MMINT[MEGAMODELS] Use isAllowedInput() here, but I need to make this iterative
 
-		return operatorInputs;
+		return operatorTypeInputSet.iterator().next();
 	}
 
 	/**

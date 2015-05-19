@@ -55,6 +55,20 @@ public class Reduce extends OperatorImpl {
 	private final static @NonNull String MODELRELCOMPOSITION_OPERATORTYPE_URI = "http://se.cs.toronto.edu/mmint/Operator_ModelRelComposition";
 	private final static @NonNull String MODELRELMERGE_OPERATORTYPE_URI = "http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge";
 
+	@Override
+	public boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
+
+		boolean allowed = super.isAllowedTargetGeneric(genericTypeEndpoint, genericType, inputs);
+		if (!allowed) {
+			return false;
+		}
+		if (genericType.getName().equals("Filter") || genericType.getName().equals("Map") || genericType.getName().equals("Reduce")) {
+			return false;
+		}
+
+		return true;
+	}
+
 	private @NonNull MultiModel reduce(@NonNull Model inputMIDModel, @NonNull Operator accumulatorOperatorType)
 			throws Exception {
 

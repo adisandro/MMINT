@@ -38,7 +38,7 @@ import edu.toronto.cs.se.modelepedia.models15_java.Package;
 public class CD2JavaCheck extends OperatorImpl {
 
 	// input-output
-	private final static @NonNull String IN_MODELREL = "rel";
+	private final static @NonNull String IN_MODELREL = "cd2java";
 	private final static @NonNull String OUT_INT = "check";
 	// constants
 	private final static @NonNull String CHECK_INT_SUFFIX = "_check";
@@ -46,8 +46,8 @@ public class CD2JavaCheck extends OperatorImpl {
 	private @NonNull Int check(ModelRel modelRel) throws MMINTException {
 
 		int cdIndex, javaIndex;
-		Model modelType1 = modelRel.getModelEndpoints().get(0).getTarget().getMetatype();
-		if (modelType1 == MultiModelTypeRegistry.getType(ClassDiagramPackage.eNS_URI)) {
+		Model modelType = modelRel.getModelEndpoints().get(0).getTarget().getMetatype();
+		if (modelType == MultiModelTypeRegistry.getType(ClassDiagramPackage.eNS_URI)) {
 			cdIndex = 0;
 			javaIndex = 1;
 		}
@@ -80,7 +80,7 @@ public class CD2JavaCheck extends OperatorImpl {
 		// output
 		Model intModelType = MultiModelTypeRegistry.getType(IntPackage.eNS_URI);
 		String checkModelUri = MultiModelUtils.replaceLastSegmentInUri(
-			MultiModelRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0],
+			MultiModelRegistry.getModelAndModelElementUris(modelRel, MIDLevel.INSTANCES)[0],
 			modelRel.getName() + CHECK_INT_SUFFIX + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ intModelType.getFileExtension());
 		MultiModelUtils.createModelFile(check, checkModelUri, true);

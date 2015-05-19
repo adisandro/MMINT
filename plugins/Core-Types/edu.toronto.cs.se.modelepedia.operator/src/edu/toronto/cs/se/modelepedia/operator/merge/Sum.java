@@ -35,6 +35,22 @@ public class Sum extends OperatorImpl {
 	// constants
 	private final static @NonNull String SUM_SEPARATOR = "+";
 
+	@Override
+	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
+
+		boolean allowed = super.isAllowedInput(inputsByName);
+		if (!allowed) {
+			return false;
+		}
+		Model intModel1 = inputsByName.get(IN_INT1);
+		Model intModel2 = inputsByName.get(IN_INT2);
+		if (intModel1 == intModel2) {
+			return false;
+		}
+
+		return true;
+	}
+
 	private @NonNull Int sum(@NonNull Model intModel1, @NonNull Model intModel2) throws MMINTException {
 
 		int sum = ((Int) intModel1.getEMFInstanceRoot()).getValue() + ((Int) intModel2.getEMFInstanceRoot()).getValue();

@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -39,6 +40,20 @@ public class Filter extends OperatorImpl {
 	private final static @NonNull String GENERIC_MODELTYPE = "TYPE";
 	// constants
 	private final static @NonNull String FILTERED_MID_SUFFIX = "_filtered";
+
+	@Override
+	public boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
+
+		boolean allowed = super.isAllowedTargetGeneric(genericTypeEndpoint, genericType, inputs);
+		if (!allowed) {
+			return false;
+		}
+		if (genericType.getName().equals("Filter") || genericType.getName().equals("Map") || genericType.getName().equals("Reduce")) {
+			return false;
+		}
+
+		return true;
+	}
 
 	private @NonNull MultiModel filter(@NonNull Model inputMIDModel, @NonNull Model filterModelType)
 			throws MMINTException {

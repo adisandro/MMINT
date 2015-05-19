@@ -49,6 +49,10 @@ public class ModelRelMerge extends OperatorImpl {
 	@Override
 	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
 
+		boolean allowed = super.isAllowedInput(inputsByName);
+		if (!allowed) {
+			return false;
+		}
 		ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
 		ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
 		if (modelRel1.getModelEndpoints().size() != 2 || modelRel2.getModelEndpoints().size() != 2) {

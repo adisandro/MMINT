@@ -116,6 +116,7 @@ public class MMINT implements MMINTConstants {
 	public static final String TYPEMID_FILENAME = "types" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
 
 	/* TODO MMINT[USABILITY]
+	 * - Default deletion to remove model file as well
 	 * - Change uris into ids
 	 * - Simplify the type system of model rels
 	 * - Handle optional uris/ids for subelements of model/modelrel/operator

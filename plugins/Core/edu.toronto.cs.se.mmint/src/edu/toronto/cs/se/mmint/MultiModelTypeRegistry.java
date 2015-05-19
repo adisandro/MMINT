@@ -114,7 +114,6 @@ public class MultiModelTypeRegistry {
 
 		List<GenericElement> genericTypes = new ArrayList<>();
 		genericTypes.addAll(getModelTypes());
-		genericTypes.addAll(getModelRelTypes());
 		genericTypes.addAll(getOperatorTypes());
 
 		return genericTypes;
