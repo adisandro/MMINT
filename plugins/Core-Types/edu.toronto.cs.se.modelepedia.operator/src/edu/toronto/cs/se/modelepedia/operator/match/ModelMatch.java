@@ -13,11 +13,11 @@ package edu.toronto.cs.se.modelepedia.operator.match;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Map.Entry;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -25,13 +25,13 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
@@ -42,10 +42,13 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class ModelMatch extends OperatorImpl {
 
-	@NonNull private final static String PROPERTY_IN_MATCHATTRIBUTE = "matchAttribute";
-	@NonNull private final static String PROPERTY_IN_MATCHATTRIBUTE_DEFAULT = "name";
-
-	@NonNull private final static String MODELREL_NAME = "match";
+	// input-output
+	private final static @NonNull String IN_MODELS = "models";
+	private final static @NonNull String OUT_MODELREL = "match";
+	private final static @NonNull String PROPERTY_IN_MATCHATTRIBUTE = "matchAttribute";
+	private final static @NonNull String PROPERTY_IN_MATCHATTRIBUTE_DEFAULT = "name";
+	// constants
+	private final static @NonNull String MODELREL_NAME = "match";
 
 	private String matchAttribute;
 
@@ -74,19 +77,21 @@ public class ModelMatch extends OperatorImpl {
 	}
 
 	@Override
-	public EList<Model> run(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
+
+		// input
+		List<Model> models = MultiModelOperatorUtils.getVarargs(inputsByName, IN_MODELS);
 
 		// create model relationship among models
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(actualParameters.get(0));
-		ModelRel rootModelRelType = MultiModelTypeHierarchy.getRootModelRelType();
-		ModelRel matchRel = rootModelRelType.createInstance(null, (actualParameters.size() == 2), ModelOrigin.CREATED, multiModel);
+		ModelRel matchRel = MultiModelTypeHierarchy.getRootModelRelType().createInstance(null, (inputsByName.size() == 2), ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODELREL));
 		matchRel.setName(MODELREL_NAME);
-
 		// loop through selected models
 		ModelEndpoint rootModelTypeEndpoint = MultiModelTypeHierarchy.getRootModelTypeEndpoint();
 		HashMap<String, ArrayList<EObject>> modelObjNames = new HashMap<String, ArrayList<EObject>>();
 		HashMap<EObject, ModelEndpointReference> modelObjTable = new HashMap<EObject, ModelEndpointReference>();
-		for (Model model : actualParameters) {
+		for (Model model : models) {
 			// create model endpoint
 			ModelEndpointReference newModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(model, matchRel);
 			// look for identical names in the models
@@ -113,9 +118,11 @@ public class ModelMatch extends OperatorImpl {
 			}
 		}
 
-		EList<Model> result = new BasicEList<Model>();
-		result.add(matchRel);
-		return result;
+		// output
+		Map<String, Model> outputsByName = new HashMap<>();
+		outputsByName.put(OUT_MODELREL, matchRel);
+
+		return outputsByName;
 	}
 
 }

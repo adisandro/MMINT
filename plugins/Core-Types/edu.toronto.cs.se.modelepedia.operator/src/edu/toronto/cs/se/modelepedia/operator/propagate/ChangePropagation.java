@@ -12,10 +12,11 @@
 package edu.toronto.cs.se.modelepedia.operator.propagate;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAttribute;
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINT;
@@ -32,6 +34,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
@@ -54,11 +57,28 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 
 public class ChangePropagation extends OperatorImpl {
 
+	// input-output
+	private final static @NonNull String IN_MODELREL1 = "refinement";
+	private final static @NonNull String IN_MODELREL2 = "trace";
+	private final static @NonNull String OUT_MODEL = "propagated";
+	private final static @NonNull String OUT_MODELREL1 = "propagatedRefinement";
+	private final static @NonNull String OUT_MODELREL2 = "propagatedTrace";
+	// constants
 	private final static String PROP_MODEL_SUFFIX = "_propagated";
-	private final static String PROPREFINEMENT_MODELREL_NAME = "propRefinement";
-	private final static String PROPTRACE_MODELREL_NAME = "propTrace";
 	private final static String PROPTRACE_RULE4_LINK_NAME = "rule4Trace";
 	private final static String NAME_FEATURE = "name";
+
+	@Override
+	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
+
+		boolean allowed = super.isAllowedInput(inputsByName);
+		if (!allowed) {
+			return false;
+		}
+
+		//TODO MMINT[OPERATOR] Check that refinement and trace share a model, and that all models involved are mavo models
+		return true;
+	}
 
 	/**
 	 * Removes a model element and the reference to it from the Instance MID
@@ -537,23 +557,24 @@ traceLinks:
 	}
 
 	@Override
-	public EList<Model> run(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		Model origModel = actualParameters.get(0);
-		BinaryModelRel refinementRel = (BinaryModelRel) actualParameters.get(1);
-		Model refinedModel = actualParameters.get(2);
-		BinaryModelRel traceRel = (BinaryModelRel) actualParameters.get(3);
-		Model relatedModel = actualParameters.get(4);
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(origModel);
+		BinaryModelRel refinementRel = (BinaryModelRel) inputsByName.get(IN_MODELREL1);
+		Model origModel = refinementRel.getSourceModel();
+		Model refinedModel = refinementRel.getTargetModel();
+		BinaryModelRel traceRel = (BinaryModelRel) inputsByName.get(IN_MODELREL2);
+		Model relatedModel = traceRel.getTargetModel();
 
 		// create output model and model relationships
-		Model newPropModel = relatedModel.getMetatype().copyMAVOInstanceAndEditor(relatedModel, relatedModel.getName() + PROP_MODEL_SUFFIX, false, multiModel);
-		BinaryModelRel newPropRefinementRel = (BinaryModelRel) refinementRel.getMetatype().createInstance(null, true, ModelOrigin.CREATED, multiModel);
-		newPropRefinementRel.setName(PROPREFINEMENT_MODELREL_NAME);
+		Model newPropModel = relatedModel.getMetatype().copyMAVOInstanceAndEditor(relatedModel, relatedModel.getName() + PROP_MODEL_SUFFIX, false, outputMIDsByName.get(OUT_MODEL));
+		BinaryModelRel newPropRefinementRel = (BinaryModelRel) refinementRel.getMetatype().createInstance(null, true, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODELREL1));
+		newPropRefinementRel.setName(OUT_MODELREL1);
 		refinementRel.getModelEndpoints().get(0).getMetatype().createInstanceAndReference(relatedModel, newPropRefinementRel);
 		refinementRel.getModelEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModel, newPropRefinementRel);
-		BinaryModelRel newPropTraceRel = (BinaryModelRel) traceRel.getMetatype().createInstance(null, true, ModelOrigin.CREATED, multiModel);
-		newPropTraceRel.setName(PROPTRACE_MODELREL_NAME);
+		BinaryModelRel newPropTraceRel = (BinaryModelRel) traceRel.getMetatype().createInstance(null, true, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODELREL2));
+		newPropTraceRel.setName(OUT_MODELREL2);
 		traceRel.getModelEndpoints().get(0).getMetatype().createInstanceAndReference(refinedModel, newPropTraceRel);
 		traceRel.getModelEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModel, newPropTraceRel);
 
@@ -575,11 +596,13 @@ traceLinks:
 		}
 		//TODO MMINT[MAVO] reason about how to concretely use indexA and indexB, when the refineUncertainty becomes an independent operator
 
-		EList<Model> result = new BasicEList<Model>();
-		result.add(newPropModel);
-		result.add(newPropRefinementRel);
-		result.add(newPropTraceRel);
-		return result;
+		// output
+		Map<String, Model> outputsByName = new HashMap<>();
+		outputsByName.put(OUT_MODEL, newPropModel);
+		outputsByName.put(OUT_MODELREL1, newPropRefinementRel);
+		outputsByName.put(OUT_MODELREL2, newPropTraceRel);
+
+		return outputsByName;
 	}
 
 }

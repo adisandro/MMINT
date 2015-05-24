@@ -56,17 +56,13 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 
-	@NonNull
-	private final static String INPUT_MODEL = "src";
-	@NonNull
-	private final static String OUTPUT_MODEL = "tgt";
-	@NonNull
-	private final static String OUTPUT_MODELREL = "traceRel";
-	@NonNull
-	private final static String GENERIC_MODELRELTYPE = "MR";
-
-	@NonNull
-	protected static final String TRANSFORMATION_SUFFIX = "_transformed";
+	// input-output
+	private final static @NonNull String IN_MODEL = "src";
+	private final static @NonNull String OUT_MODEL = "tgt";
+	private final static @NonNull String OUT_MODELREL = "trace";
+	private final static @NonNull String GENERIC_MODELRELTYPE = "MR";
+	// constants
+	protected final static @NonNull String TRANSFORMATION_SUFFIX = "_transformed";
 
 	protected EObject tgtRootModelObj;
 	protected String tgtModelUri;
@@ -234,8 +230,9 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		java.util.Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName)
 		throws Exception {
 
+		// input
 		ModelRel traceModelRelType = (ModelRel) genericsByName.get(GENERIC_MODELRELTYPE);
-		Model srcModel = inputsByName.get(INPUT_MODEL);
+		Model srcModel = inputsByName.get(IN_MODEL);
 
 		int srcIndex = (
 			traceModelRelType instanceof BinaryModelRel ||
@@ -248,17 +245,18 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			MultiModelUtils.addFileNameSuffixInUri(srcModel.getUri(), TRANSFORMATION_SUFFIX),
 			tgtModelType.getFileExtension()
 		);
-		Model tgtModel = tgtModelType.createInstance(tgtModelUri, ModelOrigin.CREATED, outputMIDsByName.get(OUTPUT_MODEL));
-		BinaryModelRel traceModelRel = (BinaryModelRel) traceModelRelType.createInstance(null, true, ModelOrigin.CREATED, outputMIDsByName.get(OUTPUT_MODELREL));
+		Model tgtModel = tgtModelType.createInstance(tgtModelUri, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODEL));
+		BinaryModelRel traceModelRel = (BinaryModelRel) traceModelRelType.createInstance(null, true, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODELREL));
 		traceModelRel.setName(srcModel.getName() + MMINT.BINARY_MODELREL_LINK_SEPARATOR + tgtModel.getName());
 		traceModelRelType.getModelEndpointRefs().get(srcIndex).getObject().createInstanceAndReference(srcModel, traceModelRel);
 		traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().createInstanceAndReference(tgtModel, traceModelRel);
 		transform(traceModelRel, srcModel, srcIndex, tgtIndex);
 		tgtModel.createInstanceEditor();
 
+		// output
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUTPUT_MODEL, tgtModel);
-		outputsByName.put(OUTPUT_MODELREL, traceModelRel);
+		outputsByName.put(OUT_MODEL, tgtModel);
+		outputsByName.put(OUT_MODELREL, traceModelRel);
 
 		return outputsByName;
 	}

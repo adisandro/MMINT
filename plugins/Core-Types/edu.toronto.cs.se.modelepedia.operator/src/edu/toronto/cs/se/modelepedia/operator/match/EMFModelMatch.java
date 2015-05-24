@@ -48,17 +48,16 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class EMFModelMatch extends OperatorImpl {
 
-	@NonNull private final static String INPUT_MODEL1 = "model1";
-	@NonNull private final static String INPUT_MODEL2 = "model2";
-	@NonNull private final static String OUTPUT_MATCHMODELREL = "match";
-
-	@NonNull private final static String PROPERTY_IN_MATCHATTRIBUTE = "matchAttribute";
-	@NonNull private final static String PROPERTY_IN_MATCHATTRIBUTE_DEFAULT = "name";
-
-	@NonNull private final static String MODELREL_NAME = "match";
+	// input-output
+	public final static @NonNull String IN_MODEL1 = "model1";
+	public final static @NonNull String IN_MODEL2 = "model2";
+	public final static @NonNull String OUT_MODELREL = "match";
+	private final static @NonNull String PROPERTY_IN_MATCHATTRIBUTE = "matchAttribute";
+	private final static @NonNull String PROPERTY_IN_MATCHATTRIBUTE_DEFAULT = "name";
+	// constants
+	private final static @NonNull String MODELREL_NAME = "match";
 
 	private String matchAttribute;
-
 	private IComparisonScope scope;
 	private Comparison comparison;
 
@@ -67,6 +66,22 @@ public class EMFModelMatch extends OperatorImpl {
 
 		super.readInputProperties(inputProperties);
 		matchAttribute = MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MATCHATTRIBUTE, PROPERTY_IN_MATCHATTRIBUTE_DEFAULT);
+	}
+
+	@Override
+	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
+
+		boolean allowed = super.isAllowedInput(inputsByName);
+		if (!allowed) {
+			return false;
+		}
+		Model srcModel = inputsByName.get(IN_MODEL1);
+		Model tgtModel = inputsByName.get(IN_MODEL2);
+		if (srcModel == tgtModel) {
+			return false;
+		}
+
+		return true;
 	}
 
 	private void match(Model srcModel, Model tgtModel) {
@@ -90,20 +105,16 @@ public class EMFModelMatch extends OperatorImpl {
 	}
 
 	@Override
-	public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
 			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		Model srcModel = inputsByName.get(INPUT_MODEL1);
-		Model tgtModel = inputsByName.get(INPUT_MODEL2);
-		// check input constraints
-		if (srcModel == tgtModel) {
-			throw new MMINTException("The two input models must be distinct");
-		}
-		MultiModel instanceMID = outputMIDsByName.get(OUTPUT_MATCHMODELREL);
+		Model srcModel = inputsByName.get(IN_MODEL1);
+		Model tgtModel = inputsByName.get(IN_MODEL2);
 
 		// create match model relationship
 		ModelRel rootModelRelType = MultiModelTypeHierarchy.getRootModelRelType();
-		ModelRel matchRel = rootModelRelType.createInstance(null, true, ModelOrigin.CREATED, instanceMID);
+		ModelRel matchRel = rootModelRelType.createInstance(null, true, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODELREL));
 		matchRel.setName(MODELREL_NAME);
 		// create model endpoints
 		ModelEndpoint rootModelTypeEndpoint = MultiModelTypeHierarchy.getRootModelTypeEndpoint();
@@ -141,7 +152,7 @@ nextMatch:
 			}
 		}
 		Map<String, Model> outputs = new HashMap<>();
-		outputs.put(OUTPUT_MATCHMODELREL, matchRel);
+		outputs.put(OUT_MODELREL, matchRel);
 
 		return outputs;
 	}

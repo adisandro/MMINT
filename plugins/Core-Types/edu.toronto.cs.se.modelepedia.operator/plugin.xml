@@ -26,7 +26,7 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="modelType">
+	                 name="initial">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
@@ -118,33 +118,17 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="srcModel">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
-	                 name="matchRel">
+	                 name="match">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
-	                 name="tgtModel">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
 	           </typeEndpoint>
             </parameter>
          </inputs>
          <outputs>
             <parameter>
 	           <type
-	                 name="diffRel">
+	                 name="diff">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -196,33 +180,17 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="srcModel">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
-	                 name="matchRel">
+	                 name="match">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
-	                 name="tgtModel">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
 	           </typeEndpoint>
             </parameter>
          </inputs>
          <outputs>
             <parameter>
 	           <type
-	                 name="mergedModel">
+	                 name="merged">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
@@ -230,7 +198,7 @@
             </parameter>
             <parameter>
 	           <type
-	                 name="srcMatchRel">
+	                 name="trace1">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -238,7 +206,7 @@
             </parameter>
             <parameter>
 	           <type
-	                 name="tgtMatchRel">
+	                 name="trace2">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -259,26 +227,10 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="original">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
-	                 name="difference">
+	                 name="diff">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
-	                 name="modified">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
 	           </typeEndpoint>
             </parameter>
             <parameter>
@@ -289,19 +241,11 @@
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
             </parameter>
-            <parameter>
-	           <type
-	                 name="impacted">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
-	           </typeEndpoint>
-            </parameter>
          </inputs>
          <outputs>
             <parameter>
 	           <type
-	                 name="changeImpact">
+	                 name="impact">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -322,14 +266,6 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="original">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
 	                 name="refinement">
 	           </type>
 	           <typeEndpoint
@@ -338,26 +274,10 @@
             </parameter>
             <parameter>
 	           <type
-	                 name="refined">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
 	                 name="trace">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
-	                 name="related">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
 	           </typeEndpoint>
             </parameter>
          </inputs>
@@ -401,7 +321,7 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="modelRel">
+	                 name="rel">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -411,7 +331,7 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="invertedModelRel">
+	                 name="inverted">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -460,7 +380,7 @@
             </parameter>
             <parameter>
 	           <type
-	                 name="traceRel">
+	                 name="trace">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -491,7 +411,7 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="modelSlice">
+	                 name="slice">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">

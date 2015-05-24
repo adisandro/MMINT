@@ -11,9 +11,12 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.patch;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.eclipse.jdt.annotation.NonNull;
+
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
@@ -24,16 +27,23 @@ import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 
 public class BinaryModelRelInversion extends OperatorImpl {
 
+
+	// input-output
+	private final static @NonNull String IN_MODELREL = "rel";
+	private final static @NonNull String OUT_MODELREL = "inverted";
+	// constants
 	private static final String INVERTED_MODELREL_SUFFIX = "_inv";
 
 	@Override
-	public EList<Model> run(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		BinaryModelRel modelRel = (BinaryModelRel) actualParameters.get(0);
+		// input
+		BinaryModelRel modelRel = (BinaryModelRel) inputsByName.get(IN_MODELREL);
 
 		// create inverted model relationship
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRel);
-		BinaryModelRel invertedModelRel = (BinaryModelRel) modelRel.getMetatype().copyMAVOInstance(modelRel, multiModel);
+		BinaryModelRel invertedModelRel = (BinaryModelRel) modelRel.getMetatype().copyMAVOInstance(modelRel, outputMIDsByName.get(OUT_MODELREL));
 		invertedModelRel.setName(modelRel.getName() + INVERTED_MODELREL_SUFFIX);
 
 		// invert all indexes
@@ -47,9 +57,11 @@ public class BinaryModelRelInversion extends OperatorImpl {
 			linkRef.getModelElemEndpointRefs().move(1, 0);
 		}
 
-		EList<Model> result = new BasicEList<Model>();
-		result.add(invertedModelRel);
-		return result;
+		// output
+		Map<String, Model> outputsByName = new HashMap<>();
+		outputsByName.put(OUT_MODELREL, invertedModelRel);
+
+		return outputsByName;
 	}
 
 }

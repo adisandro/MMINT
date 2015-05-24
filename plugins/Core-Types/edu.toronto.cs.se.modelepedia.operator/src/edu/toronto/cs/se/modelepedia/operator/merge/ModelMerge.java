@@ -55,6 +55,26 @@ public class ModelMerge extends OperatorImpl {
 	private static final @NonNull String MERGED_MODELOBJECT_ATTRIBUTE = "name";
 	private static final @NonNull String MERGED_SEPARATOR = "+";
 
+	@Override
+	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
+
+		boolean allowed = super.isAllowedInput(inputsByName);
+		if (!allowed) {
+			return false;
+		}
+		ModelRel matchRel = (ModelRel) inputsByName.get(IN_MODELREL);
+		if (matchRel.getModelEndpoints().size() != 2) {
+			return false;
+		}
+		Model model1 = matchRel.getModelEndpoints().get(0).getTarget();
+		Model model2 = matchRel.getModelEndpoints().get(1).getTarget();
+		if (model1.getMetatype() != model2.getMetatype()) {
+			return false;
+		}
+
+		return true;
+	}
+
 	// TODO MMINT[OPERATOR] Make this an api
 	private @NonNull Set<ModelElementReference> getConnected(@NonNull ModelElementReference modelElemRef) {
 
@@ -182,16 +202,10 @@ public class ModelMerge extends OperatorImpl {
 			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
 		// TODO MMINT[MERGE] Support more complex cases than just first-level objects without references
+		// input
 		ModelRel matchRel = (ModelRel) inputsByName.get(IN_MODELREL);
-		// check input constraints
-		if (matchRel.getModelEndpoints().size() != 2) {
-			throw new MMINTException("The match model relationship " + matchRel + " doesn't have 2 model endpoints");
-		}
 		Model model1 = matchRel.getModelEndpoints().get(0).getTarget();
 		Model model2 = matchRel.getModelEndpoints().get(1).getTarget();
-		if (model1.getMetatype() != model2.getMetatype()) {
-			throw new MMINTException("The models to be merged " + model1 + " and " + model2 + "aren't of the same type");
-		}
 
 		// create merged model and trace relationships as placeholders
 		MultiModel mergedModelMID = outputMIDsByName.get(OUT_MODEL);
@@ -223,6 +237,7 @@ public class ModelMerge extends OperatorImpl {
 		MultiModelUtils.createModelFile(rootMergedModelObj, mergedModelUri, true);
 		mergedModel.createInstanceEditor(); // opens the new model editor as side effect
 
+		// output
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, mergedModel);
 		outputsByName.put(OUT_MODELREL1, traceRel1);
