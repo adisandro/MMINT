@@ -11,40 +11,52 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 
 public class UMLToClassDiagramMAVO extends ConversionOperatorImpl {
 
+	// input-output
+	private final static @NonNull String IN_MODEL = "uml";
+	private final static @NonNull String OUT_MODEL = "mavo";
+
 	private Model newCdModel;
 
 	@Override
-	public EList<Model> run(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		Model umlModel = actualParameters.get(0);
+		// input
+		Model umlModel = inputsByName.get(IN_MODEL);
+		MultiModel instanceMID = outputMIDsByName.get(OUT_MODEL);
+
+		// transform using atl
 		String newCdModelUri = MultiModelUtils.replaceFileExtensionInUri(umlModel.getUri(), ClassDiagram_MAVOPackage.eNAME);
 		UMLToClassDiagramMAVO_M2M atl = new UMLToClassDiagramMAVO_M2M();
 		atl.loadModels(umlModel.getUri());
 		atl.doUMLToClassDiagramMAVO_M2M(new NullProgressMonitor());
 		atl.saveModels(newCdModelUri);
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(umlModel);
+		// output
 		Model cdModelType = MultiModelTypeRegistry.getType(ClassDiagram_MAVOPackage.eNS_URI);
-		newCdModel = cdModelType.createMAVOInstanceAndEditor(newCdModelUri, ModelOrigin.CREATED, multiModel);
-		EList<Model> result = new BasicEList<Model>();
-		result.add(newCdModel);
+		newCdModel = cdModelType.createMAVOInstanceAndEditor(newCdModelUri, ModelOrigin.CREATED, instanceMID);
+		Map<String, Model> outputsByName = new HashMap<>();
+		outputsByName.put(OUT_MODEL, newCdModel);
 
-		return result;
+		return outputsByName;
 	}
 
 	@Override

@@ -26,7 +26,7 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="umlClassDiagram">
+	                 name="uml">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
@@ -36,7 +36,7 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="mavoClassDiagram">
+	                 name="mavo">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
@@ -57,7 +57,7 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="classDiagram">
+	                 name="cd">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO">
