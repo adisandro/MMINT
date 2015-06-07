@@ -12,8 +12,9 @@
 package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Properties;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -38,8 +39,11 @@ import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class MIDContextCheckCoherenceListener extends MIDContextMenuListener {
@@ -77,18 +81,22 @@ public class MIDContextCheckCoherenceListener extends MIDContextMenuListener {
 
 			try {
 				// create results for each conversion path
+				MultiModel instanceMID = MultiModelRegistry.getMultiModel(model);
 				List<Model> coherentModels = new ArrayList<Model>(), coherentModels2 = new ArrayList<Model>();
 				for (List<ConversionOperator> conversionPath : conversionPaths) {
-					Model newActualParameter = model;
-					for (ConversionOperator conversionOperatorType : conversionPath) {
-						EList<Model> actualParameters = new BasicEList<Model>();
-						actualParameters.add(newActualParameter);
-						Properties inputProperties = conversionOperatorType.getInputProperties();
-						conversionOperatorType.readInputProperties(inputProperties);
-						newActualParameter = conversionOperatorType.run(actualParameters).get(0);
+					Model inputModel = model;
+					for (ConversionOperator convOperatorType : conversionPath) {
+						EList<Model> inputModels = new BasicEList<>();
+						inputModels.add(inputModel);
+						EList<OperatorInput> inputs = convOperatorType.checkAllowedInputs(inputModels);
+						Map<String, MultiModel> outputMIDsByName = new HashMap<>();
+						String convOutputName = convOperatorType.getOutputs().get(0).getName();
+						outputMIDsByName.put(convOutputName, instanceMID);
+						Map<String, Model> outputsByName = convOperatorType.start(inputs, outputMIDsByName, null);
+						inputModel = outputsByName.get(convOutputName);
 					}
-					coherentModels.add(newActualParameter);
-					coherentModels2.add(newActualParameter);
+					coherentModels.add(inputModel);
+					coherentModels2.add(inputModel);
 				}
 				// do model compare
 coherence:

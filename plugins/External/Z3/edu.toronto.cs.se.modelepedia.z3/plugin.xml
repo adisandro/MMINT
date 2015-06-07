@@ -37,7 +37,7 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="mavoModel">
+	                 name="mavo">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">

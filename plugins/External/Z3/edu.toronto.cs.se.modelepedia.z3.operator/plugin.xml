@@ -26,7 +26,7 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="mavoModel">
+	                 name="original">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
@@ -36,18 +36,10 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="transformedMavoModelInput">
+	                 name="transformation">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
-	                 name="transformedMavoModelOutput">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
             </parameter>
          </outputs>
@@ -65,7 +57,7 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="model">
+	                 name="original">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
@@ -75,18 +67,10 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="transformedModelInput">
+	                 name="transformation">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
-	                 name="transformedModelOutput">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
             </parameter>
          </outputs>
@@ -114,10 +98,10 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="transformed">
+	                 name="transformation">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
             </parameter>
          </outputs>

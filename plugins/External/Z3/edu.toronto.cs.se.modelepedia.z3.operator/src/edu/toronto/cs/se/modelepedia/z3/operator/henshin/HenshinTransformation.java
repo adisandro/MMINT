@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
@@ -31,6 +33,7 @@ import org.eclipse.emf.henshin.trace.Trace;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -39,13 +42,15 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 //TODO MMINT[OPERATOR] Move to appropriate package+feature when they're created for core operators
+//TODO MMINT[OPERATOR] Use this as base for the lifted ones
 public class HenshinTransformation extends OperatorImpl {
 
 	// input-output
 	private final static @NonNull String IN_MODEL = "original";
-	private final static @NonNull String OUT_MODEL = "transformed";
+	private final static @NonNull String OUT_MODELREL = "transformation";
 	private final static @NonNull String PROPERTY_IN_HENSHINFILENAME = "henshinFileName";
 	// constants
 	private final static @NonNull String TRANSFORMED_MODEL_SUFFIX = "_transformed";
@@ -106,26 +111,31 @@ public class HenshinTransformation extends OperatorImpl {
 			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
 		// input
-		Model originalModel = inputsByName.get(IN_MODEL);
-		MultiModel instanceMID = outputMIDsByName.get(OUT_MODEL);
+		Model origModel = inputsByName.get(IN_MODEL);
+		MultiModel instanceMID = outputMIDsByName.get(OUT_MODELREL);
 
 		// transform
-		EObject transformedRootModelObj = transform(originalModel);
+		EObject transformedRootModelObj = transform(origModel);
 
 		// output
-		String transformedMIDModelUri = MultiModelUtils.getUniqueUri(
-			MultiModelUtils.addFileNameSuffixInUri(originalModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
+		String transformedModelUri = MultiModelUtils.getUniqueUri(
+			MultiModelUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
 			true,
 			false);
-		MultiModelUtils.createModelFile(transformedRootModelObj, transformedMIDModelUri, true);
+		MultiModelUtils.createModelFile(transformedRootModelObj, transformedModelUri, true);
 		Model transformedModelType = MultiModelTypeRegistry.getType(
 			transformedRootModelObj.eClass().getEPackage().getNsURI());
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
-			transformedMIDModelUri,
+			transformedModelUri,
 			ModelOrigin.CREATED,
 			instanceMID);
+		EList<Model> transformationModels = new BasicEList<>();
+		transformationModels.add(origModel);
+		transformationModels.add(transformedModel);
+		ModelRel transformationRel = MultiModelTypeHierarchy.getRootModelRelType()
+			.createInstanceAndEndpointsAndReferences(null, true, ModelOrigin.CREATED, transformationModels);
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUT_MODEL, transformedModel);
+		outputsByName.put(OUT_MODELREL, transformationRel);
 
 		return outputsByName;
 	}
