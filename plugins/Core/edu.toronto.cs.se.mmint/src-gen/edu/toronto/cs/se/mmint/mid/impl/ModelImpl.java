@@ -994,7 +994,12 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		// copy model
 		String newModelUri = MultiModelUtils.replaceFileNameInUri(origModel.getUri(), newModelName);
 		try {
-			MultiModelUtils.copyTextFileAndReplaceText(origModel.getUri(), newModelUri, origModel.getName(), newModelName, true);
+			MultiModelUtils.copyTextFileAndReplaceText(
+				origModel.getUri(),
+				newModelUri,
+				origModel.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
+				newModelName + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
+				true);
 		} catch (Exception e) {
 			throw new MMINTException("Error copying model file");
 		}
@@ -1019,10 +1024,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 					MultiModelUtils.copyTextFileAndReplaceText(
 						oldEditor.getUri(),
 						MultiModelUtils.replaceFileNameInUri(oldEditor.getUri(), newModelName),
-						origModel.getName(),
-						newModelName,
-						true
-					);
+						origModel.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
+						newModelName + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
+						true);
 				} catch (Exception e) {
 					MMINTException.print(IStatus.WARNING, "Error copying diagram file, skipping it", e);
 					continue;
