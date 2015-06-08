@@ -221,7 +221,8 @@ public class ModelMerge extends OperatorImpl {
 			null,
 			true,
 			ModelOrigin.CREATED,
-			traceModels1);
+			traceModels1,
+			outputMIDsByName.get(OUT_MODELREL1));
 		traceRel1.setName(OUT_MODELREL1);
 		EList<Model> traceModels2 = new BasicEList<Model>();
 		traceModels2.add(model2);
@@ -230,7 +231,8 @@ public class ModelMerge extends OperatorImpl {
 			null,
 			true,
 			ModelOrigin.CREATED,
-			traceModels2);
+			traceModels2,
+			outputMIDsByName.get(OUT_MODELREL2));
 		traceRel2.setName(OUT_MODELREL2);
 		// merge the models
 		EObject rootMergedModelObj = merge(model1, model2, matchRel, mergedModel, traceRel1, traceRel2);

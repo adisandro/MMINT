@@ -27,7 +27,7 @@ Export-Package: edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.reasoning,
  edu.toronto.cs.se.mmint.repository
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.edit,
  org.eclipse.emf.edit.ui,
@@ -39,6 +39,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.editor,
  org.eclipse.uml2.uml,
  org.eclipse.jdt.annotation;resolution:=optional,
- edu.toronto.cs.se.mavo
+ edu.toronto.cs.se.mavo;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: edu.toronto.cs.se.mmint.MMINTActivator

@@ -123,13 +123,17 @@ public class ModelRelMerge extends OperatorImpl {
 		EList<Model> targetModels = new BasicEList<>();
 		targetModels.add(model1);
 		targetModels.add(model2);
-		ModelRel mergedModelRel = MultiModelTypeHierarchy.getRootModelRelType()
-				.createInstanceAndEndpointsAndReferences(null, true, ModelOrigin.CREATED, targetModels);
-		mergedModelRel.setName(modelRel1.getName() + MERGE_SEPARATOR + modelRel2.getName());
-		populate(mergedModelRel, modelRel1, instanceMID);
-		populate(mergedModelRel, modelRel2, instanceMID);
+		ModelRel mergedRel = MultiModelTypeHierarchy.getRootModelRelType().createInstanceAndEndpointsAndReferences(
+			null,
+			true,
+			ModelOrigin.CREATED,
+			targetModels,
+			instanceMID);
+		mergedRel.setName(modelRel1.getName() + MERGE_SEPARATOR + modelRel2.getName());
+		populate(mergedRel, modelRel1, instanceMID);
+		populate(mergedRel, modelRel2, instanceMID);
 
-		return mergedModelRel;
+		return mergedRel;
 	}
 
 	@Override
@@ -155,12 +159,11 @@ public class ModelRelMerge extends OperatorImpl {
 		}
 
 		// merge the two model rels
-		MultiModel instanceMID = outputMIDsByName.get(OUT_MODELREL);
-		ModelRel mergedModelRel = merge(modelRel1, modelRel2, model1, model2, instanceMID);
+		ModelRel mergedRel = merge(modelRel1, modelRel2, model1, model2, outputMIDsByName.get(OUT_MODELREL));
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUT_MODELREL, mergedModelRel);
+		outputsByName.put(OUT_MODELREL, mergedRel);
 
 		return outputsByName;
 	}

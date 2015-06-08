@@ -77,11 +77,15 @@ public class ModelRelComposition extends OperatorImpl {
 		EList<Model> targetModels = new BasicEList<>();
 		targetModels.add(model1);
 		targetModels.add(model2);
-		ModelRel composedModelRel = MultiModelTypeHierarchy.getRootModelRelType()
-			.createInstanceAndEndpointsAndReferences(null, true, ModelOrigin.CREATED, targetModels);
-		composedModelRel.setName(modelRel1.getName() + COMPOSITION_SEPARATOR + modelRel2.getName());
-		ModelEndpointReference composedModelEndpointRef1 = composedModelRel.getModelEndpointRefs().get(0);
-		ModelEndpointReference composedModelEndpointRef2 = composedModelRel.getModelEndpointRefs().get(1);
+		ModelRel composedRel = MultiModelTypeHierarchy.getRootModelRelType().createInstanceAndEndpointsAndReferences(
+			null,
+			true,
+			ModelOrigin.CREATED,
+			targetModels,
+			instanceMID);
+		composedRel.setName(modelRel1.getName() + COMPOSITION_SEPARATOR + modelRel2.getName());
+		ModelEndpointReference composedModelEndpointRef1 = composedRel.getModelEndpointRefs().get(0);
+		ModelEndpointReference composedModelEndpointRef2 = composedRel.getModelEndpointRefs().get(1);
 		// loop through links in modelRel1
 		for (Link link1 : modelRel1.getLinks()) {
 			// get model elements in model1
@@ -129,7 +133,7 @@ public class ModelRelComposition extends OperatorImpl {
 			}
 		}
 
-		return composedModelRel;
+		return composedRel;
 	}
 
 	@Override
@@ -167,12 +171,17 @@ public class ModelRelComposition extends OperatorImpl {
 		}
 
 		// compose the two model rels, using the shared model as pivot
-		ModelRel composedModelRel = compose(modelRel1, modelRel2, model1, model2, modelPivot,
+		ModelRel composedRel = compose(
+			modelRel1,
+			modelRel2,
+			model1,
+			model2,
+			modelPivot,
 			outputMIDsByName.get(OUT_MODELREL));
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUT_MODELREL, composedModelRel);
+		outputsByName.put(OUT_MODELREL, composedRel);
 
 		return outputsByName;
 	}

@@ -260,7 +260,12 @@ public class MAVORefiner {
 		EList<Model> modelEndpoints = new BasicEList<Model>();
 		modelEndpoints.add(model);
 		modelEndpoints.add(refinedModel);
-		ModelRel refinementRel = modelRelType.createInstanceAndEndpointsAndReferences(null, true, ModelOrigin.CREATED, modelEndpoints);
+		ModelRel refinementRel = modelRelType.createInstanceAndEndpointsAndReferences(
+			null,
+			true,
+			ModelOrigin.CREATED,
+			modelEndpoints,
+			instanceMID);
 		refinementRel.setName(MODELREL_NAME);
 
 		// refine

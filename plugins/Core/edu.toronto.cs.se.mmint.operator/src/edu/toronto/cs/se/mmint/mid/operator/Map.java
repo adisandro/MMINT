@@ -225,12 +225,13 @@ public class Map extends OperatorImpl {
 				EList<Model> midrelTargetModels = new BasicEList<>();
 				midrelTargetModels.add(outputMIDModel);
 				midrelTargetModels.add(midrelMIDModel);
-				ModelRel midrelModelRel = MultiModelTypeHierarchy.getRootModelRelType().createInstanceAndEndpointsAndReferences(
+				ModelRel midrelRel = MultiModelTypeHierarchy.getRootModelRelType().createInstanceAndEndpointsAndReferences(
 					null,
 					true,
 					ModelOrigin.CREATED,
-					midrelTargetModels);
-				midrelModelRel.setName(midrelMIDModel.getName());
+					midrelTargetModels,
+					instanceMID);
+				midrelRel.setName(midrelMIDModel.getName());
 			}
 		}
 		// create midoper

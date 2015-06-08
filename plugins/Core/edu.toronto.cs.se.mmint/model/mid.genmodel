@@ -221,6 +221,7 @@
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/isBinary"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/origin"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/targetModels"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/instanceMID"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/copyMAVOInstance">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/copyMAVOInstance/origModelRel"/>

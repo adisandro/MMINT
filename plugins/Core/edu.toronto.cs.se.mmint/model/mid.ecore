@@ -518,6 +518,7 @@
         <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
         <eParameters name="targetModels" lowerBound="1" upperBound="-1" eType="#//Model"/>
+        <eParameters name="instanceMID" eType="#//MultiModel"/>
       </eOperations>
       <eOperations name="copyMAVOInstance" lowerBound="1" eType="#//relationship/ModelRel"
           eExceptions="#//MMINTException">

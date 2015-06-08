@@ -78,7 +78,8 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 
 	// input-output
 	protected final static @NonNull String IN_MODEL = "original";
-	protected final static @NonNull String OUT_MODELREL = "transformation";
+	protected final static @NonNull String OUT_MODEL = "transformed";
+	protected final static @NonNull String OUT_MODELREL = "trace";
 	public static final String PROPERTY_IN_CONSTRAINT = "constraint";
 	private static final String PROPERTY_IN_CONSTRAINT_DEFAULT = Z3Utils.SMTLIB_TRUE;
 	public static final String PROPERTY_IN_CONSTRAINTVARIABLES = "constraintVariables";

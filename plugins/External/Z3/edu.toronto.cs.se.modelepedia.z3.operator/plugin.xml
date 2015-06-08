@@ -36,7 +36,15 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="transformation">
+	                 name="transformed">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="trace">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -67,7 +75,15 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="transformation">
+	                 name="transformed">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="trace">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -98,7 +114,15 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="transformation">
+	                 name="transformed">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="trace">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">

@@ -218,7 +218,6 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 
 		// input
 		Model origModel = inputsByName.get(IN_MODEL);
-		MultiModel instanceMID = outputMIDsByName.get(OUT_MODELREL);
 		// function declarations at step 0 for fN-fC-fD (phis) +
 		// function definition at every step for fY (phi apply, algorithm line 2) +
 		// function definition at every step for fX (phi P, external constraint)
@@ -262,14 +261,19 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
 			transformedMIDModelUri,
 			ModelOrigin.CREATED,
-			instanceMID);
+			outputMIDsByName.get(OUT_MODEL));
 		EList<Model> transformationModels = new BasicEList<>();
 		transformationModels.add(origModel);
 		transformationModels.add(transformedModel);
-		ModelRel transformationRel = MultiModelTypeHierarchy.getRootModelRelType()
-			.createInstanceAndEndpointsAndReferences(null, true, ModelOrigin.CREATED, transformationModels);
+		ModelRel traceRel = MultiModelTypeHierarchy.getRootModelRelType().createInstanceAndEndpointsAndReferences(
+			null,
+			true,
+			ModelOrigin.CREATED,
+			transformationModels,
+			outputMIDsByName.get(OUT_MODELREL));
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUT_MODELREL, transformationRel);
+		outputsByName.put(OUT_MODEL, transformedModel);
+		outputsByName.put(OUT_MODELREL, traceRel);
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
 		MultiModelOperatorUtils.writePropertiesFile(

@@ -30,6 +30,30 @@
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mid -->
+      <package
+            uri="http://se.cs.toronto.edu/mmint/MID/Relationship"
+            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"
+            genModel="model/mid.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mid -->
+      <package
+            uri="http://se.cs.toronto.edu/mmint/MID/Editor"
+            class="edu.toronto.cs.se.mmint.mid.editor.EditorPackage"
+            genModel="model/mid.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mid -->
+      <package
+            uri="http://se.cs.toronto.edu/mmint/MID/Operator"
+            class="edu.toronto.cs.se.mmint.mid.operator.OperatorPackage"
+            genModel="model/mid.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://se.cs.toronto.edu/mmint/Model"
             class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>

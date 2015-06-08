@@ -50,7 +50,8 @@ public class HenshinTransformation extends OperatorImpl {
 
 	// input-output
 	private final static @NonNull String IN_MODEL = "original";
-	private final static @NonNull String OUT_MODELREL = "transformation";
+	private final static @NonNull String OUT_MODEL = "transformed";
+	private final static @NonNull String OUT_MODELREL = "trace";
 	private final static @NonNull String PROPERTY_IN_HENSHINFILENAME = "henshinFileName";
 	// constants
 	private final static @NonNull String TRANSFORMED_MODEL_SUFFIX = "_transformed";
@@ -112,7 +113,6 @@ public class HenshinTransformation extends OperatorImpl {
 
 		// input
 		Model origModel = inputsByName.get(IN_MODEL);
-		MultiModel instanceMID = outputMIDsByName.get(OUT_MODELREL);
 
 		// transform
 		EObject transformedRootModelObj = transform(origModel);
@@ -128,14 +128,19 @@ public class HenshinTransformation extends OperatorImpl {
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
 			transformedModelUri,
 			ModelOrigin.CREATED,
-			instanceMID);
+			outputMIDsByName.get(OUT_MODEL));
 		EList<Model> transformationModels = new BasicEList<>();
 		transformationModels.add(origModel);
 		transformationModels.add(transformedModel);
-		ModelRel transformationRel = MultiModelTypeHierarchy.getRootModelRelType()
-			.createInstanceAndEndpointsAndReferences(null, true, ModelOrigin.CREATED, transformationModels);
+		ModelRel traceRel = MultiModelTypeHierarchy.getRootModelRelType().createInstanceAndEndpointsAndReferences(
+			null,
+			true,
+			ModelOrigin.CREATED,
+			transformationModels,
+			outputMIDsByName.get(OUT_MODELREL));
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUT_MODELREL, transformationRel);
+		outputsByName.put(OUT_MODEL, transformedModel);
+		outputsByName.put(OUT_MODELREL, traceRel);
 
 		return outputsByName;
 	}
