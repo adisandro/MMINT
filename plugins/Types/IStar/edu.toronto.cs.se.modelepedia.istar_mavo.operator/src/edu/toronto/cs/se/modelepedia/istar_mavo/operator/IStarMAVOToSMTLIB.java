@@ -14,19 +14,22 @@ package edu.toronto.cs.se.modelepedia.istar_mavo.operator;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.acceleo.common.preference.AcceleoPreferences;
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
 import org.eclipse.emf.common.util.BasicMonitor;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
@@ -67,14 +70,17 @@ public class IStarMAVOToSMTLIB extends EcoreMAVOToSMTLIB {
 	}
 
 	@Override
-	public EList<Model> run(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		Model istarModel = actualParameters.get(0);
+		// input
+		Model istarModel = inputsByName.get(IN_MODEL);
+
 		mavoModelObjs = MAVOUtils.createFormulaVars(istarModel);
 		if (this.isMayOnly == null) {
 			this.isMayOnly = MAVOUtils.isMayOnly(mavoModelObjs);
 		}
-
 		List<Object> m2tArgs = new ArrayList<Object>();
 		m2tArgs.add(istarModel.getName());
 		switch (analysisDirection) {
@@ -92,7 +98,7 @@ public class IStarMAVOToSMTLIB extends EcoreMAVOToSMTLIB {
 		IStarMAVOToSMTLIB_M2T m2t = new IStarMAVOToSMTLIBWithListeners_M2T(istarModel.getEMFInstanceRoot(), folder, m2tArgs);
 		m2t.doGenerate(new BasicMonitor());
 
-		return actualParameters;
+		return new HashMap<>();
 	}
 
 }

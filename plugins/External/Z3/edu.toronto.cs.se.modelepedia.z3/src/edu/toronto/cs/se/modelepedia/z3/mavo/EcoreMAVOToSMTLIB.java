@@ -57,7 +57,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 	}
 
 	// input-output
-	private final static @NonNull String IN_MODEL = "mavo";
+	protected final static @NonNull String IN_MODEL = "mavo";
 	private static final @NonNull String PROPERTY_IN_MAYONLY = "mayOnly";
 	private static final @Nullable Boolean PROPERTY_IN_MAYONLY_DEFAULT = null;
 

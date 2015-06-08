@@ -22,11 +22,14 @@
                name="IStarMAVOToSMTLIB"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_IStarMAVOToSMTLIB"
                class="edu.toronto.cs.se.modelepedia.istar_mavo.operator.IStarMAVOToSMTLIB">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB">
+            </superType>
          </type>
          <inputs>
             <parameter>
 	           <type
-	                 name="istarModel">
+	                 name="mavo">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
@@ -47,7 +50,7 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="istarModel">
+	                 name="istar">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
@@ -71,7 +74,7 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="istarModel">
+	                 name="istar">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
@@ -95,7 +98,7 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="istarModel">
+	                 name="istar">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">

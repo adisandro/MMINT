@@ -18,8 +18,8 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jdt.annotation.NonNull;
 
 import com.microsoft.z3.FuncDecl;
 import com.microsoft.z3.FuncInterp;
@@ -28,7 +28,9 @@ import com.microsoft.z3.Z3Exception;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -66,7 +68,8 @@ public class RE13 extends OperatorImpl {
 		}
 	}
 
-	// input-output properties
+	// input-output
+	protected final static @NonNull String IN_MODEL = "istar";
 	private static final String PROPERTY_IN_TARGETSPROPERTY = "targetsProperty";
 	private static final String PROPERTY_IN_TARGETSPROPERTY_DEFAULT = "";
 	private static final String PROPERTY_OUT_TIMEMODEL = "timeModel";
@@ -310,9 +313,12 @@ public class RE13 extends OperatorImpl {
 	}
 
 	@Override
-	public EList<Model> run(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		Model istarModel = actualParameters.get(0);
+		// input
+		Model istarModel = inputsByName.get(IN_MODEL);
 
 		// run solver
 		collectAnalysisModelObjects(istarModel);
@@ -322,7 +328,7 @@ public class RE13 extends OperatorImpl {
 			doTargets(z3IncSolver);
 		}
 
-		// save output
+		// output
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
 		MultiModelOperatorUtils.writePropertiesFile(
@@ -333,7 +339,7 @@ public class RE13 extends OperatorImpl {
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 
-		return actualParameters;
+		return new HashMap<>();
 	}
 
 }
