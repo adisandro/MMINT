@@ -11,14 +11,26 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship.util;
 
-import edu.toronto.cs.se.mmint.mid.relationship.*;
-import edu.toronto.cs.se.mmint.mid.util.MIDValidator;
 import java.util.Map;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryLink;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Link;
+import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmint.mid.util.MIDValidator;
 
 /**
  * <!-- begin-user-doc -->

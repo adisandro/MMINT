@@ -11,9 +11,9 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship;
 
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-
 import org.eclipse.emf.ecore.EObject;
+
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 
 /**
  * <!-- begin-user-doc -->

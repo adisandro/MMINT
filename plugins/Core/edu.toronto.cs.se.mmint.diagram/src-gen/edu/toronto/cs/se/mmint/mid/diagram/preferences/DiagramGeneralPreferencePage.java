@@ -24,7 +24,6 @@ public class DiagramGeneralPreferencePage extends DiagramsPreferencePage {
 	 * @generated
 	 */
 	public DiagramGeneralPreferencePage() {
-		setPreferenceStore(MIDDiagramEditorPlugin.getInstance()
-				.getPreferenceStore());
+		setPreferenceStore(MIDDiagramEditorPlugin.getInstance().getPreferenceStore());
 	}
 }

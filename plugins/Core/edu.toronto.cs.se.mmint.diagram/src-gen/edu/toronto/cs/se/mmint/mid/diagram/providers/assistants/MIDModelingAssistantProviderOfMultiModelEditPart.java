@@ -23,8 +23,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDModelingAssistantProvide
 /**
  * @generated
  */
-public class MIDModelingAssistantProviderOfMultiModelEditPart extends
-		MIDModelingAssistantProvider {
+public class MIDModelingAssistantProviderOfMultiModelEditPart extends MIDModelingAssistantProvider {
 
 	/**
 	 * @generated

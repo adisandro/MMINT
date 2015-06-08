@@ -117,6 +117,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL__VAR = MIDPackage.MODEL__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL__COLLECTIONS = MIDPackage.MODEL__COLLECTIONS;
+
+	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -189,6 +198,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL__CONSTRAINT = MIDPackage.MODEL__CONSTRAINT;
 
 	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL__ABSTRACT = MIDPackage.MODEL__ABSTRACT;
+
+	/**
 	 * The feature id for the '<em><b>Inc</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -250,15 +268,6 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL__CONVERSION_OPERATORS = MIDPackage.MODEL__CONVERSION_OPERATORS;
-
-	/**
-	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL__ABSTRACT = MIDPackage.MODEL__ABSTRACT;
 
 	/**
 	 * The number of structural features of the '<em>Model</em>' class.
@@ -349,6 +358,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
+
+	/**
+	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL = MIDPackage.MODEL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Copy MAVO Instance And Editor</em>' operation.
@@ -477,6 +495,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_ENDPOINT__VAR = MIDPackage.MODEL_ENDPOINT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT__COLLECTIONS = MIDPackage.MODEL_ENDPOINT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -650,6 +677,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT___GET_METATYPE = MIDPackage.MODEL_ENDPOINT___GET_METATYPE;
 
 	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING = MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING;
+
+	/**
 	 * The operation id for the '<em>Create Type Reference</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -767,6 +803,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_REL__VAR = RelationshipPackage.MODEL_REL__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL__COLLECTIONS = RelationshipPackage.MODEL_REL__COLLECTIONS;
+
+	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -839,6 +884,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_REL__CONSTRAINT = RelationshipPackage.MODEL_REL__CONSTRAINT;
 
 	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL__ABSTRACT = RelationshipPackage.MODEL_REL__ABSTRACT;
+
+	/**
 	 * The feature id for the '<em><b>Inc</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -900,15 +954,6 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_REL__CONVERSION_OPERATORS = RelationshipPackage.MODEL_REL__CONVERSION_OPERATORS;
-
-	/**
-	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_REL__ABSTRACT = RelationshipPackage.MODEL_REL__ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Model Endpoints</b></em>' containment reference list.
@@ -1037,6 +1082,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_REL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = RelationshipPackage.MODEL_REL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
+	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL = RelationshipPackage.MODEL_REL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL;
+
+	/**
 	 * The operation id for the '<em>Copy MAVO Instance And Editor</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1079,7 +1133,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODELORIGIN_ELIST = RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODELORIGIN_ELIST;
+	int KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST = RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST;
 
 	/**
 	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.
@@ -1228,6 +1282,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_BINARY_MODEL_REL__VAR = KLEISLI_MODEL_REL__VAR;
 
 	/**
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__COLLECTIONS = KLEISLI_MODEL_REL__COLLECTIONS;
+
+	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1300,6 +1363,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_BINARY_MODEL_REL__CONSTRAINT = KLEISLI_MODEL_REL__CONSTRAINT;
 
 	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL__ABSTRACT = KLEISLI_MODEL_REL__ABSTRACT;
+
+	/**
 	 * The feature id for the '<em><b>Inc</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1361,15 +1433,6 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_BINARY_MODEL_REL__CONVERSION_OPERATORS = KLEISLI_MODEL_REL__CONVERSION_OPERATORS;
-
-	/**
-	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_BINARY_MODEL_REL__ABSTRACT = KLEISLI_MODEL_REL__ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Model Endpoints</b></em>' containment reference list.
@@ -1516,6 +1579,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_BINARY_MODEL_REL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = KLEISLI_MODEL_REL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
 
 	/**
+	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL = KLEISLI_MODEL_REL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL;
+
+	/**
 	 * The operation id for the '<em>Copy MAVO Instance And Editor</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1558,7 +1630,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODELORIGIN_ELIST = KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODELORIGIN_ELIST;
+	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST = KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST;
 
 	/**
 	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.

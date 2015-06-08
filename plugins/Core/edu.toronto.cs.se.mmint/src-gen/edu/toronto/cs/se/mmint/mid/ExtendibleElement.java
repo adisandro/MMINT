@@ -20,7 +20,7 @@ import edu.toronto.cs.se.mavo.MAVOElement;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * The abstract basic element. It represents a unique typed element, able to extend or be extended by other elements.
+ * The abstract basic element. It represents a unique type at the type level able to extend or be extended by other elements, or a typed element at the instance level.
  * <!-- end-model-doc -->
  *
  * <p>

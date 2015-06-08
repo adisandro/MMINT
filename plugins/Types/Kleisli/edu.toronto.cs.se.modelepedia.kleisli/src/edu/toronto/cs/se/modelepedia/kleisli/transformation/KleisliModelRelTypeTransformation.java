@@ -13,14 +13,10 @@ package edu.toronto.cs.se.modelepedia.kleisli.transformation;
 
 import java.util.Map;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-
-import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
@@ -44,10 +40,12 @@ public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformatio
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(Map<String, Model> inputsByName,
+		java.util.Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName)
+		throws Exception {
 
-		EList<Model> result = super.execute(actualParameters);
-		KleisliBinaryModelRel kTraceModelRel = (KleisliBinaryModelRel) result.get(1);
+		Map<String, Model> outputsByName = super.run(inputsByName, genericsByName, outputMIDsByName);
+		KleisliBinaryModelRel kTraceModelRel = (KleisliBinaryModelRel) outputsByName.get(OUT_MODELREL);
 		Model modelPivot = kTraceModelRel.getSourceModel();
 		kTraceModelRel.setSourceModel(kTraceModelRel.getTargetModel());
 		kTraceModelRel.setTargetModel(modelPivot);
@@ -64,22 +62,7 @@ public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformatio
 			((BinaryLinkReference) kLinkRef).setTargetModelElemRef(modelElemRefPivot);
 		}
 
-		return result;
-	}
-
-	@Override
-	public EList<Operator> getExecutables(EList<Model> actualModels, EList<EList<Model>> actualModelTypes, EList<Map<Integer, EList<ConversionOperator>>> conversions, EList<EList<Model>> generics) throws MMINTException {
-
-		EList<Operator> executableOperatorTypes = super.getExecutables(actualModels, actualModelTypes, conversions, generics);
-		EList<Operator> kExecutableOperatorTypes = new BasicEList<Operator>();
-		// replace transformation operator types with kleisli ones
-		for (int i = 0; i < executableOperatorTypes.size(); i++) {
-			Operator kOperatorType = new KleisliModelRelTypeTransformation();
-			kOperatorType.setName(getName());
-			kExecutableOperatorTypes.add(kOperatorType);
-		}
-
-		return kExecutableOperatorTypes;
+		return outputsByName;
 	}
 
 }

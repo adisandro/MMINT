@@ -30,8 +30,7 @@ public class MIDShortcutPropertyTester extends PropertyTester {
 	/**
 	 * @generated
 	 */
-	public boolean test(Object receiver, String method, Object[] args,
-			Object expectedValue) {
+	public boolean test(Object receiver, String method, Object[] args, Object expectedValue) {
 		if (false == receiver instanceof View) {
 			return false;
 		}
@@ -39,8 +38,7 @@ public class MIDShortcutPropertyTester extends PropertyTester {
 		if (SHORTCUT_PROPERTY.equals(method)) {
 			EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 			if (annotation != null) {
-				return MultiModelEditPart.MODEL_ID.equals(annotation
-						.getDetails().get("modelID")); //$NON-NLS-1$
+				return MultiModelEditPart.MODEL_ID.equals(annotation.getDetails().get("modelID")); //$NON-NLS-1$
 			}
 		}
 		return false;

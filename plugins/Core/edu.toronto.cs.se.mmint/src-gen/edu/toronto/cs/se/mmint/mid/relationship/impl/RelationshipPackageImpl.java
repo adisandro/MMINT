@@ -11,6 +11,14 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
@@ -33,13 +41,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.util.RelationshipValidator;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -320,7 +321,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__CreateInstanceAndEndpointsAndReferences__String_ModelOrigin_EList() {
+	public EOperation getModelRel__CreateInstanceAndEndpointsAndReferences__String_boolean_ModelOrigin_EList() {
 		return modelRelEClass.getEOperations().get(7);
 	}
 
@@ -1084,7 +1085,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEOperation(modelRelEClass, MODEL_REL___GET_OUTLINE_RESOURCE_TYPES);
 		createEOperation(modelRelEClass, MODEL_REL___DELETE_TYPE);
 		createEOperation(modelRelEClass, MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL);
-		createEOperation(modelRelEClass, MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODELORIGIN_ELIST);
+		createEOperation(modelRelEClass, MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST);
 		createEOperation(modelRelEClass, MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL);
 		createEOperation(modelRelEClass, MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES);
 		createEOperation(modelRelEClass, MODEL_REL___DELETE_INSTANCE);
@@ -1255,8 +1256,9 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEParameter(op, theMIDPackage.getMultiModel(), "containerMultiModel", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
-		op = initEOperation(getModelRel__CreateInstanceAndEndpointsAndReferences__String_ModelOrigin_EList(), this.getModelRel(), "createInstanceAndEndpointsAndReferences", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelRel__CreateInstanceAndEndpointsAndReferences__String_boolean_ModelOrigin_EList(), this.getModelRel(), "createInstanceAndEndpointsAndReferences", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelRelUri", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isBinary", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getModel(), "targetModels", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());

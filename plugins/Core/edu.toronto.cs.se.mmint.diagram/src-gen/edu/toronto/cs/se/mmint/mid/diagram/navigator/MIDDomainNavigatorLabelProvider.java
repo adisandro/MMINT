@@ -29,8 +29,7 @@ public class MIDDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 * @generated
 	 */
 	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-			MIDDiagramEditorPlugin.getInstance()
-					.getItemProvidersAdapterFactory());
+		MIDDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -43,8 +42,7 @@ public class MIDDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 */
 	public Image getImage(Object element) {
 		if (element instanceof MIDDomainNavigatorItem) {
-			return myAdapterFactoryLabelProvider
-					.getImage(((MIDDomainNavigatorItem) element).getEObject());
+			return myAdapterFactoryLabelProvider.getImage(((MIDDomainNavigatorItem) element).getEObject());
 		}
 		return null;
 	}
@@ -54,8 +52,7 @@ public class MIDDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 */
 	public String getText(Object element) {
 		if (element instanceof MIDDomainNavigatorItem) {
-			return myAdapterFactoryLabelProvider
-					.getText(((MIDDomainNavigatorItem) element).getEObject());
+			return myAdapterFactoryLabelProvider.getText(((MIDDomainNavigatorItem) element).getEObject());
 		}
 		return null;
 	}

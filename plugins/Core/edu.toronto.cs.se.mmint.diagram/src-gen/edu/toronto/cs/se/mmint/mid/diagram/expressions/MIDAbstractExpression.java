@@ -41,13 +41,10 @@ public abstract class MIDAbstractExpression {
 	 */
 	protected void setStatus(int severity, String message, Throwable throwable) {
 		String pluginID = MIDDiagramEditorPlugin.ID;
-		this.status = new Status(severity, pluginID, -1,
-				(message != null) ? message : "", throwable); //$NON-NLS-1$
+		this.status = new Status(severity, pluginID, -1, (message != null) ? message : "", throwable); //$NON-NLS-1$
 		if (!this.status.isOK()) {
-			MIDDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"Expression problem:" + message + "body:" + body(), throwable); //$NON-NLS-1$ //$NON-NLS-2$
+			MIDDiagramEditorPlugin.getInstance()
+					.logError("Expression problem:" + message + "body:" + body(), throwable); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -111,9 +108,9 @@ public abstract class MIDAbstractExpression {
 		if (context().isInstance(context)) {
 			try {
 				return doEvaluate(context, env);
-			} catch (Exception e) {
-				MIDDiagramEditorPlugin.getInstance().logError(
-						"Expression evaluation failure: " + body(), e); //$NON-NLS-1$
+			}
+			catch (Exception e) {
+				MIDDiagramEditorPlugin.getInstance().logError("Expression evaluation failure: " + body(), e); //$NON-NLS-1$
 			}
 		}
 		return null;
@@ -127,12 +124,10 @@ public abstract class MIDAbstractExpression {
 		if (targetType instanceof EEnum) {
 			if (value instanceof EEnumLiteral) {
 				EEnumLiteral literal = (EEnumLiteral) value;
-				return (literal.getInstance() != null) ? literal.getInstance()
-						: literal;
+				return (literal.getInstance() != null) ? literal.getInstance() : literal;
 			}
 		}
-		if (false == value instanceof Number || targetType == null
-				|| targetType.getInstanceClass() == null) {
+		if (false == value instanceof Number || targetType == null || targetType.getInstanceClass() == null) {
 			return value;
 		}
 		Class<?> targetClass = targetType.getInstanceClass();

@@ -11,6 +11,25 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
@@ -39,23 +58,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -372,9 +374,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODELORIGIN_ELIST:
+			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST:
 				try {
-					return createInstanceAndEndpointsAndReferences((String)arguments.get(0), (ModelOrigin)arguments.get(1), (EList<Model>)arguments.get(2));
+					return createInstanceAndEndpointsAndReferences((String)arguments.get(0), (Boolean)arguments.get(1), (ModelOrigin)arguments.get(2), (EList<Model>)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -696,7 +698,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
-	public ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, ModelOrigin origin, EList<Model> targetModels) throws MMINTException {
+	public ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, boolean isBinary, ModelOrigin origin, EList<Model> targetModels) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
@@ -704,10 +706,12 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		if (targetModels.size() == 0) {
 			throw new MMINTException("No target models specified");
 		}
+		if (isBinary && targetModels.size() != 2) {
+			throw new MMINTException("A binary model relationship must have 2 target models");
+		}
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(targetModels.get(0));
 		// create model rel
-		boolean isBinary = targetModels.size() == 2;
 		ModelRel newModelRel = createInstance(newModelRelUri, isBinary, origin, multiModel);
 		// create model rel endpoints
 		for (Model targetModel : targetModels) {
@@ -726,27 +730,28 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
 		// create initial empty copy
 		ModelRel newModelRel = createInstance(null, (origModelRel instanceof BinaryModelRel), ModelOrigin.CREATED, containerMultiModel);
+		newModelRel.setName(origModelRel.getName());
 
 		// models
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
-		for (ModelEndpointReference oldModelEndpointRef : origModelRel.getModelEndpointRefs()) {
-			Model newModel = MultiModelRegistry.getExtendibleElement(oldModelEndpointRef.getTargetUri(), containerMultiModel);
-			ModelEndpointReference newModelEndpointRef = oldModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, newModelRel);
+		for (ModelEndpointReference origModelEndpointRef : origModelRel.getModelEndpointRefs()) {
+			Model newModel = MultiModelRegistry.getExtendibleElement(origModelEndpointRef.getTargetUri(), containerMultiModel);
+			ModelEndpointReference newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, newModelRel);
 			// model elements
-			for (ModelElementReference oldModelElemRef : oldModelEndpointRef.getModelElemRefs()) {
-				EObject newModelObj = oldModelElemRef.getObject().getEMFInstanceObject();
-				ModelElementReference newModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(newModelObj, oldModelElemRef.getObject().getName(), newModelEndpointRef);
+			for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
+				EObject newModelObj = origModelElemRef.getObject().getEMFInstanceObject();
+				ModelElementReference newModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(newModelObj, origModelElemRef.getObject().getName(), newModelEndpointRef);
 				newModelElemRefs.put(newModelElemRef.getUri(), newModelElemRef);
 			}
 		}
 		// links
-		for (LinkReference oldLinkRef : origModelRel.getLinkRefs()) {
-			LinkReference newLinkRef = oldLinkRef.getObject().getMetatype().createInstanceAndReference((oldLinkRef.getObject() instanceof BinaryLink), newModelRel);
-			MAVOUtils.copyMAVOElement(oldLinkRef.getObject(), newLinkRef.getObject());
-			newLinkRef.getObject().setName(oldLinkRef.getObject().getName());
-			for (ModelElementEndpointReference oldModelElemEndpointRef : oldLinkRef.getModelElemEndpointRefs()) {
-				ModelElementReference newModelElemRef = newModelElemRefs.get(oldModelElemEndpointRef.getTargetUri());
-				oldModelElemEndpointRef.getObject().getMetatype().createInstanceAndReference(newModelElemRef, newLinkRef);
+		for (LinkReference origLinkRef : origModelRel.getLinkRefs()) {
+			LinkReference newLinkRef = origLinkRef.getObject().getMetatype().createInstanceAndReference((origLinkRef.getObject() instanceof BinaryLink), newModelRel);
+			MAVOUtils.copyMAVOElement(origLinkRef.getObject(), newLinkRef.getObject());
+			newLinkRef.getObject().setName(origLinkRef.getObject().getName());
+			for (ModelElementEndpointReference origModelElemEndpointRef : origLinkRef.getModelElemEndpointRefs()) {
+				ModelElementReference newModelElemRef = newModelElemRefs.get(origModelElemEndpointRef.getTargetUri());
+				origModelElemEndpointRef.getObject().getMetatype().createInstanceAndReference(newModelElemRef, newLinkRef);
 			}
 		}
 

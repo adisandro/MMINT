@@ -30,8 +30,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ModelRelOpenDiagramEdit
 /**
  * @generated
  */
-public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -50,12 +49,9 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new BinaryModelRelItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new BinaryModelRelSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new ModelRelOpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BinaryModelRelItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BinaryModelRelSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new ModelRelOpenDiagramEditPolicy());
 	}
 
 	/**
@@ -63,8 +59,7 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WrappingLabel7EditPart) {
-			((WrappingLabel7EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureBinaryModelRelLabelFigure());
+			((WrappingLabel7EditPart) childEditPart).setLabel(getPrimaryShape().getFigureBinaryModelRelLabelFigure());
 			return true;
 		}
 		if (childEditPart instanceof WrappingLabel8EditPart) {
@@ -78,9 +73,8 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements
 			return true;
 		}
 		if (childEditPart instanceof WrappingLabel15EditPart) {
-			((WrappingLabel15EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureBinaryModelRelTargetModelEndpointLabelFigure());
+			((WrappingLabel15EditPart) childEditPart).setLabel(getPrimaryShape()
+					.getFigureBinaryModelRelTargetModelEndpointLabelFigure());
 			return true;
 		}
 		return false;

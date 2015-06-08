@@ -21,7 +21,6 @@ import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelOpenEditorCommand;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ModelOpenDiagramEditPolicy;
 
 /**
  * The open editor edit policy for models.

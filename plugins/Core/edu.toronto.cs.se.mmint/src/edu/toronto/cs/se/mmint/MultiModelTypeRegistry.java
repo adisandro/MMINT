@@ -12,7 +12,9 @@
 package edu.toronto.cs.se.mmint;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -29,6 +31,7 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -36,8 +39,9 @@ import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.Parameter;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLink;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -49,6 +53,7 @@ import edu.toronto.cs.se.mmint.mid.ui.ImportModelDialogFilter;
 import edu.toronto.cs.se.mmint.mid.ui.ImportModelDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogLabelProvider;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelTreeSelectionDialog;
+import edu.toronto.cs.se.mmint.mid.ui.NewGenericTypeDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewLinkReferenceDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewLinkTypeReferenceDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelDialogContentProvider;
@@ -77,7 +82,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static <T extends ExtendibleElement> @Nullable T getType(@NonNull String typeUri) {
 
-		return MultiModelRegistry.getExtendibleElement(typeUri, MMINT.repository);
+		return MultiModelRegistry.getExtendibleElement(typeUri, MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -87,7 +92,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static List<Operator> getOperatorTypes() {
 
-		return MultiModelRegistry.getOperators(MMINT.repository);
+		return MultiModelRegistry.getOperators(MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -97,17 +102,21 @@ public class MultiModelTypeRegistry {
 	 */
 	public static EList<Model> getModelTypes() {
 
-		return MultiModelRegistry.getModels(MMINT.repository);
+		return MultiModelRegistry.getModels(MMINT.cachedTypeMID);
 	}
 
 	/**
-	 * Gets the list of model relationship types in the repository.
+	 * Gets the list of generic types in the repository.
 	 * 
-	 * @return The list of model relationship types in the repository.
+	 * @return The list of generic types in the repository.
 	 */
-	public static EList<ModelRel> getModelRelTypes() {
+	public static List<GenericElement> getGenericTypes() {
 
-		return MultiModelRegistry.getModelRels(MMINT.repository);
+		List<GenericElement> genericTypes = new ArrayList<>();
+		genericTypes.addAll(getModelTypes());
+		genericTypes.addAll(getOperatorTypes());
+
+		return genericTypes;
 	}
 
 	/**
@@ -117,7 +126,17 @@ public class MultiModelTypeRegistry {
 	 */
 	public static EList<Editor> getEditorTypes() {
 
-		return MultiModelRegistry.getEditors(MMINT.repository);
+		return MultiModelRegistry.getEditors(MMINT.cachedTypeMID);
+	}
+
+	/**
+	 * Gets the list of model relationship types in the repository.
+	 * 
+	 * @return The list of model relationship types in the repository.
+	 */
+	public static EList<ModelRel> getModelRelTypes() {
+
+		return MultiModelRegistry.getModelRels(MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -166,7 +185,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static List<String> getModelTypeFileExtensions() {
 
-		List<String> fileExtensions = MMINT.repository.getModels().stream()
+		List<String> fileExtensions = MMINT.cachedTypeMID.getModels().stream()
 			.map(Model::getFileExtension)
 			.collect(Collectors.toList());
 
@@ -203,8 +222,8 @@ public class MultiModelTypeRegistry {
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
 			new MultiModelDialogLabelProvider(),
-			new NewModelDialogContentProvider(MMINT.repository),
-			MMINT.repository
+			new NewModelDialogContentProvider(MMINT.cachedTypeMID),
+			MMINT.cachedTypeMID
 		);
 		dialog.setValidator(new NewModelDialogSelectionValidator());
 
@@ -253,7 +272,7 @@ public class MultiModelTypeRegistry {
 			shell,
 			new MultiModelDialogLabelProvider(),
 			new NewModelRelDialogContentProvider(MultiModelConstraintChecker.getAllowedModelRelTypes(targetSrcModel, targetTgtModel)),
-			MMINT.repository
+			MMINT.cachedTypeMID
 		);
 
 		return dialog;
@@ -479,56 +498,39 @@ public class MultiModelTypeRegistry {
 		return dialog;
 	}
 
-	/**
-	 * Gets the signature of an operator type's parameter.
-	 * 
-	 * @param parameter
-	 *            The parameter of an operator type.
-	 * @return The signature of the parameter.
-	 */
-	private static String getParameterSignature(Parameter parameter) {
+	public static MultiModelTreeSelectionDialog getGenericTypeCreationDialog(GenericEndpoint genericSuperTypeEndpoint, EList<OperatorInput> inputs) {
 
-		String signature = parameter.getModel().getName();
-		if (parameter.isVararg()) {
-			signature += "...";
+		Operator operatorType = (Operator) genericSuperTypeEndpoint.eContainer();
+		MultiModel TypeMID = MultiModelRegistry.getMultiModel(operatorType);
+		GenericElement genericSuperType = genericSuperTypeEndpoint.getTarget();
+		List<GenericElement> genericTypes = MultiModelTypeHierarchy.getSubtypes(genericSuperType);
+		genericTypes.add(0, genericSuperType);
+		Set<GenericElement> filteredGenericTypes = new HashSet<>();
+		for (GenericElement genericType : genericTypes) {
+			try {
+				if (genericType.isAbstract()) {
+					continue;
+				}
+				if (!operatorType.isAllowedTargetGeneric(genericSuperTypeEndpoint, genericType, inputs)) {
+					//TODO MMINT[GENERICS] Can we check that the generic type is consistent with the input, or is it always done by the operator itself?
+					continue;
+				}
+				filteredGenericTypes.add(genericType);
+			}
+			catch (MMINTException e) {
+				continue;
+			}
 		}
-		signature += " " + parameter.getName();
 
-		return signature;
-	}
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
+			shell,
+			new MultiModelDialogLabelProvider(),
+			new NewGenericTypeDialogContentProvider(filteredGenericTypes),
+			TypeMID
+		);
 
-	/**
-	 * Gets the signature of an operator type.
-	 * 
-	 * @param operatorType
-	 *            The operator type.
-	 * @return The signature of the operator type.
-	 */
-	public static String getOperatorSignature(Operator operatorType) {
-
-		// output parameters
-		String signature = "[";
-		for (Parameter parameter : operatorType.getOutputs()) {
-			signature += getParameterSignature(parameter) + ", ";
-		}
-		if (operatorType.getOutputs().size() > 0) {
-			signature = signature.substring(0, signature.length() - 2);
-		}
-		signature += "] ";
-
-		// operator name
-		signature += operatorType.getName() + "(";
-
-		// input parameters
-		for (Parameter parameter : operatorType.getInputs()) {
-			signature += getParameterSignature(parameter) + ", ";
-		}
-		if (operatorType.getInputs().size() > 0) {
-			signature = signature.substring(0, signature.length() - 2);
-		}
-		signature += ")";
-
-		return signature;
+		return dialog;
 	}
 
 	/**

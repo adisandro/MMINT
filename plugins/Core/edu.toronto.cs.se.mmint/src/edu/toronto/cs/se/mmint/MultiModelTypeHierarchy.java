@@ -22,11 +22,11 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -35,6 +35,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
@@ -510,7 +511,7 @@ public class MultiModelTypeHierarchy {
 	 */
 	private static Map<String, Set<String>> getSubtypeTable(MultiModel multiModel) {
 
-		return (multiModel == MMINT.repository) ?
+		return (multiModel == MMINT.cachedTypeMID) ?
 			MMINT.subtypeTable :
 			MMINT.subtypeTableMID;
 	}
@@ -525,14 +526,14 @@ public class MultiModelTypeHierarchy {
 	 */
 	private static Map<String, Map<String, Set<List<String>>>> getConversionTable(MultiModel multiModel) {
 
-		return (multiModel == MMINT.repository) ?
+		return (multiModel == MMINT.cachedTypeMID) ?
 			MMINT.conversionTable :
 			MMINT.conversionTableMID;
 	}
 
 	public static Map<Model, Set<List<ConversionOperator>>> getMultiplePathConversions(String srcModelTypeUri) {
 
-		Map<String, Set<List<String>>> srcModelTypeConversionUris = getConversionTable(MMINT.repository).get(srcModelTypeUri);
+		Map<String, Set<List<String>>> srcModelTypeConversionUris = getConversionTable(MMINT.cachedTypeMID).get(srcModelTypeUri);
 		Map<Model, Set<List<ConversionOperator>>> multiplePathConversions = new HashMap<Model, Set<List<ConversionOperator>>>();
 		for (Map.Entry<String, Set<List<String>>> srcModelTypeConversionUrisEntry : srcModelTypeConversionUris.entrySet()) {
 			if (srcModelTypeConversionUrisEntry.getValue().size() == 1) {
@@ -591,7 +592,53 @@ public class MultiModelTypeHierarchy {
 	 */
 	public static boolean isSubtypeOf(String subtypeUri, String supertypeUri) {
 
-		return isSubtypeOf(subtypeUri, supertypeUri, MMINT.repository);
+		return isSubtypeOf(subtypeUri, supertypeUri, MMINT.cachedTypeMID);
+	}
+
+	/**
+	 * Determines if an element is an instance of a type (conversions included).
+	 * 
+	 * @param element
+	 *            The element.
+	 * @param typeUri
+	 *            The uri of the type.
+	 * @return An empty list if the element is an instance of the type or one of its subtypes, a list of conversion
+	 *         operators to be run to convert the element into an equivalent one which in turn is an instance of the
+	 *         type or one of its subtypes, or null otherwise.
+	 */
+	public static List<ConversionOperator> instanceOf(ExtendibleElement element, String typeUri) {
+
+		List<ConversionOperator> conversionOperatorTypes = new ArrayList<ConversionOperator>();
+		// static check
+		if (element.getMetatypeUri().equals(typeUri) || isSubtypeOf(element.getMetatypeUri(), typeUri)) {
+			return conversionOperatorTypes;
+		}
+		// polymorphic check
+		List<ExtendibleElement> runtimeTypes = MultiModelTypeIntrospection.getRuntimeTypes(element);
+		for (ExtendibleElement runtimeType : runtimeTypes) {
+			if (runtimeType.getUri().equals(typeUri) || isSubtypeOf(runtimeType.getUri(), typeUri)) {
+				return conversionOperatorTypes;
+			}
+		}
+		// conversion check
+		for (ExtendibleElement runtimeType : runtimeTypes) {
+			Map<String, Set<List<String>>> conversions = getConversionTable(MMINT.cachedTypeMID).get(runtimeType.getUri());
+			for (Map.Entry<String, Set<List<String>>> conversion : conversions.entrySet()) {
+				String convertedRuntimeTypeUri = conversion.getKey();
+				if (typeUri.equals(convertedRuntimeTypeUri) || isSubtypeOf(convertedRuntimeTypeUri, typeUri)) {
+					for (List<String> conversionOperatorPath : conversion.getValue()) {
+						for (String conversionOperatorTypeUri : conversionOperatorPath) {
+							ConversionOperator conversionOperatorType = MultiModelTypeRegistry.getType(conversionOperatorTypeUri);
+							conversionOperatorTypes.add(conversionOperatorType);
+						}
+						break; // use first conversion found
+					}
+					return conversionOperatorTypes;
+				}
+			}
+		}
+
+		return null;
 	}
 
 	/**
@@ -601,25 +648,17 @@ public class MultiModelTypeHierarchy {
 	 *            The element.
 	 * @param typeUri
 	 *            The uri of the type.
-	 * @return True if the element is an instance of the type or one of its
-	 *         subtypes.
+	 * @param includeConversions
+	 *            True if conversions should be included, false otherwise.
+	 * @return True if the element is an instance of the type or one of its subtypes.
 	 */
-	public static boolean instanceOf(ExtendibleElement element, String typeUri) {
+	public static boolean instanceOf(ExtendibleElement element, String typeUri, boolean includeConversions) {
 
-		//TODO MMINT[CONVERSION] Should I consider conversions too?
-		// static check
-		if (element.getMetatypeUri().equals(typeUri) || isSubtypeOf(element.getMetatypeUri(), typeUri)) {
-			return true;
-		}
-		// polymorphic check
-		List<ExtendibleElement> runtimeTypes = MultiModelTypeIntrospection.getRuntimeTypes(element);
-		for (ExtendibleElement runtimeType : runtimeTypes) {
-			if (runtimeType.getUri().equals(typeUri) || isSubtypeOf(runtimeType.getUri(), typeUri)) {
-				return true;
-			}
-		}
-
-		return false;
+		List<ConversionOperator> conversionOperatorTypes = instanceOf(element, typeUri);
+		
+		return (conversionOperatorTypes == null || (!includeConversions && !conversionOperatorTypes.isEmpty())) ?
+			false :
+			true;
 	}
 
 	/**
@@ -683,7 +722,17 @@ public class MultiModelTypeHierarchy {
 	 */
 	public static <T extends ExtendibleElement> List<T> getSubtypes(T type) {
 
-		return getSubtypes(type, MMINT.repository);
+		return getSubtypes(type, MMINT.cachedTypeMID);
+	}
+
+	public static List<GenericElement> getSubtypes(GenericElement type) {
+
+		if (type instanceof Operator && isRootType(type)) { // wildcard to select all operators
+			List<GenericElement> allOperatorTypes = new ArrayList<GenericElement>(MultiModelTypeRegistry.getOperatorTypes());
+			allOperatorTypes.remove(type);
+			return allOperatorTypes;
+		}
+		return getSubtypes(type, MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -702,54 +751,6 @@ public class MultiModelTypeHierarchy {
 		}
 
 		return uris;
-	}
-
-	/**
-	 * Determines if an actual parameter is eligible for the invocation of an
-	 * operator.
-	 * 
-	 * @param actualModelTypes
-	 *            The list of model types obtained through polymorphism from the
-	 *            single actual model parameter.
-	 * @param formalModelType
-	 *            The formal model type parameter in the operator signature.
-	 * @return If the actual parameter is eligible, a list of conversion
-	 *         operators that need to be run to convert the actual parameter
-	 *         into an equivalent one, or an empty list to use the actual
-	 *         parameter as is; null if the actual parameter is not eligible.
-	 */
-	public static EList<ConversionOperator> isEligibleParameter(EList<Model> actualModelTypes, Model formalModelType) {
-
-		// polymorphism
-		List<String> actualModelTypeUris = new ArrayList<String>();
-		for (Model actualModelType : actualModelTypes) {
-			actualModelTypeUris.add(actualModelType.getUri());
-		}
-		String formalModelTypeUri = formalModelType.getUri();
-		if (actualModelTypeUris.contains(formalModelTypeUri)) {
-			return new BasicEList<ConversionOperator>();
-		}
-
-		// conversion
-		for (String actualModelTypeUri : actualModelTypeUris) {
-			Map<String, Set<List<String>>> conversions = getConversionTable(MMINT.repository).get(actualModelTypeUri);
-			for (Map.Entry<String, Set<List<String>>> conversion : conversions.entrySet()) {
-				String convertedActualModelTypeUri = conversion.getKey();
-				if (formalModelTypeUri.equals(convertedActualModelTypeUri) || isSubtypeOf(convertedActualModelTypeUri, formalModelTypeUri)) {
-					EList<ConversionOperator> conversionOperatorTypes = new BasicEList<ConversionOperator>();
-					for (List<String> conversionOperatorPath : conversion.getValue()) {
-						for (String conversionOperatorTypeUri : conversionOperatorPath) {
-							ConversionOperator conversionOperatorType = MultiModelTypeRegistry.getType(conversionOperatorTypeUri);
-							conversionOperatorTypes.add(conversionOperatorType);
-						}
-						break; // use first conversion found
-					}
-					return conversionOperatorTypes;
-				}
-			}
-		}
-
-		return null;
 	}
 
 	/**
@@ -780,10 +781,12 @@ public class MultiModelTypeHierarchy {
 		else if (type instanceof ModelElementEndpoint) {
 			rootUri = MMINT.ROOT_MODELELEMENDPOINT_URI;
 		}
+		else if (type instanceof Operator) {
+			rootUri = MMINT.ROOT_OPERATOR_URI;
+		}
 		else if (type instanceof Editor) {
 			rootUri = MMINT.ROOT_EDITOR_URI;
 		}
-		//TODO MMINT[OO] root operator?
 	
 		return rootUri;
 	}
@@ -816,6 +819,11 @@ public class MultiModelTypeHierarchy {
 	public static ModelElementEndpoint getRootModelElementTypeEndpoint() {
 
 		return MultiModelTypeRegistry.getType(MMINT.ROOT_MODELELEMENDPOINT_URI);
+	}
+
+	public static Editor getRootEditorType() {
+
+		return MultiModelTypeRegistry.getType(MMINT.ROOT_EDITOR_URI);
 	}
 
 	/**

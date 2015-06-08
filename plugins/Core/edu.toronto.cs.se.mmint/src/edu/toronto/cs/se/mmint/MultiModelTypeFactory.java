@@ -16,7 +16,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -29,9 +30,9 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.Parameter;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
@@ -59,7 +60,7 @@ public class MultiModelTypeFactory {
 	public final static String ECORE_REFLECTIVE_FILE_EXTENSION = "xmi";
 
 	/**
-	 * Adds a type to a multimodel.
+	 * Adds a type to the Type MID.
 	 * 
 	 * @param newType
 	 *            The new type to be added.
@@ -69,15 +70,14 @@ public class MultiModelTypeFactory {
 	 *            The uri of the new type.
 	 * @param newTypeName
 	 *            The name of the new type.
-	 * @param multiModel
-	 *            The multimodel that will contain the new type.
+	 * @param typeMID
+	 *            The Type MID.
 	 * @throws MMINTException
-	 *             If the uri of the new type is already registered in the
-	 *             multimodel.
+	 *             If the uri of the new type is already registered in the Type MID.
 	 */
-	public static void addType(ExtendibleElement newType, ExtendibleElement type, String newTypeUri, String newTypeName, MultiModel multiModel) throws MMINTException {
+	public static void addType(@NonNull ExtendibleElement newType, @Nullable ExtendibleElement type, @NonNull String newTypeUri, @NonNull String newTypeName, @NonNull MultiModel typeMID) throws MMINTException {
 
-		if (multiModel.getExtendibleTable().containsKey(newTypeUri)) {
+		if (typeMID.getExtendibleTable().containsKey(newTypeUri)) {
 			throw new MMINTException("Type with uri " + newTypeUri + " is already registered");
 		}
 
@@ -85,7 +85,7 @@ public class MultiModelTypeFactory {
 		newType.setName(newTypeName);
 		newType.setLevel(MIDLevel.TYPES);
 		newType.setSupertype(type);
-		multiModel.getExtendibleTable().put(newTypeUri, newType);
+		typeMID.getExtendibleTable().put(newTypeUri, newType);
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class MultiModelTypeFactory {
 	 * @param upperBound
 	 *            The upper cardinality, -1 for infinite.
 	 */
-	public static void addTypeEndpointCardinality(ExtendibleElementEndpoint typeEndpoint, int lowerBound, int upperBound) {
+	public static void addTypeEndpointCardinality(@NonNull ExtendibleElementEndpoint typeEndpoint, int lowerBound, int upperBound) {
 
 		typeEndpoint.setLowerBound(lowerBound);
 		typeEndpoint.setUpperBound(upperBound);
@@ -152,8 +152,6 @@ public class MultiModelTypeFactory {
 	 * 
 	 * @param newModelType
 	 *            The new model type to be added.
-	 * @param newModelTypeAbstract
-	 *            True if the new model type is abstract, false otherwise.
 	 * @param constraintLanguage
 	 *            The constraint language of the constraint associated with the
 	 *            new model type, null if no constraint is associated.
@@ -163,9 +161,8 @@ public class MultiModelTypeFactory {
 	 * @param multiModel
 	 *            The multimodel that will contain the new model type.
 	 */
-	public static void addModelType(Model newModelType, boolean newModelTypeAbstract, String constraintLanguage, String constraintImplementation, MultiModel multiModel) {
+	public static void addModelType(Model newModelType, String constraintLanguage, String constraintImplementation, MultiModel multiModel) {
 
-		newModelType.setAbstract(newModelTypeAbstract);
 		ExtendibleElementConstraint modelConstraint = null;
 		if (constraintLanguage != null) {
 			modelConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
@@ -270,15 +267,41 @@ public class MultiModelTypeFactory {
 	 * @param containerModelRelType
 	 *            The model relationship type that will contain the new model
 	 *            type endpoint.
-	 * @throws MMINTException 
+	 * @throws MMINTException
+	 *             If the container model relationship is a model relationship
+	 *             instance.
 	 */
-	public static void addModelTypeEndpoint(ModelEndpoint newModelTypeEndpoint, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
+	public static void addModelTypeEndpoint(@NonNull ModelEndpoint newModelTypeEndpoint, @NonNull Model targetModelType, boolean isBinarySrc, @NonNull ModelRel containerModelRelType) throws MMINTException {
 
 		addTypeEndpoint(newModelTypeEndpoint, targetModelType);
 		containerModelRelType.getModelEndpoints().add(newModelTypeEndpoint);
 		if (containerModelRelType instanceof BinaryModelRel) {
 			((BinaryModelRel) containerModelRelType).addModelType(targetModelType, isBinarySrc);
 		}
+	}
+
+	/**
+	 * Adds a model type endpoint to an operator type.
+	 * 
+	 * @param newModelTypeEndpoint
+	 *            The new model type endpoint to be added.
+	 * @param targetModelType
+	 *            The new model type that is the target of the new model type
+	 *            endpoint.
+	 * @param containerOperatorType
+	 *            The operator type that will contain the new model type
+	 *            endpoint.
+	 * @param containerFeatureName
+	 *            The name of the feature in the operator type that will contain
+	 *            the new model type endpoint.
+	 * @throws MMINTException
+	 *             If the feature name is not found in the container operator
+	 *             type.
+	 */
+	public static void addModelTypeEndpoint(@NonNull ModelEndpoint newModelTypeEndpoint, @NonNull Model targetModelType, @NonNull Operator containerOperatorType, @NonNull String containerFeatureName) throws MMINTException {
+
+		addTypeEndpoint(newModelTypeEndpoint, targetModelType);
+		MultiModelUtils.setModelObjFeature(containerOperatorType, containerFeatureName, newModelTypeEndpoint);
 	}
 
 	/**
@@ -390,32 +413,6 @@ public class MultiModelTypeFactory {
 	}
 
 	/**
-	 * Adds a parameter type (i.e. a formal parameter) to an operator type.
-	 * 
-	 * @param newParamType
-	 *            The new parameter type to be added.
-	 * @param newParamTypeName
-	 *            The name of the new parameter type.
-	 * @param modelType
-	 *            The model type that is the target of the new parameter type.
-	 * @param isVararg
-	 *            True if the new parameter type represents a variable number of
-	 *            parameter types of the same kind, false otherwise.
-	 * @param paramTypes
-	 *            The list of parameter types that will contain the new
-	 *            parameter type.
-	 * @param operatorType
-	 *            The operator type that will contain the new parameter type.
-	 */
-	protected static void addOperatorTypeParameter(Parameter newParamType, String newParamTypeName, Model modelType, boolean isVararg, EList<Parameter> paramTypes, Operator operatorType) {
-
-		newParamType.setModel(modelType);
-		newParamType.setName(newParamTypeName);
-		newParamType.setVararg(isVararg);
-		paramTypes.add(newParamType);
-	}
-
-	/**
 	 * Adds additional info for a random operator type.
 	 * 
 	 * @param operatorType
@@ -434,7 +431,7 @@ public class MultiModelTypeFactory {
 	 */
 	public static void addOperatorTypeConversion(ConversionOperator operatorType) {
 
-		operatorType.getInputs().get(0).getModel().getConversionOperators().add(operatorType);
+		operatorType.getInputs().get(0).getTarget().getConversionOperators().add(operatorType);
 	}
 
 }

@@ -11,12 +11,25 @@
  */
 package edu.toronto.cs.se.mmint.mid.impl;
 
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
@@ -32,16 +45,6 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl;
 import edu.toronto.cs.se.mmint.mid.util.MIDValidator;
-import java.util.Map;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -112,6 +115,13 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * @generated
 	 */
 	private EClass emfInfoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass genericElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -511,15 +521,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getModel_Abstract() {
-		return (EAttribute)modelEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getModel__GetMetatype() {
 		return modelEClass.getEOperations().get(0);
 	}
@@ -871,7 +872,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model() {
+	public EOperation getModelEndpoint__CreateInstance__Model_Operator_String() {
 		return modelEndpointEClass.getEOperations().get(9);
 	}
 
@@ -880,8 +881,17 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__DeleteInstanceAndReference__boolean() {
+	public EOperation getModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model() {
 		return modelEndpointEClass.getEOperations().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelEndpoint__DeleteInstanceAndReference__boolean() {
+		return modelEndpointEClass.getEOperations().get(11);
 	}
 
 	/**
@@ -945,6 +955,24 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 */
 	public EOperation getEMFInfo__ToInstanceString() {
 		return emfInfoEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getGenericElement() {
+		return genericElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGenericElement_Abstract() {
+		return (EAttribute)genericElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1038,7 +1066,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEReference(modelEClass, MODEL__EDITORS);
 		createEReference(modelEClass, MODEL__MODEL_ELEMS);
 		createEReference(modelEClass, MODEL__CONVERSION_OPERATORS);
-		createEAttribute(modelEClass, MODEL__ABSTRACT);
 		createEOperation(modelEClass, MODEL___GET_METATYPE);
 		createEOperation(modelEClass, MODEL___GET_SUPERTYPE);
 		createEOperation(modelEClass, MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN);
@@ -1081,6 +1108,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN);
 
@@ -1091,6 +1119,9 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEAttribute(emfInfoEClass, EMF_INFO__RELATED_CLASS_NAME);
 		createEOperation(emfInfoEClass, EMF_INFO___TO_TYPE_STRING);
 		createEOperation(emfInfoEClass, EMF_INFO___TO_INSTANCE_STRING);
+
+		genericElementEClass = createEClass(GENERIC_ELEMENT);
+		createEAttribute(genericElementEClass, GENERIC_ELEMENT__ABSTRACT);
 
 		// Create enums
 		midLevelEEnum = createEEnum(MID_LEVEL);
@@ -1142,10 +1173,11 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		multiModelEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
 		extendibleElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 		extendibleElementEndpointEClass.getESuperTypes().add(this.getExtendibleElement());
-		modelEClass.getESuperTypes().add(this.getExtendibleElement());
+		modelEClass.getESuperTypes().add(this.getGenericElement());
 		modelEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
 		modelElementEClass.getESuperTypes().add(this.getExtendibleElement());
 		modelEndpointEClass.getESuperTypes().add(this.getExtendibleElementEndpoint());
+		genericElementEClass.getESuperTypes().add(this.getExtendibleElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(multiModelEClass, MultiModel.class, "MultiModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1189,7 +1221,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		initEReference(getModel_Editors(), theEditorPackage.getEditor(), null, "editors", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModel_ModelElems(), this.getModelElement(), null, "modelElems", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModel_ConversionOperators(), theOperatorPackage.getConversionOperator(), null, "conversionOperators", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModel_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 1, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getModel__GetMetatype(), this.getModel(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1341,6 +1372,12 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		addEParameter(op, theRelationshipPackage.getModelRel(), "containerModelRel", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
+		op = initEOperation(getModelEndpoint__CreateInstance__Model_Operator_String(), this.getModelEndpoint(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModel(), "targetModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theOperatorPackage.getOperator(), "containerOperator", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "containerFeatureName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMINTException());
+
 		op = initEOperation(getModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model(), null, "replaceInstanceAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelEndpoint(), "oldModelEndpoint", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModel(), "targetModel", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -1359,6 +1396,9 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		initEOperation(getEMFInfo__ToTypeString(), ecorePackage.getEString(), "toTypeString", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getEMFInfo__ToInstanceString(), ecorePackage.getEString(), "toInstanceString", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(genericElementEClass, GenericElement.class, "GenericElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGenericElement_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 1, 1, GenericElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(midLevelEEnum, MIDLevel.class, "MIDLevel");

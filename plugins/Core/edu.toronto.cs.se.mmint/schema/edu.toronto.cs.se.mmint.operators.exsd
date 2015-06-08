@@ -12,6 +12,8 @@
 
    <include schemaLocation="edu.toronto.cs.se.mmint.types.exsd"/>
 
+   <include schemaLocation="edu.toronto.cs.se.mmint.endpoints.exsd"/>
+
    <element name="extension">
       <annotation>
          <appinfo>
@@ -58,16 +60,17 @@
       <complexType>
          <sequence>
             <element ref="type"/>
-            <element ref="input"/>
-            <element ref="output"/>
+            <element ref="inputs" minOccurs="0" maxOccurs="1"/>
+            <element ref="outputs" minOccurs="0" maxOccurs="1"/>
+            <element ref="generics" minOccurs="0" maxOccurs="1"/>
          </sequence>
       </complexType>
    </element>
 
-   <element name="input">
+   <element name="inputs">
       <annotation>
          <documentation>
-            The input of the operator type.
+            The inputs of the operator type.
          </documentation>
       </annotation>
       <complexType>
@@ -77,10 +80,23 @@
       </complexType>
    </element>
 
-   <element name="output">
+   <element name="outputs">
       <annotation>
          <documentation>
-            The output of the operator type.
+            The outputs of the operator type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="parameter" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="generics">
+      <annotation>
+         <documentation>
+            The generics of the operator type.
          </documentation>
       </annotation>
       <complexType>
@@ -97,34 +113,10 @@
          </documentation>
       </annotation>
       <complexType>
-         <attribute name="name" type="string" use="required">
-            <annotation>
-               <documentation>
-                  The parameter name (must be unique in this operator).
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="isVararg" type="boolean" use="required">
-            <annotation>
-               <documentation>
-                  True if this parameter represents a variable number of actual parameters, false otherwise. Only last parameter can be a vararg.
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="isType" type="boolean">
-            <annotation>
-               <documentation>
-                  True if this parameter represents an actual parameter from the types level, false otherwise. False is default.
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="modelTypeUri" type="string" use="required">
-            <annotation>
-               <documentation>
-                  The parameter&apos;s model type URI.
-               </documentation>
-            </annotation>
-         </attribute>
+         <sequence>
+            <element ref="type"/>
+            <element ref="typeEndpoint"/>
+         </sequence>
       </complexType>
    </element>
 

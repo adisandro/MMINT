@@ -11,8 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.mid;
 
-import edu.toronto.cs.se.mavo.MAVOPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -20,6 +18,8 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
+import edu.toronto.cs.se.mavo.MAVOPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -571,6 +571,169 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl <em>Generic Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl
+	 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getGenericElement()
+	 * @generated
+	 */
+	int GENERIC_ELEMENT = 9;
+
+	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT__FORMULA_VARIABLE = EXTENDIBLE_ELEMENT__FORMULA_VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>May</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT__MAY = EXTENDIBLE_ELEMENT__MAY;
+
+	/**
+	 * The feature id for the '<em><b>Set</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT__SET = EXTENDIBLE_ELEMENT__SET;
+
+	/**
+	 * The feature id for the '<em><b>Var</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT__VAR = EXTENDIBLE_ELEMENT__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT__COLLECTIONS = EXTENDIBLE_ELEMENT__COLLECTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT__SUPERTYPE = EXTENDIBLE_ELEMENT__SUPERTYPE;
+
+	/**
+	 * The feature id for the '<em><b>Metatype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT__METATYPE = EXTENDIBLE_ELEMENT__METATYPE;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT__URI = EXTENDIBLE_ELEMENT__URI;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT__NAME = EXTENDIBLE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT__LEVEL = EXTENDIBLE_ELEMENT__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT__METATYPE_URI = EXTENDIBLE_ELEMENT__METATYPE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT__DYNAMIC = EXTENDIBLE_ELEMENT__DYNAMIC;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT__CONSTRAINT = EXTENDIBLE_ELEMENT__CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT__ABSTRACT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Generic Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The number of operations of the '<em>Generic Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl <em>Model</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -587,7 +750,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__FORMULA_VARIABLE = EXTENDIBLE_ELEMENT__FORMULA_VARIABLE;
+	int MODEL__FORMULA_VARIABLE = GENERIC_ELEMENT__FORMULA_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>May</b></em>' attribute.
@@ -596,7 +759,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__MAY = EXTENDIBLE_ELEMENT__MAY;
+	int MODEL__MAY = GENERIC_ELEMENT__MAY;
 
 	/**
 	 * The feature id for the '<em><b>Set</b></em>' attribute.
@@ -605,7 +768,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__SET = EXTENDIBLE_ELEMENT__SET;
+	int MODEL__SET = GENERIC_ELEMENT__SET;
 
 	/**
 	 * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -614,7 +777,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__VAR = EXTENDIBLE_ELEMENT__VAR;
+	int MODEL__VAR = GENERIC_ELEMENT__VAR;
 
 	/**
 	 * The feature id for the '<em><b>Collections</b></em>' reference list.
@@ -623,7 +786,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__COLLECTIONS = EXTENDIBLE_ELEMENT__COLLECTIONS;
+	int MODEL__COLLECTIONS = GENERIC_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -632,7 +795,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__SUPERTYPE = EXTENDIBLE_ELEMENT__SUPERTYPE;
+	int MODEL__SUPERTYPE = GENERIC_ELEMENT__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Metatype</b></em>' reference.
@@ -641,7 +804,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__METATYPE = EXTENDIBLE_ELEMENT__METATYPE;
+	int MODEL__METATYPE = GENERIC_ELEMENT__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -650,7 +813,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__URI = EXTENDIBLE_ELEMENT__URI;
+	int MODEL__URI = GENERIC_ELEMENT__URI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -659,7 +822,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__NAME = EXTENDIBLE_ELEMENT__NAME;
+	int MODEL__NAME = GENERIC_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -668,7 +831,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__LEVEL = EXTENDIBLE_ELEMENT__LEVEL;
+	int MODEL__LEVEL = GENERIC_ELEMENT__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -677,7 +840,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__METATYPE_URI = EXTENDIBLE_ELEMENT__METATYPE_URI;
+	int MODEL__METATYPE_URI = GENERIC_ELEMENT__METATYPE_URI;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -686,7 +849,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__DYNAMIC = EXTENDIBLE_ELEMENT__DYNAMIC;
+	int MODEL__DYNAMIC = GENERIC_ELEMENT__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -695,70 +858,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__CONSTRAINT = EXTENDIBLE_ELEMENT__CONSTRAINT;
-
-	/**
-	 * The feature id for the '<em><b>Inc</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__INC = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__DECISIONS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Origin</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__ORIGIN = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>File Extension</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__FILE_EXTENSION = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Editors</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__EDITORS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Model Elems</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__MODEL_ELEMS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Conversion Operators</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__CONVERSION_OPERATORS = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 6;
+	int MODEL__CONSTRAINT = GENERIC_ELEMENT__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -767,7 +867,70 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__ABSTRACT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 7;
+	int MODEL__ABSTRACT = GENERIC_ELEMENT__ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__INC = GENERIC_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__DECISIONS = GENERIC_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Origin</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__ORIGIN = GENERIC_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>File Extension</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__FILE_EXTENSION = GENERIC_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Editors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__EDITORS = GENERIC_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Model Elems</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__MODEL_ELEMS = GENERIC_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Conversion Operators</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__CONVERSION_OPERATORS = GENERIC_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Model</em>' class.
@@ -776,7 +939,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 8;
+	int MODEL_FEATURE_COUNT = GENERIC_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -785,7 +948,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+	int MODEL___CREATE_SUBTYPE_URI__STRING_STRING = GENERIC_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -794,7 +957,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___GET_METATYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
+	int MODEL___GET_METATYPE = GENERIC_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -803,7 +966,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___GET_SUPERTYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
+	int MODEL___GET_SUPERTYPE = GENERIC_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
@@ -812,7 +975,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+	int MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = GENERIC_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -821,7 +984,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___DELETE_TYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+	int MODEL___DELETE_TYPE = GENERIC_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
@@ -830,7 +993,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___GET_EMF_TYPE_ROOT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+	int MODEL___GET_EMF_TYPE_ROOT = GENERIC_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -839,7 +1002,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+	int MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = GENERIC_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Create Instance Editor</em>' operation.
@@ -848,7 +1011,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_INSTANCE_EDITOR = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
+	int MODEL___CREATE_INSTANCE_EDITOR = GENERIC_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Editor</em>' operation.
@@ -857,7 +1020,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+	int MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = GENERIC_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Create MAVO Instance</em>' operation.
@@ -866,7 +1029,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
+	int MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = GENERIC_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Create MAVO Instance And Editor</em>' operation.
@@ -875,7 +1038,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 9;
+	int MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = GENERIC_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.
@@ -884,7 +1047,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 10;
+	int MODEL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL = GENERIC_ELEMENT_OPERATION_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Copy MAVO Instance And Editor</em>' operation.
@@ -893,7 +1056,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 11;
+	int MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = GENERIC_ELEMENT_OPERATION_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -902,7 +1065,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___DELETE_INSTANCE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 12;
+	int MODEL___DELETE_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 12;
 
 	/**
 	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
@@ -911,7 +1074,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___GET_EMF_INSTANCE_ROOT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 13;
+	int MODEL___GET_EMF_INSTANCE_ROOT = GENERIC_ELEMENT_OPERATION_COUNT + 13;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -920,7 +1083,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 14;
+	int MODEL_OPERATION_COUNT = GENERIC_ELEMENT_OPERATION_COUNT + 14;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.
@@ -1484,13 +1647,22 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 8;
 
 	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 9;
+
+	/**
 	 * The operation id for the '<em>Replace Instance And Reference</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 9;
+	int MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Delete Instance And Reference</em>' operation.
@@ -1499,7 +1671,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 10;
+	int MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 11;
 
 	/**
 	 * The number of operations of the '<em>Model Endpoint</em>' class.
@@ -1508,7 +1680,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 11;
+	int MODEL_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.EMFInfoImpl <em>EMF Info</em>}' class.
@@ -1600,7 +1772,7 @@ public interface MIDPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getMIDLevel()
 	 * @generated
 	 */
-	int MID_LEVEL = 9;
+	int MID_LEVEL = 10;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.ModelOrigin <em>Model Origin</em>}' enum.
@@ -1610,7 +1782,7 @@ public interface MIDPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getModelOrigin()
 	 * @generated
 	 */
-	int MODEL_ORIGIN = 10;
+	int MODEL_ORIGIN = 11;
 
 	/**
 	 * The meta object id for the '<em>MMINT Exception</em>' data type.
@@ -1620,7 +1792,7 @@ public interface MIDPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getMMINTException()
 	 * @generated
 	 */
-	int MMINT_EXCEPTION = 11;
+	int MMINT_EXCEPTION = 12;
 
 
 	/**
@@ -1968,17 +2140,6 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModel_ConversionOperators();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.Model#isAbstract <em>Abstract</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Abstract</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.Model#isAbstract()
-	 * @see #getModel()
-	 * @generated
-	 */
-	EAttribute getModel_Abstract();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#getMetatype() <em>Get Metatype</em>}' operation.
@@ -2374,6 +2535,16 @@ public interface MIDPackage extends EPackage {
 	EOperation getModelEndpoint__CreateInstanceAndReference__Model_ModelRel();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#createInstance(edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.operator.Operator, java.lang.String) <em>Create Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#createInstance(edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.operator.Operator, java.lang.String)
+	 * @generated
+	 */
+	EOperation getModelEndpoint__CreateInstance__Model_Operator_String();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#replaceInstanceAndReference(edu.toronto.cs.se.mmint.mid.ModelEndpoint, edu.toronto.cs.se.mmint.mid.Model) <em>Replace Instance And Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2466,6 +2637,27 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getEMFInfo__ToInstanceString();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.GenericElement <em>Generic Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Generic Element</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.GenericElement
+	 * @generated
+	 */
+	EClass getGenericElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.GenericElement#isAbstract <em>Abstract</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Abstract</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.GenericElement#isAbstract()
+	 * @see #getGenericElement()
+	 * @generated
+	 */
+	EAttribute getGenericElement_Abstract();
 
 	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.mmint.mid.MIDLevel <em>Level</em>}'.
@@ -2788,14 +2980,6 @@ public interface MIDPackage extends EPackage {
 		EReference MODEL__CONVERSION_OPERATORS = eINSTANCE.getModel_ConversionOperators();
 
 		/**
-		 * The meta object literal for the '<em><b>Abstract</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODEL__ABSTRACT = eINSTANCE.getModel_Abstract();
-
-		/**
 		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3114,6 +3298,14 @@ public interface MIDPackage extends EPackage {
 		EOperation MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL = eINSTANCE.getModelEndpoint__CreateInstanceAndReference__Model_ModelRel();
 
 		/**
+		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING = eINSTANCE.getModelEndpoint__CreateInstance__Model_Operator_String();
+
+		/**
 		 * The meta object literal for the '<em><b>Replace Instance And Reference</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3186,6 +3378,24 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation EMF_INFO___TO_INSTANCE_STRING = eINSTANCE.getEMFInfo__ToInstanceString();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl <em>Generic Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl
+		 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getGenericElement()
+		 * @generated
+		 */
+		EClass GENERIC_ELEMENT = eINSTANCE.getGenericElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Abstract</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GENERIC_ELEMENT__ABSTRACT = eINSTANCE.getGenericElement_Abstract();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.MIDLevel <em>Level</em>}' enum.

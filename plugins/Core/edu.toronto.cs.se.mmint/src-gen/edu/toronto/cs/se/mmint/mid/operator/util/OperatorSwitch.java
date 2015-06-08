@@ -11,13 +11,22 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.util;
 
-import edu.toronto.cs.se.mavo.LogicElement;
-import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.operator.*;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+
+import edu.toronto.cs.se.mavo.LogicElement;
+import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.operator.*;
+import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 
 /**
  * <!-- begin-user-doc -->
@@ -79,6 +88,7 @@ public class OperatorSwitch<T> extends Switch<T> {
 			case OperatorPackage.OPERATOR: {
 				Operator operator = (Operator)theEObject;
 				T result = caseOperator(operator);
+				if (result == null) result = caseGenericElement(operator);
 				if (result == null) result = caseExtendibleElement(operator);
 				if (result == null) result = caseMAVOElement(operator);
 				if (result == null) result = caseLogicElement(operator);
@@ -89,6 +99,7 @@ public class OperatorSwitch<T> extends Switch<T> {
 				ConversionOperator conversionOperator = (ConversionOperator)theEObject;
 				T result = caseConversionOperator(conversionOperator);
 				if (result == null) result = caseOperator(conversionOperator);
+				if (result == null) result = caseGenericElement(conversionOperator);
 				if (result == null) result = caseExtendibleElement(conversionOperator);
 				if (result == null) result = caseMAVOElement(conversionOperator);
 				if (result == null) result = caseLogicElement(conversionOperator);
@@ -99,15 +110,26 @@ public class OperatorSwitch<T> extends Switch<T> {
 				RandomOperator randomOperator = (RandomOperator)theEObject;
 				T result = caseRandomOperator(randomOperator);
 				if (result == null) result = caseOperator(randomOperator);
+				if (result == null) result = caseGenericElement(randomOperator);
 				if (result == null) result = caseExtendibleElement(randomOperator);
 				if (result == null) result = caseMAVOElement(randomOperator);
 				if (result == null) result = caseLogicElement(randomOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OperatorPackage.PARAMETER: {
-				Parameter parameter = (Parameter)theEObject;
-				T result = caseParameter(parameter);
+			case OperatorPackage.GENERIC_ENDPOINT: {
+				GenericEndpoint genericEndpoint = (GenericEndpoint)theEObject;
+				T result = caseGenericEndpoint(genericEndpoint);
+				if (result == null) result = caseExtendibleElementEndpoint(genericEndpoint);
+				if (result == null) result = caseExtendibleElement(genericEndpoint);
+				if (result == null) result = caseMAVOElement(genericEndpoint);
+				if (result == null) result = caseLogicElement(genericEndpoint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperatorPackage.OPERATOR_INPUT: {
+				OperatorInput operatorInput = (OperatorInput)theEObject;
+				T result = caseOperatorInput(operatorInput);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -127,21 +149,6 @@ public class OperatorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseOperator(Operator object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseParameter(Parameter object) {
 		return null;
 	}
 
@@ -206,6 +213,36 @@ public class OperatorSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Endpoint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Endpoint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenericEndpoint(GenericEndpoint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Input</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Input</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperatorInput(OperatorInput object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Extendible Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -217,6 +254,36 @@ public class OperatorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExtendibleElement(ExtendibleElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenericElement(GenericElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Extendible Element Endpoint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Extendible Element Endpoint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExtendibleElementEndpoint(ExtendibleElementEndpoint object) {
 		return null;
 	}
 

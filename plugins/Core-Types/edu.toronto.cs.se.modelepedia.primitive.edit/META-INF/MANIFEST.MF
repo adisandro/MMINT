@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.primitive.edit;singleton:=true
+Bundle-Version: 1.3.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: edu.toronto.cs.se.modelepedia.primitive.int_.provider.IntEditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: edu.toronto.cs.se.modelepedia.primitive.int_.provider
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.edit,
+ edu.toronto.cs.se.modelepedia.primitive
+Bundle-ActivationPolicy: lazy

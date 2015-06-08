@@ -14,19 +14,23 @@ package edu.toronto.cs.se.modelepedia.operator.slice;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
@@ -42,10 +46,25 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class ChangeImpact extends OperatorImpl {
 
-	private final static String MODELREL_NAME = "impact";
-	private final static String LINKREF_NAME = "impact";
+	// input-output
+	private final static @NonNull String IN_MODELREL1 = "diff";
+	private final static @NonNull String IN_MODELREL2 = "trace";
+	private final static @NonNull String OUT_MODELREL = "impact";
+	// constants
 	private final static String SRC_MODELELEMENDPOINT_NAME = "diff";
 	private final static String TGT_MODELELEMENDPOINT_NAME = "impacted";
+
+	@Override
+	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
+
+		boolean allowed = super.isAllowedInput(inputsByName);
+		if (!allowed) {
+			return false;
+		}
+
+		//TODO MMINT[OPERATOR] Check that diff and trace share a model
+		return true;
+	}
 
 	private void createOrigVarTables(ModelEndpointReference modelEndpointRef, HashMap<String, List<ModelElementReference>> unifyTable, HashMap<String, List<ModelElementReference>> typeTable) {
 
@@ -164,13 +183,14 @@ public class ChangeImpact extends OperatorImpl {
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		//Model origModel = actualParameters.get(0);
-		BinaryModelRel diffRel = (BinaryModelRel) actualParameters.get(1);
-		//Model modModel = actualParameters.get(2);
-		BinaryModelRel traceRel = (BinaryModelRel) actualParameters.get(3);
-		Model impactedModel = actualParameters.get(4);
+		// input
+		BinaryModelRel diffRel = (BinaryModelRel) inputsByName.get(IN_MODELREL1);
+		BinaryModelRel traceRel = (BinaryModelRel) inputsByName.get(IN_MODELREL2);
+		Model impactedModel = traceRel.getTargetModel();
 
 		HashMap<String, List<ModelElementReference>> origUnifyTable = new HashMap<String, List<ModelElementReference>>();
 		HashMap<String, List<ModelElementReference>> origTypeTable = new HashMap<String, List<ModelElementReference>>();
@@ -185,8 +205,8 @@ public class ChangeImpact extends OperatorImpl {
 		EList<Model> targetModels = new BasicEList<Model>();
 		targetModels.add(diffRel);
 		targetModels.add(impactedModel);
-		ModelRel newImpactModelRel = rootModelRelType.createInstanceAndEndpointsAndReferences(null, ModelOrigin.CREATED, targetModels);
-		newImpactModelRel.setName(MODELREL_NAME);
+		ModelRel newImpactModelRel = rootModelRelType.createInstanceAndEndpointsAndReferences(null, true, ModelOrigin.CREATED, targetModels);
+		newImpactModelRel.setName(OUT_MODELREL);
 		ModelEndpointReference newDiffModelEndpointRef = newImpactModelRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference newImpactedModelEndpointRef = newImpactModelRel.getModelEndpointRefs().get(1);
 
@@ -200,7 +220,7 @@ public class ChangeImpact extends OperatorImpl {
 			EList<ModelElementReference> targetModelElemRefs = new BasicEList<ModelElementReference>();
 			targetModelElemRefs.add(newDiffModelElemRef);
 			LinkReference newImpactLinkRef = rootLinkType.createInstanceAndReferenceAndEndpointsAndReferences(false, targetModelElemRefs);
-			newImpactLinkRef.getObject().setName(LINKREF_NAME);
+			newImpactLinkRef.getObject().setName(OUT_MODELREL);
 			ModelElementEndpointReference newDiffModelElemEndpointRef = newImpactLinkRef.getModelElemEndpointRefs().get(0);
 			newDiffModelElemEndpointRef.getObject().setName(SRC_MODELELEMENDPOINT_NAME);
 
@@ -225,9 +245,11 @@ public class ChangeImpact extends OperatorImpl {
 			}
 		}
 
-		EList<Model> result = new BasicEList<Model>();
-		result.add(newImpactModelRel);
-		return result;
+		// output
+		Map<String, Model> outputsByName = new HashMap<>();
+		outputsByName.put(OUT_MODELREL, newImpactModelRel);
+
+		return outputsByName;
 	}
 
 }

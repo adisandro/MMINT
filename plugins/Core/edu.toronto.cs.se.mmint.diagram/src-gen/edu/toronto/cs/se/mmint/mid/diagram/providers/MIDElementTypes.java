@@ -30,13 +30,13 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint2EditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint3EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.OperatorEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Parameter2EditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ParameterEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
@@ -60,9 +60,8 @@ public class MIDElementTypes {
 	/**
 	 * @generated
 	 */
-	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(
-			MIDDiagramEditorPlugin.getInstance()
-					.getItemProvidersAdapterFactory());
+	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(MIDDiagramEditorPlugin
+			.getInstance().getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -108,11 +107,12 @@ public class MIDElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Parameter_4016 = getElementType("edu.toronto.cs.se.mmint.diagram.Parameter_4016"); //$NON-NLS-1$
+	public static final IElementType ModelEndpoint_4018 = getElementType("edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4018"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType Parameter_4017 = getElementType("edu.toronto.cs.se.mmint.diagram.Parameter_4017"); //$NON-NLS-1$
+	public static final IElementType ModelEndpoint_4019 = getElementType("edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4019"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -158,28 +158,21 @@ public class MIDElementTypes {
 
 			elements.put(Model_2012, MIDPackage.eINSTANCE.getModel());
 
-			elements.put(ModelRel_2013,
-					RelationshipPackage.eINSTANCE.getModelRel());
+			elements.put(ModelRel_2013, RelationshipPackage.eINSTANCE.getModelRel());
 
-			elements.put(ModelRel_2014,
-					RelationshipPackage.eINSTANCE.getModelRel());
+			elements.put(ModelRel_2014, RelationshipPackage.eINSTANCE.getModelRel());
 
 			elements.put(Operator_2015, OperatorPackage.eINSTANCE.getOperator());
 
-			elements.put(ExtendibleElementSupertype_4013,
-					MIDPackage.eINSTANCE.getExtendibleElement_Supertype());
+			elements.put(ExtendibleElementSupertype_4013, MIDPackage.eINSTANCE.getExtendibleElement_Supertype());
 
-			elements.put(ModelEndpoint_4014,
-					MIDPackage.eINSTANCE.getModelEndpoint());
+			elements.put(ModelEndpoint_4014, MIDPackage.eINSTANCE.getModelEndpoint());
 
-			elements.put(BinaryModelRel_4015,
-					RelationshipPackage.eINSTANCE.getBinaryModelRel());
+			elements.put(BinaryModelRel_4015, RelationshipPackage.eINSTANCE.getBinaryModelRel());
 
-			elements.put(Parameter_4016,
-					OperatorPackage.eINSTANCE.getParameter());
+			elements.put(ModelEndpoint_4018, MIDPackage.eINSTANCE.getModelEndpoint());
 
-			elements.put(Parameter_4017,
-					OperatorPackage.eINSTANCE.getParameter());
+			elements.put(ModelEndpoint_4019, MIDPackage.eINSTANCE.getModelEndpoint());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -206,8 +199,8 @@ public class MIDElementTypes {
 			KNOWN_ELEMENT_TYPES.add(ExtendibleElementSupertype_4013);
 			KNOWN_ELEMENT_TYPES.add(ModelEndpoint_4014);
 			KNOWN_ELEMENT_TYPES.add(BinaryModelRel_4015);
-			KNOWN_ELEMENT_TYPES.add(Parameter_4016);
-			KNOWN_ELEMENT_TYPES.add(Parameter_4017);
+			KNOWN_ELEMENT_TYPES.add(ModelEndpoint_4018);
+			KNOWN_ELEMENT_TYPES.add(ModelEndpoint_4019);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -217,28 +210,28 @@ public class MIDElementTypes {
 	 */
 	public static IElementType getElementType(int visualID) {
 		switch (visualID) {
-		case MultiModelEditPart.VISUAL_ID:
-			return MultiModel_1000;
-		case ModelEditPart.VISUAL_ID:
-			return Model_2011;
-		case Model2EditPart.VISUAL_ID:
-			return Model_2012;
-		case ModelRelEditPart.VISUAL_ID:
-			return ModelRel_2013;
-		case ModelRel2EditPart.VISUAL_ID:
-			return ModelRel_2014;
-		case OperatorEditPart.VISUAL_ID:
-			return Operator_2015;
-		case ExtendibleElementSupertypeEditPart.VISUAL_ID:
-			return ExtendibleElementSupertype_4013;
-		case ModelEndpointEditPart.VISUAL_ID:
-			return ModelEndpoint_4014;
-		case BinaryModelRelEditPart.VISUAL_ID:
-			return BinaryModelRel_4015;
-		case ParameterEditPart.VISUAL_ID:
-			return Parameter_4016;
-		case Parameter2EditPart.VISUAL_ID:
-			return Parameter_4017;
+			case MultiModelEditPart.VISUAL_ID:
+				return MultiModel_1000;
+			case ModelEditPart.VISUAL_ID:
+				return Model_2011;
+			case Model2EditPart.VISUAL_ID:
+				return Model_2012;
+			case ModelRelEditPart.VISUAL_ID:
+				return ModelRel_2013;
+			case ModelRel2EditPart.VISUAL_ID:
+				return ModelRel_2014;
+			case OperatorEditPart.VISUAL_ID:
+				return Operator_2015;
+			case ExtendibleElementSupertypeEditPart.VISUAL_ID:
+				return ExtendibleElementSupertype_4013;
+			case ModelEndpointEditPart.VISUAL_ID:
+				return ModelEndpoint_4014;
+			case BinaryModelRelEditPart.VISUAL_ID:
+				return BinaryModelRel_4015;
+			case ModelEndpoint2EditPart.VISUAL_ID:
+				return ModelEndpoint_4018;
+			case ModelEndpoint3EditPart.VISUAL_ID:
+				return ModelEndpoint_4019;
 		}
 		return null;
 	}
@@ -246,16 +239,14 @@ public class MIDElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final DiagramElementTypes TYPED_INSTANCE = new DiagramElementTypes(
-			elementTypeImages) {
+	public static final DiagramElementTypes TYPED_INSTANCE = new DiagramElementTypes(elementTypeImages) {
 
 		/**
 		 * @generated
 		 */
 		@Override
 		public boolean isKnownElementType(IElementType elementType) {
-			return edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes
-					.isKnownElementType(elementType);
+			return edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes.isKnownElementType(elementType);
 		}
 
 		/**
@@ -263,18 +254,15 @@ public class MIDElementTypes {
 		 */
 		@Override
 		public IElementType getElementTypeForVisualId(int visualID) {
-			return edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes
-					.getElementType(visualID);
+			return edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes.getElementType(visualID);
 		}
 
 		/**
 		 * @generated
 		 */
 		@Override
-		public ENamedElement getDefiningNamedElement(
-				IAdaptable elementTypeAdapter) {
-			return edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes
-					.getElement(elementTypeAdapter);
+		public ENamedElement getDefiningNamedElement(IAdaptable elementTypeAdapter) {
+			return edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes.getElement(elementTypeAdapter);
 		}
 	};
 

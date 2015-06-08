@@ -16,6 +16,7 @@ import java.util.List;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -27,12 +28,16 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -72,7 +77,7 @@ public class MultiModelDiagramUtils {
 
 	protected static Object openSelectionDialogWithDefault(MultiModelTreeSelectionDialog dialog, String title, String message) throws MultiModelDialogCancellation {
 
-		Object selection = dialog.getOnlyResult();
+		Object selection = dialog.getUniqueResult();
 		if (selection == null) { // more than one choice possible, open the dialog
 			selection = openDialog(dialog, title, message);
 		}
@@ -213,6 +218,15 @@ public class MultiModelDiagramUtils {
 		String message = "Choose model type endpoint role";
 	
 		return (ModelElementEndpointReference) openSelectionDialogWithDefault(dialog, title, message);
+	}
+
+	public static GenericElement selectGenericTypeToCreate(GenericEndpoint genericSuperTypeEndpoint, EList<OperatorInput> inputs) throws MultiModelDialogCancellation {
+
+		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getGenericTypeCreationDialog(genericSuperTypeEndpoint, inputs);
+		String title = "Run generic operator";
+		String message = "Choose generic type " + genericSuperTypeEndpoint.getName();
+	
+		return (GenericElement) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
 	public static boolean getBooleanInput(String dialogTitle, String dialogMessage) {

@@ -31,12 +31,14 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOFactory;
@@ -47,8 +49,8 @@ import edu.toronto.cs.se.modelepedia.z3.operator.henshin.ProductLineHenshinTrans
 
 public class ICSE14 extends ProductLineHenshinTransformation {
 
-	private static final String FEATURE_MODELS_SUBDIR = "featuremodels";
-
+	// input-output
+	private final static @NonNull String IN_MODEL = "cd";
 	private static final String PROPERTY_IN_FEATUREMODELNAME = "featureModelName";
 	private static final String PROPERTY_IN_NUMRULEELEMENTS = "numRuleElements";
 	private static final String PROPERTY_IN_NUMRULEELEMENTS_SEPARATOR = "-";
@@ -59,6 +61,8 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	private static final double PROPERTY_IN_NACMATCHPERC_DEFAULT = 0.5;
 	private static final String PROPERTY_IN_ALWAYSPRESENTPERC = "alwaysPresentPerc";
 	private static final double PROPERTY_IN_ALWAYSPRESENTPERC_DEFAULT = 0.5;
+	// constants
+	private static final String FEATURE_MODELS_SUBDIR = "featuremodels";
 
 	private String featureModelName;
 	private int numRuleElementsN;
@@ -197,16 +201,19 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		inputModel = actualParameters.get(0);
+		// input
+		inputModel = inputsByName.get(IN_MODEL);
 		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		z3IncSolver.firstCheckSatAndGetModel(smtEncoding.toString());
 		doSimulatedLifting(z3IncSolver);
 
-		// save output
+		// output
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
 		MultiModelOperatorUtils.writePropertiesFile(
@@ -217,7 +224,7 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 
-		return null;
+		return new HashMap<>();
 	}
 
 	private static class DatLine implements Comparable<DatLine> {

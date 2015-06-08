@@ -11,9 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.mid.library;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
@@ -28,9 +25,8 @@ public abstract class ATLConversion extends ConversionOperatorImpl {
 	protected Model convertedModel;
 	protected String convertedModelUri;
 
-	protected void init(EList<Model> actualParameters, String convertedModelFileExtension) {
+	protected void init(String convertedModelFileExtension) {
 
-		inputModel = actualParameters.get(0);
 		String modelName = inputModel.getName();
 		int i = modelName.lastIndexOf(MMINT.MODEL_FILENAMESUFFIX_SEPARATOR);
 		if (i != -1) {
@@ -45,15 +41,10 @@ public abstract class ATLConversion extends ConversionOperatorImpl {
 		convertedModelUri = MultiModelUtils.replaceLastSegmentInUri(inputModel.getUri(), modelName + MMINT.MODEL_FILENAMESUFFIX_SEPARATOR + System.currentTimeMillis() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + convertedModelFileExtension);
 	}
 
-	protected EList<Model> createConvertedModel(String convertedModelTypeUri) throws MMINTException {
+	protected void createConvertedModel(String convertedModelTypeUri, MultiModel instanceMID) throws MMINTException {
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(inputModel);
 		Model convertedModelType = MultiModelTypeRegistry.getType(convertedModelTypeUri);
-		convertedModel = convertedModelType.createMAVOInstanceAndEditor(convertedModelUri, ModelOrigin.CREATED, multiModel);
-		EList<Model> result = new BasicEList<Model>();
-		result.add(convertedModel);
-
-		return result;
+		convertedModel = convertedModelType.createMAVOInstanceAndEditor(convertedModelUri, ModelOrigin.CREATED, instanceMID);
 	}
 
 	@Override

@@ -72,11 +72,9 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new OperatorItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new OperatorItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new OperatorSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new OperatorSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -92,8 +90,7 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 				return null;
 			}
 
-			protected Command createMoveChildCommand(EditPart child,
-					EditPart after) {
+			protected Command createMoveChildCommand(EditPart child, EditPart after) {
 				return null;
 			}
 
@@ -123,8 +120,7 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WrappingLabel5EditPart) {
-			((WrappingLabel5EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureOperatorLabelFigure());
+			((WrappingLabel5EditPart) childEditPart).setLabel(getPrimaryShape().getFigureOperatorLabelFigure());
 			return true;
 		}
 		return false;
@@ -257,8 +253,7 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(MIDVisualIDRegistry
-				.getType(WrappingLabel5EditPart.VISUAL_ID));
+		return getChildBySemanticHint(MIDVisualIDRegistry.getType(WrappingLabel5EditPart.VISUAL_ID));
 	}
 
 	/**
@@ -266,10 +261,10 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		if (event.getNotifier() == getModel()
-				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations()
-						.equals(event.getFeature())) {
+				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations().equals(event.getFeature())) {
 			handleMajorSemanticChange();
-		} else {
+		}
+		else {
 			super.handleNotificationEvent(event);
 		}
 	}
@@ -303,9 +298,11 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 			this.setLineWidth(3);
 			this.setForegroundColor(THIS_FORE);
 			this.setBackgroundColor(THIS_BACK);
-			this.setBorder(new MarginBorder(getMapMode().DPtoLP(10),
-					getMapMode().DPtoLP(10), getMapMode().DPtoLP(10),
-					getMapMode().DPtoLP(10)));
+			this.setBorder(new MarginBorder(
+				getMapMode().DPtoLP(10),
+				getMapMode().DPtoLP(10),
+				getMapMode().DPtoLP(10),
+				getMapMode().DPtoLP(10)));
 			createContents();
 		}
 
@@ -317,8 +314,7 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 			fFigureOperatorLabelFigure = new WrappingLabel();
 
 			fFigureOperatorLabelFigure.setText("");
-			fFigureOperatorLabelFigure
-					.setForegroundColor(ColorConstants.darkGray);
+			fFigureOperatorLabelFigure.setForegroundColor(ColorConstants.darkGray);
 
 			this.add(fFigureOperatorLabelFigure);
 

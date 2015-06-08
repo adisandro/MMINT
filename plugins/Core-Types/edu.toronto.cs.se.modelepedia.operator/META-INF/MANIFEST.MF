@@ -10,11 +10,13 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.emf.compare,
  org.eclipse.emf.compare.rcp,
+ org.eclipse.gmf.runtime.diagram.core,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.diagram,
- edu.toronto.cs.se.mmint.java
+ edu.toronto.cs.se.mmint.java,
+ edu.toronto.cs.se.modelepedia.primitive
 Bundle-ClassPath: .
 Export-Package: edu.toronto.cs.se.modelepedia.operator.experiment,
  edu.toronto.cs.se.modelepedia.operator.match,

@@ -23,20 +23,26 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_PowerWindowToPetriNet"
                class="edu.toronto.cs.se.modelepedia.powerwindow.operator.PowerWindowToPetriNet">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="powerWindow"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/PowerWindow">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="window">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/PowerWindow">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-            <parameter
-                  isVararg="false"
-                  name="petriNet"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/PetriNet">
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="petrinet">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/PetriNet">
+	           </typeEndpoint>
             </parameter>
-         </output>
+         </outputs>
       </operatorType>
    </extension>
 

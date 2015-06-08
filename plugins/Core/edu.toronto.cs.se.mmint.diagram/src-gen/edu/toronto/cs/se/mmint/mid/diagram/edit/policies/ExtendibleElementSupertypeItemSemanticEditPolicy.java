@@ -20,8 +20,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 /**
  * @generated
  */
-public class ExtendibleElementSupertypeItemSemanticEditPolicy extends
-		MIDBaseItemSemanticEditPolicy {
+public class ExtendibleElementSupertypeItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated

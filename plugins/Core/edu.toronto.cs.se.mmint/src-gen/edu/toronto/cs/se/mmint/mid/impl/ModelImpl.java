@@ -11,6 +11,28 @@
  */
 package edu.toronto.cs.se.mmint.mid.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MAVOPackage;
@@ -35,31 +57,8 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.Parameter;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,13 +74,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getModelElems <em>Model Elems</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getConversionOperators <em>Conversion Operators</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#isAbstract <em>Abstract</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ModelImpl extends ExtendibleElementImpl implements Model {
+public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * The default value of the '{@link #isInc() <em>Inc</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -181,26 +179,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * @ordered
 	 */
 	protected EList<ConversionOperator> conversionOperators;
-
-	/**
-	 * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAbstract()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean ABSTRACT_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAbstract()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean abstract_ = ABSTRACT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -337,27 +315,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAbstract() {
-		return abstract_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAbstract(boolean newAbstract) {
-		boolean oldAbstract = abstract_;
-		abstract_ = newAbstract;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ABSTRACT, oldAbstract, abstract_));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Model getMetatype() {
 		ExtendibleElement metatype = super.getMetatype();
 		return (metatype == null) ? null : (Model) metatype;
@@ -411,8 +368,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return getModelElems();
 			case MIDPackage.MODEL__CONVERSION_OPERATORS:
 				return getConversionOperators();
-			case MIDPackage.MODEL__ABSTRACT:
-				return isAbstract();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -451,9 +406,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				getConversionOperators().clear();
 				getConversionOperators().addAll((Collection<? extends ConversionOperator>)newValue);
 				return;
-			case MIDPackage.MODEL__ABSTRACT:
-				setAbstract((Boolean)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -487,9 +439,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			case MIDPackage.MODEL__CONVERSION_OPERATORS:
 				getConversionOperators().clear();
 				return;
-			case MIDPackage.MODEL__ABSTRACT:
-				setAbstract(ABSTRACT_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -516,8 +465,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 				return modelElems != null && !modelElems.isEmpty();
 			case MIDPackage.MODEL__CONVERSION_OPERATORS:
 				return conversionOperators != null && !conversionOperators.isEmpty();
-			case MIDPackage.MODEL__ABSTRACT:
-				return abstract_ != ABSTRACT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -674,8 +621,6 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 		result.append(origin);
 		result.append(", fileExtension: ");
 		result.append(fileExtension);
-		result.append(", abstract: ");
-		result.append(abstract_);
 		result.append(')');
 		return result.toString();
 	}
@@ -706,7 +651,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 
 		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
 		super.addSubtype(newModelType, this, null, newModelTypeName);
-		MultiModelTypeFactory.addModelType(newModelType, false, constraintLanguage, constraintImplementation, multiModel);
+		MultiModelTypeFactory.addModelType(newModelType, constraintLanguage, constraintImplementation, multiModel);
 		newModelType.setOrigin(ModelOrigin.CREATED);
 
 		if (isMetamodelExtension) {
@@ -806,43 +751,42 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		MultiModel typeMID = MultiModelRegistry.getMultiModel(this);
 		// delete the "thing"
 		for (ModelElement modelElemType : getModelElems()) {
-			super.delete(modelElemType.getUri(), multiModel);
+			super.delete(modelElemType.getUri(), typeMID);
 		}
 		List<Editor> delEditorTypes = new ArrayList<Editor>(getEditors());
 		for (Editor delEditorType : delEditorTypes) {
 			delEditorType.deleteType();
 		}
 		super.deleteType();
-		multiModel.getModels().remove(this);
+		typeMID.getModels().remove(this);
 		String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(this);
 		if (metamodelUri != null) {
 			MultiModelUtils.deleteFile(metamodelUri, false);
 		}
 		// delete operator types that use this model type
-		List<String> delOperatorTypeUris = new ArrayList<String>();
-		for (Operator operatorType : multiModel.getOperators()) {
-			for (Parameter par : operatorType.getInputs()) {
-				if (par.getModel().getUri().equals(getUri()) && !delOperatorTypeUris.contains(operatorType.getUri())) {
-					delOperatorTypeUris.add(operatorType.getUri());
+		List<Operator> delOperatorTypes = new ArrayList<>();
+		for (Operator operatorType : MultiModelRegistry.getOperators(typeMID)) {
+			for (ModelEndpoint inputModelTypeEndpoint : operatorType.getInputs()) {
+				if (inputModelTypeEndpoint.getTargetUri().equals(getUri()) && !delOperatorTypes.contains(operatorType)) {
+					delOperatorTypes.add(operatorType);
 				}
 			}
-			for (Parameter par : operatorType.getOutputs()) {
-				if (par.getModel().getUri().equals(getUri()) && !delOperatorTypeUris.contains(operatorType.getUri())) {
-					delOperatorTypeUris.add(operatorType.getUri());
+			for (ModelEndpoint outputModelTypeEndpoint : operatorType.getOutputs()) {
+				if (outputModelTypeEndpoint.getTargetUri().equals(getUri()) && !delOperatorTypes.contains(operatorType)) {
+					delOperatorTypes.add(operatorType);
 				}
 			}
 		}
-		for (String operatorTypeUri : delOperatorTypeUris) {
-			Operator operatorType = MultiModelRegistry.getExtendibleElement(operatorTypeUri, multiModel);
+		for (Operator operatorType : delOperatorTypes) {
 			operatorType.deleteType();
 		}
-		// delete model relationship types and endpoints that use this model type
-		List<ModelRel> delModelRelTypes = new ArrayList<ModelRel>();
-		List<ModelEndpoint> delModelTypeEndpoints = new ArrayList<ModelEndpoint>();
-		for (ModelRel modelRelType : MultiModelRegistry.getModelRels(multiModel)) {
+		// delete model relationship types that use this model type
+		List<ModelRel> delModelRelTypes = new ArrayList<>();
+		List<ModelEndpoint> delModelTypeEndpoints = new ArrayList<>();
+		for (ModelRel modelRelType : MultiModelRegistry.getModelRels(typeMID)) {
 			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
 				if (modelTypeEndpoint.getTargetUri().equals(getUri())) {
 					if (modelRelType instanceof BinaryModelRel) {
@@ -863,7 +807,7 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			modelRelType.deleteType();
 		}
 		// delete the subtypes of the "thing"
-		for (Model modelSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, multiModel)) {
+		for (Model modelSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, typeMID)) {
 			modelSubtype.deleteType();
 		}
 	}
@@ -1009,7 +953,9 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 	public Model createInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
 
 		Model newModel = createInstance(newModelUri, origin, containerMultiModel);
-		newModel.createInstanceEditor();
+		if (containerMultiModel != null) {
+			newModel.createInstanceEditor();
+		}
 
 		return newModel;
 	}
@@ -1098,20 +1044,37 @@ public class ModelImpl extends ExtendibleElementImpl implements Model {
 			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		MultiModel instanceMID = MultiModelRegistry.getMultiModel(this);
 		for (ModelElement modelElem : getModelElems()) {
-			super.delete(modelElem.getUri(), multiModel);
+			super.delete(modelElem.getUri(), instanceMID);
 		}
 		super.deleteInstance();
-		multiModel.getModels().remove(this);
+		instanceMID.getModels().remove(this);
 		// delete editors for this model
 		for (Editor editor : getEditors()) {
 			editor.deleteInstance();
 		}
-		// delete model relationships and endpoints that use this model
-		List<ModelRel> delModelRels = new ArrayList<ModelRel>();
-		List<ModelEndpoint> delModelEndpoints = new ArrayList<ModelEndpoint>();
-		for (ModelRel modelRel : MultiModelRegistry.getModelRels(multiModel)) {
+		// delete operators that use this model type
+		List<Operator> delOperators = new ArrayList<>();
+		for (Operator operator : MultiModelRegistry.getOperators(instanceMID)) {
+			for (ModelEndpoint inputModelEndpoint : operator.getInputs()) {
+				if (inputModelEndpoint.getTargetUri().equals(getUri()) && !delOperators.contains(operator)) {
+					delOperators.add(operator);
+				}
+			}
+			for (ModelEndpoint outputModelEndpoint : operator.getOutputs()) {
+				if (outputModelEndpoint.getTargetUri().equals(getUri()) && !delOperators.contains(operator)) {
+					delOperators.add(operator);
+				}
+			}
+		}
+		for (Operator operatorType : delOperators) {
+			operatorType.deleteInstance();
+		}
+		// delete model relationships that use this model
+		List<ModelRel> delModelRels = new ArrayList<>();
+		List<ModelEndpoint> delModelEndpoints = new ArrayList<>();
+		for (ModelRel modelRel : MultiModelRegistry.getModelRels(instanceMID)) {
 			for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
 				if (modelEndpoint.getTargetUri().equals(getUri())) {
 					if (modelRel instanceof BinaryModelRel) {

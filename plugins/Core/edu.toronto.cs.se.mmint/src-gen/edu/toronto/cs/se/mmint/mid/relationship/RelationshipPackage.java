@@ -11,12 +11,13 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship;
 
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -236,6 +237,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL__CONSTRAINT = MIDPackage.MODEL__CONSTRAINT;
 
 	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL__ABSTRACT = MIDPackage.MODEL__ABSTRACT;
+
+	/**
 	 * The feature id for the '<em><b>Inc</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -297,15 +307,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_REL__CONVERSION_OPERATORS = MIDPackage.MODEL__CONVERSION_OPERATORS;
-
-	/**
-	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL__ABSTRACT = MIDPackage.MODEL__ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Model Endpoints</b></em>' containment reference list.
@@ -521,7 +522,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODELORIGIN_ELIST = MIDPackage.MODEL_OPERATION_COUNT + 7;
+	int MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST = MIDPackage.MODEL_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.
@@ -695,6 +696,15 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL__CONSTRAINT = MODEL_REL__CONSTRAINT;
 
 	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL__ABSTRACT = MODEL_REL__ABSTRACT;
+
+	/**
 	 * The feature id for the '<em><b>Inc</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -756,15 +766,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL__CONVERSION_OPERATORS = MODEL_REL__CONVERSION_OPERATORS;
-
-	/**
-	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL__ABSTRACT = MODEL_REL__ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Model Endpoints</b></em>' containment reference list.
@@ -998,7 +999,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODELORIGIN_ELIST = MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODELORIGIN_ELIST;
+	int BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST = MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST;
 
 	/**
 	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.
@@ -2859,14 +2860,14 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelRel__CreateInstance__String_boolean_ModelOrigin_MultiModel();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createInstanceAndEndpointsAndReferences(java.lang.String, edu.toronto.cs.se.mmint.mid.ModelOrigin, org.eclipse.emf.common.util.EList) <em>Create Instance And Endpoints And References</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createInstanceAndEndpointsAndReferences(java.lang.String, boolean, edu.toronto.cs.se.mmint.mid.ModelOrigin, org.eclipse.emf.common.util.EList) <em>Create Instance And Endpoints And References</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Instance And Endpoints And References</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createInstanceAndEndpointsAndReferences(java.lang.String, edu.toronto.cs.se.mmint.mid.ModelOrigin, org.eclipse.emf.common.util.EList)
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createInstanceAndEndpointsAndReferences(java.lang.String, boolean, edu.toronto.cs.se.mmint.mid.ModelOrigin, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getModelRel__CreateInstanceAndEndpointsAndReferences__String_ModelOrigin_EList();
+	EOperation getModelRel__CreateInstanceAndEndpointsAndReferences__String_boolean_ModelOrigin_EList();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#copyMAVOInstance(edu.toronto.cs.se.mmint.mid.relationship.ModelRel, edu.toronto.cs.se.mmint.mid.MultiModel) <em>Copy MAVO Instance</em>}' operation.
@@ -3804,7 +3805,7 @@ public interface RelationshipPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODELORIGIN_ELIST = eINSTANCE.getModelRel__CreateInstanceAndEndpointsAndReferences__String_ModelOrigin_EList();
+		EOperation MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST = eINSTANCE.getModelRel__CreateInstanceAndEndpointsAndReferences__String_boolean_ModelOrigin_EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Copy MAVO Instance</b></em>' operation.

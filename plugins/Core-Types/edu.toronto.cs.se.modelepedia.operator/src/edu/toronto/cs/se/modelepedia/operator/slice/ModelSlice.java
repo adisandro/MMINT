@@ -19,28 +19,30 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
 public class ModelSlice extends OperatorImpl {
 
-	@NonNull private static final String PROPERTY_IN_IDATTRIBUTE = "idAttribute";
-	@NonNull private static final String PROPERTY_IN_SLICEIDS = "sliceIds";
-	@NonNull private static final String PROPERTY_IN_BOUNDARIESIDS_SUFFIX = ".boundariesIds";
 
-	@NonNull private static final String SLICE_MODEL_SUFFIX = "_slice";
+	// input-output
+	private final static @NonNull String IN_MODEL = "model";
+	private final static @NonNull String OUT_MODEL = "slice";
+	private static final @NonNull String PROPERTY_IN_IDATTRIBUTE = "idAttribute";
+	private static final @NonNull String PROPERTY_IN_SLICEIDS = "sliceIds";
+	private static final @NonNull String PROPERTY_IN_BOUNDARIESIDS_SUFFIX = ".boundariesIds";
+	// constants
+	private static final @NonNull String SLICE_MODEL_SUFFIX = "_slice";
 
 	private String idAttribute;
 	private Set<String> sliceIds;
@@ -119,21 +121,25 @@ public class ModelSlice extends OperatorImpl {
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		Model model = actualParameters.get(0);
+		// input
+		Model model = inputsByName.get(IN_MODEL);
 
-		MultiModel instanceMID = MultiModelRegistry.getMultiModel(model);
 		String sliceModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(model.getUri(), SLICE_MODEL_SUFFIX), true, false);
 		EObject sliceRootModelObj = slice(model.getEMFInstanceRoot());
 		MultiModelUtils.createModelFile(sliceRootModelObj, sliceModelUri, true);
 		Model sliceModel = (isUpdateMID()) ?
-			model.getMetatype().createInstanceAndEditor(sliceModelUri, ModelOrigin.CREATED, instanceMID) :
+			model.getMetatype().createInstanceAndEditor(sliceModelUri, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODEL)) :
 			model.getMetatype().createInstance(sliceModelUri, ModelOrigin.CREATED, null);
-		EList<Model> result = new BasicEList<Model>();
-		result.add(sliceModel);
 
-		return result;
+		// output
+		Map<String, Model> outputsByName = new HashMap<>();
+		outputsByName.put(OUT_MODEL, sliceModel);
+
+		return outputsByName;
 	}
 
 }

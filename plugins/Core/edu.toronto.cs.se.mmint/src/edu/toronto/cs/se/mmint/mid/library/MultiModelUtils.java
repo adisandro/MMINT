@@ -37,7 +37,9 @@ import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTActivator;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 
 public class MultiModelUtils {
 
@@ -50,7 +52,7 @@ public class MultiModelUtils {
 		return emfUri;
 	}
 
-	private static String getFirstSegmentFromUri(String uri) {
+	private static String getFirstSegmentFromUri(@NonNull String uri) {
 
 		int firstSeparator = uri.indexOf(MMINT.URI_SEPARATOR, 1);
 
@@ -59,7 +61,7 @@ public class MultiModelUtils {
 			uri.substring(1, firstSeparator);
 	}
 
-	public static String getLastSegmentFromUri(String uri) {
+	public static @NonNull String getLastSegmentFromUri(@NonNull String uri) {
 
 		return uri.substring(uri.lastIndexOf(MMINT.URI_SEPARATOR) + 1, uri.length());
 	}
@@ -71,7 +73,7 @@ public class MultiModelUtils {
 		return lastSegmentUri.substring(0, lastSegmentUri.lastIndexOf(MMINT.MODEL_FILEEXTENSION_SEPARATOR));
 	}
 
-	public static String getFileExtensionFromUri(String uri) {
+	public static @NonNull String getFileExtensionFromUri(@NonNull String uri) {
 
 		String lastSegmentUri = getLastSegmentFromUri(uri);
 
@@ -89,7 +91,7 @@ public class MultiModelUtils {
 
 		String fileName = getFileNameFromUri(uri);
 
-		return uri.replace(fileName, newFileName);
+		return uri.replace(fileName + MMINT.MODEL_FILEEXTENSION_SEPARATOR, newFileName + MMINT.MODEL_FILEEXTENSION_SEPARATOR);
 	}
 
 	public static String replaceFileExtensionInUri(String uri, String newFileExtension) {
@@ -99,7 +101,7 @@ public class MultiModelUtils {
 		return uri.replace(MMINT.MODEL_FILEEXTENSION_SEPARATOR + fileExtension, MMINT.MODEL_FILEEXTENSION_SEPARATOR + newFileExtension);
 	}
 
-	public static String addFileNameSuffixInUri(String uri, String newFileNameSuffix) {
+	public static @NonNull String addFileNameSuffixInUri(@NonNull String uri, @NonNull String newFileNameSuffix) {
 
 		String fileExtension = getFileExtensionFromUri(uri);
 
@@ -226,7 +228,7 @@ public class MultiModelUtils {
 	}
 
 	/**
-	 * Writes the root of an ECore model into an ECore model file.
+	 * Writes the root of an ECore model in memory into an ECore model file.
 	 * 
 	 * @param root
 	 *            The ECore model root.

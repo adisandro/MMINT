@@ -109,7 +109,7 @@ public class MultiModelRegistry {
 		URI emfUri = EcoreUtil.getURI(modelObj);
 		String uri = emfUri.toString();
 		if (level == MIDLevel.INSTANCES) {
-			modelElemUri = uri.substring(RESOURCE_URI_PREFIX.length());
+			modelElemUri = (uri.startsWith(RESOURCE_URI_PREFIX)) ? uri.substring(RESOURCE_URI_PREFIX.length()) : uri;
 			modelUri = modelElemUri.substring(0, modelElemUri.indexOf(MMINT.ECORE_MODEL_URI_SEPARATOR));
 			if (attributeFeatureName != null) {
 				modelElemUri += MMINT.URI_SEPARATOR + attributeFeatureName;
@@ -197,7 +197,7 @@ public class MultiModelRegistry {
 	 *            The element contained in the multimodel.
 	 * @return The multimodel that contains the element.
 	 */
-	public static MultiModel getMultiModel(@NonNull ExtendibleElement element) {
+	public static @Nullable MultiModel getMultiModel(@NonNull ExtendibleElement element) {
 
 		MultiModel multiModel = null;
 		if (element instanceof Model || element instanceof ModelRel || element instanceof Editor || element instanceof Operator) {

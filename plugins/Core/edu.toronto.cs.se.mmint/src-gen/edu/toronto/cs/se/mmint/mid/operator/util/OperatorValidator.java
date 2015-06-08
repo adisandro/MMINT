@@ -11,16 +11,22 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.util;
 
-import edu.toronto.cs.se.mmint.mid.operator.*;
-import edu.toronto.cs.se.mmint.mid.util.MIDValidator;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
+import java.util.Set;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
+import edu.toronto.cs.se.mmint.mid.util.MIDValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -109,14 +115,18 @@ public class OperatorValidator extends EObjectValidator {
 				return validateConversionOperator((ConversionOperator)value, diagnostics, context);
 			case OperatorPackage.RANDOM_OPERATOR:
 				return validateRandomOperator((RandomOperator)value, diagnostics, context);
-			case OperatorPackage.PARAMETER:
-				return validateParameter((Parameter)value, diagnostics, context);
+			case OperatorPackage.GENERIC_ENDPOINT:
+				return validateGenericEndpoint((GenericEndpoint)value, diagnostics, context);
+			case OperatorPackage.OPERATOR_INPUT:
+				return validateOperatorInput((OperatorInput)value, diagnostics, context);
 			case OperatorPackage.RANDOM:
 				return validateRandom((Random)value, diagnostics, context);
 			case OperatorPackage.EXCEPTION:
 				return validateException((Exception)value, diagnostics, context);
 			case OperatorPackage.PROPERTIES:
 				return validateProperties((Properties)value, diagnostics, context);
+			case OperatorPackage.SET:
+				return validateSet((Set<?>)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -139,15 +149,6 @@ public class OperatorValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(operator, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(operator, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateParameter(Parameter parameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(parameter, diagnostics, context);
 	}
 
 	/**
@@ -223,6 +224,35 @@ public class OperatorValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateGenericEndpoint(GenericEndpoint genericEndpoint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(genericEndpoint, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(genericEndpoint, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElementEndpoint_unboundedLevel(genericEndpoint, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateOperatorInput(OperatorInput operatorInput, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(operatorInput, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateRandom(Random random, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -242,6 +272,15 @@ public class OperatorValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateProperties(Properties properties, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSet(Set<?> set, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

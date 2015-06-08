@@ -18,7 +18,7 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
 
 public class DummyUML2Java extends ConversionOperatorImpl {
 
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
 		return actualParameters;
 	}

@@ -257,7 +257,7 @@ Contributors:
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="MID"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2012,2013,2014,2015"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4013,4014,4015,4016,4017"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4013,4014,4015,4018,4019"/>
       </viewProvider>
    </extension>
 
@@ -272,7 +272,7 @@ Contributors:
             <method name="getType()" value="2011,2012,2013,2014,2015"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4013,4014,4015,4016,4017"/>
+            <method name="getType()" value="4013,4014,4015,4018,4019"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="5011,5016,5012,5017,5013,5018,5014,5019,5015"/>
@@ -435,23 +435,22 @@ Contributors:
             <param name="semanticHint" value="4015"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Operator">
-         <metamodelType
-               id="edu.toronto.cs.se.mmint.diagram.Parameter_4016"
-               name="%metatype.name.Parameter_4016"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Parameter"
-               edithelper="edu.toronto.cs.se.mmint.mid.diagram.edit.helpers.ParameterEditHelper">
-            <param name="semanticHint" value="4016"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Operator">
+      <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID">
          <specializationType
-               id="edu.toronto.cs.se.mmint.diagram.Parameter_4017"
-               name="%metatype.name.Parameter_4017"
+               id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4018"
+               name="%metatype.name.ModelEndpoint_4018"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.mmint.diagram.Parameter_4016"/>
-            <param name="semanticHint" value="4017"/>
+            <specializes id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4014"/>
+            <param name="semanticHint" value="4018"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID">
+         <specializationType
+               id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4019"
+               name="%metatype.name.ModelEndpoint_4019"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4014"/>
+            <param name="semanticHint" value="4019"/>
          </specializationType>
       </metamodel>
    </extension>
@@ -475,8 +474,8 @@ Contributors:
          <elementType ref="edu.toronto.cs.se.mmint.diagram.ExtendibleElementSupertype_4013"/>
          <elementType ref="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4014"/>
          <elementType ref="edu.toronto.cs.se.mmint.diagram.BinaryModelRel_4015"/>
-         <elementType ref="edu.toronto.cs.se.mmint.diagram.Parameter_4016"/>
-         <elementType ref="edu.toronto.cs.se.mmint.diagram.Parameter_4017"/>
+         <elementType ref="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4018"/>
+         <elementType ref="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4019"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -688,6 +687,16 @@ Contributors:
                </and>
             </visibleWhen>
          </command>
+         <command commandId="edu.toronto.cs.se.mmint.diagram.CreateShortcutAction">
+            <visibleWhen>
+               <and>
+                  <with variable="activePartId"><equals value="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"/></with>
+                  <with variable="selection"><iterate ifEmpty="false"> 
+                     <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart"/>
+                  </iterate></with>
+               </and>
+            </visibleWhen>
+         </command>
       </menuContribution>
    </extension>
 
@@ -698,6 +707,10 @@ Contributors:
          name="Load Resource"
          categoryId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"
          defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.part.LoadResourceAction"/>
+      <command id="edu.toronto.cs.se.mmint.diagram.CreateShortcutAction"
+         name="Create Shortcut..."
+         categoryId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"
+         defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.part.CreateShortcutAction"/>
    </extension>
 
    <extension point="org.eclipse.ui.handlers" id="menu-handlers">
@@ -742,7 +755,7 @@ Contributors:
                   commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.OpenTypeMidHandler"
                   label="Open Type MID"
                   style="push"
-                  tooltip="Opens the Type MID showing all MMINT registered types">
+                  tooltip="Opens the Type MID with all types registered in MMINT">
             </command>
             <command
                   commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.OpenWikiHandler"
@@ -751,39 +764,55 @@ Contributors:
                   tooltip="Opens the MMINT Wiki">
             </command>
             <separator
-                  name="edu.toronto.cs.se.mmint.mid.diagram.menu.separator"
+                  name="edu.toronto.cs.se.mmint.mid.diagram.menu.separator0"
                   visible="true">
             </separator>
             <command
                   commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.IconsEnabled"
-                  label="Icons Enabled"
+                  label="Icons on links Enabled"
                   style="toggle"
-                  tooltip="Enables/disables icons in MIDs">
-            </command>
-            <command
-                  commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.EndpointsEnabled"
-                  label="Endpoints Enabled"
-                  style="toggle"
-                  tooltip="Enables/disables endpoint labels in MIDs">
+                  tooltip="Enables/disables icons on links in MIDs">
             </command>
             <command
                   commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.ModelRelsEnabled"
-                  label="ModelRels Enabled"
+                  label="ModelRel labels Enabled"
                   style="toggle"
                   tooltip="Enables/disables model relationship labels in MIDs">
             </command>
             <command
-                  commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.LinksEnabled"
-                  label="Links Enabled"
+                  commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.ModelRelEndpointsEnabled"
+                  label="ModelRel Endpoint labels Enabled"
                   style="toggle"
-                  tooltip="Enables/disables link labels in MIDs">
+                  tooltip="Enables/disables endpoint labels for model relationships in MIDs">
             </command>
             <command
-                  commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.DiagramsCreationEnabled"
-                  label="Diagrams Creation Enabled"
+                  commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.OperatorsEnabled"
+                  label="Operator traceability Enabled"
                   style="toggle"
-                  tooltip="Enables/disables the automatic creation of diagrams for models used in MIDs">
+                  tooltip="Enables/disables operator traceability at the instance level in MIDs">
             </command>
+            <command
+                  commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.OperatorEndpointsEnabled"
+                  label="Operator Endpoint labels Enabled"
+                  style="toggle"
+                  tooltip="Enables/disables endpoint labels for operators in MIDs">
+            </command>
+            <command
+                  commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.OpenModelEditorsEnabled"
+                  label="Open Editors for new Models"
+                  style="toggle"
+                  tooltip="Enables/disables automatic opening of editors when new models are created">
+            </command>
+            <command
+                  commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.PolymorphismEnabled"
+                  label="Polymorphism Enabled"
+                  style="toggle"
+                  tooltip="Enables/disables polymorphic model types (can be slow for big models)">
+            </command>
+            <separator
+                  name="edu.toronto.cs.se.mmint.mid.diagram.menu.separator1"
+                  visible="true">
+            </separator>
             <dynamic
                   class="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTLanguageReasonersMenu"
                   id="edu.toronto.cs.se.mmint.mid.diagram.menu.ReasoningDropdown">
@@ -815,15 +844,6 @@ Contributors:
       </command>
       <command
             defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
-            id="edu.toronto.cs.se.mmint.mid.diagram.menu.EndpointsEnabled"
-            name="Endpoints Enabled">
-         <state
-               class="org.eclipse.ui.handlers.RegistryToggleState:true"
-               id="org.eclipse.ui.commands.toggleState">
-         </state>
-      </command>
-      <command
-            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
             id="edu.toronto.cs.se.mmint.mid.diagram.menu.ModelRelsEnabled"
             name="ModelRels Enabled">
          <state
@@ -833,8 +853,8 @@ Contributors:
       </command>
       <command
             defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
-            id="edu.toronto.cs.se.mmint.mid.diagram.menu.LinksEnabled"
-            name="Links Enabled">
+            id="edu.toronto.cs.se.mmint.mid.diagram.menu.ModelRelEndpointsEnabled"
+            name="ModelRel Endpoints Enabled">
          <state
                class="org.eclipse.ui.handlers.RegistryToggleState:true"
                id="org.eclipse.ui.commands.toggleState">
@@ -842,8 +862,35 @@ Contributors:
       </command>
       <command
             defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
-            id="edu.toronto.cs.se.mmint.mid.diagram.menu.DiagramsCreationEnabled"
-            name="Diagrams Creation Enabled">
+            id="edu.toronto.cs.se.mmint.mid.diagram.menu.OperatorsEnabled"
+            name="Operators Enabled">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState:true"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
+      <command
+            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
+            id="edu.toronto.cs.se.mmint.mid.diagram.menu.OperatorEndpointsEnabled"
+            name="Operator Endpoints Enabled">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState:true"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
+      <command
+            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
+            id="edu.toronto.cs.se.mmint.mid.diagram.menu.OpenModelEditorsEnabled"
+            name="Open Editors for new Models">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState:true"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
+      <command
+            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
+            id="edu.toronto.cs.se.mmint.mid.diagram.menu.PolymorphismEnabled"
+            name="Polymorphism Enabled">
          <state
                class="org.eclipse.ui.handlers.RegistryToggleState:true"
                id="org.eclipse.ui.commands.toggleState">

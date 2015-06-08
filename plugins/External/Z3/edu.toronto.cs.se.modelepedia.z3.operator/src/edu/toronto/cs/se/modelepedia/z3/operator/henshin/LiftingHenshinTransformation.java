@@ -36,6 +36,7 @@ import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.NestedCondition;
 import org.eclipse.emf.henshin.model.Node;
 import org.eclipse.emf.henshin.model.Rule;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -74,6 +75,10 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		}
 	}
 
+
+	// input-output
+	protected final static @NonNull String IN_MODEL = "original";
+	protected final static @NonNull String OUT_MODELREL = "transformation";
 	public static final String PROPERTY_IN_CONSTRAINT = "constraint";
 	private static final String PROPERTY_IN_CONSTRAINT_DEFAULT = Z3Utils.SMTLIB_TRUE;
 	public static final String PROPERTY_IN_CONSTRAINTVARIABLES = "constraintVariables";
@@ -82,17 +87,6 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	private static final String PROPERTY_IN_TRANSFORMATIONRULES = "transformationRules";
 	private static final String[] PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT = {};
 	private static final String PROPERTY_IN_TRANSFORMATIONRULESLIFTING = "transformationRulesLifting";
-
-	protected static final String ANAC_NAME = "A_NAC";
-	protected static final String TRANSFORMED_MODEL_SUFFIX = "_transformed";
-	protected static final String SMTLIB_APPLICABILITY_FUN = "(f";
-	protected static final String SMTLIB_APPLICABILITY_FUN_CONSTRAINTS = SMTLIB_APPLICABILITY_FUN + "X ";
-	protected static final String SMTLIB_APPLICABILITY_FUN_APPLY = SMTLIB_APPLICABILITY_FUN + "Y ";
-	protected static final String SMTLIB_APPLICABILITY_FUN_N = SMTLIB_APPLICABILITY_FUN + "N ";
-	protected static final String SMTLIB_APPLICABILITY_FUN_C = SMTLIB_APPLICABILITY_FUN + "C ";
-	protected static final String SMTLIB_APPLICABILITY_FUN_D = SMTLIB_APPLICABILITY_FUN + "D ";
-	protected static final String SMTLIB_APPLICABILITY_FUN_A = SMTLIB_APPLICABILITY_FUN + "A ";
-
 	private static final String PROPERTY_OUT_TIMECLASSICAL = "timeClassical";
 	protected static final String PROPERTY_OUT_TIMELIFTING = "timeLifting";
 	private static final String PROPERTY_OUT_RULEAPPLICATIONSCLASSICAL = "ruleApplicationsClassical";
@@ -106,6 +100,16 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	private static final int PROPERTY_OUT_CHAINS_MAX = 10;
 	private static final String PROPERTY_OUT_LITERALS = "literals";
 	private static final int PROPERTY_OUT_LITERALS_MAX = 10;
+	// constants
+	protected static final String ANAC_NAME = "A_NAC";
+	protected static final String TRANSFORMED_MODEL_SUFFIX = "_transformed";
+	protected static final String SMTLIB_APPLICABILITY_FUN = "(f";
+	protected static final String SMTLIB_APPLICABILITY_FUN_CONSTRAINTS = SMTLIB_APPLICABILITY_FUN + "X ";
+	protected static final String SMTLIB_APPLICABILITY_FUN_APPLY = SMTLIB_APPLICABILITY_FUN + "Y ";
+	protected static final String SMTLIB_APPLICABILITY_FUN_N = SMTLIB_APPLICABILITY_FUN + "N ";
+	protected static final String SMTLIB_APPLICABILITY_FUN_C = SMTLIB_APPLICABILITY_FUN + "C ";
+	protected static final String SMTLIB_APPLICABILITY_FUN_D = SMTLIB_APPLICABILITY_FUN + "D ";
+	protected static final String SMTLIB_APPLICABILITY_FUN_A = SMTLIB_APPLICABILITY_FUN + "A ";
 
 	protected String constraint;
 	protected String[] constraintVariables;

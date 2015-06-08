@@ -11,25 +11,28 @@
  */
 package edu.toronto.cs.se.mmint.mid.impl;
 
-import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
-import edu.toronto.cs.se.mmint.MMINT;
-import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
-import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -288,7 +291,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 */
 	public ExtendibleElement basicGetMetatype() {
 
-		return MultiModelTypeIntrospection.getType(this);
+		return MultiModelTypeRegistry.getType(getMetatypeUri());
 	}
 
 	/**
@@ -554,8 +557,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public String toString() {
+	public String toStringGen() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -571,6 +573,22 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 		result.append(dynamic);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+
+		String label = (getName() == null) ? "" : getName();
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			ExtendibleElement type = getMetatype();
+			String typeLabel = (type == null) ? "NOTYPE" : type.getName();
+			label += " : " + typeLabel;
+		}
+
+		return label;
 	}
 
 	/**

@@ -11,9 +11,11 @@
  */
 package edu.toronto.cs.se.modelepedia.z3.operator.henshin;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
@@ -36,13 +38,16 @@ import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.eclipse.emf.henshin.trace.Trace;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
@@ -202,98 +207,80 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
 		// Using MAVO elements in this operator is a "trick" to reuse the
 		// formulaVariable field as the container of presence conditions. It works
 		// as long as all elements in the Henshin rules are MAVO elements, the only
 		// exception being the root which is always present.
 
-		Model model = actualParameters.get(0);
+		// input
+		Model origModel = inputsByName.get(IN_MODEL);
+		MultiModel instanceMID = outputMIDsByName.get(OUT_MODELREL);
 		// function declarations at step 0 for fN-fC-fD (phis) +
 		// function definition at every step for fY (phi apply, algorithm line 2) +
 		// function definition at every step for fX (phi P, external constraint)
 		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
-		// henshin initialization
-		String fullUri = MultiModelUtils.prependWorkspaceToUri(MultiModelUtils.replaceLastSegmentInUri(model.getUri(), ""));
-		HenshinResourceSet resourceSet = new HenshinResourceSet(fullUri);
-		Module module = resourceSet.getModule(transformationModule, false);
-		Engine engine = new EngineImpl();
-		engine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
-		EGraph graph = new EGraphImpl(resourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(model.getUri())));
-		// if enabled, run the classical transformation and reinitialize henshin
+		// do transformations
+		String fullUri = MultiModelUtils.prependWorkspaceToUri(MultiModelUtils.replaceLastSegmentInUri(origModel.getUri(), ""));
+		HenshinResourceSet hResourceSet = new HenshinResourceSet(fullUri);
+		Module hModule = hResourceSet.getModule(transformationModule, false);
+		Engine hEngine = new EngineImpl();
+		hEngine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
+		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(origModel.getUri())));
 		if (timeClassicalEnabled) {
-			doTransformationClassical(module, engine, graph);
-			resourceSet = new HenshinResourceSet(fullUri);
-			module = resourceSet.getModule(transformationModule, false);
-			engine = new EngineImpl();
-			engine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
-			graph = new EGraphImpl(resourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(model.getUri())));
+			doTransformationClassical(hModule, hEngine, hGraph);
+			hResourceSet = new HenshinResourceSet(fullUri);
+			hModule = hResourceSet.getModule(transformationModule, false);
+			hEngine = new EngineImpl();
+			hEngine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
+			hGraph = new EGraphImpl(hResourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(origModel.getUri())));
 		}
-		// run the lifted transformation
-		doTransformationLifting(module, engine, graph);
+		doTransformationLifting(hModule, hEngine, hGraph);
 
-		// save transformed model(s) and update mid
-		EList<Model> result = new BasicEList<Model>();
-		MultiModel multiModel = (isUpdateMID()) ?
-			MultiModelRegistry.getMultiModel(model) :
-			null;
-		EObject rootInput = null, rootOutput = null;
-		for (EObject root : graph.getRoots()) {
-			if (root instanceof Trace) {
+		// output
+		EObject transformedRootModelObj = null;
+		for (EObject hRoot : hGraph.getRoots()) {
+			if (hRoot instanceof Trace) {
 				continue;
 			}
-			if (rootInput == null) {
-				rootInput = root;
-				continue;
-			}
-			if (rootOutput == null) {
-				rootOutput = root;
-			}
+			transformedRootModelObj = hRoot;
 		}
-		Model modelInputType = MultiModelTypeRegistry.getType(rootInput.eClass().getEPackage().getNsURI());
-		String transformedModelInputUri = MultiModelUtils.getUniqueUri(
-			MultiModelUtils.addFileNameSuffixInUri(model.getUri(), TRANSFORMED_MODEL_SUFFIX),
+		if (transformedRootModelObj == null) {
+			throw new MMINTException("Can't retrieve transformed root model object");
+		}
+		String transformedMIDModelUri = MultiModelUtils.getUniqueUri(
+			MultiModelUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
 			true,
-			false
-		);
-		String transformedModelInputName = MultiModelUtils.getLastSegmentFromUri(transformedModelInputUri);
-		resourceSet.saveEObject(rootInput, transformedModelInputName);
-		Model transformedModelInput = (isUpdateMID()) ?
-			modelInputType.createInstanceAndEditor(transformedModelInputUri, ModelOrigin.CREATED, multiModel) :
-			modelInputType.createInstance(transformedModelInputUri, ModelOrigin.CREATED, null);
-		result.add(transformedModelInput);
-		if (rootOutput != null) {
-			Model modelOutputType = MultiModelTypeRegistry.getType(rootOutput.eClass().getEPackage().getNsURI());
-			String transformedModelOutputUri = MultiModelUtils.getUniqueUri(
-				MultiModelUtils.replaceFileExtensionInUri(
-					MultiModelUtils.addFileNameSuffixInUri(model.getUri(), TRANSFORMED_MODEL_SUFFIX),
-					modelOutputType.getFileExtension()
-				),
-				true,
-				false
-			);
-			String transformedModelOutputName = MultiModelUtils.getLastSegmentFromUri(transformedModelOutputUri);
-			resourceSet.saveEObject(rootOutput, transformedModelOutputName);
-			Model transformedModelOutput = (isUpdateMID()) ?
-				modelOutputType.createInstanceAndEditor(transformedModelOutputUri, ModelOrigin.CREATED, multiModel) :
-				modelOutputType.createInstance(transformedModelOutputUri, ModelOrigin.CREATED, null);
-			result.add(transformedModelOutput);
-		}
-
-		// save output properties
+			false);
+		MultiModelUtils.createModelFile(transformedRootModelObj, transformedMIDModelUri, true);
+		Model transformedModelType = MultiModelTypeRegistry.getType(
+			transformedRootModelObj.eClass().getEPackage().getNsURI());
+		Model transformedModel = transformedModelType.createInstanceAndEditor(
+			transformedMIDModelUri,
+			ModelOrigin.CREATED,
+			instanceMID);
+		EList<Model> transformationModels = new BasicEList<>();
+		transformationModels.add(origModel);
+		transformationModels.add(transformedModel);
+		ModelRel transformationRel = MultiModelTypeHierarchy.getRootModelRelType()
+			.createInstanceAndEndpointsAndReferences(null, true, ModelOrigin.CREATED, transformationModels);
+		Map<String, Model> outputsByName = new HashMap<>();
+		outputsByName.put(OUT_MODELREL, transformationRel);
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
 		MultiModelOperatorUtils.writePropertiesFile(
 			outputProperties,
 			this,
-			model,
+			origModel,
 			getInputSubdir(),
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 
-		return result;
+		return outputsByName;
 	}
 
 }

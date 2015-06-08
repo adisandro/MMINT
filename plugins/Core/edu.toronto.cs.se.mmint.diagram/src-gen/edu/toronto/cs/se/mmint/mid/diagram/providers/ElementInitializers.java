@@ -26,11 +26,9 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	public static ElementInitializers getInstance() {
-		ElementInitializers cached = MIDDiagramEditorPlugin.getInstance()
-				.getElementInitializers();
+		ElementInitializers cached = MIDDiagramEditorPlugin.getInstance().getElementInitializers();
 		if (cached == null) {
-			MIDDiagramEditorPlugin.getInstance().setElementInitializers(
-					cached = new ElementInitializers());
+			MIDDiagramEditorPlugin.getInstance().setElementInitializers(cached = new ElementInitializers());
 		}
 		return cached;
 	}

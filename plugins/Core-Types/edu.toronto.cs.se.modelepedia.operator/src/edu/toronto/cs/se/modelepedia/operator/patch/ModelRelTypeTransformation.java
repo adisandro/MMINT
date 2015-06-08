@@ -25,12 +25,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
@@ -42,8 +44,8 @@ import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
-import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
@@ -54,7 +56,13 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 
-	protected static final String TRANSFORMATION_SUFFIX = "_transformed";
+	// input-output
+	private final static @NonNull String IN_MODEL = "src";
+	private final static @NonNull String OUT_MODEL = "tgt";
+	protected final static @NonNull String OUT_MODELREL = "trace";
+	private final static @NonNull String GENERIC_MODELRELTYPE = "MR";
+	// constants
+	protected final static @NonNull String TRANSFORMATION_SUFFIX = "_transformed";
 
 	protected EObject tgtRootModelObj;
 	protected String tgtModelUri;
@@ -218,11 +226,13 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(Map<String, Model> inputsByName,
+		java.util.Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName)
+		throws Exception {
 
-		ModelRel traceModelRelType = (ModelRel) actualParameters.get(0);
-		Model srcModel = actualParameters.get(1);
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(srcModel);
+		// input
+		ModelRel traceModelRelType = (ModelRel) genericsByName.get(GENERIC_MODELRELTYPE);
+		Model srcModel = inputsByName.get(IN_MODEL);
 
 		int srcIndex = (
 			traceModelRelType instanceof BinaryModelRel ||
@@ -235,59 +245,46 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			MultiModelUtils.addFileNameSuffixInUri(srcModel.getUri(), TRANSFORMATION_SUFFIX),
 			tgtModelType.getFileExtension()
 		);
-		Model tgtModel = tgtModelType.createInstance(tgtModelUri, ModelOrigin.CREATED, multiModel);
-		BinaryModelRel traceModelRel = (BinaryModelRel) traceModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
+		Model tgtModel = tgtModelType.createInstance(tgtModelUri, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODEL));
+		BinaryModelRel traceModelRel = (BinaryModelRel) traceModelRelType.createInstance(null, true, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODELREL));
 		traceModelRel.setName(srcModel.getName() + MMINT.BINARY_MODELREL_LINK_SEPARATOR + tgtModel.getName());
 		traceModelRelType.getModelEndpointRefs().get(srcIndex).getObject().createInstanceAndReference(srcModel, traceModelRel);
 		traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().createInstanceAndReference(tgtModel, traceModelRel);
 		transform(traceModelRel, srcModel, srcIndex, tgtIndex);
 		tgtModel.createInstanceEditor();
 
-		EList<Model> result = new BasicEList<Model>();
-		result.add(tgtModel);
-		result.add(traceModelRel);
-		return result;
+		// output
+		Map<String, Model> outputsByName = new HashMap<>();
+		outputsByName.put(OUT_MODEL, tgtModel);
+		outputsByName.put(OUT_MODELREL, traceModelRel);
+
+		return outputsByName;
 	}
 
 	@Override
-	public EList<Operator> getExecutables(EList<Model> actualModels, EList<EList<Model>> actualModelTypes, EList<Map<Integer, EList<ConversionOperator>>> conversions, EList<EList<Model>> generics) throws MMINTException {
+	public boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
 
-		//TODO MMINT[TRANSFORMATION] this operator shouldn't appear when only a kleisli model rel type is available
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		if (!super.isAllowedTargetGeneric(genericTypeEndpoint, genericType, inputs)) {
+			return false;
 		}
 
-		EList<Operator> executableOperatorTypes = new BasicEList<Operator>();
-		// check 1: only one actual parameter
-		if (actualModels.size() != 1) {
-			return executableOperatorTypes;
+		ModelRel modelRelType = (ModelRel) genericType;
+		// check 1: satisfies transformation constraint
+		if (new ModelRelTypeTransformationConstraint().validate(modelRelType) != MAVOTruthValue.TRUE) {
+			return false;
 		}
-		for (ModelRel modelRelType : MultiModelTypeRegistry.getModelRelTypes()) {
-			// check 2: satisfies transformation constraint
-			if (new ModelRelTypeTransformationConstraint().validate(modelRelType) != MAVOTruthValue.TRUE) {
-				continue;
-			}
-			Model srcModel = actualModels.get(0);
-			// check 3: allowed source model
-			if (
-				!MultiModelConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>()) && (
-					modelRelType instanceof BinaryModelRel ||
-					!MultiModelConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(1), srcModel, new HashMap<String, Integer>())
-				)
-			) {
-				continue;
-			}
-			// create return structures with a new instance of this operator type
-			Operator operatorType = new ModelRelTypeTransformation();
-			operatorType.setName(getName());
-			executableOperatorTypes.add(operatorType);
-			conversions.add(new HashMap<Integer, EList<ConversionOperator>>());
-			EList<Model> generic = new BasicEList<Model>();
-			generic.add(modelRelType);
-			generics.add(generic);
+		Model srcModel = inputs.get(0).getModel();
+		// check 2: allowed source model
+		if (
+			!MultiModelConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>()) && (
+				modelRelType instanceof BinaryModelRel || // mandatory direction
+				!MultiModelConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(1), srcModel, new HashMap<String, Integer>())
+			)
+		) {
+			return false;
 		}
 
-		return executableOperatorTypes;
+		return true;
 	}
 
 }

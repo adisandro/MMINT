@@ -24,7 +24,6 @@ public class DiagramConnectionsPreferencePage extends ConnectionsPreferencePage 
 	 * @generated
 	 */
 	public DiagramConnectionsPreferencePage() {
-		setPreferenceStore(MIDDiagramEditorPlugin.getInstance()
-				.getPreferenceStore());
+		setPreferenceStore(MIDDiagramEditorPlugin.getInstance().getPreferenceStore());
 	}
 }

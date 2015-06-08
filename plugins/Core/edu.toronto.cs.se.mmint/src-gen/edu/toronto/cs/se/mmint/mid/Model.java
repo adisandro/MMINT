@@ -11,13 +11,14 @@
  */
 package edu.toronto.cs.se.mmint.mid;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+
 import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EPackage;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getModelElems <em>Model Elems</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getConversionOperators <em>Conversion Operators</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#isAbstract <em>Abstract</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,7 +44,7 @@ import org.eclipse.emf.ecore.EPackage;
  * @model
  * @generated
  */
-public interface Model extends ExtendibleElement, MAVOModel {
+public interface Model extends GenericElement, MAVOModel {
 	/**
 	 * Returns the value of the '<em><b>Origin</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmint.mid.ModelOrigin}.
@@ -142,31 +142,6 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 * @generated
 	 */
 	EList<ConversionOperator> getConversionOperators();
-
-	/**
-	 * Returns the value of the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * True if the model type can't be instanciated, false otherwise (instances: always false).
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Abstract</em>' attribute.
-	 * @see #setAbstract(boolean)
-	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getModel_Abstract()
-	 * @model required="true"
-	 * @generated
-	 */
-	boolean isAbstract();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.Model#isAbstract <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Abstract</em>' attribute.
-	 * @see #isAbstract()
-	 * @generated
-	 */
-	void setAbstract(boolean value);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -278,7 +253,7 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	Editor createInstanceEditor() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
+	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of this model
 	 * type to an Instance MID, together with an editor for it.
 	 * 
 	 * @param newModelUri
@@ -286,7 +261,8 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 * @param origin
 	 *            The origin of the new model.
 	 * @param containerMultiModel
-	 *            An Instance MID.
+	 *            An Instance MID, null if the model isn't going to be added to
+	 *            it and the editor is not going to be created.
 	 * @return The created model.
 	 * @throws MMINTException
 	 *             If this is a model instance, if the uri of the new model
@@ -359,10 +335,7 @@ public interface Model extends ExtendibleElement, MAVOModel {
 	 *             If this is a model instance, if the model file can't be
 	 *             copied, if the uri of the new model instance is already
 	 *             registered in the Instance MID. <!-- end-user-doc -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 *        origModelRequired="true" newModelNameRequired="true"
-	 *        containerMultiModelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" containerMultiModelRequired="true"
 	 * @generated
 	 */
 	Model copyMAVOInstance(Model origModel, String newModelName, MultiModel containerMultiModel) throws MMINTException;

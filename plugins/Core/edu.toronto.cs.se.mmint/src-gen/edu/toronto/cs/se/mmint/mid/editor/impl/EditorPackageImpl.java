@@ -11,6 +11,14 @@
  */
 package edu.toronto.cs.se.mmint.mid.editor.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.jface.viewers.IStructuredSelection;
+
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
@@ -23,13 +31,6 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.jface.viewers.IStructuredSelection;
 
 /**
  * <!-- begin-user-doc -->

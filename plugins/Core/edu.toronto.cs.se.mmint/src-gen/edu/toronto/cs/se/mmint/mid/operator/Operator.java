@@ -11,14 +11,17 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator;
 
-import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.Model;
-
 import java.util.Map;
-
 import java.util.Properties;
+import java.util.Set;
+
 import org.eclipse.emf.common.util.EList;
+
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,9 +37,11 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getInputs <em>Inputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getOutputs <em>Outputs</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getGenerics <em>Generics</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getInputSubdir <em>Input Subdir</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getPreviousOperator <em>Previous Operator</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#isUpdateMID <em>Update MID</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutionTime <em>Execution Time</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,25 +49,25 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Operator extends ExtendibleElement {
+public interface Operator extends GenericElement {
 	/**
 	 * Returns the value of the '<em><b>Inputs</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.operator.Parameter}.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.ModelEndpoint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The list of input parameters of this operator.
+	 * The list of input parameters of this operator (types: formal parameters; instances: actual parameters).
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Inputs</em>' containment reference list.
 	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperator_Inputs()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Parameter> getInputs();
+	EList<ModelEndpoint> getInputs();
 
 	/**
 	 * Returns the value of the '<em><b>Outputs</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.operator.Parameter}.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.ModelEndpoint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -73,7 +78,22 @@ public interface Operator extends ExtendibleElement {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Parameter> getOutputs();
+	EList<ModelEndpoint> getOutputs();
+
+	/**
+	 * Returns the value of the '<em><b>Generics</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of generics of this operator.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Generics</em>' containment reference list.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperator_Generics()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<GenericEndpoint> getGenerics();
 
 	/**
 	 * Returns the value of the '<em><b>Input Subdir</b></em>' attribute.
@@ -152,6 +172,31 @@ public interface Operator extends ExtendibleElement {
 	void setUpdateMID(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Execution Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The execution time of this operator instance in nanoseconds (types: not used).
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Execution Time</em>' attribute.
+	 * @see #setExecutionTime(long)
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperator_ExecutionTime()
+	 * @model required="true"
+	 * @generated
+	 */
+	long getExecutionTime();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutionTime <em>Execution Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Execution Time</em>' attribute.
+	 * @see #getExecutionTime()
+	 * @generated
+	 */
+	void setExecutionTime(long value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -188,32 +233,90 @@ public interface Operator extends ExtendibleElement {
 	void deleteType() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Gets the list of executable operator types given
-	 * a list of actual parameters to be used for their invocation. Contract:
-	 * for each executable operator type, populate conversions and generics with
-	 * the corresponding structures.
+	 * <!-- begin-user-doc --> Finds all input models that can be used as actual parameters to run this operator type.
 	 * 
-	 * @param actualModels
-	 *            The list of actual model parameters.
-	 * @param actualModelTypes
-	 *            A list of model types obtained through polymorphism for each
-	 *            actual model parameter.
-	 * @param conversions
-	 *            Used as output, a list of conversion operator types for each
-	 *            executable operator type and for each actual model parameter
-	 *            to be converted into an equivalent one. The actual model
-	 *            parameter to be converted is given by the integer index of the
-	 *            map, to avoid the creation of many empty lists.
-	 * @param generics
-	 *            Used as output, a list of model types for each executable
-	 *            operator type to parameterize its execution.
-	 * @return The list of executable operator types.
+	 * @param inputMIDs
+	 *            A list of MIDs where to look for input models. If it's one MID then all input models are taken from
+	 *            it, otherwise each formal parameter is matched to a MID and input models are taken accordingly.
+	 * @return A set of inputs to the operator, including necessary conversions.
 	 * @throws MMINTException
 	 *             If this is an operator instance. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" actualModelsMany="true" actualModelTypesMany="true" conversionsMany="true" genericsMany="true"
+	 * @model dataType="edu.toronto.cs.se.mmint.mid.operator.Set<org.eclipse.emf.ecore.EEList<edu.toronto.cs.se.mmint.mid.operator.OperatorInput>>" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputMIDsMany="true"
 	 * @generated
 	 */
-	EList<Operator> getExecutables(EList<Model> actualModels, EList<EList<Model>> actualModelTypes, EList<Map<Integer, EList<ConversionOperator>>> conversions, EList<EList<Model>> generics) throws MMINTException;
+	Set<EList<OperatorInput>> findAllowedInputs(EList<MultiModel> inputMIDs) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputMIDsMany="true"
+	 * @generated
+	 */
+	EList<OperatorInput> findFirstAllowedInput(EList<MultiModel> inputMIDs) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Checks if a list of input models can be used as actual parameters to run this operator
+	 * type.
+	 * 
+	 * @param inputModels
+	 *            The list of input models.
+	 * @return The list of inputs to the operator, including necessary conversions.
+	 * @throws MMINTException
+	 *             If this is an operator instance. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputModelsMany="true"
+	 * @generated
+	 */
+	EList<OperatorInput> checkAllowedInputs(EList<Model> inputModels) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsByNameRequired="true"
+	 * @generated
+	 */
+	boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Creates and possibly adds an operator instance of
+	 * this operator type to an Instance MID.
+	 * 
+	 * @param instanceMID
+	 *            An Instance MID, null if the operator isn't going to be added
+	 *            to it.
+	 * @return The created operator.
+	 * @throws MMINTException
+	 *             If this is an operator instance. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	Operator createInstance(MultiModel instanceMID) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Deletes this operator instance from an Instance MID.
+	 * 
+	 * @throws MMINTException
+	 *             If this is an operator type. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	void deleteInstance() throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Checks if a generic type is allowed for this operator type.
+	 * 
+	 * @param genericTypeEndpoint
+	 *            The generic type endpoint.
+	 * @param genericType
+	 *            The generic type.
+	 * @param inputs
+	 *            The list of inputs.
+	 * @return Always true.
+	 * @throws MMINTException
+	 *             If this is an operator instance. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" genericTypeEndpointRequired="true" genericTypeRequired="true" inputsMany="true"
+	 * @generated
+	 */
+	boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Gets the input properties of this operator.
@@ -253,19 +356,42 @@ public interface Operator extends ExtendibleElement {
 	void init() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Executes this operator instance. When running an
-	 * operator instance, MMINT invokes readInputProperties() -> init() ->
-	 * execute().
+	 * <!-- begin-user-doc --> Runs this operator instance. This function contains the logic of the operator and must be
+	 * overridden.
 	 * 
-	 * @param actualParameters
-	 *            A list of input model instances.
-	 * @return A list of output model instances.
+	 * @param inputsByName
+	 *            The input model instances, identified by their formal parameter name.
+	 * @param genericsByName
+	 *            The generic types, identified by their metatype name.
+	 * @param outputMIDsByName
+	 *            The instance MIDs where the output models are created, identified by the output name. A null instance
+	 *            MID means that the output model isn't added to it.
+	 * @return The output model instances, identified by their name.
 	 * @throws Exception
-	 *             If something went wrong during the execution of the operator.
-	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" actualParametersRequired="true" actualParametersMany="true"
+	 *             If something went wrong running the operator. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsByNameRequired="true" genericsByNameRequired="true" outputMIDsByNameRequired="true"
 	 * @generated
 	 */
-	EList<Model> execute(EList<Model> actualParameters) throws Exception;
+	Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName) throws Exception;
+
+	/**
+	 * <!-- begin-user-doc --> Starts an instance of this operator type, i.e. runs conversions for the input models and
+	 * then invokes readInputProperties(), init(), run().
+	 * 
+	 * @param inputs
+	 *            A list of inputs to the operator instance, including necessary conversions.
+	 * @param outputMIDsByName
+	 *            The instance MIDs where the output models are created, identified by the output name. A null instance
+	 *            MID means that the output model isn't added to it.
+	 * @param instanceMID
+	 *            The Instance MID where the operator instance is run, null if the operator isn't going to be added to
+	 *            it.
+	 * @return The output model instances, identified by their name.
+	 * @throws Exception
+	 *             If something went wrong starting the operator. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true" outputMIDsByNameRequired="true" instanceMIDRequired="true"
+	 * @generated
+	 */
+	Map<String, Model> start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception;
 
 } // Operator

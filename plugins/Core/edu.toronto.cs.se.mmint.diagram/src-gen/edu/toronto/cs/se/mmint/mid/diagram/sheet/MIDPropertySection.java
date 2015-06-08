@@ -24,8 +24,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 /**
  * @generated
  */
-public class MIDPropertySection extends DefaultPropertySection implements
-		IPropertySourceProvider {
+public class MIDPropertySection extends DefaultPropertySection implements IPropertySourceProvider {
 
 	/**
 	 * Modify/unwrap selection.
@@ -46,18 +45,15 @@ public class MIDPropertySection extends DefaultPropertySection implements
 			Object model = ((EditPart) selected).getModel();
 			if (model instanceof View) {
 				Object element = ((View) model).getElement();
-				if (element instanceof BinaryModelRel
-						&& selected instanceof GraphicalEditPart) {
+				if (element instanceof BinaryModelRel && selected instanceof GraphicalEditPart) {
 					IFigure figure = ((GraphicalEditPart) selected).getFigure();
 					if (figure == ((BinaryModelRelFigure) figure.getParent())
 							.getFigureBinaryModelRelSourceModelEndpointLabelFigure()) {
-						element = ((BinaryModelRel) element)
-								.getModelEndpoints().get(0);
-					} else if (figure == ((BinaryModelRelFigure) figure
-							.getParent())
+						element = ((BinaryModelRel) element).getModelEndpoints().get(0);
+					}
+					else if (figure == ((BinaryModelRelFigure) figure.getParent())
 							.getFigureBinaryModelRelTargetModelEndpointLabelFigure()) {
-						element = ((BinaryModelRel) element)
-								.getModelEndpoints().get(1);
+						element = ((BinaryModelRel) element).getModelEndpoints().get(1);
 					}
 				}
 				return element;

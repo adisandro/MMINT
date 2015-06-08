@@ -58,7 +58,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/editors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Model/modelElems"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/conversionOperators"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/abstract"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getMetatype"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getSupertype"/>
       <genOperations ecoreOperation="mid.ecore#//Model/createSubtype">
@@ -167,6 +166,11 @@
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/targetModel"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/containerModelRel"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createInstance">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstance/targetModel"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstance/containerOperator"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstance/containerFeatureName"/>
+      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceInstanceAndReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceInstanceAndReference/oldModelEndpoint"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceInstanceAndReference/targetModel"/>
@@ -182,6 +186,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/relatedClassName"/>
       <genOperations ecoreOperation="mid.ecore#//EMFInfo/toTypeString"/>
       <genOperations ecoreOperation="mid.ecore#//EMFInfo/toInstanceString"/>
+    </genClasses>
+    <genClasses ecoreClass="mid.ecore#//GenericElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//GenericElement/abstract"/>
     </genClasses>
     <nestedGenPackages prefix="Relationship" basePackage="edu.toronto.cs.se.mmint.mid"
         disposableProviderFactory="true" ecorePackage="mid.ecore#//relationship">
@@ -211,6 +218,7 @@
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/newModelRelUri"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/isBinary"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/origin"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/targetModels"/>
         </genOperations>
@@ -438,29 +446,57 @@
       <genDataTypes ecoreDataType="mid.ecore#//operator/Random"/>
       <genDataTypes ecoreDataType="mid.ecore#//operator/Exception"/>
       <genDataTypes ecoreDataType="mid.ecore#//operator/Properties"/>
+      <genDataTypes ecoreDataType="mid.ecore#//operator/Set">
+        <genTypeParameters ecoreTypeParameter="mid.ecore#//operator/Set/E"/>
+      </genDataTypes>
       <genClasses ecoreClass="mid.ecore#//operator/Operator">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/inputs"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/outputs"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/generics"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Operator/inputSubdir"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/previousOperator"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Operator/updateMID"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Operator/executionTime"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMetatype"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getSupertype"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteType"/>
-        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getExecutables">
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/getExecutables/actualModels"/>
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/getExecutables/actualModelTypes"/>
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/getExecutables/conversions"/>
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/getExecutables/generics"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/findAllowedInputs">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/findAllowedInputs/inputMIDs"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/findFirstAllowedInput">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/findFirstAllowedInput/inputMIDs"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/checkAllowedInputs">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/checkAllowedInputs/inputModels"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/isAllowedInput">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedInput/inputsByName"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/createInstance">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createInstance/instanceMID"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteInstance"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/isAllowedTargetGeneric">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedTargetGeneric/genericTypeEndpoint"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedTargetGeneric/genericType"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedTargetGeneric/inputs"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getInputProperties"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/readInputProperties">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/readInputProperties/inputProperties"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/init"/>
-        <genOperations ecoreOperation="mid.ecore#//operator/Operator/execute">
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/execute/actualParameters"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/run">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/run/inputsByName"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/run/genericsByName"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/run/outputMIDsByName"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/start">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/start/inputs"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/start/outputMIDsByName"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/start/instanceMID"/>
         </genOperations>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/ConversionOperator">
@@ -470,11 +506,26 @@
       <genClasses ecoreClass="mid.ecore#//operator/RandomOperator">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/RandomOperator/state"/>
       </genClasses>
-      <genClasses ecoreClass="mid.ecore#//operator/Parameter">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Parameter/name"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Parameter/vararg"/>
+      <genClasses ecoreClass="mid.ecore#//operator/GenericEndpoint">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/GenericEndpoint/metatargetUri"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/getSupertype"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/getTarget"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/setTarget">
+          <genParameters ecoreParameter="mid.ecore#//operator/GenericEndpoint/setTarget/newTarget"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/getMetatype"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/createInstance">
+          <genParameters ecoreParameter="mid.ecore#//operator/GenericEndpoint/createInstance/targetGeneric"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/GenericEndpoint/createInstance/containerOperator"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//operator/OperatorInput">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference mid.ecore#//operator/Parameter/model"/>
+            ecoreFeature="ecore:EReference mid.ecore#//operator/OperatorInput/model"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//operator/OperatorInput/conversions"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mid.ecore#//operator/OperatorInput/modelTypeEndpoint"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

@@ -18,7 +18,7 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
 public class DummyJavaOpt extends OperatorImpl {
 
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public EList<Model> run(EList<Model> actualParameters) throws Exception {
 
 		return actualParameters;
 	}

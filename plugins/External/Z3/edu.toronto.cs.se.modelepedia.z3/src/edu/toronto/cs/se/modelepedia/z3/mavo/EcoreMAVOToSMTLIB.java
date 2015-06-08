@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.z3.mavo;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -21,7 +22,6 @@ import java.util.Properties;
 import org.eclipse.acceleo.common.preference.AcceleoPreferences;
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
 import org.eclipse.emf.common.util.BasicMonitor;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -29,7 +29,9 @@ import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -54,6 +56,8 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 		}
 	}
 
+	// input-output
+	protected final static @NonNull String IN_MODEL = "mavo";
 	private static final @NonNull String PROPERTY_IN_MAYONLY = "mayOnly";
 	private static final @Nullable Boolean PROPERTY_IN_MAYONLY_DEFAULT = null;
 
@@ -69,17 +73,21 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
 		//TODO MMINT[REASONING] generalize for non-mavo too
 		//TODO MMINT[REASONING] refactor common code/encoding for mayOnly and not
 		//TODO MMINT[REASONING] improve create formula vars 1) use other strings if name not present 2) check uniqueness 3) use names of src/tgt for edges
-		Model mavoModel = actualParameters.get(0);
+
+		// input
+		Model mavoModel = inputsByName.get(IN_MODEL);
+
 		mavoModelObjs = MAVOUtils.createFormulaVars(mavoModel);
 		if (this.isMayOnly == null) {
 			this.isMayOnly = MAVOUtils.isMayOnly(mavoModelObjs);
 		}
-
 		List<Object> m2tArgs = new ArrayList<Object>();
 		m2tArgs.add(mavoModel.getName());
 		m2tArgs.add(this.isMayOnly);
@@ -89,7 +97,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 		EcoreMAVOToSMTLIB_M2T m2t = new EcoreMAVOToSMTLIBWithListeners_M2T(mavoModel.getEMFInstanceRoot(), folder, m2tArgs);
 		m2t.doGenerate(new BasicMonitor());
 
-		return actualParameters;
+		return new HashMap<>();
 	}
 
 	//TODO MMINT[OPERATOR] Make cleanup() part of the api

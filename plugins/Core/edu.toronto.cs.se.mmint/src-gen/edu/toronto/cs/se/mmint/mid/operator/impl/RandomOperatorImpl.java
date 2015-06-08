@@ -11,14 +11,14 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
-import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
-
 import java.util.Random;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 
 /**
  * <!-- begin-user-doc -->
@@ -158,7 +158,7 @@ public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
 	 * @generated
 	 */
 	@Override
-	public String toString() {
+	public String toStringGen() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

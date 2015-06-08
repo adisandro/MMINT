@@ -296,7 +296,7 @@ public class MultiModelConstraintChecker {
 		return false;
 	}
 
-	public static List<String> getAllowedModelEndpoints(ModelRel modelRel, ModelEndpoint oldModelEndpoint, Model targetModel) {
+	public static @Nullable List<String> getAllowedModelEndpoints(@NonNull ModelRel modelRel, @Nullable ModelEndpoint oldModelEndpoint, @Nullable Model targetModel) {
 
 		if (targetModel == null) { // model not added yet
 			return new ArrayList<String>();
@@ -580,7 +580,13 @@ linkTypes:
 			MMINTException.print(IStatus.WARNING, "Skipping constraint check", e);
 			return MAVOTruthValue.TRUE;
 		}
-		MIDLevel constraintLevel = (element.getUri().equals(((Model) constraint.eContainer()).getUri())) ? MIDLevel.INSTANCES : MIDLevel.TYPES;
+		MIDLevel constraintLevel;
+		if (!element.getUri().equals(((ExtendibleElement) constraint.eContainer()).getUri())) {
+			constraintLevel = MIDLevel.TYPES;
+		}
+		else {
+			constraintLevel = MIDLevel.INSTANCES;
+		}
 
 		return reasoner.checkConstraint((Model) element, constraint, constraintLevel);
 	}

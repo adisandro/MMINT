@@ -62,7 +62,8 @@ public class MIDNavigatorActionProvider extends CommonActionProvider {
 		if (aSite.getViewSite() instanceof ICommonViewerWorkbenchSite) {
 			myContribute = true;
 			makeActions((ICommonViewerWorkbenchSite) aSite.getViewSite());
-		} else {
+		}
+		else {
 			myContribute = false;
 		}
 	}
@@ -81,12 +82,10 @@ public class MIDNavigatorActionProvider extends CommonActionProvider {
 		if (!myContribute) {
 			return;
 		}
-		IStructuredSelection selection = (IStructuredSelection) getContext()
-				.getSelection();
+		IStructuredSelection selection = (IStructuredSelection) getContext().getSelection();
 		myOpenDiagramAction.selectionChanged(selection);
 		if (myOpenDiagramAction.isEnabled()) {
-			actionBars.setGlobalActionHandler(ICommonActionConstants.OPEN,
-					myOpenDiagramAction);
+			actionBars.setGlobalActionHandler(ICommonActionConstants.OPEN, myOpenDiagramAction);
 		}
 	}
 
@@ -127,16 +126,14 @@ public class MIDNavigatorActionProvider extends CommonActionProvider {
 			if (selection.size() == 1) {
 				Object selectedElement = selection.getFirstElement();
 				if (selectedElement instanceof MIDNavigatorItem) {
-					selectedElement = ((MIDNavigatorItem) selectedElement)
-							.getView();
-				} else if (selectedElement instanceof IAdaptable) {
-					selectedElement = ((IAdaptable) selectedElement)
-							.getAdapter(View.class);
+					selectedElement = ((MIDNavigatorItem) selectedElement).getView();
+				}
+				else if (selectedElement instanceof IAdaptable) {
+					selectedElement = ((IAdaptable) selectedElement).getAdapter(View.class);
 				}
 				if (selectedElement instanceof Diagram) {
 					Diagram diagram = (Diagram) selectedElement;
-					if (MultiModelEditPart.MODEL_ID.equals(MIDVisualIDRegistry
-							.getModelID(diagram))) {
+					if (MultiModelEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(diagram))) {
 						myDiagram = diagram;
 					}
 				}
@@ -156,9 +153,9 @@ public class MIDNavigatorActionProvider extends CommonActionProvider {
 			IWorkbenchPage page = myViewerSite.getPage();
 			try {
 				page.openEditor(editorInput, MIDDiagramEditor.ID);
-			} catch (PartInitException e) {
-				MIDDiagramEditorPlugin.getInstance().logError(
-						"Exception while openning diagram", e); //$NON-NLS-1$
+			}
+			catch (PartInitException e) {
+				MIDDiagramEditorPlugin.getInstance().logError("Exception while openning diagram", e); //$NON-NLS-1$
 			}
 		}
 
@@ -169,16 +166,14 @@ public class MIDNavigatorActionProvider extends CommonActionProvider {
 			Resource diagramResource = diagram.eResource();
 			for (EObject nextEObject : diagramResource.getContents()) {
 				if (nextEObject == diagram) {
-					return new FileEditorInput(
-							WorkspaceSynchronizer.getFile(diagramResource));
+					return new FileEditorInput(WorkspaceSynchronizer.getFile(diagramResource));
 				}
 				if (nextEObject instanceof Diagram) {
 					break;
 				}
 			}
 			URI uri = EcoreUtil.getURI(diagram);
-			String editorName = uri.lastSegment() + '#'
-					+ diagram.eResource().getContents().indexOf(diagram);
+			String editorName = uri.lastSegment() + '#' + diagram.eResource().getContents().indexOf(diagram);
 			IEditorInput editorInput = new URIEditorInput(uri, editorName);
 			return editorInput;
 		}

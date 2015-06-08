@@ -60,7 +60,7 @@
       <details key="constraints" value="typeLevel"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="The abstract basic element. It represents a unique typed element, able to extend or be extended by other elements."/>
+      <details key="documentation" value="The abstract basic element. It represents a unique type at the type level able to extend or be extended by other elements, or a typed element at the instance level."/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="typeLevel" value="level = MIDLevel::INSTANCES implies metatype.level = MIDLevel::TYPES"/>
@@ -180,7 +180,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//ExtendibleElement ../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOModel">
+  <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//GenericElement ../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOModel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A model type or a model instance."/>
     </eAnnotations>
@@ -271,12 +271,6 @@
         eType="#//operator/ConversionOperator">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The conversion operator types that use this model type as input (instances: always null)."/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="True if the model type can't be instanciated, false otherwise (instances: always false)."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -417,6 +411,11 @@
       <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
       <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
     </eOperations>
+    <eOperations name="createInstance" lowerBound="1" eType="#//ModelEndpoint" eExceptions="#//MMINTException">
+      <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
+      <eParameters name="containerOperator" lowerBound="1" eType="#//operator/Operator"/>
+      <eParameters name="containerFeatureName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eOperations name="replaceInstanceAndReference" eExceptions="#//MMINTException">
       <eParameters name="oldModelEndpoint" lowerBound="1" eType="#//ModelEndpoint"/>
       <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
@@ -455,6 +454,17 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="relatedClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The related EClass name, if applicable (types: metamodel class of the type if reference; instances: metamodel class of the container if not root and not attribute)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericElement" abstract="true" eSuperTypes="#//ExtendibleElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The abstract element for generic operator definitions."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="True if the generic type can't be instanciated, false otherwise (instances: always false)."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -505,6 +515,7 @@
       <eOperations name="createInstanceAndEndpointsAndReferences" lowerBound="1" eType="#//relationship/ModelRel"
           eExceptions="#//MMINTException">
         <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
         <eParameters name="targetModels" lowerBound="1" upperBound="-1" eType="#//Model"/>
       </eOperations>
@@ -1061,7 +1072,7 @@
       <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
       <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     </eAnnotations>
-    <eClassifiers xsi:type="ecore:EClass" name="Operator" eSuperTypes="#//ExtendibleElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Operator" eSuperTypes="#//GenericElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="An operator type or an operator instance."/>
       </eAnnotations>
@@ -1078,47 +1089,101 @@
         </eAnnotations>
       </eOperations>
       <eOperations name="deleteType" eExceptions="#//MMINTException"/>
-      <eOperations name="getExecutables" upperBound="-1" eType="#//operator/Operator"
+      <eOperations name="findAllowedInputs" lowerBound="1" eExceptions="#//MMINTException">
+        <eGenericType eClassifier="#//operator/Set">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+            <eTypeArguments eClassifier="#//operator/OperatorInput"/>
+          </eTypeArguments>
+        </eGenericType>
+        <eParameters name="inputMIDs" upperBound="-1" eType="#//MultiModel"/>
+      </eOperations>
+      <eOperations name="findFirstAllowedInput" upperBound="-1" eType="#//operator/OperatorInput"
           eExceptions="#//MMINTException">
-        <eParameters name="actualModels" upperBound="-1" eType="#//Model"/>
-        <eParameters name="actualModelTypes" upperBound="-1">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-            <eTypeArguments eClassifier="#//Model"/>
-          </eGenericType>
-        </eParameters>
-        <eParameters name="conversions" upperBound="-1">
+        <eParameters name="inputMIDs" upperBound="-1" eType="#//MultiModel"/>
+      </eOperations>
+      <eOperations name="checkAllowedInputs" upperBound="-1" eType="#//operator/OperatorInput"
+          eExceptions="#//MMINTException">
+        <eParameters name="inputModels" upperBound="-1" eType="#//Model"/>
+      </eOperations>
+      <eOperations name="isAllowedInput" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          eExceptions="#//MMINTException">
+        <eParameters name="inputsByName" lowerBound="1">
           <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-              <eTypeArguments eClassifier="#//operator/ConversionOperator"/>
-            </eTypeArguments>
-          </eGenericType>
-        </eParameters>
-        <eParameters name="generics" upperBound="-1">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
             <eTypeArguments eClassifier="#//Model"/>
           </eGenericType>
         </eParameters>
+      </eOperations>
+      <eOperations name="createInstance" lowerBound="1" eType="#//operator/Operator"
+          eExceptions="#//MMINTException">
+        <eParameters name="instanceMID" eType="#//MultiModel"/>
+      </eOperations>
+      <eOperations name="deleteInstance" eExceptions="#//MMINTException"/>
+      <eOperations name="isAllowedTargetGeneric" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          eExceptions="#//MMINTException">
+        <eParameters name="genericTypeEndpoint" lowerBound="1" eType="#//operator/GenericEndpoint"/>
+        <eParameters name="genericType" lowerBound="1" eType="#//GenericElement"/>
+        <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
       </eOperations>
       <eOperations name="getInputProperties" lowerBound="1" eType="#//operator/Properties"/>
       <eOperations name="readInputProperties" eExceptions="#//MMINTException">
         <eParameters name="inputProperties" lowerBound="1" eType="#//operator/Properties"/>
       </eOperations>
       <eOperations name="init" eExceptions="#//MMINTException"/>
-      <eOperations name="execute" lowerBound="1" upperBound="-1" eType="#//Model"
-          eExceptions="#//operator/Exception">
-        <eParameters name="actualParameters" lowerBound="1" upperBound="-1" eType="#//Model"/>
+      <eOperations name="run" lowerBound="1" eExceptions="#//operator/Exception">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eTypeArguments eClassifier="#//Model"/>
+        </eGenericType>
+        <eParameters name="inputsByName" lowerBound="1">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            <eTypeArguments eClassifier="#//Model"/>
+          </eGenericType>
+        </eParameters>
+        <eParameters name="genericsByName" lowerBound="1">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            <eTypeArguments eClassifier="#//GenericElement"/>
+          </eGenericType>
+        </eParameters>
+        <eParameters name="outputMIDsByName" lowerBound="1">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            <eTypeArguments eClassifier="#//MultiModel"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="start" lowerBound="1" eExceptions="#//operator/Exception">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eTypeArguments eClassifier="#//Model"/>
+        </eGenericType>
+        <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
+        <eParameters name="outputMIDsByName" lowerBound="1">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            <eTypeArguments eClassifier="#//MultiModel"/>
+          </eGenericType>
+        </eParameters>
+        <eParameters name="instanceMID" lowerBound="1" eType="#//MultiModel"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
-          eType="#//operator/Parameter" containment="true">
+          eType="#//ModelEndpoint" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The list of input parameters of this operator."/>
+          <details key="documentation" value="The list of input parameters of this operator (types: formal parameters; instances: actual parameters)."/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"
-          eType="#//operator/Parameter" containment="true">
+          eType="#//ModelEndpoint" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The list of output parameters of this operator."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="generics" upperBound="-1"
+          eType="#//operator/GenericEndpoint" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of generics of this operator."/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="inputSubdir" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -1132,6 +1197,12 @@
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="updateMID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="executionTime" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The execution time of this operator instance in nanoseconds (types: not used)."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConversionOperator" eSuperTypes="#//operator/Operator">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -1154,26 +1225,67 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Parameter">
+    <eClassifiers xsi:type="ecore:EClass" name="GenericEndpoint" eSuperTypes="#//ExtendibleElementEndpoint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="An operator's parameter."/>
+        <details key="documentation" value="The endpoint for a generic operator definition."/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+      <eOperations name="getSupertype" eType="#//operator/GenericEndpoint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the generic supertype endpoint of this generic type endpoint."/>
+          <details key="body" value="ExtendibleElementEndpoint supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (GenericEndpoint) supertype;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getTarget" lowerBound="1" eType="#//GenericElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the generic target of this generic endpoint."/>
+          <details key="body" value="GenericElement target = MultiModelTypeRegistry.getType(getMetatargetUri());&#xA;return target;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="setTarget" lowerBound="1">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Sets the generic target of this generic endpoint."/>
+          <details key="body" value="setMetatargetUri(newTarget.getUri());"/>
+        </eAnnotations>
+        <eParameters name="newTarget" lowerBound="1" eType="#//ExtendibleElement"/>
+      </eOperations>
+      <eOperations name="getMetatype" lowerBound="1" eType="#//operator/GenericEndpoint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the generic type endpoint of this generic instance endpoint."/>
+          <details key="body" value="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (GenericEndpoint) metatype;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="createInstance" lowerBound="1" eType="#//operator/GenericEndpoint"
+          eExceptions="#//MMINTException">
+        <eParameters name="targetGeneric" lowerBound="1" eType="#//GenericElement"/>
+        <eParameters name="containerOperator" lowerBound="1" eType="#//operator/Operator"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="metatargetUri" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The name."/>
+          <details key="documentation" value="The target uri, at the upper MID level (types: empty; instances: the target type uri)."/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="vararg" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="True if this parameter represents a variable argument, i.e. any number of actual arguments."/>
-        </eAnnotations>
-      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OperatorInput">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="An input for an operator instance."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1"
           eType="#//Model">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The model type or model instance identified by this parameter (types: formal argument; instances: actual argument)."/>
+          <details key="documentation" value="The input actual parameter."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="conversions" upperBound="-1"
+          eType="#//operator/ConversionOperator">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of conversions to be executed on the input actual parameter."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelTypeEndpoint" lowerBound="1"
+          eType="#//ModelEndpoint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The input formal parameter."/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -1191,6 +1303,9 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The wrapper for java.util.Properties."/>
       </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="Set" instanceClassName="java.util.Set">
+      <eTypeParameters name="E"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

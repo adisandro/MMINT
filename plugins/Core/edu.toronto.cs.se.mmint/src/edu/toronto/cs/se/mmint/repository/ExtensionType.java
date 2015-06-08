@@ -16,12 +16,14 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MultiModelHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 
 /**
- * An edu.toronto.cs.se.mmint.extendibles extension containing a "heavy" type.
+ * An edu.toronto.cs.se.mmint.types extension containing a "heavy" type.
  * 
  * @author Alessio Di Sandro
  * 
@@ -32,6 +34,8 @@ public class ExtensionType {
 	private String uri;
 	/** The name of the extension type. */
 	private String name;
+	/** True if the extension type is abstract, false otherwise. */
+	private boolean isAbstract;
 	/** The uri of the supertype of the extension type. */
 	private String supertypeUri;
 	/** The factory of the extension type. */
@@ -46,11 +50,12 @@ public class ExtensionType {
 	 * @param extensionConfig
 	 *            The extension configuration.
 	 */
-	public ExtensionType(IConfigurationElement extensionConfig) {
+	public ExtensionType(@NonNull IConfigurationElement extensionConfig) {
 
 		IConfigurationElement typeConfig = extensionConfig.getChildren(MMINTConstants.CHILD_TYPE)[0];
 		uri = typeConfig.getAttribute(MMINTConstants.TYPE_ATTR_URI);
 		name = typeConfig.getAttribute(MMINTConstants.TYPE_ATTR_NAME);
+		isAbstract = Boolean.parseBoolean(typeConfig.getAttribute(MMINTConstants.TYPE_ATTR_ISABSTRACT));
 		IConfigurationElement[] supertypeConfigs = typeConfig.getChildren(MMINTConstants.TYPE_CHILD_SUPERTYPE);
 		supertypeUri = (supertypeConfigs.length == 0) ?
 			null :
@@ -66,7 +71,7 @@ public class ExtensionType {
 	 * @param defaultFactory
 	 *            The default "heavy" type factory.
 	 */
-	public ExtensionType(IConfigurationElement extensionConfig, MultiModelHeavyTypeFactory defaultFactory) {
+	public ExtensionType(@NonNull IConfigurationElement extensionConfig, @NonNull MultiModelHeavyTypeFactory defaultFactory) {
 
 		this(extensionConfig);
 		IConfigurationElement typeConfig = extensionConfig.getChildren(MMINTConstants.CHILD_TYPE)[0];
@@ -126,7 +131,7 @@ public class ExtensionType {
 	 * 
 	 * @return The uri of the extension type.
 	 */
-	public String getUri() {
+	public @Nullable String getUri() {
 
 		return uri;
 	}
@@ -136,9 +141,19 @@ public class ExtensionType {
 	 * 
 	 * @return The name of the extension type.
 	 */
-	public String getName() {
+	public @NonNull String getName() {
 
 		return name;
+	}
+
+	/**
+	 * Checks if the extension type is abstract.
+	 * 
+	 * @return True if the extension type is abstract, false otherwise.
+	 */
+	public boolean isAbstract() {
+
+		return isAbstract;
 	}
 
 	/**
@@ -146,7 +161,7 @@ public class ExtensionType {
 	 * 
 	 * @return The uri of the supertype of the extension type.
 	 */
-	public String getSupertypeUri() {
+	public @Nullable String getSupertypeUri() {
 
 		return supertypeUri;
 	}
@@ -156,7 +171,7 @@ public class ExtensionType {
 	 * 
 	 * @return The factory of the extension type.
 	 */
-	public MultiModelHeavyTypeFactory getFactory() {
+	public @Nullable MultiModelHeavyTypeFactory getFactory() {
 
 		return factory;
 	}
@@ -167,7 +182,7 @@ public class ExtensionType {
 	 * @return The custom type for the extension type, null if the standard type
 	 *         will be created by the factory.
 	 */
-	public ExtendibleElement getNewType() {
+	public @Nullable ExtendibleElement getNewType() {
 
 		return newType;
 	}

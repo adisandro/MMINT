@@ -64,8 +64,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDParserProvider;
 /**
  * @generated
  */
-public class WrappingLabel8EditPart extends LabelEditPart implements
-		ITextAwareEditPart {
+public class WrappingLabel8EditPart extends LabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
@@ -102,9 +101,8 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 	 */
 	static {
 		registerSnapBackPosition(
-				MIDVisualIDRegistry
-						.getType(edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel8EditPart.VISUAL_ID),
-				new Point(0, 60));
+			MIDVisualIDRegistry.getType(edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel8EditPart.VISUAL_ID),
+			new Point(0, 60));
 	}
 
 	/**
@@ -119,12 +117,9 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE,
-				new LabelDirectEditPolicy());
-		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE,
-				new MIDTextSelectionEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
-				new DefaultLinkLabelDragPolicy());
+		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
+		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new MIDTextSelectionEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new DefaultLinkLabelDragPolicy());
 	}
 
 	/**
@@ -140,9 +135,11 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 	protected String getLabelTextHelper(IFigure figure) {
 		if (figure instanceof WrappingLabel) {
 			return ((WrappingLabel) figure).getText();
-		} else if (figure instanceof Label) {
+		}
+		else if (figure instanceof Label) {
 			return ((Label) figure).getText();
-		} else {
+		}
+		else {
 			return getLabelDelegate().getText();
 		}
 	}
@@ -153,9 +150,11 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 	protected void setLabelTextHelper(IFigure figure, String text) {
 		if (figure instanceof WrappingLabel) {
 			((WrappingLabel) figure).setText(text);
-		} else if (figure instanceof Label) {
+		}
+		else if (figure instanceof Label) {
 			((Label) figure).setText(text);
-		} else {
+		}
+		else {
 			getLabelDelegate().setText(text);
 		}
 	}
@@ -166,9 +165,11 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 	protected Image getLabelIconHelper(IFigure figure) {
 		if (figure instanceof WrappingLabel) {
 			return ((WrappingLabel) figure).getIcon();
-		} else if (figure instanceof Label) {
+		}
+		else if (figure instanceof Label) {
 			return ((Label) figure).getIcon();
-		} else {
+		}
+		else {
 			return getLabelDelegate().getIcon(0);
 		}
 	}
@@ -180,10 +181,12 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 		if (figure instanceof WrappingLabel) {
 			((WrappingLabel) figure).setIcon(icon);
 			return;
-		} else if (figure instanceof Label) {
+		}
+		else if (figure instanceof Label) {
 			((Label) figure).setIcon(icon);
 			return;
-		} else {
+		}
+		else {
 			getLabelDelegate().setIcon(icon, 0);
 		}
 	}
@@ -239,9 +242,7 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 		String text = null;
 		EObject parserElement = getParserElement();
 		if (parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(
-					new EObjectAdapter(parserElement),
-					getParserOptions().intValue());
+			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
 		}
 		if (text == null || text.length() == 0) {
 			text = defaultText;
@@ -264,9 +265,7 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
-		return getParser().getEditString(
-				new EObjectAdapter(getParserElement()),
-				getParserOptions().intValue());
+		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
 	}
 
 	/**
@@ -287,21 +286,16 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid = (IParserEditStatus) getEditingDomain()
-								.runExclusive(
-										new RunnableWithResult.Impl<IParserEditStatus>() {
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(
+							new RunnableWithResult.Impl<IParserEditStatus>() {
 
-											public void run() {
-												setResult(parser
-														.isValidEditString(
-																new EObjectAdapter(
-																		element),
-																(String) value));
-											}
-										});
-						return valid.getCode() == ParserEditStatus.EDITABLE ? null
-								: valid.getMessage();
-					} catch (InterruptedException ie) {
+								public void run() {
+									setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
+								}
+							});
+						return valid.getCode() == ParserEditStatus.EDITABLE ? null : valid.getMessage();
+					}
+					catch (InterruptedException ie) {
 						ie.printStackTrace();
 					}
 				}
@@ -319,8 +313,7 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 		if (getParserElement() == null || getParser() == null) {
 			return null;
 		}
-		return getParser().getCompletionProcessor(
-				new EObjectAdapter(getParserElement()));
+		return getParser().getCompletionProcessor(new EObjectAdapter(getParserElement()));
 	}
 
 	/**
@@ -335,12 +328,11 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = MIDParserProvider
-					.getParser(
-							MIDElementTypes.BinaryModelRel_4015,
-							getParserElement(),
-							MIDVisualIDRegistry
-									.getType(edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel8EditPart.VISUAL_ID));
+			parser = MIDParserProvider.getParser(
+				MIDElementTypes.BinaryModelRel_4015,
+				getParserElement(),
+				MIDVisualIDRegistry
+						.getType(edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel8EditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -350,8 +342,7 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new TextDirectEditManager(this, null,
-					MIDEditPartFactory.getTextCellEditorLocator(this)));
+			setManager(new TextDirectEditManager(this, null, MIDEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
@@ -375,8 +366,7 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 	 */
 	protected void performDirectEdit(Point eventLocation) {
 		if (getManager().getClass() == TextDirectEditManager.class) {
-			((TextDirectEditManager) getManager()).show(eventLocation
-					.getSWTPoint());
+			((TextDirectEditManager) getManager()).show(eventLocation.getSWTPoint());
 		}
 	}
 
@@ -386,7 +376,8 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 	private void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
-		} else //
+		}
+		else //
 		{
 			performDirectEdit();
 		}
@@ -402,24 +393,23 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 
 				public void run() {
 					if (isActive() && isEditable()) {
-						if (theRequest
-								.getExtendedData()
-								.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) theRequest
-									.getExtendedData()
-									.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) theRequest.getExtendedData().get(
+								RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						} else if ((theRequest instanceof DirectEditRequest)
-								&& (getEditText().equals(getLabelText()))) {
+						}
+						else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
 							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
 							performDirectEdit(editRequest.getLocation());
-						} else {
+						}
+						else {
 							performDirectEdit();
 						}
 					}
 				}
 			});
-		} catch (InterruptedException e) {
+		}
+		catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
@@ -449,8 +439,7 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected void refreshUnderline() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
-				NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
 		}
@@ -460,11 +449,9 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected void refreshStrikeThrough() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
-				NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel) getFigure()).setTextStrikeThrough(style
-					.isStrikeThrough());
+			((WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
 	}
 
@@ -472,13 +459,10 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected void refreshFont() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
-				NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
-			FontData fontData = new FontData(style.getFontName(),
-					style.getFontHeight(), (style.isBold() ? SWT.BOLD
-							: SWT.NORMAL)
-							| (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD
+					: SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -514,13 +498,12 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
-			parserElements = ((ISemanticParser) getParser())
-					.getSemanticElementsBeingParsed(element);
+			parserElements = ((ISemanticParser) getParser()).getSemanticElementsBeingParsed(element);
 			for (int i = 0; i < parserElements.size(); i++) {
-				addListenerFilter(
-						"SemanticModel" + i, this, (EObject) parserElements.get(i)); //$NON-NLS-1$
+				addListenerFilter("SemanticModel" + i, this, (EObject) parserElements.get(i)); //$NON-NLS-1$
 			}
-		} else {
+		}
+		else {
 			super.addSemanticListeners();
 		}
 	}
@@ -533,7 +516,8 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 			for (int i = 0; i < parserElements.size(); i++) {
 				removeListenerFilter("SemanticModel" + i); //$NON-NLS-1$
 			}
-		} else {
+		}
+		else {
 			super.removeSemanticListeners();
 		}
 	}
@@ -568,7 +552,8 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 			IFigure label = getFigure();
 			if (label instanceof WrappingLabel) {
 				labelDelegate = new WrappingLabelDelegate((WrappingLabel) label);
-			} else {
+			}
+			else {
 				labelDelegate = new SimpleLabelDelegate((Label) label);
 			}
 		}
@@ -594,25 +579,21 @@ public class WrappingLabel8EditPart extends LabelEditPart implements
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			Integer c = (Integer) event.getNewValue();
 			setFontColor(DiagramColorRegistry.getInstance().getColor(c));
-		} else if (NotationPackage.eINSTANCE.getFontStyle_Underline().equals(
-				feature)) {
+		}
+		else if (NotationPackage.eINSTANCE.getFontStyle_Underline().equals(feature)) {
 			refreshUnderline();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough()
-				.equals(feature)) {
+		}
+		else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
 			refreshStrikeThrough();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(
-				feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_FontName().equals(
-						feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_Bold()
-						.equals(feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(
-						feature)) {
+		}
+		else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature)
+				|| NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature)
+				|| NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature)
+				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
-		} else {
-			if (getParser() != null
-					&& getParser().isAffectingEvent(event,
-							getParserOptions().intValue())) {
+		}
+		else {
+			if (getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
 				refreshLabel();
 			}
 			if (getParser() instanceof ISemanticParser) {

@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+
+<!--
+ Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ Rick Salay.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+    Alessio Di Sandro - Implementation.
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://se.cs.toronto.edu/mmint/MIDRel"
+            class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.models">
+      <modelType>
+         <type
+               name="MIDRel"
+               uri="http://se.cs.toronto.edu/mmint/MIDRel">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/MID">
+            </superType>
+         </type>
+         <constraint
+               implementation="edu.toronto.cs.se.mmint.mid.constraint.MIDRelConstraint"
+               language="JAVA">
+         </constraint>
+      </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/mmint/MIDRel"
+            id="edu.toronto.cs.se.mmint.mid.presentation.MIDEditorID"
+            isDiagram="false"
+            wizardId="edu.toronto.cs.se.mmint.mid.presentation.MIDModelWizardID">
+         <type
+               name="MIDRel tree"
+               uri="http://se.cs.toronto.edu/mmint/MIDRel_tree">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/MID_tree">
+            </superType>
+         </type>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/mmint/MIDRel"
+            id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"
+            isDiagram="true"
+            wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
+         <type
+               name="MIDRel diagram"
+               uri="http://se.cs.toronto.edu/mmint/MIDRel_diagram">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/MID_diagram">
+            </superType>
+         </type>
+      </editorType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://se.cs.toronto.edu/mmint/MIDOper"
+            class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.models">
+      <modelType>
+         <type
+               name="MIDOper"
+               uri="http://se.cs.toronto.edu/mmint/MIDOper">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/MID">
+            </superType>
+         </type>
+         <constraint
+               implementation="edu.toronto.cs.se.mmint.mid.constraint.MIDOperConstraint"
+               language="JAVA">
+         </constraint>
+      </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/mmint/MIDOper"
+            id="edu.toronto.cs.se.mmint.mid.presentation.MIDEditorID"
+            isDiagram="false"
+            wizardId="edu.toronto.cs.se.mmint.mid.presentation.MIDModelWizardID">
+         <type
+               name="MIDOper tree"
+               uri="http://se.cs.toronto.edu/mmint/MIDOper_tree">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/MID_tree">
+            </superType>
+         </type>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/mmint/MIDOper"
+            id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"
+            isDiagram="true"
+            wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
+         <type
+               name="MIDOper diagram"
+               uri="http://se.cs.toronto.edu/mmint/MIDOper_diagram">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/MID_diagram">
+            </superType>
+         </type>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="ModelRelComposition"
+               uri="http://se.cs.toronto.edu/mmint/Operator_ModelRelComposition"
+               class="edu.toronto.cs.se.mmint.operator.merge.ModelRelComposition">
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="rel1">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="rel2">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="composition">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="ModelRelMerge"
+               uri="http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge"
+               class="edu.toronto.cs.se.mmint.operator.merge.ModelRelMerge">
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="rel1">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="rel2">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="merge">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="Map"
+               uri="http://se.cs.toronto.edu/mmint/Operator_Map"
+               class="edu.toronto.cs.se.mmint.mid.operator.Map">
+         </type>
+         <generics>
+            <parameter>
+	           <type
+	                 name="MAPPER">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Operator">
+	           </typeEndpoint>
+            </parameter>
+         </generics>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="mids">
+	           </type>
+	           <typeEndpoint
+                     upperBound="-1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="mappedMids">
+	           </type>
+	           <typeEndpoint
+                     upperBound="-1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="Reduce"
+               uri="http://se.cs.toronto.edu/mmint/Operator_Reduce"
+               class="edu.toronto.cs.se.mmint.mid.operator.Reduce">
+         </type>
+         <generics>
+            <parameter>
+	           <type
+	                 name="ACCUMULATOR">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Operator">
+	           </typeEndpoint>
+            </parameter>
+         </generics>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="mid">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="reducedMid">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="Union"
+               uri="http://se.cs.toronto.edu/mmint/Operator_Union"
+               class="edu.toronto.cs.se.mmint.mid.operator.Union">
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="mids">
+	           </type>
+	           <typeEndpoint
+	                 upperBound="-1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="unionMid">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="Filter"
+               uri="http://se.cs.toronto.edu/mmint/Operator_Filter"
+               class="edu.toronto.cs.se.mmint.mid.operator.Filter">
+         </type>
+         <generics>
+            <parameter>
+	           <type
+	                 name="TYPE">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+         </generics>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="mid">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="filteredMid">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+</plugin>

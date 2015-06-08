@@ -13,18 +13,22 @@ package edu.toronto.cs.se.modelepedia.graph_mavo.operator;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jdt.annotation.NonNull;
+
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOPackage;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -39,6 +43,8 @@ import edu.toronto.cs.se.modelepedia.graph_mavo.Node;
 
 public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 
+	// input-output
+	private final static @NonNull String OUT_MODEL = "random";
 	/** Min number of model objects in the random graph. */
 	private static final String PROPERTY_IN_MINMODELOBJS = "minModelObjs";
 	/** Max number of model objects in the random graph. */
@@ -182,26 +188,31 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
+		// input
+		MultiModel instanceMID = outputMIDsByName.get(OUT_MODEL);
+
+		// create random graph
 		Graph randomGraph = generateRandomGraph();
 		String lastSegmentUri = RANDOM_MODEL_NAME + (new Date()).getTime() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + Graph_MAVOPackage.eNAME;
 		String subdir = getInputSubdir();
 		if (subdir != null) {
 			lastSegmentUri = subdir + MMINT.URI_SEPARATOR + lastSegmentUri;
 		}
-		MultiModel instanceMid = MultiModelOperatorUtils.getInstanceMIDFromOperatorWithNoParameters();
-		String randomGraphModelUri = MultiModelUtils.replaceLastSegmentInUri(EcoreUtil.getURI(instanceMid).toPlatformString(true), lastSegmentUri);
+
+		// output
+		String randomGraphModelUri = MultiModelUtils.replaceLastSegmentInUri(EcoreUtil.getURI(instanceMID).toPlatformString(true), lastSegmentUri);
 		MultiModelUtils.createModelFile(randomGraph, randomGraphModelUri, true);
 		Model graphModelType = MultiModelTypeRegistry.getType(Graph_MAVOPackage.eINSTANCE.getNsURI());
 		Model randomGraphModel;
-		randomGraphModel = (isUpdateMID()) ?
-			graphModelType.createInstanceAndEditor(randomGraphModelUri, ModelOrigin.CREATED, instanceMid) :
-			graphModelType.createInstance(randomGraphModelUri, ModelOrigin.CREATED, null);
+		randomGraphModel = graphModelType.createInstanceAndEditor(randomGraphModelUri, ModelOrigin.CREATED, instanceMID);
+		Map<String, Model> outputsByName = new HashMap<>();
+		outputsByName.put(OUT_MODEL, randomGraphModel);
 
-		EList<Model> result = new BasicEList<Model>();
-		result.add(randomGraphModel);
-		return result;
+		return outputsByName;
 	}
 
 }

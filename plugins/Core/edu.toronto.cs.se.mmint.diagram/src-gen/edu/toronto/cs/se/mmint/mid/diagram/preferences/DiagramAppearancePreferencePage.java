@@ -24,7 +24,6 @@ public class DiagramAppearancePreferencePage extends AppearancePreferencePage {
 	 * @generated
 	 */
 	public DiagramAppearancePreferencePage() {
-		setPreferenceStore(MIDDiagramEditorPlugin.getInstance()
-				.getPreferenceStore());
+		setPreferenceStore(MIDDiagramEditorPlugin.getInstance().getPreferenceStore());
 	}
 }

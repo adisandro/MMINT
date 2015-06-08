@@ -24,13 +24,12 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
 
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ModelEndpointItemSemanticEditPolicy;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ModelEndpointSemanticEditPolicy;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ModelRelModelEndpointSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class ModelEndpointEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class ModelEndpointEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -49,10 +48,8 @@ public class ModelEndpointEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelEndpointItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelEndpointSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelEndpointItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelRelModelEndpointSemanticEditPolicy());
 	}
 
 	/**
@@ -61,13 +58,12 @@ public class ModelEndpointEditPart extends ConnectionNodeEditPart implements
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WrappingLabel6EditPart) {
 			((WrappingLabel6EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureModelEndpointLabelFigure());
+					.getFigureModelRelModelEndpointLabelFigure());
 			return true;
 		}
 		if (childEditPart instanceof WrappingLabel14EditPart) {
-			((WrappingLabel14EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureMAVOModelEndpointLabelFigure());
+			((WrappingLabel14EditPart) childEditPart).setLabel(getPrimaryShape()
+					.getFigureMAVOModelRelModelEndpointLabelFigure());
 			return true;
 		}
 		return false;
@@ -116,35 +112,34 @@ public class ModelEndpointEditPart extends ConnectionNodeEditPart implements
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new ModelEndpointFigure();
+		return new ModelRelModelEndpointFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ModelEndpointFigure getPrimaryShape() {
-		return (ModelEndpointFigure) getFigure();
+	public ModelRelModelEndpointFigure getPrimaryShape() {
+		return (ModelRelModelEndpointFigure) getFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class ModelEndpointFigure extends PolylineConnectionEx {
+	public class ModelRelModelEndpointFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureModelEndpointLabelFigure;
+		private WrappingLabel fFigureModelRelModelEndpointLabelFigure;
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fFigureMAVOModelRelModelEndpointLabelFigure;
 
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureMAVOModelEndpointLabelFigure;
-
-		/**
-		 * @generated
-		 */
-		public ModelEndpointFigure() {
+		public ModelRelModelEndpointFigure() {
 			this.setLineWidth(3);
 			this.setForegroundColor(THIS_FORE);
 
@@ -157,17 +152,17 @@ public class ModelEndpointEditPart extends ConnectionNodeEditPart implements
 		 */
 		private void createContents() {
 
-			fFigureMAVOModelEndpointLabelFigure = new WrappingLabel();
+			fFigureMAVOModelRelModelEndpointLabelFigure = new WrappingLabel();
 
-			fFigureMAVOModelEndpointLabelFigure.setText("");
+			fFigureMAVOModelRelModelEndpointLabelFigure.setText("");
 
-			this.add(fFigureMAVOModelEndpointLabelFigure);
+			this.add(fFigureMAVOModelRelModelEndpointLabelFigure);
 
-			fFigureModelEndpointLabelFigure = new WrappingLabel();
+			fFigureModelRelModelEndpointLabelFigure = new WrappingLabel();
 
-			fFigureModelEndpointLabelFigure.setText("");
+			fFigureModelRelModelEndpointLabelFigure.setText("");
 
-			this.add(fFigureModelEndpointLabelFigure);
+			this.add(fFigureModelRelModelEndpointLabelFigure);
 
 		}
 
@@ -183,15 +178,15 @@ public class ModelEndpointEditPart extends ConnectionNodeEditPart implements
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureModelEndpointLabelFigure() {
-			return fFigureModelEndpointLabelFigure;
+		public WrappingLabel getFigureModelRelModelEndpointLabelFigure() {
+			return fFigureModelRelModelEndpointLabelFigure;
 		}
 
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureMAVOModelEndpointLabelFigure() {
-			return fFigureMAVOModelEndpointLabelFigure;
+		public WrappingLabel getFigureMAVOModelRelModelEndpointLabelFigure() {
+			return fFigureMAVOModelRelModelEndpointLabelFigure;
 		}
 
 	}

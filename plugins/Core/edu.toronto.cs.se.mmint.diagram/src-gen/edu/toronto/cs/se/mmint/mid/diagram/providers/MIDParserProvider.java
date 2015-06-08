@@ -25,8 +25,9 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmint.mavo.library.MAVOElementLabelParser;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ParameterName2EditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ParameterNameEditPart;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointName2EditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointNameEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel10EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel11EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel12EditPart;
@@ -47,15 +48,12 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.BinaryModelRelTargetModelEndp
 import edu.toronto.cs.se.mmint.mid.diagram.library.ExtendibleElementEndpointLabelParser;
 import edu.toronto.cs.se.mmint.mid.diagram.library.ExtendibleElementLabelParser;
 import edu.toronto.cs.se.mmint.mid.diagram.parsers.MessageFormatParser;
-import edu.toronto.cs.se.mmint.mid.diagram.parsers.OperatorLabelExpressionLabelParser;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 
 /**
  * @generated
  */
-public class MIDParserProvider extends AbstractProvider implements
-		IParserProvider {
+public class MIDParserProvider extends AbstractProvider implements IParserProvider {
 
 	/**
 	 * @generated
@@ -180,8 +178,16 @@ public class MIDParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private ExtendibleElementLabelParser operatorLabel_5015Parser;
+
+	/**
+	 * @generated
+	 */
 	private IParser getOperatorLabel_5015Parser() {
-		return new OperatorLabelExpressionLabelParser();
+		if (operatorLabel_5015Parser == null) {
+			operatorLabel_5015Parser = new ExtendibleElementLabelParser();
+		}
+		return operatorLabel_5015Parser;
 	}
 
 	/**
@@ -277,49 +283,43 @@ public class MIDParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser parameterName_6015Parser;
+	private IParser modelEndpointName_6019Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getParameterName_6015Parser() {
-		if (parameterName_6015Parser == null) {
-			EAttribute[] features = new EAttribute[] { OperatorPackage.eINSTANCE
-					.getParameter_Name() };
-			EAttribute[] editableFeatures = new EAttribute[] { OperatorPackage.eINSTANCE
-					.getParameter_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features,
-					editableFeatures);
+	private IParser getModelEndpointName_6019Parser() {
+		if (modelEndpointName_6019Parser == null) {
+			EAttribute[] features = new EAttribute[] { MIDPackage.eINSTANCE.getExtendibleElement_Name() };
+			EAttribute[] editableFeatures = new EAttribute[] { MIDPackage.eINSTANCE.getExtendibleElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features, editableFeatures);
 			parser.setViewPattern("(in) {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			parameterName_6015Parser = parser;
+			modelEndpointName_6019Parser = parser;
 		}
-		return parameterName_6015Parser;
+		return modelEndpointName_6019Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser parameterName_6016Parser;
+	private IParser modelEndpointName_6020Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getParameterName_6016Parser() {
-		if (parameterName_6016Parser == null) {
-			EAttribute[] features = new EAttribute[] { OperatorPackage.eINSTANCE
-					.getParameter_Name() };
-			EAttribute[] editableFeatures = new EAttribute[] { OperatorPackage.eINSTANCE
-					.getParameter_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features,
-					editableFeatures);
+	private IParser getModelEndpointName_6020Parser() {
+		if (modelEndpointName_6020Parser == null) {
+			EAttribute[] features = new EAttribute[] { MIDPackage.eINSTANCE.getExtendibleElement_Name() };
+			EAttribute[] editableFeatures = new EAttribute[] { MIDPackage.eINSTANCE.getExtendibleElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features, editableFeatures);
 			parser.setViewPattern("(out) {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			parameterName_6016Parser = parser;
+			modelEndpointName_6020Parser = parser;
 		}
-		return parameterName_6016Parser;
+		return modelEndpointName_6020Parser;
 	}
 
 	/**
@@ -327,40 +327,40 @@ public class MIDParserProvider extends AbstractProvider implements
 	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
-		case WrappingLabelEditPart.VISUAL_ID:
-			return getModelLabel_5011Parser();
-		case WrappingLabel10EditPart.VISUAL_ID:
-			return getModelLabel_5016Parser();
-		case WrappingLabel2EditPart.VISUAL_ID:
-			return getModelLabel_5012Parser();
-		case WrappingLabel11EditPart.VISUAL_ID:
-			return getModelLabel_5017Parser();
-		case WrappingLabel3EditPart.VISUAL_ID:
-			return getModelRelLabel_5013Parser();
-		case WrappingLabel12EditPart.VISUAL_ID:
-			return getModelRelLabel_5018Parser();
-		case WrappingLabel4EditPart.VISUAL_ID:
-			return getModelRelLabel_5014Parser();
-		case WrappingLabel13EditPart.VISUAL_ID:
-			return getModelRelLabel_5019Parser();
-		case WrappingLabel5EditPart.VISUAL_ID:
-			return getOperatorLabel_5015Parser();
-		case WrappingLabel6EditPart.VISUAL_ID:
-			return getModelEndpointLabel_6011Parser();
-		case WrappingLabel14EditPart.VISUAL_ID:
-			return getModelEndpointLabel_6017Parser();
-		case WrappingLabel7EditPart.VISUAL_ID:
-			return getBinaryModelRelLabel_6012Parser();
-		case WrappingLabel8EditPart.VISUAL_ID:
-			return getBinaryModelRelLabel_6013Parser();
-		case WrappingLabel9EditPart.VISUAL_ID:
-			return getBinaryModelRelLabel_6014Parser();
-		case WrappingLabel15EditPart.VISUAL_ID:
-			return getBinaryModelRelLabel_6018Parser();
-		case ParameterNameEditPart.VISUAL_ID:
-			return getParameterName_6015Parser();
-		case ParameterName2EditPart.VISUAL_ID:
-			return getParameterName_6016Parser();
+			case WrappingLabelEditPart.VISUAL_ID:
+				return getModelLabel_5011Parser();
+			case WrappingLabel10EditPart.VISUAL_ID:
+				return getModelLabel_5016Parser();
+			case WrappingLabel2EditPart.VISUAL_ID:
+				return getModelLabel_5012Parser();
+			case WrappingLabel11EditPart.VISUAL_ID:
+				return getModelLabel_5017Parser();
+			case WrappingLabel3EditPart.VISUAL_ID:
+				return getModelRelLabel_5013Parser();
+			case WrappingLabel12EditPart.VISUAL_ID:
+				return getModelRelLabel_5018Parser();
+			case WrappingLabel4EditPart.VISUAL_ID:
+				return getModelRelLabel_5014Parser();
+			case WrappingLabel13EditPart.VISUAL_ID:
+				return getModelRelLabel_5019Parser();
+			case WrappingLabel5EditPart.VISUAL_ID:
+				return getOperatorLabel_5015Parser();
+			case WrappingLabel6EditPart.VISUAL_ID:
+				return getModelEndpointLabel_6011Parser();
+			case WrappingLabel14EditPart.VISUAL_ID:
+				return getModelEndpointLabel_6017Parser();
+			case WrappingLabel7EditPart.VISUAL_ID:
+				return getBinaryModelRelLabel_6012Parser();
+			case WrappingLabel8EditPart.VISUAL_ID:
+				return getBinaryModelRelLabel_6013Parser();
+			case WrappingLabel9EditPart.VISUAL_ID:
+				return getBinaryModelRelLabel_6014Parser();
+			case WrappingLabel15EditPart.VISUAL_ID:
+				return getBinaryModelRelLabel_6018Parser();
+			case ModelEndpointNameEditPart.VISUAL_ID:
+				return getModelEndpointName_6019Parser();
+			case ModelEndpointName2EditPart.VISUAL_ID:
+				return getModelEndpointName_6020Parser();
 		}
 		return null;
 	}
@@ -369,10 +369,8 @@ public class MIDParserProvider extends AbstractProvider implements
 	 * Utility method that consults ParserService
 	 * @generated
 	 */
-	public static IParser getParser(IElementType type, EObject object,
-			String parserHint) {
-		return ParserService.getInstance().getParser(
-				new HintAdapter(type, object, parserHint));
+	public static IParser getParser(IElementType type, EObject object, String parserHint) {
+		return ParserService.getInstance().getParser(new HintAdapter(type, object, parserHint));
 	}
 
 	/**

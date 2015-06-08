@@ -11,8 +11,20 @@
  */
 package edu.toronto.cs.se.mmint.mid.editor.impl;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.window.Window;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IWorkbenchWizard;
+import org.eclipse.ui.PlatformUI;
+
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
@@ -24,17 +36,6 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
-
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.window.Window;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IWorkbenchWizard;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * <!-- begin-user-doc -->
@@ -91,17 +92,13 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 
 		// check if diagram file already exists in model directory
 		if (!MultiModelUtils.isFileOrDirectory(MultiModelUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0)), true)) {
-			if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_DIAGRAMS_CREATION_ENABLED))) {
-				throw new MMINTException("Diagram creation not enabled by setting");
-			}
 			// try to build a new diagram through its wizard, inited with the existing model file
 			IStructuredSelection modelFile = new StructuredSelection(
 				ResourcesPlugin.getWorkspace().getRoot().getFile(
 					new Path(modelUri)
 				)
 			);
-			EditorCreationWizardDialog wizDialog;
-			wizDialog = invokeInstanceWizard(modelFile);
+			EditorCreationWizardDialog wizDialog = invokeInstanceWizard(modelFile);
 			if (wizDialog == null) {
 				throw new MMINTException("Diagram creation canceled by user");
 			}
@@ -128,12 +125,18 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 			if (initialSelection.getFirstElement() instanceof IFile) {
 				String modelUri = ((IFile) initialSelection.getFirstElement()).getFullPath().toOSString();
 				String diagramUri = MultiModelUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
-				String diagramKind = MultiModelTypeRegistry.getType(getModelUri()).getName();
-				String diagramPluginId = MultiModelTypeRegistry.getTypeBundle(getUri()).getSymbolicName();
+				Diagram superDiagramType = this;
+				while (superDiagramType.getSupertype() != null && superDiagramType.getSupertype() != MultiModelTypeHierarchy.getRootEditorType()) {
+					superDiagramType = (Diagram) superDiagramType.getSupertype();
+				}
+				String diagramKind = MultiModelTypeRegistry.getType(superDiagramType.getModelUri()).getName();
+				String diagramPluginId = MultiModelTypeRegistry.getTypeBundle(superDiagramType.getUri()).getSymbolicName();
 				// create the diagram directly and do not open the wizard
 				try {
 					GMFDiagramUtils.createGMFDiagram(modelUri, diagramUri, diagramKind, diagramPluginId, true);
-					GMFDiagramUtils.openGMFDiagram(diagramUri, getId(), true);
+					if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED))) {
+						GMFDiagramUtils.openGMFDiagram(diagramUri, getId(), true);
+					}
 				}
 				catch (Exception e) {
 					throw new MMINTException("Error creating or opening the gmf diagram", e);

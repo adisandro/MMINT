@@ -11,30 +11,18 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.operator;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
-import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
-import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
-import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
-import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
@@ -210,9 +198,12 @@ public class REJ15 extends FASE14 {
 //	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		Model istarModel = actualParameters.get(0);
+		// input
+		Model istarModel = inputsByName.get(IN_MODEL);
 
 		// run
 		collectAnalysisModelObjects(istarModel);
@@ -260,7 +251,7 @@ public class REJ15 extends FASE14 {
 			writeRNF(istarModel);
 		}
 
-		return actualParameters;
+		return new HashMap<>();
 	}
 
 }

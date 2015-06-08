@@ -90,7 +90,7 @@ public class MultiModelDialogLabelProvider implements ILabelProvider {
 	public String getText(Object element) {
 
 		if (element instanceof MultiModel) {
-			return "Repository";
+			return "Type MID";
 		}
 		if (element instanceof ExtendibleElement) {
 			return ((ExtendibleElement) element).getName();

@@ -19,7 +19,6 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -27,7 +26,9 @@ import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
@@ -164,9 +165,12 @@ public class FASE14 extends RE13 {
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		Model istarModel = actualParameters.get(0);
+		// input
+		Model istarModel = inputsByName.get(IN_MODEL);
 
 		// run
 		collectAnalysisModelObjects(istarModel);
@@ -193,7 +197,7 @@ public class FASE14 extends RE13 {
 			writeRNF(istarModel);
 		}
 
-		return actualParameters;
+		return new HashMap<>();
 	}
 
 }

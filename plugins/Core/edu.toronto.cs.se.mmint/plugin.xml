@@ -37,11 +37,11 @@
 
    <extension
          point="edu.toronto.cs.se.mmint.models">
-      <modelType
-            isAbstract="true">
+      <modelType>
          <type
                name="Model"
-               uri="http://se.cs.toronto.edu/mmint/Model">
+               uri="http://se.cs.toronto.edu/mmint/Model"
+               isAbstract="true">
          </type>
       </modelType>
    </extension>
@@ -114,10 +114,16 @@
       </modelType>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http://se.cs.toronto.edu/mmint/MAVORefinementRel"
-            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"/>
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="Operator"
+               uri="http://se.cs.toronto.edu/mmint/Operator"
+               class="edu.toronto.cs.se.mmint.RootOperator"
+               isAbstract="true">
+         </type>
+      </operatorType>
    </extension>
 
 </plugin>

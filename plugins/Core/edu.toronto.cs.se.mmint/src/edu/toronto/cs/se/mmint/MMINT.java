@@ -26,26 +26,28 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.osgi.service.prefs.BackingStoreException;
 
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.Parameter;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
@@ -90,8 +92,8 @@ public class MMINT implements MMINTConstants {
 	static final MMINT INSTANCE = new MMINT();
 	/** The default "heavy" type factory. */
 	static MultiModelHeavyTypeFactory typeFactory;
-	/** The repository of types. */
-	static MultiModel repository;
+	/** The Type MID in memory. */
+	static MultiModel cachedTypeMID;
 	/**	The table for subtyping in the repository. */
 	static Map<String, Set<String>> subtypeTable;
 	/**	The table for model type conversion in the repository. */
@@ -113,6 +115,42 @@ public class MMINT implements MMINTConstants {
 	/** The type MID filename. */
 	public static final String TYPEMID_FILENAME = "types" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
 
+	/* TODO MMINT[USABILITY]
+	 * - Default deletion to remove model file as well
+	 * - Change uris into ids
+	 * - Simplify the type system of model rels
+	 * - Handle optional uris/ids for subelements of model/modelrel/operator
+	 * - Use defaults in extension points as much as possible
+	 * - Rename link to mapping
+	 * - Decouple from MAVO framework: use a kleisli-like mechanism MAVOModel->Model with overridden apis, where the current MAVOModel becomes a simple MAVORoot
+	 * - Rethink mid link icons with/without MAVO
+	 * - Move modelepedia types into the examples directory and create appropriate features for mm operators
+	 * - Transform various labels into toString() functions (also helps debug)
+	 * - Turn updateMID into global option and use it directly into apis
+	 * - Address the issue of not inheriting Editor and Diagram types; this will fix a model type without editor, which is still able to use the reflective ecore
+	 * - Unify createInstance/Subtype() for Model and ModelRel, removing origin and isBinary
+	 * - Add createBinaryInstance/Subtype() to ModelRel
+	 * - Review stuff done in megamodel operators and create more helper apis (e.g. createInstance() + createModelFile())
+	 * - Separate file apis from MultiModelUtils to MultiModelFileUtils
+	 * - Rename all multimodels (vars and api names) to MID
+	 * - Add documentation ->
+	 *   a) Prerequisite: review apis for mid construction and destruction
+	 *   b) Take every api function
+	 *   c) Check usage and delete if unnecessary
+	 *   d) Add @NonNull/@Nullable annotations + javadoc
+	 *   e) Make a proper user guide online
+	 */
+	/* TODO MMINT[MATURITY]
+	 * - Address todos
+	 * - Resource change listeners to track changes in model elements
+	 * - Operator workflows
+	 * - Formalize override semantics
+	 * - Formalize type introspection
+	 * - Introduce intermediate level between model element and model element reference, contained in model endpoints
+	 * - Support standalone model rels (in their own file)
+	 * - Can operators detect input/output by code inspection rather than plugin.xml?
+	 */
+
 	/**
 	 * Creates and adds a model type to the repository from a registered
 	 * edu.toronto.cs.se.mmint.models extension. Requires the model type package
@@ -127,8 +165,10 @@ public class MMINT implements MMINTConstants {
 	 */
 	public static Model createModelType(IConfigurationElement extensionConfig) throws MMINTException {
 
-		boolean isAbstract = Boolean.parseBoolean(extensionConfig.getAttribute(MODELS_MODELTYPE_ATTR_ABSTRACT));
 		ExtensionType extensionType = new ExtensionType(extensionConfig, multipleInheritanceTable, typeFactory);
+		if (extensionType.getUri() == null) {
+			throw new MMINTException("Model type " + extensionType.getName() + " must have a uri");
+		}
 		IConfigurationElement[] constraintConfig = extensionConfig.getChildren(MODELS_MODELTYPE_CHILD_CONSTRAINT);
 		String constraintLanguage = (constraintConfig.length == 0) ?
 			null :
@@ -138,7 +178,6 @@ public class MMINT implements MMINTConstants {
 			constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION);
 		Model newModelType = extensionType.getFactory().createHeavyModelType(
 			extensionType,
-			isAbstract,
 			constraintLanguage,
 			constraintImplementation
 		);
@@ -163,8 +202,10 @@ public class MMINT implements MMINTConstants {
 	public static ModelRel createModelRelType(IConfigurationElement extensionConfig) throws Exception {
 
 		IConfigurationElement modelTypeConfig = extensionConfig.getChildren(MODELS_CHILD_MODELTYPE)[0];
-		boolean isAbstract = Boolean.parseBoolean(modelTypeConfig.getAttribute(MODELS_MODELTYPE_ATTR_ABSTRACT));
 		ExtensionType extensionType = new ExtensionType(modelTypeConfig, typeFactory);
+		if (extensionType.getUri() == null) {
+			throw new MMINTException("Model relationship type " + extensionType.getName() + " must have a uri");
+		}
 		IConfigurationElement[] binaryTypeConfigs = extensionConfig.getChildren(CHILD_BINARYTYPE);
 		boolean isBinary = (binaryTypeConfigs.length == 0) ? false : true;
 		IConfigurationElement[] constraintConfig = modelTypeConfig.getChildren(MODELS_MODELTYPE_CHILD_CONSTRAINT);
@@ -176,7 +217,6 @@ public class MMINT implements MMINTConstants {
 			constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION);
 		ModelRel newModelRelType = extensionType.getFactory().createHeavyModelRelType(
 			extensionType,
-			isAbstract,
 			isBinary,
 			constraintLanguage,
 			constraintImplementation
@@ -197,6 +237,7 @@ public class MMINT implements MMINTConstants {
 			String targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
 			Model targetModelType = MultiModelTypeRegistry.getType(targetModelTypeUri);
 			if (targetModelType == null) {
+				MMINTException.print(IStatus.WARNING, "Target model type " + targetModelTypeUri + " can't be found, skipping it", null);
 				continue;
 			}
 			boolean isBinarySrc = (isBinary && srcModelTypeUri.equals(targetModelTypeUri));
@@ -206,8 +247,10 @@ public class MMINT implements MMINTConstants {
 				isBinarySrc,
 				newModelRelType
 			);
-			int lowerBound = Integer.parseInt(modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND));
-			int upperBound = Integer.parseInt(modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND));
+			String lowerBoundString = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND);
+			int lowerBound = (lowerBoundString == null) ? 1 : Integer.parseInt(lowerBoundString);
+			String upperBoundString = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND);
+			int upperBound = (upperBoundString == null) ? 1 : Integer.parseInt(upperBoundString);
 			MultiModelTypeFactory.addTypeEndpointCardinality(
 				newModelTypeEndpointRef.getObject(),
 				lowerBound,
@@ -230,7 +273,7 @@ public class MMINT implements MMINTConstants {
 						);
 					}
 					catch (Exception e) {
-						MMINTException.print(IStatus.WARNING, "Model element type can't be created", e);
+						MMINTException.print(IStatus.WARNING, "Model element type " + extensionType.getUri() + " can't be created, skipping it", e);
 						continue;
 					}
 				}
@@ -255,7 +298,7 @@ public class MMINT implements MMINTConstants {
 				);
 			}
 			catch (Exception e) {
-				MMINTException.print(IStatus.WARNING, "Link type can't be created", e);
+				MMINTException.print(IStatus.WARNING, "Link type " + extensionType.getUri() + " can't be created, skipping it", e);
 				continue;
 			}
 			// binary link type
@@ -282,6 +325,7 @@ public class MMINT implements MMINTConstants {
 				String targetModelElemTypeUri = modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
 				ModelElement modelElemType = MultiModelTypeRegistry.getType(targetModelElemTypeUri);
 				if (modelElemType == null) {
+					MMINTException.print(IStatus.WARNING, "Target model element type " + targetModelElemTypeUri + " can't be found, skipping it", null);
 					continue;
 				}
 				//TODO MMINT[MODELENDPOINT] well model elements should *really* be contained in the model endpoint now that they exist
@@ -294,8 +338,10 @@ public class MMINT implements MMINTConstants {
 					isBinarySrc,
 					newLinkTypeRef
 				);
-				int lowerBound = Integer.parseInt(modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND));
-				int upperBound = Integer.parseInt(modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND));
+				String lowerBoundString = modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND);
+				int lowerBound = (lowerBoundString == null) ? 1 : Integer.parseInt(lowerBoundString);
+				String upperBoundString = modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND);
+				int upperBound = (upperBoundString == null) ? 1 : Integer.parseInt(upperBoundString);
 				MultiModelTypeFactory.addTypeEndpointCardinality(
 					newModelElemTypeEndpointRef.getObject(),
 					lowerBound,
@@ -340,37 +386,88 @@ public class MMINT implements MMINTConstants {
 	}
 
 	/**
-	 * Creates and adds a class of parameter types to an operator type.
+	 * Creates and adds parameter types to an operator type.
 	 * 
-	 * @param paramTypeConfig
-	 *            The edu.toronto.cs.se.mmint.operators extension
-	 *            subconfiguration for the class of parameter types.
-	 * @param paramTypes
-	 *            The list of parameter types that will contain the new
-	 *            parameter types.
-	 * @param operatorType
+	 * @param extensionConfig
+	 *            The edu.toronto.cs.se.mmint.operators extension subconfiguration for the parameter types.
+	 * @param containerOperatorType
 	 *            The operator type that will contain the new parameter types.
+	 * @param containerFeatureName
+	 *            The name of the feature in the operator type that will contain the new parameter types.
 	 * @throws MMINTException
-	 *             If there exists a vararg parameter type which is not the last
-	 *             parameter type.
+	 *             If the parameter types can't be created.
 	 */
-	private static void createOperatorTypeParameters(IConfigurationElement paramTypeConfig, EList<Parameter> paramTypes, Operator operatorType) throws MMINTException {
+	private static void createOperatorTypeParameters(IConfigurationElement extensionConfig, Operator containerOperatorType, String containerFeatureName) throws MMINTException {
 
-		int i = 0;
-		IConfigurationElement[] paramTypeConfigElems = paramTypeConfig.getChildren(OPERATORS_INPUTOUTPUT_CHILD_PARAMETER);
-		for (IConfigurationElement paramTypeConfigElem : paramTypeConfigElems) {
-			String newParamTypeName = paramTypeConfigElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_NAME);
-			boolean isVararg = Boolean.parseBoolean(paramTypeConfigElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_ISVARARG));
-			boolean isType = Boolean.parseBoolean(paramTypeConfigElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_ISTYPE));
-			if (isType) {
-				newParamTypeName = "META-" + newParamTypeName; 
+		IConfigurationElement[] paramTypeConfigs = extensionConfig.getChildren(OPERATORS_GENINOUT_CHILD_PARAMETER);
+		for (int i = 0; i < paramTypeConfigs.length; i++) {
+			IConfigurationElement paramTypeConfig = paramTypeConfigs[i];
+			ExtensionType extensionType = new ExtensionType(paramTypeConfig, typeFactory);
+			IConfigurationElement modelTypeEndpointSubconfig = paramTypeConfig.getChildren(CHILD_TYPEENDPOINT)[0];
+			String targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
+			Model targetModelType = MultiModelTypeRegistry.getType(targetModelTypeUri);
+			if (targetModelType == null) {
+				MMINTException.print(IStatus.WARNING, "Target model type " + targetModelTypeUri + " can't be found, skipping it", null);
+				continue;
 			}
-			if (isVararg && i != (paramTypeConfigElems.length-1)) {
-				throw new MMINTException("Only the last parameter can be vararg");
+			ModelEndpoint newModelTypeEndpoint = extensionType.getFactory().createHeavyModelTypeEndpoint(
+				extensionType,
+				targetModelType,
+				containerOperatorType,
+				containerFeatureName
+			);
+			String lowerBoundString = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND);
+			int lowerBound = (lowerBoundString == null) ? 1 : Integer.parseInt(lowerBoundString);
+			String upperBoundString = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND);
+			int upperBound = (upperBoundString == null) ? 1 : Integer.parseInt(upperBoundString);
+			if (upperBound > 1 && i != paramTypeConfigs.length-1) {
+				MMINTException.print(IStatus.WARNING, "Only the last input parameter can have an upper bound > 1, setting it to 1", null);
+				upperBound = 1;
 			}
-			String modelTypeUri = paramTypeConfigElem.getAttribute(OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_MODELTYPEURI);
-			MultiModelHeavyTypeFactory.createHeavyOperatorTypeParameter(newParamTypeName, modelTypeUri, isVararg, paramTypes, operatorType);
-			i++;
+			MultiModelTypeFactory.addTypeEndpointCardinality(
+				newModelTypeEndpoint,
+				lowerBound,
+				upperBound
+			);
+		}
+	}
+
+	/**
+	 * Creates and adds generic types to an operator type.
+	 * 
+	 * @param extensionConfig
+	 *            The edu.toronto.cs.se.mmint.operators extension subconfiguration for the generic types.
+	 * @param containerOperatorType
+	 *            The operator type that will contain the new generic types.
+	 * @throws MMINTException
+	 *             If the generic types can't be created.
+	 */
+	private static void createOperatorTypeGenerics(IConfigurationElement extensionConfig, Operator containerOperatorType) throws MMINTException {
+
+		IConfigurationElement[] paramTypeConfigs = extensionConfig.getChildren(OPERATORS_GENINOUT_CHILD_PARAMETER);
+		for (IConfigurationElement paramTypeConfig : paramTypeConfigs) {
+			ExtensionType extensionType = new ExtensionType(paramTypeConfig, typeFactory);
+			IConfigurationElement genericTypeEndpointSubconfig = paramTypeConfig.getChildren(CHILD_TYPEENDPOINT)[0];
+			String targetGenericTypeUri = genericTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
+			GenericElement targetGenericType = MultiModelTypeRegistry.getType(targetGenericTypeUri);
+			if (targetGenericType == null) {
+				MMINTException.print(IStatus.WARNING, "Target generic type " + targetGenericTypeUri + " can't be found, skipping it", null);
+				continue;
+			}
+			GenericEndpoint newGenericTypeEndpoint = extensionType.getFactory().createHeavyGenericTypeEndpoint(
+				extensionType,
+				targetGenericType,
+				containerOperatorType
+			);
+			String lowerBoundString = genericTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND);
+			int lowerBound = (lowerBoundString == null) ? 1 : Integer.parseInt(lowerBoundString);
+			String upperBoundString = genericTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND);
+			int upperBound = (upperBoundString == null) ? 1 : Integer.parseInt(upperBoundString);
+			MultiModelTypeFactory.addTypeEndpointCardinality(
+				newGenericTypeEndpoint,
+				lowerBound,
+				upperBound
+			);
 		}
 	}
 
@@ -388,11 +485,22 @@ public class MMINT implements MMINTConstants {
 	public static Operator createOperatorType(IConfigurationElement extensionConfig) throws MMINTException {
 
 		ExtensionType extensionType = new ExtensionType(extensionConfig, typeFactory);
+		if (extensionType.getUri() == null) {
+			throw new MMINTException("Operator type " + extensionType.getName() + " must have a uri");
+		}
 		Operator newOperatorType = extensionType.getFactory().createHeavyOperatorType(extensionType);
-		IConfigurationElement inputParamTypeConfig = extensionConfig.getChildren(OPERATORS_CHILD_INPUT)[0];
-		createOperatorTypeParameters(inputParamTypeConfig, newOperatorType.getInputs(), newOperatorType);
-		IConfigurationElement outputParamTypeConfig = extensionConfig.getChildren(OPERATORS_CHILD_OUTPUT)[0];
-		createOperatorTypeParameters(outputParamTypeConfig, newOperatorType.getOutputs(), newOperatorType);
+		IConfigurationElement[] genericsParamTypeConfigs = extensionConfig.getChildren(OPERATORS_CHILD_GENERICS);
+		if (genericsParamTypeConfigs.length > 0) {
+			createOperatorTypeGenerics(genericsParamTypeConfigs[0], newOperatorType);
+		}
+		IConfigurationElement[] inputsParamTypeConfigs = extensionConfig.getChildren(OPERATORS_CHILD_INPUTS);
+		if (inputsParamTypeConfigs.length > 0) {
+			createOperatorTypeParameters(inputsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
+		}
+		IConfigurationElement[] outputsParamTypeConfigs = extensionConfig.getChildren(OPERATORS_CHILD_OUTPUTS);
+		if (outputsParamTypeConfigs.length > 0) {
+			createOperatorTypeParameters(outputsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+		}
 		if (newOperatorType instanceof RandomOperator) {
 			MultiModelTypeFactory.addOperatorTypeRandom((RandomOperator) newOperatorType);
 		}
@@ -445,7 +553,7 @@ public class MMINT implements MMINTConstants {
 			if (prevConversionPath.contains(conversionOperatorType.getUri())) { // cycle
 				continue;
 			}
-			Model conversionType = conversionOperatorType.getOutputs().get(0).getModel();
+			Model conversionType = conversionOperatorType.getOutputs().get(0).getTarget();
 			Set<List<String>> conversionPaths = conversionsTo.get(conversionType.getUri()); // handles multiple paths
 			if (conversionPaths == null) {
 				conversionPaths = new HashSet<List<String>>();
@@ -500,7 +608,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	public static void createTypeHierarchy() {
 
-		createTypeHierarchy(repository, subtypeTable, conversionTable);
+		createTypeHierarchy(cachedTypeMID, subtypeTable, conversionTable);
 	}
 
 	/**
@@ -512,7 +620,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	public static void createTypeHierarchy(MultiModel typeMID) {
 
-		if (typeMID == repository) {
+		if (typeMID == cachedTypeMID) {
 			createTypeHierarchy();
 		}
 		else {
@@ -623,8 +731,8 @@ public class MMINT implements MMINTConstants {
 	 */
 	private void initRepository(IExtensionRegistry registry) {
 
-		repository = MIDFactory.eINSTANCE.createMultiModel();
-		repository.setLevel(MIDLevel.TYPES);
+		cachedTypeMID = MIDFactory.eINSTANCE.createMultiModel();
+		cachedTypeMID.setLevel(MIDLevel.TYPES);
 		bundleTable = new HashMap<String, String>();
 		multipleInheritanceTable = new HashMap<String, Set<String>>();
 		typeFactory = new MultiModelHeavyTypeFactory();
@@ -756,7 +864,7 @@ public class MMINT implements MMINTConstants {
 		copySubtypeTable(subtypeTable, subtypeTableMID);
 		copyConversionTable(conversionTable, conversionTableMID);
 		try {
-			MultiModelUtils.createModelFileInState(repository, TYPEMID_FILENAME);
+			MultiModelUtils.createModelFileInState(cachedTypeMID, TYPEMID_FILENAME);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Error creating Type MID file", e);
@@ -773,7 +881,7 @@ public class MMINT implements MMINTConstants {
 
 		//TODO MMINT[OO] to store operators' custom code in the mid, we would need them to be ecore-generated, but that's a burden for users
 		//TODO MMINT[OO] review the copy-on-sync mechanism and find an alternative
-		repository = MMINTEcoreUtil.copy(multiModel);
+		cachedTypeMID = MMINTEcoreUtil.copy(multiModel);
 		copySubtypeTable(subtypeTableMID, subtypeTable);
 		copyConversionTable(conversionTableMID, conversionTable);
 	}
@@ -805,10 +913,12 @@ public class MMINT implements MMINTConstants {
 
 		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(MMINTActivator.PLUGIN_ID);
 		initPreference(preferences, PREFERENCE_MENU_ICONS_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_MENU_ENDPOINTS_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_MENU_MODELRELS_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_MENU_LINKS_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_MENU_DIAGRAMS_CREATION_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_MENU_OPERATORS_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_TESTS_ENABLED, "false", true);
 		for (String languageId : languageReasoners.keySet()) {
 			String reasonerName = preferences.get(PREFERENCE_MENU_LANGUAGE_REASONER + languageId, null);

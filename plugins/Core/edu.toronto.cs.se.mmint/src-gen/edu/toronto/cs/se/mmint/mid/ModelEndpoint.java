@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint.mid;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
@@ -169,23 +170,39 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	ModelEndpointReference createInstanceReference(ModelRel containerModelRel) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and adds a model instance endpoint of
-	 * this model endpoint type and the reference to it to an Instance MID.
+	 * <!-- begin-user-doc --> Creates and adds a model instance endpoint of this model type endpoint and the reference
+	 * to it to an Instance MID (variant for model relationships).
 	 * 
 	 * @param targetModel
 	 *            The model that is the target of the new model endpoint.
 	 * @param containerModelRel
-	 *            The model relationship that will contain the new model
-	 *            endpoint.
+	 *            The model relationship that will contain the new model endpoint.
 	 * @return The created reference to the new model endpoint.
 	 * @throws MMINTException
-	 *             If this is a model instance endpoint, or if the container
-	 *             model relationship is binary and has already 2 model
-	 *             endpoints. <!-- end-user-doc -->
+	 *             If this is a model instance endpoint, or if the container model relationship is binary and has
+	 *             already 2 model endpoints. <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true" containerModelRelRequired="true"
 	 * @generated
 	 */
 	ModelEndpointReference createInstanceAndReference(Model targetModel, ModelRel containerModelRel) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Creates and adds a model instance endpoint of this model type endpoint to an Instance MID
+	 * (variant for operators).
+	 * 
+	 * @param targetModel
+	 *            The model that is the target of the new model endpoint.
+	 * @param containerOperator
+	 *            The operator that will contain the new model endpoint.
+	 * @param containerFeatureName
+	 *            The name of the feature in the operator that will contain the new model endpoint.
+	 * @throws MMINTException
+	 *             If this is a model instance endpoint, or if the feature name is not found in the container operator.
+	 *             <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true" containerOperatorRequired="true" containerFeatureNameRequired="true"
+	 * @generated
+	 */
+	ModelEndpoint createInstance(Model targetModel, Operator containerOperator, String containerFeatureName) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model instance endpoint and the

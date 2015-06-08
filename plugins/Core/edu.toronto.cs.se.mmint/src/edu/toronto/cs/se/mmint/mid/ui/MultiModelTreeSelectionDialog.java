@@ -29,7 +29,7 @@ public class MultiModelTreeSelectionDialog extends ElementTreeSelectionDialog {
 		setInput(input);
 	}
 
-	public Object getOnlyResult() {
+	public Object getUniqueResult() {
 
 		Object[] results = contentProvider.getElements(input);
 		if (results.length == 1 && !contentProvider.hasChildren(results[0])) {

@@ -11,12 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
 
-import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -24,6 +18,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -242,6 +242,24 @@ public class BinaryModelRelImpl extends ModelRelImpl implements BinaryModelRel {
 				}
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public String toString() {
+
+		String ret = this.getName() + "(";
+		if (this.getSourceModel() != null) {
+			ret += this.getSourceModel().getName();
+		}
+		ret += "->";
+		if (this.getTargetModel() != null) {
+			ret += this.getTargetModel().getName();
+		}
+		ret += ")";
+
+		return ret;
 	}
 
 	/**

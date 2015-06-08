@@ -21,12 +21,15 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -45,10 +48,8 @@ import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
 public class TOSEM12 extends RandomOperatorImpl {
 
-	private static final String Z3_LANGUAGE = "SMTLIB";
-	private static final String Z3_NAME = "Z3 Solver";
-	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
-	private static final String PREVIOUS_OPERATOR2_URI = "http://se.cs.toronto.edu/modelepedia/Operator_GenerateRandomGraphMAVO";
+	// input-output
+	private final static @NonNull String IN_MODEL = "random";
 	private static final String PROPERTY_IN_NUMCONCRETIZATIONS = "numConcretizations";
 	private static final String PROPERTY_IN_PROPERTYID = "propertyId";
 	private static final String PROPERTY_OUT_TIMEMAVO = "timeMAVO";
@@ -57,6 +58,11 @@ public class TOSEM12 extends RandomOperatorImpl {
 	private static final String PROPERTY_OUT_TIMEMAVOALLSAT = "timeMAVOAllsat";
 	private static final String PROPERTY_OUT_SPEEDUPCLASSICALMAVO = "speedupClassicalMAVO";
 	private static final String PROPERTY_OUT_SPEEDUPMAVOALLSATMAVOBACKBONE = "speedupMAVOAllsatMAVOBackbone";
+	// constants
+	private static final String Z3_LANGUAGE = "SMTLIB";
+	private static final String Z3_NAME = "Z3 Solver";
+	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
+	private static final String PREVIOUS_OPERATOR2_URI = "http://se.cs.toronto.edu/modelepedia/Operator_GenerateRandomGraphMAVO";
 
 	// input
 	private int numConcretizations;
@@ -465,13 +471,16 @@ public class TOSEM12 extends RandomOperatorImpl {
 	}
 
 	@Override
-	public EList<Model> execute(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		Model randomGraphModel = actualParameters.get(0);
-		generateSMTLIBConcretizations();
-		generateSMTLIBGroundedProperty((Graph) randomGraphModel.getEMFInstanceRoot());
+		// input
+		Model randomGraphModel = inputsByName.get(IN_MODEL);
 
 		// run
+		generateSMTLIBConcretizations();
+		generateSMTLIBGroundedProperty((Graph) randomGraphModel.getEMFInstanceRoot());
 		doMAVOPropertyCheck();
 		if (timeClassicalEnabled) {
 			doClassicalPropertyCheck();
@@ -500,7 +509,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 
-		return actualParameters;
+		return new HashMap<>();
 	}
 
 }

@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.modelepedia.z3.reasoning;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -40,6 +41,7 @@ import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTr
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
@@ -70,11 +72,10 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		if (ecore2smt == null) {
 			throw new MMINTException("Can't find " + ECOREMAVOTOSMTLIB_OPERATOR_URI + " operator type");
 		}
-		EList<Model> actualParameters = new BasicEList<Model>();
-		actualParameters.add(model);
-		ecore2smt.readInputProperties(ecore2smt.getInputProperties());
-		ecore2smt.init();
-		ecore2smt.execute(actualParameters);
+		EList<Model> inputModels = new BasicEList<>();
+		inputModels.add(model);
+		EList<OperatorInput> inputs = ecore2smt.checkAllowedInputs(inputModels);
+		ecore2smt.start(inputs, new HashMap<>(), null);
 		ecore2smt.cleanup();
 
 		return ecore2smt.getZ3MAVOModelParser();

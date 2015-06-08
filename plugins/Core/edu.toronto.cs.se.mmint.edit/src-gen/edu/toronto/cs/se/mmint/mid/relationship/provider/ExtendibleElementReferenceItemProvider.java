@@ -330,6 +330,11 @@ public class ExtendibleElementReferenceItemProvider
 			(createChildParameter
 				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 OperatorFactory.eINSTANCE.createRandomOperator()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				 OperatorFactory.eINSTANCE.createGenericEndpoint()));
 	}
 
 	/**

@@ -22,16 +22,20 @@
                name="IStarMAVOToSMTLIB"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_IStarMAVOToSMTLIB"
                class="edu.toronto.cs.se.modelepedia.istar_mavo.operator.IStarMAVOToSMTLIB">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB">
+            </superType>
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="istarModel"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="mavo">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-         </output>
+         </inputs>
       </operatorType>
    </extension>
 
@@ -43,15 +47,16 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_RE13"
                class="edu.toronto.cs.se.modelepedia.istar_mavo.operator.RE13">
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="istarModel"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="istar">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-         </output>
+         </inputs>
       </operatorType>
    </extension>
 
@@ -66,15 +71,16 @@
                   uri="http://se.cs.toronto.edu/modelepedia/Operator_RE13">
             </superType>
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="istarModel"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="istar">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-         </output>
+         </inputs>
       </operatorType>
    </extension>
 
@@ -89,15 +95,18 @@
                   uri="http://se.cs.toronto.edu/modelepedia/Operator_FASE14">
             </superType>
          </type>
-         <input>
-            <parameter
-                  isVararg="false"
-                  name="istarModel"
-                  modelTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+         <inputs>
+            <parameter>
+	           <type
+	                 name="istar">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+	           </typeEndpoint>
             </parameter>
-         </input>
-         <output>
-         </output>
+         </inputs>
+         <outputs>
+         </outputs>
       </operatorType>
    </extension>
 

@@ -27,9 +27,8 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.OperatorDelCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Parameter2EditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ParameterEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.OperatorItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint2EditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint3EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 
 public class OperatorSemanticEditPolicy extends OperatorItemSemanticEditPolicy {
@@ -52,11 +51,11 @@ public class OperatorSemanticEditPolicy extends OperatorItemSemanticEditPolicy {
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
-			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == ParameterEditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == ModelEndpoint2EditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
-			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == Parameter2EditPart.VISUAL_ID) {
+			if (MIDVisualIDRegistry.getVisualID(outgoingLink) == ModelEndpoint3EditPart.VISUAL_ID) {
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}

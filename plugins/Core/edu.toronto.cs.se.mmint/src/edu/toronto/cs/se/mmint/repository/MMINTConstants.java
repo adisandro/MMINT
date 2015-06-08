@@ -54,6 +54,8 @@ public interface MMINTConstants {
 	public final static String ROOT_LINK_URI = ROOT_MODELREL_URI + URI_SEPARATOR + "Link";
 	/** The uri of the root model element type endpoint. */
 	public final static String ROOT_MODELELEMENDPOINT_URI = ROOT_MODELREL_URI + URI_SEPARATOR + "Link" + ENDPOINT_SEPARATOR + "ModelElem" + URI_SEPARATOR + "ModelElemEndpoint";
+	/** The uri of the root operator type. */
+	public final static String ROOT_OPERATOR_URI = ROOT_URI + URI_SEPARATOR + "Operator";
 	/** The uri of the root editor type. */
 	public final static String ROOT_EDITOR_URI = ROOT_MODEL_URI + EDITOR_SEPARATOR + "tree";
 	/** The name of the root editor type. */
@@ -69,6 +71,8 @@ public interface MMINTConstants {
 	public final static String TYPE_ATTR_URI = "uri";
 	/** An extension point's type child's class attribute. */
 	public final static String TYPE_ATTR_CLASS = "class";
+	/** An extension point's type child's abstract attribute. */
+	public final static String TYPE_ATTR_ISABSTRACT = "isAbstract";
 	/** An extension point's type superType child. */
 	public final static String TYPE_CHILD_SUPERTYPE = "superType";
 	/** An extension point's type superType child's uri attribute. */
@@ -93,8 +97,6 @@ public interface MMINTConstants {
 	public final static String MODELS_EXT_POINT = "edu.toronto.cs.se.mmint.models";
 	/** The Models extension point's modelType child. */
 	public final static String MODELS_CHILD_MODELTYPE = "modelType";
-	/** The Models extension point's modelType's abstract attribute. */
-	public final static String MODELS_MODELTYPE_ATTR_ABSTRACT = "isAbstract";
 	/** The Models extension point's modelType's constraint child. */
 	public final static String MODELS_MODELTYPE_CHILD_CONSTRAINT = "constraint";
 	/** The Models extension point's modelType's constraint child's language attribute. */
@@ -128,20 +130,14 @@ public interface MMINTConstants {
 
 	/** The Operators extension point's id. */
 	public final static String OPERATORS_EXT_POINT = "edu.toronto.cs.se.mmint.operators";
-	/** The Operators extension point's input child. */
-	public final static String OPERATORS_CHILD_INPUT = "input";
-	/** The Operators extension point's output child. */
-	public final static String OPERATORS_CHILD_OUTPUT = "output";
-	/** The Operators extension point's input/output's parameter child. */
-	public final static String OPERATORS_INPUTOUTPUT_CHILD_PARAMETER = "parameter";
-	/** The Operators extension point's input/output's parameter child's name attribute. */
-	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_NAME = "name";
-	/** The Operators extension point's input/output's parameter child's isVararg attribute. */
-	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_ISVARARG = "isVararg";
-	/** The Operators extension point's input/output's parameter child's isType attribute. */
-	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_ISTYPE = "isType";
-	/** The Operators extension point's input/output's parameter child's modelTypeUri attribute. */
-	public final static String OPERATORS_INPUTOUTPUT_PARAMETER_ATTR_MODELTYPEURI = "modelTypeUri";
+	/** The Operators extension point's generics child. */
+	public final static String OPERATORS_CHILD_GENERICS = "generics";
+	/** The Operators extension point's inputs child. */
+	public final static String OPERATORS_CHILD_INPUTS = "inputs";
+	/** The Operators extension point's outputs child. */
+	public final static String OPERATORS_CHILD_OUTPUTS = "outputs";
+	/** The Operators extension point's generics/inputs/outputs's parameter child. */
+	public final static String OPERATORS_GENINOUT_CHILD_PARAMETER = "parameter";
 
 	/** The Eclipse's Editors extension point's id. */
 	public final static String ECLIPSE_EDITORS_EXT_POINT = "org.eclipse.ui.editors";
@@ -166,10 +162,12 @@ public interface MMINTConstants {
 	public final static String PREFERENCE_MMINT_ID = "edu.toronto.cs.se.mmint";
 	public final static String PREFERENCE_MENU_ID = PREFERENCE_MMINT_ID + ".mid.diagram.menu";
 	public final static String PREFERENCE_MENU_ICONS_ENABLED = PREFERENCE_MENU_ID + ".IconsEnabled";
-	public final static String PREFERENCE_MENU_ENDPOINTS_ENABLED = PREFERENCE_MENU_ID + ".EndpointsEnabled";
 	public final static String PREFERENCE_MENU_MODELRELS_ENABLED = PREFERENCE_MENU_ID + ".ModelRelsEnabled";
-	public final static String PREFERENCE_MENU_LINKS_ENABLED = PREFERENCE_MENU_ID + ".LinksEnabled";
-	public final static String PREFERENCE_MENU_DIAGRAMS_CREATION_ENABLED = PREFERENCE_MENU_ID + ".DiagramsCreationEnabled";
+	public final static String PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED = PREFERENCE_MENU_ID + ".ModelRelEndpointsEnabled";
+	public final static String PREFERENCE_MENU_OPERATORS_ENABLED = PREFERENCE_MENU_ID + ".OperatorsEnabled";
+	public final static String PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED = PREFERENCE_MENU_ID + ".OperatorEndpointsEnabled";
+	public final static String PREFERENCE_MENU_OPENMODELEDITORS_ENABLED = PREFERENCE_MENU_ID + ".OpenModelEditorsEnabled";
+	public final static String PREFERENCE_MENU_POLYMORPHISM_ENABLED = PREFERENCE_MENU_ID + ".PolymorphismEnabled";
 	public final static String PREFERENCE_MENU_LANGUAGE_REASONER = PREFERENCE_MENU_ID + ".Reasoner";
 	public final static String PREFERENCE_TESTS_ENABLED = PREFERENCE_MMINT_ID + ".TestsEnabled";
 

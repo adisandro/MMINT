@@ -11,14 +11,14 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
-import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,10 +73,19 @@ public class ConversionOperatorImpl extends OperatorImpl implements ConversionOp
 	 * @generated NOT
 	 */
 	@Override
+	public String toString() {
+
+		return "[conv] " + super.toString();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
 	public void deleteType() throws MMINTException {
 
 		super.deleteType();
-		getInputs().get(0).getModel().getConversionOperators().remove(this);
+		getInputs().get(0).getTarget().getConversionOperators().remove(this);
 	}
 
 	/**
@@ -84,7 +93,7 @@ public class ConversionOperatorImpl extends OperatorImpl implements ConversionOp
 	 */
 	public void cleanup() throws Exception {
 
-		//TODO MMINT[OPERATOR] why don't we pass a flag when the operator is in a conversion chain to let the implementation know it shouldn't create stuff?
+		//TODO MMINT[OPERATOR] Integrate better with new apis, e.g. a transformation output now can be a model rel and it implies the converted model
 		throw new MMINTException("The default cleanup() function must be overridden");
 	}
 

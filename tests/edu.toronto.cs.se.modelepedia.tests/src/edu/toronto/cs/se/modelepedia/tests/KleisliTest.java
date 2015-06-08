@@ -15,7 +15,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-
+import java.util.Map;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
@@ -50,9 +50,11 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -200,10 +202,13 @@ public class KleisliTest extends MMINTTest {
 		);
 		Model inputModel =  tgtModelType.createInstanceAndEditor(INPUT_MODEL_URI, ModelOrigin.CREATED, instanceMID);
 		MultiModelUtils.createModelFile(instanceMID, TESTS_INSTANCEMID_URI, true); // this is needed for correct uris in the operator
-		EList<Model> transformationParameters = new BasicEList<Model>();
-		transformationParameters.add(kModelRelType);
-		transformationParameters.add(inputModel);
-		EList<Model> transformationOutput = MultiModelTypeRegistry.<Operator>getType(KLEISLI_TRANSFORMATIONOPERATORTYPE_URI).execute(transformationParameters);
+		Operator transformationOperator = MultiModelTypeRegistry.<Operator>getType(KLEISLI_TRANSFORMATIONOPERATORTYPE_URI);
+		EList<Model> transformationInputModels = new BasicEList<Model>();
+		transformationInputModels.add(inputModel);
+		EList<OperatorInput> transformationInputs = transformationOperator.checkAllowedInputs(transformationInputModels);
+		Map<String, MultiModel> outputMIDsByName = MultiModelOperatorUtils.createSimpleOutputMIDsByName(transformationOperator, instanceMID);
+		//TODO MMINT[TESTS] How can I pass genericsByName with KMR=kModelRelType? 
+		Map<String, Model> transformationOutput = transformationOperator.start(transformationInputs, outputMIDsByName, instanceMID);
 		MultiModelUtils.createModelFile(instanceMID, TESTS_INSTANCEMID_URI, true);
 
 		// test equivalence with oracle

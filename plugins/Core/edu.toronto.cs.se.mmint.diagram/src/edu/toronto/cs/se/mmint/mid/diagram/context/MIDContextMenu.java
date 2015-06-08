@@ -47,6 +47,7 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -58,7 +59,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  */
 public class MIDContextMenu extends ContributionItem {
 
-	public static final int INVALID_MENU_ITEM_LIMIT = 20;
+	public static final int INVALID_MENU_ITEM_LIMIT = 25;
 	public static final String MMINT_MENU_LABEL = "MMINT";
 	private static final String MMINT_MENU_OPERATOR_LABEL = "Run Operator";
 	private static final String MMINT_MENU_CAST_LABEL = "Cast Type";
@@ -105,7 +106,7 @@ public class MIDContextMenu extends ContributionItem {
 
 		// get model selection
 		MultiModel instanceMID = null;
-		EList<Model> models = new BasicEList<Model>();
+		EList<Model> selectedModels = new BasicEList<Model>();
 		ITextAwareEditPart label = null;
 		List<GraphicalEditPart> editParts = new ArrayList<GraphicalEditPart>();
 		for (Object object : objects) {
@@ -147,7 +148,7 @@ public class MIDContextMenu extends ContributionItem {
 					doCopy = false;
 				}
 				if (doOperator || doCast || doCheckConstraint || doCopy || doAddConstraint || doModelepedia || doCoherence || doRefineByConstraint) {
-					models.add(model);
+					selectedModels.add(model);
 				}
 				if (doCast) {
 					for (Object child : editPart.getChildren()) {
@@ -165,18 +166,10 @@ public class MIDContextMenu extends ContributionItem {
 				return;
 			}
 		}
-		if (instanceMID == null && models.isEmpty()) { // no relevant edit parts selected
+		if (instanceMID == null && selectedModels.isEmpty()) { // no relevant edit parts selected
 			return;
 		}
 
-		// polymorphism
-		EList<EList<Model>> runtimeModelTypes = null;
-		if (doOperator || doCast) {
-			runtimeModelTypes = new BasicEList<EList<Model>>();
-			for (Model model : models) {
-				runtimeModelTypes.add(new BasicEList<Model>(MultiModelTypeIntrospection.getRuntimeTypes(model)));
-			}
-		}
 		// create dynamic menus
 		MenuItem mmintItem = new MenuItem(menu, SWT.CASCADE, index);
 		mmintItem.setText(MMINT_MENU_LABEL);
@@ -185,61 +178,53 @@ public class MIDContextMenu extends ContributionItem {
 		// operator
 		if (doOperator) {
 			if (instanceMID == null) {
-				instanceMID = MultiModelRegistry.getMultiModel(models.get(0));
+				instanceMID = MultiModelRegistry.getMultiModel(selectedModels.get(0));
 			}
-			EList<Operator> operatorTypes = new BasicEList<Operator>();
-			EList<Map<Integer, EList<ConversionOperator>>> conversions = new BasicEList<Map<Integer, EList<ConversionOperator>>>();
-			EList<EList<Model>> generics = new BasicEList<EList<Model>>();
+			List<Operator> executableOperators = new ArrayList<>();
+			List<EList<OperatorInput>> executableOperatorsInputs = new ArrayList<>();
 			for (Operator operatorType : MultiModelTypeRegistry.getOperatorTypes()) {
 				try {
-					operatorTypes.addAll(operatorType.getExecutables(models, runtimeModelTypes, conversions, generics));
+					EList<OperatorInput> executableOperatorInputs = operatorType.checkAllowedInputs(selectedModels);
+					if (executableOperatorInputs == null) {
+						continue;
+					}
+					executableOperators.add(operatorType);
+					executableOperatorsInputs.add(executableOperatorInputs);
 				}
 				catch (MMINTException e) {
 					continue;
 				}
 			}
-			if (!operatorTypes.isEmpty()) {
+			if (!executableOperators.isEmpty()) {
 				MenuItem operatorItem = new MenuItem(mmintMenu, SWT.CASCADE);
 				operatorItem.setText(MMINT_MENU_OPERATOR_LABEL);
 				Menu operatorMenu = new Menu(mmintMenu);
 				operatorItem.setMenu(operatorMenu);
-				for (int i = 0; i < operatorTypes.size(); i++) {
-					Operator operatorType = operatorTypes.get(i);
-					Map<Integer, EList<ConversionOperator>> conversion = conversions.get(i);
-					EList<Model> generic = generics.get(i);
-					String text = operatorType.getName();
-					EList<Model> actualParameters = new BasicEList<Model>();
-					actualParameters.addAll(generic);
-					actualParameters.addAll(models);
-					if (!generic.isEmpty()) {
-						text += "<";
-						boolean separator = false;
-						for (Model genericModel : generic) {
-							if (separator) {
-								text += ",";
-							}
-							text += genericModel.getName();
-							if (!separator) {
-								separator = true;
-							}
-						}
-						text += ">";
-					}
-					if (!conversion.isEmpty()) {
-						text += " [coercion]";
-					}
+				for (int i = 0; i < executableOperators.size(); i++) {
+					Operator executableOperator = executableOperators.get(i);
+					EList<Model> inputModels = new BasicEList<Model>(selectedModels);
+					//TODO MMINT[OPERATOR] There should be a visual match between formal and actual parameter, with indication of coercion
+					String text = executableOperator.toString();
 					MenuItem operatorSubitem = new MenuItem(operatorMenu, SWT.NONE);
 					operatorSubitem.setText(text);
 					operatorSubitem.addSelectionListener(
-						new MIDContextRunOperatorListener(MMINT_MENU_OPERATOR_LABEL, instanceMID, operatorType, actualParameters, conversion)
+						new MIDContextRunOperatorListener(
+							MMINT_MENU_OPERATOR_LABEL,
+							executableOperator,
+							executableOperatorsInputs.get(i),
+							instanceMID
+						)
 					);
-					//TODO MMINT[OPERATOR] nice to show label of operator invocation with actual parameters
-					//TODO MMINT[OPERATOR] traceability, could be nice to create an instance of operator, with name = actual parameters
 				}
 			}
 		}
 		// cast
 		if (doCast) {
+			// polymorphism
+			EList<EList<Model>> runtimeModelTypes = new BasicEList<EList<Model>>();
+			for (Model model : selectedModels) {
+				runtimeModelTypes.add(new BasicEList<Model>(MultiModelTypeIntrospection.getRuntimeTypes(model)));
+			}
 			if (runtimeModelTypes.get(0).size() > 1) {
 				MenuItem castItem = new MenuItem(mmintMenu, SWT.CASCADE);
 				castItem.setText(MMINT_MENU_CAST_LABEL);
@@ -247,7 +232,7 @@ public class MIDContextMenu extends ContributionItem {
 				castItem.setMenu(castMenu);
 				boolean isDowncast = false;
 				for (Model runtimeModelType : runtimeModelTypes.get(0)) {
-					if (runtimeModelType.getUri().equals(models.get(0).getMetatypeUri())) {
+					if (runtimeModelType.getUri().equals(selectedModels.get(0).getMetatypeUri())) {
 						isDowncast = true;
 						continue;
 					}
@@ -255,14 +240,14 @@ public class MIDContextMenu extends ContributionItem {
 					String text = (isDowncast) ? runtimeModelType.getName() + DOWNCAST_LABEL : runtimeModelType.getName();
 					castSubitem.setText(text);
 					castSubitem.addSelectionListener(
-						new MIDContextCastTypeListener(MMINT_MENU_CAST_LABEL, models.get(0), runtimeModelType, label)
+						new MIDContextCastTypeListener(MMINT_MENU_CAST_LABEL, selectedModels.get(0), runtimeModelType, label)
 					);
 				}
 			}
 		}
 		// coherence
 		if (doCoherence) {
-			Map<Model, Set<List<ConversionOperator>>> multiplePathConversions = MultiModelTypeHierarchy.getMultiplePathConversions(models.get(0).getMetatypeUri());
+			Map<Model, Set<List<ConversionOperator>>> multiplePathConversions = MultiModelTypeHierarchy.getMultiplePathConversions(selectedModels.get(0).getMetatypeUri());
 			if (!multiplePathConversions.isEmpty()) {
 				MenuItem coherenceItem = new MenuItem(mmintMenu, SWT.CASCADE);
 				coherenceItem.setText(MMINT_MENU_COHERENCE_LABEL);
@@ -272,7 +257,7 @@ public class MIDContextMenu extends ContributionItem {
 					MenuItem coherenceSubitem = new MenuItem(coherenceMenu, SWT.NONE);
 					coherenceSubitem.setText("To " + conversionPathsEntry.getKey().getName());
 					coherenceSubitem.addSelectionListener(
-						new MIDContextCheckCoherenceListener(MMINT_MENU_COHERENCE_LABEL, models.get(0), conversionPathsEntry.getValue())
+						new MIDContextCheckCoherenceListener(MMINT_MENU_COHERENCE_LABEL, selectedModels.get(0), conversionPathsEntry.getValue())
 					);
 				}
 			}
@@ -282,7 +267,7 @@ public class MIDContextMenu extends ContributionItem {
 			MenuItem constraintItem = new MenuItem(mmintMenu, SWT.NONE);
 			constraintItem.setText(MMINT_MENU_ADDCONSTRAINT_LABEL);
 			constraintItem.addSelectionListener(
-				new AddModifyConstraintListener(MMINT_MENU_ADDCONSTRAINT_LABEL, models.get(0))
+				new AddModifyConstraintListener(MMINT_MENU_ADDCONSTRAINT_LABEL, selectedModels.get(0))
 			);
 		}
 		// check constraint
@@ -290,7 +275,7 @@ public class MIDContextMenu extends ContributionItem {
 			MenuItem constraintItem = new MenuItem(mmintMenu, SWT.NONE);
 			constraintItem.setText(MMINT_MENU_CHECKCONSTRAINT_LABEL);
 			constraintItem.addSelectionListener(
-				new MIDContextCheckConstraintListener(MMINT_MENU_CHECKCONSTRAINT_LABEL, models.get(0), editParts.get(0))
+				new MIDContextCheckConstraintListener(MMINT_MENU_CHECKCONSTRAINT_LABEL, selectedModels.get(0), editParts.get(0))
 			);
 		}
 		// refine
@@ -298,7 +283,7 @@ public class MIDContextMenu extends ContributionItem {
 			MenuItem refineItem = new MenuItem(mmintMenu, SWT.NONE);
 			refineItem.setText(MMINT_MENU_REFINEBYCONSTRAINT_LABEL);
 			refineItem.addSelectionListener(
-				new MIDContextRefineByConstraintListener(MMINT_MENU_REFINEBYCONSTRAINT_LABEL, models.get(0))
+				new MIDContextRefineByConstraintListener(MMINT_MENU_REFINEBYCONSTRAINT_LABEL, selectedModels.get(0))
 			);
 		}
 		// copy
@@ -306,12 +291,12 @@ public class MIDContextMenu extends ContributionItem {
 			MenuItem copyItem = new MenuItem(mmintMenu, SWT.NONE);
 			copyItem.setText(MMINT_MENU_COPY_LABEL);
 			copyItem.addSelectionListener(
-				new MIDContextCopyModelListener(MMINT_MENU_COPY_LABEL, models.get(0))
+				new MIDContextCopyModelListener(MMINT_MENU_COPY_LABEL, selectedModels.get(0))
 			);
 		}
 		// modelepedia
 		if (doModelepedia) {
-			Model model = models.get(0);
+			Model model = selectedModels.get(0);
 			if (MultiModelConstraintChecker.isInstancesLevel(model)) {
 				model = model.getMetatype();
 			}

@@ -26,8 +26,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MIDBaseItemSemanticEdit
 /**
  * @generated
  */
-public class ExtendibleElementSupertypeReorientCommand extends
-		EditElementCommand {
+public class ExtendibleElementSupertypeReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -52,8 +51,7 @@ public class ExtendibleElementSupertypeReorientCommand extends
 	/**
 	 * @generated
 	 */
-	public ExtendibleElementSupertypeReorientCommand(
-			ReorientReferenceRelationshipRequest request) {
+	public ExtendibleElementSupertypeReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -84,9 +82,9 @@ public class ExtendibleElementSupertypeReorientCommand extends
 		if (!(oldEnd instanceof ExtendibleElement && newEnd instanceof ExtendibleElement)) {
 			return false;
 		}
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistExtendibleElementSupertype_4013(getNewSource(),
-						getOldTarget());
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistExtendibleElementSupertype_4013(
+			getNewSource(),
+			getOldTarget());
 	}
 
 	/**
@@ -96,19 +94,17 @@ public class ExtendibleElementSupertypeReorientCommand extends
 		if (!(oldEnd instanceof ExtendibleElement && newEnd instanceof ExtendibleElement)) {
 			return false;
 		}
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistExtendibleElementSupertype_4013(getOldSource(),
-						getNewTarget());
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistExtendibleElementSupertype_4013(
+			getOldSource(),
+			getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

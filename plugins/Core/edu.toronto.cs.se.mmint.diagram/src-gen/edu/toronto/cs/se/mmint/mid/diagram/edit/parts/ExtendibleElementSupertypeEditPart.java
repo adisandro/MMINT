@@ -28,8 +28,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ExtendibleElementSupert
 /**
  * @generated
  */
-public class ExtendibleElementSupertypeEditPart extends ConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class ExtendibleElementSupertypeEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -48,10 +47,8 @@ public class ExtendibleElementSupertypeEditPart extends ConnectionNodeEditPart
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ExtendibleElementSupertypeItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ExtendibleElementSupertypeSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExtendibleElementSupertypeItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExtendibleElementSupertypeSemanticEditPolicy());
 	}
 
 	/**
