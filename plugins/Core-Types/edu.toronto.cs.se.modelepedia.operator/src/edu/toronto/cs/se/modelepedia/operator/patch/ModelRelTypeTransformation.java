@@ -59,7 +59,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 	// input-output
 	private final static @NonNull String IN_MODEL = "src";
 	private final static @NonNull String OUT_MODEL = "tgt";
-	private final static @NonNull String OUT_MODELREL = "trace";
+	protected final static @NonNull String OUT_MODELREL = "trace";
 	private final static @NonNull String GENERIC_MODELRELTYPE = "MR";
 	// constants
 	protected final static @NonNull String TRANSFORMATION_SUFFIX = "_transformed";

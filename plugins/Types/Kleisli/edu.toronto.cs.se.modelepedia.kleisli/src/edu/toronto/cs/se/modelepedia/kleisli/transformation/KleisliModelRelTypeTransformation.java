@@ -11,10 +11,12 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.transformation;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.Map;
 
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
@@ -38,10 +40,12 @@ public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformatio
 	}
 
 	@Override
-	public EList<Model> run(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(Map<String, Model> inputsByName,
+		java.util.Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName)
+		throws Exception {
 
-		EList<Model> result = super.run(actualParameters);
-		KleisliBinaryModelRel kTraceModelRel = (KleisliBinaryModelRel) result.get(1);
+		Map<String, Model> outputsByName = super.run(inputsByName, genericsByName, outputMIDsByName);
+		KleisliBinaryModelRel kTraceModelRel = (KleisliBinaryModelRel) outputsByName.get(OUT_MODELREL);
 		Model modelPivot = kTraceModelRel.getSourceModel();
 		kTraceModelRel.setSourceModel(kTraceModelRel.getTargetModel());
 		kTraceModelRel.setTargetModel(modelPivot);
@@ -58,7 +62,7 @@ public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformatio
 			((BinaryLinkReference) kLinkRef).setTargetModelElemRef(modelElemRefPivot);
 		}
 
-		return result;
+		return outputsByName;
 	}
 
 }

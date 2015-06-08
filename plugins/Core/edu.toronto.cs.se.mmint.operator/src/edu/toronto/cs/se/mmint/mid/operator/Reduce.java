@@ -35,6 +35,7 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -152,10 +153,8 @@ public class Reduce extends OperatorImpl {
 				}
 				// merge model rels that have been composed
 				Operator mergeOperatorType = MultiModelTypeRegistry.getType(MODELRELMERGE_OPERATORTYPE_URI);
-				Map<String, MultiModel> mergeOperatorOutputMIDsByName = mergeOperatorType.getOutputs().stream()
-					.collect(Collectors.toMap(
-						outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
-						outputModelTypeEndpoint -> reducedMID));
+				Map<String, MultiModel> mergeOperatorOutputMIDsByName = MultiModelOperatorUtils
+					.createSimpleOutputMIDsByName(mergeOperatorType, reducedMID);
 				Set<ModelRel> compModelRelsToDelete = new HashSet<>();
 				for (int i = 0; i < compModelRels.size(); i++) {
 					ModelRel compModelRel1 = compModelRels.get(i);

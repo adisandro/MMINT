@@ -11,25 +11,46 @@
  */
 package edu.toronto.cs.se.modelepedia.tutorial.operator;
 
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.util.EList;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.jdt.annotation.NonNull;
+
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.ATLConversion;
 import edu.toronto.cs.se.modelepedia.tutorial.army.ArmyPackage;
 
 public class EconomyToArmy extends ATLConversion {
 
-	@Override
-	public EList<Model> run(EList<Model> actualParameters) throws Exception {
+	// input-output
+	private final static @NonNull String IN_MODEL = "economy";
+	private final static @NonNull String OUT_MODEL = "army";
 
-		init(actualParameters, ArmyPackage.eNAME);
+	@Override
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
+
+		// input
+		inputModel = inputsByName.get(IN_MODEL);
+		MultiModel instanceMID = outputMIDsByName.get(OUT_MODEL);
+
+		// transform
+		init(ArmyPackage.eNAME);
 		EconomyToArmy_M2M atl = new EconomyToArmy_M2M();
 		atl.loadModels(inputModel.getUri());
 		atl.doEconomyToArmy_M2M(new NullProgressMonitor());
 		atl.saveModels(convertedModelUri);
 
-		return super.createConvertedModel(ArmyPackage.eNS_URI);
+		// output
+		super.createConvertedModel(ArmyPackage.eNS_URI, instanceMID);
+		Map<String, Model> outputsByName = new HashMap<>();
+		outputsByName.put(OUT_MODEL, convertedModel);
+
+		return outputsByName;
 	}
 
 }

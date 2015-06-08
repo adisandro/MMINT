@@ -26,7 +26,7 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="petriNet">
+	                 name="petrinet">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/PetriNet">

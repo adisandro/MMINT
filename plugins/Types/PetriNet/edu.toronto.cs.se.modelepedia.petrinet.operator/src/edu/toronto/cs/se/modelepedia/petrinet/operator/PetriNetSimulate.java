@@ -11,25 +11,35 @@
  */
 package edu.toronto.cs.se.modelepedia.petrinet.operator;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
 
 public class PetriNetSimulate extends OperatorImpl {
 
+	// input-output
+	private final static @NonNull String IN_MODEL = "petrinet";
+
 	@Override
-	public EList<Model> run(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
+
+		// input
+		PetriNet petrinet = (PetriNet) inputsByName.get(IN_MODEL).getEMFInstanceRoot();
 
 		// simulate
-		PetriNet petrinet = (PetriNet) actualParameters.get(0).getEMFInstanceRoot();
 		boolean goodResult = !petrinet.getNodes().isEmpty();
-
-		// show result
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		int dialogType = (goodResult) ? MessageDialog.INFORMATION : MessageDialog.ERROR;
 		String dialogMessage = (goodResult) ? "Good simulation result" : "Bad simulation result";
@@ -44,7 +54,7 @@ public class PetriNetSimulate extends OperatorImpl {
 		);
 		dialog.open();
 
-		return null;
+		return new HashMap<>();
 	}
 
 }

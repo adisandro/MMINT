@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.gef.EditPart;
@@ -261,7 +262,7 @@ public class MultiModelOperatorUtils {
 		return instanceMID;
 	}
 
-	public static List<Model> getVarargs(Map<String, Model> argsByName, String argName) {
+	public static @NonNull List<Model> getVarargs(@NonNull Map<String, Model> argsByName, @NonNull String argName) {
 
 		List<Model> models = new ArrayList<>();
 		int i = 0;
@@ -272,6 +273,16 @@ public class MultiModelOperatorUtils {
 		}
 
 		return models;
+	}
+
+	public static @NonNull Map<String, MultiModel> createSimpleOutputMIDsByName(@NonNull Operator operatorType, @NonNull MultiModel instanceMID) {
+
+		Map<String, MultiModel> outputMIDsByName = operatorType.getOutputs().stream()
+			.collect(Collectors.toMap(
+				outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
+				outputModelTypeEndpoint -> instanceMID));
+
+		return outputMIDsByName;
 	}
 
 }

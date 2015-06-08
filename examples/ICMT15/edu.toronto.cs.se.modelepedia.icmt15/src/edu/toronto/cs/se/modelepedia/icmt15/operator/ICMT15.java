@@ -12,11 +12,12 @@
 package edu.toronto.cs.se.modelepedia.icmt15.operator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -28,11 +29,11 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
@@ -40,7 +41,9 @@ import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 //TODO MMINT[OPERATOR] Move other paper experiments to examples
 public class ICMT15 extends RandomOperatorImpl {
 
-	// input-output properties
+	// input-output
+	private final static @NonNull String IN_MODEL = "model";
+	private final static @NonNull String OUT_MODEL = "biggerModel";
 	private final static @NonNull String PROPERTY_IN_MODELMULTIPLIER = "modelMultiplier";
 	private final static @NonNull String PROPERTY_IN_VARIABLESMULTIPLIER = "variablesMultiplier";
 	private static final @NonNull String PROPERTY_IN_IDATTRIBUTE = "idAttribute";
@@ -195,10 +198,13 @@ public class ICMT15 extends RandomOperatorImpl {
 	}
 
 	@Override
-	public EList<Model> run(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(
+			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		// inputs
-		Model inputModel = actualParameters.get(0);
+		// input
+		Model inputModel = inputsByName.get(IN_MODEL);
+		MultiModel instanceMID = outputMIDsByName.get(OUT_MODEL);
 
 		// generate output model
 		EObject inputRootModelObj = inputModel.getEMFInstanceRoot();
@@ -231,8 +237,7 @@ public class ICMT15 extends RandomOperatorImpl {
 			presenceConditions += outputModelEncoding + Z3Utils.SMTLIB_TRUE.trim() + "\n";
 		}
 
-		// outputs
-		EList<Model> outputs = new BasicEList<>();
+		// output
 		String uri = (getInputSubdir() != null) ?
 			MultiModelUtils.replaceLastSegmentInUri(
 				inputModel.getUri(),
@@ -241,14 +246,12 @@ public class ICMT15 extends RandomOperatorImpl {
 			inputModel.getUri();
 		String outputModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(uri, MODEL_GENERATED_SUFFIX), true, false);
 		MultiModelUtils.createModelFile(outputRootModelObj, outputModelUri, true);
-		MultiModel instanceMID = MultiModelRegistry.getMultiModel(inputModel);
-		Model outputModel = (isUpdateMID()) ?
-			inputModel.getMetatype().createInstanceAndEditor(outputModelUri, ModelOrigin.CREATED, instanceMID) :
-			inputModel.getMetatype().createInstance(outputModelUri, ModelOrigin.CREATED, null);
-		outputs.add(outputModel);
+		Model outputModel = inputModel.getMetatype().createInstanceAndEditor(outputModelUri, ModelOrigin.CREATED, instanceMID);
 		MultiModelUtils.createTextFile(MultiModelUtils.replaceFileExtensionInUri(outputModelUri, "csv"), presenceConditions, true);
+		Map<String, Model> outputsByName = new HashMap<>();
+		outputsByName.put(OUT_MODEL, outputModel);
 
-		return outputs;
+		return outputsByName;
 	}
 
 }
