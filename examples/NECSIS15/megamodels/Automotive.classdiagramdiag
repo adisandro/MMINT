@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram="http://se.cs.toronto.edu/modelepedia/ClassDiagram" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_tivTMA4MEeW-GbXKxbEQ2Q" type="ClassDiagram" name="Automotive.classdiagramdiag" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_x3shQA4MEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="12">
+    <children xmi:type="notation:DecorationNode" xmi:id="_x3shQw4MEeW-GbXKxbEQ2Q" type="5003"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_x3shRA4MEeW-GbXKxbEQ2Q" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_x3shRQ4MEeW-GbXKxbEQ2Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_x3shRg4MEeW-GbXKxbEQ2Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_x3shRw4MEeW-GbXKxbEQ2Q" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_x3shSA4MEeW-GbXKxbEQ2Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_x3shSQ4MEeW-GbXKxbEQ2Q"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_x3shQQ4MEeW-GbXKxbEQ2Q"/>
+    <element xmi:type="classdiagram:Class" href="Automotive.classdiagram#//@classes.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_x3shQg4MEeW-GbXKxbEQ2Q" x="696" y="60"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_3I7xYA4MEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="12">
+    <children xmi:type="notation:DecorationNode" xmi:id="_3I7xYw4MEeW-GbXKxbEQ2Q" type="5003"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_3I7xZA4MEeW-GbXKxbEQ2Q" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_3I7xZQ4MEeW-GbXKxbEQ2Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_3I7xZg4MEeW-GbXKxbEQ2Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_3I7xZw4MEeW-GbXKxbEQ2Q" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_3I7xaA4MEeW-GbXKxbEQ2Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_3I7xaQ4MEeW-GbXKxbEQ2Q"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_3I7xYQ4MEeW-GbXKxbEQ2Q"/>
+    <element xmi:type="classdiagram:Class" href="Automotive.classdiagram#//@classes.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3I7xYg4MEeW-GbXKxbEQ2Q" x="708" y="192"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_6ATnIA4MEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="12">
+    <children xmi:type="notation:DecorationNode" xmi:id="_6ATnIw4MEeW-GbXKxbEQ2Q" type="5003"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_6ATnJA4MEeW-GbXKxbEQ2Q" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_6ATnJQ4MEeW-GbXKxbEQ2Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_6ATnJg4MEeW-GbXKxbEQ2Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_6ATnJw4MEeW-GbXKxbEQ2Q" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_6ATnKA4MEeW-GbXKxbEQ2Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_6ATnKQ4MEeW-GbXKxbEQ2Q"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_6ATnIQ4MEeW-GbXKxbEQ2Q"/>
+    <element xmi:type="classdiagram:Class" href="Automotive.classdiagram#//@classes.2"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6ATnIg4MEeW-GbXKxbEQ2Q" x="288" y="61"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_8GROEA4MEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="12">
+    <children xmi:type="notation:DecorationNode" xmi:id="_8GROEw4MEeW-GbXKxbEQ2Q" type="5003"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_8GROFA4MEeW-GbXKxbEQ2Q" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_8GROFQ4MEeW-GbXKxbEQ2Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_8GROFg4MEeW-GbXKxbEQ2Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_8GROFw4MEeW-GbXKxbEQ2Q" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_8GROGA4MEeW-GbXKxbEQ2Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_8GROGQ4MEeW-GbXKxbEQ2Q"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_8GROEQ4MEeW-GbXKxbEQ2Q"/>
+    <element xmi:type="classdiagram:Class" href="Automotive.classdiagram#//@classes.3"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8GROEg4MEeW-GbXKxbEQ2Q" x="288" y="192"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_CbRBQA4NEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="12">
+    <children xmi:type="notation:DecorationNode" xmi:id="_CbRBQw4NEeW-GbXKxbEQ2Q" type="5003"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_CbRBRA4NEeW-GbXKxbEQ2Q" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_CbRBRQ4NEeW-GbXKxbEQ2Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_CbRBRg4NEeW-GbXKxbEQ2Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_CbRBRw4NEeW-GbXKxbEQ2Q" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_CbRBSA4NEeW-GbXKxbEQ2Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_CbRBSQ4NEeW-GbXKxbEQ2Q"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_CbRBQQ4NEeW-GbXKxbEQ2Q"/>
+    <element xmi:type="classdiagram:Class" href="Automotive.classdiagram#//@classes.4"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CbRBQg4NEeW-GbXKxbEQ2Q" x="456" y="60"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_EtjM8A4NEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="12">
+    <children xmi:type="notation:DecorationNode" xmi:id="_EtjM8w4NEeW-GbXKxbEQ2Q" type="5003"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_EtjM9A4NEeW-GbXKxbEQ2Q" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_EtjM9Q4NEeW-GbXKxbEQ2Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_EtjM9g4NEeW-GbXKxbEQ2Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_EtjM9w4NEeW-GbXKxbEQ2Q" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_EtjM-A4NEeW-GbXKxbEQ2Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_EtjM-Q4NEeW-GbXKxbEQ2Q"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_EtjM8Q4NEeW-GbXKxbEQ2Q"/>
+    <element xmi:type="classdiagram:Class" href="Automotive.classdiagram#//@classes.5"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EtjM8g4NEeW-GbXKxbEQ2Q" x="468" y="192"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_tivTMQ4MEeW-GbXKxbEQ2Q"/>
+  <element xmi:type="classdiagram:ClassDiagram" href="Automotive.classdiagram#/"/>
+  <edges xmi:type="notation:Connector" xmi:id="_vaOj0A4NEeW-GbXKxbEQ2Q" type="4001" source="_x3shQA4MEeW-GbXKxbEQ2Q" target="_3I7xYA4MEeW-GbXKxbEQ2Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_vaOj0w4NEeW-GbXKxbEQ2Q" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_vaOj1A4NEeW-GbXKxbEQ2Q" x="-4" y="-29"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_vaOj0Q4NEeW-GbXKxbEQ2Q" fontName="Cantarell" fontHeight="12"/>
+    <element xmi:type="classdiagram:Association" href="Automotive.classdiagram#//@associations.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_vaOj0g4NEeW-GbXKxbEQ2Q" points="[-6, 30, -12, -102]$[-23, 102, -29, -30]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_ymUFUA4NEeW-GbXKxbEQ2Q" type="4001" source="_CbRBQA4NEeW-GbXKxbEQ2Q" target="_EtjM8A4NEeW-GbXKxbEQ2Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_ymUFUw4NEeW-GbXKxbEQ2Q" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ymUFVA4NEeW-GbXKxbEQ2Q" x="8" y="-18"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_ymUFUQ4NEeW-GbXKxbEQ2Q" fontName="Cantarell" fontHeight="12"/>
+    <element xmi:type="classdiagram:Association" href="Automotive.classdiagram#//@associations.1"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ymUFUg4NEeW-GbXKxbEQ2Q" points="[10, 30, -28, -74]$[26, 90, -12, -14]"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ymUFVQ4NEeW-GbXKxbEQ2Q" id="(0.37735849056603776,0.23333333333333334)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="__pb9YA4NEeW-GbXKxbEQ2Q" type="4001" source="_6ATnIA4MEeW-GbXKxbEQ2Q" target="_8GROEA4MEeW-GbXKxbEQ2Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="__pb9Yw4NEeW-GbXKxbEQ2Q" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="__pb9ZA4NEeW-GbXKxbEQ2Q" y="40"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="__pb9YQ4NEeW-GbXKxbEQ2Q" fontName="Cantarell" fontHeight="12"/>
+    <element xmi:type="classdiagram:Association" href="Automotive.classdiagram#//@associations.2"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="__pb9Yg4NEeW-GbXKxbEQ2Q" points="[11, 30, -28, -89]$[48, 149, 9, 30]"/>
+  </edges>
+</notation:Diagram>
