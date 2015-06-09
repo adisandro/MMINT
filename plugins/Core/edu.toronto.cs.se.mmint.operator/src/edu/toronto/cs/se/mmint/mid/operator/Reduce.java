@@ -52,7 +52,7 @@ public class Reduce extends OperatorImpl {
 	private final static @NonNull String OUT_MID = "reducedMid";
 	private final static @NonNull String GENERIC_OPERATORTYPE = "ACCUMULATOR";
 	// constants
-	private final static @NonNull String REDUCED_MID_SUFFIX = "_reduced";
+	private final static @NonNull String REDUCED_MID_SUFFIX = "_reduce";
 	private final static @NonNull String MODELRELCOMPOSITION_OPERATORTYPE_URI = "http://se.cs.toronto.edu/mmint/Operator_ModelRelComposition";
 	private final static @NonNull String MODELRELMERGE_OPERATORTYPE_URI = "http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge";
 

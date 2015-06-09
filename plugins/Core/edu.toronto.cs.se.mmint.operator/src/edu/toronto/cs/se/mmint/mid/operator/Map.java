@@ -59,7 +59,7 @@ public class Map extends OperatorImpl {
 	private final static @NonNull String OUT_MIDS = "mappedMids";
 	private final static @NonNull String GENERIC_OPERATORTYPE = "MAPPER";
 	// constants
-	private final static @NonNull String MAPPED_MID_SUFFIX = "_mapped";
+	private final static @NonNull String MAPPED_MID_SUFFIX = "_map";
 	private final static @NonNull String MIDREL_MODELTYPE_URI_SUFFIX = "Rel";
 	private final static @NonNull String MIDOPER_MODELTYPE_URI_SUFFIX = "Oper";
 

@@ -255,7 +255,7 @@ public class WrappingLabel5EditPart extends CompartmentEditPart implements IText
 	 * @generated
 	 */
 	protected boolean isEditable() {
-		return false;
+		return getParser() != null;
 	}
 
 	/**

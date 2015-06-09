@@ -39,7 +39,7 @@ public class Filter extends OperatorImpl {
 	private final static @NonNull String OUT_MID = "filteredMid";
 	private final static @NonNull String GENERIC_MODELTYPE = "TYPE";
 	// constants
-	private final static @NonNull String FILTERED_MID_SUFFIX = "_filtered";
+	private final static @NonNull String FILTERED_MID_SUFFIX = "_filter";
 
 	@Override
 	public boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
