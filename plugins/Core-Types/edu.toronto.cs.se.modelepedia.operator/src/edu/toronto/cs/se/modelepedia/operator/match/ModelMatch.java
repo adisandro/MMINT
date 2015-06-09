@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
@@ -43,7 +44,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public class ModelMatch extends OperatorImpl {
 
 	// input-output
-	private final static @NonNull String IN_MODELS = "models";
+	private final static @NonNull String IN_MODEL1 = "model1";
+	private final static @NonNull String IN_MODEL2 = "model2";
 	private final static @NonNull String OUT_MODELREL = "match";
 	private final static @NonNull String PROPERTY_IN_MATCHATTRIBUTE = "matchAttribute";
 	private final static @NonNull String PROPERTY_IN_MATCHATTRIBUTE_DEFAULT = "name";
@@ -58,21 +60,42 @@ public class ModelMatch extends OperatorImpl {
 		matchAttribute = MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MATCHATTRIBUTE, PROPERTY_IN_MATCHATTRIBUTE_DEFAULT);
 	}
 
-	private void checkModelObjNames(EObject container, ModelEndpointReference modelEndpointRef, HashMap<String, ArrayList<EObject>> modelObjNames, HashMap<EObject, ModelEndpointReference> modelObjTable) {
+	@Override
+	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
 
-		EStructuralFeature feature = container.eClass().getEStructuralFeature(matchAttribute);
-		if (feature != null && feature instanceof EAttribute && container.eGet(feature) instanceof String) {
-			String modelObjName = (String) container.eGet(feature);
-			ArrayList<EObject> modelObjs = modelObjNames.get(modelObjName);
-			if (modelObjs == null) {
-				modelObjs = new ArrayList<EObject>();
-				modelObjNames.put(modelObjName, modelObjs);
+		boolean allowed = super.isAllowedInput(inputsByName);
+		if (!allowed) {
+			return false;
+		}
+		Model srcModel = inputsByName.get(IN_MODEL1);
+		Model tgtModel = inputsByName.get(IN_MODEL2);
+		if (srcModel == tgtModel) {
+			return false;
+		}
+
+		return true;
+	}
+
+	private void checkModelObjAttributes(EObject container, ModelEndpointReference modelEndpointRef, HashMap<String, ArrayList<EObject>> modelObjAttrs, HashMap<EObject, ModelEndpointReference> modelObjTable) {
+
+		Object modelObjAttr;
+		try {
+			modelObjAttr = MultiModelUtils.getModelObjFeature(container, matchAttribute);
+			if (modelObjAttr != null && modelObjAttr instanceof String) {
+				ArrayList<EObject> modelObjs = modelObjAttrs.get(modelObjAttr);
+				if (modelObjs == null) {
+					modelObjs = new ArrayList<EObject>();
+					modelObjAttrs.put((String) modelObjAttr, modelObjs);
+				}
+				modelObjs.add(container);
+				modelObjTable.put(container, modelEndpointRef);
 			}
-			modelObjs.add(container);
-			modelObjTable.put(container, modelEndpointRef);
+		}
+		catch (MMINTException e) {
+			// do nothing
 		}
 		for (EObject contained : container.eContents()) {
-			checkModelObjNames(contained, modelEndpointRef, modelObjNames, modelObjTable);
+			checkModelObjAttributes(contained, modelEndpointRef, modelObjAttrs, modelObjTable);
 		}
 	}
 
@@ -82,26 +105,30 @@ public class ModelMatch extends OperatorImpl {
 			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
 		// input
-		List<Model> models = MultiModelOperatorUtils.getVarargs(inputsByName, IN_MODELS);
+		//TODO MMINT[MAP] Reenable when map handles varargs
+		//List<Model> models = MultiModelOperatorUtils.getVarargs(inputsByName, IN_MODEL1);
+		List<Model> models = new ArrayList<>();
+		models.add(inputsByName.get(IN_MODEL1));
+		models.add(inputsByName.get(IN_MODEL2));
 
 		// create model relationship among models
 		ModelRel matchRel = MultiModelTypeHierarchy.getRootModelRelType().createInstance(null, (inputsByName.size() == 2), ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODELREL));
 		matchRel.setName(MODELREL_NAME);
 		// loop through selected models
 		ModelEndpoint rootModelTypeEndpoint = MultiModelTypeHierarchy.getRootModelTypeEndpoint();
-		HashMap<String, ArrayList<EObject>> modelObjNames = new HashMap<String, ArrayList<EObject>>();
+		HashMap<String, ArrayList<EObject>> modelObjAttrs = new HashMap<String, ArrayList<EObject>>();
 		HashMap<EObject, ModelEndpointReference> modelObjTable = new HashMap<EObject, ModelEndpointReference>();
 		for (Model model : models) {
 			// create model endpoint
 			ModelEndpointReference newModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(model, matchRel);
 			// look for identical names in the models
-			checkModelObjNames(model.getEMFInstanceRoot(), newModelEndpointRef, modelObjNames, modelObjTable);
+			checkModelObjAttributes(model.getEMFInstanceRoot(), newModelEndpointRef, modelObjAttrs, modelObjTable);
 		}
 
 		// create model relationship structure
 		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
 		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
-		for (Entry<String, ArrayList<EObject>> entry : modelObjNames.entrySet()) {
+		for (Entry<String, ArrayList<EObject>> entry : modelObjAttrs.entrySet()) {
 			String modelObjName = entry.getKey();
 			ArrayList<EObject> modelObjs = entry.getValue();
 			if (modelObjs.size() > 1) {

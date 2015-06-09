@@ -47,38 +47,6 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="models">
-	           </type>
-	           <typeEndpoint
-	                 upperBound="-1"
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
-	           </typeEndpoint>
-            </parameter>
-         </inputs>
-         <outputs>
-            <parameter>
-	           <type
-	                 name="match">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-	           </typeEndpoint>
-            </parameter>
-         </outputs>
-      </operatorType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmint.operators">
-      <operatorType>
-         <type
-               name="EMFModelMatch"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMatch"
-               class="edu.toronto.cs.se.modelepedia.operator.match.EMFModelMatch">
-         </type>
-         <inputs>
-            <parameter>
-	           <type
 	                 name="model1">
 	           </type>
 	           <typeEndpoint
@@ -129,84 +97,6 @@
             <parameter>
 	           <type
 	                 name="diff">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-	           </typeEndpoint>
-            </parameter>
-         </outputs>
-      </operatorType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmint.operators">
-      <operatorType>
-         <type
-               name="EMFModelDifference"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_EMFModelDifference"
-               class="edu.toronto.cs.se.modelepedia.operator.diff.EMFModelDifference">
-         </type>
-         <inputs>
-            <parameter>
-	           <type
-	                 name="match">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-	           </typeEndpoint>
-            </parameter>
-         </inputs>
-         <outputs>
-            <parameter>
-	           <type
-	                 name="diff">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-	           </typeEndpoint>
-            </parameter>
-         </outputs>
-      </operatorType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmint.operators">
-      <operatorType>
-         <type
-               name="EMFModelMerge"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_EMFModelMerge"
-               class="edu.toronto.cs.se.modelepedia.operator.merge.EMFModelMerge">
-         </type>
-         <inputs>
-            <parameter>
-	           <type
-	                 name="match">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-	           </typeEndpoint>
-            </parameter>
-         </inputs>
-         <outputs>
-            <parameter>
-	           <type
-	                 name="merged">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
-	                 name="trace1">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
-	                 name="trace2">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
