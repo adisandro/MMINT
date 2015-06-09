@@ -110,8 +110,7 @@
     <ownedChild>
       <domainMetaElement
           href="mid.ecore#//operator/Operator"/>
-      <labelMappings
-          readOnly="true">
+      <labelMappings>
         <diagramLabel
             href="mid.gmfgraph#OperatorLabel"/>
       </labelMappings>

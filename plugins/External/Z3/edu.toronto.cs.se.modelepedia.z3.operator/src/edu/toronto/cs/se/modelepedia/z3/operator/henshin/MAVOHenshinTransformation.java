@@ -310,6 +310,7 @@ matchesN:
 			ModelOrigin.CREATED,
 			transformationModels,
 			outputMIDsByName.get(OUT_MODELREL));
+		traceRel.setName(OUT_MODELREL);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, transformedModel);
 		outputsByName.put(OUT_MODELREL, traceRel);
