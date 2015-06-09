@@ -1,2 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID"/>
+<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/NECSIS15/megamodels/ACC.classdiagram" name="ACC" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" fileExtension="classdiagram" editors="//@editors.0"/>
+  <models uri="/NECSIS15/megamodels/Engine.classdiagram" name="Engine" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" fileExtension="classdiagram" editors="//@editors.1"/>
+  <models uri="/NECSIS15/megamodels/Infotainment.classdiagram" name="Infotainment" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" fileExtension="classdiagram" editors="//@editors.2"/>
+  <models uri="/NECSIS15/megamodels/PowerWindow.classdiagram" name="PowerWindow" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" fileExtension="classdiagram" editors="//@editors.3"/>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS15/megamodels/ACC.classdiagramdiag" name="ClassDiagram diagram for model /NECSIS15/megamodels/ACC.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_ClassDiagram" dynamic="true" modelUri="/NECSIS15/megamodels/ACC.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramCreationWizardID">
+    <fileExtensions>classdiagramdiag</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS15/megamodels/Engine.classdiagramdiag" name="ClassDiagram diagram for model /NECSIS15/megamodels/Engine.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_ClassDiagram" dynamic="true" modelUri="/NECSIS15/megamodels/Engine.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramCreationWizardID">
+    <fileExtensions>classdiagramdiag</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS15/megamodels/Infotainment.classdiagramdiag" name="ClassDiagram diagram for model /NECSIS15/megamodels/Infotainment.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_ClassDiagram" dynamic="true" modelUri="/NECSIS15/megamodels/Infotainment.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramCreationWizardID">
+    <fileExtensions>classdiagramdiag</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/NECSIS15/megamodels/PowerWindow.classdiagramdiag" name="ClassDiagram diagram for model /NECSIS15/megamodels/PowerWindow.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_ClassDiagram" dynamic="true" modelUri="/NECSIS15/megamodels/PowerWindow.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramCreationWizardID">
+    <fileExtensions>classdiagramdiag</fileExtensions>
+  </editors>
+  <extendibleTable key="/NECSIS15/megamodels/ACC.classdiagram" value="//@models.0"/>
+  <extendibleTable key="/NECSIS15/megamodels/Engine.classdiagram" value="//@models.1"/>
+  <extendibleTable key="/NECSIS15/megamodels/Infotainment.classdiagram" value="//@models.2"/>
+  <extendibleTable key="/NECSIS15/megamodels/PowerWindow.classdiagram" value="//@models.3"/>
+</mid:MultiModel>

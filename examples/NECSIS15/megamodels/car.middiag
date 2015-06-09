@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_PSvE4A67EeWbx-tYpU1nnQ" type="MID" name="car.middiag" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_HQZCQA6_EeWbx-tYpU1nnQ" type="2012">
+    <children xmi:type="notation:DecorationNode" xmi:id="_HQZCRQ6_EeWbx-tYpU1nnQ" type="5012"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_HQZCRg6_EeWbx-tYpU1nnQ" type="5017"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_HQZCQQ6_EeWbx-tYpU1nnQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_HQZCQg6_EeWbx-tYpU1nnQ" fontName="Cantarell" fontHeight="12"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_HQZCQw6_EeWbx-tYpU1nnQ" hint="Mid"/>
+    <element xmi:type="mid:Model" href="car.mid#//@models.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HQZCRA6_EeWbx-tYpU1nnQ" x="108" y="84" height="73"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_JRKAIA6_EeWbx-tYpU1nnQ" type="2012">
+    <children xmi:type="notation:DecorationNode" xmi:id="_JRKAJQ6_EeWbx-tYpU1nnQ" type="5012"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_JRKAJg6_EeWbx-tYpU1nnQ" type="5017"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_JRKAIQ6_EeWbx-tYpU1nnQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_JRKAIg6_EeWbx-tYpU1nnQ" fontName="Cantarell" fontHeight="12"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_JRKAIw6_EeWbx-tYpU1nnQ" hint="Mid"/>
+    <element xmi:type="mid:Model" href="car.mid#//@models.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_JRKAJA6_EeWbx-tYpU1nnQ" x="300" y="84" height="73"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_NXBCQA6_EeWbx-tYpU1nnQ" type="2012">
+    <children xmi:type="notation:DecorationNode" xmi:id="_NXBCRQ6_EeWbx-tYpU1nnQ" type="5012"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_NXBCRg6_EeWbx-tYpU1nnQ" type="5017"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_NXBCQQ6_EeWbx-tYpU1nnQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_NXBCQg6_EeWbx-tYpU1nnQ" fontName="Cantarell" fontHeight="12"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_NXBCQw6_EeWbx-tYpU1nnQ" hint="Mid"/>
+    <element xmi:type="mid:Model" href="car.mid#//@models.2"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NXBCRA6_EeWbx-tYpU1nnQ" x="511" y="84" height="73"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_PZ7VMA6_EeWbx-tYpU1nnQ" type="2012">
+    <children xmi:type="notation:DecorationNode" xmi:id="_PZ78QA6_EeWbx-tYpU1nnQ" type="5012"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_PZ78QQ6_EeWbx-tYpU1nnQ" type="5017"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_PZ7VMQ6_EeWbx-tYpU1nnQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_PZ7VMg6_EeWbx-tYpU1nnQ" fontName="Cantarell" fontHeight="12"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_PZ7VMw6_EeWbx-tYpU1nnQ" hint="Mid"/>
+    <element xmi:type="mid:Model" href="car.mid#//@models.3"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PZ7VNA6_EeWbx-tYpU1nnQ" x="768" y="84" height="73"/>
+  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_PSvE4Q67EeWbx-tYpU1nnQ"/>
   <element xmi:type="mid:MultiModel" href="car.mid#/"/>
 </notation:Diagram>

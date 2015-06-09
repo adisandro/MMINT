@@ -17,7 +17,7 @@
     </children>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_uMsu0Q4PEeW-GbXKxbEQ2Q"/>
     <element xmi:type="classdiagram:Class" href="PowerWindow.classdiagram#//@classes.0"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uMsu0g4PEeW-GbXKxbEQ2Q" x="247" y="85"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uMsu0g4PEeW-GbXKxbEQ2Q" x="240" y="156"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_whYuQA4PEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="12">
     <children xmi:type="notation:DecorationNode" xmi:id="_whYuQw4PEeW-GbXKxbEQ2Q" type="5003"/>
@@ -36,7 +36,7 @@
     </children>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_whYuQQ4PEeW-GbXKxbEQ2Q"/>
     <element xmi:type="classdiagram:Class" href="PowerWindow.classdiagram#//@classes.1"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_whYuQg4PEeW-GbXKxbEQ2Q" x="264" y="216"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_whYuQg4PEeW-GbXKxbEQ2Q" x="216" y="336"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_vqX_Ag4VEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="12">
     <children xmi:type="notation:DecorationNode" xmi:id="_vqX_BQ4VEeW-GbXKxbEQ2Q" type="5003"/>
@@ -50,7 +50,7 @@
     </children>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_vqX_Aw4VEeW-GbXKxbEQ2Q"/>
     <element xmi:type="classdiagram:Class" href="PowerWindow.classdiagram#//@classes.2"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vqX_BA4VEeW-GbXKxbEQ2Q"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vqX_BA4VEeW-GbXKxbEQ2Q" x="108" y="24"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_vqX_DA4VEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="12">
     <children xmi:type="notation:DecorationNode" xmi:id="_vqX_Dw4VEeW-GbXKxbEQ2Q" type="5003"/>
@@ -64,7 +64,7 @@
     </children>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_vqX_DQ4VEeW-GbXKxbEQ2Q"/>
     <element xmi:type="classdiagram:Class" href="PowerWindow.classdiagram#//@classes.3"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vqX_Dg4VEeW-GbXKxbEQ2Q" x="169"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vqX_Dg4VEeW-GbXKxbEQ2Q" x="372" y="24"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_k26rMQ4PEeW-GbXKxbEQ2Q"/>
   <element xmi:type="classdiagram:ClassDiagram" href="PowerWindow.classdiagram#/"/>

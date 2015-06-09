@@ -31,7 +31,7 @@
     </children>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_7RS7oQ4REeW-GbXKxbEQ2Q"/>
     <element xmi:type="classdiagram:Class" href="Infotainment.classdiagram#//@classes.1"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7RS7og4REeW-GbXKxbEQ2Q" x="276" y="228"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7RS7og4REeW-GbXKxbEQ2Q" x="288" y="276"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_3ST9kQ4REeW-GbXKxbEQ2Q"/>
   <element xmi:type="classdiagram:ClassDiagram" href="Infotainment.classdiagram#/"/>
