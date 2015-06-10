@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
@@ -66,7 +67,7 @@ public class Filter extends OperatorImpl {
 				continue;
 			}
 			// check constraint
-			if (MultiModelConstraintChecker.checkConstraint(model, filterModelType.getConstraint()).toBoolean()) {
+			if (MultiModelTypeHierarchy.instanceOf(model, filterModelType.getUri(), false) && MultiModelConstraintChecker.checkConstraint(model, filterModelType.getConstraint()).toBoolean()) {
 				continue;
 			}
 			modelsToDelete.add(model);

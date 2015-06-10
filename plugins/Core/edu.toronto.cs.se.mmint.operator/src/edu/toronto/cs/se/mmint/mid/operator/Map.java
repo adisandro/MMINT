@@ -235,64 +235,64 @@ public class Map extends OperatorImpl {
 			}
 		}
 		// create midoper
-		if (operatorMID != null) {
-			Model midoperModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI + MIDOPER_MODELTYPE_URI_SUFFIX);
-			String operatorMIDUri = MultiModelUtils.getUniqueUri(
-				MultiModelUtils.replaceFileNameInUri(baseOutputUri, mapperOperatorType.getName() + MAPPED_MID_SUFFIX),
-				true,
-				false);
-			MultiModelUtils.createModelFile(operatorMID, operatorMIDUri, true);
-			Model operatorMIDModel = midoperModelType.createInstanceAndEditor(
-				operatorMIDUri,
-				ModelOrigin.CREATED,
-				instanceMID);
-			outputsByName.put(OUT_MIDS + i, operatorMIDModel);
-			// create gmf shortcuts
-			Diagram operatorMIDModelDiagram = (Diagram) operatorMIDModel.getEditors().get(0);
-			View gmfDiagramRoot = (View) MultiModelUtils.getModelFile(operatorMIDModelDiagram.getUri(), true);
-			//TODO MMINT[DIAGRAM] This is wrong, I'd need the supertype
-			String gmfDiagramPluginId = MultiModelTypeRegistry.getTypeBundle(
-				operatorMIDModelDiagram.getMetatypeUri()).getSymbolicName();
-			MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
-			for (Model midoperModelShortcut : midoperModelShortcuts) {
-				Node gmfNode = gmfViewProvider.createModel_2012(
-					midoperModelShortcut,
-					gmfDiagramRoot,
-					-1,
-					true,
-					new PreferencesHint(gmfDiagramPluginId));
-				EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-				shortcutAnnotation.setSource("Shortcut");
-				shortcutAnnotation.getDetails().put("modelID", MultiModelEditPart.MODEL_ID);
-				gmfNode.getEAnnotations().add(shortcutAnnotation);
-			}
-			//TODO MMINT[MAP] Fix refresh problems, don't know if there can be shortcuts for links
-//			for (Model midoperModelRelShortcut : midoperModelRelShortcuts) {
-//				View gmfView;
-//				//TODO MMINT[MAP] Create function to do this
-//				if (midoperModelRelShortcut instanceof BinaryModelRel) {
-//					gmfView = gmfViewProvider.createBinaryModelRel_4015(
-//						midoperModelRelShortcut,
-//						gmfDiagramRoot,
-//						-1,
-//						true,
-//						new PreferencesHint(gmfDiagramPluginId));
-//				}
-//				else {
-//					gmfView = gmfViewProvider.createModelRel_2014(
-//						midoperModelRelShortcut,
-//						gmfDiagramRoot,
-//						-1,
-//						true,
-//						new PreferencesHint(gmfDiagramPluginId));
-//				}
+//		if (operatorMID != null) {
+//			Model midoperModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI + MIDOPER_MODELTYPE_URI_SUFFIX);
+//			String operatorMIDUri = MultiModelUtils.getUniqueUri(
+//				MultiModelUtils.replaceFileNameInUri(baseOutputUri, mapperOperatorType.getName() + MAPPED_MID_SUFFIX),
+//				true,
+//				false);
+//			MultiModelUtils.createModelFile(operatorMID, operatorMIDUri, true);
+//			Model operatorMIDModel = midoperModelType.createInstanceAndEditor(
+//				operatorMIDUri,
+//				ModelOrigin.CREATED,
+//				instanceMID);
+//			outputsByName.put(OUT_MIDS + i, operatorMIDModel);
+//			// create gmf shortcuts
+//			Diagram operatorMIDModelDiagram = (Diagram) operatorMIDModel.getEditors().get(0);
+//			View gmfDiagramRoot = (View) MultiModelUtils.getModelFile(operatorMIDModelDiagram.getUri(), true);
+//			//TODO MMINT[DIAGRAM] This is wrong, I'd need the supertype
+//			String gmfDiagramPluginId = MultiModelTypeRegistry.getTypeBundle(
+//				operatorMIDModelDiagram.getMetatypeUri()).getSymbolicName();
+//			MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
+//			for (Model midoperModelShortcut : midoperModelShortcuts) {
+//				Node gmfNode = gmfViewProvider.createModel_2012(
+//					midoperModelShortcut,
+//					gmfDiagramRoot,
+//					-1,
+//					true,
+//					new PreferencesHint(gmfDiagramPluginId));
 //				EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 //				shortcutAnnotation.setSource("Shortcut");
 //				shortcutAnnotation.getDetails().put("modelID", MultiModelEditPart.MODEL_ID);
-//				gmfView.getEAnnotations().add(shortcutAnnotation);
+//				gmfNode.getEAnnotations().add(shortcutAnnotation);
 //			}
-			MultiModelUtils.createModelFile(gmfDiagramRoot, operatorMIDModelDiagram.getUri(), true);
-		}
+//			//TODO MMINT[MAP] Fix refresh problems, don't know if there can be shortcuts for links
+////			for (Model midoperModelRelShortcut : midoperModelRelShortcuts) {
+////				View gmfView;
+////				//TODO MMINT[MAP] Create function to do this
+////				if (midoperModelRelShortcut instanceof BinaryModelRel) {
+////					gmfView = gmfViewProvider.createBinaryModelRel_4015(
+////						midoperModelRelShortcut,
+////						gmfDiagramRoot,
+////						-1,
+////						true,
+////						new PreferencesHint(gmfDiagramPluginId));
+////				}
+////				else {
+////					gmfView = gmfViewProvider.createModelRel_2014(
+////						midoperModelRelShortcut,
+////						gmfDiagramRoot,
+////						-1,
+////						true,
+////						new PreferencesHint(gmfDiagramPluginId));
+////				}
+////				EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+////				shortcutAnnotation.setSource("Shortcut");
+////				shortcutAnnotation.getDetails().put("modelID", MultiModelEditPart.MODEL_ID);
+////				gmfView.getEAnnotations().add(shortcutAnnotation);
+////			}
+//			MultiModelUtils.createModelFile(gmfDiagramRoot, operatorMIDModelDiagram.getUri(), true);
+//		}
 
 		return outputsByName;
 	}
