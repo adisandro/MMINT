@@ -52,7 +52,7 @@ public class ModelMatch extends OperatorImpl {
 	// constants
 	private final static @NonNull String MODELREL_NAME = "match";
 
-	private String matchAttribute;
+	protected String matchAttribute;
 
 	@Override
 	public boolean isCommutative() {

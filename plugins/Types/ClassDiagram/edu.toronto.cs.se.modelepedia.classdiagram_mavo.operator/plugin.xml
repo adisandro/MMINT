@@ -83,15 +83,15 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="cd1">
+	                 name="model1">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
 	           </typeEndpoint>
             </parameter>
             <parameter>
 	           <type
-	                 name="cd2">
+	                 name="model2">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
@@ -104,7 +104,7 @@
 	                 name="match">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
             </parameter>
          </outputs>

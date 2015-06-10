@@ -740,20 +740,22 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			try {
 				// add only if allowed and passes commutativity check
 				Map<String, Model> inputsByName = createInputsByName(operatorTypeInputs, false, null);
-				boolean commutative = false;
-				if (this.isCommutative()) {
-					Set<Model> operatorTypeInputsCommutative = new HashSet<>(inputsByName.values());
-					if (operatorTypeInputSetCommutative.contains(operatorTypeInputsCommutative)) {
-						commutative = true;
+				if (this.isAllowedInput(inputsByName)) {
+					boolean commutative = false;
+					if (this.isCommutative()) {
+						Set<Model> operatorTypeInputsCommutative = new HashSet<>(inputsByName.values());
+						if (operatorTypeInputSetCommutative.contains(operatorTypeInputsCommutative)) {
+							commutative = true;
+						}
+						else {
+							operatorTypeInputSetCommutative.add(operatorTypeInputsCommutative);
+						}
 					}
-					else {
-						operatorTypeInputSetCommutative.add(operatorTypeInputsCommutative);
-					}
-				}
-				if (!commutative && this.isAllowedInput(inputsByName)) {
-					operatorTypeInputSet.add(operatorTypeInputs);
-					if (firstOnly) { // just return the first allowed
-						return operatorTypeInputSet;
+					if (!commutative) {
+						operatorTypeInputSet.add(operatorTypeInputs);
+						if (firstOnly) { // just return the first allowed
+							return operatorTypeInputSet;
+						}
 					}
 				}
 			}

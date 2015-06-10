@@ -13,12 +13,20 @@ package edu.toronto.cs.se.modelepedia.classdiagram.operator;
 
 import java.util.Map;
 import java.util.Set;
-
+import java.util.Map.Entry;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.relationship.Link;
+import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.operator.match.ModelMatch;
 
 public class CDMatch extends ModelMatch {
@@ -26,7 +34,43 @@ public class CDMatch extends ModelMatch {
 	@Override
 	protected void createMatchLinks(ModelRel matchRel, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) throws MMINTException {
 
-		super.createMatchLinks(matchRel, modelObjAttrs, modelObjTable);
+		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
+		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
+		for (Entry<String, Set<EObject>> entry : modelObjAttrs.entrySet()) {
+			Set<EObject> modelObjs = entry.getValue();
+			if (modelObjs.size() < 2) {
+				continue;
+			}
+			String modelObjAttr = entry.getKey();
+			boolean associations = modelObjs.stream().allMatch(modelObj -> modelObj instanceof Association);
+			if (associations) {
+				Association association = (Association) modelObjs.iterator().next();
+				String srcAttr = (String) MultiModelUtils.getModelObjFeature(association.getSource(), matchAttribute);
+				Set<EObject> srcMatch = modelObjAttrs.get(srcAttr);
+				String tgtAttr = (String) MultiModelUtils.getModelObjFeature(association.getTarget(), matchAttribute);
+				Set<EObject> tgtMatch = modelObjAttrs.get(tgtAttr);
+				boolean endpointsCheck =
+					modelObjs.stream()
+					.map(modelObj -> ((Association) modelObj).getSource())
+					.allMatch(clazz -> srcMatch.contains(clazz)) &&
+					modelObjs.stream()
+					.map(modelObj -> ((Association) modelObj).getTarget())
+					.allMatch(clazz -> tgtMatch.contains(clazz));
+				if (!endpointsCheck) {
+					continue;
+				}
+			}
+			// create link
+			LinkReference matchLinkRef = rootLinkType.createInstanceAndReference((modelObjs.size() == 2), matchRel);
+			matchLinkRef.getObject().setName(modelObjAttr);
+			for (EObject modelObj : modelObjs) {
+				ModelEndpointReference modelEndpointRef = modelObjTable.get(modelObj);
+				// create model element
+				ModelElementReference matchModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(modelObj, null, modelEndpointRef);
+				// create model element endpoints
+				rootModelElemTypeEndpoint.createInstanceAndReference(matchModelElemRef, matchLinkRef);
+			}
+		}
 	}
 
 }
