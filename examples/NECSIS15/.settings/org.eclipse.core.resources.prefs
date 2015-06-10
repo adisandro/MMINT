@@ -1,4 +1,12 @@
 eclipse.preferences.version=1
+encoding//megamodels/ACC.statemachine=UTF-8
+encoding//megamodels/ACC.statemachinediag=UTF-8
+encoding//megamodels/Engine.statemachine=UTF-8
+encoding//megamodels/Engine.statemachinediag=UTF-8
+encoding//megamodels/Infotainment.statemachine=UTF-8
+encoding//megamodels/Infotainment.statemachinediag=UTF-8
+encoding//megamodels/PowerWindow.statemachine=UTF-8
+encoding//megamodels/PowerWindow.statemachinediag=UTF-8
 encoding//megamodels/car.mid=UTF-8
 encoding//megamodels/car.middiag=UTF-8
 encoding//megamodels/demo.mid=UTF-8
