@@ -14,12 +14,15 @@ package edu.toronto.cs.se.modelepedia.operator.merge;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 
@@ -108,10 +111,12 @@ public class ModelMerge extends OperatorImpl {
 				modelElemRef2.getObject());
 		}
 		Map<String, EObject> mergedModelObjs = new HashMap<>();
+		Map<EObject, EObject> allModelObjs = new HashMap<>();
 
 		// copy elements from model1
 		for (EObject modelObj1 : rootModelObj1.eContents()) {
 			EObject mergedModelObj = EcoreUtil.copy(modelObj1);
+			allModelObjs.put(modelObj1, mergedModelObj);
 			String modelElemUri1 = MultiModelRegistry.getModelAndModelElementUris(modelObj1, MIDLevel.INSTANCES)[1];
 			if (matchModelElems1.keySet().contains(modelElemUri1)) {
 				ModelElement modelElem2 = matchModelElems1.get(modelElemUri1);
@@ -173,6 +178,7 @@ public class ModelMerge extends OperatorImpl {
 					modelObj2.eContainingFeature().getName(),
 					mergedModelObj);
 			}
+			allModelObjs.put(modelObj2, mergedModelObj);
 			EList<ModelElementReference> traceModelElemRefs2 = new BasicEList<>();
 			traceModelElemRefs2.add(ModelElementImpl.createInstanceAndReference(
 				modelObj2,
@@ -193,6 +199,32 @@ public class ModelMerge extends OperatorImpl {
 				traceModelElemRefs2);
 		}
 
+		// populate references
+		for (Entry<EObject, EObject> entry : allModelObjs.entrySet()) {
+			EObject modelObj = entry.getKey();
+			EObject mergedModelObj = entry.getValue();
+			for (EReference modelObjReference : modelObj.eClass().getEAllReferences()) {
+				if (modelObjReference.isContainment()) {
+					continue;
+				}
+				Object modelObjReferenceValue = MultiModelUtils.getModelObjFeature(modelObj, modelObjReference.getName());
+				if (modelObjReferenceValue == null || modelObjReferenceValue instanceof EObjectWithInverseResolvingEList<?>) {
+					continue;
+				}
+				EList<EObject> modelObjValues;
+				if (modelObjReferenceValue instanceof EList<?>) {
+					modelObjValues = (EList<EObject>) modelObjReferenceValue;
+				}
+				else {
+					modelObjValues = new BasicEList<>();
+					modelObjValues.add((EObject) modelObjReferenceValue);
+				}
+				for (EObject modelObjValue : modelObjValues) {
+					MultiModelUtils.setModelObjFeature(mergedModelObj, modelObjReference.getName(), allModelObjs.get(modelObjValue));
+				}
+			}
+		}
+
 		return rootMergedModelObj;
 	}
 
@@ -201,8 +233,7 @@ public class ModelMerge extends OperatorImpl {
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
 			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
-		// TODO MMINT[MERGE] Support more complex cases than just first-level objects without references
-		// input
+		// TODO MMINT[MERGE] Support more complex cases than just first-level objects
 		ModelRel matchRel = (ModelRel) inputsByName.get(IN_MODELREL);
 		Model model1 = matchRel.getModelEndpoints().get(0).getTarget();
 		Model model2 = matchRel.getModelEndpoints().get(1).getTarget();

@@ -124,7 +124,7 @@ public class MMINT implements MMINTConstants {
 	 * - Rename link to mapping
 	 * - Decouple from MAVO framework: use a kleisli-like mechanism MAVOModel->Model with overridden apis, where the current MAVOModel becomes a simple MAVORoot
 	 * - Rethink mid link icons with/without MAVO
-	 * - Move modelepedia types into the examples directory and create appropriate features for mm operators
+	 * - Move modelepedia types/operators into the examples directory together with papers + create appropriate features
 	 * - Transform various labels into toString() functions (also helps debug)
 	 * - Turn updateMID into global option and use it directly into apis
 	 * - Address the issue of not inheriting Editor and Diagram types; this will fix a model type without editor, which is still able to use the reflective ecore
