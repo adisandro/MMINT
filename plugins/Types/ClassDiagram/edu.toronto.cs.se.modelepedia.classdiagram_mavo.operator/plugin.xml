@@ -69,4 +69,46 @@
       </operatorType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="CDMatch"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_CDMatch"
+               class="edu.toronto.cs.se.modelepedia.classdiagram.operator.CDMatch">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelMatch">
+            </superType>
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="cd1">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="cd2">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="match">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
 </plugin>

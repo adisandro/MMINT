@@ -13,14 +13,14 @@ package edu.toronto.cs.se.modelepedia.operator.match;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Map.Entry;
+import java.util.Set;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -55,15 +55,15 @@ public class ModelMatch extends OperatorImpl {
 	private String matchAttribute;
 
 	@Override
-	public void readInputProperties(Properties inputProperties) throws MMINTException {
-
-		matchAttribute = MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MATCHATTRIBUTE, PROPERTY_IN_MATCHATTRIBUTE_DEFAULT);
-	}
-
-	@Override
 	public boolean isCommutative() {
 
 		return true;
+	}
+
+	@Override
+	public void readInputProperties(Properties inputProperties) throws MMINTException {
+
+		matchAttribute = MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MATCHATTRIBUTE, PROPERTY_IN_MATCHATTRIBUTE_DEFAULT);
 	}
 
 	@Override
@@ -82,27 +82,71 @@ public class ModelMatch extends OperatorImpl {
 		return true;
 	}
 
-	private void checkModelObjAttributes(EObject container, ModelEndpointReference modelEndpointRef, HashMap<String, ArrayList<EObject>> modelObjAttrs, HashMap<EObject, ModelEndpointReference> modelObjTable) {
+	private void matchModelObjAttributes(EObject modelObj, ModelEndpointReference modelEndpointRef, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) {
 
 		Object modelObjAttr;
 		try {
-			modelObjAttr = MultiModelUtils.getModelObjFeature(container, matchAttribute);
+			modelObjAttr = MultiModelUtils.getModelObjFeature(modelObj, matchAttribute);
 			if (modelObjAttr != null && modelObjAttr instanceof String) {
-				ArrayList<EObject> modelObjs = modelObjAttrs.get(modelObjAttr);
+				Set<EObject> modelObjs = modelObjAttrs.get(modelObjAttr);
 				if (modelObjs == null) {
-					modelObjs = new ArrayList<EObject>();
+					modelObjs = new HashSet<>();
 					modelObjAttrs.put((String) modelObjAttr, modelObjs);
 				}
-				modelObjs.add(container);
-				modelObjTable.put(container, modelEndpointRef);
+				modelObjs.add(modelObj);
+				modelObjTable.put(modelObj, modelEndpointRef);
 			}
 		}
 		catch (MMINTException e) {
 			// do nothing
 		}
-		for (EObject contained : container.eContents()) {
-			checkModelObjAttributes(contained, modelEndpointRef, modelObjAttrs, modelObjTable);
+		for (EObject contained : modelObj.eContents()) {
+			matchModelObjAttributes(contained, modelEndpointRef, modelObjAttrs, modelObjTable);
 		}
+	}
+
+	protected void createMatchLinks(ModelRel matchRel, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) throws MMINTException {
+
+		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
+		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
+		for (Entry<String, Set<EObject>> entry : modelObjAttrs.entrySet()) {
+			Set<EObject> modelObjs = entry.getValue();
+			if (modelObjs.size() < 2) {
+				continue;
+			}
+			String modelObjAttr = entry.getKey();
+			// create link
+			LinkReference matchLinkRef = rootLinkType.createInstanceAndReference((modelObjs.size() == 2), matchRel);
+			matchLinkRef.getObject().setName(modelObjAttr);
+			for (EObject modelObj : modelObjs) {
+				ModelEndpointReference modelEndpointRef = modelObjTable.get(modelObj);
+				// create model element
+				ModelElementReference matchModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(modelObj, null, modelEndpointRef);
+				// create model element endpoints
+				rootModelElemTypeEndpoint.createInstanceAndReference(matchModelElemRef, matchLinkRef);
+			}
+		}
+	}
+
+	private ModelRel match(List<Model> models, MultiModel instanceMID) throws MMINTException {
+
+		// create model relationship among models
+		ModelRel matchRel = MultiModelTypeHierarchy.getRootModelRelType().createInstance(null, (models.size() == 2), ModelOrigin.CREATED, instanceMID);
+		matchRel.setName(MODELREL_NAME);
+		// loop through selected models
+		ModelEndpoint rootModelTypeEndpoint = MultiModelTypeHierarchy.getRootModelTypeEndpoint();
+		Map<String, Set<EObject>> modelObjAttrs = new HashMap<>();
+		Map<EObject, ModelEndpointReference> modelObjTable = new HashMap<EObject, ModelEndpointReference>();
+		for (Model model : models) {
+			// create model endpoint
+			ModelEndpointReference newModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(model, matchRel);
+			// look for identical names in the models
+			matchModelObjAttributes(model.getEMFInstanceRoot(), newModelEndpointRef, modelObjAttrs, modelObjTable);
+		}
+		// create model relationship links
+		createMatchLinks(matchRel, modelObjAttrs, modelObjTable);
+
+		return matchRel;
 	}
 
 	@Override
@@ -117,39 +161,8 @@ public class ModelMatch extends OperatorImpl {
 		models.add(inputsByName.get(IN_MODEL1));
 		models.add(inputsByName.get(IN_MODEL2));
 
-		// create model relationship among models
-		ModelRel matchRel = MultiModelTypeHierarchy.getRootModelRelType().createInstance(null, (inputsByName.size() == 2), ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODELREL));
-		matchRel.setName(MODELREL_NAME);
-		// loop through selected models
-		ModelEndpoint rootModelTypeEndpoint = MultiModelTypeHierarchy.getRootModelTypeEndpoint();
-		HashMap<String, ArrayList<EObject>> modelObjAttrs = new HashMap<String, ArrayList<EObject>>();
-		HashMap<EObject, ModelEndpointReference> modelObjTable = new HashMap<EObject, ModelEndpointReference>();
-		for (Model model : models) {
-			// create model endpoint
-			ModelEndpointReference newModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(model, matchRel);
-			// look for identical names in the models
-			checkModelObjAttributes(model.getEMFInstanceRoot(), newModelEndpointRef, modelObjAttrs, modelObjTable);
-		}
-
-		// create model relationship structure
-		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
-		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
-		for (Entry<String, ArrayList<EObject>> entry : modelObjAttrs.entrySet()) {
-			String modelObjName = entry.getKey();
-			ArrayList<EObject> modelObjs = entry.getValue();
-			if (modelObjs.size() > 1) {
-				// create link
-				LinkReference matchLinkRef = rootLinkType.createInstanceAndReference((modelObjs.size() == 2), matchRel);
-				matchLinkRef.getObject().setName(modelObjName);
-				for (EObject modelObj : modelObjs) {
-					ModelEndpointReference modelEndpointRef = modelObjTable.get(modelObj);
-					// create model element
-					ModelElementReference matchModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(modelObj, null, modelEndpointRef);
-					// create model element endpoints
-					rootModelElemTypeEndpoint.createInstanceAndReference(matchModelElemRef, matchLinkRef);
-				}
-			}
-		}
+		// create match
+		ModelRel matchRel = match(models, outputMIDsByName.get(OUT_MODELREL));
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();
