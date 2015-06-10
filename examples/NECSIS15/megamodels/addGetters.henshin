@@ -72,7 +72,7 @@
       </nodes>
       <nodes xmi:id="_ulxeAPRkEeSAxIbxRy0SeQ" incoming="_ww__cPRkEeSAxIbxRy0SeQ">
         <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//Operation"/>
-        <attributes xmi:id="_x5iU0PRkEeSAxIbxRy0SeQ" value="attributeName">
+        <attributes xmi:id="_x5iU0PRkEeSAxIbxRy0SeQ" value="&quot;get&quot;+attributeName">
           <type href="http://se.cs.toronto.edu/modelepedia/ClassDiagram#//NamedElement/name"/>
         </attributes>
         <attributes xmi:id="_yeeN4PRkEeSAxIbxRy0SeQ" value="true">
