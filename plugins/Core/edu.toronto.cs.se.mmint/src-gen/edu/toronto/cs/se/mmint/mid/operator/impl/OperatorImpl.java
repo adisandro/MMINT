@@ -72,6 +72,7 @@ import edu.toronto.cs.se.mmint.repository.MMINTConstants;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getPreviousOperator <em>Previous Operator</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#isUpdateMID <em>Update MID</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getExecutionTime <em>Execution Time</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#isCommutative <em>Commutative</em>}</li>
  * </ul>
  * </p>
  *
@@ -177,6 +178,26 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * @ordered
 	 */
 	protected long executionTime = EXECUTION_TIME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isCommutative() <em>Commutative</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCommutative()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean COMMUTATIVE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isCommutative() <em>Commutative</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCommutative()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean commutative = COMMUTATIVE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -339,6 +360,27 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isCommutative() {
+		return commutative;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCommutative(boolean newCommutative) {
+		boolean oldCommutative = commutative;
+		commutative = newCommutative;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__COMMUTATIVE, oldCommutative, commutative));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Operator getMetatype() {
 		ExtendibleElement metatype = super.getMetatype();
 		return (metatype == null) ? null : (Operator) metatype;
@@ -395,6 +437,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				return isUpdateMID();
 			case OperatorPackage.OPERATOR__EXECUTION_TIME:
 				return getExecutionTime();
+			case OperatorPackage.OPERATOR__COMMUTATIVE:
+				return isCommutative();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -432,6 +476,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			case OperatorPackage.OPERATOR__EXECUTION_TIME:
 				setExecutionTime((Long)newValue);
 				return;
+			case OperatorPackage.OPERATOR__COMMUTATIVE:
+				setCommutative((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -465,6 +512,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			case OperatorPackage.OPERATOR__EXECUTION_TIME:
 				setExecutionTime(EXECUTION_TIME_EDEFAULT);
 				return;
+			case OperatorPackage.OPERATOR__COMMUTATIVE:
+				setCommutative(COMMUTATIVE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -491,6 +541,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				return updateMID != UPDATE_MID_EDEFAULT;
 			case OperatorPackage.OPERATOR__EXECUTION_TIME:
 				return executionTime != EXECUTION_TIME_EDEFAULT;
+			case OperatorPackage.OPERATOR__COMMUTATIVE:
+				return commutative != COMMUTATIVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -617,6 +669,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		result.append(updateMID);
 		result.append(", executionTime: ");
 		result.append(executionTime);
+		result.append(", commutative: ");
+		result.append(commutative);
 		result.append(')');
 		return result.toString();
 	}
@@ -671,6 +725,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	private @NonNull Set<EList<OperatorInput>> getOperatorTypeInputs(@NonNull EList<EList<OperatorInput>> modelTypeEndpointInputs, boolean firstOnly) {
 
 		Set<EList<OperatorInput>> operatorTypeInputSet = new HashSet<>();
+		Set<Set<Model>> operatorTypeInputSetCommutative = new HashSet<>();
 		int[] indexes = new int[modelTypeEndpointInputs.size()];
 		for (int i = 0; i < indexes.length; i++) {
 			indexes[i] = 0;
@@ -682,10 +737,20 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				EList<OperatorInput> modelTypeEndpointInput = modelTypeEndpointInputs.get(i);
 				operatorTypeInputs.add(modelTypeEndpointInput.get(indexes[i]));
 			}
-			// add only if allowed
 			try {
+				// add only if allowed and passes commutativity check
 				Map<String, Model> inputsByName = createInputsByName(operatorTypeInputs, false, null);
-				if (this.isAllowedInput(inputsByName)) {
+				boolean commutative = false;
+				if (this.isCommutative()) {
+					Set<Model> operatorTypeInputsCommutative = new HashSet<>(inputsByName.values());
+					if (operatorTypeInputSetCommutative.contains(operatorTypeInputsCommutative)) {
+						commutative = true;
+					}
+					else {
+						operatorTypeInputSetCommutative.add(operatorTypeInputsCommutative);
+					}
+				}
+				if (!commutative && this.isAllowedInput(inputsByName)) {
 					operatorTypeInputSet.add(operatorTypeInputs);
 					if (firstOnly) { // just return the first allowed
 						return operatorTypeInputSet;
@@ -866,6 +931,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			throw new MMINTException("Can't invoke constructor");
 		}
 		super.addBasicInstance(newOperator, null, getName());
+		newOperator.setCommutative(false);
 		if (instanceMID != null) {
 			instanceMID.getOperators().add(newOperator);
 		}

@@ -42,6 +42,7 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getPreviousOperator <em>Previous Operator</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#isUpdateMID <em>Update MID</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutionTime <em>Execution Time</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#isCommutative <em>Commutative</em>}</li>
  * </ul>
  * </p>
  *
@@ -195,6 +196,31 @@ public interface Operator extends GenericElement {
 	 * @generated
 	 */
 	void setExecutionTime(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Commutative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A flag to indicate if this operator is commutative, i.e. the order of input models doesn't matter.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Commutative</em>' attribute.
+	 * @see #setCommutative(boolean)
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperator_Commutative()
+	 * @model required="true"
+	 * @generated
+	 */
+	boolean isCommutative();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#isCommutative <em>Commutative</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Commutative</em>' attribute.
+	 * @see #isCommutative()
+	 * @generated
+	 */
+	void setCommutative(boolean value);
 
 	/**
 	 * <!-- begin-user-doc -->

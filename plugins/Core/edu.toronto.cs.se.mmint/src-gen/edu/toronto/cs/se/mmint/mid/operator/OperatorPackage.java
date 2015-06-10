@@ -270,13 +270,22 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR__EXECUTION_TIME = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Commutative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__COMMUTATIVE = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_FEATURE_COUNT = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 7;
+	int OPERATOR_FEATURE_COUNT = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -629,6 +638,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR__EXECUTION_TIME = OPERATOR__EXECUTION_TIME;
+
+	/**
+	 * The feature id for the '<em><b>Commutative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR__COMMUTATIVE = OPERATOR__COMMUTATIVE;
 
 	/**
 	 * The number of structural features of the '<em>Conversion Operator</em>' class.
@@ -999,6 +1017,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_OPERATOR__EXECUTION_TIME = OPERATOR__EXECUTION_TIME;
+
+	/**
+	 * The feature id for the '<em><b>Commutative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR__COMMUTATIVE = OPERATOR__COMMUTATIVE;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -1602,6 +1629,17 @@ public interface OperatorPackage extends EPackage {
 	EAttribute getOperator_ExecutionTime();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#isCommutative <em>Commutative</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Commutative</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#isCommutative()
+	 * @see #getOperator()
+	 * @generated
+	 */
+	EAttribute getOperator_Commutative();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getMetatype() <em>Get Metatype</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2048,6 +2086,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute OPERATOR__EXECUTION_TIME = eINSTANCE.getOperator_ExecutionTime();
+
+		/**
+		 * The meta object literal for the '<em><b>Commutative</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATOR__COMMUTATIVE = eINSTANCE.getOperator_Commutative();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.

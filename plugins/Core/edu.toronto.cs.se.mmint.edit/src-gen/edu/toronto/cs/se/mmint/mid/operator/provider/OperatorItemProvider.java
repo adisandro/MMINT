@@ -62,6 +62,7 @@ public class OperatorItemProvider
 			addPreviousOperatorPropertyDescriptor(object);
 			addUpdateMIDPropertyDescriptor(object);
 			addExecutionTimePropertyDescriptor(object);
+			addCommutativePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -177,6 +178,28 @@ public class OperatorItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Commutative feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCommutativePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Operator_commutative_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Operator_commutative_feature", "_UI_Operator_type"),
+				 OperatorPackage.Literals.OPERATOR__COMMUTATIVE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -247,6 +270,7 @@ public class OperatorItemProvider
 			case OperatorPackage.OPERATOR__INPUT_SUBDIR:
 			case OperatorPackage.OPERATOR__UPDATE_MID:
 			case OperatorPackage.OPERATOR__EXECUTION_TIME:
+			case OperatorPackage.OPERATOR__COMMUTATIVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case OperatorPackage.OPERATOR__INPUTS:

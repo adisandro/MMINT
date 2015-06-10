@@ -409,6 +409,7 @@ public class MultiModelTypeFactory {
 	 */
 	protected static void addOperatorType(Operator newOperatorType, MultiModel multiModel) {
 
+		newOperatorType.setCommutative(false);
 		multiModel.getOperators().add(newOperatorType);
 	}
 

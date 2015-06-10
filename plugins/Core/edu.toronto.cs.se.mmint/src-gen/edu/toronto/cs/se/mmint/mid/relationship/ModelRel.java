@@ -233,8 +233,7 @@ public interface ModelRel extends Model {
 	 *             If this is a model relationship instance, if no target models are specified, if the uri of the new
 	 *             model relationship is already registered in the Instance MID, or if the new model relationship is
 	 *             binary but 2 target models are not specified. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isBinaryRequired="true"
-	 *        originRequired="true" targetModelsRequired="true" targetModelsMany="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isBinaryRequired="true" originRequired="true" targetModelsRequired="true" targetModelsMany="true"
 	 * @generated
 	 */
 	ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, boolean isBinary, ModelOrigin origin, EList<Model> targetModels, MultiModel instanceMID) throws MMINTException;

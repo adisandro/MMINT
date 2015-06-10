@@ -61,6 +61,12 @@ public class ModelMatch extends OperatorImpl {
 	}
 
 	@Override
+	public boolean isCommutative() {
+
+		return true;
+	}
+
+	@Override
 	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
 
 		boolean allowed = super.isAllowedInput(inputsByName);
