@@ -725,6 +725,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	private @NonNull Set<EList<OperatorInput>> getOperatorTypeInputs(@NonNull EList<EList<OperatorInput>> modelTypeEndpointInputs, boolean firstOnly) {
 
 		Set<EList<OperatorInput>> operatorTypeInputSet = new HashSet<>();
+		// if at least one is empty, there is no way to have a proper input for this operator
+		if (modelTypeEndpointInputs.stream().anyMatch(modelTypeEndpointInput -> modelTypeEndpointInput.isEmpty())) {
+			return operatorTypeInputSet;
+		}
 		Set<Set<Model>> operatorTypeInputSetCommutative = new HashSet<>();
 		int[] indexes = new int[modelTypeEndpointInputs.size()];
 		for (int i = 0; i < indexes.length; i++) {
