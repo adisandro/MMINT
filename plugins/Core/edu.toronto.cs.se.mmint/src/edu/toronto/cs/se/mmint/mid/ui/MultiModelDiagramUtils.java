@@ -224,7 +224,7 @@ public class MultiModelDiagramUtils {
 
 		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getGenericTypeCreationDialog(genericSuperTypeEndpoint, inputs);
 		String title = "Run generic operator";
-		String message = "Choose generic type " + genericSuperTypeEndpoint.getName();
+		String message = "Choose generic type <" + genericSuperTypeEndpoint.getName() + ">";
 	
 		return (GenericElement) openSelectionDialogWithDefault(dialog, title, message);
 	}
