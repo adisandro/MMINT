@@ -35,8 +35,10 @@ import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
@@ -75,7 +77,10 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		EList<Model> inputModels = new BasicEList<>();
 		inputModels.add(model);
 		EList<OperatorInput> inputs = ecore2smt.checkAllowedInputs(inputModels);
-		ecore2smt.start(inputs, new HashMap<>(), null);
+		//TODO MMINT[OPERATOR] Change start() to return the operator instance and create api to get outputs by name (by always creating the output endpoints)
+		MultiModel tempMID = MIDFactory.eINSTANCE.createMultiModel();
+		ecore2smt.start(inputs, new HashMap<>(), tempMID);
+		ecore2smt = (EcoreMAVOToSMTLIB) tempMID.getOperators().get(0);
 		ecore2smt.cleanup();
 
 		return ecore2smt.getZ3MAVOModelParser();
