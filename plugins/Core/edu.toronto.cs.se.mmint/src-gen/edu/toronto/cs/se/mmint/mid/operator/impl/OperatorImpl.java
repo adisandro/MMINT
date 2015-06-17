@@ -596,6 +596,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case OperatorPackage.OPERATOR___GET_OUTPUTS_BY_NAME:
+				try {
+					return getOutputsByName();
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case OperatorPackage.OPERATOR___CREATE_INSTANCE__MULTIMODEL:
 				try {
 					return createInstance((MultiModel)arguments.get(0));
@@ -925,6 +932,22 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
+	public Map<String, Model> getOutputsByName() throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+
+		Map<String, Model> outputsByName = new HashMap<>();
+		this.getOutputs().stream()
+			.collect(Collectors.toMap(
+				outputModelEndpoint -> outputModelEndpoint.getName(),
+				outputModelEndpoint -> outputModelEndpoint.getTarget()));
+
+		return outputsByName;
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	public Operator createInstance(MultiModel instanceMID) throws MMINTException {
 
 		MMINTException.mustBeType(this);
@@ -1037,8 +1060,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		Map<String, Model> inputsByName = new HashMap<>();
 		for (OperatorInput input : inputs) {
+			ModelEndpoint modelEndpoint = null;
 			if (newOperator != null) {
-				input.getModelTypeEndpoint().createInstance(
+				modelEndpoint = input.getModelTypeEndpoint().createInstance(
 					input.getModel(),
 					newOperator,
 					OperatorPackage.eINSTANCE.getOperator_Inputs().getName()
@@ -1051,6 +1075,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 					i++;
 				}
 				inputName += i;
+				if (newOperator != null) {
+					modelEndpoint.setName(inputName);
+				}
 			}
 			if (input.getConversions().isEmpty() || !runConversions) {
 				inputsByName.put(inputName, input.getModel());
@@ -1077,7 +1104,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public Map<String, Model> start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception {
+	public Operator start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception {
 
 		MMINTException.mustBeType(this);
 
@@ -1103,23 +1130,21 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		Map<String, Model> outputsByName = newOperator.run(inputsByName, genericsByName, outputMIDsByName);
 		newOperator.setExecutionTime(System.nanoTime()-startTime);
 		// outputs
-		if (instanceMID != null) {
-			for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
-				List<Model> outputModels;
-				if (outputModelTypeEndpoint.getUpperBound() == -1) {
-					outputModels = MultiModelOperatorUtils.getVarargs(outputsByName, outputModelTypeEndpoint.getName());
-				}
-				else {
-					outputModels = new ArrayList<>();
-					outputModels.add(outputsByName.get(outputModelTypeEndpoint.getName()));
-				}
-				for (Model outputModel : outputModels) {
-					outputModelTypeEndpoint.createInstance(
-						outputModel,
-						newOperator,
-						OperatorPackage.eINSTANCE.getOperator_Outputs().getName()
-					);
-				}
+		for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
+			List<Model> outputModels;
+			if (outputModelTypeEndpoint.getUpperBound() == -1) {
+				outputModels = MultiModelOperatorUtils.getVarargs(outputsByName, outputModelTypeEndpoint.getName());
+			}
+			else {
+				outputModels = new ArrayList<>();
+				outputModels.add(outputsByName.get(outputModelTypeEndpoint.getName()));
+			}
+			for (Model outputModel : outputModels) {
+				outputModelTypeEndpoint.createInstance(
+					outputModel,
+					newOperator,
+					OperatorPackage.eINSTANCE.getOperator_Outputs().getName()
+				);
 			}
 		}
 		// clean up conversions
@@ -1132,7 +1157,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			}
 		}
 
-		return outputsByName;
+		return newOperator;
 	}
 
 } //OperatorImpl

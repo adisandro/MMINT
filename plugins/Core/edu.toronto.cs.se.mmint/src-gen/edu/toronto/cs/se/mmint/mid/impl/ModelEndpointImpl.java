@@ -476,7 +476,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 */
 	protected void addInstance(ModelEndpoint newModelEndpoint, Model targetModel, Operator containerOperator, String containerFeatureName) throws MMINTException {
 
-		super.addBasicInstance(newModelEndpoint, null, targetModel.getName());
+		super.addBasicInstance(newModelEndpoint, null, this.getName());
 		super.addInstanceEndpoint(newModelEndpoint, targetModel);
 		MultiModelUtils.setModelObjFeature(containerOperator, containerFeatureName, newModelEndpoint);
 	}

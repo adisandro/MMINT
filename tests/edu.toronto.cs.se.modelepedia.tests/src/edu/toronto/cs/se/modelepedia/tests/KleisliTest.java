@@ -208,7 +208,7 @@ public class KleisliTest extends MMINTTest {
 		EList<OperatorInput> transformationInputs = transformationOperator.checkAllowedInputs(transformationInputModels);
 		Map<String, MultiModel> outputMIDsByName = MultiModelOperatorUtils.createSimpleOutputMIDsByName(transformationOperator, instanceMID);
 		//TODO MMINT[TESTS] How can I pass genericsByName with KMR=kModelRelType? 
-		Map<String, Model> transformationOutput = transformationOperator.start(transformationInputs, outputMIDsByName, instanceMID);
+		Map<String, Model> transformationOutput = transformationOperator.start(transformationInputs, outputMIDsByName, instanceMID).getOutputsByName();
 		MultiModelUtils.createModelFile(instanceMID, TESTS_INSTANCEMID_URI, true);
 
 		// test equivalence with oracle

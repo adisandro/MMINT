@@ -303,6 +303,14 @@ public interface Operator extends GenericElement {
 	boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	Map<String, Model> getOutputsByName() throws MMINTException;
+
+	/**
 	 * <!-- begin-user-doc --> Creates and possibly adds an operator instance of
 	 * this operator type to an Instance MID.
 	 * 
@@ -412,12 +420,12 @@ public interface Operator extends GenericElement {
 	 * @param instanceMID
 	 *            The Instance MID where the operator instance is run, null if the operator isn't going to be added to
 	 *            it.
-	 * @return The output model instances, identified by their name.
+	 * @return The executed operator instance.
 	 * @throws Exception
 	 *             If something went wrong starting the operator. <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true" outputMIDsByNameRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
-	Map<String, Model> start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception;
+	Operator start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception;
 
 } // Operator

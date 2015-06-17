@@ -110,8 +110,8 @@ public class Reduce extends OperatorImpl {
 							.collect(Collectors.toSet())))
 					.collect(Collectors.toSet());
 				// run the ACCUMULATOR operator
-				operatorOutputsByName = accumulatorOperatorType.start(operatorInputs,
-					operatorOutputMIDsByName, null);
+				operatorOutputsByName = accumulatorOperatorType.start(operatorInputs, operatorOutputMIDsByName, null)
+					.getOutputsByName();
 				tempModelsToDelete.addAll(
 					operatorOutputsByName.values().stream()
 						.filter(outputModel -> !(outputModel instanceof ModelRel))
@@ -139,9 +139,10 @@ public class Reduce extends OperatorImpl {
 							compOperatorInput2.setModelTypeEndpoint(compOperatorType.getInputs().get(1));
 							compOperatorInputs.add(compOperatorInput2);
 							Map<String, Model> compOperatorOutputsByName = compOperatorType.start(
-								compOperatorInputs,
-								compOperatorOutputMIDsByName,
-								null);
+									compOperatorInputs,
+									compOperatorOutputMIDsByName,
+									null)
+								.getOutputsByName();
 							compModelRels.add(
 								(ModelRel) compOperatorOutputsByName.get(
 									compOperatorType.getOutputs().get(0).getName()));

@@ -140,9 +140,10 @@ public class Map extends OperatorImpl {
 		for (EList<OperatorInput> operatorInputs : operatorInputSet) {
 			try {
 				java.util.Map<String, Model> operatorOutputsByName = mapperOperatorType.start(
-					operatorInputs,
-					outputMIDsByName,
-					operatorMID);
+						operatorInputs,
+						outputMIDsByName,
+						operatorMID)
+					.getOutputsByName();
 				// get gmf shortcuts to create (output MIDRels/MIDOpers need gmf shortcuts to model endpoints)
 				if (operatorMID != null) {
 					for (OperatorInput operatorInput : operatorInputs) {

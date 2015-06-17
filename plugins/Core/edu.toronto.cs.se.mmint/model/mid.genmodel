@@ -476,6 +476,7 @@
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/isAllowedInput">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedInput/inputsByName"/>
         </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getOutputsByName"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/createInstance">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/createInstance/instanceMID"/>
         </genOperations>

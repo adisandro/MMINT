@@ -1115,6 +1115,12 @@
           </eGenericType>
         </eParameters>
       </eOperations>
+      <eOperations name="getOutputsByName" lowerBound="1" eExceptions="#//MMINTException">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eTypeArguments eClassifier="#//Model"/>
+        </eGenericType>
+      </eOperations>
       <eOperations name="createInstance" lowerBound="1" eType="#//operator/Operator"
           eExceptions="#//MMINTException">
         <eParameters name="instanceMID" eType="#//MultiModel"/>
@@ -1155,11 +1161,7 @@
           </eGenericType>
         </eParameters>
       </eOperations>
-      <eOperations name="start" lowerBound="1" eExceptions="#//operator/Exception">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-          <eTypeArguments eClassifier="#//Model"/>
-        </eGenericType>
+      <eOperations name="start" lowerBound="1" eType="#//operator/Operator" eExceptions="#//operator/Exception">
         <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
         <eParameters name="outputMIDsByName" lowerBound="1">
           <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">

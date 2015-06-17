@@ -92,7 +92,7 @@ public class MIDContextCheckCoherenceListener extends MIDContextMenuListener {
 						Map<String, MultiModel> outputMIDsByName = new HashMap<>();
 						String convOutputName = convOperatorType.getOutputs().get(0).getName();
 						outputMIDsByName.put(convOutputName, instanceMID);
-						Map<String, Model> outputsByName = convOperatorType.start(inputs, outputMIDsByName, null);
+						Map<String, Model> outputsByName = convOperatorType.start(inputs, outputMIDsByName, null).getOutputsByName();
 						inputModel = outputsByName.get(convOutputName);
 					}
 					coherentModels.add(inputModel);
