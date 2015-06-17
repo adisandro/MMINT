@@ -195,11 +195,8 @@ public class Reduce extends OperatorImpl {
 				});
 			}
 			catch (Exception e) {
-				// other than errors, the operator can fail because of input constraints due to the cartesian
-				// product
 				MMINTException.print(
-					IStatus.WARNING, "Operator " + accumulatorOperatorType + " execution error, skipping it",
-					e);
+					IStatus.WARNING, "Operator " + accumulatorOperatorType + " execution error, skipping it", e);
 			}
 		}
 		// delete intermediate model files but the ones from last execution

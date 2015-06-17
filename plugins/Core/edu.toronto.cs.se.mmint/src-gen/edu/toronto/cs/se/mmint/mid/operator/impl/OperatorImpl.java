@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINT;
@@ -792,9 +793,25 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
+	private @Nullable OperatorInput getModelTypeEndpointInput(@NonNull ModelEndpoint inputModelTypeEndpoint, @NonNull Model inputModel) {
+
+		List<ConversionOperator> conversions = MultiModelTypeHierarchy.instanceOf(inputModel, inputModelTypeEndpoint.getTargetUri());
+		if (conversions == null) {
+			return null;
+		}
+		OperatorInput input = OperatorFactory.eINSTANCE.createOperatorInput();
+		input.setModel(inputModel);
+		input.setModelTypeEndpoint(inputModelTypeEndpoint);
+		input.getConversions().addAll(conversions);
+
+		return input;
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	private @NonNull EList<EList<OperatorInput>> getModelTypeEndpointInputs(@NonNull EList<MultiModel> inputMIDs) {
 
-		//TODO MMINT[OPERATOR] Unify with checkAllowedInputs()
 		//TODO MMINT[MAP] Add support for upper bound = -1
 		EList<EList<OperatorInput>> modelTypeEndpointInputs = new BasicEList<>();
 		for (int i = 0; i < this.getInputs().size(); i++) {
@@ -813,16 +830,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			EList<OperatorInput> modelTypeEndpointInputSet = new BasicEList<>();
 			modelTypeEndpointInputs.add(modelTypeEndpointInputSet);
 			for (Model inputModel : MultiModelRegistry.getModels(inputMID)) {
-				List<ConversionOperator> conversions = MultiModelTypeHierarchy.instanceOf(
-					inputModel,
-					inputModelTypeEndpoint.getTargetUri());
-				if (conversions == null) {
+				OperatorInput operatorInput = getModelTypeEndpointInput(inputModelTypeEndpoint, inputModel);
+				if (operatorInput == null) {
 					continue;
 				}
-				OperatorInput operatorInput = OperatorFactory.eINSTANCE.createOperatorInput();
-				operatorInput.setModel(inputModel);
-				operatorInput.getConversions().addAll(conversions);
-				operatorInput.setModelTypeEndpoint(inputModelTypeEndpoint);
 				modelTypeEndpointInputSet.add(operatorInput);
 			}
 		}
@@ -880,19 +891,11 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			}
 			// check 2: type or substitutable types
 			while (i < inputModels.size()) {
-				Model inputModel = inputModels.get(i); // == actual parameter
-				Model inputModelType = inputModelTypeEndpoint.getTarget(); // == formal parameter
-				List<ConversionOperator> conversions = MultiModelTypeHierarchy.instanceOf(inputModel, inputModelType.getUri());
-				if (conversions == null) {
+				OperatorInput operatorInput = getModelTypeEndpointInput(inputModelTypeEndpoint, inputModels.get(i));
+				if (operatorInput == null) {
 					return null;
 				}
-				OperatorInput input = OperatorFactory.eINSTANCE.createOperatorInput();
-				input.setModel(inputModel);
-				input.setModelTypeEndpoint(inputModelTypeEndpoint);
-				if (!conversions.isEmpty()) {
-					input.getConversions().addAll(conversions);
-				}
-				inputs.add(input);
+				inputs.add(operatorInput);
 				i++;
 				if (inputModelTypeEndpoint.getUpperBound() == 1) {
 					break;
