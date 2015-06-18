@@ -47,6 +47,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 //TODO MMINT[OPERATOR] Review this whole operator to find examples on how to make apis easier to use
 // e.g. direct access through ext table is useful, but there's that _AS_ thing to be fixed first
+// e.g. there is no direct link from a model to all its connected model rels
 public class ModelMerge extends OperatorImpl {
 
 	// input-output

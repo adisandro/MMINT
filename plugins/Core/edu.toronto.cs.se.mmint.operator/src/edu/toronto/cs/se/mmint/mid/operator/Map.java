@@ -267,7 +267,7 @@ public class Map extends OperatorImpl {
 //				shortcutAnnotation.getDetails().put("modelID", MultiModelEditPart.MODEL_ID);
 //				gmfNode.getEAnnotations().add(shortcutAnnotation);
 //			}
-//			//TODO MMINT[MAP] Fix refresh problems, don't know if there can be shortcuts for links
+//			//TODO MMINT[MAP] Fix refresh problems, don't know if there can be shortcuts for gmf links (binary model rels)
 ////			for (Model midoperModelRelShortcut : midoperModelRelShortcuts) {
 ////				View gmfView;
 ////				//TODO MMINT[MAP] Create function to do this

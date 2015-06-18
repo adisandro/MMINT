@@ -723,11 +723,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
-	 * Computes the cartesian product of allowed input models for each formal parameters of this operator type.
+	 * Computes the cartesian product of inputs for this operator type.
 	 * 
 	 * @param modelTypeEndpointInputs
-	 *            The allowed input models for each formal parameter.
-	 * @return A set of allowed inputs to the operator type, including necessary conversions.
+	 *            The allowed inputs for each formal parameter.
+	 * @param firstOnly
+	 *            True if only the first input is returned, false if the whole cartesian product is returned.
+	 * @return A set of inputs to the operator type, including necessary conversions.
 	 * @generated NOT
 	 */
 	private @NonNull Set<EList<OperatorInput>> getOperatorTypeInputs(@NonNull EList<EList<OperatorInput>> modelTypeEndpointInputs, boolean firstOnly) {
@@ -791,9 +793,16 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
+	 * Checks if an input model can be used as actual parameter for a formal parameter of an operator type.
+	 * 
+	 * @param inputModelTypeEndpoint
+	 *            The model type endpoint representing the formal parameter of an operator type.
+	 * @param inputModel
+	 *            The input model.
+	 * @return The input to the operator, including necessary conversions, or null if the input model can't be used.
 	 * @generated NOT
 	 */
-	private @Nullable OperatorInput getModelTypeEndpointInput(@NonNull ModelEndpoint inputModelTypeEndpoint, @NonNull Model inputModel) {
+	private @Nullable OperatorInput checkAllowedInput(@NonNull ModelEndpoint inputModelTypeEndpoint, @NonNull Model inputModel) {
 
 		List<ConversionOperator> conversions = MultiModelTypeHierarchy.instanceOf(inputModel, inputModelTypeEndpoint.getTargetUri());
 		if (conversions == null) {
@@ -808,6 +817,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
+	 * Gets all allowed inputs for each formal parameter of this operator type.
+	 * 
+	 * @param inputMIDs
+	 *            A list of instance MIDs where to get input models. Each formal parameter gets input models from a
+	 *            different instance MID, following their order. If there are not enough instance MIDs, the last
+	 *            instance MID is used for all subsequent formal parameters.
+	 * @return The allowed inputs for each formal parameter, including necessary conversions.
 	 * @generated NOT
 	 */
 	private @NonNull EList<EList<OperatorInput>> getModelTypeEndpointInputs(@NonNull EList<MultiModel> inputMIDs) {
@@ -818,10 +834,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			ModelEndpoint inputModelTypeEndpoint = this.getInputs().get(i);
 			// TODO MMINT[MAP] Add support for arbitrary combinations of input MIDs to input arguments
 			MultiModel inputMID;
-			if (inputMIDs.size() == 1) {
-				inputMID = inputMIDs.get(0);
-			}
-			else if (i < inputMIDs.size()) {
+			if (i < inputMIDs.size()) {
 				inputMID = inputMIDs.get(i);
 			}
 			else {
@@ -830,7 +843,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			EList<OperatorInput> modelTypeEndpointInputSet = new BasicEList<>();
 			modelTypeEndpointInputs.add(modelTypeEndpointInputSet);
 			for (Model inputModel : MultiModelRegistry.getModels(inputMID)) {
-				OperatorInput operatorInput = getModelTypeEndpointInput(inputModelTypeEndpoint, inputModel);
+				OperatorInput operatorInput = checkAllowedInput(inputModelTypeEndpoint, inputModel);
 				if (operatorInput == null) {
 					continue;
 				}
@@ -891,7 +904,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			}
 			// check 2: type or substitutable types
 			while (i < inputModels.size()) {
-				OperatorInput operatorInput = getModelTypeEndpointInput(inputModelTypeEndpoint, inputModels.get(i));
+				OperatorInput operatorInput = checkAllowedInput(inputModelTypeEndpoint, inputModels.get(i));
 				if (operatorInput == null) {
 					return null;
 				}
@@ -1057,6 +1070,18 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
+	 * Creates a map of input model instances, identified by their formal parameter name.
+	 * 
+	 * @param inputs
+	 *            A list of inputs to the operator instance, including necessary conversions.
+	 * @param runConversions
+	 *            True if conversions have to be run, false otherwise.
+	 * @param newOperator
+	 *            The operator instance that will be invoked with the input models, null if operator traceability is not
+	 *            needed.
+	 * @return The map of input model instances, identified by their formal parameter name.
+	 * @throws Exception
+	 *             If something went wrong running the conversions.
 	 * @generated NOT
 	 */
 	private Map<String, Model> createInputsByName(EList<OperatorInput> inputs, boolean runConversions, Operator newOperator) throws Exception {
