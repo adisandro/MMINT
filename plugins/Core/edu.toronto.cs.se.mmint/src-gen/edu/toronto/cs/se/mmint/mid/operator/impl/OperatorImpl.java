@@ -952,8 +952,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MMINTException.mustBeInstance(this);
 
-		Map<String, Model> outputsByName = new HashMap<>();
-		this.getOutputs().stream()
+		Map<String, Model> outputsByName = this.getOutputs().stream()
 			.collect(Collectors.toMap(
 				outputModelEndpoint -> outputModelEndpoint.getName(),
 				outputModelEndpoint -> outputModelEndpoint.getTarget()));
@@ -1113,6 +1112,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			}
 			Model convertedInputModel = input.getModel();
 			for (ConversionOperator conversion : input.getConversions()) {
+				//TODO MMINT[OPERATOR] Why don't we use start here?
 				Properties inputProperties = conversion.getInputProperties();
 				conversion.readInputProperties(inputProperties);
 				conversion.init();

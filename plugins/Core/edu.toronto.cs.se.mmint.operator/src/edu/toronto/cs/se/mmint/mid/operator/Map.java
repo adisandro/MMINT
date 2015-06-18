@@ -139,7 +139,7 @@ public class Map extends OperatorImpl {
 		Set<Model> midoperModelShortcuts = new HashSet<>(), midoperModelRelShortcuts = new HashSet<>();
 		for (EList<OperatorInput> operatorInputs : operatorInputSet) {
 			try {
-				java.util.Map<String, Model> operatorOutputsByName = mapperOperatorType.start(
+				java.util.Map<String, Model> mapperOutputsByName = mapperOperatorType.start(
 						operatorInputs,
 						outputMIDsByName,
 						operatorMID)
@@ -155,32 +155,32 @@ public class Map extends OperatorImpl {
 						}
 					}
 				}
-				for (Entry<String, Model> operatorOutput : operatorOutputsByName.entrySet()) {
+				for (Entry<String, Model> mapperOutput : mapperOutputsByName.entrySet()) {
 					if (operatorMID != null) {
-						if (operatorOutput.getValue() instanceof ModelRel) {
-							midoperModelRelShortcuts.add(operatorOutput.getValue());
+						if (mapperOutput.getValue() instanceof ModelRel) {
+							midoperModelRelShortcuts.add(mapperOutput.getValue());
 						}
 						else {
-							midoperModelShortcuts.add(operatorOutput.getValue());
+							midoperModelShortcuts.add(mapperOutput.getValue());
 						}
 					}
-					if (operatorOutput.getValue() instanceof ModelRel) {
-						Set<Model> midrelShortcutsToAdd = ((ModelRel) operatorOutput.getValue()).getModelEndpoints()
+					if (mapperOutput.getValue() instanceof ModelRel) {
+						Set<Model> midrelShortcutsToAdd = ((ModelRel) mapperOutput.getValue()).getModelEndpoints()
 							.stream()
 							.map(ModelEndpoint::getTarget)
 							.collect(Collectors.toSet());
 						Set<Model> midrelShortcuts = midrelShortcutsByOutputName.putIfAbsent(
-							operatorOutput.getKey(),
+							mapperOutput.getKey(),
 							midrelShortcutsToAdd);
 						if (midrelShortcuts != null) {
 							midrelShortcuts.addAll(midrelShortcutsToAdd);
 						}
-						Set<MultiModel> midrelMIDsToAdd = ((ModelRel) operatorOutput.getValue()).getModelEndpoints()
+						Set<MultiModel> midrelMIDsToAdd = ((ModelRel) mapperOutput.getValue()).getModelEndpoints()
 							.stream()
 							.map(modelEndpoint -> MultiModelRegistry.getMultiModel(modelEndpoint.getTarget()))
 							.collect(Collectors.toSet());
 						Set<MultiModel> midrelMIDs = midrelMIDsByOutputName.putIfAbsent(
-							operatorOutput.getKey(),
+							mapperOutput.getKey(),
 							midrelMIDsToAdd);
 						if (midrelMIDs != null) {
 							midrelMIDs.addAll(midrelMIDsToAdd);

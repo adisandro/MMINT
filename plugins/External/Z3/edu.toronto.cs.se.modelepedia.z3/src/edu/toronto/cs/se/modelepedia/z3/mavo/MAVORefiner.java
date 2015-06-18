@@ -121,7 +121,7 @@ public class MAVORefiner {
 			MAVOElement modelObj = entry.getValue();
 			String smtConstraint;
 			try {
-				//TODO MMINT[MAVO-MMINT] Get this from the model parser
+				//TODO MMINT[MAVO] Get this from the model parser
 				smtConstraint = Z3MAVOUtils.getSMTLIBMayModelObjectConstraint(modelObj, true, false);
 			}
 			catch (MMINTException e) {

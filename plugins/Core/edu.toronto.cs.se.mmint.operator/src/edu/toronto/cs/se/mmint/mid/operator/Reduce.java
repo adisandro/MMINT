@@ -39,7 +39,6 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -73,141 +72,155 @@ public class Reduce extends OperatorImpl {
 	private @NonNull MultiModel reduce(@NonNull Model inputMIDModel, @NonNull Operator accumulatorOperatorType)
 			throws Exception {
 
+		// preparation for accumulator operator
 		MultiModel reducedMID = (MultiModel) inputMIDModel.getEMFInstanceRoot();
-		Map<String, MultiModel> operatorOutputMIDsByName = accumulatorOperatorType.getOutputs().stream()
-			.collect(Collectors.toMap(
-				outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
-				outputModelTypeEndpoint -> reducedMID));
+		Map<String, MultiModel> accumulatorOutputMIDsByName = MultiModelOperatorUtils
+			.createSimpleOutputMIDsByName(accumulatorOperatorType, reducedMID);
 		EList<MultiModel> inputMIDs = new BasicEList<>();
 		inputMIDs.add(reducedMID);
-		EList<OperatorInput> operatorInputs;
-		Set<Model> tempModelsToDelete = new HashSet<>();
-		Map<String, Model> operatorOutputsByName = null;
-		while ((operatorInputs = accumulatorOperatorType.findFirstAllowedInput(inputMIDs)) != null) {
+		Set<Model> accumulatorOutputModelsToDelete = new HashSet<>();
+		Map<String, Model> accumulatorOutputsByName = null;
+		EList<OperatorInput> accumulatorInputs;
+		// preparation for composition operator
+		Operator compositionOperatorType = MultiModelTypeRegistry.getType(MODELRELCOMPOSITION_OPERATORTYPE_URI);
+		Map<String, MultiModel> compositionOutputMIDsByName = MultiModelOperatorUtils
+			.createSimpleOutputMIDsByName(compositionOperatorType, reducedMID);
+		// preparation for merge operator
+		Operator mergeOperatorType = MultiModelTypeRegistry.getType(MODELRELMERGE_OPERATORTYPE_URI);
+		Map<String, MultiModel> mergeOutputMIDsByName = MultiModelOperatorUtils
+			.createSimpleOutputMIDsByName(mergeOperatorType, reducedMID);
+		// reduce loop
+		while ((accumulatorInputs = accumulatorOperatorType.findFirstAllowedInput(inputMIDs)) != null) {
+			Set<Model> accumulatorInputModels = new HashSet<>();
+			Set<ModelRel> accumulatorInputModelRels = new HashSet<>();
 			try {
 				// get all model inputs, including the ones attached to model rel inputs
-				Set<Model> inputModels = new HashSet<>();
-				Set<ModelRel> inputModelRels = new HashSet<>();
-				for (OperatorInput operatorInput : operatorInputs) {
-					Model inputModel = operatorInput.getModel();
-					if (inputModel instanceof ModelRel) {
-						inputModels.addAll(((ModelRel) inputModel).getModelEndpoints().stream()
+				for (OperatorInput accumulatorInput : accumulatorInputs) {
+					Model accumulatorInputModel = accumulatorInput.getModel();
+					if (accumulatorInputModel instanceof ModelRel) {
+						accumulatorInputModels.addAll(((ModelRel) accumulatorInputModel).getModelEndpoints().stream()
 							.map(ModelEndpoint::getTarget)
 							.collect(Collectors.toSet()));
-						inputModelRels.add((ModelRel) inputModel);
+						accumulatorInputModelRels.add((ModelRel) accumulatorInputModel);
 					}
 					else {
-						inputModels.add(inputModel);
+						accumulatorInputModels.add(accumulatorInputModel);
 					}
 				}
 				// get all model rels attached to input models that are not inputs themselves
+				//TODO MMINT[OO] This is expensive, need a direct way to reach model rels from models
 				Set<ModelRel> connectedModelRels = MultiModelRegistry.getModelRels(reducedMID).stream()
-					.filter(modelRel -> !inputModelRels.contains(modelRel))
+					.filter(modelRel -> !accumulatorInputModelRels.contains(modelRel))
 					.filter(modelRel -> !Collections.disjoint(
-						inputModels,
+						accumulatorInputModels,
 						modelRel.getModelEndpoints().stream()
 							.map(ModelEndpoint::getTarget)
 							.collect(Collectors.toSet())))
 					.collect(Collectors.toSet());
 				// run the ACCUMULATOR operator
-				operatorOutputsByName = accumulatorOperatorType.start(operatorInputs, operatorOutputMIDsByName, null)
+				accumulatorOutputsByName = accumulatorOperatorType.start(
+						accumulatorInputs,
+						accumulatorOutputMIDsByName,
+						null)
 					.getOutputsByName();
-				tempModelsToDelete.addAll(
-					operatorOutputsByName.values().stream()
-						.filter(outputModel -> !(outputModel instanceof ModelRel))
+				accumulatorOutputModelsToDelete.addAll(
+					accumulatorOutputsByName.values().stream()
+						.filter(accumulatorOutputModel -> !(accumulatorOutputModel instanceof ModelRel))
 						.collect(Collectors.toSet()));
 				// for each model rel in the output that is connected with the input models, do the composition
-				Operator compOperatorType = MultiModelTypeRegistry.getType(MODELRELCOMPOSITION_OPERATORTYPE_URI);
-				Map<String, MultiModel> compOperatorOutputMIDsByName = compOperatorType.getOutputs().stream()
-					.collect(Collectors.toMap(
-						outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
-						outputModelTypeEndpoint -> reducedMID));
-				List<ModelRel> compModelRels = new ArrayList<>();
+				List<ModelRel> composedModelRels = new ArrayList<>();
 				for (ModelRel connectedModelRel : connectedModelRels) {
-					for (Model outputModelRel : operatorOutputsByName.values()) {
-						if (!(outputModelRel instanceof ModelRel)) {
+					for (Model accumulatorModelRel : accumulatorOutputsByName.values()) {
+						if (!(accumulatorModelRel instanceof ModelRel)) {
 							continue;
 						}
 						try {
-							EList<OperatorInput> compOperatorInputs = new BasicEList<>();
-							OperatorInput compOperatorInput1 = OperatorFactory.eINSTANCE.createOperatorInput();
-							compOperatorInput1.setModel(connectedModelRel);
-							compOperatorInput1.setModelTypeEndpoint(compOperatorType.getInputs().get(0));
-							compOperatorInputs.add(compOperatorInput1);
-							OperatorInput compOperatorInput2 = OperatorFactory.eINSTANCE.createOperatorInput();
-							compOperatorInput2.setModel(outputModelRel);
-							compOperatorInput2.setModelTypeEndpoint(compOperatorType.getInputs().get(1));
-							compOperatorInputs.add(compOperatorInput2);
-							Map<String, Model> compOperatorOutputsByName = compOperatorType.start(
-									compOperatorInputs,
-									compOperatorOutputMIDsByName,
+							EList<Model> compositionInputModels = new BasicEList<>();
+							compositionInputModels.add(connectedModelRel);
+							compositionInputModels.add(accumulatorModelRel);
+							EList<OperatorInput> compositionInputs = compositionOperatorType.checkAllowedInputs(
+								compositionInputModels);
+							if (compositionInputs == null) {
+								continue;
+							}
+							Map<String, Model> compositionOutputsByName = compositionOperatorType.start(
+									compositionInputs,
+									compositionOutputMIDsByName,
 									null)
 								.getOutputsByName();
-							compModelRels.add(
-								(ModelRel) compOperatorOutputsByName.get(
-									compOperatorType.getOutputs().get(0).getName()));
+							composedModelRels.add(
+								(ModelRel) compositionOutputsByName.get(
+									compositionOperatorType.getOutputs().get(0).getName()));
 						}
 						catch (Exception e) {
-							// use the composition operator itself to verify the two model rels have to be composed
+							MMINTException.print(
+								IStatus.WARNING,
+								"Operator " + compositionOperatorType + " execution error, skipping it",
+								e);
 						}
 					}
 				}
-				// merge model rels that have been composed
-				Operator mergeOperatorType = MultiModelTypeRegistry.getType(MODELRELMERGE_OPERATORTYPE_URI);
-				Map<String, MultiModel> mergeOperatorOutputMIDsByName = MultiModelOperatorUtils
-					.createSimpleOutputMIDsByName(mergeOperatorType, reducedMID);
-				Set<ModelRel> compModelRelsToDelete = new HashSet<>();
-				for (int i = 0; i < compModelRels.size(); i++) {
-					ModelRel compModelRel1 = compModelRels.get(i);
-					for (int j = i+1; j < compModelRels.size(); j++) {
-						ModelRel compModelRel2 = compModelRels.get(j);
+				// merge model rels that have been composed and share the same model endpoints
+				Set<ModelRel> composedModelRelsToDelete = new HashSet<>();
+				for (int i = 0; i < composedModelRels.size(); i++) {
+					ModelRel composedModelRel1 = composedModelRels.get(i);
+					for (int j = i+1; j < composedModelRels.size(); j++) {
+						ModelRel composedModelRel2 = composedModelRels.get(j);
 						try {
-							EList<OperatorInput> mergeOperatorInputs = new BasicEList<>();
-							OperatorInput mergeOperatorInput1 = OperatorFactory.eINSTANCE.createOperatorInput();
-							mergeOperatorInput1.setModel(compModelRel1);
-							mergeOperatorInput1.setModelTypeEndpoint(mergeOperatorType.getInputs().get(0));
-							mergeOperatorInputs.add(mergeOperatorInput1);
-							OperatorInput mergeOperatorInput2 = OperatorFactory.eINSTANCE.createOperatorInput();
-							mergeOperatorInput2.setModel(compModelRel2);
-							mergeOperatorInput2.setModelTypeEndpoint(mergeOperatorType.getInputs().get(1));
-							mergeOperatorInputs.add(mergeOperatorInput2);
-							mergeOperatorType.start(mergeOperatorInputs, mergeOperatorOutputMIDsByName, null);
-							compModelRelsToDelete.add(compModelRel1);
-							compModelRelsToDelete.add(compModelRel2);
+							EList<Model> mergeInputModels = new BasicEList<>();
+							mergeInputModels.add(composedModelRel1);
+							mergeInputModels.add(composedModelRel2);
+							EList<OperatorInput> mergeInputs = mergeOperatorType.checkAllowedInputs(
+								mergeInputModels);
+							if (mergeInputs == null) {
+								continue;
+							}
+							mergeOperatorType.start(mergeInputs, mergeOutputMIDsByName, null);
+							composedModelRelsToDelete.add(composedModelRel1);
+							composedModelRelsToDelete.add(composedModelRel2);
 						}
 						catch (Exception e) {
-							// use the merge operator itself to verify the two model rels have to be merged
+							MMINTException.print(
+								IStatus.WARNING,
+								"Operator " + mergeOperatorType + " execution error, skipping it",
+								e);
 						}
 					}
 				}
-				compModelRelsToDelete.forEach(compModelRelToDelete -> {
+				composedModelRelsToDelete.forEach(compModelRelToDelete -> {
 					try {
 						compModelRelToDelete.deleteInstance();
-					}
-					catch (MMINTException e) {}
-				});
-				// delete operator inputs (model rels are deleted as a side effect of deleting the models)
-				inputModels.forEach(modelInput -> {
-					try {
-						modelInput.deleteInstance();
 					}
 					catch (MMINTException e) {}
 				});
 			}
 			catch (Exception e) {
 				MMINTException.print(
-					IStatus.WARNING, "Operator " + accumulatorOperatorType + " execution error, skipping it", e);
+					IStatus.WARNING,
+					"Operator " + accumulatorOperatorType + " execution error, skipping it",
+					e);
+			}
+			finally {
+				// delete accumulator inputs (model rels are deleted as a side effect of deleting the models)
+				// do it in case of failure too, because it will trigger an endless loop otherwise
+				accumulatorInputModels.forEach(accumulatorInputModel -> {
+					try {
+						accumulatorInputModel.deleteInstance();
+					}
+					catch (MMINTException e) {}
+				});
 			}
 		}
-		// delete intermediate model files but the ones from last execution
-		for (Model tempModelToDelete : tempModelsToDelete) {
-			if (operatorOutputsByName != null && operatorOutputsByName.values().contains(tempModelToDelete)) {
+		// delete intermediate output model files but the ones from last execution
+		for (Model accumulatorOutputModelToDelete : accumulatorOutputModelsToDelete) {
+			if (accumulatorOutputsByName != null &&
+					accumulatorOutputsByName.values().contains(accumulatorOutputModelToDelete)) {
 				continue;
 			}
-			for (Editor tempEditorToDelete : tempModelToDelete.getEditors()) {
-				MultiModelUtils.deleteFile(tempEditorToDelete.getUri(), true);
+			for (Editor accumulatorOutputEditorToDelete : accumulatorOutputModelToDelete.getEditors()) {
+				MultiModelUtils.deleteFile(accumulatorOutputEditorToDelete.getUri(), true);
 			}
-			MultiModelUtils.deleteFile(tempModelToDelete.getUri(), true);
+			MultiModelUtils.deleteFile(accumulatorOutputModelToDelete.getUri(), true);
 		}
 
 		return reducedMID;

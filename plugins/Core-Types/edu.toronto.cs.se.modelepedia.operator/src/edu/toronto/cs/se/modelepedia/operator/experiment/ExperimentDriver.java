@@ -464,7 +464,7 @@ public class ExperimentDriver extends OperatorImpl {
 		// execute and get state
 		operator.readInputProperties(operatorProperties);
 		operator.init();
-		//TODO MMINT[Operator] Need to fix this and use operator workflows
+		//TODO MMINT[OPERATOR] Need to fix this and use operator workflows
 		Map<String, Model> result = operator.run(inputsByName, new HashMap<>(), new HashMap<>());
 		if (operator instanceof RandomOperatorImpl) {
 			state[experimentIndex] = ((RandomOperatorImpl) operator).getState();
