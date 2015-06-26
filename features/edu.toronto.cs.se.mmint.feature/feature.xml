@@ -29,7 +29,6 @@ sets of related models.
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
-      <import plugin="org.eclipse.ocl.examples.pivot"/>
       <import plugin="org.eclipse.gmf.runtime.emf.ui"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.core"/>
@@ -60,7 +59,6 @@ sets of related models.
       <import plugin="org.eclipse.gef"/>
       <import plugin="org.eclipse.emf.compare"/>
       <import plugin="org.eclipse.emf.ecore.edit"/>
-      <import plugin="org.eclipse.emf.compare.rcp"/>
       <import plugin="org.eclipse.papyrus.uml.diagram.wizards"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.gmf.runtime.notation"/>
@@ -69,6 +67,7 @@ sets of related models.
       <import plugin="org.eclipse.gmf.codegen.xtend"/>
       <import plugin="org.eclipse.xtext.xbase.lib"/>
       <import plugin="org.eclipse.swt"/>
+      <import plugin="org.eclipse.ocl.pivot"/>
       <import feature="org.eclipse.gmf.sdk"/>
       <import feature="org.eclipse.ocl.examples"/>
       <import feature="org.eclipse.papyrus.sdk.feature"/>

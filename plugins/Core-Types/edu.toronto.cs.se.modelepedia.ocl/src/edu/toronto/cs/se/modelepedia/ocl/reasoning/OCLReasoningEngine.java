@@ -12,21 +12,15 @@
 package edu.toronto.cs.se.modelepedia.ocl.reasoning;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.values.CollectionValue;
-import org.eclipse.ocl.examples.domain.values.OrderedSetValue;
-import org.eclipse.ocl.examples.domain.values.SetValue;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-
+import org.eclipse.ocl.pivot.values.CollectionValue;
+import org.eclipse.ocl.pivot.values.OrderedSetValue;
+import org.eclipse.ocl.pivot.values.SetValue;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ocl.pivot.utilities.OCLHelper;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -41,18 +35,6 @@ public class OCLReasoningEngine implements IReasoningEngine {
 
 	protected final static String OCL_MODELENDPOINT_VARIABLE = "$ENDPOINT_";
 	protected final static char OCL_VARIABLE_SEPARATOR = '.';
-
-	private void initOCL(OCLHelper helper, EObject modelObj) {
-
-		//TODO MMINT[OCL] workaround for bug #375485
-//		helper.setInstanceContext(modelObj);
-		MetaModelManager metaModelManager = helper.getOCL().getMetaModelManager();
-		EClass modelObjClass = modelObj.eClass();
-		Resource resource = modelObjClass.eResource();
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, metaModelManager);
-		Type pivotType = ecore2Pivot.getCreated(Type.class, modelObjClass);
-		helper.setContext(pivotType);
-	}
 
 	protected EObject getConstraintContext(Model model, String oclConstraint, MIDLevel constraintLevel) throws MMINTException {
 
@@ -118,8 +100,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	public MAVOTruthValue checkConstraint(EObject modelObj, String oclConstraint) {
 
 		OCL ocl = OCL.newInstance();
-		OCLHelper helper = ocl.createOCLHelper();
-		initOCL(helper, modelObj);
+		OCLHelper helper = ocl.createOCLHelper(modelObj.eClass());
 
 		try {
 			ExpressionInOCL expression = helper.createInvariant(oclConstraint);
@@ -129,13 +110,15 @@ public class OCLReasoningEngine implements IReasoningEngine {
 			MMINTException.print(IStatus.WARNING, "Error in OCL constraint \"" + oclConstraint + "\" applied to model object " + modelObj + ", evaluating to false", e);
 			return MAVOTruthValue.FALSE;
 		}
+		finally {
+			ocl.dispose();
+		}
 	}
 
 	public Object evaluateQuery(EObject modelObj, String oclConstraint) {
 
 		OCL ocl = OCL.newInstance();
-		OCLHelper helper = ocl.createOCLHelper();
-		initOCL(helper, modelObj);
+		OCLHelper helper = ocl.createOCLHelper(modelObj.eClass());
 
 		try {
 			ExpressionInOCL expression = helper.createQuery(oclConstraint);

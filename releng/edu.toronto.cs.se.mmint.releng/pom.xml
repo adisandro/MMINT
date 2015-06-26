@@ -5,15 +5,15 @@
   <version>1.3.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <tycho-version>0.22.0</tycho-version>
-    <acceleo-version>3.5.0-SNAPSHOT</acceleo-version>
+    <tycho-version>0.23.0</tycho-version>
+    <acceleo-version>3.6.0-SNAPSHOT</acceleo-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <repositories>
     <repository>
-  	  <id>Luna</id>
+  	  <id>Mars</id>
   	  <layout>p2</layout>
-  	  <url>http://download.eclipse.org/releases/luna</url>
+  	  <url>http://download.eclipse.org/releases/mars</url>
     </repository>
     <repository>
   	  <id>Henshin</id>
@@ -23,7 +23,7 @@
     <repository>
   	  <id>EMFtoCSP</id>
   	  <layout>p2</layout>
-  	  <url>jar:https://raw.githubusercontent.com/atlanmod/EMFtoCSP/master/updateSite/fr.inria.atlanmod.emftocsp.03-09-13.zip!/</url>
+  	  <url>jar:https://raw.githubusercontent.com/SOM-Research/EMFtoCSP/master/updateSite/fr.inria.atlanmod.emftocsp.03-09-13.zip!/</url>
     </repository>
   </repositories>
   <pluginRepositories>
