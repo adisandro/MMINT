@@ -69,7 +69,6 @@ sets of related models.
       <import plugin="org.eclipse.swt"/>
       <import plugin="org.eclipse.ocl.pivot"/>
       <import feature="org.eclipse.gmf.sdk"/>
-      <import feature="org.eclipse.ocl.examples"/>
       <import feature="org.eclipse.papyrus.sdk.feature"/>
       <import feature="org.eclipse.xtend.sdk"/>
       <import feature="org.eclipse.acceleo"/>
