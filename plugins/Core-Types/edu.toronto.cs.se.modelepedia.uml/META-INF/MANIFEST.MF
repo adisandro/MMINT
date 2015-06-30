@@ -10,6 +10,7 @@ Require-Bundle: org.eclipse.papyrus.uml.diagram.wizards,
  org.eclipse.ui.ide,
  org.eclipse.uml2.uml,
  org.eclipse.gmf.runtime.notation,
+ org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.java
