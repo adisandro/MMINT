@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.primitive.int_.presentation;
+package edu.toronto.cs.se.modelepedia.primitive.string.presentation;
 
 
 import java.io.IOException;
@@ -163,22 +163,22 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
+import edu.toronto.cs.se.modelepedia.primitive.string.provider.StringItemProviderAdapterFactory;
+
 import edu.toronto.cs.se.modelepedia.primitive.int_.provider.IntItemProviderAdapterFactory;
 
 import edu.toronto.cs.se.modelepedia.primitive.presentation.PrimitiveEditorPlugin;
-
-import edu.toronto.cs.se.modelepedia.primitive.string.provider.StringItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
 /**
- * This is an example of a Int model editor.
+ * This is an example of a String model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class IntEditor
+public class StringEditor
 	extends MultiPageEditorPart
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
@@ -340,18 +340,18 @@ public class IntEditor
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(IntEditor.this);
+						getActionBarContributor().setActiveEditor(StringEditor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
-						getActionBarContributor().setActiveEditor(IntEditor.this);
+						getActionBarContributor().setActiveEditor(StringEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == IntEditor.this) {
+				else if (p == StringEditor.this) {
 					handleActivate();
 				}
 			}
@@ -524,7 +524,7 @@ public class IntEditor
 								 public void run() {
 									 removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(IntEditor.this, false);
+										 getSite().getPage().closeEditor(StringEditor.this, false);
 									 }
 								 }
 							 });
@@ -535,7 +535,7 @@ public class IntEditor
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == IntEditor.this) {
+									 if (getSite().getPage().getActiveEditor() == StringEditor.this) {
 										 handleActivate();
 									 }
 								 }
@@ -567,7 +567,7 @@ public class IntEditor
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(IntEditor.this, false);
+				getSite().getPage().closeEditor(StringEditor.this, false);
 			}
 			else {
 				removedResources.clear();
@@ -697,7 +697,7 @@ public class IntEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IntEditor() {
+	public StringEditor() {
 		super();
 		initializeEditingDomain();
 	}
@@ -1036,7 +1036,7 @@ public class IntEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), IntEditor.this) {
+					new ViewerPane(getSite().getPage(), StringEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1070,7 +1070,7 @@ public class IntEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), IntEditor.this) {
+					new ViewerPane(getSite().getPage(), StringEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1099,7 +1099,7 @@ public class IntEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), IntEditor.this) {
+					new ViewerPane(getSite().getPage(), StringEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new ListViewer(composite);
@@ -1124,7 +1124,7 @@ public class IntEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), IntEditor.this) {
+					new ViewerPane(getSite().getPage(), StringEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1151,7 +1151,7 @@ public class IntEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), IntEditor.this) {
+					new ViewerPane(getSite().getPage(), StringEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TableViewer(composite);
@@ -1194,7 +1194,7 @@ public class IntEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), IntEditor.this) {
+					new ViewerPane(getSite().getPage(), StringEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1414,8 +1414,8 @@ public class IntEditor
 			new ExtendedPropertySheetPage(editingDomain) {
 				@Override
 				public void setSelectionToViewer(List<?> selection) {
-					IntEditor.this.setSelectionToViewer(selection);
-					IntEditor.this.setFocus();
+					StringEditor.this.setSelectionToViewer(selection);
+					StringEditor.this.setFocus();
 				}
 
 				@Override

@@ -9,9 +9,9 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.primitive.int_.util;
+package edu.toronto.cs.se.modelepedia.primitive.string.util;
 
-import edu.toronto.cs.se.modelepedia.primitive.int_.*;
+import edu.toronto.cs.se.modelepedia.primitive.string.StringPackage;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -28,17 +28,17 @@ import org.eclipse.emf.ecore.util.Switch;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.modelepedia.primitive.int_.IntPackage
+ * @see edu.toronto.cs.se.modelepedia.primitive.string.StringPackage
  * @generated
  */
-public class IntSwitch<T> extends Switch<T> {
+public class StringSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static IntPackage modelPackage;
+	protected static StringPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -46,9 +46,9 @@ public class IntSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IntSwitch() {
+	public StringSwitch() {
 		if (modelPackage == null) {
-			modelPackage = IntPackage.eINSTANCE;
+			modelPackage = StringPackage.eINSTANCE;
 		}
 	}
 
@@ -75,9 +75,9 @@ public class IntSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case IntPackage.INT: {
-				Int int_ = (Int)theEObject;
-				T result = caseInt(int_);
+			case StringPackage.STRING: {
+				edu.toronto.cs.se.modelepedia.primitive.string.String string = (edu.toronto.cs.se.modelepedia.primitive.string.String)theEObject;
+				T result = caseString(string);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -86,17 +86,17 @@ public class IntSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Int</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>String</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Int</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>String</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInt(Int object) {
+	public T caseString(edu.toronto.cs.se.modelepedia.primitive.string.String object) {
 		return null;
 	}
 
@@ -116,4 +116,4 @@ public class IntSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-} //IntSwitch
+} //StringSwitch

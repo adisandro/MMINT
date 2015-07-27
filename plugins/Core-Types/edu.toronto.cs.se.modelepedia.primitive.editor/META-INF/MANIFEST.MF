@@ -4,11 +4,13 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.primitive.editor;singleton:=true
 Bundle-Version: 1.3.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: edu.toronto.cs.se.modelepedia.primitive.int_.presentation.IntEditorPlugin$Implementation
+Bundle-Activator: edu.toronto.cs.se.modelepedia.primitive.presentation.PrimitiveEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: edu.toronto.cs.se.modelepedia.primitive.int_.presentation
+Export-Package: edu.toronto.cs.se.modelepedia.primitive.int_.presentation,
+ edu.toronto.cs.se.modelepedia.primitive.presentation,
+ edu.toronto.cs.se.modelepedia.primitive.string.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.emf.ecore.xmi,

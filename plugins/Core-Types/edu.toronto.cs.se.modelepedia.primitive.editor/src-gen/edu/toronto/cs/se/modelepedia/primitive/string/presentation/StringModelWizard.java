@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.primitive.int_.presentation;
+package edu.toronto.cs.se.modelepedia.primitive.string.presentation;
 
 
 import java.util.ArrayList;
@@ -78,8 +78,8 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
-import edu.toronto.cs.se.modelepedia.primitive.int_.IntFactory;
-import edu.toronto.cs.se.modelepedia.primitive.int_.IntPackage;
+import edu.toronto.cs.se.modelepedia.primitive.string.StringFactory;
+import edu.toronto.cs.se.modelepedia.primitive.string.StringPackage;
 import edu.toronto.cs.se.modelepedia.primitive.provider.PrimitiveEditPlugin;
 
 
@@ -102,7 +102,7 @@ import org.eclipse.ui.PartInitException;
  * <!-- end-user-doc -->
  * @generated
  */
-public class IntModelWizard extends Wizard implements INewWizard {
+public class StringModelWizard extends Wizard implements INewWizard {
 	/**
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
@@ -110,7 +110,7 @@ public class IntModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(PrimitiveEditorPlugin.INSTANCE.getString("_UI_IntEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(PrimitiveEditorPlugin.INSTANCE.getString("_UI_StringEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -119,7 +119,7 @@ public class IntModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		PrimitiveEditorPlugin.INSTANCE.getString("_UI_IntEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		PrimitiveEditorPlugin.INSTANCE.getString("_UI_StringEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -127,7 +127,7 @@ public class IntModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IntPackage intPackage = IntPackage.eINSTANCE;
+	protected StringPackage stringPackage = StringPackage.eINSTANCE;
 
 	/**
 	 * This caches an instance of the model factory.
@@ -135,7 +135,7 @@ public class IntModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IntFactory intFactory = intPackage.getIntFactory();
+	protected StringFactory stringFactory = stringPackage.getStringFactory();
 
 	/**
 	 * This is the file creation page.
@@ -143,7 +143,7 @@ public class IntModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IntModelWizardNewFileCreationPage newFileCreationPage;
+	protected StringModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
 	 * This is the initial object creation page.
@@ -151,7 +151,7 @@ public class IntModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IntModelWizardInitialObjectCreationPage initialObjectCreationPage;
+	protected StringModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
@@ -187,7 +187,7 @@ public class IntModelWizard extends Wizard implements INewWizard {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(PrimitiveEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(PrimitiveEditorPlugin.INSTANCE.getImage("full/wizban/NewInt")));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(PrimitiveEditorPlugin.INSTANCE.getImage("full/wizban/NewString")));
 	}
 
 	/**
@@ -199,7 +199,7 @@ public class IntModelWizard extends Wizard implements INewWizard {
 	protected Collection<String> getInitialObjectNames() {
 		if (initialObjectNames == null) {
 			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : intPackage.getEClassifiers()) {
+			for (EClassifier eClassifier : stringPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
@@ -219,8 +219,8 @@ public class IntModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass)intPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-		EObject rootObject = intFactory.create(eClass);
+		EClass eClass = (EClass)stringPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+		EObject rootObject = stringFactory.create(eClass);
 		return rootObject;
 	}
 
@@ -321,14 +321,14 @@ public class IntModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class IntModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+	public class StringModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
 		/**
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public IntModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+		public StringModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
 			super(pageId, selection);
 		}
 
@@ -368,7 +368,7 @@ public class IntModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class IntModelWizardInitialObjectCreationPage extends WizardPage {
+	public class StringModelWizardInitialObjectCreationPage extends WizardPage {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -396,7 +396,7 @@ public class IntModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public IntModelWizardInitialObjectCreationPage(String pageId) {
+		public StringModelWizardInitialObjectCreationPage(String pageId) {
 			super(pageId);
 		}
 
@@ -580,10 +580,10 @@ public class IntModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new IntModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(PrimitiveEditorPlugin.INSTANCE.getString("_UI_IntModelWizard_label"));
-		newFileCreationPage.setDescription(PrimitiveEditorPlugin.INSTANCE.getString("_UI_IntModelWizard_description"));
-		newFileCreationPage.setFileName(PrimitiveEditorPlugin.INSTANCE.getString("_UI_IntEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage = new StringModelWizardNewFileCreationPage("Whatever", selection);
+		newFileCreationPage.setTitle(PrimitiveEditorPlugin.INSTANCE.getString("_UI_StringModelWizard_label"));
+		newFileCreationPage.setDescription(PrimitiveEditorPlugin.INSTANCE.getString("_UI_StringModelWizard_description"));
+		newFileCreationPage.setFileName(PrimitiveEditorPlugin.INSTANCE.getString("_UI_StringEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -609,7 +609,7 @@ public class IntModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = PrimitiveEditorPlugin.INSTANCE.getString("_UI_IntEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = PrimitiveEditorPlugin.INSTANCE.getString("_UI_StringEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
@@ -619,8 +619,8 @@ public class IntModelWizard extends Wizard implements INewWizard {
 				}
 			}
 		}
-		initialObjectCreationPage = new IntModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage.setTitle(PrimitiveEditorPlugin.INSTANCE.getString("_UI_IntModelWizard_label"));
+		initialObjectCreationPage = new StringModelWizardInitialObjectCreationPage("Whatever2");
+		initialObjectCreationPage.setTitle(PrimitiveEditorPlugin.INSTANCE.getString("_UI_StringModelWizard_label"));
 		initialObjectCreationPage.setDescription(PrimitiveEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}

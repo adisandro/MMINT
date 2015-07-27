@@ -16,7 +16,7 @@
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated int -->
+      <!-- @generated primitive -->
       <category
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
@@ -32,7 +32,7 @@
    </extension>
 
    <extension point="org.eclipse.ui.editors">
-      <!-- @generated int -->
+      <!-- @generated primitive -->
       <editor
             id="edu.toronto.cs.se.modelepedia.primitive.int_.presentation.IntEditorID"
             name="%_UI_IntEditor_label"
@@ -53,6 +53,48 @@
          <type
                name="Int tree"
                uri="http://se.cs.toronto.edu/modelepedia/Int_tree">
+         </type>
+      </editorType>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated primitive -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.toronto.cs.se.modelepedia.primitive.string.presentation.StringModelWizardID"
+            name="%_UI_StringModelWizard_label"
+            class="edu.toronto.cs.se.modelepedia.primitive.string.presentation.StringModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/StringModelFile.gif">
+         <description>%_UI_StringModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated primitive -->
+      <editor
+            id="edu.toronto.cs.se.modelepedia.primitive.string.presentation.StringEditorID"
+            name="%_UI_StringEditor_label"
+            icon="icons/full/obj16/StringModelFile.gif"
+            extensions="string"
+            class="edu.toronto.cs.se.modelepedia.primitive.string.presentation.StringEditor"
+            contributorClass="edu.toronto.cs.se.modelepedia.primitive.string.presentation.StringActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/String"
+            id="edu.toronto.cs.se.modelepedia.primitive.string.presentation.StringEditorID"
+            isDiagram="false"
+            wizardId="edu.toronto.cs.se.modelepedia.primitive.string.presentation.StringModelWizardID">
+         <type
+               name="String tree"
+               uri="http://se.cs.toronto.edu/modelepedia/String_tree">
          </type>
       </editorType>
    </extension>

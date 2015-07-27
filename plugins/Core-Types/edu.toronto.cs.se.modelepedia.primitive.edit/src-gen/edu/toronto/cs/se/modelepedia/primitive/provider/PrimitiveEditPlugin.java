@@ -9,29 +9,27 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.primitive.int_.presentation;
+package edu.toronto.cs.se.modelepedia.primitive.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
-import org.eclipse.emf.common.ui.EclipseUIPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
- * This is the central singleton for the Int editor plugin.
+ * This is the central singleton for the Primitive edit plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public final class IntEditorPlugin extends EMFPlugin {
+public final class PrimitiveEditPlugin extends EMFPlugin {
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final IntEditorPlugin INSTANCE = new IntEditorPlugin();
-	
+	public static final PrimitiveEditPlugin INSTANCE = new PrimitiveEditPlugin();
+
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
@@ -46,10 +44,10 @@ public final class IntEditorPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IntEditorPlugin() {
+	public PrimitiveEditPlugin() {
 		super
-			(new ResourceLocator [] {
-			});
+		  (new ResourceLocator [] {
+		   });
 	}
 
 	/**
@@ -63,7 +61,7 @@ public final class IntEditorPlugin extends EMFPlugin {
 	public ResourceLocator getPluginResourceLocator() {
 		return plugin;
 	}
-	
+
 	/**
 	 * Returns the singleton instance of the Eclipse plugin.
 	 * <!-- begin-user-doc -->
@@ -74,14 +72,14 @@ public final class IntEditorPlugin extends EMFPlugin {
 	public static Implementation getPlugin() {
 		return plugin;
 	}
-	
+
 	/**
 	 * The actual implementation of the Eclipse <b>Plugin</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static class Implementation extends EclipseUIPlugin {
+	public static class Implementation extends EclipsePlugin {
 		/**
 		 * Creates an instance.
 		 * <!-- begin-user-doc -->
@@ -90,7 +88,7 @@ public final class IntEditorPlugin extends EMFPlugin {
 		 */
 		public Implementation() {
 			super();
-	
+
 			// Remember the static instance.
 			//
 			plugin = this;

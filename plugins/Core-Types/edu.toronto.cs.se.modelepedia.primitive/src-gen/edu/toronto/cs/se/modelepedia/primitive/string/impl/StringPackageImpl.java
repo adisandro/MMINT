@@ -9,14 +9,15 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.primitive.int_.impl;
+package edu.toronto.cs.se.modelepedia.primitive.string.impl;
 
-import edu.toronto.cs.se.modelepedia.primitive.int_.Int;
-import edu.toronto.cs.se.modelepedia.primitive.int_.IntFactory;
 import edu.toronto.cs.se.modelepedia.primitive.int_.IntPackage;
 
+import edu.toronto.cs.se.modelepedia.primitive.int_.impl.IntPackageImpl;
+
+import edu.toronto.cs.se.modelepedia.primitive.string.StringFactory;
 import edu.toronto.cs.se.modelepedia.primitive.string.StringPackage;
-import edu.toronto.cs.se.modelepedia.primitive.string.impl.StringPackageImpl;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -29,13 +30,13 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class IntPackageImpl extends EPackageImpl implements IntPackage {
+public class StringPackageImpl extends EPackageImpl implements StringPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass intEClass = null;
+	private EClass stringEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -48,12 +49,12 @@ public class IntPackageImpl extends EPackageImpl implements IntPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see edu.toronto.cs.se.modelepedia.primitive.int_.IntPackage#eNS_URI
+	 * @see edu.toronto.cs.se.modelepedia.primitive.string.StringPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private IntPackageImpl() {
-		super(eNS_URI, IntFactory.eINSTANCE);
+	private StringPackageImpl() {
+		super(eNS_URI, StringFactory.eINSTANCE);
 	}
 
 	/**
@@ -66,7 +67,7 @@ public class IntPackageImpl extends EPackageImpl implements IntPackage {
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link IntPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link StringPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,32 +76,32 @@ public class IntPackageImpl extends EPackageImpl implements IntPackage {
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static IntPackage init() {
-		if (isInited) return (IntPackage)EPackage.Registry.INSTANCE.getEPackage(IntPackage.eNS_URI);
+	public static StringPackage init() {
+		if (isInited) return (StringPackage)EPackage.Registry.INSTANCE.getEPackage(StringPackage.eNS_URI);
 
 		// Obtain or create and register package
-		IntPackageImpl theIntPackage = (IntPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof IntPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new IntPackageImpl());
+		StringPackageImpl theStringPackage = (StringPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StringPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new StringPackageImpl());
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		StringPackageImpl theStringPackage = (StringPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(StringPackage.eNS_URI) instanceof StringPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(StringPackage.eNS_URI) : StringPackage.eINSTANCE);
+		IntPackageImpl theIntPackage = (IntPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(IntPackage.eNS_URI) instanceof IntPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(IntPackage.eNS_URI) : IntPackage.eINSTANCE);
 
 		// Create package meta-data objects
-		theIntPackage.createPackageContents();
 		theStringPackage.createPackageContents();
+		theIntPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theIntPackage.initializePackageContents();
 		theStringPackage.initializePackageContents();
+		theIntPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theIntPackage.freeze();
+		theStringPackage.freeze();
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(IntPackage.eNS_URI, theIntPackage);
-		return theIntPackage;
+		EPackage.Registry.INSTANCE.put(StringPackage.eNS_URI, theStringPackage);
+		return theStringPackage;
 	}
 
 	/**
@@ -108,8 +109,8 @@ public class IntPackageImpl extends EPackageImpl implements IntPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInt() {
-		return intEClass;
+	public EClass getString() {
+		return stringEClass;
 	}
 
 	/**
@@ -117,8 +118,8 @@ public class IntPackageImpl extends EPackageImpl implements IntPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getInt_Value() {
-		return (EAttribute)intEClass.getEStructuralFeatures().get(0);
+	public EAttribute getString_Value() {
+		return (EAttribute)stringEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -126,8 +127,8 @@ public class IntPackageImpl extends EPackageImpl implements IntPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IntFactory getIntFactory() {
-		return (IntFactory)getEFactoryInstance();
+	public StringFactory getStringFactory() {
+		return (StringFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -149,8 +150,8 @@ public class IntPackageImpl extends EPackageImpl implements IntPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		intEClass = createEClass(INT);
-		createEAttribute(intEClass, INT__VALUE);
+		stringEClass = createEClass(STRING);
+		createEAttribute(stringEClass, STRING__VALUE);
 	}
 
 	/**
@@ -183,11 +184,11 @@ public class IntPackageImpl extends EPackageImpl implements IntPackage {
 		// Add supertypes to classes
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(intEClass, Int.class, "Int", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getInt_Value(), ecorePackage.getEInt(), "value", null, 1, 1, Int.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(stringEClass, edu.toronto.cs.se.modelepedia.primitive.string.String.class, "String", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getString_Value(), ecorePackage.getEString(), "value", null, 1, 1, edu.toronto.cs.se.modelepedia.primitive.string.String.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
 	}
 
-} //IntPackageImpl
+} //StringPackageImpl

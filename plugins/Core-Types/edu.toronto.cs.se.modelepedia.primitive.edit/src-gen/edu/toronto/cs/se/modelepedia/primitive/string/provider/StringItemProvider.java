@@ -9,13 +9,12 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.primitive.int_.provider;
+package edu.toronto.cs.se.modelepedia.primitive.string.provider;
 
-
-import edu.toronto.cs.se.modelepedia.primitive.int_.Int;
-import edu.toronto.cs.se.modelepedia.primitive.int_.IntPackage;
 
 import edu.toronto.cs.se.modelepedia.primitive.provider.PrimitiveEditPlugin;
+
+import edu.toronto.cs.se.modelepedia.primitive.string.StringPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -37,12 +36,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.primitive.int_.Int} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.primitive.string.String} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class IntItemProvider 
+public class StringItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -56,7 +55,7 @@ public class IntItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IntItemProvider(AdapterFactory adapterFactory) {
+	public StringItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -87,26 +86,26 @@ public class IntItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Int_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Int_value_feature", "_UI_Int_type"),
-				 IntPackage.Literals.INT__VALUE,
+				 getString("_UI_String_value_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_String_value_feature", "_UI_String_type"),
+				 StringPackage.Literals.STRING__VALUE,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns Int.gif.
+	 * This returns String.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Int"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/String"));
 	}
 
 	/**
@@ -117,8 +116,10 @@ public class IntItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		Int int_ = (Int)object;
-		return getString("_UI_Int_type") + " " + int_.getValue();
+		String label = ((edu.toronto.cs.se.modelepedia.primitive.string.String)object).getValue();
+		return label == null || label.length() == 0 ?
+			getString("_UI_String_type") :
+			getString("_UI_String_type") + " " + label;
 	}
 	
 
@@ -133,8 +134,8 @@ public class IntItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Int.class)) {
-			case IntPackage.INT__VALUE:
+		switch (notification.getFeatureID(edu.toronto.cs.se.modelepedia.primitive.string.String.class)) {
+			case StringPackage.STRING__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

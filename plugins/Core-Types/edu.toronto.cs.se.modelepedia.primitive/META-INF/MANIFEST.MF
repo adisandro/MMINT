@@ -9,7 +9,10 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: edu.toronto.cs.se.modelepedia.primitive.int_,
  edu.toronto.cs.se.modelepedia.primitive.int_.impl,
- edu.toronto.cs.se.modelepedia.primitive.int_.util
+ edu.toronto.cs.se.modelepedia.primitive.int_.util,
+ edu.toronto.cs.se.modelepedia.primitive.string,
+ edu.toronto.cs.se.modelepedia.primitive.string.impl,
+ edu.toronto.cs.se.modelepedia.primitive.string.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  edu.toronto.cs.se.mmint

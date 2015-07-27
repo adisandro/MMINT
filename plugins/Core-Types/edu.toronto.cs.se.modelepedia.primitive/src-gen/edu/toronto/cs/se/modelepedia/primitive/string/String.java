@@ -9,27 +9,27 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.primitive.int_;
+package edu.toronto.cs.se.modelepedia.primitive.string;
 
 import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Int</b></em>'.
+ * A representation of the model object '<em><b>String</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.primitive.int_.Int#getValue <em>Value</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.primitive.string.String#getValue <em>Value</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.se.modelepedia.primitive.int_.IntPackage#getInt()
+ * @see edu.toronto.cs.se.modelepedia.primitive.string.StringPackage#getString()
  * @model
  * @generated
  */
-public interface Int extends EObject {
+public interface String extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -39,21 +39,21 @@ public interface Int extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' attribute.
-	 * @see #setValue(int)
-	 * @see edu.toronto.cs.se.modelepedia.primitive.int_.IntPackage#getInt_Value()
+	 * @see #setValue(java.lang.String)
+	 * @see edu.toronto.cs.se.modelepedia.primitive.string.StringPackage#getString_Value()
 	 * @model required="true"
 	 * @generated
 	 */
-	int getValue();
+	java.lang.String getValue();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.primitive.int_.Int#getValue <em>Value</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.primitive.string.String#getValue <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Value</em>' attribute.
 	 * @see #getValue()
 	 * @generated
 	 */
-	void setValue(int value);
+	void setValue(java.lang.String value);
 
-} // Int
+} // String

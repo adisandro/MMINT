@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.primitive.int_.presentation;
+package edu.toronto.cs.se.modelepedia.primitive.string.presentation;
 
 import edu.toronto.cs.se.modelepedia.primitive.presentation.PrimitiveEditorPlugin;
 
@@ -51,12 +51,12 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
 /**
- * This is the action bar contributor for the Int model editor.
+ * This is the action bar contributor for the String model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class IntActionBarContributor
+public class StringActionBarContributor
 	extends EditingDomainActionBarContributor
 	implements ISelectionChangedListener {
 	/**
@@ -159,7 +159,7 @@ public class IntActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IntActionBarContributor() {
+	public StringActionBarContributor() {
 		super(ADDITIONS_LAST_STYLE);
 		loadResourceAction = new LoadResourceAction();
 		validateAction = new ValidateAction();
@@ -174,8 +174,8 @@ public class IntActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
-		toolBarManager.add(new Separator("int-settings"));
-		toolBarManager.add(new Separator("int-additions"));
+		toolBarManager.add(new Separator("string-settings"));
+		toolBarManager.add(new Separator("string-additions"));
 	}
 
 	/**
@@ -189,7 +189,7 @@ public class IntActionBarContributor
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(PrimitiveEditorPlugin.INSTANCE.getString("_UI_IntEditor_menu"), "edu.toronto.cs.se.modelepedia.primitive.int_MenuID");
+		IMenuManager submenuManager = new MenuManager(PrimitiveEditorPlugin.INSTANCE.getString("_UI_StringEditor_menu"), "edu.toronto.cs.se.modelepedia.primitive.stringMenuID");
 		menuManager.insertAfter("additions", submenuManager);
 		submenuManager.add(new Separator("settings"));
 		submenuManager.add(new Separator("actions"));

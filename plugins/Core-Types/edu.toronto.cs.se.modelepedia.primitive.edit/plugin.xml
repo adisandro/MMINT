@@ -16,10 +16,23 @@
 <plugin>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated int -->
+      <!-- @generated primitive -->
       <factory
             uri="http://se.cs.toronto.edu/modelepedia/Int"
             class="edu.toronto.cs.se.modelepedia.primitive.int_.provider.IntItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated primitive -->
+      <factory
+            uri="http://se.cs.toronto.edu/modelepedia/String"
+            class="edu.toronto.cs.se.modelepedia.primitive.string.provider.StringItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

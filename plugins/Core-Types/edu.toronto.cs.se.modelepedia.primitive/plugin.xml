@@ -16,11 +16,11 @@
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated int -->
+      <!-- @generated primitive -->
       <package
             uri="http://se.cs.toronto.edu/modelepedia/Int"
             class="edu.toronto.cs.se.modelepedia.primitive.int_.IntPackage"
-            genModel="model/int.genmodel"/>
+            genModel="model/primitive.genmodel"/>
    </extension>
 
    <extension
@@ -29,6 +29,24 @@
          <type
                name="Int"
                uri="http://se.cs.toronto.edu/modelepedia/Int">
+         </type>
+      </modelType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated primitive -->
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/String"
+            class="edu.toronto.cs.se.modelepedia.primitive.string.StringPackage"
+            genModel="model/primitive.genmodel"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.models">
+      <modelType>
+         <type
+               name="String"
+               uri="http://se.cs.toronto.edu/modelepedia/String">
          </type>
       </modelType>
    </extension>

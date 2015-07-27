@@ -9,10 +9,11 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.primitive.int_.impl;
+package edu.toronto.cs.se.modelepedia.primitive.string.impl;
 
-import edu.toronto.cs.se.modelepedia.primitive.int_.Int;
-import edu.toronto.cs.se.modelepedia.primitive.int_.IntPackage;
+import edu.toronto.cs.se.modelepedia.primitive.string.StringPackage;
+
+import java.lang.String;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -23,18 +24,18 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Int</b></em>'.
+ * An implementation of the model object '<em><b>String</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.primitive.int_.impl.IntImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.primitive.string.impl.StringImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class IntImpl extends MinimalEObjectImpl.Container implements Int {
+public class StringImpl extends MinimalEObjectImpl.Container implements edu.toronto.cs.se.modelepedia.primitive.string.String {
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -43,7 +44,7 @@ public class IntImpl extends MinimalEObjectImpl.Container implements Int {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int VALUE_EDEFAULT = 0;
+	protected static final String VALUE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -53,14 +54,14 @@ public class IntImpl extends MinimalEObjectImpl.Container implements Int {
 	 * @generated
 	 * @ordered
 	 */
-	protected int value = VALUE_EDEFAULT;
+	protected String value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IntImpl() {
+	protected StringImpl() {
 		super();
 	}
 
@@ -71,7 +72,7 @@ public class IntImpl extends MinimalEObjectImpl.Container implements Int {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return IntPackage.Literals.INT;
+		return StringPackage.Literals.STRING;
 	}
 
 	/**
@@ -79,7 +80,7 @@ public class IntImpl extends MinimalEObjectImpl.Container implements Int {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getValue() {
+	public String getValue() {
 		return value;
 	}
 
@@ -88,11 +89,11 @@ public class IntImpl extends MinimalEObjectImpl.Container implements Int {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(int newValue) {
-		int oldValue = value;
+	public void setValue(String newValue) {
+		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IntPackage.INT__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET, StringPackage.STRING__VALUE, oldValue, value));
 	}
 
 	/**
@@ -103,7 +104,7 @@ public class IntImpl extends MinimalEObjectImpl.Container implements Int {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case IntPackage.INT__VALUE:
+			case StringPackage.STRING__VALUE:
 				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -117,8 +118,8 @@ public class IntImpl extends MinimalEObjectImpl.Container implements Int {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case IntPackage.INT__VALUE:
-				setValue((Integer)newValue);
+			case StringPackage.STRING__VALUE:
+				setValue((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -132,7 +133,7 @@ public class IntImpl extends MinimalEObjectImpl.Container implements Int {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case IntPackage.INT__VALUE:
+			case StringPackage.STRING__VALUE:
 				setValue(VALUE_EDEFAULT);
 				return;
 		}
@@ -147,8 +148,8 @@ public class IntImpl extends MinimalEObjectImpl.Container implements Int {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case IntPackage.INT__VALUE:
-				return value != VALUE_EDEFAULT;
+			case StringPackage.STRING__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -169,4 +170,4 @@ public class IntImpl extends MinimalEObjectImpl.Container implements Int {
 		return result.toString();
 	}
 
-} //IntImpl
+} //StringImpl
