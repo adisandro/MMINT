@@ -42,6 +42,8 @@ public class MMINTActivator extends AbstractUIPlugin {
 		plugin = this;
 		@SuppressWarnings("unused")
 		MMINT mmint = MMINT.INSTANCE;
+		//TODO MMINT[MISC] Remove when fixed upstream
+		System.setProperty("eclipse.workaround.bug467000", "true");
 	}
 
 	/**

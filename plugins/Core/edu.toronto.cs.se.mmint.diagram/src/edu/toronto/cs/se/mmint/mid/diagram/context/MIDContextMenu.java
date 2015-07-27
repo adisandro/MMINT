@@ -59,7 +59,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  */
 public class MIDContextMenu extends ContributionItem {
 
-	public static final int INVALID_MENU_ITEM_LIMIT = 25;
 	public static final String MMINT_MENU_LABEL = "MMINT";
 	private static final String MMINT_MENU_OPERATOR_LABEL = "Run Operator";
 	private static final String MMINT_MENU_CAST_LABEL = "Cast Type";
@@ -82,8 +81,8 @@ public class MIDContextMenu extends ContributionItem {
 	@Override
 	public void fill(Menu menu, int index) {
 
-		// this is a hack to prevent this menu from being created twice
-		if (menu.getItemCount() > INVALID_MENU_ITEM_LIMIT) {
+		// prevent this menu from being created twice
+		if (menu.isVisible()) {
 			return;
 		}
 
@@ -184,6 +183,7 @@ public class MIDContextMenu extends ContributionItem {
 			List<EList<OperatorInput>> executableOperatorsInputs = new ArrayList<>();
 			for (Operator operatorType : MultiModelTypeRegistry.getOperatorTypes()) {
 				try {
+					//TODO MMINT[OPERATOR] Checking runtime types for each operator on the same inputs is very inefficient
 					EList<OperatorInput> executableOperatorInputs = operatorType.checkAllowedInputs(selectedModels);
 					if (executableOperatorInputs == null) {
 						continue;

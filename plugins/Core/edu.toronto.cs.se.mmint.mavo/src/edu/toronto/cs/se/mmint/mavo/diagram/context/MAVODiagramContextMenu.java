@@ -69,8 +69,8 @@ public class MAVODiagramContextMenu extends ContributionItem {
 	@Override
 	public void fill(Menu menu, int index) {
 
-		// this is a hack to prevent this menu from being created twice
-		if (menu.getItemCount() > MIDContextMenu.INVALID_MENU_ITEM_LIMIT) {
+		// prevent this menu from being created twice
+		if (menu.isVisible()) {
 			return;
 		}
 
