@@ -67,10 +67,10 @@ import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelRelImpl#getExtendedUri <em>Extended Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

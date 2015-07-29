@@ -273,22 +273,13 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT__SUPERTYPE = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT__METATYPE = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT__URI = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
+	int EXTENDIBLE_ELEMENT__URI = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -297,7 +288,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT__NAME = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
+	int EXTENDIBLE_ELEMENT__NAME = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -306,7 +297,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT__LEVEL = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 4;
+	int EXTENDIBLE_ELEMENT__LEVEL = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -315,7 +306,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT__METATYPE_URI = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 5;
+	int EXTENDIBLE_ELEMENT__METATYPE_URI = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -324,7 +315,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT__DYNAMIC = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 6;
+	int EXTENDIBLE_ELEMENT__DYNAMIC = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -333,7 +324,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT__CONSTRAINT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 7;
+	int EXTENDIBLE_ELEMENT__CONSTRAINT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Extendible Element</em>' class.
@@ -342,7 +333,16 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_FEATURE_COUNT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 8;
+	int EXTENDIBLE_ELEMENT_FEATURE_COUNT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT___GET_METATYPE = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -351,7 +351,16 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
+	int EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Extendible Element</em>' class.
@@ -360,7 +369,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 1;
+	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl <em>Extendible Element Endpoint</em>}' class.
@@ -425,15 +434,6 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENDIBLE_ELEMENT_ENDPOINT__SUPERTYPE = EXTENDIBLE_ELEMENT__SUPERTYPE;
-
-	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT__METATYPE = EXTENDIBLE_ELEMENT__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -544,6 +544,15 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES = EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -635,15 +644,6 @@ public interface MIDPackage extends EPackage {
 	int GENERIC_ELEMENT__SUPERTYPE = EXTENDIBLE_ELEMENT__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_ELEMENT__METATYPE = EXTENDIBLE_ELEMENT__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -716,6 +716,15 @@ public interface MIDPackage extends EPackage {
 	int GENERIC_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT___GET_METATYPE = EXTENDIBLE_ELEMENT___GET_METATYPE;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -723,6 +732,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT___GET_RUNTIME_TYPES = EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
 
 	/**
 	 * The number of operations of the '<em>Generic Element</em>' class.
@@ -796,15 +814,6 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL__SUPERTYPE = GENERIC_ELEMENT__SUPERTYPE;
-
-	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__METATYPE = GENERIC_ELEMENT__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -949,6 +958,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL___CREATE_SUBTYPE_URI__STRING_STRING = GENERIC_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___GET_RUNTIME_TYPES = GENERIC_ELEMENT___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1196,15 +1214,6 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ELEMENT__SUPERTYPE = EXTENDIBLE_ELEMENT__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__METATYPE = EXTENDIBLE_ELEMENT__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1284,6 +1293,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___GET_RUNTIME_TYPES = EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1449,15 +1467,6 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ENDPOINT__SUPERTYPE = EXTENDIBLE_ELEMENT_ENDPOINT__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ENDPOINT__METATYPE = EXTENDIBLE_ELEMENT_ENDPOINT__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1564,6 +1573,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___GET_RUNTIME_TYPES = EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -1916,17 +1934,6 @@ public interface MIDPackage extends EPackage {
 	EReference getExtendibleElement_Supertype();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#getMetatype <em>Metatype</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Metatype</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElement#getMetatype()
-	 * @see #getExtendibleElement()
-	 * @generated
-	 */
-	EReference getExtendibleElement_Metatype();
-
-	/**
 	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#getUri <em>Uri</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1991,6 +1998,26 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getExtendibleElement_Constraint();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#getMetatype() <em>Get Metatype</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Metatype</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElement#getMetatype()
+	 * @generated
+	 */
+	EOperation getExtendibleElement__GetMetatype();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#getRuntimeTypes() <em>Get Runtime Types</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Runtime Types</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElement#getRuntimeTypes()
+	 * @generated
+	 */
+	EOperation getExtendibleElement__GetRuntimeTypes();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#createSubtypeUri(java.lang.String, java.lang.String) <em>Create Subtype Uri</em>}' operation.
@@ -2808,14 +2835,6 @@ public interface MIDPackage extends EPackage {
 		EReference EXTENDIBLE_ELEMENT__SUPERTYPE = eINSTANCE.getExtendibleElement_Supertype();
 
 		/**
-		 * The meta object literal for the '<em><b>Metatype</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EXTENDIBLE_ELEMENT__METATYPE = eINSTANCE.getExtendibleElement_Metatype();
-
-		/**
 		 * The meta object literal for the '<em><b>Uri</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2862,6 +2881,22 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXTENDIBLE_ELEMENT__CONSTRAINT = eINSTANCE.getExtendibleElement_Constraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT___GET_METATYPE = eINSTANCE.getExtendibleElement__GetMetatype();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Runtime Types</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES = eINSTANCE.getExtendibleElement__GetRuntimeTypes();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Subtype Uri</b></em>' operation.

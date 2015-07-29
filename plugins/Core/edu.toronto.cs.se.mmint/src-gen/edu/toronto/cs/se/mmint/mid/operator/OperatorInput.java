@@ -28,12 +28,12 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.OperatorInput#getModel <em>Model</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.OperatorInput#getConversions <em>Conversions</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.OperatorInput#getModelTypeEndpoint <em>Model Type Endpoint</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperatorInput()
  * @model

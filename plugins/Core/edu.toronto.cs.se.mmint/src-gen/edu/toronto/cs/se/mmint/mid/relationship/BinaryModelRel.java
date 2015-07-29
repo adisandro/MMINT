@@ -26,11 +26,11 @@ import edu.toronto.cs.se.mmint.mid.Model;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel#getSourceModel <em>Source Model</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel#getTargetModel <em>Target Model</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryModelRel()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isBinaryModelRel'"

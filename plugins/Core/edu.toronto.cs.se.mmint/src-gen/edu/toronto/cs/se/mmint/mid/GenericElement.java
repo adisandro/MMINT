@@ -23,10 +23,10 @@ package edu.toronto.cs.se.mmint.mid;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.GenericElement#isAbstract <em>Abstract</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getGenericElement()
  * @model abstract="true"

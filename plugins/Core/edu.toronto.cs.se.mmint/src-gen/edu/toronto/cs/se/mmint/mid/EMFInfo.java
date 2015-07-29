@@ -24,13 +24,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.EMFInfo#getClassName <em>Class Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.EMFInfo#getFeatureName <em>Feature Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.EMFInfo#isAttribute <em>Attribute</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.EMFInfo#getRelatedClassName <em>Related Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getEMFInfo()
  * @model

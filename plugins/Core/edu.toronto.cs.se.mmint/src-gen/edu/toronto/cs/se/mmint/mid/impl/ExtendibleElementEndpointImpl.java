@@ -30,13 +30,13 @@ import edu.toronto.cs.se.mmint.mid.MIDPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl#getLowerBound <em>Lower Bound</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl#getUpperBound <em>Upper Bound</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl#getTargetUri <em>Target Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -310,6 +310,22 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 				return TARGET_URI__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ExtendibleElement.class) {
+			switch (baseOperationID) {
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
 	}
 
 	/**

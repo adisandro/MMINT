@@ -33,7 +33,6 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
@@ -512,8 +511,8 @@ public class MultiModelTypeHierarchy {
 	private static Map<String, Set<String>> getSubtypeTable(MultiModel multiModel) {
 
 		return (multiModel == MMINT.cachedTypeMID) ?
-			MMINT.subtypeTable :
-			MMINT.subtypeTableMID;
+			MMINT.subtypes :
+			MMINT.subtypesMID;
 	}
 
 	/**
@@ -527,8 +526,8 @@ public class MultiModelTypeHierarchy {
 	private static Map<String, Map<String, Set<List<String>>>> getConversionTable(MultiModel multiModel) {
 
 		return (multiModel == MMINT.cachedTypeMID) ?
-			MMINT.conversionTable :
-			MMINT.conversionTableMID;
+			MMINT.conversions :
+			MMINT.conversionsMID;
 	}
 
 	public static Map<Model, Set<List<ConversionOperator>>> getMultiplePathConversions(String srcModelTypeUri) {
@@ -614,7 +613,13 @@ public class MultiModelTypeHierarchy {
 			return conversionOperatorTypes;
 		}
 		// polymorphic check
-		List<ExtendibleElement> runtimeTypes = MultiModelTypeIntrospection.getRuntimeTypes(element);
+		List<ExtendibleElement> runtimeTypes;
+		try {
+			runtimeTypes = element.getRuntimeTypes();
+		}
+		catch (MMINTException e) {
+			return null;
+		}
 		for (ExtendibleElement runtimeType : runtimeTypes) {
 			if (runtimeType.getUri().equals(typeUri) || isSubtypeOf(runtimeType.getUri(), typeUri)) {
 				return conversionOperatorTypes;
@@ -887,6 +892,22 @@ public class MultiModelTypeHierarchy {
 		}
 
 		return MultiModelRegistry.getExtendibleElement(MMINT.ROOT_MODELELEMENDPOINT_URI, typeMID);
+	}
+
+	public static List<? extends ExtendibleElement> getCachedRuntimeTypes(ExtendibleElement instance) {
+
+		return MMINT.cachedRuntimeTypes.get(instance);
+	}
+
+	public static void setCachedRuntimeTypes(ExtendibleElement instance, List<? extends ExtendibleElement> cachedTypes) {
+
+		MMINT.cachedRuntimeTypes.put(instance, cachedTypes);
+	}
+
+	//TODO MMINT[OO] Make it a safe caching mechanism, not to be invalidated explicitly
+	public static void clearCachedRuntimeTypes() {
+
+		MMINT.cachedRuntimeTypes.clear();
 	}
 
 }

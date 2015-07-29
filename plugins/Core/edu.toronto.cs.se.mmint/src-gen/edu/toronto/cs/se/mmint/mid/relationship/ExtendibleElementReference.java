@@ -26,6 +26,7 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getReferencedObject <em>Referenced Object</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getContainedObject <em>Contained Object</em>}</li>
@@ -34,7 +35,6 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#isModifiable <em>Modifiable</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getUri <em>Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementReference()
  * @model abstract="true"

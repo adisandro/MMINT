@@ -34,11 +34,11 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryLinkReferenceImpl#getSourceModelElemRef <em>Source Model Elem Ref</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryLinkReferenceImpl#getTargetModelElemRef <em>Target Model Elem Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

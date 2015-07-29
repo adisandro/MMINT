@@ -133,15 +133,6 @@ public interface EditorPackage extends EPackage {
 	int EDITOR__SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__METATYPE = MIDPackage.EXTENDIBLE_ELEMENT__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -257,6 +248,15 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int EDITOR___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -395,15 +395,6 @@ public interface EditorPackage extends EPackage {
 	int DIAGRAM__SUPERTYPE = EDITOR__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__METATYPE = EDITOR__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -519,6 +510,15 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM___CREATE_SUBTYPE_URI__STRING_STRING = EDITOR___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___GET_RUNTIME_TYPES = EDITOR___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.

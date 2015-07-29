@@ -135,15 +135,6 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL__SUPERTYPE = MIDPackage.MODEL__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL__METATYPE = MIDPackage.MODEL__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -286,6 +277,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.MODEL___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL___GET_RUNTIME_TYPES = MIDPackage.MODEL___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -515,15 +515,6 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT__SUPERTYPE = MIDPackage.MODEL_ENDPOINT__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_ENDPOINT__METATYPE = MIDPackage.MODEL_ENDPOINT__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -648,6 +639,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___GET_RUNTIME_TYPES = MIDPackage.MODEL_ENDPOINT___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -819,15 +819,6 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_REL__SUPERTYPE = RelationshipPackage.MODEL_REL__SUPERTYPE;
-
-	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_REL__METATYPE = RelationshipPackage.MODEL_REL__METATYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -1017,6 +1008,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = RelationshipPackage.MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___GET_RUNTIME_TYPES = RelationshipPackage.MODEL_REL___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
@@ -1300,15 +1300,6 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_BINARY_MODEL_REL__SUPERTYPE = KLEISLI_MODEL_REL__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_BINARY_MODEL_REL__METATYPE = KLEISLI_MODEL_REL__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1514,6 +1505,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_BINARY_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = KLEISLI_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_BINARY_MODEL_REL___GET_RUNTIME_TYPES = KLEISLI_MODEL_REL___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.

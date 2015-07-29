@@ -31,6 +31,7 @@ import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getOrigin <em>Origin</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getFileExtension <em>File Extension</em>}</li>
@@ -38,7 +39,6 @@ import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getModelElems <em>Model Elems</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getConversionOperators <em>Conversion Operators</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getModel()
  * @model

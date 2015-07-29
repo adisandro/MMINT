@@ -26,8 +26,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Binary Link</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

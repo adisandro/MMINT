@@ -29,11 +29,11 @@ import edu.toronto.cs.se.mmint.mid.MIDPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.EStringToExtendibleElementMapImpl#getTypedKey <em>Key</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.EStringToExtendibleElementMapImpl#getTypedValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

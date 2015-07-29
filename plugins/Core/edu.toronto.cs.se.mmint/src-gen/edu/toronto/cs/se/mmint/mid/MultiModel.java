@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.MultiModel#getModels <em>Models</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.MultiModel#getEditors <em>Editors</em>}</li>
@@ -36,7 +37,6 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.MultiModel#getExtendibleTable <em>Extendible Table</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.MultiModel#getLevel <em>Level</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getMultiModel()
  * @model

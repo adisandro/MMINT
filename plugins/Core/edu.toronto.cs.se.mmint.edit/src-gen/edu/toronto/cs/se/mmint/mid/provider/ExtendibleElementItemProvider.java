@@ -58,7 +58,6 @@ public class ExtendibleElementItemProvider
 			super.getPropertyDescriptors(object);
 
 			addSupertypePropertyDescriptor(object);
-			addMetatypePropertyDescriptor(object);
 			addUriPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 			addLevelPropertyDescriptor(object);
@@ -130,28 +129,6 @@ public class ExtendibleElementItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Metatype feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addMetatypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ExtendibleElement_metatype_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_metatype_feature", "_UI_ExtendibleElement_type"),
-				 MIDPackage.Literals.EXTENDIBLE_ELEMENT__METATYPE,
-				 false,
-				 false,
-				 false,
-				 null,
 				 null,
 				 null));
 	}

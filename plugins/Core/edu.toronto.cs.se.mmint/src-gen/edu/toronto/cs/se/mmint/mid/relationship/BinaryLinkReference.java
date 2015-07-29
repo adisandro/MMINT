@@ -25,11 +25,11 @@ import edu.toronto.cs.se.mmint.MMINTException;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference#getSourceModelElemRef <em>Source Model Elem Ref</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference#getTargetModelElemRef <em>Target Model Elem Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryLinkReference()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isBinaryLinkRef binaryLinkType'"

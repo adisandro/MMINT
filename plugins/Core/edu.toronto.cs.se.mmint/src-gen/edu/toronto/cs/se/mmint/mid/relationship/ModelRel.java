@@ -31,13 +31,13 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#getModelEndpoints <em>Model Endpoints</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#getLinks <em>Links</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#getModelEndpointRefs <em>Model Endpoint Refs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#getLinkRefs <em>Link Refs</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getModelRel()
  * @model

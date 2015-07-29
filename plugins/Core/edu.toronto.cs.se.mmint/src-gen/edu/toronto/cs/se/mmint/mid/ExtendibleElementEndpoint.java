@@ -23,13 +23,13 @@ package edu.toronto.cs.se.mmint.mid;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint#getLowerBound <em>Lower Bound</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint#getUpperBound <em>Upper Bound</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint#getTarget <em>Target</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint#getTargetUri <em>Target Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElementEndpoint()
  * @model abstract="true"

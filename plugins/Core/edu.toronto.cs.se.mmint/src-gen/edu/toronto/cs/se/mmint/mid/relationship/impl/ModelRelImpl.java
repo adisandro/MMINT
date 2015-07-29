@@ -65,13 +65,13 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl#getModelEndpoints <em>Model Endpoints</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl#getLinks <em>Links</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl#getModelEndpointRefs <em>Model Endpoint Refs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl#getLinkRefs <em>Link Refs</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -323,6 +323,12 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ExtendibleElement.class) {
+			switch (baseOperationID) {
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return RelationshipPackage.MODEL_REL___GET_METATYPE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
 		if (baseClass == Model.class) {
 			switch (baseOperationID) {
 				case MIDPackage.MODEL___GET_METATYPE: return RelationshipPackage.MODEL_REL___GET_METATYPE;

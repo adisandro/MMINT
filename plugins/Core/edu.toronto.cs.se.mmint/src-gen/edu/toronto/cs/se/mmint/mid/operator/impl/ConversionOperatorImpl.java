@@ -24,8 +24,6 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Conversion Operator</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

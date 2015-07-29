@@ -25,11 +25,11 @@ import edu.toronto.cs.se.mmint.mid.MIDPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementConstraintImpl#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementConstraintImpl#getLanguage <em>Language</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -28,10 +28,10 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference#getExtendedTargetUri <em>Extended Target Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getKleisliModelEndpointReference()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='kleisliModelEndpoint'"

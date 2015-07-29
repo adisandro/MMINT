@@ -27,10 +27,10 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference#getModelElemEndpointRefs <em>Model Elem Endpoint Refs</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getModelElementReference()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='modelElementType'"

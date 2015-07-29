@@ -17,9 +17,11 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -332,17 +334,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtendibleElement_Metatype() {
-		return (EReference)extendibleElementEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getExtendibleElement_Uri() {
-		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -351,7 +344,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * @generated
 	 */
 	public EAttribute getExtendibleElement_Name() {
-		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -360,7 +353,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * @generated
 	 */
 	public EAttribute getExtendibleElement_Level() {
-		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -369,7 +362,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * @generated
 	 */
 	public EAttribute getExtendibleElement_MetatypeUri() {
-		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -378,7 +371,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * @generated
 	 */
 	public EAttribute getExtendibleElement_Dynamic() {
-		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)extendibleElementEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -387,7 +380,25 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * @generated
 	 */
 	public EReference getExtendibleElement_Constraint() {
-		return (EReference)extendibleElementEClass.getEStructuralFeatures().get(7);
+		return (EReference)extendibleElementEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElement__GetMetatype() {
+		return extendibleElementEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElement__GetRuntimeTypes() {
+		return extendibleElementEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -396,7 +407,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * @generated
 	 */
 	public EOperation getExtendibleElement__CreateSubtypeUri__String_String() {
-		return extendibleElementEClass.getEOperations().get(0);
+		return extendibleElementEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -1043,14 +1054,15 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
 		extendibleElementEClass = createEClass(EXTENDIBLE_ELEMENT);
 		createEReference(extendibleElementEClass, EXTENDIBLE_ELEMENT__SUPERTYPE);
-		createEReference(extendibleElementEClass, EXTENDIBLE_ELEMENT__METATYPE);
 		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__URI);
 		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__NAME);
 		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__LEVEL);
 		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__METATYPE_URI);
 		createEAttribute(extendibleElementEClass, EXTENDIBLE_ELEMENT__DYNAMIC);
 		createEReference(extendibleElementEClass, EXTENDIBLE_ELEMENT__CONSTRAINT);
+		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___GET_METATYPE);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING);
+		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES);
 
 		extendibleElementEndpointEClass = createEClass(EXTENDIBLE_ELEMENT_ENDPOINT);
 		createEAttribute(extendibleElementEndpointEClass, EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND);
@@ -1193,7 +1205,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
 		initEClass(extendibleElementEClass, ExtendibleElement.class, "ExtendibleElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExtendibleElement_Supertype(), this.getExtendibleElement(), null, "supertype", null, 0, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExtendibleElement_Metatype(), this.getExtendibleElement(), null, "metatype", null, 0, 1, ExtendibleElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElement_Uri(), ecorePackage.getEString(), "uri", null, 1, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElement_Level(), this.getMIDLevel(), "level", null, 1, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1201,9 +1212,19 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		initEAttribute(getExtendibleElement_Dynamic(), ecorePackage.getEBoolean(), "dynamic", null, 1, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtendibleElement_Constraint(), this.getExtendibleElementConstraint(), null, "constraint", null, 0, 1, ExtendibleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEOperation(getExtendibleElement__GetMetatype(), this.getExtendibleElement(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		EOperation op = initEOperation(getExtendibleElement__CreateSubtypeUri__String_String(), ecorePackage.getEString(), "createSubtypeUri", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newTypeFragmentUri", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getExtendibleElement__GetRuntimeTypes(), null, "getRuntimeTypes", 0, -1, IS_UNIQUE, IS_ORDERED);
+		ETypeParameter t1 = addETypeParameter(op, "T");
+		EGenericType g1 = createEGenericType(this.getExtendibleElement());
+		t1.getEBounds().add(g1);
+		addEException(op, this.getMMINTException());
+		g1 = createEGenericType(t1);
+		initEOperation(op, g1);
 
 		initEClass(extendibleElementEndpointEClass, ExtendibleElementEndpoint.class, "ExtendibleElementEndpoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExtendibleElementEndpoint_LowerBound(), ecorePackage.getEInt(), "lowerBound", null, 1, 1, ExtendibleElementEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1460,12 +1481,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 */
 	protected void createPivotAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
-		addAnnotation
-		  (extendibleElementEClass, 
-		   source, 
-		   new String[] {
-			 "typeLevel", "level = MIDLevel::INSTANCES implies metatype.level = MIDLevel::TYPES"
-		   });	
 		addAnnotation
 		  (extendibleElementEndpointEClass, 
 		   source, 

@@ -44,10 +44,10 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelEndpointReferenceImpl#getModelElemRefs <em>Model Elem Refs</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

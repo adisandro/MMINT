@@ -32,16 +32,19 @@
     </genClasses>
     <genClasses image="false" ecoreClass="mid.ecore#//ExtendibleElement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/supertype"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/metatype"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/uri"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/level"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/metatypeUri"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/dynamic"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/constraint"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getMetatype"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/createSubtypeUri">
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/createSubtypeUri/newTypeFragmentUri"/>
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/createSubtypeUri/newTypeName"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getRuntimeTypes">
+        <genTypeParameters ecoreTypeParameter="mid.ecore#//ExtendibleElement/getRuntimeTypes/T"/>
       </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="mid.ecore#//ExtendibleElementEndpoint">

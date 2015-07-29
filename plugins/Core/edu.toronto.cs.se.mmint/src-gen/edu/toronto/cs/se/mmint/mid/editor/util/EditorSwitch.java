@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.util.Switch;
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.editor.*;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
@@ -61,7 +60,7 @@ public class EditorSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @parameter ePackage the package in question.
+	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */

@@ -26,10 +26,10 @@ import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl#getState <em>State</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

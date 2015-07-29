@@ -20,10 +20,10 @@ import java.util.Random;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.RandomOperator#getState <em>State</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getRandomOperator()
  * @model

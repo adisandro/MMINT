@@ -27,11 +27,11 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.Link#getModelElemEndpoints <em>Model Elem Endpoints</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.Link#getModelElemEndpointRefs <em>Model Elem Endpoint Refs</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getLink()
  * @model

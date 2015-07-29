@@ -62,22 +62,25 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The abstract basic element. It represents a unique type at the type level able to extend or be extended by other elements, or a typed element at the instance level."/>
     </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="typeLevel" value="level = MIDLevel::INSTANCES implies metatype.level = MIDLevel::TYPES"/>
-    </eAnnotations>
+    <eOperations name="getMetatype" lowerBound="1" eType="#//ExtendibleElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The static metatype (types: always null; instances: an extendible element from the types)."/>
+        <details key="body" value="return MultiModelTypeRegistry.getType(getMetatypeUri());"/>
+      </eAnnotations>
+    </eOperations>
     <eOperations name="createSubtypeUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eParameters name="newTypeFragmentUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="newTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
+    <eOperations name="getRuntimeTypes" upperBound="-1" eExceptions="#//MMINTException">
+      <eGenericType eTypeParameter="#//ExtendibleElement/getRuntimeTypes/T"/>
+      <eTypeParameters name="T">
+        <eBounds eClassifier="#//ExtendibleElement"/>
+      </eTypeParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="supertype" eType="#//ExtendibleElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The supertype (types: can be null; instances: always null)."/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="metatype" eType="#//ExtendibleElement"
-        changeable="false" volatile="true" transient="true" derived="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The static metatype (types: always null; instances: an extendible element from the types)."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -97,7 +100,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="metatypeUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The static metatype uri (types: empty; instances: the metatype uri)."/>
+        <details key="documentation" value="The static metatype uri (types: always empty)."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dynamic" lowerBound="1"

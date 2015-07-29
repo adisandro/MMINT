@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ExtendibleElementReferenceImpl#getReferencedObject <em>Referenced Object</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ExtendibleElementReferenceImpl#getContainedObject <em>Contained Object</em>}</li>
@@ -37,7 +38,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ExtendibleElementReferenceImpl#isModifiable <em>Modifiable</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ExtendibleElementReferenceImpl#getUri <em>Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

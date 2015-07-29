@@ -12,6 +12,8 @@
 package edu.toronto.cs.se.mmint.mid;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.MMINTException;
+import org.eclipse.emf.common.util.EList;
 
 
 /**
@@ -25,9 +27,9 @@ import edu.toronto.cs.se.mavo.MAVOElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#getSupertype <em>Supertype</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#getMetatype <em>Metatype</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#getUri <em>Uri</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#getLevel <em>Level</em>}</li>
@@ -35,12 +37,10 @@ import edu.toronto.cs.se.mavo.MAVOElement;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#isDynamic <em>Dynamic</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#getConstraint <em>Constraint</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElement()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='typeLevel'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot typeLevel='level = MIDLevel::INSTANCES implies metatype.level = MIDLevel::TYPES'"
  * @generated
  */
 public interface ExtendibleElement extends MAVOElement {
@@ -120,18 +120,27 @@ public interface ExtendibleElement extends MAVOElement {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Metatype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The static metatype (types: always null; instances: an extendible element from the types).
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Metatype</em>' reference.
-	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElement_Metatype()
-	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return MultiModelTypeRegistry.getType(getMetatypeUri());'"
 	 * @generated
 	 */
 	ExtendibleElement getMetatype();
+
+	/**
+	 * <!-- begin-user-doc --> Gets the list of polymorphic runtime types for this instance.
+	 * 
+	 * @return The list of runtime types.
+	 * @throws MMINTException
+	 *             If this is a type. <!-- end-user-doc -->
+	 * @model kind="operation" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	<T extends ExtendibleElement> EList<T> getRuntimeTypes() throws MMINTException;
 
 	/**
 	 * Returns the value of the '<em><b>Level</b></em>' attribute.
@@ -166,7 +175,7 @@ public interface ExtendibleElement extends MAVOElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The static metatype uri (types: empty; instances: the metatype uri).
+	 * The static metatype uri (types: always empty).
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Metatype Uri</em>' attribute.
 	 * @see #setMetatypeUri(String)

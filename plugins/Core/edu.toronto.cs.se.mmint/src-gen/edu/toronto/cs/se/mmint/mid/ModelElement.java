@@ -29,10 +29,10 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.ModelElement#getEInfo <em>EInfo</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getModelElement()
  * @model

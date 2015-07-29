@@ -173,32 +173,31 @@ public class MIDValidator extends EObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the typeLevel constraint of '<em>Extendible Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String EXTENDIBLE_ELEMENT__TYPE_LEVEL__EEXPRESSION = "level = MIDLevel::INSTANCES implies metatype.level = MIDLevel::TYPES";
-
-	/**
 	 * Validates the typeLevel constraint of '<em>Extendible Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateExtendibleElement_typeLevel(ExtendibleElement extendibleElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(MIDPackage.Literals.EXTENDIBLE_ELEMENT,
-				 extendibleElement,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "typeLevel",
-				 EXTENDIBLE_ELEMENT__TYPE_LEVEL__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "typeLevel", getObjectLabel(extendibleElement, context) },
+						 new Object[] { extendibleElement },
+						 context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**

@@ -66,6 +66,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#isInc <em>Inc</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getDecisions <em>Decisions</em>}</li>
@@ -75,7 +76,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getModelElems <em>Model Elems</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getConversionOperators <em>Conversion Operators</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -501,6 +501,27 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ExtendibleElement.class) {
+			switch (baseOperationID) {
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL___GET_METATYPE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
+		if (baseClass == MAVOModel.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
 	}
 
 	/**

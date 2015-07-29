@@ -40,8 +40,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Model Endpoint</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -102,6 +100,12 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ExtendibleElement.class) {
+			switch (baseOperationID) {
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL_ENDPOINT___GET_METATYPE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
 		if (baseClass == ExtendibleElementEndpoint.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE: return MIDPackage.MODEL_ENDPOINT___GET_METATYPE;

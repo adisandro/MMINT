@@ -29,10 +29,10 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ExtendibleElementEndpointReferenceImpl#getTargetUri <em>Target Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

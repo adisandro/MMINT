@@ -29,13 +29,13 @@ import edu.toronto.cs.se.mmint.mid.MIDPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.EMFInfoImpl#getClassName <em>Class Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.EMFInfoImpl#getFeatureName <em>Feature Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.EMFInfoImpl#isAttribute <em>Attribute</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.EMFInfoImpl#getRelatedClassName <em>Related Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -51,11 +51,11 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointImpl#getExtendedTarget <em>Extended Target</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointImpl#getExtendedTargetUri <em>Extended Target Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

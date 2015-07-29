@@ -174,15 +174,6 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL__SUPERTYPE = MIDPackage.MODEL__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL__METATYPE = MIDPackage.MODEL__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -361,6 +352,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.MODEL___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___GET_RUNTIME_TYPES = MIDPackage.MODEL___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
@@ -633,15 +633,6 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL__SUPERTYPE = MODEL_REL__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL__METATYPE = MODEL_REL__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -838,6 +829,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___GET_RUNTIME_TYPES = MODEL_REL___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
@@ -1562,15 +1562,6 @@ public interface RelationshipPackage extends EPackage {
 	int LINK__SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK__METATYPE = MIDPackage.EXTENDIBLE_ELEMENT__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1659,6 +1650,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int LINK___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1815,15 +1815,6 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_LINK__SUPERTYPE = LINK__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_LINK__METATYPE = LINK__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1912,6 +1903,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_LINK___CREATE_SUBTYPE_URI__STRING_STRING = LINK___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LINK___GET_RUNTIME_TYPES = LINK___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -2068,15 +2068,6 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ELEMENT_ENDPOINT__SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_ENDPOINT__METATYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2183,6 +2174,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.

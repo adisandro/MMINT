@@ -33,11 +33,11 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl#getSourceModel <em>Source Model</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl#getTargetModel <em>Target Model</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

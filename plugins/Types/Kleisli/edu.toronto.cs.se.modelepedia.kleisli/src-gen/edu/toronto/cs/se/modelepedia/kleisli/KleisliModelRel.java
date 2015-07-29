@@ -29,10 +29,10 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#getExtendedUri <em>Extended Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getKleisliModelRel()
  * @model

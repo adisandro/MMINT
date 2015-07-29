@@ -135,15 +135,6 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR__SUPERTYPE = MIDPackage.GENERIC_ELEMENT__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__METATYPE = MIDPackage.GENERIC_ELEMENT__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -295,6 +286,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.GENERIC_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___GET_RUNTIME_TYPES = MIDPackage.GENERIC_ELEMENT___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -514,15 +514,6 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR__SUPERTYPE = OPERATOR__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR__METATYPE = OPERATOR__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -674,6 +665,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___GET_RUNTIME_TYPES = OPERATOR___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -902,15 +902,6 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR__SUPERTYPE = OPERATOR__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR__METATYPE = OPERATOR__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1071,6 +1062,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___GET_RUNTIME_TYPES = OPERATOR___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1290,15 +1290,6 @@ public interface OperatorPackage extends EPackage {
 	int GENERIC_ENDPOINT__SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__SUPERTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Metatype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_ENDPOINT__METATYPE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__METATYPE;
-
-	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1414,6 +1405,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.

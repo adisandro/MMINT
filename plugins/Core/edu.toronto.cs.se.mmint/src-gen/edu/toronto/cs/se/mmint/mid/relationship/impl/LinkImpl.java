@@ -27,6 +27,7 @@ import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
@@ -46,11 +47,11 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.LinkImpl#getModelElemEndpoints <em>Model Elem Endpoints</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.LinkImpl#getModelElemEndpointRefs <em>Model Elem Endpoint Refs</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -221,6 +222,22 @@ public class LinkImpl extends ExtendibleElementImpl implements Link {
 				return modelElemEndpointRefs != null && !modelElemEndpointRefs.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ExtendibleElement.class) {
+			switch (baseOperationID) {
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return RelationshipPackage.LINK___GET_METATYPE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
 	}
 
 	/**

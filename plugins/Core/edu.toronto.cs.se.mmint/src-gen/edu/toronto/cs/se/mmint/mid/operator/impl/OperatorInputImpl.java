@@ -33,12 +33,12 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorInputImpl#getModel <em>Model</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorInputImpl#getConversions <em>Conversions</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorInputImpl#getModelTypeEndpoint <em>Model Type Endpoint</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -27,10 +27,10 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#getMetatargetUri <em>Metatarget Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getGenericEndpoint()
  * @model

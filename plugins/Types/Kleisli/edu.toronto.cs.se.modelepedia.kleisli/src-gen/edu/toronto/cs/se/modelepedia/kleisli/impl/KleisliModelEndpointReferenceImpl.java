@@ -34,10 +34,10 @@ import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointReferenceImpl#getExtendedTargetUri <em>Extended Target Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

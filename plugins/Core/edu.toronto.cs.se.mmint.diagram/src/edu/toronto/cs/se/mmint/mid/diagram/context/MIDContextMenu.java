@@ -179,11 +179,11 @@ public class MIDContextMenu extends ContributionItem {
 			if (instanceMID == null) {
 				instanceMID = MultiModelRegistry.getMultiModel(selectedModels.get(0));
 			}
+			MultiModelTypeHierarchy.clearCachedRuntimeTypes();
 			List<Operator> executableOperators = new ArrayList<>();
 			List<EList<OperatorInput>> executableOperatorsInputs = new ArrayList<>();
 			for (Operator operatorType : MultiModelTypeRegistry.getOperatorTypes()) {
 				try {
-					//TODO MMINT[OPERATOR] Checking runtime types for each operator on the same inputs is very inefficient
 					EList<OperatorInput> executableOperatorInputs = operatorType.checkAllowedInputs(selectedModels);
 					if (executableOperatorInputs == null) {
 						continue;
@@ -195,6 +195,7 @@ public class MIDContextMenu extends ContributionItem {
 					continue;
 				}
 			}
+			MultiModelTypeHierarchy.clearCachedRuntimeTypes();
 			if (!executableOperators.isEmpty()) {
 				MenuItem operatorItem = new MenuItem(mmintMenu, SWT.CASCADE);
 				operatorItem.setText(MMINT_MENU_OPERATOR_LABEL);
@@ -202,7 +203,6 @@ public class MIDContextMenu extends ContributionItem {
 				operatorItem.setMenu(operatorMenu);
 				for (int i = 0; i < executableOperators.size(); i++) {
 					Operator executableOperator = executableOperators.get(i);
-					EList<Model> inputModels = new BasicEList<Model>(selectedModels);
 					//TODO MMINT[OPERATOR] There should be a visual match between formal and actual parameter, with indication of coercion
 					String text = executableOperator.toString();
 					MenuItem operatorSubitem = new MenuItem(operatorMenu, SWT.NONE);

@@ -30,6 +30,7 @@ import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.editor.Editor#getModelUri <em>Model Uri</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.editor.Editor#getId <em>Id</em>}</li>
@@ -37,7 +38,6 @@ import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.editor.Editor#getFileExtensions <em>File Extensions</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.editor.Editor#getWizardDialogClass <em>Wizard Dialog Class</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.editor.EditorPackage#getEditor()
  * @model

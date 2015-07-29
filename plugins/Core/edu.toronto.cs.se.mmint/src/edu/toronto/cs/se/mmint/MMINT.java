@@ -95,17 +95,19 @@ public class MMINT implements MMINTConstants {
 	/** The Type MID in memory. */
 	static MultiModel cachedTypeMID;
 	/**	The table for subtyping in the repository. */
-	static Map<String, Set<String>> subtypeTable;
+	static Map<String, Set<String>> subtypes;
 	/**	The table for model type conversion in the repository. */
-	static Map<String, Map<String, Set<List<String>>>> conversionTable;
+	static Map<String, Map<String, Set<List<String>>>> conversions;
 	/**	The table for subtyping in the Type MID. */
-	static Map<String, Set<String>> subtypeTableMID;
+	static Map<String, Set<String>> subtypesMID;
 	/**	The table for model type conversion in the Type MID. */
-	static Map<String, Map<String, Set<List<String>>>> conversionTableMID;
+	static Map<String, Map<String, Set<List<String>>>> conversionsMID;
 	/** The table to map type uris to their bundle name. */
 	static Map<String, String> bundleTable;
 	/** The reasoners table. */
 	static Map<String, Map<String, IReasoningEngine>> languageReasoners;
+	/** The cache of runtime types. */
+	static Map<ExtendibleElement, List<? extends ExtendibleElement>> cachedRuntimeTypes;
 	/**
 	 * The table to have some very poor sort of multiple inheritance,
 	 * i.e. to have UML_MAVO properly recognized.
@@ -150,6 +152,8 @@ public class MMINT implements MMINTConstants {
 	 * - Introduce intermediate level between model element and model element reference, contained in model endpoints
 	 * - Support standalone model rels (in their own file)
 	 * - Can operators detect input/output by code inspection rather than plugin.xml?
+	 * - Replace Pivot constraints and derivation in mid.ecore with java
+	 * - Refactor functions in mid.ecore like getMetatype() using generics
 	 */
 
 	/**
@@ -609,7 +613,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	public static void createTypeHierarchy() {
 
-		createTypeHierarchy(cachedTypeMID, subtypeTable, conversionTable);
+		createTypeHierarchy(cachedTypeMID, subtypes, conversions);
 	}
 
 	/**
@@ -625,7 +629,7 @@ public class MMINT implements MMINTConstants {
 			createTypeHierarchy();
 		}
 		else {
-			createTypeHierarchy(typeMID, subtypeTableMID, conversionTableMID);
+			createTypeHierarchy(typeMID, subtypesMID, conversionsMID);
 		}
 	}
 
@@ -734,10 +738,11 @@ public class MMINT implements MMINTConstants {
 
 		cachedTypeMID = MIDFactory.eINSTANCE.createMultiModel();
 		cachedTypeMID.setLevel(MIDLevel.TYPES);
-		bundleTable = new HashMap<String, String>();
-		multipleInheritanceTable = new HashMap<String, Set<String>>();
+		bundleTable = new HashMap<>();
+		multipleInheritanceTable = new HashMap<>();
+		cachedRuntimeTypes = new HashMap<>();
 		typeFactory = new MultiModelHeavyTypeFactory();
-		languageReasoners = new HashMap<String, Map<String, IReasoningEngine>>();
+		languageReasoners = new HashMap<>();
 		IConfigurationElement[] configs;
 		Iterator<IConfigurationElement> extensionsIter;
 		IConfigurationElement config;
@@ -809,10 +814,10 @@ public class MMINT implements MMINTConstants {
 		}
 
 		// type hierarchy
-		subtypeTable = new HashMap<String, Set<String>>();
-		conversionTable = new HashMap<String, Map<String, Set<List<String>>>>();
-		subtypeTableMID = new HashMap<String, Set<String>>();
-		conversionTableMID = new HashMap<String, Map<String, Set<List<String>>>>();
+		subtypes = new HashMap<String, Set<String>>();
+		conversions = new HashMap<String, Map<String, Set<List<String>>>>();
+		subtypesMID = new HashMap<String, Set<String>>();
+		conversionsMID = new HashMap<String, Map<String, Set<List<String>>>>();
 		storeRepository();
 	}
 
@@ -862,8 +867,8 @@ public class MMINT implements MMINTConstants {
 	public static void storeRepository() {
 
 		createTypeHierarchy();
-		copySubtypeTable(subtypeTable, subtypeTableMID);
-		copyConversionTable(conversionTable, conversionTableMID);
+		copySubtypeTable(subtypes, subtypesMID);
+		copyConversionTable(conversions, conversionsMID);
 		try {
 			MultiModelUtils.createModelFileInState(cachedTypeMID, TYPEMID_FILENAME);
 		}
@@ -883,8 +888,8 @@ public class MMINT implements MMINTConstants {
 		//TODO MMINT[OO] to store operators' custom code in the mid, we would need them to be ecore-generated, but that's a burden for users
 		//TODO MMINT[OO] review the copy-on-sync mechanism and find an alternative
 		cachedTypeMID = MMINTEcoreUtil.copy(multiModel);
-		copySubtypeTable(subtypeTableMID, subtypeTable);
-		copyConversionTable(conversionTableMID, conversionTable);
+		copySubtypeTable(subtypesMID, subtypes);
+		copyConversionTable(conversionsMID, conversions);
 	}
 
 	/**

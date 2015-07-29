@@ -35,6 +35,7 @@ import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
@@ -52,6 +53,7 @@ import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.editor.impl.EditorImpl#getModelUri <em>Model Uri</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.editor.impl.EditorImpl#getId <em>Id</em>}</li>
@@ -59,7 +61,6 @@ import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.editor.impl.EditorImpl#getFileExtensions <em>File Extensions</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.editor.impl.EditorImpl#getWizardDialogClass <em>Wizard Dialog Class</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -387,6 +388,22 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 				return WIZARD_DIALOG_CLASS_EDEFAULT == null ? wizardDialogClass != null : !WIZARD_DIALOG_CLASS_EDEFAULT.equals(wizardDialogClass);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ExtendibleElement.class) {
+			switch (baseOperationID) {
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return EditorPackage.EDITOR___GET_METATYPE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
 	}
 
 	/**

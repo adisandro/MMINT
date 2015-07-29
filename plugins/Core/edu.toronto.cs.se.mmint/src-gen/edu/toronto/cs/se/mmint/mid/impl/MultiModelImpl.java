@@ -40,6 +40,7 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.MultiModelImpl#getModels <em>Models</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.MultiModelImpl#getEditors <em>Editors</em>}</li>
@@ -47,7 +48,6 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.MultiModelImpl#getExtendibleTable <em>Extendible Table</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.MultiModelImpl#getLevel <em>Level</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -24,10 +24,10 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference#getTargetUri <em>Target Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementEndpointReference()
  * @model abstract="true"

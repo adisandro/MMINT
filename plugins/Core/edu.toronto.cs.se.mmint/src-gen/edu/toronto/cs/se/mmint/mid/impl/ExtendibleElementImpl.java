@@ -12,27 +12,39 @@
 package edu.toronto.cs.se.mmint.mid.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Link;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,9 +52,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl#getSupertype <em>Supertype</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl#getMetatype <em>Metatype</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl#getUri <em>Uri</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl#getLevel <em>Level</em>}</li>
@@ -50,7 +62,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl#isDynamic <em>Dynamic</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl#getConstraint <em>Constraint</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -279,26 +290,6 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtendibleElement getMetatype() {
-		ExtendibleElement metatype = basicGetMetatype();
-		return metatype != null && metatype.eIsProxy() ? (ExtendibleElement)eResolveProxy((InternalEObject)metatype) : metatype;
-	}
-
-	/**
-	 * Uses metatype uri to get static metatype.
-	 * 
-	 * @generated NOT
-	 */
-	public ExtendibleElement basicGetMetatype() {
-
-		return MultiModelTypeRegistry.getType(getMetatypeUri());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public MIDLevel getLevel() {
 		return level;
 	}
@@ -425,9 +416,6 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 			case MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
 				if (resolve) return getSupertype();
 				return basicGetSupertype();
-			case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE:
-				if (resolve) return getMetatype();
-				return basicGetMetatype();
 			case MIDPackage.EXTENDIBLE_ELEMENT__URI:
 				return getUri();
 			case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
@@ -520,8 +508,6 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 		switch (featureID) {
 			case MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
 				return supertype != null;
-			case MIDPackage.EXTENDIBLE_ELEMENT__METATYPE:
-				return basicGetMetatype() != null;
 			case MIDPackage.EXTENDIBLE_ELEMENT__URI:
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 			case MIDPackage.EXTENDIBLE_ELEMENT__NAME:
@@ -546,8 +532,17 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
+			case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE:
+				return getMetatype();
 			case MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING:
 				return createSubtypeUri((String)arguments.get(0), (String)arguments.get(1));
+			case MIDPackage.EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES:
+				try {
+					return getRuntimeTypes();
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -592,6 +587,15 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExtendibleElement getMetatype() {
+		return MultiModelTypeRegistry.getType(getMetatypeUri());
+	}
+
+	/**
 	 * Gets the base uri of this type by cutting its last fragment.
 	 * 
 	 * @return The base uri of this type.
@@ -620,6 +624,121 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 			baseUri + MMINT.URI_SEPARATOR + newTypeFragmentUri + MMINT.URI_SEPARATOR + newTypeName;
 
 		return newTypeUri;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private <T extends ExtendibleElement> List<T> filterSubtypes(T type, List<T> subtypes) {
+
+		List<T> filteredSubtypes = new ArrayList<T>();
+
+		// only direct subtypes
+		for (T subtype : subtypes) {
+			if (subtype.getSupertype().getUri().equals(type.getUri())) {
+				filteredSubtypes.add(subtype);
+			}
+		}
+
+		if (type instanceof Model && !(type instanceof ModelRel)) { // explore metamodel-compatible supertrees and subtrees
+			List<T> metamodelSubtypes = new ArrayList<T>();
+			EPackage rootStaticModelTypeObj;
+			try {
+				rootStaticModelTypeObj = ((Model) this).getMetatype().getEMFTypeRoot();
+			}
+			catch (MMINTException e) {
+				MMINTException.print(IStatus.WARNING, "Can't get model root, skipping subtypes filtering", e);
+				return metamodelSubtypes;
+			}
+			String metamodelUri = rootStaticModelTypeObj.getNsURI();
+			for (T filteredSubtype : filteredSubtypes) {
+				if (
+					metamodelUri.equals(filteredSubtype.getUri()) ||
+					MultiModelTypeHierarchy.isSubtypeOf(filteredSubtype.getUri(), metamodelUri) ||
+					MultiModelTypeHierarchy.isSubtypeOf(metamodelUri, filteredSubtype.getUri())
+				) {
+					metamodelSubtypes.add(filteredSubtype);
+				}
+				else { // try multiple inheritance
+					//TODO MMINT[MID] this is too tailored for UML_MAVO
+					for (String multipleInheritanceUri : MultiModelTypeHierarchy.getMultipleInheritanceUris(metamodelUri)) {
+						if (
+							multipleInheritanceUri.equals(filteredSubtype.getUri()) ||
+							MultiModelTypeHierarchy.isSubtypeOf(filteredSubtype.getUri(), multipleInheritanceUri) ||
+							MultiModelTypeHierarchy.isSubtypeOf(multipleInheritanceUri, filteredSubtype.getUri())
+						) {
+							metamodelSubtypes.add(filteredSubtype);
+						}
+					}
+				}
+			}
+			return metamodelSubtypes;
+		}
+
+		return filteredSubtypes;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private <T extends ExtendibleElement> void getRuntimeTypes(T type, List<T> types) {
+
+		// no need to validate root type
+		if (MultiModelTypeHierarchy.isRootType(type)) {
+			types.add(type);
+			// first stop condition: model relationship or link without endpoints
+			if (this instanceof ModelRel && ((ModelRel) this).getModelEndpoints().isEmpty()) {
+				return;
+			}
+			if (this instanceof Link && ((Link) this).getModelElemEndpoints().isEmpty()) {
+				return;
+			}
+			// second stop condition: endpoints
+			//TODO MMINT[OVERRIDE] needs container type + to be refined with override semantics
+			if (this instanceof ModelEndpoint || this instanceof ModelElementEndpoint) {
+				return;
+			}
+		}
+		else {
+			// third stop condition: validation
+			if (!MultiModelTypeIntrospection.validateType(this, type, false).toBoolean()) {
+				return;
+			}
+			types.add(type);
+		}
+
+		// recurse for each subtype
+		List<T> subtypes = this.filterSubtypes(type, MultiModelTypeHierarchy.getSubtypes(type));
+		for (T subtype : subtypes) {
+			this.getRuntimeTypes(subtype, types);
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@SuppressWarnings("unchecked")
+	public <T extends ExtendibleElement> EList<T> getRuntimeTypes() throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+
+		List<T> cachedTypes = (List<T>) MultiModelTypeHierarchy.getCachedRuntimeTypes(this);
+		if (cachedTypes != null) {
+			return new BasicEList<T>(cachedTypes);
+		}
+
+		EList<T> types = new BasicEList<>();
+		if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED))) {
+			// start from root
+			T rootType = MultiModelTypeRegistry.getType(MultiModelTypeHierarchy.getRootTypeUri(this));
+			this.getRuntimeTypes(rootType, types);
+		}
+		else {
+			types.add((T) this.getMetatype());
+		}
+		MultiModelTypeHierarchy.setCachedRuntimeTypes(this, types);
+
+		return types;
 	}
 
 	/**

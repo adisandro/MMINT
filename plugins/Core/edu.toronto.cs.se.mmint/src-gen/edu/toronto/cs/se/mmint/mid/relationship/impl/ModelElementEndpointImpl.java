@@ -43,8 +43,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Model Element Endpoint</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -105,6 +103,12 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ExtendibleElement.class) {
+			switch (baseOperationID) {
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_METATYPE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
 		if (baseClass == ExtendibleElementEndpoint.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_METATYPE;

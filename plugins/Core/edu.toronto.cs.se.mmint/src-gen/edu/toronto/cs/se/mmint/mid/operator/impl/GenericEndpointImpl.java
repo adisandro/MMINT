@@ -37,10 +37,10 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.GenericEndpointImpl#getMetatargetUri <em>Metatarget Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -150,6 +150,12 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ExtendibleElement.class) {
+			switch (baseOperationID) {
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return OperatorPackage.GENERIC_ENDPOINT___GET_METATYPE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
 		if (baseClass == ExtendibleElementEndpoint.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE: return OperatorPackage.GENERIC_ENDPOINT___GET_METATYPE;

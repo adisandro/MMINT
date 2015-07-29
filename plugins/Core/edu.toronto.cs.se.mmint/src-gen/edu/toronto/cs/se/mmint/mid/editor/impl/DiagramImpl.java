@@ -41,8 +41,6 @@ import edu.toronto.cs.se.mmint.repository.MMINTConstants;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Diagram</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

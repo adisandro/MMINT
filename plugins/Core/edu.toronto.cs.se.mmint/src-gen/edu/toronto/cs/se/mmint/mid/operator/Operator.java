@@ -34,6 +34,7 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getInputs <em>Inputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getOutputs <em>Outputs</em>}</li>
@@ -44,7 +45,6 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutionTime <em>Execution Time</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#isCommutative <em>Commutative</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperator()
  * @model
@@ -268,9 +268,7 @@ public interface Operator extends GenericElement {
 	 * @return A set of inputs to the operator, including necessary conversions.
 	 * @throws MMINTException
 	 *             If this is an operator instance. <!-- end-user-doc -->
-	 * @model dataType=
-	 *        "edu.toronto.cs.se.mmint.mid.operator.Set<org.eclipse.emf.ecore.EEList<edu.toronto.cs.se.mmint.mid.operator.OperatorInput>>"
-	 *        required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputMIDsMany="true"
+	 * @model dataType="edu.toronto.cs.se.mmint.mid.operator.Set<org.eclipse.emf.ecore.EEList<edu.toronto.cs.se.mmint.mid.operator.OperatorInput>>" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputMIDsMany="true"
 	 * @generated
 	 */
 	Set<EList<OperatorInput>> findAllowedInputs(EList<MultiModel> inputMIDs) throws MMINTException;
@@ -391,8 +389,7 @@ public interface Operator extends GenericElement {
 	 * @throws MMINTException
 	 *             If any required property is not available, or if a property is not in its intended format.
 	 *             <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 *        inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" inputPropertiesRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" inputPropertiesRequired="true"
 	 * @generated
 	 */
 	void readInputProperties(Properties inputProperties) throws MMINTException;
@@ -422,8 +419,7 @@ public interface Operator extends GenericElement {
 	 * @return The output model instances, identified by their name.
 	 * @throws Exception
 	 *             If something went wrong running the operator. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsByNameRequired="true"
-	 *        genericsByNameRequired="true" outputMIDsByNameRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsByNameRequired="true" genericsByNameRequired="true" outputMIDsByNameRequired="true"
 	 * @generated
 	 */
 	Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName) throws Exception;
@@ -444,8 +440,7 @@ public interface Operator extends GenericElement {
 	 * @return The executed operator instance.
 	 * @throws Exception
 	 *             If something went wrong starting the operator. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true"
-	 *        outputMIDsByNameRequired="true" instanceMIDRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true" outputMIDsByNameRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
 	Operator start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception;

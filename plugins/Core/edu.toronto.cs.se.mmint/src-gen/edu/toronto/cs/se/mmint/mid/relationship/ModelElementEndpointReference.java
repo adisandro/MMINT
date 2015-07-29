@@ -25,10 +25,10 @@ import edu.toronto.cs.se.mmint.MMINTException;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference#getModelElemRef <em>Model Elem Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getModelElementEndpointReference()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='modelElemEndpointType'"

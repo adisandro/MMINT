@@ -45,10 +45,10 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelElementReferenceImpl#getModelElemEndpointRefs <em>Model Elem Endpoint Refs</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
