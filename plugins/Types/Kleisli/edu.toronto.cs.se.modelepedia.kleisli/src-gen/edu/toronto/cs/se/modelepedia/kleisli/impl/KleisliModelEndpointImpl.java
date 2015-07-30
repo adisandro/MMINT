@@ -18,6 +18,7 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ui.IWorkbenchPage;
@@ -27,10 +28,11 @@ import org.eclipse.ui.PlatformUI;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelOpenEditorCommand;
+import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.impl.ModelEndpointImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -299,8 +301,10 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			if (extendMetamodel) {
 				URI kUri = URI.createFileURI(MultiModelUtils.prependStateToUri(kModelType.getUri()));
 				IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				Model ecoreModelType = MultiModelTypeRegistry.getType(EcorePackage.eNS_URI);
+				Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
 				try {
-					activePage.openEditor(new URIEditorInput(kUri), ModelOpenEditorCommand.ECORE_EDITORID);
+					activePage.openEditor(new URIEditorInput(kUri), ecoreEditorType.getId());
 				}
 				catch (PartInitException e) {
 					MMINTException.print(IStatus.ERROR, "Error opening extended metamodel file", e);

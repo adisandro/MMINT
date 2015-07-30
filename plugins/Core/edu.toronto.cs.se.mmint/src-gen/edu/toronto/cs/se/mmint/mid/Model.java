@@ -389,4 +389,20 @@ public interface Model extends GenericElement, MAVOModel {
 	 */
 	EObject getEMFInstanceRoot() throws MMINTException;
 
+	/**
+	 * <!-- begin-user-doc --> Opens the editor associated with this model type.
+	 * @throws Exception If this is a model instance, or if the editor can't be opened.<!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
+	 * @generated
+	 */
+	void openType() throws Exception;
+
+	/**
+	 * <!-- begin-user-doc --> Opens the editor associated with this model instance.
+	 * @throws Exception If this is a model type, or if the editor can't be opened.<!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
+	 * @generated
+	 */
+	void openInstance() throws Exception;
+
 } // Model

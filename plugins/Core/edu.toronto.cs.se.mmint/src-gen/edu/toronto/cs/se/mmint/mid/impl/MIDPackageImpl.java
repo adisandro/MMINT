@@ -658,6 +658,24 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModel__OpenType() {
+		return modelEClass.getEOperations().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__OpenInstance() {
+		return modelEClass.getEOperations().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getExtendibleElementConstraint() {
 		return extendibleElementConstraintEClass;
 	}
@@ -1092,6 +1110,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(modelEClass, MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL);
 		createEOperation(modelEClass, MODEL___DELETE_INSTANCE);
 		createEOperation(modelEClass, MODEL___GET_EMF_INSTANCE_ROOT);
+		createEOperation(modelEClass, MODEL___OPEN_TYPE);
+		createEOperation(modelEClass, MODEL___OPEN_INSTANCE);
 
 		extendibleElementConstraintEClass = createEClass(EXTENDIBLE_ELEMENT_CONSTRAINT);
 		createEAttribute(extendibleElementConstraintEClass, EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION);
@@ -1305,6 +1325,12 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
 		op = initEOperation(getModel__GetEMFInstanceRoot(), ecorePackage.getEObject(), "getEMFInstanceRoot", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
+
+		op = initEOperation(getModel__OpenType(), null, "openType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theOperatorPackage.getException());
+
+		op = initEOperation(getModel__OpenInstance(), null, "openInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theOperatorPackage.getException());
 
 		initEClass(extendibleElementConstraintEClass, ExtendibleElementConstraint.class, "ExtendibleElementConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExtendibleElementConstraint_Implementation(), ecorePackage.getEString(), "implementation", null, 1, 1, ExtendibleElementConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

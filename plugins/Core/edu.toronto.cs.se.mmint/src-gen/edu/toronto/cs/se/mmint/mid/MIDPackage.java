@@ -1095,13 +1095,31 @@ public interface MIDPackage extends EPackage {
 	int MODEL___GET_EMF_INSTANCE_ROOT = GENERIC_ELEMENT_OPERATION_COUNT + 13;
 
 	/**
+	 * The operation id for the '<em>Open Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___OPEN_TYPE = GENERIC_ELEMENT_OPERATION_COUNT + 14;
+
+	/**
+	 * The operation id for the '<em>Open Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___OPEN_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 15;
+
+	/**
 	 * The number of operations of the '<em>Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_OPERATION_COUNT = GENERIC_ELEMENT_OPERATION_COUNT + 14;
+	int MODEL_OPERATION_COUNT = GENERIC_ELEMENT_OPERATION_COUNT + 16;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.
@@ -2309,6 +2327,26 @@ public interface MIDPackage extends EPackage {
 	EOperation getModel__GetEMFInstanceRoot();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#openType() <em>Open Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Open Type</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.Model#openType()
+	 * @generated
+	 */
+	EOperation getModel__OpenType();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#openInstance() <em>Open Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Open Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.Model#openInstance()
+	 * @generated
+	 */
+	EOperation getModel__OpenInstance();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint <em>Extendible Element Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3125,6 +3163,22 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL___GET_EMF_INSTANCE_ROOT = eINSTANCE.getModel__GetEMFInstanceRoot();
+
+		/**
+		 * The meta object literal for the '<em><b>Open Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL___OPEN_TYPE = eINSTANCE.getModel__OpenType();
+
+		/**
+		 * The meta object literal for the '<em><b>Open Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL___OPEN_INSTANCE = eINSTANCE.getModel__OpenInstance();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.

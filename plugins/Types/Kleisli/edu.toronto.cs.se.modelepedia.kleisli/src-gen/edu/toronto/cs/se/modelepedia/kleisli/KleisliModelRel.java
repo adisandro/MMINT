@@ -134,7 +134,7 @@ public interface KleisliModelRel extends ModelRel {
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
-	void openType() throws MMINTException;
+	void openType() throws Exception;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,6 +143,6 @@ public interface KleisliModelRel extends ModelRel {
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
-	void openInstance() throws MMINTException;
+	void openInstance() throws Exception;
 
 } // KleisliModelRel

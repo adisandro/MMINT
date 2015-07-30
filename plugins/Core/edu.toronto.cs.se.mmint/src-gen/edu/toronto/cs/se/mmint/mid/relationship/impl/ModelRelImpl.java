@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
@@ -397,22 +396,6 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			case RelationshipPackage.MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES:
 				try {
 					return getOutlineResourceInstances();
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-			case RelationshipPackage.MODEL_REL___OPEN_TYPE:
-				try {
-					openType();
-					return null;
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-			case RelationshipPackage.MODEL_REL___OPEN_INSTANCE:
-				try {
-					openInstance();
-					return null;
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -789,40 +772,6 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	}
 
 	/**
-	 * Opens this editor.
-	 * 
-	 * @generated NOT
-	 */
-	protected void openEditor() {
-
-		// do nothing
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public void openType() throws MMINTException {
-
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
-
-		openEditor();
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public void openInstance() throws MMINTException {
-
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
-
-		openEditor();
-	}
-
-	/**
 	 * @generated NOT
 	 */
 	public ResourceSet getOutlineResourceTypes() throws MMINTException {
@@ -862,6 +811,22 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		}
 
 		return resourceSet;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void openType() throws Exception {
+
+		MMINTException.mustBeType(this);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void openInstance() throws Exception {
+
+		MMINTException.mustBeInstance(this);
 	}
 
 } //ModelRelImpl

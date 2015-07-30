@@ -453,6 +453,24 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___GET_EMF_INSTANCE_ROOT = MIDPackage.MODEL___GET_EMF_INSTANCE_ROOT;
 
 	/**
+	 * The operation id for the '<em>Open Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___OPEN_TYPE = MIDPackage.MODEL___OPEN_TYPE;
+
+	/**
+	 * The operation id for the '<em>Open Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___OPEN_INSTANCE = MIDPackage.MODEL___OPEN_INSTANCE;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -552,31 +570,13 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___DELETE_INSTANCE = MIDPackage.MODEL_OPERATION_COUNT + 10;
 
 	/**
-	 * The operation id for the '<em>Open Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL___OPEN_TYPE = MIDPackage.MODEL_OPERATION_COUNT + 11;
-
-	/**
-	 * The operation id for the '<em>Open Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL___OPEN_INSTANCE = MIDPackage.MODEL_OPERATION_COUNT + 12;
-
-	/**
 	 * The number of operations of the '<em>Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL_OPERATION_COUNT = MIDPackage.MODEL_OPERATION_COUNT + 13;
+	int MODEL_REL_OPERATION_COUNT = MIDPackage.MODEL_OPERATION_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
@@ -930,6 +930,24 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL___GET_EMF_INSTANCE_ROOT = MODEL_REL___GET_EMF_INSTANCE_ROOT;
 
 	/**
+	 * The operation id for the '<em>Open Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___OPEN_TYPE = MODEL_REL___OPEN_TYPE;
+
+	/**
+	 * The operation id for the '<em>Open Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___OPEN_INSTANCE = MODEL_REL___OPEN_INSTANCE;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1027,24 +1045,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___DELETE_INSTANCE = MODEL_REL___DELETE_INSTANCE;
-
-	/**
-	 * The operation id for the '<em>Open Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL___OPEN_TYPE = MODEL_REL___OPEN_TYPE;
-
-	/**
-	 * The operation id for the '<em>Open Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL___OPEN_INSTANCE = MODEL_REL___OPEN_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Add Model Type</em>' operation.
@@ -2890,26 +2890,6 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelRel__DeleteInstance();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#openType() <em>Open Type</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Open Type</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#openType()
-	 * @generated
-	 */
-	EOperation getModelRel__OpenType();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#openInstance() <em>Open Instance</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Open Instance</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#openInstance()
-	 * @generated
-	 */
-	EOperation getModelRel__OpenInstance();
-
-	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#getOutlineResourceTypes() <em>Get Outline Resource Types</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3822,22 +3802,6 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_REL___DELETE_INSTANCE = eINSTANCE.getModelRel__DeleteInstance();
-
-		/**
-		 * The meta object literal for the '<em><b>Open Type</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation MODEL_REL___OPEN_TYPE = eINSTANCE.getModelRel__OpenType();
-
-		/**
-		 * The meta object literal for the '<em><b>Open Instance</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation MODEL_REL___OPEN_INSTANCE = eINSTANCE.getModelRel__OpenInstance();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Outline Resource Types</b></em>' operation.

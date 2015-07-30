@@ -105,6 +105,8 @@
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/deleteInstance"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getEMFInstanceRoot"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/openType"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/openInstance"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ExtendibleElementConstraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementConstraint/implementation"/>
@@ -232,8 +234,6 @@
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceInstances"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/deleteInstance"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/openType"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/openInstance"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/BinaryModelRel">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

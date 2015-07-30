@@ -110,8 +110,8 @@
     <eOperations name="deleteInstance" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException"/>
     <eOperations name="getOutlineResourceInstances" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException"/>
-    <eOperations name="openType" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException"/>
-    <eOperations name="openInstance" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException"/>
+    <eOperations name="openType" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//operator/Exception"/>
+    <eOperations name="openInstance" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//operator/Exception"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="extendedUri" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

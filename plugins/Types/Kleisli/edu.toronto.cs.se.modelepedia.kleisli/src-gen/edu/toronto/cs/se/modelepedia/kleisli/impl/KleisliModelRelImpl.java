@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -45,7 +46,7 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelOpenEditorCommand;
+import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -384,11 +385,13 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public void openType() throws MMINTException {
+	public void openType() throws Exception {
 
 		super.openType();
 
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		Model ecoreModelType = MultiModelTypeRegistry.getType(EcorePackage.eNS_URI);
+		Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
 		for (ModelEndpoint modelTypeEndpoint : getModelEndpoints()) {
 			if (!(modelTypeEndpoint instanceof KleisliModelEndpoint)) {
 				continue;
@@ -402,7 +405,8 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					MultiModelUtils.prependStateToUri(kModelTypeUriRelative + GMFDiagramUtils.DIAGRAM_SUFFIX):
 					null;
 				URI kUri = (kModelTypeDiagramUri == null) ? URI.createFileURI(kModelTypeUri) : URI.createFileURI(kModelTypeDiagramUri);
-				String editorId = (kModelTypeDiagramUri == null) ? ModelOpenEditorCommand.ECORE_EDITORID : ModelOpenEditorCommand.ECORE_DIAGRAMID;
+				//TODO MMINT[ECORE] Try to open ecore diagram
+				String editorId = (kModelTypeDiagramUri == null) ? ecoreEditorType.getId() : ecoreEditorType.getId();
 				try {
 					activePage.openEditor(new URIEditorInput(kUri), editorId);
 				}
@@ -417,7 +421,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public void openInstance() throws MMINTException {
+	public void openInstance() throws Exception {
 
 		super.openInstance();
 

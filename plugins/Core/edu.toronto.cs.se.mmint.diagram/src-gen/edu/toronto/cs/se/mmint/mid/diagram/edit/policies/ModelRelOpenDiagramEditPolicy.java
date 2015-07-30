@@ -44,7 +44,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorUtil;
@@ -230,7 +229,7 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 		/**
 		 * @generated NOT
 		 */
-		protected void doExecuteInstancesLevel(ModelRel modelRel) throws MMINTException {
+		protected void doExecuteInstancesLevel(ModelRel modelRel) throws Exception {
 
 			modelRel.openInstance();
 		}
@@ -238,7 +237,7 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 		/**
 		 * @generated NOT
 		 */
-		protected void doExecuteTypesLevel(ModelRel modelRelType) throws MMINTException {
+		protected void doExecuteTypesLevel(ModelRel modelRelType) throws Exception {
 
 			modelRelType.openType();
 		}
@@ -262,6 +261,7 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 				else {
 					doExecuteTypesLevel(modelRel);
 				}
+				//TODO MMINT[EDITOR] Can this be moved into ModelRelImpl?
 				URI uri = EcoreUtil.getURI(diagram);
 				String editorName = modelRel.getName() + ".relationshipdiag";
 				IEditorInput editorInput = new URIEditorInput(uri, editorName);

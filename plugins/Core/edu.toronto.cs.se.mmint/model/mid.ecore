@@ -246,6 +246,8 @@
     <eOperations name="deleteInstance" eExceptions="#//MMINTException"/>
     <eOperations name="getEMFInstanceRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         eExceptions="#//MMINTException"/>
+    <eOperations name="openType" eExceptions="#//operator/Exception"/>
+    <eOperations name="openInstance" eExceptions="#//operator/Exception"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="origin" lowerBound="1"
         eType="#//ModelOrigin">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -531,8 +533,6 @@
       <eOperations name="getOutlineResourceInstances" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
           eExceptions="#//MMINTException"/>
       <eOperations name="deleteInstance" eExceptions="#//MMINTException"/>
-      <eOperations name="openType" eExceptions="#//MMINTException"/>
-      <eOperations name="openInstance" eExceptions="#//MMINTException"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelEndpoints" upperBound="-1"
           eType="#//ModelEndpoint" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

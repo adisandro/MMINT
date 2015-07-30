@@ -12,15 +12,20 @@
 package edu.toronto.cs.se.mmint.mid.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.List;
 
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -32,6 +37,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
+import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOModel;
@@ -622,6 +630,22 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MIDPackage.MODEL___OPEN_TYPE:
+				try {
+					openType();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MIDPackage.MODEL___OPEN_INSTANCE:
+				try {
+					openInstance();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -1139,6 +1163,63 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		}
 
 		return rootModelObj;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void openType() throws Exception {
+
+		MMINTException.mustBeType(this);
+
+		Model modelType = this;
+		List<URI> metamodelUris = new ArrayList<>();
+		//TODO MMINT[EDITOR] fix a) references to inherited metamodels not good in runtime eclipse b) open UML
+		while (true) {
+			if (modelType.isDynamic()) {
+				String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(modelType);
+				if (metamodelUri != null) { // get metamodel file from mmint state area
+					metamodelUris.add(URI.createFileURI(metamodelUri));
+					break;
+				}
+			}
+			else { // get metamodel files from bundle
+				Bundle bundle = MultiModelTypeRegistry.getTypeBundle(modelType.getUri());
+				Enumeration<URL> metamodels = bundle.findEntries("/", "*." + EcorePackage.eNAME, true);
+				while (metamodels.hasMoreElements()) {
+					metamodelUris.add(URI.createURI(FileLocator.toFileURL(metamodels.nextElement()).toString()));
+				}
+				break;
+			}
+			// climb up light types
+			modelType = modelType.getSupertype();
+		}
+
+		// open editors
+		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		Model ecoreModelType = MultiModelTypeRegistry.getType(EcorePackage.eNS_URI);
+		Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
+		for (URI metamodelUri : metamodelUris) {
+			activePage.openEditor(new URIEditorInput(metamodelUri), ecoreEditorType.getId());
+			//TODO MMINT[ECORE] Try to open ecore diagram
+			//String metamodelDiagramUri = metamodelUri.toFileString() + GMFDiagramUtils.DIAGRAM_SUFFIX;
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void openInstance() throws Exception {
+
+		MMINTException.mustBeInstance(this);
+
+		Editor editor = this.getEditors().get(0);
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
+			new URIEditorInput(
+				URI.createPlatformResourceURI(editor.getUri(), true)
+			),
+			editor.getId()
+		);
 	}
 
 } //ModelImpl

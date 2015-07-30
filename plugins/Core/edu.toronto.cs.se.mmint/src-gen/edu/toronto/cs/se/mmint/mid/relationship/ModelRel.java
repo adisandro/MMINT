@@ -271,26 +271,6 @@ public interface ModelRel extends Model {
 	void deleteInstance() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Opens this editor type.
-	 * 
-	 * @throws MMINTException
-	 *             If this is an editor instance. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
-	void openType() throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc --> Opens this editor instance.
-	 * 
-	 * @throws MMINTException
-	 *             If this is an editor type. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
-	void openInstance() throws MMINTException;
-
-	/**
 	 * <!-- begin-user-doc --> Gets the model type resources to be used in the
 	 * Relationship diagram outline for this model relationship type.
 	 * 

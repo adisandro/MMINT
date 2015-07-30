@@ -348,24 +348,6 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__OpenType() {
-		return modelRelEClass.getEOperations().get(11);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getModelRel__OpenInstance() {
-		return modelRelEClass.getEOperations().get(12);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getModelRel__GetOutlineResourceTypes() {
 		return modelRelEClass.getEOperations().get(4);
 	}
@@ -1089,8 +1071,6 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEOperation(modelRelEClass, MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL);
 		createEOperation(modelRelEClass, MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES);
 		createEOperation(modelRelEClass, MODEL_REL___DELETE_INSTANCE);
-		createEOperation(modelRelEClass, MODEL_REL___OPEN_TYPE);
-		createEOperation(modelRelEClass, MODEL_REL___OPEN_INSTANCE);
 
 		binaryModelRelEClass = createEClass(BINARY_MODEL_REL);
 		createEReference(binaryModelRelEClass, BINARY_MODEL_REL__SOURCE_MODEL);
@@ -1273,12 +1253,6 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelRel__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMIDPackage.getMMINTException());
-
-		op = initEOperation(getModelRel__OpenType(), null, "openType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMIDPackage.getMMINTException());
-
-		op = initEOperation(getModelRel__OpenInstance(), null, "openInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(binaryModelRelEClass, BinaryModelRel.class, "BinaryModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
