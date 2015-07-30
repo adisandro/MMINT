@@ -6,9 +6,11 @@
     modelName="Primitive" editPluginClass="edu.toronto.cs.se.modelepedia.primitive.provider.PrimitiveEditPlugin"
     editorPluginClass="edu.toronto.cs.se.modelepedia.primitive.presentation.PrimitiveEditorPlugin"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.mavo/model/mavo.genmodel#//mavo ../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mid"
+    operationReflection="true" importOrganizing="true">
   <foreignModel>int.ecore</foreignModel>
   <foreignModel>string.ecore</foreignModel>
+  <foreignModel>file.ecore</foreignModel>
   <genPackages prefix="Int" basePackage="edu.toronto.cs.se.modelepedia.primitive"
       disposableProviderFactory="true" ecorePackage="int.ecore#/">
     <genClasses ecoreClass="int.ecore#//Int">
@@ -19,6 +21,12 @@
       disposableProviderFactory="true" ecorePackage="string.ecore#/">
     <genClasses ecoreClass="string.ecore#//String">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute string.ecore#//String/value"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="File" basePackage="edu.toronto.cs.se.modelepedia.primitive"
+      disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="file.ecore#/">
+    <genClasses ecoreClass="file.ecore#//FileModel">
+      <genOperations ecoreOperation="file.ecore#//FileModel/openInstance"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

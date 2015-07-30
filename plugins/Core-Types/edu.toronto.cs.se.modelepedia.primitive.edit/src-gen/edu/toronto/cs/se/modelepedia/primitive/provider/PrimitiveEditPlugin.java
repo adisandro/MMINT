@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.primitive.provider;
 
+import edu.toronto.cs.se.mavo.provider.MAVOEditPlugin;
+import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -47,6 +49,8 @@ public final class PrimitiveEditPlugin extends EMFPlugin {
 	public PrimitiveEditPlugin() {
 		super
 		  (new ResourceLocator [] {
+		     MAVOEditPlugin.INSTANCE,
+		     MIDEditPlugin.INSTANCE,
 		   });
 	}
 
