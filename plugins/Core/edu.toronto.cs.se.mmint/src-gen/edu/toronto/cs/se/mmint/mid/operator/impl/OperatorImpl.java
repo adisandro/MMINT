@@ -1202,7 +1202,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		Operator newOperator = this.createInstance(instanceMID);
 		// generics, inputs and conversions
 		Map<String, GenericElement> genericsByName = createGenericsByName(generics, newOperator);
-		Map<String, Model> inputsByName = createInputsByName(inputs, true, (instanceMID == null) ? null : newOperator);
+		Map<String, Model> inputsByName = createInputsByName(inputs, true, newOperator);
 		// run operator
 		Properties inputProperties = newOperator.getInputProperties();
 		newOperator.readInputProperties(inputProperties);

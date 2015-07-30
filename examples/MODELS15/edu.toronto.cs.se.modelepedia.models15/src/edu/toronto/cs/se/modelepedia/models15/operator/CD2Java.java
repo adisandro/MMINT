@@ -44,7 +44,7 @@ public class CD2Java extends ConversionOperatorImpl {
 	// output
 	private Model javaModel;
 
-	private @NonNull Model x(Model cdModel, MultiModel instanceMID) throws Exception {
+	private @NonNull Model convert(@NonNull Model cdModel, @NonNull MultiModel instanceMID) throws Exception {
 
 		Operator transformationOperatorType = MultiModelTypeRegistry.getType(MODELRELTYPETRANSFORMATION_OPERATOR_URI);
 		EList<Model> inputModels = new BasicEList<>();
@@ -56,6 +56,7 @@ public class CD2Java extends ConversionOperatorImpl {
 		generic.setGenericSuperTypeEndpoint(transformationOperatorType.getGenerics().get(0));
 		ModelRel cd2javaRelType = MultiModelTypeRegistry.getType(CD2JAVA_MODELRELTYPE_URI);
 		generic.setGeneric(cd2javaRelType);
+		generics.add(generic);
 		Operator transformationOperator = transformationOperatorType.start(inputs, generics, outputMIDsByName, null);
 
 		return transformationOperator.getOutputsByName().get(ModelRelTypeTransformation.OUT_MODEL);
@@ -67,11 +68,11 @@ public class CD2Java extends ConversionOperatorImpl {
 			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
 		// input
-		Model cdModel = (ModelRel) inputsByName.get(IN_MODEL);
+		Model cdModel = inputsByName.get(IN_MODEL);
 		MultiModel instanceMID = outputMIDsByName.get(OUT_MODEL);
 
 		// run model rel type transformation
-		javaModel = x(cdModel, instanceMID);
+		javaModel = convert(cdModel, instanceMID);
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();
