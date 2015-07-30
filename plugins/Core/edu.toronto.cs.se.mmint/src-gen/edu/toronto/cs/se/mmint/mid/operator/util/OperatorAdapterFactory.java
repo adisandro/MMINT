@@ -20,6 +20,7 @@ import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.operator.*;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -102,6 +103,10 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseOperatorInput(OperatorInput object) {
 				return createOperatorInputAdapter();
+			}
+			@Override
+			public Adapter caseOperatorGeneric(OperatorGeneric object) {
+				return createOperatorGenericAdapter();
 			}
 			@Override
 			public Adapter caseLogicElement(LogicElement object) {
@@ -224,6 +229,20 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOperatorInputAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric <em>Generic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric
+	 * @generated
+	 */
+	public Adapter createOperatorGenericAdapter() {
 		return null;
 	}
 

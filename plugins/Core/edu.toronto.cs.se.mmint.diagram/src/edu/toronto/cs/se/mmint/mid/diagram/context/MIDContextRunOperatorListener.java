@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
@@ -72,12 +73,13 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
+				EList<OperatorGeneric> operatorGenerics = operatorType.selectAllowedGenerics(operatorInputs);
 				Map<String, MultiModel> outputMIDsByName = operatorType.getOutputs().stream()
 					.collect(Collectors.toMap(
 						outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
 						outputModelTypeEndpoint -> instanceMID)
 					);
-				operatorType.start(operatorInputs, outputMIDsByName, instanceMID);
+				operatorType.start(operatorInputs, operatorGenerics, outputMIDsByName, instanceMID);
 				return CommandResult.newOKCommandResult();
 			}
 			catch (MultiModelDialogCancellation e) {

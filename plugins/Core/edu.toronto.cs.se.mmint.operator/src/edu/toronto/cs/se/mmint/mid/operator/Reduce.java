@@ -56,9 +56,9 @@ public class Reduce extends OperatorImpl {
 	private final static @NonNull String MODELRELMERGE_OPERATORTYPE_URI = "http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge";
 
 	@Override
-	public boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
+	public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
 
-		boolean allowed = super.isAllowedTargetGeneric(genericTypeEndpoint, genericType, inputs);
+		boolean allowed = super.isAllowedGeneric(genericTypeEndpoint, genericType, inputs);
 		if (!allowed) {
 			return false;
 		}
@@ -118,8 +118,11 @@ public class Reduce extends OperatorImpl {
 							.collect(Collectors.toSet())))
 					.collect(Collectors.toSet());
 				// run the ACCUMULATOR operator
+				EList<OperatorGeneric> accumulatorGenerics = accumulatorOperatorType.selectAllowedGenerics(
+					accumulatorInputs);
 				accumulatorOutputsByName = accumulatorOperatorType.start(
 						accumulatorInputs,
+						accumulatorGenerics,
 						accumulatorOutputMIDsByName,
 						null)
 					.getOutputsByName();
@@ -145,6 +148,7 @@ public class Reduce extends OperatorImpl {
 							}
 							Map<String, Model> compositionOutputsByName = compositionOperatorType.start(
 									compositionInputs,
+									new BasicEList<>(),
 									compositionOutputMIDsByName,
 									null)
 								.getOutputsByName();
@@ -175,7 +179,7 @@ public class Reduce extends OperatorImpl {
 							if (mergeInputs == null) {
 								continue;
 							}
-							mergeOperatorType.start(mergeInputs, mergeOutputMIDsByName, null);
+							mergeOperatorType.start(mergeInputs, new BasicEList<>(), mergeOutputMIDsByName, null);
 							composedModelRelsToDelete.add(composedModelRel1);
 							composedModelRelsToDelete.add(composedModelRel2);
 						}

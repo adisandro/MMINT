@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.util;
 
+import edu.toronto.cs.se.mmint.mid.operator.*;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
@@ -119,6 +120,8 @@ public class OperatorValidator extends EObjectValidator {
 				return validateGenericEndpoint((GenericEndpoint)value, diagnostics, context);
 			case OperatorPackage.OPERATOR_INPUT:
 				return validateOperatorInput((OperatorInput)value, diagnostics, context);
+			case OperatorPackage.OPERATOR_GENERIC:
+				return validateOperatorGeneric((OperatorGeneric)value, diagnostics, context);
 			case OperatorPackage.RANDOM:
 				return validateRandom((Random)value, diagnostics, context);
 			case OperatorPackage.EXCEPTION:
@@ -246,6 +249,15 @@ public class OperatorValidator extends EObjectValidator {
 	 */
 	public boolean validateOperatorInput(OperatorInput operatorInput, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(operatorInput, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateOperatorGeneric(OperatorGeneric operatorGeneric, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(operatorGeneric, diagnostics, context);
 	}
 
 	/**

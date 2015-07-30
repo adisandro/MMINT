@@ -262,9 +262,9 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 	}
 
 	@Override
-	public boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
+	public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
 
-		if (!super.isAllowedTargetGeneric(genericTypeEndpoint, genericType, inputs)) {
+		if (!super.isAllowedGeneric(genericTypeEndpoint, genericType, inputs)) {
 			return false;
 		}
 

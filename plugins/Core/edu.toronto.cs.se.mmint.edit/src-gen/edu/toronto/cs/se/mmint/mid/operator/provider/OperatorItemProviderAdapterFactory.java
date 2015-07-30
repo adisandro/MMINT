@@ -195,6 +195,29 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OperatorGenericItemProvider operatorGenericItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOperatorGenericAdapter() {
+		if (operatorGenericItemProvider == null) {
+			operatorGenericItemProvider = new OperatorGenericItemProvider(this);
+		}
+
+		return operatorGenericItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -298,6 +321,7 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 		if (randomOperatorItemProvider != null) randomOperatorItemProvider.dispose();
 		if (genericEndpointItemProvider != null) genericEndpointItemProvider.dispose();
 		if (operatorInputItemProvider != null) operatorInputItemProvider.dispose();
+		if (operatorGenericItemProvider != null) operatorGenericItemProvider.dispose();
 	}
 
 }

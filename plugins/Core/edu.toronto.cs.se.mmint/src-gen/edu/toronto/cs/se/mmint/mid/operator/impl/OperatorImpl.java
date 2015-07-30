@@ -55,6 +55,7 @@ import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
@@ -636,9 +637,16 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___IS_ALLOWED_TARGET_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST:
+			case OperatorPackage.OPERATOR___SELECT_ALLOWED_GENERICS__ELIST:
 				try {
-					return isAllowedTargetGeneric((GenericEndpoint)arguments.get(0), (GenericElement)arguments.get(1), (EList<OperatorInput>)arguments.get(2));
+					return selectAllowedGenerics((EList<OperatorInput>)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST:
+				try {
+					return isAllowedGeneric((GenericEndpoint)arguments.get(0), (GenericElement)arguments.get(1), (EList<OperatorInput>)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -668,9 +676,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___START__ELIST_MAP_MULTIMODEL:
+			case OperatorPackage.OPERATOR___START__ELIST_ELIST_MAP_MULTIMODEL:
 				try {
-					return start((EList<OperatorInput>)arguments.get(0), (Map<String, MultiModel>)arguments.get(1), (MultiModel)arguments.get(2));
+					return start((EList<OperatorInput>)arguments.get(0), (EList<OperatorGeneric>)arguments.get(1), (Map<String, MultiModel>)arguments.get(2), (MultiModel)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -1014,7 +1022,26 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
+	public EList<OperatorGeneric> selectAllowedGenerics(EList<OperatorInput> inputs) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		EList<OperatorGeneric> generics = new BasicEList<>();
+		for (GenericEndpoint genericSuperTypeEndpoint : this.getGenerics()) {
+			GenericElement genericType = MultiModelDiagramUtils.selectGenericTypeToCreate(genericSuperTypeEndpoint, inputs);
+			OperatorGeneric generic = OperatorFactory.eINSTANCE.createOperatorGeneric();
+			generic.setGenericSuperTypeEndpoint(genericSuperTypeEndpoint);
+			generic.setGeneric(genericType);
+			generics.add(generic);
+		}
+
+		return generics;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
@@ -1093,8 +1120,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * @param runConversions
 	 *            True if conversions have to be run, false otherwise.
 	 * @param newOperator
-	 *            The operator instance that will be invoked with the input models, null if operator traceability is not
-	 *            needed.
+	 *            The operator instance that will be invoked with the input models.
 	 * @return The map of input model instances, identified by their formal parameter name.
 	 * @throws Exception
 	 *             If something went wrong running the conversions.
@@ -1104,14 +1130,11 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		Map<String, Model> inputsByName = new HashMap<>();
 		for (OperatorInput input : inputs) {
-			ModelEndpoint modelEndpoint = null;
-			if (newOperator != null) {
-				modelEndpoint = input.getModelTypeEndpoint().createInstance(
-					input.getModel(),
-					newOperator,
-					OperatorPackage.eINSTANCE.getOperator_Inputs().getName()
-				);
-			}
+			ModelEndpoint modelEndpoint = input.getModelTypeEndpoint().createInstance(
+				input.getModel(),
+				newOperator,
+				OperatorPackage.eINSTANCE.getOperator_Inputs().getName()
+			);
 			String inputName = input.getModelTypeEndpoint().getName();
 			if (input.getModelTypeEndpoint().getUpperBound() == -1) {
 				int i = 0;
@@ -1119,9 +1142,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 					i++;
 				}
 				inputName += i;
-				if (newOperator != null) {
-					modelEndpoint.setName(inputName);
-				}
+				modelEndpoint.setName(inputName);
 			}
 			if (input.getConversions().isEmpty() || !runConversions) {
 				inputsByName.put(inputName, input.getModel());
@@ -1147,9 +1168,30 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
+	 * 
+	 * @param generics
+	 * @param newOperator
+	 * @return
+	 * @throws MMINTException 
 	 * @generated NOT
 	 */
-	public Operator start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception {
+	private Map<String, GenericElement> createGenericsByName(EList<OperatorGeneric> generics, Operator newOperator) throws MMINTException {
+
+		Map<String, GenericElement> genericsByName = new HashMap<>();
+		for (OperatorGeneric generic : generics) {
+			GenericEndpoint genericSuperTypeEndpoint = generic.getGenericSuperTypeEndpoint();
+			GenericElement genericType = generic.getGeneric();
+			genericSuperTypeEndpoint.createInstance(genericType, newOperator);
+			genericsByName.put(genericSuperTypeEndpoint.getName(), genericType);
+		}
+
+		return genericsByName;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Operator start(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception {
 
 		MMINTException.mustBeType(this);
 
@@ -1158,14 +1200,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			instanceMID = null;
 		}
 		Operator newOperator = this.createInstance(instanceMID);
-		// generics
-		Map<String, GenericElement> genericsByName = new HashMap<>();
-		for (GenericEndpoint genericSuperTypeEndpoint : this.getGenerics()) {
-			GenericElement genericType = MultiModelDiagramUtils.selectGenericTypeToCreate(genericSuperTypeEndpoint, inputs);
-			genericSuperTypeEndpoint.createInstance(genericType, newOperator);
-			genericsByName.put(genericSuperTypeEndpoint.getName(), genericType);
-		}
-		// inputs and conversions
+		// generics, inputs and conversions
+		Map<String, GenericElement> genericsByName = createGenericsByName(generics, newOperator);
 		Map<String, Model> inputsByName = createInputsByName(inputs, true, (instanceMID == null) ? null : newOperator);
 		// run operator
 		Properties inputProperties = newOperator.getInputProperties();

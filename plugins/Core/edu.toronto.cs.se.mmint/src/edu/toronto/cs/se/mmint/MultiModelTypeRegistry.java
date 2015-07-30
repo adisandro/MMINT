@@ -511,7 +511,7 @@ public class MultiModelTypeRegistry {
 				if (genericType.isAbstract()) {
 					continue;
 				}
-				if (!operatorType.isAllowedTargetGeneric(genericSuperTypeEndpoint, genericType, inputs)) {
+				if (!operatorType.isAllowedGeneric(genericSuperTypeEndpoint, genericType, inputs)) {
 					//TODO MMINT[GENERICS] Can we check that the generic type is consistent with the input, or is it always done by the operator itself?
 					continue;
 				}

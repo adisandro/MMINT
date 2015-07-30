@@ -54,6 +54,8 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.Link;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
@@ -204,9 +206,13 @@ public class KleisliTest extends MMINTTest {
 		EList<Model> transformationInputModels = new BasicEList<Model>();
 		transformationInputModels.add(inputModel);
 		EList<OperatorInput> transformationInputs = transformationOperator.checkAllowedInputs(transformationInputModels);
+		EList<OperatorGeneric> transformationGenerics = new BasicEList<>();
+		OperatorGeneric transformationGeneric = OperatorFactory.eINSTANCE.createOperatorGeneric();
+		transformationGeneric.setGenericSuperTypeEndpoint(transformationOperator.getGenerics().get(0));
+		transformationGeneric.setGeneric(kModelRelType);
+		transformationGenerics.add(transformationGeneric);
 		Map<String, MultiModel> outputMIDsByName = MultiModelOperatorUtils.createSimpleOutputMIDsByName(transformationOperator, instanceMID);
-		//TODO MMINT[TESTS] How can I pass genericsByName with KMR=kModelRelType? 
-		Map<String, Model> transformationOutput = transformationOperator.start(transformationInputs, outputMIDsByName, instanceMID).getOutputsByName();
+		Map<String, Model> transformationOutput = transformationOperator.start(transformationInputs, transformationGenerics, outputMIDsByName, instanceMID).getOutputsByName();
 		MultiModelUtils.createModelFile(instanceMID, TESTS_INSTANCEMID_URI, true);
 
 		// test equivalence with oracle

@@ -294,7 +294,8 @@ public interface Operator extends GenericElement {
 	 * 
 	 * @param inputModels
 	 *            The list of input models.
-	 * @return The input to the operator, including necessary conversions, or null if the input models can't be used.
+	 * @return The input to run the operator, including necessary conversions, or null if the input models can't be
+	 *         used.
 	 * @throws MMINTException
 	 *             If this is an operator instance. <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputModelsMany="true"
@@ -355,7 +356,22 @@ public interface Operator extends GenericElement {
 	void deleteInstance() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Checks if a generic type is allowed for this operator type.
+	 * <!-- begin-user-doc --> Selects a list of generics to be used to run this operator type.
+	 * 
+	 * @param inputs
+	 *            The list of operator inputs.
+	 * @return The generics to run the operator.
+	 * @throws MMINTException
+	 *             If this is an operator instance, or if a required generic has not been selected.
+	 *             <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsMany="true"
+	 * @generated
+	 */
+	EList<OperatorGeneric> selectAllowedGenerics(EList<OperatorInput> inputs) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Checks if a generic type is allowed for this operator type. Must be overridden if there
+	 * are cases when formal generic parameter compliance alone ({@link #selectAllowedGenerics(EList)}) is not enough.
 	 * 
 	 * @param genericTypeEndpoint
 	 *            The generic type endpoint.
@@ -369,7 +385,7 @@ public interface Operator extends GenericElement {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" genericTypeEndpointRequired="true" genericTypeRequired="true" inputsMany="true"
 	 * @generated
 	 */
-	boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException;
+	boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Gets the input properties of this operator.
@@ -425,12 +441,14 @@ public interface Operator extends GenericElement {
 	Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName) throws Exception;
 
 	/**
-	 * <!-- begin-user-doc --> Starts an instance of this operator type, i.e. selects generics, runs conversions for the
-	 * input models, creates an operator instance, invokes {@link #readInputProperties(Properties)}, {@link #init()},
+	 * <!-- begin-user-doc --> Starts an instance of this operator type, i.e. runs conversions for the input models,
+	 * creates an operator instance, invokes {@link #readInputProperties(Properties)}, {@link #init()},
 	 * {@link #run(Map, Map, Map)}, records the execution time.
 	 * 
 	 * @param inputs
-	 *            A list of inputs to the operator instance, including necessary conversions.
+	 *            A list of inputs to run the operator instance, including necessary conversions.
+	 * @param generics
+	 *            A list of generics to run the operator instance.
 	 * @param outputMIDsByName
 	 *            The instance MIDs where the output models are created, identified by the output name. A null instance
 	 *            MID means that the output model isn't added to it.
@@ -440,9 +458,9 @@ public interface Operator extends GenericElement {
 	 * @return The executed operator instance.
 	 * @throws Exception
 	 *             If something went wrong starting the operator. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true" outputMIDsByNameRequired="true" instanceMIDRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true" genericsMany="true" outputMIDsByNameRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
-	Operator start(EList<OperatorInput> inputs, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception;
+	Operator start(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception;
 
 } // Operator

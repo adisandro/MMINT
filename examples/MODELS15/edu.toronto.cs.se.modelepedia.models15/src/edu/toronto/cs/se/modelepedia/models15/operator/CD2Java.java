@@ -25,6 +25,8 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -49,9 +51,12 @@ public class CD2Java extends ConversionOperatorImpl {
 		inputModels.add(cdModel);
 		EList<OperatorInput> inputs = transformationOperatorType.checkAllowedInputs(inputModels);
 		Map<String, MultiModel> outputMIDsByName = MultiModelOperatorUtils.createSimpleOutputMIDsByName(transformationOperatorType, instanceMID);
-		Operator transformationOperator = transformationOperatorType.start(inputs, outputMIDsByName, null);
+		EList<OperatorGeneric> generics = new BasicEList<>();
+		OperatorGeneric generic = OperatorFactory.eINSTANCE.createOperatorGeneric();
+		generic.setGenericSuperTypeEndpoint(transformationOperatorType.getGenerics().get(0));
 		ModelRel cd2javaRelType = MultiModelTypeRegistry.getType(CD2JAVA_MODELRELTYPE_URI);
-		transformationOperatorType.isAllowedTargetGeneric(transformationOperatorType.getGenerics().get(0), cd2javaRelType, inputs);
+		generic.setGeneric(cd2javaRelType);
+		Operator transformationOperator = transformationOperatorType.start(inputs, generics, outputMIDsByName, null);
 
 		return transformationOperator.getOutputsByName().get(ModelRelTypeTransformation.OUT_MODEL);
 	}

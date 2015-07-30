@@ -1129,7 +1129,11 @@
         <eParameters name="instanceMID" eType="#//MultiModel"/>
       </eOperations>
       <eOperations name="deleteInstance" eExceptions="#//MMINTException"/>
-      <eOperations name="isAllowedTargetGeneric" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+      <eOperations name="selectAllowedGenerics" upperBound="-1" eType="#//operator/OperatorGeneric"
+          eExceptions="#//MMINTException">
+        <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
+      </eOperations>
+      <eOperations name="isAllowedGeneric" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           eExceptions="#//MMINTException">
         <eParameters name="genericTypeEndpoint" lowerBound="1" eType="#//operator/GenericEndpoint"/>
         <eParameters name="genericType" lowerBound="1" eType="#//GenericElement"/>
@@ -1166,6 +1170,7 @@
       </eOperations>
       <eOperations name="start" lowerBound="1" eType="#//operator/Operator" eExceptions="#//operator/Exception">
         <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
+        <eParameters name="generics" upperBound="-1" eType="#//operator/OperatorGeneric"/>
         <eParameters name="outputMIDsByName" lowerBound="1">
           <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
             <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1298,6 +1303,23 @@
           eType="#//ModelEndpoint">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The input formal parameter."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OperatorGeneric">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A generic for an operator instance."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="generic" lowerBound="1"
+          eType="#//GenericElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The generic actual parameter."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="genericSuperTypeEndpoint"
+          lowerBound="1" eType="#//operator/GenericEndpoint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The generic formal parameter."/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>

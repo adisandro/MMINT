@@ -43,9 +43,9 @@ public class Filter extends OperatorImpl {
 	private final static @NonNull String FILTERED_MID_SUFFIX = "_filter";
 
 	@Override
-	public boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
+	public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
 
-		boolean allowed = super.isAllowedTargetGeneric(genericTypeEndpoint, genericType, inputs);
+		boolean allowed = super.isAllowedGeneric(genericTypeEndpoint, genericType, inputs);
 		if (!allowed) {
 			return false;
 		}

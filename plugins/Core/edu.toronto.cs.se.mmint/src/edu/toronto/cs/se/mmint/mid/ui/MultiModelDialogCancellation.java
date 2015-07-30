@@ -11,7 +11,14 @@
  */
 package edu.toronto.cs.se.mmint.mid.ui;
 
-public class MultiModelDialogCancellation extends Exception {
+import edu.toronto.cs.se.mmint.MMINTException;
+
+public class MultiModelDialogCancellation extends MMINTException {
+
+	public MultiModelDialogCancellation() {
+
+		super("Dialog cancelled");
+	}
 
 	/** Default serial version. */
 	private static final long serialVersionUID = 1L;

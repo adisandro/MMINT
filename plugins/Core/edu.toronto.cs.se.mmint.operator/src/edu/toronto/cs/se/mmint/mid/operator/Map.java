@@ -64,9 +64,9 @@ public class Map extends OperatorImpl {
 	private final static @NonNull String MIDOPER_MODELTYPE_URI_SUFFIX = "Oper";
 
 	@Override
-	public boolean isAllowedTargetGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
+	public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
 
-		boolean allowed = super.isAllowedTargetGeneric(genericTypeEndpoint, genericType, inputs);
+		boolean allowed = super.isAllowedGeneric(genericTypeEndpoint, genericType, inputs);
 		if (!allowed) {
 			return false;
 		}
@@ -122,14 +122,14 @@ public class Map extends OperatorImpl {
 
 	private java.util.Map<String, Model> map(
 			@NonNull List<Model> inputMIDModels, @NonNull Operator mapperOperatorType,
-			@NonNull Set<EList<OperatorInput>> operatorInputSet, @NonNull MultiModel instanceMID) throws Exception {
+			@NonNull Set<EList<OperatorInput>> mapperInputSet, @NonNull MultiModel instanceMID) throws Exception {
 
 		// create output MIDs
-		java.util.Map<String, MultiModel> outputMIDsByName = mapperOperatorType.getOutputs().stream()
+		java.util.Map<String, MultiModel> mapperOutputMIDsByName = mapperOperatorType.getOutputs().stream()
 			.collect(Collectors.toMap(
 				outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
 				outputModelTypeEndpoint -> MIDFactory.eINSTANCE.createMultiModel()));
-		MultiModel operatorMID = Boolean.parseBoolean(
+		MultiModel mapperMID = Boolean.parseBoolean(
 			MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED)) ?
 				MIDFactory.eINSTANCE.createMultiModel() :
 				null;
@@ -137,16 +137,18 @@ public class Map extends OperatorImpl {
 		java.util.Map<String, Set<Model>> midrelShortcutsByOutputName = new HashMap<>();
 		java.util.Map<String, Set<MultiModel>> midrelMIDsByOutputName = new HashMap<>();
 		Set<Model> midoperModelShortcuts = new HashSet<>(), midoperModelRelShortcuts = new HashSet<>();
-		for (EList<OperatorInput> operatorInputs : operatorInputSet) {
+		for (EList<OperatorInput> mapperInputs : mapperInputSet) {
 			try {
+				EList<OperatorGeneric> mapperGenerics = mapperOperatorType.selectAllowedGenerics(mapperInputs);
 				java.util.Map<String, Model> mapperOutputsByName = mapperOperatorType.start(
-						operatorInputs,
-						outputMIDsByName,
-						operatorMID)
+						mapperInputs,
+						mapperGenerics,
+						mapperOutputMIDsByName,
+						mapperMID)
 					.getOutputsByName();
 				// get gmf shortcuts to create (output MIDRels/MIDOpers need gmf shortcuts to model endpoints)
-				if (operatorMID != null) {
-					for (OperatorInput operatorInput : operatorInputs) {
+				if (mapperMID != null) {
+					for (OperatorInput operatorInput : mapperInputs) {
 						if (operatorInput.getModel() instanceof ModelRel) {
 							midoperModelRelShortcuts.add(operatorInput.getModel());
 						}
@@ -156,7 +158,7 @@ public class Map extends OperatorImpl {
 					}
 				}
 				for (Entry<String, Model> mapperOutput : mapperOutputsByName.entrySet()) {
-					if (operatorMID != null) {
+					if (mapperMID != null) {
 						if (mapperOutput.getValue() instanceof ModelRel) {
 							midoperModelRelShortcuts.add(mapperOutput.getValue());
 						}
@@ -201,7 +203,7 @@ public class Map extends OperatorImpl {
 		java.util.Map<String, Model> outputsByName = new HashMap<>();
 		int i = 0;
 		// pass 1: no midrels
-		for (Entry<String, MultiModel> outputMIDByName : outputMIDsByName.entrySet()) {
+		for (Entry<String, MultiModel> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
 			boolean isMIDRel = midrelShortcutsByOutputName.get(outputMIDByName.getKey()) != null;
 			if (isMIDRel) {
 				continue;
@@ -211,7 +213,7 @@ public class Map extends OperatorImpl {
 			i++;
 		}
 		// pass 2: midrels only
-		for (Entry<String, MultiModel> outputMIDByName : outputMIDsByName.entrySet()) {
+		for (Entry<String, MultiModel> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
 			boolean isMIDRel = midrelShortcutsByOutputName.get(outputMIDByName.getKey()) != null;
 			if (!isMIDRel) {
 				continue;

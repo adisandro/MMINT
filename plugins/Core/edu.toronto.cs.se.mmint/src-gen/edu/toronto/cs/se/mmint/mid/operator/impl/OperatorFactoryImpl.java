@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
+import edu.toronto.cs.se.mmint.mid.operator.*;
 import java.util.Properties;
 import java.util.Random;
 import java.util.Set;
@@ -77,6 +78,7 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 			case OperatorPackage.RANDOM_OPERATOR: return createRandomOperator();
 			case OperatorPackage.GENERIC_ENDPOINT: return createGenericEndpoint();
 			case OperatorPackage.OPERATOR_INPUT: return createOperatorInput();
+			case OperatorPackage.OPERATOR_GENERIC: return createOperatorGeneric();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -172,6 +174,16 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	public OperatorInput createOperatorInput() {
 		OperatorInputImpl operatorInput = new OperatorInputImpl();
 		return operatorInput;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OperatorGeneric createOperatorGeneric() {
+		OperatorGenericImpl operatorGeneric = new OperatorGenericImpl();
+		return operatorGeneric;
 	}
 
 	/**

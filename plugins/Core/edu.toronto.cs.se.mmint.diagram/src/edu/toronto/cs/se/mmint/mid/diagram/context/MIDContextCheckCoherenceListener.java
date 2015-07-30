@@ -43,6 +43,7 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
@@ -89,10 +90,11 @@ public class MIDContextCheckCoherenceListener extends MIDContextMenuListener {
 						EList<Model> inputModels = new BasicEList<>();
 						inputModels.add(inputModel);
 						EList<OperatorInput> inputs = convOperatorType.checkAllowedInputs(inputModels);
+						EList<OperatorGeneric> generics = convOperatorType.selectAllowedGenerics(inputs);
 						Map<String, MultiModel> outputMIDsByName = new HashMap<>();
 						String convOutputName = convOperatorType.getOutputs().get(0).getName();
 						outputMIDsByName.put(convOutputName, instanceMID);
-						Map<String, Model> outputsByName = convOperatorType.start(inputs, outputMIDsByName, null).getOutputsByName();
+						Map<String, Model> outputsByName = convOperatorType.start(inputs, generics, outputMIDsByName, null).getOutputsByName();
 						inputModel = outputsByName.get(convOutputName);
 					}
 					coherentModels.add(inputModel);
