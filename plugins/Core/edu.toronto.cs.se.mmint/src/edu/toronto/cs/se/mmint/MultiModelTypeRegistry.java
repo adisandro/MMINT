@@ -501,7 +501,7 @@ public class MultiModelTypeRegistry {
 	public static MultiModelTreeSelectionDialog getGenericTypeCreationDialog(GenericEndpoint genericSuperTypeEndpoint, EList<OperatorInput> inputs) {
 
 		Operator operatorType = (Operator) genericSuperTypeEndpoint.eContainer();
-		MultiModel TypeMID = MultiModelRegistry.getMultiModel(operatorType);
+		MultiModel typeMID = MultiModelRegistry.getMultiModel(operatorType);
 		GenericElement genericSuperType = genericSuperTypeEndpoint.getTarget();
 		List<GenericElement> genericTypes = MultiModelTypeHierarchy.getSubtypes(genericSuperType);
 		genericTypes.add(0, genericSuperType);
@@ -527,7 +527,7 @@ public class MultiModelTypeRegistry {
 			shell,
 			new MultiModelDialogLabelProvider(),
 			new NewGenericTypeDialogContentProvider(filteredGenericTypes),
-			TypeMID
+			typeMID
 		);
 
 		return dialog;

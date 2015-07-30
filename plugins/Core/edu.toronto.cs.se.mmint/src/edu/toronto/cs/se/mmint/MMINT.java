@@ -561,11 +561,11 @@ public class MMINT implements MMINTConstants {
 			Model conversionType = conversionOperatorType.getOutputs().get(0).getTarget();
 			Set<List<String>> conversionPaths = conversionsTo.get(conversionType.getUri()); // handles multiple paths
 			if (conversionPaths == null) {
-				conversionPaths = new HashSet<List<String>>();
+				conversionPaths = new HashSet<>();
 				conversionsTo.put(conversionType.getUri(), conversionPaths);
 			}
 			// keep track of conversion operator used
-			List<String> conversionPath = new ArrayList<String>(prevConversionPath);
+			List<String> conversionPath = new ArrayList<>(prevConversionPath);
 			conversionPath.add(conversionOperatorType.getUri());
 			conversionPaths.add(conversionPath);
 			// recursion
@@ -590,11 +590,11 @@ public class MMINT implements MMINTConstants {
 		subtypeTable.clear();
 		conversionTable.clear();
 		for (ExtendibleElement type : multiModel.getExtendibleTable().values()) {
-			subtypeTable.put(type.getUri(), new HashSet<String>());
+			subtypeTable.put(type.getUri(), new HashSet<>());
 			if (!(type instanceof Model)) {
 				continue;
 			}
-			conversionTable.put(type.getUri(), new HashMap<String, Set<List<String>>>());
+			conversionTable.put(type.getUri(), new HashMap<>());
 		}
 		for (ExtendibleElement type : multiModel.getExtendibleTable().values()) {
 			createSubtypeHierarchy(type, type, subtypeTable);
@@ -740,7 +740,6 @@ public class MMINT implements MMINTConstants {
 		cachedTypeMID.setLevel(MIDLevel.TYPES);
 		bundleTable = new HashMap<>();
 		multipleInheritanceTable = new HashMap<>();
-		cachedRuntimeTypes = new HashMap<>();
 		typeFactory = new MultiModelHeavyTypeFactory();
 		languageReasoners = new HashMap<>();
 		IConfigurationElement[] configs;
@@ -814,10 +813,11 @@ public class MMINT implements MMINTConstants {
 		}
 
 		// type hierarchy
-		subtypes = new HashMap<String, Set<String>>();
-		conversions = new HashMap<String, Map<String, Set<List<String>>>>();
-		subtypesMID = new HashMap<String, Set<String>>();
-		conversionsMID = new HashMap<String, Map<String, Set<List<String>>>>();
+		subtypes = new HashMap<>();
+		conversions = new HashMap<>();
+		subtypesMID = new HashMap<>();
+		conversionsMID = new HashMap<>();
+		cachedRuntimeTypes = new HashMap<>();
 		storeRepository();
 	}
 
