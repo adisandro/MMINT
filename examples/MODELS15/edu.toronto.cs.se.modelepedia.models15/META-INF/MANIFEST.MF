@@ -11,5 +11,6 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.primitive,
+ edu.toronto.cs.se.modelepedia.operator,
  edu.toronto.cs.se.modelepedia.classdiagram,
  edu.toronto.cs.se.modelepedia.models15_java
