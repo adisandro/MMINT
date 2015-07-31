@@ -660,6 +660,37 @@
          </outputs>
       </operatorType>
    </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="AddGetters"
+               uri="http://se.cs.toronto.edu/mmint/Operator_AddGetters"
+               class="edu.toronto.cs.se.modelepedia.models15.operator.MODELS15">
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="cd">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="transformed">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
    -->
 
 </plugin>
