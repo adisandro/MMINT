@@ -34,14 +34,6 @@ public interface FileModel extends Model {
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
 	 * @generated
 	 */
-	void openType() throws Exception;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
-	 * @generated
-	 */
 	void openInstance() throws Exception;
 
 } // FileModel

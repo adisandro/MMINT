@@ -8,9 +8,11 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.jdt.annotation;resolution:=optional,
+ org.eclipse.acceleo.engine,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.primitive,
  edu.toronto.cs.se.modelepedia.operator,
  edu.toronto.cs.se.modelepedia.classdiagram,
  edu.toronto.cs.se.modelepedia.models15_java
+Export-Package: edu.toronto.cs.se.modelepedia.models15.operator

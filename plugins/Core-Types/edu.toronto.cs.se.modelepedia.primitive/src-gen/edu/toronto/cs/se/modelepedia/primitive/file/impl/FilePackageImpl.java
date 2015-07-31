@@ -133,17 +133,8 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFileModel__OpenType() {
-		return fileModelEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getFileModel__OpenInstance() {
-		return fileModelEClass.getEOperations().get(1);
+		return fileModelEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -175,7 +166,6 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 
 		// Create classes and their features
 		fileModelEClass = createEClass(FILE_MODEL);
-		createEOperation(fileModelEClass, FILE_MODEL___OPEN_TYPE);
 		createEOperation(fileModelEClass, FILE_MODEL___OPEN_INSTANCE);
 	}
 
@@ -216,10 +206,7 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 		// Initialize classes, features, and operations; add parameters
 		initEClass(fileModelEClass, FileModel.class, "FileModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = initEOperation(getFileModel__OpenType(), null, "openType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theOperatorPackage.getException());
-
-		op = initEOperation(getFileModel__OpenInstance(), null, "openInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getFileModel__OpenInstance(), null, "openInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theOperatorPackage.getException());
 
 		// Create resource

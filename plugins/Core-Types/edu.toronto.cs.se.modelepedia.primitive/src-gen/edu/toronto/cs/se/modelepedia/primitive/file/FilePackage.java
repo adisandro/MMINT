@@ -417,7 +417,7 @@ public interface FilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_MODEL___OPEN_TYPE = MIDPackage.MODEL_OPERATION_COUNT + 0;
+	int FILE_MODEL___OPEN_TYPE = MIDPackage.MODEL___OPEN_TYPE;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -426,7 +426,7 @@ public interface FilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_MODEL___OPEN_INSTANCE = MIDPackage.MODEL_OPERATION_COUNT + 1;
+	int FILE_MODEL___OPEN_INSTANCE = MIDPackage.MODEL_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -435,7 +435,7 @@ public interface FilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_MODEL_OPERATION_COUNT = MIDPackage.MODEL_OPERATION_COUNT + 2;
+	int FILE_MODEL_OPERATION_COUNT = MIDPackage.MODEL_OPERATION_COUNT + 1;
 
 
 	/**
@@ -447,16 +447,6 @@ public interface FilePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getFileModel();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.primitive.file.FileModel#openType() <em>Open Type</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Open Type</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.primitive.file.FileModel#openType()
-	 * @generated
-	 */
-	EOperation getFileModel__OpenType();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.primitive.file.FileModel#openInstance() <em>Open Instance</em>}' operation.
@@ -500,14 +490,6 @@ public interface FilePackage extends EPackage {
 		 * @generated
 		 */
 		EClass FILE_MODEL = eINSTANCE.getFileModel();
-
-		/**
-		 * The meta object literal for the '<em><b>Open Type</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation FILE_MODEL___OPEN_TYPE = eINSTANCE.getFileModel__OpenType();
 
 		/**
 		 * The meta object literal for the '<em><b>Open Instance</b></em>' operation.

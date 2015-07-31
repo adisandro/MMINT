@@ -37,9 +37,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTActivator;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 
 public class MultiModelUtils {
 
