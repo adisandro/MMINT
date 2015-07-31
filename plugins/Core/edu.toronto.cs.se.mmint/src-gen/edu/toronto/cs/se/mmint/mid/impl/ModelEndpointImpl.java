@@ -392,8 +392,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 */
 	protected void addInstanceReference(ModelEndpointReference newModelEndpointRef, ModelRel containerModelRel) {
 
-		boolean isContainer = (containerModelRel.eContainer() == null);
-		super.addInstanceReference(newModelEndpointRef, isContainer);
+		super.addInstanceReference(newModelEndpointRef, false);
 		containerModelRel.getModelEndpointRefs().add(newModelEndpointRef);
 	}
 

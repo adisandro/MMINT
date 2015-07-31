@@ -999,7 +999,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		catch (Exception e) {
 			throw new MMINTException("Can't invoke constructor");
 		}
-		super.addBasicInstance(newOperator, null, getName());
+		super.addBasicInstance(newOperator, null, this.getName());
 		newOperator.setCommutative(false);
 		if (instanceMID != null) {
 			instanceMID.getOperators().add(newOperator);
@@ -1128,6 +1128,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	private Map<String, Model> createInputsByName(EList<OperatorInput> inputs, boolean runConversions, Operator newOperator) throws Exception {
 
+		boolean coerced = false;
 		Map<String, Model> inputsByName = new HashMap<>();
 		for (OperatorInput input : inputs) {
 			ModelEndpoint modelEndpoint = input.getModelTypeEndpoint().createInstance(
@@ -1148,6 +1149,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				inputsByName.put(inputName, input.getModel());
 				continue;
 			}
+			coerced = true;
 			Model convertedInputModel = input.getModel();
 			for (ConversionOperator conversion : input.getConversions()) {
 				//TODO MMINT[OPERATOR] Why don't we use start here?
@@ -1162,6 +1164,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 					.get(conversion.getOutputs().get(0).getName());
 			}
 			inputsByName.put(inputName, convertedInputModel);
+		}
+		if (coerced) {
+			newOperator.setName(newOperator.getName() + " (coerced)");
 		}
 
 		return inputsByName;

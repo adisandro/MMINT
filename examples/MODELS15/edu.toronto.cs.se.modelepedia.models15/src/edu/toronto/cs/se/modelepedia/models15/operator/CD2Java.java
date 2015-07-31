@@ -17,6 +17,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -41,10 +42,7 @@ public class CD2Java extends ConversionOperatorImpl {
 	private final static @NonNull String MODELRELTYPETRANSFORMATION_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_ModelRelTypeTransformation";
 	private final static @NonNull String CD2JAVA_MODELRELTYPE_URI = "http://se.cs.toronto.edu/modelepedia/CD2Java";
 
-	// output
-	private Model javaModel;
-
-	private @NonNull Model convert(@NonNull Model cdModel, @NonNull MultiModel instanceMID) throws Exception {
+	private @NonNull Model convert(@NonNull Model cdModel, @Nullable MultiModel instanceMID) throws Exception {
 
 		Operator transformationOperatorType = MultiModelTypeRegistry.getType(MODELRELTYPETRANSFORMATION_OPERATOR_URI);
 		EList<Model> inputModels = new BasicEList<>();
@@ -72,22 +70,13 @@ public class CD2Java extends ConversionOperatorImpl {
 		MultiModel instanceMID = outputMIDsByName.get(OUT_MODEL);
 
 		// run model rel type transformation
-		javaModel = convert(cdModel, instanceMID);
+		Model javaModel = convert(cdModel, instanceMID);
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, javaModel);
 
 		return outputsByName;
-	}
-
-	@Override
-	public void cleanup() throws Exception {
-
-		if (javaModel != null) {
-			MultiModelUtils.deleteModelFile(javaModel);
-			javaModel = null;
-		}
 	}
 
 }

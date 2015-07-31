@@ -154,6 +154,7 @@ public class MMINT implements MMINTConstants {
 	 * - Can operators detect input/output by code inspection rather than plugin.xml?
 	 * - Replace Pivot constraints and derivation in mid.ecore with java
 	 * - Refactor functions in mid.ecore like getMetatype() using generics
+	 * - ExtendibleElementReference.containedObject is completely useless
 	 */
 
 	/**

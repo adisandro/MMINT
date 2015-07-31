@@ -330,15 +330,6 @@ public interface FilePackage extends EPackage {
 	int FILE_MODEL___GET_EMF_TYPE_ROOT = MIDPackage.MODEL___GET_EMF_TYPE_ROOT;
 
 	/**
-	 * The operation id for the '<em>Create Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
-
-	/**
 	 * The operation id for the '<em>Create Instance Editor</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -420,13 +411,22 @@ public interface FilePackage extends EPackage {
 	int FILE_MODEL___OPEN_TYPE = MIDPackage.MODEL___OPEN_TYPE;
 
 	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_MODEL___OPEN_INSTANCE = MIDPackage.MODEL_OPERATION_COUNT + 0;
+	int FILE_MODEL___OPEN_INSTANCE = MIDPackage.MODEL_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -435,7 +435,7 @@ public interface FilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_MODEL_OPERATION_COUNT = MIDPackage.MODEL_OPERATION_COUNT + 1;
+	int FILE_MODEL_OPERATION_COUNT = MIDPackage.MODEL_OPERATION_COUNT + 2;
 
 
 	/**
@@ -447,6 +447,16 @@ public interface FilePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getFileModel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.primitive.file.FileModel#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.ModelOrigin, edu.toronto.cs.se.mmint.mid.MultiModel) <em>Create Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.primitive.file.FileModel#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.ModelOrigin, edu.toronto.cs.se.mmint.mid.MultiModel)
+	 * @generated
+	 */
+	EOperation getFileModel__CreateInstance__String_ModelOrigin_MultiModel();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.primitive.file.FileModel#openInstance() <em>Open Instance</em>}' operation.
@@ -490,6 +500,14 @@ public interface FilePackage extends EPackage {
 		 * @generated
 		 */
 		EClass FILE_MODEL = eINSTANCE.getFileModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation FILE_MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = eINSTANCE.getFileModel__CreateInstance__String_ModelOrigin_MultiModel();
 
 		/**
 		 * The meta object literal for the '<em><b>Open Instance</b></em>' operation.

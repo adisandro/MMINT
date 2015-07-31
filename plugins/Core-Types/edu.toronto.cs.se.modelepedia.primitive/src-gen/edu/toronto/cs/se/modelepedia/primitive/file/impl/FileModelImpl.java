@@ -12,8 +12,11 @@
 package edu.toronto.cs.se.modelepedia.primitive.file.impl;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelOrigin;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
-
+import edu.toronto.cs.se.modelepedia.primitive.file.FileFactory;
 import edu.toronto.cs.se.modelepedia.primitive.file.FileModel;
 import edu.toronto.cs.se.modelepedia.primitive.file.FilePackage;
 
@@ -55,6 +58,22 @@ public class FileModelImpl extends ModelImpl implements FileModel {
 	/**
 	 * @generated NOT
 	 */
+	@Override
+	public Model createInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
+
+		//TODO MMINT[PRIMITIVE] Need a whole lot of other apis to override
+		MMINTException.mustBeType(this);
+
+		FileModel newModel = FileFactory.eINSTANCE.createFileModel();
+		addInstance(newModel, newModelUri, origin, containerMultiModel);
+
+		return newModel;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
 	public void openInstance() throws Exception {
 
 		MMINTException.mustBeInstance(this);

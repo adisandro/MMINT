@@ -19,13 +19,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import java.util.stream.Collectors;
-
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -35,6 +34,7 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
@@ -275,12 +275,12 @@ public class MultiModelOperatorUtils {
 		return models;
 	}
 
-	public static @NonNull Map<String, MultiModel> createSimpleOutputMIDsByName(@NonNull Operator operatorType, @NonNull MultiModel instanceMID) {
+	public static @NonNull Map<String, MultiModel> createSimpleOutputMIDsByName(@NonNull Operator operatorType, @Nullable MultiModel instanceMID) {
 
-		Map<String, MultiModel> outputMIDsByName = operatorType.getOutputs().stream()
-			.collect(Collectors.toMap(
-				outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
-				outputModelTypeEndpoint -> instanceMID));
+		Map<String, MultiModel> outputMIDsByName = new HashMap<>();
+		for (ModelEndpoint outputModelTypeEndpoint : operatorType.getOutputs()) {
+			outputMIDsByName.put(outputModelTypeEndpoint.getName(), instanceMID);
+		}
 
 		return outputMIDsByName;
 	}

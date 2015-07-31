@@ -92,7 +92,7 @@ public class ConversionOperatorImpl extends OperatorImpl implements ConversionOp
 	public void cleanup() throws Exception {
 
 		//TODO MMINT[OPERATOR] Integrate better with new apis, e.g. a transformation output now can be a model rel and it implies the converted model
-		throw new MMINTException("The default cleanup() function must be overridden");
+		// do nothing
 	}
 
 } //ConversionOperatorImpl

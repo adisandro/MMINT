@@ -11,7 +11,10 @@
  */
 package edu.toronto.cs.se.modelepedia.primitive.file;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelOrigin;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,6 +33,16 @@ import edu.toronto.cs.se.mmint.mid.Model;
 public interface FileModel extends Model {
 	/**
 	 * <!-- begin-user-doc -->
+	 * File version. {@inheritDoc}
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" originRequired="true"
+	 * @generated
+	 */
+	Model createInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * File version. {@inheritDoc}
 	 * <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
 	 * @generated
