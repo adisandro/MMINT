@@ -1120,7 +1120,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * @param runConversions
 	 *            True if conversions have to be run, false otherwise.
 	 * @param newOperator
-	 *            The operator instance that will be invoked with the input models.
+	 *            The operator instance that will be invoked with the input models, null if operator traceability is not
+	 *            needed.
 	 * @return The map of input model instances, identified by their formal parameter name.
 	 * @throws Exception
 	 *             If something went wrong running the conversions.
@@ -1128,14 +1129,18 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	private Map<String, Model> createInputsByName(EList<OperatorInput> inputs, boolean runConversions, Operator newOperator) throws Exception {
 
+		//TODO MMINT[OPERATOR] This is used for two purposes, just to create the map and to populate an operator: split
 		boolean coerced = false;
 		Map<String, Model> inputsByName = new HashMap<>();
 		for (OperatorInput input : inputs) {
-			ModelEndpoint modelEndpoint = input.getModelTypeEndpoint().createInstance(
-				input.getModel(),
-				newOperator,
-				OperatorPackage.eINSTANCE.getOperator_Inputs().getName()
-			);
+			ModelEndpoint modelEndpoint = null;
+			if (newOperator != null) {
+				modelEndpoint = input.getModelTypeEndpoint().createInstance(
+					input.getModel(),
+					newOperator,
+					OperatorPackage.eINSTANCE.getOperator_Inputs().getName()
+				);
+			}
 			String inputName = input.getModelTypeEndpoint().getName();
 			if (input.getModelTypeEndpoint().getUpperBound() == -1) {
 				int i = 0;
@@ -1143,7 +1148,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 					i++;
 				}
 				inputName += i;
-				modelEndpoint.setName(inputName);
+				if (newOperator != null) {
+					modelEndpoint.setName(inputName);
+				}
 			}
 			if (input.getConversions().isEmpty() || !runConversions) {
 				inputsByName.put(inputName, input.getModel());
@@ -1165,7 +1172,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			}
 			inputsByName.put(inputName, convertedInputModel);
 		}
-		if (coerced) {
+		if (coerced && newOperator != null) {
 			newOperator.setName(newOperator.getName() + " (coerced)");
 		}
 
