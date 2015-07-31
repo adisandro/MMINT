@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram="http://se.cs.toronto.edu/modelepedia/ClassDiagram" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_k26rMA4PEeW-GbXKxbEQ2Q" type="ClassDiagram" name="PowerWindow.classdiagramdiag" measurementUnit="Pixel">
-  <children xmi:type="notation:Shape" xmi:id="_uMsu0A4PEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="12">
+  <children xmi:type="notation:Shape" xmi:id="_uMsu0A4PEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="16">
     <children xmi:type="notation:DecorationNode" xmi:id="_uMsu0w4PEeW-GbXKxbEQ2Q" type="5003"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_uMsu1A4PEeW-GbXKxbEQ2Q" type="7001">
-      <children xmi:type="notation:Shape" xmi:id="_ZOLwsA4TEeW-GbXKxbEQ2Q" type="3001" fontName="Cantarell" fontHeight="12">
+      <children xmi:type="notation:Shape" xmi:id="_ZOLwsA4TEeW-GbXKxbEQ2Q" type="3001" fontName="Cantarell" fontHeight="16">
         <children xmi:type="notation:DecorationNode" xmi:id="_ZOLwsg4TEeW-GbXKxbEQ2Q" type="5001"/>
         <element xmi:type="classdiagram:Attribute" href="PowerWindow.classdiagram#//@classes.0/@ownedAttributes.0"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZOLwsQ4TEeW-GbXKxbEQ2Q"/>
@@ -19,10 +19,10 @@
     <element xmi:type="classdiagram:Class" href="PowerWindow.classdiagram#//@classes.0"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uMsu0g4PEeW-GbXKxbEQ2Q" x="240" y="156"/>
   </children>
-  <children xmi:type="notation:Shape" xmi:id="_whYuQA4PEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="12">
+  <children xmi:type="notation:Shape" xmi:id="_whYuQA4PEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="16">
     <children xmi:type="notation:DecorationNode" xmi:id="_whYuQw4PEeW-GbXKxbEQ2Q" type="5003"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_whYuRA4PEeW-GbXKxbEQ2Q" type="7001">
-      <children xmi:type="notation:Shape" xmi:id="_xAO-sA4VEeW-GbXKxbEQ2Q" type="3001" fontName="Cantarell" fontHeight="12">
+      <children xmi:type="notation:Shape" xmi:id="_xAO-sA4VEeW-GbXKxbEQ2Q" type="3001" fontName="Cantarell" fontHeight="16">
         <children xmi:type="notation:DecorationNode" xmi:id="_xAO-sg4VEeW-GbXKxbEQ2Q" type="5001"/>
         <element xmi:type="classdiagram:Attribute" href="PowerWindow.classdiagram#//@classes.1/@ownedAttributes.0"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xAO-sQ4VEeW-GbXKxbEQ2Q"/>
@@ -38,7 +38,7 @@
     <element xmi:type="classdiagram:Class" href="PowerWindow.classdiagram#//@classes.1"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_whYuQg4PEeW-GbXKxbEQ2Q" x="216" y="336"/>
   </children>
-  <children xmi:type="notation:Shape" xmi:id="_vqX_DA4VEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="12">
+  <children xmi:type="notation:Shape" xmi:id="_vqX_DA4VEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="16">
     <children xmi:type="notation:DecorationNode" xmi:id="_vqX_Dw4VEeW-GbXKxbEQ2Q" type="5003"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_vqX_EA4VEeW-GbXKxbEQ2Q" type="7001">
       <styles xmi:type="notation:SortingStyle" xmi:id="_vqX_EQ4VEeW-GbXKxbEQ2Q"/>
@@ -56,9 +56,9 @@
   <element xmi:type="classdiagram:ClassDiagram" href="PowerWindow.classdiagram#/"/>
   <edges xmi:type="notation:Connector" xmi:id="_zxJ14A4PEeW-GbXKxbEQ2Q" type="4001" source="_uMsu0A4PEeW-GbXKxbEQ2Q" target="_whYuQA4PEeW-GbXKxbEQ2Q">
     <children xmi:type="notation:DecorationNode" xmi:id="_zxJ14w4PEeW-GbXKxbEQ2Q" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_zxJ15A4PEeW-GbXKxbEQ2Q" x="3" y="-24"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_zxJ15A4PEeW-GbXKxbEQ2Q" x="4" y="-38"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_zxJ14Q4PEeW-GbXKxbEQ2Q" fontName="Cantarell" fontHeight="12"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_zxJ14Q4PEeW-GbXKxbEQ2Q" fontName="Cantarell" fontHeight="16"/>
     <element xmi:type="classdiagram:Association" href="PowerWindow.classdiagram#//@associations.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_zxJ14g4PEeW-GbXKxbEQ2Q" points="[3, 30, -12, -103]$[11, 103, -4, -30]"/>
   </edges>

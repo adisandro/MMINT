@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram="http://se.cs.toronto.edu/modelepedia/ClassDiagram" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_Waaa0A4OEeW-GbXKxbEQ2Q" type="ClassDiagram" name="ACC.classdiagramdiag" measurementUnit="Pixel">
-  <children xmi:type="notation:Shape" xmi:id="_NDomwA4QEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="12">
+  <children xmi:type="notation:Shape" xmi:id="_NDomwA4QEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="16">
     <children xmi:type="notation:DecorationNode" xmi:id="_NDomww4QEeW-GbXKxbEQ2Q" type="5003"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_NDomxA4QEeW-GbXKxbEQ2Q" type="7001">
-      <children xmi:type="notation:Shape" xmi:id="_GzYpUA4TEeW-GbXKxbEQ2Q" type="3001" fontName="Cantarell" fontHeight="12">
+      <children xmi:type="notation:Shape" xmi:id="_GzYpUA4TEeW-GbXKxbEQ2Q" type="3001" fontName="Cantarell" fontHeight="16">
         <children xmi:type="notation:DecorationNode" xmi:id="_GzYpUg4TEeW-GbXKxbEQ2Q" type="5001"/>
         <element xmi:type="classdiagram:Attribute" href="ACC.classdiagram#//@classes.0/@ownedAttributes.0"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GzYpUQ4TEeW-GbXKxbEQ2Q"/>
@@ -19,7 +19,7 @@
     <element xmi:type="classdiagram:Class" href="ACC.classdiagram#//@classes.0"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NDomwg4QEeW-GbXKxbEQ2Q" x="156" y="102"/>
   </children>
-  <children xmi:type="notation:Shape" xmi:id="_OerocA4QEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="12">
+  <children xmi:type="notation:Shape" xmi:id="_OerocA4QEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="16">
     <children xmi:type="notation:DecorationNode" xmi:id="_Oerocw4QEeW-GbXKxbEQ2Q" type="5003"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_OerodA4QEeW-GbXKxbEQ2Q" type="7001">
       <styles xmi:type="notation:SortingStyle" xmi:id="_OerodQ4QEeW-GbXKxbEQ2Q"/>
@@ -33,7 +33,7 @@
     <element xmi:type="classdiagram:Class" href="ACC.classdiagram#//@classes.1"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Oerocg4QEeW-GbXKxbEQ2Q" x="168" y="276"/>
   </children>
-  <children xmi:type="notation:Shape" xmi:id="_SwPkQA4QEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="12">
+  <children xmi:type="notation:Shape" xmi:id="_SwPkQA4QEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="16">
     <children xmi:type="notation:DecorationNode" xmi:id="_SwPkQw4QEeW-GbXKxbEQ2Q" type="5003"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_SwPkRA4QEeW-GbXKxbEQ2Q" type="7001">
       <styles xmi:type="notation:SortingStyle" xmi:id="_SwPkRQ4QEeW-GbXKxbEQ2Q"/>
@@ -47,7 +47,7 @@
     <element xmi:type="classdiagram:Class" href="ACC.classdiagram#//@classes.2"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SwPkQg4QEeW-GbXKxbEQ2Q" x="360" y="120"/>
   </children>
-  <children xmi:type="notation:Shape" xmi:id="_XIcosA4SEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="12">
+  <children xmi:type="notation:Shape" xmi:id="_XIcosA4SEeW-GbXKxbEQ2Q" type="2001" fontName="Cantarell" fontHeight="16">
     <children xmi:type="notation:DecorationNode" xmi:id="_XIcosw4SEeW-GbXKxbEQ2Q" type="5003"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_XIcotA4SEeW-GbXKxbEQ2Q" type="7001">
       <styles xmi:type="notation:SortingStyle" xmi:id="_XIcotQ4SEeW-GbXKxbEQ2Q"/>
@@ -67,7 +67,7 @@
     <children xmi:type="notation:DecorationNode" xmi:id="_QQ83Uw4QEeW-GbXKxbEQ2Q" type="6001">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_QQ83VA4QEeW-GbXKxbEQ2Q" y="40"/>
     </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_QQ83UQ4QEeW-GbXKxbEQ2Q" fontName="Cantarell" fontHeight="12"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_QQ83UQ4QEeW-GbXKxbEQ2Q" fontName="Cantarell" fontHeight="16"/>
     <element xmi:type="classdiagram:Association" href="ACC.classdiagram#//@associations.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_QQ83Ug4QEeW-GbXKxbEQ2Q" points="[3, 30, -13, -103]$[11, 125, -5, -8]"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_QRGBQA4QEeW-GbXKxbEQ2Q" id="(0.38613861386138615,0.13333333333333333)"/>
