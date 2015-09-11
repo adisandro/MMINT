@@ -108,17 +108,21 @@ public class MultiModelUtils {
 
 	public static @NonNull String getUniqueUri(@NonNull String baseUri, boolean isWorkspaceRelative, boolean isDirectory) {
 
+		String uniqueUri = baseUri;
+		if (!isFileOrDirectory(uniqueUri, isWorkspaceRelative)) { // baseUri itself is ok
+			return uniqueUri;
+		}
+
 		int i = -1;
-		String x;
-		do {
+		do { // append a counter to baseUri until is ok
 			i++;
-			x = (isDirectory) ?
+			uniqueUri = (isDirectory) ?
 				baseUri + i :
 				replaceFileNameInUri(baseUri, getFileNameFromUri(baseUri) + i);
 		}
-		while (isFileOrDirectory(x, isWorkspaceRelative));
+		while (isFileOrDirectory(uniqueUri, isWorkspaceRelative));
 
-		return x;
+		return uniqueUri;
 	}
 
 	public static String prependWorkspaceToUri(String uri) {

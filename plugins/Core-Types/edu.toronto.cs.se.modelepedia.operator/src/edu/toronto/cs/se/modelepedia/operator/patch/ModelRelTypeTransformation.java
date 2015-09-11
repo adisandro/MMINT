@@ -241,10 +241,12 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			0 : 1;
 		int tgtIndex = 1 - srcIndex;
 		Model tgtModelType = traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().getTarget();
-		tgtModelUri = MultiModelUtils.replaceFileExtensionInUri(
-			MultiModelUtils.addFileNameSuffixInUri(srcModel.getUri(), TRANSFORMATION_SUFFIX),
-			tgtModelType.getFileExtension()
-		);
+		tgtModelUri = MultiModelUtils.getUniqueUri(
+			MultiModelUtils.replaceFileExtensionInUri(
+				MultiModelUtils.addFileNameSuffixInUri(srcModel.getUri(), TRANSFORMATION_SUFFIX),
+				tgtModelType.getFileExtension()),
+			true,
+			false);
 		Model tgtModel = tgtModelType.createInstance(tgtModelUri, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODEL));
 		BinaryModelRel traceModelRel = (BinaryModelRel) traceModelRelType.createInstance(null, true, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODELREL));
 		traceModelRel.setName(srcModel.getName() + MMINT.BINARY_MODELREL_LINK_SEPARATOR + tgtModel.getName());

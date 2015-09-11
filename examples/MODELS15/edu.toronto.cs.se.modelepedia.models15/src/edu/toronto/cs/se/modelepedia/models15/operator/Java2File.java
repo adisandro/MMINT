@@ -41,8 +41,12 @@ public class Java2File extends OperatorImpl {
 	private @NonNull Model print(@NonNull Model javaModel, @NonNull MultiModel instanceMID) throws Exception {
 
 		// run acceleo
+		String fileModelUri = MultiModelUtils.getUniqueUri(
+			MultiModelUtils.replaceFileExtensionInUri(javaModel.getUri(), JAVA_FILE_SUFFIX),
+			true,
+			false);
 		List<Object> m2tArgs = new ArrayList<>();
-		m2tArgs.add(javaModel.getName());
+		m2tArgs.add(MultiModelUtils.getFileNameFromUri(fileModelUri));
 		File folder = (new File(MultiModelUtils.prependWorkspaceToUri(javaModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);
@@ -50,7 +54,6 @@ public class Java2File extends OperatorImpl {
 		m2t.doGenerate(new BasicMonitor());
 
 		// create file model
-		String fileModelUri = MultiModelUtils.replaceFileExtensionInUri(javaModel.getUri(), JAVA_FILE_SUFFIX);
 		Model fileModelType = MultiModelTypeRegistry.getType(FilePackage.eNS_URI);
 		Model fileModel = fileModelType.createInstance(fileModelUri, ModelOrigin.CREATED, instanceMID);
 
