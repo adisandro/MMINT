@@ -1,0 +1,1 @@
+Attribute.allInstances()->exists(attribute | attribute.public)
