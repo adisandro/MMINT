@@ -5,7 +5,7 @@
   <version>1.3.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <tycho-version>0.23.0</tycho-version>
+    <tycho-version>0.23.1</tycho-version>
     <acceleo-version>3.6.0-SNAPSHOT</acceleo-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -199,6 +199,10 @@
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.state.diagram</module>
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.state.edit</module>
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.state.editor</module>
+  	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15</module>
+  	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java</module>
+  	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java.edit</module>
+  	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java.editor</module>
   	<module>../../features/edu.toronto.cs.se.mmint.feature</module>
   	<module>../../features/edu.toronto.cs.se.mummint.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.z3.feature</module>
@@ -212,6 +216,7 @@
   	<module>../../features/edu.toronto.cs.se.modelepedia.relationaldatabase.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.statemachine.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.tutorial.feature</module>
+  	<module>../../features/edu.toronto.cs.se.modelepedia.models15.feature</module>
   	<module>../../tests/edu.toronto.cs.se.modelepedia.tests</module>
   	<module>../edu.toronto.cs.se.mmint.install</module>
   </modules>
