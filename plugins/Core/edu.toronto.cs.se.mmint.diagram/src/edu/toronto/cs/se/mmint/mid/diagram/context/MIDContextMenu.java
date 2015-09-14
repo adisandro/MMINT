@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -80,11 +81,6 @@ public class MIDContextMenu extends ContributionItem {
 
 	@Override
 	public void fill(Menu menu, int index) {
-
-		// prevent this menu from being created twice
-//		if (menu.isVisible()) {
-//			return;
-//		}
 
 		// check selection
 		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getSelection();
