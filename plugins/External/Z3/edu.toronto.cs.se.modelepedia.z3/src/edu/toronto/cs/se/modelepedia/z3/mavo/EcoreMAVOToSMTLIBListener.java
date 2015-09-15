@@ -24,8 +24,8 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 
 	private static final @NonNull String NODE_MARKER = "Node";
 	private static final @NonNull String EDGE_MARKER = "Edge";
-	private static final @NonNull String MODEL_START_MARKER = ";Model\n";
-	private static final @NonNull String MODEL_END_MARKER = ";End Model\n";
+	private static final @NonNull String MODEL_START_MARKER = ";Model";
+	private static final @NonNull String MODEL_END_MARKER = ";End Model";
 	private static final int NUM_TOKENS = 4;
 
 	private Map<String, MAVOElement> mavoModelObjs;
@@ -59,14 +59,14 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 		String text = event.getText();
 		textGeneration.append(text);
 
-		if (text.endsWith(MODEL_START_MARKER)) {
+		if (text.trim().endsWith(MODEL_START_MARKER)) {
 			checkTokens = true;
 			return;
 		}
 		if (!checkTokens) {
 			return;
 		}
-		if (text.endsWith(MODEL_END_MARKER)) {
+		if (text.trim().endsWith(MODEL_END_MARKER)) {
 			checkTokens = false;
 			return;
 		}
