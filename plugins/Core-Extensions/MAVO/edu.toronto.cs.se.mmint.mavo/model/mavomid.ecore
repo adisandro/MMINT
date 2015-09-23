@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mavomid" nsURI="http://se.cs.toronto.edu/mmint/MAVOMID" nsPrefix="mavomid">
+  <eClassifiers xsi:type="ecore:EClass" name="MAVOMID" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//MID ../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVORoot"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MAVOExtendibleElement" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//ExtendibleElement ../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MAVOModel" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model">
+    <eOperations name="createInstance" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model"
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
+      <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="instanceMID" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MID"/>
+    </eOperations>
+    <eOperations name="createInstanceAndEditor" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model"
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
+      <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="instanceMID" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MID"/>
+    </eOperations>
+  </eClassifiers>
+</ecore:EPackage>

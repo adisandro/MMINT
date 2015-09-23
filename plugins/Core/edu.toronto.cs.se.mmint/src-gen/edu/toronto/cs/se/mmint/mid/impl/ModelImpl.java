@@ -901,7 +901,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 *            relationship is not.
 	 * @param origin
 	 *            The origin of the new model.
-	 * @param containerMultiModel
+	 * @param instanceMID
 	 *            An Instance MID, null if the model isn't going to be added to
 	 *            it.
 	 * @throws MMINTException
@@ -909,10 +909,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 *             Instance MID.
 	 * @generated NOT
 	 */
-	protected void addInstance(Model newModel, String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
+	protected void addInstance(Model newModel, String newModelUri, ModelOrigin origin, MID instanceMID) throws MMINTException {
 
 		boolean externalElement = newModelUri != null;
-		boolean updateMID = containerMultiModel != null;
+		boolean updateMID = instanceMID != null;
 		boolean basicElement = !updateMID || !externalElement;
 
 		String newModelName = null;
@@ -925,10 +925,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			super.addBasicInstance(newModel, newModelUri, newModelName);
 		}
 		else {
-			super.addInstance(newModel, newModelUri, newModelName, containerMultiModel);
+			super.addInstance(newModel, newModelUri, newModelName, instanceMID);
 		}
 		if (updateMID) {
-			containerMultiModel.getModels().add(newModel);
+			instanceMID.getModels().add(newModel);
 		}
 		newModel.setOrigin(origin);
 		newModel.setFileExtension(fileExtension);
@@ -937,14 +937,14 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model createInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
+	public Model createInstance(String newModelUri, MID instanceMID) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
 		Model newModel = MIDFactory.eINSTANCE.createModel();
-		addInstance(newModel, newModelUri, origin, containerMultiModel);
+		addInstance(newModel, newModelUri, ModelOrigin.CREATED, instanceMID);
 
 		return newModel;
 	}
@@ -995,10 +995,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model createInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
+	public Model createInstanceAndEditor(String newModelUri, MultiModel instanceMID) throws MMINTException {
 
-		Model newModel = createInstance(newModelUri, origin, containerMultiModel);
-		if (containerMultiModel != null) {
+		Model newModel = createInstance(newModelUri, instanceMID);
+		if (instanceMID != null) {
 			newModel.createInstanceEditor();
 		}
 
@@ -1006,22 +1006,52 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	}
 
 	/**
+	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of
+	 * this model type to an Instance MID, initializing its MAVO inc flag.
+	 * 
+	 * @param newModelUri
+	 *            The uri of the new model.
+	 * @param instanceMID
+	 *            An Instance MID, null if the model isn't going to be added to
+	 *            it.
+	 * @return The created model.
+	 * @throws MMINTException
+	 *             If this is a model instance, or if the uri of the new model
+	 *             instance is already registered in the Instance MID.
+	 *             <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" originRequired="true"
 	 * @generated NOT
 	 */
-	public Model createMAVOInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
+	public Model createMAVOInstance(String newModelUri, MID instanceMID) throws MMINTException {
 
-		Model newMAVOModel = createInstance(newModelUri, origin, containerMultiModel);
+		Model newMAVOModel = this.createInstance(newModelUri, instanceMID);
 		MAVOUtils.initializeMAVOModel(newMAVOModel.getEMFInstanceRoot(), newMAVOModel);
 
 		return newMAVOModel;
 	}
 
 	/**
+	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
+	 * type to an Instance MID, together with an editor for it, initializing its
+	 * MAVO inc flag.
+	 * 
+	 * @param newModelUri
+	 *            The uri of the new model.
+	 * @param instanceMID
+	 *            An Instance MID, null if the model isn't going to be added to
+	 *            it.
+	 * @return The created model.
+	 * @throws MMINTException
+	 *             If this is a model instance, if the uri of the new model
+	 *             instance is already registered in the Instance MID, or if
+	 *             there are no editor types registered for this model type.
+	 *             <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" originRequired="true" containerMultiModelRequired="true"
 	 * @generated NOT
 	 */
-	public Model createMAVOInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
+	public Model createMAVOInstanceAndEditor(String newModelUri, MID instanceMID) throws MMINTException {
 
-		Model newMAVOModel = createInstanceAndEditor(newModelUri, origin, containerMultiModel);
+		Model newMAVOModel = createInstanceAndEditor(newModelUri, instanceMID);
 		MAVOUtils.initializeMAVOModel(newMAVOModel.getEMFInstanceRoot(), newMAVOModel);
 
 		return newMAVOModel;

@@ -6,7 +6,7 @@
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EClass" name="MultiModel" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOModel">
+  <eClassifiers xsi:type="ecore:EClass" name="MID">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The model management root."/>
     </eAnnotations>
@@ -55,7 +55,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExtendibleElement" abstract="true" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOElement">
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendibleElement" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="typeLevel"/>
     </eAnnotations>
@@ -183,7 +183,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//GenericElement ../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOModel">
+  <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//GenericElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A model type or a model instance."/>
     </eAnnotations>
@@ -210,38 +210,25 @@
         eExceptions="#//MMINTException"/>
     <eOperations name="createInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
       <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
-      <eParameters name="containerMultiModel" eType="#//MultiModel"/>
+      <eParameters name="instanceMID" eType="#//MID"/>
     </eOperations>
     <eOperations name="createInstanceEditor" lowerBound="1" eType="#//editor/Editor"
         eExceptions="#//MMINTException"/>
     <eOperations name="createInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
       <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
-      <eParameters name="containerMultiModel" lowerBound="1" eType="#//MultiModel"/>
-    </eOperations>
-    <eOperations name="createMAVOInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
-      <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
-      <eParameters name="containerMultiModel" eType="#//MultiModel"/>
-    </eOperations>
-    <eOperations name="createMAVOInstanceAndEditor" lowerBound="1" eType="#//Model"
-        eExceptions="#//MMINTException">
-      <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
-      <eParameters name="containerMultiModel" lowerBound="1" eType="#//MultiModel"/>
+      <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
     </eOperations>
     <eOperations name="copyMAVOInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
       <eParameters name="origModel" lowerBound="1" eType="#//Model"/>
       <eParameters name="newModelName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="containerMultiModel" lowerBound="1" eType="#//MultiModel"/>
+      <eParameters name="containerMultiModel" lowerBound="1" eType="#//MID"/>
     </eOperations>
     <eOperations name="copyMAVOInstanceAndEditor" lowerBound="1" eType="#//Model"
         eExceptions="#//MMINTException">
       <eParameters name="origModel" lowerBound="1" eType="#//Model"/>
       <eParameters name="newModelName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="copyDiagram" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eParameters name="containerMultiModel" lowerBound="1" eType="#//MultiModel"/>
+      <eParameters name="containerMultiModel" lowerBound="1" eType="#//MID"/>
     </eOperations>
     <eOperations name="deleteInstance" eExceptions="#//MMINTException"/>
     <eOperations name="getEMFInstanceRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
@@ -515,7 +502,7 @@
         <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
-        <eParameters name="containerMultiModel" eType="#//MultiModel"/>
+        <eParameters name="containerMultiModel" eType="#//MID"/>
       </eOperations>
       <eOperations name="createInstanceAndEndpointsAndReferences" lowerBound="1" eType="#//relationship/ModelRel"
           eExceptions="#//MMINTException">
@@ -523,12 +510,12 @@
         <eParameters name="isBinary" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
         <eParameters name="origin" lowerBound="1" eType="#//ModelOrigin"/>
         <eParameters name="targetModels" lowerBound="1" upperBound="-1" eType="#//Model"/>
-        <eParameters name="instanceMID" eType="#//MultiModel"/>
+        <eParameters name="instanceMID" eType="#//MID"/>
       </eOperations>
       <eOperations name="copyMAVOInstance" lowerBound="1" eType="#//relationship/ModelRel"
           eExceptions="#//MMINTException">
         <eParameters name="origModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
-        <eParameters name="containerMultiModel" lowerBound="1" eType="#//MultiModel"/>
+        <eParameters name="containerMultiModel" lowerBound="1" eType="#//MID"/>
       </eOperations>
       <eOperations name="getOutlineResourceInstances" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
           eExceptions="#//MMINTException"/>
@@ -1009,7 +996,7 @@
       <eOperations name="deleteType" eExceptions="#//MMINTException"/>
       <eOperations name="createInstance" lowerBound="1" eType="#//editor/Editor" eExceptions="#//MMINTException">
         <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eParameters name="containerMultiModel" lowerBound="1" eType="#//MultiModel"/>
+        <eParameters name="containerMultiModel" lowerBound="1" eType="#//MID"/>
       </eOperations>
       <eOperations name="invokeInstanceWizard" lowerBound="1" eType="#//editor/EditorCreationWizardDialog"
           eExceptions="#//MMINTException">
@@ -1059,7 +1046,7 @@
       </eOperations>
       <eOperations name="createInstance" lowerBound="1" eType="#//editor/Editor" eExceptions="#//MMINTException">
         <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eParameters name="containerMultiModel" lowerBound="1" eType="#//MultiModel"/>
+        <eParameters name="containerMultiModel" lowerBound="1" eType="#//MID"/>
       </eOperations>
       <eOperations name="invokeInstanceWizard" lowerBound="1" eType="#//editor/EditorCreationWizardDialog"
           eExceptions="#//MMINTException">
@@ -1099,11 +1086,11 @@
             <eTypeArguments eClassifier="#//operator/OperatorInput"/>
           </eTypeArguments>
         </eGenericType>
-        <eParameters name="inputMIDs" upperBound="-1" eType="#//MultiModel"/>
+        <eParameters name="inputMIDs" upperBound="-1" eType="#//MID"/>
       </eOperations>
       <eOperations name="findFirstAllowedInput" upperBound="-1" eType="#//operator/OperatorInput"
           eExceptions="#//MMINTException">
-        <eParameters name="inputMIDs" upperBound="-1" eType="#//MultiModel"/>
+        <eParameters name="inputMIDs" upperBound="-1" eType="#//MID"/>
       </eOperations>
       <eOperations name="checkAllowedInputs" upperBound="-1" eType="#//operator/OperatorInput"
           eExceptions="#//MMINTException">
@@ -1126,7 +1113,7 @@
       </eOperations>
       <eOperations name="createInstance" lowerBound="1" eType="#//operator/Operator"
           eExceptions="#//MMINTException">
-        <eParameters name="instanceMID" eType="#//MultiModel"/>
+        <eParameters name="instanceMID" eType="#//MID"/>
       </eOperations>
       <eOperations name="deleteInstance" eExceptions="#//MMINTException"/>
       <eOperations name="selectAllowedGenerics" upperBound="-1" eType="#//operator/OperatorGeneric"
@@ -1164,7 +1151,7 @@
         <eParameters name="outputMIDsByName" lowerBound="1">
           <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
             <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-            <eTypeArguments eClassifier="#//MultiModel"/>
+            <eTypeArguments eClassifier="#//MID"/>
           </eGenericType>
         </eParameters>
       </eOperations>
@@ -1174,10 +1161,10 @@
         <eParameters name="outputMIDsByName" lowerBound="1">
           <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
             <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-            <eTypeArguments eClassifier="#//MultiModel"/>
+            <eTypeArguments eClassifier="#//MID"/>
           </eGenericType>
         </eParameters>
-        <eParameters name="instanceMID" lowerBound="1" eType="#//MultiModel"/>
+        <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
           eType="#//ModelEndpoint" containment="true">

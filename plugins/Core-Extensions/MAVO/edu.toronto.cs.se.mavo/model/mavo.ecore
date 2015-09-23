@@ -21,9 +21,9 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MAVOModel" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="MAVORoot" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="The abstract MAVO model. It represents a model that can have MAVO open world annotations."/>
+      <details key="documentation" value="The abstract MAVO root. It represents a model root that can have MAVO open world annotations."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="inc" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

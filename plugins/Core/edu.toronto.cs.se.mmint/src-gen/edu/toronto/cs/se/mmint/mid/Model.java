@@ -224,9 +224,7 @@ public interface Model extends GenericElement, MAVOModel {
 	 * 
 	 * @param newModelUri
 	 *            The uri of the new model.
-	 * @param origin
-	 *            The origin of the new model.
-	 * @param containerMultiModel
+	 * @param instanceMID
 	 *            An Instance MID, null if the model isn't going to be added to
 	 *            it.
 	 * @return The created model.
@@ -237,7 +235,7 @@ public interface Model extends GenericElement, MAVOModel {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" originRequired="true"
 	 * @generated
 	 */
-	Model createInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException;
+	Model createInstance(String newModelUri, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds an editor instance to this model
@@ -258,9 +256,7 @@ public interface Model extends GenericElement, MAVOModel {
 	 * 
 	 * @param newModelUri
 	 *            The uri of the new model.
-	 * @param origin
-	 *            The origin of the new model.
-	 * @param containerMultiModel
+	 * @param instanceMID
 	 *            An Instance MID, null if the model isn't going to be added to
 	 *            it and the editor is not going to be created.
 	 * @return The created model.
@@ -272,51 +268,7 @@ public interface Model extends GenericElement, MAVOModel {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" originRequired="true" containerMultiModelRequired="true"
 	 * @generated
 	 */
-	Model createInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of
-	 * this model type to an Instance MID, initializing its MAVO inc flag.
-	 * 
-	 * @param newModelUri
-	 *            The uri of the new model.
-	 * @param origin
-	 *            The origin of the new model.
-	 * @param containerMultiModel
-	 *            An Instance MID, null if the model isn't going to be added to
-	 *            it.
-	 * @return The created model.
-	 * @throws MMINTException
-	 *             If this is a model instance, or if the uri of the new model
-	 *             instance is already registered in the Instance MID.
-	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" originRequired="true"
-	 * @generated
-	 */
-	Model createMAVOInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
-	 * type to an Instance MID, together with an editor for it, initializing its
-	 * MAVO inc flag.
-	 * 
-	 * @param newModelUri
-	 *            The uri of the new model.
-	 * @param origin
-	 *            The origin of the new model.
-	 * @param containerMultiModel
-	 *            An Instance MID, null if the model isn't going to be added to
-	 *            it.
-	 * @return The created model.
-	 * @throws MMINTException
-	 *             If this is a model instance, if the uri of the new model
-	 *             instance is already registered in the Instance MID, or if
-	 *             there are no editor types registered for this model type.
-	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" originRequired="true" containerMultiModelRequired="true"
-	 * @generated
-	 */
-	Model createMAVOInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException;
+	Model createInstanceAndEditor(String newModelUri, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
