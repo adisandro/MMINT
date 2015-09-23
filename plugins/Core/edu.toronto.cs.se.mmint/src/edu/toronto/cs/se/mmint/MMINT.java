@@ -117,25 +117,27 @@ public class MMINT implements MMINTConstants {
 	/** The type MID filename. */
 	public static final String TYPEMID_FILENAME = "types" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
 
+	/* TODO MMINT[IN PROGRESS branch mavo_out]
+	 * - Decouple from MAVO framework: use a kleisli-like mechanism MAVOModel->Model with overridden apis, where the current MAVOModel becomes a simple MAVORoot
+	 * - Rethink mid link icons with/without MAVO
+	 * - Rename link to mapping
+	 * - Unify createInstance/Subtype() for Model and ModelRel, removing origin and isBinary
+	 * - Add createBinaryInstance/Subtype() to ModelRel
+	 * - Rename all multimodels (vars and api names) to MID
+	 */
 	/* TODO MMINT[USABILITY]
 	 * - Default deletion to remove model file as well
 	 * - Change uris into ids
 	 * - Simplify the type system of model rels
 	 * - Handle optional uris/ids for subelements of model/modelrel/operator
 	 * - Use defaults in extension points as much as possible
-	 * - Rename link to mapping
-	 * - Decouple from MAVO framework: use a kleisli-like mechanism MAVOModel->Model with overridden apis, where the current MAVOModel becomes a simple MAVORoot
-	 * - Rethink mid link icons with/without MAVO
 	 * - Move modelepedia types/operators into the examples directory together with papers + create appropriate features
 	 * - Transform various labels into toString() functions (also helps debug)
 	 * - Turn updateMID into global option and use it directly into apis
 	 * - Address the issue of not inheriting Editor and Diagram types; this will fix a model type without editor, which is still able to use the reflective ecore
-	 * - Unify createInstance/Subtype() for Model and ModelRel, removing origin and isBinary
-	 * - Add createBinaryInstance/Subtype() to ModelRel
 	 * - Review and unify all multimodel apis (e.g. add possibility to pass name)
 	 * - Review stuff done in megamodel operators and create more helper apis (e.g. createInstance() + createModelFile())
 	 * - Separate file apis from MultiModelUtils to MultiModelFileUtils
-	 * - Rename all multimodels (vars and api names) to MID
 	 * - Add documentation ->
 	 *   a) Prerequisite: review apis for mid construction and destruction
 	 *   b) Take every api function
