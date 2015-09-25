@@ -132,33 +132,6 @@ public interface ModelRel extends Model {
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a subtype of this model
-	 * relationship type to the Type MID.
-	 * 
-	 * @param newModelRelTypeName
-	 *            The name of the new model relationship type.
-	 * @param isBinary
-	 *            True if the new model relationship type is binary, false
-	 *            otherwise.
-	 * @param constraintLanguage
-	 *            The constraint language of the constraint associated with the
-	 *            new model relationship type, null if no constraint is
-	 *            associated.
-	 * @param constraintImplementation
-	 *            The constraint implementation of the constraint associated
-	 *            with the new model relationship type, null if no constraint is
-	 *            associated.
-	 * @return The created model relationship type.
-	 * @throws MMINTException
-	 *             If this is a model relationship instance, or if the uri of
-	 *             the new model relationship type is already registered in the
-	 *             Type MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelTypeNameRequired="true" isBinaryRequired="true"
-	 * @generated
-	 */
-	ModelRel createSubtype(String newModelRelTypeName, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc --> Creates and adds a subtype of this model
 	 * relationship type to the Type MID, copying its structure from another
 	 * model relationship type.
 	 * 
@@ -188,43 +161,13 @@ public interface ModelRel extends Model {
 	void deleteType() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and possibly adds a model relationship
-	 * instance of this model relationship type to an Instance MID.
-	 * 
-	 * @param newModelRelUri
-	 *            The uri of the new model relationship, null if the new model
-	 *            relationship is not in a separate file; e.g. a standalone
-	 *            model relationship is in its own files, a plain model
-	 *            relationship is not.
-	 * @param isBinary
-	 *            True if the new model relationship is binary, false otherwise.
-	 * @param origin
-	 *            The origin of the new model relationship.
-	 * @param containerMultiModel
-	 *            An Instance MID, null if the model relationship isn't going to
-	 *            be added to it.
-	 * @return The created model relationship.
-	 * @throws MMINTException
-	 *             If this is a model relationship instance, or if the uri of
-	 *             the new model relationship is already registered in the
-	 *             Instance MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isBinaryRequired="true" originRequired="true"
-	 * @generated
-	 */
-	ModelRel createInstance(String newModelRelUri, boolean isBinary, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException;
-
-	/**
 	 * <!-- begin-user-doc --> Creates and adds a model relationship instance of this model relationship type to an
 	 * Instance MID, together with its model instance endpoints and references to them.
 	 * 
 	 * @param newModelRelUri
 	 *            The uri of the new model relationship, null if the new model relationship is not in a separate file;
 	 *            e.g. a standalone model relationship is in its own files, a plain model relationship is not.
-	 * @param isBinary
-	 *            True if the new model relationship is binary, false otherwise.
-	 * @param origin
-	 *            The origin of the new model relationship.
-	 * @param targetModels
+	 * @param endpointModels
 	 *            The models that are the target of the new model endpoints.
 	 * @param instanceMID
 	 *            An Instance MID, null if the model relationship isn't going to be added to it.
@@ -236,28 +179,7 @@ public interface ModelRel extends Model {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isBinaryRequired="true" originRequired="true" targetModelsRequired="true" targetModelsMany="true"
 	 * @generated
 	 */
-	ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, boolean isBinary, ModelOrigin origin, EList<Model> targetModels, MultiModel instanceMID) throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc -->Creates and adds a model relationship instance of
-	 * this model relationship type to an Instance MID, copying its structure
-	 * from another model relationship instance (including any MAVO flags).
-	 * 
-	 * @param origModelRel
-	 *            The original model relationship instance to be copied into the
-	 *            new one.
-	 * @param containerMultiModel
-	 *            An Instance MID, null if the model relationship isn't going to
-	 *            be added to it.
-	 * @return The created model relationship.
-	 * @throws MMINTException
-	 *             If this is a model relationship instance, or if the uri of
-	 *             the new model relationship is already registered in the
-	 *             Instance MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRelRequired="true" containerMultiModelRequired="true"
-	 * @generated
-	 */
-	ModelRel copyMAVOInstance(ModelRel origModelRel, MultiModel containerMultiModel) throws MMINTException;
+	ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, EList<Model> endpointModels, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model relationship instance from the

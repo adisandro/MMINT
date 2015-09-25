@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -405,103 +406,6 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	}
 
 	/**
-	 * Do not use it, use the specific one for model relationship types instead.
-	 * 
-	 * @throws MMINTException
-	 *             Always.
-	 * @generated NOT
-	 */
-	@Override
-	public Model createSubtype(String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
-
-		throw new MMINTException("Wrong function, use the specific one for model relationship types");
-	}
-
-	/**
-	 * Do not use it, use the specific one for model relationship instances
-	 * instead.
-	 * 
-	 * @throws MMINTException
-	 *             Always.
-	 * @generated NOT
-	 */
-	@Override
-	public Model createInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
-
-		throw new MMINTException("Wrong function, use the specific one for model relationship instances");
-	}
-
-	/**
-	 * Do not use it, use the specific one for model relationship instances
-	 * instead.
-	 * 
-	 * @throws MMINTException
-	 *             Always.
-	 * @generated NOT
-	 */
-	@Override
-	public Model createInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
-
-		throw new MMINTException("Wrong function, use the specific one for model relationship instances");
-	}
-
-	/**
-	 * Do not use it, use the specific one for model relationship instances
-	 * instead.
-	 * 
-	 * @throws MMINTException
-	 *             Always.
-	 * @generated NOT
-	 */
-	@Override
-	public Model createMAVOInstance(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
-
-		throw new MMINTException("Wrong function, use the specific one for model relationship instances");
-	}
-
-	/**
-	 * Do not use it, use the specific one for model relationship instances
-	 * instead.
-	 * 
-	 * @throws MMINTException
-	 *             Always.
-	 * @generated NOT
-	 */
-	@Override
-	public Model createMAVOInstanceAndEditor(String newModelUri, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
-
-		throw new MMINTException("Wrong function, use the specific one for model relationship instances");
-	}
-
-	/**
-	 * Do not use it, use the specific one for model relationship instances
-	 * instead.
-	 * 
-	 * @throws MMINTException
-	 *             Always.
-	 * @generated NOT
-	 */
-	@Override
-	public Model copyMAVOInstance(Model origModel, String newModelName, MultiModel containerMultiModel) throws MMINTException {
-
-		throw new MMINTException("Wrong function, use the specific one for model relationship instances");
-	}
-
-	/**
-	 * Do not use it, use the specific one for model relationship instances
-	 * instead.
-	 * 
-	 * @throws MMINTException
-	 *             Always.
-	 * @generated NOT
-	 */
-	@Override
-	public Model copyMAVOInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MultiModel containerMultiModel) throws MMINTException {
-
-		throw new MMINTException("Wrong function, use the specific one for model relationship instances");
-	}
-
-	/**
 	 * Adds a subtype of this model relationship type to the Type MID.
 	 * 
 	 * @param newModelRelType
@@ -528,17 +432,52 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	}
 
 	/**
+	 * Creates and adds a subtype of this model
+	 * relationship type to the Type MID.
+	 * 
+	 * @param newModelRelTypeName
+	 *            The name of the new model relationship type.
+	 * @param isBinary
+	 *            True if the new model relationship type is binary, false
+	 *            otherwise.
+	 * @param constraintLanguage
+	 *            The constraint language of the constraint associated with the
+	 *            new model relationship type, null if no constraint is
+	 *            associated.
+	 * @param constraintImplementation
+	 *            The constraint implementation of the constraint associated
+	 *            with the new model relationship type, null if no constraint is
+	 *            associated.
+	 * @return The created model relationship type.
+	 * @throws MMINTException
+	 *             If this is a model relationship instance, or if the uri of
+	 *             the new model relationship type is already registered in the
+	 *             Type MID.
 	 * @generated NOT
 	 */
-	public ModelRel createSubtype(String newModelRelTypeName, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMINTException {
+	@Override
+	public Model createSubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		ModelRel newModelRelType = (isBinary) ?
-			RelationshipFactory.eINSTANCE.createBinaryModelRel() :
-			RelationshipFactory.eINSTANCE.createModelRel();
+		ModelRel newModelRelType = RelationshipFactory.eINSTANCE.createModelRel();
+		addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
+
+		return newModelRelType;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public BinaryModelRel createBinarySubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		BinaryModelRel newModelRelType = RelationshipFactory.eINSTANCE.createBinaryModelRel();
 		addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
 
 		return newModelRelType;
@@ -549,11 +488,11 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 */
 	public ModelRel copySubtype(ModelRel origModelRelType) throws MMINTException {
 
-		ModelRel newModelRelType = createSubtype(
+		ModelRel newModelRelType = (ModelRel) createSubtype(
 			origModelRelType.getName(),
-			(origModelRelType instanceof BinaryModelRel),
 			origModelRelType.getConstraint().getLanguage(),
-			origModelRelType.getConstraint().getImplementation()
+			origModelRelType.getConstraint().getImplementation(),
+			false
 		);
 
 		// model type endpoints
@@ -670,16 +609,62 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
-	public ModelRel createInstance(String newModelRelUri, boolean isBinary, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
+	public ResourceSet getOutlineResourceTypes() throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		ModelRel newModelRel = (isBinary) ?
-			RelationshipFactory.eINSTANCE.createBinaryModelRel() :
-			RelationshipFactory.eINSTANCE.createModelRel();
-		super.addInstance(newModelRel, newModelRelUri, origin, containerMultiModel);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		List<Resource> resources = resourceSet.getResources();
+		for (ModelEndpointReference modelTypeEndpointRef : getModelEndpointRefs()) {
+			Model modelType = modelTypeEndpointRef.getObject().getTarget();
+			do {
+				resources.add(modelType.getEMFTypeRoot().eResource());
+				modelType = modelType.getSupertype();
+			}
+			while (modelType != null && !modelType.isAbstract());
+		}
+
+		return resourceSet;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void openType() throws Exception {
+
+		MMINTException.mustBeType(this);
+	}
+
+	/**
+	 * Creates and possibly adds a model relationship
+	 * instance of this model relationship type to an Instance MID.
+	 * 
+	 * @param newModelRelUri
+	 *            The uri of the new model relationship, null if the new model
+	 *            relationship is not in a separate file; e.g. a standalone
+	 *            model relationship is in its own files, a plain model
+	 *            relationship is not.
+	 * @param instanceMID
+	 *            An Instance MID, null if the model relationship isn't going to
+	 *            be added to it.
+	 * @return The created model relationship.
+	 * @throws MMINTException
+	 *             If this is a model relationship instance, or if the uri of
+	 *             the new model relationship is already registered in the
+	 *             Instance MID.
+	 * @generated NOT
+	 */
+	@Override
+	public Model createInstance(String newModelRelUri, MID instanceMID) throws MMINTException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		ModelRel newModelRel = RelationshipFactory.eINSTANCE.createModelRel();
+		super.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
 
 		return newModelRel;
 	}
@@ -687,22 +672,19 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
-	public ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, boolean isBinary, ModelOrigin origin, EList<Model> targetModels, MultiModel instanceMID) throws MMINTException {
+	public ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, EList<Model> endpointModels, MID instanceMID) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
-		if (targetModels.size() == 0) {
+		if (endpointModels.size() == 0) {
 			throw new MMINTException("No target models specified");
-		}
-		if (isBinary && targetModels.size() != 2) {
-			throw new MMINTException("A binary model relationship must have 2 target models");
 		}
 
 		// create model rel
-		ModelRel newModelRel = createInstance(newModelRelUri, isBinary, origin, instanceMID);
+		ModelRel newModelRel = createInstance(newModelRelUri, instanceMID);
 		// create model rel endpoints
-		for (Model targetModel : targetModels) {
+		for (Model targetModel : endpointModels) {
 			String modelTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, null, targetModel).get(0);
 			ModelEndpoint modelTypeEndpoint = MultiModelTypeRegistry.getType(modelTypeEndpointUri);
 			modelTypeEndpoint.createInstanceAndReference(targetModel, newModelRel);
@@ -714,16 +696,65 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
-	public ModelRel copyMAVOInstance(ModelRel origModelRel, MultiModel containerMultiModel) throws MMINTException {
+	public BinaryModelRel createBinaryInstance(String newModelRelUri, MID instanceMID) throws MMINTException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		BinaryModelRel newModelRel = RelationshipFactory.eINSTANCE.createBinaryModelRel();
+		super.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
+
+		return newModelRel;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public BinaryModelRel createBinaryInstanceAndEndpointsAndReferences(String newModelRelUri, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws MMINTException {
+
+		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+		}
+
+		// create model rel and endpoints
+		EList<Model> endpointModels = new BasicEList<>();
+		endpointModels.add(endpointSourceModel);
+		endpointModels.add(endpointTargetModel);
+		BinaryModelRel newModelRel = createInstanceAndEndpointsAndReferences(newModelRelUri, endpointModels, instanceMID);
+
+		return newModelRel;
+	}
+
+	/**
+	 * Creates and adds a model relationship instance of
+	 * this model relationship type to an Instance MID, copying its structure
+	 * from another model relationship instance (including any MAVO flags).
+	 * 
+	 * @param origModelRel
+	 *            The original model relationship instance to be copied into the
+	 *            new one.
+	 * @param instanceMID
+	 *            An Instance MID, null if the model relationship isn't going to
+	 *            be added to it.
+	 * @return The created model relationship.
+	 * @throws MMINTException
+	 *             If this is a model relationship instance, or if the uri of
+	 *             the new model relationship is already registered in the
+	 *             Instance MID.
+	 * @generated NOT
+	 */
+	@Override
+	public Model copyInstance(Model origModelRel, String newModelRelName, MID instanceMID) throws MMINTException {
 
 		// create initial empty copy
-		ModelRel newModelRel = createInstance(null, (origModelRel instanceof BinaryModelRel), ModelOrigin.CREATED, containerMultiModel);
-		newModelRel.setName(origModelRel.getName());
+		ModelRel newModelRel = createInstance(null, instanceMID);
+		newModelRel.setName(newModelRelName);
 
 		// models
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
 		for (ModelEndpointReference origModelEndpointRef : origModelRel.getModelEndpointRefs()) {
-			Model newModel = MultiModelRegistry.getExtendibleElement(origModelEndpointRef.getTargetUri(), containerMultiModel);
+			Model newModel = MultiModelRegistry.getExtendibleElement(origModelEndpointRef.getTargetUri(), instanceMID);
 			ModelEndpointReference newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, newModelRel);
 			// model elements
 			for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
@@ -774,29 +805,6 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
-	public ResourceSet getOutlineResourceTypes() throws MMINTException {
-
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
-
-		ResourceSet resourceSet = new ResourceSetImpl();
-		List<Resource> resources = resourceSet.getResources();
-		for (ModelEndpointReference modelTypeEndpointRef : getModelEndpointRefs()) {
-			Model modelType = modelTypeEndpointRef.getObject().getTarget();
-			do {
-				resources.add(modelType.getEMFTypeRoot().eResource());
-				modelType = modelType.getSupertype();
-			}
-			while (modelType != null && !modelType.isAbstract());
-		}
-
-		return resourceSet;
-	}
-
-	/**
-	 * @generated NOT
-	 */
 	public ResourceSet getOutlineResourceInstances() throws MMINTException {
 
 		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
@@ -811,14 +819,6 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		}
 
 		return resourceSet;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public void openType() throws Exception {
-
-		MMINTException.mustBeType(this);
 	}
 
 	/**

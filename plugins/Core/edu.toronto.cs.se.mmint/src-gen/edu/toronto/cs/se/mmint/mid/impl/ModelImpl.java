@@ -958,7 +958,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
-		MultiModel containerMultiModel = MultiModelRegistry.getMultiModel(this);
+		MultiModel instanceMID = MultiModelRegistry.getMultiModel(this);
 		Editor newEditor = null;
 		//TODO MMINT[EDITOR] prioritize editors list instead of running twice?
 		// all diagrams are tried..
@@ -967,7 +967,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				continue;
 			}
 			try {
-				newEditor = diagramType.createInstance(getUri(), containerMultiModel);
+				newEditor = diagramType.createInstance(getUri(), instanceMID);
 				break;
 			}
 			catch (MMINTException e) {
@@ -980,7 +980,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				if (editorType instanceof Diagram) {
 					continue;
 				}
-				newEditor = editorType.createInstance(getUri(), containerMultiModel);
+				newEditor = editorType.createInstance(getUri(), instanceMID);
 				break;
 			}
 		}
@@ -995,7 +995,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model createInstanceAndEditor(String newModelUri, MultiModel instanceMID) throws MMINTException {
+	public Model createInstanceAndEditor(String newModelUri, MID instanceMID) throws MMINTException {
 
 		Model newModel = createInstance(newModelUri, instanceMID);
 		if (instanceMID != null) {
@@ -1060,7 +1060,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model copyMAVOInstance(Model origModel, String newModelName, MultiModel containerMultiModel) throws MMINTException {
+	public Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
@@ -1078,7 +1078,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		} catch (Exception e) {
 			throw new MMINTException("Error copying model file");
 		}
-		Model newModel = createMAVOInstance(newModelUri, ModelOrigin.CREATED, containerMultiModel);
+		Model newModel = createInstance(newModelUri, instanceMID);
 
 		return newModel;
 	}
@@ -1086,9 +1086,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model copyMAVOInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MultiModel containerMultiModel) throws MMINTException {
+	public Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws MMINTException {
 
-		Model newModel = copyMAVOInstance(origModel, newModelName, containerMultiModel);
+		Model newModel = copyInstance(origModel, newModelName, instanceMID);
 		// copy diagrams
 		if (copyDiagram) {
 			for (Editor oldEditor : origModel.getEditors()) {

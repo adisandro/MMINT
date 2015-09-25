@@ -37,7 +37,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.common,
  org.eclipse.emf.ecore.editor,
  org.eclipse.uml2.uml,
- org.eclipse.jdt.annotation;resolution:=optional,
- edu.toronto.cs.se.mavo;visibility:=reexport
+ org.eclipse.jdt.annotation;resolution:=optional
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: edu.toronto.cs.se.mmint.MMINTActivator

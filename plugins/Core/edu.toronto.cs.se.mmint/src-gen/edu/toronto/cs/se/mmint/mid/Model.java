@@ -273,13 +273,13 @@ public interface Model extends GenericElement, MAVORoot {
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
 	 * type to an Instance MID, copying its structure from another model
-	 * instance (including its MAVO inc flag).
+	 * instance.
 	 * 
 	 * @param origModel
 	 *            The original model instance to be copied into the new one.
 	 * @param newModelName
 	 *            The name of the new model.
-	 * @param containerMultiModel
+	 * @param instanceMID
 	 *            An Instance MID, null if the model isn't going to be added to
 	 *            it.
 	 * @return The created model.
@@ -290,12 +290,12 @@ public interface Model extends GenericElement, MAVORoot {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" containerMultiModelRequired="true"
 	 * @generated
 	 */
-	Model copyMAVOInstance(Model origModel, String newModelName, MultiModel containerMultiModel) throws MMINTException;
+	Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
 	 * type to an Instance MID, together with an editor for it, copying its
-	 * structure from another model instance (including its MAVO inc flag) and
+	 * structure from another model instance and
 	 * possibly all diagrams for it.
 	 * 
 	 * @param origModel
@@ -305,7 +305,7 @@ public interface Model extends GenericElement, MAVORoot {
 	 * @param copyDiagram
 	 *            True if the diagrams for the original model should be copied,
 	 *            false otherwise.
-	 * @param containerMultiModel
+	 * @param instanceMID
 	 *            An Instance MID, null if the model isn't going to be added to
 	 *            it.
 	 * @return The created model.
@@ -317,7 +317,7 @@ public interface Model extends GenericElement, MAVORoot {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" copyDiagramRequired="true" containerMultiModelRequired="true"
 	 * @generated
 	 */
-	Model copyMAVOInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MultiModel containerMultiModel) throws MMINTException;
+	Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model instance from the Instance MID

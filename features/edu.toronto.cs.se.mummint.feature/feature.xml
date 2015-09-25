@@ -30,4 +30,25 @@ Famelis, Rick Salay, Naama Ben-David. All rights reserved.
          id="edu.toronto.cs.se.modelepedia.z3.feature"
          version="0.0.0"/>
 
+   <plugin
+         id="edu.toronto.cs.se.mavo"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mavo.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.mavo"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
