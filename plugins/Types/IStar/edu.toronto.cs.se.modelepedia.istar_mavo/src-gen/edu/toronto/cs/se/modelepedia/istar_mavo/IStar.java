@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo;
 
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot onlyDependums='dependums->forAll(linksAsSrc->isEmpty() and linksAsTgt->isEmpty())'"
  * @generated
  */
-public interface IStar extends MAVOModel {
+public interface IStar extends MAVORoot {
 	/**
 	 * Returns the value of the '<em><b>Actors</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.istar_mavo.Actor}.

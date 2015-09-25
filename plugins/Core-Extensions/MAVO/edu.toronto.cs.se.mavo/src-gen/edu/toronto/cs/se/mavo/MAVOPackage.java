@@ -150,14 +150,14 @@ public interface MAVOPackage extends EPackage {
 	int DECISION_ELEMENT_OPERATION_COUNT = LOGIC_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mavo.impl.MAVOModelImpl <em>Model</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mavo.impl.MAVORootImpl <em>Root</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mavo.impl.MAVOModelImpl
-	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMAVOModel()
+	 * @see edu.toronto.cs.se.mavo.impl.MAVORootImpl
+	 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMAVORoot()
 	 * @generated
 	 */
-	int MAVO_MODEL = 2;
+	int MAVO_ROOT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Inc</b></em>' attribute.
@@ -166,7 +166,7 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL__INC = 0;
+	int MAVO_ROOT__INC = 0;
 
 	/**
 	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
@@ -175,25 +175,25 @@ public interface MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL__DECISIONS = 1;
+	int MAVO_ROOT__DECISIONS = 1;
 
 	/**
-	 * The number of structural features of the '<em>Model</em>' class.
+	 * The number of structural features of the '<em>Root</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_FEATURE_COUNT = 2;
+	int MAVO_ROOT_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Model</em>' class.
+	 * The number of operations of the '<em>Root</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_OPERATION_COUNT = 0;
+	int MAVO_ROOT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mavo.impl.MAVOElementImpl <em>Element</em>}' class.
@@ -706,36 +706,36 @@ public interface MAVOPackage extends EPackage {
 	EAttribute getDecisionElement_Description();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mavo.MAVOModel <em>Model</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mavo.MAVORoot <em>Root</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Model</em>'.
-	 * @see edu.toronto.cs.se.mavo.MAVOModel
+	 * @return the meta object for class '<em>Root</em>'.
+	 * @see edu.toronto.cs.se.mavo.MAVORoot
 	 * @generated
 	 */
-	EClass getMAVOModel();
+	EClass getMAVORoot();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mavo.MAVOModel#isInc <em>Inc</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mavo.MAVORoot#isInc <em>Inc</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Inc</em>'.
-	 * @see edu.toronto.cs.se.mavo.MAVOModel#isInc()
-	 * @see #getMAVOModel()
+	 * @see edu.toronto.cs.se.mavo.MAVORoot#isInc()
+	 * @see #getMAVORoot()
 	 * @generated
 	 */
-	EAttribute getMAVOModel_Inc();
+	EAttribute getMAVORoot_Inc();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mavo.MAVOModel#getDecisions <em>Decisions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mavo.MAVORoot#getDecisions <em>Decisions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Decisions</em>'.
-	 * @see edu.toronto.cs.se.mavo.MAVOModel#getDecisions()
-	 * @see #getMAVOModel()
+	 * @see edu.toronto.cs.se.mavo.MAVORoot#getDecisions()
+	 * @see #getMAVORoot()
 	 * @generated
 	 */
-	EReference getMAVOModel_Decisions();
+	EReference getMAVORoot_Decisions();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mavo.MAVOElement <em>Element</em>}'.
@@ -987,14 +987,14 @@ public interface MAVOPackage extends EPackage {
 		EAttribute DECISION_ELEMENT__DESCRIPTION = eINSTANCE.getDecisionElement_Description();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.impl.MAVOModelImpl <em>Model</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.impl.MAVORootImpl <em>Root</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mavo.impl.MAVOModelImpl
-		 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMAVOModel()
+		 * @see edu.toronto.cs.se.mavo.impl.MAVORootImpl
+		 * @see edu.toronto.cs.se.mavo.impl.MAVOPackageImpl#getMAVORoot()
 		 * @generated
 		 */
-		EClass MAVO_MODEL = eINSTANCE.getMAVOModel();
+		EClass MAVO_ROOT = eINSTANCE.getMAVORoot();
 
 		/**
 		 * The meta object literal for the '<em><b>Inc</b></em>' attribute feature.
@@ -1002,7 +1002,7 @@ public interface MAVOPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MAVO_MODEL__INC = eINSTANCE.getMAVOModel_Inc();
+		EAttribute MAVO_ROOT__INC = eINSTANCE.getMAVORoot_Inc();
 
 		/**
 		 * The meta object literal for the '<em><b>Decisions</b></em>' containment reference list feature.
@@ -1010,7 +1010,7 @@ public interface MAVOPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MAVO_MODEL__DECISIONS = eINSTANCE.getMAVOModel_Decisions();
+		EReference MAVO_ROOT__DECISIONS = eINSTANCE.getMAVORoot_Decisions();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mavo.impl.MAVOElementImpl <em>Element</em>}' class.

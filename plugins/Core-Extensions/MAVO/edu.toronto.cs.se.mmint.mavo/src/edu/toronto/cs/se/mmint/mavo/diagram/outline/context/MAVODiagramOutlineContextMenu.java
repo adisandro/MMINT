@@ -28,7 +28,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.SetDecision;
@@ -114,8 +114,8 @@ public class MAVODiagramOutlineContextMenu extends ContributionItem {
 
 		// create menus
 		Object object = objects[0];
-		if (object instanceof MAVOModel) {
-			MAVOModel mavoRootModelObj = (MAVOModel) object;
+		if (object instanceof MAVORoot) {
+			MAVORoot mavoRootModelObj = (MAVORoot) object;
 			// add
 			Menu addMenu = addCascadeMenuItem(menu, MAVO_OUTLINE_MENU_ADDDECISION_LABEL);
 			addMenuItem(

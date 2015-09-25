@@ -33,7 +33,7 @@ import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOFactory;
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.SetDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
@@ -53,7 +53,7 @@ public class MAVODiagramContextAddListener extends MIDContextMenuListener {
 	private EClass mavoDecisionType;
 	private List<MAVOElement> mavoModelObjs;
 
-	public MAVODiagramContextAddListener(@NonNull String menuLabel, @NonNull MAVOModel mavoRootModelObj, @NonNull EClass mavoDecisionType) {
+	public MAVODiagramContextAddListener(@NonNull String menuLabel, @NonNull MAVORoot mavoRootModelObj, @NonNull EClass mavoDecisionType) {
 
 		super(menuLabel);
 		mavoContainer = mavoRootModelObj;
@@ -120,8 +120,8 @@ public class MAVODiagramContextAddListener extends MIDContextMenuListener {
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			if (mavoContainer instanceof MAVOModel) {
-				MAVOModel mavoRootModelObj = (MAVOModel) mavoContainer;
+			if (mavoContainer instanceof MAVORoot) {
+				MAVORoot mavoRootModelObj = (MAVORoot) mavoContainer;
 				MAVODecision mavoDecision = (MAVODecision) MAVOFactory.eINSTANCE.create(mavoDecisionType);
 				mavoRootModelObj.getDecisions().add(mavoDecision);
 				mavoDecision.setFormulaVariable(MAVO_DECISION_FORMULA_PREFIX + mavoRootModelObj.getDecisions().size());

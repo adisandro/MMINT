@@ -29,10 +29,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mavo.impl.SetDecisionImpl#getEntity <em>Entity</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

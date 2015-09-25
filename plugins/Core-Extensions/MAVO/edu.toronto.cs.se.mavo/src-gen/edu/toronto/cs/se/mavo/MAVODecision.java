@@ -24,10 +24,10 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mavo.MAVODecision#getRequiredDecisions <em>Required Decisions</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mavo.MAVOPackage#getMAVODecision()
  * @model abstract="true"

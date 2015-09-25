@@ -20,7 +20,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
@@ -55,7 +55,7 @@ public class Z3Test extends MMINTTest {
 		Map<String, MultiModel> outputMIDsByName = MultiModelOperatorUtils.createSimpleOutputMIDsByName(ecore2smt, instanceMID);
 		ecore2smt.start(inputs, new BasicEList<>(), outputMIDsByName, instanceMID);
 		Z3MAVOModelParser z3ModelParser = ecore2smt.getZ3MAVOModelParser();
-		MAVOModel rootMavoModelObj = (MAVOModel) model.getEMFInstanceRoot();
+		MAVORoot rootMavoModelObj = (MAVORoot) model.getEMFInstanceRoot();
 		int numSolutions = z3Reasoner.allSAT(z3ModelParser.getSMTLIBEncoding(), z3ModelParser, MAVOUtils.getAnnotatedMAVOModelObjects(rootMavoModelObj), rootMavoModelObj);
 		Assert.assertEquals(46, numSolutions);
 	}

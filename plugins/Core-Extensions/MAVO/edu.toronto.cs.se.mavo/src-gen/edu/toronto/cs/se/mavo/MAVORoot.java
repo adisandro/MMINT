@@ -12,30 +12,31 @@
 package edu.toronto.cs.se.mavo;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Model</b></em>'.
+ * A representation of the model object '<em><b>Root</b></em>'.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * The abstract MAVO model. It represents a model that can have MAVO open world annotations.
+ * The abstract MAVO root. It represents a model root that can have MAVO open world annotations.
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
- * <ul>
- *   <li>{@link edu.toronto.cs.se.mavo.MAVOModel#isInc <em>Inc</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mavo.MAVOModel#getDecisions <em>Decisions</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link edu.toronto.cs.se.mavo.MAVORoot#isInc <em>Inc</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mavo.MAVORoot#getDecisions <em>Decisions</em>}</li>
+ * </ul>
  *
- * @see edu.toronto.cs.se.mavo.MAVOPackage#getMAVOModel()
+ * @see edu.toronto.cs.se.mavo.MAVOPackage#getMAVORoot()
  * @model abstract="true"
  * @generated
  */
-public interface MAVOModel extends EObject {
+public interface MAVORoot extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Inc</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -45,14 +46,14 @@ public interface MAVOModel extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Inc</em>' attribute.
 	 * @see #setInc(boolean)
-	 * @see edu.toronto.cs.se.mavo.MAVOPackage#getMAVOModel_Inc()
+	 * @see edu.toronto.cs.se.mavo.MAVOPackage#getMAVORoot_Inc()
 	 * @model
 	 * @generated
 	 */
 	boolean isInc();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mavo.MAVOModel#isInc <em>Inc</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mavo.MAVORoot#isInc <em>Inc</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Inc</em>' attribute.
@@ -70,10 +71,10 @@ public interface MAVOModel extends EObject {
 	 * The list of decisions to be made within this MAVO model.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Decisions</em>' containment reference list.
-	 * @see edu.toronto.cs.se.mavo.MAVOPackage#getMAVOModel_Decisions()
+	 * @see edu.toronto.cs.se.mavo.MAVOPackage#getMAVORoot_Decisions()
 	 * @model containment="true"
 	 * @generated
 	 */
 	EList<MAVODecision> getDecisions();
 
-} // MAVOModel
+} // MAVORoot

@@ -20,20 +20,20 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.mavo.diagram.outline.context.MAVODiagramOutlineContextMenu;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class MAVODiagramOutlinePage extends ContentOutlinePage {
 
-	private MAVOModel mavoRootModelObj;
+	private MAVORoot mavoRootModelObj;
 	protected TreeViewer contentOutlineViewer;
 	protected ComposedAdapterFactory adapterFactory;
 
 	public MAVODiagramOutlinePage(Diagram diagram) {
 
 		super();
-		mavoRootModelObj = (MAVOModel) diagram.getElement();
+		mavoRootModelObj = (MAVORoot) diagram.getElement();
 		adapterFactory = GMFDiagramUtils.getAdapterFactory();
 	}
 

@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.statemachine_mavo;
 
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface StateMachine extends MAVOModel {
+public interface StateMachine extends MAVORoot {
 	/**
 	 * Returns the value of the '<em><b>States</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState}.

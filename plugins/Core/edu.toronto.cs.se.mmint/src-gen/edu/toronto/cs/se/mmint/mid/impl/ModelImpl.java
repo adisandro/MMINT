@@ -42,7 +42,7 @@ import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mavo.MAVODecision;
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -484,7 +484,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == MAVOModel.class) {
+		if (baseClass == MAVORoot.class) {
 			switch (derivedFeatureID) {
 				case MIDPackage.MODEL__INC: return MAVOPackage.MAVO_MODEL__INC;
 				case MIDPackage.MODEL__DECISIONS: return MAVOPackage.MAVO_MODEL__DECISIONS;
@@ -501,7 +501,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == MAVOModel.class) {
+		if (baseClass == MAVORoot.class) {
 			switch (baseFeatureID) {
 				case MAVOPackage.MAVO_MODEL__INC: return MIDPackage.MODEL__INC;
 				case MAVOPackage.MAVO_MODEL__DECISIONS: return MIDPackage.MODEL__DECISIONS;
@@ -524,7 +524,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
-		if (baseClass == MAVOModel.class) {
+		if (baseClass == MAVORoot.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}

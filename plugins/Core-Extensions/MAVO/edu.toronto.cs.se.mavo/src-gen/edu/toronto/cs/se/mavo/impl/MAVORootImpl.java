@@ -12,37 +12,40 @@
 package edu.toronto.cs.se.mavo.impl;
 
 import edu.toronto.cs.se.mavo.MAVODecision;
-import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MAVOPackage;
+import edu.toronto.cs.se.mavo.MAVORoot;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Model</b></em>'.
+ * An implementation of the model object '<em><b>Root</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- *   <li>{@link edu.toronto.cs.se.mavo.impl.MAVOModelImpl#isInc <em>Inc</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mavo.impl.MAVOModelImpl#getDecisions <em>Decisions</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link edu.toronto.cs.se.mavo.impl.MAVORootImpl#isInc <em>Inc</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mavo.impl.MAVORootImpl#getDecisions <em>Decisions</em>}</li>
+ * </ul>
  *
  * @generated
  */
-public abstract class MAVOModelImpl extends MinimalEObjectImpl.Container implements MAVOModel {
+public abstract class MAVORootImpl extends MinimalEObjectImpl.Container implements MAVORoot {
 	/**
 	 * The default value of the '{@link #isInc() <em>Inc</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -78,7 +81,7 @@ public abstract class MAVOModelImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MAVOModelImpl() {
+	protected MAVORootImpl() {
 		super();
 	}
 
@@ -89,7 +92,7 @@ public abstract class MAVOModelImpl extends MinimalEObjectImpl.Container impleme
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MAVOPackage.Literals.MAVO_MODEL;
+		return MAVOPackage.Literals.MAVO_ROOT;
 	}
 
 	/**
@@ -110,7 +113,7 @@ public abstract class MAVOModelImpl extends MinimalEObjectImpl.Container impleme
 		boolean oldInc = inc;
 		inc = newInc;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MAVOPackage.MAVO_MODEL__INC, oldInc, inc));
+			eNotify(new ENotificationImpl(this, Notification.SET, MAVOPackage.MAVO_ROOT__INC, oldInc, inc));
 	}
 
 	/**
@@ -120,7 +123,7 @@ public abstract class MAVOModelImpl extends MinimalEObjectImpl.Container impleme
 	 */
 	public EList<MAVODecision> getDecisions() {
 		if (decisions == null) {
-			decisions = new EObjectContainmentEList<MAVODecision>(MAVODecision.class, this, MAVOPackage.MAVO_MODEL__DECISIONS);
+			decisions = new EObjectContainmentEList<MAVODecision>(MAVODecision.class, this, MAVOPackage.MAVO_ROOT__DECISIONS);
 		}
 		return decisions;
 	}
@@ -133,7 +136,7 @@ public abstract class MAVOModelImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MAVOPackage.MAVO_MODEL__DECISIONS:
+			case MAVOPackage.MAVO_ROOT__DECISIONS:
 				return ((InternalEList<?>)getDecisions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -147,9 +150,9 @@ public abstract class MAVOModelImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MAVOPackage.MAVO_MODEL__INC:
+			case MAVOPackage.MAVO_ROOT__INC:
 				return isInc();
-			case MAVOPackage.MAVO_MODEL__DECISIONS:
+			case MAVOPackage.MAVO_ROOT__DECISIONS:
 				return getDecisions();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -164,10 +167,10 @@ public abstract class MAVOModelImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MAVOPackage.MAVO_MODEL__INC:
+			case MAVOPackage.MAVO_ROOT__INC:
 				setInc((Boolean)newValue);
 				return;
-			case MAVOPackage.MAVO_MODEL__DECISIONS:
+			case MAVOPackage.MAVO_ROOT__DECISIONS:
 				getDecisions().clear();
 				getDecisions().addAll((Collection<? extends MAVODecision>)newValue);
 				return;
@@ -183,10 +186,10 @@ public abstract class MAVOModelImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MAVOPackage.MAVO_MODEL__INC:
+			case MAVOPackage.MAVO_ROOT__INC:
 				setInc(INC_EDEFAULT);
 				return;
-			case MAVOPackage.MAVO_MODEL__DECISIONS:
+			case MAVOPackage.MAVO_ROOT__DECISIONS:
 				getDecisions().clear();
 				return;
 		}
@@ -201,9 +204,9 @@ public abstract class MAVOModelImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MAVOPackage.MAVO_MODEL__INC:
+			case MAVOPackage.MAVO_ROOT__INC:
 				return inc != INC_EDEFAULT;
-			case MAVOPackage.MAVO_MODEL__DECISIONS:
+			case MAVOPackage.MAVO_ROOT__DECISIONS:
 				return decisions != null && !decisions.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -225,4 +228,4 @@ public abstract class MAVOModelImpl extends MinimalEObjectImpl.Container impleme
 		return result.toString();
 	}
 
-} //MAVOModelImpl
+} //MAVORootImpl

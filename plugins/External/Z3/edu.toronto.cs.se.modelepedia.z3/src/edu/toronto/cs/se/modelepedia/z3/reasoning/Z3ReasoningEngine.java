@@ -29,7 +29,7 @@ import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
@@ -64,7 +64,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 
 	private @NonNull Z3MAVOModelParser generateSMTLIBEncoding(@NonNull Model model) throws Exception {
 
-		if (!(model.getEMFInstanceRoot() instanceof MAVOModel)) {
+		if (!(model.getEMFInstanceRoot() instanceof MAVORoot)) {
 			//TODO MMINT[Z3] Support non-mavo models (create acceleo transformation, check constraint once)
 			throw new MMINTException("Model " + model.getName() + " is not a MAVO model");
 		}
@@ -148,7 +148,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		return true;
 	}
 
-	public int allSATWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull Z3MAVOModelParser z3ModelParser, @NonNull Z3Model z3Model, @NonNull Map<String, MAVOElement> mavoModelObjs, MAVOModel rootMavoModelObj) throws MMINTException {
+	public int allSATWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull Z3MAVOModelParser z3ModelParser, @NonNull Z3Model z3Model, @NonNull Map<String, MAVOElement> mavoModelObjs, MAVORoot rootMavoModelObj) throws MMINTException {
 
 		int numSolutions = 0;
 
@@ -196,7 +196,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		return numSolutions;
 	}
 
-	public int allSAT(@NonNull String smtEncoding, @NonNull Z3MAVOModelParser z3ModelParser, @NonNull Map<String, MAVOElement> mavoModelObjs, @NonNull MAVOModel rootMavoModelObj) throws MMINTException {
+	public int allSAT(@NonNull String smtEncoding, @NonNull Z3MAVOModelParser z3ModelParser, @NonNull Map<String, MAVOElement> mavoModelObjs, @NonNull MAVORoot rootMavoModelObj) throws MMINTException {
 
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		Z3Model z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
@@ -214,7 +214,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			MMINTException.print(IStatus.ERROR, "Can't generate SMTLIB encoding, evaluating to 0", e);
 			return 0;
 		}
-		MAVOModel rootMavoModelObj = (MAVOModel) model.getEMFInstanceRoot();
+		MAVORoot rootMavoModelObj = (MAVORoot) model.getEMFInstanceRoot();
 
 		return allSAT(z3ModelParser.getSMTLIBEncoding(), z3ModelParser, MAVOUtils.getAnnotatedMAVOModelObjects(rootMavoModelObj), rootMavoModelObj);
 	}

@@ -24,10 +24,10 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mavo.impl.MAVODecisionImpl#getRequiredDecisions <em>Required Decisions</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -24,11 +24,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mavo.MayDecision#getLogic <em>Logic</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mavo.MayDecision#getAlternatives <em>Alternatives</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mavo.MAVOPackage#getMayDecision()
  * @model

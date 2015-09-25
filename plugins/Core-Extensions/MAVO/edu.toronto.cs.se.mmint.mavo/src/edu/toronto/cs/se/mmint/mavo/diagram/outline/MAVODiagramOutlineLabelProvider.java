@@ -17,7 +17,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 
 import edu.toronto.cs.se.mavo.DecisionElement;
 import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 
 public class MAVODiagramOutlineLabelProvider extends AdapterFactoryLabelProvider {
 
@@ -32,8 +32,8 @@ public class MAVODiagramOutlineLabelProvider extends AdapterFactoryLabelProvider
 	public String getText(Object object) {
 
 		String label;
-		if (object instanceof MAVOModel) {
-			MAVOModel rootModelObj = (MAVOModel) object;
+		if (object instanceof MAVORoot) {
+			MAVORoot rootModelObj = (MAVORoot) object;
 			label = rootModelObj.eResource().getURI().toString();
 		}
 		else if (object instanceof DecisionElement) {

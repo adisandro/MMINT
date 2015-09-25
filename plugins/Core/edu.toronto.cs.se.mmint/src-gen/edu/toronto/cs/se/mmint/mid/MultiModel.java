@@ -14,7 +14,7 @@ package edu.toronto.cs.se.mmint.mid;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
@@ -42,7 +42,7 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
  * @model
  * @generated
  */
-public interface MultiModel extends MAVOModel {
+public interface MultiModel extends MAVORoot {
 	/**
 	 * Returns the value of the '<em><b>Models</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.Model}.

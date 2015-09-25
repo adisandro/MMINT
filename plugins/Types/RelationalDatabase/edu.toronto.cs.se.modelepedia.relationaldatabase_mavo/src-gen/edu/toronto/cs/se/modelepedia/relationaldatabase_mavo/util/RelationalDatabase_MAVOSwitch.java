@@ -13,7 +13,7 @@ package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.util;
 
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mavo.MAVOReference;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.*;
 
@@ -258,7 +258,7 @@ public class RelationalDatabase_MAVOSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMAVOModel(MAVOModel object) {
+	public T caseMAVOModel(MAVORoot object) {
 		return null;
 	}
 

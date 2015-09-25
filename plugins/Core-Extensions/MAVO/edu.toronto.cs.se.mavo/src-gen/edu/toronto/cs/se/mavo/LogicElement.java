@@ -24,10 +24,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mavo.LogicElement#getFormulaVariable <em>Formula Variable</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mavo.MAVOPackage#getLogicElement()
  * @model abstract="true"

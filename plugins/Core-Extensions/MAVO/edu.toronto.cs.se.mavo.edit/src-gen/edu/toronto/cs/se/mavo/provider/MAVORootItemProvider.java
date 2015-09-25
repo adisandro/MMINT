@@ -13,8 +13,8 @@ package edu.toronto.cs.se.mavo.provider;
 
 
 import edu.toronto.cs.se.mavo.MAVOFactory;
-import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MAVOPackage;
+import edu.toronto.cs.se.mavo.MAVORoot;
 
 import java.util.Collection;
 import java.util.List;
@@ -38,12 +38,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mavo.MAVOModel} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mavo.MAVORoot} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MAVOModelItemProvider
+public class MAVORootItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -57,7 +57,7 @@ public class MAVOModelItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MAVOModelItemProvider(AdapterFactory adapterFactory) {
+	public MAVORootItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -88,9 +88,9 @@ public class MAVOModelItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_MAVOModel_inc_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MAVOModel_inc_feature", "_UI_MAVOModel_type"),
-				 MAVOPackage.Literals.MAVO_MODEL__INC,
+				 getString("_UI_MAVORoot_inc_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MAVORoot_inc_feature", "_UI_MAVORoot_type"),
+				 MAVOPackage.Literals.MAVO_ROOT__INC,
 				 true,
 				 false,
 				 false,
@@ -111,7 +111,7 @@ public class MAVOModelItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MAVOPackage.Literals.MAVO_MODEL__DECISIONS);
+			childrenFeatures.add(MAVOPackage.Literals.MAVO_ROOT__DECISIONS);
 		}
 		return childrenFeatures;
 	}
@@ -137,9 +137,10 @@ public class MAVOModelItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		MAVOModel mavoModel = (MAVOModel)object;
-		return getString("_UI_MAVOModel_type") + " " + mavoModel.isInc();
+		MAVORoot mavoRoot = (MAVORoot)object;
+		return getString("_UI_MAVORoot_type") + " " + mavoRoot.isInc();
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -152,11 +153,11 @@ public class MAVOModelItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MAVOModel.class)) {
-			case MAVOPackage.MAVO_MODEL__INC:
+		switch (notification.getFeatureID(MAVORoot.class)) {
+			case MAVOPackage.MAVO_ROOT__INC:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MAVOPackage.MAVO_MODEL__DECISIONS:
+			case MAVOPackage.MAVO_ROOT__DECISIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -176,17 +177,17 @@ public class MAVOModelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MAVOPackage.Literals.MAVO_MODEL__DECISIONS,
+				(MAVOPackage.Literals.MAVO_ROOT__DECISIONS,
 				 MAVOFactory.eINSTANCE.createMayDecision()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MAVOPackage.Literals.MAVO_MODEL__DECISIONS,
+				(MAVOPackage.Literals.MAVO_ROOT__DECISIONS,
 				 MAVOFactory.eINSTANCE.createVarDecision()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MAVOPackage.Literals.MAVO_MODEL__DECISIONS,
+				(MAVOPackage.Literals.MAVO_ROOT__DECISIONS,
 				 MAVOFactory.eINSTANCE.createSetDecision()));
 	}
 

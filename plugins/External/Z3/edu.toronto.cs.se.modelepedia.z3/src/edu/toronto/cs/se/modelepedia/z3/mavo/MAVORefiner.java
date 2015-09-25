@@ -31,7 +31,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -73,7 +73,7 @@ public class MAVORefiner {
 		this.reasoner = reasoner;
 	}
 
-	private @NonNull Map<String, MAVOElement> getModelObjectsToRefine(@NonNull MAVOModel rootModelObj, @NonNull MAVOModel refinedRootModelObj, @NonNull String refinedModelUri, @NonNull Map<MAVOElement, MAVOElement> refinementMap) {
+	private @NonNull Map<String, MAVOElement> getModelObjectsToRefine(@NonNull MAVORoot rootModelObj, @NonNull MAVORoot refinedRootModelObj, @NonNull String refinedModelUri, @NonNull Map<MAVOElement, MAVOElement> refinementMap) {
 
 		Map<String, MAVOElement> modelObjsToRefine = new HashMap<String, MAVOElement>();
 		Resource refinedResource = refinedRootModelObj.eResource();
@@ -169,7 +169,7 @@ public class MAVORefiner {
 		}
 	}
 
-	private void refineMayDecision(MAVOModel refinedRootModelObj, MAVOCollection mayAlternative) {
+	private void refineMayDecision(MAVORoot refinedRootModelObj, MAVOCollection mayAlternative) {
 
 		MayDecision mayDecision = (MayDecision) mayAlternative.eContainer();
 		String mayDecisionFormulaVar = mayDecision.getFormulaVariable();
@@ -215,7 +215,7 @@ public class MAVORefiner {
 		}
 	}
 
-	private void refineDiagram(org.eclipse.gmf.runtime.notation.Diagram refinedDiagram, @NonNull MAVOModel refinedRootModelObj, Map<MAVOElement, MAVOElement> refinementMap) {
+	private void refineDiagram(org.eclipse.gmf.runtime.notation.Diagram refinedDiagram, @NonNull MAVORoot refinedRootModelObj, Map<MAVOElement, MAVOElement> refinementMap) {
 
 		Map<String, View> refinedDiagramViews = GMFDiagramUtils.getDiagramViews(refinedDiagram);
 		// remove views that are no longer in the diagram
@@ -269,8 +269,8 @@ public class MAVORefiner {
 		refinementRel.setName(MODELREL_NAME);
 
 		// refine
-		MAVOModel rootModelObj = (MAVOModel) MultiModelUtils.getModelFile(model.getUri(), true);
-		MAVOModel refinedRootModelObj = (MAVOModel) MultiModelUtils.getModelFile(refinedModelUri, true);
+		MAVORoot rootModelObj = (MAVORoot) MultiModelUtils.getModelFile(model.getUri(), true);
+		MAVORoot refinedRootModelObj = (MAVORoot) MultiModelUtils.getModelFile(refinedModelUri, true);
 		Map<MAVOElement, MAVOElement> refinementMap = new HashMap<MAVOElement, MAVOElement>();
 		Map<String, MAVOElement> modelObjsToRefine = getModelObjectsToRefine(rootModelObj, refinedRootModelObj, refinedModelUri, refinementMap);
 		Map<String, MAVOTruthValue> refinedTruthValues = runZ3SMTSolver(modelObjsToRefine, smtEncoding);

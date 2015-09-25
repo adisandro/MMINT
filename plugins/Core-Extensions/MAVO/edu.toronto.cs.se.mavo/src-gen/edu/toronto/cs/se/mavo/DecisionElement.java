@@ -23,10 +23,10 @@ package edu.toronto.cs.se.mavo;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mavo.DecisionElement#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.mavo.MAVOPackage#getDecisionElement()
  * @model abstract="true"

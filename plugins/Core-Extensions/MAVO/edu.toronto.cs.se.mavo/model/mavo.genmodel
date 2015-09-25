@@ -18,9 +18,9 @@
     <genClasses image="false" ecoreClass="mavo.ecore#//DecisionElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//DecisionElement/description"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="mavo.ecore#//MAVOModel">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOModel/inc"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mavo.ecore#//MAVOModel/decisions"/>
+    <genClasses image="false" ecoreClass="mavo.ecore#//MAVORoot">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVORoot/inc"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mavo.ecore#//MAVORoot/decisions"/>
     </genClasses>
     <genClasses image="false" ecoreClass="mavo.ecore#//MAVOElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mavo.ecore#//MAVOElement/may"/>

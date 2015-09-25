@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mavo.impl.LogicElementImpl#getFormulaVariable <em>Formula Variable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

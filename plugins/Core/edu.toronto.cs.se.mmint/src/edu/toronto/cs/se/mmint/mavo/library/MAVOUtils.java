@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.Stereotype;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
@@ -46,7 +46,7 @@ public class MAVOUtils {
 	public static final @NonNull Map<String, String> MAVO_UML_STEREOTYPE_EQUIVALENCE;
 	static {
 		MAVO_UML_STEREOTYPE_EQUIVALENCE = new HashMap<>();
-		MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVOModel", "inc");
+		MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVORoot", "inc");
 		MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVOElement", "may");
 		MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVOElement", "set");
 		MAVO_UML_STEREOTYPE_EQUIVALENCE.put("MAVOElement", "var");
@@ -109,7 +109,7 @@ public class MAVOUtils {
 	public static boolean isMAVOModel(EObject rootModelObj) {
 
 		// Ecore
-		if (rootModelObj instanceof MAVOModel) {
+		if (rootModelObj instanceof MAVORoot) {
 			return true;
 		}
 		// UML
@@ -160,7 +160,7 @@ public class MAVOUtils {
 		}
 	}
 
-	private static void initializeMAVOModel(MAVOModel rootModelObj, Model model) {
+	private static void initializeMAVOModel(MAVORoot rootModelObj, Model model) {
 
 		model.setInc(rootModelObj.isInc());
 	}
@@ -176,8 +176,8 @@ public class MAVOUtils {
 	public static void initializeMAVOModel(EObject rootModelObj, Model model) {
 
 		// Ecore
-		if (rootModelObj instanceof MAVOModel) {
-			initializeMAVOModel((MAVOModel) rootModelObj, model);
+		if (rootModelObj instanceof MAVORoot) {
+			initializeMAVOModel((MAVORoot) rootModelObj, model);
 		}
 		// UML
 		else if (rootModelObj instanceof org.eclipse.uml2.uml.Model) {
@@ -230,8 +230,8 @@ public class MAVOUtils {
 	public static void setInc(EObject rootModelObj, boolean inc) {
 
 		// Ecore
-		if (rootModelObj instanceof MAVOModel) {
-			((MAVOModel) rootModelObj).setInc(inc);
+		if (rootModelObj instanceof MAVORoot) {
+			((MAVORoot) rootModelObj).setInc(inc);
 		}
 		// UML
 		else if (rootModelObj instanceof org.eclipse.uml2.uml.Model) {
@@ -323,7 +323,7 @@ public class MAVOUtils {
 
 		Map<String, MAVOElement> mavoModelObjs = new HashMap<>();
 		boolean modified = false;
-		MAVOModel mavoRootModelObj = (MAVOModel) mavoModel.getEMFInstanceRoot();
+		MAVORoot mavoRootModelObj = (MAVORoot) mavoModel.getEMFInstanceRoot();
 		TreeIterator<EObject> iterator = mavoRootModelObj.eAllContents();
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();
@@ -353,7 +353,7 @@ public class MAVOUtils {
 		return !mavoModelObjs.values().stream().anyMatch(mavoModelObj -> mavoModelObj.isSet() || mavoModelObj.isVar());
 	}
 
-	private static @NonNull Set<String> getVFormulaVars(@NonNull MAVOModel mavoModel, @NonNull MAVOElement mavoModelObj, boolean whichFormulaVars) {
+	private static @NonNull Set<String> getVFormulaVars(@NonNull MAVORoot mavoModel, @NonNull MAVOElement mavoModelObj, boolean whichFormulaVars) {
 
 		Set<String> formulaVars = new HashSet<>();
 		EObject modelObjContainer = mavoModelObj.eContainer();
@@ -384,17 +384,17 @@ public class MAVOUtils {
 		return formulaVars;
 	}
 
-	public static @NonNull Set<String> getMergeableFormulaVars(@NonNull MAVOModel mavoModel, @NonNull MAVOElement mavoModelObj) {
+	public static @NonNull Set<String> getMergeableFormulaVars(@NonNull MAVORoot mavoModel, @NonNull MAVOElement mavoModelObj) {
 
 		return getVFormulaVars(mavoModel, mavoModelObj, true);
 	}
 
-	public static @NonNull Set<String> getUnmergeableFormulaVars(@NonNull MAVOModel mavoModel, @NonNull MAVOElement mavoModelObj) {
+	public static @NonNull Set<String> getUnmergeableFormulaVars(@NonNull MAVORoot mavoModel, @NonNull MAVOElement mavoModelObj) {
 
 		return getVFormulaVars(mavoModel, mavoModelObj, false);
 	}
 
-	private static @NonNull Map<String, MAVOElement> getMAVOModelObjects(@NonNull MAVOModel mavoModel, @NonNull Predicate<? super EObject> filterLambda) {
+	private static @NonNull Map<String, MAVOElement> getMAVOModelObjects(@NonNull MAVORoot mavoModel, @NonNull Predicate<? super EObject> filterLambda) {
 
 		Iterable<EObject> iterable = () -> mavoModel.eAllContents();
 		Map<String, MAVOElement> mavoModelObjs = StreamSupport.stream(iterable.spliterator(), false)
@@ -408,7 +408,7 @@ public class MAVOUtils {
 		return mavoModelObjs;
 	}
 
-	public static @NonNull Map<String, MAVOElement> getAllMAVOModelObjects(@NonNull MAVOModel mavoModel) {
+	public static @NonNull Map<String, MAVOElement> getAllMAVOModelObjects(@NonNull MAVORoot mavoModel) {
 
 		Predicate<? super EObject> filterLambda = modelObj -> modelObj instanceof MAVOElement;
 
@@ -418,14 +418,14 @@ public class MAVOUtils {
 	public static @NonNull Map<String, MAVOElement> getAllMAVOModelObjects(@NonNull Model model) throws MMINTException {
 
 		EObject rootModelObj = model.getEMFInstanceRoot();
-		if (!(rootModelObj instanceof MAVOModel)) {
+		if (!(rootModelObj instanceof MAVORoot)) {
 			throw new MMINTException("Not a MAVO model");
 		}
 
-		return getAllMAVOModelObjects((MAVOModel) rootModelObj);
+		return getAllMAVOModelObjects((MAVORoot) rootModelObj);
 	}
 
-	public static @NonNull Map<String, MAVOElement> getAnnotatedMAVOModelObjects(@NonNull MAVOModel mavoModel) {
+	public static @NonNull Map<String, MAVOElement> getAnnotatedMAVOModelObjects(@NonNull MAVORoot mavoModel) {
 
 		Predicate<? super EObject> filterLambda = modelObj ->
 			modelObj instanceof MAVOElement && (
@@ -440,11 +440,11 @@ public class MAVOUtils {
 	public static @NonNull Map<String, MAVOElement> getAnnotatedMAVOModelObjects(@NonNull Model model) throws MMINTException {
 
 		EObject rootModelObj = model.getEMFInstanceRoot();
-		if (!(rootModelObj instanceof MAVOModel)) {
+		if (!(rootModelObj instanceof MAVORoot)) {
 			throw new MMINTException("Not a MAVO model");
 		}
 
-		return getAnnotatedMAVOModelObjects((MAVOModel) rootModelObj);
+		return getAnnotatedMAVOModelObjects((MAVORoot) rootModelObj);
 	}
 
 }

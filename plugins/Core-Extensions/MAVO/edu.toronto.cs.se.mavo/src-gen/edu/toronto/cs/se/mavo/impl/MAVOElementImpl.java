@@ -30,13 +30,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mavo.impl.MAVOElementImpl#isMay <em>May</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mavo.impl.MAVOElementImpl#isSet <em>Set</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mavo.impl.MAVOElementImpl#isVar <em>Var</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mavo.impl.MAVOElementImpl#getCollections <em>Collections</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

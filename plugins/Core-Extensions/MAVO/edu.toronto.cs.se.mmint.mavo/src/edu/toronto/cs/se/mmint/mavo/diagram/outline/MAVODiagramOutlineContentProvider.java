@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.SetDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
@@ -36,7 +36,7 @@ public class MAVODiagramOutlineContentProvider extends AdapterFactoryContentProv
 		super(adapterFactory);
 	}
 
-	private List<Object> getUnstructuredMAVOElements(MAVOModel mavoModel) {
+	private List<Object> getUnstructuredMAVOElements(MAVORoot mavoModel) {
 
 		List<Object> mavoModelObjs = new ArrayList<Object>();
 		TreeIterator<EObject> iter = mavoModel.eAllContents();
@@ -61,10 +61,10 @@ public class MAVODiagramOutlineContentProvider extends AdapterFactoryContentProv
 	public boolean hasChildren(Object object) {
 
 		boolean hasChildren = false;
-		if (object instanceof MAVOModel) {
+		if (object instanceof MAVORoot) {
 			if (
-				!((MAVOModel) object).getDecisions().isEmpty() ||
-				!getUnstructuredMAVOElements((MAVOModel) object).isEmpty()
+				!((MAVORoot) object).getDecisions().isEmpty() ||
+				!getUnstructuredMAVOElements((MAVORoot) object).isEmpty()
 			) {
 				hasChildren = true;
 			}
@@ -102,9 +102,9 @@ public class MAVODiagramOutlineContentProvider extends AdapterFactoryContentProv
 		if (object instanceof Resource) {
 			children = new Object[] {((Resource) object).getContents().get(0)};
 		}
-		else if (object instanceof MAVOModel) {
-			List<Object> childrenList = new ArrayList<Object>(((MAVOModel) object).getDecisions());
-			childrenList.addAll(getUnstructuredMAVOElements((MAVOModel) object));
+		else if (object instanceof MAVORoot) {
+			List<Object> childrenList = new ArrayList<Object>(((MAVORoot) object).getDecisions());
+			childrenList.addAll(getUnstructuredMAVOElements((MAVORoot) object));
 			children = childrenList.toArray();
 		}
 		else if (object instanceof MAVODecision) {

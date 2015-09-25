@@ -17,9 +17,9 @@ import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOFactory;
-import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mavo.MAVOReference;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.MayDecisionLogic;
 import edu.toronto.cs.se.mavo.SetDecision;
@@ -57,7 +57,7 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass mavoModelEClass = null;
+	private EClass mavoRootEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -217,8 +217,8 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMAVOModel() {
-		return mavoModelEClass;
+	public EClass getMAVORoot() {
+		return mavoRootEClass;
 	}
 
 	/**
@@ -226,8 +226,8 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMAVOModel_Inc() {
-		return (EAttribute)mavoModelEClass.getEStructuralFeatures().get(0);
+	public EAttribute getMAVORoot_Inc() {
+		return (EAttribute)mavoRootEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -235,8 +235,8 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMAVOModel_Decisions() {
-		return (EReference)mavoModelEClass.getEStructuralFeatures().get(1);
+	public EReference getMAVORoot_Decisions() {
+		return (EReference)mavoRootEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -435,9 +435,9 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 		decisionElementEClass = createEClass(DECISION_ELEMENT);
 		createEAttribute(decisionElementEClass, DECISION_ELEMENT__DESCRIPTION);
 
-		mavoModelEClass = createEClass(MAVO_MODEL);
-		createEAttribute(mavoModelEClass, MAVO_MODEL__INC);
-		createEReference(mavoModelEClass, MAVO_MODEL__DECISIONS);
+		mavoRootEClass = createEClass(MAVO_ROOT);
+		createEAttribute(mavoRootEClass, MAVO_ROOT__INC);
+		createEReference(mavoRootEClass, MAVO_ROOT__DECISIONS);
 
 		mavoElementEClass = createEClass(MAVO_ELEMENT);
 		createEAttribute(mavoElementEClass, MAVO_ELEMENT__MAY);
@@ -511,9 +511,9 @@ public class MAVOPackageImpl extends EPackageImpl implements MAVOPackage {
 		initEClass(decisionElementEClass, DecisionElement.class, "DecisionElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDecisionElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, DecisionElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(mavoModelEClass, MAVOModel.class, "MAVOModel", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMAVOModel_Inc(), ecorePackage.getEBoolean(), "inc", null, 0, 1, MAVOModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMAVOModel_Decisions(), this.getMAVODecision(), null, "decisions", null, 0, -1, MAVOModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(mavoRootEClass, MAVORoot.class, "MAVORoot", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMAVORoot_Inc(), ecorePackage.getEBoolean(), "inc", null, 0, 1, MAVORoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMAVORoot_Decisions(), this.getMAVODecision(), null, "decisions", null, 0, -1, MAVORoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mavoElementEClass, MAVOElement.class, "MAVOElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMAVOElement_May(), ecorePackage.getEBoolean(), "may", null, 0, 1, MAVOElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -31,7 +31,7 @@ import org.eclipse.ui.PlatformUI;
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.SetDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
@@ -94,7 +94,7 @@ public class MAVODiagramContextMenu extends ContributionItem {
 		if (mavoModelObjs.isEmpty()) {
 			return;
 		}
-		MAVOModel mavoRootModelObj = (MAVOModel) EcoreUtil.getRootContainer(mavoModelObjs.get(0), true);
+		MAVORoot mavoRootModelObj = (MAVORoot) EcoreUtil.getRootContainer(mavoModelObjs.get(0), true);
 		if (mavoRootModelObj.getDecisions().size() == 0) {
 			return;
 		}

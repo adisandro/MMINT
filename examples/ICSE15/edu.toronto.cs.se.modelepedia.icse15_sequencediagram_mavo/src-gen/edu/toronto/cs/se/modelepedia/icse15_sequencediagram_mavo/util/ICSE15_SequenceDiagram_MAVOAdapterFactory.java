@@ -13,7 +13,7 @@ package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.util;
 
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mavo.MAVOReference;
 
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference;
@@ -131,7 +131,7 @@ public class ICSE15_SequenceDiagram_MAVOAdapterFactory extends AdapterFactoryImp
 				return createTargetLifelineReferenceAdapter();
 			}
 			@Override
-			public Adapter caseMAVOModel(MAVOModel object) {
+			public Adapter caseMAVOModel(MAVORoot object) {
 				return createMAVOModelAdapter();
 			}
 			@Override
@@ -307,13 +307,13 @@ public class ICSE15_SequenceDiagram_MAVOAdapterFactory extends AdapterFactoryImp
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.MAVOModel <em>Model</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.MAVORoot <em>Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mavo.MAVOModel
+	 * @see edu.toronto.cs.se.mavo.MAVORoot
 	 * @generated
 	 */
 	public Adapter createMAVOModelAdapter() {

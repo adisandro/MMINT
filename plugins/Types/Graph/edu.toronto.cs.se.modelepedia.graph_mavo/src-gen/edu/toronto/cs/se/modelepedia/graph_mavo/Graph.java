@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.graph_mavo;
 
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Graph extends MAVOModel {
+public interface Graph extends MAVORoot {
 	/**
 	 * Returns the value of the '<em><b>Nodes</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.graph_mavo.Node}.

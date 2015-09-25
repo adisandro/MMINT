@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo;
 
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface SequenceDiagram extends MAVOModel {
+public interface SequenceDiagram extends MAVORoot {
 	/**
 	 * Returns the value of the '<em><b>Lifelines</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline}.

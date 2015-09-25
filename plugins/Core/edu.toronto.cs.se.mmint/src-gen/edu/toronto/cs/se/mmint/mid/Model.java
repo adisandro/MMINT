@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
@@ -44,7 +44,7 @@ import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
  * @model
  * @generated
  */
-public interface Model extends GenericElement, MAVOModel {
+public interface Model extends GenericElement, MAVORoot {
 	/**
 	 * Returns the value of the '<em><b>Origin</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmint.mid.ModelOrigin}.
