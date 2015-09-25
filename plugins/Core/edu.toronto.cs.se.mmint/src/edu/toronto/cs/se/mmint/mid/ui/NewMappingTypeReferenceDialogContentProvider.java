@@ -18,20 +18,20 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
-public class NewLinkTypeReferenceDialogContentProvider implements ITreeContentProvider {
+public class NewMappingTypeReferenceDialogContentProvider implements ITreeContentProvider {
 
 	private ModelRel modelRelType;
-	private List<String> allowedLinkTypeUris;
+	private List<String> allowedMappingTypeUris;
 
-	public NewLinkTypeReferenceDialogContentProvider(ModelRel modelRelType, List<String> allowedLinkTypeUris) {
+	public NewMappingTypeReferenceDialogContentProvider(ModelRel modelRelType, List<String> allowedMappingTypeUris) {
 
 		this.modelRelType = modelRelType;
-		this.allowedLinkTypeUris = allowedLinkTypeUris;
+		this.allowedMappingTypeUris = allowedMappingTypeUris;
 	}
 
 	/**
@@ -68,19 +68,19 @@ public class NewLinkTypeReferenceDialogContentProvider implements ITreeContentPr
 	public Object[] getChildren(Object parentElement) {
 
 		if (parentElement instanceof ModelRel) {
-			List<LinkReference> linkTypeRefs = new ArrayList<LinkReference>();
+			List<MappingReference> mappingTypeRefs = new ArrayList<>();
 			// add root link ref first
 			//TODO MMINT[MODELREL] this won't work for standalone model relationship types (will it ever be a use case?)
-			MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
-			ModelRel rootModelRelType = MultiModelRegistry.getExtendibleElement(MultiModelTypeHierarchy.getRootTypeUri(modelRelType), multiModel);
-			LinkReference rootLinkTypeRef = rootModelRelType.getLinkRefs().get(0);
-			linkTypeRefs.add(rootLinkTypeRef);
-			for (LinkReference linkTypeRef : ((ModelRel) parentElement).getLinkRefs()) {
-				if (allowedLinkTypeUris == null || allowedLinkTypeUris.contains(linkTypeRef.getUri())) {
-					linkTypeRefs.add(linkTypeRef);
+			MID typeMID = MultiModelRegistry.getMultiModel(modelRelType);
+			ModelRel rootModelRelType = MultiModelRegistry.getExtendibleElement(MultiModelTypeHierarchy.getRootTypeUri(modelRelType), typeMID);
+			MappingReference rootMappingTypeRef = rootModelRelType.getMappingRefs().get(0);
+			mappingTypeRefs.add(rootMappingTypeRef);
+			for (MappingReference mappingTypeRef : ((ModelRel) parentElement).getMappingRefs()) {
+				if (allowedMappingTypeUris == null || allowedMappingTypeUris.contains(mappingTypeRef.getUri())) {
+					mappingTypeRefs.add(mappingTypeRef);
 				}
 			}
-			return linkTypeRefs.toArray();
+			return mappingTypeRefs.toArray();
 		}
 
 		return new Object[] {};
@@ -92,7 +92,7 @@ public class NewLinkTypeReferenceDialogContentProvider implements ITreeContentPr
 	@Override
 	public Object getParent(Object element) {
 
-		if (element instanceof LinkReference) {
+		if (element instanceof MappingReference) {
 			return modelRelType;
 		}
 

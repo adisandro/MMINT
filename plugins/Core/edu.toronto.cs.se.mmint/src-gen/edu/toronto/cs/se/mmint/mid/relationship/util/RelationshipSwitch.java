@@ -14,26 +14,11 @@ package edu.toronto.cs.se.mmint.mid.relationship.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import edu.toronto.cs.se.mavo.LogicElement;
-import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLink;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmint.mid.relationship.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -97,10 +82,7 @@ public class RelationshipSwitch<T> extends Switch<T> {
 				T result = caseModelRel(modelRel);
 				if (result == null) result = caseModel(modelRel);
 				if (result == null) result = caseGenericElement(modelRel);
-				if (result == null) result = caseMAVOModel(modelRel);
 				if (result == null) result = caseExtendibleElement(modelRel);
-				if (result == null) result = caseMAVOElement(modelRel);
-				if (result == null) result = caseLogicElement(modelRel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -110,10 +92,7 @@ public class RelationshipSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModelRel(binaryModelRel);
 				if (result == null) result = caseModel(binaryModelRel);
 				if (result == null) result = caseGenericElement(binaryModelRel);
-				if (result == null) result = caseMAVOModel(binaryModelRel);
 				if (result == null) result = caseExtendibleElement(binaryModelRel);
-				if (result == null) result = caseMAVOElement(binaryModelRel);
-				if (result == null) result = caseLogicElement(binaryModelRel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -145,22 +124,18 @@ public class RelationshipSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RelationshipPackage.LINK: {
-				Link link = (Link)theEObject;
-				T result = caseLink(link);
-				if (result == null) result = caseExtendibleElement(link);
-				if (result == null) result = caseMAVOElement(link);
-				if (result == null) result = caseLogicElement(link);
+			case RelationshipPackage.MAPPING: {
+				Mapping mapping = (Mapping)theEObject;
+				T result = caseMapping(mapping);
+				if (result == null) result = caseExtendibleElement(mapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RelationshipPackage.BINARY_LINK: {
-				BinaryLink binaryLink = (BinaryLink)theEObject;
-				T result = caseBinaryLink(binaryLink);
-				if (result == null) result = caseLink(binaryLink);
-				if (result == null) result = caseExtendibleElement(binaryLink);
-				if (result == null) result = caseMAVOElement(binaryLink);
-				if (result == null) result = caseLogicElement(binaryLink);
+			case RelationshipPackage.BINARY_MAPPING: {
+				BinaryMapping binaryMapping = (BinaryMapping)theEObject;
+				T result = caseBinaryMapping(binaryMapping);
+				if (result == null) result = caseMapping(binaryMapping);
+				if (result == null) result = caseExtendibleElement(binaryMapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -169,23 +144,21 @@ public class RelationshipSwitch<T> extends Switch<T> {
 				T result = caseModelElementEndpoint(modelElementEndpoint);
 				if (result == null) result = caseExtendibleElementEndpoint(modelElementEndpoint);
 				if (result == null) result = caseExtendibleElement(modelElementEndpoint);
-				if (result == null) result = caseMAVOElement(modelElementEndpoint);
-				if (result == null) result = caseLogicElement(modelElementEndpoint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RelationshipPackage.LINK_REFERENCE: {
-				LinkReference linkReference = (LinkReference)theEObject;
-				T result = caseLinkReference(linkReference);
-				if (result == null) result = caseExtendibleElementReference(linkReference);
+			case RelationshipPackage.MAPPING_REFERENCE: {
+				MappingReference mappingReference = (MappingReference)theEObject;
+				T result = caseMappingReference(mappingReference);
+				if (result == null) result = caseExtendibleElementReference(mappingReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RelationshipPackage.BINARY_LINK_REFERENCE: {
-				BinaryLinkReference binaryLinkReference = (BinaryLinkReference)theEObject;
-				T result = caseBinaryLinkReference(binaryLinkReference);
-				if (result == null) result = caseLinkReference(binaryLinkReference);
-				if (result == null) result = caseExtendibleElementReference(binaryLinkReference);
+			case RelationshipPackage.BINARY_MAPPING_REFERENCE: {
+				BinaryMappingReference binaryMappingReference = (BinaryMappingReference)theEObject;
+				T result = caseBinaryMappingReference(binaryMappingReference);
+				if (result == null) result = caseMappingReference(binaryMappingReference);
+				if (result == null) result = caseExtendibleElementReference(binaryMappingReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -262,32 +235,32 @@ public class RelationshipSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Link</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Link</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Mapping</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLink(Link object) {
+	public T caseMapping(Mapping object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Binary Link</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Binary Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Binary Link</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Binary Mapping</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBinaryLink(BinaryLink object) {
+	public T caseBinaryMapping(BinaryMapping object) {
 		return null;
 	}
 
@@ -303,6 +276,36 @@ public class RelationshipSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModelElementEndpoint(ModelElementEndpoint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mapping Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMappingReference(MappingReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Binary Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Binary Mapping Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBinaryMappingReference(BinaryMappingReference object) {
 		return null;
 	}
 
@@ -337,36 +340,6 @@ public class RelationshipSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Link Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Link Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLinkReference(LinkReference object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Binary Link Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Binary Link Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBinaryLinkReference(BinaryLinkReference object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Model Element Endpoint Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -378,36 +351,6 @@ public class RelationshipSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModelElementEndpointReference(ModelElementEndpointReference object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Logic Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Logic Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLogicElement(LogicElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMAVOElement(MAVOElement object) {
 		return null;
 	}
 
@@ -438,21 +381,6 @@ public class RelationshipSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGenericElement(GenericElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMAVOModel(MAVORoot object) {
 		return null;
 	}
 

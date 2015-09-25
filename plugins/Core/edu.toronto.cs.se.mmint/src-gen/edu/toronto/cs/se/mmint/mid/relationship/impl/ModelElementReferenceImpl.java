@@ -26,13 +26,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -259,17 +259,17 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 		}
 
 		ModelRel modelRelType = (ModelRel) eContainer().eContainer();
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
+		MID typeMID = MultiModelRegistry.getMultiModel(modelRelType);
 		// delete the corresponding reference
-		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) eContainer();
-		List<BinaryLinkReference> delLinkTypeRefs = new ArrayList<BinaryLinkReference>();
+		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) this.eContainer();
+		List<BinaryMappingReference> delMappingTypeRefs = new ArrayList<>();
 		List<ModelElementEndpointReference> delModelElemTypeEndpointRefs = new ArrayList<ModelElementEndpointReference>();
 		for (ModelElementEndpointReference modelElemTypeEndpointRef : getModelElemEndpointRefs()) {
-			LinkReference linkTypeRef = (LinkReference) modelElemTypeEndpointRef.eContainer();
+			MappingReference mappingTypeRef = (MappingReference) modelElemTypeEndpointRef.eContainer();
 			// avoid iterating over the list
-			if (linkTypeRef instanceof BinaryLinkReference) {
-				if (!delLinkTypeRefs.contains(linkTypeRef)) {
-					delLinkTypeRefs.add((BinaryLinkReference) linkTypeRef);
+			if (mappingTypeRef instanceof BinaryMappingReference) {
+				if (!delMappingTypeRefs.contains(mappingTypeRef)) {
+					delMappingTypeRefs.add((BinaryMappingReference) mappingTypeRef);
 				}
 			}
 			else {
@@ -278,15 +278,15 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 				}
 			}
 		}
-		for (BinaryLinkReference linkTypeRef : delLinkTypeRefs) {
-			linkTypeRef.deleteTypeAndReference();
+		for (BinaryMappingReference mappingTypeRef : delMappingTypeRefs) {
+			mappingTypeRef.deleteTypeAndReference();
 		}
 		for (ModelElementEndpointReference modelElemTypeEndpointRef : delModelElemTypeEndpointRefs) {
 			modelElemTypeEndpointRef.deleteTypeAndReference(true);
 		}
 		deleteTypeReference(this, modelTypeEndpointRef);
 		// delete references of the "thing" in subtypes of the container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
 			ModelEndpointReference modelSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
 			ModelElementReference modelElemSubtypeRef = MultiModelTypeHierarchy.getReference(this, modelSubtypeEndpointRef.getModelElemRefs());
 			if (modelElemSubtypeRef.getModelElemEndpointRefs().size() == 0) {
@@ -295,8 +295,8 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 			else {
 				boolean newModifiable = true;
 				for (ModelElementEndpointReference modelElemTypeEndpointRef : modelElemSubtypeRef.getModelElemEndpointRefs()) {
-					LinkReference linkSubtypeRef = (LinkReference) modelElemTypeEndpointRef.eContainer();
-					if (!linkSubtypeRef.isModifiable()) {
+					MappingReference mappingSubtypeRef = (MappingReference) modelElemTypeEndpointRef.eContainer();
+					if (!mappingSubtypeRef.isModifiable()) {
 						newModifiable = false;
 						break;
 					}
@@ -316,13 +316,13 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
-		List<LinkReference> delLinkRefs = new ArrayList<LinkReference>();
+		List<MappingReference> delMappingRefs = new ArrayList<>();
 		List<ModelElementEndpointReference> delModelElemEndpointRefs = new ArrayList<ModelElementEndpointReference>();
 		for (ModelElementEndpointReference modelElemEndpointRef : getModelElemEndpointRefs()) {
-			LinkReference linkRef = (LinkReference) modelElemEndpointRef.eContainer();
-			if (linkRef instanceof BinaryLinkReference) {
-				if (!delLinkRefs.contains(linkRef)) {
-					delLinkRefs.add(linkRef);
+			MappingReference mappingRef = (MappingReference) modelElemEndpointRef.eContainer();
+			if (mappingRef instanceof BinaryMappingReference) {
+				if (!delMappingRefs.contains(mappingRef)) {
+					delMappingRefs.add(mappingRef);
 				}
 			}
 			else {
@@ -331,11 +331,11 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 				}
 			}
 		}
-		for (LinkReference linkRef : delLinkRefs) {
-			linkRef.deleteInstanceAndReference();
+		for (MappingReference delMappingRef : delMappingRefs) {
+			delMappingRef.deleteInstanceAndReference();
 		}
-		for (ModelElementEndpointReference modelElemEndpointRef : delModelElemEndpointRefs) {
-			modelElemEndpointRef.deleteInstanceAndReference(true);
+		for (ModelElementEndpointReference delModelElemEndpointRef : delModelElemEndpointRefs) {
+			delModelElemEndpointRef.deleteInstanceAndReference(true);
 		}
 
 		((ModelEndpointReference) eContainer()).getModelElemRefs().remove(this);

@@ -33,13 +33,13 @@ import org.osgi.service.prefs.BackingStoreException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
@@ -50,8 +50,8 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -93,7 +93,7 @@ public class MMINT implements MMINTConstants {
 	/** The default "heavy" type factory. */
 	static MultiModelHeavyTypeFactory typeFactory;
 	/** The Type MID in memory. */
-	static MultiModel cachedTypeMID;
+	static MID cachedTypeMID;
 	/**	The table for subtyping in the repository. */
 	static Map<String, Set<String>> subtypes;
 	/**	The table for model type conversion in the repository. */
@@ -292,14 +292,14 @@ public class MMINT implements MMINTConstants {
 			}
 		}
 		// link types
-		IConfigurationElement[] linkTypeConfigs = extensionConfig.getChildren(MODELRELS_CHILD_LINKTYPE);
-		for (IConfigurationElement linkTypeConfig : linkTypeConfigs) {
+		IConfigurationElement[] mappingTypeConfigs = extensionConfig.getChildren(MODELRELS_CHILD_LINKTYPE);
+		for (IConfigurationElement linkTypeConfig : mappingTypeConfigs) {
 			binaryTypeConfigs = linkTypeConfig.getChildren(CHILD_BINARYTYPE);
 			isBinary = (binaryTypeConfigs.length == 0) ? false : true;
 			extensionType = new ExtensionType(linkTypeConfig, typeFactory);
-			LinkReference newLinkTypeRef;
+			MappingReference newMappingTypeRef;
 			try {
-				newLinkTypeRef = extensionType.getFactory().createHeavyLinkTypeAndLinkTypeReference(
+				newMappingTypeRef = extensionType.getFactory().createHeavyMappingTypeAndMappingTypeReference(
 					extensionType,
 					isBinary,
 					newModelRelType
@@ -317,13 +317,13 @@ public class MMINT implements MMINTConstants {
 					((Model) MultiModelTypeRegistry.<ModelElement>getType(srcModelElemTypeUri).eContainer()).getUri(),
 					newModelRelType.getModelEndpointRefs()
 				).get(0);
-				((BinaryLinkReference) newLinkTypeRef).addModelElementTypeReference(MultiModelTypeHierarchy.getReference(srcModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), true);
+				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(MultiModelTypeHierarchy.getReference(srcModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), true);
 				tgtModelElemTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_TARGETTYPEURI);
 				containerModelTypeEndpointRef = MultiModelTypeHierarchy.getEndpointReferences(
 					((Model) MultiModelTypeRegistry.<ModelElement>getType(tgtModelElemTypeUri).eContainer()).getUri(),
 					newModelRelType.getModelEndpointRefs()
 				).get(0);
-				((BinaryLinkReference) newLinkTypeRef).addModelElementTypeReference(MultiModelTypeHierarchy.getReference(tgtModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), false);
+				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(MultiModelTypeHierarchy.getReference(tgtModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), false);
 			}
 			// model element type endpoints
 			IConfigurationElement[] modelElemTypeEndpointConfigs = linkTypeConfig.getChildren(MODELRELS_LINKTYPE_CHILD_MODELELEMTYPEENDPOINT);
@@ -344,7 +344,7 @@ public class MMINT implements MMINTConstants {
 					extensionType,
 					newModelElemTypeRef,
 					isBinarySrc,
-					newLinkTypeRef
+					newMappingTypeRef
 				);
 				String lowerBoundString = modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_LOWERBOUND);
 				int lowerBound = (lowerBoundString == null) ? 1 : Integer.parseInt(lowerBoundString);
@@ -577,34 +577,33 @@ public class MMINT implements MMINTConstants {
 	}
 
 	/**
-	 * Creates the necessary structures to support the type hierarchy for a
-	 * multimodel.
+	 * Creates the necessary structures to support the type hierarchy for the Type MID.
 	 * 
-	 * @param multiModel
-	 *            The multimodel from which to extract the type hierarchy.
+	 * @param typeMID
+	 *            The Type MID from which to extract the type hierarchy.
 	 * @param subtypeTable
 	 *            The table for subtyping in the multimodel.
 	 * @param conversionTable
 	 *            The table for model type conversion in the multimodel.
 	 */
-	private static void createTypeHierarchy(MultiModel multiModel, Map<String, Set<String>> subtypeTable, Map<String, Map<String, Set<List<String>>>> conversionTable) {
+	private static void createTypeHierarchy(MID typeMID, Map<String, Set<String>> subtypeTable, Map<String, Map<String, Set<List<String>>>> conversionTable) {
 
 		//TODO MMINT[OO] this should be called directly by the various createSubtype(), when the mechanism will be less expensive
 		subtypeTable.clear();
 		conversionTable.clear();
-		for (ExtendibleElement type : multiModel.getExtendibleTable().values()) {
+		for (ExtendibleElement type : typeMID.getExtendibleTable().values()) {
 			subtypeTable.put(type.getUri(), new HashSet<>());
 			if (!(type instanceof Model)) {
 				continue;
 			}
 			conversionTable.put(type.getUri(), new HashMap<>());
 		}
-		for (ExtendibleElement type : multiModel.getExtendibleTable().values()) {
+		for (ExtendibleElement type : typeMID.getExtendibleTable().values()) {
 			createSubtypeHierarchy(type, type, subtypeTable);
 		}
-		for (Model modelType : MultiModelRegistry.getModels(multiModel)) {
+		for (Model modelType : MultiModelRegistry.getModels(typeMID)) {
 			createConversionHierarchy(modelType, new ArrayList<String>(), conversionTable.get(modelType.getUri()));
-			for (Model modelSubtype : MultiModelTypeHierarchy.getSubtypes(modelType, multiModel)) {
+			for (Model modelSubtype : MultiModelTypeHierarchy.getSubtypes(modelType, typeMID)) {
 				createConversionHierarchy(modelType, new ArrayList<String>(), conversionTable.get(modelSubtype.getUri()));
 			}
 		}
@@ -626,7 +625,7 @@ public class MMINT implements MMINTConstants {
 	 * @param typeMID
 	 *            The multimodel root of the Type MID.
 	 */
-	public static void createTypeHierarchy(MultiModel typeMID) {
+	public static void createTypeHierarchy(MID typeMID) {
 
 		if (typeMID == cachedTypeMID) {
 			createTypeHierarchy();
@@ -681,9 +680,9 @@ public class MMINT implements MMINTConstants {
 	 */
 	private void createDynamicModelTypes() {
 
-		MultiModel multiModel;
+		MID typeMID;
 		try {
-			multiModel = (MultiModel) MultiModelUtils.getModelFileInState(TYPEMID_FILENAME);
+			typeMID = (MID) MultiModelUtils.getModelFileInState(TYPEMID_FILENAME);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "No previous Type MID found, skipping dynamic types", e);
@@ -692,7 +691,7 @@ public class MMINT implements MMINTConstants {
 
 		// do model types first
 		//TODO MMINT[MISC] this probably explains the todo in type hierarchy (are type and type ref iterators really needed, or are the lists already ordered by construction?)
-		for (Model dynamicModelType : MultiModelRegistry.getModels(multiModel)) {
+		for (Model dynamicModelType : MultiModelRegistry.getModels(typeMID)) {
 			if (
 				!(dynamicModelType instanceof ModelRel) &&
 				dynamicModelType.isDynamic() &&
@@ -701,7 +700,7 @@ public class MMINT implements MMINTConstants {
 				createDynamicModelType(dynamicModelType);
 			}
 		}
-		for (ModelRel dynamicModelRelType : MultiModelRegistry.getModelRels(multiModel)) {
+		for (ModelRel dynamicModelRelType : MultiModelRegistry.getModelRels(typeMID)) {
 			if (
 				dynamicModelRelType.isDynamic() &&
 				MultiModelTypeRegistry.getType(dynamicModelRelType.getUri()) == null
@@ -739,7 +738,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	private void initRepository(IExtensionRegistry registry) {
 
-		cachedTypeMID = MIDFactory.eINSTANCE.createMultiModel();
+		cachedTypeMID = MIDFactory.eINSTANCE.createMID();
 		cachedTypeMID.setLevel(MIDLevel.TYPES);
 		bundleTable = new HashMap<>();
 		multipleInheritanceTable = new HashMap<>();
@@ -881,16 +880,16 @@ public class MMINT implements MMINTConstants {
 	}
 
 	/**
-	 * Syncs the Type MID with the repository (TypeMID -> Repository).
+	 * Syncs the Type MID with its cache in memory (TypeMID -> cache).
 	 * 
-	 * @param multiModel
-	 *            The multimodel root of the Type MID.
+	 * @param typeMID
+	 *            The Type MID.
 	 */
-	public static void syncRepository(MultiModel multiModel) {
+	public static void syncRepository(MID typeMID) {
 
 		//TODO MMINT[OO] to store operators' custom code in the mid, we would need them to be ecore-generated, but that's a burden for users
 		//TODO MMINT[OO] review the copy-on-sync mechanism and find an alternative
-		cachedTypeMID = MMINTEcoreUtil.copy(multiModel);
+		cachedTypeMID = MMINTEcoreUtil.copy(typeMID);
 		copySubtypeTable(subtypesMID, subtypes);
 		copyConversionTable(conversionsMID, conversions);
 	}

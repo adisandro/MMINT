@@ -38,4 +38,5 @@
       <eParameters name="instanceMID" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MID"/>
     </eOperations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MAVOModelElement" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//ModelElement"/>
 </ecore:EPackage>

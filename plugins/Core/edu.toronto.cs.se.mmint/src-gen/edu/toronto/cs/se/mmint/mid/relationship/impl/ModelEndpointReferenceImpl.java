@@ -26,10 +26,10 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
@@ -251,13 +251,13 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MultiModelRegistry.getMultiModel(this);
 		String[] uris = MultiModelRegistry.getModelAndModelElementUris(metamodelObj, MIDLevel.TYPES);
 		String modelTypeUri = uris[0];
 		String modelElemTypeUri = uris[1];
 		if (
 			!modelTypeUri.equals(getTargetUri()) && // different model type
-			!MultiModelTypeHierarchy.isSubtypeOf(getTargetUri(), modelTypeUri, multiModel) // different light model type with no metamodel extension
+			!MultiModelTypeHierarchy.isSubtypeOf(getTargetUri(), modelTypeUri, typeMID) // different light model type with no metamodel extension
 		) {
 			return false;
 		}

@@ -11,9 +11,9 @@
  */
 package edu.toronto.cs.se.mmint.mid;
 
-import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 
 /**
@@ -43,7 +43,7 @@ import org.eclipse.emf.common.util.EList;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='typeLevel'"
  * @generated
  */
-public interface ExtendibleElement extends MAVOElement {
+public interface ExtendibleElement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->

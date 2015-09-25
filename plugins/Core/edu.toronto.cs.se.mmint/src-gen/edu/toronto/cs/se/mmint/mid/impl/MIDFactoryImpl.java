@@ -19,17 +19,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.EMFInfo;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,7 +65,7 @@ public class MIDFactoryImpl extends EFactoryImpl implements MIDFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case MIDPackage.MULTI_MODEL: return createMultiModel();
+			case MIDPackage.MID: return createMID();
 			case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: return (EObject)createEStringToExtendibleElementMap();
 			case MIDPackage.MODEL: return createModel();
 			case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT: return createExtendibleElementConstraint();
@@ -130,9 +120,9 @@ public class MIDFactoryImpl extends EFactoryImpl implements MIDFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MultiModel createMultiModel() {
-		MultiModelImpl multiModel = new MultiModelImpl();
-		return multiModel;
+	public MID createMID() {
+		MIDImpl mid = new MIDImpl();
+		return mid;
 	}
 
 	/**

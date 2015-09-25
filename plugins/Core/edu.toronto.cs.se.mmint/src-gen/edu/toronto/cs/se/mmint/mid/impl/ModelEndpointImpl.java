@@ -22,11 +22,11 @@ import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
@@ -283,13 +283,13 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 */
 	protected ModelEndpointReference addSubtypeAndReference(ModelEndpoint newModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(containerModelRelType);
+		MID typeMID = MultiModelRegistry.getMultiModel(containerModelRelType);
 		// create the "thing" and the corresponding reference
 		super.addSubtype(newModelTypeEndpoint, containerModelRelType, containerModelRelType.getName() + MMINT.ENDPOINT_SEPARATOR + targetModelType.getName(), newModelTypeEndpointName);
 		MultiModelTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, targetModelType, isBinarySrc, containerModelRelType);
 		ModelEndpointReference newModelTypeEndpointRef = newModelTypeEndpoint.createTypeReference(true, containerModelRelType);
 		// create references of the "thing" in subtypes of the container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(containerModelRelType, multiModel)) {
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(containerModelRelType, typeMID)) {
 			newModelTypeEndpoint.createTypeReference(false, modelRelSubtype);
 		}
 
@@ -334,7 +334,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			}
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(containerModelRelType);
+		MID instanceMID = MultiModelRegistry.getMultiModel(containerModelRelType);
 		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), containerModelRelType.getModelEndpointRefs());
 		oldModelTypeEndpoint.deleteTypeAndReference(false);
 		// modify the "thing" and the corresponding reference
@@ -349,7 +349,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			oldModelTypeEndpointRef.setSupertypeRef(modelTypeEndpointRef);
 		}
 		// modify references of the "thing" in subtypes of the container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(containerModelRelType, multiModel)) {
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(containerModelRelType, instanceMID)) {
 			ModelEndpointReference modelSubtypeEndpointRef = (modelTypeEndpointRef == null) ?
 				null :
 				MultiModelTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
@@ -367,14 +367,14 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MultiModelRegistry.getMultiModel(this);
 		// delete the "thing" and the corresponding reference
 		ModelRel modelRelType = (ModelRel) eContainer();
 		deleteType(isFullDelete);
 		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), modelRelType.getModelEndpointRefs());
 		modelTypeEndpointRef.deleteTypeReference(isFullDelete);
 		// delete references of the "thing" in subtypes of the container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
 			ModelEndpointReference modelSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), modelRelSubtype.getModelEndpointRefs());
 			modelSubtypeEndpointRef.deleteTypeReference(isFullDelete);
 		}

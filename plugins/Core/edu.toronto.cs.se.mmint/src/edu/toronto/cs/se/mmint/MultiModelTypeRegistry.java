@@ -32,9 +32,9 @@ import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
@@ -42,11 +42,11 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLink;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.ImportModelDialogFilter;
@@ -54,8 +54,8 @@ import edu.toronto.cs.se.mmint.mid.ui.ImportModelDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogLabelProvider;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.mid.ui.NewGenericTypeDialogContentProvider;
-import edu.toronto.cs.se.mmint.mid.ui.NewLinkReferenceDialogContentProvider;
-import edu.toronto.cs.se.mmint.mid.ui.NewLinkTypeReferenceDialogContentProvider;
+import edu.toronto.cs.se.mmint.mid.ui.NewMappingReferenceDialogContentProvider;
+import edu.toronto.cs.se.mmint.mid.ui.NewMappingTypeReferenceDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelElementEndpointReferenceDialogContentProvider;
@@ -140,29 +140,29 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets the list of link types in a model relationship type.
+	 * Gets the list of mapping types in a model relationship type.
 	 * 
 	 * @param modelRelType
-	 *            The model relationship type that contains the link types.
-	 * @return The list of link types in the model relationship type.
+	 *            The model relationship type that contains the mapping types.
+	 * @return The list of mapping types in the model relationship type.
 	 */
-	public static EList<Link> getLinkTypes(ModelRel modelRelType) {
+	public static EList<Mapping> getMappingTypes(ModelRel modelRelType) {
 
-		return modelRelType.getLinks();
+		return modelRelType.getMappings();
 	}
 
 	/**
-	 * Gets the list of references to link types in a model relationship type.
+	 * Gets the list of references to mapping types in a model relationship type.
 	 * 
 	 * @param modelRelType
 	 *            The model relationship type that contains the references to
-	 *            link types.
-	 * @return The list of references to link types in the model relationship
+	 *            mapping types.
+	 * @return The list of references to mapping types in the model relationship
 	 *         type.
 	 */
-	public static EList<LinkReference> getLinkTypeReferences(ModelRel modelRelType) {
+	public static EList<MappingReference> getLinkTypeReferences(ModelRel modelRelType) {
 
-		return modelRelType.getLinkRefs();
+		return modelRelType.getMappingRefs();
 	}
 
 	/**
@@ -304,29 +304,29 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets a tree dialog that shows all model types in a multimodel, in order
+	 * Gets a tree dialog that shows all model types in the Type MID, in order
 	 * to create a new "light" model type.
 	 * 
-	 * @param multiModel
-	 *            The multimodel that contains the model types.
+	 * @param typeMID
+	 *            The Type MID.
 	 * @return The tree dialog to create a new "light" model type.
 	 */
-	public static MultiModelTreeSelectionDialog getModelTypeCreationDialog(MultiModel multiModel) {
+	public static MultiModelTreeSelectionDialog getModelTypeCreationDialog(MID typeMID) {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
 			new MultiModelDialogLabelProvider(),
 			new NewModelTypeDialogContentProvider(),
-			multiModel
+			typeMID
 		);
 
 		return dialog;
 	}
 
 	/**
-	 * Gets a tree dialog that shows all model relationship types in a
-	 * multimodel, in order to create a new "light" model relationship type.
+	 * Gets a tree dialog that shows all model relationship types in the Type MID, in order to create a new "light"
+	 * model relationship type.
 	 * 
 	 * @param newSrcModelType
 	 *            The model type that is going to be the target of the source
@@ -336,12 +336,12 @@ public class MultiModelTypeRegistry {
 	 *            The model type that is going to be the target of the target
 	 *            model type endpoint, null if the model relationship type to be
 	 *            created is not binary.
-	 * @param multiModel
-	 *            The multimodel that contains the model relationship types.
+	 * @param typeMID
+	 *            The Type MID.
 	 * 
 	 * @return The tree dialog to create a new "light" model relationship type.
 	 */
-	public static MultiModelTreeSelectionDialog getModelRelTypeCreationDialog(Model newSrcModelType, Model newTgtModelType, MultiModel multiModel) {
+	public static MultiModelTreeSelectionDialog getModelRelTypeCreationDialog(Model newSrcModelType, Model newTgtModelType, MID typeMID) {
 
 		List<String> modelRelTypeUris = null;
 
@@ -350,7 +350,7 @@ public class MultiModelTypeRegistry {
 			String newTgtUri = newTgtModelType.getUri();
 			modelRelTypeUris = new ArrayList<String>();
 
-			for (ModelRel modelRelType : MultiModelRegistry.getModelRels(multiModel)) {
+			for (ModelRel modelRelType : MultiModelRegistry.getModelRels(typeMID)) {
 				// binary can only inherit from root or binary
 				if (MultiModelTypeHierarchy.isRootType(modelRelType)) {
 					modelRelTypeUris.add(modelRelType.getUri());
@@ -364,9 +364,9 @@ public class MultiModelTypeRegistry {
 				// new model rel type with same endpoints or overriding one or two endpoints
 				if (
 					(newSrcUri.equals(srcUri) && newTgtUri.equals(tgtUri)) ||
-					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, multiModel) && newTgtUri.equals(tgtUri)) ||
-					(newSrcUri.equals(srcUri) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, multiModel)) ||
-					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, multiModel) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, multiModel))
+					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && newTgtUri.equals(tgtUri)) ||
+					(newSrcUri.equals(srcUri) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID)) ||
+					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID))
 				) {
 					modelRelTypeUris.add(modelRelType.getUri());
 				}
@@ -378,37 +378,37 @@ public class MultiModelTypeRegistry {
 			shell,
 			new MultiModelDialogLabelProvider(),
 			new NewModelRelTypeDialogContentProvider(modelRelTypeUris),
-			multiModel
+			typeMID
 		);
 
 		return dialog;
 	}
 
 	/**
-	 * Gets a tree dialog that shows all link types in a model relationship
-	 * type, in order to create a new link and a reference to it.
+	 * Gets a tree dialog that shows all mapping types in a model relationship
+	 * type, in order to create a new mapping and a reference to it.
 	 * 
 	 * @param targetSrcModelElemRef
 	 *            The reference to the model element that is going to be the
-	 *            target of the source model element endpoint, null if the link
+	 *            target of the source model element endpoint, null if the mapping
 	 *            to be created is not binary.
 	 * @param targetTgtModelElemRef
 	 *            The reference to the model element that is going to be the
-	 *            target of the target model element endpoint, null if the link
+	 *            target of the target model element endpoint, null if the mapping
 	 *            to be created is not binary.
 	 * @param modelRel
-	 *            The model relationship that will contain the link to be
+	 *            The model relationship that will contain the mapping to be
 	 *            created.
-	 * @return The tree dialog to create a new link.
+	 * @return The tree dialog to create a new mapping.
 	 */
-	public static MultiModelTreeSelectionDialog getLinkReferenceCreationDialog(ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef, ModelRel modelRel) {
+	public static MultiModelTreeSelectionDialog getMappingReferenceCreationDialog(ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef, ModelRel modelRel) {
 
 		ModelRel modelRelType = modelRel.getMetatype();
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
 			new MultiModelDialogLabelProvider(),
-			new NewLinkReferenceDialogContentProvider(MultiModelConstraintChecker.getAllowedLinkTypeReferences(modelRelType, targetSrcModelElemRef, targetTgtModelElemRef)),
+			new NewMappingReferenceDialogContentProvider(MultiModelConstraintChecker.getAllowedMappingTypeReferences(modelRelType, targetSrcModelElemRef, targetTgtModelElemRef)),
 			modelRelType
 		);
 
@@ -416,73 +416,73 @@ public class MultiModelTypeRegistry {
 	}
 
 	/**
-	 * Gets a tree dialog that shows all model element type endpoints in a link
+	 * Gets a tree dialog that shows all model element type endpoints in a mapping
 	 * type, in order to create a new model element endpoint.
 	 * 
-	 * @param linkRef
-	 *            The reference to the link that will contain the model element
+	 * @param mappingRef
+	 *            The reference to the mapping that will contain the model element
 	 *            endpoint to be created.
 	 * @param modelElemTypeEndpointUris
 	 *            The list of allowed uris of the model element type endpoints,
 	 *            can be null if all are allowed.
 	 * @return The tree dialog to create a new model element endpoint.
 	 */
-	public static MultiModelTreeSelectionDialog getModelElementEndpointCreationDialog(LinkReference linkRef, List<String> modelElemTypeEndpointUris) {
+	public static MultiModelTreeSelectionDialog getModelElementEndpointCreationDialog(MappingReference mappingRef, List<String> modelElemTypeEndpointUris) {
 
-		Link linkType = linkRef.getObject().getMetatype();
+		Mapping mappingType = mappingRef.getObject().getMetatype();
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
 			new MultiModelDialogLabelProvider(),
 			new NewModelElementEndpointReferenceDialogContentProvider(modelElemTypeEndpointUris),
-			linkType
+			mappingType
 		);
 
 		return dialog;
 	}
 
 	/**
-	 * Gets a tree dialog that shows all link types in a model relationship
-	 * type, in order to create a new "light" link type and a reference to it.
+	 * Gets a tree dialog that shows all mapping types in a model relationship
+	 * type, in order to create a new "light" mapping type and a reference to it.
 	 * 
 	 * @param newSrcModelElemTypeRef
 	 *            The reference to the model element type that is going to be
 	 *            the target of the source model element type endpoint, null if
-	 *            the link type to be created is not binary.
+	 *            the mapping type to be created is not binary.
 	 * @param newTgtModelElemTypeRef
 	 *            The reference to the model element type that is going to be
 	 *            the target of the target model element type endpoint, null if
-	 *            the link type to be created is not binary.
+	 *            the mapping type to be created is not binary.
 	 * @param modelRelType
-	 *            The model relationship type that contains the link types.
-	 * @return The tree dialog to create a new "light" link type.
+	 *            The model relationship type that contains the mapping types.
+	 * @return The tree dialog to create a new "light" mapping type.
 	 */
-	public static MultiModelTreeSelectionDialog getLinkTypeReferenceCreationDialog(ModelElementReference newSrcModelElemTypeRef, ModelElementReference newTgtModelElemTypeRef, ModelRel modelRelType) {
+	public static MultiModelTreeSelectionDialog getMappingTypeReferenceCreationDialog(ModelElementReference newSrcModelElemTypeRef, ModelElementReference newTgtModelElemTypeRef, ModelRel modelRelType) {
 
 		List<String> linkTypeUris = null;
 
 		if (newSrcModelElemTypeRef != null && newTgtModelElemTypeRef != null) {
-			MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
+			MID typeMID = MultiModelRegistry.getMultiModel(modelRelType);
 			String newSrcUri = newSrcModelElemTypeRef.getUri();
 			String newTgtUri = newTgtModelElemTypeRef.getUri();
 			linkTypeUris = new ArrayList<String>();
 
-			for (LinkReference linkTypeRef : modelRelType.getLinkRefs()) {
+			for (MappingReference mappingTypeRef : modelRelType.getMappingRefs()) {
 				// binary can only inherit from root or binary
-				if (!(linkTypeRef instanceof BinaryLinkReference)) {
+				if (!(mappingTypeRef instanceof BinaryMappingReference)) {
 					continue;
 				}
-				BinaryLink linkType = ((BinaryLinkReference) linkTypeRef).getObject();
-				String srcUri = linkType.getModelElemEndpoints().get(0).getTargetUri();
-				String tgtUri = linkType.getModelElemEndpoints().get(1).getTargetUri();
+				BinaryMapping mappingType = ((BinaryMappingReference) mappingTypeRef).getObject();
+				String srcUri = mappingType.getModelElemEndpoints().get(0).getTargetUri();
+				String tgtUri = mappingType.getModelElemEndpoints().get(1).getTargetUri();
 				// new link type with same endpoints or overriding one or two endpoints
 				if (
 					(newSrcUri.equals(srcUri) && newTgtUri.equals(tgtUri)) ||
-					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, multiModel) && newTgtUri.equals(tgtUri)) ||
-					(newSrcUri.equals(srcUri) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, multiModel)) ||
-					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, multiModel) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, multiModel))
+					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && newTgtUri.equals(tgtUri)) ||
+					(newSrcUri.equals(srcUri) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID)) ||
+					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID))
 				) {
-					linkTypeUris.add(linkTypeRef.getUri());
+					linkTypeUris.add(mappingTypeRef.getUri());
 				}
 			}
 		}
@@ -491,7 +491,7 @@ public class MultiModelTypeRegistry {
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
 			new MultiModelDialogLabelProvider(),
-			new NewLinkTypeReferenceDialogContentProvider(modelRelType, linkTypeUris),
+			new NewMappingTypeReferenceDialogContentProvider(modelRelType, linkTypeUris),
 			modelRelType
 		);
 
@@ -501,7 +501,7 @@ public class MultiModelTypeRegistry {
 	public static MultiModelTreeSelectionDialog getGenericTypeCreationDialog(GenericEndpoint genericSuperTypeEndpoint, EList<OperatorInput> inputs) {
 
 		Operator operatorType = (Operator) genericSuperTypeEndpoint.eContainer();
-		MultiModel typeMID = MultiModelRegistry.getMultiModel(operatorType);
+		MID typeMID = MultiModelRegistry.getMultiModel(operatorType);
 		GenericElement genericSuperType = genericSuperTypeEndpoint.getTarget();
 		List<GenericElement> genericTypes = MultiModelTypeHierarchy.getSubtypes(genericSuperType);
 		genericTypes.add(0, genericSuperType);

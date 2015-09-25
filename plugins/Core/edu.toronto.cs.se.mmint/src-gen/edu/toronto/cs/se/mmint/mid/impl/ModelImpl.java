@@ -40,24 +40,19 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
-
-import edu.toronto.cs.se.mavo.MAVODecision;
-import edu.toronto.cs.se.mavo.MAVORoot;
-import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
@@ -76,8 +71,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#isInc <em>Inc</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getDecisions <em>Decisions</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getOrigin <em>Origin</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getFileExtension <em>File Extension</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getEditors <em>Editors</em>}</li>
@@ -88,36 +81,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  * @generated
  */
 public class ModelImpl extends GenericElementImpl implements Model {
-	/**
-	 * The default value of the '{@link #isInc() <em>Inc</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isInc()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean INC_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isInc() <em>Inc</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isInc()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean inc = INC_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getDecisions() <em>Decisions</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDecisions()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<MAVODecision> decisions;
-
 	/**
 	 * The default value of the '{@link #getOrigin() <em>Origin</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -205,39 +168,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	@Override
 	protected EClass eStaticClass() {
 		return MIDPackage.Literals.MODEL;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isInc() {
-		return inc;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setInc(boolean newInc) {
-		boolean oldInc = inc;
-		inc = newInc;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__INC, oldInc, inc));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<MAVODecision> getDecisions() {
-		if (decisions == null) {
-			decisions = new EObjectContainmentEList<MAVODecision>(MAVODecision.class, this, MIDPackage.MODEL__DECISIONS);
-		}
-		return decisions;
 	}
 
 	/**
@@ -346,8 +276,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MIDPackage.MODEL__DECISIONS:
-				return ((InternalEList<?>)getDecisions()).basicRemove(otherEnd, msgs);
 			case MIDPackage.MODEL__MODEL_ELEMS:
 				return ((InternalEList<?>)getModelElems()).basicRemove(otherEnd, msgs);
 		}
@@ -362,10 +290,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MIDPackage.MODEL__INC:
-				return isInc();
-			case MIDPackage.MODEL__DECISIONS:
-				return getDecisions();
 			case MIDPackage.MODEL__ORIGIN:
 				return getOrigin();
 			case MIDPackage.MODEL__FILE_EXTENSION:
@@ -389,13 +313,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MIDPackage.MODEL__INC:
-				setInc((Boolean)newValue);
-				return;
-			case MIDPackage.MODEL__DECISIONS:
-				getDecisions().clear();
-				getDecisions().addAll((Collection<? extends MAVODecision>)newValue);
-				return;
 			case MIDPackage.MODEL__ORIGIN:
 				setOrigin((ModelOrigin)newValue);
 				return;
@@ -426,12 +343,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MIDPackage.MODEL__INC:
-				setInc(INC_EDEFAULT);
-				return;
-			case MIDPackage.MODEL__DECISIONS:
-				getDecisions().clear();
-				return;
 			case MIDPackage.MODEL__ORIGIN:
 				setOrigin(ORIGIN_EDEFAULT);
 				return;
@@ -459,10 +370,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MIDPackage.MODEL__INC:
-				return inc != INC_EDEFAULT;
-			case MIDPackage.MODEL__DECISIONS:
-				return decisions != null && !decisions.isEmpty();
 			case MIDPackage.MODEL__ORIGIN:
 				return origin != ORIGIN_EDEFAULT;
 			case MIDPackage.MODEL__FILE_EXTENSION:
@@ -483,50 +390,11 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == MAVORoot.class) {
-			switch (derivedFeatureID) {
-				case MIDPackage.MODEL__INC: return MAVOPackage.MAVO_MODEL__INC;
-				case MIDPackage.MODEL__DECISIONS: return MAVOPackage.MAVO_MODEL__DECISIONS;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == MAVORoot.class) {
-			switch (baseFeatureID) {
-				case MAVOPackage.MAVO_MODEL__INC: return MIDPackage.MODEL__INC;
-				case MAVOPackage.MAVO_MODEL__DECISIONS: return MIDPackage.MODEL__DECISIONS;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ExtendibleElement.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL___GET_METATYPE;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
-			}
-		}
-		if (baseClass == MAVORoot.class) {
-			switch (baseOperationID) {
-				default: return -1;
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -566,9 +434,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MIDPackage.MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL:
+			case MIDPackage.MODEL___CREATE_INSTANCE__STRING_MID:
 				try {
-					return createInstance((String)arguments.get(0), (ModelOrigin)arguments.get(1), (MultiModel)arguments.get(2));
+					return createInstance((String)arguments.get(0), (MID)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -580,37 +448,30 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL:
+			case MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID:
 				try {
-					return createInstanceAndEditor((String)arguments.get(0), (ModelOrigin)arguments.get(1), (MultiModel)arguments.get(2));
+					return createInstanceAndEditor((String)arguments.get(0), (MID)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MIDPackage.MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL:
+			case MIDPackage.MODEL___IMPORT_INSTANCE__STRING_MID:
 				try {
-					return createMAVOInstance((String)arguments.get(0), (ModelOrigin)arguments.get(1), (MultiModel)arguments.get(2));
+					return importInstance((String)arguments.get(0), (MID)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MIDPackage.MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL:
+			case MIDPackage.MODEL___COPY_INSTANCE__MODEL_STRING_MID:
 				try {
-					return createMAVOInstanceAndEditor((String)arguments.get(0), (ModelOrigin)arguments.get(1), (MultiModel)arguments.get(2));
+					return copyInstance((Model)arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MIDPackage.MODEL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL:
+			case MIDPackage.MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID:
 				try {
-					return copyMAVOInstance((Model)arguments.get(0), (String)arguments.get(1), (MultiModel)arguments.get(2));
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-			case MIDPackage.MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL:
-				try {
-					return copyMAVOInstanceAndEditor((Model)arguments.get(0), (String)arguments.get(1), (Boolean)arguments.get(2), (MultiModel)arguments.get(3));
+					return copyInstanceAndEditor((Model)arguments.get(0), (String)arguments.get(1), (Boolean)arguments.get(2), (MID)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -660,9 +521,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (inc: ");
-		result.append(inc);
-		result.append(", origin: ");
+		result.append(" (origin: ");
 		result.append(origin);
 		result.append(", fileExtension: ");
 		result.append(fileExtension);
@@ -694,9 +553,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	protected void addSubtype(Model newModelType, String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MultiModelRegistry.getMultiModel(this);
 		super.addSubtype(newModelType, this, null, newModelTypeName);
-		MultiModelTypeFactory.addModelType(newModelType, constraintLanguage, constraintImplementation, multiModel);
+		MultiModelTypeFactory.addModelType(newModelType, constraintLanguage, constraintImplementation, typeMID);
 		newModelType.setOrigin(ModelOrigin.CREATED);
 
 		if (isMetamodelExtension) {
@@ -796,7 +655,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		MultiModel typeMID = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MultiModelRegistry.getMultiModel(this);
 		// delete the "thing"
 		for (ModelElement modelElemType : getModelElems()) {
 			super.delete(modelElemType.getUri(), typeMID);
@@ -958,7 +817,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
-		MultiModel instanceMID = MultiModelRegistry.getMultiModel(this);
+		MID instanceMID = MultiModelRegistry.getMultiModel(this);
 		Editor newEditor = null;
 		//TODO MMINT[EDITOR] prioritize editors list instead of running twice?
 		// all diagrams are tried..
@@ -1003,6 +862,17 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		}
 
 		return newModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Model importInstance(String modelUri, MID instanceMID) throws MMINTException {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -1123,7 +993,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
-		MultiModel instanceMID = MultiModelRegistry.getMultiModel(this);
+		MID instanceMID = MultiModelRegistry.getMultiModel(this);
 		for (ModelElement modelElem : getModelElems()) {
 			super.delete(modelElem.getUri(), instanceMID);
 		}

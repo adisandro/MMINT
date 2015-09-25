@@ -24,8 +24,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -39,7 +37,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.editor.impl.EditorPackageImpl;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
@@ -60,7 +57,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass multiModelEClass = null;
+	private EClass midEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -192,9 +189,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
 		isInited = true;
 
-		// Initialize simple dependencies
-		MAVOPackage.eINSTANCE.eClass();
-
 		// Obtain or create and register interdependencies
 		RelationshipPackageImpl theRelationshipPackage = (RelationshipPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI) instanceof RelationshipPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI) : RelationshipPackage.eINSTANCE);
 		EditorPackageImpl theEditorPackage = (EditorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EditorPackage.eNS_URI) instanceof EditorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EditorPackage.eNS_URI) : EditorPackage.eINSTANCE);
@@ -235,8 +229,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMultiModel() {
-		return multiModelEClass;
+	public EClass getMID() {
+		return midEClass;
 	}
 
 	/**
@@ -244,8 +238,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMultiModel_Models() {
-		return (EReference)multiModelEClass.getEStructuralFeatures().get(0);
+	public EReference getMID_Models() {
+		return (EReference)midEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -253,8 +247,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMultiModel_Editors() {
-		return (EReference)multiModelEClass.getEStructuralFeatures().get(1);
+	public EReference getMID_Editors() {
+		return (EReference)midEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -262,8 +256,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMultiModel_Operators() {
-		return (EReference)multiModelEClass.getEStructuralFeatures().get(2);
+	public EReference getMID_Operators() {
+		return (EReference)midEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -271,8 +265,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMultiModel_ExtendibleTable() {
-		return (EReference)multiModelEClass.getEStructuralFeatures().get(3);
+	public EReference getMID_ExtendibleTable() {
+		return (EReference)midEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -280,8 +274,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMultiModel_Level() {
-		return (EAttribute)multiModelEClass.getEStructuralFeatures().get(4);
+	public EAttribute getMID_Level() {
+		return (EAttribute)midEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -577,7 +571,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__CreateInstance__String_ModelOrigin_MultiModel() {
+	public EOperation getModel__CreateInstance__String_MID() {
 		return modelEClass.getEOperations().get(5);
 	}
 
@@ -595,7 +589,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__CreateInstanceAndEditor__String_ModelOrigin_MultiModel() {
+	public EOperation getModel__CreateInstanceAndEditor__String_MID() {
 		return modelEClass.getEOperations().get(7);
 	}
 
@@ -604,7 +598,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__CreateMAVOInstance__String_ModelOrigin_MultiModel() {
+	public EOperation getModel__ImportInstance__String_MID() {
 		return modelEClass.getEOperations().get(8);
 	}
 
@@ -613,7 +607,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__CreateMAVOInstanceAndEditor__String_ModelOrigin_MultiModel() {
+	public EOperation getModel__CopyInstance__Model_String_MID() {
 		return modelEClass.getEOperations().get(9);
 	}
 
@@ -622,7 +616,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__CopyMAVOInstance__Model_String_MultiModel() {
+	public EOperation getModel__CopyInstanceAndEditor__Model_String_boolean_MID() {
 		return modelEClass.getEOperations().get(10);
 	}
 
@@ -631,7 +625,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__CopyMAVOInstanceAndEditor__Model_String_boolean_MultiModel() {
+	public EOperation getModel__DeleteInstance() {
 		return modelEClass.getEOperations().get(11);
 	}
 
@@ -640,7 +634,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__DeleteInstance() {
+	public EOperation getModel__GetEMFInstanceRoot() {
 		return modelEClass.getEOperations().get(12);
 	}
 
@@ -649,7 +643,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__GetEMFInstanceRoot() {
+	public EOperation getModel__OpenType() {
 		return modelEClass.getEOperations().get(13);
 	}
 
@@ -658,17 +652,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__OpenType() {
-		return modelEClass.getEOperations().get(14);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getModel__OpenInstance() {
-		return modelEClass.getEOperations().get(15);
+		return modelEClass.getEOperations().get(14);
 	}
 
 	/**
@@ -1059,12 +1044,12 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		multiModelEClass = createEClass(MULTI_MODEL);
-		createEReference(multiModelEClass, MULTI_MODEL__MODELS);
-		createEReference(multiModelEClass, MULTI_MODEL__EDITORS);
-		createEReference(multiModelEClass, MULTI_MODEL__OPERATORS);
-		createEReference(multiModelEClass, MULTI_MODEL__EXTENDIBLE_TABLE);
-		createEAttribute(multiModelEClass, MULTI_MODEL__LEVEL);
+		midEClass = createEClass(MID);
+		createEReference(midEClass, MID__MODELS);
+		createEReference(midEClass, MID__EDITORS);
+		createEReference(midEClass, MID__OPERATORS);
+		createEReference(midEClass, MID__EXTENDIBLE_TABLE);
+		createEAttribute(midEClass, MID__LEVEL);
 
 		eStringToExtendibleElementMapEClass = createEClass(ESTRING_TO_EXTENDIBLE_ELEMENT_MAP);
 		createEAttribute(eStringToExtendibleElementMapEClass, ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY);
@@ -1101,13 +1086,12 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(modelEClass, MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN);
 		createEOperation(modelEClass, MODEL___DELETE_TYPE);
 		createEOperation(modelEClass, MODEL___GET_EMF_TYPE_ROOT);
-		createEOperation(modelEClass, MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL);
+		createEOperation(modelEClass, MODEL___CREATE_INSTANCE__STRING_MID);
 		createEOperation(modelEClass, MODEL___CREATE_INSTANCE_EDITOR);
-		createEOperation(modelEClass, MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL);
-		createEOperation(modelEClass, MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL);
-		createEOperation(modelEClass, MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL);
-		createEOperation(modelEClass, MODEL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL);
-		createEOperation(modelEClass, MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL);
+		createEOperation(modelEClass, MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID);
+		createEOperation(modelEClass, MODEL___IMPORT_INSTANCE__STRING_MID);
+		createEOperation(modelEClass, MODEL___COPY_INSTANCE__MODEL_STRING_MID);
+		createEOperation(modelEClass, MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID);
 		createEOperation(modelEClass, MODEL___DELETE_INSTANCE);
 		createEOperation(modelEClass, MODEL___GET_EMF_INSTANCE_ROOT);
 		createEOperation(modelEClass, MODEL___OPEN_TYPE);
@@ -1190,7 +1174,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		RelationshipPackage theRelationshipPackage = (RelationshipPackage)EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI);
 		EditorPackage theEditorPackage = (EditorPackage)EPackage.Registry.INSTANCE.getEPackage(EditorPackage.eNS_URI);
 		OperatorPackage theOperatorPackage = (OperatorPackage)EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI);
-		MAVOPackage theMAVOPackage = (MAVOPackage)EPackage.Registry.INSTANCE.getEPackage(MAVOPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theRelationshipPackage);
@@ -1202,22 +1185,19 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		multiModelEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
-		extendibleElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 		extendibleElementEndpointEClass.getESuperTypes().add(this.getExtendibleElement());
 		modelEClass.getESuperTypes().add(this.getGenericElement());
-		modelEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
 		modelElementEClass.getESuperTypes().add(this.getExtendibleElement());
 		modelEndpointEClass.getESuperTypes().add(this.getExtendibleElementEndpoint());
 		genericElementEClass.getESuperTypes().add(this.getExtendibleElement());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(multiModelEClass, MultiModel.class, "MultiModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMultiModel_Models(), this.getModel(), null, "models", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMultiModel_Editors(), theEditorPackage.getEditor(), null, "editors", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMultiModel_Operators(), theOperatorPackage.getOperator(), null, "operators", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMultiModel_ExtendibleTable(), this.getEStringToExtendibleElementMap(), null, "extendibleTable", null, 0, -1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMultiModel_Level(), this.getMIDLevel(), "level", null, 1, 1, MultiModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(midEClass, edu.toronto.cs.se.mmint.mid.MID.class, "MID", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMID_Models(), this.getModel(), null, "models", null, 0, -1, edu.toronto.cs.se.mmint.mid.MID.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMID_Editors(), theEditorPackage.getEditor(), null, "editors", null, 0, -1, edu.toronto.cs.se.mmint.mid.MID.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMID_Operators(), theOperatorPackage.getOperator(), null, "operators", null, 0, -1, edu.toronto.cs.se.mmint.mid.MID.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMID_ExtendibleTable(), this.getEStringToExtendibleElementMap(), null, "extendibleTable", null, 0, -1, edu.toronto.cs.se.mmint.mid.MID.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMID_Level(), this.getMIDLevel(), "level", null, 1, 1, edu.toronto.cs.se.mmint.mid.MID.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eStringToExtendibleElementMapEClass, Map.Entry.class, "EStringToExtendibleElementMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEStringToExtendibleElementMap_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1280,44 +1260,35 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		op = initEOperation(getModel__GetEMFTypeRoot(), ecorePackage.getEPackage(), "getEMFTypeRoot", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
-		op = initEOperation(getModel__CreateInstance__String_ModelOrigin_MultiModel(), this.getModel(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModel__CreateInstance__String_MID(), this.getModel(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getMultiModel(), "containerMultiModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getMID(), "instanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
 		op = initEOperation(getModel__CreateInstanceEditor(), theEditorPackage.getEditor(), "createInstanceEditor", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
-		op = initEOperation(getModel__CreateInstanceAndEditor__String_ModelOrigin_MultiModel(), this.getModel(), "createInstanceAndEditor", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModel__CreateInstanceAndEditor__String_MID(), this.getModel(), "createInstanceAndEditor", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getMultiModel(), "containerMultiModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getMID(), "instanceMID", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
-		op = initEOperation(getModel__CreateMAVOInstance__String_ModelOrigin_MultiModel(), this.getModel(), "createMAVOInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "newModelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getMultiModel(), "containerMultiModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModel__ImportInstance__String_MID(), this.getModel(), "importInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "modelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getMID(), "instanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
-		op = initEOperation(getModel__CreateMAVOInstanceAndEditor__String_ModelOrigin_MultiModel(), this.getModel(), "createMAVOInstanceAndEditor", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "newModelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModelOrigin(), "origin", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getMultiModel(), "containerMultiModel", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, this.getMMINTException());
-
-		op = initEOperation(getModel__CopyMAVOInstance__Model_String_MultiModel(), this.getModel(), "copyMAVOInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModel__CopyInstance__Model_String_MID(), this.getModel(), "copyInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModel(), "origModel", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelName", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getMultiModel(), "containerMultiModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getMID(), "instanceMID", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
-		op = initEOperation(getModel__CopyMAVOInstanceAndEditor__Model_String_boolean_MultiModel(), this.getModel(), "copyMAVOInstanceAndEditor", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModel__CopyInstanceAndEditor__Model_String_boolean_MID(), this.getModel(), "copyInstanceAndEditor", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModel(), "origModel", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "copyDiagram", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getMultiModel(), "containerMultiModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getMID(), "instanceMID", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
 		op = initEOperation(getModel__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);

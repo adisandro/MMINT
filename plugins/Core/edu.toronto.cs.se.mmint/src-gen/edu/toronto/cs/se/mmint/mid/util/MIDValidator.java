@@ -19,18 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.EMFInfo;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.GenericElement;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -104,8 +93,8 @@ public class MIDValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
-			case MIDPackage.MULTI_MODEL:
-				return validateMultiModel((MultiModel)value, diagnostics, context);
+			case MIDPackage.MID:
+				return validateMID((MID)value, diagnostics, context);
 			case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP:
 				return validateEStringToExtendibleElementMap((Map.Entry<?, ?>)value, diagnostics, context);
 			case MIDPackage.EXTENDIBLE_ELEMENT:
@@ -140,8 +129,8 @@ public class MIDValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMultiModel(MultiModel multiModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(multiModel, diagnostics, context);
+	public boolean validateMID(MID mid, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(mid, diagnostics, context);
 	}
 
 	/**

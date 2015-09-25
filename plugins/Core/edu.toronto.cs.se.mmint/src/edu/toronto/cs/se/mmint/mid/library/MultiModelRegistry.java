@@ -35,18 +35,18 @@ import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -197,20 +197,20 @@ public class MultiModelRegistry {
 	 *            The element contained in the multimodel.
 	 * @return The multimodel that contains the element.
 	 */
-	public static @Nullable MultiModel getMultiModel(@NonNull ExtendibleElement element) {
+	public static @Nullable MID getMultiModel(@NonNull ExtendibleElement element) {
 
-		MultiModel multiModel = null;
+		MID mid = null;
 		if (element instanceof Model || element instanceof ModelRel || element instanceof Editor || element instanceof Operator) {
-			multiModel = (MultiModel) element.eContainer();
+			mid = (MID) element.eContainer();
 		}
-		else if (element instanceof ModelElement || element instanceof Link || element instanceof ModelEndpoint) {
-			multiModel = (MultiModel) element.eContainer().eContainer();
+		else if (element instanceof ModelElement || element instanceof Mapping || element instanceof ModelEndpoint) {
+			mid = (MID) element.eContainer().eContainer();
 		}
 		else if (element instanceof ModelElementEndpoint) {
-			multiModel = (MultiModel) element.eContainer().eContainer().eContainer();
+			mid = (MID) element.eContainer().eContainer().eContainer();
 		}
 
-		return multiModel;
+		return mid;
 	}
 
 	/**
@@ -220,25 +220,25 @@ public class MultiModelRegistry {
 	 *            The reference to the element contained in the multimodel.
 	 * @return The multimodel that contains the reference to the element.
 	 */
-	public static MultiModel getMultiModel(ExtendibleElementReference elementRef) {
+	public static MID getMultiModel(ExtendibleElementReference elementRef) {
 
 		return getMultiModel(elementRef.getObject());
 	}
 
 	/**
-	 * Gets an extendible element from a multimodel.
+	 * Gets an extendible element from a MID.
 	 * 
 	 * @param uri
 	 *            The uri of the element.
-	 * @param multiModel
-	 *            The multimodel that contains the element.
+	 * @param mid
+	 *            The MID that contains the element.
 	 * @return The element, null if the uri is not found or found not to be of
 	 *         the desired class of elements.
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends ExtendibleElement> @Nullable T getExtendibleElement(@NonNull String uri, @NonNull MultiModel multiModel) {
+	public static <T extends ExtendibleElement> @Nullable T getExtendibleElement(@NonNull String uri, @NonNull MID mid) {
 
-		ExtendibleElement element = multiModel.getExtendibleTable().get(uri);
+		ExtendibleElement element = mid.getExtendibleTable().get(uri);
 		if (element == null) {
 			return null;
 		}
@@ -260,28 +260,28 @@ public class MultiModelRegistry {
 	}
 
 	/**
-	 * Gets the models in a multimodel.
+	 * Gets the models in a MID.
 	 * 
-	 * @param multiModel
-	 *            The multimodel that contains the models.
+	 * @param mid
+	 *            The MID that contains the models.
 	 * @return The list of models.
 	 */
-	public static EList<Model> getModels(MultiModel multiModel) {
+	public static EList<Model> getModels(MID mid) {
 
-		return multiModel.getModels();
+		return mid.getModels();
 	}
 
 	/**
-	 * Gets the model relationships in a multimodel.
+	 * Gets the model relationships in a MID.
 	 * 
-	 * @param multiModel
-	 *            The multimodel that contains the model relationships.
+	 * @param mid
+	 *            The MID that contains the model relationships.
 	 * @return The list of model relationships.
 	 */
-	public static EList<ModelRel> getModelRels(MultiModel multiModel) {
+	public static EList<ModelRel> getModelRels(MID mid) {
 
 		EList<ModelRel> modelRels = new BasicEList<ModelRel>();
-		for (Model model : getModels(multiModel)) {
+		for (Model model : getModels(mid)) {
 			if (model instanceof ModelRel) {
 				modelRels.add((ModelRel) model);
 			}
@@ -291,29 +291,29 @@ public class MultiModelRegistry {
 	}
 
 	/**
-	 * Gets the list of registered operators in a multimodel.
+	 * Gets the list of registered operators in a MID.
 	 * 
-	 * @param multiModel
-	 *            The multimodel.
+	 * @param mid
+	 *            The MID.
 	 * 
 	 * @return The list of registered operators.
 	 */
-	public static EList<Operator> getOperators(MultiModel multiModel) {
+	public static EList<Operator> getOperators(MID mid) {
 	
-		return multiModel.getOperators();
+		return mid.getOperators();
 	}
 
 	/**
-	 * Gets the list of registered editors in a multimodel.
+	 * Gets the list of registered editors in a MID.
 	 * 
-	 * @param multiModel
-	 *            The multimodel.
+	 * @param mid
+	 *            The MID.
 	 * 
 	 * @return The list of registered editors.
 	 */
-	public static EList<Editor> getEditors(MultiModel multiModel) {
+	public static EList<Editor> getEditors(MID mid) {
 	
-		return multiModel.getEditors();
+		return mid.getEditors();
 	}
 
 	public static @Nullable Diagram getModelDiagram(@NonNull Model model) {

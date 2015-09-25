@@ -20,7 +20,7 @@ import org.eclipse.jface.viewers.Viewer;
 
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.MID;
 
 public class NewGenericTypeDialogContentProvider implements ITreeContentProvider {
 
@@ -64,7 +64,7 @@ public class NewGenericTypeDialogContentProvider implements ITreeContentProvider
 	@Override
 	public Object[] getChildren(Object parentElement) {
 
-		if (parentElement instanceof MultiModel) {
+		if (parentElement instanceof MID) {
 			List<GenericElement> genericTypes = new ArrayList<>();
 			for (GenericElement genericType : MultiModelTypeRegistry.getGenericTypes()) {
 				if (!filteredGenericTypes.contains(genericType)) {
@@ -97,7 +97,7 @@ public class NewGenericTypeDialogContentProvider implements ITreeContentProvider
 	@Override
 	public boolean hasChildren(Object element) {
 
-		if (element instanceof MultiModel) {
+		if (element instanceof MID) {
 			return !MultiModelTypeRegistry.getGenericTypes().isEmpty();
 		}
 

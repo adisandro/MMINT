@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import edu.toronto.cs.se.mavo.impl.MAVOElementImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
@@ -32,16 +32,16 @@ import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
@@ -65,7 +65,7 @@ import edu.toronto.cs.se.mmint.repository.MMINTConstants;
  *
  * @generated
  */
-public abstract class ExtendibleElementImpl extends MAVOElementImpl implements ExtendibleElement {
+public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container implements ExtendibleElement {
 	/**
 	 * The cached value of the '{@link #getSupertype() <em>Supertype</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -690,7 +690,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 			if (this instanceof ModelRel && ((ModelRel) this).getModelEndpoints().isEmpty()) {
 				return;
 			}
-			if (this instanceof Link && ((Link) this).getModelElemEndpoints().isEmpty()) {
+			if (this instanceof Mapping && ((Mapping) this).getModelElemEndpoints().isEmpty()) {
 				return;
 			}
 			// second stop condition: endpoints
@@ -771,8 +771,8 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 */
 	protected void addSubtype(ExtendibleElement newType, String newTypeUri, String newTypeName) throws MMINTException {
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
-		MultiModelTypeFactory.addType(newType, this, newTypeUri, newTypeName, multiModel);
+		MID typeMID = MultiModelRegistry.getMultiModel(this);
+		MultiModelTypeFactory.addType(newType, this, newTypeUri, newTypeName, typeMID);
 		newType.setDynamic(true);
 	}
 
@@ -805,19 +805,19 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	}
 
 	/**
-	 * Deletes an extendible element from a multimodel.
+	 * Deletes an extendible element from a MID.
 	 * 
 	 * @param uri
 	 *            The uri of the extendible element to delete.
-	 * @param multiModel
-	 *            The multimodel that contains the extendible element.
+	 * @param typeMID
+	 *            The MID that contains the extendible element.
 	 * @return The deleted extendible element, null if its uri was not
 	 *         registered in the multimodel.
 	 * @generated NOT
 	 */
-	protected ExtendibleElement delete(String uri, MultiModel multiModel) {
+	protected ExtendibleElement delete(String uri, MID typeMID) {
 
-		return multiModel.getExtendibleTable().removeKey(uri);
+		return typeMID.getExtendibleTable().removeKey(uri);
 	}
 
 	/**
@@ -829,8 +829,8 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 */
 	protected void deleteType() throws MMINTException {
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
-		delete(getUri(), multiModel);
+		MID typeMID = MultiModelRegistry.getMultiModel(this);
+		this.delete(getUri(), typeMID);
 	}
 
 	/**
@@ -870,19 +870,19 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 *            The uri of the new instance.
 	 * @param newInstanceName
 	 *            The name of the new instance.
-	 * @param multiModel
+	 * @param instanceMID
 	 *            An Instance MID.
 	 * @throws MMINTException
 	 *             If the uri of the new instance is already registered in the
 	 *             Instance MID.
 	 * @generated NOT
 	 */
-	protected void addInstance(ExtendibleElement newInstance, String newInstanceUri, String newInstanceName, MultiModel multiModel) throws MMINTException {
+	protected void addInstance(ExtendibleElement newInstance, String newInstanceUri, String newInstanceName, MID instanceMID) throws MMINTException {
 
-		if (multiModel.getExtendibleTable().containsKey(newInstanceUri)) {
+		if (instanceMID.getExtendibleTable().containsKey(newInstanceUri)) {
 			throw new MMINTException("Instance with uri " + newInstanceUri + " is already registered");
 		}
-		multiModel.getExtendibleTable().put(newInstanceUri, newInstance);
+		instanceMID.getExtendibleTable().put(newInstanceUri, newInstance);
 
 		addBasicInstance(newInstance, newInstanceUri, newInstanceName);
 	}
@@ -918,8 +918,8 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 	 */
 	protected void deleteInstance() throws MMINTException {
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
-		delete(getUri(), multiModel);
+		MID instanceMID = MultiModelRegistry.getMultiModel(this);
+		delete(getUri(), instanceMID);
 	}
 
 } //ExtendibleElementImpl

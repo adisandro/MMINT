@@ -17,16 +17,16 @@ import java.util.List;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
-public class NewLinkReferenceDialogContentProvider implements ITreeContentProvider {
+public class NewMappingReferenceDialogContentProvider implements ITreeContentProvider {
 
-	private List<String> allowedLinkTypeUris;
+	private List<String> allowedMappingTypeUris;
 
-	public NewLinkReferenceDialogContentProvider(List<String> allowedLinkTypeUris) {
+	public NewMappingReferenceDialogContentProvider(List<String> allowedMappingTypeUris) {
 
-		this.allowedLinkTypeUris = allowedLinkTypeUris;
+		this.allowedMappingTypeUris = allowedMappingTypeUris;
 	}
 
 	/**
@@ -63,13 +63,13 @@ public class NewLinkReferenceDialogContentProvider implements ITreeContentProvid
 	public Object[] getChildren(Object parentElement) {
 
 		if (parentElement instanceof ModelRel) {
-			List<LinkReference> linkTypeRefs = new ArrayList<LinkReference>();
-			for (LinkReference linkTypeRef : ((ModelRel) parentElement).getLinkRefs()) {
-				if (allowedLinkTypeUris == null || allowedLinkTypeUris.contains(linkTypeRef.getUri())) {
-					linkTypeRefs.add(linkTypeRef);
+			List<MappingReference> mappingTypeRefs = new ArrayList<>();
+			for (MappingReference mappingTypeRef : ((ModelRel) parentElement).getMappingRefs()) {
+				if (allowedMappingTypeUris == null || allowedMappingTypeUris.contains(mappingTypeRef.getUri())) {
+					mappingTypeRefs.add(mappingTypeRef);
 				}
 			}
-			return linkTypeRefs.toArray();
+			return mappingTypeRefs.toArray();
 		}
 
 		return new Object[] {};
@@ -81,8 +81,8 @@ public class NewLinkReferenceDialogContentProvider implements ITreeContentProvid
 	@Override
 	public Object getParent(Object element) {
 
-		if (element instanceof LinkReference) {
-			return ((LinkReference) element).eContainer();
+		if (element instanceof MappingReference) {
+			return ((MappingReference) element).eContainer();
 		}
 
 		return null;
@@ -95,7 +95,7 @@ public class NewLinkReferenceDialogContentProvider implements ITreeContentProvid
 	public boolean hasChildren(Object element) {
 
 		if (element instanceof ModelRel) {
-			return !((ModelRel) element).getLinkRefs().isEmpty();
+			return !((ModelRel) element).getMappingRefs().isEmpty();
 		}
 
 		return false;

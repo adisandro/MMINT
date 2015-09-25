@@ -30,22 +30,21 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -122,16 +121,16 @@ public class MultiModelConstraintChecker {
 	}
 
 	/**
-	 * Checks if a multimodel (the root of a MID diagram) is a TYPES multimodel
-	 * or an INSTANCES multimodel.
+	 * Checks if a MID is a Type MID
+	 * or an Instance MID.
 	 * 
-	 * @param multiModel
-	 *            The multimodel to be checked.
+	 * @param mid
+	 *            The MID to be checked.
 	 * @return True for INSTANCES level, false for TYPES level.
 	 */
-	public static boolean isInstancesLevel(MultiModel multiModel) {
+	public static boolean isInstancesLevel(MID mid) {
 
-		if (multiModel.getLevel() == MIDLevel.TYPES) {
+		if (mid.getLevel() == MIDLevel.TYPES) {
 			return false;
 		}
 		return true;
@@ -139,8 +138,8 @@ public class MultiModelConstraintChecker {
 
 	public static boolean isAllowedModelType(ModelRel modelRelType) {
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
-		List<ModelRel> modelRelSubtypes = MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel);
+		MID typeMID = MultiModelRegistry.getMultiModel(modelRelType);
+		List<ModelRel> modelRelSubtypes = MultiModelTypeHierarchy.getSubtypes(modelRelType, typeMID);
 
 		return (modelRelSubtypes.isEmpty()) ? true : false;
 	}	
@@ -154,18 +153,18 @@ public class MultiModelConstraintChecker {
 		ModelRel modelRelTypeSuper = (ModelRel) modelRelType.getSupertype();
 		// checks that the new model type is the same of the super model rel type or is overriding it
 		if (!MultiModelTypeHierarchy.isRootType(modelRelTypeSuper)) {
-			MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
+			MID typeMID = MultiModelRegistry.getMultiModel(modelRelType);
 			if (newSrcModelType != null) {
 				String srcUri = modelRelTypeSuper.getModelEndpoints().get(0).getTargetUri();
 				String newSrcUri = newSrcModelType.getUri();
-				if (!newSrcUri.equals(srcUri) && !MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, multiModel)) {
+				if (!newSrcUri.equals(srcUri) && !MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID)) {
 					return false;
 				}
 			}
 			if (newTgtModelType != null) {
 				String tgtUri = modelRelTypeSuper.getModelEndpoints().get(1).getTargetUri();
 				String newTgtUri = newTgtModelType.getUri();
-				if (!newTgtUri.equals(tgtUri) && !MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, multiModel)) {
+				if (!newTgtUri.equals(tgtUri) && !MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID)) {
 					return false;
 				}
 			}
@@ -174,27 +173,27 @@ public class MultiModelConstraintChecker {
 		return true;
 	}
 
-	public static boolean isAllowedModelElementTypeEndpointReference(BinaryLinkReference linkTypeRef, ModelElementReference newSrcModelElemTypeRef, ModelElementReference newTgtModelElemTypeRef) {
+	public static boolean isAllowedModelElementTypeEndpointReference(BinaryMappingReference mappingTypeRef, ModelElementReference newSrcModelElemTypeRef, ModelElementReference newTgtModelElemTypeRef) {
 
 		if (newSrcModelElemTypeRef == null && newTgtModelElemTypeRef == null) { // model element type reference not added yet
 			return true;
 		}
 
-		Link linkTypeSuper = linkTypeRef.getObject().getSupertype();
+		Mapping mappingTypeSuper = mappingTypeRef.getObject().getSupertype();
 		// checks that the new model element type is the same of the super link type or is overriding it
-		if (!MultiModelTypeHierarchy.isRootType(linkTypeSuper)) {
-			MultiModel multiModel = MultiModelRegistry.getMultiModel(linkTypeRef);
+		if (!MultiModelTypeHierarchy.isRootType(mappingTypeSuper)) {
+			MID typeMID = MultiModelRegistry.getMultiModel(mappingTypeRef);
 			if (newSrcModelElemTypeRef != null) {
-				String srcUri = linkTypeSuper.getModelElemEndpoints().get(0).getTargetUri();
+				String srcUri = mappingTypeSuper.getModelElemEndpoints().get(0).getTargetUri();
 				String newSrcUri = newSrcModelElemTypeRef.getUri();
-				if (!newSrcUri.equals(srcUri) && !MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, multiModel)) {
+				if (!newSrcUri.equals(srcUri) && !MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID)) {
 					return false;
 				}
 			}
 			if (newTgtModelElemTypeRef != null) {
-				String tgtUri = linkTypeSuper.getModelElemEndpoints().get(1).getTargetUri();
+				String tgtUri = mappingTypeSuper.getModelElemEndpoints().get(1).getTargetUri();
 				String newTgtUri = newTgtModelElemTypeRef.getUri();
-				if (!newTgtUri.equals(tgtUri) && !MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, multiModel)) {
+				if (!newTgtUri.equals(tgtUri) && !MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID)) {
 					return false;
 				}
 			}
@@ -242,15 +241,15 @@ public class MultiModelConstraintChecker {
 		return modelRelTypeUris;
 	}
 
-	public static List<String> getAllowedLinkTypeReferences(ModelRel modelRelType, ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef) {
+	public static List<String> getAllowedMappingTypeReferences(ModelRel modelRelType, ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef) {
 
 		List<String> linkTypeUris = new ArrayList<String>();
-		for (LinkReference linkTypeRef : modelRelType.getLinkRefs()) {
+		for (MappingReference mappingTypeRef : modelRelType.getMappingRefs()) {
 			boolean isAllowed = true, isAllowedSrc = false, isAllowedTgt = false;
 			HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
 			//TODO MMINT[INTROSPECTION] consider direction for binary?
 			if (targetSrcModelElemRef != null) {
-				for (ModelElementEndpointReference modelElemTypeEndpointRef : linkTypeRef.getObject().getModelElemEndpointRefs()) {
+				for (ModelElementEndpointReference modelElemTypeEndpointRef : mappingTypeRef.getObject().getModelElemEndpointRefs()) {
 					if (MultiModelConstraintChecker.isAllowedModelElementEndpointReference(modelElemTypeEndpointRef.getObject(), targetSrcModelElemRef, cardinalityTable)) {
 						MultiModelRegistry.addEndpointCardinality(modelElemTypeEndpointRef.getUri(), cardinalityTable);
 						isAllowedSrc = true;
@@ -260,7 +259,7 @@ public class MultiModelConstraintChecker {
 				isAllowed = isAllowed && isAllowedSrc;
 			}
 			if (targetTgtModelElemRef != null) {
-				for (ModelElementEndpointReference modelElemTypeEndpointRef : linkTypeRef.getObject().getModelElemEndpointRefs()) {
+				for (ModelElementEndpointReference modelElemTypeEndpointRef : mappingTypeRef.getObject().getModelElemEndpointRefs()) {
 					if (MultiModelConstraintChecker.isAllowedModelElementEndpointReference(modelElemTypeEndpointRef.getObject(), targetTgtModelElemRef, cardinalityTable)) {
 						MultiModelRegistry.addEndpointCardinality(modelElemTypeEndpointRef.getUri(), cardinalityTable);
 						isAllowedTgt = true;
@@ -270,7 +269,7 @@ public class MultiModelConstraintChecker {
 				isAllowed = isAllowed && isAllowedTgt;
 			}
 			if (isAllowed) {
-				linkTypeUris.add(linkTypeRef.getUri());
+				linkTypeUris.add(mappingTypeRef.getUri());
 			}
 		}
 		// check for overrides
@@ -365,7 +364,7 @@ public class MultiModelConstraintChecker {
 		return false;
 	}
 
-	public static List<String> getAllowedModelElementEndpointReferences(LinkReference linkRef, ModelElementEndpointReference oldModelElemEndpointRef, ModelElementReference newModelElemRef) {
+	public static List<String> getAllowedModelElementEndpointReferences(MappingReference mappingRef, ModelElementEndpointReference oldModelElemEndpointRef, ModelElementReference newModelElemRef) {
 
 		if (newModelElemRef == null) { // model element reference not added yet
 			return new ArrayList<String>();
@@ -374,7 +373,7 @@ public class MultiModelConstraintChecker {
 		List<String> modelElemTypeEndpointUris = null;
 		// count existing instances
 		HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
-		for (ModelElementEndpointReference modelElemEndpointRef : linkRef.getModelElemEndpointRefs()) {
+		for (ModelElementEndpointReference modelElemEndpointRef : mappingRef.getModelElemEndpointRefs()) {
 			MultiModelRegistry.addEndpointCardinality(modelElemEndpointRef.getObject().getMetatypeUri(), cardinalityTable);
 		}
 		// possibly subtract model element endpoint to be replaced
@@ -387,7 +386,7 @@ public class MultiModelConstraintChecker {
 			}
 		}
 		// check allowance
-		for (ModelElementEndpoint modelElemTypeEndpoint : linkRef.getObject().getMetatype().getModelElemEndpoints()) {
+		for (ModelElementEndpoint modelElemTypeEndpoint : mappingRef.getObject().getMetatype().getModelElemEndpoints()) {
 			if (isAllowedModelElementEndpointReference(modelElemTypeEndpoint, newModelElemRef, cardinalityTable)) {
 				if (modelElemTypeEndpointUris == null) {
 					modelElemTypeEndpointUris = new ArrayList<String>();
@@ -399,13 +398,13 @@ public class MultiModelConstraintChecker {
 		return modelElemTypeEndpointUris;
 	}
 
-	public static boolean areAllowedModelElementEndpointReferences(Link link, Link newLinkType) {
+	public static boolean areAllowedModelElementEndpointReferences(Mapping mapping, Mapping newMappingType) {
 
 		HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
-		for (ModelElementEndpointReference modelElemEndpointRef : link.getModelElemEndpointRefs()) {
+		for (ModelElementEndpointReference modelElemEndpointRef : mapping.getModelElemEndpointRefs()) {
 			boolean isAllowed = false;
 			//TODO MMINT[INTROSPECTION] order of visit might affect the result, should be from the most specific to the less
-			for (ModelElementEndpointReference modelElemTypeEndpointRef : newLinkType.getModelElemEndpointRefs()) {
+			for (ModelElementEndpointReference modelElemTypeEndpointRef : newMappingType.getModelElemEndpointRefs()) {
 				if (isAllowed = isAllowedModelElementEndpointReference(modelElemTypeEndpointRef.getObject(), modelElemEndpointRef.getModelElemRef(), cardinalityTable)) {
 					MultiModelRegistry.addEndpointCardinality(modelElemTypeEndpointRef.getUri(), cardinalityTable);
 					break;
@@ -492,16 +491,16 @@ public class MultiModelConstraintChecker {
 		}
 		// look for UML stereotypes
 		//TODO MMINT[UML] review
-		if (modelObj instanceof NamedElement) {
-			for (Stereotype stereotype : ((NamedElement) modelObj).getApplicableStereotypes()) {
-				if (
-					modelElemTypeEInfo.getClassName().equals(stereotype.getName()) ||
-					stereotype.getName().equals(MAVOUtils.MAVO_UML_STEREOTYPE_EQUIVALENCE.get(modelElemTypeEInfo.getClassName()))
-				) {
-					return true;
-				}
-			}
-		}
+//		if (modelObj instanceof NamedElement) {
+//			for (Stereotype stereotype : ((NamedElement) modelObj).getApplicableStereotypes()) {
+//				if (
+//					modelElemTypeEInfo.getClassName().equals(stereotype.getName()) ||
+//					stereotype.getName().equals(MAVOUtils.MAVO_UML_STEREOTYPE_EQUIVALENCE.get(modelElemTypeEInfo.getClassName()))
+//				) {
+//					return true;
+//				}
+//			}
+//		}
 
 		return false;
 	}
@@ -522,21 +521,21 @@ public class MultiModelConstraintChecker {
 		return null;
 	}
 
-	public static Link getAllowedLinkType(Link link) {
+	public static Mapping getAllowedMappingType(Mapping mapping) {
 
-		ModelRel modelRelType = ((ModelRel) link.eContainer()).getMetatype();
-linkTypes:
-		for (Link linkType : modelRelType.getLinks()) {
+		ModelRel modelRelType = ((ModelRel) mapping.eContainer()).getMetatype();
+mappingTypes:
+		for (Mapping mappingType : modelRelType.getMappings()) {
 			HashSet<String> allowedModelElemTypes = new HashSet<String>();
-			for (ModelElementEndpoint modelElemTypeEndpoint : linkType.getModelElemEndpoints()) {
+			for (ModelElementEndpoint modelElemTypeEndpoint : mappingType.getModelElemEndpoints()) {
 				allowedModelElemTypes.add(modelElemTypeEndpoint.getTargetUri());
 			}
-			for (ModelElementEndpoint modelElemEndpoint : link.getModelElemEndpoints()) {				
+			for (ModelElementEndpoint modelElemEndpoint : mapping.getModelElemEndpoints()) {				
 				if (!allowedModelElemTypes.contains(modelElemEndpoint.getTarget().getMetatypeUri())) {
-					continue linkTypes;
+					continue mappingTypes;
 				}
 			}
-			return linkType;
+			return mappingType;
 		}
 
 		return null;

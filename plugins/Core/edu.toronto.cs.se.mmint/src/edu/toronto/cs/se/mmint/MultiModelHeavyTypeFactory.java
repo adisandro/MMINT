@@ -35,8 +35,8 @@ import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -499,39 +499,39 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	}
 
 	/**
-	 * Creates and adds a "heavy" link type and a reference to it to the
+	 * Creates and adds a "heavy" mapping type and a reference to it to the
 	 * repository.
 	 * 
 	 * @param extensionType
-	 *            The extension info for the new link type.
+	 *            The extension info for the new mapping type.
 	 * @param isBinary
-	 *            True if the new link type is binary, false otherwise.
+	 *            True if the new mapping type is binary, false otherwise.
 	 * @param modelRelType
-	 *            The model relationship type that will contain the new link
+	 *            The model relationship type that will contain the new mapping
 	 *            type.
-	 * @return The created reference to the new link type.
+	 * @return The created reference to the new mapping type.
 	 * @throws MMINTException
-	 *             If the uri of the new link type is already registered in the
+	 *             If the uri of the new mapping type is already registered in the
 	 *             repository.
 	 */
-	public LinkReference createHeavyLinkTypeAndLinkTypeReference(ExtensionType extensionType, boolean isBinary, ModelRel modelRelType) throws MMINTException {
+	public MappingReference createHeavyMappingTypeAndMappingTypeReference(ExtensionType extensionType, boolean isBinary, ModelRel modelRelType) throws MMINTException {
 
-		Link newLinkType;
+		Mapping newMappingType;
 		if (extensionType.getNewType() == null) {
-			newLinkType = (isBinary) ?
-				RelationshipFactory.eINSTANCE.createBinaryLink() :
-				RelationshipFactory.eINSTANCE.createLink();
+			newMappingType = (isBinary) ?
+				RelationshipFactory.eINSTANCE.createBinaryMapping() :
+				RelationshipFactory.eINSTANCE.createMapping();
 		}
 		else {
-			newLinkType = (Link) extensionType.getNewType();
+			newMappingType = (Mapping) extensionType.getNewType();
 		}
-		Link linkType = getSupertype(newLinkType, extensionType.getUri(), extensionType.getSupertypeUri());
-		addHeavyType(newLinkType, linkType, extensionType.getUri(), extensionType.getName());
-		addLinkType(newLinkType, linkType, modelRelType);
-		LinkReference linkTypeRef = MultiModelTypeHierarchy.getReference(extensionType.getSupertypeUri(), modelRelType.getLinkRefs());
-		LinkReference newLinkTypeRef = newLinkType.createTypeReference(linkTypeRef, true, modelRelType);
+		Mapping mappingType = getSupertype(newMappingType, extensionType.getUri(), extensionType.getSupertypeUri());
+		addHeavyType(newMappingType, mappingType, extensionType.getUri(), extensionType.getName());
+		addMappingType(newMappingType, mappingType, modelRelType);
+		MappingReference mappingTypeRef = MultiModelTypeHierarchy.getReference(extensionType.getSupertypeUri(), modelRelType.getMappingRefs());
+		MappingReference newMappingTypeRef = newMappingType.createTypeReference(mappingTypeRef, true, modelRelType);
 
-		return newLinkTypeRef;
+		return newMappingTypeRef;
 	}
 
 	/**
@@ -544,41 +544,41 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *            The new reference to the new model element type that is the
 	 *            target of the new model element type endpoint.
 	 * @param isBinarySrc
-	 *            (Only for a binary link type container) True if the model
-	 *            element type endpoint is the source in the binary link type
+	 *            (Only for a binary mapping type container) True if the model
+	 *            element type endpoint is the source in the binary mapping type
 	 *            container, false otherwise.
-	 * @param containerLinkTypeRef
-	 *            The reference to the link type that will contain the new model
+	 * @param containerMappingTypeRef
+	 *            The reference to the mapping type that will contain the new model
 	 *            element type endpoint.
 	 * @return The created reference to the new model element type endpoint.
 	 * @throws MMINTException
 	 *             If the uri of the new model element type endpoint is already
 	 *             registered in the repository.
 	 */
-	public ModelElementEndpointReference createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(ExtensionType extensionType, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc, LinkReference containerLinkTypeRef) throws MMINTException {
+	public ModelElementEndpointReference createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(ExtensionType extensionType, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc, MappingReference containerMappingTypeRef) throws MMINTException {
 
 		ModelElementEndpoint newModelElemTypeEndpoint = (extensionType.getNewType() == null) ?
 			RelationshipFactory.eINSTANCE.createModelElementEndpoint() :
 			(ModelElementEndpoint) extensionType.getNewType();
-		Link containerLinkType = containerLinkTypeRef.getObject();
+		Mapping containerMappingType = containerMappingTypeRef.getObject();
 		newModelElemTypeEndpoint.setTarget(targetModelElemTypeRef.getObject()); // needed to get the right root uri
 		ModelElementEndpoint modelElemTypeEndpoint = getSupertype(newModelElemTypeEndpoint, extensionType.getUri(), extensionType.getSupertypeUri());
 		addHeavyType(newModelElemTypeEndpoint, modelElemTypeEndpoint, extensionType.getUri(), extensionType.getName());
-		addModelElementTypeEndpoint(newModelElemTypeEndpoint, targetModelElemTypeRef.getObject(), containerLinkType);
+		addModelElementTypeEndpoint(newModelElemTypeEndpoint, targetModelElemTypeRef.getObject(), containerMappingType);
 		ModelElementEndpointReference modelElemTypeEndpointRef = null;
 		if (modelElemTypeEndpoint != null) { // may be root
-			LinkReference newLinkTypeRefSuper = MultiModelTypeHierarchy.getReference(((Link) modelElemTypeEndpoint.eContainer()).getUri(), ((ModelRel) containerLinkTypeRef.eContainer()).getLinkRefs());
-			if (newLinkTypeRefSuper != null) {
-				modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), newLinkTypeRefSuper.getModelElemEndpointRefs());
+			MappingReference newMappingTypeRefSuper = MultiModelTypeHierarchy.getReference(((Mapping) modelElemTypeEndpoint.eContainer()).getUri(), ((ModelRel) containerMappingTypeRef.eContainer()).getMappingRefs());
+			if (newMappingTypeRefSuper != null) {
+				modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), newMappingTypeRefSuper.getModelElemEndpointRefs());
 			}
 		}
-		ModelElementEndpointReference newModelElemTypeEndpointRef = newModelElemTypeEndpoint.createTypeReference(modelElemTypeEndpointRef, targetModelElemTypeRef, true, isBinarySrc, containerLinkTypeRef);
-		addModelElementTypeEndpointReference(newModelElemTypeEndpointRef, containerLinkType);
+		ModelElementEndpointReference newModelElemTypeEndpointRef = newModelElemTypeEndpoint.createTypeReference(modelElemTypeEndpointRef, targetModelElemTypeRef, true, isBinarySrc, containerMappingTypeRef);
+		addModelElementTypeEndpointReference(newModelElemTypeEndpointRef, containerMappingType);
 		// copy from supertype
-		Link linkTypeSuper = containerLinkType.getSupertype();
-		if (linkTypeSuper != null && !MultiModelTypeHierarchy.isRootType(linkTypeSuper)) {
-			for (ModelElementEndpointReference modelElemTypeEndpointRefSuper : linkTypeSuper.getModelElemEndpointRefs()) {
-				addModelElementTypeEndpointReference(modelElemTypeEndpointRefSuper, containerLinkType);
+		Mapping mappingTypeSuper = containerMappingType.getSupertype();
+		if (mappingTypeSuper != null && !MultiModelTypeHierarchy.isRootType(mappingTypeSuper)) {
+			for (ModelElementEndpointReference modelElemTypeEndpointRefSuper : mappingTypeSuper.getModelElemEndpointRefs()) {
+				addModelElementTypeEndpointReference(modelElemTypeEndpointRefSuper, containerMappingType);
 			}
 		}
 

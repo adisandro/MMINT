@@ -23,12 +23,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -315,7 +315,7 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
 
 		if (isFullDelete) {
 			setModelElemRef(null);
-			((LinkReference) eContainer()).getModelElemEndpointRefs().remove(this);
+			((MappingReference) this.eContainer()).getModelElemEndpointRefs().remove(this);
 		}
 	}
 
@@ -328,25 +328,25 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
-		LinkReference linkTypeRef = (LinkReference) eContainer();
-		ModelRel modelRelType = (ModelRel) linkTypeRef.eContainer();
+		MID typeMID = MultiModelRegistry.getMultiModel(this);
+		MappingReference mappingTypeRef = (MappingReference) this.eContainer();
+		ModelRel modelRelType = (ModelRel) mappingTypeRef.eContainer();
 		// delete the "thing" and the corresponding reference
 		getObject().deleteType(isFullDelete);
 		if (isFullDelete) {
-			linkTypeRef.getObject().getModelElemEndpointRefs().remove(this);
+			mappingTypeRef.getObject().getModelElemEndpointRefs().remove(this);
 		}
 		deleteTypeReference(isFullDelete);
 		// delete references of the "thing" in subtypes of the container's container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
-			LinkReference linkSubtypeRef = MultiModelTypeHierarchy.getReference(linkTypeRef, modelRelSubtype.getLinkRefs());
-			ModelElementEndpointReference modelElemSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(this, linkSubtypeRef.getModelElemEndpointRefs());
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
+			MappingReference mappingSubtypeRef = MultiModelTypeHierarchy.getReference(mappingTypeRef, modelRelSubtype.getMappingRefs());
+			ModelElementEndpointReference modelElemSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(this, mappingSubtypeRef.getModelElemEndpointRefs());
 			modelElemSubtypeEndpointRef.deleteTypeReference(isFullDelete);
 		}
 		// delete references of the "thing" in subtypes of the container
-		for (Link linkSubtype : MultiModelTypeHierarchy.getSubtypes(linkTypeRef.getObject(), multiModel)) {
+		for (Mapping mappingSubtype : MultiModelTypeHierarchy.getSubtypes(mappingTypeRef.getObject(), typeMID)) {
 			if (isFullDelete) {
-				linkSubtype.getModelElemEndpointRefs().remove(this);
+				mappingSubtype.getModelElemEndpointRefs().remove(this);
 			}
 		}
 	}
@@ -360,12 +360,12 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
 			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
-		LinkReference linkRef = (LinkReference) eContainer();
-		Link link = linkRef.getObject();
+		MappingReference mappingRef = (MappingReference) this.eContainer();
+		Mapping mapping = mappingRef.getObject();
 		if (isFullDelete) {
-			link.getModelElemEndpoints().remove(getObject());
-			linkRef.getModelElemEndpointRefs().remove(this);
-			link.getModelElemEndpointRefs().remove(this);
+			mapping.getModelElemEndpoints().remove(getObject());
+			mappingRef.getModelElemEndpointRefs().remove(this);
+			mapping.getModelElemEndpointRefs().remove(this);
 			setModelElemRef(null);
 		}
 	}

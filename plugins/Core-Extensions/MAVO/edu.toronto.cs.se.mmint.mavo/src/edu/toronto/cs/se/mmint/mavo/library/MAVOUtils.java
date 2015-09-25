@@ -160,16 +160,16 @@ public class MAVOUtils {
 		}
 	}
 
-	private static void initializeMAVOModel(MAVORoot rootModelObj, Model model) {
+	private static void initializeMAVOModel(MAVORoot rootModelObj, MAVOModel mavoModel) {
 
-		model.setInc(rootModelObj.isInc());
+		mavoModel.setInc(rootModelObj.isInc());
 	}
 
-	private static void initializeMAVOModel(org.eclipse.uml2.uml.Model rootUmlModelObj, Model model) {
+	private static void initializeMAVOModel(org.eclipse.uml2.uml.Model rootUmlModelObj, MAVOModel mavoModel) {
 
 		Stereotype stereotype = rootUmlModelObj.getAppliedStereotype(UML_INC_STEREOTYPE);
 		if (stereotype != null) {
-			model.setInc(true);
+			mavoModel.setInc(true);
 		}
 	}
 
@@ -185,29 +185,29 @@ public class MAVOUtils {
 		}
 	}
 
-	private static void initializeMAVOModelElement(MAVOElement modelObj, ModelElement modelElem) {
+	private static void initializeMAVOModelElement(MAVOElement modelObj, MAVOModelElement mavoModelElem) {
 
-		modelElem.setMay(modelObj.isMay());
-		modelElem.setSet(modelObj.isSet());
-		modelElem.setVar(modelObj.isVar());
-		modelElem.setFormulaVariable(modelObj.getFormulaVariable());
+		mavoModelElem.setMay(modelObj.isMay());
+		mavoModelElem.setSet(modelObj.isSet());
+		mavoModelElem.setVar(modelObj.isVar());
+		mavoModelElem.setFormulaVariable(modelObj.getFormulaVariable());
 	}
 
-	private static void initializeMAVOModelElement(NamedElement umlModelObj, ModelElement modelElem) {
+	private static void initializeMAVOModelElement(NamedElement umlModelObj, MAVOModelElement mavoModelElem) {
 
 		Stereotype stereotype = umlModelObj.getAppliedStereotype(UML_MAY_STEREOTYPE);
 		if (stereotype != null) {
-			modelElem.setMay(true);
+			mavoModelElem.setMay(true);
 		}
 		stereotype = umlModelObj.getAppliedStereotype(UML_SET_STEREOTYPE);
 		if (stereotype != null) {
-			modelElem.setSet(true);
+			mavoModelElem.setSet(true);
 		}
 		stereotype = umlModelObj.getAppliedStereotype(UML_VAR_STEREOTYPE);
 		if (stereotype != null) {
-			modelElem.setVar(true);
+			mavoModelElem.setVar(true);
 		}
-		modelElem.setFormulaVariable(umlModelObj.getName().toLowerCase());
+		mavoModelElem.setFormulaVariable(umlModelObj.getName().toLowerCase());
 	}
 
 	public static void initializeMAVOModelElement(EObject modelObj, ModelElement modelElem) {

@@ -27,15 +27,14 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
@@ -325,8 +324,8 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		}
 
 		ModelRel modelRelType = (ModelRel) containerModelTypeEndpointRef.eContainer();
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelRelType);
-		ModelElement newModelElemType = MultiModelRegistry.getExtendibleElement(newModelElemTypeUri, multiModel);
+		MID typeMID = MultiModelRegistry.getMultiModel(modelRelType);
+		ModelElement newModelElemType = MultiModelRegistry.getExtendibleElement(newModelElemTypeUri, typeMID);
 		if (newModelElemType == null) {
 			// create the "thing"
 			newModelElemType = MIDFactory.eINSTANCE.createModelElement();
@@ -336,7 +335,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		// create the reference of the "thing"
 		ModelElementReference newModelElemTypeRef = newModelElemType.createTypeReference(modelElemTypeRef, true, containerModelTypeEndpointRef);
 		// create references of the "thing" in subtypes of the container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, multiModel)) {
+		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
 			ModelEndpointReference containerModelSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(containerModelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
 			ModelElementReference modelElemSubtypeRef = null;
 			if (modelElemTypeRef != null) {
@@ -407,20 +406,20 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(containerModelEndpointRef);
+		MID instanceMID = MultiModelRegistry.getMultiModel(containerModelEndpointRef);
 		ModelElement newModelElem = null;
-		if (multiModel != null) { // can be null when the containing model rel is not stored in the multimodel
+		if (instanceMID != null) { // can be null when the containing model rel is not stored in the multimodel
 			newModelElemUri += MMINT.ROLE_SEPARATOR + getUri();
-			newModelElem = MultiModelRegistry.getExtendibleElement(newModelElemUri, multiModel);
+			newModelElem = MultiModelRegistry.getExtendibleElement(newModelElemUri, instanceMID);
 		}
 		if (newModelElem == null) {
 			newModelElem = MIDFactory.eINSTANCE.createModelElement();
 			//TODO MMINT[MAP] When input and output come from different mids, is it not correct to store the extendible map entry in the output
-			if (multiModel == null) {
+			if (instanceMID == null) {
 				super.addBasicInstance(newModelElem, newModelElemUri, newModelElemName);
 			}
 			else {
-				super.addInstance(newModelElem, newModelElemUri, newModelElemName, multiModel);
+				super.addInstance(newModelElem, newModelElemUri, newModelElemName, instanceMID);
 			}
 			newModelElem.setEInfo(eInfo);
 			containerModelEndpointRef.getObject().getTarget().getModelElems().add(newModelElem);

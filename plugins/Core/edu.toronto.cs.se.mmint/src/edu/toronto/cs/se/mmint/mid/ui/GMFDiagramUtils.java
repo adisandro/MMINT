@@ -40,7 +40,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ui.PlatformUI;
 
-import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
@@ -145,37 +144,6 @@ public class GMFDiagramUtils {
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		return adapterFactory;
-	}
-
-	private static void getDiagramFormulaVariable(@NonNull View diagramView, @NonNull Map<String, View> diagramViews) {
-
-		EObject modelObj = diagramView.getElement();
-		if (modelObj instanceof MAVOElement) {
-			diagramViews.put(((MAVOElement) modelObj).getFormulaVariable(), diagramView);
-		}
-	}
-
-	private static void getDiagramFormulaVariables(@NonNull EList<View> diagramViewList, @NonNull Map<String, View> diagramViews) {
-
-		for (View diagramView : diagramViewList) {
-			for (Object compartment : diagramView.getChildren()) {
-				if (compartment instanceof BasicCompartment) {
-					for (Object diagramSubview : ((BasicCompartment) compartment).getChildren()) {
-						getDiagramFormulaVariable((View) diagramSubview, diagramViews);
-					}
-				}
-			}
-			getDiagramFormulaVariable(diagramView, diagramViews);
-		}
-	}
-
-	public static @NonNull Map<String, View> getDiagramViews(@NonNull Diagram diagram) {
-
-		Map<String, View> diagramViews = new HashMap<String, View>();
-		getDiagramFormulaVariables((EList<View>) diagram.getChildren(), diagramViews);
-		getDiagramFormulaVariables((EList<View>) diagram.getEdges(), diagramViews);
-
-		return diagramViews;
 	}
 
 	public static void colorDiagramElement(View diagramView, int color, int fontColor) throws MMINTException {

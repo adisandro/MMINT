@@ -158,7 +158,7 @@ public class ModelMerge extends OperatorImpl {
 					newModelElemName,
 					eInfo,
 					traceRel1.getModelEndpointRefs().get(1)));
-			MultiModelTypeHierarchy.getRootLinkType().createInstanceAndReferenceAndEndpointsAndReferences(
+			MultiModelTypeHierarchy.getRootMappingType().createInstanceAndReferenceAndEndpointsAndReferences(
 				true,
 				traceModelElemRefs1);
 		}
@@ -195,7 +195,7 @@ public class ModelMerge extends OperatorImpl {
 					newModelElemName,
 					eInfo,
 					traceRel2.getModelEndpointRefs().get(1)));
-			MultiModelTypeHierarchy.getRootLinkType().createInstanceAndReferenceAndEndpointsAndReferences(
+			MultiModelTypeHierarchy.getRootMappingType().createInstanceAndReferenceAndEndpointsAndReferences(
 				true,
 				traceModelElemRefs2);
 		}

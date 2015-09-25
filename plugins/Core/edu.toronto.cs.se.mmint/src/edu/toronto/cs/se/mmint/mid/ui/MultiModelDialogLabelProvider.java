@@ -18,7 +18,7 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 
 /**
@@ -89,7 +89,7 @@ public class MultiModelDialogLabelProvider implements ILabelProvider {
 	@Override
 	public String getText(Object element) {
 
-		if (element instanceof MultiModel) {
+		if (element instanceof MID) {
 			return "Type MID";
 		}
 		if (element instanceof ExtendibleElement) {

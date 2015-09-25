@@ -14,9 +14,6 @@ package edu.toronto.cs.se.mmint.mid.operator.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-
-import edu.toronto.cs.se.mavo.LogicElement;
-import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -90,8 +87,6 @@ public class OperatorSwitch<T> extends Switch<T> {
 				T result = caseOperator(operator);
 				if (result == null) result = caseGenericElement(operator);
 				if (result == null) result = caseExtendibleElement(operator);
-				if (result == null) result = caseMAVOElement(operator);
-				if (result == null) result = caseLogicElement(operator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -101,8 +96,6 @@ public class OperatorSwitch<T> extends Switch<T> {
 				if (result == null) result = caseOperator(conversionOperator);
 				if (result == null) result = caseGenericElement(conversionOperator);
 				if (result == null) result = caseExtendibleElement(conversionOperator);
-				if (result == null) result = caseMAVOElement(conversionOperator);
-				if (result == null) result = caseLogicElement(conversionOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -112,8 +105,6 @@ public class OperatorSwitch<T> extends Switch<T> {
 				if (result == null) result = caseOperator(randomOperator);
 				if (result == null) result = caseGenericElement(randomOperator);
 				if (result == null) result = caseExtendibleElement(randomOperator);
-				if (result == null) result = caseMAVOElement(randomOperator);
-				if (result == null) result = caseLogicElement(randomOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -122,8 +113,6 @@ public class OperatorSwitch<T> extends Switch<T> {
 				T result = caseGenericEndpoint(genericEndpoint);
 				if (result == null) result = caseExtendibleElementEndpoint(genericEndpoint);
 				if (result == null) result = caseExtendibleElement(genericEndpoint);
-				if (result == null) result = caseMAVOElement(genericEndpoint);
-				if (result == null) result = caseLogicElement(genericEndpoint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -155,36 +144,6 @@ public class OperatorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseOperator(Operator object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Logic Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Logic Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLogicElement(LogicElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMAVOElement(MAVOElement object) {
 		return null;
 	}
 

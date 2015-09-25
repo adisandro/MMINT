@@ -16,7 +16,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 
 /**
@@ -234,7 +234,7 @@ public interface Editor extends ExtendibleElement {
 	 * @return The created editor.
 	 * @throws MMINTException
 	 *             If this is an editor instance. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true" containerMultiModelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
 	Editor createInstance(String modelUri, MID instanceMID) throws MMINTException;

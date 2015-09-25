@@ -17,18 +17,18 @@ import java.util.List;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class NewModelDialogContentProvider implements ITreeContentProvider {
 
-	private MultiModel multiModel;
+	private MID mid;
 
-	public NewModelDialogContentProvider(MultiModel multiModel) {
+	public NewModelDialogContentProvider(MID mid) {
 
-		this.multiModel = multiModel;
+		this.mid = mid;
 	}
 
 	/**
@@ -64,9 +64,9 @@ public class NewModelDialogContentProvider implements ITreeContentProvider {
 	@Override
 	public Object[] getChildren(Object parentElement) {
 
-		if (parentElement instanceof MultiModel) {
+		if (parentElement instanceof MID) {
 			List<Model> modelTypes = new ArrayList<Model>();
-			for (Model modelType : ((MultiModel) parentElement).getModels()) {
+			for (Model modelType : ((MID) parentElement).getModels()) {
 				if (modelType instanceof ModelRel || modelType.isAbstract()) {
 					continue;
 				}
@@ -88,10 +88,10 @@ public class NewModelDialogContentProvider implements ITreeContentProvider {
 	public Object getParent(Object element) {
 
 		if (element instanceof Model) {
-			return multiModel;
+			return mid;
 		}
 		if (element instanceof Editor) {
-			return multiModel.getExtendibleTable().get(((Editor) element).getModelUri());
+			return mid.getExtendibleTable().get(((Editor) element).getModelUri());
 		}
 
 		return null;
@@ -103,8 +103,8 @@ public class NewModelDialogContentProvider implements ITreeContentProvider {
 	@Override
 	public boolean hasChildren(Object element) {
 
-		if (element instanceof MultiModel) {
-			return !((MultiModel) element).getModels().isEmpty();
+		if (element instanceof MID) {
+			return !((MID) element).getModels().isEmpty();
 		}
 		if (element instanceof Model) {
 			return !((Model) element).getEditors().isEmpty();

@@ -33,9 +33,9 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
 public class MultiModelOperatorUtils {
@@ -253,11 +253,11 @@ public class MultiModelOperatorUtils {
 		}
 	}
 
-	public static @NonNull MultiModel getInstanceMIDFromOperatorWithNoParameters() {
+	public static @NonNull MID getInstanceMIDFromOperatorWithNoParameters() {
 
 		//TODO MMINT[OPERATOR] make it better integrated with Operator
 		EditPart editPart = (EditPart) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getAdapter(EditPart.class);
-		MultiModel instanceMID = (MultiModel) ((DiagramEditPart) editPart.getChildren().get(0)).getDiagramView().getElement();
+		MID instanceMID = (MID) ((DiagramEditPart) editPart.getChildren().get(0)).getDiagramView().getElement();
 
 		return instanceMID;
 	}
@@ -275,9 +275,9 @@ public class MultiModelOperatorUtils {
 		return models;
 	}
 
-	public static @NonNull Map<String, MultiModel> createSimpleOutputMIDsByName(@NonNull Operator operatorType, @Nullable MultiModel instanceMID) {
+	public static @NonNull Map<String, MID> createSimpleOutputMIDsByName(@NonNull Operator operatorType, @Nullable MID instanceMID) {
 
-		Map<String, MultiModel> outputMIDsByName = new HashMap<>();
+		Map<String, MID> outputMIDsByName = new HashMap<>();
 		for (ModelEndpoint outputModelTypeEndpoint : operatorType.getOutputs()) {
 			outputMIDsByName.put(outputModelTypeEndpoint.getName(), instanceMID);
 		}

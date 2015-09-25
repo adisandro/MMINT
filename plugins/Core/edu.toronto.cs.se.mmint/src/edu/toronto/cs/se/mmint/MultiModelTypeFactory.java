@@ -23,12 +23,12 @@ import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
@@ -36,8 +36,8 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -75,7 +75,7 @@ public class MultiModelTypeFactory {
 	 * @throws MMINTException
 	 *             If the uri of the new type is already registered in the Type MID.
 	 */
-	public static void addType(@NonNull ExtendibleElement newType, @Nullable ExtendibleElement type, @NonNull String newTypeUri, @NonNull String newTypeName, @NonNull MultiModel typeMID) throws MMINTException {
+	public static void addType(@NonNull ExtendibleElement newType, @Nullable ExtendibleElement type, @NonNull String newTypeUri, @NonNull String newTypeName, @NonNull MID typeMID) throws MMINTException {
 
 		if (typeMID.getExtendibleTable().containsKey(newTypeUri)) {
 			throw new MMINTException("Type with uri " + newTypeUri + " is already registered");
@@ -148,7 +148,7 @@ public class MultiModelTypeFactory {
 	}
 
 	/**
-	 * Adds a model type to a multimodel.
+	 * Adds a model type to the Type MID.
 	 * 
 	 * @param newModelType
 	 *            The new model type to be added.
@@ -158,10 +158,10 @@ public class MultiModelTypeFactory {
 	 * @param constraintImplementation
 	 *            The constraint implementation of the constraint associated
 	 *            with the new model type, null if no constraint is associated.
-	 * @param multiModel
-	 *            The multimodel that will contain the new model type.
+	 * @param typeMID
+	 *            The Type MID.
 	 */
-	public static void addModelType(Model newModelType, String constraintLanguage, String constraintImplementation, MultiModel multiModel) {
+	public static void addModelType(Model newModelType, String constraintLanguage, String constraintImplementation, MID typeMID) {
 
 		ExtendibleElementConstraint modelConstraint = null;
 		if (constraintLanguage != null) {
@@ -171,7 +171,7 @@ public class MultiModelTypeFactory {
 		}
 		newModelType.setConstraint(modelConstraint);
 
-		multiModel.getModels().add(newModelType);
+		typeMID.getModels().add(newModelType);
 	}
 
 	/**
@@ -202,7 +202,7 @@ public class MultiModelTypeFactory {
 	 */
 	public static void addModelRelType(ModelRel newModelRelType, ModelRel modelRelType) throws MMINTException {
 
-		List<LinkReference> skipLinkRefs = new ArrayList<LinkReference>();
+		List<MappingReference> skipMappingRefs = new ArrayList<>();
 		// copy model type references
 		Iterator<ModelEndpointReference> modelTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(modelRelType.getModelEndpointRefs());
 		while (modelTypeEndpointRefIter.hasNext()) {
@@ -210,7 +210,7 @@ public class MultiModelTypeFactory {
 			if (MultiModelTypeHierarchy.isRootType(modelTypeEndpointRefSuper.getObject().getTarget())) { // don't copy model type endpoints to the root model type
 				for (ModelElementReference modelElemTypeRefSuper : modelTypeEndpointRefSuper.getModelElemRefs()) {
 					for (ModelElementEndpointReference modelElemTypeEndpointRefSuper : modelElemTypeRefSuper.getModelElemEndpointRefs()) {
-						skipLinkRefs.add((LinkReference) modelElemTypeEndpointRefSuper.eContainer());
+						skipMappingRefs.add((MappingReference) modelElemTypeEndpointRefSuper.eContainer());
 					}
 				}
 				continue;
@@ -225,29 +225,29 @@ public class MultiModelTypeFactory {
 			}
 		}
 		// copy link type references
-		Iterator<LinkReference> linkTypeRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(modelRelType.getLinkRefs());
-		while (linkTypeRefIter.hasNext()) {
-			LinkReference linkTypeRefSuper = linkTypeRefIter.next();
-			if (skipLinkRefs.contains(linkTypeRefSuper)) { // don't copy link types using model element types from the root model type
+		Iterator<MappingReference> mappingTypeRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(modelRelType.getMappingRefs());
+		while (mappingTypeRefIter.hasNext()) {
+			MappingReference mappingTypeRefSuper = mappingTypeRefIter.next();
+			if (skipMappingRefs.contains(mappingTypeRefSuper)) { // don't copy link types using model element types from the root model type
 				continue;
 			}
-			LinkReference linkTypeRef = MultiModelTypeHierarchy.getReference(linkTypeRefSuper.getSupertypeRef(), newModelRelType.getLinkRefs());
-			LinkReference newLinkTypeRef = linkTypeRefSuper.getObject().createTypeReference(linkTypeRef, false, newModelRelType);
+			MappingReference mappingTypeRef = MultiModelTypeHierarchy.getReference(mappingTypeRefSuper.getSupertypeRef(), newModelRelType.getMappingRefs());
+			MappingReference newMappingTypeRef = mappingTypeRefSuper.getObject().createTypeReference(mappingTypeRef, false, newModelRelType);
 			// connect it to model element type references (takes care of binary too)
-			Iterator<ModelElementEndpointReference> modelElemTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(linkTypeRefSuper.getModelElemEndpointRefs());
+			Iterator<ModelElementEndpointReference> modelElemTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(mappingTypeRefSuper.getModelElemEndpointRefs());
 			while (modelElemTypeEndpointRefIter.hasNext()) {
 				ModelElementEndpointReference modelElemTypeEndpointRefSuper = modelElemTypeEndpointRefIter.next();
 				ModelElementEndpointReference modelElemTypeEndpointRef = null;
 				ModelElementEndpointReference modelElemTypeEndpointRefSuper2 = modelElemTypeEndpointRefSuper.getSupertypeRef();
 				if (modelElemTypeEndpointRefSuper2 != null) {
-					LinkReference linkTypeRefSuper2 = (LinkReference) modelElemTypeEndpointRefSuper2.eContainer();
-					LinkReference linkTypeRef2 = MultiModelTypeHierarchy.getReference(linkTypeRefSuper2, newModelRelType.getLinkRefs());
-					modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpointRefSuper2, linkTypeRef2.getModelElemEndpointRefs());
+					MappingReference mappingTypeRefSuper2 = (MappingReference) modelElemTypeEndpointRefSuper2.eContainer();
+					MappingReference mappingTypeRef2 = MultiModelTypeHierarchy.getReference(mappingTypeRefSuper2, newModelRelType.getMappingRefs());
+					modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpointRefSuper2, mappingTypeRef2.getModelElemEndpointRefs());
 				}
 				ModelElementReference modelElemTypeRefSuper = modelElemTypeEndpointRefSuper.getModelElemRef();
 				ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference((ModelEndpointReference) modelElemTypeRefSuper.eContainer(), newModelRelType.getModelEndpointRefs());
 				ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRefSuper, modelTypeEndpointRef.getModelElemRefs());
-				modelElemTypeEndpointRefSuper.getObject().createTypeReference(modelElemTypeEndpointRef, newModelElemTypeRef, false, false, newLinkTypeRef);
+				modelElemTypeEndpointRefSuper.getObject().createTypeReference(modelElemTypeEndpointRef, newModelElemTypeRef, false, false, newMappingTypeRef);
 			}
 		}
 	}
@@ -305,43 +305,43 @@ public class MultiModelTypeFactory {
 	}
 
 	/**
-	 * Adds a link type to a model relationship type.
+	 * Adds a mapping type to a model relationship type.
 	 * 
-	 * @param newLinkType
-	 *            The new link type to be added.
-	 * @param linkType
-	 *            The supertype of the new link type.
+	 * @param newMappingType
+	 *            The new mapping type to be added.
+	 * @param mappingType
+	 *            The supertype of the new mapping type.
 	 * @param modelRelType
-	 *            The model relationship type that will contain the new link
+	 *            The model relationship type that will contain the new mapping
 	 *            type.
 	 */
-	public static void addLinkType(Link newLinkType, Link linkType, ModelRel modelRelType) {
+	public static void addMappingType(Mapping newMappingType, Mapping mappingType, ModelRel modelRelType) {
 
 		// keep track of inherited model elements, but not root ones
-		if (linkType != null && !linkType.getUri().equals(MMINT.ROOT_LINK_URI)) {
-			for (ModelElementEndpointReference modelElemTypeEndpointRef : linkType.getModelElemEndpointRefs()) {
-				newLinkType.getModelElemEndpointRefs().add(modelElemTypeEndpointRef);
+		if (mappingType != null && !mappingType.getUri().equals(MMINT.ROOT_MAPPING_URI)) {
+			for (ModelElementEndpointReference modelElemTypeEndpointRef : mappingType.getModelElemEndpointRefs()) {
+				newMappingType.getModelElemEndpointRefs().add(modelElemTypeEndpointRef);
 			}
 		}
-		modelRelType.getLinks().add(newLinkType);
+		modelRelType.getMappings().add(newMappingType);
 	}
 
 	/**
-	 * Adds a model element type endpoint to a link type.
+	 * Adds a model element type endpoint to a mapping type.
 	 * 
 	 * @param newModelElemTypeEndpoint
 	 *            The new model element type endpoint to be added.
 	 * @param targetModelElemType
 	 *            The new model element type that is the target of the new model
 	 *            element type endpoint.
-	 * @param containerLinkType
-	 *            The link type that will contain the new model element type
+	 * @param containerMappingType
+	 *            The mapping type that will contain the new model element type
 	 *            endpoint.
 	 */
-	public static void addModelElementTypeEndpoint(ModelElementEndpoint newModelElemTypeEndpoint, ModelElement targetModelElemType, Link containerLinkType) {
+	public static void addModelElementTypeEndpoint(ModelElementEndpoint newModelElemTypeEndpoint, ModelElement targetModelElemType, Mapping containerMappingType) {
 
 		addTypeEndpoint(newModelElemTypeEndpoint, targetModelElemType);
-		containerLinkType.getModelElemEndpoints().add(newModelElemTypeEndpoint);
+		containerMappingType.getModelElemEndpoints().add(newModelElemTypeEndpoint);
 	}
 
 	/**
@@ -350,13 +350,13 @@ public class MultiModelTypeFactory {
 	 * @param newModelElemTypeEndpointRef
 	 *            The new reference to the new model element type endpoint being
 	 *            added.
-	 * @param linkType
-	 *            The link type that contains the referenced model element type
+	 * @param mappingType
+	 *            The mapping type that contains the referenced model element type
 	 *            endpoint.
 	 */
-	public static void addModelElementTypeEndpointReference(ModelElementEndpointReference newModelElemTypeEndpointRef, Link linkType) {
+	public static void addModelElementTypeEndpointReference(ModelElementEndpointReference newModelElemTypeEndpointRef, Mapping mappingType) {
 
-		linkType.getModelElemEndpointRefs().add(newModelElemTypeEndpointRef);
+		mappingType.getModelElemEndpointRefs().add(newModelElemTypeEndpointRef);
 	}
 
 	/**
@@ -373,17 +373,17 @@ public class MultiModelTypeFactory {
 	 * @param wizardDialogClassName
 	 *            The fully qualified name of a Java class that handles the
 	 *            creation of the model type through the new editor type.
-	 * @param multiModel
-	 *            The multimodel that will contain the new editor type.
+	 * @param mid
+	 *            The MID that will contain the new editor type.
 	 */
-	public static void addEditorType(Editor newEditorType, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, MultiModel multiModel) {
+	public static void addEditorType(Editor newEditorType, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, MID mid) {
 
 		newEditorType.setModelUri(modelTypeUri);
 		newEditorType.setId(editorId);
 		newEditorType.setWizardId(wizardId);
 		newEditorType.setWizardDialogClass(wizardDialogClassName);
 
-		multiModel.getEditors().add(newEditorType);
+		mid.getEditors().add(newEditorType);
 	}
 
 	/**
@@ -400,17 +400,17 @@ public class MultiModelTypeFactory {
 	}
 
 	/**
-	 * Adds an operator type to a multimodel.
+	 * Adds an operator type to the Type MID.
 	 * 
 	 * @param newOperatorType
 	 *            The new operator type to be added.
-	 * @param multiModel
-	 *            The multimodel that will contain the new operator type.
+	 * @param typeMID
+	 *            The Type MID.
 	 */
-	protected static void addOperatorType(Operator newOperatorType, MultiModel multiModel) {
+	protected static void addOperatorType(Operator newOperatorType, MID typeMID) {
 
 		newOperatorType.setCommutative(false);
-		multiModel.getOperators().add(newOperatorType);
+		typeMID.getOperators().add(newOperatorType);
 	}
 
 	/**

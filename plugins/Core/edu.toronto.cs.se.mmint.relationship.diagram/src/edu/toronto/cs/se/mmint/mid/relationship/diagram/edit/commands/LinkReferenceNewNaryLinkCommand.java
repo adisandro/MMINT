@@ -97,7 +97,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 	protected LinkReference doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
 
 		ModelRel modelRel = (ModelRel) getElementToEdit();
-		LinkReference linkTypeRef = MultiModelDiagramUtils.selectLinkTypeReferenceToCreate(modelRel, null, null);
+		LinkReference linkTypeRef = MultiModelDiagramUtils.selectMappingTypeReferenceToCreate(modelRel, null, null);
 		LinkReference newLinkRef = linkTypeRef.getObject().createInstanceAndReference(false, modelRel);
 
 		return newLinkRef;
@@ -106,7 +106,7 @@ public class LinkReferenceNewNaryLinkCommand extends LinkReferenceCreateCommand 
 	protected LinkReference doExecuteTypesLevel() throws MMINTException, MultiModelDialogCancellation {
 
 		ModelRel modelRelType = (ModelRel) getElementToEdit();
-		LinkReference linkTypeRef = MultiModelDiagramUtils.selectLinkTypeReferenceToExtend(modelRelType, null, null);
+		LinkReference linkTypeRef = MultiModelDiagramUtils.selectMappingTypeReferenceToExtend(modelRelType, null, null);
 		Link linkType = linkTypeRef.getObject();
 		if (MultiModelTypeHierarchy.getRootTypeUri(linkType).equals(linkType.getUri())) {
 			linkTypeRef = null; // the link reference to the root is never shown

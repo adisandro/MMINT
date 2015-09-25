@@ -216,7 +216,7 @@ public class ChangeImpact extends OperatorImpl {
 		ModelEndpointReference newImpactedModelEndpointRef = newImpactModelRel.getModelEndpointRefs().get(1);
 
 		// loop through diff
-		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
+		Link rootLinkType = MultiModelTypeHierarchy.getRootMappingType();
 		for (Link diffLink : diffRel.getLinks()) {
 			ModelElement diffModelElem = diffLink.getModelElemEndpoints().get(0).getTarget();
 			// create diff model element ref

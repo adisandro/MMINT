@@ -24,8 +24,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.editor.impl.EditorPackageImpl;
@@ -164,9 +162,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		OperatorPackageImpl theOperatorPackage = (OperatorPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof OperatorPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new OperatorPackageImpl());
 
 		isInited = true;
-
-		// Initialize simple dependencies
-		MAVOPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		MIDPackageImpl theMIDPackage = (MIDPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI) instanceof MIDPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI) : MIDPackage.eINSTANCE);
@@ -361,7 +356,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__CreateInstance__MultiModel() {
+	public EOperation getOperator__CreateInstance__MID() {
 		return operatorEClass.getEOperations().get(8);
 	}
 
@@ -433,7 +428,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__Start__EList_EList_Map_MultiModel() {
+	public EOperation getOperator__Start__EList_EList_Map_MID() {
 		return operatorEClass.getEOperations().get(16);
 	}
 
@@ -689,7 +684,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(operatorEClass, OPERATOR___CHECK_ALLOWED_INPUTS__ELIST);
 		createEOperation(operatorEClass, OPERATOR___IS_ALLOWED_INPUT__MAP);
 		createEOperation(operatorEClass, OPERATOR___GET_OUTPUTS_BY_NAME);
-		createEOperation(operatorEClass, OPERATOR___CREATE_INSTANCE__MULTIMODEL);
+		createEOperation(operatorEClass, OPERATOR___CREATE_INSTANCE__MID);
 		createEOperation(operatorEClass, OPERATOR___DELETE_INSTANCE);
 		createEOperation(operatorEClass, OPERATOR___SELECT_ALLOWED_GENERICS__ELIST);
 		createEOperation(operatorEClass, OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST);
@@ -697,7 +692,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(operatorEClass, OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES);
 		createEOperation(operatorEClass, OPERATOR___INIT);
 		createEOperation(operatorEClass, OPERATOR___RUN__MAP_MAP_MAP);
-		createEOperation(operatorEClass, OPERATOR___START__ELIST_ELIST_MAP_MULTIMODEL);
+		createEOperation(operatorEClass, OPERATOR___START__ELIST_ELIST_MAP_MID);
 
 		conversionOperatorEClass = createEClass(CONVERSION_OPERATOR);
 		createEOperation(conversionOperatorEClass, CONVERSION_OPERATOR___DELETE_TYPE);
@@ -786,7 +781,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getOperator__FindAllowedInputs__EList(), null, "findAllowedInputs", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMIDPackage.getMultiModel(), "inputMIDs", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getMID(), "inputMIDs", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 		EGenericType g1 = createEGenericType(this.getSet());
 		EGenericType g2 = createEGenericType(ecorePackage.getEEList());
@@ -796,7 +791,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		initEOperation(op, g1);
 
 		op = initEOperation(getOperator__FindFirstAllowedInput__EList(), this.getOperatorInput(), "findFirstAllowedInput", 0, -1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMIDPackage.getMultiModel(), "inputMIDs", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getMID(), "inputMIDs", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getOperator__CheckAllowedInputs__EList(), this.getOperatorInput(), "checkAllowedInputs", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -821,8 +816,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
-		op = initEOperation(getOperator__CreateInstance__MultiModel(), this.getOperator(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMIDPackage.getMultiModel(), "instanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getOperator__CreateInstance__MID(), this.getOperator(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getMID(), "instanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getOperator__DeleteInstance(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -863,7 +858,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEString());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theMIDPackage.getMultiModel());
+		g2 = createEGenericType(theMIDPackage.getMID());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "outputMIDsByName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getException());
@@ -874,16 +869,16 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
-		op = initEOperation(getOperator__Start__EList_EList_Map_MultiModel(), this.getOperator(), "start", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getOperator__Start__EList_EList_Map_MID(), this.getOperator(), "start", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getOperatorInput(), "inputs", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getOperatorGeneric(), "generics", 0, -1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEString());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theMIDPackage.getMultiModel());
+		g2 = createEGenericType(theMIDPackage.getMID());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "outputMIDsByName", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMIDPackage.getMultiModel(), "instanceMID", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getMID(), "instanceMID", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getException());
 
 		initEClass(conversionOperatorEClass, ConversionOperator.class, "ConversionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

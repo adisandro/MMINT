@@ -15,6 +15,7 @@ Require-Bundle: org.eclipse.jface,
  org.eclipse.gmf.codegen,
  org.eclipse.gmf.codegen.xtend,
  org.eclipse.xtext.xbase.lib,
+ org.eclipse.uml2.uml,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
@@ -22,4 +23,5 @@ Require-Bundle: org.eclipse.jface,
  edu.toronto.cs.se.mmint.java
 Export-Package: edu.toronto.cs.se.mmint.mavo.constraint,
  edu.toronto.cs.se.mmint.mavo.diagram,
+ edu.toronto.cs.se.mmint.mavo.library,
  edu.toronto.cs.se.mmint.mavo.reasoning

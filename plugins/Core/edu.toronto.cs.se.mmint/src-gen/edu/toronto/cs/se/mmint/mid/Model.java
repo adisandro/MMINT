@@ -14,8 +14,6 @@ package edu.toronto.cs.se.mmint.mid;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
-import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
@@ -44,7 +42,7 @@ import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
  * @model
  * @generated
  */
-public interface Model extends GenericElement, MAVORoot {
+public interface Model extends GenericElement {
 	/**
 	 * Returns the value of the '<em><b>Origin</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmint.mid.ModelOrigin}.
@@ -232,7 +230,7 @@ public interface Model extends GenericElement, MAVORoot {
 	 *             If this is a model instance, or if the uri of the new model
 	 *             instance is already registered in the Instance MID.
 	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" originRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true"
 	 * @generated
 	 */
 	Model createInstance(String newModelUri, MID instanceMID) throws MMINTException;
@@ -265,10 +263,18 @@ public interface Model extends GenericElement, MAVORoot {
 	 *             instance is already registered in the Instance MID, or if
 	 *             there are no editor types registered for this model type.
 	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" originRequired="true" containerMultiModelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
 	Model createInstanceAndEditor(String newModelUri, MID instanceMID) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true"
+	 * @generated
+	 */
+	Model importInstance(String modelUri, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
@@ -287,7 +293,7 @@ public interface Model extends GenericElement, MAVORoot {
 	 *             If this is a model instance, if the model file can't be
 	 *             copied, if the uri of the new model instance is already
 	 *             registered in the Instance MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" containerMultiModelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
 	Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws MMINTException;
@@ -314,7 +320,7 @@ public interface Model extends GenericElement, MAVORoot {
 	 *             copied, if the uri of the new model instance is already
 	 *             registered in the Instance MID, or if there are no editor
 	 *             types registered for this model type. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" copyDiagramRequired="true" containerMultiModelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" copyDiagramRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
 	Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws MMINTException;

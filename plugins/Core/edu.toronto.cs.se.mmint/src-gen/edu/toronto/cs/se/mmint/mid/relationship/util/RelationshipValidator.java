@@ -11,25 +11,13 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship.util;
 
+import edu.toronto.cs.se.mmint.mid.relationship.*;
 import java.util.Map;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLink;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.util.MIDValidator;
 
 /**
@@ -125,16 +113,16 @@ public class RelationshipValidator extends EObjectValidator {
 				return validateModelEndpointReference((ModelEndpointReference)value, diagnostics, context);
 			case RelationshipPackage.MODEL_ELEMENT_REFERENCE:
 				return validateModelElementReference((ModelElementReference)value, diagnostics, context);
-			case RelationshipPackage.LINK:
-				return validateLink((Link)value, diagnostics, context);
-			case RelationshipPackage.BINARY_LINK:
-				return validateBinaryLink((BinaryLink)value, diagnostics, context);
+			case RelationshipPackage.MAPPING:
+				return validateMapping((Mapping)value, diagnostics, context);
+			case RelationshipPackage.BINARY_MAPPING:
+				return validateBinaryMapping((BinaryMapping)value, diagnostics, context);
 			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT:
 				return validateModelElementEndpoint((ModelElementEndpoint)value, diagnostics, context);
-			case RelationshipPackage.LINK_REFERENCE:
-				return validateLinkReference((LinkReference)value, diagnostics, context);
-			case RelationshipPackage.BINARY_LINK_REFERENCE:
-				return validateBinaryLinkReference((BinaryLinkReference)value, diagnostics, context);
+			case RelationshipPackage.MAPPING_REFERENCE:
+				return validateMappingReference((MappingReference)value, diagnostics, context);
+			case RelationshipPackage.BINARY_MAPPING_REFERENCE:
+				return validateBinaryMappingReference((BinaryMappingReference)value, diagnostics, context);
 			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE:
 				return validateModelElementEndpointReference((ModelElementEndpointReference)value, diagnostics, context);
 			default:
@@ -313,17 +301,17 @@ public class RelationshipValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLink(Link link, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(link, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(link, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(link, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(link, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(link, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(link, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(link, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(link, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(link, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(link, diagnostics, context);
+	public boolean validateMapping(Mapping mapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(mapping, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(mapping, diagnostics, context);
 		return result;
 	}
 
@@ -332,45 +320,45 @@ public class RelationshipValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateBinaryLink(BinaryLink binaryLink, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(binaryLink, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(binaryLink, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(binaryLink, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(binaryLink, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(binaryLink, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(binaryLink, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(binaryLink, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryLink, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryLink, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(binaryLink, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBinaryLink_isBinaryLink(binaryLink, diagnostics, context);
+	public boolean validateBinaryMapping(BinaryMapping binaryMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(binaryMapping, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(binaryMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMapping_isBinaryMapping(binaryMapping, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * The cached validation expression for the isBinaryLink constraint of '<em>Binary Link</em>'.
+	 * The cached validation expression for the isBinaryMapping constraint of '<em>Binary Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String BINARY_LINK__IS_BINARY_LINK__EEXPRESSION = "modelElemEndpoints->size() = 2";
+	protected static final String BINARY_MAPPING__IS_BINARY_MAPPING__EEXPRESSION = "modelElemEndpoints->size() = 2";
 
 	/**
-	 * Validates the isBinaryLink constraint of '<em>Binary Link</em>'.
+	 * Validates the isBinaryMapping constraint of '<em>Binary Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateBinaryLink_isBinaryLink(BinaryLink binaryLink, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateBinaryMapping_isBinaryMapping(BinaryMapping binaryMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
-				(RelationshipPackage.Literals.BINARY_LINK,
-				 binaryLink,
+				(RelationshipPackage.Literals.BINARY_MAPPING,
+				 binaryMapping,
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "isBinaryLink",
-				 BINARY_LINK__IS_BINARY_LINK__EEXPRESSION,
+				 "isBinaryMapping",
+				 BINARY_MAPPING__IS_BINARY_MAPPING__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
@@ -394,6 +382,135 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(modelElementEndpoint, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElementEndpoint_unboundedLevel(modelElementEndpoint, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappingReference(MappingReference mappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(mappingReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExtendibleElementReference_oneObject(mappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMappingReference_mappingType(mappingReference, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the mappingType constraint of '<em>Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String MAPPING_REFERENCE__MAPPING_TYPE__EEXPRESSION = "object.oclIsKindOf(Mapping)";
+
+	/**
+	 * Validates the mappingType constraint of '<em>Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappingReference_mappingType(MappingReference mappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(RelationshipPackage.Literals.MAPPING_REFERENCE,
+				 mappingReference,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "mappingType",
+				 MAPPING_REFERENCE__MAPPING_TYPE__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBinaryMappingReference(BinaryMappingReference binaryMappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(binaryMappingReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExtendibleElementReference_oneObject(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMappingReference_mappingType(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMappingReference_isBinaryMappingRef(binaryMappingReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateBinaryMappingReference_binaryMappingType(binaryMappingReference, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the isBinaryMappingRef constraint of '<em>Binary Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String BINARY_MAPPING_REFERENCE__IS_BINARY_MAPPING_REF__EEXPRESSION = "modelElemEndpointRefs->size() = 2";
+
+	/**
+	 * Validates the isBinaryMappingRef constraint of '<em>Binary Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBinaryMappingReference_isBinaryMappingRef(BinaryMappingReference binaryMappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(RelationshipPackage.Literals.BINARY_MAPPING_REFERENCE,
+				 binaryMappingReference,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "isBinaryMappingRef",
+				 BINARY_MAPPING_REFERENCE__IS_BINARY_MAPPING_REF__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * The cached validation expression for the binaryMappingType constraint of '<em>Binary Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String BINARY_MAPPING_REFERENCE__BINARY_MAPPING_TYPE__EEXPRESSION = "object.oclIsKindOf(BinaryMapping)";
+
+	/**
+	 * Validates the binaryMappingType constraint of '<em>Binary Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBinaryMappingReference_binaryMappingType(BinaryMappingReference binaryMappingReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(RelationshipPackage.Literals.BINARY_MAPPING_REFERENCE,
+				 binaryMappingReference,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "binaryMappingType",
+				 BINARY_MAPPING_REFERENCE__BINARY_MAPPING_TYPE__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -461,135 +578,6 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(extendibleElementEndpointReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateExtendibleElementReference_oneObject(extendibleElementEndpointReference, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateLinkReference(LinkReference linkReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(linkReference, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(linkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(linkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(linkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(linkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(linkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(linkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(linkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(linkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExtendibleElementReference_oneObject(linkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLinkReference_linkType(linkReference, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * The cached validation expression for the linkType constraint of '<em>Link Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String LINK_REFERENCE__LINK_TYPE__EEXPRESSION = "object.oclIsKindOf(Link)";
-
-	/**
-	 * Validates the linkType constraint of '<em>Link Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateLinkReference_linkType(LinkReference linkReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(RelationshipPackage.Literals.LINK_REFERENCE,
-				 linkReference,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "linkType",
-				 LINK_REFERENCE__LINK_TYPE__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateBinaryLinkReference(BinaryLinkReference binaryLinkReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(binaryLinkReference, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(binaryLinkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(binaryLinkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(binaryLinkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(binaryLinkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(binaryLinkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(binaryLinkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryLinkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryLinkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExtendibleElementReference_oneObject(binaryLinkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLinkReference_linkType(binaryLinkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBinaryLinkReference_isBinaryLinkRef(binaryLinkReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateBinaryLinkReference_binaryLinkType(binaryLinkReference, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * The cached validation expression for the isBinaryLinkRef constraint of '<em>Binary Link Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String BINARY_LINK_REFERENCE__IS_BINARY_LINK_REF__EEXPRESSION = "modelElemEndpointRefs->size() = 2";
-
-	/**
-	 * Validates the isBinaryLinkRef constraint of '<em>Binary Link Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateBinaryLinkReference_isBinaryLinkRef(BinaryLinkReference binaryLinkReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(RelationshipPackage.Literals.BINARY_LINK_REFERENCE,
-				 binaryLinkReference,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "isBinaryLinkRef",
-				 BINARY_LINK_REFERENCE__IS_BINARY_LINK_REF__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
-
-	/**
-	 * The cached validation expression for the binaryLinkType constraint of '<em>Binary Link Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String BINARY_LINK_REFERENCE__BINARY_LINK_TYPE__EEXPRESSION = "object.oclIsKindOf(BinaryLink)";
-
-	/**
-	 * Validates the binaryLinkType constraint of '<em>Binary Link Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateBinaryLinkReference_binaryLinkType(BinaryLinkReference binaryLinkReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(RelationshipPackage.Literals.BINARY_LINK_REFERENCE,
-				 binaryLinkReference,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "binaryLinkType",
-				 BINARY_LINK_REFERENCE__BINARY_LINK_TYPE__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
 	}
 
 	/**

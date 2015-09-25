@@ -166,7 +166,7 @@ public class KleisliTest extends MMINTTest {
 		EPackage srcMetamodelRootObj = srcModelType.getEMFTypeRoot();
 		EPackage kTgtMetamodelRootObj = ((KleisliModelEndpoint) kTgtModelTypeEndpointRef.getObject()).getExtendedTarget().getEMFTypeRoot();
 		ModelElement rootModelElemType = MultiModelTypeHierarchy.getRootModelElementType();
-		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
+		Link rootLinkType = MultiModelTypeHierarchy.getRootMappingType();
 		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
 		for (int i = 0; i < SRC_METAMODELOBJ_NAMES.length; i++) {
 			ModelElementReference srcModelElemTypeRef = dropMetamodelObject(srcMetamodelRootObj, SRC_METAMODELOBJ_NAMES[i], srcModelTypeEndpointRef, rootModelElemType);

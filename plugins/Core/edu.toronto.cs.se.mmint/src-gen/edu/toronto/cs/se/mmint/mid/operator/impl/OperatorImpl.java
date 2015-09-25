@@ -43,10 +43,10 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
@@ -589,14 +589,14 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				}
 			case OperatorPackage.OPERATOR___FIND_ALLOWED_INPUTS__ELIST:
 				try {
-					return findAllowedInputs((EList<MultiModel>)arguments.get(0));
+					return findAllowedInputs((EList<MID>)arguments.get(0));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
 			case OperatorPackage.OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST:
 				try {
-					return findFirstAllowedInput((EList<MultiModel>)arguments.get(0));
+					return findFirstAllowedInput((EList<MID>)arguments.get(0));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -622,9 +622,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___CREATE_INSTANCE__MULTIMODEL:
+			case OperatorPackage.OPERATOR___CREATE_INSTANCE__MID:
 				try {
-					return createInstance((MultiModel)arguments.get(0));
+					return createInstance((MID)arguments.get(0));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -671,14 +671,14 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				}
 			case OperatorPackage.OPERATOR___RUN__MAP_MAP_MAP:
 				try {
-					return run((Map<String, Model>)arguments.get(0), (Map<String, GenericElement>)arguments.get(1), (Map<String, MultiModel>)arguments.get(2));
+					return run((Map<String, Model>)arguments.get(0), (Map<String, GenericElement>)arguments.get(1), (Map<String, MID>)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___START__ELIST_ELIST_MAP_MULTIMODEL:
+			case OperatorPackage.OPERATOR___START__ELIST_ELIST_MAP_MID:
 				try {
-					return start((EList<OperatorInput>)arguments.get(0), (EList<OperatorGeneric>)arguments.get(1), (Map<String, MultiModel>)arguments.get(2), (MultiModel)arguments.get(3));
+					return start((EList<OperatorInput>)arguments.get(0), (EList<OperatorGeneric>)arguments.get(1), (Map<String, MID>)arguments.get(2), (MID)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -734,15 +734,15 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MMINTException.mustBeType(this);
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MultiModelRegistry.getMultiModel(this);
 		// delete the "thing"
-		getInputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), multiModel));
-		getOutputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), multiModel));
-		getGenerics().forEach(genericTypeEndpoint -> super.delete(genericTypeEndpoint.getUri(), multiModel));
+		getInputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), typeMID));
+		getOutputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), typeMID));
+		getGenerics().forEach(genericTypeEndpoint -> super.delete(genericTypeEndpoint.getUri(), typeMID));
 		super.deleteType();
-		multiModel.getOperators().remove(this);
+		typeMID.getOperators().remove(this);
 		// delete the subtypes of the "thing"
-		for (Operator operatorSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, multiModel)) {
+		for (Operator operatorSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, typeMID)) {
 			operatorSubtype.deleteType();
 		}
 	}
@@ -851,14 +851,14 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * @return The allowed inputs for each formal parameter, including necessary conversions.
 	 * @generated NOT
 	 */
-	private @NonNull EList<EList<OperatorInput>> getModelTypeEndpointInputs(@NonNull EList<MultiModel> inputMIDs) {
+	private @NonNull EList<EList<OperatorInput>> getModelTypeEndpointInputs(@NonNull EList<MID> inputMIDs) {
 
 		//TODO MMINT[MAP] Add support for upper bound = -1
 		EList<EList<OperatorInput>> modelTypeEndpointInputs = new BasicEList<>();
 		for (int i = 0; i < this.getInputs().size(); i++) {
 			ModelEndpoint inputModelTypeEndpoint = this.getInputs().get(i);
 			// TODO MMINT[MAP] Add support for arbitrary combinations of input MIDs to input arguments
-			MultiModel inputMID;
+			MID inputMID;
 			if (i < inputMIDs.size()) {
 				inputMID = inputMIDs.get(i);
 			}
@@ -882,7 +882,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public Set<EList<OperatorInput>> findAllowedInputs(EList<MultiModel> inputMIDs) throws MMINTException {
+	public Set<EList<OperatorInput>> findAllowedInputs(EList<MID> inputMIDs) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
@@ -897,7 +897,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public EList<OperatorInput> findFirstAllowedInput(EList<MultiModel> inputMIDs) throws MMINTException {
+	public EList<OperatorInput> findFirstAllowedInput(EList<MID> inputMIDs) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
@@ -988,7 +988,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public Operator createInstance(MultiModel instanceMID) throws MMINTException {
+	public Operator createInstance(MID instanceMID) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
@@ -1015,7 +1015,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MMINTException.mustBeInstance(this);
 
-		MultiModel instanceMID = MultiModelRegistry.getMultiModel(this);
+		MID instanceMID = MultiModelRegistry.getMultiModel(this);
 		instanceMID.getOperators().remove(this);
 	}
 
@@ -1107,7 +1107,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * @generated NOT
 	 */
 	public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		throw new MMINTException("The default run() function must be overridden");
 	}
@@ -1165,7 +1165,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				conversion.init();
 				Map<String, Model> conversionInputsByName = new HashMap<>();
 				conversionInputsByName.put(conversion.getInputs().get(0).getName(), convertedInputModel);
-				Map<String, MultiModel> conversionOutputMIDsByName = new HashMap<>();
+				Map<String, MID> conversionOutputMIDsByName = new HashMap<>();
 				conversionOutputMIDsByName.put(conversion.getOutputs().get(0).getName(), null);
 				convertedInputModel = conversion.run(conversionInputsByName, new HashMap<>(), conversionOutputMIDsByName)
 					.get(conversion.getOutputs().get(0).getName());
@@ -1203,7 +1203,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public Operator start(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception {
+	public Operator start(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName, MID instanceMID) throws Exception {
 
 		MMINTException.mustBeType(this);
 

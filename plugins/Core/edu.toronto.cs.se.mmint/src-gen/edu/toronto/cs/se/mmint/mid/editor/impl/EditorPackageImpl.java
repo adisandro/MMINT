@@ -18,8 +18,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.jface.viewers.IStructuredSelection;
-
-import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
@@ -112,9 +110,6 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		EditorPackageImpl theEditorPackage = (EditorPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof EditorPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new EditorPackageImpl());
 
 		isInited = true;
-
-		// Initialize simple dependencies
-		MAVOPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		MIDPackageImpl theMIDPackage = (MIDPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI) instanceof MIDPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI) : MIDPackage.eINSTANCE);
@@ -237,7 +232,7 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getEditor__CreateInstance__String_MultiModel() {
+	public EOperation getEditor__CreateInstance__String_MID() {
 		return editorEClass.getEOperations().get(4);
 	}
 
@@ -282,7 +277,7 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getDiagram__CreateInstance__String_MultiModel() {
+	public EOperation getDiagram__CreateInstance__String_MID() {
 		return diagramEClass.getEOperations().get(1);
 	}
 
@@ -351,13 +346,13 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		createEOperation(editorEClass, EDITOR___GET_SUPERTYPE);
 		createEOperation(editorEClass, EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING);
 		createEOperation(editorEClass, EDITOR___DELETE_TYPE);
-		createEOperation(editorEClass, EDITOR___CREATE_INSTANCE__STRING_MULTIMODEL);
+		createEOperation(editorEClass, EDITOR___CREATE_INSTANCE__STRING_MID);
 		createEOperation(editorEClass, EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION);
 		createEOperation(editorEClass, EDITOR___DELETE_INSTANCE);
 
 		diagramEClass = createEClass(DIAGRAM);
 		createEOperation(diagramEClass, DIAGRAM___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING);
-		createEOperation(diagramEClass, DIAGRAM___CREATE_INSTANCE__STRING_MULTIMODEL);
+		createEOperation(diagramEClass, DIAGRAM___CREATE_INSTANCE__STRING_MID);
 		createEOperation(diagramEClass, DIAGRAM___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION);
 
 		// Create data types
@@ -423,9 +418,9 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		op = initEOperation(getEditor__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
-		op = initEOperation(getEditor__CreateInstance__String_MultiModel(), this.getEditor(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getEditor__CreateInstance__String_MID(), this.getEditor(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "modelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMIDPackage.getMultiModel(), "containerMultiModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getMID(), "instanceMID", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getEditor__InvokeInstanceWizard__IStructuredSelection(), this.getEditorCreationWizardDialog(), "invokeInstanceWizard", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -446,9 +441,9 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		addEParameter(op, ecorePackage.getEString(), "wizardDialogClassName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
-		op = initEOperation(getDiagram__CreateInstance__String_MultiModel(), this.getEditor(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getDiagram__CreateInstance__String_MID(), this.getEditor(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "modelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMIDPackage.getMultiModel(), "containerMultiModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getMID(), "instanceMID", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getDiagram__InvokeInstanceWizard__IStructuredSelection(), this.getEditorCreationWizardDialog(), "invokeInstanceWizard", 1, 1, IS_UNIQUE, IS_ORDERED);

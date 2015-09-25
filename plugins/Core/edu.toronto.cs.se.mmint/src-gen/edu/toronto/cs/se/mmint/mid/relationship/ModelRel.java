@@ -15,10 +15,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,9 +33,9 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#getModelEndpoints <em>Model Endpoints</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#getLinks <em>Links</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#getMappings <em>Mappings</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#getModelEndpointRefs <em>Model Endpoint Refs</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#getLinkRefs <em>Link Refs</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#getMappingRefs <em>Mapping Refs</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getModelRel()
@@ -60,19 +59,19 @@ public interface ModelRel extends Model {
 	EList<ModelEndpoint> getModelEndpoints();
 
 	/**
-	 * Returns the value of the '<em><b>Links</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.relationship.Link}.
+	 * Returns the value of the '<em><b>Mappings</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.relationship.Mapping}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The list of links among model elements.
+	 * The list of mappings among model elements.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Links</em>' containment reference list.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getModelRel_Links()
+	 * @return the value of the '<em>Mappings</em>' containment reference list.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getModelRel_Mappings()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Link> getLinks();
+	EList<Mapping> getMappings();
 
 	/**
 	 * Returns the value of the '<em><b>Model Endpoint Refs</b></em>' containment reference list.
@@ -90,19 +89,19 @@ public interface ModelRel extends Model {
 	EList<ModelEndpointReference> getModelEndpointRefs();
 
 	/**
-	 * Returns the value of the '<em><b>Link Refs</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.relationship.LinkReference}.
+	 * Returns the value of the '<em><b>Mapping Refs</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.relationship.MappingReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The list of references to links. This is different from the list of links because it includes inherited links too.
+	 * The list of references to mappings. This is different from the list of mappings because it includes inherited mappings too.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Link Refs</em>' containment reference list.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getModelRel_LinkRefs()
+	 * @return the value of the '<em>Mapping Refs</em>' containment reference list.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getModelRel_MappingRefs()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<LinkReference> getLinkRefs();
+	EList<MappingReference> getMappingRefs();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -129,6 +128,14 @@ public interface ModelRel extends Model {
 	 * @generated
 	 */
 	Model getSupertype();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelTypeNameRequired="true" isMetamodelExtensionRequired="true"
+	 * @generated
+	 */
+	BinaryModelRel createBinarySubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a subtype of this model
@@ -176,10 +183,26 @@ public interface ModelRel extends Model {
 	 *             If this is a model relationship instance, if no target models are specified, if the uri of the new
 	 *             model relationship is already registered in the Instance MID, or if the new model relationship is
 	 *             binary but 2 target models are not specified. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isBinaryRequired="true" originRequired="true" targetModelsRequired="true" targetModelsMany="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" endpointModelsRequired="true" endpointModelsMany="true"
 	 * @generated
 	 */
 	ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, EList<Model> endpointModels, MID instanceMID) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	BinaryModelRel createBinaryInstance(String newModelRelUri, MID instanceMID) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" endpointSourceModelRequired="true" endpointTargetModelRequired="true"
+	 * @generated
+	 */
+	BinaryModelRel createBinaryInstanceAndEndpointsAndReferences(String newModelRelUri, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model relationship instance from the

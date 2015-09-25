@@ -79,51 +79,6 @@ public interface EditorPackage extends EPackage {
 	int EDITOR = 0;
 
 	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__FORMULA_VARIABLE = MIDPackage.EXTENDIBLE_ELEMENT__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__MAY = MIDPackage.EXTENDIBLE_ELEMENT__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__SET = MIDPackage.EXTENDIBLE_ELEMENT__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__VAR = MIDPackage.EXTENDIBLE_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Collections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR__COLLECTIONS = MIDPackage.EXTENDIBLE_ELEMENT__COLLECTIONS;
-
-	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -301,7 +256,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___CREATE_INSTANCE__STRING_MULTIMODEL = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+	int EDITOR___CREATE_INSTANCE__STRING_MID = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Invoke Instance Wizard</em>' operation.
@@ -339,51 +294,6 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 */
 	int DIAGRAM = 1;
-
-	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__FORMULA_VARIABLE = EDITOR__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__MAY = EDITOR__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__SET = EDITOR__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__VAR = EDITOR__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Collections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM__COLLECTIONS = EDITOR__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -572,7 +482,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DIAGRAM___CREATE_INSTANCE__STRING_MULTIMODEL = EDITOR_OPERATION_COUNT + 1;
+	int DIAGRAM___CREATE_INSTANCE__STRING_MID = EDITOR_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Invoke Instance Wizard</em>' operation.
@@ -720,14 +630,14 @@ public interface EditorPackage extends EPackage {
 	EOperation getEditor__DeleteType();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.editor.Editor#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MultiModel) <em>Create Instance</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.editor.Editor#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Instance</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.editor.Editor#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MultiModel)
+	 * @see edu.toronto.cs.se.mmint.mid.editor.Editor#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
 	 * @generated
 	 */
-	EOperation getEditor__CreateInstance__String_MultiModel();
+	EOperation getEditor__CreateInstance__String_MID();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.editor.Editor#invokeInstanceWizard(org.eclipse.jface.viewers.IStructuredSelection) <em>Invoke Instance Wizard</em>}' operation.
@@ -770,14 +680,14 @@ public interface EditorPackage extends EPackage {
 	EOperation getDiagram__CreateSubtype__String_String_String_String_String_String();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.editor.Diagram#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MultiModel) <em>Create Instance</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.editor.Diagram#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Instance</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.editor.Diagram#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MultiModel)
+	 * @see edu.toronto.cs.se.mmint.mid.editor.Diagram#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
 	 * @generated
 	 */
-	EOperation getDiagram__CreateInstance__String_MultiModel();
+	EOperation getDiagram__CreateInstance__String_MID();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.editor.Diagram#invokeInstanceWizard(org.eclipse.jface.viewers.IStructuredSelection) <em>Invoke Instance Wizard</em>}' operation.
@@ -922,7 +832,7 @@ public interface EditorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation EDITOR___CREATE_INSTANCE__STRING_MULTIMODEL = eINSTANCE.getEditor__CreateInstance__String_MultiModel();
+		EOperation EDITOR___CREATE_INSTANCE__STRING_MID = eINSTANCE.getEditor__CreateInstance__String_MID();
 
 		/**
 		 * The meta object literal for the '<em><b>Invoke Instance Wizard</b></em>' operation.
@@ -964,7 +874,7 @@ public interface EditorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation DIAGRAM___CREATE_INSTANCE__STRING_MULTIMODEL = eINSTANCE.getDiagram__CreateInstance__String_MultiModel();
+		EOperation DIAGRAM___CREATE_INSTANCE__STRING_MID = eINSTANCE.getDiagram__CreateInstance__String_MID();
 
 		/**
 		 * The meta object literal for the '<em><b>Invoke Instance Wizard</b></em>' operation.

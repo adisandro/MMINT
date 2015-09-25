@@ -35,7 +35,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
@@ -60,10 +60,10 @@ public class MultiModelTypeIntrospection {
 			if (!validates) {
 				return MAVOTruthValue.FALSE;
 			}
-			for (Link link : ((ModelRel) element).getLinks()) {
+			for (Mapping mapping : ((ModelRel) element).getMappings()) {
 				validates = false;
-				for (Link linkType : ((ModelRel) elementType).getLinks()) {
-					validates = MultiModelConstraintChecker.areAllowedModelElementEndpointReferences(link, linkType);
+				for (Mapping mappingType : ((ModelRel) elementType).getMappings()) {
+					validates = MultiModelConstraintChecker.areAllowedModelElementEndpointReferences(mapping, mappingType);
 					if (validates) {
 						break;
 					}
@@ -92,8 +92,8 @@ public class MultiModelTypeIntrospection {
 			return mavoValidates;
 		}
 
-		if (element instanceof Link) {
-			validates = MultiModelConstraintChecker.areAllowedModelElementEndpointReferences((Link) element, (Link) elementType);
+		if (element instanceof Mapping) {
+			validates = MultiModelConstraintChecker.areAllowedModelElementEndpointReferences((Mapping) element, (Mapping) elementType);
 			return MAVOTruthValue.toMAVOTruthValue(validates);
 		}
 
@@ -158,7 +158,7 @@ public class MultiModelTypeIntrospection {
 			if (element instanceof ModelRel && ((ModelRel) element).getModelEndpoints().isEmpty()) {
 				return;
 			}
-			if (element instanceof Link && ((Link) element).getModelElemEndpoints().isEmpty()) {
+			if (element instanceof Mapping && ((Mapping) element).getModelElemEndpoints().isEmpty()) {
 				return;
 			}
 			// second stop condition: endpoints

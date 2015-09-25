@@ -31,13 +31,13 @@ public interface MIDFactory extends EFactory {
 	MIDFactory eINSTANCE = edu.toronto.cs.se.mmint.mid.impl.MIDFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Multi Model</em>'.
+	 * Returns a new object of class '<em>MID</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Multi Model</em>'.
+	 * @return a new object of class '<em>MID</em>'.
 	 * @generated
 	 */
-	MultiModel createMultiModel();
+	MID createMID();
 
 	/**
 	 * Returns a new object of class '<em>Model</em>'.

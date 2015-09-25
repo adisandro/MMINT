@@ -15,26 +15,11 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import edu.toronto.cs.se.mavo.LogicElement;
-import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLink;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmint.mid.relationship.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -117,36 +102,28 @@ public class RelationshipAdapterFactory extends AdapterFactoryImpl {
 				return createModelElementReferenceAdapter();
 			}
 			@Override
-			public Adapter caseLink(Link object) {
-				return createLinkAdapter();
+			public Adapter caseMapping(Mapping object) {
+				return createMappingAdapter();
 			}
 			@Override
-			public Adapter caseBinaryLink(BinaryLink object) {
-				return createBinaryLinkAdapter();
+			public Adapter caseBinaryMapping(BinaryMapping object) {
+				return createBinaryMappingAdapter();
 			}
 			@Override
 			public Adapter caseModelElementEndpoint(ModelElementEndpoint object) {
 				return createModelElementEndpointAdapter();
 			}
 			@Override
-			public Adapter caseLinkReference(LinkReference object) {
-				return createLinkReferenceAdapter();
+			public Adapter caseMappingReference(MappingReference object) {
+				return createMappingReferenceAdapter();
 			}
 			@Override
-			public Adapter caseBinaryLinkReference(BinaryLinkReference object) {
-				return createBinaryLinkReferenceAdapter();
+			public Adapter caseBinaryMappingReference(BinaryMappingReference object) {
+				return createBinaryMappingReferenceAdapter();
 			}
 			@Override
 			public Adapter caseModelElementEndpointReference(ModelElementEndpointReference object) {
 				return createModelElementEndpointReferenceAdapter();
-			}
-			@Override
-			public Adapter caseLogicElement(LogicElement object) {
-				return createLogicElementAdapter();
-			}
-			@Override
-			public Adapter caseMAVOElement(MAVOElement object) {
-				return createMAVOElementAdapter();
 			}
 			@Override
 			public Adapter caseExtendibleElement(ExtendibleElement object) {
@@ -155,10 +132,6 @@ public class RelationshipAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseGenericElement(GenericElement object) {
 				return createGenericElementAdapter();
-			}
-			@Override
-			public Adapter caseMAVOModel(MAVORoot object) {
-				return createMAVOModelAdapter();
 			}
 			@Override
 			public Adapter caseModel(Model object) {
@@ -245,30 +218,30 @@ public class RelationshipAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.Link <em>Link</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.Mapping <em>Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.Link
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.Mapping
 	 * @generated
 	 */
-	public Adapter createLinkAdapter() {
+	public Adapter createMappingAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryLink <em>Binary Link</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping <em>Binary Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.BinaryLink
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping
 	 * @generated
 	 */
-	public Adapter createBinaryLinkAdapter() {
+	public Adapter createBinaryMappingAdapter() {
 		return null;
 	}
 
@@ -283,6 +256,34 @@ public class RelationshipAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelElementEndpointAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.MappingReference <em>Mapping Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.MappingReference
+	 * @generated
+	 */
+	public Adapter createMappingReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference <em>Binary Mapping Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference
+	 * @generated
+	 */
+	public Adapter createBinaryMappingReferenceAdapter() {
 		return null;
 	}
 
@@ -315,34 +316,6 @@ public class RelationshipAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.LinkReference <em>Link Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.LinkReference
-	 * @generated
-	 */
-	public Adapter createLinkReferenceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference <em>Binary Link Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference
-	 * @generated
-	 */
-	public Adapter createBinaryLinkReferenceAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference <em>Model Element Endpoint Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -353,34 +326,6 @@ public class RelationshipAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelElementEndpointReferenceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.LogicElement <em>Logic Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mavo.LogicElement
-	 * @generated
-	 */
-	public Adapter createLogicElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.MAVOElement <em>Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mavo.MAVOElement
-	 * @generated
-	 */
-	public Adapter createMAVOElementAdapter() {
 		return null;
 	}
 
@@ -409,20 +354,6 @@ public class RelationshipAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGenericElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.MAVORoot <em>Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mavo.MAVORoot
-	 * @generated
-	 */
-	public Adapter createMAVOModelAdapter() {
 		return null;
 	}
 

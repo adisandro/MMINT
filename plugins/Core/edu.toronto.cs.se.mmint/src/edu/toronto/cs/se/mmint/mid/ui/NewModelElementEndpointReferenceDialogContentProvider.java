@@ -17,8 +17,8 @@ import java.util.List;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 
 public class NewModelElementEndpointReferenceDialogContentProvider implements ITreeContentProvider {
@@ -63,9 +63,9 @@ public class NewModelElementEndpointReferenceDialogContentProvider implements IT
 	@Override
 	public Object[] getChildren(Object parentElement) {
 
-		if (parentElement instanceof Link) {
+		if (parentElement instanceof Mapping) {
 			List<ModelElementEndpointReference> modelElemTypeEndpointRefs = new ArrayList<ModelElementEndpointReference>();
-			for (ModelElementEndpointReference modelElemTypeEndpointRef : ((Link) parentElement).getModelElemEndpointRefs()) {
+			for (ModelElementEndpointReference modelElemTypeEndpointRef : ((Mapping) parentElement).getModelElemEndpointRefs()) {
 				if (allowedModelElemTypeEndpointUris == null || allowedModelElemTypeEndpointUris.contains(modelElemTypeEndpointRef.getUri())) {
 					modelElemTypeEndpointRefs.add(modelElemTypeEndpointRef);
 				}
@@ -83,7 +83,7 @@ public class NewModelElementEndpointReferenceDialogContentProvider implements IT
 	public Object getParent(Object element) {
 
 		if (element instanceof ModelElementEndpointReference) {
-			return ((LinkReference) ((ModelElementEndpointReference) element).eContainer()).getObject();
+			return ((MappingReference) ((ModelElementEndpointReference) element).eContainer()).getObject();
 		}
 
 		return null;
@@ -95,8 +95,8 @@ public class NewModelElementEndpointReferenceDialogContentProvider implements IT
 	@Override
 	public boolean hasChildren(Object element) {
 
-		if (element instanceof Link) {
-			return !((Link) element).getModelElemEndpointRefs().isEmpty();
+		if (element instanceof Mapping) {
+			return !((Mapping) element).getModelElemEndpointRefs().isEmpty();
 		}
 
 		return false;

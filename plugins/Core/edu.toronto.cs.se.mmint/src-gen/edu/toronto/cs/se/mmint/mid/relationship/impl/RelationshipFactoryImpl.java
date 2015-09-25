@@ -11,23 +11,12 @@
  */
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
 
+import edu.toronto.cs.se.mmint.mid.relationship.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLink;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,11 +66,11 @@ public class RelationshipFactoryImpl extends EFactoryImpl implements Relationshi
 			case RelationshipPackage.BINARY_MODEL_REL: return createBinaryModelRel();
 			case RelationshipPackage.MODEL_ENDPOINT_REFERENCE: return createModelEndpointReference();
 			case RelationshipPackage.MODEL_ELEMENT_REFERENCE: return createModelElementReference();
-			case RelationshipPackage.LINK: return createLink();
-			case RelationshipPackage.BINARY_LINK: return createBinaryLink();
+			case RelationshipPackage.MAPPING: return createMapping();
+			case RelationshipPackage.BINARY_MAPPING: return createBinaryMapping();
 			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT: return createModelElementEndpoint();
-			case RelationshipPackage.LINK_REFERENCE: return createLinkReference();
-			case RelationshipPackage.BINARY_LINK_REFERENCE: return createBinaryLinkReference();
+			case RelationshipPackage.MAPPING_REFERENCE: return createMappingReference();
+			case RelationshipPackage.BINARY_MAPPING_REFERENCE: return createBinaryMappingReference();
 			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE: return createModelElementEndpointReference();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -133,9 +122,9 @@ public class RelationshipFactoryImpl extends EFactoryImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Link createLink() {
-		LinkImpl link = new LinkImpl();
-		return link;
+	public Mapping createMapping() {
+		MappingImpl mapping = new MappingImpl();
+		return mapping;
 	}
 
 	/**
@@ -143,9 +132,9 @@ public class RelationshipFactoryImpl extends EFactoryImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BinaryLink createBinaryLink() {
-		BinaryLinkImpl binaryLink = new BinaryLinkImpl();
-		return binaryLink;
+	public BinaryMapping createBinaryMapping() {
+		BinaryMappingImpl binaryMapping = new BinaryMappingImpl();
+		return binaryMapping;
 	}
 
 	/**
@@ -163,9 +152,9 @@ public class RelationshipFactoryImpl extends EFactoryImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LinkReference createLinkReference() {
-		LinkReferenceImpl linkReference = new LinkReferenceImpl();
-		return linkReference;
+	public MappingReference createMappingReference() {
+		MappingReferenceImpl mappingReference = new MappingReferenceImpl();
+		return mappingReference;
 	}
 
 	/**
@@ -173,9 +162,9 @@ public class RelationshipFactoryImpl extends EFactoryImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BinaryLinkReference createBinaryLinkReference() {
-		BinaryLinkReferenceImpl binaryLinkReference = new BinaryLinkReferenceImpl();
-		return binaryLinkReference;
+	public BinaryMappingReference createBinaryMappingReference() {
+		BinaryMappingReferenceImpl binaryMappingReference = new BinaryMappingReferenceImpl();
+		return binaryMappingReference;
 	}
 
 	/**

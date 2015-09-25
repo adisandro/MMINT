@@ -45,7 +45,7 @@ public interface ModelElementReference extends ExtendibleElementReference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The list of references to links that use this as an endpoint.
+	 * The list of references to mappings that use this as an endpoint.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Model Elem Endpoint Refs</em>' reference list.
 	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getModelElementReference_ModelElemEndpointRefs()

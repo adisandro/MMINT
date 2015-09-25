@@ -67,22 +67,22 @@ public interface RelationshipFactory extends EFactory {
 	ModelElementReference createModelElementReference();
 
 	/**
-	 * Returns a new object of class '<em>Link</em>'.
+	 * Returns a new object of class '<em>Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Link</em>'.
+	 * @return a new object of class '<em>Mapping</em>'.
 	 * @generated
 	 */
-	Link createLink();
+	Mapping createMapping();
 
 	/**
-	 * Returns a new object of class '<em>Binary Link</em>'.
+	 * Returns a new object of class '<em>Binary Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Binary Link</em>'.
+	 * @return a new object of class '<em>Binary Mapping</em>'.
 	 * @generated
 	 */
-	BinaryLink createBinaryLink();
+	BinaryMapping createBinaryMapping();
 
 	/**
 	 * Returns a new object of class '<em>Model Element Endpoint</em>'.
@@ -94,22 +94,22 @@ public interface RelationshipFactory extends EFactory {
 	ModelElementEndpoint createModelElementEndpoint();
 
 	/**
-	 * Returns a new object of class '<em>Link Reference</em>'.
+	 * Returns a new object of class '<em>Mapping Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Link Reference</em>'.
+	 * @return a new object of class '<em>Mapping Reference</em>'.
 	 * @generated
 	 */
-	LinkReference createLinkReference();
+	MappingReference createMappingReference();
 
 	/**
-	 * Returns a new object of class '<em>Binary Link Reference</em>'.
+	 * Returns a new object of class '<em>Binary Mapping Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Binary Link Reference</em>'.
+	 * @return a new object of class '<em>Binary Mapping Reference</em>'.
 	 * @generated
 	 */
-	BinaryLinkReference createBinaryLinkReference();
+	BinaryMappingReference createBinaryMappingReference();
 
 	/**
 	 * Returns a new object of class '<em>Model Element Endpoint Reference</em>'.

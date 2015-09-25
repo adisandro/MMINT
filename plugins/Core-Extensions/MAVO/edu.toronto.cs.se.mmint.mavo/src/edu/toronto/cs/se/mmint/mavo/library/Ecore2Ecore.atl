@@ -147,7 +147,7 @@ rule RootEClass2RootEClass {
 			eOperations <- s.eOperations,
 			eReferences <- s.eReferences,
 			eStructuralFeatures <- s.eStructuralFeatures,
-			eSuperTypes <- s.eSuperTypes.append(thisModule.getMAVOModel),
+			eSuperTypes <- s.eSuperTypes.append(thisModule.getMAVORoot),
 			interface <- s.interface,
 			eAnnotations <- s.eAnnotations,
 			name <- s.name,
@@ -415,11 +415,11 @@ unique lazy rule getNewTgtEOpposite {
 		)
 }
 
--- Returns the EClass MAVOModel from the mavo metamodel
-helper def : getMAVOModel : Ecore!EClass =
+-- Returns the EClass MAVORoot from the mavo metamodel
+helper def : getMAVORoot : Ecore!EClass =
 	let allEClasses : Bag(Ecore!EClass) =
 		Ecore!EClass.allInstances()->asBag() in
-	allEClasses->select(eclass | eclass.name = 'MAVOModel');
+	allEClasses->select(eclass | eclass.name = 'MAVORoot');
 
 -- Returns the EClass MAVOElement from the mavo metamodel
 helper def : getMAVOElement : Ecore!EClass =

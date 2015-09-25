@@ -16,19 +16,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import edu.toronto.cs.se.mavo.LogicElement;
-import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVORoot;
-import edu.toronto.cs.se.mmint.mid.EMFInfo;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.GenericElement;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -87,8 +75,8 @@ public class MIDAdapterFactory extends AdapterFactoryImpl {
 	protected MIDSwitch<Adapter> modelSwitch =
 		new MIDSwitch<Adapter>() {
 			@Override
-			public Adapter caseMultiModel(MultiModel object) {
-				return createMultiModelAdapter();
+			public Adapter caseMID(MID object) {
+				return createMIDAdapter();
 			}
 			@Override
 			public Adapter caseEStringToExtendibleElementMap(Map.Entry<String, ExtendibleElement> object) {
@@ -127,18 +115,6 @@ public class MIDAdapterFactory extends AdapterFactoryImpl {
 				return createGenericElementAdapter();
 			}
 			@Override
-			public Adapter caseMAVOModel(MAVORoot object) {
-				return createMAVOModelAdapter();
-			}
-			@Override
-			public Adapter caseLogicElement(LogicElement object) {
-				return createLogicElementAdapter();
-			}
-			@Override
-			public Adapter caseMAVOElement(MAVOElement object) {
-				return createMAVOElementAdapter();
-			}
-			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -159,16 +135,16 @@ public class MIDAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.MultiModel <em>Multi Model</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.MID <em>MID</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmint.mid.MultiModel
+	 * @see edu.toronto.cs.se.mmint.mid.MID
 	 * @generated
 	 */
-	public Adapter createMultiModelAdapter() {
+	public Adapter createMIDAdapter() {
 		return null;
 	}
 
@@ -295,48 +271,6 @@ public class MIDAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGenericElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.MAVORoot <em>Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mavo.MAVORoot
-	 * @generated
-	 */
-	public Adapter createMAVOModelAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.LogicElement <em>Logic Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mavo.LogicElement
-	 * @generated
-	 */
-	public Adapter createLogicElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.MAVOElement <em>Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mavo.MAVOElement
-	 * @generated
-	 */
-	public Adapter createMAVOElementAdapter() {
 		return null;
 	}
 

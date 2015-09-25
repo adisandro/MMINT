@@ -19,8 +19,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
-import edu.toronto.cs.se.mavo.MAVOPackage;
-
 /**
  * <!-- begin-user-doc -->
  * The <b>Package</b> for the model.
@@ -72,32 +70,14 @@ public interface MIDPackage extends EPackage {
 	MIDPackage eINSTANCE = edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.MultiModelImpl <em>Multi Model</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.MIDImpl <em>MID</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmint.mid.impl.MultiModelImpl
-	 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getMultiModel()
+	 * @see edu.toronto.cs.se.mmint.mid.impl.MIDImpl
+	 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getMID()
 	 * @generated
 	 */
-	int MULTI_MODEL = 0;
-
-	/**
-	 * The feature id for the '<em><b>Inc</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_MODEL__INC = MAVOPackage.MAVO_MODEL__INC;
-
-	/**
-	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_MODEL__DECISIONS = MAVOPackage.MAVO_MODEL__DECISIONS;
+	int MID = 0;
 
 	/**
 	 * The feature id for the '<em><b>Models</b></em>' containment reference list.
@@ -106,7 +86,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_MODEL__MODELS = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 0;
+	int MID__MODELS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Editors</b></em>' containment reference list.
@@ -115,7 +95,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_MODEL__EDITORS = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 1;
+	int MID__EDITORS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Operators</b></em>' containment reference list.
@@ -124,7 +104,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_MODEL__OPERATORS = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 2;
+	int MID__OPERATORS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Extendible Table</b></em>' map.
@@ -133,7 +113,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_MODEL__EXTENDIBLE_TABLE = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 3;
+	int MID__EXTENDIBLE_TABLE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -142,25 +122,25 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_MODEL__LEVEL = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 4;
+	int MID__LEVEL = 4;
 
 	/**
-	 * The number of structural features of the '<em>Multi Model</em>' class.
+	 * The number of structural features of the '<em>MID</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_MODEL_FEATURE_COUNT = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 5;
+	int MID_FEATURE_COUNT = 5;
 
 	/**
-	 * The number of operations of the '<em>Multi Model</em>' class.
+	 * The number of operations of the '<em>MID</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_MODEL_OPERATION_COUNT = MAVOPackage.MAVO_MODEL_OPERATION_COUNT + 0;
+	int MID_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.EStringToExtendibleElementMapImpl <em>EString To Extendible Element Map</em>}' class.
@@ -219,58 +199,13 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT__FORMULA_VARIABLE = MAVOPackage.MAVO_ELEMENT__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT__MAY = MAVOPackage.MAVO_ELEMENT__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT__SET = MAVOPackage.MAVO_ELEMENT__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT__VAR = MAVOPackage.MAVO_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Collections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT__COLLECTIONS = MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
-
-	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT__SUPERTYPE = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 0;
+	int EXTENDIBLE_ELEMENT__SUPERTYPE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -279,7 +214,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT__URI = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 1;
+	int EXTENDIBLE_ELEMENT__URI = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -288,7 +223,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT__NAME = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 2;
+	int EXTENDIBLE_ELEMENT__NAME = 2;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -297,7 +232,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT__LEVEL = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 3;
+	int EXTENDIBLE_ELEMENT__LEVEL = 3;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -306,7 +241,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT__METATYPE_URI = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 4;
+	int EXTENDIBLE_ELEMENT__METATYPE_URI = 4;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -315,7 +250,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT__DYNAMIC = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 5;
+	int EXTENDIBLE_ELEMENT__DYNAMIC = 5;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -324,7 +259,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT__CONSTRAINT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 6;
+	int EXTENDIBLE_ELEMENT__CONSTRAINT = 6;
 
 	/**
 	 * The number of structural features of the '<em>Extendible Element</em>' class.
@@ -333,7 +268,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_FEATURE_COUNT = MAVOPackage.MAVO_ELEMENT_FEATURE_COUNT + 7;
+	int EXTENDIBLE_ELEMENT_FEATURE_COUNT = 7;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -342,7 +277,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___GET_METATYPE = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 0;
+	int EXTENDIBLE_ELEMENT___GET_METATYPE = 0;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -351,7 +286,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 1;
+	int EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = 1;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -360,7 +295,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 2;
+	int EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES = 2;
 
 	/**
 	 * The number of operations of the '<em>Extendible Element</em>' class.
@@ -369,7 +304,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = MAVOPackage.MAVO_ELEMENT_OPERATION_COUNT + 3;
+	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl <em>Extendible Element Endpoint</em>}' class.
@@ -380,51 +315,6 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 */
 	int EXTENDIBLE_ELEMENT_ENDPOINT = 3;
-
-	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT__FORMULA_VARIABLE = EXTENDIBLE_ELEMENT__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT__MAY = EXTENDIBLE_ELEMENT__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT__SET = EXTENDIBLE_ELEMENT__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT__VAR = EXTENDIBLE_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Collections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT__COLLECTIONS = EXTENDIBLE_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -590,51 +480,6 @@ public interface MIDPackage extends EPackage {
 	int GENERIC_ELEMENT = 9;
 
 	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_ELEMENT__FORMULA_VARIABLE = EXTENDIBLE_ELEMENT__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_ELEMENT__MAY = EXTENDIBLE_ELEMENT__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_ELEMENT__SET = EXTENDIBLE_ELEMENT__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_ELEMENT__VAR = EXTENDIBLE_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Collections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_ELEMENT__COLLECTIONS = EXTENDIBLE_ELEMENT__COLLECTIONS;
-
-	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -762,51 +607,6 @@ public interface MIDPackage extends EPackage {
 	int MODEL = 4;
 
 	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__FORMULA_VARIABLE = GENERIC_ELEMENT__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__MAY = GENERIC_ELEMENT__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__SET = GENERIC_ELEMENT__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__VAR = GENERIC_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Collections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__COLLECTIONS = GENERIC_ELEMENT__COLLECTIONS;
-
-	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -879,31 +679,13 @@ public interface MIDPackage extends EPackage {
 	int MODEL__ABSTRACT = GENERIC_ELEMENT__ABSTRACT;
 
 	/**
-	 * The feature id for the '<em><b>Inc</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__INC = GENERIC_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__DECISIONS = GENERIC_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Origin</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__ORIGIN = GENERIC_ELEMENT_FEATURE_COUNT + 2;
+	int MODEL__ORIGIN = GENERIC_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>File Extension</b></em>' attribute.
@@ -912,7 +694,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__FILE_EXTENSION = GENERIC_ELEMENT_FEATURE_COUNT + 3;
+	int MODEL__FILE_EXTENSION = GENERIC_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Editors</b></em>' reference list.
@@ -921,7 +703,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__EDITORS = GENERIC_ELEMENT_FEATURE_COUNT + 4;
+	int MODEL__EDITORS = GENERIC_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Model Elems</b></em>' containment reference list.
@@ -930,7 +712,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__MODEL_ELEMS = GENERIC_ELEMENT_FEATURE_COUNT + 5;
+	int MODEL__MODEL_ELEMS = GENERIC_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Conversion Operators</b></em>' reference list.
@@ -939,7 +721,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__CONVERSION_OPERATORS = GENERIC_ELEMENT_FEATURE_COUNT + 6;
+	int MODEL__CONVERSION_OPERATORS = GENERIC_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Model</em>' class.
@@ -948,7 +730,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_FEATURE_COUNT = GENERIC_ELEMENT_FEATURE_COUNT + 7;
+	int MODEL_FEATURE_COUNT = GENERIC_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -1020,7 +802,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = GENERIC_ELEMENT_OPERATION_COUNT + 5;
+	int MODEL___CREATE_INSTANCE__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Create Instance Editor</em>' operation.
@@ -1038,43 +820,34 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = GENERIC_ELEMENT_OPERATION_COUNT + 7;
+	int MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
-	 * The operation id for the '<em>Create MAVO Instance</em>' operation.
+	 * The operation id for the '<em>Import Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = GENERIC_ELEMENT_OPERATION_COUNT + 8;
+	int MODEL___IMPORT_INSTANCE__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
-	 * The operation id for the '<em>Create MAVO Instance And Editor</em>' operation.
+	 * The operation id for the '<em>Copy Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = GENERIC_ELEMENT_OPERATION_COUNT + 9;
+	int MODEL___COPY_INSTANCE__MODEL_STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
-	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.
+	 * The operation id for the '<em>Copy Instance And Editor</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL = GENERIC_ELEMENT_OPERATION_COUNT + 10;
-
-	/**
-	 * The operation id for the '<em>Copy MAVO Instance And Editor</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = GENERIC_ELEMENT_OPERATION_COUNT + 11;
+	int MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = GENERIC_ELEMENT_OPERATION_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1083,7 +856,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___DELETE_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 12;
+	int MODEL___DELETE_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
@@ -1092,7 +865,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___GET_EMF_INSTANCE_ROOT = GENERIC_ELEMENT_OPERATION_COUNT + 13;
+	int MODEL___GET_EMF_INSTANCE_ROOT = GENERIC_ELEMENT_OPERATION_COUNT + 12;
 
 	/**
 	 * The operation id for the '<em>Open Type</em>' operation.
@@ -1101,7 +874,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___OPEN_TYPE = GENERIC_ELEMENT_OPERATION_COUNT + 14;
+	int MODEL___OPEN_TYPE = GENERIC_ELEMENT_OPERATION_COUNT + 13;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -1110,7 +883,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___OPEN_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 15;
+	int MODEL___OPEN_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 14;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -1119,7 +892,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_OPERATION_COUNT = GENERIC_ELEMENT_OPERATION_COUNT + 16;
+	int MODEL_OPERATION_COUNT = GENERIC_ELEMENT_OPERATION_COUNT + 15;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.
@@ -1176,51 +949,6 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 */
 	int MODEL_ELEMENT = 6;
-
-	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__FORMULA_VARIABLE = EXTENDIBLE_ELEMENT__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__MAY = EXTENDIBLE_ELEMENT__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__SET = EXTENDIBLE_ELEMENT__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__VAR = EXTENDIBLE_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Collections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__COLLECTIONS = EXTENDIBLE_ELEMENT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1429,51 +1157,6 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 */
 	int MODEL_ENDPOINT = 7;
-
-	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ENDPOINT__FORMULA_VARIABLE = EXTENDIBLE_ELEMENT_ENDPOINT__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ENDPOINT__MAY = EXTENDIBLE_ELEMENT_ENDPOINT__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ENDPOINT__SET = EXTENDIBLE_ELEMENT_ENDPOINT__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ENDPOINT__VAR = EXTENDIBLE_ELEMENT_ENDPOINT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Collections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ENDPOINT__COLLECTIONS = EXTENDIBLE_ELEMENT_ENDPOINT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1832,69 +1515,69 @@ public interface MIDPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.MultiModel <em>Multi Model</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.MID <em>MID</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Multi Model</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.MultiModel
+	 * @return the meta object for class '<em>MID</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.MID
 	 * @generated
 	 */
-	EClass getMultiModel();
+	EClass getMID();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmint.mid.MultiModel#getModels <em>Models</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmint.mid.MID#getModels <em>Models</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Models</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.MultiModel#getModels()
-	 * @see #getMultiModel()
+	 * @see edu.toronto.cs.se.mmint.mid.MID#getModels()
+	 * @see #getMID()
 	 * @generated
 	 */
-	EReference getMultiModel_Models();
+	EReference getMID_Models();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmint.mid.MultiModel#getEditors <em>Editors</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmint.mid.MID#getEditors <em>Editors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Editors</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.MultiModel#getEditors()
-	 * @see #getMultiModel()
+	 * @see edu.toronto.cs.se.mmint.mid.MID#getEditors()
+	 * @see #getMID()
 	 * @generated
 	 */
-	EReference getMultiModel_Editors();
+	EReference getMID_Editors();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmint.mid.MultiModel#getOperators <em>Operators</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmint.mid.MID#getOperators <em>Operators</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Operators</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.MultiModel#getOperators()
-	 * @see #getMultiModel()
+	 * @see edu.toronto.cs.se.mmint.mid.MID#getOperators()
+	 * @see #getMID()
 	 * @generated
 	 */
-	EReference getMultiModel_Operators();
+	EReference getMID_Operators();
 
 	/**
-	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmint.mid.MultiModel#getExtendibleTable <em>Extendible Table</em>}'.
+	 * Returns the meta object for the map '{@link edu.toronto.cs.se.mmint.mid.MID#getExtendibleTable <em>Extendible Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the map '<em>Extendible Table</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.MultiModel#getExtendibleTable()
-	 * @see #getMultiModel()
+	 * @see edu.toronto.cs.se.mmint.mid.MID#getExtendibleTable()
+	 * @see #getMID()
 	 * @generated
 	 */
-	EReference getMultiModel_ExtendibleTable();
+	EReference getMID_ExtendibleTable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.MultiModel#getLevel <em>Level</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.MID#getLevel <em>Level</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Level</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.MultiModel#getLevel()
-	 * @see #getMultiModel()
+	 * @see edu.toronto.cs.se.mmint.mid.MID#getLevel()
+	 * @see #getMID()
 	 * @generated
 	 */
-	EAttribute getMultiModel_Level();
+	EAttribute getMID_Level();
 
 	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Extendible Element Map</em>}'.
@@ -2237,14 +1920,14 @@ public interface MIDPackage extends EPackage {
 	EOperation getModel__GetEMFTypeRoot();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.ModelOrigin, edu.toronto.cs.se.mmint.mid.MultiModel) <em>Create Instance</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Instance</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.Model#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.ModelOrigin, edu.toronto.cs.se.mmint.mid.MultiModel)
+	 * @see edu.toronto.cs.se.mmint.mid.Model#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
 	 * @generated
 	 */
-	EOperation getModel__CreateInstance__String_ModelOrigin_MultiModel();
+	EOperation getModel__CreateInstance__String_MID();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createInstanceEditor() <em>Create Instance Editor</em>}' operation.
@@ -2257,54 +1940,44 @@ public interface MIDPackage extends EPackage {
 	EOperation getModel__CreateInstanceEditor();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createInstanceAndEditor(java.lang.String, edu.toronto.cs.se.mmint.mid.ModelOrigin, edu.toronto.cs.se.mmint.mid.MultiModel) <em>Create Instance And Editor</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createInstanceAndEditor(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance And Editor</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Instance And Editor</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.Model#createInstanceAndEditor(java.lang.String, edu.toronto.cs.se.mmint.mid.ModelOrigin, edu.toronto.cs.se.mmint.mid.MultiModel)
+	 * @see edu.toronto.cs.se.mmint.mid.Model#createInstanceAndEditor(java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
 	 * @generated
 	 */
-	EOperation getModel__CreateInstanceAndEditor__String_ModelOrigin_MultiModel();
+	EOperation getModel__CreateInstanceAndEditor__String_MID();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createMAVOInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.ModelOrigin, edu.toronto.cs.se.mmint.mid.MultiModel) <em>Create MAVO Instance</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#importInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Import Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create MAVO Instance</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.Model#createMAVOInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.ModelOrigin, edu.toronto.cs.se.mmint.mid.MultiModel)
+	 * @return the meta object for the '<em>Import Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.Model#importInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
 	 * @generated
 	 */
-	EOperation getModel__CreateMAVOInstance__String_ModelOrigin_MultiModel();
+	EOperation getModel__ImportInstance__String_MID();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createMAVOInstanceAndEditor(java.lang.String, edu.toronto.cs.se.mmint.mid.ModelOrigin, edu.toronto.cs.se.mmint.mid.MultiModel) <em>Create MAVO Instance And Editor</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#copyInstance(edu.toronto.cs.se.mmint.mid.Model, java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Copy Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create MAVO Instance And Editor</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.Model#createMAVOInstanceAndEditor(java.lang.String, edu.toronto.cs.se.mmint.mid.ModelOrigin, edu.toronto.cs.se.mmint.mid.MultiModel)
+	 * @return the meta object for the '<em>Copy Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.Model#copyInstance(edu.toronto.cs.se.mmint.mid.Model, java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
 	 * @generated
 	 */
-	EOperation getModel__CreateMAVOInstanceAndEditor__String_ModelOrigin_MultiModel();
+	EOperation getModel__CopyInstance__Model_String_MID();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#copyMAVOInstance(edu.toronto.cs.se.mmint.mid.Model, java.lang.String, edu.toronto.cs.se.mmint.mid.MultiModel) <em>Copy MAVO Instance</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#copyInstanceAndEditor(edu.toronto.cs.se.mmint.mid.Model, java.lang.String, boolean, edu.toronto.cs.se.mmint.mid.MID) <em>Copy Instance And Editor</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Copy MAVO Instance</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.Model#copyMAVOInstance(edu.toronto.cs.se.mmint.mid.Model, java.lang.String, edu.toronto.cs.se.mmint.mid.MultiModel)
+	 * @return the meta object for the '<em>Copy Instance And Editor</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.Model#copyInstanceAndEditor(edu.toronto.cs.se.mmint.mid.Model, java.lang.String, boolean, edu.toronto.cs.se.mmint.mid.MID)
 	 * @generated
 	 */
-	EOperation getModel__CopyMAVOInstance__Model_String_MultiModel();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#copyMAVOInstanceAndEditor(edu.toronto.cs.se.mmint.mid.Model, java.lang.String, boolean, edu.toronto.cs.se.mmint.mid.MultiModel) <em>Copy MAVO Instance And Editor</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Copy MAVO Instance And Editor</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.Model#copyMAVOInstanceAndEditor(edu.toronto.cs.se.mmint.mid.Model, java.lang.String, boolean, edu.toronto.cs.se.mmint.mid.MultiModel)
-	 * @generated
-	 */
-	EOperation getModel__CopyMAVOInstanceAndEditor__Model_String_boolean_MultiModel();
+	EOperation getModel__CopyInstanceAndEditor__Model_String_boolean_MID();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#deleteInstance() <em>Delete Instance</em>}' operation.
@@ -2779,14 +2452,14 @@ public interface MIDPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.MultiModelImpl <em>Multi Model</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.MIDImpl <em>MID</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmint.mid.impl.MultiModelImpl
-		 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getMultiModel()
+		 * @see edu.toronto.cs.se.mmint.mid.impl.MIDImpl
+		 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getMID()
 		 * @generated
 		 */
-		EClass MULTI_MODEL = eINSTANCE.getMultiModel();
+		EClass MID = eINSTANCE.getMID();
 
 		/**
 		 * The meta object literal for the '<em><b>Models</b></em>' containment reference list feature.
@@ -2794,7 +2467,7 @@ public interface MIDPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MULTI_MODEL__MODELS = eINSTANCE.getMultiModel_Models();
+		EReference MID__MODELS = eINSTANCE.getMID_Models();
 
 		/**
 		 * The meta object literal for the '<em><b>Editors</b></em>' containment reference list feature.
@@ -2802,7 +2475,7 @@ public interface MIDPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MULTI_MODEL__EDITORS = eINSTANCE.getMultiModel_Editors();
+		EReference MID__EDITORS = eINSTANCE.getMID_Editors();
 
 		/**
 		 * The meta object literal for the '<em><b>Operators</b></em>' containment reference list feature.
@@ -2810,7 +2483,7 @@ public interface MIDPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MULTI_MODEL__OPERATORS = eINSTANCE.getMultiModel_Operators();
+		EReference MID__OPERATORS = eINSTANCE.getMID_Operators();
 
 		/**
 		 * The meta object literal for the '<em><b>Extendible Table</b></em>' map feature.
@@ -2818,7 +2491,7 @@ public interface MIDPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MULTI_MODEL__EXTENDIBLE_TABLE = eINSTANCE.getMultiModel_ExtendibleTable();
+		EReference MID__EXTENDIBLE_TABLE = eINSTANCE.getMID_ExtendibleTable();
 
 		/**
 		 * The meta object literal for the '<em><b>Level</b></em>' attribute feature.
@@ -2826,7 +2499,7 @@ public interface MIDPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MULTI_MODEL__LEVEL = eINSTANCE.getMultiModel_Level();
+		EAttribute MID__LEVEL = eINSTANCE.getMID_Level();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.EStringToExtendibleElementMapImpl <em>EString To Extendible Element Map</em>}' class.
@@ -3098,7 +2771,7 @@ public interface MIDPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = eINSTANCE.getModel__CreateInstance__String_ModelOrigin_MultiModel();
+		EOperation MODEL___CREATE_INSTANCE__STRING_MID = eINSTANCE.getModel__CreateInstance__String_MID();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Instance Editor</b></em>' operation.
@@ -3114,39 +2787,31 @@ public interface MIDPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = eINSTANCE.getModel__CreateInstanceAndEditor__String_ModelOrigin_MultiModel();
+		EOperation MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = eINSTANCE.getModel__CreateInstanceAndEditor__String_MID();
 
 		/**
-		 * The meta object literal for the '<em><b>Create MAVO Instance</b></em>' operation.
+		 * The meta object literal for the '<em><b>Import Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = eINSTANCE.getModel__CreateMAVOInstance__String_ModelOrigin_MultiModel();
+		EOperation MODEL___IMPORT_INSTANCE__STRING_MID = eINSTANCE.getModel__ImportInstance__String_MID();
 
 		/**
-		 * The meta object literal for the '<em><b>Create MAVO Instance And Editor</b></em>' operation.
+		 * The meta object literal for the '<em><b>Copy Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = eINSTANCE.getModel__CreateMAVOInstanceAndEditor__String_ModelOrigin_MultiModel();
+		EOperation MODEL___COPY_INSTANCE__MODEL_STRING_MID = eINSTANCE.getModel__CopyInstance__Model_String_MID();
 
 		/**
-		 * The meta object literal for the '<em><b>Copy MAVO Instance</b></em>' operation.
+		 * The meta object literal for the '<em><b>Copy Instance And Editor</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL = eINSTANCE.getModel__CopyMAVOInstance__Model_String_MultiModel();
-
-		/**
-		 * The meta object literal for the '<em><b>Copy MAVO Instance And Editor</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = eINSTANCE.getModel__CopyMAVOInstanceAndEditor__Model_String_boolean_MultiModel();
+		EOperation MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = eINSTANCE.getModel__CopyInstanceAndEditor__Model_String_boolean_MID();
 
 		/**
 		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.

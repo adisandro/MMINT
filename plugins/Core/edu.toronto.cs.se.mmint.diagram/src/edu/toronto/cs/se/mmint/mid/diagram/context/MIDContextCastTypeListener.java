@@ -92,7 +92,7 @@ public class MIDContextCastTypeListener extends MIDContextMenuListener {
 					}
 				}
 				for (Link link : ((ModelRel) model).getLinks()) {
-					Link linkType = MultiModelConstraintChecker.getAllowedLinkType(link);
+					Link linkType = MultiModelConstraintChecker.getAllowedMappingType(link);
 					if (linkType != null) {
 						link.setMetatypeUri(linkType.getUri());
 					}

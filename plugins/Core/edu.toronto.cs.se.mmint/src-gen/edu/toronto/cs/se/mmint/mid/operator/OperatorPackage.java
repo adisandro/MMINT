@@ -81,51 +81,6 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR = 0;
 
 	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__FORMULA_VARIABLE = MIDPackage.GENERIC_ELEMENT__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__MAY = MIDPackage.GENERIC_ELEMENT__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__SET = MIDPackage.GENERIC_ELEMENT__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__VAR = MIDPackage.GENERIC_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Collections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR__COLLECTIONS = MIDPackage.GENERIC_ELEMENT__COLLECTIONS;
-
-	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -375,7 +330,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___CREATE_INSTANCE__MULTIMODEL = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 8;
+	int OPERATOR___CREATE_INSTANCE__MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -447,7 +402,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___START__ELIST_ELIST_MAP_MULTIMODEL = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 16;
+	int OPERATOR___START__ELIST_ELIST_MAP_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 16;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -467,51 +422,6 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	int CONVERSION_OPERATOR = 1;
-
-	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR__FORMULA_VARIABLE = OPERATOR__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR__MAY = OPERATOR__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR__SET = OPERATOR__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR__VAR = OPERATOR__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Collections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR__COLLECTIONS = OPERATOR__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -754,7 +664,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR___CREATE_INSTANCE__MULTIMODEL = OPERATOR___CREATE_INSTANCE__MULTIMODEL;
+	int CONVERSION_OPERATOR___CREATE_INSTANCE__MID = OPERATOR___CREATE_INSTANCE__MID;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -826,7 +736,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR___START__ELIST_ELIST_MAP_MULTIMODEL = OPERATOR___START__ELIST_ELIST_MAP_MULTIMODEL;
+	int CONVERSION_OPERATOR___START__ELIST_ELIST_MAP_MID = OPERATOR___START__ELIST_ELIST_MAP_MID;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -864,51 +774,6 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	int RANDOM_OPERATOR = 2;
-
-	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR__FORMULA_VARIABLE = OPERATOR__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR__MAY = OPERATOR__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR__SET = OPERATOR__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR__VAR = OPERATOR__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Collections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR__COLLECTIONS = OPERATOR__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1169,7 +1034,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_OPERATOR___CREATE_INSTANCE__MULTIMODEL = OPERATOR___CREATE_INSTANCE__MULTIMODEL;
+	int RANDOM_OPERATOR___CREATE_INSTANCE__MID = OPERATOR___CREATE_INSTANCE__MID;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1241,7 +1106,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_OPERATOR___START__ELIST_ELIST_MAP_MULTIMODEL = OPERATOR___START__ELIST_ELIST_MAP_MULTIMODEL;
+	int RANDOM_OPERATOR___START__ELIST_ELIST_MAP_MID = OPERATOR___START__ELIST_ELIST_MAP_MID;
 
 	/**
 	 * The number of operations of the '<em>Random Operator</em>' class.
@@ -1261,51 +1126,6 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	int GENERIC_ENDPOINT = 3;
-
-	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_ENDPOINT__FORMULA_VARIABLE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_ENDPOINT__MAY = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_ENDPOINT__SET = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_ENDPOINT__VAR = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Collections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_ENDPOINT__COLLECTIONS = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__COLLECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1820,14 +1640,14 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__GetOutputsByName();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createInstance(edu.toronto.cs.se.mmint.mid.MultiModel) <em>Create Instance</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createInstance(edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Instance</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#createInstance(edu.toronto.cs.se.mmint.mid.MultiModel)
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#createInstance(edu.toronto.cs.se.mmint.mid.MID)
 	 * @generated
 	 */
-	EOperation getOperator__CreateInstance__MultiModel();
+	EOperation getOperator__CreateInstance__MID();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#deleteInstance() <em>Delete Instance</em>}' operation.
@@ -1900,14 +1720,14 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__Run__Map_Map_Map();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#start(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MultiModel) <em>Start</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#start(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MID) <em>Start</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Start</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#start(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MultiModel)
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#start(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MID)
 	 * @generated
 	 */
-	EOperation getOperator__Start__EList_EList_Map_MultiModel();
+	EOperation getOperator__Start__EList_EList_Map_MID();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.ConversionOperator <em>Conversion Operator</em>}'.
@@ -2317,7 +2137,7 @@ public interface OperatorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation OPERATOR___CREATE_INSTANCE__MULTIMODEL = eINSTANCE.getOperator__CreateInstance__MultiModel();
+		EOperation OPERATOR___CREATE_INSTANCE__MID = eINSTANCE.getOperator__CreateInstance__MID();
 
 		/**
 		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
@@ -2381,7 +2201,7 @@ public interface OperatorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation OPERATOR___START__ELIST_ELIST_MAP_MULTIMODEL = eINSTANCE.getOperator__Start__EList_EList_Map_MultiModel();
+		EOperation OPERATOR___START__ELIST_ELIST_MAP_MID = eINSTANCE.getOperator__Start__EList_EList_Map_MID();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.

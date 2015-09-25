@@ -219,7 +219,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			targetModelElemRefs.add(srcModelElemRef);
 			ModelElementReference tgtModelElemRef = ModelElementImpl.createInstanceAndReference(tgtModelObjEntry.getValue(), null, traceModelRel.getModelEndpointRefs().get(1));
 			targetModelElemRefs.add(tgtModelElemRef);
-			Link linkType = MultiModelTypeRegistry.getType(MultiModelConstraintChecker.getAllowedLinkTypeReferences(traceModelRelType, srcModelElemRef, tgtModelElemRef).get(0));
+			Link linkType = MultiModelTypeRegistry.getType(MultiModelConstraintChecker.getAllowedMappingTypeReferences(traceModelRelType, srcModelElemRef, tgtModelElemRef).get(0));
 			LinkReference newLinkRef = linkType.createInstanceAndReferenceAndEndpointsAndReferences(true, targetModelElemRefs);
 			newLinkRef.getObject().setName(srcModelElemRef.getObject().getName() + MMINT.BINARY_MODELREL_LINK_SEPARATOR + tgtModelElemRef.getObject().getName());
 		}

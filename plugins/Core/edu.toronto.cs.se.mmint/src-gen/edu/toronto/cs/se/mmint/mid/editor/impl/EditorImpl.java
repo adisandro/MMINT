@@ -35,9 +35,9 @@ import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
@@ -433,9 +433,9 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case EditorPackage.EDITOR___CREATE_INSTANCE__STRING_MULTIMODEL:
+			case EditorPackage.EDITOR___CREATE_INSTANCE__STRING_MID:
 				try {
-					return createInstance((String)arguments.get(0), (MultiModel)arguments.get(1));
+					return createInstance((String)arguments.get(0), (MID)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);

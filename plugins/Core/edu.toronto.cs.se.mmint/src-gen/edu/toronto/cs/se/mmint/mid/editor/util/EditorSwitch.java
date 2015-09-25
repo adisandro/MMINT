@@ -14,10 +14,8 @@ package edu.toronto.cs.se.mmint.mid.editor.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-
-import edu.toronto.cs.se.mavo.LogicElement;
-import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.editor.*;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
@@ -83,8 +81,6 @@ public class EditorSwitch<T> extends Switch<T> {
 				Editor editor = (Editor)theEObject;
 				T result = caseEditor(editor);
 				if (result == null) result = caseExtendibleElement(editor);
-				if (result == null) result = caseMAVOElement(editor);
-				if (result == null) result = caseLogicElement(editor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -93,8 +89,6 @@ public class EditorSwitch<T> extends Switch<T> {
 				T result = caseDiagram(diagram);
 				if (result == null) result = caseEditor(diagram);
 				if (result == null) result = caseExtendibleElement(diagram);
-				if (result == null) result = caseMAVOElement(diagram);
-				if (result == null) result = caseLogicElement(diagram);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -129,36 +123,6 @@ public class EditorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDiagram(Diagram object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Logic Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Logic Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLogicElement(LogicElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMAVOElement(MAVOElement object) {
 		return null;
 	}
 

@@ -107,7 +107,7 @@ public class ModelMatch extends OperatorImpl {
 
 	protected void createMatchLinks(ModelRel matchRel, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) throws MMINTException {
 
-		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
+		Link rootLinkType = MultiModelTypeHierarchy.getRootMappingType();
 		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
 		for (Entry<String, Set<EObject>> entry : modelObjAttrs.entrySet()) {
 			Set<EObject> modelObjs = entry.getValue();

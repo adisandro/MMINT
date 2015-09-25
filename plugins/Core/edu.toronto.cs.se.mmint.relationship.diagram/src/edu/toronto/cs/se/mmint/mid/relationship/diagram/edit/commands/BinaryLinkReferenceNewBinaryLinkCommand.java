@@ -109,7 +109,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 	protected BinaryLinkReference doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
 
 		ModelRel modelRel = getContainer();
-		LinkReference linkTypeRef = MultiModelDiagramUtils.selectLinkTypeReferenceToCreate(modelRel, getSource(), getTarget());
+		LinkReference linkTypeRef = MultiModelDiagramUtils.selectMappingTypeReferenceToCreate(modelRel, getSource(), getTarget());
 		BinaryLinkReference newLinkRef = (BinaryLinkReference) linkTypeRef.getObject().createInstanceAndReference(true, modelRel);
 
 		List<String> modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, null, getSource());
@@ -126,7 +126,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 
 		ModelRel modelRelType = getContainer();
 		ModelElementReference srcModelElemTypeRef = getSource(), tgtModelElemTypeRef = getTarget();
-		LinkReference linkTypeRef = MultiModelDiagramUtils.selectLinkTypeReferenceToExtend(modelRelType, srcModelElemTypeRef, tgtModelElemTypeRef);
+		LinkReference linkTypeRef = MultiModelDiagramUtils.selectMappingTypeReferenceToExtend(modelRelType, srcModelElemTypeRef, tgtModelElemTypeRef);
 		String newLinkTypeName = MultiModelDiagramUtils.getStringInput("Create new light link type", "Insert new link type name", srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_LINK_SEPARATOR + tgtModelElemTypeRef.getObject().getName());
 		BinaryLinkReference newLinkTypeRef = (BinaryLinkReference) linkTypeRef.getObject().createSubtypeAndReference(linkTypeRef, newLinkTypeName, true, modelRelType);
 		MMINT.createTypeHierarchy(MultiModelRegistry.getMultiModel(modelRelType));

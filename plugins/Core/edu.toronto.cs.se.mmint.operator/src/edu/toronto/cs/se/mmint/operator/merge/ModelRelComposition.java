@@ -125,7 +125,7 @@ public class ModelRelComposition extends OperatorImpl {
 						targetModelElemRefs.add(modelElem2.createInstanceReference(composedModelEndpointRef2));
 					}
 					// create the composed link
-					LinkReference composedLinkRef = MultiModelTypeHierarchy.getRootLinkType()
+					LinkReference composedLinkRef = MultiModelTypeHierarchy.getRootMappingType()
 						.createInstanceAndReferenceAndEndpointsAndReferences(false, targetModelElemRefs);
 					composedLinkRef.getObject().setName(
 						link1.getName() + COMPOSITION_SEPARATOR + linkRef2.getObject().getName());

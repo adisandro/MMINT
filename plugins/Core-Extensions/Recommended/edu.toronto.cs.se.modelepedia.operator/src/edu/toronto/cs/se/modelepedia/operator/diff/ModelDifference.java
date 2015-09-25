@@ -110,7 +110,7 @@ public class ModelDifference extends OperatorImpl {
 		diffModelRel.setName(MODELREL_NAME);
 
 		ModelEndpoint rootModelTypeEndpoint = MultiModelTypeHierarchy.getRootModelTypeEndpoint();
-		Link rootLinkType = MultiModelTypeHierarchy.getRootLinkType();
+		Link rootLinkType = MultiModelTypeHierarchy.getRootMappingType();
 		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
 		// create src model endpoint with deleted elements
 		createModelEndpointReference(rootModelTypeEndpoint, rootLinkType, rootModelElemTypeEndpoint, diffModelRel, matchRel.getModelEndpointRefs().get(0), DELETED_ELEMENT_LINK_NAME);

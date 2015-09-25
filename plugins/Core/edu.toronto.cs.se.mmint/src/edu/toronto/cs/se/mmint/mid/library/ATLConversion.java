@@ -14,9 +14,8 @@ package edu.toronto.cs.se.mmint.mid.library;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
 
 public abstract class ATLConversion extends ConversionOperatorImpl {
@@ -41,10 +40,10 @@ public abstract class ATLConversion extends ConversionOperatorImpl {
 		convertedModelUri = MultiModelUtils.replaceLastSegmentInUri(inputModel.getUri(), modelName + MMINT.MODEL_FILENAMESUFFIX_SEPARATOR + System.currentTimeMillis() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + convertedModelFileExtension);
 	}
 
-	protected void createConvertedModel(String convertedModelTypeUri, MultiModel instanceMID) throws MMINTException {
+	protected void createConvertedModel(String convertedModelTypeUri, MID instanceMID) throws MMINTException {
 
 		Model convertedModelType = MultiModelTypeRegistry.getType(convertedModelTypeUri);
-		convertedModel = convertedModelType.createMAVOInstanceAndEditor(convertedModelUri, ModelOrigin.CREATED, instanceMID);
+		convertedModel = convertedModelType.createInstanceAndEditor(convertedModelUri, instanceMID);
 	}
 
 	@Override

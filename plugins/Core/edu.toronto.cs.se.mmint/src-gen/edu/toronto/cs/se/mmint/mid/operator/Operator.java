@@ -19,9 +19,9 @@ import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 
 /**
  * <!-- begin-user-doc -->
@@ -271,7 +271,7 @@ public interface Operator extends GenericElement {
 	 * @model dataType="edu.toronto.cs.se.mmint.mid.operator.Set<org.eclipse.emf.ecore.EEList<edu.toronto.cs.se.mmint.mid.operator.OperatorInput>>" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputMIDsMany="true"
 	 * @generated
 	 */
-	Set<EList<OperatorInput>> findAllowedInputs(EList<MultiModel> inputMIDs) throws MMINTException;
+	Set<EList<OperatorInput>> findAllowedInputs(EList<MID> inputMIDs) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Finds the first input that can be used to run this operator type.
@@ -286,7 +286,7 @@ public interface Operator extends GenericElement {
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputMIDsMany="true"
 	 * @generated
 	 */
-	EList<OperatorInput> findFirstAllowedInput(EList<MultiModel> inputMIDs) throws MMINTException;
+	EList<OperatorInput> findFirstAllowedInput(EList<MID> inputMIDs) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Checks if a list of input models can be used as actual parameters to run this operator
@@ -343,7 +343,7 @@ public interface Operator extends GenericElement {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
-	Operator createInstance(MultiModel instanceMID) throws MMINTException;
+	Operator createInstance(MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this operator instance from an Instance MID.
@@ -438,7 +438,7 @@ public interface Operator extends GenericElement {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsByNameRequired="true" genericsByNameRequired="true" outputMIDsByNameRequired="true"
 	 * @generated
 	 */
-	Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName) throws Exception;
+	Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName, Map<String, MID> outputMIDsByName) throws Exception;
 
 	/**
 	 * <!-- begin-user-doc --> Starts an instance of this operator type, i.e. runs conversions for the input models,
@@ -461,6 +461,6 @@ public interface Operator extends GenericElement {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true" genericsMany="true" outputMIDsByNameRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
-	Operator start(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception;
+	Operator start(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName, MID instanceMID) throws Exception;
 
 } // Operator

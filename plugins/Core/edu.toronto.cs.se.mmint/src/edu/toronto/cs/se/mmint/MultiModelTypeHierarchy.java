@@ -27,20 +27,20 @@ import org.eclipse.emf.common.util.EList;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -502,30 +502,30 @@ public class MultiModelTypeHierarchy {
 	}
 
 	/**
-	 * Gets the table for subtyping in the repository or the Type MID.
+	 * Gets the table for subtyping in the Type MID.
 	 * 
-	 * @param multiModel
-	 *            The repository, or the Type MID.
+	 * @param typeMID
+	 *            The Type MID.
 	 * @return The table for subtyping.
 	 */
-	private static Map<String, Set<String>> getSubtypeTable(MultiModel multiModel) {
+	private static Map<String, Set<String>> getSubtypeTable(MID typeMID) {
 
-		return (multiModel == MMINT.cachedTypeMID) ?
+		return (typeMID == MMINT.cachedTypeMID) ?
 			MMINT.subtypes :
 			MMINT.subtypesMID;
 	}
 
 	/**
-	 * Gets the table for model type conversion in the repository or the Type
+	 * Gets the table for model type conversion in the Type
 	 * MID.
 	 * 
-	 * @param multiModel
-	 *            The repository, or the Type MID.
+	 * @param typeMID
+	 *            The Type MID.
 	 * @return The table for model type conversion.
 	 */
-	private static Map<String, Map<String, Set<List<String>>>> getConversionTable(MultiModel multiModel) {
+	private static Map<String, Map<String, Set<List<String>>>> getConversionTable(MID typeMID) {
 
-		return (multiModel == MMINT.cachedTypeMID) ?
+		return (typeMID == MMINT.cachedTypeMID) ?
 			MMINT.conversions :
 			MMINT.conversionsMID;
 	}
@@ -559,14 +559,14 @@ public class MultiModelTypeHierarchy {
 	 *            The uri of the subtype.
 	 * @param supertypeUri
 	 *            The uri of the supertype.
-	 * @param multiModel
-	 *            The repository, or the Type MID.
+	 * @param typeMID
+	 *            The Type MID.
 	 * @return True if the subtype-supertype relationship holds, false
 	 *         otherwise.
 	 */
-	public static boolean isSubtypeOf(String subtypeUri, String supertypeUri, MultiModel multiModel) {
+	public static boolean isSubtypeOf(String subtypeUri, String supertypeUri, MID typeMID) {
 
-		Map<String, Set<String>> subtypeTable = getSubtypeTable(multiModel);
+		Map<String, Set<String>> subtypeTable = getSubtypeTable(typeMID);
 		if (subtypeTable == null) {
 			return false;
 		}
@@ -671,20 +671,20 @@ public class MultiModelTypeHierarchy {
 	 * 
 	 * @param type
 	 *            The type.
-	 * @param multiModel
-	 *            The repository, or the Type MID.
+	 * @param typeMID
+	 *            The Type MID.
 	 * @return The list of subtypes of the type.
 	 */
-	public static <T extends ExtendibleElement> List<T> getSubtypes(T type, MultiModel multiModel) {
+	public static <T extends ExtendibleElement> List<T> getSubtypes(T type, MID typeMID) {
 
 		List<T> subtypes = new ArrayList<T>();
-		Map<String, Set<String>> subtypeTable = getSubtypeTable(multiModel);
+		Map<String, Set<String>> subtypeTable = getSubtypeTable(typeMID);
 		if (subtypeTable == null) {
 			return subtypes;
 		}
 
 		for (String subtypeUri : subtypeTable.get(type.getUri())) {
-			T subtype = MultiModelRegistry.getExtendibleElement(subtypeUri, multiModel);
+			T subtype = MultiModelRegistry.getExtendibleElement(subtypeUri, typeMID);
 			if (subtype != null) {
 				subtypes.add(subtype);
 			}
@@ -697,20 +697,20 @@ public class MultiModelTypeHierarchy {
 	 * 
 	 * @param type
 	 *            The type.
-	 * @param multiModel
-	 *            The repository, or the Type MID.
+	 * @param typeMID
+	 *            The Type MID.
 	 * @return The list of direct subtypes of the type.
 	 */
-	public static <T extends ExtendibleElement> List<T> getDirectSubtypes(T type, MultiModel multiModel) {
+	public static <T extends ExtendibleElement> List<T> getDirectSubtypes(T type, MID typeMID) {
 
 		List<T> subtypes = new ArrayList<T>();
-		Map<String, Set<String>> subtypeTable = getSubtypeTable(multiModel);
+		Map<String, Set<String>> subtypeTable = getSubtypeTable(typeMID);
 		if (subtypeTable == null) {
 			return subtypes;
 		}
 
 		for (String subtypeUri : subtypeTable.get(type.getUri())) {
-			T subtype = MultiModelRegistry.getExtendibleElement(subtypeUri, multiModel);
+			T subtype = MultiModelRegistry.getExtendibleElement(subtypeUri, typeMID);
 			if (subtype != null && subtype.getSupertype() == type) {
 				subtypes.add(subtype);
 			}
@@ -780,8 +780,8 @@ public class MultiModelTypeHierarchy {
 		else if (type instanceof ModelElement) {
 			rootUri = MMINT.ROOT_MODELELEM_URI;
 		}
-		else if (type instanceof Link) {
-			rootUri = MMINT.ROOT_LINK_URI;
+		else if (type instanceof Mapping) {
+			rootUri = MMINT.ROOT_MAPPING_URI;
 		}
 		else if (type instanceof ModelElementEndpoint) {
 			rootUri = MMINT.ROOT_MODELELEMENDPOINT_URI;
@@ -816,9 +816,9 @@ public class MultiModelTypeHierarchy {
 		return MultiModelTypeRegistry.getType(MMINT.ROOT_MODELELEM_URI);
 	}
 
-	public static Link getRootLinkType() {
+	public static Mapping getRootMappingType() {
 
-		return MultiModelTypeRegistry.getType(MMINT.ROOT_LINK_URI);
+		return MultiModelTypeRegistry.getType(MMINT.ROOT_MAPPING_URI);
 	}
 
 	public static ModelElementEndpoint getRootModelElementTypeEndpoint() {
@@ -847,7 +847,7 @@ public class MultiModelTypeHierarchy {
 	public static ModelEndpoint getOverriddenModelTypeEndpoint(ModelRel modelRelType, Model targetModelType) {
 
 		boolean isBinary = (modelRelType instanceof BinaryModelRel);
-		MultiModel typeMID = MultiModelRegistry.getMultiModel(modelRelType);
+		MID typeMID = MultiModelRegistry.getMultiModel(modelRelType);
 		modelRelType = (ModelRel) modelRelType.getSupertype();
 		while (!isRootType(modelRelType)) {
 			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
@@ -869,13 +869,13 @@ public class MultiModelTypeHierarchy {
 		return MultiModelRegistry.getExtendibleElement(MMINT.ROOT_MODELENDPOINT_URI, typeMID);
 	}
 
-	public static ModelElementEndpoint getOverriddenModelElementTypeEndpoint(LinkReference linkTypeRef, ModelElementReference targetModelElemTypeRef) {
+	public static ModelElementEndpoint getOverriddenModelElementTypeEndpoint(MappingReference mappingTypeRef, ModelElementReference targetModelElemTypeRef) {
 
-		boolean isBinary = (linkTypeRef instanceof BinaryLinkReference);
-		MultiModel typeMID = MultiModelRegistry.getMultiModel(linkTypeRef);
-		Link linkType = linkTypeRef.getObject().getSupertype();
-		while (!isRootType(linkType)) {
-			for (ModelElementEndpoint modelElemTypeEndpoint : linkType.getModelElemEndpoints()) {
+		boolean isBinary = (mappingTypeRef instanceof BinaryMappingReference);
+		MID typeMID = MultiModelRegistry.getMultiModel(mappingTypeRef);
+		Mapping mappingType = mappingTypeRef.getObject().getSupertype();
+		while (!isRootType(mappingType)) {
+			for (ModelElementEndpoint modelElemTypeEndpoint : mappingType.getModelElemEndpoints()) {
 				if (isBinary && targetModelElemTypeRef.getUri().equals(modelElemTypeEndpoint.getTargetUri())) {
 					return null;
 				}
@@ -888,7 +888,7 @@ public class MultiModelTypeHierarchy {
 					return modelElemTypeEndpoint;
 				}
 			}
-			linkType = linkType.getSupertype();
+			mappingType = mappingType.getSupertype();
 		}
 
 		return MultiModelRegistry.getExtendibleElement(MMINT.ROOT_MODELELEMENDPOINT_URI, typeMID);

@@ -15,19 +15,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import edu.toronto.cs.se.mavo.LogicElement;
-import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVORoot;
-import edu.toronto.cs.se.mmint.mid.EMFInfo;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.GenericElement;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -86,10 +74,9 @@ public class MIDSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case MIDPackage.MULTI_MODEL: {
-				MultiModel multiModel = (MultiModel)theEObject;
-				T result = caseMultiModel(multiModel);
-				if (result == null) result = caseMAVOModel(multiModel);
+			case MIDPackage.MID: {
+				MID mid = (MID)theEObject;
+				T result = caseMID(mid);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -102,8 +89,6 @@ public class MIDSwitch<T> extends Switch<T> {
 			case MIDPackage.EXTENDIBLE_ELEMENT: {
 				ExtendibleElement extendibleElement = (ExtendibleElement)theEObject;
 				T result = caseExtendibleElement(extendibleElement);
-				if (result == null) result = caseMAVOElement(extendibleElement);
-				if (result == null) result = caseLogicElement(extendibleElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -111,8 +96,6 @@ public class MIDSwitch<T> extends Switch<T> {
 				ExtendibleElementEndpoint extendibleElementEndpoint = (ExtendibleElementEndpoint)theEObject;
 				T result = caseExtendibleElementEndpoint(extendibleElementEndpoint);
 				if (result == null) result = caseExtendibleElement(extendibleElementEndpoint);
-				if (result == null) result = caseMAVOElement(extendibleElementEndpoint);
-				if (result == null) result = caseLogicElement(extendibleElementEndpoint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -120,10 +103,7 @@ public class MIDSwitch<T> extends Switch<T> {
 				Model model = (Model)theEObject;
 				T result = caseModel(model);
 				if (result == null) result = caseGenericElement(model);
-				if (result == null) result = caseMAVOModel(model);
 				if (result == null) result = caseExtendibleElement(model);
-				if (result == null) result = caseMAVOElement(model);
-				if (result == null) result = caseLogicElement(model);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -137,8 +117,6 @@ public class MIDSwitch<T> extends Switch<T> {
 				ModelElement modelElement = (ModelElement)theEObject;
 				T result = caseModelElement(modelElement);
 				if (result == null) result = caseExtendibleElement(modelElement);
-				if (result == null) result = caseMAVOElement(modelElement);
-				if (result == null) result = caseLogicElement(modelElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -147,8 +125,6 @@ public class MIDSwitch<T> extends Switch<T> {
 				T result = caseModelEndpoint(modelEndpoint);
 				if (result == null) result = caseExtendibleElementEndpoint(modelEndpoint);
 				if (result == null) result = caseExtendibleElement(modelEndpoint);
-				if (result == null) result = caseMAVOElement(modelEndpoint);
-				if (result == null) result = caseLogicElement(modelEndpoint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -162,8 +138,6 @@ public class MIDSwitch<T> extends Switch<T> {
 				GenericElement genericElement = (GenericElement)theEObject;
 				T result = caseGenericElement(genericElement);
 				if (result == null) result = caseExtendibleElement(genericElement);
-				if (result == null) result = caseMAVOElement(genericElement);
-				if (result == null) result = caseLogicElement(genericElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -172,17 +146,17 @@ public class MIDSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Multi Model</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>MID</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Multi Model</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>MID</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMultiModel(MultiModel object) {
+	public T caseMID(MID object) {
 		return null;
 	}
 
@@ -318,51 +292,6 @@ public class MIDSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGenericElement(GenericElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMAVOModel(MAVORoot object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Logic Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Logic Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLogicElement(LogicElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMAVOElement(MAVOElement object) {
 		return null;
 	}
 

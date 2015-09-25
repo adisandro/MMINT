@@ -17,8 +17,8 @@ import java.util.List;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class NewModelRelTypeDialogContentProvider implements ITreeContentProvider {
@@ -63,9 +63,9 @@ public class NewModelRelTypeDialogContentProvider implements ITreeContentProvide
 	@Override
 	public Object[] getChildren(Object parentElement) {
 
-		if (parentElement instanceof MultiModel) {
+		if (parentElement instanceof MID) {
 			List<ModelRel> modelRelTypes = new ArrayList<ModelRel>();
-			for (Model modelType : ((MultiModel) parentElement).getModels()) {
+			for (Model modelType : ((MID) parentElement).getModels()) {
 				if (!(modelType instanceof ModelRel)) {
 					continue;
 				}
@@ -98,8 +98,8 @@ public class NewModelRelTypeDialogContentProvider implements ITreeContentProvide
 	@Override
 	public boolean hasChildren(Object element) {
 
-		if (element instanceof MultiModel) {
-			return !((MultiModel) element).getModels().isEmpty();
+		if (element instanceof MID) {
+			return !((MID) element).getModels().isEmpty();
 		}
 
 		return false;

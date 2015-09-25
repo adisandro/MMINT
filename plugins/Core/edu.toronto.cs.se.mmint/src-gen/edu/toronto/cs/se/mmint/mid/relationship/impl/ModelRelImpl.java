@@ -34,23 +34,22 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLink;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -68,9 +67,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl#getModelEndpoints <em>Model Endpoints</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl#getLinks <em>Links</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl#getMappings <em>Mappings</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl#getModelEndpointRefs <em>Model Endpoint Refs</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl#getLinkRefs <em>Link Refs</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl#getMappingRefs <em>Mapping Refs</em>}</li>
  * </ul>
  *
  * @generated
@@ -87,14 +86,14 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	protected EList<ModelEndpoint> modelEndpoints;
 
 	/**
-	 * The cached value of the '{@link #getLinks() <em>Links</em>}' containment reference list.
+	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLinks()
+	 * @see #getMappings()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Link> links;
+	protected EList<Mapping> mappings;
 
 	/**
 	 * The cached value of the '{@link #getModelEndpointRefs() <em>Model Endpoint Refs</em>}' containment reference list.
@@ -107,14 +106,14 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	protected EList<ModelEndpointReference> modelEndpointRefs;
 
 	/**
-	 * The cached value of the '{@link #getLinkRefs() <em>Link Refs</em>}' containment reference list.
+	 * The cached value of the '{@link #getMappingRefs() <em>Mapping Refs</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLinkRefs()
+	 * @see #getMappingRefs()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LinkReference> linkRefs;
+	protected EList<MappingReference> mappingRefs;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -152,11 +151,11 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Link> getLinks() {
-		if (links == null) {
-			links = new EObjectContainmentEList<Link>(Link.class, this, RelationshipPackage.MODEL_REL__LINKS);
+	public EList<Mapping> getMappings() {
+		if (mappings == null) {
+			mappings = new EObjectContainmentEList<Mapping>(Mapping.class, this, RelationshipPackage.MODEL_REL__MAPPINGS);
 		}
-		return links;
+		return mappings;
 	}
 
 	/**
@@ -176,11 +175,11 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LinkReference> getLinkRefs() {
-		if (linkRefs == null) {
-			linkRefs = new EObjectContainmentEList<LinkReference>(LinkReference.class, this, RelationshipPackage.MODEL_REL__LINK_REFS);
+	public EList<MappingReference> getMappingRefs() {
+		if (mappingRefs == null) {
+			mappingRefs = new EObjectContainmentEList<MappingReference>(MappingReference.class, this, RelationshipPackage.MODEL_REL__MAPPING_REFS);
 		}
-		return linkRefs;
+		return mappingRefs;
 	}
 
 	/**
@@ -213,12 +212,12 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		switch (featureID) {
 			case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
 				return ((InternalEList<?>)getModelEndpoints()).basicRemove(otherEnd, msgs);
-			case RelationshipPackage.MODEL_REL__LINKS:
-				return ((InternalEList<?>)getLinks()).basicRemove(otherEnd, msgs);
+			case RelationshipPackage.MODEL_REL__MAPPINGS:
+				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
 			case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
 				return ((InternalEList<?>)getModelEndpointRefs()).basicRemove(otherEnd, msgs);
-			case RelationshipPackage.MODEL_REL__LINK_REFS:
-				return ((InternalEList<?>)getLinkRefs()).basicRemove(otherEnd, msgs);
+			case RelationshipPackage.MODEL_REL__MAPPING_REFS:
+				return ((InternalEList<?>)getMappingRefs()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -233,12 +232,12 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		switch (featureID) {
 			case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
 				return getModelEndpoints();
-			case RelationshipPackage.MODEL_REL__LINKS:
-				return getLinks();
+			case RelationshipPackage.MODEL_REL__MAPPINGS:
+				return getMappings();
 			case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
 				return getModelEndpointRefs();
-			case RelationshipPackage.MODEL_REL__LINK_REFS:
-				return getLinkRefs();
+			case RelationshipPackage.MODEL_REL__MAPPING_REFS:
+				return getMappingRefs();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -256,17 +255,17 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				getModelEndpoints().clear();
 				getModelEndpoints().addAll((Collection<? extends ModelEndpoint>)newValue);
 				return;
-			case RelationshipPackage.MODEL_REL__LINKS:
-				getLinks().clear();
-				getLinks().addAll((Collection<? extends Link>)newValue);
+			case RelationshipPackage.MODEL_REL__MAPPINGS:
+				getMappings().clear();
+				getMappings().addAll((Collection<? extends Mapping>)newValue);
 				return;
 			case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
 				getModelEndpointRefs().clear();
 				getModelEndpointRefs().addAll((Collection<? extends ModelEndpointReference>)newValue);
 				return;
-			case RelationshipPackage.MODEL_REL__LINK_REFS:
-				getLinkRefs().clear();
-				getLinkRefs().addAll((Collection<? extends LinkReference>)newValue);
+			case RelationshipPackage.MODEL_REL__MAPPING_REFS:
+				getMappingRefs().clear();
+				getMappingRefs().addAll((Collection<? extends MappingReference>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -283,14 +282,14 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
 				getModelEndpoints().clear();
 				return;
-			case RelationshipPackage.MODEL_REL__LINKS:
-				getLinks().clear();
+			case RelationshipPackage.MODEL_REL__MAPPINGS:
+				getMappings().clear();
 				return;
 			case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
 				getModelEndpointRefs().clear();
 				return;
-			case RelationshipPackage.MODEL_REL__LINK_REFS:
-				getLinkRefs().clear();
+			case RelationshipPackage.MODEL_REL__MAPPING_REFS:
+				getMappingRefs().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -306,12 +305,12 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		switch (featureID) {
 			case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
 				return modelEndpoints != null && !modelEndpoints.isEmpty();
-			case RelationshipPackage.MODEL_REL__LINKS:
-				return links != null && !links.isEmpty();
+			case RelationshipPackage.MODEL_REL__MAPPINGS:
+				return mappings != null && !mappings.isEmpty();
 			case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
 				return modelEndpointRefs != null && !modelEndpointRefs.isEmpty();
-			case RelationshipPackage.MODEL_REL__LINK_REFS:
-				return linkRefs != null && !linkRefs.isEmpty();
+			case RelationshipPackage.MODEL_REL__MAPPING_REFS:
+				return mappingRefs != null && !mappingRefs.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -352,9 +351,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				return getMetatype();
 			case RelationshipPackage.MODEL_REL___GET_SUPERTYPE:
 				return getSupertype();
-			case RelationshipPackage.MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN_STRING_STRING:
+			case RelationshipPackage.MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN:
 				try {
-					return createSubtype((String)arguments.get(0), (Boolean)arguments.get(1), (String)arguments.get(2), (String)arguments.get(3));
+					return createBinarySubtype((String)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (Boolean)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -373,23 +372,23 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE__STRING_BOOLEAN_MODELORIGIN_MULTIMODEL:
+			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_ELIST_MID:
 				try {
-					return createInstance((String)arguments.get(0), (Boolean)arguments.get(1), (ModelOrigin)arguments.get(2), (MultiModel)arguments.get(3));
+					return createInstanceAndEndpointsAndReferences((String)arguments.get(0), (EList<Model>)arguments.get(1), (MID)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_BOOLEAN_MODELORIGIN_ELIST_MULTIMODEL:
+			case RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID:
 				try {
-					return createInstanceAndEndpointsAndReferences((String)arguments.get(0), (Boolean)arguments.get(1), (ModelOrigin)arguments.get(2), (EList<Model>)arguments.get(3), (MultiModel)arguments.get(4));
+					return createBinaryInstance((String)arguments.get(0), (MID)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case RelationshipPackage.MODEL_REL___COPY_MAVO_INSTANCE__MODELREL_MULTIMODEL:
+			case RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODEL_MODEL_MID:
 				try {
-					return copyMAVOInstance((ModelRel)arguments.get(0), (MultiModel)arguments.get(1));
+					return createBinaryInstanceAndEndpointsAndReferences((String)arguments.get(0), (Model)arguments.get(1), (Model)arguments.get(2), (MID)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -496,18 +495,18 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		);
 
 		// model type endpoints
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(newModelRelType);
+		MID typeMID = MultiModelRegistry.getMultiModel(newModelRelType);
 		if (origModelRelType instanceof BinaryModelRel) { // this is useful only when there are 0 or 1 overridden endpoints, but doesn't hurt in case of 2
-			Model newSrcModelType = MultiModelRegistry.getExtendibleElement(((BinaryModelRel) origModelRelType).getSourceModel().getUri(), multiModel);
+			Model newSrcModelType = MultiModelRegistry.getExtendibleElement(((BinaryModelRel) origModelRelType).getSourceModel().getUri(), typeMID);
 			((BinaryModelRel) newModelRelType).addModelType(newSrcModelType, true);
-			Model newTgtModelType = MultiModelRegistry.getExtendibleElement(((BinaryModelRel) origModelRelType).getTargetModel().getUri(), multiModel);
+			Model newTgtModelType = MultiModelRegistry.getExtendibleElement(((BinaryModelRel) origModelRelType).getTargetModel().getUri(), typeMID);
 			((BinaryModelRel) newModelRelType).addModelType(newTgtModelType, false);
 		}
 		Iterator<ModelEndpoint> origModelTypeEndpointIter = MultiModelTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getModelEndpoints());
 		while (origModelTypeEndpointIter.hasNext()) {
 			ModelEndpoint origModelTypeEndpoint = origModelTypeEndpointIter.next();
-			Model newModelType = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getTargetUri(), multiModel);
-			ModelEndpoint modelTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getSupertype().getUri(), multiModel);
+			Model newModelType = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getTargetUri(), typeMID);
+			ModelEndpoint modelTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getSupertype().getUri(), typeMID);
 			boolean isBinarySrc = ((origModelRelType instanceof BinaryModelRel) && (((BinaryModelRel) origModelRelType).getSourceModel() == origModelTypeEndpoint.getTarget())) ?
 				true :
 				false;
@@ -524,7 +523,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				if (!origModelElemTypeRef.isModifiable()) { // already copied by createSubtype()
 					continue;
 				}
-				ModelElement modelElemType = MultiModelRegistry.getExtendibleElement(origModelElemTypeRef.getObject().getSupertype().getUri(), multiModel);
+				ModelElement modelElemType = MultiModelRegistry.getExtendibleElement(origModelElemTypeRef.getObject().getSupertype().getUri(), typeMID);
 				ModelEndpointReference newModelTypeEndpointRefSuper = null;
 				ModelElementReference modelElemTypeRef = null;
 				if (origModelElemTypeRef.getSupertypeRef() != null) {
@@ -535,34 +534,34 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			}
 		}
 		// link types
-		Iterator<Link> origLinkTypeIter = MultiModelTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getLinks());
-		while (origLinkTypeIter.hasNext()) {
-			Link origLinkType = origLinkTypeIter.next();
-			LinkReference origLinkTypeRef = MultiModelTypeHierarchy.getReference(origLinkType.getUri(), origModelRelType.getLinkRefs());
-			Link linkType = MultiModelRegistry.getExtendibleElement(origLinkType.getSupertype().getUri(), multiModel);
-			LinkReference linkTypeRef = MultiModelTypeHierarchy.getReference(origLinkType.getSupertype().getUri(), newModelRelType.getLinkRefs());
-			LinkReference newLinkTypeRef = linkType.createSubtypeAndReference(linkTypeRef, origLinkType.getName(), (origLinkType instanceof BinaryLink), newModelRelType);
-			if (origLinkTypeRef instanceof BinaryLinkReference) { // this is useful only when there are 0 or 1 overridden endpoints, but doesn't hurt in case of 2
-				ModelElementReference origSrcModelElemTypeRef = ((BinaryLinkReference) origLinkTypeRef).getSourceModelElemRef();
+		Iterator<Mapping> origMappingTypeIter = MultiModelTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getMappings());
+		while (origMappingTypeIter.hasNext()) {
+			Mapping origMappingType = origMappingTypeIter.next();
+			MappingReference origMappingTypeRef = MultiModelTypeHierarchy.getReference(origMappingType.getUri(), origModelRelType.getMappingRefs());
+			Mapping mappingType = MultiModelRegistry.getExtendibleElement(origMappingType.getSupertype().getUri(), typeMID);
+			MappingReference mappingTypeRef = MultiModelTypeHierarchy.getReference(origMappingType.getSupertype().getUri(), newModelRelType.getMappingRefs());
+			MappingReference newMappingTypeRef = mappingType.createSubtypeAndReference(mappingTypeRef, origMappingType.getName(), (origMappingType instanceof BinaryMapping), newModelRelType);
+			if (origMappingTypeRef instanceof BinaryMappingReference) { // this is useful only when there are 0 or 1 overridden endpoints, but doesn't hurt in case of 2
+				ModelElementReference origSrcModelElemTypeRef = ((BinaryMappingReference) origMappingTypeRef).getSourceModelElemRef();
 				ModelEndpointReference containerModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(((ModelEndpointReference) origSrcModelElemTypeRef.eContainer()), newModelRelType.getModelEndpointRefs());
 				ModelElementReference newSrcModelElemTypeRef = MultiModelTypeHierarchy.getReference(origSrcModelElemTypeRef, containerModelTypeEndpointRef.getModelElemRefs());
-				((BinaryLinkReference) newLinkTypeRef).addModelElementTypeReference(newSrcModelElemTypeRef, true);
-				ModelElementReference origTgtModelElemTypeRef = ((BinaryLinkReference) origLinkTypeRef).getSourceModelElemRef();
+				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(newSrcModelElemTypeRef, true);
+				ModelElementReference origTgtModelElemTypeRef = ((BinaryMappingReference) origMappingTypeRef).getSourceModelElemRef();
 				containerModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(((ModelEndpointReference) origTgtModelElemTypeRef.eContainer()), newModelRelType.getModelEndpointRefs());
 				ModelElementReference newTgtModelElemTypeRef = MultiModelTypeHierarchy.getReference(origTgtModelElemTypeRef, containerModelTypeEndpointRef.getModelElemRefs());
-				((BinaryLinkReference) newLinkTypeRef).addModelElementTypeReference(newTgtModelElemTypeRef, false);
+				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(newTgtModelElemTypeRef, false);
 			}
-			Iterator<ModelElementEndpointReference> origModelElemTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(origLinkTypeRef.getModelElemEndpointRefs());
+			Iterator<ModelElementEndpointReference> origModelElemTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(origMappingTypeRef.getModelElemEndpointRefs());
 			while (origModelElemTypeEndpointRefIter.hasNext()) {
 				ModelElementEndpointReference origModelElemTypeEndpointRef = origModelElemTypeEndpointRefIter.next();
 				ModelElementReference origModelElemTypeRef = origModelElemTypeEndpointRef.getModelElemRef();
 				ModelEndpointReference newModelTypeEndpointRef = MultiModelTypeHierarchy.getReference((ModelEndpointReference) origModelElemTypeRef.eContainer(), newModelRelType.getModelEndpointRefs());
 				ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(origModelElemTypeRef, newModelTypeEndpointRef.getModelElemRefs());
-				ModelElementEndpoint modelElemTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelElemTypeEndpointRef.getObject().getSupertype().getUri(), multiModel);
-				boolean isBinarySrc = ((origLinkTypeRef instanceof BinaryLinkReference) && (((BinaryLinkReference) origLinkTypeRef).getSourceModelElemRef() == origModelElemTypeEndpointRef.getModelElemRef())) ?
+				ModelElementEndpoint modelElemTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelElemTypeEndpointRef.getObject().getSupertype().getUri(), typeMID);
+				boolean isBinarySrc = ((origMappingTypeRef instanceof BinaryMappingReference) && (((BinaryMappingReference) origMappingTypeRef).getSourceModelElemRef() == origModelElemTypeEndpointRef.getModelElemRef())) ?
 					true :
 					false;
-				modelElemTypeEndpoint.createSubtypeAndReference(origModelElemTypeEndpointRef.getObject().getName(), newModelElemTypeRef, isBinarySrc, newLinkTypeRef);
+				modelElemTypeEndpoint.createSubtypeAndReference(origModelElemTypeEndpointRef.getObject().getName(), newModelElemTypeRef, isBinarySrc, newMappingTypeRef);
 			}
 		}
 
@@ -579,15 +578,15 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MultiModelRegistry.getMultiModel(this);
 		// delete the "thing"
 		for (ModelEndpoint modelTypeEndpoint : getModelEndpoints()) {
-			super.delete(modelTypeEndpoint.getUri(), multiModel);
+			super.delete(modelTypeEndpoint.getUri(), typeMID);
 		}
-		for (Link linkType : getLinks()) {
-			super.delete(linkType.getUri(), multiModel);
-			for (ModelElementEndpoint modelElemTypeEndpoint : linkType.getModelElemEndpoints()) {
-				super.delete(modelElemTypeEndpoint.getUri(), multiModel);
+		for (Mapping mappingType : this.getMappings()) {
+			super.delete(mappingType.getUri(), typeMID);
+			for (ModelElementEndpoint modelElemTypeEndpoint : mappingType.getModelElemEndpoints()) {
+				super.delete(modelElemTypeEndpoint.getUri(), typeMID);
 			}
 		}
 		super.deleteType(); // this also deletes the subtypes of the "thing"
@@ -682,7 +681,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		}
 
 		// create model rel
-		ModelRel newModelRel = createInstance(newModelRelUri, instanceMID);
+		ModelRel newModelRel = (ModelRel) createInstance(newModelRelUri, instanceMID);
 		// create model rel endpoints
 		for (Model targetModel : endpointModels) {
 			String modelTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, null, targetModel).get(0);
@@ -717,11 +716,17 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		// create model rel and endpoints
+		// create model rel
+		BinaryModelRel newModelRel = createBinaryInstance(newModelRelUri, instanceMID);
 		EList<Model> endpointModels = new BasicEList<>();
 		endpointModels.add(endpointSourceModel);
 		endpointModels.add(endpointTargetModel);
-		BinaryModelRel newModelRel = createInstanceAndEndpointsAndReferences(newModelRelUri, endpointModels, instanceMID);
+		// create model rel endpoints
+		for (Model targetModel : endpointModels) {
+			String modelTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, null, targetModel).get(0);
+			ModelEndpoint modelTypeEndpoint = MultiModelTypeRegistry.getType(modelTypeEndpointUri);
+			modelTypeEndpoint.createInstanceAndReference(targetModel, newModelRel);
+		}
 
 		return newModelRel;
 	}
@@ -748,12 +753,12 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	public Model copyInstance(Model origModelRel, String newModelRelName, MID instanceMID) throws MMINTException {
 
 		// create initial empty copy
-		ModelRel newModelRel = createInstance(null, instanceMID);
+		ModelRel newModelRel = (ModelRel) createInstance(null, instanceMID);
 		newModelRel.setName(newModelRelName);
 
 		// models
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
-		for (ModelEndpointReference origModelEndpointRef : origModelRel.getModelEndpointRefs()) {
+		for (ModelEndpointReference origModelEndpointRef : ((ModelRel) origModelRel).getModelEndpointRefs()) {
 			Model newModel = MultiModelRegistry.getExtendibleElement(origModelEndpointRef.getTargetUri(), instanceMID);
 			ModelEndpointReference newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, newModelRel);
 			// model elements
@@ -764,13 +769,13 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			}
 		}
 		// links
-		for (LinkReference origLinkRef : origModelRel.getLinkRefs()) {
-			LinkReference newLinkRef = origLinkRef.getObject().getMetatype().createInstanceAndReference((origLinkRef.getObject() instanceof BinaryLink), newModelRel);
-			MAVOUtils.copyMAVOElement(origLinkRef.getObject(), newLinkRef.getObject());
-			newLinkRef.getObject().setName(origLinkRef.getObject().getName());
-			for (ModelElementEndpointReference origModelElemEndpointRef : origLinkRef.getModelElemEndpointRefs()) {
+		for (MappingReference origMappingRef : ((ModelRel) origModelRel).getMappingRefs()) {
+			MappingReference newMappingRef = origMappingRef.getObject().getMetatype().createInstanceAndReference((origMappingRef.getObject() instanceof BinaryMapping), newModelRel);
+			MAVOUtils.copyMAVOElement(origMappingRef.getObject(), newMappingRef.getObject());
+			newMappingRef.getObject().setName(origMappingRef.getObject().getName());
+			for (ModelElementEndpointReference origModelElemEndpointRef : origMappingRef.getModelElemEndpointRefs()) {
 				ModelElementReference newModelElemRef = newModelElemRefs.get(origModelElemEndpointRef.getTargetUri());
-				origModelElemEndpointRef.getObject().getMetatype().createInstanceAndReference(newModelElemRef, newLinkRef);
+				origModelElemEndpointRef.getObject().getMetatype().createInstanceAndReference(newModelElemRef, newMappingRef);
 			}
 		}
 
