@@ -229,7 +229,7 @@ public interface Editor extends ExtendibleElement {
 	 * 
 	 * @param modelUri
 	 *            The uri of the model handled by the new editor.
-	 * @param containerMultiModel
+	 * @param instanceMID
 	 *            An Instance MID.
 	 * @return The created editor.
 	 * @throws MMINTException
@@ -237,7 +237,7 @@ public interface Editor extends ExtendibleElement {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true" containerMultiModelRequired="true"
 	 * @generated
 	 */
-	Editor createInstance(String modelUri, MultiModel containerMultiModel) throws MMINTException;
+	Editor createInstance(String modelUri, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Invokes an editor instance creation wizard for

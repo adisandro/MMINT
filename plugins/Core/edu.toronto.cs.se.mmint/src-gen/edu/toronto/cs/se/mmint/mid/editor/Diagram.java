@@ -68,7 +68,7 @@ public interface Diagram extends Editor {
 	 * 
 	 * @param modelUri
 	 *            The uri of the model handled by the new diagram.
-	 * @param containerMultiModel
+	 * @param instanceMID
 	 *            An Instance MID.
 	 * @return The created diagram.
 	 * @throws MMINTException
@@ -77,7 +77,7 @@ public interface Diagram extends Editor {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true" containerMultiModelRequired="true"
 	 * @generated
 	 */
-	Editor createInstance(String modelUri, MultiModel containerMultiModel) throws MMINTException;
+	Editor createInstance(String modelUri, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Invokes a diagram instance creation wizard for

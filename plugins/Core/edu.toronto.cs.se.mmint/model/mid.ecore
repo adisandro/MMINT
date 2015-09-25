@@ -42,7 +42,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EStringToExtendibleElementMap" instanceClassName="java.util.Map$Entry">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="The hash map entry for an element type or element instance in a multimodel."/>
+      <details key="documentation" value="The hash map entry for an element type or element instance in a MID."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -997,7 +997,7 @@
       <eOperations name="deleteType" eExceptions="#//MMINTException"/>
       <eOperations name="createInstance" lowerBound="1" eType="#//editor/Editor" eExceptions="#//MMINTException">
         <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eParameters name="containerMultiModel" lowerBound="1" eType="#//MID"/>
+        <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
       </eOperations>
       <eOperations name="invokeInstanceWizard" lowerBound="1" eType="#//editor/EditorCreationWizardDialog"
           eExceptions="#//MMINTException">
@@ -1047,7 +1047,7 @@
       </eOperations>
       <eOperations name="createInstance" lowerBound="1" eType="#//editor/Editor" eExceptions="#//MMINTException">
         <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eParameters name="containerMultiModel" lowerBound="1" eType="#//MID"/>
+        <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
       </eOperations>
       <eOperations name="invokeInstanceWizard" lowerBound="1" eType="#//editor/EditorCreationWizardDialog"
           eExceptions="#//MMINTException">

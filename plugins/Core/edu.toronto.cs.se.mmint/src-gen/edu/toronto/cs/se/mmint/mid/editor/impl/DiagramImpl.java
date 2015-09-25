@@ -82,7 +82,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 	/**
 	 * @generated NOT
 	 */
-	public Editor createInstance(String modelUri, MultiModel containerMultiModel) throws MMINTException {
+	public Editor createInstance(String modelUri, MID instanceMID) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
@@ -102,7 +102,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 			}
 		}
 		Editor newEditor = EditorFactory.eINSTANCE.createDiagram();
-		super.addInstance(newEditor, modelUri, containerMultiModel);
+		super.addInstance(newEditor, modelUri, instanceMID);
 
 		return newEditor;
 	}

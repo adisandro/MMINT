@@ -510,9 +510,9 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 */
 	protected void addSubtype(Editor newEditorType, String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMINTException {
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MultiModelRegistry.getMultiModel(this);
 		super.addSubtype(newEditorType, this, newEditorTypeFragmentUri, newEditorTypeName);
-		MultiModelTypeFactory.addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, multiModel);
+		MultiModelTypeFactory.addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, typeMID);
 
 		for (String fileExtension : getFileExtensions()) {
 			newEditorType.getFileExtensions().add(fileExtension);
@@ -543,14 +543,14 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MultiModelRegistry.getMultiModel(this);
 		super.deleteType();
-		Model modelType = MultiModelRegistry.getExtendibleElement(getModelUri(), multiModel);
+		Model modelType = MultiModelRegistry.getExtendibleElement(getModelUri(), typeMID);
 		if (modelType != null) {
 			modelType.getEditors().remove(this);
 		}
-		multiModel.getEditors().remove(this);
-		for (Editor editorSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, multiModel)) {
+		typeMID.getEditors().remove(this);
+		for (Editor editorSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, typeMID)) {
 			editorSubtype.deleteType();
 		}
 	}
@@ -563,13 +563,13 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 *            The new editor to be added.
 	 * @param modelUri
 	 *            The uri of the model handled by the new editor.
-	 * @param containerMultiModel
+	 * @param instanceMID
 	 *            An Instance MID, null if the editor isn't going to be added to
 	 *            it.
 	 * @return The created editor.
 	 * @generated NOT
 	 */
-	protected void addInstance(Editor newEditor, String modelUri, MultiModel containerMultiModel) {
+	protected void addInstance(Editor newEditor, String modelUri, MID instanceMID) {
 
 		String newEditorName = getName() + " for model " + modelUri;
 		String newEditorUri = MultiModelUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
@@ -578,15 +578,15 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 		newEditor.setId(getId());
 		newEditor.setWizardId(getWizardId());
 		newEditor.getFileExtensions().add(getFileExtensions().get(0));
-		if (containerMultiModel != null) {
-			containerMultiModel.getEditors().add(newEditor);
+		if (instanceMID != null) {
+			instanceMID.getEditors().add(newEditor);
 		}
 	}
 
 	/**
 	 * @generated NOT
 	 */
-	public Editor createInstance(String modelUri, MultiModel containerMultiModel) throws MMINTException {
+	public Editor createInstance(String modelUri, MID instanceMID) throws MMINTException {
 
 		//TODO MMINT[OO] shouldn't this try to create the model file always, or never? (== be consistent, diagrams are created, editors not)
 		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
@@ -594,7 +594,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 		}
 
 		Editor newEditor = EditorFactory.eINSTANCE.createEditor();
-		addInstance(newEditor, modelUri, containerMultiModel);
+		addInstance(newEditor, modelUri, instanceMID);
 
 		return newEditor;
 	}
@@ -699,8 +699,8 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
 		}
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
-		multiModel.getEditors().remove(this);
+		MID instanceMID = MultiModelRegistry.getMultiModel(this);
+		instanceMID.getEditors().remove(this);
 		// no need to removeExtendibleElement
 	}
 
