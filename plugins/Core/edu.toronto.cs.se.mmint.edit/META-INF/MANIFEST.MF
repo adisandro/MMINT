@@ -14,7 +14,5 @@ Export-Package: edu.toronto.cs.se.mmint.mid.editor.provider,
  edu.toronto.cs.se.mmint.mid.relationship.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit,
- edu.toronto.cs.se.mavo,
- edu.toronto.cs.se.mavo.edit,
  edu.toronto.cs.se.mmint
 Bundle-ActivationPolicy: lazy

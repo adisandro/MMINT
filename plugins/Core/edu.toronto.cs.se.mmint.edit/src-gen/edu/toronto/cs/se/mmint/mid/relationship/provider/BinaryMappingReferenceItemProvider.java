@@ -12,30 +12,32 @@
 package edu.toronto.cs.se.mmint.mid.relationship.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
+
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BinaryLinkReferenceItemProvider
-	extends LinkReferenceItemProvider {
+public class BinaryMappingReferenceItemProvider extends MappingReferenceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BinaryLinkReferenceItemProvider(AdapterFactory adapterFactory) {
+	public BinaryMappingReferenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -67,9 +69,9 @@ public class BinaryLinkReferenceItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_BinaryLinkReference_sourceModelElemRef_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BinaryLinkReference_sourceModelElemRef_feature", "_UI_BinaryLinkReference_type"),
-				 RelationshipPackage.Literals.BINARY_LINK_REFERENCE__SOURCE_MODEL_ELEM_REF,
+				 getString("_UI_BinaryMappingReference_sourceModelElemRef_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BinaryMappingReference_sourceModelElemRef_feature", "_UI_BinaryMappingReference_type"),
+				 RelationshipPackage.Literals.BINARY_MAPPING_REFERENCE__SOURCE_MODEL_ELEM_REF,
 				 true,
 				 false,
 				 true,
@@ -89,9 +91,9 @@ public class BinaryLinkReferenceItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_BinaryLinkReference_targetModelElemRef_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BinaryLinkReference_targetModelElemRef_feature", "_UI_BinaryLinkReference_type"),
-				 RelationshipPackage.Literals.BINARY_LINK_REFERENCE__TARGET_MODEL_ELEM_REF,
+				 getString("_UI_BinaryMappingReference_targetModelElemRef_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BinaryMappingReference_targetModelElemRef_feature", "_UI_BinaryMappingReference_type"),
+				 RelationshipPackage.Literals.BINARY_MAPPING_REFERENCE__TARGET_MODEL_ELEM_REF,
 				 true,
 				 false,
 				 true,
@@ -101,14 +103,14 @@ public class BinaryLinkReferenceItemProvider
 	}
 
 	/**
-	 * This returns BinaryLinkReference.gif.
+	 * This returns BinaryMappingReference.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/BinaryLinkReference"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/BinaryMappingReference"));
 	}
 
 	/**
@@ -119,9 +121,10 @@ public class BinaryLinkReferenceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		BinaryLinkReference binaryLinkReference = (BinaryLinkReference)object;
-		return getString("_UI_BinaryLinkReference_type") + " " + binaryLinkReference.isModifiable();
+		BinaryMappingReference binaryMappingReference = (BinaryMappingReference)object;
+		return getString("_UI_BinaryMappingReference_type") + " " + binaryMappingReference.isModifiable();
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

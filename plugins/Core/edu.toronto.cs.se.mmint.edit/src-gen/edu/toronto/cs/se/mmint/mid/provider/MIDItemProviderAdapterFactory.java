@@ -98,26 +98,26 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.MultiModel} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.MID} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MultiModelItemProvider multiModelItemProvider;
+	protected MIDItemProvider midItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.MultiModel}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.MID}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createMultiModelAdapter() {
-		if (multiModelItemProvider == null) {
-			multiModelItemProvider = new MultiModelItemProvider(this);
+	public Adapter createMIDAdapter() {
+		if (midItemProvider == null) {
+			midItemProvider = new MIDItemProvider(this);
 		}
 
-		return multiModelItemProvider;
+		return midItemProvider;
 	}
 
 	/**
@@ -384,7 +384,7 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
 	 * @generated
 	 */
 	public void dispose() {
-		if (multiModelItemProvider != null) multiModelItemProvider.dispose();
+		if (midItemProvider != null) midItemProvider.dispose();
 		if (eStringToExtendibleElementMapItemProvider != null) eStringToExtendibleElementMapItemProvider.dispose();
 		if (modelItemProvider != null) modelItemProvider.dispose();
 		if (extendibleElementConstraintItemProvider != null) extendibleElementConstraintItemProvider.dispose();

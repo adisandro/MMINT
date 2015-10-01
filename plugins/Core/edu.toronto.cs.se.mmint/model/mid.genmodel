@@ -70,6 +70,7 @@
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/deleteType"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getEMFTypeRoot"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/openType"/>
       <genOperations ecoreOperation="mid.ecore#//Model/createInstance">
         <genParameters ecoreParameter="mid.ecore#//Model/createInstance/newModelUri"/>
         <genParameters ecoreParameter="mid.ecore#//Model/createInstance/instanceMID"/>
@@ -96,7 +97,6 @@
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/deleteInstance"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getEMFInstanceRoot"/>
-      <genOperations ecoreOperation="mid.ecore#//Model/openType"/>
       <genOperations ecoreOperation="mid.ecore#//Model/openInstance"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ExtendibleElementConstraint">

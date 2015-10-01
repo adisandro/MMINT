@@ -12,36 +12,35 @@
 package edu.toronto.cs.se.mmint.mid.relationship.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.provider.ExtendibleElementItemProvider;
-import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
+
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.Link} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.MappingReference} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LinkItemProvider
-	extends ExtendibleElementItemProvider {
+public class MappingReferenceItemProvider extends ExtendibleElementReferenceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LinkItemProvider(AdapterFactory adapterFactory) {
+	public MappingReferenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -56,31 +55,8 @@ public class LinkItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addModelElemEndpointRefsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Model Elem Endpoint Refs feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addModelElemEndpointRefsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Link_modelElemEndpointRefs_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Link_modelElemEndpointRefs_feature", "_UI_Link_type"),
-				 RelationshipPackage.Literals.LINK__MODEL_ELEM_ENDPOINT_REFS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -95,7 +71,7 @@ public class LinkItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RelationshipPackage.Literals.LINK__MODEL_ELEM_ENDPOINTS);
+			childrenFeatures.add(RelationshipPackage.Literals.MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS);
 		}
 		return childrenFeatures;
 	}
@@ -114,14 +90,14 @@ public class LinkItemProvider
 	}
 
 	/**
-	 * This returns Link.gif.
+	 * This returns MappingReference.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Link"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MappingReference"));
 	}
 
 	/**
@@ -132,11 +108,10 @@ public class LinkItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Link)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Link_type") :
-			getString("_UI_Link_type") + " " + label;
+		MappingReference mappingReference = (MappingReference)object;
+		return getString("_UI_MappingReference_type") + " " + mappingReference.isModifiable();
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -149,8 +124,8 @@ public class LinkItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Link.class)) {
-			case RelationshipPackage.LINK__MODEL_ELEM_ENDPOINTS:
+		switch (notification.getFeatureID(MappingReference.class)) {
+			case RelationshipPackage.MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -170,19 +145,8 @@ public class LinkItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.LINK__MODEL_ELEM_ENDPOINTS,
-				 RelationshipFactory.eINSTANCE.createModelElementEndpoint()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return MIDEditPlugin.INSTANCE;
+				(RelationshipPackage.Literals.MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS,
+				 RelationshipFactory.eINSTANCE.createModelElementEndpointReference()));
 	}
 
 }

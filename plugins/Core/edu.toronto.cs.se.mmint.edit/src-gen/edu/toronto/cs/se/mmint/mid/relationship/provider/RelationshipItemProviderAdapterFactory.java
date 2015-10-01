@@ -172,49 +172,49 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.relationship.Link} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.relationship.Mapping} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LinkItemProvider linkItemProvider;
+	protected MappingItemProvider mappingItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.Link}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.Mapping}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createLinkAdapter() {
-		if (linkItemProvider == null) {
-			linkItemProvider = new LinkItemProvider(this);
+	public Adapter createMappingAdapter() {
+		if (mappingItemProvider == null) {
+			mappingItemProvider = new MappingItemProvider(this);
 		}
 
-		return linkItemProvider;
+		return mappingItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.relationship.BinaryLink} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BinaryLinkItemProvider binaryLinkItemProvider;
+	protected BinaryMappingItemProvider binaryMappingItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.BinaryLink}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createBinaryLinkAdapter() {
-		if (binaryLinkItemProvider == null) {
-			binaryLinkItemProvider = new BinaryLinkItemProvider(this);
+	public Adapter createBinaryMappingAdapter() {
+		if (binaryMappingItemProvider == null) {
+			binaryMappingItemProvider = new BinaryMappingItemProvider(this);
 		}
 
-		return binaryLinkItemProvider;
+		return binaryMappingItemProvider;
 	}
 
 	/**
@@ -241,49 +241,49 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.relationship.LinkReference} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.relationship.MappingReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LinkReferenceItemProvider linkReferenceItemProvider;
+	protected MappingReferenceItemProvider mappingReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.LinkReference}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.MappingReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createLinkReferenceAdapter() {
-		if (linkReferenceItemProvider == null) {
-			linkReferenceItemProvider = new LinkReferenceItemProvider(this);
+	public Adapter createMappingReferenceAdapter() {
+		if (mappingReferenceItemProvider == null) {
+			mappingReferenceItemProvider = new MappingReferenceItemProvider(this);
 		}
 
-		return linkReferenceItemProvider;
+		return mappingReferenceItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BinaryLinkReferenceItemProvider binaryLinkReferenceItemProvider;
+	protected BinaryMappingReferenceItemProvider binaryMappingReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createBinaryLinkReferenceAdapter() {
-		if (binaryLinkReferenceItemProvider == null) {
-			binaryLinkReferenceItemProvider = new BinaryLinkReferenceItemProvider(this);
+	public Adapter createBinaryMappingReferenceAdapter() {
+		if (binaryMappingReferenceItemProvider == null) {
+			binaryMappingReferenceItemProvider = new BinaryMappingReferenceItemProvider(this);
 		}
 
-		return binaryLinkReferenceItemProvider;
+		return binaryMappingReferenceItemProvider;
 	}
 
 	/**
@@ -412,11 +412,11 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
 		if (binaryModelRelItemProvider != null) binaryModelRelItemProvider.dispose();
 		if (modelEndpointReferenceItemProvider != null) modelEndpointReferenceItemProvider.dispose();
 		if (modelElementReferenceItemProvider != null) modelElementReferenceItemProvider.dispose();
-		if (linkItemProvider != null) linkItemProvider.dispose();
-		if (binaryLinkItemProvider != null) binaryLinkItemProvider.dispose();
+		if (mappingItemProvider != null) mappingItemProvider.dispose();
+		if (binaryMappingItemProvider != null) binaryMappingItemProvider.dispose();
 		if (modelElementEndpointItemProvider != null) modelElementEndpointItemProvider.dispose();
-		if (linkReferenceItemProvider != null) linkReferenceItemProvider.dispose();
-		if (binaryLinkReferenceItemProvider != null) binaryLinkReferenceItemProvider.dispose();
+		if (mappingReferenceItemProvider != null) mappingReferenceItemProvider.dispose();
+		if (binaryMappingReferenceItemProvider != null) binaryMappingReferenceItemProvider.dispose();
 		if (modelElementEndpointReferenceItemProvider != null) modelElementEndpointReferenceItemProvider.dispose();
 	}
 

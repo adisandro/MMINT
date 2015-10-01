@@ -279,12 +279,12 @@ public class ExtendibleElementReferenceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-				 RelationshipFactory.eINSTANCE.createLink()));
+				 RelationshipFactory.eINSTANCE.createMapping()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-				 RelationshipFactory.eINSTANCE.createBinaryLink()));
+				 RelationshipFactory.eINSTANCE.createBinaryMapping()));
 
 		newChildDescriptors.add
 			(createChildParameter

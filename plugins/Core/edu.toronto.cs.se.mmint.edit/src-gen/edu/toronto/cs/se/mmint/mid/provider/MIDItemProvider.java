@@ -9,39 +9,63 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.relationship.provider;
+package edu.toronto.cs.se.mmint.mid.provider;
 
 
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
-import edu.toronto.cs.se.mmint.mid.provider.ModelItemProvider;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
+
+import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
+
+import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
+
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
+
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.MID} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelRelItemProvider
-	extends ModelItemProvider {
+public class MIDItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelRelItemProvider(AdapterFactory adapterFactory) {
+	public MIDItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -56,8 +80,31 @@ public class ModelRelItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addLevelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Level feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLevelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MID_level_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MID_level_feature", "_UI_MID_type"),
+				 MIDPackage.Literals.MID__LEVEL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -72,10 +119,10 @@ public class ModelRelItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINTS);
-			childrenFeatures.add(RelationshipPackage.Literals.MODEL_REL__MAPPINGS);
-			childrenFeatures.add(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINT_REFS);
-			childrenFeatures.add(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS);
+			childrenFeatures.add(MIDPackage.Literals.MID__MODELS);
+			childrenFeatures.add(MIDPackage.Literals.MID__EDITORS);
+			childrenFeatures.add(MIDPackage.Literals.MID__OPERATORS);
+			childrenFeatures.add(MIDPackage.Literals.MID__EXTENDIBLE_TABLE);
 		}
 		return childrenFeatures;
 	}
@@ -94,14 +141,14 @@ public class ModelRelItemProvider
 	}
 
 	/**
-	 * This returns ModelRel.gif.
+	 * This returns MID.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelRel"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MID"));
 	}
 
 	/**
@@ -112,11 +159,13 @@ public class ModelRelItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ModelRel)object).getName();
+		MIDLevel labelValue = ((MID)object).getLevel();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ModelRel_type") :
-			getString("_UI_ModelRel_type") + " " + label;
+			getString("_UI_MID_type") :
+			getString("_UI_MID_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -129,11 +178,14 @@ public class ModelRelItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ModelRel.class)) {
-			case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
-			case RelationshipPackage.MODEL_REL__MAPPINGS:
-			case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
-			case RelationshipPackage.MODEL_REL__MAPPING_REFS:
+		switch (notification.getFeatureID(MID.class)) {
+			case MIDPackage.MID__LEVEL:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case MIDPackage.MID__MODELS:
+			case MIDPackage.MID__EDITORS:
+			case MIDPackage.MID__OPERATORS:
+			case MIDPackage.MID__EXTENDIBLE_TABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -153,33 +205,48 @@ public class ModelRelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINTS,
-				 MIDFactory.eINSTANCE.createModelEndpoint()));
+				(MIDPackage.Literals.MID__MODELS,
+				 MIDFactory.eINSTANCE.createModel()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.MODEL_REL__MAPPINGS,
-				 RelationshipFactory.eINSTANCE.createMapping()));
+				(MIDPackage.Literals.MID__MODELS,
+				 RelationshipFactory.eINSTANCE.createModelRel()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.MODEL_REL__MAPPINGS,
-				 RelationshipFactory.eINSTANCE.createBinaryMapping()));
+				(MIDPackage.Literals.MID__MODELS,
+				 RelationshipFactory.eINSTANCE.createBinaryModelRel()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINT_REFS,
-				 RelationshipFactory.eINSTANCE.createModelEndpointReference()));
+				(MIDPackage.Literals.MID__EDITORS,
+				 EditorFactory.eINSTANCE.createEditor()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS,
-				 RelationshipFactory.eINSTANCE.createMappingReference()));
+				(MIDPackage.Literals.MID__EDITORS,
+				 EditorFactory.eINSTANCE.createDiagram()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS,
-				 RelationshipFactory.eINSTANCE.createBinaryMappingReference()));
+				(MIDPackage.Literals.MID__OPERATORS,
+				 OperatorFactory.eINSTANCE.createOperator()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MIDPackage.Literals.MID__OPERATORS,
+				 OperatorFactory.eINSTANCE.createConversionOperator()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MIDPackage.Literals.MID__OPERATORS,
+				 OperatorFactory.eINSTANCE.createRandomOperator()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MIDPackage.Literals.MID__EXTENDIBLE_TABLE,
+				 MIDFactory.eINSTANCE.create(MIDPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP)));
 	}
 
 	/**
@@ -190,7 +257,7 @@ public class ModelRelItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MIDEditPlugin.INSTANCE;
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

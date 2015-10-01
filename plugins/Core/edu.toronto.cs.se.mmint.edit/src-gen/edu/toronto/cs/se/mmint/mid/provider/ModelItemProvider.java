@@ -12,8 +12,6 @@
 package edu.toronto.cs.se.mmint.mid.provider;
 
 
-import edu.toronto.cs.se.mavo.MAVOFactory;
-import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -56,35 +54,12 @@ public class ModelItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIncPropertyDescriptor(object);
 			addOriginPropertyDescriptor(object);
 			addFileExtensionPropertyDescriptor(object);
 			addEditorsPropertyDescriptor(object);
 			addConversionOperatorsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Inc feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIncPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MAVOModel_inc_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MAVOModel_inc_feature", "_UI_MAVOModel_type"),
-				 MAVOPackage.Literals.MAVO_MODEL__INC,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -187,7 +162,6 @@ public class ModelItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MAVOPackage.Literals.MAVO_MODEL__DECISIONS);
 			childrenFeatures.add(MIDPackage.Literals.MODEL__MODEL_ELEMS);
 		}
 		return childrenFeatures;
@@ -243,12 +217,10 @@ public class ModelItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Model.class)) {
-			case MIDPackage.MODEL__INC:
 			case MIDPackage.MODEL__ORIGIN:
 			case MIDPackage.MODEL__FILE_EXTENSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MIDPackage.MODEL__DECISIONS:
 			case MIDPackage.MODEL__MODEL_ELEMS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -266,21 +238,6 @@ public class ModelItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MAVOPackage.Literals.MAVO_MODEL__DECISIONS,
-				 MAVOFactory.eINSTANCE.createMayDecision()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MAVOPackage.Literals.MAVO_MODEL__DECISIONS,
-				 MAVOFactory.eINSTANCE.createVarDecision()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MAVOPackage.Literals.MAVO_MODEL__DECISIONS,
-				 MAVOFactory.eINSTANCE.createSetDecision()));
 
 		newChildDescriptors.add
 			(createChildParameter
