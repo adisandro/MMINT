@@ -8,7 +8,6 @@ Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.jdt.annotation;resolution:=optional,
- edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint
 Export-Package: edu.toronto.cs.se.mmint.java.reasoning
 Bundle-ActivationPolicy: lazy

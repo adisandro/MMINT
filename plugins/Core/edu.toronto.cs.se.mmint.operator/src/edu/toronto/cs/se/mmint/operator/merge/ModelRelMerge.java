@@ -16,22 +16,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLink;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -72,7 +69,7 @@ public class ModelRelMerge extends OperatorImpl {
 		return false;
 	}
 
-	private void populate(ModelRel mergedModelRel, ModelRel origModelRel, MultiModel instanceMID) throws MMINTException {
+	private void populate(ModelRel mergedModelRel, ModelRel origModelRel, MID instanceMID) throws MMINTException {
 
 		// models
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
@@ -97,37 +94,33 @@ public class ModelRelMerge extends OperatorImpl {
 			}
 		}
 		// links
-		for (LinkReference origLinkRef : origModelRel.getLinkRefs()) {
-			if (mergedModelRel.getLinkRefs().stream()
-				.anyMatch(linkRef -> linkRef.getModelElemEndpointRefs().stream()
+		for (MappingReference origMappingRef : origModelRel.getMappingRefs()) {
+			if (mergedModelRel.getMappingRefs().stream()
+				.anyMatch(mappingRef -> mappingRef.getModelElemEndpointRefs().stream()
 					.map(ModelElementEndpointReference::getTargetUri)
 					.collect(Collectors.toSet())
-					.containsAll(origLinkRef.getModelElemEndpointRefs().stream()
+					.containsAll(origMappingRef.getModelElemEndpointRefs().stream()
 						.map(ModelElementEndpointReference::getTargetUri)
 						.collect(Collectors.toSet())))) {
 				continue;
 			}
-			LinkReference newLinkRef = origLinkRef.getObject().getMetatype().createInstanceAndReference((origLinkRef.getObject() instanceof BinaryLink), mergedModelRel);
-			newLinkRef.getObject().setName(origLinkRef.getObject().getName());
-			for (ModelElementEndpointReference origModelElemEndpointRef : origLinkRef.getModelElemEndpointRefs()) {
+			MappingReference newMappingRef = origMappingRef.getObject().getMetatype().createInstanceAndReference((origMappingRef.getObject() instanceof BinaryMapping), mergedModelRel);
+			newMappingRef.getObject().setName(origMappingRef.getObject().getName());
+			for (ModelElementEndpointReference origModelElemEndpointRef : origMappingRef.getModelElemEndpointRefs()) {
 				ModelElementReference newModelElemRef = newModelElemRefs.get(origModelElemEndpointRef.getTargetUri());
-				origModelElemEndpointRef.getObject().getMetatype().createInstanceAndReference(newModelElemRef, newLinkRef);
+				origModelElemEndpointRef.getObject().getMetatype().createInstanceAndReference(newModelElemRef, newMappingRef);
 			}
 		}
 	}
 
 	private @NonNull ModelRel merge(@NonNull ModelRel modelRel1, @NonNull ModelRel modelRel2,
-		@NonNull Model model1, @NonNull Model model2, @NonNull MultiModel instanceMID)
+		@NonNull Model model1, @NonNull Model model2, @NonNull MID instanceMID)
 		throws MMINTException {
 
-		EList<Model> targetModels = new BasicEList<>();
-		targetModels.add(model1);
-		targetModels.add(model2);
-		ModelRel mergedRel = MultiModelTypeHierarchy.getRootModelRelType().createInstanceAndEndpointsAndReferences(
+		ModelRel mergedRel = MultiModelTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
 			null,
-			true,
-			ModelOrigin.CREATED,
-			targetModels,
+			model1,
+			model2,
 			instanceMID);
 		mergedRel.setName(modelRel1.getName() + MERGE_SEPARATOR + modelRel2.getName());
 		populate(mergedRel, modelRel1, instanceMID);
@@ -138,7 +131,7 @@ public class ModelRelMerge extends OperatorImpl {
 
 	@Override
 	public Map<String, Model> run(Map<String, Model> inputsByName,
-		java.util.Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName)
+		java.util.Map<String, GenericElement> genericsByName, Map<String, MID> outputMIDsByName)
 		throws Exception {
 
 		// input

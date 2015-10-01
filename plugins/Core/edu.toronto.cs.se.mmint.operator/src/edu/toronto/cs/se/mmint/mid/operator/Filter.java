@@ -23,10 +23,9 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
@@ -56,10 +55,10 @@ public class Filter extends OperatorImpl {
 		return true;
 	}
 
-	private @NonNull MultiModel filter(@NonNull Model inputMIDModel, @NonNull Model filterModelType)
+	private @NonNull MID filter(@NonNull Model inputMIDModel, @NonNull Model filterModelType)
 			throws MMINTException {
 
-		MultiModel filteredMID = (MultiModel) inputMIDModel.getEMFInstanceRoot();
+		MID filteredMID = (MID) inputMIDModel.getEMFInstanceRoot();
 		Set<Model> modelsToDelete = new HashSet<>();
 		for (Model model : MultiModelRegistry.getModels(filteredMID)) {
 			// check constraint only if types match (Model and Model, or ModelRel and ModelRel)
@@ -86,15 +85,15 @@ public class Filter extends OperatorImpl {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
 		Model inputMIDModel = inputsByName.get(IN_MID);
 		Model filterModelType = (Model) genericsByName.get(GENERIC_MODELTYPE);
-		MultiModel instanceMID = outputMIDsByName.get(OUT_MID);
+		MID instanceMID = outputMIDsByName.get(OUT_MID);
 
 		// filter mid models based on property attached to type
-		MultiModel filteredMID = filter(inputMIDModel, filterModelType);
+		MID filteredMID = filter(inputMIDModel, filterModelType);
 
 		// output
 		String filteredMIDModelUri = MultiModelUtils.getUniqueUri(
@@ -103,10 +102,7 @@ public class Filter extends OperatorImpl {
 			false);
 		MultiModelUtils.createModelFile(filteredMID, filteredMIDModelUri, true);
 		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
-		Model filteredMIDModel = midModelType.createInstanceAndEditor(
-			filteredMIDModelUri,
-			ModelOrigin.CREATED,
-			instanceMID);
+		Model filteredMIDModel = midModelType.createInstanceAndEditor(filteredMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, filteredMIDModel);
 

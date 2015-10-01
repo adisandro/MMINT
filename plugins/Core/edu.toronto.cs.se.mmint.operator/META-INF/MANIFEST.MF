@@ -9,7 +9,6 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.gmf.runtime.diagram.core,
  org.eclipse.jdt.annotation;resolution:=optional,
- edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.editor,
  edu.toronto.cs.se.mmint.diagram,

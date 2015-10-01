@@ -13,8 +13,8 @@ package edu.toronto.cs.se.mmint.mid.constraint;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 
@@ -24,7 +24,7 @@ public class MIDOperConstraint implements IJavaModelConstraint {
 	public MAVOTruthValue validate(Model model) {
 
 		try {
-			MultiModel instanceMID = (MultiModel) model.getEMFInstanceRoot();
+			MID instanceMID = (MID) model.getEMFInstanceRoot();
 			if (MultiModelRegistry.getModels(instanceMID).size() > 0) {
 				return MAVOTruthValue.FALSE;
 			}

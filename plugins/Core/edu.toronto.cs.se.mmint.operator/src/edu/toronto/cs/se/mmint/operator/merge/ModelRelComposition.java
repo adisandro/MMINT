@@ -23,13 +23,12 @@ import org.eclipse.jdt.annotation.NonNull;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -69,32 +68,28 @@ public class ModelRelComposition extends OperatorImpl {
 	}
 
 	private @NonNull ModelRel compose(@NonNull ModelRel modelRel1, @NonNull ModelRel modelRel2,
-		@NonNull Model model1, @NonNull Model model2, @NonNull Model modelPivot, @NonNull MultiModel instanceMID)
+		@NonNull Model model1, @NonNull Model model2, @NonNull Model modelPivot, @NonNull MID instanceMID)
 		throws MMINTException {
 
 		// TODO MMINT[USABILITY] Modify apis to simplify the creation of models and model rels (e.g. incorporate
 		// createModelFile, add model element creation to link creation)
-		EList<Model> targetModels = new BasicEList<>();
-		targetModels.add(model1);
-		targetModels.add(model2);
-		ModelRel composedRel = MultiModelTypeHierarchy.getRootModelRelType().createInstanceAndEndpointsAndReferences(
+		ModelRel composedRel = MultiModelTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
 			null,
-			true,
-			ModelOrigin.CREATED,
-			targetModels,
+			model1,
+			model2,
 			instanceMID);
 		composedRel.setName(modelRel1.getName() + COMPOSITION_SEPARATOR + modelRel2.getName());
 		ModelEndpointReference composedModelEndpointRef1 = composedRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference composedModelEndpointRef2 = composedRel.getModelEndpointRefs().get(1);
-		// loop through links in modelRel1
-		for (Link link1 : modelRel1.getLinks()) {
+		// loop through mappings in modelRel1
+		for (Mapping mapping1 : modelRel1.getMappings()) {
 			// get model elements in model1
-			List<ModelElement> modelElems1 = link1.getModelElemEndpoints().stream()
+			List<ModelElement> modelElems1 = mapping1.getModelElemEndpoints().stream()
 				.map(ModelElementEndpoint::getTarget)
 				.filter(modelElem -> modelElem.eContainer() == model1)
 				.collect(Collectors.toList());
 			// get model elements in modelPivot from the modelRel1 side
-			List<ModelElement> modelElemsPivot1 = link1.getModelElemEndpoints().stream()
+			List<ModelElement> modelElemsPivot1 = mapping1.getModelElemEndpoints().stream()
 				.map(ModelElementEndpoint::getTarget)
 				.filter(modelElem -> modelElem.eContainer() == modelPivot)
 				.collect(Collectors.toList());
@@ -107,15 +102,15 @@ public class ModelRelComposition extends OperatorImpl {
 					continue;
 				}
 				// get model elements in model2
-				List<LinkReference> linkRefs2 = modelElemRefPivot2.getModelElemEndpointRefs().stream()
-					.map(modelElemEndpointRef -> (LinkReference) modelElemEndpointRef.eContainer())
+				List<MappingReference> mappingRefs2 = modelElemRefPivot2.getModelElemEndpointRefs().stream()
+					.map(modelElemEndpointRef -> (MappingReference) modelElemEndpointRef.eContainer())
 					.collect(Collectors.toList());
-				for (LinkReference linkRef2 : linkRefs2) {
+				for (MappingReference mappingRef2 : mappingRefs2) {
 					EList<ModelElementReference> targetModelElemRefs = new BasicEList<>();
 					for (ModelElement modelElem1 : modelElems1) {
 						targetModelElemRefs.add(modelElem1.createInstanceReference(composedModelEndpointRef1));
 					}
-					List<ModelElement> modelElems2 = linkRef2.getModelElemEndpointRefs().stream()
+					List<ModelElement> modelElems2 = mappingRef2.getModelElemEndpointRefs().stream()
 						.map(ModelElementEndpointReference::getModelElemRef)
 						.filter(
 							modelElemRef ->
@@ -124,11 +119,11 @@ public class ModelRelComposition extends OperatorImpl {
 					for (ModelElement modelElem2 : modelElems2) {
 						targetModelElemRefs.add(modelElem2.createInstanceReference(composedModelEndpointRef2));
 					}
-					// create the composed link
-					LinkReference composedLinkRef = MultiModelTypeHierarchy.getRootMappingType()
+					// create the composed mapping
+					MappingReference composedMappingRef = MultiModelTypeHierarchy.getRootMappingType()
 						.createInstanceAndReferenceAndEndpointsAndReferences(false, targetModelElemRefs);
-					composedLinkRef.getObject().setName(
-						link1.getName() + COMPOSITION_SEPARATOR + linkRef2.getObject().getName());
+					composedMappingRef.getObject().setName(
+						mapping1.getName() + COMPOSITION_SEPARATOR + mappingRef2.getObject().getName());
 				}
 			}
 		}
@@ -138,7 +133,7 @@ public class ModelRelComposition extends OperatorImpl {
 
 	@Override
 	public Map<String, Model> run(Map<String, Model> inputsByName,
-		java.util.Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName)
+		java.util.Map<String, GenericElement> genericsByName, Map<String, MID> outputMIDsByName)
 		throws Exception {
 
 		// input

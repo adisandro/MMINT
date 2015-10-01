@@ -33,13 +33,12 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
@@ -77,7 +76,7 @@ public class Map extends OperatorImpl {
 		return true;
 	}
 
-	private Model createOutputMIDModel(String outputName, MultiModel outputMID, Model midModelType, MultiModel instanceMID) throws Exception {
+	private Model createOutputMIDModel(String outputName, MID outputMID, Model midModelType, MID instanceMID) throws Exception {
 
 		String baseOutputUri = MultiModelRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
 		String outputMIDUri = MultiModelUtils.getUniqueUri(
@@ -87,13 +86,12 @@ public class Map extends OperatorImpl {
 		MultiModelUtils.createModelFile(outputMID, outputMIDUri, true);
 		Model outputMIDModel = midModelType.createInstanceAndEditor(
 			outputMIDUri,
-			ModelOrigin.CREATED,
 			instanceMID);
 
 		return outputMIDModel;
 	}
 
-	private Model createOutputMIDRelModel(String outputName, MultiModel outputMID, Model midrelModelType, MultiModel instanceMID, java.util.Map<String, Set<Model>> midrelShortcutsByOutputName) throws Exception {
+	private Model createOutputMIDRelModel(String outputName, MID outputMID, Model midrelModelType, MID instanceMID, java.util.Map<String, Set<Model>> midrelShortcutsByOutputName) throws Exception {
 
 		Model outputMIDModel = createOutputMIDModel(outputName, outputMID, midrelModelType, instanceMID);
 		// create gmf shortcuts
@@ -122,20 +120,20 @@ public class Map extends OperatorImpl {
 
 	private java.util.Map<String, Model> map(
 			@NonNull List<Model> inputMIDModels, @NonNull Operator mapperOperatorType,
-			@NonNull Set<EList<OperatorInput>> mapperInputSet, @NonNull MultiModel instanceMID) throws Exception {
+			@NonNull Set<EList<OperatorInput>> mapperInputSet, @NonNull MID instanceMID) throws Exception {
 
 		// create output MIDs
-		java.util.Map<String, MultiModel> mapperOutputMIDsByName = mapperOperatorType.getOutputs().stream()
+		java.util.Map<String, MID> mapperOutputMIDsByName = mapperOperatorType.getOutputs().stream()
 			.collect(Collectors.toMap(
 				outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
-				outputModelTypeEndpoint -> MIDFactory.eINSTANCE.createMultiModel()));
-		MultiModel mapperMID = Boolean.parseBoolean(
+				outputModelTypeEndpoint -> MIDFactory.eINSTANCE.createMID()));
+		MID mapperMID = Boolean.parseBoolean(
 			MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED)) ?
-				MIDFactory.eINSTANCE.createMultiModel() :
+				MIDFactory.eINSTANCE.createMID() :
 				null;
 		// start operator types
 		java.util.Map<String, Set<Model>> midrelShortcutsByOutputName = new HashMap<>();
-		java.util.Map<String, Set<MultiModel>> midrelMIDsByOutputName = new HashMap<>();
+		java.util.Map<String, Set<MID>> midrelMIDsByOutputName = new HashMap<>();
 		Set<Model> midoperModelShortcuts = new HashSet<>(), midoperModelRelShortcuts = new HashSet<>();
 		for (EList<OperatorInput> mapperInputs : mapperInputSet) {
 			try {
@@ -177,11 +175,11 @@ public class Map extends OperatorImpl {
 						if (midrelShortcuts != null) {
 							midrelShortcuts.addAll(midrelShortcutsToAdd);
 						}
-						Set<MultiModel> midrelMIDsToAdd = ((ModelRel) mapperOutput.getValue()).getModelEndpoints()
+						Set<MID> midrelMIDsToAdd = ((ModelRel) mapperOutput.getValue()).getModelEndpoints()
 							.stream()
 							.map(modelEndpoint -> MultiModelRegistry.getMultiModel(modelEndpoint.getTarget()))
 							.collect(Collectors.toSet());
-						Set<MultiModel> midrelMIDs = midrelMIDsByOutputName.putIfAbsent(
+						Set<MID> midrelMIDs = midrelMIDsByOutputName.putIfAbsent(
 							mapperOutput.getKey(),
 							midrelMIDsToAdd);
 						if (midrelMIDs != null) {
@@ -203,7 +201,7 @@ public class Map extends OperatorImpl {
 		java.util.Map<String, Model> outputsByName = new HashMap<>();
 		int i = 0;
 		// pass 1: no midrels
-		for (Entry<String, MultiModel> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
+		for (Entry<String, MID> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
 			boolean isMIDRel = midrelShortcutsByOutputName.get(outputMIDByName.getKey()) != null;
 			if (isMIDRel) {
 				continue;
@@ -213,7 +211,7 @@ public class Map extends OperatorImpl {
 			i++;
 		}
 		// pass 2: midrels only
-		for (Entry<String, MultiModel> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
+		for (Entry<String, MID> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
 			boolean isMIDRel = midrelShortcutsByOutputName.get(outputMIDByName.getKey()) != null;
 			if (!isMIDRel) {
 				continue;
@@ -222,17 +220,13 @@ public class Map extends OperatorImpl {
 			Model outputMIDModel = createOutputMIDRelModel(outputName, outputMIDByName.getValue(), midrelModelType, instanceMID, midrelShortcutsByOutputName);
 			outputsByName.put(OUT_MIDS + i, outputMIDModel);
 			i++;
-			for (MultiModel midrelMID : midrelMIDsByOutputName.get(outputName)) {
+			for (MID midrelMID : midrelMIDsByOutputName.get(outputName)) {
 				String midrelMIDUri = MultiModelRegistry.getModelAndModelElementUris(midrelMID, MIDLevel.INSTANCES)[0];
 				Model midrelMIDModel = MultiModelRegistry.getExtendibleElement(midrelMIDUri, instanceMID);
-				EList<Model> midrelTargetModels = new BasicEList<>();
-				midrelTargetModels.add(outputMIDModel);
-				midrelTargetModels.add(midrelMIDModel);
-				ModelRel midrelRel = MultiModelTypeHierarchy.getRootModelRelType().createInstanceAndEndpointsAndReferences(
+				ModelRel midrelRel = MultiModelTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
 					null,
-					true,
-					ModelOrigin.CREATED,
-					midrelTargetModels,
+					outputMIDModel,
+					midrelMIDModel,
 					instanceMID);
 				midrelRel.setName(midrelMIDModel.getName());
 			}
@@ -303,15 +297,15 @@ public class Map extends OperatorImpl {
 	@Override
 	public java.util.Map<String, Model> run(
 			java.util.Map<String, Model> inputsByName, java.util.Map<String, GenericElement> genericsByName,
-			java.util.Map<String, MultiModel> outputMIDsByName) throws Exception {
+			java.util.Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
 		List<Model> inputMIDModels = MultiModelOperatorUtils.getVarargs(inputsByName, IN_MIDS);
 		Operator mapperOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
-		MultiModel instanceMID = outputMIDsByName.get(OUT_MIDS);
-		EList<MultiModel> inputMIDs = new BasicEList<>();
+		MID instanceMID = outputMIDsByName.get(OUT_MIDS);
+		EList<MID> inputMIDs = new BasicEList<>();
 		for (Model inputMIDModel : inputMIDModels) {
-			inputMIDs.add((MultiModel) inputMIDModel.getEMFInstanceRoot());
+			inputMIDs.add((MID) inputMIDModel.getEMFInstanceRoot());
 		}
 
 		// find all possible combinations of inputs for operatorType and execute them

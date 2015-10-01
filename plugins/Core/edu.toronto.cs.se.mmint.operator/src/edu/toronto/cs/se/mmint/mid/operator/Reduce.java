@@ -29,11 +29,10 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
@@ -69,25 +68,25 @@ public class Reduce extends OperatorImpl {
 		return true;
 	}
 
-	private @NonNull MultiModel reduce(@NonNull Model inputMIDModel, @NonNull Operator accumulatorOperatorType)
+	private @NonNull MID reduce(@NonNull Model inputMIDModel, @NonNull Operator accumulatorOperatorType)
 			throws Exception {
 
 		// preparation for accumulator operator
-		MultiModel reducedMID = (MultiModel) inputMIDModel.getEMFInstanceRoot();
-		Map<String, MultiModel> accumulatorOutputMIDsByName = MultiModelOperatorUtils
+		MID reducedMID = (MID) inputMIDModel.getEMFInstanceRoot();
+		Map<String, MID> accumulatorOutputMIDsByName = MultiModelOperatorUtils
 			.createSimpleOutputMIDsByName(accumulatorOperatorType, reducedMID);
-		EList<MultiModel> inputMIDs = new BasicEList<>();
+		EList<MID> inputMIDs = new BasicEList<>();
 		inputMIDs.add(reducedMID);
 		Set<Model> accumulatorOutputModelsToDelete = new HashSet<>();
 		Map<String, Model> accumulatorOutputsByName = null;
 		EList<OperatorInput> accumulatorInputs;
 		// preparation for composition operator
 		Operator compositionOperatorType = MultiModelTypeRegistry.getType(MODELRELCOMPOSITION_OPERATORTYPE_URI);
-		Map<String, MultiModel> compositionOutputMIDsByName = MultiModelOperatorUtils
+		Map<String, MID> compositionOutputMIDsByName = MultiModelOperatorUtils
 			.createSimpleOutputMIDsByName(compositionOperatorType, reducedMID);
 		// preparation for merge operator
 		Operator mergeOperatorType = MultiModelTypeRegistry.getType(MODELRELMERGE_OPERATORTYPE_URI);
-		Map<String, MultiModel> mergeOutputMIDsByName = MultiModelOperatorUtils
+		Map<String, MID> mergeOutputMIDsByName = MultiModelOperatorUtils
 			.createSimpleOutputMIDsByName(mergeOperatorType, reducedMID);
 		// reduce loop
 		while ((accumulatorInputs = accumulatorOperatorType.findFirstAllowedInput(inputMIDs)) != null) {
@@ -233,12 +232,12 @@ public class Reduce extends OperatorImpl {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
 		Model inputMIDModel = inputsByName.get(IN_MID);
 		Operator accumulatorOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
-		MultiModel instanceMID = outputMIDsByName.get(OUT_MID);
+		MID instanceMID = outputMIDsByName.get(OUT_MID);
 
 		// loop until reduction is no longer possible, reducing one input at a time
 		boolean openEditors = Boolean.parseBoolean(
@@ -246,7 +245,7 @@ public class Reduce extends OperatorImpl {
 		if (openEditors) {
 			MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "false");
 		}
-		MultiModel reducedMID = reduce(inputMIDModel, accumulatorOperatorType);
+		MID reducedMID = reduce(inputMIDModel, accumulatorOperatorType);
 		if (openEditors) {
 			MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "true");
 		}
@@ -258,7 +257,7 @@ public class Reduce extends OperatorImpl {
 			false);
 		MultiModelUtils.createModelFile(reducedMID, reducedMIDModelUri, true);
 		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
-		Model reducedMIDModel = midModelType.createInstanceAndEditor(reducedMIDModelUri, ModelOrigin.CREATED, instanceMID);
+		Model reducedMIDModel = midModelType.createInstanceAndEditor(reducedMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, reducedMIDModel);
 
