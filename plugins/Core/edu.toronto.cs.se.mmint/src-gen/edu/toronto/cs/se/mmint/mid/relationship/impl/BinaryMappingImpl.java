@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -54,9 +53,7 @@ public class BinaryMappingImpl extends MappingImpl implements BinaryMapping {
 	 */
 	public MappingReference createTypeReference(MappingReference mappingTypeRef, boolean isModifiable, ModelRel containerModelRelType) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		BinaryMappingReference newLinkTypeRef = RelationshipFactory.eINSTANCE.createBinaryMappingReference();
 		super.addTypeReference(newLinkTypeRef, mappingTypeRef, isModifiable, containerModelRelType);
@@ -69,9 +66,7 @@ public class BinaryMappingImpl extends MappingImpl implements BinaryMapping {
 	 */
 	public MappingReference createInstanceReference(ModelRel containerModelRel) throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		BinaryMappingReference newLinkRef = RelationshipFactory.eINSTANCE.createBinaryMappingReference();
 		addInstanceReference(newLinkRef, containerModelRel);

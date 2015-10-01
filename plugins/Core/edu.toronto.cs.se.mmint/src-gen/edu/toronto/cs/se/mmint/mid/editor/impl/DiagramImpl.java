@@ -27,7 +27,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
@@ -69,9 +68,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 	 */
 	public Editor createSubtype(String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		Diagram newDiagramType = EditorFactory.eINSTANCE.createDiagram();
 		addSubtype(newDiagramType, newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
@@ -84,9 +81,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 	 */
 	public Editor createInstance(String modelUri, MID instanceMID) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		// check if diagram file already exists in model directory
 		if (!MultiModelUtils.isFileOrDirectory(MultiModelUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0)), true)) {
@@ -112,9 +107,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 	 */
 	public EditorCreationWizardDialog invokeInstanceWizard(IStructuredSelection initialSelection) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		IWorkbenchWizard wizard = super.getInstanceWizard(initialSelection);
 		EditorCreationWizardDialog wizDialog;

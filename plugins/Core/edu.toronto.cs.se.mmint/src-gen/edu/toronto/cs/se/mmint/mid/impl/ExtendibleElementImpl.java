@@ -627,6 +627,11 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
+	 * Filters a list of subtypes of a type to contain only direct and metamodel-compatible subtypes.
+	 * 
+	 * @param type The type at the top of the inheritance tree.
+	 * @param subtypes All the subtypes of the type.
+	 * @return The list of filtered subtypes.
 	 * @generated NOT
 	 */
 	private <T extends ExtendibleElement> List<T> filterSubtypes(T type, List<T> subtypes) {
@@ -679,6 +684,10 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
+	 * Adds a polymorphic runtime type for this instance.
+	 * 
+	 * @param type The type being checked to be a valid polymorphic type.
+	 * @param types The list of polymorphic runtime types so far, used as return value.
 	 * @generated NOT
 	 */
 	private <T extends ExtendibleElement> void getRuntimeTypes(T type, List<T> types) {
@@ -686,7 +695,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 		// no need to validate root type
 		if (MultiModelTypeHierarchy.isRootType(type)) {
 			types.add(type);
-			// first stop condition: model relationship or link without endpoints
+			// first stop condition: model relationship or mapping without endpoints
 			if (this instanceof ModelRel && ((ModelRel) this).getModelEndpoints().isEmpty()) {
 				return;
 			}
@@ -809,15 +818,15 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 * 
 	 * @param uri
 	 *            The uri of the extendible element to delete.
-	 * @param typeMID
+	 * @param mid
 	 *            The MID that contains the extendible element.
 	 * @return The deleted extendible element, null if its uri was not
-	 *         registered in the multimodel.
+	 *         registered in the MID.
 	 * @generated NOT
 	 */
-	protected ExtendibleElement delete(String uri, MID typeMID) {
+	protected ExtendibleElement delete(String uri, MID mid) {
 
-		return typeMID.getExtendibleTable().removeKey(uri);
+		return mid.getExtendibleTable().removeKey(uri);
 	}
 
 	/**
@@ -880,7 +889,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	protected void addInstance(ExtendibleElement newInstance, String newInstanceUri, String newInstanceName, MID instanceMID) throws MMINTException {
 
 		if (instanceMID.getExtendibleTable().containsKey(newInstanceUri)) {
-			throw new MMINTException("Instance with uri " + newInstanceUri + " is already registered");
+			throw new MMINTException("An instance with uri " + newInstanceUri + " is already present in this Instance MID");
 		}
 		instanceMID.getExtendibleTable().put(newInstanceUri, newInstance);
 

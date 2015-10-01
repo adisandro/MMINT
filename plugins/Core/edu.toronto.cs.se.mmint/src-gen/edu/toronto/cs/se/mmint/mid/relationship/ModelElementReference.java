@@ -84,7 +84,7 @@ public interface ModelElementReference extends ExtendibleElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * Deletes this reference to a model element type and all its subreferences
-	 * from the multimodel that contains them.
+	 * from the MID that contains them.
 	 * 
 	 * @throws MMINTException
 	 *             If this reference to a model element is at the INSTANCES

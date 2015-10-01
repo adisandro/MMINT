@@ -38,7 +38,6 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
@@ -524,9 +523,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 */
 	public Editor createSubtype(String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		Editor newEditorType = EditorFactory.eINSTANCE.createEditor();
 		addSubtype(newEditorType, newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
@@ -539,9 +536,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 */
 	public void deleteType() throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		MID typeMID = MultiModelRegistry.getMultiModel(this);
 		super.deleteType();
@@ -589,9 +584,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	public Editor createInstance(String modelUri, MID instanceMID) throws MMINTException {
 
 		//TODO MMINT[OO] shouldn't this try to create the model file always, or never? (== be consistent, diagrams are created, editors not)
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		Editor newEditor = EditorFactory.eINSTANCE.createEditor();
 		addInstance(newEditor, modelUri, instanceMID);
@@ -669,9 +662,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 */
 	public EditorCreationWizardDialog invokeInstanceWizard(IStructuredSelection initialSelection) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		IWorkbenchWizard wizard = getInstanceWizard(initialSelection);
 		EditorCreationWizardDialog wizDialog;
@@ -695,9 +686,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 */
 	public void deleteInstance() throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		MID instanceMID = MultiModelRegistry.getMultiModel(this);
 		instanceMID.getEditors().remove(this);

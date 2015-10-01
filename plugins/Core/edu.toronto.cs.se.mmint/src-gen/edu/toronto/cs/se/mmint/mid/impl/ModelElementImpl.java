@@ -156,6 +156,20 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MIDPackage.MODEL_ELEMENT__EINFO:
+				return basicSetEInfo(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MIDPackage.MODEL_ELEMENT__EINFO:
@@ -303,9 +317,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 */
 	public ModelElementReference createTypeReference(ModelElementReference modelElemTypeRef, boolean isModifiable, ModelEndpointReference containerModelTypeEndpointRef) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		ModelElementReference newModelElemTypeRef = RelationshipFactory.eINSTANCE.createModelElementReference();
 		super.addTypeReference(newModelElemTypeRef, modelElemTypeRef, isModifiable, false);
@@ -319,9 +331,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 */
 	public ModelElementReference createSubtypeAndReference(ModelElementReference modelElemTypeRef, String newModelElemTypeUri, String newModelElemTypeName, EMFInfo eInfo, ModelEndpointReference containerModelTypeEndpointRef) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		ModelRel modelRelType = (ModelRel) containerModelTypeEndpointRef.eContainer();
 		MID typeMID = MultiModelRegistry.getMultiModel(modelRelType);
@@ -353,9 +363,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 */
 	public void deleteType() throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		super.deleteType();
 		//TODO MMINT[OO] might need to implement full removal
@@ -366,9 +374,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 */
 	public ENamedElement getEMFTypeObject() throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		ENamedElement modelTypeObj;
 		try {
@@ -386,9 +392,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 */
 	public ModelElementReference createInstanceReference(ModelEndpointReference containerModelEndpointRef) throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		ModelElementReference newModelElemRef = RelationshipFactory.eINSTANCE.createModelElementReference();
 		super.addInstanceReference(newModelElemRef, false);
@@ -402,13 +406,11 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 */
 	public ModelElementReference createInstanceAndReference(String newModelElemUri, String newModelElemName, EMFInfo eInfo, ModelEndpointReference containerModelEndpointRef) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		MID instanceMID = MultiModelRegistry.getMultiModel(containerModelEndpointRef);
 		ModelElement newModelElem = null;
-		if (instanceMID != null) { // can be null when the containing model rel is not stored in the multimodel
+		if (instanceMID != null) { // can be null when the containing model rel is not stored in the MID
 			newModelElemUri += MMINT.ROLE_SEPARATOR + getUri();
 			newModelElem = MultiModelRegistry.getExtendibleElement(newModelElemUri, instanceMID);
 		}
@@ -492,9 +494,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 */
 	public void deleteInstance() throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		super.deleteInstance();
 		//TODO MMINT[OO] might need to implement full removal
@@ -505,9 +505,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 */
 	public EObject getEMFInstanceObject() throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		String modelElemUri = getUri().substring(0, getUri().indexOf(MMINT.ROLE_SEPARATOR));
 		int lastSegmentIndex = modelElemUri.lastIndexOf(MMINT.URI_SEPARATOR);
@@ -530,20 +528,6 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		}
 
 		return modelObj;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MIDPackage.MODEL_ELEMENT__EINFO:
-				return basicSetEInfo(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 } //ModelElementImpl

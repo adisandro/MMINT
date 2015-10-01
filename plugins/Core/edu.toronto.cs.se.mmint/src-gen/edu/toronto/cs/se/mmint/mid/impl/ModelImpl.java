@@ -636,9 +636,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	public Model createSubtype(String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		Model newModelType = MIDFactory.eINSTANCE.createModel();
 		addSubtype(newModelType, newModelTypeName, constraintLanguage, constraintImplementation, isMetamodelExtension);
@@ -651,9 +649,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	public void deleteType() throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		MID typeMID = MultiModelRegistry.getMultiModel(this);
 		// delete the "thing"
@@ -721,9 +717,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	public EPackage getEMFTypeRoot() throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		EPackage rootModelTypeObj;
 		if (!isDynamic()) { // get package from registry
@@ -745,6 +739,47 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		}
 
 		return rootModelTypeObj;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void openType() throws Exception {
+
+		MMINTException.mustBeType(this);
+
+		Model modelType = this;
+		List<URI> metamodelUris = new ArrayList<>();
+		//TODO MMINT[EDITOR] fix a) references to inherited metamodels not good in runtime eclipse b) open UML
+		while (true) {
+			if (modelType.isDynamic()) {
+				String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(modelType);
+				if (metamodelUri != null) { // get metamodel file from mmint state area
+					metamodelUris.add(URI.createFileURI(metamodelUri));
+					break;
+				}
+			}
+			else { // get metamodel files from bundle
+				Bundle bundle = MultiModelTypeRegistry.getTypeBundle(modelType.getUri());
+				Enumeration<URL> metamodels = bundle.findEntries("/", "*." + EcorePackage.eNAME, true);
+				while (metamodels.hasMoreElements()) {
+					metamodelUris.add(URI.createURI(FileLocator.toFileURL(metamodels.nextElement()).toString()));
+				}
+				break;
+			}
+			// climb up light types
+			modelType = modelType.getSupertype();
+		}
+
+		// open editors
+		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		Model ecoreModelType = MultiModelTypeRegistry.getType(EcorePackage.eNS_URI);
+		Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
+		for (URI metamodelUri : metamodelUris) {
+			activePage.openEditor(new URIEditorInput(metamodelUri), ecoreEditorType.getId());
+			//TODO MMINT[ECORE] Try to open ecore diagram
+			//String metamodelDiagramUri = metamodelUri.toFileString() + GMFDiagramUtils.DIAGRAM_SUFFIX;
+		}
 	}
 
 	/**
@@ -798,9 +833,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	public Model createInstance(String newModelUri, MID instanceMID) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		Model newModel = MIDFactory.eINSTANCE.createModel();
 		addInstance(newModel, newModelUri, ModelOrigin.CREATED, instanceMID);
@@ -813,9 +846,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	public Editor createInstanceEditor() throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		MID instanceMID = MultiModelRegistry.getMultiModel(this);
 		Editor newEditor = null;
@@ -865,14 +896,16 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Model importInstance(String modelUri, MID instanceMID) throws MMINTException {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+
+		MMINTException.mustBeType(this);
+
+		Model newModel = MIDFactory.eINSTANCE.createModel();
+		addInstance(newModel, modelUri, ModelOrigin.IMPORTED, instanceMID);
+
+		return newModel;
 	}
 
 	/**
@@ -932,9 +965,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	public Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		// copy model
 		String newModelUri = MultiModelUtils.replaceFileNameInUri(origModel.getUri(), newModelName);
@@ -989,9 +1020,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	public void deleteInstance() throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		MID instanceMID = MultiModelRegistry.getMultiModel(this);
 		for (ModelElement modelElem : getModelElems()) {
@@ -1050,9 +1079,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	public EObject getEMFInstanceRoot() throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		EObject rootModelObj;
 		try {
@@ -1063,47 +1090,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		}
 
 		return rootModelObj;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public void openType() throws Exception {
-
-		MMINTException.mustBeType(this);
-
-		Model modelType = this;
-		List<URI> metamodelUris = new ArrayList<>();
-		//TODO MMINT[EDITOR] fix a) references to inherited metamodels not good in runtime eclipse b) open UML
-		while (true) {
-			if (modelType.isDynamic()) {
-				String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(modelType);
-				if (metamodelUri != null) { // get metamodel file from mmint state area
-					metamodelUris.add(URI.createFileURI(metamodelUri));
-					break;
-				}
-			}
-			else { // get metamodel files from bundle
-				Bundle bundle = MultiModelTypeRegistry.getTypeBundle(modelType.getUri());
-				Enumeration<URL> metamodels = bundle.findEntries("/", "*." + EcorePackage.eNAME, true);
-				while (metamodels.hasMoreElements()) {
-					metamodelUris.add(URI.createURI(FileLocator.toFileURL(metamodels.nextElement()).toString()));
-				}
-				break;
-			}
-			// climb up light types
-			modelType = modelType.getSupertype();
-		}
-
-		// open editors
-		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		Model ecoreModelType = MultiModelTypeRegistry.getType(EcorePackage.eNS_URI);
-		Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
-		for (URI metamodelUri : metamodelUris) {
-			activePage.openEditor(new URIEditorInput(metamodelUri), ecoreEditorType.getId());
-			//TODO MMINT[ECORE] Try to open ecore diagram
-			//String metamodelDiagramUri = metamodelUri.toFileString() + GMFDiagramUtils.DIAGRAM_SUFFIX;
-		}
 	}
 
 	/**

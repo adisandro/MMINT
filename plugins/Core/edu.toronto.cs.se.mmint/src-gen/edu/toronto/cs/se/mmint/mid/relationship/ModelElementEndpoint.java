@@ -70,17 +70,54 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	ModelElementEndpoint getMetatype();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelElemTypeRefRequired="true" isModifiableRequired="true" isBinarySrcRequired="true" containerMappingTypeRefRequired="true"
+	 * <!-- begin-user-doc --> Creates and adds a reference to this model element type endpoint to the Type MID.
+	 * 
+	 * @param modelElemTypeEndpointRef
+	 *            The reference to the supertype of the model element type endpoint, null if such reference doesn't
+	 *            exist in the mapping type reference container.
+	 * @param targetModelElemTypeRef
+	 *            The reference to the model element type that is the target of the model element type endpoint.
+	 * @param isModifiable
+	 *            True if the new reference will allow modifications of the referenced model element type endpoint,
+	 *            false otherwise.
+	 * @param isBinarySrc
+	 *            (Only for a binary mapping type reference container) True if the referenced model element type
+	 *            endpoint is the source in the binary mapping type reference container, false otherwise.
+	 * @param containerMappingTypeRef
+	 *            The reference to the mapping type that will contain the new reference to the model element type
+	 *            endpoint.
+	 * @return The created reference to the model element type endpoint.
+	 * @throws MMINTException
+	 *             If this is a model element instance endpoint. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 *        targetModelElemTypeRefRequired="true" isModifiableRequired="true" isBinarySrcRequired="true"
+	 *        containerMappingTypeRefRequired="true"
 	 * @generated
 	 */
 	ModelElementEndpointReference createTypeReference(ModelElementEndpointReference modelElemTypeEndpointRef, ModelElementReference targetModelElemTypeRef, boolean isModifiable, boolean isBinarySrc, MappingReference containerMappingTypeRef) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelElemTypeEndpointNameRequired="true" targetModelElemTypeRefRequired="true" isBinarySrcRequired="true" containerMappingTypeRefRequired="true"
+	 * <!-- begin-user-doc --> Creates and adds a subtype of this model element type endpoint and a reference to it to
+	 * the Type MID.
+	 * 
+	 * @param newModelElemTypeEndpointName
+	 *            The name of the new model element type endpoint.
+	 * @param targetModelElemTypeRef
+	 *            The reference to the model element type that is the target of the new model element type endpoint.
+	 * @param isBinarySrc
+	 *            (Only for a binary mapping type container) True if the model element type endpoint is the source in
+	 *            the binary mapping type container, false otherwise.
+	 * @param containerMappingTypeRef
+	 *            The reference to the mapping type that will contain the new model element type endpoint.
+	 * @return The created reference to the new model element type endpoint.
+	 * @throws MMINTException
+	 *             If this is a model element instance endpoint, if the container mapping type is binary and has already
+	 *             2 model element type endpoints, if the container mapping type is binary and there would be an invalid
+	 *             overriding of this model element type endpoint, or if the uri of the new model element type endpoint
+	 *             is already registered in the Type MID. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 *        newModelElemTypeEndpointNameRequired="true" targetModelElemTypeRefRequired="true"
+	 *        isBinarySrcRequired="true" containerMappingTypeRefRequired="true"
 	 * @generated
 	 */
 	ModelElementEndpointReference createSubtypeAndReference(String newModelElemTypeEndpointName, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc, MappingReference containerMappingTypeRef) throws MMINTException;
@@ -99,7 +136,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 *            the new model element type endpoint.
 	 * @throws MMINTException
 	 *             If this is a model element instance endpoint, if the
-	 *             container link type is binary and there would be an invalid
+	 *             container mapping type is binary and there would be an invalid
 	 *             overriding of this model element type endpoint, or if the uri
 	 *             of the new model element type endpoint is already registered
 	 *             in the Type MID. <!-- end-user-doc -->
@@ -110,7 +147,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Removes a model element type endpoint from the multimodel that contains
+	 * Removes a model element type endpoint from the MID that contains
 	 * it.
 	 * 
 	 * @param modelElemTypeEndpoint
@@ -125,17 +162,35 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	void deleteType(boolean isFullDelete) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelElemRefRequired="true" containerMappingRefRequired="true"
+	 * <!-- begin-user-doc --> Creates and adds a reference to this model element instance endpoint to an Instance MID.
+	 * 
+	 * @param targetModelElemRef
+	 *            The reference to the model element that is the target of the model element endpoint.
+	 * @param containerMappingRef
+	 *            The reference to the mapping that will contain the new reference to the model element endpoint.
+	 * @return The created reference to the model element endpoint.
+	 * @throws MMINTException
+	 *             If this is a model element type endpoint. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelElemRefRequired="true"
+	 *        containerMappingRefRequired="true"
 	 * @generated
 	 */
 	ModelElementEndpointReference createInstanceReference(ModelElementReference targetModelElemRef, MappingReference containerMappingRef) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelElemRefRequired="true" containerMappingRefRequired="true"
+	 * <!-- begin-user-doc --> Creates and adds a model element instance endpoint of this model element type endpoint
+	 * and the reference to it to an Instance MID.
+	 * 
+	 * @param targetModelElemRef
+	 *            The reference to the model element that is the target of the new model element endpoint.
+	 * @param containerMappingRef
+	 *            The reference to the mapping that will contain the new model element endpoint.
+	 * @return The created reference to the new model element endpoint.
+	 * @throws MMINTException
+	 *             If this is a model element instance endpoint, or if the container mapping is binary and has already 2
+	 *             model element endpoints. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelElemRefRequired="true"
+	 *        containerMappingRefRequired="true"
 	 * @generated
 	 */
 	ModelElementEndpointReference createInstanceAndReference(ModelElementReference targetModelElemRef, MappingReference containerMappingRef) throws MMINTException;

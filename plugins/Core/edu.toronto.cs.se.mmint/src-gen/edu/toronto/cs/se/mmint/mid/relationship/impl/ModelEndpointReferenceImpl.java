@@ -247,9 +247,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 	 */
 	public boolean acceptModelElementType(EObject metamodelObj) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		MID typeMID = MultiModelRegistry.getMultiModel(this);
 		String[] uris = MultiModelRegistry.getModelAndModelElementUris(metamodelObj, MIDLevel.TYPES);
@@ -275,9 +273,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 	 */
 	public void deleteTypeReference(boolean isFullDelete) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		// avoid iterating over the list
 		while (getModelElemRefs().size() > 0) {
@@ -294,9 +290,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 	 */
 	public ModelElement acceptModelElementInstance(EObject modelObj) throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES);
 		String modelUri = uris[0];

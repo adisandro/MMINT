@@ -24,7 +24,6 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -211,31 +210,6 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 	}
 
 	/**
-	 * @generated NOT
-	 */
-	protected void addInstance(GenericEndpoint newGenericEndpoint, GenericElement targetGenericType, Operator containerOperator) {
-
-		super.addBasicInstance(newGenericEndpoint, null, targetGenericType.getName());
-		super.addInstanceEndpoint(newGenericEndpoint, targetGenericType);
-		containerOperator.getGenerics().add(newGenericEndpoint);
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public GenericEndpoint createInstance(GenericElement targetGeneric, Operator containerOperator) throws MMINTException {
-
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
-
-		GenericEndpoint newGenericEndpoint = OperatorFactory.eINSTANCE.createGenericEndpoint();
-		addInstance(newGenericEndpoint, targetGeneric, containerOperator);
-
-		return newGenericEndpoint;
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -291,6 +265,37 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 				return METATARGET_URI_EDEFAULT == null ? metatargetUri != null : !METATARGET_URI_EDEFAULT.equals(metatargetUri);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * Adds a generic instance endpoint of this generic type endpoint to an Instance MID.
+	 * 
+	 * @param newGenericEndpoint
+	 *            The new generic instance endpoint to be added.
+	 * @param targetGenericType
+	 *            The generic that is the target of the new generic endpoint.
+	 * @param containerOperator
+	 *            The operator that will contain the new generic endpoint.
+	 * @generated NOT
+	 */
+	protected void addInstance(GenericEndpoint newGenericEndpoint, GenericElement targetGenericType, Operator containerOperator) {
+
+		super.addBasicInstance(newGenericEndpoint, null, targetGenericType.getName());
+		super.addInstanceEndpoint(newGenericEndpoint, targetGenericType);
+		containerOperator.getGenerics().add(newGenericEndpoint);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public GenericEndpoint createInstance(GenericElement targetGeneric, Operator containerOperator) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		GenericEndpoint newGenericEndpoint = OperatorFactory.eINSTANCE.createGenericEndpoint();
+		addInstance(newGenericEndpoint, targetGeneric, containerOperator);
+
+		return newGenericEndpoint;
 	}
 
 } //GenericEndpointImpl

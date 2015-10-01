@@ -106,4 +106,5 @@ public interface BinaryModelRel extends ModelRel {
 	 * @generated
 	 */
 	void addModelType(Model modelType, boolean isBinarySrc) throws MMINTException;
+
 } // BinaryModelRel

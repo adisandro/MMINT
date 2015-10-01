@@ -340,9 +340,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 	 */
 	public MappingReference createTypeReference(MappingReference mappingTypeRef, boolean isModifiable, ModelRel containerModelRelType) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		MappingReference newLinkTypeRef = RelationshipFactory.eINSTANCE.createMappingReference();
 		addTypeReference(newLinkTypeRef, mappingTypeRef, isModifiable, containerModelRelType);
@@ -355,9 +353,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 	 */
 	public MappingReference createSubtypeAndReference(MappingReference mappingTypeRef, String newMappingTypeName, boolean isBinary, ModelRel containerModelRelType) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		// create the "thing" and the corresponding reference
 		Mapping newMappingType = (isBinary) ?
@@ -383,9 +379,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 	 */
 	public void deleteType() throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		super.deleteType();
 		for (ModelElementEndpoint modelElemTypeEndpoint : getModelElemEndpoints()) {
@@ -416,9 +410,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 	 */
 	public MappingReference createInstanceReference(ModelRel containerModelRel) throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		MappingReference newMappingRef = RelationshipFactory.eINSTANCE.createMappingReference();
 		addInstanceReference(newMappingRef, containerModelRel);
@@ -431,9 +423,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 	 */
 	public MappingReference createInstanceAndReference(boolean isBinary, ModelRel containerModelRel) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		Mapping newMapping = (isBinary) ?
 			RelationshipFactory.eINSTANCE.createBinaryMapping() :
@@ -450,18 +440,16 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 	 */
 	public MappingReference createInstanceAndReferenceAndEndpointsAndReferences(boolean isBinary, EList<ModelElementReference> targetModelElemRefs) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 		if (targetModelElemRefs.size() == 0) {
 			throw new MMINTException("No target model element references specified");
 		}
 		if (isBinary && targetModelElemRefs.size() != 2) {
-			throw new MMINTException("A binary link must have 2 target model elements");
+			throw new MMINTException("A binary mapping must have 2 target model elements");
 		}
 
 		ModelRel containerModelRel = (ModelRel) targetModelElemRefs.get(0).eContainer().eContainer();
-		// create link
+		// create mapping
 		MappingReference newMappingRef = createInstanceAndReference(isBinary, containerModelRel);
 		// create model element endpoints
 		for (ModelElementReference targetModelElemRef : targetModelElemRefs) {
@@ -478,9 +466,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 	 */
 	public void deleteInstance() throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		ModelRel modelRel = (ModelRel) eContainer();
 		modelRel.getMappings().remove(this);

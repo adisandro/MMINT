@@ -205,22 +205,6 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	ModelEndpoint createInstance(Model targetModel, Operator containerOperator, String containerFeatureName) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Deletes this model instance endpoint and the
-	 * reference to it from the Instance MID that contains them.
-	 * 
-	 * @param isFullDelete
-	 *            True if this model endpoint is going to be fully deleted,
-	 *            false if it is going to be replaced later.
-	 * @throws MMINTException
-	 *             If this is a model type endpoint, or if there is no model
-	 *             endpoint reference corresponding to this model endpoint.
-	 *             <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isFullDeleteRequired="true"
-	 * @generated
-	 */
-	void deleteInstanceAndReference(boolean isFullDelete) throws MMINTException;
-
-	/**
 	 * <!-- begin-user-doc --> Replaces an old model instance endpoint and the
 	 * reference to it with new ones in an Instance MID.
 	 * 
@@ -236,5 +220,21 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @generated
 	 */
 	void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Deletes this model instance endpoint and the
+	 * reference to it from the Instance MID that contains them.
+	 * 
+	 * @param isFullDelete
+	 *            True if this model endpoint is going to be fully deleted,
+	 *            false if it is going to be replaced later.
+	 * @throws MMINTException
+	 *             If this is a model type endpoint, or if there is no model
+	 *             endpoint reference corresponding to this model endpoint.
+	 *             <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isFullDeleteRequired="true"
+	 * @generated
+	 */
+	void deleteInstanceAndReference(boolean isFullDelete) throws MMINTException;
 
 } // ModelEndpoint

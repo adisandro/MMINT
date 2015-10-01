@@ -25,7 +25,6 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
@@ -194,9 +193,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 	 */
 	public ModelElementEndpointReference createTypeReference(ModelElementEndpointReference modelElemTypeEndpointRef, ModelElementReference targetModelElemTypeRef, boolean isModifiable, boolean isBinarySrc, MappingReference containerMappingTypeRef) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		ModelElementEndpointReference newModelElemTypeEndpointRef = RelationshipFactory.eINSTANCE.createModelElementEndpointReference();
 		super.addTypeReference(newModelElemTypeEndpointRef, modelElemTypeEndpointRef, isModifiable, false);
@@ -214,12 +211,10 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 	 */
 	public ModelElementEndpointReference createSubtypeAndReference(String newModelElemTypeEndpointName, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc, MappingReference containerMappingTypeRef) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 		if (containerMappingTypeRef instanceof BinaryMappingReference) {
 			if (containerMappingTypeRef.getModelElemEndpointRefs().size() == 2) {
-				throw new MMINTException("Can't add more than 2 model element type endpoints to a binary link type");
+				throw new MMINTException("Can't add more than 2 model element type endpoints to a binary mapping type");
 			}
 			if (MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(containerMappingTypeRef, targetModelElemTypeRef) != this) {
 				throw new MMINTException("Invalid overriding of this model element type endpoint");
@@ -264,9 +259,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 	 */
 	public void replaceSubtypeAndReference(ModelElementEndpointReference oldModelElemTypeEndpointRef, String newModelElemTypeEndpointName, ModelElementReference targetModelElemTypeRef) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 		MappingReference containerMappingTypeRef = (MappingReference) oldModelElemTypeEndpointRef.eContainer();
 		if (containerMappingTypeRef instanceof BinaryMappingReference) {
 			if (MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(containerMappingTypeRef, targetModelElemTypeRef) != this) {
@@ -315,9 +308,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 	 */
 	public void deleteType(boolean isFullDelete) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		super.deleteType();
 		if (isFullDelete) {
@@ -330,9 +321,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 	 */
 	public ModelElementEndpointReference createInstanceReference(ModelElementReference targetModelElemRef, MappingReference containerMappingRef) throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		ModelElementEndpointReference newModelElemEndpointRef = RelationshipFactory.eINSTANCE.createModelElementEndpointReference();
 		boolean isContainer = containerMappingRef.eContainer().eContainer() == null;
@@ -357,11 +346,9 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 	 */
 	public ModelElementEndpointReference createInstanceAndReference(ModelElementReference targetModelElemRef, MappingReference containerMappingRef) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 		if ((containerMappingRef instanceof BinaryMappingReference) && (containerMappingRef.getModelElemEndpointRefs().size() == 2)) {
-			throw new MMINTException("Can't add more than 2 model element endpoints to a binary link");
+			throw new MMINTException("Can't add more than 2 model element endpoints to a binary mapping");
 		}
 
 		ModelElementEndpoint newModelElemEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
@@ -379,9 +366,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 	 */
 	public void replaceInstanceAndReference(ModelElementEndpointReference oldModelElemEndpointRef, ModelElementReference targetModelElemRef) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		MappingReference containerMappingRef = (MappingReference) oldModelElemEndpointRef.eContainer();
 		oldModelElemEndpointRef.deleteInstanceAndReference(false);

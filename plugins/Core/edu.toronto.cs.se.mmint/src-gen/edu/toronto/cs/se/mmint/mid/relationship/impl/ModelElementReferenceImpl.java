@@ -28,7 +28,6 @@ import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
@@ -235,7 +234,7 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 	}
 
 	/**
-	 * Removes a reference to a model element type from the multimodel that
+	 * Removes a reference to a model element type from the MID that
 	 * contains it.
 	 * 
 	 * @param modelElemTypeRef
@@ -254,9 +253,7 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 	 */
 	public void deleteTypeReference() throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		ModelRel modelRelType = (ModelRel) eContainer().eContainer();
 		MID typeMID = MultiModelRegistry.getMultiModel(modelRelType);
@@ -312,9 +309,7 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 	 */
 	public void deleteInstanceReference() throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		List<MappingReference> delMappingRefs = new ArrayList<>();
 		List<ModelElementEndpointReference> delModelElemEndpointRefs = new ArrayList<ModelElementEndpointReference>();

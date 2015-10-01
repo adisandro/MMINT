@@ -130,9 +130,24 @@ public interface ModelRel extends Model {
 	Model getSupertype();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelTypeNameRequired="true" isMetamodelExtensionRequired="true"
+	 * <!-- begin-user-doc --> Creates and adds a binary subtype of this model relationship type to the Type MID.
+	 * 
+	 * @param newModelRelTypeName
+	 *            The name of the new model relationship type.
+	 * @param constraintLanguage
+	 *            The constraint language of the constraint associated with the new model relationship type, null if no
+	 *            constraint is associated.
+	 * @param constraintImplementation
+	 *            The constraint implementation of the constraint associated with the new model relationship type, null
+	 *            if no constraint is associated.
+	 * @param isMetamodelExtension
+	 *            Not used.
+	 * @return The created binary model relationship type.
+	 * @throws MMINTException
+	 *             If this is a model relationship instance, or if the uri of the new model relationship type is already
+	 *             registered in the Type MID. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelTypeNameRequired="true"
+	 *        isMetamodelExtensionRequired="true"
 	 * @generated
 	 */
 	BinaryModelRel createBinarySubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException;
@@ -168,6 +183,18 @@ public interface ModelRel extends Model {
 	void deleteType() throws MMINTException;
 
 	/**
+	 * <!-- begin-user-doc --> Gets the model type resources to be used in the
+	 * Relationship diagram outline for this model relationship type.
+	 * 
+	 * @throws MMINTException
+	 *             If this is a model relationship instance.
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	ResourceSet getOutlineResourceTypes() throws MMINTException;
+
+	/**
 	 * <!-- begin-user-doc --> Creates and adds a model relationship instance of this model relationship type to an
 	 * Instance MID, together with its model instance endpoints and references to them.
 	 * 
@@ -175,31 +202,56 @@ public interface ModelRel extends Model {
 	 *            The uri of the new model relationship, null if the new model relationship is not in a separate file;
 	 *            e.g. a standalone model relationship is in its own files, a plain model relationship is not.
 	 * @param endpointModels
-	 *            The models that are the target of the new model endpoints.
+	 *            The endpoint models.
 	 * @param instanceMID
 	 *            An Instance MID, null if the model relationship isn't going to be added to it.
 	 * @return The created model relationship.
 	 * @throws MMINTException
-	 *             If this is a model relationship instance, if no target models are specified, if the uri of the new
-	 *             model relationship is already registered in the Instance MID, or if the new model relationship is
-	 *             binary but 2 target models are not specified. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" endpointModelsRequired="true" endpointModelsMany="true"
+	 *             If this is a model relationship instance, if no endpoint models are specified, or if the uri of the
+	 *             new model relationship is already registered in the Instance MID. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" endpointModelsRequired="true"
+	 *        endpointModelsMany="true"
 	 * @generated
 	 */
 	ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, EList<Model> endpointModels, MID instanceMID) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Creates and possibly adds a binary model relationship instance of this model relationship
+	 * type to an Instance MID.
+	 * 
+	 * @param newModelRelUri
+	 *            The uri of the new model relationship, null if the new model relationship is not in a separate file;
+	 *            e.g. a standalone model relationship is in its own files, a plain model relationship is not.
+	 * @param instanceMID
+	 *            An Instance MID, null if the model relationship isn't going to be added to it.
+	 * @return The created binary model relationship.
+	 * @throws MMINTException
+	 *             If this is a model relationship instance, or if the uri of the new model relationship is already
+	 *             registered in the Instance MID. <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
 	BinaryModelRel createBinaryInstance(String newModelRelUri, MID instanceMID) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" endpointSourceModelRequired="true" endpointTargetModelRequired="true"
+	 * <!-- begin-user-doc --> Creates and adds a binary model relationship instance of this model relationship type to
+	 * an Instance MID, together with its model instance endpoints and references to them.
+	 * 
+	 * @param newModelRelUri
+	 *            The uri of the new model relationship, null if the new model relationship is not in a separate file;
+	 *            e.g. a standalone model relationship is in its own files, a plain model relationship is not.
+	 * @param endpointSourceModel
+	 *            The source endpoint model.
+	 * @param endpointTargetModel
+	 *            The target endpoint model.
+	 * @param instanceMID
+	 *            An Instance MID, null if the model relationship isn't going to be added to it.
+	 * @return The created binary model relationship.
+	 * @throws MMINTException
+	 *             If this is a model relationship instance, or if the uri of the new model relationship is already
+	 *             registered in the Instance MID. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" endpointSourceModelRequired="true"
+	 *        endpointTargetModelRequired="true"
 	 * @generated
 	 */
 	BinaryModelRel createBinaryInstanceAndEndpointsAndReferences(String newModelRelUri, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws MMINTException;
@@ -214,18 +266,6 @@ public interface ModelRel extends Model {
 	 * @generated
 	 */
 	void deleteInstance() throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc --> Gets the model type resources to be used in the
-	 * Relationship diagram outline for this model relationship type.
-	 * 
-	 * @throws MMINTException
-	 *             If this is a model relationship instance.
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
-	ResourceSet getOutlineResourceTypes() throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Gets the model instance resources to be used in

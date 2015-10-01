@@ -8,7 +8,6 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: edu.toronto.cs.se.mmint,
- edu.toronto.cs.se.mmint.mavo.library,
  edu.toronto.cs.se.mmint.mid,
  edu.toronto.cs.se.mmint.mid.constraint,
  edu.toronto.cs.se.mmint.mid.editor,

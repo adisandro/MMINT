@@ -398,7 +398,7 @@ public interface Operator extends GenericElement {
 
 	/**
 	 * <!-- begin-user-doc --> Reads the input properties of this operator instance. Used by
-	 * {@link #start(EList, Map, MultiModel)}, may be overridden.
+	 * {@link #start(EList, Map, MID)}, may be overridden.
 	 * 
 	 * @param inputProperties
 	 *            The input properties of this operator.
@@ -412,7 +412,7 @@ public interface Operator extends GenericElement {
 
 	/**
 	 * <!-- begin-user-doc --> Initializes the state and output variables of this operator instance. Used by
-	 * {@link #start(EList, Map, MultiModel)}, may be overridden.
+	 * {@link #start(EList, Map, MID)}, may be overridden.
 	 * 
 	 * @throws MMINTException
 	 *             If the operator variables can't be initialized. <!-- end-user-doc -->
@@ -422,7 +422,7 @@ public interface Operator extends GenericElement {
 	void init() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Runs this operator instance. Used by {@link #start(EList, Map, MultiModel)}, this
+	 * <!-- begin-user-doc --> Runs this operator instance. Used by {@link #start(EList, Map, MID)}, this
 	 * function contains the logic of the operator and must be overridden.
 	 * 
 	 * @param inputsByName

@@ -1180,11 +1180,15 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
+	 * Creates a map of generic instances, identified by their name.
 	 * 
 	 * @param generics
+	 *            A list of generic types for the operator instance.
 	 * @param newOperator
-	 * @return
-	 * @throws MMINTException 
+	 *            The operator instance that will be invoked with the generics.
+	 * @return The map of generic instances, identified by their name.
+	 * @throws MMINTException
+	 *             If any generic type is an instance instead.
 	 * @generated NOT
 	 */
 	private Map<String, GenericElement> createGenericsByName(EList<OperatorGeneric> generics, Operator newOperator) throws MMINTException {

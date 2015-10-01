@@ -436,9 +436,6 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * 
 	 * @param newModelRelTypeName
 	 *            The name of the new model relationship type.
-	 * @param isBinary
-	 *            True if the new model relationship type is binary, false
-	 *            otherwise.
 	 * @param constraintLanguage
 	 *            The constraint language of the constraint associated with the
 	 *            new model relationship type, null if no constraint is
@@ -447,6 +444,8 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 *            The constraint implementation of the constraint associated
 	 *            with the new model relationship type, null if no constraint is
 	 *            associated.
+	 * @param isMetamodelExtension
+	 *            Not used.
 	 * @return The created model relationship type.
 	 * @throws MMINTException
 	 *             If this is a model relationship instance, or if the uri of
@@ -457,9 +456,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	@Override
 	public Model createSubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		ModelRel newModelRelType = RelationshipFactory.eINSTANCE.createModelRel();
 		addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
@@ -472,9 +469,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 */
 	public BinaryModelRel createBinarySubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		BinaryModelRel newModelRelType = RelationshipFactory.eINSTANCE.createBinaryModelRel();
 		addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
@@ -533,7 +528,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				modelElemType.createSubtypeAndReference(modelElemTypeRef, origModelElemTypeRef.getUri(), origModelElemTypeRef.getObject().getName(), origModelElemTypeRef.getObject().getEInfo(), newModelTypeEndpointRef);
 			}
 		}
-		// link types
+		// mapping types
 		Iterator<Mapping> origMappingTypeIter = MultiModelTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getMappings());
 		while (origMappingTypeIter.hasNext()) {
 			Mapping origMappingType = origMappingTypeIter.next();
@@ -574,9 +569,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	@Override
 	public void deleteType() throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		MID typeMID = MultiModelRegistry.getMultiModel(this);
 		// delete the "thing"
@@ -598,9 +591,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	@Override
 	public EPackage getEMFTypeRoot() throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		return eClass().getEPackage();
 	}
@@ -610,9 +601,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 */
 	public ResourceSet getOutlineResourceTypes() throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 		List<Resource> resources = resourceSet.getResources();
@@ -658,9 +647,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	@Override
 	public Model createInstance(String newModelRelUri, MID instanceMID) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		ModelRel newModelRel = RelationshipFactory.eINSTANCE.createModelRel();
 		super.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
@@ -673,9 +660,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 */
 	public ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, EList<Model> endpointModels, MID instanceMID) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 		if (endpointModels.size() == 0) {
 			throw new MMINTException("No target models specified");
 		}
@@ -697,9 +682,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 */
 	public BinaryModelRel createBinaryInstance(String newModelRelUri, MID instanceMID) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		BinaryModelRel newModelRel = RelationshipFactory.eINSTANCE.createBinaryModelRel();
 		super.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
@@ -712,9 +695,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 */
 	public BinaryModelRel createBinaryInstanceAndEndpointsAndReferences(String newModelRelUri, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		// create model rel
 		BinaryModelRel newModelRel = createBinaryInstance(newModelRelUri, instanceMID);
@@ -768,7 +749,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				newModelElemRefs.put(newModelElemRef.getUri(), newModelElemRef);
 			}
 		}
-		// links
+		// mappings
 		for (MappingReference origMappingRef : ((ModelRel) origModelRel).getMappingRefs()) {
 			MappingReference newMappingRef = origMappingRef.getObject().getMetatype().createInstanceAndReference((origMappingRef.getObject() instanceof BinaryMapping), newModelRel);
 			MAVOUtils.copyMAVOElement(origMappingRef.getObject(), newMappingRef.getObject());
@@ -788,9 +769,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	@Override
 	public void deleteInstance() throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		super.deleteInstance();
 	}
@@ -800,9 +779,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 */
 	public EObject getEMFInstanceRoot() throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		return this;
 	}
@@ -812,9 +789,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 */
 	public ResourceSet getOutlineResourceInstances() throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 		List<Resource> resources = resourceSet.getResources();

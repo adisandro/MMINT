@@ -208,6 +208,7 @@
     <eOperations name="deleteType" eExceptions="#//MMINTException"/>
     <eOperations name="getEMFTypeRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"
         eExceptions="#//MMINTException"/>
+    <eOperations name="openType" eExceptions="#//operator/Exception"/>
     <eOperations name="createInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
       <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="instanceMID" eType="#//MID"/>
@@ -236,7 +237,6 @@
     <eOperations name="deleteInstance" eExceptions="#//MMINTException"/>
     <eOperations name="getEMFInstanceRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         eExceptions="#//MMINTException"/>
-    <eOperations name="openType" eExceptions="#//operator/Exception"/>
     <eOperations name="openInstance" eExceptions="#//operator/Exception"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="origin" lowerBound="1"
         eType="#//ModelOrigin">

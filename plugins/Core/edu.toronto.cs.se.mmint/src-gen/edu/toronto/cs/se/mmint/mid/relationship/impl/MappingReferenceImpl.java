@@ -15,7 +15,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
@@ -240,9 +239,7 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
 	 */
 	public void deleteTypeReference() throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		for (ModelElementEndpointReference modelElemTypeEndpointRef : getModelElemEndpointRefs()) {
 			modelElemTypeEndpointRef.setModelElemRef(null);
@@ -256,9 +253,7 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
 	 */
 	public void deleteTypeAndReference() throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		MID typeMID = MultiModelRegistry.getMultiModel(this);
 		ModelRel modelRelType = (ModelRel) eContainer();
@@ -283,9 +278,7 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
 	 */
 	public void deleteInstanceReference() throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		for (ModelElementEndpointReference modelElemEndpointRef : getModelElemEndpointRefs()) {
 			modelElemEndpointRef.setModelElemRef(null);
@@ -299,9 +292,7 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
 	 */
 	public void deleteInstanceAndReference() throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		this.getObject().deleteInstance();
 		this.deleteInstanceReference();

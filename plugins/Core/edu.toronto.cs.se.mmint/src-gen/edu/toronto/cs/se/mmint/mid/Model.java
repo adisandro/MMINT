@@ -217,6 +217,14 @@ public interface Model extends GenericElement {
 	EPackage getEMFTypeRoot() throws MMINTException;
 
 	/**
+	 * <!-- begin-user-doc --> Opens the editor associated with this model type.
+	 * @throws Exception If this is a model instance, or if the editor can't be opened.<!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
+	 * @generated
+	 */
+	void openType() throws Exception;
+
+	/**
 	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of
 	 * this model type to an Instance MID.
 	 * 
@@ -269,8 +277,19 @@ public interface Model extends GenericElement {
 	Model createInstanceAndEditor(String newModelUri, MID instanceMID) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Imports and possibly adds an already existing model instance of
+	 * this model type to an Instance MID.
+	 * 
+	 * @param modelUri
+	 *            The uri of the model.
+	 * @param instanceMID
+	 *            An Instance MID, null if the model isn't going to be added to
+	 *            it.
+	 * @return The imported model.
+	 * @throws MMINTException
+	 *             If this is a model instance, or if the uri of the imported model
+	 *             instance is already registered in the Instance MID.
+	 *             <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true"
 	 * @generated
 	 */
@@ -346,14 +365,6 @@ public interface Model extends GenericElement {
 	 * @generated
 	 */
 	EObject getEMFInstanceRoot() throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc --> Opens the editor associated with this model type.
-	 * @throws Exception If this is a model instance, or if the editor can't be opened.<!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
-	 * @generated
-	 */
-	void openType() throws Exception;
 
 	/**
 	 * <!-- begin-user-doc --> Opens the editor associated with this model instance.

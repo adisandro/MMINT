@@ -17,6 +17,7 @@ import org.eclipse.ui.statushandlers.StatusManager;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 
 /**
  * Custom exception for MMINT.
@@ -84,15 +85,25 @@ public class MMINTException extends Exception {
 	public static void mustBeType(ExtendibleElement type) throws MMINTException {
 
 		if (MultiModelConstraintChecker.isInstancesLevel(type)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
+			throw new MMINTException("Can't execute operation at the TYPES level on element at the INSTANCES level");
 		}
+	}
+
+	public static void mustBeType(ExtendibleElementReference typeRef) throws MMINTException {
+
+		mustBeType(typeRef.getObject());
 	}
 
 	public static void mustBeInstance(ExtendibleElement instance) throws MMINTException {
 
 		if (!MultiModelConstraintChecker.isInstancesLevel(instance)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
+			throw new MMINTException("Can't execute operation at the INSTANCES level on element at the TYPES level");
 		}
+	}
+
+	public static void mustBeInstance(ExtendibleElementReference instanceRef) throws MMINTException {
+
+		mustBeInstance(instanceRef.getObject());
 	}
 
 }
