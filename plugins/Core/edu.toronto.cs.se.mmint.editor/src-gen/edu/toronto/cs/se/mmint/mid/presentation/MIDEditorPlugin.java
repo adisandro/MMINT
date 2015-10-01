@@ -11,8 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.mid.presentation;
 
-import edu.toronto.cs.se.mavo.provider.MAVOEditPlugin;
-
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
@@ -51,7 +49,6 @@ public final class MIDEditorPlugin extends EMFPlugin {
 	public MIDEditorPlugin() {
 		super
 			(new ResourceLocator [] {
-				MAVOEditPlugin.INSTANCE,
 			});
 	}
 

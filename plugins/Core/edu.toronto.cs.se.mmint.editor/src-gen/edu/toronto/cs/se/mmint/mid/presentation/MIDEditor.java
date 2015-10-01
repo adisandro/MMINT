@@ -164,9 +164,6 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
 import edu.toronto.cs.se.mmint.mid.provider.MIDItemProviderAdapterFactory;
-
-import edu.toronto.cs.se.mavo.provider.MAVOItemProviderAdapterFactory;
-
 import edu.toronto.cs.se.mmint.mid.editor.provider.EditorItemProviderAdapterFactory;
 
 import edu.toronto.cs.se.mmint.mid.operator.provider.OperatorItemProviderAdapterFactory;
@@ -722,7 +719,6 @@ public class MIDEditor
 		adapterFactory.addAdapterFactory(new RelationshipItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EditorItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new OperatorItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new MAVOItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
@@ -970,7 +966,7 @@ public class MIDEditor
 	 * @generated
 	 */
 	public void createModel() {
-		URI resourceURI = EditUIUtil.getURI(getEditorInput());
+		URI resourceURI = EditUIUtil.getURI(getEditorInput(), editingDomain.getResourceSet().getURIConverter());
 		Exception exception = null;
 		Resource resource = null;
 		try {
@@ -998,10 +994,11 @@ public class MIDEditor
 	 * @generated
 	 */
 	public Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
-		if (!resource.getErrors().isEmpty() || !resource.getWarnings().isEmpty()) {
+		boolean hasErrors = !resource.getErrors().isEmpty();
+		if (hasErrors || !resource.getWarnings().isEmpty()) {
 			BasicDiagnostic basicDiagnostic =
 				new BasicDiagnostic
-					(Diagnostic.ERROR,
+					(hasErrors ? Diagnostic.ERROR : Diagnostic.WARNING,
 					 "edu.toronto.cs.se.mmint.editor",
 					 0,
 					 getString("_UI_CreateModelError_message", resource.getURI()),
