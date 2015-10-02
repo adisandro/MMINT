@@ -25,16 +25,16 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -76,7 +76,7 @@ public class ModelDifference extends OperatorImpl {
 		return diffModelEObjects;
 	}
 
-	private ModelEndpointReference createModelEndpointReference(ModelEndpoint rootModelTypeEndpoint, Link rootLinkType, ModelElementEndpoint rootModelElemTypeEndpoint, ModelRel diffModelRel, ModelEndpointReference modelEndpointRef, String linksName) throws MMINTException {
+	private ModelEndpointReference createModelEndpointReference(ModelEndpoint rootModelTypeEndpoint, Mapping rootMappingType, ModelElementEndpoint rootModelElemTypeEndpoint, ModelRel diffModelRel, ModelEndpointReference modelEndpointRef, String linksName) throws MMINTException {
 
 		Model model = modelEndpointRef.getObject().getTarget();
 		HashMap<String, ModelElementReference> modelElemRefTable = createModelElementReferenceTable(modelEndpointRef);
@@ -84,12 +84,12 @@ public class ModelDifference extends OperatorImpl {
 		ModelEndpointReference newModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(model, diffModelRel);
 		for (EObject modelObj : diffModelObjs) {
 			// create unary link
-			LinkReference diffLinkRef = rootLinkType.createInstanceAndReference(false, diffModelRel);
-			diffLinkRef.getObject().setName(linksName);
+			MappingReference diffMappingRef = rootMappingType.createInstanceAndReference(false, diffModelRel);
+			diffMappingRef.getObject().setName(linksName);
 			// create model element
 			ModelElementReference diffModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(modelObj, null, newModelEndpointRef);
 			// create model element endpoint
-			rootModelElemTypeEndpoint.createInstanceAndReference(diffModelElemRef, diffLinkRef);
+			rootModelElemTypeEndpoint.createInstanceAndReference(diffModelElemRef, diffMappingRef);
 		}
 
 		return newModelEndpointRef;
@@ -98,24 +98,23 @@ public class ModelDifference extends OperatorImpl {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
 		ModelRel matchRel = (ModelRel) inputsByName.get(IN_MODELREL);
 
 		// create diff model relationship
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(matchRel);
 		ModelRel rootModelRelType = MultiModelTypeHierarchy.getRootModelRelType();
-		ModelRel diffModelRel = rootModelRelType.createInstance(null, true, ModelOrigin.CREATED, multiModel);
+		BinaryModelRel diffModelRel = rootModelRelType.createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL));
 		diffModelRel.setName(MODELREL_NAME);
 
 		ModelEndpoint rootModelTypeEndpoint = MultiModelTypeHierarchy.getRootModelTypeEndpoint();
-		Link rootLinkType = MultiModelTypeHierarchy.getRootMappingType();
+		Mapping rootMappingType = MultiModelTypeHierarchy.getRootMappingType();
 		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
 		// create src model endpoint with deleted elements
-		createModelEndpointReference(rootModelTypeEndpoint, rootLinkType, rootModelElemTypeEndpoint, diffModelRel, matchRel.getModelEndpointRefs().get(0), DELETED_ELEMENT_LINK_NAME);
+		createModelEndpointReference(rootModelTypeEndpoint, rootMappingType, rootModelElemTypeEndpoint, diffModelRel, matchRel.getModelEndpointRefs().get(0), DELETED_ELEMENT_LINK_NAME);
 		// create tgt model endpoint with added elements
-		createModelEndpointReference(rootModelTypeEndpoint, rootLinkType, rootModelElemTypeEndpoint, diffModelRel, matchRel.getModelEndpointRefs().get(1), ADDED_ELEMENT_LINK_NAME);
+		createModelEndpointReference(rootModelTypeEndpoint, rootMappingType, rootModelElemTypeEndpoint, diffModelRel, matchRel.getModelEndpointRefs().get(1), ADDED_ELEMENT_LINK_NAME);
 
 		// output
 		Map<String, Model> outputs = new HashMap<>();

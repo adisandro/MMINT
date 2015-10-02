@@ -22,22 +22,21 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -149,7 +148,7 @@ public class ChangeImpact extends OperatorImpl {
 		//TODO smart check to reduce average complexity, if in same container in src model
 	}
 
-	private void addImpactedModelElementReferences(ModelElementReference origModelElemRef, ModelEndpointReference impactedModelEndpointRef, LinkReference impactLinkRef, HashMap<String, List<EObject>> impactedUnifyTable) throws MMINTException {
+	private void addImpactedModelElementReferences(ModelElementReference origModelElemRef, ModelEndpointReference impactedModelEndpointRef, MappingReference impactMappingRef, HashMap<String, List<EObject>> impactedUnifyTable) throws MMINTException {
 
 		if (origModelElemRef.getModelElemEndpointRefs().isEmpty()) {
 			return;
@@ -158,8 +157,8 @@ public class ChangeImpact extends OperatorImpl {
 		String origModelUri = ((ModelEndpointReference) origModelElemRef.eContainer()).getTargetUri();
 		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
 		for (ModelElementEndpointReference origModelElemEndpointRef : origModelElemRef.getModelElemEndpointRefs()) {
-			LinkReference traceLinkRef = (LinkReference) origModelElemEndpointRef.eContainer();
-			for (ModelElementEndpointReference traceModelElemEndpointRef : traceLinkRef.getModelElemEndpointRefs()) {
+			MappingReference traceMappingRef = (MappingReference) origModelElemEndpointRef.eContainer();
+			for (ModelElementEndpointReference traceModelElemEndpointRef : traceMappingRef.getModelElemEndpointRefs()) {
 				String impactedModelUri = ((ModelEndpointReference) traceModelElemEndpointRef.getModelElemRef().eContainer()).getTargetUri();
 				if (origModelUri.equals(impactedModelUri)) { // target in source model
 					continue;
@@ -175,7 +174,7 @@ public class ChangeImpact extends OperatorImpl {
 						newImpactedModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(impactedUnifiable, null, impactedModelEndpointRef);
 					}
 					// add impacted model element endpoint to impact link
-					ModelElementEndpointReference newImpactModelElemEndpointRef = rootModelElemTypeEndpoint.createInstanceAndReference(newImpactedModelElemRef, impactLinkRef);
+					ModelElementEndpointReference newImpactModelElemEndpointRef = rootModelElemTypeEndpoint.createInstanceAndReference(newImpactedModelElemRef, impactMappingRef);
 					newImpactModelElemEndpointRef.getObject().setName(TGT_MODELELEMENDPOINT_NAME);
 				}
 			}
@@ -185,7 +184,7 @@ public class ChangeImpact extends OperatorImpl {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
 		BinaryModelRel diffRel = (BinaryModelRel) inputsByName.get(IN_MODELREL1);
@@ -202,31 +201,27 @@ public class ChangeImpact extends OperatorImpl {
 
 		// create output model relationship
 		ModelRel rootModelRelType = MultiModelTypeHierarchy.getRootModelRelType();
-		EList<Model> targetModels = new BasicEList<Model>();
-		targetModels.add(diffRel);
-		targetModels.add(impactedModel);
-		ModelRel newImpactModelRel = rootModelRelType.createInstanceAndEndpointsAndReferences(
+		ModelRel newImpactModelRel = rootModelRelType.createBinaryInstanceAndEndpointsAndReferences(
 			null,
-			true,
-			ModelOrigin.CREATED,
-			targetModels,
+			diffRel,
+			impactedModel,
 			outputMIDsByName.get(OUT_MODELREL));
 		newImpactModelRel.setName(OUT_MODELREL);
 		ModelEndpointReference newDiffModelEndpointRef = newImpactModelRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference newImpactedModelEndpointRef = newImpactModelRel.getModelEndpointRefs().get(1);
 
 		// loop through diff
-		Link rootLinkType = MultiModelTypeHierarchy.getRootMappingType();
-		for (Link diffLink : diffRel.getLinks()) {
-			ModelElement diffModelElem = diffLink.getModelElemEndpoints().get(0).getTarget();
+		Mapping rootMappingType = MultiModelTypeHierarchy.getRootMappingType();
+		for (Mapping diffMapping : diffRel.getMappings()) {
+			ModelElement diffModelElem = diffMapping.getModelElemEndpoints().get(0).getTarget();
 			// create diff model element ref
 			ModelElementReference newDiffModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(diffModelElem, diffModelElem.getName(), newDiffModelEndpointRef);
 			// create impact link, add diff model element endpoint to it
 			EList<ModelElementReference> targetModelElemRefs = new BasicEList<ModelElementReference>();
 			targetModelElemRefs.add(newDiffModelElemRef);
-			LinkReference newImpactLinkRef = rootLinkType.createInstanceAndReferenceAndEndpointsAndReferences(false, targetModelElemRefs);
-			newImpactLinkRef.getObject().setName(OUT_MODELREL);
-			ModelElementEndpointReference newDiffModelElemEndpointRef = newImpactLinkRef.getModelElemEndpointRefs().get(0);
+			MappingReference newImpactMappingRef = rootMappingType.createInstanceAndReferenceAndEndpointsAndReferences(false, targetModelElemRefs);
+			newImpactMappingRef.getObject().setName(OUT_MODELREL);
+			ModelElementEndpointReference newDiffModelElemEndpointRef = newImpactMappingRef.getModelElemEndpointRefs().get(0);
 			newDiffModelElemEndpointRef.getObject().setName(SRC_MODELELEMENDPOINT_NAME);
 
 			// change impact algorithm
@@ -238,14 +233,14 @@ public class ChangeImpact extends OperatorImpl {
 					List<ModelElementReference> origUnifiablesFromSameType = origTypeTable.get(diffModelElemType.getUri());
 					for (ModelElementReference origUnifiable : origUnifiablesFromSameType) {
 						if (origUnifiable.getObject().isVar()) {
-							addImpactedModelElementReferences(origUnifiable, newImpactedModelEndpointRef, newImpactLinkRef, impactedUnifyTable);
+							addImpactedModelElementReferences(origUnifiable, newImpactedModelEndpointRef, newImpactMappingRef, impactedUnifyTable);
 						}
 					}
 				}
 			}
 			else {
 				for (ModelElementReference origUnifiable : origUnifiables) {
-					addImpactedModelElementReferences(origUnifiable, newImpactedModelEndpointRef, newImpactLinkRef, impactedUnifyTable);
+					addImpactedModelElementReferences(origUnifiable, newImpactedModelEndpointRef, newImpactMappingRef, impactedUnifyTable);
 				}
 			}
 		}

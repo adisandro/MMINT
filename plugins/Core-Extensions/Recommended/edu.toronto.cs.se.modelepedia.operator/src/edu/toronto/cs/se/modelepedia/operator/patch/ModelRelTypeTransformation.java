@@ -33,11 +33,10 @@ import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
@@ -48,8 +47,8 @@ import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -180,7 +179,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 				continue;
 			}
 			ModelElementReference srcModelElemTypeRef = MultiModelTypeHierarchy.getReference(srcModelElemType.getUri(), srcModelTypeEndpointRef.getModelElemRefs());
-			ModelElementReference tgtModelElemTypeRef = ((LinkReference) srcModelElemTypeRef.getModelElemEndpointRefs().get(0).eContainer()).getModelElemEndpointRefs().get(tgtIndex).getModelElemRef();
+			ModelElementReference tgtModelElemTypeRef = ((MappingReference) srcModelElemTypeRef.getModelElemEndpointRefs().get(0).eContainer()).getModelElemEndpointRefs().get(tgtIndex).getModelElemRef();
 			srcModelObjs.put(srcModelObj, tgtModelElemTypeRef);
 		}
 		// second pass: transform
@@ -203,7 +202,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 				) {
 					continue;
 				}
-				ModelElementReference tgtModelElemTypeRef = ((LinkReference) srcModelElemTypeRef.getModelElemEndpointRefs().get(0).eContainer()).getModelElemEndpointRefs().get(tgtIndex).getModelElemRef();
+				ModelElementReference tgtModelElemTypeRef = ((MappingReference) srcModelElemTypeRef.getModelElemEndpointRefs().get(0).eContainer()).getModelElemEndpointRefs().get(tgtIndex).getModelElemRef();
 				EMFInfo tgtModelElemTypeEInfo = tgtModelElemTypeRef.getObject().getEInfo();
 				transformModelObjFeature(srcModelObj, srcModelElemTypeEInfo.getFeatureName(), tgtModelObj, tgtModelElemTypeEInfo.getFeatureName(), primitiveSrcModelObjs, primitiveTgtModelObjs, tgtModelObjs);
 			}
@@ -219,15 +218,15 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			targetModelElemRefs.add(srcModelElemRef);
 			ModelElementReference tgtModelElemRef = ModelElementImpl.createInstanceAndReference(tgtModelObjEntry.getValue(), null, traceModelRel.getModelEndpointRefs().get(1));
 			targetModelElemRefs.add(tgtModelElemRef);
-			Link linkType = MultiModelTypeRegistry.getType(MultiModelConstraintChecker.getAllowedMappingTypeReferences(traceModelRelType, srcModelElemRef, tgtModelElemRef).get(0));
-			LinkReference newLinkRef = linkType.createInstanceAndReferenceAndEndpointsAndReferences(true, targetModelElemRefs);
-			newLinkRef.getObject().setName(srcModelElemRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemRef.getObject().getName());
+			Mapping mappingType = MultiModelTypeRegistry.getType(MultiModelConstraintChecker.getAllowedMappingTypeReferences(traceModelRelType, srcModelElemRef, tgtModelElemRef).get(0));
+			MappingReference newMappingRef = mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, targetModelElemRefs);
+			newMappingRef.getObject().setName(srcModelElemRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemRef.getObject().getName());
 		}
 	}
 
 	@Override
 	public Map<String, Model> run(Map<String, Model> inputsByName,
-		java.util.Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName)
+		java.util.Map<String, GenericElement> genericsByName, Map<String, MID> outputMIDsByName)
 		throws Exception {
 
 		// input
@@ -247,8 +246,8 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 				tgtModelType.getFileExtension()),
 			true,
 			false);
-		Model tgtModel = tgtModelType.createInstance(tgtModelUri, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODEL));
-		BinaryModelRel traceModelRel = (BinaryModelRel) traceModelRelType.createInstance(null, true, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODELREL));
+		Model tgtModel = tgtModelType.createInstance(tgtModelUri, outputMIDsByName.get(OUT_MODEL));
+		BinaryModelRel traceModelRel = traceModelRelType.createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL));
 		traceModelRel.setName(srcModel.getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModel.getName());
 		traceModelRelType.getModelEndpointRefs().get(srcIndex).getObject().createInstanceAndReference(srcModel, traceModelRel);
 		traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().createInstanceAndReference(tgtModel, traceModelRel);

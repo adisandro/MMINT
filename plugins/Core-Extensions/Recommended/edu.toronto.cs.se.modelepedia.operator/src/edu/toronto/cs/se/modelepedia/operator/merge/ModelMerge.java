@@ -31,16 +31,16 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -84,7 +84,7 @@ public class ModelMerge extends OperatorImpl {
 
 		Set<ModelElementReference> connModelElemRefs = new HashSet<>();
 		for (ModelElementEndpointReference modelElemEndpointRef : modelElemRef.getModelElemEndpointRefs()) {
-			for (ModelElementEndpointReference connModelElemEndpointRef : ((LinkReference) modelElemEndpointRef
+			for (ModelElementEndpointReference connModelElemEndpointRef : ((MappingReference) modelElemEndpointRef
 					.eContainer()).getModelElemEndpointRefs()) {
 				if (connModelElemEndpointRef == modelElemEndpointRef) {
 					continue;
@@ -232,7 +232,7 @@ public class ModelMerge extends OperatorImpl {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// TODO MMINT[MERGE] Support more complex cases than just first-level objects
 		ModelRel matchRel = (ModelRel) inputsByName.get(IN_MODELREL);
@@ -240,30 +240,22 @@ public class ModelMerge extends OperatorImpl {
 		Model model2 = matchRel.getModelEndpoints().get(1).getTarget();
 
 		// create merged model and trace relationships as placeholders
-		MultiModel mergedModelMID = outputMIDsByName.get(OUT_MODEL);
+		MID mergedModelMID = outputMIDsByName.get(OUT_MODEL);
 		String mergedModelUri = MultiModelUtils.replaceLastSegmentInUri(
 			MultiModelRegistry.getModelAndModelElementUris(mergedModelMID, MIDLevel.INSTANCES)[0],
 			model1.getName() + MERGED_SEPARATOR + model2.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ model1.getFileExtension());
-		Model mergedModel = model1.getMetatype().createInstance(mergedModelUri, ModelOrigin.CREATED, mergedModelMID);
-		EList<Model> traceModels1 = new BasicEList<Model>();
-		traceModels1.add(model1);
-		traceModels1.add(mergedModel);
-		ModelRel traceRel1 = MultiModelTypeHierarchy.getRootModelRelType().createInstanceAndEndpointsAndReferences(
+		Model mergedModel = model1.getMetatype().createInstance(mergedModelUri, mergedModelMID);
+		BinaryModelRel traceRel1 = MultiModelTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
 			null,
-			true,
-			ModelOrigin.CREATED,
-			traceModels1,
+			model1,
+			mergedModel,
 			outputMIDsByName.get(OUT_MODELREL1));
 		traceRel1.setName(OUT_MODELREL1);
-		EList<Model> traceModels2 = new BasicEList<Model>();
-		traceModels2.add(model2);
-		traceModels2.add(mergedModel);
-		ModelRel traceRel2 = MultiModelTypeHierarchy.getRootModelRelType().createInstanceAndEndpointsAndReferences(
+		BinaryModelRel traceRel2 = MultiModelTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
 			null,
-			true,
-			ModelOrigin.CREATED,
-			traceModels2,
+			model2,
+			mergedModel,
 			outputMIDsByName.get(OUT_MODELREL2));
 		traceRel2.setName(OUT_MODELREL2);
 		// merge the models

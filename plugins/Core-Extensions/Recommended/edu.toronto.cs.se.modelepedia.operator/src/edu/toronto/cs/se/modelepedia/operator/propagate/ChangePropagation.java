@@ -28,29 +28,27 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
-import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLink;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -91,8 +89,8 @@ public class ChangePropagation extends OperatorImpl {
 	private void removeModelElementAndModelElementReference(ModelElementReference modelElemRef) throws MMINTException {
 
 		//TODO MMINT[OO] does this have a meaning somewhere else?
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(modelElemRef);
-		multiModel.getExtendibleTable().removeKey(modelElemRef.getUri());
+		MID instanceMID = MultiModelRegistry.getMultiModel(modelElemRef);
+		instanceMID.getExtendibleTable().removeKey(modelElemRef.getUri());
 		modelElemRef.deleteInstanceReference();
 		ModelElement modelElem = modelElemRef.getObject();
 		((Model) modelElem.eContainer()).getModelElems().remove(modelElem);
@@ -129,7 +127,7 @@ public class ChangePropagation extends OperatorImpl {
 		return getModelElementReference(correspondingModelElemRef.getUri(), modelElemRefs);
 	}
 
-	private List<BinaryLinkReference> propagateTraceLinksFromRefinements(LinkReference refinementLinkRef, BinaryModelRel traceRel, Model newPropModel, BinaryModelRel newPropTraceRel) throws Exception {
+	private List<BinaryMappingReference> propagateTraceLinksFromRefinements(MappingReference refinementMappingRef, BinaryModelRel traceRel, Model newPropModel, BinaryModelRel newPropTraceRel) throws Exception {
 
 		ModelEndpointReference origModelEndpointRef_traceRel = traceRel.getModelEndpointRefs().get(0);
 		String origModelUri = origModelEndpointRef_traceRel.getTargetUri();
@@ -137,7 +135,7 @@ public class ChangePropagation extends OperatorImpl {
 		// get model element refs in trace rel that got refined
 		List<ModelElementReference> refinedModelElemRefs_refinementRel = new ArrayList<ModelElementReference>();
 		List<ModelElementReference> origModelElemRefs_traceRel = new ArrayList<ModelElementReference>();
-		for (ModelElementEndpointReference refinementModelElemEndpointRef : refinementLinkRef.getModelElemEndpointRefs()) {
+		for (ModelElementEndpointReference refinementModelElemEndpointRef : refinementMappingRef.getModelElemEndpointRefs()) {
 			ModelElementReference refinementModelElemRef = refinementModelElemEndpointRef.getModelElemRef();
 			if (((ModelEndpointReference) refinementModelElemRef.eContainer()).getTargetUri().equals(origModelUri)) { // orig model element ref in trace rel
 				ModelElementReference origModelElemRef_traceRel = getModelElementReference(refinementModelElemRef.getUri(), origModelEndpointRef_traceRel.getModelElemRefs());
@@ -152,17 +150,17 @@ public class ChangePropagation extends OperatorImpl {
 		}
 
 		// no propagation or rule 4 propagation
-		List<BinaryLinkReference> newPropTraceLinkRefs = new ArrayList<BinaryLinkReference>();
+		List<BinaryMappingReference> newPropTraceMappingRefs = new ArrayList<BinaryMappingReference>();
 		if (origModelElemRefs_traceRel.isEmpty()) {
-			if (refinementLinkRef.getModelElemEndpointRefs().size() == 1) {
+			if (refinementMappingRef.getModelElemEndpointRefs().size() == 1) {
 				for (ModelElementReference refinedModelElemRef_refinementRel : refinedModelElemRefs_refinementRel) {
-					BinaryLinkReference newPropTraceLinkRef = createDanglingTraceLink(refinedModelElemRef_refinementRel, newPropTraceRel, 0, 1);
-					if (newPropTraceLinkRef != null) {
-						newPropTraceLinkRefs.add(newPropTraceLinkRef);
+					BinaryMappingReference newPropTraceMappingRef = createDanglingTraceLink(refinedModelElemRef_refinementRel, newPropTraceRel, 0, 1);
+					if (newPropTraceMappingRef != null) {
+						newPropTraceMappingRefs.add(newPropTraceMappingRef);
 					}
 				}
 			}
-			return newPropTraceLinkRefs;
+			return newPropTraceMappingRefs;
 		}
 
 		// propagate trace links
@@ -176,9 +174,9 @@ public class ChangePropagation extends OperatorImpl {
 		ModelEndpointReference propModelEndpointRef_propTraceRel = newPropTraceRel.getModelEndpointRefs().get(1);
 		for (ModelElementReference origModelElemRef_traceRel : origModelElemRefs_traceRel) {
 			for (ModelElementEndpointReference traceModelElemEndpointRef : origModelElemRef_traceRel.getModelElemEndpointRefs()) {
-				BinaryLinkReference traceLinkRef = (BinaryLinkReference) traceModelElemEndpointRef.eContainer();
-				BinaryLink traceLink = traceLinkRef.getObject();
-				ModelElementReference relatedModelElemRef_traceRel = traceLinkRef.getTargetModelElemRef();
+				BinaryMappingReference traceMappingRef = (BinaryMappingReference) traceModelElemEndpointRef.eContainer();
+				BinaryMapping traceMapping = traceMappingRef.getObject();
+				ModelElementReference relatedModelElemRef_traceRel = traceMappingRef.getTargetModelElemRef();
 				String propModelObjUri =
 					newPropModel.getUri() +
 					getModelEObjectUri(relatedModelElemRef_traceRel.getUri()).substring(relatedModelElemRef_traceRel.getUri().lastIndexOf(MMINT.MODEL_URI_SEPARATOR));
@@ -187,23 +185,23 @@ public class ChangePropagation extends OperatorImpl {
 				ModelElementReference newPropModelElemRef_propTraceRel = ModelElementImpl.createMAVOInstanceAndReference(propModelObj, relatedModelElemRef_traceRel.getObject().getName(), propModelEndpointRef_propTraceRel);
 				// create new propagated trace links
 				for (ModelElementReference newRefinedModelElemRef_propTraceRel : newRefinedModelElemRefs_propTraceRel) {
-					BinaryLinkReference newPropTraceLinkRef = (BinaryLinkReference) traceLink.getMetatype().createInstanceAndReference(true, newPropTraceRel);
-					traceLink.getModelElemEndpoints().get(0).getMetatype().createInstanceAndReference(newRefinedModelElemRef_propTraceRel, newPropTraceLinkRef);
-					traceLink.getModelElemEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModelElemRef_propTraceRel, newPropTraceLinkRef);
-					Link newPropTraceLink = newPropTraceLinkRef.getObject();
-					newPropTraceLink.setName(traceLink.getName());
-					newPropTraceLink.setMay(traceLink.isMay());
-					newPropTraceLink.setSet(traceLink.isSet());
-					newPropTraceLink.setVar(traceLink.isVar());
-					newPropTraceLinkRefs.add((BinaryLinkReference) newPropTraceLinkRef);
+					BinaryMappingReference newPropTraceMappingRef = (BinaryMappingReference) traceMapping.getMetatype().createInstanceAndReference(true, newPropTraceRel);
+					traceMapping.getModelElemEndpoints().get(0).getMetatype().createInstanceAndReference(newRefinedModelElemRef_propTraceRel, newPropTraceMappingRef);
+					traceMapping.getModelElemEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModelElemRef_propTraceRel, newPropTraceMappingRef);
+					Mapping newPropTraceMapping = newPropTraceMappingRef.getObject();
+					newPropTraceMapping.setName(traceMapping.getName());
+					newPropTraceMapping.setMay(traceMapping.isMay());
+					newPropTraceMapping.setSet(traceMapping.isSet());
+					newPropTraceMapping.setVar(traceMapping.isVar());
+					newPropTraceMappingRefs.add((BinaryMappingReference) newPropTraceMappingRef);
 				}
 			}
 		}
 
-		return newPropTraceLinkRefs;
+		return newPropTraceMappingRefs;
 	}
 
-	private BinaryLinkReference createDanglingTraceLink(ModelElementReference traceModelElemRefA, BinaryModelRel traceRel, int indexA, int indexB) throws MMINTException {
+	private BinaryMappingReference createDanglingTraceLink(ModelElementReference traceModelElemRefA, BinaryModelRel traceRel, int indexA, int indexB) throws MMINTException {
 
 		// rule 4, 1st half
 		if (!traceRel.getModelEndpoints().get(indexB).getTarget().isInc()) {
@@ -217,42 +215,42 @@ public class ChangePropagation extends OperatorImpl {
 			return null;
 		}
 
-		BinaryLinkReference newTraceLinkRef = null;
-		for (LinkReference traceLinkTypeRef : MultiModelTypeRegistry.getLinkTypeReferences(traceRel.getMetatype())) {
-			if (!(traceLinkTypeRef instanceof BinaryLinkReference)) { // a trace rel type is meant to have two model types
+		BinaryMappingReference newTraceMappingRef = null;
+		for (MappingReference traceMappingTypeRef : MultiModelTypeRegistry.getLinkTypeReferences(traceRel.getMetatype())) {
+			if (!(traceMappingTypeRef instanceof BinaryMappingReference)) { // a trace rel type is meant to have two model types
 				continue;
 			}
-			ModelElementReference traceModelElemTypeRefA = traceLinkTypeRef.getModelElemEndpointRefs().get(indexA).getModelElemRef();
+			ModelElementReference traceModelElemTypeRefA = traceMappingTypeRef.getModelElemEndpointRefs().get(indexA).getModelElemRef();
 			if (!traceModelElemTypeRefA.getUri().equals(traceModelElemTypeA.getUri())) {
 				continue;
 			}
-			ModelElementEndpointReference traceModelElemTypeEndpointRefB = traceLinkTypeRef.getModelElemEndpointRefs().get(indexB);
+			ModelElementEndpointReference traceModelElemTypeEndpointRefB = traceMappingTypeRef.getModelElemEndpointRefs().get(indexB);
 			if (traceModelElemTypeEndpointRefB.getObject().getLowerBound() < 1) {
 				continue;
 			}
 			// create new dangling trace link
 			ModelElementReference newTraceModelElemRefA = ModelElementImpl.createMAVOInstanceAndReference(traceModelElemRefA.getObject().getEMFInstanceObject(), traceModelElemRefA.getObject().getName(), traceRel.getModelEndpointRefs().get(indexA));
-			newTraceLinkRef = (BinaryLinkReference) traceLinkTypeRef.getObject().createInstanceAndReference(true, traceRel);
-			newTraceLinkRef.getObject().setVar(true);
-			newTraceLinkRef.getObject().setName(PROPTRACE_RULE4_LINK_NAME);
-			traceLinkTypeRef.getModelElemEndpointRefs().get(indexA).getObject().createInstanceAndReference(newTraceModelElemRefA, newTraceLinkRef);
+			newTraceMappingRef = (BinaryMappingReference) traceMappingTypeRef.getObject().createInstanceAndReference(true, traceRel);
+			newTraceMappingRef.getObject().setVar(true);
+			newTraceMappingRef.getObject().setName(PROPTRACE_RULE4_LINK_NAME);
+			traceMappingTypeRef.getModelElemEndpointRefs().get(indexA).getObject().createInstanceAndReference(newTraceModelElemRefA, newTraceMappingRef);
 			// if more than one link type with same model element type A exist, they all get created (the user will merge unnecessary ones)
 			//TODO MMINT[MAVO] should I also mark them as M, because I want them to be mutually exclusive?
 			//TODO MMINT[MAVO] (prop rule that forces the removal of M if the endpoints are E sounds wrong in this case, mostly because mutual exclusion has not been formalized)
 		}
 
-		return newTraceLinkRef;
+		return newTraceMappingRef;
 	}
 
-	private List<BinaryLinkReference> reduceTraceLinkUncertainty(EObject modelRootB, List<BinaryLinkReference> propTraceLinkRefs, int indexA, int indexB) throws Exception {
+	private List<BinaryMappingReference> reduceTraceLinkUncertainty(EObject modelRootB, List<BinaryMappingReference> propTraceMappingRefs, int indexA, int indexB) throws Exception {
 
 		int n = 0;
 		HashSet<String> uniqueModelElemUrisB = new HashSet<String>();
-		for (BinaryLinkReference traceLinkRef : propTraceLinkRefs) {
-			if (traceLinkRef.getModelElemEndpointRefs().size() == 1) { // dangling link
+		for (BinaryMappingReference traceMappingRef : propTraceMappingRefs) {
+			if (traceMappingRef.getModelElemEndpointRefs().size() == 1) { // dangling link
 				continue;
 			}
-			ModelElementReference traceModelElemRefB = traceLinkRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
+			ModelElementReference traceModelElemRefB = traceMappingRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
 			if (!uniqueModelElemUrisB.contains(traceModelElemRefB.getUri())) {
 				n++;
 				uniqueModelElemUrisB.add(traceModelElemRefB.getUri());
@@ -260,26 +258,26 @@ public class ChangePropagation extends OperatorImpl {
 		}
 
 		boolean again = false;
-		LinkReference unifiedLinkRef = null;
+		MappingReference unifiedMappingRef = null;
 traceLinks:
-		for (BinaryLinkReference traceLinkRef : propTraceLinkRefs) {
-			ModelElementEndpointReference traceModelElemEndpointRefA = traceLinkRef.getModelElemEndpointRefs().get(indexA);
+		for (BinaryMappingReference traceMappingRef : propTraceMappingRefs) {
+			ModelElementEndpointReference traceModelElemEndpointRefA = traceMappingRef.getModelElemEndpointRefs().get(indexA);
 			ModelElementReference modelElemRefA = traceModelElemEndpointRefA.getModelElemRef();
 			ModelElement modelElemA = modelElemRefA.getObject();
 
 			// rule 4, 2nd half
 			if (n == 0) {
-				completeDanglingTraceLink(modelRootB, traceLinkRef, modelElemA.getName(), indexB);
+				completeDanglingTraceLink(modelRootB, traceMappingRef, modelElemA.getName(), indexB);
 				again = true;
 				continue;
 			}
 
-			ModelElementEndpointReference traceModelElemEndpointRefB = traceLinkRef.getModelElemEndpointRefs().get(indexB);
+			ModelElementEndpointReference traceModelElemEndpointRefB = traceMappingRef.getModelElemEndpointRefs().get(indexB);
 			ModelElementReference modelElemRefB = traceModelElemEndpointRefB.getModelElemRef();
 			ModelElement modelElemB = modelElemRefB.getObject();
-			BinaryLink traceLink = traceLinkRef.getObject();
+			BinaryMapping traceMapping = traceMappingRef.getObject();
 			boolean Ma = modelElemA.isMay(), Sa = modelElemA.isSet(), Va = modelElemA.isVar();
-			boolean Mab = traceLink.isMay(), Sab = traceLink.isSet(), Vab = traceLink.isVar();
+			boolean Mab = traceMapping.isMay(), Sab = traceMapping.isSet(), Vab = traceMapping.isVar();
 			boolean Mb = modelElemB.isMay(), Sb = modelElemB.isSet(), Vb = modelElemB.isVar();
 			int Ua = traceModelElemEndpointRefA.getObject().getMetatype().getUpperBound();
 			int Lb = traceModelElemEndpointRefB.getObject().getMetatype().getLowerBound(), Ub = traceModelElemEndpointRefB.getObject().getMetatype().getUpperBound();
@@ -298,20 +296,20 @@ traceLinks:
 			// rule 2
 			if (Sab && !Sa && !Sb) {
 				Sab = false;
-				traceLink.setSet(Sab);
+				traceMapping.setSet(Sab);
 				again = true;
 			}
 			// rule 3
 			if (Vab && !Va && !Vb) {
 				Vab = false;
-				traceLink.setVar(Vab);
+				traceMapping.setVar(Vab);
 				again = true;
 			}
 			if (Lb == 1 && n == 1) {
 				// rule 5
 				if (Mab && !Ma) {
 					Mab = false;
-					traceLink.setMay(Mab);
+					traceMapping.setMay(Mab);
 					again = true;
 				}
 			}
@@ -327,14 +325,14 @@ traceLinks:
 				}
 				// rule 7
 				if (Vab && Vb && !Mab) {
-					for (BinaryLinkReference traceLinkRef2 : propTraceLinkRefs) {
-						if (traceLinkRef2 == traceLinkRef) {
+					for (BinaryMappingReference traceMappingRef2 : propTraceMappingRefs) {
+						if (traceMappingRef2 == traceMappingRef) {
 							continue;
 						}
-						boolean Mac = traceLinkRef2.getObject().isMay();
+						boolean Mac = traceMappingRef2.getObject().isMay();
 						if (!Mac) {
-							unifyVarTraceLink(modelRootB, traceLinkRef, traceLinkRef2, indexA, indexB);
-							unifiedLinkRef = traceLinkRef;
+							unifyVarTraceLink(modelRootB, traceMappingRef, traceMappingRef2, indexA, indexB);
+							unifiedMappingRef = traceMappingRef;
 							again = true;
 							break traceLinks;
 						}
@@ -343,17 +341,17 @@ traceLinks:
 			}
 		}
 		// rule 7
-		if (unifiedLinkRef != null) {
-			propTraceLinkRefs.remove(unifiedLinkRef);
-			unifiedLinkRef = null;
+		if (unifiedMappingRef != null) {
+			propTraceMappingRefs.remove(unifiedMappingRef);
+			unifiedMappingRef = null;
 		}
 
 		// keep reducing uncertainty
 		if (again) {
-			reduceTraceLinkUncertainty(modelRootB, propTraceLinkRefs, indexA, indexB);
+			reduceTraceLinkUncertainty(modelRootB, propTraceMappingRefs, indexA, indexB);
 		}
 
-		return propTraceLinkRefs;
+		return propTraceMappingRefs;
 	}
 
 	private void unifyModelElementUris(ModelElementReference unifiedModelElemRef, ModelElementReference modelElemRef) {
@@ -396,10 +394,10 @@ traceLinks:
 	}
 
 	@SuppressWarnings("unchecked")
-	private void unifyVarTraceLink(EObject modelRootB, BinaryLinkReference varTraceLinkRef, BinaryLinkReference traceLinkRef, int indexA, int indexB) throws Exception {
+	private void unifyVarTraceLink(EObject modelRootB, BinaryMappingReference varTraceMappingRef, BinaryMappingReference traceMappingRef, int indexA, int indexB) throws Exception {
 
-		ModelElementReference varModelElemRef = varTraceLinkRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
-		ModelElementReference modelElemRef = traceLinkRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
+		ModelElementReference varModelElemRef = varTraceMappingRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
+		ModelElementReference modelElemRef = traceMappingRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
 		// get var object and other object from same resource
 		EObject varModelObj = MultiModelTypeIntrospection.getPointer(modelRootB.eResource(), getModelEObjectUri(varModelElemRef.getUri()));
 		EObject modelObj = MultiModelTypeIntrospection.getPointer(modelRootB.eResource(), getModelEObjectUri(modelElemRef.getUri()));
@@ -463,12 +461,12 @@ traceLinks:
 	}
 
 	@SuppressWarnings("unchecked")
-	private void completeDanglingTraceLink(EObject modelRootB, LinkReference traceLinkRef, String modelElemName, int indexB) throws Exception {
+	private void completeDanglingTraceLink(EObject modelRootB, MappingReference traceMappingRef, String modelElemName, int indexB) throws Exception {
 
-		ModelEndpointReference modelEndpointRef = ((BinaryModelRel) traceLinkRef.eContainer()).getModelEndpointRefs().get(indexB);
+		ModelEndpointReference modelEndpointRef = ((BinaryModelRel) traceMappingRef.eContainer()).getModelEndpointRefs().get(indexB);
 		Model model = modelEndpointRef.getObject().getTarget();
 		EFactory modelTypeFactory = model.getMetatype().getEMFTypeRoot().getEFactoryInstance();
-		ModelElementEndpointReference modelElemTypeEndpointRef = traceLinkRef.getObject().getMetatype().getModelElemEndpointRefs().get(indexB);
+		ModelElementEndpointReference modelElemTypeEndpointRef = traceMappingRef.getObject().getMetatype().getModelElemEndpointRefs().get(indexB);
 		ModelElement modelElemType = modelElemTypeEndpointRef.getModelElemRef().getObject();
 		String modelElemTypeUri = MultiModelRegistry.getModelAndModelElementUris(modelElemType.getEMFTypeObject(), MIDLevel.TYPES)[1];
 
@@ -497,12 +495,12 @@ traceLinks:
 		}
 
 		ModelElementReference newModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(result[1], null, modelEndpointRef);
-		modelElemTypeEndpointRef.getObject().createInstanceAndReference(newModelElemRef, traceLinkRef);
+		modelElemTypeEndpointRef.getObject().createInstanceAndReference(newModelElemRef, traceMappingRef);
 	}
 
-	private void propagateRefinementLinks(BinaryLinkReference propTraceLinkRef, BinaryModelRel refinementRel, Model relatedModel, BinaryModelRel traceRel, BinaryModelRel newPropRefinementRel) throws MMINTException {
+	private void propagateRefinementLinks(BinaryMappingReference propTraceMappingRef, BinaryModelRel refinementRel, Model relatedModel, BinaryModelRel traceRel, BinaryModelRel newPropRefinementRel) throws MMINTException {
 
-		ModelElementReference propModelElemRef_propTraceRel = propTraceLinkRef.getTargetModelElemRef();
+		ModelElementReference propModelElemRef_propTraceRel = propTraceMappingRef.getTargetModelElemRef();
 		ModelEndpointReference propModelEndpointRef_propRefinementRel = newPropRefinementRel.getModelEndpointRefs().get(1);
 		// create new propagated model element refs in propagated refinement rel
 		boolean duplicateRefinement1 = true;
@@ -512,21 +510,21 @@ traceLinks:
 			newPropModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(propModelElemRef_propTraceRel.getObject().getEMFInstanceObject(), propModelElemRef_propTraceRel.getObject().getName(), propModelEndpointRef_propRefinementRel);
 		}
 
-		ModelElementReference refinedModelElemRef_propTraceRel = propTraceLinkRef.getSourceModelElemRef();
+		ModelElementReference refinedModelElemRef_propTraceRel = propTraceMappingRef.getSourceModelElemRef();
 		ModelEndpointReference relatedModelEndpointRef_propRefinementRel = newPropRefinementRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference refinedModelEndpointRef_refinementRel = refinementRel.getModelEndpointRefs().get(1);
 		String refinedModelUri = refinedModelEndpointRef_refinementRel.getTargetUri();
 		ModelElementReference refinedModelElemRef_refinementRel = getModelElementReference(refinedModelElemRef_propTraceRel, refinedModelEndpointRef_refinementRel.getModelElemRefs());
 		ModelElementEndpointReference refinementModelElemEndpointRef = refinedModelElemRef_refinementRel.getModelElemEndpointRefs().get(0); // many to one here has to be mapped through an nary link
-		LinkReference refinementLinkRef = (LinkReference) refinementModelElemEndpointRef.eContainer();
-		Link refinementLinkType = refinementLinkRef.getObject().getMetatype();
+		MappingReference refinementMappingRef = (MappingReference) refinementModelElemEndpointRef.eContainer();
+		Mapping refinementMappingType = refinementMappingRef.getObject().getMetatype();
 		// create new propagated refinement link
-		LinkReference newPropRefinementLinkRef = refinementLinkType.createInstanceAndReference(false, newPropRefinementRel);
-		newPropRefinementLinkRef.getObject().setName(refinementLinkRef.getObject().getName());
-		refinementLinkType.getModelElemEndpoints().get(0).createInstanceAndReference(newPropModelElemRef, newPropRefinementLinkRef);
+		MappingReference newPropRefinementMappingRef = refinementMappingType.createInstanceAndReference(false, newPropRefinementRel);
+		newPropRefinementMappingRef.getObject().setName(refinementMappingRef.getObject().getName());
+		refinementMappingType.getModelElemEndpoints().get(0).createInstanceAndReference(newPropModelElemRef, newPropRefinementMappingRef);
 
 		boolean duplicateRefinement2 = true;
-		for (ModelElementEndpointReference refinementModelElemEndpointRef2 : refinementLinkRef.getModelElemEndpointRefs()) {
+		for (ModelElementEndpointReference refinementModelElemEndpointRef2 : refinementMappingRef.getModelElemEndpointRefs()) {
 			ModelElementReference origModelElemRef_refinementRel = refinementModelElemEndpointRef2.getModelElemRef();
 			if (((ModelEndpointReference) origModelElemRef_refinementRel.eContainer()).getTargetUri().equals(refinedModelUri)) {
 				continue;
@@ -534,8 +532,8 @@ traceLinks:
 			ModelEndpointReference origModelEndpointRef_traceRel = traceRel.getModelEndpointRefs().get(0);
 			ModelElementReference origModelElemRef_traceRel = getModelElementReference(origModelElemRef_refinementRel, origModelEndpointRef_traceRel.getModelElemRefs());
 			for (ModelElementEndpointReference traceModelElementEndpoint : origModelElemRef_traceRel.getModelElemEndpointRefs()) {
-				BinaryLinkReference traceLinkRef = (BinaryLinkReference) traceModelElementEndpoint.eContainer();
-				ModelElementReference relatedModelElemRef_traceRel = traceLinkRef.getTargetModelElemRef();
+				BinaryMappingReference traceMappingRef = (BinaryMappingReference) traceModelElementEndpoint.eContainer();
+				ModelElementReference relatedModelElemRef_traceRel = traceMappingRef.getTargetModelElemRef();
 				// skip uncorrect refinements due to multiple traces for the same orig model element
 				if (!propModelElemRef_propTraceRel.getObject().getMetatypeUri().equals(relatedModelElemRef_traceRel.getObject().getMetatypeUri())) {
 					continue;
@@ -546,20 +544,20 @@ traceLinks:
 					duplicateRefinement2 = false;
 					newRelatedModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(relatedModelElemRef_traceRel.getObject().getEMFInstanceObject(), relatedModelElemRef_traceRel.getObject().getName(), relatedModelEndpointRef_propRefinementRel);
 				}
-				refinementLinkType.getModelElemEndpoints().get(0).createInstanceAndReference(newRelatedModelElemRef, newPropRefinementLinkRef);
+				refinementMappingType.getModelElemEndpoints().get(0).createInstanceAndReference(newRelatedModelElemRef, newPropRefinementMappingRef);
 			}
 		}
 
 		// remove duplicate
 		if (duplicateRefinement1 && duplicateRefinement2) {
-			newPropRefinementLinkRef.deleteInstanceAndReference();
+			newPropRefinementMappingRef.deleteInstanceAndReference();
 		}
 	}
 
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		BinaryModelRel refinementRel = (BinaryModelRel) inputsByName.get(IN_MODELREL1);
 		Model origModel = refinementRel.getSourceModel();
@@ -568,30 +566,30 @@ traceLinks:
 		Model relatedModel = traceRel.getTargetModel();
 
 		// create output model and model relationships
-		Model newPropModel = relatedModel.getMetatype().copyMAVOInstanceAndEditor(relatedModel, relatedModel.getName() + PROP_MODEL_SUFFIX, false, outputMIDsByName.get(OUT_MODEL));
-		BinaryModelRel newPropRefinementRel = (BinaryModelRel) refinementRel.getMetatype().createInstance(null, true, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODELREL1));
+		Model newPropModel = relatedModel.getMetatype().copyInstanceAndEditor(relatedModel, relatedModel.getName() + PROP_MODEL_SUFFIX, false, outputMIDsByName.get(OUT_MODEL));
+		BinaryModelRel newPropRefinementRel = refinementRel.getMetatype().createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL1));
 		newPropRefinementRel.setName(OUT_MODELREL1);
 		refinementRel.getModelEndpoints().get(0).getMetatype().createInstanceAndReference(relatedModel, newPropRefinementRel);
 		refinementRel.getModelEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModel, newPropRefinementRel);
-		BinaryModelRel newPropTraceRel = (BinaryModelRel) traceRel.getMetatype().createInstance(null, true, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODELREL2));
+		BinaryModelRel newPropTraceRel = traceRel.getMetatype().createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL2));
 		newPropTraceRel.setName(OUT_MODELREL2);
 		traceRel.getModelEndpoints().get(0).getMetatype().createInstanceAndReference(refinedModel, newPropTraceRel);
 		traceRel.getModelEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModel, newPropTraceRel);
 
 		// change propagation algorithm
-		List<List<BinaryLinkReference>> propTraceLinkRefsList = new ArrayList<List<BinaryLinkReference>>();
-		for (LinkReference refinementLinkRef : refinementRel.getLinkRefs()) {
-			List<BinaryLinkReference> propTraceLinkRefs = propagateTraceLinksFromRefinements(refinementLinkRef, traceRel, newPropModel, newPropTraceRel);
-			propTraceLinkRefsList.add(propTraceLinkRefs);
+		List<List<BinaryMappingReference>> propTraceMappingRefsList = new ArrayList<>();
+		for (MappingReference refinementMappingRef : refinementRel.getMappingRefs()) {
+			List<BinaryMappingReference> propTraceMappingRefs = propagateTraceLinksFromRefinements(refinementMappingRef, traceRel, newPropModel, newPropTraceRel);
+			propTraceMappingRefsList.add(propTraceMappingRefs);
 		}
 		EObject newPropModelRoot = newPropModel.getEMFInstanceRoot();
-		for (List<BinaryLinkReference> propTraceLinkRefs : propTraceLinkRefsList) {
-			reduceTraceLinkUncertainty(newPropModelRoot, propTraceLinkRefs, 0, 1);
+		for (List<BinaryMappingReference> propTraceMappingRefs : propTraceMappingRefsList) {
+			reduceTraceLinkUncertainty(newPropModelRoot, propTraceMappingRefs, 0, 1);
 		}
 		MultiModelUtils.createModelFile(newPropModelRoot, newPropModel.getUri(), true);
-		for (List<BinaryLinkReference> propTraceLinkRefs : propTraceLinkRefsList) {
-			for (BinaryLinkReference propTraceLinkRef : propTraceLinkRefs) {
-				propagateRefinementLinks(propTraceLinkRef, refinementRel, relatedModel, traceRel, newPropRefinementRel);
+		for (List<BinaryMappingReference> propTraceMappingRefs : propTraceMappingRefsList) {
+			for (BinaryMappingReference propTraceMappingRef : propTraceMappingRefs) {
+				propagateRefinementLinks(propTraceMappingRef, refinementRel, relatedModel, traceRel, newPropRefinementRel);
 			}
 		}
 		//TODO MMINT[MAVO] reason about how to concretely use indexA and indexB, when the refineUncertainty becomes an independent operator

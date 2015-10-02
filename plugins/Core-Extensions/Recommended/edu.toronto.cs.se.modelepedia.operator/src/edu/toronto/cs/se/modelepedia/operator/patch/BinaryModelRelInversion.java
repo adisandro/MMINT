@@ -17,13 +17,12 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 
 public class BinaryModelRelInversion extends OperatorImpl {
 
@@ -37,24 +36,23 @@ public class BinaryModelRelInversion extends OperatorImpl {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
 		BinaryModelRel modelRel = (BinaryModelRel) inputsByName.get(IN_MODELREL);
 
 		// create inverted model relationship
-		BinaryModelRel invertedModelRel = (BinaryModelRel) modelRel.getMetatype().copyMAVOInstance(modelRel, outputMIDsByName.get(OUT_MODELREL));
-		invertedModelRel.setName(modelRel.getName() + INVERTED_MODELREL_SUFFIX);
+		BinaryModelRel invertedModelRel = (BinaryModelRel) modelRel.getMetatype().copyInstance(modelRel, modelRel.getName() + INVERTED_MODELREL_SUFFIX, outputMIDsByName.get(OUT_MODELREL));
 
 		// invert all indexes
 		invertedModelRel.getModelEndpoints().move(1, 0);
 		invertedModelRel.getModelEndpointRefs().move(1, 0);
-		for (Link link : invertedModelRel.getLinks()) {
-			link.getModelElemEndpoints().move(1, 0);
-			link.getModelElemEndpointRefs().move(1, 0);
+		for (Mapping mapping : invertedModelRel.getMappings()) {
+			mapping.getModelElemEndpoints().move(1, 0);
+			mapping.getModelElemEndpointRefs().move(1, 0);
 		}
-		for (LinkReference linkRef : invertedModelRel.getLinkRefs()) {
-			linkRef.getModelElemEndpointRefs().move(1, 0);
+		for (MappingReference mappingRef : invertedModelRel.getMappingRefs()) {
+			mappingRef.getModelElemEndpointRefs().move(1, 0);
 		}
 
 		// output

@@ -12,8 +12,8 @@
 package edu.toronto.cs.se.modelepedia.operator.propagate;
 
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
 public class ModelRelPropagation extends OperatorImpl {
@@ -21,7 +21,7 @@ public class ModelRelPropagation extends OperatorImpl {
 	@Override
 	public java.util.Map<String, Model> run(
 			java.util.Map<String, Model> inputsByName, java.util.Map<String, GenericElement> genericsByName,
-			java.util.Map<String, MultiModel> outputMIDsByName) throws Exception {
+			java.util.Map<String, MID> outputMIDsByName) throws Exception {
 
 		return null;
 	}

@@ -25,9 +25,8 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -123,7 +122,7 @@ public class ModelSlice extends OperatorImpl {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
 		Model model = inputsByName.get(IN_MODEL);
@@ -132,8 +131,8 @@ public class ModelSlice extends OperatorImpl {
 		EObject sliceRootModelObj = slice(model.getEMFInstanceRoot());
 		MultiModelUtils.createModelFile(sliceRootModelObj, sliceModelUri, true);
 		Model sliceModel = (isUpdateMID()) ?
-			model.getMetatype().createInstanceAndEditor(sliceModelUri, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODEL)) :
-			model.getMetatype().createInstance(sliceModelUri, ModelOrigin.CREATED, null);
+			model.getMetatype().createInstanceAndEditor(sliceModelUri, outputMIDsByName.get(OUT_MODEL)) :
+			model.getMetatype().createInstance(sliceModelUri, null);
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();
