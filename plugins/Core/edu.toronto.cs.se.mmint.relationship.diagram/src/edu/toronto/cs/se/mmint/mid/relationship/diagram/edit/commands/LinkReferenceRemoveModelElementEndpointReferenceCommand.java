@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 
 /**
@@ -43,7 +43,7 @@ public class LinkReferenceRemoveModelElementEndpointReferenceCommand extends Des
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstancesLevel((LinkReference) getElementToEdit()) ||
+				MultiModelConstraintChecker.isInstancesLevel((MappingReference) getElementToEdit()) ||
 				!MultiModelTypeHierarchy.isRootType(((ModelElementEndpointReference) getElementToDestroy()).getObject())
 			);
 	}
@@ -63,7 +63,7 @@ public class LinkReferenceRemoveModelElementEndpointReferenceCommand extends Des
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (MultiModelConstraintChecker.isInstancesLevel((LinkReference) getElementToEdit())) {
+			if (MultiModelConstraintChecker.isInstancesLevel((MappingReference) getElementToEdit())) {
 				doExecuteInstancesLevel();
 			}
 			else {

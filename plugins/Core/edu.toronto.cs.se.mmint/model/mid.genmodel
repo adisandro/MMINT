@@ -84,6 +84,10 @@
         <genParameters ecoreParameter="mid.ecore#//Model/importInstance/modelUri"/>
         <genParameters ecoreParameter="mid.ecore#//Model/importInstance/instanceMID"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/importInstanceAndEditor">
+        <genParameters ecoreParameter="mid.ecore#//Model/importInstanceAndEditor/modelUri"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/importInstanceAndEditor/instanceMID"/>
+      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/copyInstance">
         <genParameters ecoreParameter="mid.ecore#//Model/copyInstance/origModel"/>
         <genParameters ecoreParameter="mid.ecore#//Model/copyInstance/newModelName"/>

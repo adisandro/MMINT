@@ -25,8 +25,8 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
@@ -65,8 +65,8 @@ public class MIDContextCopyModelListener extends MIDContextMenuListener {
 
 			try {
 				String newModelName = MultiModelDiagramUtils.getStringInput(menuLabel, "Insert new model name", oldModel.getName());
-				MultiModel multiModel = MultiModelRegistry.getMultiModel(oldModel);
-				Model newModel = oldModel.getMetatype().copyMAVOInstanceAndEditor(oldModel, newModelName, true, multiModel);
+				MID multiModel = MultiModelRegistry.getMultiModel(oldModel);
+				Model newModel = oldModel.getMetatype().copyInstanceAndEditor(oldModel, newModelName, true, multiModel);
 	
 				return CommandResult.newOKCommandResult(newModel);
 			}

@@ -53,7 +53,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
@@ -434,6 +433,14 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MIDPackage.MODEL___OPEN_TYPE:
+				try {
+					openType();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MIDPackage.MODEL___CREATE_INSTANCE__STRING_MID:
 				try {
 					return createInstance((String)arguments.get(0), (MID)arguments.get(1));
@@ -458,6 +465,13 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			case MIDPackage.MODEL___IMPORT_INSTANCE__STRING_MID:
 				try {
 					return importInstance((String)arguments.get(0), (MID)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MIDPackage.MODEL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID:
+				try {
+					return importInstanceAndEditor((String)arguments.get(0), (MID)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -487,14 +501,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			case MIDPackage.MODEL___GET_EMF_INSTANCE_ROOT:
 				try {
 					return getEMFInstanceRoot();
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-			case MIDPackage.MODEL___OPEN_TYPE:
-				try {
-					openType();
-					return null;
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -904,6 +910,19 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		Model newModel = MIDFactory.eINSTANCE.createModel();
 		addInstance(newModel, modelUri, ModelOrigin.IMPORTED, instanceMID);
+
+		return newModel;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Model importInstanceAndEditor(String modelUri, MID instanceMID) throws MMINTException {
+
+		Model newModel = importInstance(modelUri, instanceMID);
+		if (instanceMID != null) {
+			newModel.createInstanceEditor();
+		}
 
 		return newModel;
 	}

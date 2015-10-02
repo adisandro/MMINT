@@ -33,9 +33,9 @@ import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
@@ -72,8 +72,8 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 	public void widgetSelected(SelectionEvent e) {
 
 		String modelUri = MultiModelRegistry.getModelAndModelElementUris(mavoElemToHighlight, MIDLevel.INSTANCES)[0];
-		Map<MultiModel, List<IFile>> instanceMIDs = MIDDiagramUtils.getMIDsInWorkspace();
-		for (MultiModel instanceMID : instanceMIDs.keySet()) {
+		Map<MID, List<IFile>> instanceMIDs = MIDDiagramUtils.getMIDsInWorkspace();
+		for (MID instanceMID : instanceMIDs.keySet()) {
 			model = MultiModelRegistry.getExtendibleElement(modelUri, instanceMID);
 			if (model != null) {
 				break;

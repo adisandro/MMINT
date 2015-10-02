@@ -24,21 +24,21 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditor;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class MIDDiagramUtils {
 
-	public static @NonNull Map<MultiModel, List<IFile>> getMIDsInWorkspace() {
+	public static @NonNull Map<MID, List<IFile>> getMIDsInWorkspace() {
 
-		Map<MultiModel, List<IFile>> mids = new HashMap<MultiModel, List<IFile>>();
+		Map<MID, List<IFile>> mids = new HashMap<>();
 		for (IEditorReference editorReference : PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getEditorReferences()) {
 			String editorName = editorReference.getName();
 			if (editorName.endsWith(MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME + GMFDiagramUtils.DIAGRAM_SUFFIX)) {
 				MIDDiagramEditor midDiagram = (MIDDiagramEditor) editorReference.getEditor(true);
-				MultiModel mid = (MultiModel) midDiagram.getDiagram().getElement();
+				MID mid = (MID) midDiagram.getDiagram().getElement();
 				List<IFile> midFiles = new ArrayList<IFile>();
 				IFile diagramFile = (IFile) midDiagram.getEditorInput().getAdapter(IFile.class);
 				if (diagramFile == null) {

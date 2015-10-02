@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -91,10 +91,10 @@ public class MIDContextCastTypeListener extends MIDContextMenuListener {
 						}
 					}
 				}
-				for (Link link : ((ModelRel) model).getLinks()) {
-					Link linkType = MultiModelConstraintChecker.getAllowedMappingType(link);
-					if (linkType != null) {
-						link.setMetatypeUri(linkType.getUri());
+				for (Mapping mapping : ((ModelRel) model).getMappings()) {
+					Mapping mappingType = MultiModelConstraintChecker.getAllowedMappingType(mapping);
+					if (mappingType != null) {
+						mapping.setMetatypeUri(mappingType.getUri());
 					}
 				}
 			}

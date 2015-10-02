@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 
@@ -52,9 +52,9 @@ public class BinaryModelRelDelCommand extends DestroyElementCommand {
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doUndo(monitor, info);
-		MultiModel multiModel = (MultiModel) getElementToEdit();
-		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMINT.createTypeHierarchy(multiModel);
+		MID mid = (MID) getElementToEdit();
+		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+			MMINT.createTypeHierarchy(mid);
 		}
 
 		return status;
@@ -67,9 +67,9 @@ public class BinaryModelRelDelCommand extends DestroyElementCommand {
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doRedo(monitor, info);
-		MultiModel multiModel = (MultiModel) getElementToEdit();
-		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMINT.createTypeHierarchy(multiModel);
+		MID mid = (MID) getElementToEdit();
+		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+			MMINT.createTypeHierarchy(mid);
 		}
 
 		return status;
@@ -86,7 +86,7 @@ public class BinaryModelRelDelCommand extends DestroyElementCommand {
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToEdit()) ||
+				MultiModelConstraintChecker.isInstancesLevel((MID) getElementToEdit()) ||
 				!MultiModelTypeHierarchy.isRootType((BinaryModelRel) getElementToDestroy())
 			);
 	}
@@ -99,7 +99,7 @@ public class BinaryModelRelDelCommand extends DestroyElementCommand {
 	protected void doExecuteTypesLevel() throws MMINTException {
 
 		((BinaryModelRel) getElementToDestroy()).deleteType();
-		MMINT.createTypeHierarchy((MultiModel) getElementToEdit());
+		MMINT.createTypeHierarchy((MID) getElementToEdit());
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class BinaryModelRelDelCommand extends DestroyElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToEdit())) {
+			if (MultiModelConstraintChecker.isInstancesLevel((MID) getElementToEdit())) {
 				doExecuteInstancesLevel();
 			}
 			else {

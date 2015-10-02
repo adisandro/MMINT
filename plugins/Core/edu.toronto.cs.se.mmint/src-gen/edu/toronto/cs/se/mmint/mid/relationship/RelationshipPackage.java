@@ -318,6 +318,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___GET_EMF_TYPE_ROOT = MIDPackage.MODEL___GET_EMF_TYPE_ROOT;
 
 	/**
+	 * The operation id for the '<em>Open Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___OPEN_TYPE = MIDPackage.MODEL___OPEN_TYPE;
+
+	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -354,6 +363,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___IMPORT_INSTANCE__STRING_MID = MIDPackage.MODEL___IMPORT_INSTANCE__STRING_MID;
 
 	/**
+	 * The operation id for the '<em>Import Instance And Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = MIDPackage.MODEL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID;
+
+	/**
 	 * The operation id for the '<em>Copy Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -379,15 +397,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_REL___GET_EMF_INSTANCE_ROOT = MIDPackage.MODEL___GET_EMF_INSTANCE_ROOT;
-
-	/**
-	 * The operation id for the '<em>Open Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL___OPEN_TYPE = MIDPackage.MODEL___OPEN_TYPE;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -723,6 +732,15 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL___GET_EMF_TYPE_ROOT = MODEL_REL___GET_EMF_TYPE_ROOT;
 
 	/**
+	 * The operation id for the '<em>Open Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___OPEN_TYPE = MODEL_REL___OPEN_TYPE;
+
+	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -759,6 +777,15 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL___IMPORT_INSTANCE__STRING_MID = MODEL_REL___IMPORT_INSTANCE__STRING_MID;
 
 	/**
+	 * The operation id for the '<em>Import Instance And Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = MODEL_REL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID;
+
+	/**
 	 * The operation id for the '<em>Copy Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -784,15 +811,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___GET_EMF_INSTANCE_ROOT = MODEL_REL___GET_EMF_INSTANCE_ROOT;
-
-	/**
-	 * The operation id for the '<em>Open Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL___OPEN_TYPE = MODEL_REL___OPEN_TYPE;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.

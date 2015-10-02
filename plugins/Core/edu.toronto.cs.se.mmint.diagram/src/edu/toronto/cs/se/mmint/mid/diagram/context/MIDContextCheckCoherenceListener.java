@@ -38,8 +38,8 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
@@ -82,7 +82,7 @@ public class MIDContextCheckCoherenceListener extends MIDContextMenuListener {
 
 			try {
 				// create results for each conversion path
-				MultiModel instanceMID = MultiModelRegistry.getMultiModel(model);
+				MID instanceMID = MultiModelRegistry.getMultiModel(model);
 				List<Model> coherentModels = new ArrayList<Model>(), coherentModels2 = new ArrayList<Model>();
 				for (List<ConversionOperator> conversionPath : conversionPaths) {
 					Model inputModel = model;
@@ -91,7 +91,7 @@ public class MIDContextCheckCoherenceListener extends MIDContextMenuListener {
 						inputModels.add(inputModel);
 						EList<OperatorInput> inputs = convOperatorType.checkAllowedInputs(inputModels);
 						EList<OperatorGeneric> generics = convOperatorType.selectAllowedGenerics(inputs);
-						Map<String, MultiModel> outputMIDsByName = new HashMap<>();
+						Map<String, MID> outputMIDsByName = new HashMap<>();
 						String convOutputName = convOperatorType.getOutputs().get(0).getName();
 						outputMIDsByName.put(convOutputName, instanceMID);
 						Map<String, Model> outputsByName = convOperatorType.start(inputs, generics, outputMIDsByName, null).getOutputsByName();

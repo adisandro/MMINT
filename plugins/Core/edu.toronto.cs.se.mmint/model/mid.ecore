@@ -223,6 +223,10 @@
       <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="instanceMID" eType="#//MID"/>
     </eOperations>
+    <eOperations name="importInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
+      <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
+    </eOperations>
     <eOperations name="copyInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
       <eParameters name="origModel" lowerBound="1" eType="#//Model"/>
       <eParameters name="newModelName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

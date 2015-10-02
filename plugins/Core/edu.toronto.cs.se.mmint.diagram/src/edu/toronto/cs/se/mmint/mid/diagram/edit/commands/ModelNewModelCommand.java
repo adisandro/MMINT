@@ -22,9 +22,8 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
@@ -55,9 +54,9 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doUndo(monitor, info);
-		MultiModel multiModel = (MultiModel) getElementToEdit();
-		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMINT.createTypeHierarchy(multiModel);
+		MID mid = (MID) getElementToEdit();
+		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+			MMINT.createTypeHierarchy(mid);
 		}
 
 		return status;
@@ -69,9 +68,9 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doRedo(monitor, info);
-		MultiModel multiModel = (MultiModel) getElementToEdit();
-		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMINT.createTypeHierarchy(multiModel);
+		MID mid = (MID) getElementToEdit();
+		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+			MMINT.createTypeHierarchy(mid);
 		}
 
 		return status;
@@ -90,10 +89,10 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 	protected Model doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
 
-		MultiModel multiModel = (MultiModel) getElementToEdit();
-		Editor newEditor = MultiModelDiagramUtils.selectModelTypeToCreate(multiModel);
+		MID instanceMID = (MID) getElementToEdit();
+		Editor newEditor = MultiModelDiagramUtils.selectModelTypeToCreate(instanceMID);
 		Model modelType = MultiModelTypeRegistry.getType(newEditor.getMetatype().getModelUri());
-		Model newModel = modelType.createInstance(newEditor.getModelUri(), ModelOrigin.CREATED, multiModel);
+		Model newModel = modelType.createInstance(newEditor.getModelUri(), instanceMID);
 		newModel.getEditors().add(newEditor);
 
 		return newModel;
@@ -101,8 +100,8 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 	protected Model doExecuteTypesLevel() throws MMINTException, MultiModelDialogCancellation {
 
-		MultiModel multiModel = (MultiModel) getElementToEdit();
-		Model modelType = MultiModelDiagramUtils.selectModelTypeToExtend(multiModel);
+		MID typeMID = (MID) getElementToEdit();
+		Model modelType = MultiModelDiagramUtils.selectModelTypeToExtend(typeMID);
 		String newModelTypeName = MultiModelDiagramUtils.getStringInput("Create new light model type", "Insert new model type name", null);
 		String[] constraint = MultiModelDiagramUtils.getConstraintInput("Create new light model type", null);
 		if (!MultiModelConstraintChecker.checkConstraintConsistency(modelType, constraint[0], constraint[1])) {
@@ -112,7 +111,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 			true :
 			MultiModelDiagramUtils.getBooleanInput("Create new light model type", "Extend metamodel?");
 		Model newModelType = modelType.createSubtype(newModelTypeName, constraint[0], constraint[1], isMetamodelExtension);
-		MMINT.createTypeHierarchy(multiModel);
+		MMINT.createTypeHierarchy(typeMID);
 
 		return newModelType;
 	}
@@ -133,7 +132,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			Model newElement = (MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToEdit())) ?
+			Model newElement = (MultiModelConstraintChecker.isInstancesLevel((MID) getElementToEdit())) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

@@ -281,7 +281,7 @@ public interface Model extends GenericElement {
 	 * this model type to an Instance MID.
 	 * 
 	 * @param modelUri
-	 *            The uri of the model.
+	 *            The uri of the model to import.
 	 * @param instanceMID
 	 *            An Instance MID, null if the model isn't going to be added to
 	 *            it.
@@ -294,6 +294,26 @@ public interface Model extends GenericElement {
 	 * @generated
 	 */
 	Model importInstance(String modelUri, MID instanceMID) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Imports and possibly adds a model instance of this model
+	 * type to an Instance MID, together with an editor for it.
+	 * 
+	 * @param modelUri
+	 *            The uri of the model to import.
+	 * @param instanceMID
+	 *            An Instance MID, null if the model isn't going to be added to
+	 *            it and the editor is not going to be created.
+	 * @return The imported model.
+	 * @throws MMINTException
+	 *             If this is a model instance, if the uri of the imported model
+	 *             instance is already registered in the Instance MID, or if
+	 *             there are no editor types registered for this model type.
+	 *             <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true" instanceMIDRequired="true"
+	 * @generated
+	 */
+	Model importInstanceAndEditor(String modelUri, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a model instance of this model

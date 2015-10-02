@@ -25,11 +25,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -68,9 +68,9 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doUndo(monitor, info);
-		MultiModel multiModel = (MultiModel) getContainer().eContainer();
-		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMINT.createTypeHierarchy(multiModel);
+		MID mid = (MID) getContainer().eContainer();
+		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+			MMINT.createTypeHierarchy(mid);
 		}
 
 		return status;
@@ -83,9 +83,9 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doRedo(monitor, info);
-		MultiModel multiModel = (MultiModel) getContainer().eContainer();
-		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMINT.createTypeHierarchy(multiModel);
+		MID mid = (MID) getContainer().eContainer();
+		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+			MMINT.createTypeHierarchy(mid);
 		}
 
 		return status;
@@ -106,29 +106,29 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 			);
 	}
 
-	protected BinaryLinkReference doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
+	protected BinaryMappingReference doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
 
 		ModelRel modelRel = getContainer();
-		LinkReference linkTypeRef = MultiModelDiagramUtils.selectMappingTypeReferenceToCreate(modelRel, getSource(), getTarget());
-		BinaryLinkReference newLinkRef = (BinaryLinkReference) linkTypeRef.getObject().createInstanceAndReference(true, modelRel);
+		MappingReference mappingTypeRef = MultiModelDiagramUtils.selectMappingTypeReferenceToCreate(modelRel, getSource(), getTarget());
+		BinaryMappingReference newMappingRef = (BinaryMappingReference) mappingTypeRef.getObject().createInstanceAndReference(true, modelRel);
 
-		List<String> modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, null, getSource());
-		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(newLinkRef, modelElemTypeEndpointUris);
-		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getSource(), newLinkRef);
-		modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newLinkRef, null, getTarget());
-		modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(newLinkRef, modelElemTypeEndpointUris);
-		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), newLinkRef);
+		List<String> modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newMappingRef, null, getSource());
+		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(newMappingRef, modelElemTypeEndpointUris);
+		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getSource(), newMappingRef);
+		modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newMappingRef, null, getTarget());
+		modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(newMappingRef, modelElemTypeEndpointUris);
+		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), newMappingRef);
 
-		return newLinkRef;
+		return newMappingRef;
 	}
 
-	protected BinaryLinkReference doExecuteTypesLevel() throws MMINTException, MultiModelDialogCancellation {
+	protected BinaryMappingReference doExecuteTypesLevel() throws MMINTException, MultiModelDialogCancellation {
 
 		ModelRel modelRelType = getContainer();
 		ModelElementReference srcModelElemTypeRef = getSource(), tgtModelElemTypeRef = getTarget();
-		LinkReference linkTypeRef = MultiModelDiagramUtils.selectMappingTypeReferenceToExtend(modelRelType, srcModelElemTypeRef, tgtModelElemTypeRef);
-		String newLinkTypeName = MultiModelDiagramUtils.getStringInput("Create new light link type", "Insert new link type name", srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_LINK_SEPARATOR + tgtModelElemTypeRef.getObject().getName());
-		BinaryLinkReference newLinkTypeRef = (BinaryLinkReference) linkTypeRef.getObject().createSubtypeAndReference(linkTypeRef, newLinkTypeName, true, modelRelType);
+		MappingReference mappingTypeRef = MultiModelDiagramUtils.selectMappingTypeReferenceToExtend(modelRelType, srcModelElemTypeRef, tgtModelElemTypeRef);
+		String newLinkTypeName = MultiModelDiagramUtils.getStringInput("Create new light mapping type", "Insert new mapping type name", srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemTypeRef.getObject().getName());
+		BinaryMappingReference newLinkTypeRef = (BinaryMappingReference) mappingTypeRef.getObject().createSubtypeAndReference(mappingTypeRef, newLinkTypeName, true, modelRelType);
 		MMINT.createTypeHierarchy(MultiModelRegistry.getMultiModel(modelRelType));
 
 		String newModelElemTypeEndpointName;
@@ -171,7 +171,7 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 			throw new ExecutionException("Invalid arguments in create link command");
 		}
 		try {
-			BinaryLinkReference newElement = MultiModelConstraintChecker.isInstancesLevel(getContainer()) ?
+			BinaryMappingReference newElement = MultiModelConstraintChecker.isInstancesLevel(getContainer()) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

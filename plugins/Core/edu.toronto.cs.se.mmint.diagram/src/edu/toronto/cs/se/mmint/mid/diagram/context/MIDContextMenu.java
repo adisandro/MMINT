@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -34,8 +33,8 @@ import org.eclipse.ui.PlatformUI;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart;
@@ -100,7 +99,7 @@ public class MIDContextMenu extends ContributionItem {
 		}
 
 		// get model selection
-		MultiModel instanceMID = null;
+		MID instanceMID = null;
 		EList<Model> selectedModels = new BasicEList<Model>();
 		ITextAwareEditPart label = null;
 		List<GraphicalEditPart> editParts = new ArrayList<GraphicalEditPart>();
@@ -117,7 +116,7 @@ public class MIDContextMenu extends ContributionItem {
 			}
 			GraphicalEditPart editPart = (GraphicalEditPart) object;
 			EObject editPartElement = ((View) editPart.getModel()).getElement();
-			if (editPartElement instanceof MultiModel) {
+			if (editPartElement instanceof MID) {
 				doCast = false;
 				doCheckConstraint = false;
 				doCopy = false;
@@ -125,8 +124,8 @@ public class MIDContextMenu extends ContributionItem {
 				doModelepedia = false;
 				doCoherence = false;
 				doRefineByConstraint = false;
-				if (MultiModelConstraintChecker.isInstancesLevel((MultiModel) editPartElement)) { // instances only
-					instanceMID = (MultiModel) editPartElement;
+				if (MultiModelConstraintChecker.isInstancesLevel((MID) editPartElement)) { // instances only
+					instanceMID = (MID) editPartElement;
 				}
 			}
 			else {

@@ -29,7 +29,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
@@ -41,9 +41,9 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
 	private Operator operatorType;
 	private EList<OperatorInput> operatorInputs;
-	private MultiModel instanceMID;
+	private MID instanceMID;
 
-	public MIDContextRunOperatorListener(@NonNull String menuLabel, @NonNull Operator operatorType, @NonNull EList<OperatorInput> operatorInputs, @NonNull MultiModel instanceMID) {
+	public MIDContextRunOperatorListener(@NonNull String menuLabel, @NonNull Operator operatorType, @NonNull EList<OperatorInput> operatorInputs, @NonNull MID instanceMID) {
 
 		super(menuLabel);
 		this.operatorType = operatorType;
@@ -74,7 +74,7 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
 			try {
 				EList<OperatorGeneric> operatorGenerics = operatorType.selectAllowedGenerics(operatorInputs);
-				Map<String, MultiModel> outputMIDsByName = operatorType.getOutputs().stream()
+				Map<String, MID> outputMIDsByName = operatorType.getOutputs().stream()
 					.collect(Collectors.toMap(
 						outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
 						outputModelTypeEndpoint -> instanceMID)

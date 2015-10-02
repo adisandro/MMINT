@@ -21,9 +21,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
@@ -58,18 +57,18 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 
 		return
 			super.canExecute() &&
-			MultiModelConstraintChecker.isInstancesLevel((MultiModel) getElementToEdit());
+			MultiModelConstraintChecker.isInstancesLevel((MID) getElementToEdit());
 	}
 
 	protected Model doExecuteInstancesLevel() throws Exception, MultiModelDialogCancellation {
 
-		MultiModel multiModel = (MultiModel) getElementToEdit();
+		MID instanceMID = (MID) getElementToEdit();
 		String newModelUri = MultiModelDiagramUtils.selectModelToImport(false);
 		Model modelType = MultiModelTypeRegistry.getType(MultiModelUtils.getModelFile(newModelUri, true).eClass().getEPackage().getNsURI());
 		if (modelType == null) { // unregistered dynamic EMF file
 			modelType = MultiModelTypeHierarchy.getRootModelType();
 		}
-		Model newModel = modelType.createMAVOInstanceAndEditor(newModelUri, ModelOrigin.IMPORTED, multiModel);
+		Model newModel = modelType.importInstanceAndEditor(newModelUri, instanceMID);
 
 		return newModel;
 	}

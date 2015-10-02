@@ -129,8 +129,7 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
 	 * @return The created generic endpoint.
 	 * @throws MMINTException
 	 *             If this is a generic instance endpoint. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetGenericRequired="true"
-	 *        containerOperatorRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetGenericRequired="true" containerOperatorRequired="true"
 	 * @generated
 	 */
 	GenericEndpoint createInstance(GenericElement targetGeneric, Operator containerOperator) throws MMINTException;

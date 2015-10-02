@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 
 public class BinaryLinkReferenceSourceModelElementEndpointReferenceLabelParser extends ExtendibleElementEndpointReferenceLabelParser {
@@ -24,7 +24,7 @@ public class BinaryLinkReferenceSourceModelElementEndpointReferenceLabelParser e
 	protected IAdaptable getSourceModelElementEndpointReferenceAdaptable(IAdaptable element) {
 
 		EObject modelObj = (EObject) element.getAdapter(EObject.class);
-		ModelElementEndpointReference modelElemEndpointRef = ((BinaryLinkReference) modelObj).getObject().getModelElemEndpointRefs().get(0);
+		ModelElementEndpointReference modelElemEndpointRef = ((BinaryMappingReference) modelObj).getObject().getModelElemEndpointRefs().get(0);
 
 		return new ParserHintAdapter(modelElemEndpointRef, "");
 	}

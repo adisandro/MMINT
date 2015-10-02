@@ -36,9 +36,9 @@ import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
@@ -85,9 +85,9 @@ public class MAVODiagramContextRefineListener extends MIDContextMenuListener {
 	public void widgetSelected(SelectionEvent e) {
 
 		String modelUri = MultiModelRegistry.getModelAndModelElementUris(mavoElemsToRefine.get(0), MIDLevel.INSTANCES)[0];
-		Map<MultiModel, List<IFile>> instanceMIDs = MIDDiagramUtils.getMIDsInWorkspace();
+		Map<MID, List<IFile>> instanceMIDs = MIDDiagramUtils.getMIDsInWorkspace();
 		List<IFile> files = null;
-		for (Entry<MultiModel, List<IFile>> instanceMID : instanceMIDs.entrySet()) {
+		for (Entry<MID, List<IFile>> instanceMID : instanceMIDs.entrySet()) {
 			model = MultiModelRegistry.getExtendibleElement(modelUri, instanceMID.getKey());
 			if (model != null) {
 				files = instanceMID.getValue();

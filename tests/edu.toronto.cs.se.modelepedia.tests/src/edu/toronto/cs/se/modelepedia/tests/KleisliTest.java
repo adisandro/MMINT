@@ -77,7 +77,7 @@ public class KleisliTest extends MMINTTest {
 	private final static String TGT_METAMODEL_NAME = TGT_MODELTYPE_NAME + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
 	private final static String TGT_MODELTYPEENDPOINT_NAME = "CD";
 	private final static String KLEISLI_MODELRELTYPE_URI = "http://se.cs.toronto.edu/modelepedia/KleisliModelRel";
-	private final static String MODELRELTYPE_NAME = TGT_MODELTYPEENDPOINT_NAME + MMINT.BINARY_MODELREL_LINK_SEPARATOR + SRC_MODELTYPEENDPOINT_NAME;
+	private final static String MODELRELTYPE_NAME = TGT_MODELTYPEENDPOINT_NAME + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + SRC_MODELTYPEENDPOINT_NAME;
 	private final static String KLEISLI_TGT_METAMODEL_NAME = TGT_MODELTYPEENDPOINT_NAME + MMINT.ENDPOINT_SEPARATOR + TGT_MODELTYPE_NAME + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
 	private final static String[] SRC_METAMODELOBJ_NAMES = {
 		"DatabaseSchema",
@@ -177,7 +177,7 @@ public class KleisliTest extends MMINTTest {
 				constraint.setImplementation(TGT_MODELELEM_OCLQUERIES[i]);
 				tgtModelElemTypeRef.getObject().setConstraint(constraint);
 			}
-			String newLinkTypeName = srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_LINK_SEPARATOR + tgtModelElemTypeRef.getObject().getName();
+			String newLinkTypeName = srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemTypeRef.getObject().getName();
 			LinkReference linkTypeRef = rootLinkType.createSubtypeAndReference(null, newLinkTypeName, true, kModelRelType);
 			MMINT.createTypeHierarchy();
 			String srcModelElemTypeEndpointName = srcModelElemTypeRef.getObject().getName(), tgtModelElemTypeEndpointName = tgtModelElemTypeRef.getObject().getName();

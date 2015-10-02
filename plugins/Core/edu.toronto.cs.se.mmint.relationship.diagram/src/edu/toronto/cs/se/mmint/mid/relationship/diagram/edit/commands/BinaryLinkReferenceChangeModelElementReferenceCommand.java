@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -108,43 +108,43 @@ public class BinaryLinkReferenceChangeModelElementReferenceCommand extends Binar
 			));
 	}
 
-	protected void doExecuteInstancesLevel(BinaryLinkReference containerLinkRef, ModelElementReference targetModelElemRef, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {
+	protected void doExecuteInstancesLevel(BinaryMappingReference containerMappingRef, ModelElementReference targetModelElemRef, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {
 
 		ModelElementEndpointReference oldModelElemEndpointRef = (isBinarySrc) ?
-			containerLinkRef.getModelElemEndpointRefs().get(0) :
-			containerLinkRef.getModelElemEndpointRefs().get(1);
-		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(containerLinkRef, modelElemTypeEndpointUris);
+			containerMappingRef.getModelElemEndpointRefs().get(0) :
+			containerMappingRef.getModelElemEndpointRefs().get(1);
+		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(containerMappingRef, modelElemTypeEndpointUris);
 		modelElemTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelElemEndpointRef, targetModelElemRef);
 	}
 
-	protected void doExecuteTypesLevel(BinaryLinkReference containerLinkTypeRef, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {
+	protected void doExecuteTypesLevel(BinaryMappingReference containerMappingTypeRef, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {
 
 		boolean wasOverriding = false;
 		ModelElementEndpointReference oldModelElemTypeEndpointRef = null;
-		if (containerLinkTypeRef.getModelElemEndpointRefs().size() == 2) {
+		if (containerMappingTypeRef.getModelElemEndpointRefs().size() == 2) {
 			oldModelElemTypeEndpointRef = (isBinarySrc) ?
-				containerLinkTypeRef.getModelElemEndpointRefs().get(0) :
-				containerLinkTypeRef.getModelElemEndpointRefs().get(1);
+				containerMappingTypeRef.getModelElemEndpointRefs().get(0) :
+				containerMappingTypeRef.getModelElemEndpointRefs().get(1);
 			wasOverriding = true;
 		}
-		else if (containerLinkTypeRef.getModelElemEndpointRefs().size() == 1) {
-			ModelElementEndpointReference singleModelElemTypeEndpointRef = containerLinkTypeRef.getModelElemEndpointRefs().get(0);
+		else if (containerMappingTypeRef.getModelElemEndpointRefs().size() == 1) {
+			ModelElementEndpointReference singleModelElemTypeEndpointRef = containerMappingTypeRef.getModelElemEndpointRefs().get(0);
 			wasOverriding = (isBinarySrc) ?
-				(containerLinkTypeRef.getSourceModelElemRef() == singleModelElemTypeEndpointRef.getModelElemRef()) :
-				(containerLinkTypeRef.getTargetModelElemRef() == singleModelElemTypeEndpointRef.getModelElemRef());
+				(containerMappingTypeRef.getSourceModelElemRef() == singleModelElemTypeEndpointRef.getModelElemRef()) :
+				(containerMappingTypeRef.getTargetModelElemRef() == singleModelElemTypeEndpointRef.getModelElemRef());
 			if (wasOverriding) {
 				oldModelElemTypeEndpointRef = singleModelElemTypeEndpointRef;
 			}
 		}
 
-		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(containerLinkTypeRef, targetModelElemTypeRef);
+		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(containerMappingTypeRef, targetModelElemTypeRef);
 		if (modelElemTypeEndpoint == null) {
 			if (wasOverriding) { // was overriding, becomes non-overriding
 				oldModelElemTypeEndpointRef.deleteTypeAndReference(true);
 			}
 			// was overriding, becomes non-overriding
 			// was non-overriding, remains non-overriding
-			containerLinkTypeRef.addModelElementTypeReference(targetModelElemTypeRef, isBinarySrc);
+			containerMappingTypeRef.addModelElementTypeReference(targetModelElemTypeRef, isBinarySrc);
 		}
 		else {
 			if (wasOverriding) { // was overriding, remains overriding
@@ -153,14 +153,14 @@ public class BinaryLinkReferenceChangeModelElementReferenceCommand extends Binar
 			else { // was non-overriding, becomes overriding
 				String detail = (isBinarySrc) ? "source" : "target";
 				String newModelElemTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new " + detail + " model element type endpoint", "Insert new " + detail + " model element type endpoint role", targetModelElemTypeRef.getObject().getName());
-				if (isBinarySrc && containerLinkTypeRef.getModelElemEndpointRefs().size() == 1) { // guarantee that src endpoint comes before tgt endpoint
-					ModelElementEndpointReference tgtModelElemTypeEndpointRef = containerLinkTypeRef.getModelElemEndpointRefs().get(0);
+				if (isBinarySrc && containerMappingTypeRef.getModelElemEndpointRefs().size() == 1) { // guarantee that src endpoint comes before tgt endpoint
+					ModelElementEndpointReference tgtModelElemTypeEndpointRef = containerMappingTypeRef.getModelElemEndpointRefs().get(0);
 					tgtModelElemTypeEndpointRef.deleteTypeAndReference(true);
-					modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, targetModelElemTypeRef, true, containerLinkTypeRef);
-					tgtModelElemTypeEndpointRef.getObject().getSupertype().createSubtypeAndReference(tgtModelElemTypeEndpointRef.getObject().getName(), tgtModelElemTypeEndpointRef.getModelElemRef(), false, containerLinkTypeRef);
+					modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, targetModelElemTypeRef, true, containerMappingTypeRef);
+					tgtModelElemTypeEndpointRef.getObject().getSupertype().createSubtypeAndReference(tgtModelElemTypeEndpointRef.getObject().getName(), tgtModelElemTypeEndpointRef.getModelElemRef(), false, containerMappingTypeRef);
 				}
 				else {
-					modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, targetModelElemTypeRef, isBinarySrc, containerLinkTypeRef);
+					modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, targetModelElemTypeRef, isBinarySrc, containerMappingTypeRef);
 				}
 			}
 		}

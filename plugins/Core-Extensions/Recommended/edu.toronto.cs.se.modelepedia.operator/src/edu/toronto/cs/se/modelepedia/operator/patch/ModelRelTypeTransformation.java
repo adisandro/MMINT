@@ -221,7 +221,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			targetModelElemRefs.add(tgtModelElemRef);
 			Link linkType = MultiModelTypeRegistry.getType(MultiModelConstraintChecker.getAllowedMappingTypeReferences(traceModelRelType, srcModelElemRef, tgtModelElemRef).get(0));
 			LinkReference newLinkRef = linkType.createInstanceAndReferenceAndEndpointsAndReferences(true, targetModelElemRefs);
-			newLinkRef.getObject().setName(srcModelElemRef.getObject().getName() + MMINT.BINARY_MODELREL_LINK_SEPARATOR + tgtModelElemRef.getObject().getName());
+			newLinkRef.getObject().setName(srcModelElemRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemRef.getObject().getName());
 		}
 	}
 
@@ -249,7 +249,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			false);
 		Model tgtModel = tgtModelType.createInstance(tgtModelUri, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODEL));
 		BinaryModelRel traceModelRel = (BinaryModelRel) traceModelRelType.createInstance(null, true, ModelOrigin.CREATED, outputMIDsByName.get(OUT_MODELREL));
-		traceModelRel.setName(srcModel.getName() + MMINT.BINARY_MODELREL_LINK_SEPARATOR + tgtModel.getName());
+		traceModelRel.setName(srcModel.getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModel.getName());
 		traceModelRelType.getModelEndpointRefs().get(srcIndex).getObject().createInstanceAndReference(srcModel, traceModelRel);
 		traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().createInstanceAndReference(tgtModel, traceModelRel);
 		transform(traceModelRel, srcModel, srcIndex, tgtIndex);
