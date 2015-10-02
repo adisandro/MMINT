@@ -78,51 +78,6 @@ public interface FilePackage extends EPackage {
 	int FILE_MODEL = 0;
 
 	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_MODEL__FORMULA_VARIABLE = MIDPackage.MODEL__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_MODEL__MAY = MIDPackage.MODEL__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_MODEL__SET = MIDPackage.MODEL__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_MODEL__VAR = MIDPackage.MODEL__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Collections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_MODEL__COLLECTIONS = MIDPackage.MODEL__COLLECTIONS;
-
-	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -193,24 +148,6 @@ public interface FilePackage extends EPackage {
 	 * @ordered
 	 */
 	int FILE_MODEL__ABSTRACT = MIDPackage.MODEL__ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Inc</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_MODEL__INC = MIDPackage.MODEL__INC;
-
-	/**
-	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_MODEL__DECISIONS = MIDPackage.MODEL__DECISIONS;
 
 	/**
 	 * The feature id for the '<em><b>Origin</b></em>' attribute.
@@ -330,6 +267,15 @@ public interface FilePackage extends EPackage {
 	int FILE_MODEL___GET_EMF_TYPE_ROOT = MIDPackage.MODEL___GET_EMF_TYPE_ROOT;
 
 	/**
+	 * The operation id for the '<em>Open Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_MODEL___OPEN_TYPE = MIDPackage.MODEL___OPEN_TYPE;
+
+	/**
 	 * The operation id for the '<em>Create Instance Editor</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -345,43 +291,43 @@ public interface FilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
+	int FILE_MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID;
 
 	/**
-	 * The operation id for the '<em>Create MAVO Instance</em>' operation.
+	 * The operation id for the '<em>Import Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL___CREATE_MAVO_INSTANCE__STRING_MODELORIGIN_MULTIMODEL;
+	int FILE_MODEL___IMPORT_INSTANCE__STRING_MID = MIDPackage.MODEL___IMPORT_INSTANCE__STRING_MID;
 
 	/**
-	 * The operation id for the '<em>Create MAVO Instance And Editor</em>' operation.
+	 * The operation id for the '<em>Import Instance And Editor</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL___CREATE_MAVO_INSTANCE_AND_EDITOR__STRING_MODELORIGIN_MULTIMODEL;
+	int FILE_MODEL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = MIDPackage.MODEL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID;
 
 	/**
-	 * The operation id for the '<em>Copy MAVO Instance</em>' operation.
+	 * The operation id for the '<em>Copy Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_MODEL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL = MIDPackage.MODEL___COPY_MAVO_INSTANCE__MODEL_STRING_MULTIMODEL;
+	int FILE_MODEL___COPY_INSTANCE__MODEL_STRING_MID = MIDPackage.MODEL___COPY_INSTANCE__MODEL_STRING_MID;
 
 	/**
-	 * The operation id for the '<em>Copy MAVO Instance And Editor</em>' operation.
+	 * The operation id for the '<em>Copy Instance And Editor</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL = MIDPackage.MODEL___COPY_MAVO_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MULTIMODEL;
+	int FILE_MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = MIDPackage.MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -402,22 +348,13 @@ public interface FilePackage extends EPackage {
 	int FILE_MODEL___GET_EMF_INSTANCE_ROOT = MIDPackage.MODEL___GET_EMF_INSTANCE_ROOT;
 
 	/**
-	 * The operation id for the '<em>Open Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_MODEL___OPEN_TYPE = MIDPackage.MODEL___OPEN_TYPE;
-
-	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = MIDPackage.MODEL_OPERATION_COUNT + 0;
+	int FILE_MODEL___CREATE_INSTANCE__STRING_MID = MIDPackage.MODEL_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -449,14 +386,14 @@ public interface FilePackage extends EPackage {
 	EClass getFileModel();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.primitive.file.FileModel#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.ModelOrigin, edu.toronto.cs.se.mmint.mid.MultiModel) <em>Create Instance</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.primitive.file.FileModel#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Instance</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.primitive.file.FileModel#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.ModelOrigin, edu.toronto.cs.se.mmint.mid.MultiModel)
+	 * @see edu.toronto.cs.se.modelepedia.primitive.file.FileModel#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
 	 * @generated
 	 */
-	EOperation getFileModel__CreateInstance__String_ModelOrigin_MultiModel();
+	EOperation getFileModel__CreateInstance__String_MID();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.primitive.file.FileModel#openInstance() <em>Open Instance</em>}' operation.
@@ -507,7 +444,7 @@ public interface FilePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation FILE_MODEL___CREATE_INSTANCE__STRING_MODELORIGIN_MULTIMODEL = eINSTANCE.getFileModel__CreateInstance__String_ModelOrigin_MultiModel();
+		EOperation FILE_MODEL___CREATE_INSTANCE__STRING_MID = eINSTANCE.getFileModel__CreateInstance__String_MID();
 
 		/**
 		 * The meta object literal for the '<em><b>Open Instance</b></em>' operation.

@@ -34,7 +34,7 @@ public interface FileModel extends Model {
 	 * <!-- begin-user-doc -->
 	 * File version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" originRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true"
 	 * @generated
 	 */
 	Model createInstance(String newModelUri, MID instanceMID) throws MMINTException;

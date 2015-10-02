@@ -11,9 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.primitive.file.provider;
 
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
-
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
@@ -275,15 +274,14 @@ public class FileItemProviderAdapterFactory extends FileAdapterFactory implement
 			 * @generated
 			 */
 			@Override
-			public Object caseMultiModel(MultiModel object) {
+			public Object caseMID(MID object) {
 				newChildDescriptors.add
 					(createChildParameter
-						(MIDPackage.Literals.MULTI_MODEL__MODELS,
+						(MIDPackage.Literals.MID__MODELS,
 						 FileFactory.eINSTANCE.createFileModel()));
 
 				return null;
 			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

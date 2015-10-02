@@ -6,7 +6,7 @@
     modelName="Primitive" editPluginClass="edu.toronto.cs.se.modelepedia.primitive.provider.PrimitiveEditPlugin"
     editorPluginClass="edu.toronto.cs.se.modelepedia.primitive.presentation.PrimitiveEditorPlugin"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.mavo/model/mavo.genmodel#//mavo ../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mid"
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mid"
     operationReflection="true" importOrganizing="true">
   <foreignModel>int.ecore</foreignModel>
   <foreignModel>string.ecore</foreignModel>
@@ -28,8 +28,7 @@
     <genClasses ecoreClass="file.ecore#//FileModel">
       <genOperations ecoreOperation="file.ecore#//FileModel/createInstance">
         <genParameters ecoreParameter="file.ecore#//FileModel/createInstance/newModelUri"/>
-        <genParameters ecoreParameter="file.ecore#//FileModel/createInstance/origin"/>
-        <genParameters ecoreParameter="file.ecore#//FileModel/createInstance/containerMultiModel"/>
+        <genParameters ecoreParameter="file.ecore#//FileModel/createInstance/instanceMID"/>
       </genOperations>
       <genOperations ecoreOperation="file.ecore#//FileModel/openInstance"/>
     </genClasses>

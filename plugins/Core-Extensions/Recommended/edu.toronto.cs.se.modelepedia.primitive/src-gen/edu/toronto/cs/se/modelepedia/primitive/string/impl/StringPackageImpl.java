@@ -11,6 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.primitive.string.impl;
 
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.modelepedia.primitive.file.FilePackage;
+import edu.toronto.cs.se.modelepedia.primitive.file.impl.FilePackageImpl;
 import edu.toronto.cs.se.modelepedia.primitive.int_.IntPackage;
 
 import edu.toronto.cs.se.modelepedia.primitive.int_.impl.IntPackageImpl;
@@ -84,16 +87,22 @@ public class StringPackageImpl extends EPackageImpl implements StringPackage {
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		MIDPackage.eINSTANCE.eClass();
+
 		// Obtain or create and register interdependencies
 		IntPackageImpl theIntPackage = (IntPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(IntPackage.eNS_URI) instanceof IntPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(IntPackage.eNS_URI) : IntPackage.eINSTANCE);
+		FilePackageImpl theFilePackage = (FilePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) instanceof FilePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) : FilePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theStringPackage.createPackageContents();
 		theIntPackage.createPackageContents();
+		theFilePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theStringPackage.initializePackageContents();
 		theIntPackage.initializePackageContents();
+		theFilePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theStringPackage.freeze();

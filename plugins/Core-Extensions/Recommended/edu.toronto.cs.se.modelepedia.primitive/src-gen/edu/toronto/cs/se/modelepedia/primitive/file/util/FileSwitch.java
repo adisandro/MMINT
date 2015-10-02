@@ -11,10 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.primitive.file.util;
 
-import edu.toronto.cs.se.mavo.LogicElement;
-import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVORoot;
-
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -88,10 +84,7 @@ public class FileSwitch<T> extends Switch<T> {
 				T result = caseFileModel(fileModel);
 				if (result == null) result = caseModel(fileModel);
 				if (result == null) result = caseGenericElement(fileModel);
-				if (result == null) result = caseMAVOModel(fileModel);
 				if (result == null) result = caseExtendibleElement(fileModel);
-				if (result == null) result = caseMAVOElement(fileModel);
-				if (result == null) result = caseLogicElement(fileModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -111,36 +104,6 @@ public class FileSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFileModel(FileModel object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Logic Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Logic Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLogicElement(LogicElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMAVOElement(MAVOElement object) {
 		return null;
 	}
 
@@ -171,21 +134,6 @@ public class FileSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGenericElement(GenericElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMAVOModel(MAVORoot object) {
 		return null;
 	}
 
