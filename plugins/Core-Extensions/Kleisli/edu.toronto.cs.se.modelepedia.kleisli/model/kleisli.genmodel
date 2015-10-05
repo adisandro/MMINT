@@ -5,8 +5,8 @@
     editorDirectory="/edu.toronto.cs.se.modelepedia.kleisli.editor/src-gen" modelPluginID="edu.toronto.cs.se.modelepedia.kleisli"
     modelName="Kleisli" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
-    usedGenPackages="../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mid ../../edu.toronto.cs.se.mavo/model/mavo.genmodel#//mavo"
-    operationReflection="true" importOrganizing="true">
+    usedGenPackages="../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mid" operationReflection="true"
+    importOrganizing="true">
   <foreignModel>kleisli.ecore</foreignModel>
   <genPackages prefix="Kleisli" basePackage="edu.toronto.cs.se.modelepedia" disposableProviderFactory="true"
       childCreationExtenders="true" ecorePackage="kleisli.ecore#/">
@@ -62,25 +62,33 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute kleisli.ecore#//KleisliModelRel/extendedUri"/>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/createSubtype">
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createSubtype/newModelRelTypeName"/>
-        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createSubtype/isBinary"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createSubtype/constraintLanguage"/>
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createSubtype/constraintImplementation"/>
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createSubtype/isMetamodelExtension"/>
+      </genOperations>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/createBinarySubtype">
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createBinarySubtype/newModelRelTypeName"/>
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createBinarySubtype/constraintLanguage"/>
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createBinarySubtype/constraintImplementation"/>
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createBinarySubtype/isMetamodelExtension"/>
       </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/copySubtype">
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/copySubtype/origModelRelType"/>
       </genOperations>
-      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/deleteType"/>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/openType"/>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/getOutlineResourceTypes"/>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/deleteType"/>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/createInstance">
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createInstance/newModelRelUri"/>
-        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createInstance/isBinary"/>
-        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createInstance/origin"/>
-        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createInstance/containerMultiModel"/>
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createInstance/instanceMID"/>
       </genOperations>
-      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/deleteInstance"/>
-      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/getOutlineResourceInstances"/>
-      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/openType"/>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/createBinaryInstance">
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createBinaryInstance/newModelRelUri"/>
+        <genParameters ecoreParameter="kleisli.ecore#//KleisliModelRel/createBinaryInstance/instanceMID"/>
+      </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/openInstance"/>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/getOutlineResourceInstances"/>
+      <genOperations ecoreOperation="kleisli.ecore#//KleisliModelRel/deleteInstance"/>
     </genClasses>
     <genClasses ecoreClass="kleisli.ecore#//KleisliBinaryModelRel"/>
     <genClasses ecoreClass="kleisli.ecore#//KleisliModelEndpointReference">

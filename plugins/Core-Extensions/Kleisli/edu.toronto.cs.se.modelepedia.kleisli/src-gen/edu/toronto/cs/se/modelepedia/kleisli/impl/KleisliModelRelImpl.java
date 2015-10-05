@@ -19,6 +19,7 @@ import java.util.Map;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
@@ -48,11 +49,13 @@ import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
@@ -60,6 +63,7 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
 import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * <!-- begin-user-doc -->
@@ -198,6 +202,32 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated
 	 */
 	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case KleisliPackage.KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN:
+				try {
+					return createSubtype((String)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (Boolean)arguments.get(3));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case KleisliPackage.KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_MID:
+				try {
+					return createInstance((String)arguments.get(0), (MID)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+		}
+		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
@@ -225,14 +255,11 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public ModelRel createSubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
+	protected void addSubtype(ModelRel newModelRelType, String newModelRelTypeName, String constraintLanguage, String constraintImplementation) throws MMINTException {
 
-		MMINTException.mustBeType(this);
-
-		KleisliModelRel newModelRelType = KleisliFactory.eINSTANCE.createKleisliModelRel();
 		super.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
-		String newModelRelTypeExtendedUri = getModelRelTypeExtendedUri(newModelRelType);
-		newModelRelType.setExtendedUri(newModelRelTypeExtendedUri);
+		String newModelRelTypeExtendedUri = getModelRelTypeExtendedUri((KleisliModelRel) newModelRelType);
+		((KleisliModelRel) newModelRelType).setExtendedUri(newModelRelTypeExtendedUri);
 		if (!MultiModelUtils.isFileOrDirectoryInState(newModelRelTypeExtendedUri)) {
 			try {
 				MultiModelUtils.createDirectoryInState(newModelRelTypeExtendedUri);
@@ -242,6 +269,32 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				throw new MMINTException("Error creating directory for extended metamodels", e);
 			}
 		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public Model createSubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		KleisliModelRel newModelRelType = KleisliFactory.eINSTANCE.createKleisliModelRel();
+		this.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
+
+		return newModelRelType;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public BinaryModelRel createBinarySubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		KleisliBinaryModelRel newModelRelType = KleisliFactory.eINSTANCE.createKleisliBinaryModelRel();
+		this.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
 
 		return newModelRelType;
 	}
@@ -317,22 +370,45 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public ModelRel createInstance(String newModelRelUri, MID instanceMID) throws MMINTException {
+	protected void addInstance(Model newModel, String newModelUri, ModelOrigin origin, MID instanceMID) throws MMINTException {
 
-		MMINTException.mustBeType(this);
-
-		KleisliModelRel newModelRel = KleisliFactory.eINSTANCE.createKleisliModelRel();
-		super.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
-		String baseModelRelExtendedUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(newModelRel, MIDLevel.INSTANCES)[0], getName());
+		super.addInstance(newModel, newModelUri, ModelOrigin.CREATED, instanceMID);
+		String baseModelRelExtendedUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(newModel, MIDLevel.INSTANCES)[0], getName());
 		String modelRelExtendedUri = MultiModelUtils.getUniqueUri(baseModelRelExtendedUri, true, true);
-		newModelRel.setExtendedUri(modelRelExtendedUri);
+		((KleisliModelRel) newModel).setExtendedUri(modelRelExtendedUri);
 		try {
 			MultiModelUtils.createDirectory(modelRelExtendedUri, true);
 		}
 		catch (Exception e) {
-			newModelRel.deleteInstance();
+			newModel.deleteInstance();
 			throw new MMINTException("Error creating directory for extended models", e);
 		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public Model createInstance(String newModelRelUri, MID instanceMID) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		KleisliModelRel newModelRel = KleisliFactory.eINSTANCE.createKleisliModelRel();
+		this.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
+
+		return newModelRel;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public BinaryModelRel createBinaryInstance(String newModelRelUri, MID instanceMID) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		KleisliBinaryModelRel newModelRel = KleisliFactory.eINSTANCE.createKleisliBinaryModelRel();
+		this.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
 
 		return newModelRel;
 	}

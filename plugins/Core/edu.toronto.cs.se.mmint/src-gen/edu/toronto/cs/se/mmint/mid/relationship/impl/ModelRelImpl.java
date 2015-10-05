@@ -459,7 +459,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		MMINTException.mustBeType(this);
 
 		ModelRel newModelRelType = RelationshipFactory.eINSTANCE.createModelRel();
-		addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
+		this.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
 
 		return newModelRelType;
 	}
@@ -472,7 +472,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		MMINTException.mustBeType(this);
 
 		BinaryModelRel newModelRelType = RelationshipFactory.eINSTANCE.createBinaryModelRel();
-		addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
+		this.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
 
 		return newModelRelType;
 	}
