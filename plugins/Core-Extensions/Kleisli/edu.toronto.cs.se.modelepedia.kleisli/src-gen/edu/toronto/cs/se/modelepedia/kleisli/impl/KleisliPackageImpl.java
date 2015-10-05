@@ -650,7 +650,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		initEClass(kleisliModelRelEClass, KleisliModelRel.class, "KleisliModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getKleisliModelRel_ExtendedUri(), ecorePackage.getEString(), "extendedUri", null, 1, 1, KleisliModelRel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getKleisliModelRel__CreateSubtype__String_String_String_boolean(), theRelationshipPackage.getModelRel(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getKleisliModelRel__CreateSubtype__String_String_String_boolean(), theMIDPackage.getModel(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelRelTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "constraintLanguage", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "constraintImplementation", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -677,7 +677,7 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		op = initEOperation(getKleisliModelRel__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
-		op = initEOperation(getKleisliModelRel__CreateInstance__String_MID(), theRelationshipPackage.getModelRel(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getKleisliModelRel__CreateInstance__String_MID(), theMIDPackage.getModel(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelRelUri", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getMID(), "instanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());

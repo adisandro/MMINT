@@ -24,7 +24,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReferen
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.modelepedia.kleisli.*;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;

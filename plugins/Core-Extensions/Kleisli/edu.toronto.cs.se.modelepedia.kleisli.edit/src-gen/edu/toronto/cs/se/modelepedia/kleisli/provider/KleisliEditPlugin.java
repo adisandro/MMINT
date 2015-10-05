@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.modelepedia.kleisli.provider;
 
-import edu.toronto.cs.se.mavo.provider.MAVOEditPlugin;
 import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -49,7 +48,6 @@ public final class KleisliEditPlugin extends EMFPlugin {
 		super
 		  (new ResourceLocator [] {
 		     MIDEditPlugin.INSTANCE,
-		     MAVOEditPlugin.INSTANCE,
 		   });
 	}
 

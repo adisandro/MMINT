@@ -19,7 +19,6 @@ import java.util.Map;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
@@ -63,7 +62,6 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
 import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * <!-- begin-user-doc -->
@@ -202,32 +200,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case KleisliPackage.KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN:
-				try {
-					return createSubtype((String)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (Boolean)arguments.get(3));
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-			case KleisliPackage.KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_MID:
-				try {
-					return createInstance((String)arguments.get(0), (MID)arguments.get(1));
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-		}
-		return super.eInvoke(operationID, arguments);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
@@ -252,6 +224,8 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	}
 
 	/**
+	 * Kleisli version. {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -367,6 +341,8 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	}
 
 	/**
+	 * Kleisli version. {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	@Override

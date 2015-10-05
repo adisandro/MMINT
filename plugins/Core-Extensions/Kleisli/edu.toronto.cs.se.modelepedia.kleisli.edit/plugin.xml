@@ -36,6 +36,9 @@
       <extender
             uri="http://se.cs.toronto.edu/mmint/MID/Relationship"
             class="edu.toronto.cs.se.modelepedia.kleisli.provider.KleisliItemProviderAdapterFactory$RelationshipChildCreationExtender"/>
+      <extender
+            uri="http://se.cs.toronto.edu/mmint/MID/Operator"
+            class="edu.toronto.cs.se.modelepedia.kleisli.provider.KleisliItemProviderAdapterFactory$OperatorChildCreationExtender"/>
    </extension>
 
 </plugin>
