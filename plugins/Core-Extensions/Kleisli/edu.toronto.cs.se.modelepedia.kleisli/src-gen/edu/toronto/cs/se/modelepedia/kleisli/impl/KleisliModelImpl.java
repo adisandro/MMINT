@@ -27,7 +27,6 @@ import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
@@ -119,9 +118,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 	public KleisliModel kleisliCreateType(KleisliModelEndpoint containerModelTypeEndpoint) throws MMINTException {
 
 		//TODO MMINT[KLEISLI] should try to emulate normal api structure
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		Model origModelType = containerModelTypeEndpoint.getTarget();
 		String kModelTypeUri = getModelTypeExtendedUri((KleisliModelRel) containerModelTypeEndpoint.eContainer(), origModelType, containerModelTypeEndpoint.getName());
@@ -165,9 +162,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 	@Override
 	public void deleteType() throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		MultiModelUtils.deleteFileInState(getUri());
 	}
@@ -178,9 +173,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 	@Override
 	public EPackage getEMFTypeRoot() throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		try {
 			return (EPackage) MultiModelUtils.getModelFileInState(getUri());
@@ -213,9 +206,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 	 */
 	public KleisliModel kleisliCreateInstance(KleisliModelEndpoint containerModelEndpoint) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		Model origModel = containerModelEndpoint.getTarget();
 		KleisliModel kModel = KleisliFactory.eINSTANCE.createKleisliModel();
@@ -238,9 +229,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 	@Override
 	public void deleteInstance() throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		MultiModelUtils.deleteFile(getUri(), true);
 	}

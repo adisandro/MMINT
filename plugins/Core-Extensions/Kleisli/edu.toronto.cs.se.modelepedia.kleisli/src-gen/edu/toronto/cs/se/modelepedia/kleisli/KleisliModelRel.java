@@ -14,8 +14,7 @@ package edu.toronto.cs.se.modelepedia.kleisli;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -71,7 +70,7 @@ public interface KleisliModelRel extends ModelRel {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelTypeNameRequired="true" isBinaryRequired="true"
 	 * @generated
 	 */
-	ModelRel createSubtype(String newModelRelTypeName, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMINTException;
+	ModelRel createSubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -107,7 +106,7 @@ public interface KleisliModelRel extends ModelRel {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isBinaryRequired="true" originRequired="true"
 	 * @generated
 	 */
-	ModelRel createInstance(String newModelRelUri, boolean isBinary, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException;
+	ModelRel createInstance(String newModelRelUri, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->

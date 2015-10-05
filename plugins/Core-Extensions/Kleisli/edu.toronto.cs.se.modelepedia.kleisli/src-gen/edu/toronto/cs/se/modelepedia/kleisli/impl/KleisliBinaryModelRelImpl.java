@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
@@ -301,9 +300,7 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	@Override
 	public void addModelType(Model modelType, boolean isBinarySrc) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		if (isBinarySrc) {
 			setSourceModel(modelType);

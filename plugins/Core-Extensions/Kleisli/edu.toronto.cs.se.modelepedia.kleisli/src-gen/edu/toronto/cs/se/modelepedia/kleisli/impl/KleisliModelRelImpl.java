@@ -38,14 +38,13 @@ import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
@@ -226,15 +225,11 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public ModelRel createSubtype(String newModelRelTypeName, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMINTException {
+	public ModelRel createSubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
-		KleisliModelRel newModelRelType = (isBinary) ?
-			KleisliFactory.eINSTANCE.createKleisliBinaryModelRel() :
-			KleisliFactory.eINSTANCE.createKleisliModelRel();
+		KleisliModelRel newModelRelType = KleisliFactory.eINSTANCE.createKleisliModelRel();
 		super.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
 		String newModelRelTypeExtendedUri = getModelRelTypeExtendedUri(newModelRelType);
 		newModelRelType.setExtendedUri(newModelRelTypeExtendedUri);
@@ -258,7 +253,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	public ModelRel copySubtype(ModelRel origModelRelType) throws MMINTException {
 
 		ModelRel newModelRelType = super.copySubtype(origModelRelType);
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(newModelRelType);
+		MID typeMID = MultiModelRegistry.getMultiModel(newModelRelType);
 		ExtendibleElementConstraint newConstraint, origConstraint;
 		ModelElement newModelElemType;
 		for (ModelEndpointReference origModelTypeEndpointRef : origModelRelType.getModelEndpointRefs()) {
@@ -274,7 +269,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					newConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
 					newConstraint.setLanguage(origConstraint.getLanguage());
 					newConstraint.setImplementation(origConstraint.getImplementation());
-					newModelElemType = MultiModelRegistry.getExtendibleElement(origModelElemTypeRef.getUri(), multiModel);
+					newModelElemType = MultiModelRegistry.getExtendibleElement(origModelElemTypeRef.getUri(), typeMID);
 					newModelElemType.setConstraint(newConstraint);
 				}
 			}
@@ -299,9 +294,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	@Override
 	public ResourceSet getOutlineResourceTypes() throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 		List<Resource> resources = resourceSet.getResources();
@@ -324,16 +317,12 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public ModelRel createInstance(String newModelRelUri, boolean isBinary, ModelOrigin origin, MultiModel containerMultiModel) throws MMINTException {
+	public ModelRel createInstance(String newModelRelUri, MID instanceMID) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
-		KleisliModelRel newModelRel = (isBinary) ?
-			KleisliFactory.eINSTANCE.createKleisliBinaryModelRel() :
-			KleisliFactory.eINSTANCE.createKleisliModelRel();
-		super.addInstance(newModelRel, newModelRelUri, origin, containerMultiModel);
+		KleisliModelRel newModelRel = KleisliFactory.eINSTANCE.createKleisliModelRel();
+		super.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
 		String baseModelRelExtendedUri = MultiModelUtils.replaceLastSegmentInUri(MultiModelRegistry.getModelAndModelElementUris(newModelRel, MIDLevel.INSTANCES)[0], getName());
 		String modelRelExtendedUri = MultiModelUtils.getUniqueUri(baseModelRelExtendedUri, true, true);
 		newModelRel.setExtendedUri(modelRelExtendedUri);
@@ -364,9 +353,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	@Override
 	public ResourceSet getOutlineResourceInstances() throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 		List<Resource> resources = resourceSet.getResources();

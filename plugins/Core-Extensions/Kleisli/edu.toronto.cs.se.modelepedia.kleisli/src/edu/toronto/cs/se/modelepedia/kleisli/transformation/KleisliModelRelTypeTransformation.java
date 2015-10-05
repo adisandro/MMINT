@@ -14,13 +14,13 @@ package edu.toronto.cs.se.modelepedia.kleisli.transformation;
 import java.util.Map;
 
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
@@ -41,7 +41,7 @@ public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformatio
 
 	@Override
 	public Map<String, Model> run(Map<String, Model> inputsByName,
-		java.util.Map<String, GenericElement> genericsByName, Map<String, MultiModel> outputMIDsByName)
+		java.util.Map<String, GenericElement> genericsByName, Map<String, MID> outputMIDsByName)
 		throws Exception {
 
 		Map<String, Model> outputsByName = super.run(inputsByName, genericsByName, outputMIDsByName);
@@ -51,15 +51,15 @@ public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformatio
 		kTraceModelRel.setTargetModel(modelPivot);
 		kTraceModelRel.getModelEndpoints().move(1, 0);
 		kTraceModelRel.getModelEndpointRefs().move(1, 0);
-		for (Link kLink : kTraceModelRel.getLinks()) {
-			kLink.getModelElemEndpoints().move(1, 0);
-			kLink.getModelElemEndpointRefs().move(1, 0);
+		for (Mapping kMapping : kTraceModelRel.getMappings()) {
+			kMapping.getModelElemEndpoints().move(1, 0);
+			kMapping.getModelElemEndpointRefs().move(1, 0);
 		}
-		for (LinkReference kLinkRef : kTraceModelRel.getLinkRefs()) {
-			kLinkRef.getModelElemEndpointRefs().move(1, 0);
-			ModelElementReference modelElemRefPivot = ((BinaryLinkReference) kLinkRef).getSourceModelElemRef();
-			((BinaryLinkReference) kLinkRef).setSourceModelElemRef(((BinaryLinkReference) kLinkRef).getTargetModelElemRef());
-			((BinaryLinkReference) kLinkRef).setTargetModelElemRef(modelElemRefPivot);
+		for (MappingReference kMappingRef : kTraceModelRel.getMappingRefs()) {
+			kMappingRef.getModelElemEndpointRefs().move(1, 0);
+			ModelElementReference modelElemRefPivot = ((BinaryMappingReference) kMappingRef).getSourceModelElemRef();
+			((BinaryMappingReference) kMappingRef).setSourceModelElemRef(((BinaryMappingReference) kMappingRef).getTargetModelElemRef());
+			((BinaryMappingReference) kMappingRef).setTargetModelElemRef(modelElemRefPivot);
 		}
 
 		return outputsByName;

@@ -31,7 +31,6 @@ import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.impl.ModelEndpointImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
@@ -233,9 +232,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	@Override
 	public ModelEndpointReference createTypeReference(boolean isModifiable, ModelRel containerModelRelType) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
 		KleisliModelEndpointReference newModelTypeEndpointRef = KleisliFactory.eINSTANCE.createKleisliModelEndpointReference();
 		super.addTypeReference(newModelTypeEndpointRef, isModifiable, containerModelRelType);
@@ -247,27 +244,9 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public ModelEndpointReference createInstanceReference(ModelRel containerModelRel) throws MMINTException {
-
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
-
-		KleisliModelEndpointReference newModelEndpointRef = KleisliFactory.eINSTANCE.createKleisliModelEndpointReference();
-		super.addInstanceReference(newModelEndpointRef, containerModelRel);
-
-		return newModelEndpointRef;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
 	public ModelEndpointReference createSubtypeAndReference(String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 		if (containerModelRelType instanceof BinaryModelRel) {
 			if (containerModelRelType.getModelEndpoints().size() == 2) {
 				throw new MMINTException("Can't add more than 2 model type endpoints to a binary model relationship type");
@@ -352,11 +331,23 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
+	public ModelEndpointReference createInstanceReference(ModelRel containerModelRel) throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+
+		KleisliModelEndpointReference newModelEndpointRef = KleisliFactory.eINSTANCE.createKleisliModelEndpointReference();
+		super.addInstanceReference(newModelEndpointRef, containerModelRel);
+
+		return newModelEndpointRef;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
 	public ModelEndpointReference createInstanceAndReference(Model targetModel, ModelRel containerModelRel) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 		if ((containerModelRel instanceof BinaryModelRel) && (containerModelRel.getModelEndpoints().size() == 2)) {
 			throw new MMINTException("Can't add more than 2 model endpoints to a binary model relationship");
 		}

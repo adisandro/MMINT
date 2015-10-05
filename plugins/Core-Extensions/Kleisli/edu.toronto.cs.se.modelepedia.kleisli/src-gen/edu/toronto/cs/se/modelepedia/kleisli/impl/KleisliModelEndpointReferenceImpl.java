@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelEndpointReferenceImpl;
@@ -113,17 +113,15 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 	@Override
 	public boolean acceptModelElementType(EObject metamodelObj) throws MMINTException {
 
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute TYPES level operation on INSTANCES level element");
-		}
+		MMINTException.mustBeType(this);
 
-		MultiModel multiModel = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MultiModelRegistry.getMultiModel(this);
 		String[] uris = MultiModelRegistry.getModelAndModelElementUris(metamodelObj, MIDLevel.TYPES);
 		String modelTypeUri = uris[0].replace(KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX, ""); // remove uri suffix
 		String modelElemTypeUri = uris[1];
 		if (
 			!modelTypeUri.equals(getTargetUri()) && // different model type
-			!MultiModelTypeHierarchy.isSubtypeOf(getTargetUri(), modelTypeUri, multiModel) // different light model type with no metamodel extension
+			!MultiModelTypeHierarchy.isSubtypeOf(getTargetUri(), modelTypeUri, typeMID) // different light model type with no metamodel extension
 		) {
 			return false;
 		}
@@ -142,9 +140,7 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 	@Override
 	public ModelElement acceptModelElementInstance(EObject modelObj) throws MMINTException {
 
-		if (!MultiModelConstraintChecker.isInstancesLevel(this)) {
-			throw new MMINTException("Can't execute INSTANCES level operation on TYPES level element");
-		}
+		MMINTException.mustBeInstance(this);
 
 		String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES);
 		String modelUri = uris[0];
