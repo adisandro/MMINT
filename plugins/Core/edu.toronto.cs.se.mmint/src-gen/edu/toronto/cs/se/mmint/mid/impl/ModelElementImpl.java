@@ -463,33 +463,6 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	}
 
 	/**
-	 * Creates and adds a model element instance of a type to be automatically
-	 * detected and a reference to it to an Instance MID, initializing its MAVO
-	 * may/set/var flags.
-	 * 
-	 * @param modelObj
-	 *            The EMF model object to be wrapped by the MMINT new model
-	 *            element.
-	 * @param newModelElemName
-	 *            The name of the new model element.
-	 * @param containerModelEndpointRef
-	 *            The reference to the model endpoint that will contain the new
-	 *            reference to the new model element.
-	 * @return The created reference to the new model element.
-	 * @throws MMINTException
-	 *             If the uri of the new model element is already registered in
-	 *             the Instance MID.
-	 * @generated NOT
-	 */
-	public static ModelElementReference createMAVOInstanceAndReference(EObject modelObj, String newModelElemName, ModelEndpointReference containerModelEndpointRef) throws MMINTException {
-
-		ModelElementReference newMAVOModelElemRef = createInstanceAndReference(modelObj, newModelElemName, containerModelEndpointRef);
-		MAVOUtils.initializeMAVOModelElementReference(modelObj, newMAVOModelElemRef);
-
-		return newMAVOModelElemRef;
-	}
-
-	/**
 	 * @generated NOT
 	 */
 	public void deleteInstance() throws MMINTException {

@@ -645,7 +645,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		MMINTException.mustBeType(this);
 
 		Model newModelType = MIDFactory.eINSTANCE.createModel();
-		addSubtype(newModelType, newModelTypeName, constraintLanguage, constraintImplementation, isMetamodelExtension);
+		this.addSubtype(newModelType, newModelTypeName, constraintLanguage, constraintImplementation, isMetamodelExtension);
 
 		return newModelType;
 	}
@@ -842,7 +842,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		MMINTException.mustBeType(this);
 
 		Model newModel = MIDFactory.eINSTANCE.createModel();
-		addInstance(newModel, newModelUri, ModelOrigin.CREATED, instanceMID);
+		this.addInstance(newModel, newModelUri, ModelOrigin.CREATED, instanceMID);
 
 		return newModel;
 	}
@@ -893,7 +893,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	public Model createInstanceAndEditor(String newModelUri, MID instanceMID) throws MMINTException {
 
-		Model newModel = createInstance(newModelUri, instanceMID);
+		Model newModel = this.createInstance(newModelUri, instanceMID);
 		if (instanceMID != null) {
 			newModel.createInstanceEditor();
 		}
@@ -909,7 +909,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		MMINTException.mustBeType(this);
 
 		Model newModel = MIDFactory.eINSTANCE.createModel();
-		addInstance(newModel, modelUri, ModelOrigin.IMPORTED, instanceMID);
+		this.addInstance(newModel, modelUri, ModelOrigin.IMPORTED, instanceMID);
 
 		return newModel;
 	}
@@ -925,58 +925,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		}
 
 		return newModel;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of
-	 * this model type to an Instance MID, initializing its MAVO inc flag.
-	 * 
-	 * @param newModelUri
-	 *            The uri of the new model.
-	 * @param instanceMID
-	 *            An Instance MID, null if the model isn't going to be added to
-	 *            it.
-	 * @return The created model.
-	 * @throws MMINTException
-	 *             If this is a model instance, or if the uri of the new model
-	 *             instance is already registered in the Instance MID.
-	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" originRequired="true"
-	 * @generated NOT
-	 */
-	public Model createMAVOInstance(String newModelUri, MID instanceMID) throws MMINTException {
-
-		Model newMAVOModel = this.createInstance(newModelUri, instanceMID);
-		MAVOUtils.initializeMAVOModel(newMAVOModel.getEMFInstanceRoot(), newMAVOModel);
-
-		return newMAVOModel;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
-	 * type to an Instance MID, together with an editor for it, initializing its
-	 * MAVO inc flag.
-	 * 
-	 * @param newModelUri
-	 *            The uri of the new model.
-	 * @param instanceMID
-	 *            An Instance MID, null if the model isn't going to be added to
-	 *            it.
-	 * @return The created model.
-	 * @throws MMINTException
-	 *             If this is a model instance, if the uri of the new model
-	 *             instance is already registered in the Instance MID, or if
-	 *             there are no editor types registered for this model type.
-	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" originRequired="true" containerMultiModelRequired="true"
-	 * @generated NOT
-	 */
-	public Model createMAVOInstanceAndEditor(String newModelUri, MID instanceMID) throws MMINTException {
-
-		Model newMAVOModel = createInstanceAndEditor(newModelUri, instanceMID);
-		MAVOUtils.initializeMAVOModel(newMAVOModel.getEMFInstanceRoot(), newMAVOModel);
-
-		return newMAVOModel;
 	}
 
 	/**

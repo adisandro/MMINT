@@ -15,12 +15,21 @@
 
 <plugin>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated mavomid -->
+      <package
+            uri="http://se.cs.toronto.edu/mmint/MAVOMID"
+            class="edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage"
+            genModel="model/mavomid.genmodel"/>
+   </extension>
+
    <extension
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
-               name="Model_MAVO"
+               name="MAVOModel"
                uri="http://se.cs.toronto.edu/MAVO"
+               class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory"
                isAbstract="true">
             <superType
                   uri="http://se.cs.toronto.edu/mmint/Model">
@@ -36,7 +45,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://se.cs.toronto.edu/mmint/MAVORefinementRel"
-            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"/>
+            class="edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage"/>
    </extension>
 
    <extension

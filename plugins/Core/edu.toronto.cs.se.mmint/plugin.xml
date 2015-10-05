@@ -83,9 +83,9 @@
             <type
                   name="ModelRel"
                   uri="http://se.cs.toronto.edu/mmint/ModelRel">
-            <superType
-                  uri="http://se.cs.toronto.edu/mmint/Model">
-            </superType>
+              <superType
+                    uri="http://se.cs.toronto.edu/mmint/Model">
+              </superType>
             </type>
          </modelType>
          <modelTypeEndpoint>
@@ -131,9 +131,6 @@
          <type
                name="MID"
                uri="http://se.cs.toronto.edu/mmint/MID">
-            <superType
-                  uri="http://se.cs.toronto.edu/MAVO">
-            </superType>
          </type>
       </modelType>
    </extension>

@@ -3,9 +3,11 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.mavo;singleton:=true
 Bundle-Version: 1.3.0.qualifier
+Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.jface,
  org.eclipse.emf.edit.ui,
  org.eclipse.gmf.runtime.emf.commands.core,
@@ -16,6 +18,8 @@ Require-Bundle: org.eclipse.jface,
  org.eclipse.gmf.codegen.xtend,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.uml2.uml,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
@@ -24,4 +28,7 @@ Require-Bundle: org.eclipse.jface,
 Export-Package: edu.toronto.cs.se.mmint.mavo.constraint,
  edu.toronto.cs.se.mmint.mavo.diagram,
  edu.toronto.cs.se.mmint.mavo.library,
- edu.toronto.cs.se.mmint.mavo.reasoning
+ edu.toronto.cs.se.mmint.mavo.reasoning,
+ edu.toronto.cs.se.mmint.mavo.mavomid,
+ edu.toronto.cs.se.mmint.mavo.mavomid.impl,
+ edu.toronto.cs.se.mmint.mavo.mavomid.util
