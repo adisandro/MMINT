@@ -40,15 +40,6 @@ public interface MAVOMIDFactory extends EFactory {
 	MAVOMID createMAVOMID();
 
 	/**
-	 * Returns a new object of class '<em>MAVO Extendible Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>MAVO Extendible Element</em>'.
-	 * @generated
-	 */
-	MAVOExtendibleElement createMAVOExtendibleElement();
-
-	/**
 	 * Returns a new object of class '<em>MAVO Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

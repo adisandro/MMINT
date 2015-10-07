@@ -6,12 +6,7 @@
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MAVOExtendibleElement" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//ExtendibleElement ../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOElement">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="MAVO version. {@inheritDoc}"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MAVOModel" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model">
+  <eClassifiers xsi:type="ecore:EClass" name="MAVOModel" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model ../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVORoot">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>
@@ -43,7 +38,7 @@
       <eParameters name="instanceMID" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MID"/>
     </eOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MAVOModelElement" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//ModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="MAVOModelElement" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//ModelElement ../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>

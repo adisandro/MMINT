@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mavo.mavomid;
 
+import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 
 /**
@@ -27,5 +28,5 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
  * @model
  * @generated
  */
-public interface MAVOModelElement extends ModelElement {
+public interface MAVOModelElement extends ModelElement, MAVOElement {
 } // MAVOModelElement

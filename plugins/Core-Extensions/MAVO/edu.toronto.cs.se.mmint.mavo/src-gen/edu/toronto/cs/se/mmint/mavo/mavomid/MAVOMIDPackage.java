@@ -158,169 +158,6 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVOMID_OPERATION_COUNT = MIDPackage.MID_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOExtendibleElementImpl <em>MAVO Extendible Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOExtendibleElementImpl
-	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getMAVOExtendibleElement()
-	 * @generated
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Supertype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT__SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE;
-
-	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT__URI = MIDPackage.EXTENDIBLE_ELEMENT__URI;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT__NAME = MIDPackage.EXTENDIBLE_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Level</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT__LEVEL = MIDPackage.EXTENDIBLE_ELEMENT__LEVEL;
-
-	/**
-	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT__METATYPE_URI = MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI;
-
-	/**
-	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT__DYNAMIC = MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC;
-
-	/**
-	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT__CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT;
-
-	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT__FORMULA_VARIABLE = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT__MAY = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT__SET = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT__VAR = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Collections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT__COLLECTIONS = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of structural features of the '<em>MAVO Extendible Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Get Metatype</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT___GET_METATYPE = MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE;
-
-	/**
-	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
-
-	/**
-	 * The operation id for the '<em>Get Runtime Types</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
-
-	/**
-	 * The number of operations of the '<em>MAVO Extendible Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_EXTENDIBLE_ELEMENT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOModelImpl <em>MAVO Model</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -328,7 +165,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getMAVOModel()
 	 * @generated
 	 */
-	int MAVO_MODEL = 2;
+	int MAVO_MODEL = 1;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -448,13 +285,31 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL__CONVERSION_OPERATORS = MIDPackage.MODEL__CONVERSION_OPERATORS;
 
 	/**
+	 * The feature id for the '<em><b>Inc</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL__INC = MIDPackage.MODEL_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL__DECISIONS = MIDPackage.MODEL_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>MAVO Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_FEATURE_COUNT = MIDPackage.MODEL_FEATURE_COUNT + 0;
+	int MAVO_MODEL_FEATURE_COUNT = MIDPackage.MODEL_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -635,7 +490,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getMAVOModelElement()
 	 * @generated
 	 */
-	int MAVO_MODEL_ELEMENT = 3;
+	int MAVO_MODEL_ELEMENT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -710,13 +565,58 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_ELEMENT__EINFO = MIDPackage.MODEL_ELEMENT__EINFO;
 
 	/**
+	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ELEMENT__FORMULA_VARIABLE = MIDPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>May</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ELEMENT__MAY = MIDPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Set</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ELEMENT__SET = MIDPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Var</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ELEMENT__VAR = MIDPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Collections</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ELEMENT__COLLECTIONS = MIDPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>MAVO Model Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_ELEMENT_FEATURE_COUNT = MIDPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int MAVO_MODEL_ELEMENT_FEATURE_COUNT = MIDPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -847,16 +747,6 @@ public interface MAVOMIDPackage extends EPackage {
 	EClass getMAVOMID();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOExtendibleElement <em>MAVO Extendible Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>MAVO Extendible Element</em>'.
-	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOExtendibleElement
-	 * @generated
-	 */
-	EClass getMAVOExtendibleElement();
-
-	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel <em>MAVO Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -958,16 +848,6 @@ public interface MAVOMIDPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MAVOMID = eINSTANCE.getMAVOMID();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOExtendibleElementImpl <em>MAVO Extendible Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOExtendibleElementImpl
-		 * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getMAVOExtendibleElement()
-		 * @generated
-		 */
-		EClass MAVO_EXTENDIBLE_ELEMENT = eINSTANCE.getMAVOExtendibleElement();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOModelImpl <em>MAVO Model</em>}' class.

@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mavo.mavomid;
 
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.MMINTException;
 
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -30,7 +31,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
  * @model
  * @generated
  */
-public interface MAVOModel extends Model {
+public interface MAVOModel extends Model, MAVORoot {
 	/**
 	 * <!-- begin-user-doc -->
 	 * MAVO version. {@inheritDoc}

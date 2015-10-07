@@ -91,10 +91,6 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
 				return createMAVOMIDAdapter();
 			}
 			@Override
-			public Adapter caseMAVOExtendibleElement(MAVOExtendibleElement object) {
-				return createMAVOExtendibleElementAdapter();
-			}
-			@Override
 			public Adapter caseMAVOModel(MAVOModel object) {
 				return createMAVOModelAdapter();
 			}
@@ -115,14 +111,6 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
 				return createExtendibleElementAdapter();
 			}
 			@Override
-			public Adapter caseLogicElement(LogicElement object) {
-				return createLogicElementAdapter();
-			}
-			@Override
-			public Adapter caseMAVOElement(MAVOElement object) {
-				return createMAVOElementAdapter();
-			}
-			@Override
 			public Adapter caseGenericElement(GenericElement object) {
 				return createGenericElementAdapter();
 			}
@@ -133,6 +121,14 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseModelElement(ModelElement object) {
 				return createModelElementAdapter();
+			}
+			@Override
+			public Adapter caseLogicElement(LogicElement object) {
+				return createLogicElementAdapter();
+			}
+			@Override
+			public Adapter caseMAVOElement(MAVOElement object) {
+				return createMAVOElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -165,20 +161,6 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMAVOMIDAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOExtendibleElement <em>MAVO Extendible Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOExtendibleElement
-	 * @generated
-	 */
-	public Adapter createMAVOExtendibleElementAdapter() {
 		return null;
 	}
 

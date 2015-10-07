@@ -66,7 +66,6 @@ public class MAVOMIDFactoryImpl extends EFactoryImpl implements MAVOMIDFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case MAVOMIDPackage.MAVOMID: return createMAVOMID();
-			case MAVOMIDPackage.MAVO_EXTENDIBLE_ELEMENT: return createMAVOExtendibleElement();
 			case MAVOMIDPackage.MAVO_MODEL: return createMAVOModel();
 			case MAVOMIDPackage.MAVO_MODEL_ELEMENT: return createMAVOModelElement();
 			default:
@@ -82,16 +81,6 @@ public class MAVOMIDFactoryImpl extends EFactoryImpl implements MAVOMIDFactory {
 	public MAVOMID createMAVOMID() {
 		MAVOMIDImpl mavomid = new MAVOMIDImpl();
 		return mavomid;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MAVOExtendibleElement createMAVOExtendibleElement() {
-		MAVOExtendibleElementImpl mavoExtendibleElement = new MAVOExtendibleElementImpl();
-		return mavoExtendibleElement;
 	}
 
 	/**

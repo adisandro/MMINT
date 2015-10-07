@@ -12,8 +12,6 @@
 package edu.toronto.cs.se.mmint.mavo.mavomid.impl;
 
 import edu.toronto.cs.se.mavo.MAVOPackage;
-
-import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOExtendibleElement;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDFactory;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel;
@@ -40,13 +38,6 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 	 * @generated
 	 */
 	private EClass mavomidEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass mavoExtendibleElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -134,15 +125,6 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 	 */
 	public EClass getMAVOMID() {
 		return mavomidEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getMAVOExtendibleElement() {
-		return mavoExtendibleElementEClass;
 	}
 
 	/**
@@ -238,8 +220,6 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 		// Create classes and their features
 		mavomidEClass = createEClass(MAVOMID);
 
-		mavoExtendibleElementEClass = createEClass(MAVO_EXTENDIBLE_ELEMENT);
-
 		mavoModelEClass = createEClass(MAVO_MODEL);
 		createEOperation(mavoModelEClass, MAVO_MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN);
 		createEOperation(mavoModelEClass, MAVO_MODEL___CREATE_INSTANCE__STRING_MID);
@@ -284,15 +264,13 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 		// Add supertypes to classes
 		mavomidEClass.getESuperTypes().add(theMIDPackage.getMID());
 		mavomidEClass.getESuperTypes().add(theMAVOPackage.getMAVORoot());
-		mavoExtendibleElementEClass.getESuperTypes().add(theMIDPackage.getExtendibleElement());
-		mavoExtendibleElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 		mavoModelEClass.getESuperTypes().add(theMIDPackage.getModel());
+		mavoModelEClass.getESuperTypes().add(theMAVOPackage.getMAVORoot());
 		mavoModelElementEClass.getESuperTypes().add(theMIDPackage.getModelElement());
+		mavoModelElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mavomidEClass, edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMID.class, "MAVOMID", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(mavoExtendibleElementEClass, MAVOExtendibleElement.class, "MAVOExtendibleElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mavoModelEClass, MAVOModel.class, "MAVOModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

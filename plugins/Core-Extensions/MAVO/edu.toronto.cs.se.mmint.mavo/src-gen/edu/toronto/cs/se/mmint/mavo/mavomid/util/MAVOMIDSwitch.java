@@ -93,19 +93,11 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MAVOMIDPackage.MAVO_EXTENDIBLE_ELEMENT: {
-				MAVOExtendibleElement mavoExtendibleElement = (MAVOExtendibleElement)theEObject;
-				T result = caseMAVOExtendibleElement(mavoExtendibleElement);
-				if (result == null) result = caseExtendibleElement(mavoExtendibleElement);
-				if (result == null) result = caseMAVOElement(mavoExtendibleElement);
-				if (result == null) result = caseLogicElement(mavoExtendibleElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MAVOMIDPackage.MAVO_MODEL: {
 				MAVOModel mavoModel = (MAVOModel)theEObject;
 				T result = caseMAVOModel(mavoModel);
 				if (result == null) result = caseModel(mavoModel);
+				if (result == null) result = caseMAVORoot(mavoModel);
 				if (result == null) result = caseGenericElement(mavoModel);
 				if (result == null) result = caseExtendibleElement(mavoModel);
 				if (result == null) result = defaultCase(theEObject);
@@ -115,7 +107,9 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
 				MAVOModelElement mavoModelElement = (MAVOModelElement)theEObject;
 				T result = caseMAVOModelElement(mavoModelElement);
 				if (result == null) result = caseModelElement(mavoModelElement);
+				if (result == null) result = caseMAVOElement(mavoModelElement);
 				if (result == null) result = caseExtendibleElement(mavoModelElement);
+				if (result == null) result = caseLogicElement(mavoModelElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -135,21 +129,6 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMAVOMID(MAVOMID object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>MAVO Extendible Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>MAVO Extendible Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMAVOExtendibleElement(MAVOExtendibleElement object) {
 		return null;
 	}
 
