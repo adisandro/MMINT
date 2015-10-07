@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.mavo.operator;singleton:=true
+Bundle-Version: 1.3.0.qualifier
+Bundle-Vendor: %providerName
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.jdt.annotation;resolution:=optional,
+ edu.toronto.cs.se.mavo,
+ edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.mmint.mavo

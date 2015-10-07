@@ -136,6 +136,7 @@
   	<module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.mavo.edit</module>
   	<module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.mmint.mavo</module>
   	<module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.mmint.mavo.edit</module>
+  	<module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.modelepedia.mavo.operator</module>
   	<module>../../plugins/External/EMFtoCSP/edu.toronto.cs.se.modelepedia.emftocsp</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3.operator</module>
