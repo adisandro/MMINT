@@ -15,8 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
@@ -36,13 +34,12 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 
 //TODO MMINT[OPERATOR] Move to appropriate package+feature when they're created for core operators
 //TODO MMINT[OPERATOR] Use this as base for the lifted ones
@@ -109,7 +106,7 @@ public class HenshinTransformation extends OperatorImpl {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
 		Model origModel = inputsByName.get(IN_MODEL);
@@ -127,16 +124,11 @@ public class HenshinTransformation extends OperatorImpl {
 			transformedRootModelObj.eClass().getEPackage().getNsURI());
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
 			transformedModelUri,
-			ModelOrigin.CREATED,
 			outputMIDsByName.get(OUT_MODEL));
-		EList<Model> transformationModels = new BasicEList<>();
-		transformationModels.add(origModel);
-		transformationModels.add(transformedModel);
-		ModelRel traceRel = MultiModelTypeHierarchy.getRootModelRelType().createInstanceAndEndpointsAndReferences(
+		BinaryModelRel traceRel = MultiModelTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
 			null,
-			true,
-			ModelOrigin.CREATED,
-			transformationModels,
+			origModel,
+			transformedModel,
 			outputMIDsByName.get(OUT_MODELREL));
 		traceRel.setName(OUT_MODELREL);
 		Map<String, Model> outputsByName = new HashMap<>();

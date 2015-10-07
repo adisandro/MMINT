@@ -29,20 +29,20 @@
 	objects->collect(oclAsType(MAVOElement))
 /]
 
-[query public getMetamodelMAVOClasses(mavoModel : MAVOModel) : Sequence(EClass) =
-	mavoModel.eClass().ePackage.eAllContents(EClass)->select(
+[query public getMetamodelMAVOClasses(mavoRoot : MAVORoot) : Sequence(EClass) =
+	mavoRoot.eClass().ePackage.eAllContents(EClass)->select(
 		not abstract and
 		eAllSuperTypes->exists(super : EClass | super.name = 'MAVOElement') and
 		eAnnotations->exists(source = 'gmf.node' or source = 'gmf.link')
 	)
 /]
 
-[query public getAlreadyEncodedMAVOElementsCounter(mavoModel : MAVOModel, currentMAVOClass : EClass) : Integer =
-	mavoModel.getMetamodelMAVOClasses()
-	->subSequence(1, mavoModel.getMetamodelMAVOClasses()->indexOf(currentMAVOClass))
-	->collect(eclass : EClass | mavoModel.getObjectsOfType(eclass))
+[query public getAlreadyEncodedMAVOElementsCounter(mavoRoot : MAVORoot, currentMAVOClass : EClass) : Integer =
+	mavoRoot.getMetamodelMAVOClasses()
+	->subSequence(1, mavoRoot.getMetamodelMAVOClasses()->indexOf(currentMAVOClass))
+	->collect(eclass : EClass | mavoRoot.getObjectsOfType(eclass))
 	->size() -
-	mavoModel.getObjectsOfType(currentMAVOClass)->size()
+	mavoRoot.getObjectsOfType(currentMAVOClass)->size()
 /]
 
 [query private getEdgeFeatureName(eclass : EClass, annotation : String) : String =
@@ -57,19 +57,19 @@
 	getEdgeFeatureName(eclass, 'target')
 /]
 
-[query public getMergeableFormulaVars(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Set(String) =
+[query public getMergeableFormulaVars(mavoRoot : MAVORoot, mavoModelObj : MAVOElement) : Set(String) =
 	invoke(
 		'edu.toronto.cs.se.mmint.mavo.library.MAVOUtils',
-		'getMergeableFormulaVars(edu.toronto.cs.se.mavo.MAVOModel, edu.toronto.cs.se.mavo.MAVOElement)',
-		Sequence{mavoModel, mavoModelObj}
+		'getMergeableFormulaVars(edu.toronto.cs.se.mavo.MAVORoot, edu.toronto.cs.se.mavo.MAVOElement)',
+		Sequence{mavoRoot, mavoModelObj}
 	)
 /]
 
-[query public getUnmergeableFormulaVars(mavoModel : MAVOModel, mavoModelObj : MAVOElement) : Set(String) =
+[query public getUnmergeableFormulaVars(mavoRoot : MAVORoot, mavoModelObj : MAVOElement) : Set(String) =
 	invoke(
 		'edu.toronto.cs.se.mmint.mavo.library.MAVOUtils',
-		'getUnmergeableFormulaVars(edu.toronto.cs.se.mavo.MAVOModel, edu.toronto.cs.se.mavo.MAVOElement)',
-		Sequence{mavoModel, mavoModelObj}
+		'getUnmergeableFormulaVars(edu.toronto.cs.se.mavo.MAVORoot, edu.toronto.cs.se.mavo.MAVOElement)',
+		Sequence{mavoRoot, mavoModelObj}
 	)
 /]
 
@@ -85,7 +85,7 @@
 	mayDecision.alternatives->collect(mavoElements)->asOrderedSet()
 /]
 
-[template public encodeModelMayOnly(mavoModel : MAVOModel)]
+[template public encodeModelMayOnly(mavoRoot : MAVORoot)]
 ;Concretizations
 (define-sort NodeType () Int)
 (define-sort Node () Int)
@@ -97,7 +97,7 @@
 (declare-fun edgeType (Edge) EdgeType)
 (declare-fun src (Edge) Node)
 (declare-fun tgt (Edge) Node)
-	[for (eclass : EClass | mavoModel.getMetamodelMAVOClasses())]
+	[for (eclass : EClass | mavoRoot.getMetamodelMAVOClasses())]
 		[let function : String = eclass.getGraphFunction()]
 (declare-const [eclass.getMAVOClassName().toUpperCase()/] [function.toUpperFirst()/]Type)
 (assert (= [eclass.getMAVOClassName().toUpperCase()/] [i/]))
@@ -105,20 +105,20 @@
 	[/for]
 
 ;Model
-	[let numTypes : Integer = mavoModel.getMetamodelMAVOClasses()->size()]
-	[for (mavoNode : MAVOElement | mavoModel.getMAVONodes())]
+	[let numTypes : Integer = mavoRoot.getMetamodelMAVOClasses()->size()]
+	[for (mavoNode : MAVOElement | mavoRoot.getMAVONodes())]
 (declare-const [mavoNode.formulaVariable/] ['Node'/])
 (assert (= [mavoNode.formulaVariable/] [numTypes+i/]))
 	[/for]
-	[let numNodes : Integer = mavoModel.getMAVONodes()->size()]
-	[for (mavoEdge : MAVOElement | mavoModel.getMAVOEdges())]
+	[let numNodes : Integer = mavoRoot.getMAVONodes()->size()]
+	[for (mavoEdge : MAVOElement | mavoRoot.getMAVOEdges())]
 (declare-const [mavoEdge.formulaVariable/] ['Edge'/])
 (assert (= [mavoEdge.formulaVariable/] [numTypes+numNodes+i/]))
 	[/for]
 	[/let]
 	[/let]
 ;End Model
-	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
+	[for (mavoElement : MAVOElement | mavoRoot.getMAVOElements())]
 		[let function : String = mavoElement.eClass().getGraphFunction()]
 (assert (= ([function/]Type [mavoElement.formulaVariable/]) [mavoElement.eClass().getMAVOClassName().toUpperCase()/]))
 		[if (function = 'edge')]
@@ -137,10 +137,10 @@
 	[/for]
 [/template]
 
-[template public encodeMAVOConstraintsMayOnly(mavoModel : MAVOModel)]
+[template public encodeMAVOConstraintsMayOnly(mavoRoot : MAVORoot)]
 ;Model is Complete
-	[let numTypes : Integer = mavoModel.getMetamodelMAVOClasses()->size()]
-	[let numNodes : Integer = mavoModel.getMAVONodes()->size()]
+	[let numTypes : Integer = mavoRoot.getMetamodelMAVOClasses()->size()]
+	[let numNodes : Integer = mavoRoot.getMAVONodes()->size()]
 	[if (numNodes > 0)]
 (assert	(forall ((c Node)) (=>
 	(node c)
@@ -150,7 +150,7 @@
 	)
 )))
 	[/if]
-	[let numEdges : Integer = mavoModel.getMAVOEdges()->size()]
+	[let numEdges : Integer = mavoRoot.getMAVOEdges()->size()]
 	[if (numEdges > 0)]
 (assert	(forall ((c Edge)) (=>
 	(edge c)
@@ -163,7 +163,7 @@
 	[/let]
 	[/let]
 	[/let]
-	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
+	[for (mavoElement : MAVOElement | mavoRoot.getMAVOElements())]
 		[let function : String = mavoElement.eClass().getGraphFunction()]
 		[if (not mavoElement.may)]
 ;[mavoElement.formulaVariable/] Exists
@@ -171,7 +171,7 @@
 		[/if]
 		[/let]
 	[/for]
-	[for (mayDecision : MayDecision | mavoModel.decisions->select(oclIsTypeOf(MayDecision))->collect(oclAsType(MayDecision)))]
+	[for (mayDecision : MayDecision | mavoRoot.decisions->select(oclIsTypeOf(MayDecision))->collect(oclAsType(MayDecision)))]
 		[for (mayAlternative : MAVOCollection | mayDecision.alternatives)]
 ;[mayDecision.formulaVariable/]-[mayAlternative.formulaVariable/] Alternative elements
 (declare-fun [mayAlternative.formulaVariable/] () Bool)
@@ -196,12 +196,12 @@
 	[/for]
 [/template]
 
-[template public encodeModel(mavoModel : MAVOModel)]
+[template public encodeModel(mavoRoot : MAVORoot)]
 ;Concretizations
 (define-sort Node () Int)
 (define-sort NodeType () Int)
 (define-sort Edge () Int)
-	[for (eclass : EClass | mavoModel.getMetamodelMAVOClasses())]
+	[for (eclass : EClass | mavoRoot.getMetamodelMAVOClasses())]
 (declare-sort [eclass.getMAVOClassName()/])
 		[let function : String = eclass.getGraphFunction()]
 (declare-fun [function/] ([function.toUpperFirst()/] [eclass.getMAVOClassName()/]) Bool)
@@ -215,7 +215,7 @@
 			[let tgtEclass : EClass = eclass.eAllReferences->any(name = tgtFeature).eReferenceType]
 (declare-fun srcType ([eclass.getMAVOClassName()/]) NodeType)
 (declare-fun tgtType ([eclass.getMAVOClassName()/]) NodeType)
-			[for (endpointEclass : EClass | mavoModel.getMetamodelMAVOClasses())]
+			[for (endpointEclass : EClass | mavoRoot.getMetamodelMAVOClasses())]
 				[if (srcEclass.isSuperTypeOf(endpointEclass))]
 (declare-fun src ([eclass.getMAVOClassName()/]) [endpointEclass.getMAVOClassName()/])
 				[/if]
@@ -232,11 +232,11 @@
 	[/for]
 
 ;Model
-	[for (eclass : EClass | mavoModel.getMetamodelMAVOClasses())]
-		[let numTypes : Integer = mavoModel.getMetamodelMAVOClasses()->size()]
-		[let numPreviousTypes : Integer = mavoModel.getAlreadyEncodedMAVOElementsCounter(eclass)]
+	[for (eclass : EClass | mavoRoot.getMetamodelMAVOClasses())]
+		[let numTypes : Integer = mavoRoot.getMetamodelMAVOClasses()->size()]
+		[let numPreviousTypes : Integer = mavoRoot.getAlreadyEncodedMAVOElementsCounter(eclass)]
 		[let function : String = eclass.getGraphFunction()]
-		[for (mavoElement : MAVOElement | mavoModel.getObjectsOfType(eclass)->asMAVOElements())]
+		[for (mavoElement : MAVOElement | mavoRoot.getObjectsOfType(eclass)->asMAVOElements())]
 (declare-const [mavoElement.formulaVariable/] [function.toUpperFirst()/])
 (assert (= [mavoElement.formulaVariable/] [numTypes+numPreviousTypes+i/]))
 		[/for]
@@ -245,7 +245,7 @@
 		[/let]
 	[/for]
 ;End Model
-	[for (mavoElement : MAVOElement | mavoModel.getMAVOEdges())]
+	[for (mavoElement : MAVOElement | mavoRoot.getMAVOEdges())]
 		[let srcMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeSrcFeatureName()).oclAsType(MAVOElement)]
 		[let tgtMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeTgtFeatureName()).oclAsType(MAVOElement)]
 		[let srcEclass : EClass = srcMavoElement.eClass()]
@@ -266,13 +266,13 @@
 	[/for]
 [/template]
 
-[template public encodeMAVOConstraints(mavoModel : MAVOModel)]
+[template public encodeMAVOConstraints(mavoRoot : MAVORoot)]
 ;Model is Complete
-	[for (eclass : EClass | mavoModel.getMetamodelMAVOClasses())]
-		[let eclassMavoElements : Sequence(MAVOElement) = mavoModel.getObjectsOfType(eclass)->asMAVOElements()]
+	[for (eclass : EClass | mavoRoot.getMetamodelMAVOClasses())]
+		[let eclassMavoElements : Sequence(MAVOElement) = mavoRoot.getObjectsOfType(eclass)->asMAVOElements()]
 		[if (eclassMavoElements->size() > 0)]
-			[let numTypes : Integer = mavoModel.getMetamodelMAVOClasses()->size()]
-			[let numPreviousTypes : Integer = mavoModel.getAlreadyEncodedMAVOElementsCounter(eclass)]
+			[let numTypes : Integer = mavoRoot.getMetamodelMAVOClasses()->size()]
+			[let numPreviousTypes : Integer = mavoRoot.getAlreadyEncodedMAVOElementsCounter(eclass)]
 			[let function : String = eclass.getGraphFunction()]
 (assert	(forall ((x [function.toUpperFirst()/]) (c [eclass.getMAVOClassName()/])) (=>
 	([function/] x c)
@@ -287,7 +287,7 @@
 		[/if]
 		[/let]
 	[/for]
-	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
+	[for (mavoElement : MAVOElement | mavoRoot.getMAVOElements())]
 		[let function : String = mavoElement.eClass().getGraphFunction()]
 		[let sort : String = mavoElement.eClass().getMAVOClassName()]
 		[if (not mavoElement.may)]
@@ -301,7 +301,7 @@
 	(= c1 c2)
 )))
 		[/if]
-		[let unmergeableFormulaVars : Set(String) = mavoModel.getUnmergeableFormulaVars(mavoElement)]
+		[let unmergeableFormulaVars : Set(String) = mavoRoot.getUnmergeableFormulaVars(mavoElement)]
 		[if (not unmergeableFormulaVars->isEmpty())]
 ;[mavoElement.formulaVariable/] is Distinct[if (mavoElement.var)] only from unmergeables[/if]
 (assert	(forall ((c [sort/])) (=>
@@ -317,7 +317,7 @@
 		[/let]
 		[/let]
 	[/for]
-	[for (mavoDecision : MAVODecision | mavoModel.decisions)]
+	[for (mavoDecision : MAVODecision | mavoRoot.decisions)]
 		[if (mavoDecision.oclIsTypeOf(MayDecision))]
 			[let mayDecision : MayDecision = mavoDecision.oclAsType(MayDecision)]
 			[for (mayAlternative : MAVOCollection | mayDecision.alternatives)]
@@ -348,7 +348,7 @@
 			[let domainFormulaVars : Sequence(String) = varDomain.mavoElements->collect(formulaVariable)]
 ;[varDecision.formulaVariable/]-[varDomain.formulaVariable/] merge Domain
 			[for (mavoElement : MAVOElement | varDomain.mavoElements)]
-				[let mergeableFormulaVars : Set(String) = mavoModel.getMergeableFormulaVars(mavoElement)]
+				[let mergeableFormulaVars : Set(String) = mavoRoot.getMergeableFormulaVars(mavoElement)]
 (assert	(forall ((c [mavoElement.eClass().getMAVOClassName()/])) (=>
 	([mavoElement.eClass().getGraphFunction()/] [mavoElement.formulaVariable/] c)
 	(not (or

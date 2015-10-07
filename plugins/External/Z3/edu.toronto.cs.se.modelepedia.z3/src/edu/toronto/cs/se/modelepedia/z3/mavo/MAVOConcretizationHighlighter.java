@@ -31,6 +31,7 @@ import edu.toronto.cs.se.mavo.MayDecisionLogic;
 import edu.toronto.cs.se.mavo.SetDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mavo.library.MAVOGMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
@@ -71,7 +72,7 @@ public class MAVOConcretizationHighlighter {
 
 		// get view elements from diagram
 		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
-		Map<String, View> diagramViews = GMFDiagramUtils.getDiagramViews(exampleDiagram);
+		Map<String, View> diagramViews = MAVOGMFDiagramUtils.getDiagramViews(exampleDiagram);
 
 		// grey out model objects that are not in the example
 		Set<String> notInExampleFormulaVars = separateExampleElements(z3ModelObjs, diagramViews);
@@ -154,7 +155,7 @@ public class MAVOConcretizationHighlighter {
 
 		// get view elements from diagram
 		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
-		Map<String, View> diagramViews = GMFDiagramUtils.getDiagramViews(exampleDiagram);
+		Map<String, View> diagramViews = MAVOGMFDiagramUtils.getDiagramViews(exampleDiagram);
 
 		// highlight
 		if (mavoElemToHighlight instanceof MAVODecision) {

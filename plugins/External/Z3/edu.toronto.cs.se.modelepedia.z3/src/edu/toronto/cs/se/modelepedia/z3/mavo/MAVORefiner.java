@@ -37,18 +37,18 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mavo.library.MAVOGMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -188,7 +188,7 @@ public class MAVORefiner {
 
 		ModelEndpointReference modelEndpointRef = refinementRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference refinedModelEndpointRef = refinementRel.getModelEndpointRefs().get(1);
-		Link refinementLinkType = refinementRel.getMetatype().getLinks().get(0);
+		Mapping refinementMappingType = refinementRel.getMetatype().getMappings().get(0);
 		for (Entry<MAVOElement, MAVOElement> refinementEntry : refinementMap.entrySet()) {
 			MAVOElement refinedModelObj = refinementEntry.getKey();
 			MAVOElement modelObj = refinementEntry.getValue();
@@ -200,14 +200,14 @@ public class MAVORefiner {
 			String linkName = DELETED_LINK_NAME;
 			EList<ModelElementReference> modelElemRefs = new BasicEList<ModelElementReference>();
 			try {
-				modelElemRefs.add(ModelElementImpl.createMAVOInstanceAndReference(modelObj, null, modelEndpointRef));
+				modelElemRefs.add(modelEndpointRef.createModelElementInstanceAndReference(modelObj, null));
 				if (refinedModelObj != null) {
 					isBinary = true;
 					linkName = REFINED_LINK_NAME;
-					modelElemRefs.add(ModelElementImpl.createMAVOInstanceAndReference(refinedModelObj, null, refinedModelEndpointRef));
+					modelElemRefs.add(refinedModelEndpointRef.createModelElementInstanceAndReference(refinedModelObj, null));
 				}
-				LinkReference refinementLinkRef = refinementLinkType.createInstanceAndReferenceAndEndpointsAndReferences(isBinary, modelElemRefs);
-				refinementLinkRef.getObject().setName(linkName);
+				MappingReference refinementMappingRef = refinementMappingType.createInstanceAndReferenceAndEndpointsAndReferences(isBinary, modelElemRefs);
+				refinementMappingRef.getObject().setName(linkName);
 			}
 			catch (MMINTException e) {
 				MMINTException.print(IStatus.WARNING, "Can't create refinement link", e);
@@ -217,7 +217,7 @@ public class MAVORefiner {
 
 	private void refineDiagram(org.eclipse.gmf.runtime.notation.Diagram refinedDiagram, @NonNull MAVORoot refinedRootModelObj, Map<MAVOElement, MAVOElement> refinementMap) {
 
-		Map<String, View> refinedDiagramViews = GMFDiagramUtils.getDiagramViews(refinedDiagram);
+		Map<String, View> refinedDiagramViews = MAVOGMFDiagramUtils.getDiagramViews(refinedDiagram);
 		// remove views that are no longer in the diagram
 		for (Entry<MAVOElement, MAVOElement> refinementEntry : refinementMap.entrySet()) {
 			if (refinementEntry.getValue() != null) { // need only removal refinements
@@ -250,21 +250,17 @@ public class MAVORefiner {
 		// create mid artifacts
 		String refinedModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(model.getUri(), REFINED_MODEL_SUFFIX), true, false);
 		MultiModelUtils.copyTextFileAndReplaceText(model.getUri(), refinedModelUri, "", "", true);
-		MultiModel instanceMID = MultiModelRegistry.getMultiModel(model);
-		Model refinedModel = model.getMetatype().createMAVOInstance(refinedModelUri, ModelOrigin.CREATED, instanceMID);
+		MID instanceMID = MultiModelRegistry.getMultiModel(model);
+		Model refinedModel = model.getMetatype().createInstance(refinedModelUri, instanceMID);
 		ModelRel modelRelType = MultiModelTypeRegistry.getType(MODELRELTYPE_URI);
 		if (modelRelType == null) {
 			MMINTException.print(IStatus.WARNING, "Can't find " + MODELRELTYPE_URI + " type, fallback to root ModelRel type", null);
 			modelRelType = MultiModelTypeHierarchy.getRootModelRelType();
 		}
-		EList<Model> modelEndpoints = new BasicEList<Model>();
-		modelEndpoints.add(model);
-		modelEndpoints.add(refinedModel);
-		ModelRel refinementRel = modelRelType.createInstanceAndEndpointsAndReferences(
+		BinaryModelRel refinementRel = modelRelType.createBinaryInstanceAndEndpointsAndReferences(
 			null,
-			true,
-			ModelOrigin.CREATED,
-			modelEndpoints,
+			model, 
+			refinedModel,
 			instanceMID);
 		refinementRel.setName(MODELREL_NAME);
 
