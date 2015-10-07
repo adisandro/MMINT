@@ -43,13 +43,12 @@ import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
@@ -57,8 +56,8 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.relationship.Link;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -155,7 +154,7 @@ public class KleisliTest extends MMINTTest {
 
 		// model rel type
 		KleisliModelRel kRootModelRelType = MultiModelTypeRegistry.getType(KLEISLI_MODELRELTYPE_URI);
-		KleisliModelRel kModelRelType = (KleisliModelRel) kRootModelRelType.createSubtype(MODELRELTYPE_NAME, false, null, null);
+		KleisliModelRel kModelRelType = (KleisliModelRel) kRootModelRelType.createSubtype(MODELRELTYPE_NAME, null, null, false);
 		MMINT.createTypeHierarchy();
 		KleisliModelEndpoint kRootModelTypeEndpoint = (KleisliModelEndpoint) kRootModelRelType.getModelEndpoints().get(0);
 		ModelEndpointReference srcModelTypeEndpointRef = kRootModelTypeEndpoint.createSubtypeAndReference(SRC_MODELTYPEENDPOINT_NAME, srcModelType, false, kModelRelType);
@@ -166,7 +165,7 @@ public class KleisliTest extends MMINTTest {
 		EPackage srcMetamodelRootObj = srcModelType.getEMFTypeRoot();
 		EPackage kTgtMetamodelRootObj = ((KleisliModelEndpoint) kTgtModelTypeEndpointRef.getObject()).getExtendedTarget().getEMFTypeRoot();
 		ModelElement rootModelElemType = MultiModelTypeHierarchy.getRootModelElementType();
-		Link rootLinkType = MultiModelTypeHierarchy.getRootMappingType();
+		Mapping rootMappingType = MultiModelTypeHierarchy.getRootMappingType();
 		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
 		for (int i = 0; i < SRC_METAMODELOBJ_NAMES.length; i++) {
 			ModelElementReference srcModelElemTypeRef = dropMetamodelObject(srcMetamodelRootObj, SRC_METAMODELOBJ_NAMES[i], srcModelTypeEndpointRef, rootModelElemType);
@@ -178,20 +177,20 @@ public class KleisliTest extends MMINTTest {
 				tgtModelElemTypeRef.getObject().setConstraint(constraint);
 			}
 			String newLinkTypeName = srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemTypeRef.getObject().getName();
-			LinkReference linkTypeRef = rootLinkType.createSubtypeAndReference(null, newLinkTypeName, true, kModelRelType);
+			MappingReference mappingTypeRef = rootMappingType.createSubtypeAndReference(null, newLinkTypeName, true, kModelRelType);
 			MMINT.createTypeHierarchy();
 			String srcModelElemTypeEndpointName = srcModelElemTypeRef.getObject().getName(), tgtModelElemTypeEndpointName = tgtModelElemTypeRef.getObject().getName();
 			if (srcModelElemTypeEndpointName.equals(tgtModelElemTypeEndpointName)) {
 				srcModelElemTypeEndpointName += srcModelTypeEndpointRef.getObject().getName();
 				tgtModelElemTypeEndpointName += kTgtModelTypeEndpointRef.getObject().getName();
 			}
-			rootModelElemTypeEndpoint.createSubtypeAndReference(srcModelElemTypeEndpointName, srcModelElemTypeRef, false, linkTypeRef);
-			rootModelElemTypeEndpoint.createSubtypeAndReference(tgtModelElemTypeEndpointName, tgtModelElemTypeRef, false, linkTypeRef);
+			rootModelElemTypeEndpoint.createSubtypeAndReference(srcModelElemTypeEndpointName, srcModelElemTypeRef, false, mappingTypeRef);
+			rootModelElemTypeEndpoint.createSubtypeAndReference(tgtModelElemTypeEndpointName, tgtModelElemTypeRef, false, mappingTypeRef);
 		}
 
 		// instances
 		createTestProject();
-		MultiModel instanceMID = MIDFactory.eINSTANCE.createMultiModel();
+		MID instanceMID = MIDFactory.eINSTANCE.createMID();
 		URL inputModelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, INPUT_MODEL_FILENAME, false).nextElement();
 		MultiModelUtils.copyTextFileAndReplaceText(
 			FileLocator.toFileURL(inputModelUrl).getFile().toString(),
@@ -200,7 +199,7 @@ public class KleisliTest extends MMINTTest {
 			"file:" + MultiModelUtils.prependStateToUri(TGT_METAMODEL_NAME),
 			false
 		);
-		Model inputModel =  tgtModelType.createInstanceAndEditor(INPUT_MODEL_URI, ModelOrigin.CREATED, instanceMID);
+		Model inputModel =  tgtModelType.createInstanceAndEditor(INPUT_MODEL_URI, instanceMID);
 		MultiModelUtils.createModelFile(instanceMID, TESTS_INSTANCEMID_URI, true); // this is needed for correct uris in the operator
 		Operator transformationOperator = MultiModelTypeRegistry.<Operator>getType(KLEISLI_TRANSFORMATIONOPERATORTYPE_URI);
 		EList<Model> transformationInputModels = new BasicEList<Model>();
@@ -211,7 +210,7 @@ public class KleisliTest extends MMINTTest {
 		transformationGeneric.setGenericSuperTypeEndpoint(transformationOperator.getGenerics().get(0));
 		transformationGeneric.setGeneric(kModelRelType);
 		transformationGenerics.add(transformationGeneric);
-		Map<String, MultiModel> outputMIDsByName = MultiModelOperatorUtils.createSimpleOutputMIDsByName(transformationOperator, instanceMID);
+		Map<String, MID> outputMIDsByName = MultiModelOperatorUtils.createSimpleOutputMIDsByName(transformationOperator, instanceMID);
 		Map<String, Model> transformationOutput = transformationOperator.start(transformationInputs, transformationGenerics, outputMIDsByName, instanceMID).getOutputsByName();
 		MultiModelUtils.createModelFile(instanceMID, TESTS_INSTANCEMID_URI, true);
 

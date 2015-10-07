@@ -30,11 +30,10 @@ import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
@@ -56,23 +55,23 @@ public abstract class MMINTTest {
 		return testProject;
 	}
 
-	protected @NonNull MultiModel createInstanceMID() throws Exception {
+	protected @NonNull MID createInstanceMID() throws Exception {
 
 		createTestProject();
-		MultiModel instanceMID = MIDFactory.eINSTANCE.createMultiModel();
+		MID instanceMID = MIDFactory.eINSTANCE.createMID();
 		MultiModelUtils.createModelFile(instanceMID, TEST_INSTANCEMID_URI, true);
 
 		return instanceMID;
 	}
 
-	protected @NonNull Model addInputModel(MultiModel instanceMID, Bundle testBundle, String bundleDir, String bundleFilename) throws Exception {
+	protected @NonNull Model addInputModel(MID instanceMID, Bundle testBundle, String bundleDir, String bundleFilename) throws Exception {
 
 		URL bundleModelUrl = testBundle.findEntries(bundleDir, bundleFilename, false).nextElement();
 		String inputModelUri = IPath.SEPARATOR + TEST_PROJECT + IPath.SEPARATOR + bundleFilename;
 		Path bundlePath = Paths.get(FileLocator.toFileURL(bundleModelUrl).getFile().toString());
 		Path inputPath = Paths.get(MultiModelUtils.prependWorkspaceToUri(inputModelUri));
 		Files.copy(bundlePath, inputPath, StandardCopyOption.REPLACE_EXISTING);
-		Model inputModel =  MultiModelTypeHierarchy.getRootModelType().createInstance(inputModelUri, ModelOrigin.CREATED, instanceMID);
+		Model inputModel =  MultiModelTypeHierarchy.getRootModelType().createInstance(inputModelUri, instanceMID);
 		MultiModelUtils.createModelFile(instanceMID, TEST_INSTANCEMID_URI, true);
 
 		return inputModel;
