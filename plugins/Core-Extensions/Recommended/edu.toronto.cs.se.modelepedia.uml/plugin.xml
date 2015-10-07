@@ -16,22 +16,11 @@
 <plugin>
 
    <extension
-         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
-      <profile
-            description="MAVO support in UML models"
-            iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Profile.gif"
-            name="MAVOProfile"
-            path="platform:/plugin/edu.toronto.cs.se.modelepedia.uml/model/mavo.profile.uml"
-            provider="Software Engineering Group, University of Toronto">
-      </profile>
-   </extension>
-
-   <extension
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
                name="UML"
-               uri="http://www.eclipse.org/uml2/4.0.0/UML">
+               uri="http://www.eclipse.org/uml2/5.0.0/UML">
          </type>
       </modelType>
    </extension>
@@ -39,13 +28,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UML"
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
          <type
                name="UML tree"
-               uri="http://www.eclipse.org/uml2/4.0.0/UML_tree">
+               uri="http://www.eclipse.org/uml2/5.0.0/UML_tree">
          </type>
       </editorType>
    </extension>
@@ -55,19 +44,19 @@
       <editorType
             id="org.eclipse.papyrus.infra.core.papyrusEditor"
             isDiagram="true"
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UML"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
          <type
                name="UML diagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UML_diagram">
+               uri="http://www.eclipse.org/uml2/5.0.0/UML_diagram">
          </type>
       </editorType>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram"
+            uri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram"
             class="org.eclipse.uml2.uml.UMLPackage"/>
    </extension>
 
@@ -76,10 +65,10 @@
       <modelType>
          <type
                name="UMLClassDiagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram"
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram"
                isAbstract="true">
             <superType
-                  uri="http://www.eclipse.org/uml2/4.0.0/UML">
+                  uri="http://www.eclipse.org/uml2/5.0.0/UML">
             </superType>
          </type>
          <constraint
@@ -92,13 +81,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram"
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
          <type
                name="UMLClassDiagram tree"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_tree">
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram_tree">
          </type>
       </editorType>
    </extension>
@@ -108,19 +97,19 @@
       <editorType
             id="org.eclipse.papyrus.infra.core.papyrusEditor"
             isDiagram="true"
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
          <type
                name="UML diagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_diagram">
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram_diagram">
          </type>
       </editorType>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram"
+            uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram"
             class="org.eclipse.uml2.uml.UMLPackage"/>
    </extension>
 
@@ -129,10 +118,10 @@
       <modelType>
          <type
                name="UMLComponentDiagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram"
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram"
                isAbstract="true">
             <superType
-                  uri="http://www.eclipse.org/uml2/4.0.0/UML">
+                  uri="http://www.eclipse.org/uml2/5.0.0/UML">
             </superType>
          </type>
          <constraint
@@ -145,13 +134,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram"
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
          <type
                name="UMLComponentDiagram tree"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_tree">
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_tree">
          </type>
       </editorType>
    </extension>
@@ -161,19 +150,19 @@
       <editorType
             id="org.eclipse.papyrus.infra.core.papyrusEditor"
             isDiagram="true"
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
          <type
                name="UML diagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_diagram">
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_diagram">
          </type>
       </editorType>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram"
+            uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram"
             class="org.eclipse.uml2.uml.UMLPackage"/>
    </extension>
 
@@ -182,10 +171,10 @@
       <modelType>
          <type
                name="UMLDeploymentDiagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram"
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram"
                isAbstract="true">
             <superType
-                  uri="http://www.eclipse.org/uml2/4.0.0/UML">
+                  uri="http://www.eclipse.org/uml2/5.0.0/UML">
             </superType>
          </type>
          <constraint
@@ -198,13 +187,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram"
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
          <type
                name="UMLDeploymentDiagram tree"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_tree">
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_tree">
          </type>
       </editorType>
    </extension>
@@ -214,12 +203,12 @@
       <editorType
             id="org.eclipse.papyrus.infra.core.papyrusEditor"
             isDiagram="true"
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
          <type
                name="UML diagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_diagram">
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_diagram">
          </type>
       </editorType>
    </extension>
@@ -240,8 +229,8 @@
             </type>
          </modelType>
          <binaryType
-               sourceTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram"
-               targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram">
+               sourceTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram"
+               targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram">
          </binaryType>
          <modelTypeEndpoint>
             <type
@@ -249,18 +238,18 @@
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel-UMLComponentDiagram/UMLComponentEndpoint">
             </type>
             <typeEndpoint
-                  targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram">
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram">
             </typeEndpoint>
             <modelElemType>
                 <type
                      name="Usage"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram#//Usage">
+                     uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram#//Usage">
                 </type>
             </modelElemType>
             <modelElemType>
                 <type
                      name="Component"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram#//Component">
+                     uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram#//Component">
                 </type>
             </modelElemType>
          </modelTypeEndpoint>
@@ -270,20 +259,20 @@
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel-UMLDeploymentDiagram/UMLDeploymentEndpoint">
             </type>
             <typeEndpoint
-                  targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram">
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram">
             </typeEndpoint>
             <modelElemType>
                 <type
                      name="Node"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Node">
+                     uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram#//Node">
                 </type>
             </modelElemType>
             <modelElemType>
                 <type
                      name="Device"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Device">
+                     uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram#//Device">
                    <superType
-                         uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Node">
+                         uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram#//Node">
                    </superType>
                 </type>
             </modelElemType>
@@ -294,8 +283,8 @@
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink">
             </type>
             <binaryType
-                  sourceTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram#//Component"
-                  targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Device">
+                  sourceTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram#//Component"
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram#//Device">
             </binaryType>
             <modelElemTypeEndpoint>
                <type
@@ -305,7 +294,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram#//Component">
+                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram#//Component">
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
@@ -314,7 +303,7 @@
                      uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink-Device/DeviceEndpoint">
                </type>
                <typeEndpoint
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Device">
+                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram#//Device">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>
@@ -324,8 +313,8 @@
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink">
             </type>
             <binaryType
-                  sourceTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram#//Usage"
-                  targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Node">
+                  sourceTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram#//Usage"
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram#//Node">
             </binaryType>
             <modelElemTypeEndpoint>
                <type
@@ -335,7 +324,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram#//Usage">
+                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram#//Usage">
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
@@ -345,7 +334,7 @@
                </type>
                <typeEndpoint
                      lowerBound="0"
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram#//Node">
+                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram#//Node">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>
@@ -356,7 +345,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO"
+            uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO"
             class="org.eclipse.uml2.uml.UMLPackage"/>
    </extension>
 
@@ -365,13 +354,13 @@
       <modelType>
          <type
                name="UML_MAVO"
-               uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO"
+               uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO"
                isAbstract="true">
             <superType
                   uri="http://se.cs.toronto.edu/MAVO">
             </superType>
             <superType
-                  uri="http://www.eclipse.org/uml2/4.0.0/UML">
+                  uri="http://www.eclipse.org/uml2/5.0.0/UML">
             </superType>
          </type>
       </modelType>
@@ -380,13 +369,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO"
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
          <type
                name="UML_MAVO tree"
-               uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO_tree">
+               uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO_tree">
          </type>
       </editorType>
    </extension>
@@ -396,19 +385,19 @@
       <editorType
             id="org.eclipse.papyrus.infra.core.papyrusEditor"
             isDiagram="true"
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
          <type
                name="UML_MAVO diagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO_diagram">
+               uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO_diagram">
          </type>
       </editorType>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO"
+            uri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram_MAVO"
             class="org.eclipse.uml2.uml.UMLPackage"/>
    </extension>
 
@@ -417,10 +406,10 @@
       <modelType>
          <type
                name="UMLClassDiagram_MAVO"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO"
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram_MAVO"
                isAbstract="true">
             <superType
-                  uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
+                  uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO">
             </superType>
          </type>
          <constraint
@@ -433,13 +422,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram_MAVO"
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
          <type
                name="UMLClassDiagram_MAVO tree"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO_tree">
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram_MAVO_tree">
          </type>
       </editorType>
    </extension>
@@ -449,19 +438,19 @@
       <editorType
             id="org.eclipse.papyrus.infra.core.papyrusEditor"
             isDiagram="true"
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram_MAVO"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
          <type
                name="UMLClassDiagram_MAVO diagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLClassDiagram_MAVO_diagram">
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram_MAVO_diagram">
          </type>
       </editorType>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO"
+            uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_MAVO"
             class="org.eclipse.uml2.uml.UMLPackage"/>
    </extension>
 
@@ -470,10 +459,10 @@
       <modelType>
          <type
                name="UMLComponentDiagram_MAVO"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO"
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_MAVO"
                isAbstract="true">
             <superType
-                  uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
+                  uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO">
             </superType>
          </type>
          <constraint
@@ -486,13 +475,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_MAVO"
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
          <type
                name="UMLComponentDiagram_MAVO tree"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO_tree">
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_MAVO_tree">
          </type>
       </editorType>
    </extension>
@@ -502,19 +491,19 @@
       <editorType
             id="org.eclipse.papyrus.infra.core.papyrusEditor"
             isDiagram="true"
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_MAVO"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
          <type
                name="UMLComponentDiagram_MAVO diagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO_diagram">
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_MAVO_diagram">
          </type>
       </editorType>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO"
+            uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO"
             class="org.eclipse.uml2.uml.UMLPackage"/>
    </extension>
 
@@ -523,10 +512,10 @@
       <modelType>
          <type
                name="UMLDeploymentDiagram_MAVO"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO"
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO"
                isAbstract="true">
             <superType
-                  uri="http://www.eclipse.org/uml2/4.0.0/UML_MAVO">
+                  uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO">
             </superType>
          </type>
          <constraint
@@ -539,13 +528,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO"
             id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
             isDiagram="false"
             wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
          <type
                name="UMLDeploymentDiagram_MAVO tree"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO_tree">
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO_tree">
          </type>
       </editorType>
    </extension>
@@ -555,12 +544,12 @@
       <editorType
             id="org.eclipse.papyrus.infra.core.papyrusEditor"
             isDiagram="true"
-            modelTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO"
+            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO"
             wizardDialogClass="edu.toronto.cs.se.modelepedia.uml.ui.UMLDiagramCreationWizardDialog"
             wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
          <type
                name="UMLDeploymentDiagram_MAVO diagram"
-               uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO_diagram">
+               uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO_diagram">
          </type>
       </editorType>
    </extension>
@@ -581,8 +570,8 @@
             </type>
          </modelType>
          <binaryType
-               sourceTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO"
-               targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO">
+               sourceTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_MAVO"
+               targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO">
          </binaryType>
          <modelTypeEndpoint>
             <type
@@ -590,18 +579,18 @@
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO-UMLComponentDiagram_MAVO/UMLComponentEndpoint">
             </type>
             <typeEndpoint
-                  targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO">
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_MAVO">
             </typeEndpoint>
             <modelElemType>
                 <type
                      name="Usage"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Usage">
+                     uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_MAVO#//Usage">
                 </type>
             </modelElemType>
             <modelElemType>
                 <type
                      name="Component"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Component">
+                     uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_MAVO#//Component">
                 </type>
             </modelElemType>
          </modelTypeEndpoint>
@@ -611,20 +600,20 @@
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO-UMLDeploymentDiagram_MAVO/UMLDeploymentEndpoint">
             </type>
             <typeEndpoint
-                  targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO">
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO">
             </typeEndpoint>
             <modelElemType>
                 <type
                      name="Node"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Node">
+                     uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO#//Node">
                 </type>
             </modelElemType>
             <modelElemType>
                 <type
                      name="Device"
-                     uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Device">
+                     uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO#//Device">
                    <superType
-                         uri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Node">
+                         uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO#//Node">
                    </superType>
                 </type>
             </modelElemType>
@@ -635,8 +624,8 @@
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/ComponentDeviceLink">
             </type>
             <binaryType
-                  sourceTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Component"
-                  targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Device">
+                  sourceTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_MAVO#//Component"
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO#//Device">
             </binaryType>
             <modelElemTypeEndpoint>
                <type
@@ -646,7 +635,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Component">
+                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_MAVO#//Component">
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
@@ -655,7 +644,7 @@
                      uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/ComponentDeviceLink-Device/DeviceEndpoint">
                </type>
                <typeEndpoint
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Device">
+                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO#//Device">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>
@@ -665,8 +654,8 @@
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/UsageNodeLink">
             </type>
             <binaryType
-                  sourceTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Usage"
-                  targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Node">
+                  sourceTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_MAVO#//Usage"
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO#//Node">
             </binaryType>
             <modelElemTypeEndpoint>
                <type
@@ -676,7 +665,7 @@
                <typeEndpoint
                      lowerBound="0"
                      upperBound="-1"
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLComponentDiagram_MAVO#//Usage">
+                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_MAVO#//Usage">
                </typeEndpoint>
             </modelElemTypeEndpoint>
             <modelElemTypeEndpoint>
@@ -686,7 +675,7 @@
                </type>
                <typeEndpoint
                      lowerBound="0"
-                     targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram_MAVO#//Node">
+                     targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO#//Node">
                </typeEndpoint>
             </modelElemTypeEndpoint>
          </linkType>

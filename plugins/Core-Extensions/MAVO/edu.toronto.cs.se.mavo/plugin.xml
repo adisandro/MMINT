@@ -23,4 +23,15 @@
             genModel="model/mavo.genmodel"/>
    </extension>
 
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="MAVO support in UML models"
+            iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Profile.gif"
+            name="MAVOProfile"
+            path="platform:/plugin/edu.toronto.cs.se.mavo/model/mavo.profile.uml"
+            provider="Software Engineering Group, University of Toronto">
+      </profile>
+   </extension>
+
 </plugin>

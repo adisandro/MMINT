@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Profile xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_H_nKEMlAEeKrhsRgWa0Oxg" name="MAVOProfile" metaclassReference="_PEBA8MlAEeKrhsRgWa0Oxg _4-_OEMlAEeKrhsRgWa0Oxg _YlkrIM7wEeKsUIrUddA5XA" metamodelReference="_H_nKEclAEeKrhsRgWa0Oxg">
+<uml:Profile xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_H_nKEMlAEeKrhsRgWa0Oxg" name="MAVOProfile" metaclassReference="_PEBA8MlAEeKrhsRgWa0Oxg _4-_OEMlAEeKrhsRgWa0Oxg _YlkrIM7wEeKsUIrUddA5XA" metamodelReference="_H_nKEclAEeKrhsRgWa0Oxg">
   <eAnnotations xmi:id="_jqRd0MlBEeKrhsRgWa0Oxg" source="http://www.eclipse.org/uml2/2.0.0/UML">
     <contents xmi:type="ecore:EPackage" xmi:id="_lRSGYNEtEeKoJbXh4vbX1A" name="MAVOProfile" nsURI="http:///schemas/MAVOProfile/_lRQRMNEtEeKoJbXh4vbX1A/3" nsPrefix="MAVOProfile">
       <eAnnotations xmi:id="_vulywNEtEeKoJbXh4vbX1A" source="PapyrusVersion">
@@ -12,34 +12,34 @@
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_lRSGYdEtEeKoJbXh4vbX1A" name="may">
         <eAnnotations xmi:id="_lRSGYtEtEeKoJbXh4vbX1A" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_fYEswNEsEeKoJbXh4vbX1A"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_lRSGY9EtEeKoJbXh4vbX1A" name="base_Classifier" ordered="false" lowerBound="1">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
         </eStructuralFeatures>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_lRSGZdEtEeKoJbXh4vbX1A" name="base_Relationship" ordered="false" lowerBound="1">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Relationship"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Relationship"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_lRSGZ9EtEeKoJbXh4vbX1A" name="set">
         <eAnnotations xmi:id="_lRSGaNEtEeKoJbXh4vbX1A" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WuiOoNEtEeKoJbXh4vbX1A"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_lRSGadEtEeKoJbXh4vbX1A" name="base_Classifier" ordered="false" lowerBound="1">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
         </eStructuralFeatures>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_lRSGa9EtEeKoJbXh4vbX1A" name="base_Relationship" ordered="false" lowerBound="1">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Relationship"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Relationship"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_lRSGbdEtEeKoJbXh4vbX1A" name="var">
         <eAnnotations xmi:id="_lRSGbtEtEeKoJbXh4vbX1A" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_aUS0YNEtEeKoJbXh4vbX1A"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_lRSGb9EtEeKoJbXh4vbX1A" name="base_Classifier" ordered="false" lowerBound="1">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
         </eStructuralFeatures>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_lRSGcdEtEeKoJbXh4vbX1A" name="base_Relationship" ordered="false" lowerBound="1">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Relationship"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Relationship"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_lRSGc9EtEeKoJbXh4vbX1A" name="inc">
         <eAnnotations xmi:id="_lRSGdNEtEeKoJbXh4vbX1A" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_b2Y5QNEtEeKoJbXh4vbX1A"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_lRSGddEtEeKoJbXh4vbX1A" name="base_Model" ordered="false" lowerBound="1">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Model"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </eStructuralFeatures>
       </eClassifiers>
     </contents>

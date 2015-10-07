@@ -24,7 +24,7 @@ public class MAVOElementReferenceLabelParser extends MAVOElementLabelParser {
 	protected IAdaptable getMAVOElementAdaptable(IAdaptable element) {
 
 		EObject modelObj = (EObject) element.getAdapter(EObject.class);
-		MAVOElement mavoElement = ((ExtendibleElementReference) modelObj).getObject();
+		MAVOElement mavoElement = (MAVOElement) ((ExtendibleElementReference) modelObj).getObject();
 
 		return new ParserHintAdapter(mavoElement, "");
 	}
