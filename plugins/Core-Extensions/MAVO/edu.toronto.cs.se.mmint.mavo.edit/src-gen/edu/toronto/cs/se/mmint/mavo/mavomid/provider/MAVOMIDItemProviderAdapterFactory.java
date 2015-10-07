@@ -104,29 +104,6 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMID} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected MAVOMIDItemProvider mavomidItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMID}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createMAVOMIDAdapter() {
-		if (mavomidItemProvider == null) {
-			mavomidItemProvider = new MAVOMIDItemProvider(this);
-		}
-
-		return mavomidItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -271,7 +248,6 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 	 * @generated
 	 */
 	public void dispose() {
-		if (mavomidItemProvider != null) mavomidItemProvider.dispose();
 		if (mavoModelItemProvider != null) mavoModelItemProvider.dispose();
 		if (mavoModelElementItemProvider != null) mavoModelElementItemProvider.dispose();
 	}

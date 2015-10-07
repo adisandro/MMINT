@@ -31,15 +31,6 @@ public interface MAVOMIDFactory extends EFactory {
 	MAVOMIDFactory eINSTANCE = edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>MAVOMID</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>MAVOMID</em>'.
-	 * @generated
-	 */
-	MAVOMID createMAVOMID();
-
-	/**
 	 * Returns a new object of class '<em>MAVO Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

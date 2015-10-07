@@ -37,13 +37,6 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass mavomidEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass mavoModelEClass = null;
 
 	/**
@@ -116,15 +109,6 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(MAVOMIDPackage.eNS_URI, theMAVOMIDPackage);
 		return theMAVOMIDPackage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getMAVOMID() {
-		return mavomidEClass;
 	}
 
 	/**
@@ -218,8 +202,6 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		mavomidEClass = createEClass(MAVOMID);
-
 		mavoModelEClass = createEClass(MAVO_MODEL);
 		createEOperation(mavoModelEClass, MAVO_MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN);
 		createEOperation(mavoModelEClass, MAVO_MODEL___CREATE_INSTANCE__STRING_MID);
@@ -262,16 +244,12 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		mavomidEClass.getESuperTypes().add(theMIDPackage.getMID());
-		mavomidEClass.getESuperTypes().add(theMAVOPackage.getMAVORoot());
 		mavoModelEClass.getESuperTypes().add(theMIDPackage.getModel());
 		mavoModelEClass.getESuperTypes().add(theMAVOPackage.getMAVORoot());
 		mavoModelElementEClass.getESuperTypes().add(theMIDPackage.getModelElement());
 		mavoModelElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(mavomidEClass, edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMID.class, "MAVOMID", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(mavoModelEClass, MAVOModel.class, "MAVOModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		EOperation op = initEOperation(getMAVOModel__CreateSubtype__String_String_String_boolean(), theMIDPackage.getModel(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);

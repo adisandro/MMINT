@@ -10,7 +10,6 @@
   <foreignModel>mavomid.ecore</foreignModel>
   <genPackages prefix="MAVOMID" basePackage="edu.toronto.cs.se.mmint.mavo" disposableProviderFactory="true"
       childCreationExtenders="true" ecorePackage="mavomid.ecore#/">
-    <genClasses ecoreClass="mavomid.ecore#//MAVOMID"/>
     <genClasses ecoreClass="mavomid.ecore#//MAVOModel">
       <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/createSubtype">
         <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/createSubtype/newModelTypeName"/>

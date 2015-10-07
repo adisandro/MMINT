@@ -67,97 +67,6 @@ public interface MAVOMIDPackage extends EPackage {
 	MAVOMIDPackage eINSTANCE = edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDImpl <em>MAVOMID</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDImpl
-	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getMAVOMID()
-	 * @generated
-	 */
-	int MAVOMID = 0;
-
-	/**
-	 * The feature id for the '<em><b>Models</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVOMID__MODELS = MIDPackage.MID__MODELS;
-
-	/**
-	 * The feature id for the '<em><b>Editors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVOMID__EDITORS = MIDPackage.MID__EDITORS;
-
-	/**
-	 * The feature id for the '<em><b>Operators</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVOMID__OPERATORS = MIDPackage.MID__OPERATORS;
-
-	/**
-	 * The feature id for the '<em><b>Extendible Table</b></em>' map.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVOMID__EXTENDIBLE_TABLE = MIDPackage.MID__EXTENDIBLE_TABLE;
-
-	/**
-	 * The feature id for the '<em><b>Level</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVOMID__LEVEL = MIDPackage.MID__LEVEL;
-
-	/**
-	 * The feature id for the '<em><b>Inc</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVOMID__INC = MIDPackage.MID_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVOMID__DECISIONS = MIDPackage.MID_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>MAVOMID</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVOMID_FEATURE_COUNT = MIDPackage.MID_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>MAVOMID</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVOMID_OPERATION_COUNT = MIDPackage.MID_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOModelImpl <em>MAVO Model</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -165,7 +74,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getMAVOModel()
 	 * @generated
 	 */
-	int MAVO_MODEL = 1;
+	int MAVO_MODEL = 0;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -490,7 +399,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getMAVOModelElement()
 	 * @generated
 	 */
-	int MAVO_MODEL_ELEMENT = 2;
+	int MAVO_MODEL_ELEMENT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -737,16 +646,6 @@ public interface MAVOMIDPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMID <em>MAVOMID</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>MAVOMID</em>'.
-	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMID
-	 * @generated
-	 */
-	EClass getMAVOMID();
-
-	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel <em>MAVO Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -839,16 +738,6 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 */
 	interface Literals {
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDImpl <em>MAVOMID</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDImpl
-		 * @see edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOMIDPackageImpl#getMAVOMID()
-		 * @generated
-		 */
-		EClass MAVOMID = eINSTANCE.getMAVOMID();
-
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOModelImpl <em>MAVO Model</em>}' class.
 		 * <!-- begin-user-doc -->

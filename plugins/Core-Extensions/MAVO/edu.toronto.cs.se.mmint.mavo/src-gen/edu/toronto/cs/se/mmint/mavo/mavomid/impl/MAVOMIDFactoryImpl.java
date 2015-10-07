@@ -65,22 +65,11 @@ public class MAVOMIDFactoryImpl extends EFactoryImpl implements MAVOMIDFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case MAVOMIDPackage.MAVOMID: return createMAVOMID();
 			case MAVOMIDPackage.MAVO_MODEL: return createMAVOModel();
 			case MAVOMIDPackage.MAVO_MODEL_ELEMENT: return createMAVOModelElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MAVOMID createMAVOMID() {
-		MAVOMIDImpl mavomid = new MAVOMIDImpl();
-		return mavomid;
 	}
 
 	/**

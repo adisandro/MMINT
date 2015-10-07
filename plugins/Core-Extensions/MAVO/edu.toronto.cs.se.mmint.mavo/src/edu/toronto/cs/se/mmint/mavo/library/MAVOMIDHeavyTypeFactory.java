@@ -15,7 +15,10 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDFactory;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement;
+import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.repository.ExtensionType;
 
 public class MAVOMIDHeavyTypeFactory extends MultiModelHeavyTypeFactory {
@@ -26,10 +29,24 @@ public class MAVOMIDHeavyTypeFactory extends MultiModelHeavyTypeFactory {
 	@Override
 	public Model createHeavyModelType(ExtensionType extensionType, String constraintLanguage, String constraintImplementation) throws MMINTException {
 
-		MAVOModel newModelType = MAVOMIDFactory.eINSTANCE.createMAVOModel();
-		super.addHeavyModelType(newModelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract(), constraintLanguage, constraintImplementation);
+		MAVOModel newMAVOModelType = MAVOMIDFactory.eINSTANCE.createMAVOModel();
+		super.addHeavyModelType(newMAVOModelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract(), constraintLanguage, constraintImplementation);
 
-		return newModelType;
+		return newMAVOModelType;
+	}
+
+	/**
+	 * MAVO version. {@inheritDoc}
+	 */
+	@Override
+	public ModelElement createHeavyModelElementType(ExtensionType extensionType, EMFInfo eInfo, Model modelType) throws MMINTException {
+
+		MAVOModelElement newMAVOModelElemType = MAVOMIDFactory.eINSTANCE.createMAVOModelElement();
+		ModelElement modelElemType = super.getSupertype(newMAVOModelElemType, extensionType.getUri(), extensionType.getSupertypeUri());
+		super.addHeavyType(newMAVOModelElemType, modelElemType, extensionType.getUri(), extensionType.getName());
+		super.addModelElementType(newMAVOModelElemType, eInfo, modelType);
+
+		return newMAVOModelElemType;
 	}
 
 }
