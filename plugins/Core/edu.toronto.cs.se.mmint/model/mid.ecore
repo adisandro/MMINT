@@ -690,6 +690,11 @@
           eExceptions="#//MMINTException">
         <eParameters name="modelObj" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
       </eOperations>
+      <eOperations name="createModelElementInstanceAndReference" lowerBound="1" eType="#//relationship/ModelElementReference"
+          eExceptions="#//MMINTException">
+        <eParameters name="modelObj" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <eParameters name="newModelElemName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElemRefs" upperBound="-1"
           eType="#//relationship/ModelElementReference" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

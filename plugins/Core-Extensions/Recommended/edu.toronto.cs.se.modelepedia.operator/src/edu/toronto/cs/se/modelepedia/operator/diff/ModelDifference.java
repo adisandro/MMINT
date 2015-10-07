@@ -29,7 +29,6 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -87,7 +86,7 @@ public class ModelDifference extends OperatorImpl {
 			MappingReference diffMappingRef = rootMappingType.createInstanceAndReference(false, diffModelRel);
 			diffMappingRef.getObject().setName(linksName);
 			// create model element
-			ModelElementReference diffModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(modelObj, null, newModelEndpointRef);
+			ModelElementReference diffModelElemRef = newModelEndpointRef.createModelElementInstanceAndReference(modelObj, null);
 			// create model element endpoint
 			rootModelElemTypeEndpoint.createInstanceAndReference(diffModelElemRef, diffMappingRef);
 		}

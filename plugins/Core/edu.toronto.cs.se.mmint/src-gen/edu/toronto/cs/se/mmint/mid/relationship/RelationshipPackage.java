@@ -1236,13 +1236,22 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_INSTANCE__EOBJECT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Create Model Element Instance And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT_REFERENCE___CREATE_MODEL_ELEMENT_INSTANCE_AND_REFERENCE__EOBJECT_STRING = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 5;
+
+	/**
 	 * The number of operations of the '<em>Model Endpoint Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 5;
+	int MODEL_ENDPOINT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
@@ -2762,6 +2771,16 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelEndpointReference__AcceptModelElementInstance__EObject();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference#createModelElementInstanceAndReference(org.eclipse.emf.ecore.EObject, java.lang.String) <em>Create Model Element Instance And Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Model Element Instance And Reference</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference#createModelElementInstanceAndReference(org.eclipse.emf.ecore.EObject, java.lang.String)
+	 * @generated
+	 */
+	EOperation getModelEndpointReference__CreateModelElementInstanceAndReference__EObject_String();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference <em>Model Element Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3649,6 +3668,14 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_INSTANCE__EOBJECT = eINSTANCE.getModelEndpointReference__AcceptModelElementInstance__EObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Model Element Instance And Reference</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ENDPOINT_REFERENCE___CREATE_MODEL_ELEMENT_INSTANCE_AND_REFERENCE__EOBJECT_STRING = eINSTANCE.getModelEndpointReference__CreateModelElementInstanceAndReference__EObject_String();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.

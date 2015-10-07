@@ -745,7 +745,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			// model elements
 			for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
 				EObject newModelObj = origModelElemRef.getObject().getEMFInstanceObject();
-				ModelElementReference newModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(newModelObj, origModelElemRef.getObject().getName(), newModelEndpointRef);
+				ModelElementReference newModelElemRef = newModelEndpointRef.createModelElementInstanceAndReference(newModelObj, origModelElemRef.getObject().getName());
 				newModelElemRefs.put(newModelElemRef.getUri(), newModelElemRef);
 			}
 		}

@@ -171,7 +171,7 @@ public class ChangeImpact extends OperatorImpl {
 					// create or get impacted model element ref
 					ModelElementReference newImpactedModelElemRef = MultiModelTypeHierarchy.getReference(impactedModelElemUri, impactedModelEndpointRef.getModelElemRefs());
 					if (newImpactedModelElemRef == null) {
-						newImpactedModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(impactedUnifiable, null, impactedModelEndpointRef);
+						newImpactedModelElemRef = impactedModelEndpointRef.createModelElementInstanceAndReference(impactedUnifiable, null);
 					}
 					// add impacted model element endpoint to impact link
 					ModelElementEndpointReference newImpactModelElemEndpointRef = rootModelElemTypeEndpoint.createInstanceAndReference(newImpactedModelElemRef, impactMappingRef);
@@ -215,7 +215,7 @@ public class ChangeImpact extends OperatorImpl {
 		for (Mapping diffMapping : diffRel.getMappings()) {
 			ModelElement diffModelElem = diffMapping.getModelElemEndpoints().get(0).getTarget();
 			// create diff model element ref
-			ModelElementReference newDiffModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(diffModelElem, diffModelElem.getName(), newDiffModelEndpointRef);
+			ModelElementReference newDiffModelElemRef = newDiffModelEndpointRef.createModelElementInstanceAndReference(diffModelElem, diffModelElem.getName());
 			// create impact link, add diff model element endpoint to it
 			EList<ModelElementReference> targetModelElemRefs = new BasicEList<ModelElementReference>();
 			targetModelElemRefs.add(newDiffModelElemRef);

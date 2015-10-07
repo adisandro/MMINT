@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -238,6 +239,13 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case RelationshipPackage.MODEL_ENDPOINT_REFERENCE___CREATE_MODEL_ELEMENT_INSTANCE_AND_REFERENCE__EOBJECT_STRING:
+				try {
+					return createModelElementInstanceAndReference((EObject)arguments.get(0), (String)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -309,6 +317,24 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 		}
 
 		return modelElemType;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public ModelElementReference createModelElementInstanceAndReference(EObject modelObj, String newModelElemName) throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+
+		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(this, modelObj);
+		String newModelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1];
+		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, MIDLevel.INSTANCES);
+		if (newModelElemName == null) {
+			newModelElemName = MultiModelRegistry.getModelElementName(eInfo, modelObj, MIDLevel.INSTANCES);
+		}
+		ModelElementReference newModelElemRef = modelElemType.createInstanceAndReference(newModelElemUri, newModelElemName, eInfo, this);
+
+		return newModelElemRef;
 	}
 
 } //ModelEndpointReferenceImpl

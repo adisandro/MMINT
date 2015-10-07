@@ -460,6 +460,15 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModelEndpointReference__CreateModelElementInstanceAndReference__EObject_String() {
+		return modelEndpointReferenceEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getModelElementReference() {
 		return modelElementReferenceEClass;
 	}
@@ -1092,6 +1101,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEOperation(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_TYPE__EOBJECT);
 		createEOperation(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN);
 		createEOperation(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_INSTANCE__EOBJECT);
+		createEOperation(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE___CREATE_MODEL_ELEMENT_INSTANCE_AND_REFERENCE__EOBJECT_STRING);
 
 		modelElementReferenceEClass = createEClass(MODEL_ELEMENT_REFERENCE);
 		createEReference(modelElementReferenceEClass, MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS);
@@ -1289,6 +1299,11 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 
 		op = initEOperation(getModelEndpointReference__AcceptModelElementInstance__EObject(), theMIDPackage.getModelElement(), "acceptModelElementInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEObject(), "modelObj", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
+
+		op = initEOperation(getModelEndpointReference__CreateModelElementInstanceAndReference__EObject_String(), this.getModelElementReference(), "createModelElementInstanceAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEObject(), "modelObj", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelElemName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(modelElementReferenceEClass, ModelElementReference.class, "ModelElementReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -31,11 +31,9 @@ import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
@@ -427,37 +425,6 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 			containerModelEndpointRef.getObject().getTarget().getModelElems().add(newModelElem);
 		}
 		ModelElementReference newModelElemRef = newModelElem.createInstanceReference(containerModelEndpointRef);
-
-		return newModelElemRef;
-	}
-
-	/**
-	 * Creates and adds a model element instance of a type to be automatically
-	 * detected and a reference to it to an Instance MID.
-	 * 
-	 * @param modelObj
-	 *            The EMF model object to be wrapped by the MMINT new model
-	 *            element.
-	 * @param newModelElemName
-	 *            The name of the new model element.
-	 * @param containerModelEndpointRef
-	 *            The reference to the model endpoint that will contain the new
-	 *            reference to the new model element.
-	 * @return The created reference to the new model element.
-	 * @throws MMINTException
-	 *             If the uri of the new model element is already registered in
-	 *             the Instance MID.
-	 * @generated NOT
-	 */
-	public static ModelElementReference createInstanceAndReference(EObject modelObj, String newModelElemName, ModelEndpointReference containerModelEndpointRef) throws MMINTException {
-
-		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(containerModelEndpointRef, modelObj);
-		String newModelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1];
-		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, MIDLevel.INSTANCES);
-		if (newModelElemName == null) {
-			newModelElemName = MultiModelRegistry.getModelElementName(eInfo, modelObj, MIDLevel.INSTANCES);
-		}
-		ModelElementReference newModelElemRef = modelElemType.createInstanceAndReference(newModelElemUri, newModelElemName, eInfo, containerModelEndpointRef);
 
 		return newModelElemRef;
 	}

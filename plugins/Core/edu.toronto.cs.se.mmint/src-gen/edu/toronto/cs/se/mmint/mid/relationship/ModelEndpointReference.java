@@ -127,4 +127,22 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
 	 */
 	ModelElement acceptModelElementInstance(EObject modelObj) throws MMINTException;
 
+	/**
+	 * <!-- begin-user-doc --> Creates and adds a model element instance of a type to be automatically detected and a
+	 * reference to it to an Instance MID.
+	 * 
+	 * @param modelObj
+	 *            The EMF model object to be wrapped by the new model element.
+	 * @param newModelElemName
+	 *            The name of the new model element.
+	 * @return The created reference to the new model element.
+	 * @throws MMINTException
+	 *             If this is a reference to a model instance endpoint, or if the uri of the new model element is
+	 *             already registered in the Instance MID. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelObjRequired="true"
+	 *        newModelElemNameRequired="true"
+	 * @generated
+	 */
+	ModelElementReference createModelElementInstanceAndReference(EObject modelObj, String newModelElemName) throws MMINTException;
+
 } // ModelEndpointReference

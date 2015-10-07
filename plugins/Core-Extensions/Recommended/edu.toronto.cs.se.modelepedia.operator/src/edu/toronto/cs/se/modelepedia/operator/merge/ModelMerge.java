@@ -35,7 +35,6 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -144,10 +143,9 @@ public class ModelMerge extends OperatorImpl {
 				modelObj1.eContainingFeature().getName(),
 				mergedModelObj);
 			EList<ModelElementReference> traceModelElemRefs1 = new BasicEList<>();
-			traceModelElemRefs1.add(ModelElementImpl.createInstanceAndReference(
+			traceModelElemRefs1.add(traceRel1.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(
 				modelObj1,
-				null,
-				traceRel1.getModelEndpointRefs().get(0)));
+				null));
 			String newModelElemUri = mergedModel.getUri()
 					+ MultiModelRegistry.getModelAndModelElementUris(mergedModelObj, MIDLevel.INSTANCES)[1];
 			EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(mergedModelObj, MIDLevel.INSTANCES);
@@ -181,10 +179,9 @@ public class ModelMerge extends OperatorImpl {
 			}
 			allModelObjs.put(modelObj2, mergedModelObj);
 			EList<ModelElementReference> traceModelElemRefs2 = new BasicEList<>();
-			traceModelElemRefs2.add(ModelElementImpl.createInstanceAndReference(
+			traceModelElemRefs2.add(traceRel2.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(
 				modelObj2,
-				null,
-				traceRel2.getModelEndpointRefs().get(0)));
+				null));
 			String newModelElemUri = mergedModel.getUri()
 					+ MultiModelRegistry.getModelAndModelElementUris(mergedModelObj, MIDLevel.INSTANCES)[1];
 			EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(mergedModelObj, MIDLevel.INSTANCES);

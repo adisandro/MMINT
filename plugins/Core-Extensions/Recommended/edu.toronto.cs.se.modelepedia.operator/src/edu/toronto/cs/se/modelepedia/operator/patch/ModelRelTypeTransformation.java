@@ -39,7 +39,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
-import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
@@ -214,9 +213,9 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		MultiModelUtils.createModelFile(tgtRootModelObj, tgtModelUri, true);
 		for (Map.Entry<EObject, EObject> tgtModelObjEntry : tgtModelObjs.entrySet()) {
 			EList<ModelElementReference> targetModelElemRefs = new BasicEList<ModelElementReference>();
-			ModelElementReference srcModelElemRef = ModelElementImpl.createInstanceAndReference(tgtModelObjEntry.getKey(), null, traceModelRel.getModelEndpointRefs().get(0));
+			ModelElementReference srcModelElemRef = traceModelRel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(tgtModelObjEntry.getKey(), null);
 			targetModelElemRefs.add(srcModelElemRef);
-			ModelElementReference tgtModelElemRef = ModelElementImpl.createInstanceAndReference(tgtModelObjEntry.getValue(), null, traceModelRel.getModelEndpointRefs().get(1));
+			ModelElementReference tgtModelElemRef = traceModelRel.getModelEndpointRefs().get(1).createModelElementInstanceAndReference(tgtModelObjEntry.getValue(), null);
 			targetModelElemRefs.add(tgtModelElemRef);
 			Mapping mappingType = MultiModelTypeRegistry.getType(MultiModelConstraintChecker.getAllowedMappingTypeReferences(traceModelRelType, srcModelElemRef, tgtModelElemRef).get(0));
 			MappingReference newMappingRef = mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, targetModelElemRefs);

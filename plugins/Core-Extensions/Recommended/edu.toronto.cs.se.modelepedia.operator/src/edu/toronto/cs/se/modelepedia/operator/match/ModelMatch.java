@@ -29,7 +29,6 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -120,7 +119,7 @@ public class ModelMatch extends OperatorImpl {
 			for (EObject modelObj : modelObjs) {
 				ModelEndpointReference modelEndpointRef = modelObjTable.get(modelObj);
 				// create model element
-				ModelElementReference matchModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(modelObj, null, modelEndpointRef);
+				ModelElementReference matchModelElemRef = modelEndpointRef.createModelElementInstanceAndReference(modelObj, null);
 				// create model element endpoints
 				rootModelElemTypeEndpoint.createInstanceAndReference(matchModelElemRef, matchMappingRef);
 			}

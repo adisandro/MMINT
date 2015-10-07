@@ -266,6 +266,10 @@
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/acceptModelElementInstance">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelEndpointReference/acceptModelElementInstance/modelObj"/>
         </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/createModelElementInstanceAndReference">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelEndpointReference/createModelElementInstanceAndReference/modelObj"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelEndpointReference/createModelElementInstanceAndReference/newModelElemName"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/ModelElementReference">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

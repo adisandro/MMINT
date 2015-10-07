@@ -24,7 +24,6 @@ import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
@@ -88,7 +87,7 @@ public class ModelRelMerge extends OperatorImpl {
 				ModelElementReference newModelElemRef = MultiModelTypeHierarchy.getReference(origModelElemRef, newModelEndpointRef.getModelElemRefs());
 				if (newModelElemRef == null) {
 					EObject newModelObj = origModelElemRef.getObject().getEMFInstanceObject();
-					newModelElemRef = ModelElementImpl.createMAVOInstanceAndReference(newModelObj, origModelElemRef.getObject().getName(), newModelEndpointRef);
+					newModelElemRef = newModelEndpointRef.createModelElementInstanceAndReference(newModelObj, origModelElemRef.getObject().getName());
 					newModelElemRefs.put(newModelElemRef.getUri(), newModelElemRef);
 				}
 			}

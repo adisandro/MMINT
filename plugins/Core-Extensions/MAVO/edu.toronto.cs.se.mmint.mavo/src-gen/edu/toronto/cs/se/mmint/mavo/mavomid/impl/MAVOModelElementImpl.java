@@ -473,7 +473,7 @@ public class MAVOModelElementImpl extends ModelElementImpl implements MAVOModelE
 	public static ModelElementReference createInstanceAndReference(EObject modelObj, String newModelElemName, ModelEndpointReference containerModelEndpointRef) throws MMINTException {
 
 		//TODO MMINT[MAVO] This can't be static for polymorphism to work
-		ModelElementReference newMAVOModelElemRef = ModelElementImpl.createInstanceAndReference(modelObj, newModelElemName, containerModelEndpointRef);
+		ModelElementReference newMAVOModelElemRef = containerModelEndpointRef.createModelElementInstanceAndReference(modelObj, newModelElemName);
 		MAVOUtils.initializeMAVOModelElementReference(modelObj, newMAVOModelElemRef);
 
 		return newMAVOModelElemRef;
