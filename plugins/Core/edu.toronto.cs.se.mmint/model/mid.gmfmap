@@ -8,7 +8,7 @@
     xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
   <nodes>
     <containmentFeature
-        href="mid.ecore#//MultiModel/models"/>
+        href="mid.ecore#//MID/models"/>
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
@@ -21,7 +21,7 @@
       </labelMappings>
       <labelMappings>
         <diagramLabel
-            href="mid.gmfgraph#MAVOModelLabel"/>
+            href="mid.gmfgraph#CustomModelLabel"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -32,7 +32,7 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="mid.ecore#//MultiModel/models"/>
+        href="mid.ecore#//MID/models"/>
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
@@ -45,7 +45,7 @@
       </labelMappings>
       <labelMappings>
         <diagramLabel
-            href="mid.gmfgraph#MAVOModelLabel"/>
+            href="mid.gmfgraph#CustomModelLabel"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -56,7 +56,7 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="mid.ecore#//MultiModel/models"/>
+        href="mid.ecore#//MID/models"/>
     <ownedChild>
       <domainMetaElement
           href="mid.ecore#//relationship/ModelRel"/>
@@ -68,7 +68,7 @@
       </labelMappings>
       <labelMappings>
         <diagramLabel
-            href="mid.gmfgraph#MAVOModelRelLabel"/>
+            href="mid.gmfgraph#CustomModelRelLabel"/>
       </labelMappings>
       <relatedDiagrams
           href="relationship.gmfmap#//@diagram"/>
@@ -81,7 +81,7 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="mid.ecore#//MultiModel/models"/>
+        href="mid.ecore#//MID/models"/>
     <ownedChild>
       <domainMetaElement
           href="mid.ecore#//relationship/ModelRel"/>
@@ -93,7 +93,7 @@
       </labelMappings>
       <labelMappings>
         <diagramLabel
-            href="mid.gmfgraph#MAVOModelRelLabel"/>
+            href="mid.gmfgraph#CustomModelRelLabel"/>
       </labelMappings>
       <relatedDiagrams
           href="relationship.gmfmap#//@diagram"/>
@@ -106,7 +106,7 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="mid.ecore#//MultiModel/operators"/>
+        href="mid.ecore#//MID/operators"/>
     <ownedChild>
       <domainMetaElement
           href="mid.ecore#//operator/Operator"/>
@@ -137,7 +137,7 @@
     </labelMappings>
     <labelMappings>
       <diagramLabel
-          href="mid.gmfgraph#MAVOModelRelModelEndpointLabel"/>
+          href="mid.gmfgraph#CustomModelRelModelEndpointLabel"/>
     </labelMappings>
     <containmentFeature
         href="mid.ecore#//relationship/ModelRel/modelEndpoints"/>
@@ -165,7 +165,7 @@
     </labelMappings>
     <labelMappings>
       <diagramLabel
-          href="mid.gmfgraph#MAVOBinaryModelRelLabel"/>
+          href="mid.gmfgraph#CustomBinaryModelRelLabel"/>
     </labelMappings>
     <labelMappings>
       <diagramLabel
@@ -178,7 +178,7 @@
     <relatedDiagrams
         href="relationship.gmfmap#//@diagram"/>
     <containmentFeature
-        href="mid.ecore#//MultiModel/models"/>
+        href="mid.ecore#//MID/models"/>
     <tool
         xsi:type="gmftool:CreationTool"
         href="mid.gmftool#//@palette/@tools.0/@tools.1"/>
@@ -249,7 +249,7 @@
     <domainModel
         href="mid.ecore#/"/>
     <domainMetaElement
-        href="mid.ecore#//MultiModel"/>
+        href="mid.ecore#//MID"/>
     <palette
         href="mid.gmftool#//@palette"/>
   </diagram>

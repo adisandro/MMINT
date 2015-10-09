@@ -22,7 +22,7 @@
       <labelMappings
           readOnly="true">
         <diagramLabel
-            href="relationship.gmfgraph#MAVOModelEndpointReferenceLabel"/>
+            href="relationship.gmfgraph#CustomModelEndpointReferenceLabel"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -46,7 +46,7 @@
           <labelMappings
               readOnly="true">
             <diagramLabel
-                href="relationship.gmfgraph#MAVOModelElementReferenceLabel"/>
+                href="relationship.gmfgraph#CustomModelElementReferenceLabel"/>
           </labelMappings>
           <diagramNode
               href="relationship.gmfgraph#ModelElementReference"/>
@@ -61,47 +61,47 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="mid.ecore#//relationship/ModelRel/linkRefs"/>
+        href="mid.ecore#//relationship/ModelRel/mappingRefs"/>
     <ownedChild>
       <domainMetaElement
-          href="mid.ecore#//relationship/LinkReference"/>
+          href="mid.ecore#//relationship/MappingReference"/>
       <domainSpecialization
-          body="not self.oclIsKindOf(relationship::BinaryLinkReference) and self.modifiable = true"/>
+          body="not self.oclIsKindOf(relationship::BinaryMappingReference) and self.modifiable = true"/>
       <labelMappings>
         <diagramLabel
-            href="relationship.gmfgraph#LinkReferenceLabel"/>
+            href="relationship.gmfgraph#MappingReferenceLabel"/>
       </labelMappings>
       <labelMappings>
         <diagramLabel
-            href="relationship.gmfgraph#MAVOLinkReferenceLabel"/>
+            href="relationship.gmfgraph#CustomMappingReferenceLabel"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
           href="relationship.gmftool#//@palette/@tools.0/@tools.1"/>
       <diagramNode
-          href="relationship.gmfgraph#LinkReference"/>
+          href="relationship.gmfgraph#MappingReference"/>
     </ownedChild>
   </nodes>
   <nodes>
     <containmentFeature
-        href="mid.ecore#//relationship/ModelRel/linkRefs"/>
+        href="mid.ecore#//relationship/ModelRel/mappingRefs"/>
     <ownedChild>
       <domainMetaElement
-          href="mid.ecore#//relationship/LinkReference"/>
+          href="mid.ecore#//relationship/MappingReference"/>
       <domainSpecialization
-          body="not self.oclIsKindOf(relationship::BinaryLinkReference) and self.modifiable = false"/>
+          body="not self.oclIsKindOf(relationship::BinaryMappingReference) and self.modifiable = false"/>
       <labelMappings
           readOnly="true">
         <diagramLabel
-            href="relationship.gmfgraph#LinkReferenceSuperLabel"/>
+            href="relationship.gmfgraph#MappingReferenceSuperLabel"/>
       </labelMappings>
       <labelMappings
           readOnly="true">
         <diagramLabel
-            href="relationship.gmfgraph#MAVOLinkReferenceSuperLabel"/>
+            href="relationship.gmfgraph#CustomMappingReferenceSuperLabel"/>
       </labelMappings>
       <diagramNode
-          href="relationship.gmfgraph#LinkReferenceSuper"/>
+          href="relationship.gmfgraph#MappingReferenceSuper"/>
     </ownedChild>
   </nodes>
   <nodes>
@@ -120,7 +120,7 @@
       <labelMappings
           readOnly="true">
         <diagramLabel
-            href="relationship.gmfgraph#MAVOModelEndpointReferenceSuperLabel"/>
+            href="relationship.gmfgraph#CustomModelEndpointReferenceSuperLabel"/>
       </labelMappings>
       <diagramNode
           href="relationship.gmfgraph#ModelEndpointReferenceSuper"/>
@@ -141,7 +141,7 @@
           <labelMappings
               readOnly="true">
             <diagramLabel
-                href="relationship.gmfgraph#MAVOModelElementReferenceLabel"/>
+                href="relationship.gmfgraph#CustomModelElementReferenceLabel"/>
           </labelMappings>
           <diagramNode
               href="relationship.gmfgraph#ModelElementReference"/>
@@ -164,7 +164,7 @@
           <labelMappings
               readOnly="true">
             <diagramLabel
-                href="relationship.gmfgraph#MAVOModelElementReferenceSuperLabel"/>
+                href="relationship.gmfgraph#CustomModelElementReferenceSuperLabel"/>
           </labelMappings>
           <diagramNode
               href="relationship.gmfgraph#ModelElementReferenceSuper"/>
@@ -188,7 +188,7 @@
     <domainMetaElement
         href="mid.ecore#//relationship/ModelElementEndpointReference"/>
     <domainSpecialization
-        body="return !(domainElement.eContainer() instanceof BinaryLinkReference) &amp;&amp; ((ExtendibleElementEndpointReference) domainElement).isModifiable();"
+        body="return !(domainElement.eContainer() instanceof BinaryMappingReference) &amp;&amp; ((ExtendibleElementEndpointReference) domainElement).isModifiable();"
         language="java"/>
     <labelMappings>
       <diagramLabel
@@ -196,10 +196,10 @@
     </labelMappings>
     <labelMappings>
       <diagramLabel
-          href="relationship.gmfgraph#MAVOModelElementEndpointReferenceLabel"/>
+          href="relationship.gmfgraph#CustomModelElementEndpointReferenceLabel"/>
     </labelMappings>
     <containmentFeature
-        href="mid.ecore#//relationship/LinkReference/modelElemEndpointRefs"/>
+        href="mid.ecore#//relationship/MappingReference/modelElemEndpointRefs"/>
     <tool
         xsi:type="gmftool:CreationTool"
         href="relationship.gmftool#//@palette/@tools.0/@tools.2"/>
@@ -210,87 +210,87 @@
         href="mid.ecore#//relationship/ModelElementEndpointReference/modelElemRef"/>
     <creationConstraints>
       <sourceEnd
-          body="not self.oclIsKindOf(relationship::BinaryLinkReference) and self.modifiable = true"/>
+          body="not self.oclIsKindOf(relationship::BinaryMappingReference) and self.modifiable = true"/>
       <targetEnd
           body="self.oclIsKindOf(ModelElementReference)"/>
     </creationConstraints>
   </links>
   <links>
     <domainMetaElement
-        href="mid.ecore#//relationship/BinaryLinkReference"/>
+        href="mid.ecore#//relationship/BinaryMappingReference"/>
     <domainSpecialization
         body="self.modifiable = true"/>
     <labelMappings>
       <diagramLabel
-          href="relationship.gmfgraph#BinaryLinkReferenceLabel"/>
+          href="relationship.gmfgraph#BinaryMappingReferenceLabel"/>
     </labelMappings>
     <labelMappings>
       <diagramLabel
-          href="relationship.gmfgraph#MAVOBinaryLinkReferenceLabel"/>
+          href="relationship.gmfgraph#CustomBinaryMappingReferenceLabel"/>
     </labelMappings>
     <labelMappings>
       <diagramLabel
-          href="relationship.gmfgraph#BinaryLinkReferenceSourceModelElementEndpointReferenceLabel"/>
+          href="relationship.gmfgraph#BinaryMappingReferenceSourceModelElementEndpointReferenceLabel"/>
     </labelMappings>
     <labelMappings>
       <diagramLabel
-          href="relationship.gmfgraph#BinaryLinkReferenceTargetModelElementEndpointReferenceLabel"/>
+          href="relationship.gmfgraph#BinaryMappingReferenceTargetModelElementEndpointReferenceLabel"/>
     </labelMappings>
     <containmentFeature
-        href="mid.ecore#//relationship/ModelRel/linkRefs"/>
+        href="mid.ecore#//relationship/ModelRel/mappingRefs"/>
     <tool
         xsi:type="gmftool:CreationTool"
         href="relationship.gmftool#//@palette/@tools.0/@tools.0"/>
     <diagramLink
-        href="relationship.gmfgraph#BinaryLinkReference"/>
+        href="relationship.gmfgraph#BinaryMappingReference"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//relationship/BinaryLinkReference/sourceModelElemRef"/>
+        href="mid.ecore#//relationship/BinaryMappingReference/sourceModelElemRef"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//relationship/BinaryLinkReference/targetModelElemRef"/>
+        href="mid.ecore#//relationship/BinaryMappingReference/targetModelElemRef"/>
   </links>
   <links>
     <domainMetaElement
-        href="mid.ecore#//relationship/BinaryLinkReference"/>
+        href="mid.ecore#//relationship/BinaryMappingReference"/>
     <domainSpecialization
         body="self.modifiable = false"/>
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="relationship.gmfgraph#BinaryLinkReferenceSuperLabel"/>
+          href="relationship.gmfgraph#BinaryMappingReferenceSuperLabel"/>
     </labelMappings>
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="relationship.gmfgraph#MAVOBinaryLinkReferenceSuperLabel"/>
+          href="relationship.gmfgraph#CustomBinaryMappingReferenceSuperLabel"/>
     </labelMappings>
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="relationship.gmfgraph#BinaryLinkReferenceSuperSourceModelElementEndpointReferenceLabel"/>
+          href="relationship.gmfgraph#BinaryMappingReferenceSuperSourceModelElementEndpointReferenceLabel"/>
     </labelMappings>
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="relationship.gmfgraph#BinaryLinkReferenceSuperTargetModelElementEndpointReferenceLabel"/>
+          href="relationship.gmfgraph#BinaryMappingReferenceSuperTargetModelElementEndpointReferenceLabel"/>
     </labelMappings>
     <containmentFeature
-        href="mid.ecore#//relationship/ModelRel/linkRefs"/>
+        href="mid.ecore#//relationship/ModelRel/mappingRefs"/>
     <diagramLink
-        href="relationship.gmfgraph#BinaryLinkReferenceSuper"/>
+        href="relationship.gmfgraph#BinaryMappingReferenceSuper"/>
     <sourceMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//relationship/BinaryLinkReference/sourceModelElemRef"/>
+        href="mid.ecore#//relationship/BinaryMappingReference/sourceModelElemRef"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="mid.ecore#//relationship/BinaryLinkReference/targetModelElemRef"/>
+        href="mid.ecore#//relationship/BinaryMappingReference/targetModelElemRef"/>
   </links>
   <links>
     <domainMetaElement
         href="mid.ecore#//relationship/ModelElementEndpointReference"/>
     <domainSpecialization
-        body="return !(domainElement.eContainer() instanceof BinaryLinkReference) &amp;&amp; !((ExtendibleElementEndpointReference) domainElement).isModifiable();"
+        body="return !(domainElement.eContainer() instanceof BinaryMappingReference) &amp;&amp; !((ExtendibleElementEndpointReference) domainElement).isModifiable();"
         language="java"/>
     <labelMappings
         readOnly="true">
@@ -300,10 +300,10 @@
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="relationship.gmfgraph#MAVOModelElementEndpointReferenceSuperLabel"/>
+          href="relationship.gmfgraph#CustomModelElementEndpointReferenceSuperLabel"/>
     </labelMappings>
     <containmentFeature
-        href="mid.ecore#//relationship/LinkReference/modelElemEndpointRefs"/>
+        href="mid.ecore#//relationship/MappingReference/modelElemEndpointRefs"/>
     <diagramLink
         href="relationship.gmfgraph#ModelElementEndpointReferenceSuper"/>
     <linkMetaFeature
