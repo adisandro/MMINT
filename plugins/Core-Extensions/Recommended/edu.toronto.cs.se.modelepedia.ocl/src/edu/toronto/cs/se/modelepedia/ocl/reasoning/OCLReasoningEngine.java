@@ -26,7 +26,6 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
@@ -69,7 +68,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public @NonNull MAVOTruthValue checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
+	public boolean checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
 		String oclConstraint = constraint.getImplementation();
 		try {
@@ -81,7 +80,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.ERROR, "Can't get context for OCL constraint \"" + constraint + "\" applied to model " + model + " , evaluating to false", e);
-			return MAVOTruthValue.FALSE;
+			return false;
 		}
 	}
 
@@ -97,18 +96,18 @@ public class OCLReasoningEngine implements IReasoningEngine {
 		return null;
 	}
 
-	public MAVOTruthValue checkConstraint(EObject modelObj, String oclConstraint) {
+	public boolean checkConstraint(EObject modelObj, String oclConstraint) {
 
 		OCL ocl = OCL.newInstance();
 		OCLHelper helper = ocl.createOCLHelper(modelObj.eClass());
 
 		try {
 			ExpressionInOCL expression = helper.createInvariant(oclConstraint);
-			return (ocl.check(modelObj, expression)) ? MAVOTruthValue.TRUE : MAVOTruthValue.FALSE;
+			return ocl.check(modelObj, expression);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "Error in OCL constraint \"" + oclConstraint + "\" applied to model object " + modelObj + ", evaluating to false", e);
-			return MAVOTruthValue.FALSE;
+			return false;
 		}
 		finally {
 			ocl.dispose();

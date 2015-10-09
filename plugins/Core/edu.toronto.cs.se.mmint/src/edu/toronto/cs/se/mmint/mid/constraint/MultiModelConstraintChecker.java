@@ -23,9 +23,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Stereotype;
-
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
@@ -60,44 +57,6 @@ import edu.toronto.cs.se.mmint.repository.MMINTConstants;
  *
  */
 public class MultiModelConstraintChecker {
-
-	public enum MAVOTruthValue {
-
-		// tri-state MAVO logic
-		TRUE, FALSE, MAYBE, ERROR;
-
-		public boolean toBoolean() {
-
-			switch (this) {
-				case TRUE:
-				case MAYBE:
-					return true;
-				case FALSE:
-				case ERROR:
-				default:
-					return false;
-			}
-		}
-
-		public static MAVOTruthValue toMAVOTruthValue(boolean truthValue) {
-
-			return (truthValue) ? TRUE : FALSE;
-		}
-
-		public static @NonNull MAVOTruthValue toMAVOTruthValue(boolean constraintTruthValue, boolean notConstraintTruthValue) {
-	
-			if (constraintTruthValue == true && notConstraintTruthValue == false) {
-				return TRUE;
-			}
-			if (constraintTruthValue == false && notConstraintTruthValue == true) {
-				return FALSE;
-			}
-			if (constraintTruthValue == true && notConstraintTruthValue == true) {
-				return MAYBE;
-			}
-			return ERROR;
-		}
-	}
 
 	/**
 	 * Checks if an extendible element is a TYPES element or an INSTANCES
@@ -566,10 +525,10 @@ mappingTypes:
 	 *            The constraint.
 	 * @return True if the constraint is satisfied, false otherwise.
 	 */
-	public static MAVOTruthValue checkConstraint(ExtendibleElement element, ExtendibleElementConstraint constraint) {
+	public static boolean checkConstraint(ExtendibleElement element, ExtendibleElementConstraint constraint) {
 
 		if (!(element instanceof Model) || constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
-			return MAVOTruthValue.TRUE;
+			return true;
 		}
 		IReasoningEngine reasoner;
 		try {
@@ -577,7 +536,7 @@ mappingTypes:
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping constraint check", e);
-			return MAVOTruthValue.TRUE;
+			return false;
 		}
 		MIDLevel constraintLevel;
 		if (!element.getUri().equals(((ExtendibleElement) constraint.eContainer()).getUri())) {

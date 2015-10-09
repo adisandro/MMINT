@@ -12,12 +12,11 @@
 package edu.toronto.cs.se.modelepedia.uml.constraint;
 
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 
 public class UMLDeploymentDiagramModelConstraint extends UMLModelConstraint {
 
 	@Override
-	public MAVOTruthValue validate(Model model) {
+	public boolean validate(Model model) {
 
 		return super.validate(model, UMLModelConstraint.UML_DEPLOYMENTDIAGRAM_TYPE);
 	}

@@ -38,7 +38,6 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
@@ -270,7 +269,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 
 		ModelRel modelRelType = (ModelRel) genericType;
 		// check 1: satisfies transformation constraint
-		if (new ModelRelTypeTransformationConstraint().validate(modelRelType) != MAVOTruthValue.TRUE) {
+		if (!(new ModelRelTypeTransformationConstraint().validate(modelRelType))) {
 			return false;
 		}
 		Model srcModel = inputs.get(0).getModel();

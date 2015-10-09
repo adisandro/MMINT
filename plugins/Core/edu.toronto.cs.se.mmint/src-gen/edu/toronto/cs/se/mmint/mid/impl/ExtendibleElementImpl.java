@@ -710,7 +710,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 		}
 		else {
 			// third stop condition: validation
-			if (!MultiModelTypeIntrospection.validateType(this, type, false).toBoolean()) {
+			if (!MultiModelTypeIntrospection.validateType(this, type, false)) {
 				return;
 			}
 			types.add(type);

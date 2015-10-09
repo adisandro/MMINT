@@ -13,20 +13,19 @@ package edu.toronto.cs.se.modelepedia.operator.patch;
 
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class ModelRelTypeTransformationConstraint implements IJavaModelConstraint {
 
 	@Override
-	public MAVOTruthValue validate(Model model) {
+	public boolean validate(Model model) {
 
 		ModelRel modelRelType = (ModelRel) model;
 		if (modelRelType.getModelEndpointRefs().size() != 2) {
-			return MAVOTruthValue.FALSE;
+			return false;
 		}
 
-		return MAVOTruthValue.TRUE;
+		return true;
 	}
 
 }

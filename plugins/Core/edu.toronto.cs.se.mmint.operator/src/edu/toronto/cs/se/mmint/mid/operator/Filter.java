@@ -66,7 +66,7 @@ public class Filter extends OperatorImpl {
 				continue;
 			}
 			// check constraint
-			if (MultiModelTypeHierarchy.instanceOf(model, filterModelType.getUri(), false) && MultiModelConstraintChecker.checkConstraint(model, filterModelType.getConstraint()).toBoolean()) {
+			if (MultiModelTypeHierarchy.instanceOf(model, filterModelType.getUri(), false) && MultiModelConstraintChecker.checkConstraint(model, filterModelType.getConstraint())) {
 				continue;
 			}
 			modelsToDelete.add(model);

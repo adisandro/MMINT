@@ -19,11 +19,53 @@ import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 
 public interface IMAVOReasoningEngine extends IReasoningEngine {
+
+	public enum MAVOTruthValue {
+
+		// tri-state MAVO logic
+		TRUE, FALSE, MAYBE, ERROR;
+
+		public boolean toBoolean() {
+
+			switch (this) {
+				case TRUE:
+				case MAYBE:
+					return true;
+				case FALSE:
+				case ERROR:
+				default:
+					return false;
+			}
+		}
+
+		public static MAVOTruthValue toMAVOTruthValue(boolean truthValue) {
+
+			return (truthValue) ? TRUE : FALSE;
+		}
+
+		public static @NonNull MAVOTruthValue toMAVOTruthValue(boolean constraintTruthValue, boolean notConstraintTruthValue) {
+	
+			if (constraintTruthValue == true && notConstraintTruthValue == false) {
+				return TRUE;
+			}
+			if (constraintTruthValue == false && notConstraintTruthValue == true) {
+				return FALSE;
+			}
+			if (constraintTruthValue == true && notConstraintTruthValue == true) {
+				return MAYBE;
+			}
+			return ERROR;
+		}
+	}
+
+	public @NonNull MAVOTruthValue checkMAVOConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel);
 
 	public @Nullable Model refineByMayAlternative(@NonNull Model model, @NonNull MAVOCollection mayAlternative);
 

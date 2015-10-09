@@ -13,7 +13,6 @@ package edu.toronto.cs.se.modelepedia.kleisli.constraint;
 
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
@@ -22,11 +21,11 @@ import edu.toronto.cs.se.modelepedia.operator.patch.ModelRelTypeTransformationCo
 public class KleisliModelRelTypeConstraint implements IJavaModelConstraint {
 
 	@Override
-	public MAVOTruthValue validate(Model model) {
+	public boolean validate(Model model) {
 
 		KleisliModelRel kModelRelType = (KleisliModelRel) model;
-		if (new ModelRelTypeTransformationConstraint().validate(kModelRelType) != MAVOTruthValue.TRUE) {
-			return MAVOTruthValue.FALSE;
+		if (!(new ModelRelTypeTransformationConstraint().validate(kModelRelType))) {
+			return false;
 		}
 		// must be homomorphism
 		for (ModelElementReference modelElemTypeRef : kModelRelType.getModelEndpointRefs().get(0).getModelElemRefs()) {
@@ -34,16 +33,16 @@ public class KleisliModelRelTypeConstraint implements IJavaModelConstraint {
 				modelElemTypeRef.getModelElemEndpointRefs().size() != 1 ||
 				((MappingReference) modelElemTypeRef.getModelElemEndpointRefs().get(0).eContainer()).getModelElemEndpointRefs().size() != 2
 			) {
-				return MAVOTruthValue.FALSE;
+				return false;
 			}
 		}
 		for (ModelElementReference modelElemTypeRef : kModelRelType.getModelEndpointRefs().get(1).getModelElemRefs()) {
 			if (modelElemTypeRef.getModelElemEndpointRefs().size() > 1) {
-				return MAVOTruthValue.FALSE;
+				return false;
 			}
 		}
 
-		return MAVOTruthValue.TRUE;
+		return true;
 	}
 
 }

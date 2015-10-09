@@ -12,10 +12,9 @@
 package edu.toronto.cs.se.mmint.java.reasoning;
 
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 
 public interface IJavaModelConstraint {
 
-	public MAVOTruthValue validate(Model model);
+	public boolean validate(Model model);
 
 }

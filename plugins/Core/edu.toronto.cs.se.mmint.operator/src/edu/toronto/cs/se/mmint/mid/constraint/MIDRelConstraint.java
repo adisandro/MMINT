@@ -15,32 +15,31 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class MIDRelConstraint implements IJavaModelConstraint {
 
 	@Override
-	public MAVOTruthValue validate(Model model) {
+	public boolean validate(Model model) {
 
 		try {
 			MID instanceMID = (MID) model.getEMFInstanceRoot();
 			if (MultiModelRegistry.getOperators(instanceMID).size() > 0) {
-				return MAVOTruthValue.FALSE;
+				return false;
 			}
 			if (MultiModelRegistry.getModelRels(instanceMID).size() == 0) {
-				return MAVOTruthValue.FALSE;
+				return false;
 			}
 			for (Model instanceMIDModel : MultiModelRegistry.getModels(instanceMID)) {
 				if (!(instanceMIDModel instanceof ModelRel)) {
-					return MAVOTruthValue.FALSE;
+					return false;
 				}
 			}
-			return MAVOTruthValue.TRUE;
+			return true;
 		}
 		catch (MMINTException e) {
-			return MAVOTruthValue.FALSE;
+			return false;
 		}
 	}
 

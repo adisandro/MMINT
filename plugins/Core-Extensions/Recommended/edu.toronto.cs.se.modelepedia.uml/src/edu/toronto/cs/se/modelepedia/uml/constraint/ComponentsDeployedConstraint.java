@@ -18,7 +18,6 @@ import org.eclipse.uml2.uml.PackageableElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -26,7 +25,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 public class ComponentsDeployedConstraint implements IJavaModelConstraint {
 
 	@Override
-	public MAVOTruthValue validate(Model model) {
+	public boolean validate(Model model) {
 
 		BinaryModelRel deplRel = (BinaryModelRel) model;
 		org.eclipse.uml2.uml.Model srcUmlModel;
@@ -35,7 +34,7 @@ public class ComponentsDeployedConstraint implements IJavaModelConstraint {
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.ERROR, "Can't get model root, skipping validation", e);
-			return MAVOTruthValue.FALSE;
+			return false;
 		}
 		for (PackageableElement umlModelObj : srcUmlModel.getPackagedElements()) {
 			if (!(umlModelObj instanceof Component)) {
@@ -43,10 +42,10 @@ public class ComponentsDeployedConstraint implements IJavaModelConstraint {
 			}
 			ModelElementReference modelElemRef = MultiModelRegistry.getModelElementReference(deplRel.getModelEndpointRefs().get(0), umlModelObj);
 			if (modelElemRef == null || modelElemRef.getModelElemEndpointRefs().isEmpty()) {
-				return MAVOTruthValue.FALSE;
+				return false;
 			}
 		}
-		return MAVOTruthValue.TRUE;
+		return true;
 	}
 
 }

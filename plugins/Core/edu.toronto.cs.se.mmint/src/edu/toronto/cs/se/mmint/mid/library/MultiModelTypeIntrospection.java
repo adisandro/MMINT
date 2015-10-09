@@ -34,7 +34,6 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -48,17 +47,16 @@ import edu.toronto.cs.se.mmint.repository.MMINTConstants;
  */
 public class MultiModelTypeIntrospection {
 
-	public static <T extends ExtendibleElement> MAVOTruthValue validateType(T element, T elementType, boolean validateInstance) {
+	public static <T extends ExtendibleElement> boolean validateType(T element, T elementType, boolean validateInstance) {
 
 		boolean validates;
-		MAVOTruthValue mavoValidates;
 
 		//TODO MMINT[INTROSPECTION] other extendible elements
 
 		if (element instanceof ModelRel) {
 			validates = MultiModelConstraintChecker.areAllowedModelEndpoints((ModelRel) element, (ModelRel) elementType);
 			if (!validates) {
-				return MAVOTruthValue.FALSE;
+				return false;
 			}
 			for (Mapping mapping : ((ModelRel) element).getMappings()) {
 				validates = false;
@@ -69,7 +67,7 @@ public class MultiModelTypeIntrospection {
 					}
 				}
 				if (!validates) {
-					return MAVOTruthValue.FALSE;
+					return false;
 				}
 			}
 			//TODO MMINT[INTROSPECTION] do additional structure checks
@@ -79,25 +77,25 @@ public class MultiModelTypeIntrospection {
 		if (element instanceof Model) {
 			boolean isModelRel = element instanceof ModelRel;
 			if (!isModelRel && elementType instanceof ModelRel) { // checking against root model rel
-				return MAVOTruthValue.FALSE;
+				return false;
 			}
 			// constraint validation
-			mavoValidates = MultiModelConstraintChecker.checkConstraint(element, ((Model) elementType).getConstraint());
-			if (!mavoValidates.toBoolean()) {
-				return MAVOTruthValue.FALSE;
+			validates = MultiModelConstraintChecker.checkConstraint(element, ((Model) elementType).getConstraint());
+			if (!validates) {
+				return false;
 			}
 			if (validateInstance && ((Model) element).getConstraint() != null) {
-				mavoValidates = MultiModelConstraintChecker.checkConstraint(element, ((Model) element).getConstraint());
+				validates = MultiModelConstraintChecker.checkConstraint(element, ((Model) element).getConstraint());
 			}
-			return mavoValidates;
+			return validates;
 		}
 
 		if (element instanceof Mapping) {
 			validates = MultiModelConstraintChecker.areAllowedModelElementEndpointReferences((Mapping) element, (Mapping) elementType);
-			return MAVOTruthValue.toMAVOTruthValue(validates);
+			return validates;
 		}
 
-		return MAVOTruthValue.FALSE;
+		return false;
 	}
 
 	private static <T extends ExtendibleElement> List<T> filterSubtypes(T element, T elementType, List<T> elementSubtypes) {
@@ -169,7 +167,7 @@ public class MultiModelTypeIntrospection {
 		}
 		else {
 			// third stop condition: validation
-			if (!validateType(element, elementType, false).toBoolean()) {
+			if (!validateType(element, elementType, false)) {
 				return;
 			}
 			elementTypes.add(elementType);

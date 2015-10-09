@@ -20,13 +20,12 @@ import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 
 public class JavaReasoningEngine implements IReasoningEngine {
 
 	@Override
-	public @NonNull MAVOTruthValue checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
+	public boolean checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
 		String javaClassName = constraint.getImplementation();
 		String modelTypeUri = (constraintLevel == MIDLevel.INSTANCES) ?
@@ -43,7 +42,7 @@ public class JavaReasoningEngine implements IReasoningEngine {
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "Java constraint error, evaluating to false: " + javaClassName, e);
-			return MAVOTruthValue.FALSE;
+			return false;
 		}
 	}
 

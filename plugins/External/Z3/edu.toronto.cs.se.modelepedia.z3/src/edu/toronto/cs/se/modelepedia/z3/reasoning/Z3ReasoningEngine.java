@@ -37,7 +37,6 @@ import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -101,8 +100,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		return checkMAVOConstraintWithSolver(z3IncSolver, smtConstraint);
 	}
 
-	@Override
-	public @NonNull MAVOTruthValue checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
+	public @NonNull MAVOTruthValue checkMAVOConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
 		Z3MAVOModelParser z3ModelParser;
 		try {
@@ -140,6 +138,12 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		}
 
 		return constraintTruthValue;
+	}
+
+	@Override
+	public boolean checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
+
+		return checkMAVOConstraint(model, constraint, constraintLevel).toBoolean();
 	}
 
 	@Override

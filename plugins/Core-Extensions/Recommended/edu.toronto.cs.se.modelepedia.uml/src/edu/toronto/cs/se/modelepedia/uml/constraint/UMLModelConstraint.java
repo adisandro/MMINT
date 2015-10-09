@@ -17,7 +17,6 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 
 public abstract class UMLModelConstraint implements IJavaModelConstraint {
@@ -27,16 +26,16 @@ public abstract class UMLModelConstraint implements IJavaModelConstraint {
 	protected static final String UML_COMPONENTDIAGRAM_TYPE = "PapyrusUMLComponentDiagram";
 	protected static final String UML_DEPLOYMENTDIAGRAM_TYPE = "PapyrusUMLDeploymentDiagram";
 
-	protected MAVOTruthValue validate(Model model, String modelTypeName) {
+	protected boolean validate(Model model, String modelTypeName) {
 
 		String notationFileUri = MultiModelUtils.replaceFileExtensionInUri(model.getUri(), NOTATION_FILEEXTENSION);
 		try {
 			Diagram diagram = (Diagram) MultiModelUtils.getModelFile(notationFileUri, true);
-			return (diagram.getType().equals(modelTypeName)) ? MAVOTruthValue.TRUE : MAVOTruthValue.FALSE;
+			return diagram.getType().equals(modelTypeName);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Can't get diagram root, skipping validation", e);
-			return MAVOTruthValue.FALSE;
+			return false;
 		}
 	}
 

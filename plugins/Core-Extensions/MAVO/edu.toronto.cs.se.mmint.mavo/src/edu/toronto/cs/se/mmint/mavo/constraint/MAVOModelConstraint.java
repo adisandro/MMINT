@@ -14,17 +14,16 @@ package edu.toronto.cs.se.mmint.mavo.constraint;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 
 public class MAVOModelConstraint implements IJavaModelConstraint {
 
 	@Override
-	public MAVOTruthValue validate(Model model) {
+	public boolean validate(Model model) {
 
 		if (MAVOUtils.isMAVOModel(model)) {
-			return MAVOTruthValue.TRUE;
+			return true;
 		}
-		return MAVOTruthValue.FALSE;
+		return false;
 	}
 
 }

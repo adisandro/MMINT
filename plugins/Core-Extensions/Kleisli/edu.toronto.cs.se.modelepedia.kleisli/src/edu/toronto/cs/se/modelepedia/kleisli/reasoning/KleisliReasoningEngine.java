@@ -32,7 +32,6 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
@@ -139,9 +138,9 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public @NonNull MAVOTruthValue checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
+	public boolean checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
 
-		return MAVOTruthValue.TRUE;
+		return true;
 	}
 
 	@Override
