@@ -45,6 +45,10 @@
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getRuntimeTypes">
         <genTypeParameters ecoreTypeParameter="mid.ecore#//ExtendibleElement/getRuntimeTypes/T"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/validateInstanceType">
+        <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/validateInstanceType/type"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/validateInstance"/>
     </genClasses>
     <genClasses image="false" ecoreClass="mid.ecore#//ExtendibleElementEndpoint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementEndpoint/lowerBound"/>

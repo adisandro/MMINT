@@ -400,6 +400,24 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getExtendibleElement__ValidateInstanceType__ExtendibleElement() {
+		return extendibleElementEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElement__ValidateInstance() {
+		return extendibleElementEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getExtendibleElement__CreateSubtypeUri__String_String() {
 		return extendibleElementEClass.getEOperations().get(1);
 	}
@@ -1075,6 +1093,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___GET_METATYPE);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES);
+		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT);
+		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE);
 
 		extendibleElementEndpointEClass = createEClass(EXTENDIBLE_ELEMENT_ENDPOINT);
 		createEAttribute(extendibleElementEndpointEClass, EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND);
@@ -1235,6 +1255,13 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		addEException(op, this.getMMINTException());
 		g1 = createEGenericType(t1);
 		initEOperation(op, g1);
+
+		op = initEOperation(getExtendibleElement__ValidateInstanceType__ExtendibleElement(), ecorePackage.getEBoolean(), "validateInstanceType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getExtendibleElement(), "type", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMINTException());
+
+		op = initEOperation(getExtendibleElement__ValidateInstance(), ecorePackage.getEBoolean(), "validateInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMINTException());
 
 		initEClass(extendibleElementEndpointEClass, ExtendibleElementEndpoint.class, "ExtendibleElementEndpoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExtendibleElementEndpoint_LowerBound(), ecorePackage.getEInt(), "lowerBound", null, 1, 1, ExtendibleElementEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

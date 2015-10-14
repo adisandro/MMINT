@@ -132,17 +132,6 @@ public interface ExtendibleElement extends EObject {
 	ExtendibleElement getMetatype();
 
 	/**
-	 * <!-- begin-user-doc --> Gets the list of polymorphic runtime types for this instance.
-	 * 
-	 * @return The list of runtime types.
-	 * @throws MMINTException
-	 *             If this is a type. <!-- end-user-doc -->
-	 * @model kind="operation" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
-	<T extends ExtendibleElement> EList<T> getRuntimeTypes() throws MMINTException;
-
-	/**
 	 * Returns the value of the '<em><b>Level</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.se.mmint.mid.MIDLevel}.
 	 * <!-- begin-user-doc -->
@@ -260,5 +249,32 @@ public interface ExtendibleElement extends EObject {
 	 * @generated
 	 */
 	String createSubtypeUri(String newTypeFragmentUri, String newTypeName);
+
+	/**
+	 * <!-- begin-user-doc --> Gets the list of polymorphic runtime types for this instance.
+	 * 
+	 * @return The list of runtime types.
+	 * @throws MMINTException
+	 *             If this is a type. <!-- end-user-doc -->
+	 * @model kind="operation" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	<T extends ExtendibleElement> EList<T> getRuntimeTypes() throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" typeRequired="true"
+	 * @generated
+	 */
+	boolean validateInstanceType(ExtendibleElement type) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	boolean validateInstance() throws MMINTException;
 
 } // ExtendibleElement

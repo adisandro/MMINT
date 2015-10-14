@@ -44,7 +44,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.library.AddModifyConstraintListener;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
@@ -216,17 +215,22 @@ public class MIDContextMenu extends ContributionItem {
 		// cast
 		if (doCast) {
 			// polymorphism
-			EList<EList<Model>> runtimeModelTypes = new BasicEList<EList<Model>>();
-			for (Model model : selectedModels) {
-				runtimeModelTypes.add(new BasicEList<Model>(MultiModelTypeIntrospection.getRuntimeTypes(model)));
+			MultiModelTypeHierarchy.clearCachedRuntimeTypes();
+			EList<Model> runtimeModelTypes = new BasicEList<>();
+			try {
+				runtimeModelTypes.addAll(selectedModels.get(0).getRuntimeTypes());
 			}
-			if (runtimeModelTypes.get(0).size() > 1) {
+			catch (MMINTException e) {
+				// do nothing
+			}
+			MultiModelTypeHierarchy.clearCachedRuntimeTypes();
+			if (runtimeModelTypes.size() > 1) {
 				MenuItem castItem = new MenuItem(mmintMenu, SWT.CASCADE);
 				castItem.setText(MMINT_MENU_CAST_LABEL);
 				Menu castMenu = new Menu(mmintMenu);
 				castItem.setMenu(castMenu);
 				boolean isDowncast = false;
-				for (Model runtimeModelType : runtimeModelTypes.get(0)) {
+				for (Model runtimeModelType : runtimeModelTypes) {
 					if (runtimeModelType.getUri().equals(selectedModels.get(0).getMetatypeUri())) {
 						isDowncast = true;
 						continue;

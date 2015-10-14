@@ -543,6 +543,20 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT:
+				try {
+					return validateInstanceType((ExtendibleElement)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE:
+				try {
+					return validateInstance();
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -916,6 +930,27 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 		}
 		newInstanceRef.setModifiable(true);
 		newInstanceRef.setSupertypeRef(null);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public boolean validateInstanceType(ExtendibleElement type) throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+		MMINTException.mustBeType(type);
+
+		return true;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public boolean validateInstance() throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+
+		return true;
 	}
 
 	/**

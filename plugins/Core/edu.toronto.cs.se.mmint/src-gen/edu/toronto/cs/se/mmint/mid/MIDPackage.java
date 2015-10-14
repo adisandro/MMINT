@@ -298,13 +298,31 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES = 2;
 
 	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = 3;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE = 4;
+
+	/**
 	 * The number of operations of the '<em>Extendible Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = 3;
+	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl <em>Extendible Element Endpoint</em>}' class.
@@ -441,6 +459,24 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES = EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -586,6 +622,24 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ELEMENT___GET_RUNTIME_TYPES = EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT___VALIDATE_INSTANCE = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE;
 
 	/**
 	 * The number of operations of the '<em>Generic Element</em>' class.
@@ -749,6 +803,24 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL___GET_RUNTIME_TYPES = GENERIC_ELEMENT___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = GENERIC_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___VALIDATE_INSTANCE = GENERIC_ELEMENT___VALIDATE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1059,6 +1131,24 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ELEMENT___GET_RUNTIME_TYPES = EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___VALIDATE_INSTANCE = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1292,6 +1382,24 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ENDPOINT___GET_RUNTIME_TYPES = EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___VALIDATE_INSTANCE = EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -1728,6 +1836,26 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getExtendibleElement__GetRuntimeTypes();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#validateInstanceType(edu.toronto.cs.se.mmint.mid.ExtendibleElement) <em>Validate Instance Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Instance Type</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElement#validateInstanceType(edu.toronto.cs.se.mmint.mid.ExtendibleElement)
+	 * @generated
+	 */
+	EOperation getExtendibleElement__ValidateInstanceType__ExtendibleElement();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#validateInstance() <em>Validate Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElement#validateInstance()
+	 * @generated
+	 */
+	EOperation getExtendibleElement__ValidateInstance();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#createSubtypeUri(java.lang.String, java.lang.String) <em>Create Subtype Uri</em>}' operation.
@@ -2627,6 +2755,22 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES = eINSTANCE.getExtendibleElement__GetRuntimeTypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Instance Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = eINSTANCE.getExtendibleElement__ValidateInstanceType__ExtendibleElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE = eINSTANCE.getExtendibleElement__ValidateInstance();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Subtype Uri</b></em>' operation.

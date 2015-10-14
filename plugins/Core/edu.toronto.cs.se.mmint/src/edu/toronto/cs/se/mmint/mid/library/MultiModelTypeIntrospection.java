@@ -26,18 +26,13 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 /**
  * The type introspection engine for multimodels.
@@ -145,57 +140,6 @@ public class MultiModelTypeIntrospection {
 		}
 
 		return filteredElementSubtypes;
-	}
-
-	private static <T extends ExtendibleElement> void getRuntimeTypes(T element, T elementType, List<T> elementTypes) {
-
-		// no need to validate root type
-		if (MultiModelTypeHierarchy.isRootType(elementType)) {
-			elementTypes.add(elementType);
-			// first stop condition: model relationship or link without endpoints
-			if (element instanceof ModelRel && ((ModelRel) element).getModelEndpoints().isEmpty()) {
-				return;
-			}
-			if (element instanceof Mapping && ((Mapping) element).getModelElemEndpoints().isEmpty()) {
-				return;
-			}
-			// second stop condition: endpoints
-			//TODO MMINT[OVERRIDE] needs container type + to be refined with override semantics
-			if (element instanceof ModelEndpoint || element instanceof ModelElementEndpoint) {
-				return;
-			}
-		}
-		else {
-			// third stop condition: validation
-			if (!validateType(element, elementType, false)) {
-				return;
-			}
-			elementTypes.add(elementType);
-		}
-
-		// recurse for each subtype
-		List<T> elementSubtypes = filterSubtypes(element, elementType, MultiModelTypeHierarchy.getSubtypes(elementType));
-		for (T elementSubtype : elementSubtypes) {
-			getRuntimeTypes(element, elementSubtype, elementTypes);
-		}
-	}
-
-	public static <T extends ExtendibleElement> List<T> getRuntimeTypes(T element) {
-
-		if (!MultiModelConstraintChecker.isInstancesLevel(element)) {
-			return null;
-		}
-		List<T> elementTypes = new ArrayList<T>();
-		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED))) {
-			elementTypes.add((T) element.getMetatype());
-			return elementTypes;
-		}
-
-		// start from root
-		T rootType = MultiModelTypeRegistry.getType(MultiModelTypeHierarchy.getRootTypeUri(element));
-		getRuntimeTypes(element, rootType, elementTypes);
-
-		return elementTypes;
 	}
 
 	/**

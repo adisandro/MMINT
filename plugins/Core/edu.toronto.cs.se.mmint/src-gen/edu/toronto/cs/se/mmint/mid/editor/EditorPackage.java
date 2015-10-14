@@ -214,6 +214,24 @@ public interface EditorPackage extends EPackage {
 	int EDITOR___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___VALIDATE_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -429,6 +447,24 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM___GET_RUNTIME_TYPES = EDITOR___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = EDITOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___VALIDATE_INSTANCE = EDITOR___VALIDATE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.

@@ -300,6 +300,24 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___GET_RUNTIME_TYPES = MIDPackage.MODEL___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MIDPackage.MODEL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___VALIDATE_INSTANCE = MIDPackage.MODEL___VALIDATE_INSTANCE;
+
+	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -712,6 +730,24 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___GET_RUNTIME_TYPES = MODEL_REL___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MODEL_REL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___VALIDATE_INSTANCE = MODEL_REL___VALIDATE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
@@ -1499,6 +1535,24 @@ public interface RelationshipPackage extends EPackage {
 	int MAPPING___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING___VALIDATE_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1705,6 +1759,24 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAPPING___GET_RUNTIME_TYPES = MAPPING___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MAPPING___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING___VALIDATE_INSTANCE = MAPPING___VALIDATE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1931,6 +2003,24 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT___VALIDATE_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.

@@ -252,6 +252,24 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___GET_RUNTIME_TYPES = MIDPackage.GENERIC_ELEMENT___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MIDPackage.GENERIC_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___VALIDATE_INSTANCE = MIDPackage.GENERIC_ELEMENT___VALIDATE_INSTANCE;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -593,6 +611,24 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___GET_RUNTIME_TYPES = OPERATOR___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___VALIDATE_INSTANCE = OPERATOR___VALIDATE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -956,6 +992,24 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___GET_RUNTIME_TYPES = OPERATOR___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___VALIDATE_INSTANCE = OPERATOR___VALIDATE_INSTANCE;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1261,6 +1315,24 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ENDPOINT___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___VALIDATE_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.

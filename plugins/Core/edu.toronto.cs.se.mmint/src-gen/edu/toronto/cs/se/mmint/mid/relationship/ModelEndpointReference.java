@@ -139,8 +139,7 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
 	 * @throws MMINTException
 	 *             If this is a reference to a model instance endpoint, or if the uri of the new model element is
 	 *             already registered in the Instance MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelObjRequired="true"
-	 *        newModelElemNameRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelObjRequired="true" newModelElemNameRequired="true"
 	 * @generated
 	 */
 	ModelElementReference createModelElementInstanceAndReference(EObject modelObj, String newModelElemName) throws MMINTException;

@@ -42,7 +42,6 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
