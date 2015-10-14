@@ -140,7 +140,7 @@
       <details key="constraints" value="unboundedLevel"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="unboundedLevel" value="target.level = MidLevel::INSTANCES implies (lowerBound = 1 and upperBound = 1)"/>
+      <details key="unboundedLevel" value="target.level = MIDLevel::INSTANCES implies (lowerBound = 1 and upperBound = 1)"/>
     </eAnnotations>
     <eOperations name="getMetatype" lowerBound="1" eType="#//ExtendibleElementEndpoint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

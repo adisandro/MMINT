@@ -215,7 +215,7 @@ public class MIDValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String EXTENDIBLE_ELEMENT_ENDPOINT__UNBOUNDED_LEVEL__EEXPRESSION = "target.level = MidLevel::INSTANCES implies (lowerBound = 1 and upperBound = 1)";
+	protected static final String EXTENDIBLE_ELEMENT_ENDPOINT__UNBOUNDED_LEVEL__EEXPRESSION = "target.level = MIDLevel::INSTANCES implies (lowerBound = 1 and upperBound = 1)";
 
 	/**
 	 * Validates the unboundedLevel constraint of '<em>Extendible Element Endpoint</em>'.

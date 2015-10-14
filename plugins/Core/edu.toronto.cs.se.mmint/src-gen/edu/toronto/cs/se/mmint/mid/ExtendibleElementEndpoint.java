@@ -34,7 +34,7 @@ package edu.toronto.cs.se.mmint.mid;
  * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElementEndpoint()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='unboundedLevel'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot unboundedLevel='target.level = MidLevel::INSTANCES implies (lowerBound = 1 and upperBound = 1)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot unboundedLevel='target.level = MIDLevel::INSTANCES implies (lowerBound = 1 and upperBound = 1)'"
  * @generated
  */
 public interface ExtendibleElementEndpoint extends ExtendibleElement {

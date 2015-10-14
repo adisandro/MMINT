@@ -1497,7 +1497,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		  (extendibleElementEndpointEClass, 
 		   source, 
 		   new String[] {
-			 "unboundedLevel", "target.level = MidLevel::INSTANCES implies (lowerBound = 1 and upperBound = 1)"
+			 "unboundedLevel", "target.level = MIDLevel::INSTANCES implies (lowerBound = 1 and upperBound = 1)"
 		   });	
 		addAnnotation
 		  (getExtendibleElementEndpoint_TargetUri(), 
