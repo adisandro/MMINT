@@ -288,9 +288,17 @@ public interface ExtendibleElement extends EObject {
 	boolean validateInstance() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model dataType="edu.toronto.cs.se.mmint.mid.IStatus" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" contextDataType="edu.toronto.cs.se.mmint.mid.IValidationContext" contextRequired="true"
+	 * <!-- begin-user-doc --> Validates this instance against its static type within an editor that suports EMF
+	 * validation.
+	 * 
+	 * @param context
+	 *            The editor context of the validation.
+	 * @return A status representing the validation result.
+	 * @throws MMINTException
+	 *             If this is a type.<!-- end-user-doc -->
+	 * @model dataType="edu.toronto.cs.se.mmint.mid.IStatus" required="true"
+	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 *        contextDataType="edu.toronto.cs.se.mmint.mid.IValidationContext" contextRequired="true"
 	 * @generated
 	 */
 	IStatus validateInstanceInEditor(IValidationContext context) throws MMINTException;
