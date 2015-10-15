@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint.mid.impl;
 
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -24,6 +25,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.emf.validation.IValidationContext;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -142,6 +144,20 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * @generated
 	 */
 	private EDataType mmintExceptionEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType iStatusEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType iValidationContextEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -411,6 +427,15 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 */
 	public EOperation getExtendibleElement__ValidateInstance() {
 		return extendibleElementEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElement__ValidateInstanceInEditor__IValidationContext() {
+		return extendibleElementEClass.getEOperations().get(5);
 	}
 
 	/**
@@ -1048,6 +1073,24 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getIStatus() {
+		return iStatusEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getIValidationContext() {
+		return iValidationContextEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MIDFactory getMIDFactory() {
 		return (MIDFactory)getEFactoryInstance();
 	}
@@ -1095,6 +1138,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE);
+		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT);
 
 		extendibleElementEndpointEClass = createEClass(EXTENDIBLE_ELEMENT_ENDPOINT);
 		createEAttribute(extendibleElementEndpointEClass, EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND);
@@ -1175,6 +1219,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
 		// Create data types
 		mmintExceptionEDataType = createEDataType(MMINT_EXCEPTION);
+		iStatusEDataType = createEDataType(ISTATUS);
+		iValidationContextEDataType = createEDataType(IVALIDATION_CONTEXT);
 	}
 
 	/**
@@ -1261,6 +1307,10 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		addEException(op, this.getMMINTException());
 
 		op = initEOperation(getExtendibleElement__ValidateInstance(), ecorePackage.getEBoolean(), "validateInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMINTException());
+
+		op = initEOperation(getExtendibleElement__ValidateInstanceInEditor__IValidationContext(), this.getIStatus(), "validateInstanceInEditor", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getIValidationContext(), "context", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
 		initEClass(extendibleElementEndpointEClass, ExtendibleElementEndpoint.class, "ExtendibleElementEndpoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1471,6 +1521,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
 		// Initialize data types
 		initEDataType(mmintExceptionEDataType, MMINTException.class, "MMINTException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(iStatusEDataType, IStatus.class, "IStatus", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(iValidationContextEDataType, IValidationContext.class, "IValidationContext", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

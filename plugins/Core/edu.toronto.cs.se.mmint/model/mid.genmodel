@@ -18,6 +18,8 @@
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelOrigin/CREATED"/>
     </genEnums>
     <genDataTypes ecoreDataType="mid.ecore#//MMINTException"/>
+    <genDataTypes ecoreDataType="mid.ecore#//IStatus"/>
+    <genDataTypes ecoreDataType="mid.ecore#//IValidationContext"/>
     <genClasses ecoreClass="mid.ecore#//MID">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MID/models"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MID/editors"/>
@@ -49,6 +51,9 @@
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/validateInstanceType/type"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/validateInstance"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/validateInstanceInEditor">
+        <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/validateInstanceInEditor/context"/>
+      </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="mid.ecore#//ExtendibleElementEndpoint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementEndpoint/lowerBound"/>

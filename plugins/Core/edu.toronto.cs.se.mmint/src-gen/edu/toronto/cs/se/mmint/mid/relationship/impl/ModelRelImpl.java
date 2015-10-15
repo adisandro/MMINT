@@ -766,6 +766,35 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * @generated NOT
 	 */
 	@Override
+	public boolean validateInstanceType(ExtendibleElement type) throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+		MMINTException.mustBeType(type);
+
+		boolean validates = MultiModelConstraintChecker.areAllowedModelEndpoints(this, (ModelRel) type);
+		if (!validates) {
+			return false;
+		}
+		for (Mapping mapping : this.getMappings()) {
+			validates = false;
+			for (Mapping mappingType : ((ModelRel) type).getMappings()) {
+				validates = mapping.validateInstanceType(mappingType);
+				if (validates) {
+					break;
+				}
+			}
+			if (!validates) {
+				return false;
+			}
+		}
+
+		return super.validateInstanceType(type);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
 	public void deleteInstance() throws MMINTException {
 
 		MMINTException.mustBeInstance(this);

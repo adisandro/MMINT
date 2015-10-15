@@ -33,6 +33,9 @@
         <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/importInstanceAndEditor/modelUri"/>
         <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/importInstanceAndEditor/instanceMID"/>
       </genOperations>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/validateInstanceInEditor">
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/validateInstanceInEditor/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="mavomid.ecore#//MAVOModelElement"/>
   </genPackages>

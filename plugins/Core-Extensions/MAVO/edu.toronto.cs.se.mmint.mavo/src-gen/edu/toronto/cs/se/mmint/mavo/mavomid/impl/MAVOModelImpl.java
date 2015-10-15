@@ -15,16 +15,20 @@ import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDFactory;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel;
+import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
 
 import java.util.Collection;
+
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -33,6 +37,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.emf.validation.model.ConstraintStatus;
 
 /**
  * <!-- begin-user-doc -->
@@ -329,6 +335,37 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 		}
 
 		return newMAVOModel;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public IStatus validateInstanceInEditor(IValidationContext context) throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+
+		//TODO MMINT[MAVO] Extend this to the type level
+		MAVOTruthValue validates = MAVOMultiModelConstraintChecker.checkMAVOConstraint(this, this.getConstraint());
+		IStatus status;
+		if (validates == MAVOTruthValue.TRUE) {
+			status = context.createSuccessStatus();
+		}
+		else {
+			ConstraintStatus failureStatus = (ConstraintStatus) context.createFailureStatus(
+				"",
+				this.getName(),
+				this.getMetatype().getName());
+			status = (validates == MAVOTruthValue.MAYBE) ? new ConstraintStatus(
+				failureStatus.getConstraint(),
+				this,
+				IStatus.WARNING,
+				200,
+				"The MAVO constraint evaluated to Maybe",
+				failureStatus.getResultLocus()) : failureStatus;
+		}
+
+		return status;
 	}
 
 } //MAVOModelImpl

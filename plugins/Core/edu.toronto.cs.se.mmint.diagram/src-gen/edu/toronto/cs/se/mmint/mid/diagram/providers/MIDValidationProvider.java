@@ -21,8 +21,9 @@ import org.eclipse.emf.validation.model.IClientSelector;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
@@ -111,27 +112,12 @@ public class MIDValidationProvider {
 		 * @generated
 		 */
 		public IStatus validate(IValidationContext ctx) {
-			Model context = (Model) ctx.getTarget();
-			MAVOTruthValue validates = MultiModelTypeIntrospection.validateType(context, context.getMetatype(), true);
-			String modelRel = (context instanceof ModelRel) ? " relationship" : "";
-			IStatus status;
-			if (validates == MAVOTruthValue.TRUE) {
-				status = ctx.createSuccessStatus();
+			try {
+				return ((ExtendibleElement) ctx.getTarget()).validateInstanceInEditor(ctx);
 			}
-			else {
-				ConstraintStatus failureStatus = (ConstraintStatus) ctx.createFailureStatus(
-					modelRel,
-					context.getName(),
-					context.getMetatype().getName());
-				status = (validates == MAVOTruthValue.MAYBE) ? new ConstraintStatus(
-					failureStatus.getConstraint(),
-					context,
-					IStatus.WARNING,
-					200,
-					"Maybe",
-					failureStatus.getResultLocus()) : failureStatus;
+			catch (MMINTException e) {
+				return ctx.createFailureStatus(e.getMessage());
 			}
-			return status;
 		}
 	}
 

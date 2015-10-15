@@ -316,13 +316,22 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE = 4;
 
 	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = 5;
+
+	/**
 	 * The number of operations of the '<em>Extendible Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = 5;
+	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl <em>Extendible Element Endpoint</em>}' class.
@@ -477,6 +486,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -640,6 +658,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ELEMENT___VALIDATE_INSTANCE = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
 	 * The number of operations of the '<em>Generic Element</em>' class.
@@ -821,6 +848,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL___VALIDATE_INSTANCE = GENERIC_ELEMENT___VALIDATE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = GENERIC_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1149,6 +1185,15 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ELEMENT___VALIDATE_INSTANCE = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE;
 
 	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1402,6 +1447,15 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ENDPOINT___VALIDATE_INSTANCE = EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE;
 
 	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1632,6 +1686,27 @@ public interface MIDPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>IStatus</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.core.runtime.IStatus
+	 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getIStatus()
+	 * @generated
+	 */
+	int ISTATUS = 13;
+
+	/**
+	 * The meta object id for the '<em>IValidation Context</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.validation.IValidationContext
+	 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getIValidationContext()
+	 * @generated
+	 */
+	int IVALIDATION_CONTEXT = 14;
+
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.MID <em>MID</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1856,6 +1931,16 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getExtendibleElement__ValidateInstance();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#validateInstanceInEditor(org.eclipse.emf.validation.IValidationContext) <em>Validate Instance In Editor</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Instance In Editor</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElement#validateInstanceInEditor(org.eclipse.emf.validation.IValidationContext)
+	 * @generated
+	 */
+	EOperation getExtendibleElement__ValidateInstanceInEditor__IValidationContext();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#createSubtypeUri(java.lang.String, java.lang.String) <em>Create Subtype Uri</em>}' operation.
@@ -2576,6 +2661,28 @@ public interface MIDPackage extends EPackage {
 	EDataType getMMINTException();
 
 	/**
+	 * Returns the meta object for data type '{@link org.eclipse.core.runtime.IStatus <em>IStatus</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>IStatus</em>'.
+	 * @see org.eclipse.core.runtime.IStatus
+	 * @model instanceClass="org.eclipse.core.runtime.IStatus"
+	 * @generated
+	 */
+	EDataType getIStatus();
+
+	/**
+	 * Returns the meta object for data type '{@link org.eclipse.emf.validation.IValidationContext <em>IValidation Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>IValidation Context</em>'.
+	 * @see org.eclipse.emf.validation.IValidationContext
+	 * @model instanceClass="org.eclipse.emf.validation.IValidationContext"
+	 * @generated
+	 */
+	EDataType getIValidationContext();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2771,6 +2878,14 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE = eINSTANCE.getExtendibleElement__ValidateInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Instance In Editor</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = eINSTANCE.getExtendibleElement__ValidateInstanceInEditor__IValidationContext();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Subtype Uri</b></em>' operation.
@@ -3351,6 +3466,26 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType MMINT_EXCEPTION = eINSTANCE.getMMINTException();
+
+		/**
+		 * The meta object literal for the '<em>IStatus</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.core.runtime.IStatus
+		 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getIStatus()
+		 * @generated
+		 */
+		EDataType ISTATUS = eINSTANCE.getIStatus();
+
+		/**
+		 * The meta object literal for the '<em>IValidation Context</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.validation.IValidationContext
+		 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getIValidationContext()
+		 * @generated
+		 */
+		EDataType IVALIDATION_CONTEXT = eINSTANCE.getIValidationContext();
 
 	}
 

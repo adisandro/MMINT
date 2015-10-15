@@ -100,6 +100,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		return checkMAVOConstraintWithSolver(z3IncSolver, smtConstraint);
 	}
 
+	@Override
 	public @NonNull MAVOTruthValue checkMAVOConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
 		Z3MAVOModelParser z3ModelParser;
@@ -120,6 +121,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		if (modelDiagram == null) {
 			return constraintTruthValue;
 		}
+		//TODO MMINT[MAVO] This needs to be skipped when in a cycle (e.g. looking for all valid super/sub types)
 		if (!MultiModelDiagramUtils.getBooleanInput(
 			"Concretization highlighter",
 			"The result is MAYBE, do you want to see a concretization that violates the constraint?"

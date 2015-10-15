@@ -32,6 +32,10 @@
       <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="instanceMID" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MID"/>
     </eOperations>
+    <eOperations name="validateInstanceInEditor" lowerBound="1" eType="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//IStatus"
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
+      <eParameters name="context" lowerBound="1" eType="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//IValidationContext"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MAVOModelElement" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//ModelElement ../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

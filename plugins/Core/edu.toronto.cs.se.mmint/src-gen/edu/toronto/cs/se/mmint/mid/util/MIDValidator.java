@@ -12,12 +12,14 @@
 package edu.toronto.cs.se.mmint.mid.util;
 
 import java.util.Map;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.validation.IValidationContext;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.*;
 
@@ -119,6 +121,10 @@ public class MIDValidator extends EObjectValidator {
 				return validateModelOrigin((ModelOrigin)value, diagnostics, context);
 			case MIDPackage.MMINT_EXCEPTION:
 				return validateMMINTException((MMINTException)value, diagnostics, context);
+			case MIDPackage.ISTATUS:
+				return validateIStatus((IStatus)value, diagnostics, context);
+			case MIDPackage.IVALIDATION_CONTEXT:
+				return validateIValidationContext((IValidationContext)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -357,6 +363,24 @@ public class MIDValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMMINTException(MMINTException mmintException, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateIStatus(IStatus iStatus, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateIValidationContext(IValidationContext iValidationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

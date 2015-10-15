@@ -232,6 +232,15 @@ public interface EditorPackage extends EPackage {
 	int EDITOR___VALIDATE_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE;
 
 	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -465,6 +474,15 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM___VALIDATE_INSTANCE = EDITOR___VALIDATE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EDITOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.

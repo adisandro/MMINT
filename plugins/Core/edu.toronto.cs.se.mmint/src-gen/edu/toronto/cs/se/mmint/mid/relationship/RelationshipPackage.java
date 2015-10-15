@@ -318,6 +318,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___VALIDATE_INSTANCE = MIDPackage.MODEL___VALIDATE_INSTANCE;
 
 	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -748,6 +757,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___VALIDATE_INSTANCE = MODEL_REL___VALIDATE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
@@ -1553,6 +1571,15 @@ public interface RelationshipPackage extends EPackage {
 	int MAPPING___VALIDATE_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE;
 
 	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1777,6 +1804,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAPPING___VALIDATE_INSTANCE = MAPPING___VALIDATE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -2021,6 +2057,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_ENDPOINT___VALIDATE_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.

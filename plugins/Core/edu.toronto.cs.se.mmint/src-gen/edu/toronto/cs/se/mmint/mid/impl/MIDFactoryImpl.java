@@ -12,12 +12,14 @@
 package edu.toronto.cs.se.mmint.mid.impl;
 
 import java.util.Map;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.validation.IValidationContext;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.*;
 
@@ -91,6 +93,10 @@ public class MIDFactoryImpl extends EFactoryImpl implements MIDFactory {
 				return createModelOriginFromString(eDataType, initialValue);
 			case MIDPackage.MMINT_EXCEPTION:
 				return createMMINTExceptionFromString(eDataType, initialValue);
+			case MIDPackage.ISTATUS:
+				return createIStatusFromString(eDataType, initialValue);
+			case MIDPackage.IVALIDATION_CONTEXT:
+				return createIValidationContextFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -110,6 +116,10 @@ public class MIDFactoryImpl extends EFactoryImpl implements MIDFactory {
 				return convertModelOriginToString(eDataType, instanceValue);
 			case MIDPackage.MMINT_EXCEPTION:
 				return convertMMINTExceptionToString(eDataType, instanceValue);
+			case MIDPackage.ISTATUS:
+				return convertIStatusToString(eDataType, instanceValue);
+			case MIDPackage.IVALIDATION_CONTEXT:
+				return convertIValidationContextToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -240,6 +250,42 @@ public class MIDFactoryImpl extends EFactoryImpl implements MIDFactory {
 	 * @generated
 	 */
 	public String convertMMINTExceptionToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IStatus createIStatusFromString(EDataType eDataType, String initialValue) {
+		return (IStatus)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertIStatusToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IValidationContext createIValidationContextFromString(EDataType eDataType, String initialValue) {
+		return (IValidationContext)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertIValidationContextToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

@@ -16,6 +16,8 @@ import edu.toronto.cs.se.mmint.MMINTException;
 
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.validation.IValidationContext;
 
 /**
  * <!-- begin-user-doc -->
@@ -76,5 +78,14 @@ public interface MAVOModel extends Model, MAVORoot {
 	 * @generated
 	 */
 	Model importInstanceAndEditor(String modelUri, MID instanceMID) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * MAVO version. {@inheritDoc}
+	 * <!-- end-user-doc -->
+	 * @model dataType="edu.toronto.cs.se.mmint.mid.IStatus" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" contextDataType="edu.toronto.cs.se.mmint.mid.IValidationContext" contextRequired="true"
+	 * @generated
+	 */
+	IStatus validateInstanceInEditor(IValidationContext context) throws MMINTException;
 
 } // MAVOModel

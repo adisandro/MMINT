@@ -22,6 +22,10 @@ import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine;
+import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine.MAVOTruthValue;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
@@ -32,6 +36,30 @@ public class MAVOMultiModelConstraintChecker {
 
 		//TODO MMINT[MAVO] Register reasoners as mavo reasoner
 		return (IMAVOReasoningEngine) MultiModelConstraintChecker.getReasoner(constraintLanguage);
+	}
+
+	public static @NonNull MAVOTruthValue checkMAVOConstraint(@NonNull ExtendibleElement element, @Nullable ExtendibleElementConstraint constraint) {
+
+		if (!(element instanceof Model) || constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
+			return MAVOTruthValue.TRUE;
+		}
+		IMAVOReasoningEngine reasoner;
+		try {
+			reasoner = getMAVOReasoner(constraint.getLanguage());
+		}
+		catch (MMINTException e) {
+			MMINTException.print(IStatus.WARNING, "Skipping MAVO constraint check", e);
+			return MAVOTruthValue.FALSE;
+		}
+		MIDLevel constraintLevel;
+		if (!element.getUri().equals(((ExtendibleElement) constraint.eContainer()).getUri())) {
+			constraintLevel = MIDLevel.TYPES;
+		}
+		else {
+			constraintLevel = MIDLevel.INSTANCES;
+		}
+
+		return reasoner.checkMAVOConstraint((Model) element, constraint, constraintLevel);
 	}
 
 	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null

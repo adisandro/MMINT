@@ -53,6 +53,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
@@ -980,6 +981,31 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		newModel.createInstanceEditor();
 
 		return newModel;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public boolean validateInstanceType(ExtendibleElement type) throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+		MMINTException.mustBeType(type);
+
+		return MultiModelConstraintChecker.checkConstraint(this, type.getConstraint());
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public boolean validateInstance() throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+
+		boolean validates = MultiModelConstraintChecker.checkConstraint(this, this.getConstraint());
+
+		return validates && this.validateInstanceType(this.getMetatype());
 	}
 
 	/**

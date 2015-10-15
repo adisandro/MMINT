@@ -12,8 +12,10 @@
 package edu.toronto.cs.se.mmint.mid;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.validation.IValidationContext;
 
 
 /**
@@ -262,19 +264,35 @@ public interface ExtendibleElement extends EObject {
 	<T extends ExtendibleElement> EList<T> getRuntimeTypes() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Validates this instance against a type.
+	 * 
+	 * @param type
+	 *            The type to be validated against.
+	 * @return True if the validation is successful, false otherwise.
+	 * @throws MMINTException
+	 *             If this is a type, or if the type to be validated aganst is an instance.<!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" typeRequired="true"
 	 * @generated
 	 */
 	boolean validateInstanceType(ExtendibleElement type) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Validates this instance against its static type.
+	 * 
+	 * @return True if the validation is successful, false otherwise.
+	 * @throws MMINTException
+	 *             If this is a type.<!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
 	boolean validateInstance() throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model dataType="edu.toronto.cs.se.mmint.mid.IStatus" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" contextDataType="edu.toronto.cs.se.mmint.mid.IValidationContext" contextRequired="true"
+	 * @generated
+	 */
+	IStatus validateInstanceInEditor(IValidationContext context) throws MMINTException;
 
 } // ExtendibleElement

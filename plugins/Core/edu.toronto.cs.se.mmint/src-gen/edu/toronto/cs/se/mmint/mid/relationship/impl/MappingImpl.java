@@ -464,6 +464,18 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 	/**
 	 * @generated NOT
 	 */
+	@Override
+	public boolean validateInstanceType(ExtendibleElement type) throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+		MMINTException.mustBeType(type);
+
+		return MultiModelConstraintChecker.areAllowedModelElementEndpointReferences(this, (Mapping) type);
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	public void deleteInstance() throws MMINTException {
 
 		MMINTException.mustBeInstance(this);

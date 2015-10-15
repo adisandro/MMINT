@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.validation.IValidationContext;
+
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
@@ -39,7 +41,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -557,6 +558,13 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT:
+				try {
+					return validateInstanceInEditor((IValidationContext)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -654,9 +662,14 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 
 		// only direct subtypes
 		for (T subtype : subtypes) {
-			if (subtype.getSupertype().getUri().equals(type.getUri())) {
-				filteredSubtypes.add(subtype);
+			if (!subtype.getSupertype().getUri().equals(type.getUri())) {
+				continue;
 			}
+			//TODO MMINT[INTROSPECTION] Fix the following problem in the proper way, maybe in the subtype table directly
+			if (!(type instanceof ModelRel) && subtype instanceof ModelRel) { // root model rel is not a subtype of root model here
+				continue;
+			}
+			filteredSubtypes.add(subtype);
 		}
 
 		if (type instanceof Model && !(type instanceof ModelRel)) { // explore metamodel-compatible supertrees and subtrees
@@ -709,7 +722,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 		// no need to validate root type
 		if (MultiModelTypeHierarchy.isRootType(type)) {
 			types.add(type);
-			// first stop condition: model relationship or mapping without endpoints
+			// first stop condition: model relationship or mapping, without endpoints
 			if (this instanceof ModelRel && ((ModelRel) this).getModelEndpoints().isEmpty()) {
 				return;
 			}
@@ -724,7 +737,12 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 		}
 		else {
 			// third stop condition: validation
-			if (!MultiModelTypeIntrospection.validateType(this, type, false)) {
+			try {
+				if (!this.validateInstanceType(type)) {
+					return;
+				}
+			}
+			catch (MMINTException e) {
 				return;
 			}
 			types.add(type);
@@ -948,9 +966,25 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 */
 	public boolean validateInstance() throws MMINTException {
 
+		return this.validateInstanceType(this.getMetatype());
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public IStatus validateInstanceInEditor(IValidationContext context) throws MMINTException {
+
 		MMINTException.mustBeInstance(this);
 
-		return true;
+		boolean validates = this.validateInstance();
+		IStatus status = (validates) ?
+			status = context.createSuccessStatus() :
+			context.createFailureStatus(
+				"",
+				this.getName(),
+				this.getMetatype().getName());
+
+		return status;
 	}
 
 	/**

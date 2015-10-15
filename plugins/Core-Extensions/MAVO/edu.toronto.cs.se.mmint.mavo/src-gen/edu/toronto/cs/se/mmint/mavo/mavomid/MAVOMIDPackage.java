@@ -239,6 +239,24 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL___GET_RUNTIME_TYPES = MIDPackage.MODEL___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MIDPackage.MODEL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL___VALIDATE_INSTANCE = MIDPackage.MODEL___VALIDATE_INSTANCE;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -383,13 +401,22 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = MIDPackage.MODEL_OPERATION_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.MODEL_OPERATION_COUNT + 5;
+
+	/**
 	 * The number of operations of the '<em>MAVO Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_OPERATION_COUNT = MIDPackage.MODEL_OPERATION_COUNT + 5;
+	int MAVO_MODEL_OPERATION_COUNT = MIDPackage.MODEL_OPERATION_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOModelElementImpl <em>MAVO Model Element</em>}' class.
@@ -544,6 +571,33 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MODEL_ELEMENT___GET_RUNTIME_TYPES = MIDPackage.MODEL_ELEMENT___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MIDPackage.MODEL_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ELEMENT___VALIDATE_INSTANCE = MIDPackage.MODEL_ELEMENT___VALIDATE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.MODEL_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -706,6 +760,16 @@ public interface MAVOMIDPackage extends EPackage {
 	EOperation getMAVOModel__ImportInstanceAndEditor__String_MID();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel#validateInstanceInEditor(org.eclipse.emf.validation.IValidationContext) <em>Validate Instance In Editor</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Instance In Editor</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel#validateInstanceInEditor(org.eclipse.emf.validation.IValidationContext)
+	 * @generated
+	 */
+	EOperation getMAVOModel__ValidateInstanceInEditor__IValidationContext();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement <em>MAVO Model Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -787,6 +851,14 @@ public interface MAVOMIDPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MAVO_MODEL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = eINSTANCE.getMAVOModel__ImportInstanceAndEditor__String_MID();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Instance In Editor</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAVO_MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = eINSTANCE.getMAVOModel__ValidateInstanceInEditor__IValidationContext();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOModelElementImpl <em>MAVO Model Element</em>}' class.

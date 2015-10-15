@@ -21,6 +21,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -31,6 +33,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -230,21 +236,26 @@ public class MultiModelUtils {
 	}
 
 	/**
-	 * Writes the root of an ECore model in memory into an ECore model file.
+	 * Writes the root of an ECore model into an ECore model file.
 	 * 
-	 * @param root
-	 *            The ECore model root.
+	 * @param rootModelObj
+	 *            The root of the ECore model.
 	 * @param fileUri
 	 *            The uri of the ECore model file.
 	 * @param isWorkspaceRelative
-	 *            True if the uri is relative to the Eclipse workspace, false if
-	 *            it's absolute.
+	 *            True if the uri is relative to the Eclipse workspace, false if it's absolute.
 	 * @throws Exception
 	 *             If the ECore model file could not be created or overwritten.
 	 */
-	public static void createModelFile(@NonNull EObject root, @NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
+	public static void createModelFile(@NonNull EObject rootModelObj, @NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
 
-		MultiModelTypeIntrospection.writeRoot(root, getEMFUri(fileUri, isWorkspaceRelative));
+		URI uri = MultiModelUtils.getEMFUri(fileUri, isWorkspaceRelative);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(uri);
+		resource.getContents().add(rootModelObj);
+		Map<String, Object> options = new HashMap<>();
+		options.put(XMIResource.OPTION_SCHEMA_LOCATION, true);
+		resource.save(options);
 	}
 
 	public static void createModelFileInState(EObject root, String relativeFileUri) throws Exception {
@@ -252,9 +263,25 @@ public class MultiModelUtils {
 		createModelFile(root, prependStateToUri(relativeFileUri), false);
 	}
 
+	/**
+	 * Gets the root of an ECore model file.
+	 * 
+	 * @param fileUri
+	 *            The uri of the ECore model file.
+	 * @param isWorkspaceRelative
+	 *            True if the model uri is relative to the Eclipse workspace, false if it's absolute.
+	 * @return The root of the ECore model.
+	 * @throws Exception
+	 *             If the uri is invalid or not corresponding to an ECore model file.
+	 */
 	public static @NonNull EObject getModelFile(@NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
 
-		return MultiModelTypeIntrospection.getRoot(getEMFUri(fileUri, isWorkspaceRelative));
+		URI uri = MultiModelUtils.getEMFUri(fileUri, isWorkspaceRelative);
+		ResourceSet set = new ResourceSetImpl();
+		Resource resource = set.getResource(uri, true);
+		EObject rootModelObj = resource.getContents().get(0);
+
+		return rootModelObj;
 	}
 
 	public static EObject getModelFileInState(String relativeFileUri) throws Exception {
