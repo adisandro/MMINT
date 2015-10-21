@@ -4,93 +4,93 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:trace="http://www.eclipse.org/gmf/2006/Trace">
   <nodeTraces
-      visualID="2011"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'Model') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'MultiModel') and _containmentMF_.name = 'models')">
+      visualID="2001"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'Model') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'MID') and _containmentMF_.name = 'models')">
     <nodeLabelTraces
-        visualID="5011"
+        visualID="5001"
         queryText="true"/>
     <nodeLabelTraces
-        visualID="5016"
-        queryText="true"/>
-  </nodeTraces>
-  <nodeTraces
-      visualID="2012"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'Model') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'MultiModel') and _containmentMF_.name = 'models')">
-    <nodeLabelTraces
-        visualID="5012"
-        queryText="true"/>
-    <nodeLabelTraces
-        visualID="5017"
+        visualID="5002"
         queryText="true"/>
   </nodeTraces>
   <nodeTraces
-      visualID="2013"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID/Relationship' and _eClass_.name = 'ModelRel') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'MultiModel') and _containmentMF_.name = 'models')">
+      visualID="2002"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'Model') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'MID') and _containmentMF_.name = 'models')">
     <nodeLabelTraces
-        visualID="5013"
+        visualID="5003"
         queryText="true"/>
     <nodeLabelTraces
-        visualID="5018"
-        queryText="true"/>
-  </nodeTraces>
-  <nodeTraces
-      visualID="2014"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID/Relationship' and _eClass_.name = 'ModelRel') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'MultiModel') and _containmentMF_.name = 'models')">
-    <nodeLabelTraces
-        visualID="5014"
-        queryText="true"/>
-    <nodeLabelTraces
-        visualID="5019"
+        visualID="5004"
         queryText="true"/>
   </nodeTraces>
   <nodeTraces
-      visualID="2015"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID/Operator' and _eClass_.name = 'Operator') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'MultiModel') and _containmentMF_.name = 'operators')">
+      visualID="2003"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID/Relationship' and _eClass_.name = 'ModelRel') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'MID') and _containmentMF_.name = 'models')">
     <nodeLabelTraces
-        visualID="5015"
+        visualID="5005"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5006"
+        queryText="true"/>
+  </nodeTraces>
+  <nodeTraces
+      visualID="2004"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID/Relationship' and _eClass_.name = 'ModelRel') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'MID') and _containmentMF_.name = 'models')">
+    <nodeLabelTraces
+        visualID="5007"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5008"
+        queryText="true"/>
+  </nodeTraces>
+  <nodeTraces
+      visualID="2005"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID/Operator' and _eClass_.name = 'Operator') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'MID') and _containmentMF_.name = 'operators')">
+    <nodeLabelTraces
+        visualID="5009"
         queryText="true"/>
   </nodeTraces>
   <linkTraces
-      visualID="4013"
+      visualID="4001"
       queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'ExtendibleElement') and _feature_.name = 'supertype')"/>
   <linkTraces
-      visualID="4014"
+      visualID="4002"
       queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'ModelEndpoint')">
     <linkLabelTraces
-        visualID="6011"
+        visualID="6001"
         queryText="true"/>
     <linkLabelTraces
-        visualID="6017"
+        visualID="6002"
         queryText="true"/>
   </linkTraces>
   <linkTraces
-      visualID="4015"
+      visualID="4003"
       queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID/Relationship' and _eClass_.name = 'BinaryModelRel')">
     <linkLabelTraces
-        visualID="6012"
+        visualID="6003"
         queryText="true"/>
     <linkLabelTraces
-        visualID="6013"
+        visualID="6004"
         queryText="true"/>
     <linkLabelTraces
-        visualID="6014"
+        visualID="6005"
         queryText="true"/>
     <linkLabelTraces
-        visualID="6018"
-        queryText="true"/>
-  </linkTraces>
-  <linkTraces
-      visualID="4018"
-      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'ModelEndpoint')">
-    <linkLabelTraces
-        visualID="6019"
+        visualID="6006"
         queryText="true"/>
   </linkTraces>
   <linkTraces
-      visualID="4019"
+      visualID="4004"
       queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'ModelEndpoint')">
     <linkLabelTraces
-        visualID="6020"
+        visualID="6007"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4005"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://se.cs.toronto.edu/mmint/MID' and _eClass_.name = 'ModelEndpoint')">
+    <linkLabelTraces
+        visualID="6008"
         queryText="true"/>
   </linkTraces>
 </trace:TraceModel>
