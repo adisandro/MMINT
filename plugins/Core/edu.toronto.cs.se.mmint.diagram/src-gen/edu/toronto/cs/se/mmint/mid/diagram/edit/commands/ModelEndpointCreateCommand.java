@@ -35,18 +35,18 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public class ModelEndpointCreateCommand extends EditElementCommand {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private final EObject source;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private final EObject target;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public ModelEndpointCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
@@ -54,8 +54,8 @@ public class ModelEndpointCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public boolean canExecute() {
 		if (source == null && target == null) {
 			return false;
@@ -74,8 +74,8 @@ public class ModelEndpointCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
@@ -91,8 +91,8 @@ public class ModelEndpointCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void doConfigure(ModelEndpoint newElement, IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
@@ -108,22 +108,22 @@ public class ModelEndpointCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected ModelRel getSource() {
 		return (ModelRel) source;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected ExtendibleElement getTarget() {
 		return (ExtendibleElement) target;
 	}

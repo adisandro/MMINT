@@ -65,13 +65,13 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 public class MIDVisualIDRegistry {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static final String DEBUG_KEY = "edu.toronto.cs.se.mmint.diagram/debug/visualID"; //$NON-NLS-1$
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static int getVisualID(View view) {
 		if (view instanceof Diagram) {
 			if (MIDEditPart.MODEL_ID.equals(view.getType())) {
@@ -85,8 +85,8 @@ public class MIDVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static String getModelID(View view) {
 		View diagram = view.getDiagram();
 		while (view != diagram) {
@@ -100,8 +100,8 @@ public class MIDVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static int getVisualID(String type) {
 		try {
 			return Integer.parseInt(type);
@@ -117,15 +117,15 @@ public class MIDVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static String getType(int visualID) {
 		return Integer.toString(visualID);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static int getDiagramVisualID(EObject domainElement) {
 		if (domainElement == null) {
 			return -1;
@@ -138,8 +138,8 @@ public class MIDVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static int getNodeVisualID(View containerView, EObject domainElement) {
 		if (domainElement == null) {
 			return -1;
@@ -188,8 +188,8 @@ public class MIDVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
 		String containerModelID = edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry
 			.getModelID(containerView);
@@ -300,8 +300,8 @@ public class MIDVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static int getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
 			return -1;
@@ -328,31 +328,31 @@ public class MIDVisualIDRegistry {
 	* User can change implementation of this method to handle some specific
 	* situations not covered by default logic.
 	* 
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static boolean isDiagram(edu.toronto.cs.se.mmint.mid.MID element) {
 		return true;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static boolean isModel_2001(Model domainElement) {
 		Object result = MIDOCLFactory.getExpression(0, MIDPackage.eINSTANCE.getModel(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static boolean isModel_2002(Model domainElement) {
 		Object result = MIDOCLFactory.getExpression(1, MIDPackage.eINSTANCE.getModel(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static boolean isModelRel_2003(ModelRel domainElement) {
 		Object result = MIDOCLFactory
 			.getExpression(2, RelationshipPackage.eINSTANCE.getModelRel(), null)
@@ -361,8 +361,8 @@ public class MIDVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static boolean isModelRel_2004(ModelRel domainElement) {
 		Object result = MIDOCLFactory
 			.getExpression(3, RelationshipPackage.eINSTANCE.getModelRel(), null)
@@ -371,30 +371,30 @@ public class MIDVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static boolean isModelEndpoint_4002(ModelEndpoint domainElement) {
 		return !(domainElement.eContainer() instanceof BinaryModelRel)
 				&& !(domainElement.eContainer() instanceof Operator);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static boolean isModelEndpoint_4004(ModelEndpoint domainElement) {
 		return domainElement.eContainmentFeature().getName().equals("inputs");
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static boolean isModelEndpoint_4005(ModelEndpoint domainElement) {
 		return domainElement.eContainmentFeature().getName().equals("outputs");
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
 		if (candidate == -1) {
 			//unrecognized id is always bad
@@ -405,15 +405,15 @@ public class MIDVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static boolean isCompartmentVisualID(int visualID) {
 		return false;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static boolean isSemanticLeafVisualID(int visualID) {
 		switch (visualID) {
 			case MIDEditPart.VISUAL_ID:
@@ -431,12 +431,12 @@ public class MIDVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		@Override
 
 		public int getVisualID(View view) {
@@ -444,8 +444,8 @@ public class MIDVisualIDRegistry {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		@Override
 
 		public String getModelID(View view) {
@@ -453,8 +453,8 @@ public class MIDVisualIDRegistry {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		@Override
 
 		public int getNodeVisualID(View containerView, EObject domainElement) {
@@ -463,8 +463,8 @@ public class MIDVisualIDRegistry {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		@Override
 
 		public boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
@@ -473,8 +473,8 @@ public class MIDVisualIDRegistry {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		@Override
 
 		public boolean isCompartmentVisualID(int visualID) {
@@ -482,8 +482,8 @@ public class MIDVisualIDRegistry {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		@Override
 
 		public boolean isSemanticLeafVisualID(int visualID) {

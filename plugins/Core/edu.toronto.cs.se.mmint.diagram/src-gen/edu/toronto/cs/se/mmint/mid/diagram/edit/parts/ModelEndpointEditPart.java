@@ -32,20 +32,20 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ModelRelModelEndpointSe
 public class ModelEndpointEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final int VISUAL_ID = 4002;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public ModelEndpointEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(
@@ -55,8 +55,8 @@ public class ModelEndpointEditPart extends ConnectionNodeEditPart implements ITr
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WrappingLabel10EditPart) {
 			((WrappingLabel10EditPart) childEditPart)
@@ -72,8 +72,8 @@ public class ModelEndpointEditPart extends ConnectionNodeEditPart implements ITr
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -82,8 +82,8 @@ public class ModelEndpointEditPart extends ConnectionNodeEditPart implements ITr
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WrappingLabel10EditPart) {
 			return true;
@@ -95,8 +95,8 @@ public class ModelEndpointEditPart extends ConnectionNodeEditPart implements ITr
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -110,16 +110,16 @@ public class ModelEndpointEditPart extends ConnectionNodeEditPart implements ITr
 	* Body of this method does not depend on settings in generation model
 	* so you may safely remove <i>generated</i> tag and modify it.
 	* 
-	* @generated
-	*/
+	 * @generated
+	 */
 
 	protected Connection createConnectionFigure() {
 		return new ModelRelModelEndpointFigure();
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public ModelRelModelEndpointFigure getPrimaryShape() {
 		return (ModelRelModelEndpointFigure) getFigure();
 	}

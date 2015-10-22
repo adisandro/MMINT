@@ -51,15 +51,15 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 public class MIDDiagramUpdater {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static boolean isShortcutOrphaned(View view) {
 		return !view.isSetElement() || view.getElement() == null || view.getElement().eIsProxy();
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static List<MIDNodeDescriptor> getSemanticChildren(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 			case MIDEditPart.VISUAL_ID:
@@ -69,8 +69,8 @@ public class MIDDiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static List<MIDNodeDescriptor> getMID_1000SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.emptyList();
@@ -109,8 +109,8 @@ public class MIDDiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static List<MIDLinkDescriptor> getContainedLinks(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 			case MIDEditPart.VISUAL_ID:
@@ -138,8 +138,8 @@ public class MIDDiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static List<MIDLinkDescriptor> getIncomingLinks(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 			case ModelEditPart.VISUAL_ID:
@@ -165,8 +165,8 @@ public class MIDDiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static List<MIDLinkDescriptor> getOutgoingLinks(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 			case ModelEditPart.VISUAL_ID:
@@ -546,8 +546,8 @@ public class MIDDiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_ModelEndpoint_4002(
 			ModelRel container) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
@@ -573,8 +573,8 @@ public class MIDDiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_BinaryModelRel_4003(
 			edu.toronto.cs.se.mmint.mid.MID container) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
@@ -601,8 +601,8 @@ public class MIDDiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_ModelEndpoint_4004(
 			Operator container) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
@@ -628,8 +628,8 @@ public class MIDDiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_ModelEndpoint_4005(
 			Operator container) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
@@ -799,8 +799,8 @@ public class MIDDiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static Collection<MIDLinkDescriptor> getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(
 			ExtendibleElement source) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
@@ -818,8 +818,8 @@ public class MIDDiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static Collection<MIDLinkDescriptor> getOutgoingTypeModelFacetLinks_BinaryModelRel_4003(Model source) {
 		edu.toronto.cs.se.mmint.mid.MID container = null;
 		// Find container element for the link.
@@ -860,12 +860,12 @@ public class MIDDiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final DiagramUpdater TYPED_INSTANCE = new DiagramUpdater() {
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		@Override
 
 		public List<MIDNodeDescriptor> getSemanticChildren(View view) {
@@ -873,8 +873,8 @@ public class MIDDiagramUpdater {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		@Override
 
 		public List<MIDLinkDescriptor> getContainedLinks(View view) {
@@ -882,8 +882,8 @@ public class MIDDiagramUpdater {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		@Override
 
 		public List<MIDLinkDescriptor> getIncomingLinks(View view) {
@@ -891,8 +891,8 @@ public class MIDDiagramUpdater {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		@Override
 
 		public List<MIDLinkDescriptor> getOutgoingLinks(View view) {

@@ -33,8 +33,8 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDModelingAssistantProvide
 public class MIDModelingAssistantProviderOfModelRel2EditPart extends MIDModelingAssistantProvider {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	@Override
 
 	public List<IElementType> getRelTypesOnSource(IAdaptable source) {
@@ -43,8 +43,8 @@ public class MIDModelingAssistantProviderOfModelRel2EditPart extends MIDModeling
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public List<IElementType> doGetRelTypesOnSource(ModelRel2EditPart source) {
 		List<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(MIDElementTypes.ExtendibleElementSupertype_4001);
@@ -54,8 +54,8 @@ public class MIDModelingAssistantProviderOfModelRel2EditPart extends MIDModeling
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	@Override
 
 	public List<IElementType> getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
@@ -65,8 +65,8 @@ public class MIDModelingAssistantProviderOfModelRel2EditPart extends MIDModeling
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public List<IElementType> doGetRelTypesOnSourceAndTarget(
 			ModelRel2EditPart source, IGraphicalEditPart targetEditPart) {
 		List<IElementType> types = new LinkedList<IElementType>();
@@ -116,8 +116,8 @@ public class MIDModelingAssistantProviderOfModelRel2EditPart extends MIDModeling
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	@Override
 
 	public List<IElementType> getTypesForTarget(IAdaptable source, IElementType relationshipType) {
@@ -126,8 +126,8 @@ public class MIDModelingAssistantProviderOfModelRel2EditPart extends MIDModeling
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public List<IElementType> doGetTypesForTarget(ModelRel2EditPart source, IElementType relationshipType) {
 		List<IElementType> types = new ArrayList<IElementType>();
 		if (relationshipType == MIDElementTypes.ExtendibleElementSupertype_4001) {
@@ -154,8 +154,8 @@ public class MIDModelingAssistantProviderOfModelRel2EditPart extends MIDModeling
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	@Override
 
 	public List<IElementType> getRelTypesOnTarget(IAdaptable target) {
@@ -164,8 +164,8 @@ public class MIDModelingAssistantProviderOfModelRel2EditPart extends MIDModeling
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public List<IElementType> doGetRelTypesOnTarget(ModelRel2EditPart target) {
 		List<IElementType> types = new ArrayList<IElementType>(5);
 		types.add(MIDElementTypes.ExtendibleElementSupertype_4001);
@@ -177,8 +177,8 @@ public class MIDModelingAssistantProviderOfModelRel2EditPart extends MIDModeling
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	@Override
 
 	public List<IElementType> getTypesForSource(IAdaptable target, IElementType relationshipType) {
@@ -187,8 +187,8 @@ public class MIDModelingAssistantProviderOfModelRel2EditPart extends MIDModeling
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public List<IElementType> doGetTypesForSource(ModelRel2EditPart target, IElementType relationshipType) {
 		List<IElementType> types = new ArrayList<IElementType>();
 		if (relationshipType == MIDElementTypes.ExtendibleElementSupertype_4001) {

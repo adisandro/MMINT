@@ -23,15 +23,15 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 public class ExtendibleElementSupertypeItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public ExtendibleElementSupertypeItemSemanticEditPolicy() {
 		super(MIDElementTypes.ExtendibleElementSupertype_4001);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		return getGEFWrapper(new DestroyReferenceCommand(req));
 	}

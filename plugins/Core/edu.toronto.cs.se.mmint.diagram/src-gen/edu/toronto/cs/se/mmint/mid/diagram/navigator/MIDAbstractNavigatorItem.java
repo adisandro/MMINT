@@ -22,8 +22,8 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributo
 public abstract class MIDAbstractNavigatorItem extends PlatformObject {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	static {
 		final Class[] supportedTypes = new Class[] { ITabbedPropertySheetPageContributor.class };
 		final ITabbedPropertySheetPageContributor propertySheetPageContributor = new ITabbedPropertySheetPageContributor() {
@@ -48,20 +48,20 @@ public abstract class MIDAbstractNavigatorItem extends PlatformObject {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private Object myParent;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected MIDAbstractNavigatorItem(Object parent) {
 		myParent = parent;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Object getParent() {
 		return myParent;
 	}

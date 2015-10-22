@@ -465,15 +465,15 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	private abstract class DropTargetListener extends DiagramDropTargetListener {
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public DropTargetListener(EditPartViewer viewer, Transfer xfer) {
 			super(viewer, xfer);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		protected List getObjectsBeingDropped() {
 			TransferData data = getCurrentEvent().currentDataType;
 			HashSet<URI> uris = new HashSet<URI>();
@@ -508,8 +508,8 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		protected abstract Object getJavaObject(TransferData data);
 
 	}

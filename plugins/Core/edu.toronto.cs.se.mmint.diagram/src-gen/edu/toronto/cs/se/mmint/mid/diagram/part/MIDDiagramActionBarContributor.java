@@ -25,22 +25,22 @@ import org.eclipse.ui.IWorkbenchPage;
 public class MIDDiagramActionBarContributor extends DiagramActionBarContributor {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected Class getEditorClass() {
 		return MIDDiagramEditor.class;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected String getEditorId() {
 		return MIDDiagramEditor.ID;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init(IActionBars bars, IWorkbenchPage page) {
 		super.init(bars, page);
 		// print preview

@@ -29,8 +29,8 @@ public class MIDPropertySection extends DefaultPropertySection implements IPrope
 
 	/**
 	* Modify/unwrap selection.
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected Object transformSelectionGen(Object selected) {
 		selected = /*super.*/transformSelectionToDomain(selected);
 		return selected;

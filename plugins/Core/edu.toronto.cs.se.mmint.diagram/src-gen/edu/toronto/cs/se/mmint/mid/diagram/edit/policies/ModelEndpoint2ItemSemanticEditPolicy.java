@@ -38,15 +38,15 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 public class ModelEndpoint2ItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public ModelEndpoint2ItemSemanticEditPolicy() {
 		super(MIDElementTypes.ModelEndpoint_4004);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		return getGEFWrapper(new DestroyElementCommand(req));
 	}

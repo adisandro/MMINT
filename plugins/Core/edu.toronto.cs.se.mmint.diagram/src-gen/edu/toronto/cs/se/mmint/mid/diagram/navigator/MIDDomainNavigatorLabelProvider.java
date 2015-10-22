@@ -26,20 +26,20 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 public class MIDDomainNavigatorLabelProvider implements ICommonLabelProvider {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 		MIDDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init(ICommonContentExtensionSite aConfig) {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Image getImage(Object element) {
 		if (element instanceof MIDDomainNavigatorItem) {
 			return myAdapterFactoryLabelProvider.getImage(((MIDDomainNavigatorItem) element).getEObject());
@@ -48,8 +48,8 @@ public class MIDDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public String getText(Object element) {
 		if (element instanceof MIDDomainNavigatorItem) {
 			return myAdapterFactoryLabelProvider.getText(((MIDDomainNavigatorItem) element).getEObject());
@@ -58,36 +58,36 @@ public class MIDDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void addListener(ILabelProviderListener listener) {
 		myAdapterFactoryLabelProvider.addListener(listener);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void dispose() {
 		myAdapterFactoryLabelProvider.dispose();
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public boolean isLabelProperty(Object element, String property) {
 		return myAdapterFactoryLabelProvider.isLabelProperty(element, property);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void removeListener(ILabelProviderListener listener) {
 		myAdapterFactoryLabelProvider.removeListener(listener);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void restoreState(IMemento aMemento) {
 	}
 
@@ -98,8 +98,8 @@ public class MIDDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public String getDescription(Object anElement) {
 		return null;
 	}

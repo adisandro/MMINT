@@ -33,20 +33,20 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 public class MIDValidationProvider {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static boolean constraintsActive = false;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static boolean shouldConstraintsBePrivate() {
 		return false;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static void runWithConstraints(TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
@@ -74,8 +74,8 @@ public class MIDValidationProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	static boolean isInDefaultEditorContext(Object object) {
 		if (shouldConstraintsBePrivate() && !constraintsActive) {
 			return false;
@@ -87,26 +87,26 @@ public class MIDValidationProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static class DefaultCtx implements IClientSelector {
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean selects(Object object) {
 			return isInDefaultEditorContext(object);
 		}
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static class Adapter1 extends AbstractModelConstraint {
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public IStatus validate(IValidationContext ctx) {
 			Model context = (Model) ctx.getTarget();
 			try {
@@ -119,8 +119,8 @@ public class MIDValidationProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	static String formatElement(EObject object) {
 		return EMFCoreUtil.getQualifiedName(object, true);
 	}

@@ -21,8 +21,8 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 public class DiagramRulersAndGridPreferencePage extends RulerGridPreferencePage {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public DiagramRulersAndGridPreferencePage() {
 		setPreferenceStore(MIDDiagramEditorPlugin.getInstance().getPreferenceStore());
 	}

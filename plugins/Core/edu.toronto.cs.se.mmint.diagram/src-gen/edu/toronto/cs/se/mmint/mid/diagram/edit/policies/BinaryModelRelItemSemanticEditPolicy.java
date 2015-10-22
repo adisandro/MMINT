@@ -41,15 +41,15 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 public class BinaryModelRelItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public BinaryModelRelItemSemanticEditPolicy() {
 		super(MIDElementTypes.BinaryModelRel_4003);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		return getGEFWrapper(new DestroyElementCommand(req));
 	}

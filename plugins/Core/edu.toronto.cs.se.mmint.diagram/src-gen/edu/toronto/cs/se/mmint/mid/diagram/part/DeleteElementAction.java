@@ -20,8 +20,8 @@ import org.eclipse.ui.IWorkbenchPart;
 public class DeleteElementAction extends DefaultDeleteElementAction {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public DeleteElementAction(IWorkbenchPart part) {
 		super(part);
 	}

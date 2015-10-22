@@ -23,8 +23,8 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 public class MIDEditPartProvider extends DefaultEditPartProvider {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public MIDEditPartProvider() {
 		super(new MIDEditPartFactory(), MIDVisualIDRegistry.TYPED_INSTANCE, MIDEditPart.MODEL_ID);
 	}

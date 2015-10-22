@@ -23,8 +23,8 @@ import org.eclipse.gmf.runtime.notation.View;
 public class MIDNavigatorItem extends MIDAbstractNavigatorItem {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	static {
 		final Class[] supportedTypes = new Class[] { View.class, EObject.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
@@ -44,18 +44,18 @@ public class MIDNavigatorItem extends MIDAbstractNavigatorItem {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private View myView;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private boolean myLeaf = false;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public MIDNavigatorItem(View view, Object parent, boolean isLeaf) {
 		super(parent);
 		myView = view;
@@ -63,22 +63,22 @@ public class MIDNavigatorItem extends MIDAbstractNavigatorItem {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public View getView() {
 		return myView;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public boolean isLeaf() {
 		return myLeaf;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public boolean equals(Object obj) {
 		if (obj instanceof edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorItem) {
 			return EcoreUtil.getURI(getView()).equals(
@@ -88,8 +88,8 @@ public class MIDNavigatorItem extends MIDAbstractNavigatorItem {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public int hashCode() {
 		return EcoreUtil.getURI(getView()).hashCode();
 	}

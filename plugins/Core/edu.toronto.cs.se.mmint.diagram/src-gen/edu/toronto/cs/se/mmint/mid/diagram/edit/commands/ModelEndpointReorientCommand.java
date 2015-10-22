@@ -30,23 +30,23 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public class ModelEndpointReorientCommand extends EditElementCommand {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private final int reorientDirection;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private final EObject oldEnd;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private final EObject newEnd;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public ModelEndpointReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
@@ -55,8 +55,8 @@ public class ModelEndpointReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public boolean canExecute() {
 		if (false == getElementToEdit() instanceof ModelEndpoint) {
 			return false;
@@ -71,8 +71,8 @@ public class ModelEndpointReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected boolean canReorientSource() {
 		if (!(oldEnd instanceof ModelRel && newEnd instanceof ModelRel)) {
 			return false;
@@ -84,8 +84,8 @@ public class ModelEndpointReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected boolean canReorientTarget() {
 		if (!(oldEnd instanceof ExtendibleElement && newEnd instanceof ExtendibleElement)) {
 			return false;
@@ -100,8 +100,8 @@ public class ModelEndpointReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
@@ -116,8 +116,8 @@ public class ModelEndpointReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected CommandResult reorientSource() throws ExecutionException {
 		getOldSource().getModelEndpoints().remove(getLink());
 		getNewSource().getModelEndpoints().add(getLink());
@@ -125,44 +125,44 @@ public class ModelEndpointReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getLink().setTarget(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected ModelEndpoint getLink() {
 		return (ModelEndpoint) getElementToEdit();
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected ModelRel getOldSource() {
 		return (ModelRel) oldEnd;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected ModelRel getNewSource() {
 		return (ModelRel) newEnd;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected ExtendibleElement getOldTarget() {
 		return (ExtendibleElement) oldEnd;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected ExtendibleElement getNewTarget() {
 		return (ExtendibleElement) newEnd;
 	}

@@ -31,15 +31,15 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 public class MIDItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public MIDItemSemanticEditPolicy() {
 		super(MIDElementTypes.MID_1000);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if (MIDElementTypes.Model_2001 == req.getElementType()) {
 			return getGEFWrapper(new ModelCreateCommand(req));
@@ -60,21 +60,21 @@ public class MIDItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req));
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static class DuplicateAnythingCommand extends DuplicateEObjectsCommand {
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req) {
 			super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap());
 		}

@@ -25,44 +25,44 @@ import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 public class MIDElementChooserDialog extends DefaultElementChooserDialog {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public MIDElementChooserDialog(Shell parentShell, View view) {
 		this(parentShell, view, false);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public MIDElementChooserDialog(Shell parentShell, View view, boolean allowMultiSelection) {
 		super(parentShell, view, new MIDElementChooserDialogContextImpl(allowMultiSelection));
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static class MIDElementChooserDialogContextImpl implements DefaultElementChooserDialog.Context {
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		private static final String[] FILE_EXTENSIONS = new String[] { "mid" };
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		private final boolean myAllowMultiSelection;
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		private MIDElementChooserDialogContextImpl(boolean allowMultiSelection) {
 			myAllowMultiSelection = allowMultiSelection;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		@Override
 
 		public AdapterFactory getAdapterFactory() {
@@ -70,8 +70,8 @@ public class MIDElementChooserDialog extends DefaultElementChooserDialog {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		@Override
 
 		public PreferencesHint getPreferenceHint() {
@@ -79,8 +79,8 @@ public class MIDElementChooserDialog extends DefaultElementChooserDialog {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		@Override
 
 		public String[] getFileExtesions() {
@@ -88,8 +88,8 @@ public class MIDElementChooserDialog extends DefaultElementChooserDialog {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		@Override
 
 		public String getDialogTitle() {
@@ -97,16 +97,16 @@ public class MIDElementChooserDialog extends DefaultElementChooserDialog {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		@Override
 		public ITreeContentProvider getTreeContentProvider() {
 			return new BaseWorkbenchContentProvider();
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean allowMultiSelection() {
 			return myAllowMultiSelection;
 		}

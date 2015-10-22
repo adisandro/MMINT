@@ -23,8 +23,8 @@ import org.eclipse.ui.PartInitException;
 public class MIDMatchingStrategy implements IEditorMatchingStrategy {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public boolean matches(IEditorReference editorRef, IEditorInput input) {
 		IEditorInput editorInput;
 		try {

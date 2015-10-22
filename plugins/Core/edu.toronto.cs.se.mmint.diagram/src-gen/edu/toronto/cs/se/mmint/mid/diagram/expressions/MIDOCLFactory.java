@@ -35,18 +35,18 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 public class MIDOCLFactory {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private final MIDAbstractExpression[] expressions;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private final String[] expressionBodies;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected MIDOCLFactory() {
 		this.expressions = new MIDAbstractExpression[6];
 		this.expressionBodies = new String[] {
@@ -60,8 +60,8 @@ public class MIDOCLFactory {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static MIDOCLFactory getInstance() {
 		MIDOCLFactory instance = MIDDiagramEditorPlugin.getInstance().getMIDOCLFactory();
 		if (instance == null) {
@@ -71,15 +71,15 @@ public class MIDOCLFactory {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static String getExpressionBody(int index) {
 		return getInstance().expressionBodies[index];
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static MIDAbstractExpression getExpression(
 			int index, EClassifier context, Map<String, EClassifier> environment) {
 		MIDOCLFactory cached = getInstance();
@@ -97,8 +97,8 @@ public class MIDOCLFactory {
 
 	/**
 	* This is factory method, callers are responsible to keep reference to the return value if they want to reuse parsed expression
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static MIDAbstractExpression getExpression(
 			String body, EClassifier context, Map<String, EClassifier> environment) {
 		return new Expression(body, context, environment);
@@ -106,30 +106,30 @@ public class MIDOCLFactory {
 
 	/**
 	* This method will become private in the next release
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static MIDAbstractExpression getExpression(String body, EClassifier context) {
 		return getExpression(body, context, Collections.<String, EClassifier> emptyMap());
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static class Expression extends MIDAbstractExpression {
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		private final org.eclipse.ocl.ecore.OCL oclInstance;
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		private OCLExpression oclExpression;
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public Expression(String body, EClassifier context, Map<String, EClassifier> environment) {
 			super(body, context);
 			oclInstance = org.eclipse.ocl.ecore.OCL.newInstance();
@@ -146,8 +146,8 @@ public class MIDOCLFactory {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		@SuppressWarnings("rawtypes")
 		protected Object doEvaluate(Object context, Map env) {
 			if (oclExpression == null) {
@@ -170,8 +170,8 @@ public class MIDOCLFactory {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		private static void initCustomEnv(
 				Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv,
 				Map<String, EClassifier> environment) {
@@ -185,8 +185,8 @@ public class MIDOCLFactory {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		private static Variable createVar(
 				Environment<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ecoreEnv, String name, EClassifier type) {
 			Variable var = EcoreFactory.eINSTANCE.createVariable();

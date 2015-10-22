@@ -35,23 +35,23 @@ import org.eclipse.gmf.tooling.runtime.edit.policies.labels.IRefreshableFeedback
 public class MIDTextNonResizableEditPolicy extends NonResizableEditPolicyEx implements IRefreshableFeedbackEditPolicy {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IFigure selectionFeedbackFigure;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IFigure focusFeedbackFigure;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private FigureListener hostPositionListener;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void showPrimarySelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
@@ -64,8 +64,8 @@ public class MIDTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void showSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
@@ -81,8 +81,8 @@ public class MIDTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void hideSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(false);
@@ -99,8 +99,8 @@ public class MIDTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void showFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(true);
@@ -113,8 +113,8 @@ public class MIDTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void hideFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(false);
@@ -128,8 +128,8 @@ public class MIDTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected Rectangle getFeedbackBounds() {
 		Rectangle bounds;
 		if (getHostFigure() instanceof Label) {
@@ -145,8 +145,8 @@ public class MIDTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected IFigure createSelectionFeedbackFigure() {
 		if (getHostFigure() instanceof Label) {
 			Label feedbackFigure = new Label();
@@ -163,8 +163,8 @@ public class MIDTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected IFigure createFocusFeedbackFigure() {
 		return new Figure() {
 
@@ -175,8 +175,8 @@ public class MIDTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void updateLabel(Label target) {
 		Label source = (Label) getHostFigure();
 		target.setText(source.getText());
@@ -185,8 +185,8 @@ public class MIDTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void refreshSelectionFeedback() {
 		if (selectionFeedbackFigure != null) {
 			if (selectionFeedbackFigure instanceof Label) {
@@ -200,8 +200,8 @@ public class MIDTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void refreshFocusFeedback() {
 		if (focusFeedbackFigure != null) {
 			focusFeedbackFigure.setBounds(getFeedbackBounds());
@@ -209,8 +209,8 @@ public class MIDTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	@Override
 	public void refreshFeedback() {
 		refreshSelectionFeedback();
@@ -218,8 +218,8 @@ public class MIDTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private FigureListener getHostPositionListener() {
 		if (hostPositionListener == null) {
 			hostPositionListener = new FigureListener() {
@@ -232,8 +232,8 @@ public class MIDTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected List createSelectionHandles() {
 		MoveHandle moveHandle = new MoveHandle((GraphicalEditPart) getHost());
 		moveHandle.setBorder(null);

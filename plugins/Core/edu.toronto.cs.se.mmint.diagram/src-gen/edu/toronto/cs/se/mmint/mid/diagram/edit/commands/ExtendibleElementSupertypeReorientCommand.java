@@ -29,28 +29,28 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MIDBaseItemSemanticEdit
 public class ExtendibleElementSupertypeReorientCommand extends EditElementCommand {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private final int reorientDirection;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private final EObject referenceOwner;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private final EObject oldEnd;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private final EObject newEnd;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public ExtendibleElementSupertypeReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
@@ -60,8 +60,8 @@ public class ExtendibleElementSupertypeReorientCommand extends EditElementComman
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public boolean canExecute() {
 		if (false == referenceOwner instanceof ExtendibleElement) {
 			return false;
@@ -76,8 +76,8 @@ public class ExtendibleElementSupertypeReorientCommand extends EditElementComman
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected boolean canReorientSource() {
 		if (!(oldEnd instanceof ExtendibleElement && newEnd instanceof ExtendibleElement)) {
 			return false;
@@ -88,8 +88,8 @@ public class ExtendibleElementSupertypeReorientCommand extends EditElementComman
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected boolean canReorientTarget() {
 		if (!(oldEnd instanceof ExtendibleElement && newEnd instanceof ExtendibleElement)) {
 			return false;
@@ -100,8 +100,8 @@ public class ExtendibleElementSupertypeReorientCommand extends EditElementComman
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
@@ -116,8 +116,8 @@ public class ExtendibleElementSupertypeReorientCommand extends EditElementComman
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected CommandResult reorientSource() throws ExecutionException {
 		getOldSource().setSupertype(null);
 		getNewSource().setSupertype(getOldTarget());
@@ -125,37 +125,37 @@ public class ExtendibleElementSupertypeReorientCommand extends EditElementComman
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getOldSource().setSupertype(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected ExtendibleElement getOldSource() {
 		return (ExtendibleElement) referenceOwner;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected ExtendibleElement getNewSource() {
 		return (ExtendibleElement) newEnd;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected ExtendibleElement getOldTarget() {
 		return (ExtendibleElement) oldEnd;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected ExtendibleElement getNewTarget() {
 		return (ExtendibleElement) newEnd;
 	}

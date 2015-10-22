@@ -32,20 +32,20 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.OperatorModelEndpointOu
 public class ModelEndpoint3EditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final int VISUAL_ID = 4005;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public ModelEndpoint3EditPart(View view) {
 		super(view);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(
@@ -55,8 +55,8 @@ public class ModelEndpoint3EditPart extends ConnectionNodeEditPart implements IT
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ModelEndpointName2EditPart) {
 			((ModelEndpointName2EditPart) childEditPart)
@@ -67,8 +67,8 @@ public class ModelEndpoint3EditPart extends ConnectionNodeEditPart implements IT
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -77,8 +77,8 @@ public class ModelEndpoint3EditPart extends ConnectionNodeEditPart implements IT
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ModelEndpointName2EditPart) {
 			return true;
@@ -87,8 +87,8 @@ public class ModelEndpoint3EditPart extends ConnectionNodeEditPart implements IT
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -102,16 +102,16 @@ public class ModelEndpoint3EditPart extends ConnectionNodeEditPart implements IT
 	* Body of this method does not depend on settings in generation model
 	* so you may safely remove <i>generated</i> tag and modify it.
 	* 
-	* @generated
-	*/
+	 * @generated
+	 */
 
 	protected Connection createConnectionFigure() {
 		return new OperatorModelEndpointOutputFigure();
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public OperatorModelEndpointOutputFigure getPrimaryShape() {
 		return (OperatorModelEndpointOutputFigure) getFigure();
 	}

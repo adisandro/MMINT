@@ -40,25 +40,25 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 public class MIDEditPart extends DiagramEditPart {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public final static String MODEL_ID = "MID"; //$NON-NLS-1$
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final int VISUAL_ID = 1000;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public MIDEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(

@@ -29,30 +29,30 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.MIDCreateShortcutDecora
  */
 public class CreateShortcutAction extends DefaultCreateShortcutHandler {
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public CreateShortcutAction() {
 		this(MIDDiagramEditorPlugin.getInstance().getLogHelper());
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public CreateShortcutAction(LogHelper logHelper) {
 		super(logHelper, MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	@Override
 	public DefaultElementChooserDialog createChooserDialog(Shell parentShell, View view) {
 		return new MIDElementChooserDialog(parentShell, view);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	@Override
 	public ICommand createShortcutDecorationCommand(
 			View view, TransactionalEditingDomain editingDomain, List<CreateViewRequest.ViewDescriptor> descriptors) {

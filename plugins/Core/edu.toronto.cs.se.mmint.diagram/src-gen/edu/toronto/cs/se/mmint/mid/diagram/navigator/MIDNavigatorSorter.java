@@ -21,18 +21,18 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 public class MIDNavigatorSorter extends ViewerSorter {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static final int GROUP_CATEGORY = 4007;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static final int SHORTCUTS_CATEGORY = 4006;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public int category(Object element) {
 		if (element instanceof MIDNavigatorItem) {
 			MIDNavigatorItem item = (MIDNavigatorItem) element;

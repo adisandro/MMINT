@@ -55,8 +55,8 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.Messages;
 public class ModelOpenDiagramEditPolicy extends OpenEditPolicy {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected Command getOpenCommand(Request request) {
 		EditPart targetEditPart = getTargetEditPart(request);
 		if (false == targetEditPart.getModel() instanceof View) {
@@ -71,18 +71,18 @@ public class ModelOpenDiagramEditPolicy extends OpenEditPolicy {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static class OpenDiagramCommand extends AbstractTransactionalCommand {
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		private final HintedDiagramLinkStyle diagramFacet;
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		OpenDiagramCommand(HintedDiagramLinkStyle linkStyle) {
 			// editing domain is taken for original diagram, 
 			// if we open diagram from another file, we should use another editing domain
@@ -93,8 +93,8 @@ public class ModelOpenDiagramEditPolicy extends OpenEditPolicy {
 		// FIXME canExecute if  !(readOnly && getDiagramToOpen == null), i.e. open works on ro diagrams only when there's associated diagram already
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 				throws ExecutionException {
 			try {
@@ -115,15 +115,15 @@ public class ModelOpenDiagramEditPolicy extends OpenEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		protected Diagram getDiagramToOpen() {
 			return diagramFacet.getDiagramLink();
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		protected Diagram intializeNewDiagram() throws ExecutionException {
 			Diagram d = ViewService.createDiagram(getDiagramDomainElement(), getDiagramKind(), getPreferencesHint());
 			if (d == null) {
@@ -166,31 +166,31 @@ public class ModelOpenDiagramEditPolicy extends OpenEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		protected EObject getDiagramDomainElement() {
 			// use same element as associated with EP
 			return ((View) diagramFacet.eContainer()).getElement();
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		protected PreferencesHint getPreferencesHint() {
 			// XXX prefhint from target diagram's editor?
 			return MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		protected String getDiagramKind() {
 			return "Mid";
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		protected String getEditorID() {
 			return "edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID";
 		}

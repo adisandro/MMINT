@@ -56,13 +56,13 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 public class MIDParserProvider extends AbstractProvider implements IParserProvider {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private ExtendibleElementLabelParser modelLabel_5001Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getModelLabel_5001Parser() {
 		if (modelLabel_5001Parser == null) {
 			modelLabel_5001Parser = new ExtendibleElementLabelParser();
@@ -71,13 +71,13 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private CustomLabelParser modelLabel_5002Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getModelLabel_5002Parser() {
 		if (modelLabel_5002Parser == null) {
 			modelLabel_5002Parser = new CustomLabelParser();
@@ -86,13 +86,13 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private ExtendibleElementLabelParser modelLabel_5003Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getModelLabel_5003Parser() {
 		if (modelLabel_5003Parser == null) {
 			modelLabel_5003Parser = new ExtendibleElementLabelParser();
@@ -101,13 +101,13 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private CustomLabelParser modelLabel_5004Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getModelLabel_5004Parser() {
 		if (modelLabel_5004Parser == null) {
 			modelLabel_5004Parser = new CustomLabelParser();
@@ -116,13 +116,13 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private ExtendibleElementLabelParser modelRelLabel_5005Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getModelRelLabel_5005Parser() {
 		if (modelRelLabel_5005Parser == null) {
 			modelRelLabel_5005Parser = new ExtendibleElementLabelParser();
@@ -131,13 +131,13 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private CustomLabelParser modelRelLabel_5006Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getModelRelLabel_5006Parser() {
 		if (modelRelLabel_5006Parser == null) {
 			modelRelLabel_5006Parser = new CustomLabelParser();
@@ -146,13 +146,13 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private ExtendibleElementLabelParser modelRelLabel_5007Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getModelRelLabel_5007Parser() {
 		if (modelRelLabel_5007Parser == null) {
 			modelRelLabel_5007Parser = new ExtendibleElementLabelParser();
@@ -161,13 +161,13 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private CustomLabelParser modelRelLabel_5008Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getModelRelLabel_5008Parser() {
 		if (modelRelLabel_5008Parser == null) {
 			modelRelLabel_5008Parser = new CustomLabelParser();
@@ -176,13 +176,13 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private ExtendibleElementLabelParser operatorLabel_5009Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getOperatorLabel_5009Parser() {
 		if (operatorLabel_5009Parser == null) {
 			operatorLabel_5009Parser = new ExtendibleElementLabelParser();
@@ -191,13 +191,13 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private ExtendibleElementEndpointLabelParser modelEndpointLabel_6001Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getModelEndpointLabel_6001Parser() {
 		if (modelEndpointLabel_6001Parser == null) {
 			modelEndpointLabel_6001Parser = new ExtendibleElementEndpointLabelParser();
@@ -206,13 +206,13 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private CustomLabelParser modelEndpointLabel_6002Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getModelEndpointLabel_6002Parser() {
 		if (modelEndpointLabel_6002Parser == null) {
 			modelEndpointLabel_6002Parser = new CustomLabelParser();
@@ -221,13 +221,13 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private ExtendibleElementLabelParser binaryModelRelLabel_6003Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getBinaryModelRelLabel_6003Parser() {
 		if (binaryModelRelLabel_6003Parser == null) {
 			binaryModelRelLabel_6003Parser = new ExtendibleElementLabelParser();
@@ -236,13 +236,13 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private CustomLabelParser binaryModelRelLabel_6004Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getBinaryModelRelLabel_6004Parser() {
 		if (binaryModelRelLabel_6004Parser == null) {
 			binaryModelRelLabel_6004Parser = new CustomLabelParser();
@@ -251,13 +251,13 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private BinaryModelRelSourceModelEndpointLabelParser binaryModelRelLabel_6005Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getBinaryModelRelLabel_6005Parser() {
 		if (binaryModelRelLabel_6005Parser == null) {
 			binaryModelRelLabel_6005Parser = new BinaryModelRelSourceModelEndpointLabelParser();
@@ -266,13 +266,13 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private BinaryModelRelTargetModelEndpointLabelParser binaryModelRelLabel_6006Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getBinaryModelRelLabel_6006Parser() {
 		if (binaryModelRelLabel_6006Parser == null) {
 			binaryModelRelLabel_6006Parser = new BinaryModelRelTargetModelEndpointLabelParser();
@@ -281,13 +281,13 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser modelEndpointName_6007Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getModelEndpointName_6007Parser() {
 		if (modelEndpointName_6007Parser == null) {
 			EAttribute[] features = new EAttribute[] { MIDPackage.eINSTANCE.getExtendibleElement_Name() };
@@ -302,13 +302,13 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser modelEndpointName_6008Parser;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser getModelEndpointName_6008Parser() {
 		if (modelEndpointName_6008Parser == null) {
 			EAttribute[] features = new EAttribute[] { MIDPackage.eINSTANCE.getExtendibleElement_Name() };
@@ -323,8 +323,8 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 			case WrappingLabelEditPart.VISUAL_ID:
@@ -367,15 +367,15 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 
 	/**
 	* Utility method that consults ParserService
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static IParser getParser(IElementType type, EObject object, String parserHint) {
 		return ParserService.getInstance().getParser(new HintAdapter(type, object, parserHint));
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public IParser getParser(IAdaptable hint) {
 		String vid = (String) hint.getAdapter(String.class);
 		if (vid != null) {
@@ -389,8 +389,8 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public boolean provides(IOperation operation) {
 		if (operation instanceof GetParserOperation) {
 			IAdaptable hint = ((GetParserOperation) operation).getHint();
@@ -403,18 +403,18 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static class HintAdapter extends ParserHintAdapter {
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		private final IElementType elementType;
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public HintAdapter(IElementType type, EObject object, String parserHint) {
 			super(object, parserHint);
 			assert type != null;
@@ -422,8 +422,8 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public Object getAdapter(Class adapter) {
 			if (IElementType.class.equals(adapter)) {
 				return elementType;

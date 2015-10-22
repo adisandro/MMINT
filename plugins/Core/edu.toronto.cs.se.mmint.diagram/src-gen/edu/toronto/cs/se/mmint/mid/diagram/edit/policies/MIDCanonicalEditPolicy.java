@@ -73,13 +73,13 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 public class MIDCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void refreshOnActivate() {
 		// Need to activate editpart children before invoking the canonical refresh for EditParts to add event listeners
 		List<?> c = getHost().getChildren();
@@ -90,8 +90,8 @@ public class MIDCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected Set getFeaturesToSynchronize() {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
@@ -102,8 +102,8 @@ public class MIDCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	@SuppressWarnings("rawtypes")
 
 	protected List getSemanticChildrenList() {
@@ -117,8 +117,8 @@ public class MIDCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected boolean isOrphaned(Collection<EObject> semanticChildren, final View view) {
 		if (isShortcut(view)) {
 			return MIDDiagramUpdater.isShortcutOrphaned(view);
@@ -127,8 +127,8 @@ public class MIDCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private boolean isMyDiagramElement(View view) {
 		int visualID = MIDVisualIDRegistry.getVisualID(view);
 		switch (visualID) {
@@ -143,15 +143,15 @@ public class MIDCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected static boolean isShortcut(View view) {
 		return view.getEAnnotation("Shortcut") != null; //$NON-NLS-1$
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void refreshSemantic() {
 		if (resolveSemanticElement() == null) {
 			return;
@@ -306,8 +306,8 @@ public class MIDCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private Collection<IAdaptable> refreshConnections() {
 		Domain2Notation domain2NotationMap = new Domain2Notation();
 		Collection<MIDLinkDescriptor> linkDescriptors = collectAllLinks(getDiagram(), domain2NotationMap);
@@ -342,8 +342,8 @@ public class MIDCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private Collection<MIDLinkDescriptor> collectAllLinks(View view, Domain2Notation domain2NotationMap) {
 		if (!MIDEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(view))) {
 			return Collections.emptyList();
@@ -431,8 +431,8 @@ public class MIDCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private Collection<IAdaptable> createConnections(
 			Collection<MIDLinkDescriptor> linkDescriptors, Domain2Notation domain2NotationMap) {
 		LinkedList<IAdaptable> adapters = new LinkedList<IAdaptable>();
@@ -467,8 +467,8 @@ public class MIDCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private EditPart getEditPart(EObject domainModelElement, Domain2Notation domain2NotationMap) {
 		View view = (View) domain2NotationMap.get(domainModelElement);
 		if (view != null) {
@@ -478,29 +478,29 @@ public class MIDCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private Diagram getDiagram() {
 		return ((View) getHost().getModel()).getDiagram();
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private EditPart getSourceEditPart(UpdaterLinkDescriptor descriptor, Domain2Notation domain2NotationMap) {
 		return getEditPart(descriptor.getSource(), domain2NotationMap);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private EditPart getTargetEditPart(UpdaterLinkDescriptor descriptor, Domain2Notation domain2NotationMap) {
 		return getEditPart(descriptor.getDestination(), domain2NotationMap);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected final EditPart getHintedEditPart(
 			EObject domainModelElement, Domain2Notation domain2NotationMap, int hintVisualId) {
 		View view = (View) domain2NotationMap.getHinted(domainModelElement, MIDVisualIDRegistry.getType(hintVisualId));
@@ -511,27 +511,27 @@ public class MIDCanonicalEditPolicy extends CanonicalEditPolicy {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	@SuppressWarnings("serial")
 	protected static class Domain2Notation extends HashMap<EObject, View> {
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean containsDomainElement(EObject domainElement) {
 			return this.containsKey(domainElement);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public View getHinted(EObject domainEObject, String hint) {
 			return this.get(domainEObject);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public void putView(EObject domainElement, View view) {
 			if (!containsKey(view.getElement()) || !isShortcut(view)) {
 				this.put(domainElement, view);

@@ -46,59 +46,59 @@ import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 public class MIDDiagramEditorPlugin extends AbstractUIPlugin {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final String ID = "edu.toronto.cs.se.mmint.diagram"; //$NON-NLS-1$
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private LogHelper myLogHelper;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(ID);
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static MIDDiagramEditorPlugin instance;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private ComposedAdapterFactory adapterFactory;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private MIDDocumentProvider documentProvider;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private MIDBaseItemSemanticEditPolicy.LinkConstraints linkConstraints;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private ElementInitializers initializers;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private MIDOCLFactory oclFactory;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public MIDDiagramEditorPlugin() {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void startGen(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
@@ -117,8 +117,8 @@ public class MIDDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
@@ -130,15 +130,15 @@ public class MIDDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static MIDDiagramEditorPlugin getInstance() {
 		return instance;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected ComposedAdapterFactory createAdapterFactoryGen() {
 		ArrayList<AdapterFactory> factories = new ArrayList<AdapterFactory>();
 		fillItemProviderFactories(factories);
@@ -154,8 +154,8 @@ public class MIDDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void fillItemProviderFactories(List<AdapterFactory> factories) {
 		factories.add(new MIDItemProviderAdapterFactory());
 		factories.add(new RelationshipItemProviderAdapterFactory());
@@ -166,15 +166,15 @@ public class MIDDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public AdapterFactory getItemProvidersAdapterFactory() {
 		return adapterFactory;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public ImageDescriptor getItemImageDescriptor(Object item) {
 		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory.adapt(item, IItemLabelProvider.class);
 		if (labelProvider != null) {
@@ -242,8 +242,8 @@ public class MIDDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public MIDDocumentProvider getDocumentProvider() {
 		if (documentProvider == null) {
 			documentProvider = new MIDDocumentProvider();
@@ -252,78 +252,78 @@ public class MIDDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public MIDBaseItemSemanticEditPolicy.LinkConstraints getLinkConstraints() {
 		return linkConstraints;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void setLinkConstraints(MIDBaseItemSemanticEditPolicy.LinkConstraints lc) {
 		this.linkConstraints = lc;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public ElementInitializers getElementInitializers() {
 		return initializers;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void setElementInitializers(ElementInitializers i) {
 		this.initializers = i;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public MIDOCLFactory getMIDOCLFactory() {
 		return oclFactory;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void setMIDOCLFactory(MIDOCLFactory f) {
 		this.oclFactory = f;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void logError(String error) {
 		getLogHelper().logError(error, null);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void logError(String error, Throwable throwable) {
 		getLogHelper().logError(error, throwable);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void logInfo(String message) {
 		getLogHelper().logInfo(message, null);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void logInfo(String message, Throwable throwable) {
 		getLogHelper().logInfo(message, throwable);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public LogHelper getLogHelper() {
 		return myLogHelper;
 	}

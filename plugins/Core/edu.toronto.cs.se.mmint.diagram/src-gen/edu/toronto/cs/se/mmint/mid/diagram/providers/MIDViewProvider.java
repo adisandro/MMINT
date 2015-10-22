@@ -88,8 +88,8 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public final boolean provides(IOperation operation) {
 		if (operation instanceof CreateViewForKindOperation) {
 			return provides((CreateViewForKindOperation) operation);
@@ -108,29 +108,29 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
 				if (op.getViewKind() == Node.class)
 					return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 				if (op.getViewKind() == Edge.class)
 					return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		*/
+		 */
 		return true;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected boolean provides(CreateDiagramViewOperation op) {
 		return MIDEditPart.MODEL_ID.equals(op.getSemanticHint())
 				&& MIDVisualIDRegistry.getDiagramVisualID(getSemanticElement(op.getSemanticAdapter())) != -1;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected boolean provides(CreateNodeViewOperation op) {
 		if (op.getContainerView() == null) {
 			return false;
@@ -188,8 +188,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected boolean provides(CreateEdgeViewOperation op) {
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
 		if (!MIDElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
@@ -209,8 +209,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Diagram createDiagram(IAdaptable semanticAdapter, String diagramKind, PreferencesHint preferencesHint) {
 		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
 		diagram.getStyles().add(NotationFactory.eINSTANCE.createDiagramStyle());
@@ -221,8 +221,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Node createNode(
 			IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
@@ -251,8 +251,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Edge createEdge(
 			IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
@@ -295,8 +295,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Node createModel_2001(
 			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
@@ -331,8 +331,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Node createModel_2002(
 			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
@@ -367,8 +367,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Node createModelRel_2003(
 			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
@@ -403,8 +403,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Node createModelRel_2004(
 			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
@@ -439,8 +439,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Node createOperator_2005(
 			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
@@ -469,8 +469,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Edge createExtendibleElementSupertype_4001(
 			View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
@@ -506,8 +506,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Edge createModelEndpoint_4002(
 			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
@@ -553,8 +553,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Edge createBinaryModelRel_4003(
 			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
@@ -610,8 +610,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Edge createModelEndpoint_4004(
 			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
@@ -652,8 +652,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Edge createModelEndpoint_4005(
 			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
@@ -694,8 +694,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private void stampShortcut(View containerView, Node target) {
 		if (!MIDEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
@@ -706,8 +706,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private Node createLabel(View owner, String hint) {
 		DecorationNode rv = NotationFactory.eINSTANCE.createDecorationNode();
 		rv.setType(hint);
@@ -716,8 +716,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private EObject getSemanticElement(IAdaptable semanticAdapter) {
 		if (semanticAdapter == null) {
 			return null;

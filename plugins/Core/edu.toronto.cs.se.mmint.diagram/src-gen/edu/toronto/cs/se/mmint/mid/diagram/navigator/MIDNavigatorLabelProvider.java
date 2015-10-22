@@ -59,8 +59,8 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDParserProvider;
 public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonLabelProvider, ITreePathLabelProvider {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	static {
 		MIDDiagramEditorPlugin.getInstance().getImageRegistry().put(
 			"Navigator?UnknownElement", //$NON-NLS-1$
@@ -71,8 +71,8 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void updateLabel(ViewerLabel label, TreePath elementPath) {
 		Object element = elementPath.getLastSegment();
 		if (element instanceof MIDNavigatorItem && !isOwnView(((MIDNavigatorItem) element).getView())) {
@@ -83,8 +83,8 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Image getImage(Object element) {
 		if (element instanceof MIDNavigatorGroup) {
 			MIDNavigatorGroup group = (MIDNavigatorGroup) element;
@@ -111,8 +111,8 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public Image getImage(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 			case MIDEditPart.VISUAL_ID:
@@ -162,8 +162,8 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private Image getImage(String key, IElementType elementType) {
 		ImageRegistry imageRegistry = MIDDiagramEditorPlugin.getInstance().getImageRegistry();
 		Image image = imageRegistry.get(key);
@@ -180,8 +180,8 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public String getText(Object element) {
 		if (element instanceof MIDNavigatorGroup) {
 			MIDNavigatorGroup group = (MIDNavigatorGroup) element;
@@ -208,8 +208,8 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public String getText(View view) {
 		if (view.getElement() != null && view.getElement().eIsProxy()) {
 			return getUnresolvedDomainElementProxyText(view);
@@ -242,8 +242,8 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String getMID_1000Text(View view) {
 		edu.toronto.cs.se.mmint.mid.MID domainModelElement = (edu.toronto.cs.se.mmint.mid.MID) view.getElement();
 		if (domainModelElement != null) {
@@ -256,8 +256,8 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String getModel_2001Text(View view) {
 		IParser parser = MIDParserProvider.getParser(
 			MIDElementTypes.Model_2001,
@@ -275,8 +275,8 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String getModel_2002Text(View view) {
 		IParser parser = MIDParserProvider.getParser(
 			MIDElementTypes.Model_2002,
@@ -294,8 +294,8 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String getModelRel_2003Text(View view) {
 		IParser parser = MIDParserProvider.getParser(
 			MIDElementTypes.ModelRel_2003,
@@ -313,8 +313,8 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String getModelRel_2004Text(View view) {
 		IParser parser = MIDParserProvider.getParser(
 			MIDElementTypes.ModelRel_2004,
@@ -332,8 +332,8 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String getOperator_2005Text(View view) {
 		IParser parser = MIDParserProvider.getParser(
 			MIDElementTypes.Operator_2005,
@@ -351,15 +351,15 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String getExtendibleElementSupertype_4001Text(View view) {
 		return ""; //$NON-NLS-1$
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String getModelEndpoint_4002Text(View view) {
 		IParser parser = MIDParserProvider.getParser(
 			MIDElementTypes.ModelEndpoint_4002,
@@ -377,8 +377,8 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String getBinaryModelRel_4003Text(View view) {
 		IParser parser = MIDParserProvider.getParser(
 			MIDElementTypes.BinaryModelRel_4003,
@@ -396,8 +396,8 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String getModelEndpoint_4004Text(View view) {
 		IParser parser = MIDParserProvider.getParser(
 			MIDElementTypes.ModelEndpoint_4004,
@@ -415,8 +415,8 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String getModelEndpoint_4005Text(View view) {
 		IParser parser = MIDParserProvider.getParser(
 			MIDElementTypes.ModelEndpoint_4005,
@@ -434,47 +434,47 @@ public class MIDNavigatorLabelProvider extends LabelProvider implements ICommonL
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String getUnknownElementText(View view) {
 		return "<UnknownElement Visual_ID = " + view.getType() + ">"; //$NON-NLS-1$  //$NON-NLS-2$
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String getUnresolvedDomainElementProxyText(View view) {
 		return "<Unresolved domain element Visual_ID = " + view.getType() + ">"; //$NON-NLS-1$  //$NON-NLS-2$
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init(ICommonContentExtensionSite aConfig) {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void restoreState(IMemento aMemento) {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void saveState(IMemento aMemento) {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public String getDescription(Object anElement) {
 		return null;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private boolean isOwnView(View view) {
 		return MIDEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(view));
 	}

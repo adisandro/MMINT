@@ -20,8 +20,8 @@ import org.eclipse.gmf.tooling.runtime.providers.DefaultElementTypeIconProvider;
 public class MIDIconProvider extends DefaultElementTypeIconProvider implements IIconProvider {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public MIDIconProvider() {
 		super(MIDElementTypes.TYPED_INSTANCE);
 	}

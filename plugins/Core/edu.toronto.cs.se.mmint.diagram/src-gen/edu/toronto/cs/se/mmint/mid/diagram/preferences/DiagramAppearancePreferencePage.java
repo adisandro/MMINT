@@ -21,8 +21,8 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 public class DiagramAppearancePreferencePage extends AppearancePreferencePage {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public DiagramAppearancePreferencePage() {
 		setPreferenceStore(MIDDiagramEditorPlugin.getInstance().getPreferenceStore());
 	}

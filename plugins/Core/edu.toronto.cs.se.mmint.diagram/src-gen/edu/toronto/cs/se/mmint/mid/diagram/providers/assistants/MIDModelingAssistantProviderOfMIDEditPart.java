@@ -26,8 +26,8 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDModelingAssistantProvide
 public class MIDModelingAssistantProviderOfMIDEditPart extends MIDModelingAssistantProvider {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	@Override
 
 	public List<IElementType> getTypesForPopupBar(IAdaptable host) {

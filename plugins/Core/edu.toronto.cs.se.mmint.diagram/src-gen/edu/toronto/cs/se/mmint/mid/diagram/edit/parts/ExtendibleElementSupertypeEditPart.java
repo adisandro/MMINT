@@ -31,20 +31,20 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ExtendibleElementSupert
 public class ExtendibleElementSupertypeEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final int VISUAL_ID = 4001;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public ExtendibleElementSupertypeEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(
@@ -59,16 +59,16 @@ public class ExtendibleElementSupertypeEditPart extends ConnectionNodeEditPart i
 	* Body of this method does not depend on settings in generation model
 	* so you may safely remove <i>generated</i> tag and modify it.
 	* 
-	* @generated
-	*/
+	 * @generated
+	 */
 
 	protected Connection createConnectionFigure() {
 		return new ExtendibleElementSupertypeFigure();
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public ExtendibleElementSupertypeFigure getPrimaryShape() {
 		return (ExtendibleElementSupertypeFigure) getFigure();
 	}

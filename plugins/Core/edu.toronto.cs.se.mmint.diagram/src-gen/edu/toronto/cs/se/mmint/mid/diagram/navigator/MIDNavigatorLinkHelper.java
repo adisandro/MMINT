@@ -42,8 +42,8 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 public class MIDNavigatorLinkHelper implements ILinkHelper {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static IEditorInput getEditorInput(Diagram diagram) {
 		Resource diagramResource = diagram.eResource();
 		for (EObject nextEObject : diagramResource.getContents()) {
@@ -61,8 +61,8 @@ public class MIDNavigatorLinkHelper implements ILinkHelper {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public IStructuredSelection findSelection(IEditorInput anInput) {
 		IDiagramDocument document = MIDDiagramEditorPlugin
 			.getInstance()
@@ -84,8 +84,8 @@ public class MIDNavigatorLinkHelper implements ILinkHelper {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void activateEditor(IWorkbenchPage aPage, IStructuredSelection aSelection) {
 		if (aSelection == null || aSelection.isEmpty()) {
 			return;

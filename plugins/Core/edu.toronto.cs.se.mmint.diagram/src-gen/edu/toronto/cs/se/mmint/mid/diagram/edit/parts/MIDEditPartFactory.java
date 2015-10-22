@@ -26,8 +26,8 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 public class MIDEditPartFactory implements EditPartFactory {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
@@ -123,16 +123,16 @@ public class MIDEditPartFactory implements EditPartFactory {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private EditPart createUnrecognizedEditPart(EditPart context, Object model) {
 		// Handle creation of unrecognized child node EditParts here
 		return null;
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 	}

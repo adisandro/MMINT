@@ -29,8 +29,8 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 public class MIDPaletteFactory {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void fillPalette(PaletteRoot paletteRoot) {
 		paletteRoot.add(createNew1Group());
 		paletteRoot.add(createImport2Group());
@@ -38,8 +38,8 @@ public class MIDPaletteFactory {
 
 	/**
 	* Creates "New" palette tool group
-	* @generated
-	*/
+	 * @generated
+	 */
 	private PaletteContainer createNew1Group() {
 		PaletteDrawer paletteContainer = new PaletteDrawer(Messages.New1Group_title);
 		paletteContainer.setId("createNew1Group"); //$NON-NLS-1$
@@ -52,8 +52,8 @@ public class MIDPaletteFactory {
 
 	/**
 	* Creates "Import" palette tool group
-	* @generated
-	*/
+	 * @generated
+	 */
 	private PaletteContainer createImport2Group() {
 		PaletteDrawer paletteContainer = new PaletteDrawer(Messages.Import2Group_title);
 		paletteContainer.setId("createImport2Group"); //$NON-NLS-1$
@@ -63,8 +63,8 @@ public class MIDPaletteFactory {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private ToolEntry createNewModel1CreationTool() {
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 			Messages.NewModel1CreationTool_title,
@@ -77,8 +77,8 @@ public class MIDPaletteFactory {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private ToolEntry createNewBinaryRel2CreationTool() {
 		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 			Messages.NewBinaryRel2CreationTool_title,
@@ -91,8 +91,8 @@ public class MIDPaletteFactory {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private ToolEntry createNewNaryRel3CreationTool() {
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 			Messages.NewNaryRel3CreationTool_title,
@@ -105,8 +105,8 @@ public class MIDPaletteFactory {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private ToolEntry createConnectModel4CreationTool() {
 		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 			Messages.ConnectModel4CreationTool_title,
@@ -119,8 +119,8 @@ public class MIDPaletteFactory {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private ToolEntry createImportModel1CreationTool() {
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 			Messages.ImportModel1CreationTool_title,
@@ -133,8 +133,8 @@ public class MIDPaletteFactory {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private ToolEntry createImportNaryRel2CreationTool() {
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 			Messages.ImportNaryRel2CreationTool_title,
