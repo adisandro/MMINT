@@ -39,7 +39,7 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
@@ -102,7 +102,7 @@ public class Map extends OperatorImpl {
 			outputMIDModelDiagram.getMetatypeUri()).getSymbolicName();
 		MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
 		for (Model midrelShortcut : midrelShortcutsByOutputName.get(outputName)) {
-			Node gmfNode = gmfViewProvider.createModel_2012(
+			Node gmfNode = gmfViewProvider.createModel_2002(
 				midrelShortcut,
 				gmfDiagramRoot,
 				-1,
@@ -110,7 +110,7 @@ public class Map extends OperatorImpl {
 				new PreferencesHint(gmfDiagramPluginId));
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut");
-			shortcutAnnotation.getDetails().put("modelID", MultiModelEditPart.MODEL_ID);
+			shortcutAnnotation.getDetails().put("modelID", MIDEditPart.MODEL_ID);
 			gmfNode.getEAnnotations().add(shortcutAnnotation);
 		}
 		MultiModelUtils.createModelFile(gmfDiagramRoot, outputMIDModelDiagram.getUri(), true);
